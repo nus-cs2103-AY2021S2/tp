@@ -10,7 +10,7 @@ Weeblingo is a desktop app for managing flashcards, **optimized for use via a Co
   * [Starting a quiz session: `start`](#starting-a-quiz-session-start)
   * [Checking flashcard answers: `check`](#checking-flashcard-answers-check)
   * [Going to next flashcard: `next`](#going-to-next-flashcard-next)
-  * [Listing out all flashcards: `list`](#listing-out-all-flashcards-list)
+  * [Listing out all flashcards: `learn`](#listing-out-all-flashcards-learn)
   * [Ending the session: `end`](#ending-the-session-end)
   * [Viewing past scores: `history`](#viewing-past-scores-history)
   * [Exiting the application: `exit`](#exiting-the-application-exit)
@@ -87,11 +87,11 @@ Goes to the next flashcard, if any.
 
 Format: `next`
 
-### Listing out all flashcards: `list`
+### Listing out all flashcards: `learn`
 
-Lists out all current flashcards.
+Enters Learn Mode, where all current flashcards are listed out.
 
-Format: `list`
+Format: `learn`
 
 ### Ending the session: `end`
 
@@ -144,7 +144,7 @@ Action | Format, Examples |
 **Start** | `start`
 **Check** | `check`
 **Next** | `next`
-**List** | `list`
+**Learn** | `learn`
 **End** | `end`
 **History**|`history`
 **Exit** | `exit`
