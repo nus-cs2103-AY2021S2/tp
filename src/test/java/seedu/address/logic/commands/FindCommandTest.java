@@ -8,11 +8,11 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalAppointments.getTypicalAppointmentBook;
 import static seedu.address.testutil.TypicalBudgets.getTypicalBudgetBook;
 import static seedu.address.testutil.TypicalGrades.getTypicalGradeBook;
+import static seedu.address.testutil.TypicalSchedules.getTypicalScheduleTracker;
 import static seedu.address.testutil.TypicalTutors.CARL;
 import static seedu.address.testutil.TypicalTutors.ELLE;
 import static seedu.address.testutil.TypicalTutors.FIONA;
 import static seedu.address.testutil.TypicalTutors.getTypicalTutorBook;
-import static seedu.address.testutil.TypicalSchedules.getTypicalScheduleTracker;
 
 import java.util.Arrays;
 import java.util.Collections;

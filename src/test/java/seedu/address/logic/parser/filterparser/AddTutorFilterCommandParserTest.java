@@ -13,16 +13,16 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.filtercommands.AddPersonFilterCommand;
 import seedu.address.model.filter.NameFilter;
 import seedu.address.model.filter.TutorFilter;
-import seedu.address.model.tutor.Address;
-import seedu.address.model.tutor.Email;
-import seedu.address.model.tutor.Gender;
-import seedu.address.model.tutor.Name;
-import seedu.address.model.tutor.Phone;
 import seedu.address.model.subject.SubjectExperience;
 import seedu.address.model.subject.SubjectLevel;
 import seedu.address.model.subject.SubjectName;
 import seedu.address.model.subject.SubjectQualification;
 import seedu.address.model.subject.SubjectRate;
+import seedu.address.model.tutor.Address;
+import seedu.address.model.tutor.Email;
+import seedu.address.model.tutor.Gender;
+import seedu.address.model.tutor.Name;
+import seedu.address.model.tutor.Phone;
 
 public class AddTutorFilterCommandParserTest {
     private AddPersonFilterCommandParser parser = new AddPersonFilterCommandParser();

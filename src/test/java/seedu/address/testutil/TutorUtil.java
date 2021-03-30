@@ -17,9 +17,9 @@ import java.util.Set;
 
 import seedu.address.logic.commands.tutorcommands.AddCommand;
 import seedu.address.logic.commands.tutorcommands.EditCommand.EditTutorDescriptor;
-import seedu.address.model.tutor.Tutor;
 import seedu.address.model.subject.SubjectList;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tutor.Tutor;
 
 /**
  * A utility class for Tutor.

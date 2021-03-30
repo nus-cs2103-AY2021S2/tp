@@ -3,8 +3,8 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static seedu.address.testutil.TypicalAppointments.getTypicalAppointmentBook;
-import static seedu.address.testutil.TypicalTutors.getTypicalTutorBook;
 import static seedu.address.testutil.TypicalSchedules.getTypicalScheduleTracker;
+import static seedu.address.testutil.TypicalTutors.getTypicalTutorBook;
 
 import java.nio.file.Path;
 
@@ -13,10 +13,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.TutorBook;
 import seedu.address.model.AppointmentBook;
-import seedu.address.model.ReadOnlyTutorBook;
 import seedu.address.model.ReadOnlyAppointmentBook;
+import seedu.address.model.ReadOnlyTutorBook;
+import seedu.address.model.TutorBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.schedule.ReadOnlyScheduleTracker;
 import seedu.address.model.schedule.ScheduleTracker;

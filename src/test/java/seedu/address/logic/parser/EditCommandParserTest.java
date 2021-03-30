@@ -37,11 +37,11 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.tutorcommands.EditCommand;
 import seedu.address.logic.commands.tutorcommands.EditCommand.EditTutorDescriptor;
 import seedu.address.logic.parser.tutorparser.EditCommandParser;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.tutor.Address;
 import seedu.address.model.tutor.Email;
 import seedu.address.model.tutor.Name;
 import seedu.address.model.tutor.Phone;
-import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditTutorDescriptorBuilder;
 
 public class EditCommandParserTest {

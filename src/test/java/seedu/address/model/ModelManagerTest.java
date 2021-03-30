@@ -5,10 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TUTORS;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalTutors.ALICE;
-import static seedu.address.testutil.TypicalTutors.BENSON;
 import static seedu.address.testutil.TypicalSchedules.MATHS_HOMEWORK_SCHEDULE;
 import static seedu.address.testutil.TypicalSchedules.SCIENCE_HOMEWORK_SCHEDULE;
+import static seedu.address.testutil.TypicalTutors.ALICE;
+import static seedu.address.testutil.TypicalTutors.BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -23,13 +23,13 @@ import seedu.address.model.budget.Budget;
 import seedu.address.model.grade.Grade;
 import seedu.address.model.grade.GradeEnum;
 import seedu.address.model.grade.GradedItem;
+import seedu.address.model.schedule.ScheduleTracker;
+import seedu.address.model.subject.SubjectName;
 import seedu.address.model.tutor.Address;
 import seedu.address.model.tutor.Name;
 import seedu.address.model.tutor.NameContainsKeywordsPredicate;
-import seedu.address.model.schedule.ScheduleTracker;
-import seedu.address.model.subject.SubjectName;
-import seedu.address.testutil.TutorBookBuilder;
 import seedu.address.testutil.ScheduleTrackerBuilder;
+import seedu.address.testutil.TutorBookBuilder;
 
 public class ModelManagerTest {
 

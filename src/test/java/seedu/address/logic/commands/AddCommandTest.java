@@ -16,13 +16,13 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.tutorcommands.AddCommand;
-import seedu.address.model.TutorBook;
 import seedu.address.model.BudgetBook;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyTutorBook;
 import seedu.address.model.ReadOnlyAppointmentBook;
 import seedu.address.model.ReadOnlyGradeBook;
+import seedu.address.model.ReadOnlyTutorBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.TutorBook;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.budget.Budget;
@@ -30,10 +30,10 @@ import seedu.address.model.event.Event;
 import seedu.address.model.filter.AppointmentFilter;
 import seedu.address.model.filter.TutorFilter;
 import seedu.address.model.grade.Grade;
-import seedu.address.model.tutor.Name;
-import seedu.address.model.tutor.Tutor;
 import seedu.address.model.schedule.ReadOnlyScheduleTracker;
 import seedu.address.model.schedule.Schedule;
+import seedu.address.model.tutor.Name;
+import seedu.address.model.tutor.Tutor;
 import seedu.address.testutil.TutorBuilder;
 
 public class AddCommandTest {

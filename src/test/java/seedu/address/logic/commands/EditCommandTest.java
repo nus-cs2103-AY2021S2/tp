@@ -15,8 +15,8 @@ import static seedu.address.testutil.TypicalBudgets.getTypicalBudgetBook;
 import static seedu.address.testutil.TypicalGrades.getTypicalGradeBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalTutors.getTypicalTutorBook;
 import static seedu.address.testutil.TypicalSchedules.getTypicalScheduleTracker;
+import static seedu.address.testutil.TypicalTutors.getTypicalTutorBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,9 +24,9 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.tutorcommands.ClearCommand;
 import seedu.address.logic.commands.tutorcommands.EditCommand;
-import seedu.address.model.TutorBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.TutorBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.tutor.Tutor;
 import seedu.address.testutil.EditTutorDescriptorBuilder;

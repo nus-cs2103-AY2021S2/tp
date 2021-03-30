@@ -41,12 +41,12 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.tutorcommands.AddCommand;
 import seedu.address.logic.parser.tutorparser.AddCommandParser;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.tutor.Address;
 import seedu.address.model.tutor.Email;
 import seedu.address.model.tutor.Name;
-import seedu.address.model.tutor.Tutor;
 import seedu.address.model.tutor.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.tutor.Tutor;
 import seedu.address.testutil.TutorBuilder;
 
 public class AddCommandParserTest {

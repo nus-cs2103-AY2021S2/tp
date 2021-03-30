@@ -4,8 +4,8 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalAppointments.getTypicalAppointmentBook;
 import static seedu.address.testutil.TypicalGrades.getTypicalGradeBook;
-import static seedu.address.testutil.TypicalTutors.getTypicalTutorBook;
 import static seedu.address.testutil.TypicalSchedules.getTypicalScheduleTracker;
+import static seedu.address.testutil.TypicalTutors.getTypicalTutorBook;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -20,17 +20,17 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.filter.NameFilter;
 import seedu.address.model.filter.TutorFilter;
-import seedu.address.model.tutor.Address;
-import seedu.address.model.tutor.Email;
-import seedu.address.model.tutor.Gender;
-import seedu.address.model.tutor.Name;
-import seedu.address.model.tutor.Tutor;
-import seedu.address.model.tutor.Phone;
 import seedu.address.model.subject.SubjectExperience;
 import seedu.address.model.subject.SubjectLevel;
 import seedu.address.model.subject.SubjectName;
 import seedu.address.model.subject.SubjectQualification;
 import seedu.address.model.subject.SubjectRate;
+import seedu.address.model.tutor.Address;
+import seedu.address.model.tutor.Email;
+import seedu.address.model.tutor.Gender;
+import seedu.address.model.tutor.Name;
+import seedu.address.model.tutor.Phone;
+import seedu.address.model.tutor.Tutor;
 import seedu.address.testutil.TypicalTutors;
 
 /**

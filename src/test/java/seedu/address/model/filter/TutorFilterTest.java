@@ -15,17 +15,17 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import seedu.address.model.tutor.Address;
-import seedu.address.model.tutor.Email;
-import seedu.address.model.tutor.Gender;
-import seedu.address.model.tutor.Name;
-import seedu.address.model.tutor.Tutor;
-import seedu.address.model.tutor.Phone;
 import seedu.address.model.subject.SubjectExperience;
 import seedu.address.model.subject.SubjectLevel;
 import seedu.address.model.subject.SubjectName;
 import seedu.address.model.subject.SubjectQualification;
 import seedu.address.model.subject.SubjectRate;
+import seedu.address.model.tutor.Address;
+import seedu.address.model.tutor.Email;
+import seedu.address.model.tutor.Gender;
+import seedu.address.model.tutor.Name;
+import seedu.address.model.tutor.Phone;
+import seedu.address.model.tutor.Tutor;
 import seedu.address.testutil.TypicalTutors;
 
 public class TutorFilterTest {

@@ -7,9 +7,6 @@ import static seedu.address.logic.commands.CommandTestUtil.showAppointmentAtDate
 import static seedu.address.testutil.ModelManagerBuilder.ModelType.APPOINTMENTBOOK;
 import static seedu.address.testutil.TypicalDates.APPOINTMENT_FIRST_DATE;
 import static seedu.address.testutil.TypicalDates.APPOINTMENT_SECOND_DATE;
-import static seedu.address.testutil.TypicalGrades.getTypicalGradeBook;
-import static seedu.address.testutil.TypicalTutors.getTypicalTutorBook;
-
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
