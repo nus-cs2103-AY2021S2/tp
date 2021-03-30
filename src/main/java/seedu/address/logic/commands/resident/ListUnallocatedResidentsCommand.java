@@ -8,7 +8,7 @@ import seedu.address.model.Model;
 import seedu.address.model.resident.ResidentUnallocatedPredicate;
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all unallocated residents in the address book to the user.
  */
 public class ListUnallocatedResidentsCommand extends Command {
 

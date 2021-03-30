@@ -5,12 +5,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.resident.Name;
-import seedu.address.model.resident.Resident;
 import seedu.address.model.residentroom.ResidentRoom;
 import seedu.address.model.room.RoomNumber;
 
 /**
- * Jackson-friendly version of {@link Resident}.
+ * Jackson-friendly version of {@link ResidentRoom}.
  */
 class JsonAdaptedResidentRoom {
 
@@ -20,7 +19,7 @@ class JsonAdaptedResidentRoom {
     private final String roomNumber;
 
     /**
-     * Constructs a {@code JsonAdaptedResident} with the given resident details.
+     * Constructs a {@code JsonAdaptedResidentRoom} with the given residentRoom details.
      */
     @JsonCreator
     public JsonAdaptedResidentRoom(@JsonProperty("name") String name, @JsonProperty("roomNumber") String roomNumber) {
@@ -29,7 +28,7 @@ class JsonAdaptedResidentRoom {
     }
 
     /**
-     * Converts a given {@code Resident} into this class for Jackson use.
+     * Converts a given {@code ResidentRoom} into this class for Jackson use.
      */
     public JsonAdaptedResidentRoom(ResidentRoom source) {
         name = source.getName().fullName;
@@ -37,9 +36,9 @@ class JsonAdaptedResidentRoom {
     }
 
     /**
-     * Converts this Jackson-friendly adapted resident object into the model's {@code Resident} object.
+     * Converts this Jackson-friendly adapted residentRoom object into the model's {@code ResidentRoom} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted resident.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted residentRoom.
      */
     public ResidentRoom toModelType() throws IllegalValueException {
         if (name == null) {

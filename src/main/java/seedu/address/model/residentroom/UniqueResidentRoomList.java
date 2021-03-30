@@ -8,23 +8,21 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.resident.Resident;
-import seedu.address.model.resident.exceptions.DuplicateResidentException;
 import seedu.address.model.resident.exceptions.ResidentNotFoundException;
 import seedu.address.model.residentroom.exceptions.DuplicateResidentRoomException;
 import seedu.address.model.residentroom.exceptions.ResidentRoomNotFoundException;
 
 /**
- * A list of residents that enforces uniqueness between its elements and does not allow nulls.
- * A resident is considered unique by comparing using {@code Resident#isSameResident(Resident)}.
- * As such, adding and updating of resident uses Resident#isSameResident(Resident) for equality so as to
- * ensure that the resident being added or updated is unique in terms of identity in the UniqueResidentList.
- * However, the removal of a resident uses Resident#equals(Object) so
- * as to ensure that the resident with exactly the same fields will be removed.
+ * A list of residentRooms that enforces uniqueness between its elements and does not allow nulls.
+ * A residentRoom is considered unique by comparing using {@code ResidentRoom#isSameResidentRoom(ResidentRoom)}.
+ * As such, allocation and deallocation of residentRoom uses ResidentRoom#isSameResidentRoom(ResidentRoom) for
+ * equality so as to ensure that the residentRoom being added or updated is unique in terms of identity in the
+ * UniqueResidentRoomList.
+ * However, the deallocation of a residentRoom uses ResidentRoom#containsBothResidentRoom(Object) so
+ * as to ensure that the residentRoom with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
- * @see Resident#isSameResident(Resident)
  */
 public class UniqueResidentRoomList implements Iterable<ResidentRoom> {
 
@@ -75,15 +73,15 @@ public class UniqueResidentRoomList implements Iterable<ResidentRoom> {
         }
 
         if (!target.isSameResidentRoom(editedResidentRoom) && containsEitherResidentRoom(editedResidentRoom)) {
-            throw new DuplicateResidentException();
+            throw new DuplicateResidentRoomException();
         }
 
         internalList.set(index, editedResidentRoom);
     }
 
     /**
-     * Removes the equivalent resident from the list.
-     * The resident must exist in the list.
+     * Removes the equivalent residentRoom from the list.
+     * The residentRoom must exist in the list.
      */
     public void remove(ResidentRoom toRemove) {
         requireNonNull(toRemove);
@@ -134,7 +132,7 @@ public class UniqueResidentRoomList implements Iterable<ResidentRoom> {
     }
 
     /**
-     * Returns true if {@code residents} contains only unique residents.
+     * Returns true if {@code residentRoom} contains only unique residentsRoom.
      */
     private boolean residentRoomsAreUnique(List<ResidentRoom> residentRooms) {
         for (int i = 0; i < residentRooms.size() - 1; i++) {
