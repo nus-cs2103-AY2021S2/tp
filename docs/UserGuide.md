@@ -236,11 +236,11 @@ Format: `add-date d/DESCRIPTION dt/DETAILS`
 Examples:
 * `add-date d/math exam dt/2021-11-03 0800`
 
-### Listing all important dates : `list-date`
+### Listing all important dates : `idates`
 
 Shows a list of all important dates in TutorsPet.
 
-Format: `list-date`
+Format: `idates`
 
 ### Deleting an important date : `delete-date`
 
@@ -306,5 +306,5 @@ Action | Format, Examples
 **List** | `list`
 **Add dates** | `add-date d/DESCRIPTION dt/DETAILS`<br> e.g, `add-date d/math exam dt/2021-11-05 1300`
 **Delete dates** | `delete-date INDEX`<br> e.g., `delete-date 3`
-**List dates** | `list-date`
+**List dates** | `idates`
 **Help** | `help`
