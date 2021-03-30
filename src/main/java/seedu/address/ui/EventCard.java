@@ -27,6 +27,8 @@ public class EventCard extends UiPart<Region> {
     @FXML
     private Label eventDescription;
     @FXML
+    private Label day;
+    @FXML
     private Label date;
     @FXML
     private Label time;
@@ -55,7 +57,8 @@ public class EventCard extends UiPart<Region> {
         this.event = event;
         id.setText(displayedIndex + ". ");
         eventDescription.setText(event.getDescription());
-        date.setText(DateUtil.decodeDateWithDay(event.getDate()));
+        day.setText(DateUtil.decodeDateIntoDay(event.getDate()));
+        date.setText(DateUtil.decodeDate(event.getDate()));
         time.setText(TimeUtil.decodeTime(event.getTime()));
     }
 
