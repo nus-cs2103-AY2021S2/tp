@@ -69,7 +69,6 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         return aliasMapping;
     }
 
-
     /**
      * Sets the current mapping to the specified mapping.
      *

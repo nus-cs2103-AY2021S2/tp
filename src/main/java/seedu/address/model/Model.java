@@ -186,21 +186,21 @@ public interface Model {
     AliasMapping getAliasMapping();
 
     /**
-     * Set the user's alias mapping.
+     * Sets the user's alias mapping.
      *
      * @param aliasMapping The specified mapping.
      */
     void setAliasMapping(AliasMapping aliasMapping);
 
     /**
-     * Add an user-defined alias to the current mapping.
+     * Adds a user-defined alias to the current mapping.
      *
      * @param alias The Alias to be added.
      */
     void addAlias(Alias alias);
 
     /**
-     * Deletes an user-defined alias from the current mapping.
+     * Deletes a user-defined alias from the current mapping.
      *
      * @param aliasName The name of the alias to be deleted.
      */
