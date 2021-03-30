@@ -283,6 +283,8 @@ Format: `recur INDEX r/RECURRENCE`
 * `RECURRENCE` refers to the regularity of the task that recurs periodically.
 * `RECURRENCE` can only be `daily`, `weekly` or `monthly` if a task needs to be recurred.
 * `RECURRENCE` should be left empty if the recurrence of a task needs to be removed.
+   The prefix `r/` must still be used.
+
 
 Examples:
 * `recur 1 r/monthly` Recurs the 1st task in ModuleBook3.5 every month.
