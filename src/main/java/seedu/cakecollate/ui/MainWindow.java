@@ -1,10 +1,8 @@
 package seedu.cakecollate.ui;
 
-import java.util.Optional;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -22,8 +20,6 @@ import seedu.cakecollate.logic.commands.CommandResult;
 import seedu.cakecollate.logic.commands.HelpCommand;
 import seedu.cakecollate.logic.commands.exceptions.CommandException;
 import seedu.cakecollate.logic.parser.exceptions.ParseException;
-
-import static javafx.scene.input.KeyCode.KP_UP;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -44,7 +40,7 @@ public class MainWindow extends UiPart<Stage> {
     private Panel orderPanel;
     private Panel helpPanel;
     private Button helpPanelToMain;
-    CommandBox commandBox;
+    private CommandBox commandBox;
 
     @FXML
     private StackPane commandBoxPlaceholder;

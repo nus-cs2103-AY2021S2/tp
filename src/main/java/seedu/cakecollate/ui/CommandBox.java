@@ -1,5 +1,8 @@
 package seedu.cakecollate.ui;
 
+import java.util.ArrayList;
+import java.util.Optional;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -7,9 +10,6 @@ import javafx.scene.layout.Region;
 import seedu.cakecollate.logic.commands.CommandResult;
 import seedu.cakecollate.logic.commands.exceptions.CommandException;
 import seedu.cakecollate.logic.parser.exceptions.ParseException;
-
-import java.util.ArrayList;
-import java.util.Optional;
 
 /**
  * The UI component that is responsible for receiving user command inputs.
@@ -75,6 +75,10 @@ public class CommandBox extends UiPart<Region> {
         styleClass.add(ERROR_STYLE_CLASS);
     }
 
+    /**
+     * Adds the command typed in by the user to the array list userInputs.
+     * @param input the command that the user has typed in.
+     */
     public void updateUserInputs(String input) {
         userInputs.add(input);
         incrementUserInputsIndex();
