@@ -1,0 +1,49 @@
+@startuml
+!include style.puml
+
+Participant ":Logic" as logic LOGIC_COLOR
+Participant ":ModulePlannerParser" as mpp MODEL_COLOR
+Participant ":InfoCommandParser" as icp STORAGE_COLOR
+Participant ":InfoCommand" as ic UI_COLOR
+Participant ":InfoCommand" as ic2 UI_COLOR
+
+logic -[LOGIC_COLOR]> mpp : parseCommand("info" + arguments)
+activate mpp MODEL_COLOR
+
+create icp
+mpp -[MODEL_COLOR]-> icp
+activate icp STORAGE_COLOR
+
+icp -[STORAGE_COLOR]-> mpp
+deactivate icp
+
+mpp-[MODEL_COLOR]-> icp : parse(arguments)
+activate icp STORAGE_COLOR
+
+alt module code given
+
+    create ic
+    icp -[STORAGE_COLOR]-> ic : new InfoCommand(moduleCode)
+    activate ic UI_COLOR
+
+    ic -[UI_COLOR]-> icp
+    deactivate ic
+
+
+else no module code
+
+    create ic2
+    icp -[STORAGE_COLOR]-> ic2 : new InfoCommand()
+    activate ic2 UI_COLOR
+
+    ic2 -[UI_COLOR]-> icp
+    deactivate ic2
+
+end
+
+icp -[STORAGE_COLOR]-> mpp : created InfoCommand
+deactivate icp
+destroy icp
+
+mpp -[MODEL_COLOR]-> logic
+@enduml
