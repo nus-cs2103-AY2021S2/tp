@@ -5,6 +5,7 @@
     "phone" : "94351253",
     "email" : "johnd@example.com",
     "address" : "John street, block 123, #01-01",
+    "notes" : "Some notes about Alice",
     "tagged" : [ "friends", "tutor" ],
     "tutorSubjects" : [ {
       "subjectName" : "English",
@@ -25,6 +26,7 @@
     "phone" : "94351253",
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
+    "notes" : "Some notes about Alice",
     "tagged" : [ "friends" ],
     "tutorSubjects" : [ {
       "subjectName" : "English",
