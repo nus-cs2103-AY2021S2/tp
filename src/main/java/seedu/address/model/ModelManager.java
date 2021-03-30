@@ -215,11 +215,13 @@ public class ModelManager implements Model {
     private double getRecurringSessionFee(RecurringSession recurringSession, LocalDateTime startPeriod,
         LocalDateTime endPeriod) {
         SessionDate startDate = new SessionDate(startPeriod);
-        SessionDate endDate = new SessionDate(endPeriod);
+        // Minus one because the end date for numOfSessionBetween is inclusive
+        SessionDate endDate = new SessionDate(endPeriod.minusDays(1));
         int numOfSession = recurringSession.numOfSessionBetween(startDate, endDate);
 
         // Ensures that there is more than 0 session, so we can get the fees accordingly
         if (numOfSession > 0) {
+            System.out.println("Fee: " + numOfSession);
             return recurringSession.getFee().getFee() * numOfSession;
         }
         return 0;
