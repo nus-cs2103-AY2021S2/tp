@@ -147,4 +147,10 @@ public interface Model {
     void switchModeCheckSuccess();
 
     void switchModeHistory();
+
+    /** Gets the statistics information as a string for display purposes */
+    String getQuizStatisticString();
+
+    /** Add a score to the FlashcardBook */
+    void addScore();
 }

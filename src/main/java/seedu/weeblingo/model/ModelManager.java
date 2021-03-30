@@ -129,6 +129,11 @@ public class ModelManager implements Model {
 
     }
 
+    @Override
+    public void addScore() {
+        flashcardBook.addScore(quizInstance.giveScore());
+    }
+
     //=========== Filtered Flashcard List Accessors =============================================================
 
     /**
@@ -242,6 +247,11 @@ public class ModelManager implements Model {
 
     public Quiz getQuizInstance() {
         return quizInstance;
+    }
+
+    @Override
+    public String getQuizStatisticString() {
+        return quizInstance.getStatisticString();
     }
 
     //=========== Mode Related =============================================================

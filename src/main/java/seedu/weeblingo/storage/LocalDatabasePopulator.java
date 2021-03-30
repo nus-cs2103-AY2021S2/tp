@@ -3,7 +3,6 @@ package seedu.weeblingo.storage;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 import org.json.simple.JSONArray;
@@ -14,7 +13,6 @@ import seedu.weeblingo.model.ReadOnlyFlashcardBook;
 import seedu.weeblingo.model.flashcard.Answer;
 import seedu.weeblingo.model.flashcard.Flashcard;
 import seedu.weeblingo.model.flashcard.Question;
-import seedu.weeblingo.model.score.Score;
 import seedu.weeblingo.model.tag.Tag;
 
 /**
@@ -55,26 +53,15 @@ public class LocalDatabasePopulator {
                         .readDatabaseAsJsonArray()), 0, numberOfQuestions);
     }
 
+    /**
+     * Get the database of weeblingo. The content of storage populated by this method is read from database file.
+     *
+     * @return The content of the Japanese database, wrapped in a ReadOnlyFlashcardBook object.
+     */
     public static ReadOnlyFlashcardBook getDatabaseOfWeeblingo() {
         FlashcardBook sampleFb = new FlashcardBook();
         for (Flashcard sampleFlashcard : getDatabaseOfFlashcards(JsonDatabaseReader.readDatabaseAsJsonArray())) {
             sampleFb.addFlashcard(sampleFlashcard);
-        }
-
-        try {
-            sampleFb.addScore(Score.of(100, 100));
-            TimeUnit.SECONDS.sleep(1);
-            sampleFb.addScore(Score.of(100, 80));
-            TimeUnit.SECONDS.sleep(1);
-            sampleFb.addScore(Score.of(46, 45));
-            TimeUnit.SECONDS.sleep(1);
-            sampleFb.addScore(Score.of(10, 5));
-            TimeUnit.SECONDS.sleep(1);
-            sampleFb.addScore(Score.of(20, 14));
-            TimeUnit.SECONDS.sleep(1);
-            sampleFb.addScore(Score.of(23, 2));
-        } catch (Exception e) {
-            throw new RuntimeException();
         }
         return sampleFb;
     }
