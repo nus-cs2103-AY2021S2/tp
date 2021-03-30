@@ -23,6 +23,16 @@ public class OrderItem {
         this.cost = cost;
     }
 
+    // i'm assuming the above constructor will get deleted
+    /**
+     * Every field must be present and not null.
+     */
+    public OrderItem(Type type) {
+        requireAllNonNull(type);
+        this.type = type;
+        this.cost = null;
+    }
+
     public Type getType() {
         return type;
     }

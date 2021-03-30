@@ -30,6 +30,7 @@ import seedu.cakecollate.model.order.Order;
 import seedu.cakecollate.model.order.OrderDescription;
 import seedu.cakecollate.model.order.Phone;
 import seedu.cakecollate.model.order.Request;
+import seedu.cakecollate.model.orderitem.Cost;
 import seedu.cakecollate.model.orderitem.OrderItem;
 import seedu.cakecollate.model.orderitem.Type;
 import seedu.cakecollate.model.tag.Tag;
@@ -111,28 +112,16 @@ public class AddCommand extends Command {
      * @param model
      */
     private void addToOrderItems(Model model) {
-        // todo
-        /*
-        for each item
-        check if they exist in model
-        else add to order items model
-         */
-        // String value = "test order";
-        // OrderDescription test = new OrderDescription(value);
-        // assert value.equals(test.toString())
-
         this.addOrderDescriptor.getOrderDescriptions().get().stream()
-                .map(orderDescription -> orderDescription.toString()) // based on the assumption that toString == value
-                .map(o -> new OrderItem(new Type(o), null))
-                .filter(o -> !model.hasOrderItem(o))
-                .forEach(o -> model.addOrderItem(o));
+                .map(OrderDescription::getValue) // because a string is needed for creating a new Type for new OrderItem
+                .map(o -> new OrderItem(new Type(o), null)) // map to order item so can check if already in model
+                .filter(o -> !model.hasOrderItem(o)) // filters out items that already exist in model
+                .forEach(model::addOrderItem);
 
     }
 
     private void mapIndexToOrderItems(Model model) throws CommandException {
-        List<OrderItem> lastShownOrderItems = new ArrayList<>(); // todo
-        // sample order items?
-        // model.getFilteredOrderItemList();
+        List<OrderItem> lastShownOrderItems = temporary(); // todo
 
         List<Index> list = orderItemIndexList.getIndexList(); // gets the inner list to perform operations on each index
 
@@ -199,6 +188,42 @@ public class AddCommand extends Command {
     }
 
 
+    public List<OrderItem> temporary() {
+        final OrderItem BLACK_FOREST = new OrderItem(
+                new Type("Black Forest")
+                , new Cost("25.75")
+        );
+
+        final OrderItem RED_VELVET = new OrderItem(
+                new Type("Red Velvet Cake")
+                , new Cost("34.99")
+        );
+
+        final OrderItem CHOCOLATE_MUD = new OrderItem(
+                new Type("Chocolate Mud Cake")
+                , new Cost("40.95")
+        );
+
+        final OrderItem OREO_CHEESE = new OrderItem(
+                new Type("Oreo Cheesecake")
+                , new Cost("25.75")
+        );
+
+        final OrderItem BUTTERSCOTCH = new OrderItem(
+                new Type("Butterscotch Cake")
+                , new Cost("19.99")
+        );
+
+        List<OrderItem> o = new ArrayList<>();
+        o.add(BUTTERSCOTCH);
+        o.add(RED_VELVET);
+        o.add(CHOCOLATE_MUD);
+        o.add(OREO_CHEESE);
+
+        return o;
+    }
+    
+    
     /**
      * Stores the details to edit the order with. Each non-empty field value will replace the
      * corresponding field value of the order.

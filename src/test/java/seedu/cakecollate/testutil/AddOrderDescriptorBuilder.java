@@ -6,6 +6,7 @@ import seedu.cakecollate.model.order.Order;
 public class AddOrderDescriptorBuilder {
     private AddCommand.AddOrderDescriptor descriptor;
 
+    // todo javadocs
     public AddOrderDescriptorBuilder() {
         descriptor = new AddCommand.AddOrderDescriptor();
     }
@@ -14,6 +15,10 @@ public class AddOrderDescriptorBuilder {
         descriptor = new AddCommand.AddOrderDescriptor(a);
     }
 
+    /**
+     * Builds a descriptor based on an existing order object's fields
+     * @param order
+     */
     public AddOrderDescriptorBuilder(Order order) {
         descriptor = new AddCommand.AddOrderDescriptor();
 
@@ -25,6 +30,7 @@ public class AddOrderDescriptorBuilder {
         descriptor.setOrderDescriptions(order.getOrderDescriptions());
         descriptor.setTags(order.getTags());
         descriptor.setDeliveryDate(order.getDeliveryDate());
+        descriptor.setRequest(order.getRequest());
     }
 
     public AddCommand.AddOrderDescriptor build() {

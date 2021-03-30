@@ -177,8 +177,9 @@ public class Order {
 
         Set<OrderDescription> orderDescriptions = getOrderDescriptions();
         if (!orderDescriptions.isEmpty()) {
-            builder.append("; Order Descriptions: ");
-            orderDescriptions.forEach(builder::append);
+            builder.append("; Order Descriptions:");
+            orderDescriptions.forEach(obj -> builder.append(" ").append(obj).append(","));
+            builder.setLength(builder.length() - 1);
         }
 
 

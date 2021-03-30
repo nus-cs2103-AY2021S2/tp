@@ -157,4 +157,6 @@ public class ModelManagerTest {
         assertEquals(modelManager.getFilteredOrderList(),
                 Arrays.asList(GEORGE, ELLE));
     }
+
+    // todo needs update
 }

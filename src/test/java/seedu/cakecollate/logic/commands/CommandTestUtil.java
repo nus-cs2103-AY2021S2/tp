@@ -132,7 +132,9 @@ public class CommandTestUtil {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         CakeCollate expectedCakeCollate = new CakeCollate(actualModel.getCakeCollate());
+        // OrderItems expectedOrderItems = new OrderItems(actualModel.getOrderItems());
         List<Order> expectedFilteredList = new ArrayList<>(actualModel.getFilteredOrderList());
+        // todo sounds like something to add here
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedCakeCollate, actualModel.getCakeCollate());

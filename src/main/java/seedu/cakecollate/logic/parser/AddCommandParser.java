@@ -79,6 +79,7 @@ public class AddCommandParser implements Parser<AddCommand> {
                 argMultimap.getValue(PREFIX_ORDER_ITEM_IDX).isEmpty()
                 ? null
                 : ParserUtil.parseIndexList(argMultimap.getValue(PREFIX_ORDER_ITEM_IDX).get());
+                // unhelpful error messages here if oi/string is used, if can't edit error messages should put in FAQ
 
         return new AddCommand(orderItemIndexList, addOrderDescriptor);
     }

@@ -64,7 +64,8 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ORDER_SUCCESS, editedOrder);
 
-        Model expectedModel = new ModelManager(new CakeCollate(model.getCakeCollate()),getTypicalOrderItemsModel(), new UserPrefs());
+        // ? instead of getTypical, should it be a copy of typical? (like cakecollate?)
+        Model expectedModel = new ModelManager(new CakeCollate(model.getCakeCollate()), getTypicalOrderItemsModel(), new UserPrefs());
         expectedModel.setOrder(lastOrder, editedOrder);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
