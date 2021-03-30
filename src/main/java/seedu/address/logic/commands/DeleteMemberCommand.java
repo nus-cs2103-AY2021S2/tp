@@ -11,15 +11,15 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
 /**
- * Deletes a person identified using it's displayed index from HeyMatez.
+ * Deletes a person identified using its displayed name in HeyMatez.
  */
 public class DeleteMemberCommand extends Command {
 
     public static final String COMMAND_WORD = "deleteMember";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the person identified by the exact name (case-sensitive) used in the displayed person list.\n"
-            + "Parameters: NAME \n"
+            + ": Deletes the member identified by the exact name (case-sensitive) used in the displayed members list.\n"
+            + "Parameters: NAME (must be a valid name)\n"
             + "Example: " + COMMAND_WORD + " John";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Member: %1$s";

@@ -18,17 +18,16 @@ import seedu.address.model.task.TaskStatus;
 import seedu.address.model.task.Title;
 
 /**
- * Represents an Undo Task Command
- * Changes the status of existing task in HeyMatez to uncompleted
+ * Represents an Undo Task Command.
+ * Changes the status of existing task in HeyMatez to uncompleted.
  */
 public class UndoTaskCommand extends Command {
     public static final String COMMAND_WORD = "undo";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Change the status of a task with the task index "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Changes the status of a task with the task index "
             + "you specify from completed to uncompleted. \n"
             + "Parameters: INDEX (must be a positive integer) \n"
             + "Example: " + COMMAND_WORD + " 1 ";
-
 
     public static final String MESSAGE_UNDO_TASK_SUCCESS = "Task: marked as uncompleted!";
     public static final String MESSAGE_TASK_ALREADY_MARKED_UNCOMPLETED = "Task is already marked as uncompleted!";
@@ -64,7 +63,7 @@ public class UndoTaskCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Task} with the details of {@code taskToUndo}
+     * Creates and returns a {@code Task} with the details of {@code taskToUndo}.
      *
      * @params taskToUndo task to be marked as uncompleted
      * @return A Task with the updated uncompleted status
@@ -108,6 +107,5 @@ public class UndoTaskCommand extends Command {
         System.out.println(index);
         System.out.println(e.index);
         return index.equals(e.index);
-
     }
 }

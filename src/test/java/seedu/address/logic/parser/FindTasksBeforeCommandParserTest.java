@@ -9,6 +9,9 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.FindTasksBeforeCommand;
 import seedu.address.model.task.DeadlineBeforeDatePredicate;
 
+/**
+ * Contains unit tests for {@code FindTasksBeforeCommandParser}.
+ */
 public class FindTasksBeforeCommandParserTest {
     private FindTasksBeforeCommandParser parser = new FindTasksBeforeCommandParser();
 

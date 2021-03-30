@@ -11,6 +11,9 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.FindMembersCommand;
 import seedu.address.model.person.DetailsContainsKeywordsPredicate;
 
+/**
+ * Contains unit tests for {@code FindMembersCommandParser}.
+ */
 public class FindMembersCommandParserTest {
 
     private FindMemberCommandParser parser = new FindMemberCommandParser();

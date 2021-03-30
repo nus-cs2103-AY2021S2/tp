@@ -18,13 +18,13 @@ import seedu.address.model.task.TaskStatus;
 import seedu.address.model.task.Title;
 
 /**
- * Represents a DoneTaskCommand
- * Changes the status of existing task in HeyMatez to completed
+ * Represents a DoneTaskCommand.
+ * Changes the status of existing task in HeyMatez to completed.
  */
 public class DoneTaskCommand extends Command {
     public static final String COMMAND_WORD = "done";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Change the status of a task with the task index "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Changes the status of a task with the task index "
             + "you specify from uncompleted to completed. \n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1 ";
@@ -35,7 +35,7 @@ public class DoneTaskCommand extends Command {
     private final Index index;
 
     /**
-     * @param index of the task in the filtered task list to mark as completed
+     * @param index of the task in the filtered task list to mark as completed.
      */
     public DoneTaskCommand(Index index) {
         requireNonNull(index);
@@ -106,6 +106,5 @@ public class DoneTaskCommand extends Command {
         System.out.println(index);
         System.out.println(e.index);
         return index.equals(e.index);
-
     }
 }

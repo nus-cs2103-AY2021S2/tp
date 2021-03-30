@@ -9,6 +9,9 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.ClearAssigneesCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * Contains unit tests for {@code ClearAssigneeCommandParser}.
+ */
 public class ClearAssigneesCommandParserTest {
     private ClearAssigneesCommandParser parser = new ClearAssigneesCommandParser();
 

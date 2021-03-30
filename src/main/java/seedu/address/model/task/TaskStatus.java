@@ -1,9 +1,9 @@
 package seedu.address.model.task;
 
 /**
- * Enum for the Task status values
- * It is used to signify whether a task has been completed or uncompleted
- * Task Status can take on the values, UNCOMPLETED or COMPLETED
+ * Enum for the Task status values.
+ * It is used to signify whether a task has been completed or uncompleted.
+ * Task Status can take on the values, UNCOMPLETED or COMPLETED.
  * */
 public enum TaskStatus {
     UNCOMPLETED("uncompleted"),
@@ -14,13 +14,12 @@ public enum TaskStatus {
 
     public final String status;
 
-
     TaskStatus(String status) {
         this.status = status;
     }
 
     /**
-     * Returns a String value by of the Enum name to use for UI
+     * Returns a String value by of the Enum name to use for UI.
      *
      * @return a string value of the enum name to us for the UI
      */
@@ -30,7 +29,7 @@ public enum TaskStatus {
 
     /**
      * Returns a boolean value by check if the String value is a
-     * value within this enum
+     * value within this enum.
      *
      * @param value value for the Task Status enum
      * @return a boolean value, whether the it is a value inside this enum
@@ -45,6 +44,11 @@ public enum TaskStatus {
         return false;
     }
 
+    /**
+     * Returns a string value of the TaskStatus casted to lower cast
+     *
+     * @return a string value representing the TaskStatus
+     */
     public String getStatus() {
         return this.status.toLowerCase();
     }

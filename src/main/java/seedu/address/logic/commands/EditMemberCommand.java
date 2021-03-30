@@ -27,8 +27,8 @@ public class EditMemberCommand extends Command {
 
     public static final String COMMAND_WORD = "editMember";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the exact name (case-sensitive) used in the displayed person list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the member identified "
+            + "by the exact name (case-sensitive) used in the displayed members list. "
             + "Existing details will be overwritten by the input details.\n"
             + "Parameters: NAME_IN_LIST "
             + "[" + PREFIX_NEW_NAME + " NEW_NAME] "
@@ -41,9 +41,9 @@ public class EditMemberCommand extends Command {
             + PREFIX_EMAIL + " john@example.com"
             + PREFIX_ROLE + " Assistant treasurer";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Member: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in HeyMatez.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This member already exists in HeyMatez.";
 
     private final Name name;
     private final EditMemberDescriptor editMemberDescriptor;
@@ -183,7 +183,6 @@ public class EditMemberCommand extends Command {
         public Optional<Role> getRole() {
             return Optional.ofNullable(role);
         }
-
 
         @Override
         public boolean equals(Object other) {

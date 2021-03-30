@@ -13,7 +13,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.testutil.TypicalTasks;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for ViewTasksCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for {@code ViewTasksCommand}.
  */
 public class ViewTasksCommandTest {
     private Model model;

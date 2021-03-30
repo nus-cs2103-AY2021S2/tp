@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 import seedu.address.model.assignee.Assignee;
 
 /**
- * Tests that a {@code Task}'s {@code Title} or {@code Description} matches any of the keywords given.
+ * Tests that a {@code Task}'s {@code Assignee} matches the keyword given.
  */
 public class TaskContainsAssigneePredicate implements Predicate<Task> {
     private final String keyword;

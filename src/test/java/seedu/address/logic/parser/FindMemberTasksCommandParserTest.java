@@ -10,6 +10,9 @@ import seedu.address.logic.commands.FindMemberTasksCommand;
 import seedu.address.model.assignee.Assignee;
 import seedu.address.model.task.TaskContainsAssigneePredicate;
 
+/**
+ * Contains unit tests for {@code FindMemberTasksCommandParser}.
+ */
 public class FindMemberTasksCommandParserTest {
     private FindMemberTasksCommandParser parser = new FindMemberTasksCommandParser();
 

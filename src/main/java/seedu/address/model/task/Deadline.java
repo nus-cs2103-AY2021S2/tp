@@ -9,8 +9,7 @@ import java.time.format.DateTimeParseException;
  * Guarantees: deadline not empty and in the format YYYY-MM-DD.
  */
 public class Deadline {
-    public static final String MESSAGE_CONSTRAINTS =
-            "Deadlines should be in the format YYYY-MM-DD";
+    public static final String MESSAGE_CONSTRAINTS = "Deadlines should be in the format YYYY-MM-DD";
 
     public final LocalDate date;
 
@@ -29,7 +28,7 @@ public class Deadline {
     }
 
     /**
-     * Returns a String value of unformatted deadline
+     * Returns a String value of unformatted deadline.
      *
      * @return a String value of unformatted deadline
      */
@@ -38,7 +37,7 @@ public class Deadline {
     }
 
     /**
-     * Returns a parsed deadline
+     * Returns a parsed deadline.
      *
      * @return a LocalDate object of the parsed deadline
      */
@@ -71,5 +70,4 @@ public class Deadline {
                 || (other instanceof Deadline // instanceof handles nulls
                 && dateString.equals(((Deadline) other).dateString)); // state check
     }
-
 }

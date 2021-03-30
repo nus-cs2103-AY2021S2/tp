@@ -6,6 +6,9 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+/**
+ * Contains unit tests for {@code Description}.
+ */
 public class DescriptionTest {
     @Test
     public void constructor_null_throwsNullPointerException() {

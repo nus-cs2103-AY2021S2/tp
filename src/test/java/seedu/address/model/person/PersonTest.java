@@ -13,6 +13,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.PersonBuilder;
 
+/**
+ * Contains unit tests for {@code Person}.
+ */
 public class PersonTest {
 
     @Test

@@ -34,7 +34,7 @@ and distributing tasks will never give you a headache again! :smile:
     - [7. Find Tasks by Keywords: `findTasks`](#findTask)
     - [8. Find Tasks due before certain date: `findBefore`](#findBefore)
     - [9. Find Tasks by Priority: `findPriority`](#findPriority)
-    - [10. Remove all Members Assigned to a Task: `removeAssignees`](#removeAssignees)
+    - [10. Remove all Members Assigned to a Task: `clearAssignees`](#clearAssignees)
     - [11. View List of Unassigned Tasks: `viewUnassignedTasks`](#findUnassigned)
     - [12. View List of Uncompleted Tasks: `viewUncompletedTasks`](#findUncompleted)
     - [13. Find Tasks Assigned to a Single Member: `findTasksFor`](#findTasksFor)
@@ -333,15 +333,15 @@ Format: `findPriority PRIORITY`
 Examples:
 * `findPriority high`
 
-<a name="removeAssignees"></a>
-### 10. Remove all Members Assigned to a Task: `removeAssignees`
+<a name="clearAssignees"></a>
+### 10. Remove all Members Assigned to a Task: `clearAssignees`
 
 Remove all members assigned to a task with the task INDEX you specified.
 
-Format: `removeAssignees INDEX`
+Format: `clearAssignees INDEX`
 
 Examples: 
-* `removeAssignees 2`
+* `clearAssignees 2`
 
 <a name="findUnassigned"></a>
 ### 11. View List of Unassigned Tasks: `viewUnassignedTasks`
@@ -431,7 +431,7 @@ Action | Format, Examples
 **Find Tasks by Keywords** | `findTasks KEYWORD [MORE_KEYWORDS]`<br> e.g., `findTasks Meeting Proposal Draft`
 **Find Tasks by Priority** | `findPriority PRIORITY`<br> e.g., `findPriority high`
 **Find Tasks by Deadline** | `findBefore DATE`<br> e.g., `findBefore 2021-04-05`
-**Remove all Members Assigned to a Task** | `removeAssignees INDEX`<br> e.g., `removeAssignees 2`
+**Clear all Members Assigned to a Task** | `clearAssignees INDEX`<br> e.g., `clearAssignees 2`
 **View Unassigned Tasks** | `viewUnassignedTasks`<br> e.g., `viewUnassignedTasks`
 **View Uncompleted Tasks** | `viewUncompletedTasks`<br> e.g., `viewUncompletedTasks`
 **Find Member's Tasks** | `findTasksFor NAME` <br> e.g., `findTasksFor Alice Tay`

@@ -11,6 +11,9 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.FindTasksCommand;
 import seedu.address.model.task.TaskContainsKeywordPredicate;
 
+/**
+ * Contains unit tests for {@code FindTasksCommandParser}.
+ */
 public class FindTasksCommandParserTest {
     private FindTasksCommandParser parser = new FindTasksCommandParser();
 

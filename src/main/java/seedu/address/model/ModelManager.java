@@ -18,7 +18,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
 
 /**
- * Represents the in-memory model of the hey matez data.
+ * Represents the in-memory model of the HeyMatez data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
