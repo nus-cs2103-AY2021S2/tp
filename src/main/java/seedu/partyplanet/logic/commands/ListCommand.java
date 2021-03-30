@@ -22,12 +22,12 @@ public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
 
-    public static final String MESSAGE_SUCCESS = "Listed all persons";
+    public static final String MESSAGE_SUCCESS = "Listed all persons! ";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists people in PartyPlanet "
             + "according to specified prefix combinations, with optional sort order.\n"
             + "Parameters: [--exact] [--any] [-n NAME]... [-t TAG]... [-b MONTH]... [-s SORT_FIELD] [-o SORT_ORDER]\n"
-            + "Sort fields: 'n' (name, default), 'b' (birthday)\n"
+            + "Sort fields: 'n' (name, default), 'b' (birthday), 'u' (upcoming)\n"
             + "Sort orders: 'asc' (ascending, default), 'desc' (descending)\n"
             + "Example: list --exact -n alice -t friend -b 1 -s n -o desc\n";
 
@@ -42,6 +42,8 @@ public class ListCommand extends Command {
 
     private final Comparator<Person> comparator;
     private final Predicate<Person> predicate;
+    private String parseArguments;
+    private String parseCriteria;
 
     /**
      * Default empty ListCommand.
@@ -56,7 +58,7 @@ public class ListCommand extends Command {
      * Default in ascending order, and the ANY flag is not applicable.
      */
     public ListCommand(Predicate<Person> predicate) {
-        this(predicate, SORT_NAME);
+        this(predicate, SORT_NAME, "");
     }
 
     /**
@@ -65,9 +67,10 @@ public class ListCommand extends Command {
      * @param predicate Predicate to filter people by
      * @param comparator Sorting comparator
      */
-    public ListCommand(Predicate<Person> predicate, Comparator<Person> comparator) {
+    public ListCommand(Predicate<Person> predicate, Comparator<Person> comparator, String parseArguments) {
         this.predicate = predicate;
         this.comparator = comparator;
+        this.parseArguments = parseArguments;
     }
 
     @Override
@@ -78,12 +81,19 @@ public class ListCommand extends Command {
         String tagsRepresentation = displayTags(model.getFilteredPersonList())
                 .replace("[", "").replace("]", "");
         if (model.getPersonListCopy().size() == model.getFilteredPersonList().size()) {
-            return new CommandResult(ListCommand.MESSAGE_SUCCESS // No person filtered out
+            return new CommandResult(ListCommand.MESSAGE_SUCCESS + parseArguments // No person filtered out
+                    + String.format(Messages.MESSAGE_PERSONS_LISTED_TAGS, tagsRepresentation));
+        }
+        if (model.getFilteredPersonList().size() == 0) {
+            return new CommandResult(String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW,
+                    model.getFilteredPersonList().size())
+                    + "Nobody met the requirements."
                     + String.format(Messages.MESSAGE_PERSONS_LISTED_TAGS, tagsRepresentation));
         }
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size())
-                        + String.format(Messages.MESSAGE_PERSONS_LISTED_TAGS, tagsRepresentation));
+            String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size())
+                    + parseArguments
+                    + String.format(Messages.MESSAGE_PERSONS_LISTED_TAGS, tagsRepresentation));
     }
 
     private String displayTags(List<Person> personsToDisplay) {
@@ -95,7 +105,7 @@ public class ListCommand extends Command {
                 .sorted((x, y) -> x.getKey().tagName.compareTo(y.getKey().tagName))
                 .map(t -> String.format("%s (%d)", t.getKey(), t.getValue()))
                 .reduce((x, y) -> x + ", " + y)
-                .orElse("");
+                .orElse("None!");
 
         return output;
     }
