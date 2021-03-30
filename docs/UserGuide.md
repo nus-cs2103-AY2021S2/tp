@@ -164,14 +164,14 @@ Format: sort `[dateTime] [taskName] [moduleCode] [priorityTag] [weightage]`
 * For `weightage`, the deadlines will be sorted in ascending order, with the lowest weightage deadline placed first.
 * For `taskName`, the deadlines will be sorted according to the lexicographical ordering of the task name.
 
-### PriorityTag: 'ptag/'
+### PriorityTag: `ptag/`
 
-Every task will be given a default priorityTag of 'LOW'
+Every task will be given a default priorityTag of `LOW`
 
-## Sorting based on priorityTag (See `sorting`)
+#### Sorting based on priorityTag (See `sorting`)
 * User is able to sort tasks based on priority tag: `low`, `medium` and `high`
 
-## Edit priorityTag (See 'edit')
+#### Edit priorityTag (See `edit`)
 * User is able to edit status of priorityTag using the `edit` command 
 * User is able to sort the tasks based on `LOW`, `MEDIUM` and `HIGH`
 
