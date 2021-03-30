@@ -2,7 +2,6 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_POOLS;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
@@ -105,8 +104,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deletePassenger(Passenger passenger) {
-        addressBook.removePassenger(passenger);
+    public boolean deletePassenger(Passenger passenger) {
+        return addressBook.removePassenger(passenger);
     }
 
     @Override
