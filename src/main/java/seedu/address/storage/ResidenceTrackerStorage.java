@@ -6,10 +6,9 @@ import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyResidenceTracker;
-import seedu.address.model.ResidenceTracker;
 
 /**
- * Represents a storage for {@link ResidenceTracker}.
+ * Represents a storage for {@link seedu.address.model.ResidenceTracker}.
  */
 public interface ResidenceTrackerStorage {
 
