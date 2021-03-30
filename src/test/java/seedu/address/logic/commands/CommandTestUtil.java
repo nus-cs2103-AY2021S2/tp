@@ -142,6 +142,6 @@ public class CommandTestUtil {
         final String[] splitTitle = module.getTitle().modTitle.split("\\s+");
         model.updateFilteredModuleList(new TitleContainsKeywordsPredicate(Arrays.asList(splitTitle[0])));
 
-        assertEquals(1, model.getFilteredModuleList().size());
+        assertEquals(2, model.getFilteredModuleList().size());
     }
 }
