@@ -1,10 +1,9 @@
-package seedu.address.logic.commands.favouritecommands;
+package seedu.address.logic.commands.tutorcommands;
 
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Predicate;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -14,31 +13,35 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.ViewTutorPredicate;
 
 /**
- * List all Tutors who are favourites
+ * List all Tutors with notes
  */
-public class ListFavouriteCommand extends Command {
+public class ListNoteCommand extends Command {
 
-    public static final String COMMAND_WORD = "list_favourites";
+    public static final String COMMAND_WORD = "list_note";
 
-    public static final String MESSAGE_SUCCESS = "Listed all favourites";
+    public static final String MESSAGE_USAGE = COMMAND_WORD;
 
+    public static final String MESSAGE_SUCCESS = "Listed all tutors with notes";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        List<Person> favouritePersonList = new ArrayList<>();
+        List<Person> tutorWithNotesList = new ArrayList<>();
+
         List<Person> personList = model.getAddressBook().getPersonList();
 
         for (Person p: personList) {
-            if (p.isFavourite()) {
-                favouritePersonList.add(p);
+            if (p.hasNotes()) {
+                tutorWithNotesList.add(p);
             }
         }
 
-        Predicate<Person> personPredicate = new ViewTutorPredicate(favouritePersonList);
+        ViewTutorPredicate predicate = new ViewTutorPredicate(tutorWithNotesList);
 
-        model.updateFilteredPersonList(personPredicate);
+        model.updateFilteredPersonList(predicate);
+
         return new CommandResult(MESSAGE_SUCCESS);
+
     }
 }

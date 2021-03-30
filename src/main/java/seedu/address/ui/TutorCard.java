@@ -60,7 +60,7 @@ public class TutorCard extends UiPart<Region> {
 
         boolean isFavourite = person.isFavourite();
         if (isFavourite) {
-            name.setText(person.getName().fullName + " " + "*");
+            name.setText(person.getName().fullName + "  " + new String(Character.toChars(127775)));
         } else {
             name.setText(person.getName().fullName);
         }

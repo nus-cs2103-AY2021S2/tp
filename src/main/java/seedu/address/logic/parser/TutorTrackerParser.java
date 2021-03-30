@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.ExportCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.appointmentcommands.AddAppointmentCommand;
 import seedu.address.logic.commands.appointmentcommands.DeleteAppointmentCommand;
@@ -36,10 +37,14 @@ import seedu.address.logic.commands.schedulecommands.DeleteScheduleCommand;
 import seedu.address.logic.commands.schedulecommands.EditScheduleCommand;
 import seedu.address.logic.commands.schedulecommands.ListScheduleCommand;
 import seedu.address.logic.commands.tutorcommands.AddCommand;
+import seedu.address.logic.commands.tutorcommands.AddNoteCommand;
 import seedu.address.logic.commands.tutorcommands.DeleteCommand;
+import seedu.address.logic.commands.tutorcommands.DeleteNoteCommand;
 import seedu.address.logic.commands.tutorcommands.EditCommand;
+import seedu.address.logic.commands.tutorcommands.EditNoteCommand;
 import seedu.address.logic.commands.tutorcommands.FindCommand;
 import seedu.address.logic.commands.tutorcommands.ListCommand;
+import seedu.address.logic.commands.tutorcommands.ListNoteCommand;
 import seedu.address.logic.commands.tutorcommands.ViewCommand;
 import seedu.address.logic.parser.appointmentparser.AddAppointmentCommandParser;
 import seedu.address.logic.parser.appointmentparser.DeleteAppointmentCommandParser;
@@ -64,8 +69,11 @@ import seedu.address.logic.parser.scheduleparser.AddScheduleCommandParser;
 import seedu.address.logic.parser.scheduleparser.DeleteScheduleCommandParser;
 import seedu.address.logic.parser.scheduleparser.EditScheduleCommandParser;
 import seedu.address.logic.parser.tutorparser.AddCommandParser;
+import seedu.address.logic.parser.tutorparser.AddNoteCommandParser;
 import seedu.address.logic.parser.tutorparser.DeleteCommandParser;
+import seedu.address.logic.parser.tutorparser.DeleteNoteCommandParser;
 import seedu.address.logic.parser.tutorparser.EditCommandParser;
+import seedu.address.logic.parser.tutorparser.EditNoteCommandParser;
 import seedu.address.logic.parser.tutorparser.FindCommandParser;
 import seedu.address.logic.parser.tutorparser.ViewCommandParser;
 
@@ -108,6 +116,18 @@ public class TutorTrackerParser {
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
+        case AddNoteCommand.COMMAND_WORD:
+            return new AddNoteCommandParser().parse(arguments);
+
+        case DeleteNoteCommand.COMMAND_WORD:
+            return new DeleteNoteCommandParser().parse(arguments);
+
+        case EditNoteCommand.COMMAND_WORD:
+            return new EditNoteCommandParser().parse(arguments);
+
+        case ListNoteCommand.COMMAND_WORD:
+            return new ListNoteCommand();
+
         case FavouriteCommand.COMMAND_WORD:
             return new FavouriteCommandParser().parse(arguments);
 
@@ -119,6 +139,9 @@ public class TutorTrackerParser {
 
         case ListFavouriteCommand.COMMAND_WORD:
             return new ListFavouriteCommand();
+
+        case ExportCommand.COMMAND_WORD:
+            return new ExportCommandParser().parse(arguments);
 
         case ViewCommand.COMMAND_WORD:
             return new ViewCommandParser().parse(arguments);

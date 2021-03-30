@@ -1,4 +1,4 @@
-package seedu.address.logic.commands.favouritecommands;
+package seedu.address.logic.commands.tutorcommands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.commands.tutorcommands.EditCommand.EditPersonDescriptor;
@@ -16,29 +16,29 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.ViewTutorPredicate;
 
 /**
- * Marks a tutor as a favourite
+ * Edits a note of a Tutor in the TutorBook
  */
-public class FavouriteCommand extends Command {
+public class EditNoteCommand extends Command {
 
-    public static final String COMMAND_WORD = "favourite";
+    public static final String COMMAND_WORD = "edit_note";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " ID";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " " + "INDEX" + " " + "NOTE";
 
-    public static final String MESSAGE_SUCCESS = "Favourite tutor: %s";
+    public static final String MESSAGE_SUCCESS = "Successfully edited note to Tutor: %s";
 
     public static final String MESSAGE_INVALID_INDEX = "Invalid index %d";
 
-    private static final String MESSAGE_AlREADY_FAVOURITE = "Tutor is already a favourite";
+    public static final String MESSAGE_DOES_NOTE_HAVE_NOTES = "Tutor: %s does not have notes, try add_note command";
 
     private final Index targetIndex;
 
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param targetIndex of the Tutor to be favourite
-     * @param editPersonDescriptor with a favourite descriptor
+     * @param targetIndex of the Tutor
+     * @param editPersonDescriptor with a descriptor of the edited note
      */
-    public FavouriteCommand(Index targetIndex, EditPersonDescriptor editPersonDescriptor) {
+    public EditNoteCommand (Index targetIndex, EditPersonDescriptor editPersonDescriptor) {
         this.targetIndex = targetIndex;
         this.editPersonDescriptor = editPersonDescriptor;
     }
@@ -46,6 +46,7 @@ public class FavouriteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
         List<Person> tutorList = model.getFilteredPersonList();
 
         ArrayList<Person> tutorPredicateList = new ArrayList<>(tutorList);
@@ -55,8 +56,8 @@ public class FavouriteCommand extends Command {
         }
 
         Person person = tutorList.get(targetIndex.getZeroBased());
-        if (person.isFavourite()) {
-            throw new CommandException(MESSAGE_AlREADY_FAVOURITE);
+        if (!person.hasNotes()) {
+            throw new CommandException(String.format(MESSAGE_DOES_NOTE_HAVE_NOTES, person.getName().toString()));
         }
 
         Person editedPerson = createEditedPerson(person, editPersonDescriptor);
@@ -64,6 +65,7 @@ public class FavouriteCommand extends Command {
         model.setPerson(person, editedPerson);
         model.updateFilteredPersonList(new ViewTutorPredicate(tutorPredicateList));
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, person.getName()));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, person.getName().toString()));
+
     }
 }
