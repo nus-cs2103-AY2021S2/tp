@@ -10,7 +10,6 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.ContactBuilder;
-
 public class NameContainsKeywordsPredicateTest {
 
     @Test
@@ -19,9 +18,9 @@ public class NameContainsKeywordsPredicateTest {
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
         List<String> f = firstPredicateKeywordList;
         List<String> s = secondPredicateKeywordList;
-        seedu.address.model.contact.NameContainsKeywordsPredicate firstPredicate =
+        NameContainsKeywordsPredicate firstPredicate =
                 new seedu.address.model.contact.NameContainsKeywordsPredicate(f);
-        seedu.address.model.contact.NameContainsKeywordsPredicate secondPredicate =
+        NameContainsKeywordsPredicate secondPredicate =
                 new seedu.address.model.contact.NameContainsKeywordsPredicate(s);
 
         // same object -> returns true

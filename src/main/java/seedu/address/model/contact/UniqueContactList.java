@@ -24,7 +24,7 @@ import seedu.address.model.contact.exceptions.DuplicateContactException;
  *
  * Supports a minimal set of list operations.
  *
- * @see Contact#isSameContact(Contact)
+ * @see Contact#equals(Contact)
  */
 public class UniqueContactList implements Iterable<Contact> {
 
@@ -33,16 +33,16 @@ public class UniqueContactList implements Iterable<Contact> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent person as the given argument.
+     * Returns true if the list contains an equivalent contact as the given argument.
      */
     public boolean contains(Contact toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSameContact);
+        return internalList.stream().anyMatch(toCheck::equals);
     }
 
     /**
-     * Adds a person to the list.
-     * The person must not already exist in the list.
+     * Adds a contact to the list.
+     * The contact must not already exist in the list.
      */
     public void add(Contact toAdd) {
         requireNonNull(toAdd);
@@ -53,9 +53,9 @@ public class UniqueContactList implements Iterable<Contact> {
     }
 
     /**
-     * Replaces the person {@code target} in the list with {@code editedPerson}.
+     * Replaces the contact {@code target} in the list with {@code editedContact}.
      * {@code target} must exist in the list.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
+     * The contact identity of {@code editedContact} must not be the same as another existing contact in the list.
      */
     public void setContact(Contact target, Contact editedContact) {
         requireAllNonNull(target, editedContact);
@@ -65,7 +65,7 @@ public class UniqueContactList implements Iterable<Contact> {
             throw new ContactNotFoundException();
         }
 
-        if (!target.isSameContact(editedContact) && contains(editedContact)) {
+        if (!target.equals(editedContact) && contains(editedContact)) {
             throw new DuplicateContactException();
         }
 
@@ -73,8 +73,8 @@ public class UniqueContactList implements Iterable<Contact> {
     }
 
     /**
-     * Removes the equivalent person from the list.
-     * The person must exist in the list.
+     * Removes the equivalent contact from the list.
+     * The contact must exist in the list.
      */
     public void remove(Contact toRemove) {
         requireNonNull(toRemove);
@@ -89,8 +89,8 @@ public class UniqueContactList implements Iterable<Contact> {
     }
 
     /**
-     * Replaces the contents of this list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of this list with {@code contacts}.
+     * {@code contacts} must not contain duplicate contacts.
      */
     public void setContacts(List<Contact> contacts) {
         requireAllNonNull(contacts);
@@ -126,12 +126,12 @@ public class UniqueContactList implements Iterable<Contact> {
     }
 
     /**
-     * Returns true if {@code persons} contains only unique persons.
+     * Returns true if {@code contacts} contains only unique contact.
      */
     private boolean contactsAreUnique(List<Contact> contacts) {
         for (int i = 0; i < contacts.size() - 1; i++) {
             for (int j = i + 1; j < contacts.size(); j++) {
-                if (contacts.get(i).isSameContact(contacts.get(j))) {
+                if (contacts.get(i).equals(contacts.get(j))) {
                     return false;
                 }
             }

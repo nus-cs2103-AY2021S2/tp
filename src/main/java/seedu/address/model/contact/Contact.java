@@ -58,7 +58,7 @@ public class Contact {
      * Returns true if both contacts have the same name.
      * This defines a weaker notion of equality between two contacts.
      */
-    public boolean isSameContact(Contact otherContact) {
+    public boolean equals(Contact otherContact) {
         if (otherContact == this) {
             return true;
         }
@@ -110,6 +110,5 @@ public class Contact {
         }
         return builder.toString();
     }
-
 }
 
