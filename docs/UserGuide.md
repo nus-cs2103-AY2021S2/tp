@@ -3,10 +3,14 @@ layout: page
 title: User Guide
 ---
 
-Finding it difficult to keep track of your insurance clients? Life as an insurance agent isn't easy. We understand. Link.me 
+Are you finding it difficult to keep track of your insurance clients? Life as an insurance agent isn't easy. We understand. Link.me 
 is a **desktop app built for insurance agents** to help you manage your clients. It is **optimized for use via a 
 Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). 
 If you can type fast, Link.me can get your client management tasks done faster than traditional GUI apps.
+
+This user guide will guide you, as an insurance agent, through the process of setting up Link.me, introduce you to 
+the capabilities of Link.me and facilitate your usage of Link.me so that you can better manage your
+ever-increasing clients.
 
 ---
 
@@ -77,26 +81,42 @@ Action                            | Format
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+* Words in `UPPER_CASE` are the inputs to be supplied by you, the user.<br>
+  e.g. in `add n/NAME`, `NAME` represents the client's name that will be inputted by you, the user. 
+  For instance, if the client's name is "John Doe", you should input: `add n/John Doe`. 
+  
 
-* Items in square brackets are optional.<br>
-  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+* Inputs in square brackets are optional.<br>
+  e.g. in `n/NAME [t/TAG]`, while the input for `n/NAME` is mandatory, the omission of `[t/TAG]` will not lead
+  to an input error. For instance, these two inputs are valid:
+  * `n/John Doe t/friend`
+  * `n/John Doe`
+    
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+* Inputs with `…`​ after them can be used multiple times including zero times.<br>
+  e.g. in `[t/TAG]…​`, the following inputs are valid:
+  * `t/friend`
+  * `t/friend t/family`
+  * ` `  (an empty input)
 
-* Parameters can be in any order.<br>
+    
+* You can enter your inputs in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+
+* If a input is expected only once in the command but you specified it multiple times, only the last occurrence of the 
+  input will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+
+* For commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`), any additional inputs
+  will be ignored.<br>
+  e.g. for the `help` command, if you input `help 123`, it will be interpreted as `help` as `123` will be considered as
+  a redundant command.
+
 
 * The commands of Link.me generally follow the following format:
-  `COMMAND [client_INDEX] [PREFIX/] [DESCRIPTION]`
+  `COMMAND [client_INDEX] [PREFIX]/[DESCRIPTION]`
 
 </div>
 
@@ -141,8 +161,10 @@ Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GENDER] [
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of your client will be removed i.e. adding of tags is not cumulative.
-* You can remove all your client’s tags by typing `t/` without
-    specifying any tags after it.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You can remove all your client’s tags by typing `t/` without specifying any tags after it.
+</div>
   
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st client to be `91234567` and `johndoe@example.com` respectively.
@@ -156,7 +178,9 @@ You can delete a specific client from Link.me.
 
 Format: `delete INDEX`
 
-* Deletes your client at the specified `INDEX`.
+* Deletes your client at the specified `INDEX`. Note that `INDEX` is used to avoid ambiguity like this:
+  * `delete Tom` (if `NAME` was used instead of `INDEX`), but multiple clients named "Tom" are stored in Link.me (e.g.
+    Tom Tan, Tom Lim)
 * The index refers to the index number shown in the displayed client list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
@@ -329,7 +353,8 @@ Examples:
 
 ### Displaying notifications : `notif`
 
-You can view a notification window informing you of upcoming client birthdays and meetings.
+You can view a notification window informing you of upcoming client birthdays and meetings, so that you can plan
+ahead and 
 
 This notification window is also shown when starting up Link.me.
 
