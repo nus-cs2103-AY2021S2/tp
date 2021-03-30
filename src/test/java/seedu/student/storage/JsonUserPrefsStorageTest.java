@@ -34,6 +34,12 @@ public class JsonUserPrefsStorageTest {
     }
 
     @Test
+    public void validUserPrefs_notNull() {
+        JsonUserPrefsStorage prefsStorage = new JsonUserPrefsStorage(TEST_DATA_FOLDER);
+        assertFalse(prefsStorage.getUserPrefsFilePath().equals(null));
+    }
+
+    @Test
     public void readUserPrefs_missingFile_emptyResult() throws DataConversionException {
         assertFalse(readUserPrefs("NonExistentFile.json").isPresent());
     }
