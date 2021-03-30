@@ -1,5 +1,6 @@
 package seedu.address.logic.filters;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import seedu.address.model.customer.Customer;
@@ -24,6 +25,7 @@ public class NameFilter extends AbstractFilter {
      */
     public NameFilter(String nameListSingleString) {
         super(nameListSingleString);
+        requireNonNull(nameListSingleString);
         checkArgument(isValidFilter(nameListSingleString), MESSAGE_CONSTRAINTS);
         this.nameList = nameListSingleString.split("\\s+");
     }
@@ -36,6 +38,7 @@ public class NameFilter extends AbstractFilter {
 
     @Override
     public boolean test(Customer customer) {
+        requireNonNull(customer);
         String[] customerNameTokens = customer.getName().fullName.split("\\s+");
         for (String token : customerNameTokens) {
             for (String possibleName : nameList) {
