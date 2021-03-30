@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.time.LocalDateTime;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
@@ -7,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.logic.parser.DateTimeUtil;
 import seedu.address.model.meeting.Meeting;
 
 /**
@@ -43,8 +45,10 @@ public class MeetingCard extends UiPart<Region> {
         this.meeting = meeting;
         id.setText(displayedIndex + ". ");
         name.setText(meeting.getName().toString());
-        startDate.setText(meeting.getStart().toString());
-        endDate.setText(meeting.getTerminate().toString());
+        LocalDateTime startDateTime = meeting.getStartLocalDateTime();
+        LocalDateTime endDateTime = meeting.getTerminateLocalDateTime();
+        startDate.setText(DateTimeUtil.prettyPrintFormatDateTime(startDateTime);
+        endDate.setText(DateTimeUtil.prettyPrintFormatDateTime(endDateTime);
         description.setText(meeting.getDescription().toString());
         priority.setText(meeting.getPriority().toString());
         meeting.getGroups().stream()
