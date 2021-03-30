@@ -14,8 +14,8 @@ public class ListEntryCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all entries "
             + "by displaying them as a list sorted by date. Entries can also be listed by day/week.\n"
-            + "Possible parameters: day/week \n"
-            + "Example: " + COMMAND_WORD + "week";
+            + "Optional parameters: day/week \n"
+            + "Example: " + COMMAND_WORD + " week";
 
     final ListEntryFormatPredicate predicate;
 
