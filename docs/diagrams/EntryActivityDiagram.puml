@@ -1,0 +1,7 @@
+@startuml
+start
+:User executes "eadd";
+:Instantiates an Entry object;
+:Saves to Storage;
+stop
+@enduml

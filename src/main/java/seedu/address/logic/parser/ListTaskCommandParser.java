@@ -18,11 +18,12 @@ public class ListTaskCommandParser implements Parser<ListTaskCommand> {
      */
     public ListTaskCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty() || (!trimmedArgs.equals("day") && !trimmedArgs.equals("week"))) {
+        ListTaskCommand listTaskCommand = new ListTaskCommand(new ListTaskFormatPredicate(trimmedArgs));
+        if (trimmedArgs.equals("day") || trimmedArgs.equals("week") || trimmedArgs.isEmpty()) {
+            return listTaskCommand;
+        } else {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListTaskCommand.MESSAGE_USAGE));
         }
-
-        return new ListTaskCommand(new ListTaskFormatPredicate(trimmedArgs));
     }
 }

@@ -12,6 +12,8 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Person;
+import seedu.address.model.schedule.Schedule;
+import seedu.address.model.task.Task;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -20,15 +22,23 @@ import seedu.address.model.person.Person;
 class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_TASK = "Task list contains duplicate task(s)";
+    private static final String MESSAGE_DUPLICATE_SCHEDULE = "Schedule list contains duplicate schedule(s)";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedTask> tasks = new ArrayList<>();
+    private final List<JsonAdaptedSchedule> schedules = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
+    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
+                                       @JsonProperty("tasks") List<JsonAdaptedTask> tasks,
+                                       @JsonProperty("schedules") List<JsonAdaptedSchedule> schedules) {
         this.persons.addAll(persons);
+        this.tasks.addAll(tasks);
+        this.schedules.addAll(schedules);
     }
 
     /**
@@ -38,6 +48,8 @@ class JsonSerializableAddressBook {
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        tasks.addAll(source.getTaskList().stream().map(JsonAdaptedTask::new).collect(Collectors.toList()));
+        schedules.addAll(source.getScheduleList().stream().map(JsonAdaptedSchedule::new).collect(Collectors.toList()));
     }
 
     /**
@@ -53,6 +65,22 @@ class JsonSerializableAddressBook {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
             addressBook.addPerson(person);
+        }
+
+        for (JsonAdaptedTask jsonAdaptedTask : tasks) {
+            Task task = jsonAdaptedTask.toModelType();
+            if (addressBook.hasTask(task)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_TASK);
+            }
+            addressBook.addTask(task);
+        }
+
+        for (JsonAdaptedSchedule jsonAdaptedSchedule : schedules) {
+            Schedule schedule = jsonAdaptedSchedule.toModelType();
+            if (addressBook.hasSchedule(schedule)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_SCHEDULE);
+            }
+            addressBook.addSchedule(schedule);
         }
         return addressBook;
     }

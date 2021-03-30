@@ -15,13 +15,13 @@ import seedu.address.model.tag.Tag;
 public class Task {
 
     private final TaskDescription taskDescription;
-    private final LocalDate date;
+    private final Date date;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null
      */
-    public Task(TaskDescription taskDescription, LocalDate date, Set<Tag> tags) {
+    public Task(TaskDescription taskDescription, Date date, Set<Tag> tags) {
         requireAllNonNull(taskDescription, date, tags);
         this.taskDescription = taskDescription;
         this.date = date;
@@ -33,7 +33,7 @@ public class Task {
     }
 
     public LocalDate getDate() {
-        return date;
+        return date.getDate();
     }
 
     /**

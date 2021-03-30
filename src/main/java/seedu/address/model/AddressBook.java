@@ -5,6 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.entry.Entry;
+import seedu.address.model.entry.NonOverlappingEntryList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.schedule.Schedule;
@@ -18,6 +20,7 @@ import seedu.address.model.task.UniqueTaskList;
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
+    private final NonOverlappingEntryList entries;
     private final UniquePersonList persons;
     private final UniqueScheduleList schedules;
     private final UniqueTaskList tasks;
@@ -30,6 +33,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      *   among constructors.
      */
     {
+        entries = new NonOverlappingEntryList();
         tasks = new UniqueTaskList();
         persons = new UniquePersonList();
         schedules = new UniqueScheduleList();
@@ -56,12 +60,37 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the entry list with {@code entries}.
+     * {@code entries} must not contain overlapping entries.
+     */
+    public void setEntries(List<Entry> entries) {
+        this.entries.setEntries(entries);
+    }
+
+    /**
+     * Replaces the contents of the task list with {@code tasks}.
+     * {@code tasks} must not contain duplicate tasks.
+     */
+    public void setTasks(List<Task> tasks) {
+        this.tasks.setTasks(tasks);
+    }
+
+    /**
+     * Replaces the contents of the schedule list with {@code schedules}.
+     * {@code schedules} must not contain duplicate schedules.
+     */
+    public void setSchedules(List<Schedule> schedules) {
+        this.schedules.setSchedules(schedules);
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
-
         setPersons(newData.getPersonList());
+        setTasks(newData.getTaskList());
+        setSchedules(newData.getScheduleList());
     }
 
     //// person-level operations
@@ -101,10 +130,46 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    //// entry methods
+
+    /**
+     * Returns true if the entry exists in the list.
+     */
+    public boolean hasEntry(Entry entry) {
+        requireNonNull(entry);
+        return entries.contains(entry);
+    }
+
+    /**
+     * Adds an entry to the list.
+     * The entry must not overlap with existing entries in the list.
+     */
+    public void addEntry(Entry entry) {
+        entries.add(entry);
+    }
+
+    /**
+     * Removes an entry {@code key} from the list.
+     * {@code key} must exist in the list.
+     */
+    public void removeEntry(Entry key) {
+        entries.remove(key);
+    }
+
+    /**
+     * Replaces the given entry {@code target} in the list with {@code editedEntry}.
+     * {@code target} must exist in the list.
+     * {@code editedEntry} must not overlap with existing entries in the list.
+     */
+    public void setEntry(Entry target, Entry editedEntry) {
+        requireNonNull(editedEntry);
+        entries.setEntry(target, editedEntry);
+    }
+
     //// schedule methods
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a schedule with the same identity as {@code schedule} exists in the schedule list.
      */
     public boolean hasSchedule(Schedule schedule) {
         requireNonNull(schedule);
@@ -119,10 +184,18 @@ public class AddressBook implements ReadOnlyAddressBook {
         schedules.add(schedule);
     }
 
+    /**
+     * Removes a schedule {@code key} from the schedule list.
+     * {@code key} must exist in the schedule list.
+     */
+    public void removeSchedule(Schedule key) {
+        schedules.remove(key);
+    }
+
     //// task methods
 
     /**
-     * Returns true if a person with the same identity as {@code task} exists in the address book.
+     * Returns true if a task with the same identity as {@code task} exists in the task list.
      */
     public boolean hasTask(Task task) {
         requireNonNull(task);
@@ -135,6 +208,14 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void addTask(Task t) {
         tasks.add(t);
+    }
+
+    /**
+     * Removes {@code target} from this {@code AddressBook}.
+     * {@code target} must exist in the address book.
+     */
+    public void removeTask(Task target) {
+        tasks.remove(target);
     }
 
     //// util methods
@@ -150,6 +231,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.asUnmodifiableObservableList();
     }
 
+    @Override
+    public ObservableList<Entry> getEntryList() {
+        return entries.asUnmodifiableObservableList();
+    }
+
+    @Override
     public ObservableList<Schedule> getScheduleList() {
         return schedules.asUnmodifiableObservableList();
     }

@@ -15,15 +15,15 @@ import seedu.address.model.tag.Tag;
 public class Schedule {
 
     private final ScheduleDescription scheduleDescription;
-    private final LocalDateTime startDate;
-    private final LocalDateTime endDate;
+    private final DateTime startDate;
+    private final DateTime endDate;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null
      */
-    public Schedule(ScheduleDescription scheduleDescription, LocalDateTime startDate,
-                    LocalDateTime endDate, Set<Tag> tags) {
+    public Schedule(ScheduleDescription scheduleDescription, DateTime startDate,
+                    DateTime endDate, Set<Tag> tags) {
         requireAllNonNull(scheduleDescription, startDate, endDate, tags);
         this.scheduleDescription = scheduleDescription;
         this.startDate = startDate;
@@ -36,11 +36,11 @@ public class Schedule {
     }
 
     public LocalDateTime getStartDate() {
-        return startDate;
+        return startDate.getDateTime();
     }
 
     public LocalDateTime getEndDate() {
-        return endDate;
+        return endDate.getDateTime();
     }
 
     /**
