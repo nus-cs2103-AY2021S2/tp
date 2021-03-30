@@ -11,9 +11,9 @@ public class KeyboardShortcuts {
     public static final KeyCodeCombination HELP_SHORTCUT =
             new KeyCodeCombination(KeyCode.F1);
     public static final KeyCodeCombination UNDO_SHORTCUT =
-            new KeyCodeCombination(KeyCode.Z, KeyCombination.CONTROL_DOWN);
+            new KeyCodeCombination(KeyCode.Z, KeyCombination.SHORTCUT_DOWN);
     public static final KeyCodeCombination REDO_SHORTCUT =
-            new KeyCodeCombination(KeyCode.Z, KeyCombination.CONTROL_DOWN, KeyCombination.SHIFT_DOWN);
+            new KeyCodeCombination(KeyCode.Z, KeyCombination.SHORTCUT_DOWN, KeyCombination.SHIFT_DOWN);
 
     // To prevent instantiation
     private KeyboardShortcuts() {
