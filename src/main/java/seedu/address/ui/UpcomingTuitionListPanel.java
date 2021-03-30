@@ -120,6 +120,9 @@ public class UpcomingTuitionListPanel extends UiPart<Region> {
      */
     private boolean isWithinThreeDaysRange(SessionDate today, SessionDate dayAfterTomorrow,
                                            LocalDate dateOfSingleSession) {
+        assert today.getDateTime().toLocalDate().plusDays(2).equals(dayAfterTomorrow.getDateTime().toLocalDate())
+                : "dayAfterTomorrow should be 2 days after today!";
+        
         return today.getDate().compareTo(dateOfSingleSession) <= 0
                 && dateOfSingleSession.compareTo(dayAfterTomorrow.getDate()) < 0;
     }
