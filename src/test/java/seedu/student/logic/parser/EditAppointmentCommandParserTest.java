@@ -25,7 +25,6 @@ import seedu.student.model.student.MatriculationNumber;
 import seedu.student.testutil.EditAppointmentDescriptorBuilder;
 
 class EditAppointmentCommandParserTest {
-    
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditAppointmentCommand.MESSAGE_USAGE);
 
@@ -35,13 +34,6 @@ class EditAppointmentCommandParserTest {
     public void parse_allFieldsPresent_success() throws ParseException {
         MatriculationNumber matriculationNumber = new MatriculationNumber(VALID_MATRIC_BOB);
         EditAppointmentDescriptor expectedAppointment = new EditAppointmentDescriptorBuilder(BOB_APPOINTMENT).build();
-
-        EditAppointmentCommand e =  parser.parse(PREAMBLE_WHITESPACE + MATRIC_DESC_BOB + DATE_DESC_BOB_APPOINTMENT
-                + START_TIME_DESC_BOB_APPOINTMENT);
-        EditAppointmentCommand ee = new EditAppointmentCommand(matriculationNumber, expectedAppointment);
-
-        System.out.println(PREAMBLE_WHITESPACE + MATRIC_DESC_BOB + DATE_DESC_BOB_APPOINTMENT
-                + START_TIME_DESC_BOB_APPOINTMENT);
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + MATRIC_DESC_BOB + DATE_DESC_BOB_APPOINTMENT

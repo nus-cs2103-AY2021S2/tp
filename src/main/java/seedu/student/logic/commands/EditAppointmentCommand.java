@@ -123,6 +123,10 @@ public class EditAppointmentCommand extends Command {
 
         public EditAppointmentDescriptor() {}
 
+        /**
+         * Constructor for an EditAppointmentDescriptor, which copies an existing EditAppointmentDescriptor.
+         * @param toCopy the EditAppointmentDescriptor to be copied.
+         */
         public EditAppointmentDescriptor(EditAppointmentDescriptor toCopy) {
             setMatriculationNumber(toCopy.matriculationNumber);
             setDate(toCopy.date);
@@ -175,7 +179,7 @@ public class EditAppointmentCommand extends Command {
             // state check
             EditAppointmentCommand.EditAppointmentDescriptor e = (EditAppointmentDescriptor) other;
 
-            return  getMatriculationNumber().equals(e.getMatriculationNumber())
+            return getMatriculationNumber().equals(e.getMatriculationNumber())
                     && getDate().equals(e.getDate())
                     && getStartTime().equals(e.getStartTime());
         }

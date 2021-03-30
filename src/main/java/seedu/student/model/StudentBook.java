@@ -1,7 +1,6 @@
 package seedu.student.model;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.student.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 import java.util.stream.Collectors;

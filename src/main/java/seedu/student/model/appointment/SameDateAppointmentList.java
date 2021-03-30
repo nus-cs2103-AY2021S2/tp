@@ -12,7 +12,6 @@ import java.util.function.Predicate;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import seedu.student.commons.core.Messages;
 import seedu.student.logic.commands.exceptions.CommandException;
 import seedu.student.model.appointment.exceptions.DuplicateAppointmentException;
 import seedu.student.model.appointment.exceptions.OverlappingAppointmentException;

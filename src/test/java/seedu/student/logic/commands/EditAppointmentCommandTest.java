@@ -4,14 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.student.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.student.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.student.testutil.TypicalAppointments.ALICE_APPOINTMENT;
 import static seedu.student.testutil.TypicalMatricNumbers.MATRIC_NUMBER_FIRST_STUDENT;
 import static seedu.student.testutil.TypicalMatricNumbers.MATRIC_NUMBER_SECOND_STUDENT;
-import static seedu.student.testutil.TypicalStudents.getTypicalStudentBook;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.student.commons.core.Messages;
 import seedu.student.logic.commands.EditAppointmentCommand.EditAppointmentDescriptor;
 import seedu.student.logic.commands.exceptions.CommandException;
 import seedu.student.model.Model;

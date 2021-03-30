@@ -11,7 +11,6 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.student.logic.commands.exceptions.CommandException;
-import seedu.student.model.appointment.exceptions.DuplicateAppointmentException;
 
 /**
  * TO EDIT

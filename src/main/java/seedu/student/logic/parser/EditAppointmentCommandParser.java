@@ -5,8 +5,6 @@ import static seedu.student.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.student.logic.parser.CliSyntax.PREFIX_MATRICULATION_NUMBER;
 import static seedu.student.logic.parser.CliSyntax.PREFIX_START_TIME;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.stream.Stream;
 
 import seedu.student.logic.commands.EditAppointmentCommand;
@@ -21,7 +19,8 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
         //assert args.length() >= 2
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_MATRICULATION_NUMBER, PREFIX_DATE, PREFIX_START_TIME);
-        if (!arePrefixesPresent(argMultimap,  PREFIX_MATRICULATION_NUMBER, PREFIX_DATE, PREFIX_START_TIME) || !argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_MATRICULATION_NUMBER, PREFIX_DATE, PREFIX_START_TIME)
+                || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     EditAppointmentCommand.MESSAGE_USAGE));
         }
