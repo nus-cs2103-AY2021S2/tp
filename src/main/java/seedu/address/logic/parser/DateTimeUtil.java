@@ -71,7 +71,7 @@ public class DateTimeUtil {
     public static String prettyPrintFormatLocalTime(LocalTime localTime) {
         return localTime.format(PRETTY_TIME_FORMATTER);
     }
-    public static String prettuPrintFormatLocalDate(LocalDate localDate) {
+    public static String prettyPrintFormatLocalDate(LocalDate localDate) {
         return localDate.format(PRETTY_DATE_FORMATTER);
     }
 
