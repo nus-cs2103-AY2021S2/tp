@@ -19,6 +19,7 @@ import seedu.booking.commons.core.Messages;
 import seedu.booking.commons.util.CollectionUtil;
 import seedu.booking.logic.commands.exceptions.CommandException;
 import seedu.booking.model.Model;
+import seedu.booking.model.Tag;
 import seedu.booking.model.booking.Booking;
 import seedu.booking.model.booking.Description;
 import seedu.booking.model.booking.EndTime;
@@ -26,7 +27,6 @@ import seedu.booking.model.booking.Id;
 import seedu.booking.model.booking.StartTime;
 import seedu.booking.model.person.Email;
 import seedu.booking.model.venue.VenueName;
-import seedu.booking.model.Tag;
 
 public class EditBookingCommand extends Command {
     public static final String COMMAND_WORD = "edit_booking";

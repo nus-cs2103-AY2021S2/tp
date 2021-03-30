@@ -9,16 +9,11 @@ import static seedu.booking.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.booking.logic.parser.ParserUtil.parseTagsForEdit;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.booking.logic.commands.EditPersonCommand;
 import seedu.booking.logic.commands.EditPersonCommand.EditPersonDescriptor;
 import seedu.booking.logic.parser.exceptions.ParseException;
-import seedu.booking.model.Tag;
 import seedu.booking.model.person.Email;
 
 /**

@@ -126,7 +126,8 @@ public class JsonAdaptedBooking {
         }
         final Set<Tag> modelTags = new HashSet<>(bookingTags);
 
-        return new Booking(modelBooker, modelVenue, modelDescription, modelBookingStart, modelBookingEnd, modelId, modelTags);
+        return new Booking(modelBooker, modelVenue, modelDescription, modelBookingStart, modelBookingEnd,
+                modelId, modelTags);
     }
 
 }

@@ -9,16 +9,11 @@ import static seedu.booking.logic.parser.CliSyntax.PREFIX_VENUE;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_VENUE_ORIGINAL;
 import static seedu.booking.logic.parser.ParserUtil.parseTagsForEdit;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.booking.logic.commands.EditVenueCommand;
 import seedu.booking.logic.commands.EditVenueCommand.EditVenueDescriptor;
 import seedu.booking.logic.parser.exceptions.ParseException;
-import seedu.booking.model.Tag;
 import seedu.booking.model.venue.VenueName;
 
 /**
