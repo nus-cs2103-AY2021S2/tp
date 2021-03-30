@@ -74,7 +74,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
      * Sets the current mapping to the specified mapping.
      *
      * @param aliasMappings The mapping.
-     * @throws NullPointerException if the input is null.
+     * @throws NullPointerException If the input is null.
      */
     public void setAliasMapping(AliasMapping aliasMappings) {
         requireNonNull(aliasMappings);
@@ -85,7 +85,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
      * Adds an user-defined alias to the current mapping.
      *
      * @param alias The alias to be added.
-     * @throws NullPointerException if the input is null.
+     * @throws NullPointerException If the input is null.
      */
     public void addAlias(Alias alias) {
         requireNonNull(alias);
@@ -107,7 +107,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
      *
      * @param aliasName Name of the alias.
      * @return The alias with the specified name.
-     * @throws NullPointerException if the input is null.
+     * @throws NullPointerException If the input is null.
      */
     public Alias getAlias(String aliasName) {
         requireNonNull(aliasName);
@@ -130,6 +130,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
      *
      * @param aliasName Name of the alias.
      * @return Whether the name is reserved.
+     * @throws NullPointerException If the input is null.
      */
     public boolean isReservedKeyword(String aliasName) {
         requireNonNull(aliasName);
@@ -141,6 +142,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
      *
      * @param commandWord The command word.
      * @return Whether the command word is recursive.
+     * @throws NullPointerException If the input is null.
      */
     public boolean isRecursiveKeyword(String commandWord) {
         requireNonNull(commandWord);

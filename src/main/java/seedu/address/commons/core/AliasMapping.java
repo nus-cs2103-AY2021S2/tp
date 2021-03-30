@@ -49,7 +49,7 @@ public class AliasMapping implements Serializable {
      * The mapping must not be null.
      *
      * @param aliasMapping The specified mapping.
-     * @throws NullPointerException if the input is null.
+     * @throws NullPointerException If the input is null.
      */
     private AliasMapping(AliasMapping aliasMapping) {
         requireNonNull(aliasMapping);
