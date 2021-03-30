@@ -16,6 +16,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.MassBlacklistCommand;
 import seedu.address.logic.commands.MassDeleteCommand;
 import seedu.address.logic.commands.RemarkCommand;
 import seedu.address.logic.commands.SortCommand;
@@ -57,6 +58,9 @@ public class AddressBookParser {
 
         case BlacklistCommand.COMMAND_WORD:
             return new BlacklistCommandParser().parse(arguments);
+
+        case MassBlacklistCommand.COMMAND_WORD:
+            return new MassBlacklistCommandParser().parse(arguments);
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
