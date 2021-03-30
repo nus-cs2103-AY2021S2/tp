@@ -14,5 +14,4 @@ public class PhoneNumberFilter extends AbstractFilter{
     public boolean test(Customer customer) {
         return customer.getPhone().getPhoneNumber().trim().startsWith(filterString);
     }
-
 }
