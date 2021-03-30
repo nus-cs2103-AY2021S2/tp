@@ -28,7 +28,6 @@ import seedu.address.model.reminder.ReminderTracker;
 import seedu.address.model.schedule.ReadOnlyScheduleTracker;
 import seedu.address.model.schedule.Schedule;
 import seedu.address.model.schedule.ScheduleTracker;
-import seedu.address.model.util.SampleDataUtil;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -60,9 +59,10 @@ public class ModelManager implements Model {
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs,
                         ReadOnlyAppointmentBook appointmentBook,
                         BudgetBook budgetBook, ReadOnlyGradeBook gradeBook,
-                        ReadOnlyScheduleTracker scheduleTracker) {
+                        ReadOnlyScheduleTracker scheduleTracker,
+                        ReadOnlyReminderTracker reminderTracker) {
         super();
-        requireAllNonNull(addressBook, appointmentBook, userPrefs, budgetBook, scheduleTracker);
+        requireAllNonNull(addressBook, appointmentBook, userPrefs, budgetBook, scheduleTracker, reminderTracker);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
@@ -73,7 +73,7 @@ public class ModelManager implements Model {
         this.budgetBook = new BudgetBook(budgetBook);
         this.userPrefs = new UserPrefs(userPrefs);
         this.eventTracker = new EventTracker(appointmentBook, scheduleTracker);
-        this.reminderTracker = new ReminderTracker(SampleDataUtil.getSampleReminderTracker());
+        this.reminderTracker = new ReminderTracker(reminderTracker);
         this.personFilter = new PersonFilter();
         this.filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         this.filteredAppointment = new FilteredList<>(this.appointmentBook.getAppointmentList());
@@ -89,7 +89,7 @@ public class ModelManager implements Model {
      */
     public ModelManager() {
         this(new AddressBook(), new UserPrefs(), new AppointmentBook(),
-                new BudgetBook(), new GradeBook(), new ScheduleTracker());
+                new BudgetBook(), new GradeBook(), new ScheduleTracker(), new ReminderTracker());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -579,6 +579,16 @@ public class ModelManager implements Model {
     @Override
     public boolean hasClashingDateTime(Event event) {
         return eventTracker.hasClashingDateTime(event);
+    }
+
+    /**
+     * Sets grade book file path.
+     *
+     * @param scheduleTrackerFilePath To be supplied by user
+     */
+    public void setScheduleTrackerFilePath(Path scheduleTrackerFilePath) {
+        requireNonNull(scheduleTrackerFilePath);
+        userPrefs.setScheduleTrackerFilePath(scheduleTrackerFilePath);
     }
 
     @Override

@@ -18,6 +18,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     private Path appointmentBookFilePath = Paths.get("data", "appointmentBook.json");
     private Path gradeBookFilePath = Paths.get("data" , "gradeBook.json");
     private Path scheduleTrackerFilePath = Paths.get("data" , "scheduleTracker.json");
+    private Path reminderTrackerFilePath = Paths.get("data" , "reminderTracker.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -66,6 +67,10 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         return scheduleTrackerFilePath;
     }
 
+    public Path getReminderTrackerFilePath() {
+        return reminderTrackerFilePath;
+    }
+
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         this.addressBookFilePath = addressBookFilePath;
@@ -84,6 +89,11 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void setScheduleTrackerFilePath(Path scheduleTrackerFilePath) {
         requireNonNull(scheduleTrackerFilePath);
         this.scheduleTrackerFilePath = scheduleTrackerFilePath;
+    }
+
+    public void setReminderTrackerFilePath(Path reminderTrackerFilePath) {
+        requireNonNull(reminderTrackerFilePath);
+        this.reminderTrackerFilePath = reminderTrackerFilePath;
     }
 
     @Override
