@@ -32,13 +32,16 @@ public class TuitionListPanel extends UiPart<Region> {
      */
     public TuitionListPanel(ObservableList<Student> studentList) {
         super(FXML);
+        addListener(studentList);
+        populateTuitionListView(studentList);
+    }
 
+    private void addListener(ObservableList<Student> studentList) {
         studentList.addListener((ListChangeListener<Student>) change -> {
             while (change.next()) {
                 populateTuitionListView(studentList);
             }
         });
-        populateTuitionListView(studentList);
     }
 
     /**
