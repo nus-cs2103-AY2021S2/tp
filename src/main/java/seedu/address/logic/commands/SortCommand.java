@@ -8,8 +8,8 @@ import seedu.address.logic.comparators.DateTimeComparator;
 import seedu.address.logic.comparators.ModuleCodeComparator;
 import seedu.address.logic.comparators.TaskNameComparator;
 import seedu.address.logic.comparators.WeightageComparator;
+import seedu.address.logic.util.SortingFlag;
 import seedu.address.model.Model;
-import seedu.address.model.person.SortingFlag;
 import seedu.address.model.person.Task;
 
 public class SortCommand extends Command {
@@ -31,7 +31,7 @@ public class SortCommand extends Command {
      */
     public SortCommand(SortingFlag sortingFlag) {
         this.sortingFlag = sortingFlag;
-        switch (sortingFlag.getSortingFlagType()) {
+        switch (sortingFlag.getSortingType()) {
         case DATE_TIME:
             sortingComparator = new DateTimeComparator();
             break;
@@ -46,7 +46,7 @@ public class SortCommand extends Command {
             sortingComparator = new WeightageComparator();
             break;
         default:
-            throw new IllegalStateException("Unexpected value: " + sortingFlag.getSortingFlagType());
+            throw new IllegalStateException("Unexpected value: " + sortingFlag.getSortingType());
         }
     }
 

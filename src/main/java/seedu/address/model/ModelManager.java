@@ -23,6 +23,7 @@ public class ModelManager implements Model {
     private final TaskTracker taskTracker;
     private final UserPrefs userPrefs;
     private final FilteredList<Task> filteredTasks;
+    private final FilteredList<Task> dailyTasks;
     private VersionedTaskTracker versionedTaskTracker;
 
     /**
@@ -38,6 +39,7 @@ public class ModelManager implements Model {
         this.taskTracker = new TaskTracker(taskTracker);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredTasks = new FilteredList<>(this.taskTracker.getTaskList());
+        dailyTasks = new FilteredList<>(this.taskTracker.getDailyTaskList());
         this.versionedTaskTracker = new VersionedTaskTracker();
     }
 
@@ -115,6 +117,19 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void addToDailyToDoList(Task taskToAdd) {
+        // handle case where task already exists
+        taskTracker.addDailyTask(taskToAdd);
+        updateDailyTaskList(PREDICATE_SHOW_ALL_TASKS);
+    }
+
+    @Override
+    public void removeFromDailyToDoList(Task taskToRemove) {
+        // handle case where task is not found
+        taskTracker.removeDailyTask(taskToRemove);
+    }
+
+    @Override
     public void setTask(Task target, Task editedTask) {
         requireAllNonNull(target, editedTask);
 
@@ -171,9 +186,20 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Task> getDailyTaskList() {
+        return dailyTasks;
+    }
+
+    @Override
     public void updateFilteredTaskList(Predicate<Task> predicate) {
         requireNonNull(predicate);
         filteredTasks.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateDailyTaskList(Predicate<Task> predicate) {
+        requireNonNull(predicate);
+        dailyTasks.setPredicate(predicate);
     }
 
     @Override
