@@ -1,15 +1,15 @@
 package seedu.address.ui;
 
-import javafx.scene.control.Label;
-import seedu.address.model.tag.ChildTag;
-import seedu.address.model.tag.Tag;
-
 import java.util.Comparator;
 import java.util.Set;
 import java.util.stream.Stream;
 
+import javafx.scene.control.Label;
+import seedu.address.model.tag.ChildTag;
+import seedu.address.model.tag.Tag;
+
 /**
- * Contains utility methods used for generating UI elements.
+ * Contains utility classes and methods used for generating UI elements.
  */
 public class UiUtil {
     /**
@@ -25,6 +25,11 @@ public class UiUtil {
         return label;
     }
 
+    /**
+     * Converts a {@code Set<Tag>} to a sorted {@code Stream<Tag>} using the TagComparator class.
+     * @param tagSet the set of tags to convert.
+     * @return {@literal Stream<Tag>} of the tags sorted based on TagComparator.
+     */
     public static Stream<Tag> streamTags(Set<Tag> tagSet) {
         return tagSet.stream()
                 .sorted(new TagComparator());

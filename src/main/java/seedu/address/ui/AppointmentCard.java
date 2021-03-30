@@ -1,5 +1,8 @@
 package seedu.address.ui;
 
+import static seedu.address.ui.UiUtil.generateTagLabel;
+import static seedu.address.ui.UiUtil.streamTags;
+
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
@@ -9,8 +12,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.appointment.Appointment;
 
-import static seedu.address.ui.UiUtil.generateTagLabel;
-import static seedu.address.ui.UiUtil.streamTags;
 
 /**
  * An UI component that displays information of a {@code Appointment}.
