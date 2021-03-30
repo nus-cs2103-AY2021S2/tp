@@ -38,10 +38,10 @@ public class MainWindow extends UiPart<Stage> {
 
     private EventListPaneKanbanView eventListPaneKanbanView;
     private EventListPaneListView eventListPaneListView;
-//    private EventListPaneKanbanView kanbanTodoListView;
-//    private EventListPaneKanbanView kanbanBacklogListView;
-//    private EventListPaneKanbanView kanbanInProgressListView;
-//    private EventListPaneKanbanView kanbanDoneListView;
+    //    private EventListPaneKanbanView kanbanTodoListView;
+    //    private EventListPaneKanbanView kanbanBacklogListView;
+    //    private EventListPaneKanbanView kanbanInProgressListView;
+    //    private EventListPaneKanbanView kanbanDoneListView;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -181,16 +181,16 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    private void handleSwitch(){
+    private void handleSwitch() {
         if (isKanbanView) {
             toListView();
-        }else {
+        } else {
             toKanBanView();
         }
 
     }
 
-    private void toListView(){
+    private void toListView() {
         isKanbanView = false;
 
         kanbanPanelPlaceholder.setVisible(false);
@@ -199,7 +199,7 @@ public class MainWindow extends UiPart<Stage> {
         listPanelPlaceholder.setManaged(true);
     }
 
-    private void toKanBanView(){
+    private void toKanBanView() {
         isKanbanView = true;
         kanbanPanelPlaceholder.setVisible(true);
         kanbanPanelPlaceholder.setManaged(true);
@@ -231,7 +231,7 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            if(commandResult.isSwitch()){
+            if (commandResult.isSwitch()) {
                 handleSwitch();
             }
 

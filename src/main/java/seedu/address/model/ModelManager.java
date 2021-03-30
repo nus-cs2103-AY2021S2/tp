@@ -21,6 +21,7 @@ import seedu.address.model.person.Person;
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
+    private static boolean isKanbanView = true;
 
     private final AddressBook addressBook;
     private final EventBook eventBook;
@@ -28,7 +29,6 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Event> filteredEvent;
 
-    public static boolean isKanbanView =true;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -51,19 +51,19 @@ public class ModelManager implements Model {
         this(new AddressBook(), new UserPrefs(), new EventBook());
     }
 
-    public static boolean isKanBanView(){
+    public static boolean isKanBanView() {
         return isKanbanView;
     }
 
-    public static void setListView(){
+    public static void setListView() {
         isKanbanView = false;
     }
 
-    public static void setIsKanbanView(){
+    public static void setIsKanbanView() {
         isKanbanView = true;
     }
 
-    public static void switchView(){
+    public static void switchView() {
         isKanbanView = !isKanbanView;
     }
     //=========== UserPrefs ==================================================================================

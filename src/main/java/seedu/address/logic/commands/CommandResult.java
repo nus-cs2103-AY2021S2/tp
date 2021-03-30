@@ -21,7 +21,9 @@ public class CommandResult {
 
     private final boolean isSwitch;
 
-
+    /**
+     * Constructs a {@code CommandResult} with the specified fields, If the command is not a switch command
+     */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
