@@ -6,8 +6,10 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.DatesBook;
+import seedu.address.model.LessonBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyDatesBook;
+import seedu.address.model.ReadOnlyLessonBook;
 import seedu.address.model.date.Description;
 import seedu.address.model.date.Details;
 import seedu.address.model.date.ImportantDate;
@@ -55,8 +57,10 @@ public class SampleDataUtil {
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
+        LessonBook sampleLb = new LessonBook();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
+            sampleLb.addPersonToLesson(samplePerson);
         }
         return sampleAb;
     }
@@ -92,6 +96,25 @@ public class SampleDataUtil {
             sampleDb.addImportantDate(sampleImportantDate);
         }
         return sampleDb;
+    }
+
+    public static Lesson[] getSampleLessons() {
+        return new Lesson[] {
+                new Lesson("Monday 1000"),
+                new Lesson("Friday 1300"),
+                new Lesson("Sunday 0800"),
+                new Lesson("Saturday 1800"),
+        };
+    }
+
+    public static ReadOnlyLessonBook getSampleLessonBook() {
+        AddressBook sampleAb = new AddressBook();
+        LessonBook sampleLb = new LessonBook();
+        for (Person samplePerson : getSamplePersons()) {
+            sampleAb.addPerson(samplePerson);
+            sampleLb.addPersonToLesson(samplePerson);
+        }
+        return sampleLb;
     }
 
 }

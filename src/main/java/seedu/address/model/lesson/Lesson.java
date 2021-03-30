@@ -3,7 +3,14 @@ package seedu.address.model.lesson;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import seedu.address.model.person.Person;
+import seedu.address.model.person.exceptions.DuplicatePersonException;
 
 public class Lesson implements Comparable<Lesson> {
 
@@ -15,6 +22,8 @@ public class Lesson implements Comparable<Lesson> {
 
     public final Day day;
     public final Time time;
+
+    private final Set<Person> persons = new HashSet<>();
 
     /**
      * Constructs a {@code Lesson}.
@@ -41,6 +50,36 @@ public class Lesson implements Comparable<Lesson> {
         return time;
     }
 
+    public String getTimeInString() {
+        return time.timeOfTuition;
+    }
+
+    public void addPerson(Person person) {
+        if (!containsPerson(person)) {
+            persons.add(person);
+        } else {
+            throw new DuplicatePersonException();
+        }
+    }
+
+    public Set<Person> getPerson() {
+        return Collections.unmodifiableSet(persons);
+    }
+
+    public String getPersonInString() {
+        return persons.stream().map(person -> person.getName().fullName)
+                .collect(Collectors.joining(", "));
+    }
+
+    public boolean containsPerson(Person person) {
+        for (Person p : persons) {
+            if (p.isSamePerson(person)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     /**
      * Separates the input string into individual strings for processing.
      *
@@ -62,6 +101,20 @@ public class Lesson implements Comparable<Lesson> {
         } else {
             return true;
         }
+    }
+
+    /**
+     * Returns true if both lessons have the same day and time.
+     * This defines a weaker notion of equality between two lessons.
+     */
+    public boolean isSameLesson(Lesson otherLesson) {
+        if (otherLesson == this) {
+            return true;
+        }
+
+        return otherLesson != null
+                && otherLesson.getDay().equals(getDay())
+                && otherLesson.getTime().equals(getTime());
     }
 
     @Override

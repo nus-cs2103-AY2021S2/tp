@@ -10,6 +10,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyDatesBook;
 import seedu.address.model.date.ImportantDate;
+import seedu.address.model.lesson.Lesson;
 import seedu.address.model.person.Person;
 
 /**
@@ -26,7 +27,9 @@ public interface Logic {
      */
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
-    ObservableList<String> getLessonsForDay(String keyword);
+    ObservableList<Lesson> getLessonsForDay(String keyword);
+
+    ObservableList<String> getLessonsForDayInString(String keyword);
 
     /**
      * Returns the AddressBook.
@@ -50,6 +53,15 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the transformed list of persons after filtering or sorting */
     public ObservableList<Person> getTransformedPersonList();
+
+    /** Returns an unmodifiable view of the filtered list of lessons */
+    ObservableList<Lesson> getFilteredLessonList();
+
+    /** Returns an unmodifiable view of the sorted list of lessons */
+    ObservableList<Lesson> getSortedLessonList();
+
+    /** Returns an unmodifiable view of the transformed list of lessons after filtering or sorting */
+    public ObservableList<Lesson> getTransformedLessonList();
 
     /**
      * Returns the user prefs' address book file path.

@@ -78,13 +78,13 @@ public class ScheduleWindow extends UiPart<Stage> {
     public void show() {
         logger.fine("Showing schedule window.");
 
-        ObservableList<String> monLessons = logic.getLessonsForDay("monday");
-        ObservableList<String> tuesLessons = logic.getLessonsForDay("tuesday");
-        ObservableList<String> wedLessons = logic.getLessonsForDay("wednesday");
-        ObservableList<String> thursLessons = logic.getLessonsForDay("thursday");
-        ObservableList<String> friLessons = logic.getLessonsForDay("friday");
-        ObservableList<String> satLessons = logic.getLessonsForDay("saturday");
-        ObservableList<String> sunLessons = logic.getLessonsForDay("sunday");
+        ObservableList<String> monLessons = logic.getLessonsForDayInString("monday");
+        ObservableList<String> tuesLessons = logic.getLessonsForDayInString("tuesday");
+        ObservableList<String> wedLessons = logic.getLessonsForDayInString("wednesday");
+        ObservableList<String> thursLessons = logic.getLessonsForDayInString("thursday");
+        ObservableList<String> friLessons = logic.getLessonsForDayInString("friday");
+        ObservableList<String> satLessons = logic.getLessonsForDayInString("saturday");
+        ObservableList<String> sunLessons = logic.getLessonsForDayInString("sunday");
 
         sunList.setItems(sunLessons);
         monList.setItems(monLessons);
