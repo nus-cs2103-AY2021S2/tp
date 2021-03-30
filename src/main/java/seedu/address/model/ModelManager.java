@@ -128,7 +128,6 @@ public class ModelManager implements Model {
      */
     @Override
     public boolean hasEntry(Entry entry) {
-        requireNonNull(entry);
         return addressBook.hasEntry(entry);
     }
 

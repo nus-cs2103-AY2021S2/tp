@@ -153,6 +153,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code key} must exist in the list.
      */
     public void removeEntry(Entry key) {
+        requireNonNull(key);
         entries.remove(key);
     }
 
