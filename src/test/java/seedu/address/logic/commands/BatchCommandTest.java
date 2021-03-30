@@ -29,19 +29,18 @@ import seedu.address.testutil.PersonBuilder;
  * Contains integration tests (interaction with the Model) and unit tests for BatchCommand.
  */
 public class BatchCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private EditCommandParser editCommandParser = new EditCommandParser();
-    private DeleteCommandParser deleteCommandParser = new DeleteCommandParser();
-    private List<Index> listOfIndices = Arrays.asList(Index.fromOneBased(7), Index.fromOneBased(6),
+    private static final Model MODEL = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private static final EditCommandParser EDIT_COMMAND_PARSER = new EditCommandParser();
+    private static final DeleteCommandParser DELETE_COMMAND_PARSER = new DeleteCommandParser();
+    private static final List<Index> LIST_OF_INDICES = Arrays.asList(Index.fromOneBased(7), Index.fromOneBased(6),
             Index.fromOneBased(1));
-    private String argsForEdit = "t/" + VALID_TAG_HUSBAND + " i/" + VALID_POLICY_ID + " i/" + VALID_POLICY_ID_WITH_URL;
 
     @Test
     public void execute_validIndexUnfilteredListForBatchEdit_success() {
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new AddressBook(MODEL.getAddressBook()), new UserPrefs());
 
-        for (Index index : listOfIndices) {
-            Person personToEdit = model.getFilteredPersonList().get(index.getZeroBased());
+        for (Index index : LIST_OF_INDICES) {
+            Person personToEdit = MODEL.getFilteredPersonList().get(index.getZeroBased());
             PersonBuilder personBuilder = new PersonBuilder(personToEdit);
             Person editedPerson = personBuilder
                     .withTags(VALID_TAG_HUSBAND)
@@ -57,14 +56,14 @@ public class BatchCommandTest {
 
         BatchCommand<EditCommand> batchEditCommand = new BatchCommand<>(listOfEditCommands);
 
-        assertCommandSuccess(batchEditCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(batchEditCommand, MODEL, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_validIndexUnfilteredListForBatchDelete_success() {
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        for (Index index : listOfIndices) {
-            Person personToDelete = model.getFilteredPersonList().get(index.getZeroBased());
+        ModelManager expectedModel = new ModelManager(MODEL.getAddressBook(), new UserPrefs());
+        for (Index index : LIST_OF_INDICES) {
+            Person personToDelete = MODEL.getFilteredPersonList().get(index.getZeroBased());
             expectedModel.deletePerson(personToDelete);
         }
 
@@ -75,7 +74,7 @@ public class BatchCommandTest {
 
         BatchCommand<DeleteCommand> batchDeleteCommand = new BatchCommand<>(listOfDeleteCommands);
 
-        assertCommandSuccess(batchDeleteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(batchDeleteCommand, MODEL, expectedMessage, expectedModel);
     }
 
     @Test
@@ -100,7 +99,7 @@ public class BatchCommandTest {
 
         // different list of edit commands with different indices -> returns false
         List<EditCommand> anotherListOfEditCommandsWithDiffIndices = new ArrayList<>();
-        createAnotherListOfEditCommands(anotherListOfEditCommandsWithDiffIndices, argsForEdit);
+        createAnotherListOfEditCommands(anotherListOfEditCommandsWithDiffIndices, CommandTestUtil.ARGS_FOR_EDIT);
         assertFalse(standardBatchEdit.equals(new BatchCommand<>(anotherListOfEditCommandsWithDiffIndices)));
 
         // different list of edit commands with different arguments -> returns false
@@ -143,9 +142,9 @@ public class BatchCommandTest {
 
     private void createDeleteCommands(List<DeleteCommand> listOfDeleteCommands) {
         try {
-            for (Index index : listOfIndices) {
+            for (Index index : LIST_OF_INDICES) {
                 String newCommandInput = String.valueOf(index.getOneBased());
-                DeleteCommand deleteCommand = deleteCommandParser.parse(newCommandInput);
+                DeleteCommand deleteCommand = DELETE_COMMAND_PARSER.parse(newCommandInput);
                 listOfDeleteCommands.add(deleteCommand);
             }
         } catch (ParseException e) {
@@ -155,9 +154,9 @@ public class BatchCommandTest {
 
     private void createAnotherListOfDeleteCommands(List<DeleteCommand> listOfDeleteCommands) {
         try {
-            for (Index index : listOfIndices) {
+            for (Index index : LIST_OF_INDICES) {
                 String newCommandInput = String.valueOf(1);
-                DeleteCommand deleteCommand = deleteCommandParser.parse(newCommandInput);
+                DeleteCommand deleteCommand = DELETE_COMMAND_PARSER.parse(newCommandInput);
                 listOfDeleteCommands.add(deleteCommand);
             }
         } catch (ParseException e) {
@@ -167,9 +166,9 @@ public class BatchCommandTest {
 
     private void createEditCommands(List<EditCommand> listOfEditCommands) {
         try {
-            for (Index index : listOfIndices) {
-                String newCommandInput = String.valueOf(index.getOneBased()) + " " + argsForEdit;
-                EditCommand editCommand = editCommandParser.parse(newCommandInput);
+            for (Index index : LIST_OF_INDICES) {
+                String newCommandInput = index.getOneBased() + " " + CommandTestUtil.ARGS_FOR_EDIT;
+                EditCommand editCommand = EDIT_COMMAND_PARSER.parse(newCommandInput);
                 listOfEditCommands.add(editCommand);
             }
         } catch (ParseException e) {
@@ -179,9 +178,9 @@ public class BatchCommandTest {
 
     private void createAnotherListOfEditCommands(List<EditCommand> listOfEditCommands, String argsForEdit) {
         try {
-            for (Index index : listOfIndices) {
-                String newCommandInput = String.valueOf(1) + " " + argsForEdit;
-                EditCommand editCommand = editCommandParser.parse(newCommandInput);
+            for (Index index : LIST_OF_INDICES) {
+                String newCommandInput = 1 + " " + argsForEdit;
+                EditCommand editCommand = EDIT_COMMAND_PARSER.parse(newCommandInput);
                 listOfEditCommands.add(editCommand);
             }
         } catch (ParseException e) {

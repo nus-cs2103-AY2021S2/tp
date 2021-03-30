@@ -61,6 +61,9 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
+    public static final String ARGS_FOR_EDIT = "t/" + VALID_TAG_HUSBAND + " i/" + VALID_POLICY_ID + " i/"
+            + VALID_POLICY_ID_WITH_URL;
+
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
 

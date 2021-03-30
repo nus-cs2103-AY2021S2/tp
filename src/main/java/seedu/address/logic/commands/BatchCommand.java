@@ -10,6 +10,11 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 
+/**
+ * Handles all execution of {@code BatchCommand} as well as for {@code EditCommand} or {@code DeleteCommand}.
+ *
+ * @param <T> the type of {@code Command} that will be executed by {@code BatchCommand}
+ */
 public class BatchCommand<T extends Command> extends Command {
 
     public static final String COMMAND_WORD = "batch";
@@ -55,7 +60,6 @@ public class BatchCommand<T extends Command> extends Command {
 
             // If successfully executed on copy, we can now execute on model without worrying about exceptions.
             // Avoids having to maintain state/undo/redo functionality.
-
             for (Command command : listOfCommands) {
                 CommandResult commandResult = command.execute(model);
                 logger.info("Result of batch command: " + commandResult.getFeedbackToUser());
