@@ -34,6 +34,9 @@ public class Tag {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns true if a given string is a valid tag.
+     */
     public static boolean isValidTag(String inputTag) {
         for (String validTag : VALID_TAGS) {
             if (validTag.matches(inputTag)) {
