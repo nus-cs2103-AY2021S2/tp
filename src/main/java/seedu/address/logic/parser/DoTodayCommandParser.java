@@ -9,6 +9,11 @@ import seedu.address.logic.util.OperationFlag;
 
 public class DoTodayCommandParser implements Parser<DoTodayCommand> {
 
+    /**
+     * Parses the given {@code String} of arguments in the context of the DoTodayCommand
+     * and returns a DoTodayCommand object for execution.
+     * @throws ParseException if the user input does not conform the expected format
+     */
     public DoTodayCommand parse(String args) throws ParseException {
         try {
             String[] splitArgs = splitArgs(args);

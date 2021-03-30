@@ -8,8 +8,8 @@ import seedu.address.logic.comparators.DateTimeComparator;
 import seedu.address.logic.comparators.ModuleCodeComparator;
 import seedu.address.logic.comparators.TaskNameComparator;
 import seedu.address.logic.comparators.WeightageComparator;
-import seedu.address.model.Model;
 import seedu.address.logic.util.SortingFlag;
+import seedu.address.model.Model;
 import seedu.address.model.person.Task;
 
 public class SortCommand extends Command {

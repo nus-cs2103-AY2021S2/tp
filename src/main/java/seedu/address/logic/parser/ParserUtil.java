@@ -43,6 +43,12 @@ public class ParserUtil {
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
 
+    /**
+     * Parses {@code String operationFlag} into an {@code OperationFlag} and returns it. Leading and trailing
+     * whitespaces will be trimmed.
+     *
+     * @throws ParseException if given {@code operationFlag} is invalid.
+     */
     public static OperationFlag parseOperationFlag(String operationFlag) throws ParseException {
         String trimmedOperationFlag = operationFlag.trim();
         if (!OperationFlag.isValidOperationType(trimmedOperationFlag)) {
