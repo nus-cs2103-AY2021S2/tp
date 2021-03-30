@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DURATION_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -56,11 +56,11 @@ public class EditCommandTest {
         Task lastTask = model.getFilteredTaskList().get(indexThirdLastTask.getZeroBased());
 
         TaskBuilder taskInList = new TaskBuilder(lastTask);
-        Task editedTask = taskInList.withTitle(VALID_TITLE_BOB).withDeadline(VALID_DEADLINE_BOB)
+        Task editedTask = taskInList.withTitle(VALID_TITLE_BOB).withDuration(VALID_DURATION_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
 
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withTitle(VALID_TITLE_BOB)
-                .withDeadline(VALID_DEADLINE_BOB).withTags(VALID_TAG_HUSBAND).build();
+                .withDuration(VALID_DURATION_BOB).withTags(VALID_TAG_HUSBAND).build();
         EditCommand editCommand = new EditCommand(indexThirdLastTask, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
@@ -73,13 +73,14 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_noFieldSpecifiedUnfilteredList_success() {
+    public void execute_noFieldSpecifiedUnfilteredList_success() throws CommandException {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_TASK, new EditTaskDescriptor());
         Task editedTask = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
 
         Model expectedModel = new ModelManager(new Planner(model.getPlanner()), new UserPrefs());
+        expectedModel.setTask(editedTask, editedTask);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }

@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DURATION_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RECURRINGSCHEDULE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STATUS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
@@ -72,32 +71,6 @@ public class AddCommandTest {
 
         assertThrows(CommandException.class,
                 AddCommand.MESSAGE_DEADLINE_RECURRING_SCHEDULE_CONFLICT, () -> addCommand.execute(modelStub));
-    }
-
-    @Test
-    public void execute_deadlineAndDuration_throwsCommandException() {
-        Task invalidTask = new TaskBuilder().withTitle(VALID_TITLE_AMY)
-                .withDeadline(VALID_DEADLINE_AMY).withDuration(VALID_DURATION_AMY)
-                .withDescription(VALID_DESCRIPTION_AMY).withStatus(VALID_STATUS_AMY).withTags(VALID_TAG_FRIEND).build();
-
-        AddCommand addCommand = new AddCommand(invalidTask);
-        ModelStub modelStub = new ModelStubAcceptingTaskAdded();
-
-        assertThrows(CommandException.class,
-                AddCommand.MESSAGE_DEADLINE_DURATION_CONFLICT, () -> addCommand.execute(modelStub));
-    }
-
-    @Test
-    public void execute_deadlineAndEvent_throwsCommandException() {
-        Task invalidTask = new TaskBuilder()
-                .withTitle(VALID_TITLE_AMY).withDeadline(VALID_DEADLINE_AMY)
-                .withDuration(VALID_DURATION_AMY).withRecurringSchedule(VALID_RECURRINGSCHEDULE_AMY)
-                .withDescription(VALID_DESCRIPTION_AMY).withStatus(VALID_STATUS_AMY).withTags(VALID_TAG_FRIEND).build();
-        AddCommand addCommand = new AddCommand(invalidTask);
-        ModelStub modelStub = new ModelStubAcceptingTaskAdded();
-
-        assertThrows(CommandException.class,
-                AddCommand.MESSAGE_DEADLINE_EVENT_CONFLICT, () -> addCommand.execute(modelStub));
     }
 
     @Test
