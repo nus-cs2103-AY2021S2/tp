@@ -1,6 +1,8 @@
 package dog.pawbook.model.managedentity;
 
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
 
 import dog.pawbook.model.managedentity.dog.Dog;
 import dog.pawbook.model.managedentity.owner.Owner;
@@ -8,55 +10,37 @@ import dog.pawbook.model.managedentity.program.Program;
 import javafx.util.Pair;
 
 public class ViewCommandComparator implements Comparator<Pair<Integer, Entity>> {
-
-    private final Class<? extends Entity> firstClass;
-    private final Class<? extends Entity> secondClass;
-    private final Class<? extends Entity> thirdClass;
+    private final Map<Class<? extends Entity>, Integer> classValueMap = new HashMap<>();
 
     /**
      * Constructs a View Command Comparator.
      * @param targetEntityClass class of target entity.
      */
     public ViewCommandComparator(Class<? extends Entity> targetEntityClass) {
-        this.firstClass = targetEntityClass;
+        classValueMap.put(targetEntityClass, 0);
         if (targetEntityClass.equals(Dog.class)) {
-            this.secondClass = Owner.class;
-            this.thirdClass = Program.class;
+            classValueMap.put(Owner.class, 1);
+            classValueMap.put(Program.class, 2);
         } else if (targetEntityClass.equals(Owner.class)) {
-            this.secondClass = Dog.class;
-            this.thirdClass = Program.class;
+            classValueMap.put(Dog.class, 1);
+            classValueMap.put(Program.class, 2);
         } else {
-            this.secondClass = Dog.class;
-            this.thirdClass = Owner.class;
+            classValueMap.put(Dog.class, 1);
+            classValueMap.put(Owner.class, 2);
         }
     }
 
     @Override
     public int compare(Pair<Integer, Entity> firstPair, Pair<Integer, Entity> secondPair) {
+        Class<? extends Entity> firstEntityClass = firstPair.getValue().getClass();
+        Class<? extends Entity> secondEntityClass = secondPair.getValue().getClass();
 
-        Class firstEntityClass = firstPair.getValue().getClass();
-        Class secondEntityClass = secondPair.getValue().getClass();
+        assert classValueMap.containsKey(firstEntityClass);
+        assert classValueMap.containsKey(secondEntityClass);
 
-        int firstEntityPriority;
-        int secondEntityPriority;
+        int firstEntityValue = classValueMap.get(firstEntityClass);
+        int secondEntityValue = classValueMap.get(secondEntityClass);
 
-        if (firstEntityClass.equals(firstClass)) {
-            firstEntityPriority = 0;
-        } else if (firstEntityClass.equals(secondClass)) {
-            firstEntityPriority = 1;
-        } else {
-            firstEntityPriority = 2;
-        }
-
-        if (secondEntityClass.equals(firstClass)) {
-            secondEntityPriority = 0;
-        } else if (secondEntityClass.equals(secondClass)) {
-            secondEntityPriority = 1;
-        } else {
-            secondEntityPriority = 2;
-        }
-
-        return firstEntityPriority - secondEntityPriority;
-
+        return firstEntityValue - secondEntityValue;
     }
 }

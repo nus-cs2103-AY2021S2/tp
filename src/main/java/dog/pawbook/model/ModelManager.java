@@ -151,8 +151,6 @@ public class ModelManager implements Model {
         database.sortEntities(comparator);
     }
 
-
-
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object

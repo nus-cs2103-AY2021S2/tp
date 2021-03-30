@@ -1,5 +1,6 @@
 package dog.pawbook.logic.commands;
 
+import static dog.pawbook.commons.core.Messages.MESSAGE_ENTITIES_LISTED_OVERVIEW;
 import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_ENTITY_ID;
 import static java.util.Objects.requireNonNull;
 
@@ -7,13 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import dog.pawbook.commons.core.Messages;
 import dog.pawbook.logic.commands.exceptions.CommandException;
 import dog.pawbook.model.Model;
 import dog.pawbook.model.managedentity.Entity;
 import dog.pawbook.model.managedentity.IdMatchPredicate;
 import dog.pawbook.model.managedentity.ViewCommandComparator;
 import dog.pawbook.model.managedentity.program.Program;
+import javafx.util.Pair;
 
 /**
  * Shows all owners in database whose name contains any of the argument keywords.
@@ -53,13 +54,14 @@ public class ViewCommand extends Command {
                 .stream()
                 .filter(x -> x.getValue() instanceof Program)
                 .filter(x -> x.getValue().getRelatedEntityIds().contains(targetEntityId))
-                .map(x -> x.getKey())
+                .map(Pair::getKey)
                 .collect(Collectors.toList());
         targetIdList.addAll(enrolledPrograms);
+
         model.updateFilteredEntityList(new IdMatchPredicate(targetIdList));
-        model.sortEntities(new ViewCommandComparator(model.getEntity(targetEntityId).getClass()));
-        return new CommandResult(
-                String.format(Messages.MESSAGE_ENTITIES_LISTED_OVERVIEW, model.getFilteredEntityList().size()));
+        model.sortEntities(new ViewCommandComparator(targetEntity.getClass()));
+
+        return new CommandResult(String.format(MESSAGE_ENTITIES_LISTED_OVERVIEW, model.getFilteredEntityList().size()));
     }
 
     @Override

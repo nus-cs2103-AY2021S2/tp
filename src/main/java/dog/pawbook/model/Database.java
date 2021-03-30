@@ -139,10 +139,9 @@ public class Database implements ReadOnlyDatabase {
 
     /**
      * Calls the internal list to sort.
-     * @param comparator sorts based on class types.
      */
     public void sortEntities(Comparator<Pair<Integer, Entity>> comparator) {
-        entities.sort(comparator);
+        entities.sortEntitiesBy(comparator);
     }
 
     @Override

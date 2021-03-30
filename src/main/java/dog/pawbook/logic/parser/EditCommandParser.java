@@ -80,5 +80,4 @@ public abstract class EditCommandParser<T extends EditEntityCommand> extends Com
      * corresponding EditCommand at the end of parsing.
      */
     protected abstract T genEditCommand(int id, ArgumentMultimap argMultimap) throws ParseException;
-
 }

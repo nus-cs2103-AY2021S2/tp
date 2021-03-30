@@ -180,7 +180,7 @@ public class UniqueEntityList implements Iterable<Pair<Integer, Entity>> {
      * Sorts the internal list.
      * @param comparator compares based on class types.
      */
-    public void sort(Comparator<Pair<Integer, Entity>> comparator) {
+    public void sortEntitiesBy(Comparator<Pair<Integer, Entity>> comparator) {
         internalList.sort(comparator);
     }
 

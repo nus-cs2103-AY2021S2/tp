@@ -15,7 +15,7 @@ import javafx.util.Pair;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Pair<Integer, Entity>> PREDICATE_SHOW_ALL_ENTITIES = unused -> true;
-    Comparator<Pair<Integer, Entity>> COMPARATOR_ID_ASCENDING_ORDER = (x, y) -> (x.getKey() - y.getKey());
+    Comparator<Pair<Integer, Entity>> COMPARATOR_ID_ASCENDING_ORDER = Comparator.comparingInt(Pair::getKey);
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -107,10 +107,8 @@ public interface Model {
     void updateFilteredEntityList(Predicate<Pair<Integer, Entity>> predicate);
 
     /**
-     * Sort he filtered entity list to filter by the given {@code comparator}.
+     * Sorts the filtered entity list by the given {@code comparator}.
      * @throws NullPointerException if {@code comparator} is null.
      */
     void sortEntities(Comparator<Pair<Integer, Entity>> comparator);
-
-
 }

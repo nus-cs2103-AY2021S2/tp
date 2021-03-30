@@ -74,7 +74,8 @@ public abstract class AddCommand<T extends Entity> extends Command {
         if (model.hasEntity(toAdd)) {
             throw new CommandException(getDuplicateMessage());
         }
-        Integer addedEntityId = model.addEntity(toAdd);
+
+        int addedEntityId = model.addEntity(toAdd);
         model.updateFilteredEntityList(new IdMatchPredicate(addedEntityId));
         return addedEntityId;
     }

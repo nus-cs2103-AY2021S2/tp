@@ -7,18 +7,24 @@ import java.util.function.Predicate;
 import javafx.util.Pair;
 
 /**
- * Tests that an Entity matches a supplied list of IDs.
+ * Tests that the ID of an Entity is within a supplied list of IDs.
  */
 public class IdMatchPredicate implements Predicate<Pair<Integer, Entity>> {
 
     private final List<Integer> relatedIds = new ArrayList<>();
 
-    public IdMatchPredicate(ArrayList<Integer> relatedIds) {
-        this.relatedIds.addAll(relatedIds);
+    /**
+     * Construct a predicate from a list of IDs.
+     */
+    public IdMatchPredicate(ArrayList<Integer> idList) {
+        this.relatedIds.addAll(idList);
     }
 
-    public IdMatchPredicate(Integer relatedId) {
-        this.relatedIds.add(relatedId);
+    /**
+     * Construct a predicate for a single ID.
+     */
+    public IdMatchPredicate(Integer id) {
+        this.relatedIds.add(id);
     }
 
     @Override

@@ -1,8 +1,9 @@
 package dog.pawbook.logic.commands;
 
+import static dog.pawbook.commons.core.Messages.MESSAGE_ENTITIES_LISTED_OVERVIEW;
+import static dog.pawbook.model.Model.COMPARATOR_ID_ASCENDING_ORDER;
 import static java.util.Objects.requireNonNull;
 
-import dog.pawbook.commons.core.Messages;
 import dog.pawbook.model.Model;
 import dog.pawbook.model.managedentity.NameContainsKeywordsPredicate;
 
@@ -28,10 +29,11 @@ public class FindCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
+
         model.updateFilteredEntityList(predicate);
-        model.sortEntities(Model.COMPARATOR_ID_ASCENDING_ORDER);
-        return new CommandResult(
-                String.format(Messages.MESSAGE_ENTITIES_LISTED_OVERVIEW, model.getFilteredEntityList().size()));
+        model.sortEntities(COMPARATOR_ID_ASCENDING_ORDER);
+
+        return new CommandResult(String.format(MESSAGE_ENTITIES_LISTED_OVERVIEW, model.getFilteredEntityList().size()));
     }
 
     @Override
