@@ -34,11 +34,16 @@ public class CommandTestUtil {
     public static final String VALID_UNCLEAN_TAG = "n";
     public static final String VALID_BOOKED_TAG = "y";
     public static final String VALID_UNBOOKED_TAG = "n";
+    //public static final List<Booking> VALID_BOOKING_LIST1 = new BookingList()
+    //        .add(new Booking(VALID_NAME_AMY, VALID_PHONE_AMY, VALID_BOOKING_START1, VALID_BOOKING_END1));
+    //public static final List<Booking> VALID_BOOKING_LIST2 = "2 Teenagers";
     public static final String VALID_TAG_RESERVED = "reserved";
     public static final String VALID_TAG_REPAIR = "plumbing";
 
-    public static final String VALID_PHONE_AMY = "11111111";
-    public static final String VALID_PHONE_BOB = "22222222";
+    public static final String VALID_PHONE_BOOKING1 = "11111111";
+    public static final String VALID_PHONE_BOOKING2 = "22222222";
+    public static final String VALID_NAME_BOOKING1 = "Amy";
+    public static final String VALID_NAME_BOOKING2 = "John";
     public static final String VALID_BOOKING_START1 = "03-03-2021";
     public static final String VALID_BOOKING_START2 = "30-03-2021";
     public static final String VALID_BOOKING_END1 = "05-05-2021";
@@ -54,6 +59,8 @@ public class CommandTestUtil {
     public static final String TAG_DESC_REPAIR = " " + PREFIX_TAG + VALID_TAG_REPAIR;
     public static final String CLEAN_STATUS_DESC = " " + PREFIX_CLEAN_STATUS_TAG + VALID_CLEAN_TAG;
     public static final String UNCLEAN_STATUS_DESC = " " + PREFIX_CLEAN_STATUS_TAG + VALID_UNCLEAN_TAG;
+    public static final String PHONE_DESC_BOOKING1 = " " + PREFIX_PHONE + VALID_PHONE_BOOKING1;
+    public static final String PHONE_DESC_BOOKING2 = " " + PREFIX_PHONE + VALID_PHONE_BOOKING2;
 
     // '&' not allowed in names
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&";
