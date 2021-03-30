@@ -1,5 +1,11 @@
 package seedu.address.storage;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -10,6 +16,7 @@ import seedu.address.model.issue.Issue;
 import seedu.address.model.issue.RoomNumber;
 import seedu.address.model.issue.Status;
 import seedu.address.model.issue.Timestamp;
+import seedu.address.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Issue}.
@@ -23,6 +30,7 @@ class JsonAdaptedIssue {
     private final String timestamp;
     private final String status;
     private final String category;
+    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedIssue} with the given issue details.
@@ -32,12 +40,16 @@ class JsonAdaptedIssue {
             @JsonProperty("description") String description,
             @JsonProperty("timestamp") String timestamp,
             @JsonProperty("status") String status,
-            @JsonProperty("category") String category) {
+            @JsonProperty("category") String category,
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.roomNumber = roomNumber;
         this.description = description;
         this.timestamp = timestamp;
         this.status = status;
         this.category = category;
+        if (tagged != null) {
+            this.tagged.addAll(tagged);
+        }
     }
 
     /**
@@ -49,6 +61,9 @@ class JsonAdaptedIssue {
         timestamp = source.getTimestamp().toString();
         status = source.getStatus().value.toString();
         category = source.getCategory().value;
+        tagged.addAll(source.getTags().stream()
+                .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -57,6 +72,10 @@ class JsonAdaptedIssue {
      * @throws IllegalValueException if there were any data constraints violated in the adapted issue.
      */
     public Issue toModelType() throws IllegalValueException {
+        final List<Tag> roomTags = new ArrayList<>();
+        for (JsonAdaptedTag tag : tagged) {
+            roomTags.add(tag.toModelType());
+        }
         if (roomNumber == null) {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, RoomNumber.class.getSimpleName()));
@@ -101,7 +120,9 @@ class JsonAdaptedIssue {
         }
         final Category modelCategory = new Category(category);
 
-        return new Issue(modelRoomNumber, modelDescription, modelTimestamp, modelStatus, modelCategory);
+        final Set<Tag> modelIssueTags = new HashSet<>(roomTags);
+
+        return new Issue(modelRoomNumber, modelDescription, modelTimestamp, modelStatus, modelCategory, modelIssueTags);
     }
 
 }

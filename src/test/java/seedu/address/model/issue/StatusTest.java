@@ -10,7 +10,8 @@ public class StatusTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Status(null));
+        assertThrows(NullPointerException.class, () -> new Status((String) null));
+        assertThrows(NullPointerException.class, () -> new Status((IssueStatus) null));
     }
 
     @Test
