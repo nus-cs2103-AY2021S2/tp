@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -104,7 +103,6 @@ public class DeleteCommand extends Command {
     private CommandResult deleteAll(Model model) {
         List<Person> lastShownList = model.getFilteredPersonList();
         StringBuilder stringBuilder = new StringBuilder();
-        Iterator<Person> iterator = lastShownList.iterator();
 
         // Note: There is a need to clone the array list before deleting
         for (Person personToDelete : new ArrayList<>(lastShownList)) {
