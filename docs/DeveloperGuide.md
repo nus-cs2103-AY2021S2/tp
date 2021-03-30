@@ -285,7 +285,7 @@ The following is a brief explanation , as shown in a sequence diagram, of how so
 The following is a detailed explanation on how PinTaskCommand is implemented.
 UnpinTaskCommand is largely similar in implementation to PinTaskCommand and will be omitted for brevity.
 
-**Step 1**: User executes `pin_task INDEX` command to delete the task at the given index.
+**Step 1**: User executes `pin_task INDEX` command to pin the task at the given index.
 An `PinTaskParser` object is created, and the `PinTaskParser#parse(String args)` method is called.
 The method conducts parses the `args` and conducts validation checks to ensure that it complies with the specification.
 A `PinTaskCommand` object is returned.
@@ -313,6 +313,25 @@ It is largely similar to `SortTaskCommand`, with a some minor differences:
 #### 4.3.1 Overview
 
 #### 4.3.2 Implementation
+
+**Implementation of FindFreeTimeCommand**  
+The following is a detailed explanation on how FindFreeTaskCommand is implemented.
+
+**Step 1**: User executes `free_time DATE` command to find free time slots in the given day.
+An `FindFreeTimeCommandParser` object is created, and the `FindFreeTimeCommandParser#parse(String args)` method is called.
+The method conducts parses the `args` and conducts validation checks to ensure that it complies with the specification.
+A `FindFreeTimeCommand` object is returned.
+
+**Step 2**: On `FindFreeTimeCommand#execute()`, `Model#getFreeTimeSlots(Date date)` is called.
+This will get free time slots and store in a string arraylist.
+For brevity, lower level implementation of `Model#getFreeTimeSlots(Date date)` is omitted.
+
+**Step 3**: On execution completion a `CommandResult` is created.
+A success message will be appended with `CommandResult#MESSAGE_FIND_FREE_TIME_SUCCESS`.
+
+The sequence diagram for `FindFreeTimeCommand` can be found below.
+
+![Sequence Diagram of FindFreeTimeCommand](images/FindFreeTimeCommandSequenceDiagram.png)
 
 
 --------------------------------------------------------------------------------------------------------------------
