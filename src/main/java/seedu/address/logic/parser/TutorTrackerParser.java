@@ -29,7 +29,9 @@ import seedu.address.logic.commands.budgetcommands.DeleteBudgetCommand;
 import seedu.address.logic.commands.budgetcommands.EditBudgetCommand;
 import seedu.address.logic.commands.budgetcommands.ViewBudgetCommand;
 import seedu.address.logic.commands.eventcommands.ViewTimeTableCommand;
+import seedu.address.logic.commands.filtercommands.AddAppointmentFilterCommand;
 import seedu.address.logic.commands.filtercommands.AddPersonFilterCommand;
+import seedu.address.logic.commands.filtercommands.DeleteAppointmentFilterCommand;
 import seedu.address.logic.commands.filtercommands.DeletePersonFilterCommand;
 import seedu.address.logic.commands.gradecommands.AddGradeCommand;
 import seedu.address.logic.commands.gradecommands.DeleteGradeCommand;
@@ -49,7 +51,9 @@ import seedu.address.logic.parser.budgetparser.DeleteBudgetCommandParser;
 import seedu.address.logic.parser.budgetparser.EditBudgetCommandParser;
 import seedu.address.logic.parser.budgetparser.ViewBudgetCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.filterparser.AddAppointmentFilterCommandParser;
 import seedu.address.logic.parser.filterparser.AddPersonFilterCommandParser;
+import seedu.address.logic.parser.filterparser.DeleteAppointmentFilterCommandParser;
 import seedu.address.logic.parser.filterparser.DeletePersonFilterCommandParser;
 import seedu.address.logic.parser.gradeparser.AddGradeCommandParser;
 import seedu.address.logic.parser.gradeparser.DeleteGradeCommandParser;
@@ -155,6 +159,12 @@ public class TutorTrackerParser {
 
         case DeletePersonFilterCommand.COMMAND_WORD:
             return new DeletePersonFilterCommandParser().parse(arguments);
+
+        case AddAppointmentFilterCommand.COMMAND_WORD:
+            return new AddAppointmentFilterCommandParser().parse(arguments);
+
+        case DeleteAppointmentFilterCommand.COMMAND_WORD:
+            return new DeleteAppointmentFilterCommandParser().parse(arguments);
 
         case AddBudgetCommand.COMMAND_WORD:
             return new AddBudgetCommandParser().parse(arguments);

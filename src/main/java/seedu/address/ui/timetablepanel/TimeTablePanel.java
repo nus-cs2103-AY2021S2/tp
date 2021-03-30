@@ -16,28 +16,41 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.RowConstraints;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.event.CurrentWeekPredicate;
 import seedu.address.model.event.Event;
 import seedu.address.model.schedule.Schedule;
 import seedu.address.ui.UiPart;
 
 /**
  * Panel displaying timetable.
+ * Adapted from https://github.com/AY2021S1-CS2103T-W13-3/tp/blob/master/src/main/java/seedu/homerce/ui/schedulepanel/
+ * SchedulePanel.java
  */
 public class TimeTablePanel extends UiPart<Region> {
     private static final String FXML = "timetablepanel/TimeTablePanel.fxml";
 
-    private static final int SINGLE_COLUMN_WIDTH = 100;
-    private static final int ROW_SPAN = 1;
-    private static final int GRID_INDEX_BUFFER = 1;
+    private static final int DAY_COLUMN_WIDTH = 80;
+    private static final int TYPICAL_COLUMN_WIDTH = 100;
+    private static final int FIRST_TIME_COLUMN_WIDTH = 150;
+    private static final int SECOND_TIME_COLUMN_WIDTH = 150;
+    private static final int TYPICAL_TIME_COLUMN_WIDTH = 200;
+    private static final int ROW_HEIGHT = 68;
+
+    private static final int DATE_DISPLAY_BUFFER = 1;
     private static final int NUM_OF_HALF_HOURS = 48;
+    private static final int ROW_SPAN = 1;
+    private static final int NUM_OF_DAYS = 7;
+    private static final int SCALE_FACTOR = 2;
 
     private final Logger logger = LogsCenter.getLogger(getClass());
     private final List<LocalDate> dateSlot;
     private final List<Double> hourSlot;
     private final LocalDate queryDate;
     private ObservableList<Event> events;
+    private CurrentWeekPredicate weekPredicate;
 
     @FXML
     private ScrollPane scrollPane;
@@ -49,25 +62,21 @@ public class TimeTablePanel extends UiPart<Region> {
     private GridPane timeGridPane;
 
     /**
-     * Constructs a {@code TimeTablePanel} with Event's {@code ObservableList}.
+     * Constructs a {@code TimeTablePanel}.
      */
-    public TimeTablePanel(ObservableList<Event> events) {
+    public TimeTablePanel() {
         super(FXML);
-
-        // Only getting current's week events
-        this.events = events.filtered((appointment -> {
-            LocalDate now = LocalDate.now();
-            LocalDate apptDate = appointment.getTimeFrom().value.toLocalDate();
-            LocalDate monday = now.with(DayOfWeek.MONDAY);
-            LocalDate sunday = now.with(DayOfWeek.SUNDAY);
-            return !apptDate.isBefore(monday) && !apptDate.isAfter(sunday);
-        }));
-
         this.queryDate = LocalDate.now(); // Need to allow command to change the week / view a certain week
-        this.dateSlot = new ArrayList<>(7);
+        this.dateSlot = new ArrayList<>(NUM_OF_DAYS);
         this.hourSlot = new ArrayList<>();
+        this.weekPredicate = new CurrentWeekPredicate(queryDate);
     }
 
+    // @@author {hansebastian}-reused
+    // Reused from
+    // https://github.com/AY2021S1-CS2103T-W13-3/tp/blob/master/src/main/java/seedu/homerce/ui/schedulepanel/
+    // SchedulePanel.java
+    // with minor modifications (renaming of methods).
     /**
      * Fills the grid pane with the slots.
      */
@@ -76,26 +85,28 @@ public class TimeTablePanel extends UiPart<Region> {
         constructGrid();
         populateDates();
         if (events.size() == 0) {
-            logger.info("No appointments in schedule");
+            logger.info("No events found");
             return;
         }
-        addAppointmentSlotsToGrid();
+        populateEvents();
     }
 
     /**
      * Re-populate the grid pane with new events.
      */
     public void reconstruct(ObservableList<Event> events) {
-        this.events = events;
-        gridPane.getColumnConstraints().clear();
-        gridPane.getChildren().clear();
-        hourSlot.clear();
+        this.events = events.filtered(weekPredicate);
         construct();
     }
 
+    // @@author {RuiFengg}-reused
+    // Reused from
+    // https://github.com/AY2021S1-CS2103T-W13-3/tp/blob/master/src/main/java/seedu/homerce/ui/schedulepanel/
+    // SchedulePanel.java
+    // with modifications (retrieving of date time and computation difference).
     private int getColSpan(Event event) {
         Duration difference = Duration.between(event.getTimeFrom().value, event.getTimeTo().value);
-        int colSpan = (int) (difference.toHours() * 2);
+        int colSpan = (int) (difference.toHours() * SCALE_FACTOR);
         long minutes = difference.toMinutes() - (difference.toHours() * 60L);
         if (minutes != 0L) {
             colSpan++;
@@ -103,6 +114,11 @@ public class TimeTablePanel extends UiPart<Region> {
         return colSpan;
     }
 
+    // @@author {RuiFengg}-reused
+    // Reused from
+    // https://github.com/AY2021S1-CS2103T-W13-3/tp/blob/master/src/main/java/seedu/homerce/ui/schedulepanel/
+    // SchedulePanel.java
+    // with no modifications.
     private int getColIndex(LocalTime startTime) {
         int colIndex = startTime.getHour();
         if (startTime.getMinute() != 0) {
@@ -111,53 +127,90 @@ public class TimeTablePanel extends UiPart<Region> {
         return colIndex - 1;
     }
 
+    // @@author {RuiFengg}-reused
+    // Reused from
+    // https://github.com/AY2021S1-CS2103T-W13-3/tp/blob/master/src/main/java/seedu/homerce/ui/
+    // schedulepanel/SchedulePanel.java
+    // with minor modification (renaming of method and additional orElse condition to set default start time).
     private LocalTime getStartTime() {
         return events.stream()
                 .map(event -> event.getTimeFrom().value.toLocalTime())
                 .reduce((time1, time2) -> (time1.isBefore(time2) ? time1 : time2))
-                .orElse(LocalTime.of(10, 0));
+                .orElse(LocalTime.of(8, 0));
     }
 
+    // @@author {RuiFengg}-reused
+    // Reused from
+    // https://github.com/AY2021S1-CS2103T-W13-3/tp/blob/master/src/main/java/seedu/homerce/ui/
+    // schedulepanel/SchedulePanel.java
+    // with minor modification (renaming of method and additional orElse condition to set default end time).
     private LocalTime getEndTime() {
         return events.stream()
                 .map(event -> event.getTimeTo().value.toLocalTime())
                 .reduce((time1, time2) -> (time1.isAfter(time2) ? time1 : time2))
-                .orElse(LocalTime.of(18, 0));
+                .filter((time) -> time.isAfter(LocalTime.of(11, 0)))
+                .orElse(LocalTime.of(12, 0));
     }
-
 
     private void constructGrid() {
         int earliestTimeIndex = getColIndex(getStartTime());
         int latestTimeIndex = getColIndex(getEndTime());
         int numColumns = NUM_OF_HALF_HOURS - earliestTimeIndex - (NUM_OF_HALF_HOURS - latestTimeIndex);
-        for (int i = 0; i < numColumns + GRID_INDEX_BUFFER; i++) {
-            ColumnConstraints con = new ColumnConstraints();
-            ColumnConstraints timeGridCon = new ColumnConstraints();
+        createRowConstraints();
+        createColConstraints(numColumns);
+        styleGridCells(numColumns);
+    }
 
-            if (i == 0) {
-                con.setPrefWidth(80);
-                timeGridCon.setPrefWidth(150);
-                timeGridCon.setHalignment(HPos.CENTER);
-            } else if (i == 1) {
-                con.setPrefWidth(SINGLE_COLUMN_WIDTH);
-                timeGridCon.setPrefWidth(160);
-                timeGridCon.setHalignment(HPos.RIGHT);
-            } else {
-                con.setPrefWidth(SINGLE_COLUMN_WIDTH);
-                timeGridCon.setPrefWidth(200);
-                timeGridCon.setHalignment(HPos.RIGHT);
+    private void createRowConstraints() {
+        if (gridPane.getRowCount() != (NUM_OF_DAYS + DATE_DISPLAY_BUFFER)) {
+            gridPane.getRowConstraints().clear();
+            for (int i = 0; i < NUM_OF_DAYS; i++) {
+                RowConstraints con = new RowConstraints();
+                con.setPrefHeight(ROW_HEIGHT);
+                gridPane.getRowConstraints().add(con);
+            }
+        }
+    }
+
+    private void createColConstraints(int numColumns) {
+        if (gridPane.getColumnCount() != numColumns) {
+            hourSlot.clear();
+            timeGridPane.getColumnConstraints().clear();
+            gridPane.getColumnConstraints().clear();
+
+            for (int i = 0; i < numColumns + DATE_DISPLAY_BUFFER; i++) {
+                ColumnConstraints con = new ColumnConstraints();
+                ColumnConstraints timeGridCon = new ColumnConstraints();
+
+                if (i == 0) {
+                    con.setPrefWidth(DAY_COLUMN_WIDTH);
+                    timeGridCon.setPrefWidth(FIRST_TIME_COLUMN_WIDTH);
+                    timeGridCon.setHalignment(HPos.CENTER);
+                } else if (i == 1) {
+                    con.setPrefWidth(TYPICAL_COLUMN_WIDTH);
+                    timeGridCon.setPrefWidth(SECOND_TIME_COLUMN_WIDTH);
+                    timeGridCon.setHalignment(HPos.RIGHT);
+                } else {
+                    con.setPrefWidth(TYPICAL_COLUMN_WIDTH);
+                    timeGridCon.setPrefWidth(TYPICAL_TIME_COLUMN_WIDTH);
+                    timeGridCon.setHalignment(HPos.RIGHT);
+                }
+
+                gridPane.getColumnConstraints().add(con);
+                timeGridPane.getColumnConstraints().add(timeGridCon);
+
+                ColumnConstraints conHalfHour = new ColumnConstraints();
+                conHalfHour.setPrefWidth(TYPICAL_COLUMN_WIDTH);
+                gridPane.getColumnConstraints().add(conHalfHour);
             }
 
-            gridPane.getColumnConstraints().add(con);
-            ColumnConstraints conHalf = new ColumnConstraints();
-            conHalf.setPrefWidth(SINGLE_COLUMN_WIDTH);
-            gridPane.getColumnConstraints().add(conHalf);
-
-            timeGridPane.getColumnConstraints().add(timeGridCon);
+            populateTime();
         }
+    }
 
-        for (int i = 0; i < (numColumns + GRID_INDEX_BUFFER) * 2; i++) {
-            for (int j = 0; j <= 7; j++) {
+    private void styleGridCells(int numColumns) {
+        for (int i = 0; i < (numColumns + DATE_DISPLAY_BUFFER) * SCALE_FACTOR; i++) {
+            for (int j = 0; j <= NUM_OF_DAYS; j++) {
                 Pane pane = new Pane();
                 pane.getStyleClass().add("timetable-grid-cell");
                 if (i % 2 == 0) {
@@ -172,24 +225,30 @@ public class TimeTablePanel extends UiPart<Region> {
         }
     }
 
-    private void addAppointmentSlotsToGrid() {
+    private void populateEvents() {
         events.forEach(curr -> {
-            LocalDate currAppointmentDate = curr.getTimeFrom().value.toLocalDate();
-            SlotContainer appointmentSlot = getSlot(curr);
+            // @@author {RuiFengg}-reused
+            // Reused from
+            // https://github.com/AY2021S1-CS2103T-W13-3/tp/blob/master/src/main/java/seedu/homerce/ui/schedulepanel/
+            // SchedulePanel.java
+            // with no modification.
+            LocalDate eventDate = curr.getTimeFrom().value.toLocalDate();
+            SlotContainer eventSlot = getSlot(curr);
             int colSpan = getColSpan(curr);
+
             double hour = curr.getTimeFrom().value.toLocalTime().getHour()
                     + (curr.getTimeFrom().value.toLocalTime().getMinute() / 60.0);
             int colIndex = hourSlot.indexOf(hour);
 
             if (colIndex == 0) {
-                colIndex = GRID_INDEX_BUFFER;
+                colIndex = DATE_DISPLAY_BUFFER;
             } else {
-                colIndex = colIndex + GRID_INDEX_BUFFER;
+                colIndex = colIndex + DATE_DISPLAY_BUFFER;
             }
 
-            if (dateSlot.contains(currAppointmentDate)) {
-                int rowIndex = dateSlot.indexOf(currAppointmentDate) + GRID_INDEX_BUFFER;
-                gridPane.add(appointmentSlot.getRoot(), colIndex, rowIndex, colSpan, ROW_SPAN);
+            if (dateSlot.contains(eventDate)) {
+                int rowIndex = dateSlot.indexOf(eventDate);
+                gridPane.add(eventSlot.getRoot(), colIndex, rowIndex, colSpan, ROW_SPAN);
             }
         });
     }
@@ -204,26 +263,27 @@ public class TimeTablePanel extends UiPart<Region> {
     }
 
     private void populateDates() {
+        for (int rowIndex = 0; rowIndex < NUM_OF_DAYS; rowIndex++) {
+            LocalDate currentDate = queryDate.with(DayOfWeek.of(rowIndex + 1));
+            dateSlot.add(currentDate);
+            DisplayDateSlot slot = new DisplayDateSlot(currentDate);
+            gridPane.add(slot.getRoot(), 0, rowIndex, 1, ROW_SPAN);
+        }
+    }
+
+    private void populateTime() {
         LocalTime start = getStartTime();
         LocalTime end = getEndTime();
+        int numTimeSlots = (end.getHour() - start.getHour());
         int count = 0;
-        for (int i = start.getHour(); i <= end.getHour(); i++) {
-            hourSlot.add((double) i);
-            DisplayTimeSlot label = new DisplayTimeSlot(LocalTime.of(i, 0));
+        for (int hour = start.getHour(); hour <= end.getHour(); hour++) {
+            hourSlot.add((double) hour);
+            DisplayTimeSlot label = new DisplayTimeSlot(LocalTime.of(hour, 0));
             timeGridPane.add(label.getRoot(), count, 0);
-
-            if (i != end.getHour()) {
-                hourSlot.add(i + 0.5);
+            if (hour != end.getHour()) {
+                hourSlot.add(hour + 0.5);
             }
             count++;
-        }
-
-        for (int i = 1; i <= 7; i++) { // Add date displays for entire week
-            LocalDate currentDate = queryDate.with(DayOfWeek.of(i));
-            dateSlot.add(currentDate);
-
-            DisplayDateSlot slot = new DisplayDateSlot(currentDate);
-            gridPane.add(slot.getRoot(), 0, i, 1, ROW_SPAN);
         }
     }
 }

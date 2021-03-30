@@ -1,4 +1,4 @@
-package seedu.address.ui;
+package seedu.address.ui.timetablepanel;
 
 import java.util.logging.Logger;
 
@@ -8,7 +8,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.event.Event;
-import seedu.address.ui.timetablepanel.TimeTablePanel;
+import seedu.address.ui.UiPart;
 
 /**
  * Controller for timetable viewing
@@ -16,56 +16,56 @@ import seedu.address.ui.timetablepanel.TimeTablePanel;
 public class TimeTableWindow extends UiPart<Stage> {
 
     private static final Logger logger = LogsCenter.getLogger(TimeTableWindow.class);
-    private static final String FXML = "TimetableWindow.fxml";
+    private static final String FXML = "timetablepanel/TimeTableWindow.fxml";
     private TimeTablePanel timeTablePanel;
 
     @FXML
-    private StackPane tabPanelPlaceholder;
+    private StackPane timetablePanelPlaceholder;
 
     /**
-     * Creates a new HelpWindow.
+     * Creates a new TimeTableWindow.
      *
-     * @param root Stage to use as the root of the HelpWindow.
+     * @param root Stage to use as the root of the TimeTableWindow.
      */
-    public TimeTableWindow(Stage root, ObservableList<Event> events) {
+    public TimeTableWindow(Stage root) {
         super(FXML, root);
-        timeTablePanel = new TimeTablePanel(events);
-        tabPanelPlaceholder.getChildren().add(timeTablePanel.getRoot());
+        timeTablePanel = new TimeTablePanel();
+        timetablePanelPlaceholder.getChildren().add(timeTablePanel.getRoot());
     }
 
     /**
-     * Creates a new HelpWindow.
+     * Creates a new TimeTableWindow.
      */
-    public TimeTableWindow(ObservableList<Event> events) {
-        this(new Stage(), events);
+    public TimeTableWindow() {
+        this(new Stage());
     }
 
     /**
-     * Shows the help window.
+     * Shows the timetable window.
      */
     public void show(ObservableList<Event> events) {
-        logger.fine("Showing help page about the application.");
+        logger.fine("Showing timetable to user.");
         timeTablePanel.reconstruct(events);
         getRoot().show();
         getRoot().centerOnScreen();
     }
 
     /**
-     * Returns true if the help window is currently being shown.
+     * Returns true if the TimeTableWindow is currently being shown.
      */
     public boolean isShowing() {
         return getRoot().isShowing();
     }
 
     /**
-     * Hides the help window.
+     * Hides the TimeTableWindow.
      */
     public void hide() {
         getRoot().hide();
     }
 
     /**
-     * Focuses on the help window.
+     * Focuses on the TimeTableWindow.
      */
     public void focus() {
         getRoot().requestFocus();
