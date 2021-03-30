@@ -3,6 +3,8 @@ package seedu.address.model.schedule;
 import java.util.Objects;
 
 import seedu.address.model.appointment.AppointmentDateTime;
+import seedu.address.model.common.Description;
+import seedu.address.model.common.Title;
 import seedu.address.model.event.Event;
 
 /**
@@ -16,10 +18,10 @@ public class Schedule extends Event {
     /**
      * Primary constructor for schedule class.
      *
-     * @param title         Title of the schedule
-     * @param timeFrom      Start time of schedule
-     * @param timeTo        End time of schedule
-     * @param description   Description of schedule
+     * @param title       Title of the schedule
+     * @param timeFrom    Start time of schedule
+     * @param timeTo      End time of schedule
+     * @param description Description of schedule
      */
     public Schedule(Title title, AppointmentDateTime timeFrom, AppointmentDateTime timeTo, Description description) {
         super(timeFrom, timeTo);
@@ -34,7 +36,6 @@ public class Schedule extends Event {
      * @return Boolean representing whether given schedule is valid
      */
     public static boolean isValidSchedule(Schedule schedule) {
-
         return Title.isValidTitle(schedule.getTitle().value)
                 && Description.isValidDescription(schedule.getDescription().value)
                 && AppointmentDateTime.isValidDateTime(schedule.getTimeFrom().toStorageString())
@@ -52,6 +53,19 @@ public class Schedule extends Event {
     @Override
     public String toString() {
         return String.format("Schedule (%s) %s", this.title.value, super.toString());
+    }
+
+    /**
+     * Returns true if both schedule have the same title.
+     * This defines a weaker notion of equality between two schedules.
+     */
+    public boolean isSameSchedule(Schedule otherSchedule) {
+        if (otherSchedule == this) {
+            return true;
+        }
+
+        return otherSchedule != null
+                && otherSchedule.getTitle().equals(getTitle());
     }
 
     @Override

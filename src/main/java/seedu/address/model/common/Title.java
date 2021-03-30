@@ -1,4 +1,4 @@
-package seedu.address.model.schedule;
+package seedu.address.model.common;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
@@ -6,7 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import seedu.address.model.tag.Filterable;
 
 /**
- * Represents a Schedule's title in the address book.
+ * Represents a {@code String} Title variable.
  * Guarantees: immutable; is valid as declared in {@link #isValidTitle(String)}
  */
 public class Title implements Filterable {
@@ -48,7 +48,7 @@ public class Title implements Filterable {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Title // instanceof handles nulls
-                && value.equals(((Title) other).value)); // state check
+                && value.equalsIgnoreCase(((Title) other).value)); // state check
     }
 
     @Override

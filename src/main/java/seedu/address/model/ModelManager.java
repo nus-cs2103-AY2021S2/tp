@@ -25,7 +25,6 @@ import seedu.address.model.person.Person;
 import seedu.address.model.schedule.ReadOnlyScheduleTracker;
 import seedu.address.model.schedule.Schedule;
 import seedu.address.model.schedule.ScheduleTracker;
-import seedu.address.model.util.SampleDataUtil;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -54,15 +53,16 @@ public class ModelManager implements Model {
      */
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs,
                         ReadOnlyAppointmentBook appointmentBook,
-                        BudgetBook budgetBook, ReadOnlyGradeBook gradeBook) {
+                        BudgetBook budgetBook, ReadOnlyGradeBook gradeBook,
+                        ReadOnlyScheduleTracker scheduleTracker) {
         super();
-        requireAllNonNull(addressBook, appointmentBook, userPrefs, budgetBook);
+        requireAllNonNull(addressBook, appointmentBook, userPrefs, budgetBook, scheduleTracker);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
         this.appointmentBook = new AppointmentBook(appointmentBook);
-        this.scheduleTracker = new ScheduleTracker(SampleDataUtil.getSampleScheduleTracker());
+        this.scheduleTracker = new ScheduleTracker(scheduleTracker);
         this.gradeBook = new GradeBook(gradeBook);
         this.budgetBook = new BudgetBook(budgetBook);
         this.userPrefs = new UserPrefs(userPrefs);
@@ -80,7 +80,7 @@ public class ModelManager implements Model {
      */
     public ModelManager() {
         this(new AddressBook(), new UserPrefs(), new AppointmentBook(),
-                new BudgetBook(), new GradeBook());
+                new BudgetBook(), new GradeBook(), new ScheduleTracker());
     }
 
     //=========== UserPrefs ==================================================================================

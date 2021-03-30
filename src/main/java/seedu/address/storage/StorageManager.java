@@ -13,6 +13,7 @@ import seedu.address.model.ReadOnlyAppointmentBook;
 import seedu.address.model.ReadOnlyGradeBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.schedule.ReadOnlyScheduleTracker;
 
 /**
  * Manages storage of AddressBook data in local storage.
@@ -25,6 +26,7 @@ public class StorageManager implements Storage {
     private AppointmentBookStorage appointmentBookStorage;
     private BudgetBookStorage budgetBookStorage;
     private GradeBookStorage gradeBookStorage;
+    private ScheduleTrackerStorage scheduleTrackerStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
@@ -32,7 +34,8 @@ public class StorageManager implements Storage {
     public StorageManager(AddressBookStorage addressBookStorage,
                           UserPrefsStorage userPrefsStorage,
                           AppointmentBookStorage appointmentBookStorage,
-                          GradeBookStorage gradeBookStorage) {
+                          GradeBookStorage gradeBookStorage,
+                          ScheduleTrackerStorage scheduleTrackerStorage) {
         super();
         this.addressBookStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
@@ -40,6 +43,7 @@ public class StorageManager implements Storage {
         //TODO improve handling of budget book
         this.budgetBookStorage = new BudgetBookStorage();
         this.gradeBookStorage = gradeBookStorage;
+        this.scheduleTrackerStorage = scheduleTrackerStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -169,4 +173,33 @@ public class StorageManager implements Storage {
         gradeBookStorage.saveGradeBook(gradeBook, filePath);
     }
 
+    // ================ ScheduleTracker methods ==========================
+
+    @Override
+    public Path getScheduleTrackerFilePath() {
+        return scheduleTrackerStorage.getScheduleTrackerFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyScheduleTracker> readScheduleTracker() throws DataConversionException, IOException {
+        return readScheduleTracker(scheduleTrackerStorage.getScheduleTrackerFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyScheduleTracker> readScheduleTracker(Path filePath)
+            throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return scheduleTrackerStorage.readScheduleTracker(filePath);
+    }
+
+    @Override
+    public void saveScheduleTracker(ReadOnlyScheduleTracker scheduleTracker) throws IOException {
+        saveScheduleTracker(scheduleTracker, scheduleTrackerStorage.getScheduleTrackerFilePath());
+    }
+
+    @Override
+    public void saveScheduleTracker(ReadOnlyScheduleTracker scheduleTracker, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        scheduleTrackerStorage.saveScheduleTracker(scheduleTracker, filePath);
+    }
 }

@@ -6,6 +6,7 @@ import static seedu.address.testutil.TypicalAppointments.getTypicalAppointmentBo
 import static seedu.address.testutil.TypicalBudgets.getTypicalBudgetBook;
 import static seedu.address.testutil.TypicalGrades.getTypicalGradeBook;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalSchedules.getTypicalScheduleTracker;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -27,17 +28,17 @@ public class AddCommandIntegrationTest {
     @BeforeEach
     public void setUp() {
         model = new ModelManager(getTypicalAddressBook(), new UserPrefs(),
-                getTypicalAppointmentBook(), getTypicalBudgetBook(), getTypicalGradeBook());
-
+                getTypicalAppointmentBook(), getTypicalBudgetBook(), getTypicalGradeBook(),
+                getTypicalScheduleTracker());
     }
 
     @Test
     public void execute_newPerson_success() {
         Person validPerson = new PersonBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getAddressBook(),
-                new UserPrefs(), model.getAppointmentBook(), model.getBudgetBook(),
-                model.getGradeBook());
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(),
+                getTypicalAppointmentBook(), getTypicalBudgetBook(), getTypicalGradeBook(),
+                getTypicalScheduleTracker());
 
         expectedModel.addPerson(validPerson);
 

@@ -7,6 +7,8 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalSchedules.MATHS_HOMEWORK_SCHEDULE;
+import static seedu.address.testutil.TypicalSchedules.SCIENCE_HOMEWORK_SCHEDULE;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -24,8 +26,10 @@ import seedu.address.model.grade.GradedItem;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.schedule.ScheduleTracker;
 import seedu.address.model.subject.SubjectName;
 import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.testutil.ScheduleTrackerBuilder;
 
 public class ModelManagerTest {
 
@@ -106,7 +110,9 @@ public class ModelManagerTest {
     public void equals() {
         AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
         AddressBook differentAddressBook = new AddressBook();
+
         UserPrefs userPrefs = new UserPrefs();
+
         AppointmentBook appointmentBook = new AppointmentBook();
         AppointmentDateTime appointmentFromTime =
                 new AppointmentDateTime("2020-10-10 10:10AM");
@@ -130,11 +136,15 @@ public class ModelManagerTest {
         GradeBook differentGradeBook = new GradeBook();
         differentGradeBook.addGrade(diffGrade);
 
+        ScheduleTracker scheduleTracker = new ScheduleTrackerBuilder().withSchedule(MATHS_HOMEWORK_SCHEDULE)
+                .withSchedule(SCIENCE_HOMEWORK_SCHEDULE).build();
+        ScheduleTracker differentScheduleTracker = new ScheduleTracker();
+
         // same values -> returns true
         modelManager = new ModelManager(addressBook, userPrefs, appointmentBook,
-         budgetBook, gradeBook);
+         budgetBook, gradeBook, scheduleTracker);
         ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs,
-                appointmentBook, budgetBook, gradeBook);
+                appointmentBook, budgetBook, gradeBook, scheduleTracker);
 
         assertTrue(modelManager.equals(modelManagerCopy));
 
@@ -149,13 +159,13 @@ public class ModelManagerTest {
 
         // different addressBook -> returns false
         assertFalse(modelManager.equals(new ModelManager(differentAddressBook,
-                userPrefs, appointmentBook, budgetBook, gradeBook)));
+                userPrefs, appointmentBook, budgetBook, gradeBook, scheduleTracker)));
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs,
-                appointmentBook, budgetBook, gradeBook)));
+                appointmentBook, budgetBook, gradeBook, scheduleTracker)));
 
 
         // resets modelManager to initial state for upcoming tests
@@ -165,19 +175,22 @@ public class ModelManagerTest {
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
         assertFalse(modelManager.equals(new ModelManager(addressBook,
-                differentUserPrefs, appointmentBook, budgetBook, gradeBook)));
+                differentUserPrefs, appointmentBook, budgetBook, gradeBook, scheduleTracker)));
 
         // different appointmentBook -> returns false
         assertFalse(modelManager.equals(new ModelManager(addressBook,
-                userPrefs, differentAppointmentBook, budgetBook, gradeBook)));
+                userPrefs, differentAppointmentBook, budgetBook, gradeBook, scheduleTracker)));
 
         // different budget book -> returns false
         assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs,
-                appointmentBook, diffBudgetBook, gradeBook)));
+                appointmentBook, diffBudgetBook, gradeBook, scheduleTracker)));
 
         //different gradeBook -> returns false
         assertFalse(modelManager.equals(new ModelManager(differentAddressBook,
-                userPrefs, appointmentBook, budgetBook, differentGradeBook)));
+                userPrefs, appointmentBook, budgetBook, differentGradeBook, scheduleTracker)));
 
+        //different schedule tracker -> returns false
+        assertFalse(modelManager.equals(new ModelManager(differentAddressBook,
+                userPrefs, appointmentBook, budgetBook, gradeBook, differentScheduleTracker)));
     }
 }
