@@ -66,6 +66,22 @@ public class DeliveryDate implements Comparable<DeliveryDate> {
         return this.value;
     }
 
+    /**
+     * Return a {@code String} of possible formats of {@code DeliveryDate} concatenated. This {@code String} is
+     * used to test against keywords from the {@code FindCommand}.
+     */
+    public String getTestString() {
+        DateTimeFormatter format1 = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter format2 = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        DateTimeFormatter format3 = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+        DateTimeFormatter format4 = DateTimeFormatter.ofPattern("dd MMM yyyy");
+        return value.getMonth().toString() + " "
+                + format1.format(value) + " "
+                + format2.format(value) + " "
+                + format3.format(value) + " "
+                + format4.format(value) + " ";
+    }
+
     @Override
     public String toString() {
         DateTimeFormatter toDisplay = DateTimeFormatter.ofPattern("dd MMM yyyy");

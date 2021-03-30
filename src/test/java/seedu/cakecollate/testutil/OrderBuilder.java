@@ -12,6 +12,7 @@ import seedu.cakecollate.model.order.Order;
 import seedu.cakecollate.model.order.OrderDescription;
 import seedu.cakecollate.model.order.Phone;
 import seedu.cakecollate.model.order.Request;
+import seedu.cakecollate.model.order.Status;
 import seedu.cakecollate.model.tag.Tag;
 import seedu.cakecollate.model.util.SampleDataUtil;
 
@@ -129,6 +130,14 @@ public class OrderBuilder {
      */
     public OrderBuilder withDeliveryStatus() {
         this.deliveryStatus = new DeliveryStatus();
+        return this;
+    }
+
+    /**
+     * Sets the {@code DeliveryStatus} of the {@code Order} that we are building with specified Status.
+     */
+    public OrderBuilder withDeliveryStatus(Status status) {
+        this.deliveryStatus = new DeliveryStatus(status);
         return this;
     }
 

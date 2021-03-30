@@ -45,7 +45,6 @@ public class UiManager implements Ui {
             mainWindow.show(); //This should be called before creating other UI parts
             mainWindow.fillInnerParts();
             mainWindow.updateDeliveryStatuses();
-            mainWindow.fillOrderListPanel();
 
         } catch (Throwable e) {
             logger.severe(StringUtil.getDetails(e));
