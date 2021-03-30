@@ -6,6 +6,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DISH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
@@ -19,7 +22,7 @@ import seedu.address.logic.parser.commands.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new AddCommand object.
  */
 public class OrderAddCommandParser implements Parser<OrderAddCommand> {
 
@@ -28,6 +31,7 @@ public class OrderAddCommandParser implements Parser<OrderAddCommand> {
      * and returns an AddCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
+    @SuppressWarnings("checkstyle:Indentation")
     public OrderAddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DATETIME, PREFIX_DISH, PREFIX_QUANTITY);
@@ -38,7 +42,7 @@ public class OrderAddCommandParser implements Parser<OrderAddCommand> {
         }
 
         String customer = argMultimap.getValue(PREFIX_NAME).get().trim();
-        String datetime = argMultimap.getValue(PREFIX_DATETIME).get().trim(); // not used in v1.2
+        String strdatetime = argMultimap.getValue(PREFIX_DATETIME).get().trim(); // not used in v1.2
         List<String> dishNums = argMultimap.getAllValues(PREFIX_DISH);
         List<String> dishQuants = argMultimap.getAllValues(PREFIX_QUANTITY);
 
@@ -51,7 +55,13 @@ public class OrderAddCommandParser implements Parser<OrderAddCommand> {
             dishQuantityList.add(orderComponent);
         }
 
-        return new OrderAddCommand(datetime, customer, dishQuantityList);
+        try {
+            LocalDateTime datetime = LocalDateTime.parse(strdatetime, DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm"));
+            return new OrderAddCommand(datetime, customer, dishQuantityList);
+        } catch (DateTimeParseException e) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, OrderAddCommand.MESSAGE_USAGE));
+        }
+
     }
 
     /**

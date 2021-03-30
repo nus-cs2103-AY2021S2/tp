@@ -1,5 +1,7 @@
 package seedu.address.model.order;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -10,8 +12,9 @@ import seedu.address.model.Item;
 import seedu.address.model.dish.Dish;
 import seedu.address.model.person.Person;
 
+
 public class Order implements Item {
-    private String datetime;
+    private LocalDateTime datetime;
     private Person customer;
     private List<Pair<Dish, Integer>> dishQuantityList;
 
@@ -22,7 +25,7 @@ public class Order implements Item {
      * @param dishQuantityList
      */
     @JsonCreator
-    public Order(@JsonProperty("datetime") String datetime, @JsonProperty("customer") Person customer,
+    public Order(@JsonProperty("datetime") LocalDateTime datetime, @JsonProperty("customer") Person customer,
                  @JsonProperty("dishQuantityList") List<Pair<Dish, Integer>> dishQuantityList) {
         this.datetime = datetime;
         this.customer = customer;
@@ -30,7 +33,7 @@ public class Order implements Item {
     }
 
     public String getDatetime() {
-        return datetime;
+        return datetime.format(DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm"));
     }
 
     public Person getCustomer() {
