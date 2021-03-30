@@ -1,5 +1,7 @@
 package seedu.address.model.order;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -10,8 +12,9 @@ import seedu.address.model.Item;
 import seedu.address.model.dish.Dish;
 import seedu.address.model.person.Person;
 
+
 public class Order implements Item {
-    private String datetime;
+    private LocalDateTime datetime;
     private Person customer;
     private List<Pair<Dish, Integer>> dishQuantityList;
 
@@ -22,14 +25,18 @@ public class Order implements Item {
      * @param dishQuantityList
      */
     @JsonCreator
-    public Order(@JsonProperty("datetime") String datetime, @JsonProperty("customer") Person customer,
+    public Order(@JsonProperty("datetime") LocalDateTime datetime, @JsonProperty("customer") Person customer,
                  @JsonProperty("dishQuantityList") List<Pair<Dish, Integer>> dishQuantityList) {
         this.datetime = datetime;
         this.customer = customer;
         this.dishQuantityList = dishQuantityList;
     }
 
-    public String getDatetime() {
+    public String getStrDatetime() {
+        return datetime.format(DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm"));
+    }
+
+    public LocalDateTime getDatetime() {
         return datetime;
     }
 
@@ -48,7 +55,7 @@ public class Order implements Item {
     public String getDetails() {
         final StringBuilder builder = new StringBuilder();
         builder.append("Datetime: ")
-                .append(getDatetime())
+                .append(getStrDatetime())
                 .append("\nCustomer: ")
                 .append(getCustomer());
 
@@ -76,7 +83,7 @@ public class Order implements Item {
 
         Order otherOrder = (Order) other;
         return otherOrder != null
-                && this.getDatetime().equals(otherOrder.getDatetime());
+                && this.getStrDatetime().equals(otherOrder.getStrDatetime());
     }
 
     @Override
@@ -90,7 +97,7 @@ public class Order implements Item {
         }
 
         Order otherOrder = (Order) other;
-        return otherOrder.getDatetime().equals(getDatetime())
+        return otherOrder.getStrDatetime().equals(getStrDatetime())
                 && otherOrder.getCustomer().equals(getCustomer())
                 && listEquals(otherOrder.getDishQuantityList());
     }
@@ -114,7 +121,7 @@ public class Order implements Item {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append("Datetime: ")
-                .append(getDatetime())
+                .append(getStrDatetime())
                 .append("; Customer: ")
                 .append(getCustomer());
 

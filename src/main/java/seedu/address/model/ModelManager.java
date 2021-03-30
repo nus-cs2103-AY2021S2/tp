@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -40,7 +41,7 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Dish> filteredDishes;
     private final FilteredList<Ingredient> filteredIngredients;
-    private final FilteredList<Order> filteredOrders;
+    private FilteredList<Order> filteredOrders;
 
     /**
      * Initializes a ModelManager with the given books and userPrefs.
@@ -388,8 +389,26 @@ public class ModelManager implements Model {
         orderBook.setOrder(target, editedOrder);
     }
 
-    /** Returns an unmodifiable view of the filtered person list */
+    /**
+     * Returns an unmodifiable view of the filtered order list
+     */
+    @Override
     public ObservableList<Order> getFilteredOrderList() {
+        return null;
+    }
+
+    /** Returns an unmodifiable view of the filtered person list */
+    public ObservableList<Order> getFilteredOrderList(Comparator<Order> comparator) {
+        return sortOrder(comparator);
+    }
+
+    /**
+     *  Returns a sorted view of the filtered Order List
+     * @param comparator
+     * @return
+     */
+    public ObservableList<Order> sortOrder(Comparator<Order> comparator) {
+        orderBook.sortItemsByDateTime(comparator);
         return filteredOrders;
     }
 

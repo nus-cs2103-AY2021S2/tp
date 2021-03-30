@@ -9,7 +9,7 @@ import javafx.scene.layout.Region;
 import seedu.address.model.order.Order;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of orders.
  */
 public class OrderListPanel extends UiPart<Region> {
     private static final String FXML = "OrderListPanel.fxml";

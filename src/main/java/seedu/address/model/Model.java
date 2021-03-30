@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -229,6 +230,8 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered order list */
     ObservableList<Order> getFilteredOrderList();
+
+    ObservableList<Order> getFilteredOrderList(Comparator<Order> comparator);
 
     /**
      * Updates the filter of the filtered ingredient list to filter by the given {@code predicate}.
