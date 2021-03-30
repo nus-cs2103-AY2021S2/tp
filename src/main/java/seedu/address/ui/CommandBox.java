@@ -47,11 +47,13 @@ public class CommandBox extends UiPart<Region> {
                 KeyCode keyboardEvent = ke.getCode();
                 if (keyboardEvent == KeyCode.UP) {
                     commandTextField.setText(InputCommandStorage.retrieveInput(true));
-                } else if (keyboardEvent == KeyCode.DOWN) {
-                    commandTextField.setText(InputCommandStorage.retrieveInput(false));
-                } else {
-                    //ignore
                 }
+
+                if (keyboardEvent == KeyCode.DOWN) {
+                    commandTextField.setText(InputCommandStorage.retrieveInput(false));
+
+                }
+
                 ke.consume();
             }
         });
