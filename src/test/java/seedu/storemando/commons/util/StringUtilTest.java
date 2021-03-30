@@ -273,6 +273,7 @@ public class StringUtilTest {
      * Possible scenarios returning false:
      *   - query word matches part of a sentence word
      *   - sentence word matches part of the query word
+     *   - query word matches the sentence word but differs in lower/upper cases
      *
      * The test method below tries to verify all above with a reasonably low number of test cases.
      */
