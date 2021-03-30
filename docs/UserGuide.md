@@ -95,6 +95,12 @@ Focuris is a **desktop application** for **managing events** with a KanBan board
 
 ### 2.1.1 Command Summary
 
+If you are an experienced user who has used Focuris before, then here is a summary of the commands for easier navigability! 
+
+For our new users, don't be too intimidated! You can use this summary to better familiarize yourself with 
+the different commands available. We will delve deeper into the specifics at chapters [2.2](#22-general) 
+and [2.3](#23-event-commands).
+
 | Command                           | Description                                      | Format, Examples                                                                                           |
 | --------------------------------- | ------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- |
 | [**Clear**](#236-clear-command)   | **Clears** all events in Focuris                 | `clear`                                                                                                    |
@@ -195,6 +201,11 @@ If your changes to the data file makes its format invalid, Focuris will discard 
 
 ## 2.3 Event Commands
 
+For the majority of event commands, you can simply execute them via these simple steps:
+1) Type in the command you desire in the various formats detailed below.
+2) Hit `enter` on your keyboard!
+3) The results and outcome of your command should be visible on the application.
+
 ### 2.3.1 `todo` Command
 
 Adds an event with status `TODO` to Focuris.
@@ -206,7 +217,6 @@ todo n/NAME d/DESCRIPTION [p/PRIORITY]
 ```
 
 #### Examples
-
 ![Todo Sample Screenshot](./images/user-guide/todo-example-1.png)
 
 **Figure 1. Shows the result after execution of Example Command 1 in the table below.**
@@ -444,6 +454,18 @@ list
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Focuris home folder.
+
+**Q**: Does this application require an Internet connection?<br>
+**A**: No, Focuris does not require an Internet connection to use.
+
+**Q**: What is the maximum length of text I can enter into a event name or event description?<br>
+**A**: Focuris does not limit the maximum length of text that can be entered and stored as it will increase the size 
+of the card to fit the text given. However, the general notion we try to promote is **efficiency** and **productivity**,
+ and thus we recommend keeping the text under **20 characters** for the event name, and **40 characters** for the description.
+
+**Q**: Will my data be sent anywhere else or shared with third parties?<br>
+**A**: Your data is stored locally on your own computer. Focuris does not use any Internet connection so no data can be 
+sent to any online servers.
 
 [Return to Table of Contents](#table-of-contents)
 
