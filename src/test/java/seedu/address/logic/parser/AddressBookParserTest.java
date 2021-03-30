@@ -124,7 +124,7 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_sort() throws Exception {
-        String validInput = SortCommand.COMMAND_WORD + " c/name d/ascending";
+        String validInput = SortCommand.COMMAND_WORD + " ascending";
         assertTrue(parser.parseCommand(validInput) instanceof SortCommand);
     }
 

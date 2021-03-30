@@ -8,6 +8,7 @@ import static java.util.Objects.requireNonNull;
  */
 public class Blacklist {
     public final Boolean isBlacklisted;
+    public final String value;
 
     /**
      * Constructs an {@code Blacklist}.
@@ -17,6 +18,7 @@ public class Blacklist {
     public Blacklist(Boolean isBlacklisted) {
         requireNonNull(isBlacklisted);
         this.isBlacklisted = isBlacklisted;
+        this.value = isBlacklisted ? "Blacklisted" : "";
     }
 
     /**
@@ -24,15 +26,20 @@ public class Blacklist {
      */
     public Blacklist() {
         this.isBlacklisted = false;
+        this.value = "";
+    }
+
+    public boolean getStatus() {
+        return isBlacklisted;
+    }
+
+    public Blacklist toggleStatus() {
+        return new Blacklist(!isBlacklisted);
     }
 
     @Override
     public String toString() {
-        if (isBlacklisted) {
-            return "Blacklisted";
-        } else {
-            return "";
-        }
+        return value;
     }
 
     @Override

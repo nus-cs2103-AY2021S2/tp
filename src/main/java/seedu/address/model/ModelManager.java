@@ -135,6 +135,25 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void blacklistPerson(Person target) {
+        if (!target.getBlacklistStatus()) {
+            setPerson(target, target.toggleBlacklistStatus());
+        }
+    }
+
+    @Override
+    public void unblacklistPerson(Person target) {
+        if (target.getBlacklistStatus()) {
+            setPerson(target, target.toggleBlacklistStatus());
+        }
+    }
+
+    @Override
+    public void toggleBlacklist(Person target) {
+        setPerson(target, target.toggleBlacklistStatus());
+    }
+
+    @Override
     public boolean equals(Object obj) {
         // short circuit if same object
         if (obj == this) {

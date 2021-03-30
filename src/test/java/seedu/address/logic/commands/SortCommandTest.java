@@ -27,6 +27,6 @@ public class SortCommandTest {
 
     @Test
     public void execute_listIsAlreadySorted_showsSameList() throws ParseException {
-        assertCommandSuccess(new SortCommand("name", true), model, SortCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new SortCommand(true), model, SortCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }
