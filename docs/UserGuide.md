@@ -15,12 +15,11 @@ The **purpose of this User Guide(UG)** is to help new users understand how to ge
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-
 1. Download the latest `bob.jar` from [here](https://github.com/AY2021S2-CS2103T-W12-1/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for Doc Bob.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. Double-click the file to start the app. The GUI similar to the mock-up below should appear in a few seconds. Note how the app contains some sample data. To learn how to use the Command Line Interface (CLI), try out the example commands given below with the sample data. Once you are familiar with the CLI, you can use the `clear` command to remove all sample data and start adding your own data!<br>
    ![Ui](images/Ui.png)
    
 1. This should work for you regardless of your operating system (OS).
@@ -32,7 +31,7 @@ The **purpose of this User Guide(UG)** is to help new users understand how to ge
 
    * **`add n/Shrek p/66666666 e/shrek@swampmail.com a/Swamp h/243cm w/94kg`** : Adds a patient named `Shrek` to DocBob's contact list.
 
-   * **`appt`** : Adds a scheduled upcoming appointment with a patient in DocBob's contact list.
+   * **`appt 1 d/010120301200`** : Adds a scheduled upcoming appointment with the patient at index 1 in DocBob's contact list, on 1st January 2030 12pm.
 
 1. Refer to the [Features](#features) below for details of each command.
 
