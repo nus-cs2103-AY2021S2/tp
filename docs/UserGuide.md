@@ -11,6 +11,7 @@ SOChedule is a one-stop solution for managing tasks and events, optimized for us
 * Deleting a task: `delete_task`
 * Listing all tasks: `list_task`
 * Marking a task as done : `done_task`
+* Marking a task as uncompleted : `undone_task`
 * Finding tasks: `find_task`
 * Getting today's tasks: `today_task`
 * Sorting all tasks: `sort_task`
@@ -91,11 +92,24 @@ Marks a task from SOChedule Task List as completed.
 
 Format: `done_task INDEX`
 * Marks the task at the specified INDEX as complete.
+* The specified task must be uncompleted before calling this command.
 * The index refers to the index number shown in the displayed task list.
 * The index must be a positive and valid integer 1, 2, 3, ...
 
 Examples:
 * `done_task 1` marks the first task in the task list as completed.
+
+### Marking a task as uncompleted: `undone_task`
+Marks a completed task from SOChedule Task List as uncompleted.
+
+Format: `undone_task INDEX`
+* Marks the task at the specified INDEX as uncompleted.
+* The specified task must be completed before calling this command.
+* The index refers to the index number shown in the displayed task list.
+* The index must be a positive and valid integer 1, 2, 3, ...
+
+Examples:
+* `undone_task 1` marks the first task in the task list as uncompleted.
 
 ### Listing all tasks today: `today_task`
 Lists all tasks that have deadline on today from SOChedule Task List.
@@ -234,6 +248,7 @@ Action | Format, Examples
 **Add** | `add_task n/TASKNAME d/DEADLINE p/PRIORITY [c/CATEGORY]... [t/TAG]...` <br> e.g., `add_task n/CS2103 assignment d/2021-02-27 p/1 c/school work t/urgent`
 **Delete** | `delete_task INDEX`<br>e.g., `delete_task 1`
 **Done** | `done_task INDEX`<br>e.g., `done_task 1`
+**Undone** | `undone_task INDEX`<br>e.g., `undone_task 1`
 **List** | `list_task`
 **Today** | `today_task`
 **Find** | `find_task KEYWORDS`<br>e.g., `find_task homework`
