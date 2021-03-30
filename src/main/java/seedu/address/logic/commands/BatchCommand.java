@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.DeleteCommandParser;
 import seedu.address.logic.parser.EditCommandParser;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -71,10 +72,14 @@ public class BatchCommand<T extends Command> extends Command {
 
             boolean isReal = false;
 
+            assert commandParser instanceof EditCommandParser || commandParser instanceof DeleteCommandParser;
+
             if (commandParser instanceof EditCommandParser) {
                 executeBatchEdit(commandParser, copy, listOfIndices, isReal);
-            } else {
+            } else if (commandParser instanceof DeleteCommandParser) {
                 executeBatchDelete(commandParser, copy, listOfIndices, isReal);
+            } else {
+                assert false;
             }
 
             // If successfully executed on copy, we can now execute on model without worrying about exceptions.
@@ -122,9 +127,30 @@ public class BatchCommand<T extends Command> extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof BatchCommand // instanceof handles nulls
-                && listOfIndices.equals(((BatchCommand) other).listOfIndices)); // state check
+        assert commandParser instanceof EditCommandParser || commandParser instanceof DeleteCommandParser;
+
+        if (other == this) {
+            return true;
+        }
+
+        if (other instanceof BatchCommand) {
+            BatchCommand otherBatchCommand = (BatchCommand) other;
+
+            if (commandParser instanceof EditCommandParser
+                    && otherBatchCommand.commandParser instanceof EditCommandParser) {
+
+                return listOfIndices.equals(otherBatchCommand.listOfIndices)
+                        && inputCommandArgs.equals(otherBatchCommand.inputCommandArgs);
+
+            } else if (commandParser instanceof DeleteCommandParser
+                    && otherBatchCommand.commandParser instanceof DeleteCommandParser) {
+
+                return listOfIndices.equals(otherBatchCommand.listOfIndices);
+
+            }
+        }
+
+        return false;
     }
 
 }
