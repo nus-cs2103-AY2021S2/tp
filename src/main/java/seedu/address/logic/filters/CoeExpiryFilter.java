@@ -40,7 +40,7 @@ public class CoeExpiryFilter extends AbstractFilter {
     /**
      * Returns true if a given string is a valid filter.
      */
-    public boolean isValidFilter(String filterString) {
+    public static boolean isValidFilter(String filterString) {
         if (filterString.equals("exp")) {
             return true;
         }
