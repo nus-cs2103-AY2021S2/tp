@@ -54,19 +54,21 @@ Example:
 
 Adds a food review to the Food Diary.
 
-Format: `add n/<RESTAURANT NAME> ra/RATING re/REVIEW a/ADDRESS c/CATEGORIES`
+Format: `add n/<RESTAURANT NAME> ra/RATING p/PRICE re/REVIEW a/ADDRESS c/CATEGORIES`
 
 Parameters:
 
-   1. `Name (of restaurant)`
-   2. `Rating`
-   3. `Address`
-   4. `Review`
-   5. `Categories (tag)`
+1. `Name (of restaurant)`
+2. `Rating`
+3. `Price`
+3. `Address`
+4. `Review`
+5. `Categories (tag)`
+
 
 Example:
 
-    add  n/Al Amaan Restaurant ra/5 re/best for Butter Chicken a/12 Clementi Rd, Singapore 129742 c/Indian Muslim
+    add  n/Al Amaan Restaurant ra/5 p/8 re/best for Butter Chicken a/12 Clementi Rd, Singapore 129742 c/Indian Muslim
 
 
 ### Delete a food review: `delete`
@@ -81,33 +83,46 @@ Example:
 
     delete n/McDonald’s Clementi Mall
 
-### Find for any food reviews
+### Find for any food reviews: `find`
 
-Finds for food reviews whose names, ratings, address and categories match any of the provided keywords.
+Finds for food reviews whose names, ratings, price, address and categories match any of the provided keywords.
+
+More than one keyword per field can be accepted as parameters. Different fields can also be simultaneously
+accepted as parameters. For the price field, a price range can also be accepted as a parameter, and any food
+review that contains at least one of the prices within the specified range will be returned as a search result.
 
 Format: `find KEYWORDS`
 
-Parameter: `Restaurant name` or `Rating` or `Address` or `Categories`
+Parameter: `RESTAURANT NAME` / `RATING/5` / `$PRICE` / `$PRICE-PRICE` / `ADDRESS` / `CATERGORIES`
+
 
 Example:
+    
+    find techno    
 
-    find kfc
+    find science fass
 
-    find fastfood indian
+    find fastfood indian $6
 
-    find clementi 5/5
+    find clementi 5/5 $8-15 western
 
-### Find for specific food reviews
+### Find for specific food reviews: `findall`
 
-Finds for food reviews whose names, ratings, address and categories match all of the provided keywords.
+Finds for food reviews whose names, ratings, price, address and categories match all of the provided keywords.
+
+More than one keyword per field can be accepted as parameters. Different fields can also be simultaneously
+accepted as parameters. For the price field, a price range can also be accepted as a parameter, and any food
+review that contains at least one of the prices within the specified range will be returned as a search result.
+**Unlike the find feature, the findall feature only returns search results of food reviews that contain all of
+the provided keywords.**
 
 Format: `findall KEYWORDS`
 
-Parameter: `Restaurant name` or `Rating` or `Address` or `Categories`
+Parameter: `RESTAURANT NAME` / `RATING/5` / `$PRICE` / `$PRICE-PRICE` / `ADDRESS` / `CATERGORIES`
 
 Example:
 
-    find clementi fastfood 5/5
+    findall clementi fastfood 5/5 $9
 
 ### View specific food reviews
 
@@ -127,11 +142,11 @@ Example:
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/<RESTAURANT NAME> ra/5 re/REVIEW a/ADDRESS c/CATEGORIES` <br> e.g., `add  n/Al Amaan Restaurant ra/4 re/best for Butter Chicken a/12 Clementi Rd, Singapore 129742 c/Indian Muslim`
+**Add** | `add n/<RESTAURANT NAME> ra/RATING p/PRICE re/REVIEW a/ADDRESS c/CATEGORIES` <br> e.g., `add  n/Al Amaan Restaurant ra/4 p/8 re/best for Butter Chicken a/12 Clementi Rd, Singapore 129742 c/Indian Muslim`
 **Delete** | `delete n/NAME or delete i/INDEX` <br> e.g., `delete n/Al Amaan Restaurant or delete i/1`
 **List** | `list`
-**Find** | `find kfc`
-**FindAll** |`findall clementi fastfood 5/5`
+**Find** | `find KEYWORDS` <br> e.g., `find kfc`
+**FindAll** |`findall KEYWORDS` <br> e.g., `findall clementi fastfood 5/5 $5-10`
 **View** |`view 1`
 
 ## <center> Appendix </center>
