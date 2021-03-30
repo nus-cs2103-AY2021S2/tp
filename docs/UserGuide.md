@@ -184,6 +184,9 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd flashcard in the flashcard list. <br>
   Before executing command `delete 2`: <br><br>
   ![UIBeforeDelete](./images/UiBeforeDelete.png) <br>
+  
+  <div style="page-break-after: always;"></div>
+  
   After executing command `delete 2`: <br><br>
   ![UIAfterDelete](./images/UiAfterDelete.png)
 
@@ -284,7 +287,10 @@ Format: `undo`
 
 Examples:
 `delete 3` <br><br>
-![UiDeleteBeforeUndo](./images/UiDeleteBeforeUndo.png) <br><br>
+![UiDeleteBeforeUndo](./images/UiDeleteBeforeUndo.png) <br>
+
+<div style="page-break-after: always;"></div>
+
 `clear`  <br><br>
 ![UiClearBeforeUndo](./images/UiClearBeforeUndo.png) <br><br>
 `undo` will reverse the `clear` command. <br><br>
@@ -303,6 +309,9 @@ Examples:
 ![UiClearBeforeUndoBeforeRedo](./images/UiClearBeforeUndoBeforeRedo.png) <br><br>
 `undo` will reverse the `clear` command. <br><br>
 ![UiClearAfterUndoBeforeRedo](./images/UiClearAfterUndoBeforeRedo.png) <br><br>
+
+<div style="page-break-after: always;"></div>
+
 `redo` will reverse the `undo` command. <br><br>
 ![UiClearAfterUndoAfterRedo](./images/UiClearAfterUndoAfterRedo.png) <br><br>
 
@@ -321,6 +330,9 @@ Examples:
 `sort priority -d` will sort the flashcards by descending priority. <br>
 `sort question -a` will sort the flashcards by ascending question. <br>
 `sort question -d` will sort the flashcards by descending question. <br>
+
+<div style="page-break-after: always;"></div>
+
 Before sort command is executed. <br><br>
 ![UiBeforeSort](./images/UiBeforeSort.png) <br><br>
 `sort priority -a`<br><br>
@@ -363,8 +375,6 @@ Examples:
 
 ![UiStats](./images/UiStatsNoIndex.png) <br><br>
 
-<div style="page-break-after: always;"></div>
-
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -400,12 +410,16 @@ Format: `n` <br>
 Example: <br><br>
 ![UiReviewModeNext](./images/UiReviewNext.png)
 
+<div style="page-break-after: always;"></div>
+
 ### Showing previous flashcard : `p`
 
 Moves back to the previous flashcard. <br>
 Format: `p` <br>
 Example: <br><br>
 ![UiReviewModePrev](./images/UiReviewPrev.png)
+
+<div style="page-break-after: always;"></div>
 
 ### Showing answer : `a`
 
@@ -414,12 +428,16 @@ Format: `a` <br>
 Example: <br><br>
 ![UiReviewModeWithAnswer](./images/UiReviewModeWindow.png)
 
+<div style="page-break-after: always;"></div>
+
 ### Hiding answer : `h`
 
 Hides the answer of the current flashcard. <br>
 Format: `h` <br>
 Example: <br><br>
 ![UiReviewModeHide](./images/UiReviewHide.png)
+
+<div style="page-break-after: always;"></div>
 
 ### Reviewing a flashcard as correct: `t`
 
@@ -434,6 +452,8 @@ Format: `t` <br>
 Example: <br><br>
 ![UiReviewModeCorrectAnswer](./images/UiReviewAnsTrue.png)
 
+<div style="page-break-after: always;"></div>
+
 ### Reviewing a flashcard as wrong : `f`
 
 Marks that the user got the answer wrong for the current flashcard. <br>
@@ -447,6 +467,8 @@ Format: `f` <br>
 Example: <br><br>
 ![UiReviewModeWrongAnswer](./images/UiReviewAnsFalse.png)
 
+<div style="page-break-after: always;"></div>
+
 ### Quitting review mode : `q`
 
 Quits the review mode and goes back to the main window. <br>
@@ -455,8 +477,6 @@ Example: <br><br>
 ![UiReviewModeExit](./images/UiReviewExit.png)
 
 --------------------------------------------------------------------------------------------------------------------
-
-<div style="page-break-after: always;"></div>
 
 ## FAQ
 
