@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_IMPORTANT_DATES;
 
 import seedu.address.model.Model;
+import seedu.address.model.person.comparators.ImportantDateDetailsComparator;
 
 /**
  * Opens up a window displaying the list of important dates input by the user.
@@ -20,8 +21,7 @@ public class ImportantDatesCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        // TODO: change switch to model.updateSortedImportantDatesList(); after implementing sorting
-        model.updateFilteredImportantDatesList(PREDICATE_SHOW_ALL_IMPORTANT_DATES);
+        model.updateSortedImportantDatesList(new ImportantDateDetailsComparator());
         return new CommandResult(SHOWING_DATES_MESSAGE, false, true, false, false);
     }
 }
