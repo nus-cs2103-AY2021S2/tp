@@ -90,7 +90,10 @@ public class AddMeetingCommand extends Command {
         model.addMeeting(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
-
+    /**
+     * This method will handle the connections that the user wants to add from both the g/ and p/
+     * Duplicate person that the user wants to build connection with this meeting will be automatically removed.
+     */
     private void addConnectionsToPersons(Meeting toAdd, Model model) throws CommandException {
         // Use set to ensure unique element.
         HashSet<Person> personsConnection = new HashSet<>();
