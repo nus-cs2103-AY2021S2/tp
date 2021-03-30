@@ -149,12 +149,6 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        /**List<Meeting> listm = new ArrayList<>();
-        ObservableList<Meeting> meetingObservableList = FXCollections.observableList(listm);
-        listm.add(MEETING1);
-        listm.add(MEETING2);
-        listm.add(MEETING3);
-         */
         ObservableList<Meeting> meetingObservableList = logic.getAllMeetingList();
         TimetableView timetableView = new TimetableView(meetingObservableList, LocalDate.now());
         timetableHolder.getChildren().add(timetableView.getRoot());

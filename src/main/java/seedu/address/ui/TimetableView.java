@@ -30,7 +30,7 @@ public class TimetableView extends UiPart<Region> {
     private static final String FXML = "TimetableWindow.fxml";
 
     private final Logger logger = LogsCenter.getLogger(TimetableView.class);
-    private final ListChangeListener<Schedulable> listener = change -> {
+    private final ListChangeListener<Schedulable> meetingsListener = change -> {
         while (change.next()) {
             if (change.wasAdded() || change.wasRemoved()) {
                 this.populateWithData(change.getList());
@@ -98,7 +98,7 @@ public class TimetableView extends UiPart<Region> {
         this.timetablePlacementPolicy = new TimetablePlacementPolicy(firstDayOfTimetable);
         populateWithData(timetableSlots);
         //add Listener
-        timetableSlots.addListener(this.listener);
+        timetableSlots.addListener(this.meetingsListener);
     }
 
     public void setTimetablePlacementPolicy(TimetablePlacementPolicy policy) {
@@ -114,7 +114,7 @@ public class TimetableView extends UiPart<Region> {
         reset();
         List<? extends Schedulable> processedList = obsList.stream()
                 .filter(timetablePlacementPolicy :: test)
-                .flatMap(timetablePlacementPolicy :: breakIntoUnits)
+                .flatMap(timetablePlacementPolicy :: breakIntoDayUnits)
                 .collect(Collectors.toList());
         for (Schedulable schedulable : processedList) {
             double slotLength = timetablePlacementPolicy.getLengthOfSlot(schedulable);
