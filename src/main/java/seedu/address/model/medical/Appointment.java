@@ -100,6 +100,5 @@ public class Appointment implements Comparable<Appointment> {
         } else {
             return -1;
         }
-
     }
 }
