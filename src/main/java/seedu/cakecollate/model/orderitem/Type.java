@@ -14,7 +14,7 @@ public class Type {
 
     public static final String VALIDATION_REGEX = "^([\\p{Alnum}\"]|([\\p{Alnum}\"][\\p{Alnum}\" ]*))$";
 
-    public final String value;
+    public final String value; // why public
 
     /**
      * Constructs a {@code Type}.
@@ -54,4 +54,7 @@ public class Type {
         return value.hashCode();
     }
 
+    public String getValue() {
+        return value;
+    }
 }

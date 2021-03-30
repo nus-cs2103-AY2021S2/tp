@@ -3,6 +3,7 @@ package seedu.cakecollate.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.cakecollate.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.cakecollate.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.cakecollate.testutil.TestUtil.stringify;
 import static seedu.cakecollate.testutil.TypicalIndexes.INDEX_FIRST_ORDER;
 import static seedu.cakecollate.testutil.TypicalIndexes.INDEX_THIRD_ORDER;
 import static seedu.cakecollate.testutil.TypicalOrderItems.getTypicalOrderItemsModel;
@@ -19,6 +20,7 @@ import seedu.cakecollate.logic.commands.exceptions.CommandException;
 import seedu.cakecollate.model.CakeCollate;
 import seedu.cakecollate.model.Model;
 import seedu.cakecollate.model.ModelManager;
+import seedu.cakecollate.model.OrderItems;
 import seedu.cakecollate.model.UserPrefs;
 import seedu.cakecollate.model.order.Order;
 import seedu.cakecollate.model.orderitem.OrderItem;
@@ -63,7 +65,6 @@ public class AddCommandIntegrationTest {
     }
 
     // todo index list related
-    // do after add command
 
     // todo with order index
 
@@ -78,7 +79,6 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void invalidListIndex_uhh() throws CommandException {
-        // need to create own order item model -- or check edit tests
         Model emptyModel = new ModelManager();
         AddCommand.AddOrderDescriptor descriptor = new AddOrderDescriptorBuilder(new OrderBuilder().withOrderDescriptions().build()).build();
 
@@ -90,12 +90,35 @@ public class AddCommandIntegrationTest {
     @Test
     public void execute_singleValidIndexList_addedToOrder() {
 
+        IndexList indexList = new IndexList(new ArrayList<>());
+        indexList.add(INDEX_FIRST_ORDER);
+
+        OrderItems orderItems = getTypicalOrderItemsModel(); // model.getOrderItems();
+        OrderItem toAdd = orderItems.getOrderItemList().get(0);
+
+        Order validOrder = new OrderBuilder().withOrderDescriptions().build();
+        AddCommand.AddOrderDescriptor descriptor = new AddOrderDescriptorBuilder(validOrder).build();
+
+        // add order item 0 to expected order
+        // the naming makes order items and order descriptions look really unrelated but they aren't
+        Order finalOrderToAddToModel = new OrderBuilder(validOrder).withOrderDescriptions(stringify(toAdd)).build();
+
+        // construct expected model
+        Model expectedModel = new ModelManager(model.getCakeCollate(), orderItems, new UserPrefs()); // todo change all/most 2nd arg
+        expectedModel.addOrder(finalOrderToAddToModel);
+
+        assertCommandSuccess(new AddCommand(indexList, descriptor), model,
+                String.format(AddCommand.MESSAGE_SUCCESS, finalOrderToAddToModel), expectedModel);
     }
 
     @Test
     public void execute_multipleIndexList_AllAddedToOrder() {
 
     }
+
+
+
+
 
 
     // === ===
@@ -175,5 +198,4 @@ public class AddCommandIntegrationTest {
 
 
     }
-
 }

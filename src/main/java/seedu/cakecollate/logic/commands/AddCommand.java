@@ -89,6 +89,10 @@ public class AddCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
+        assert this.addOrderDescriptor.getOrderDescriptions().isPresent()
+                || this.orderItemIndexList.getIndexList().size() != 0
+                : "some error here; neither order description nor order item index was provided";
+
         if (this.addOrderDescriptor.getOrderDescriptions().isPresent()) {
             addToOrderItems(model);
         }
