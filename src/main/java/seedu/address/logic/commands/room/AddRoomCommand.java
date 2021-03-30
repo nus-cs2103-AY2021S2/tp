@@ -2,7 +2,6 @@ package seedu.address.logic.commands.room;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM_NUMBER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM_OCCUPANCY_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM_TYPE;
 
@@ -19,12 +18,10 @@ public class AddRoomCommand extends Command {
             + "Parameters: "
             + PREFIX_ROOM_NUMBER + "NAME "
             + PREFIX_ROOM_TYPE + "TYPE "
-            + PREFIX_ROOM_OCCUPANCY_STATUS + "OCCUPANCY STATUS "
             + "[" + PREFIX_ROOM_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_ROOM_NUMBER + "12-123 "
             + PREFIX_ROOM_TYPE + "CORRIDOR_AC "
-            + PREFIX_ROOM_OCCUPANCY_STATUS + "Y "
             + PREFIX_ROOM_TAG + "SHN";
 
     public static final String MESSAGE_SUCCESS = "New room added: %1$s";

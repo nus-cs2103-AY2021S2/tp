@@ -5,7 +5,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.room.EditRoomCommand.EditRoomDescriptor;
-import seedu.address.model.room.IsOccupied;
 import seedu.address.model.room.Room;
 import seedu.address.model.room.RoomNumber;
 import seedu.address.model.room.RoomType;
@@ -49,14 +48,6 @@ public class EditRoomDescriptorBuilder {
      */
     public EditRoomDescriptorBuilder withRoomType(String roomType) {
         descriptor.setRoomType(new RoomType(roomType));
-        return this;
-    }
-
-    /**
-     * Sets the {@code IsOccupied} of the {@code EditRoomDescriptorBuilder} that we are building.
-     */
-    public EditRoomDescriptorBuilder withOccupancyStatus(String isOccupied) {
-        descriptor.setIsOccupied(new IsOccupied(isOccupied));
         return this;
     }
 

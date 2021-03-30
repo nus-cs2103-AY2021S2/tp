@@ -286,7 +286,7 @@ Format: `idel INDEX`
 Example:
 * `idel 1` Deletes the 1st issue.
 
-### View Command History : `history`
+### View command history : `history`
 
 Displays the user's valid command history, sorted from most to least recent.
 
@@ -313,7 +313,7 @@ Exits the program.
 
 Format: `exit`
 
-### Access Command History
+### Access command history
 
 Previous successful commands can be accessed via the UP and DOWN arrow keys on the keyboard. UP selects the previous command. DOWN selects the next command.
 
