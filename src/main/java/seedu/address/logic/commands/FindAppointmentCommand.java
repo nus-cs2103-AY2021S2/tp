@@ -1,13 +1,15 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.function.Predicate;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
 
-import java.util.function.Predicate;
 
-import static java.util.Objects.requireNonNull;
 
 public class FindAppointmentCommand extends Command {
     public static final String COMMAND_WORD = "findAppt";
@@ -38,7 +40,8 @@ public class FindAppointmentCommand extends Command {
         requireNonNull(model);
         model.updateFilteredAppointmentList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+                String.format(Messages.MESSAGE_APPOINTMENTS_LISTED_OVERVIEW,
+                        model.getFilteredAppointmentList().size()));
 
     }
 }
