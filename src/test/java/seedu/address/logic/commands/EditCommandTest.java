@@ -173,6 +173,31 @@ public class EditCommandTest {
         // different descriptor -> returns false
         assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_PERSON, DESC_BOB,
                 EditCommand.EditPolicyMode.REPLACE)));
+
+        // different edit policy mode -> returns false
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_PERSON, DESC_BOB,
+                EditCommand.EditPolicyMode.MODIFY)));
+
+        final EditCommand modifyCommand = new EditCommand(INDEX_FIRST_PERSON, DESC_AMY,
+                EditCommand.EditPolicyMode.MODIFY);
+
+        // same object -> returns true
+        assertTrue(modifyCommand.equals(modifyCommand));
+
+        // different index -> returns false
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_PERSON, DESC_AMY,
+                EditCommand.EditPolicyMode.MODIFY)));
+
+        // null -> returns false
+        assertFalse(modifyCommand.equals(null));
+
+        // different descriptor -> returns false
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_PERSON, DESC_BOB,
+                EditCommand.EditPolicyMode.MODIFY)));
+
+        // same command -> returns true
+        assertTrue(modifyCommand.equals(new EditCommand(INDEX_FIRST_PERSON, copyDescriptor,
+                EditCommand.EditPolicyMode.MODIFY)));
     }
 
 }

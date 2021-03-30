@@ -167,7 +167,8 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+                && editPersonDescriptor.equals(e.editPersonDescriptor)
+                && editPolicyMode.equals(e.editPolicyMode);
     }
 
     public enum EditPolicyMode {

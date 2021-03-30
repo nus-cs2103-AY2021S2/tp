@@ -39,7 +39,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setEmail(person.getEmail().get());
         descriptor.setAddress(person.getAddress().get());
         descriptor.setTags(person.getTags());
-        descriptor.setPolicies(person.getPolicies());
+        descriptor.setPoliciesToAdd(person.getPolicies());
     }
 
     /**
@@ -90,7 +90,7 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withPolicies(String... policyIds) {
         List<InsurancePolicy> policyList = Stream.of(policyIds).map(InsurancePolicy::new).collect(Collectors.toList());
-        descriptor.setPolicies(policyList);
+        descriptor.setPoliciesToAdd(policyList);
         return this;
     }
 
