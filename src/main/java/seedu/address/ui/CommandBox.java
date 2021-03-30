@@ -41,6 +41,21 @@ public class CommandBox extends UiPart<Region> {
     @FXML
     private void handleCommandEntered() {
         String commandText = commandTextField.getText();
+        handleToggleInput();
+        if (commandText.equals("")) {
+            return;
+        }
+
+        try {
+            commandExecutor.execute(commandText);
+            commandTextField.setText("");
+        } catch (CommandException | ParseException e) {
+            setStyleToIndicateCommandFailure();
+        }
+
+    }
+
+    private void handleToggleInput() {
         commandTextField.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent ke) {
@@ -53,21 +68,9 @@ public class CommandBox extends UiPart<Region> {
                     commandTextField.setText(InputCommandStorage.retrieveInput(false));
 
                 }
-
                 ke.consume();
             }
         });
-
-        if (commandText.equals("")) {
-            return;
-        }
-
-        try {
-            commandExecutor.execute(commandText);
-            commandTextField.setText("");
-        } catch (CommandException | ParseException e) {
-            setStyleToIndicateCommandFailure();
-        }
     }
 
     /**
