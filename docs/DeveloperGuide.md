@@ -102,6 +102,8 @@ keeping records of food options tasted in the vicinity of NUS.
 * can type fast and prefers typing to mouse interactions
 
 * is reasonably comfortable using CLI apps
+  
+* occasionally prefers to use ui for certain tasks
 
 
 **Value proposition**:
@@ -129,6 +131,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *` | User deciding to revisit a place | Expand all the reviews of an entry | Read all the reviews in a glance           |
 | `* *`   | User frequently revisiting a place                          | Add multiple reviews to a single place           | Store all my food experiences with the place   |
 | `* *`   | User who wants to eat good food at an affordable price           | Search for places that match both the rating and price that I want | visit the best food places without overspending
+| `* * *`   | User who made a mistake in an entry           | Perform revisions and updates to the entry | keep accurate and up-to-date information of food places
+
 
 *{More to be added}*
 
@@ -280,6 +284,24 @@ Use case ends.
     * 1a2. User enters correct syntax
     
     Use case resumes from step 2.
+
+**UC09: Revise an Entry**
+
+**MSS**
+1. User requests to revise a specific entry
+2. Food Diary checks requested entry
+3. Food diary allows user to make revisions to the entry
+
+**Extensions**:
+* 1a. Food diary detects invalid command from user
+    * 1a1. Food Diary warns user about wrong syntax
+    * 1a2. User enters correct syntax
+
+* 2a. No entry found
+    * 2a1. Food Diary tells user that no entry was found.
+
+      Use case ends.
+    
 
 ### Non-Functional Requirements
 

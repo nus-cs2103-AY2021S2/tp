@@ -1,14 +1,15 @@
 package fooddiary.ui;
 
-import java.util.HashMap;
 import java.util.logging.Logger;
 
 import fooddiary.commons.core.GuiSettings;
 import fooddiary.commons.core.LogsCenter;
+import fooddiary.commons.core.index.Index;
 import fooddiary.logic.Logic;
 import fooddiary.logic.commands.CommandResult;
 import fooddiary.logic.commands.exceptions.CommandException;
 import fooddiary.logic.parser.exceptions.ParseException;
+import fooddiary.model.entry.Entry;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -36,6 +37,7 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private ViewWindow viewWindow;
+    private ReviseWindow reviseWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -69,6 +71,7 @@ public class MainWindow extends UiPart<Stage> {
 
         helpWindow = new HelpWindow();
         viewWindow = new ViewWindow();
+        reviseWindow = new ReviseWindow();
     }
 
     public Stage getPrimaryStage() {
@@ -155,13 +158,28 @@ public class MainWindow extends UiPart<Stage> {
      * Opens the view window or focuses on it if it's already opened.
      */
     @FXML
-    public void handleView(HashMap<String, String> entryDetails) {
-        assert entryDetails != null : "Entry details are missing";
-        viewWindow.setEntryContent(entryDetails);
+    public void handleView(Entry entry) {
+        assert entry != null : "Entry is missing";
+        viewWindow.setEntryContent(entry);
         if (!viewWindow.isShowing()) {
             viewWindow.show();
         } else {
             viewWindow.focus();
+        }
+    }
+
+    /**
+     * Opens the revise window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleRevise(Entry entry, Index index) {
+        assert entry != null : "Entry is missing";
+        assert index != null : "Index is missing";
+        reviseWindow.setEntryContent(entry, index, this);
+        if (!reviseWindow.isShowing()) {
+            reviseWindow.show();
+        } else {
+            reviseWindow.focus();
         }
     }
 
@@ -191,7 +209,8 @@ public class MainWindow extends UiPart<Stage> {
      *
      * @see Logic#execute(String)
      */
-    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+    @FXML
+    protected CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
@@ -201,10 +220,16 @@ public class MainWindow extends UiPart<Stage> {
                 handleHelp();
             }
 
-            if (commandResult.isViewEntry()) {
-                handleView(commandResult.getEntryDetails());
+            if (commandResult.isEnableView()) {
+                handleView(commandResult.getEntry());
             } else {
                 viewWindow.hide();
+            }
+
+            if (commandResult.isReviseEntry()) {
+                handleRevise(commandResult.getEntry(), commandResult.getIndex());
+            } else {
+                reviseWindow.hide();
             }
 
             if (commandResult.isExit()) {
