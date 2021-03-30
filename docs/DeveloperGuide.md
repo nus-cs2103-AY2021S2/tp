@@ -142,7 +142,7 @@ This feature is facilitated by `ListStudentCommand` which extends `Command`.
 The method `ListStudentCommand#execute` updates the filtered student list by calling the method
 `Model#updateFilteredStudentList` exposed in the `Model` interface.
 
-Given below is an example of how the list student 
+Given below is an example of how the list student
 1. The user executes the list student command with the input `list_student`.
 2. `LogicManager` executes the input and parses the command using `AddressBookParser`.
 3. `AddressBookParser` identifies the correct command and creates a new `ListStudentCommand`.
@@ -150,12 +150,12 @@ Given below is an example of how the list student
 5. `LogicManager` executes the `ListStudentCommand`.
 6. `ListStudentCommand` now calls `Model` to update the `filteredStudentList` to show all students.
 
-The following sequence diagram shows the interactions when user executes the `list_student` command:  
+The following sequence diagram shows the interactions when user executes the `list_student` command:
 ![ListStudentSequenceDiagram](images/choonwei/ListStudentSequenceDiagram.png)
 
 NOTE: The lifeline of `ListStudentCommand` should end at the cross but is not shown due to the limitations of PlantUML.
 
-The following activity diagram summarizes what happens when a user executes the `list_student` command.  
+The following activity diagram summarizes what happens when a user executes the `list_student` command.
 ![ListStudentActivityDiagram](images/choonwei/ListStudentActivityDiagram.png)
 
 ### Add Student Feature
