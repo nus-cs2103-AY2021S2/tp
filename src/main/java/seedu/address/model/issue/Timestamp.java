@@ -6,6 +6,10 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.logging.Logger;
+import java.util.Locale;
+
+import seedu.address.commons.core.LogsCenter;
 
 /**
  * Represents an issue's timestamp in SunRez. Guarantees: immutable; is valid as
@@ -13,9 +17,14 @@ import java.time.format.DateTimeParseException;
  */
 public class Timestamp implements Comparable<Timestamp> {
 
+    private static final Logger logger = LogsCenter.getLogger(Timestamp.class);
+
+    private static final Locale default_locale = new Locale("en", "SG");
+
     public static final String TIMESTAMP_PATTERN = "yyyy/M/d h:mma";
 
-    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(TIMESTAMP_PATTERN);
+    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(TIMESTAMP_PATTERN,
+            default_locale);
 
     public static final String MESSAGE_CONSTRAINTS = "Timestamps should be in the format "
             + TIMESTAMP_PATTERN + ", and it should not be blank";
@@ -49,6 +58,7 @@ public class Timestamp implements Comparable<Timestamp> {
             LocalDateTime.parse(test.toUpperCase(), FORMATTER);
             return true;
         } catch (DateTimeParseException dtpe) {
+            logger.warning("Invalid timestamp given: " + dtpe.getMessage());
             return false;
         }
     }

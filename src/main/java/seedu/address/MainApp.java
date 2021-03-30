@@ -56,17 +56,14 @@ public class MainApp extends Application {
         logger.info("=============================[ Initializing AddressBook ]===========================");
         super.init();
 
-        Locale sgLocale = new Locale("en", "SG");
-        Locale.setDefault(sgLocale);
-
         AppParameters appParameters = AppParameters.parse(getParameters());
         config = initConfig(appParameters.getConfigPath());
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        CommandHistoryStorage commandHistoryStorage =
-                new PlainTextCommandHistoryStorage(userPrefs.getCommandHistoryFilePath());
+        CommandHistoryStorage commandHistoryStorage = new PlainTextCommandHistoryStorage(
+                userPrefs.getCommandHistoryFilePath());
         storage = new StorageManager(addressBookStorage, userPrefsStorage, commandHistoryStorage);
 
         initLogging(config);

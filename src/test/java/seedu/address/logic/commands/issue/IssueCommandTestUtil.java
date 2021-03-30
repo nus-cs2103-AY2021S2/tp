@@ -25,7 +25,7 @@ public class IssueCommandTestUtil {
     public static final String VALID_ISSUE_ROOM_NUMBER_20_109 = "20-109";
     public static final String VALID_ISSUE_DESCRIPTION_20_109 = "Flickering light";
     public static final String VALID_ISSUE_TIMESTAMP_20_109 = "2021/03/20 8:35am";
-    public static final String VALID_ISSUE_STATUS_20_109 = "pending";
+    public static final String VALID_ISSUE_STATUS_20_109 = "closed";
     public static final String VALID_ISSUE_CATEGORY_20_109 = "Electrical";
 
     public static final String ROOM_NUMBER_DESC_10_100 = " " + PREFIX_ROOM_NUMBER + VALID_ISSUE_ROOM_NUMBER_10_100;
