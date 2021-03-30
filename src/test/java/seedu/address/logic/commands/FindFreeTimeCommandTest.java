@@ -3,6 +3,9 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.EXAMPLE_DATE;
+import static seedu.address.logic.commands.CommandTestUtil.FREE_DATE;
+import static seedu.address.logic.commands.CommandTestUtil.NO_FREE_TIME_DATE;
 import static seedu.address.testutil.TypicalEvents.getTypicalSochedule;
 
 import java.util.ArrayList;
@@ -15,6 +18,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.common.Date;
 
+
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
  * {@code DeleteTaskCommand}.
@@ -25,7 +29,7 @@ public class FindFreeTimeCommandTest {
 
     @Test
     public void execute_validDateNoFreeTime_success() {
-        Date exampleDate = new Date("2021-03-16");
+        Date exampleDate = new Date(NO_FREE_TIME_DATE);
         FindFreeTimeCommand findFreeTimeCommand = new FindFreeTimeCommand(exampleDate);
         String expectedMessage = findFreeTimeCommand.MESSAGE_NO_FREE_TIME;
         try {
@@ -38,7 +42,7 @@ public class FindFreeTimeCommandTest {
 
     @Test
     public void execute_validDateAllDayFree_success() {
-        Date exampleDate = new Date("2025-03-16");
+        Date exampleDate = new Date(FREE_DATE);
         ArrayList<String> actual = model.getFreeTimeSlots(exampleDate);
         ArrayList<String> expected = new ArrayList<>();
         expected.add("The entire day is free!");
@@ -47,8 +51,8 @@ public class FindFreeTimeCommandTest {
 
     @Test
     public void equals() {
-        Date exampleDateOne = new Date("2025-03-16");
-        Date exampleDateTwo = new Date("2025-03-17");
+        Date exampleDateOne = new Date(FREE_DATE);
+        Date exampleDateTwo = new Date(EXAMPLE_DATE);
         FindFreeTimeCommand findFreeTimeCommandOne = new FindFreeTimeCommand(exampleDateOne);
         FindFreeTimeCommand findFreeTimeCommandTwo = new FindFreeTimeCommand(exampleDateTwo);
 

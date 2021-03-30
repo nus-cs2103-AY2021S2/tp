@@ -97,6 +97,10 @@ public class CommandTestUtil {
     public static final String INVALID_ENDDATE_DESC = " " + PREFIX_ENDDATE + "199*-01-02"; // not allowed in date
     public static final String INVALID_ENDDATEPAST_DESC = " " + PREFIX_ENDDATE + "1998-01-02"; // not allowed in date
     public static final String INVALID_ENDTIME_DESC = " " + PREFIX_ENDTIME + "1@:05"; // not allowed in time
+    // Dates
+    public static final String NO_FREE_TIME_DATE = "2021-03-16";
+    public static final String FREE_DATE = "2025-03-16";
+    public static final String EXAMPLE_DATE = "2025-03-17";
 
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
