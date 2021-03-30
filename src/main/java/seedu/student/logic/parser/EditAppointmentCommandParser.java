@@ -13,22 +13,21 @@ import seedu.student.logic.parser.exceptions.ParseException;
 import seedu.student.model.student.MatriculationNumber;
 
 public class EditAppointmentCommandParser implements Parser<EditAppointmentCommand> {
+    private static int INDEX_OF_MATRIC = 1;
 
     @Override
     public EditAppointmentCommand parse(String args) throws ParseException {
-        //assert args.length() >= 2
+        assert args.length() >= 3;
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_MATRICULATION_NUMBER, PREFIX_DATE, PREFIX_START_TIME);
-        if (!arePrefixesPresent(argMultimap, PREFIX_MATRICULATION_NUMBER, PREFIX_DATE, PREFIX_START_TIME)
-                || !argMultimap.getPreamble().isEmpty()) {
+                ArgumentTokenizer.tokenize(args, PREFIX_DATE, PREFIX_START_TIME);
+        if (!arePrefixesPresent(argMultimap, PREFIX_DATE, PREFIX_START_TIME)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     EditAppointmentCommand.MESSAGE_USAGE));
         }
-
         MatriculationNumber matriculationNumber;
 
         try {
-            matriculationNumber = ParserUtil.parseMatric(argMultimap.getValue(PREFIX_MATRICULATION_NUMBER).get());
+            matriculationNumber = ParserUtil.parseMatric(args.split(" ")[INDEX_OF_MATRIC]);
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditAppointmentCommand.MESSAGE_USAGE), pe);

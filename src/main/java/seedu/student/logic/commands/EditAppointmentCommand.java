@@ -26,10 +26,9 @@ public class EditAppointmentCommand extends Command {
             + "by the index number used in the displayed student list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: Matriculation Number "
-            + PREFIX_MATRICULATION_NUMBER + "MATRICULATION NUMBER "
-            + "[" + PREFIX_DATE + "DATE] "
-            + "[" + PREFIX_START_TIME + " START TIME] \n"
-            + "Example: " + PREFIX_MATRICULATION_NUMBER + " A01234567X "
+            + PREFIX_DATE + "DATE "
+            + PREFIX_START_TIME + " START TIME \n"
+            + "Example: " + COMMAND_WORD + " A01234567X "
             + PREFIX_DATE + "2021-03-25 "
             + PREFIX_START_TIME + "11:00 \n";
 
