@@ -58,7 +58,7 @@ public class FindCommand extends Command {
             return new CommandResult(String.format(Messages.MESSAGE_NONEXISTENT_APPOINTMENT,
                     model.getFilteredStudentList().size()));
         } else {
-            return new CommandResult(String.format(Messages.MESSAGE__STUDENTS_AND_APPOINTMENT_FOUND,
+            return new CommandResult(String.format(Messages.MESSAGE_STUDENTS_AND_APPOINTMENT_FOUND,
                     predicate.getKeyword()));
         }
     }
