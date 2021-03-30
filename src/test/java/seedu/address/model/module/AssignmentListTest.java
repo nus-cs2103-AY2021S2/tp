@@ -225,4 +225,19 @@ public class AssignmentListTest {
         assignments2 = new AssignmentList(List.of(assignment1Copy, assignment2Copy));
         assertEquals(assignments1, assignments2);
     }
+
+    @Test
+    public void testToString() {
+        AssignmentList assignments1 = new AssignmentList();
+        // empty list -> returns true
+        assertTrue(assignments1.toString().equals(AssignmentList.NO_ASSIGNMENTS_OUTPUT));
+
+        // non-empty list -> returns true
+        assignments1.add(assignment1);
+        assignments1.add(assignment2);
+        String output = "Assignment: \n"
+                + "1. " + assignment1.toString() + "\n"
+                + "2. " + assignment2.toString() + "\n";
+        assertTrue(assignments1.toString().equals(output));
+    }
 }
