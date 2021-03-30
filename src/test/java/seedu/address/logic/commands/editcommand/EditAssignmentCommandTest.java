@@ -196,7 +196,7 @@ public class EditAssignmentCommandTest {
                                                                                 descriptionEdit, null);
         assertTrue(standardCommandDescription.equals(commandWithSameValuesDesc));
 
-        // same values for description edit -> returns true
+        // same values for date edit -> returns true
         EditAssignmentCommand commandWithSameValuesDate = new EditAssignmentCommand(target,
                                                                                 INDEX_FIRST_MODULE.getOneBased(),
                                                                                 null, dateEdit);
@@ -213,6 +213,15 @@ public class EditAssignmentCommandTest {
         // different types -> returns false
         assertFalse(standardCommandDescription.equals(new ClearModulesCommand()));
         assertFalse(standardCommandDate.equals(new ClearModulesCommand()));
+
+        // different targets -> returns false
+        Module diffTarget = new ModuleBuilder().withTitle("DIFF MOD").emptyBuild();
+        assertFalse(standardCommandDescription.equals(new EditAssignmentCommand(diffTarget,
+                                                                                INDEX_FIRST_ASSIGNMENT.getOneBased(),
+                                                                                descriptionEdit, null)));
+        assertFalse(standardCommandDate.equals(new EditAssignmentCommand(diffTarget,
+                                                                            INDEX_FIRST_ASSIGNMENT.getOneBased(),
+                                                                            null, dateEdit)));
 
         // different index -> returns false
         assertFalse(standardCommandDescription.equals(new EditAssignmentCommand(target,
