@@ -124,9 +124,10 @@ public class EditCommand extends Command {
         Notes updatedNotes = editPersonDescriptor.getNotes().orElse(personToEdit.getNotes());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         SubjectList updatedSubjectList = editPersonDescriptor.getSubjectList().orElse(personToEdit.getSubjectList());
+        boolean isFavourite = editPersonDescriptor.getIsFavourite().orElse(personToEdit.isFavourite());
 
         return new Person(updatedName, updatedGender, updatedPhone, updatedEmail, updatedAddress,
-                updatedNotes, updatedSubjectList, updatedTags);
+                updatedNotes, updatedSubjectList, updatedTags, isFavourite);
     }
 
     @Override
@@ -161,6 +162,8 @@ public class EditCommand extends Command {
         private Set<Tag> tags;
         private SubjectList subjectList;
 
+        private Boolean isFavourite;
+
         public EditPersonDescriptor() {}
 
         /**
@@ -176,13 +179,14 @@ public class EditCommand extends Command {
             setNotes(toCopy.notes);
             setTags(toCopy.tags);
             setSubjectList(toCopy.subjectList);
+            setIsFavourite(toCopy.isFavourite);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, gender, phone, email, address, tags, subjectList);
+            return CollectionUtil.isAnyNonNull(name, gender, phone, email, address, notes, tags, subjectList);
         }
 
         public void setName(Name name) {
@@ -258,6 +262,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(subjectList);
         }
 
+        public void setIsFavourite(Boolean isFavourite) {
+            this.isFavourite = isFavourite;
+        }
+
+        public Optional<Boolean> getIsFavourite() {
+            return Optional.ofNullable(isFavourite);
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -293,7 +305,8 @@ public class EditCommand extends Command {
                     && getAddress().equals(e.getAddress())
                     && getNotes().equals(e.getNotes())
                     && getTags().equals(e.getTags())
-                    && subjectList.equals(otherSubjectList);
+                    && subjectList.equals(otherSubjectList)
+                    && getIsFavourite().equals(e.getIsFavourite());
         }
     }
 }
