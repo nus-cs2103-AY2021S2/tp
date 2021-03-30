@@ -5,8 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.FileNotFoundException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 import org.junit.jupiter.api.Test;
 
@@ -15,11 +13,11 @@ import seedu.address.ui.exceptions.InvalidThemeException;
 
 public class ThemeFactoryTest {
 
-    private static final Path VALID_PATH = Paths.get("src/test/data/ThemeTest/valid.theme.json");
-    private static final Path NOT_EXIST_PATH = Paths.get("abc");
-    private static final Path INVALID_CONTENT_PATH = Paths.get("src/test/data/ThemeTest/invalid.content.txt");
-    private static final Path INVALID_THEME_PATH = Paths.get("src/test/data/ThemeTest/invalid.theme.json");
-    private static final Path INVALID_JSON_PATH = Paths.get("src/test/data/ThemeTest/malformed.theme.json");
+    private static final String VALID_PATH = "src/test/data/ThemeTest/valid.theme.json";
+    private static final String NOT_EXIST_PATH = "abc";
+    private static final String INVALID_CONTENT_PATH = "src/test/data/ThemeTest/invalid.content.txt";
+    private static final String INVALID_THEME_PATH = "src/test/data/ThemeTest/invalid.theme.json";
+    private static final String INVALID_JSON_PATH = "src/test/data/ThemeTest/malformed.theme.json";
 
     private static final String DEFAULT_FOREGROUND = "#f8f8f2";
     private static final String DEFAULT_BACKGROUND = "#272822";
@@ -44,7 +42,8 @@ public class ThemeFactoryTest {
         assertEquals(ThemeFactory.getDefaultTheme(), t);
     }
 
-    @Test void themeFactory_loadInvalidTheme_failure() {
+    @Test
+    void themeFactory_loadInvalidTheme_failure() {
         assertThrows(FileNotFoundException.class, () -> ThemeFactory.load(NOT_EXIST_PATH),
                 new FileNotFoundException().toString());
 

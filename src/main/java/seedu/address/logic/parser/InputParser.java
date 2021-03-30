@@ -11,6 +11,7 @@ import seedu.address.logic.commands.AddDateCommand;
 import seedu.address.logic.commands.AddGroupCommand;
 import seedu.address.logic.commands.AddMeetingCommand;
 import seedu.address.logic.commands.AddPictureCommand;
+import seedu.address.logic.commands.ChangeDebtCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
@@ -105,6 +106,12 @@ public class InputParser {
 
         case DetailsCommand.COMMAND_WORD:
             return new DetailsCommandParser().parse(arguments);
+        //ChangeDebtParser takes in a boolean to indicate if the command is adding or subtracting.
+        case ChangeDebtCommand.COMMAND_WORD_ADD:
+            return new ChangeDebtParser(true).parse(arguments);
+
+        case ChangeDebtCommand.COMMAND_WORD_SUBTRACT:
+            return new ChangeDebtParser(false).parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
