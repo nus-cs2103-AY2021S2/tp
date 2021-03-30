@@ -28,7 +28,6 @@ import seedu.address.model.ObservableCalendarDate;
 
 public class CalendarPanel extends UiPart<Region> implements Observer {
     private static final String FXML = "CalendarPanel.fxml";
-    private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final ArrayList<StackPane> calendarPanes = new ArrayList<>();
     private final ObservableCalendarDate observableCalendarDate;
