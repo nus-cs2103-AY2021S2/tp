@@ -14,7 +14,7 @@ class Node {
     public Node(LogicalOperator operator, Node left, Node right) {
         this.operator = operator;
         this.filter = null;
-        this.nodeType = NodeType.EVALUATOR;
+        this.nodeType = NodeType.COMBINATOR;
         this.left = left;
         this.right = right;
     }
@@ -22,7 +22,7 @@ class Node {
     public Node(AbstractFilter filter) {
         this.operator = null;
         this.filter = filter;
-        this.nodeType = NodeType.COMBINATOR;
+        this.nodeType = NodeType.EVALUATOR;
         this.left = null;
         this.right = null;
     }
@@ -76,5 +76,29 @@ class Node {
 
     public void setChild(Node node) {
         this.setLeftNode(node);
+    }
+
+    public boolean hasUnaryOperator() {
+        if (nodeType != NodeType.COMBINATOR) {
+            return false;
+        }
+        assert operator != null;
+        return operator.isUnaryOperator();
+    }
+
+    public boolean hasBinaryOperator() {
+        if (nodeType != NodeType.COMBINATOR) {
+            return false;
+        }
+        assert operator != null;
+        return operator.isBinaryOperator();
+    }
+
+    public boolean hasChildren() {
+        return !(left == null && right == null);
+    }
+
+    public String toString() {
+        return nodeType.toString() + ":" + operator + " " + filter + ": {" + left + "}{" + right + "}";
     }
 }

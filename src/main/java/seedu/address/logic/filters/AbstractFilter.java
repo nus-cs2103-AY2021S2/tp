@@ -14,4 +14,8 @@ public abstract class AbstractFilter {
     public abstract boolean test(Customer customer);
 
     public abstract List<Customer> filterAllCustomers(List<Customer> customer);
+
+    public String toString() {
+        return filterString;
+    }
 }
