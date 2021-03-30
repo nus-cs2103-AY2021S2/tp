@@ -290,6 +290,15 @@ public class Project {
     }
 
     /**
+     * Returns {@code events} as an {@code SortedList<Event>}
+     *
+     * @return A {@code SortedList<Event>}
+     */
+    public SortedList<Event> getSortedEvents() {
+        return events.getSortedEventList();
+    }
+
+    /**
      * Returns true if both projects have the same identity and data fields.
      * This defines a stronger notion of equality between two projects.
      */
@@ -321,7 +330,7 @@ public class Project {
         final StringBuilder builder = new StringBuilder();
         builder.append(getProjectName());
 
-        List<Event> events = getEvents().getEvents();
+        List<Event> events = getEvents().getSortedEventList();
         if (!events.isEmpty()) {
             builder.append("; Events: ");
             events.forEach(builder::append);

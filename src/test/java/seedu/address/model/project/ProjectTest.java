@@ -155,11 +155,11 @@ public class ProjectTest {
 
     @Test void addEvent_success() {
         Project project = new ProjectBuilder().withName(CS1101S_NAME.toString()).build();
-        assertEquals(0, project.getEvents().getEvents().size());
+        assertEquals(0, project.getEvents().getSortedEventList().size());
         Event event = new Event("event", LocalDate.now(), LocalTime.now(), false);
         project.addEvent(event);
-        assertEquals(1, project.getEvents().getEvents().size());
-        assertEquals(event, project.getEvents().getEvents().get(INDEX_FIRST.getZeroBased()));
+        assertEquals(1, project.getEvents().getSortedEventList().size());
+        assertEquals(event, project.getEvents().getSortedEventList().get(INDEX_FIRST.getZeroBased()));
     }
 
     @Test void addTodo_success() {
@@ -184,9 +184,9 @@ public class ProjectTest {
         EventList eventList = new EventList();
         eventList.addEvent(new Event("event", LocalDate.now(), LocalTime.now(), false));
         Project project = new ProjectBuilder().withName(CS1101S_NAME.toString()).withEventList(eventList).build();
-        assertEquals(1, project.getEvents().getEvents().size());
+        assertEquals(1, project.getEvents().getSortedEventList().size());
         project.deleteEvent(INDEX_FIRST.getZeroBased());
-        assertEquals(0, project.getEvents().getEvents().size());
+        assertEquals(0, project.getEvents().getSortedEventList().size());
     }
 
     @Test void deleteTodo_success() {
@@ -264,7 +264,7 @@ public class ProjectTest {
         final StringBuilder builder = new StringBuilder();
         builder.append(CS1101S_NAME.toString());
         builder.append("; Events: ");
-        builder.append(eventList.getEvents().get(0).toString());
+        builder.append(eventList.getSortedEventList().get(0).toString());
         builder.append("; Todos: ");
         builder.append(todoList.getTodos().get(0).toString());
         builder.append("; Deadlines: ");

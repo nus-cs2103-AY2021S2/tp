@@ -19,7 +19,7 @@ public class EventListTest {
     @Test
     public void constructor_empty_createEmptyEventList() {
         EventList emptyEventList = new EventList();
-        assertTrue(emptyEventList.getEvents().isEmpty());
+        assertTrue(emptyEventList.getSortedEventList().isEmpty());
     }
 
     @Test
@@ -41,7 +41,7 @@ public class EventListTest {
         ArrayList<Event> events = new ArrayList<>();
         events.add(event);
         EventList eventList = new EventList(events);
-        assertEquals(events, eventList.getEvents());
+        assertEquals(events, eventList.getSortedEventList());
     }
 
     @Test

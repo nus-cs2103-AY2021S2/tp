@@ -72,7 +72,7 @@ public class DeleteDeadlineCommandTest {
         );
 
         Index lastDeadlineIndex = Index.fromOneBased(
-                model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased()).getDeadlines().getSortedDeadlineList().size());
+                model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased()).getDeadlines().size());
 
         DeleteDeadlineCommand deleteDeadlineCommand = new DeleteDeadlineCommand(INDEX_THIRD, lastDeadlineIndex);
 
@@ -129,9 +129,9 @@ public class DeleteDeadlineCommandTest {
         );
 
         Index lastDeadlineFromProject1 = Index.fromOneBased(
-                model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased()).getDeadlines().getSortedDeadlineList().size());
+                model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased()).getDeadlines().size());
         Index lastDeadlineFromProject2 = Index.fromOneBased(
-                model.getFilteredProjectList().get(INDEX_SECOND.getZeroBased()).getDeadlines().getSortedDeadlineList().size());
+                model.getFilteredProjectList().get(INDEX_SECOND.getZeroBased()).getDeadlines().size());
 
         DeleteDeadlineCommand deleteDeadlineFromProject1Command = new DeleteDeadlineCommand(
                 INDEX_FIRST, lastDeadlineFromProject1);
