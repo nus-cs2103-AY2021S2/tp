@@ -194,6 +194,11 @@ public class UserInputParser {
          * command string and its corresponding minimum edit distance
          */
         private static Pair<String, Integer> getMinEditDistance(String knownCommand, String unknownCommand) {
+            // terminate early if the minimum edit distance is confirmed to be more than MAX_EDIT_DISTANCE
+            if (Math.abs(knownCommand.length() - unknownCommand.length()) > MAX_EDIT_DISTANCE) {
+                return new Pair<>(knownCommand, MAX_EDIT_DISTANCE + 1);
+            }
+
             // @@author onnwards-reused
             // minimum edit distance algorithm reused from
             // https://www.geeksforgeeks.org/java-program-to-implement-levenshtein-distance-computing-algorithm/
