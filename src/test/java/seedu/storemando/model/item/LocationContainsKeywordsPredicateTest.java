@@ -42,38 +42,35 @@ public class LocationContainsKeywordsPredicateTest {
     }
 
     @Test
-    public void test_locationContainsKeywords() {
+    public void test_locationContainsAllKeywords() {
         // One keyword
         LocationContainsKeywordsPredicate predicate =
-            new LocationContainsKeywordsPredicate(Collections.singletonList("Apple"));
-        assertTrue(predicate.test(new ItemBuilder().withLocation("Apple Banana").build()));
+            new LocationContainsKeywordsPredicate(Collections.singletonList("Basket"));
+        assertTrue(predicate.test(new ItemBuilder().withLocation("Kitchen Basket").build()));
 
         // Multiple keywords
-        predicate = new LocationContainsKeywordsPredicate(Arrays.asList("Apple", "Banana"));
-        assertTrue(predicate.test(new ItemBuilder().withLocation("Apple Banana").build()));
+        predicate = new LocationContainsKeywordsPredicate(Arrays.asList("Basket", "Kitchen"));
+        assertTrue(predicate.test(new ItemBuilder().withLocation("Kitchen Basket").build()));
 
-        // Only one matching keyword
-        predicate = new LocationContainsKeywordsPredicate(Arrays.asList("Apple", "Cherry"));
-        assertTrue(predicate.test(new ItemBuilder().withLocation("Apple Cherry").build()));
-
-        // Mixed-case keywords
-        predicate = new LocationContainsKeywordsPredicate(Arrays.asList("aPPle", "bANaNa"));
-        assertTrue(predicate.test(new ItemBuilder().withLocation("Apple Banana").build()));
-
-        // Not all matching keywords
-        predicate = new LocationContainsKeywordsPredicate(Arrays.asList("Apple", "Cherry"));
-        assertFalse(predicate.test(new ItemBuilder().withLocation("Apple").build()));
     }
 
     @Test
-    public void test_locationDoesNotContainKeywords() {
+    public void test_locationDoesNotContainAllKeywords() {
         // Zero keywords
         LocationContainsKeywordsPredicate predicate = new LocationContainsKeywordsPredicate(Collections.emptyList());
-        assertTrue(predicate.test(new ItemBuilder().withLocation("Apple").build()));
+        assertTrue(predicate.test(new ItemBuilder().withLocation("Kitchen Basket").build()));
 
         // Non-matching keyword
-        predicate = new LocationContainsKeywordsPredicate(Arrays.asList("Cherry"));
-        assertFalse(predicate.test(new ItemBuilder().withLocation("Apple Banana").build()));
+        predicate = new LocationContainsKeywordsPredicate(Arrays.asList("Hall"));
+        assertFalse(predicate.test(new ItemBuilder().withLocation("Kitchen Basket").build()));
+
+        // Mixed-case keywords
+        predicate = new LocationContainsKeywordsPredicate(Arrays.asList("KiTcHeN", "BaSkEt"));
+        assertFalse(predicate.test(new ItemBuilder().withLocation("Kitchen Basket").build()));
+
+        //Location does not match all keywords
+        predicate = new LocationContainsKeywordsPredicate(Arrays.asList("Kitchen", "Hall"));
+        assertFalse(predicate.test(new ItemBuilder().withLocation("Kitchen Basket").build()));
 
         // Keywords match quantity, expirydate and name, but does not match location
         predicate = new LocationContainsKeywordsPredicate(Arrays.asList("Alice", "2020-01-11", "Living", "Room"));
