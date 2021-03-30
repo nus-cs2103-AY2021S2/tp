@@ -1,0 +1,56 @@
+#calendar {
+    -fx-alignment: center;
+}
+
+/* days in the week */
+#calendarDays .label {
+    -fx-text-fill: #999999;
+    -fx-font-size: 12pt;
+    -fx-font-weight: bold;
+}
+
+.calendarDiffMonthDates {
+    -fx-text-fill: #878787;
+    -fx-alignment: center;
+    -fx-padding: 7 7 7 7;
+}
+
+.calendarStandardDates {
+    -fx-text-fill: white;
+    -fx-alignment: center;
+    -fx-padding: 7 7 7 7;
+}
+
+#calendarTitlePanel .button:hover {
+    -fx-background-color: #636363;
+}
+
+#calendarTitlePanel .button:pressed {
+    -fx-background-color: #949494;
+}
+
+#monthYearLabel {
+    -fx-padding: 0 10 0 10;
+    -fx-text-fill: white;
+    -fx-font-size: 15pt;
+    -fx-font-weight: bold;
+}
+
+#prevButton, #nextButton {
+    -fx-padding: 2 5 2 5;
+    -fx-font-size: 12pt;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-background-color: transparent;
+    -fx-border-radius: 3;
+}
+
+.currentDate {
+    -fx-background-color: red;
+}
+
+.viewingDate {
+    -fx-background-color: black;
+    -fx-border-width: 5px;
+    -fx-border-color: blue;
+}

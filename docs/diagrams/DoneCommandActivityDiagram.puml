@@ -1,0 +1,33 @@
+@startuml
+start
+:User executes command;
+
+if () then ([is valid command])
+
+    if () then ([Status is 'done'])
+    :Throw new
+    CommandException;
+    :Display task already
+    done message;
+
+    else ([Status is 'not done'])
+    :Create new Task with
+    Status attibute set
+    to 'done';
+    :Update model with the
+    new Task;
+    :Return doneCommand
+    success message;
+    endif
+
+else if () then ([invalid parameter])
+    :Display invalid
+    index message;
+
+else ([invalid command])
+    :Display unknown
+    command message;
+
+endif
+stop
+@enduml

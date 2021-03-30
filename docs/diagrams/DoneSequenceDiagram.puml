@@ -1,0 +1,50 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":PlannerParser" as PlannerParser LOGIC_COLOR
+participant ":DoneCommandParser" as DoneCommandParser LOGIC_COLOR
+participant "d:DoneCommand" as DoneCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+[-> LogicManager : execute(done)
+activate LogicManager
+
+LogicManager -> PlannerParser : parseCommand(done)
+activate PlannerParser
+
+PlannerParser -> DoneCommandParser : parse(args)
+activate DoneCommandParser
+
+create DoneCommand
+DoneCommandParser -> DoneCommand
+activate DoneCommand
+
+DoneCommand --> DoneCommandParser
+deactivate DoneCommand
+
+DoneCommandParser --> PlannerParser : d
+deactivate DoneCommandParser
+
+PlannerParser --> LogicManager : d
+deactivate PlannerParser
+
+LogicManager -> DoneCommand : execute(model)
+activate DoneCommand
+
+DoneCommand -> Model : setTask(targetTask, updatedTask)
+
+DoneCommand -> Model : updateFilteredTaskList()
+
+DoneCommand --> LogicManager : result
+deactivate DoneCommand
+DoneCommand -[hidden]-> LogicManager : result
+destroy DoneCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

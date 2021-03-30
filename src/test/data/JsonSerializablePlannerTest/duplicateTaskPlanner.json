@@ -1,0 +1,18 @@
+{
+  "tasks": [ {
+    "title": "Alice Pauline",
+    "date": "12/10/2021",
+    "duration": "12:30-13:30",
+    "recurringSchedule": "[08/06/2021][Tue][weekly]",
+    "description": "123, Jurong West Ave 6, #08-111",
+    "status": "done",
+    "tagged": [ "friends" ]
+  }, {
+    "title": "Alice Pauline",
+    "date": "12/10/2021",
+    "duration": "12:30-13:30",
+    "recurringSchedule": "[08/06/2021][Tue][weekly]",
+    "description": "4th street",
+    "status": "done"
+  } ]
+}

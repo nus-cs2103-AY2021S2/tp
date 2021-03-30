@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -9,11 +10,13 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Date;
+import seedu.address.model.task.Description;
+import seedu.address.model.task.Duration;
+import seedu.address.model.task.RecurringSchedule;
+import seedu.address.model.task.Status;
+import seedu.address.model.task.Title;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -36,63 +39,96 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String name} into a {@code Name}.
+     * Parses a {@code String title} into a {@code Title}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code name} is invalid.
+     * @throws ParseException if the given {@code title} is invalid.
      */
-    public static Name parseName(String name) throws ParseException {
-        requireNonNull(name);
-        String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+    public static Title parseTitle(String title) throws ParseException {
+        requireNonNull(title);
+        String trimmedTitle = title.trim();
+        if (!Title.isValidTitle(trimmedTitle)) {
+            throw new ParseException(Title.MESSAGE_CONSTRAINTS);
         }
-        return new Name(trimmedName);
+        return new Title(trimmedTitle);
     }
 
     /**
-     * Parses a {@code String phone} into a {@code Phone}.
+     * Parses a {@code String date} into a {@code Date}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code phone} is invalid.
      */
-    public static Phone parsePhone(String phone) throws ParseException {
-        requireNonNull(phone);
-        String trimmedPhone = phone.trim();
-        if (!Phone.isValidPhone(trimmedPhone)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+    public static Date parseDate(String date) throws ParseException {
+        String trimmedDate = date.trim();
+        if (!Date.isValidDate(trimmedDate)) {
+            throw new ParseException(Date.MESSAGE_CONSTRAINTS);
         }
-        return new Phone(trimmedPhone);
+        try {
+            return new Date(trimmedDate);
+        } catch (DateTimeParseException e) {
+            throw new ParseException(Date.MESSAGE_CONSTRAINTS);
+        }
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
+     * Parses a {@code String duration} into a {@code Duration}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code address} is invalid.
+     * @throws ParseException if the given {@code phone} is invalid.
      */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+    public static Duration parseDuration(String duration) throws ParseException {
+        requireNonNull(duration);
+        String trimmedDuration = duration.trim();
+        if (!Duration.isValidDuration(trimmedDuration)) {
+            throw new ParseException(Duration.MESSAGE_CONSTRAINTS);
         }
-        return new Address(trimmedAddress);
+        return new Duration(trimmedDuration);
     }
 
     /**
-     * Parses a {@code String email} into an {@code Email}.
+     * Parses a {@code String description} into an {@code Description}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code email} is invalid.
+     * @throws ParseException if the given {@code description} is invalid.
      */
-    public static Email parseEmail(String email) throws ParseException {
-        requireNonNull(email);
-        String trimmedEmail = email.trim();
-        if (!Email.isValidEmail(trimmedEmail)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+    public static Description parseDescription(String description) throws ParseException {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        if (!Description.isValidDescription(trimmedDescription)) {
+            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
         }
-        return new Email(trimmedEmail);
+        return new Description(trimmedDescription);
+    }
+
+    /**
+     * Parses a {@code String status} into an {@code Status}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code status} is invalid.
+     */
+    public static Status parseStatus(String status) throws ParseException {
+        requireNonNull(status);
+        String trimmedStatus = status.trim();
+        if (!Status.isValidStatus(trimmedStatus)) {
+            throw new ParseException(Status.MESSAGE_CONSTRAINTS);
+        }
+        return new Status(trimmedStatus);
+    }
+
+    /**
+     * Parses a {@code String recurringSchedule} into an {@code RecurringSchedule}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code recurringSchedule} is invalid.
+     */
+    public static RecurringSchedule parseRecurringSchedule(String recurringSchedule) throws ParseException {
+        requireNonNull(recurringSchedule);
+        String trimmedRecurringSchedule = recurringSchedule.trim();
+        if (!RecurringSchedule.isValidRecurringScheduleInput(trimmedRecurringSchedule)) {
+            throw new ParseException(RecurringSchedule.MESSAGE_CONSTRAINTS);
+        }
+        return new RecurringSchedule(trimmedRecurringSchedule);
     }
 
     /**
@@ -120,5 +156,22 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String order} into a boolean option.
+     * True is returned when order is ascending.
+     * False is returned when order is descending or null
+     *
+     * @throws ParseException if the given {@code order} is invalid.
+     */
+    public static Boolean parseSort(String order) throws ParseException {
+        if (order == null || order.trim().equalsIgnoreCase("d")) {
+            return false;
+        } else if (order.trim().equalsIgnoreCase("a")) {
+            return true;
+        } else {
+            throw new ParseException("Order can only be 'a' or 'd'");
+        }
     }
 }

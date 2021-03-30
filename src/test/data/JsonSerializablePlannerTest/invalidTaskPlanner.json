@@ -1,0 +1,9 @@
+{
+  "tasks": [ {
+    "title": "Ha!ns Muster",
+    "date": "12/12/2021",
+    "duration": "12:30",
+    "recurringSchedule": "valid@l!3e",
+    "description": "4th street"
+  } ]
+}

@@ -1,0 +1,13 @@
+{
+  "tasks": [ {
+    "title": "Task With Invalid date",
+    "date": "12/10/2012",
+    "recurringSchedule": "[02/06/2021][Wed][weekly]",
+    "description": "4th street"
+  }, {
+    "title": "Valid Task",
+    "date": "12/10/2021",
+    "recurringSchedule": "[02/06/2021][Wed][weekly]",
+    "description": "4th street"
+  } ]
+}

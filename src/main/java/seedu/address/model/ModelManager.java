@@ -4,41 +4,52 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Task;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the planner data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final Planner planner;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Task> filteredTasks;
+    private final SortedList<Task> sortedTask;
+    private final SortedList<Tag> sortedTags;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given planner and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyPlanner planner, ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(planner, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with planner: " + planner + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.planner = new Planner(planner);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredTasks = new FilteredList<>(this.planner.getTaskList());
+        sortedTask = new SortedList<>(this.planner.getTaskList());
+        sortedTags = new SortedList<>(this.planner.getTagList());
+
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new Planner(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -66,67 +77,184 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getPlannerFilePath() {
+        return userPrefs.getPlannerFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setPlannerFilePath(Path plannerFilePath) {
+        requireNonNull(plannerFilePath);
+        userPrefs.setPlannerFilePath(plannerFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== Planner ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
-    }
-
-    @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public void setPlanner(ReadOnlyPlanner planner) {
+        this.planner.resetData(planner);
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public ReadOnlyPlanner getPlanner() {
+        return planner;
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+    public boolean hasTask(Task task) {
+        requireNonNull(task);
+        return planner.hasTask(task);
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public boolean dateOver(Task task) {
+        requireNonNull(task);
+        return planner.dateOver(task);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
-
-        addressBook.setPerson(target, editedPerson);
+    public void deleteTask(Task target) {
+        planner.removeTask(target);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    @Override
+    public void addTask(Task task) {
+        planner.addTask(task);
+        updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+    }
+
+    @Override
+    public void setTask(Task target, Task editedTask) {
+        requireAllNonNull(target, editedTask);
+
+        planner.setTask(target, editedTask);
+    }
+
+    @Override
+    public String countdownTask(Task task) {
+        return planner.countdown(task);
+    }
+
+    @Override
+    public boolean hasTag(Tag tag) {
+        requireNonNull(tag);
+        return planner.hasTag(tag);
+    }
+
+    @Override
+    public Tag getTag(Tag tag) {
+        requireNonNull(tag);
+        return planner.getTag(tag);
+    }
+
+    @Override
+    public void deleteTag(Tag target) {
+        planner.removeTag(target);
+    }
+
+    @Override
+    public void addTag(Tag tag) {
+        planner.addTag(tag);
+        updateSortedTagList(planner.getTagComparator());
+    }
+
+    @Override
+    public Set<Tag> addTagsIfAbsent(Set<Tag> tags) {
+        Set<Tag> uniqueTags = new HashSet<>();
+        tags.forEach(tag -> {
+            if (hasTag(tag)) {
+                uniqueTags.add(getTag(tag));
+            } else {
+                uniqueTags.add(tag);
+            }
+            addTag(tag);
+        });
+        return uniqueTags;
+    }
+
+    @Override
+    public void setTags(Set<Tag> target, Set<Tag> editedTags) {
+        requireAllNonNull(target, editedTags);
+
+        planner.setTags(target, editedTags);
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return planner.isEmpty();
+    }
+
+    @Override
+    public int size() {
+        return planner.size();
+    }
+
+    @Override
+    public double getPercentage() {
+        return planner.getPercentage();
+    }
+
+    @Override
+    public int getNumberDue() {
+        return planner.getNumberDue();
+    }
+
+    //=========== Filtered Task List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * Returns an unmodifiable view of the list of {@code Task} backed by the internal list of
+     * {@code versionedPlanner}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Task> getFilteredTaskList() {
+        return filteredTasks;
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Tag} backed by the internal list of
+     * {@code versionedPlanner}
+     */
+    @Override
+    public ObservableList<Tag> getSortedTagList() {
+        return sortedTags;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredTaskList(Predicate<Task> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredTasks.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateSortedTaskList(Comparator<Task> comparator) {
+        requireAllNonNull(comparator);
+        sortedTask.setComparator(comparator);
+        planner.setTask(sortedTask);
+    }
+
+    @Override
+    public void updateSortedTagList(Comparator<Tag> comparator) {
+        requireAllNonNull(comparator);
+        sortedTags.setComparator(comparator);
+        planner.setTags(sortedTags);
+    }
+
+    //=========== Viewing day methods =============================================================
+
+
+    @Override
+    public ObservableCalendarDate getCalendarDate() {
+        return planner.getCalendarDate();
+    }
+
+    @Override
+    public void setCalendarDate(LocalDate date) {
+        requireNonNull(date);
+        planner.setCalendarDate(date);
+    }
+
+    @Override
+    public void resetCalendarDate() {
+        planner.resetCalendarDate();
     }
 
     @Override
@@ -143,9 +271,10 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return planner.equals(other.planner)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredTasks.equals(other.filteredTasks)
+                && sortedTags.equals(other.sortedTags);
     }
 
 }

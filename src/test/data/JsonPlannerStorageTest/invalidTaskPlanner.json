@@ -1,0 +1,8 @@
+{
+  "tasks": [ {
+    "title": "Task with invalid title field: Ha!ns Mu@ster",
+    "date": "08/02/2021",
+    "recurringSchedule": "[08/06/2021][Tues][weekly]",
+    "description": "4th street"
+  } ]
+}
