@@ -14,11 +14,11 @@ class JsonAdaptedTagCategory {
     private final String tag;
 
     /**
-     * Constructs a {@code JsonAdaptedTag} with the given {@code tagName}.
+     * Constructs a {@code JsonAdaptedTagCategory} with the given {@code tagName}.
      */
     @JsonCreator
     public JsonAdaptedTagCategory(String tagName) {
-        this.tag = new TagCategory(tagName).getTag();
+        this.tag = tagName;
     }
 
     /**

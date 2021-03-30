@@ -6,6 +6,8 @@ import fooddiary.commons.util.AppUtil;
 
 public class TagSchool extends Tag {
 
+    public static final String MESSAGE_CONSTRAINTS = "Tags names should be of displayed schools.";
+
     private School school;
     private String tag;
 
@@ -17,7 +19,7 @@ public class TagSchool extends Tag {
     public TagSchool(String tag) {
         super(School.find(tag).name());
         requireNonNull(tag);
-        AppUtil.checkArgument(isValidTagName(tag), MESSAGE_CONSTRAINTS);
+        AppUtil.checkArgument(isValidTagName(tag), tag + MESSAGE_CONSTRAINTS);
         if (isValidTagName(tag)) {
             this.school = School.find(tag);
             this.tag = School.find(tag).name();

@@ -6,6 +6,8 @@ import fooddiary.commons.util.AppUtil;
 
 public class TagCategory extends Tag {
 
+    public static final String MESSAGE_CONSTRAINTS = "Tags names should be of displayed categories.";
+
     private String tag;
     private Categories category;
 

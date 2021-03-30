@@ -1,7 +1,7 @@
 package fooddiary.model.entry;
 
 import static fooddiary.logic.commands.CommandTestUtil.VALID_ADDRESS_B;
-import static fooddiary.logic.commands.CommandTestUtil.VALID_TAG_WESTERN;
+import static fooddiary.logic.commands.CommandTestUtil.VALID_TAG_CATEGORY_WESTERN;
 import static fooddiary.testutil.Assert.assertThrows;
 import static fooddiary.testutil.TypicalEntries.ENTRY_A;
 import static fooddiary.testutil.TypicalEntries.VALID_ENTRY_B;
@@ -42,7 +42,8 @@ public class UniqueEntryListTest {
     @Test
     public void contains_entryWithSameIdentityFieldsInList_returnsTrue() {
         uniqueEntryList.add(ENTRY_A);
-        Entry editedA = new EntryBuilder(ENTRY_A).withAddress(VALID_ADDRESS_B).withTagCategories(VALID_TAG_WESTERN)
+        Entry editedA = new EntryBuilder(ENTRY_A).withAddress(VALID_ADDRESS_B)
+                .withTagCategories(VALID_TAG_CATEGORY_WESTERN)
                 .build();
         assertTrue(uniqueEntryList.contains(editedA));
     }
@@ -85,7 +86,8 @@ public class UniqueEntryListTest {
     @Test
     public void setEntry_editedEntryHasSameIdentity_success() {
         uniqueEntryList.add(ENTRY_A);
-        Entry editedA = new EntryBuilder(ENTRY_A).withAddress(VALID_ADDRESS_B).withTagCategories(VALID_TAG_WESTERN)
+        Entry editedA = new EntryBuilder(ENTRY_A).withAddress(VALID_ADDRESS_B)
+                .withTagCategories(VALID_TAG_CATEGORY_WESTERN)
                 .build();
         uniqueEntryList.setEntry(ENTRY_A, editedA);
         UniqueEntryList expectedUniqueEntryList = new UniqueEntryList();
