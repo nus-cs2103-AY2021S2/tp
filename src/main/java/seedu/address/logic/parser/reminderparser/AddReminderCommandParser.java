@@ -11,9 +11,9 @@ import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.common.Description;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.reminder.ReminderDate;
-import seedu.address.model.schedule.Description;
 
 /**
  * Parses input arguments and creates a new AddReminderCommand object

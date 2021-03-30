@@ -40,10 +40,6 @@ public class EditReminderCommandParser implements Parser<EditReminderCommand> {
         }
 
         EditReminderDescriptor editReminderDescriptor = new EditReminderDescriptor();
-        if (argMultimap.getValue(PREFIX_TITLE).isPresent()) {
-            editReminderDescriptor.setTitle(ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get()));
-        }
-
 
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
             editReminderDescriptor

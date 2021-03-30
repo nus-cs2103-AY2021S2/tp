@@ -3,7 +3,6 @@ package seedu.address.logic.commands.remindercommands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_REMINDER;
 
 import java.util.List;
@@ -16,10 +15,9 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.common.Description;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.reminder.ReminderDate;
-import seedu.address.model.schedule.Description;
-import seedu.address.model.schedule.Title;
 
 /**
  * Edits the details of an existing reminder in the reminder list.
@@ -115,7 +113,6 @@ public class EditReminderCommand extends Command {
      * corresponding field value of the reminder.
      */
     public static class EditReminderDescriptor {
-        private Title title;
         private Description description;
         private ReminderDate reminderDate;
 
@@ -126,7 +123,6 @@ public class EditReminderCommand extends Command {
          * Copy constructor.
          */
         public EditReminderDescriptor(EditReminderDescriptor toCopy) {
-            setTitle(toCopy.title);
             setReminderDate(toCopy.reminderDate);
             setDescription(toCopy.description);
         }
@@ -135,15 +131,7 @@ public class EditReminderCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(title, description, reminderDate);
-        }
-
-        public Optional<Title> getTitle() {
-            return Optional.ofNullable(title);
-        }
-
-        public void setTitle(Title title) {
-            this.title = title;
+            return CollectionUtil.isAnyNonNull(description, reminderDate);
         }
 
         public Optional<ReminderDate> getReminderDate() {
@@ -177,8 +165,7 @@ public class EditReminderCommand extends Command {
             // state check
             EditReminderDescriptor e = (EditReminderDescriptor) other;
 
-            return getTitle().equals(e.getTitle())
-                    && getReminderDate().equals(e.getReminderDate())
+            return getReminderDate().equals(e.getReminderDate())
                     && getDescription().equals(e.getDescription());
         }
     }

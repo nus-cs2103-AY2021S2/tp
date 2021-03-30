@@ -28,6 +28,7 @@ import seedu.address.model.reminder.ReminderTracker;
 import seedu.address.model.schedule.ReadOnlyScheduleTracker;
 import seedu.address.model.schedule.Schedule;
 import seedu.address.model.schedule.ScheduleTracker;
+import seedu.address.model.util.SampleDataUtil;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -42,6 +43,7 @@ public class ModelManager implements Model {
     private final EventTracker eventTracker;
     private final ReminderTracker reminderTracker;
     private final UserPrefs userPrefs;
+    private final BudgetBook budgetBook;
 
     private final PersonFilter personFilter;
     private final AppointmentFilter appointmentFilter;
@@ -49,11 +51,8 @@ public class ModelManager implements Model {
     private final FilteredList<Appointment> filteredAppointment;
     private final FilteredList<Grade> filteredGrades;
     private final FilteredList<Schedule> filteredSchedules;
-    private FilteredList<Event> filteredEvents;
-    private final FilteredList<Schedule> filteredSchedule;
     private final FilteredList<Reminder> filteredReminders;
-
-    private final BudgetBook budgetBook;
+    private FilteredList<Event> filteredEvents;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -239,8 +238,6 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredAppointment.setPredicate(predicate);
     }
-
-
 
     /**
      * Checks if Appointment exists in appointment list.
