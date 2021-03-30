@@ -11,7 +11,9 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.date.Description;
 import seedu.address.model.date.Details;
+import seedu.address.model.lesson.Day;
 import seedu.address.model.lesson.Lesson;
+import seedu.address.model.lesson.Time;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -186,6 +188,12 @@ public class ParserUtil {
 
         if (!Lesson.isValidLesson(details)) {
             throw new ParseException(Lesson.MESSAGE_CONSTRAINTS);
+        }
+        if (!Day.isValidDay(details[Lesson.INDEX_OF_DAY])) {
+            throw new ParseException(Day.MESSAGE_CONSTRAINTS);
+        }
+        if (!Time.isValidTime(details[Lesson.INDEX_OF_TIME])) {
+            throw new ParseException(Time.MESSAGE_CONSTRAINTS);
         }
         return new Lesson(trimmedLesson);
     }
