@@ -5,7 +5,9 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.weeblingo.commons.core.GuiSettings;
+import seedu.weeblingo.model.flashcard.Answer;
 import seedu.weeblingo.model.flashcard.Flashcard;
+import seedu.weeblingo.model.score.Score;
 
 /**
  * The API of the Model component.
@@ -13,6 +15,8 @@ import seedu.weeblingo.model.flashcard.Flashcard;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Flashcard> PREDICATE_SHOW_ALL_FLASHCARDS = unused -> true;
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Score> PREDICATE_SHOW_ALL_SCORES = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -80,11 +84,20 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered flashcard list */
     ObservableList<Flashcard> getFilteredFlashcardList();
 
+    /** Returns an unmodifiable view of the filtered score history list */
+    ObservableList<Score> getFilteredScoreHistory();
+
     /**
      * Updates the filter of the filtered flashcard list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredFlashcardList(Predicate<Flashcard> predicate);
+
+    /**
+     * Updates the filter of the filtered score history list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredScoreHistory(Predicate<Score> predicate);
 
     /** Generates a Quiz object and shows the first question */
     void startQuiz();
@@ -95,12 +108,38 @@ public interface Model {
     /** Shows the current question in the Quiz */
     void getCurrentFlashcard();
 
-    /** Returns the index of current question in the Quiz*/
+    /** Returns the index of current question in the Quiz */
     int getCurrentIndex();
-
-    Quiz getQuizInstance();
 
     /** Clears the Quiz instance when the "end" command is called */
     void clearQuizInstance();
 
+    boolean isCorrectAttempt(Answer attempt);
+
+    /** Returns the Mode object */
+    Mode getMode();
+
+    /** Returns the current mode of the app */
+    int getCurrentMode();
+
+    /** Sets number of questions for the quiz session */
+    void setNumOfQnsForQuizSession(int numberOfQuestions);
+
+    /** Sets a tag */
+    void tagFlashcard(Flashcard target, String tag);
+
+    /** Gets the quiz instance, which is this quiz session */
+    Quiz getQuizInstance();
+
+    void switchModeQuiz();
+
+    void switchModeLearn();
+
+    void switchModeMenu();
+
+    void switchModeQuizSession();
+
+    void switchModeCheckSuccess();
+
+    void switchModeHistory();
 }

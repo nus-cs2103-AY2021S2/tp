@@ -7,11 +7,12 @@ Weeblingo is a desktop app for managing flashcards, **optimized for use via a Co
 
 * [Quick Start](#quick-start)
 * [Features](#features)
-  * [Starting a session: `start`](#starting-a-session-start)
+  * [Starting a quiz session: `start`](#starting-a-quiz-session-start)
   * [Checking flashcard answers: `check`](#checking-flashcard-answers-check)
   * [Going to next flashcard: `next`](#going-to-next-flashcard-next)
   * [Listing out all flashcards: `list`](#listing-out-all-flashcards-list)
   * [Ending the session: `end`](#ending-the-session-end)
+  * [Viewing past scores: `history`](#viewing-past-scores-history)
   * [Exiting the application: `exit`](#exiting-the-application-exit)
   * [Asking for help: `help`](#asking-for-help-help)
 * [FAQ](#faq)
@@ -65,11 +66,14 @@ Weeblingo is a desktop app for managing flashcards, **optimized for use via a Co
 
 </div>
 
-### Starting a session: `start`
+### Starting a quiz session: `start`
 
-Shows the first flashcard.
+Starts a quiz session.
 
-Format: `start`
+Format: `start [q/NUMBER] [t/TAG]`
+
+* NUMBER specifies the number of questions for the quiz session.
+* TAG specifies the type of questions for the quiz session.
 
 ### Checking flashcard answers: `check`
 
@@ -95,6 +99,12 @@ Ends the current session, saving progress.
 
 Format: `end`
 
+### Viewing Past Scores: `history`
+
+View scores of all past quiz attempts.
+
+Format: `history`
+
 ### Exiting the application: `exit`
 
 Exits the application.
@@ -105,7 +115,7 @@ Format: `exit`
 
 Shows a message explaning how to access the help page. (to be updated)
 
-![help message](images/helpMessage.png) 
+![help message](images/helpMessage.png)
 
 Format: `help`
 
@@ -117,19 +127,25 @@ _Details coming soon ..._
 
 ## FAQ
 
-**Q**: How do I transfer my flashcards/scores to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous WeebLingo home folder.
+**Q**: How do I transfer my quiz attempt scores to other computers?</br>
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file
+that contains the data of your previous WeebLingo home folder.
+
+**Q**: Can I add my customized flashcards?</br>
+**A**: Sorry, the current version of the application does not allow self-defined flashcards to be added. However, if you
+are advanced and you know how to manipulate the storage files, you can do so if you want.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
+Action | Format, Examples |
+-------|------------------|
 **Start** | `start`
 **Check** | `check`
 **Next** | `next`
 **List** | `list`
 **End** | `end`
+**History**|`history`
 **Exit** | `exit`
 **Help** | `help`

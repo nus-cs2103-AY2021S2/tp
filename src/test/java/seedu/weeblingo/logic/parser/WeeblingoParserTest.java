@@ -31,7 +31,7 @@ public class WeeblingoParserTest {
     }
 
     @Test
-    public void parseCommand_list() throws Exception {
+    public void parseCommand_learn() throws Exception {
         assertTrue(parser.parseCommand(LearnCommand.COMMAND_WORD) instanceof LearnCommand);
         assertTrue(parser.parseCommand(LearnCommand.COMMAND_WORD + " 3") instanceof LearnCommand);
     }

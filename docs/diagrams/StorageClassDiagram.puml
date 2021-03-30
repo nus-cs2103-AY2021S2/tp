@@ -4,21 +4,31 @@ skinparam arrowThickness 1.1
 skinparam arrowColor STORAGE_COLOR
 skinparam classBackgroundColor STORAGE_COLOR
 
+package "Storage Representation" {
 Interface Storage <<Interface>>
 Interface UserPrefsStorage <<Interface>>
-Interface AddressBookStorage <<Interface>>
+Interface FlashcardBookStorage <<Interface>>
 
 Class StorageManager
 Class JsonUserPrefsStorage
-Class JsonAddressBookStorage
+Class JsonFlashcardBookStorage
 
 StorageManager .left.|> Storage
 StorageManager o-right-> UserPrefsStorage
-StorageManager o--> AddressBookStorage
+StorageManager o--> FlashcardBookStorage
 
 JsonUserPrefsStorage .left.|> UserPrefsStorage
-JsonAddressBookStorage .left.|> AddressBookStorage
-JsonAddressBookStorage .down.> JsonSerializableAddressBookStorage
-JsonSerializableAddressBookStorage .right.> JsonSerializablePerson
-JsonSerializablePerson .right.> JsonAdaptedTag
+JsonFlashcardBookStorage .left.|> FlashcardBookStorage
+JsonFlashcardBookStorage .down.> JsonSerializableFlashcardBook
+JsonSerializableFlashcardBook .right.> JsonAdaptedFlashcard
+JsonAdaptedFlashcard .down.> JsonAdaptedTag
+JsonSerializableFlashcardBook .down.> JsonAdaptedScore
+
+}
+
+package "Storage Loading" {
+    Class LocalDatabasePopulator
+    Class JsonDatabaseReader
+  JsonDatabaseReader .down.> LocalDatabasePopulator
+}
 @enduml

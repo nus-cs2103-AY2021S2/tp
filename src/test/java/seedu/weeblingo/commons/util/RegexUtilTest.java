@@ -5,16 +5,20 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+/**
+ * Automated testing for seedu.weeblingo.commons.util.RegexUtil.
+ */
 public class RegexUtilTest {
 
-    // ---------------- Tests for REGEX_JAP_WORD --------------------------------------
-    /*
+    // Regex to be used during testing
+    private static final String regex = RegexUtil.REGEX_JAP_WORD;
+
+    // -------------------------------- REGEX_JAP_WORD --------------------------------
+    /**
      * Valid Jap words: only contains hiragana, katakana, and kanji
      */
     @Test
     public void regexJapWordValid() {
-        String regex = RegexUtil.REGEX_JAP_WORD;
-
         // normal hiragana
         assertTrue("あ".matches(regex));
         assertTrue("が".matches(regex));
@@ -41,30 +45,39 @@ public class RegexUtilTest {
         assertTrue("浅き夢見じ酔ひもせず".matches(regex));
     }
 
-    /*
+    /**
      * Invalid Jap words: contains space, punctuation， latin and numeric characters
      */
     @Test
     public void regexJapWordInvalid() {
-        String regex = RegexUtil.REGEX_JAP_WORD;
-
+        // empty string / strings without content
         assertFalse("".matches(regex));
         assertFalse(" ".matches(regex));
+
+        // strings with trailing white spaces
         assertFalse(" 天気".matches(regex));
         assertFalse("天気 ".matches(regex));
+
+        // strings containing punctuations
         assertFalse("天気。".matches(regex));
         assertFalse("天気、".matches(regex));
         assertFalse("、天気".matches(regex));
-        assertFalse("天気 ".matches(regex));
-        assertFalse(" 天気".matches(regex));
+
+        // strings containing numeric values
         assertFalse("123天気".matches(regex));
+        assertFalse("天123気weather".matches(regex));
+        assertFalse("123.123天気".matches(regex));
+
+        // strings containing German/Latin characters
         assertFalse("latin天気".matches(regex));
         assertFalse("天気latin".matches(regex));
+        assertFalse("天気Ä".matches(regex));
+        assertFalse("weather".matches(regex));
+
+        // strings containing miscellaneous non-sense characters
         assertFalse("&*()(&**天気".matches(regex));
         assertFalse("天気^&(^&&(^ ".matches(regex));
-        assertFalse("weather".matches(regex));
-        assertFalse("天123気weather".matches(regex));
-        assertFalse("天気Ä".matches(regex));
+
     }
 
     // ---------------- Tests for REGEX_JAP_SENTENCE --------------------------------------

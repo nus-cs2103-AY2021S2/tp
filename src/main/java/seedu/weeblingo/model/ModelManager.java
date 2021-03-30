@@ -11,7 +11,9 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.weeblingo.commons.core.GuiSettings;
 import seedu.weeblingo.commons.core.LogsCenter;
+import seedu.weeblingo.model.flashcard.Answer;
 import seedu.weeblingo.model.flashcard.Flashcard;
+import seedu.weeblingo.model.score.Score;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -22,7 +24,11 @@ public class ModelManager implements Model {
     private final FlashcardBook flashcardBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Flashcard> filteredFlashcards;
+    private final FilteredList<Score> filteredHistoryScores;
+    private final Mode mode;
     private Quiz quizInstance;
+    private int numOfQnsForQuizSession;
+
 
     /**
      * Initializes a ModelManager with the given flashcardBook and userPrefs.
@@ -36,6 +42,8 @@ public class ModelManager implements Model {
         this.flashcardBook = new FlashcardBook(flashcardBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredFlashcards = new FilteredList<>(this.flashcardBook.getFlashcardList());
+        filteredHistoryScores = new FilteredList<>(this.flashcardBook.getScoreHistoryList());
+        this.mode = new Mode();
     }
 
     public ModelManager() {
@@ -113,6 +121,11 @@ public class ModelManager implements Model {
         flashcardBook.setFlashcard(target, editedFlashcard);
     }
 
+    @Override
+    public void tagFlashcard(Flashcard target, String tag) {
+
+    }
+
     //=========== Filtered Flashcard List Accessors =============================================================
 
     /**
@@ -128,6 +141,18 @@ public class ModelManager implements Model {
     public void updateFilteredFlashcardList(Predicate<Flashcard> predicate) {
         requireNonNull(predicate);
         filteredFlashcards.setPredicate(predicate);
+    }
+
+    // =================== Score History ==============================================
+    @Override
+    public ObservableList<Score> getFilteredScoreHistory() {
+        return flashcardBook.getScoreHistoryList();
+    }
+
+    @Override
+    public void updateFilteredScoreHistory(Predicate<Score> predicate) {
+        requireNonNull(predicate);
+        filteredHistoryScores.setPredicate(predicate);
     }
 
     @Override
@@ -153,9 +178,16 @@ public class ModelManager implements Model {
 
     @Override
     public void startQuiz() {
-        this.quizInstance = new Quiz();
-        Flashcard next = quizInstance.getNextQuestion();
-        updateFilteredFlashcardList(curr -> curr.equals(next));
+        if (numOfQnsForQuizSession == 0) {
+            this.quizInstance = new Quiz(filteredFlashcards);
+            Flashcard next = quizInstance.getNextQuestion();
+            updateFilteredFlashcardList(curr -> curr.equals(next));
+        } else {
+            this.quizInstance = new Quiz(filteredFlashcards, numOfQnsForQuizSession);
+            Flashcard next = quizInstance.getNextQuestion();
+            updateFilteredFlashcardList(curr -> curr.equals(next));
+        }
+
     }
 
     @Override
@@ -179,12 +211,59 @@ public class ModelManager implements Model {
         return quizInstance.getCurrentQuizIndex();
     }
 
-    @Override
-    public Quiz getQuizInstance() {
-        return quizInstance;
+    /**
+     * Checks if the attempt provided matches the correct answer of the current quiz.
+     * @param attempt The answer which the user entered.
+     * @return True if the answer matches, false otherwise.
+     */
+    public boolean isCorrectAttempt(Answer attempt) {
+        requireNonNull(quizInstance);
+        return quizInstance.isCorrectAttempt(attempt);
     }
 
     public void clearQuizInstance() {
         quizInstance = null;
+    }
+
+    public void setNumOfQnsForQuizSession(int n) {
+        numOfQnsForQuizSession = n;
+    }
+
+    public Quiz getQuizInstance() {
+        return quizInstance;
+    }
+
+    //=========== Mode Related =============================================================
+
+    public Mode getMode() {
+        return this.mode;
+    }
+
+    public int getCurrentMode() {
+        return this.mode.getCurrentMode();
+    }
+
+    public void switchModeQuiz() {
+        this.mode.switchModeQuiz();
+    }
+
+    public void switchModeLearn() {
+        this.mode.switchModeLearn();
+    }
+
+    public void switchModeMenu() {
+        this.mode.switchModeMenu();
+    }
+
+    public void switchModeHistory() {
+        this.mode.switchModeHistory();
+    }
+
+    public void switchModeQuizSession() {
+        this.mode.switchModeQuizSession();
+    }
+
+    public void switchModeCheckSuccess() {
+        this.mode.switchModeCheckSuccess();
     }
 }

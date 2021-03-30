@@ -17,20 +17,14 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
-    /** The application should show flashcards. */
-    private final boolean showCards;
-    private final boolean showAnswer;
-
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean showCards, boolean showAnswer) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
-        this.showCards = showCards;
-        this.showAnswer = showAnswer;
     }
 
     /**
@@ -38,7 +32,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, false, false);
+        this(feedbackToUser, false, false);
     }
 
     public String getFeedbackToUser() {
@@ -52,15 +46,6 @@ public class CommandResult {
     public boolean isExit() {
         return exit;
     }
-
-    public boolean isShowCards() {
-        return showCards;
-    }
-
-    public boolean isShowAnswer() {
-        return showAnswer;
-    }
-
 
     @Override
     public boolean equals(Object other) {
@@ -76,13 +61,12 @@ public class CommandResult {
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit
-                && showCards == otherCommandResult.showCards;
+                && exit == otherCommandResult.exit;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit, showCards);
+        return Objects.hash(feedbackToUser, showHelp, exit);
     }
 
 }

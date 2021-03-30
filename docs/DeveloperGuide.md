@@ -62,11 +62,16 @@ The sections below give more details of each component.
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 **API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2021S2-CS2103T-T13-1/tp/blob/master/src/main/java/seedu/weeblingo/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `FlashcardListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`,
+`FlashcardListPanel`, `ScoreHistoryListPanel`, `StatusBarFooter` etc.
+All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files
+that are in the `src/main/resources/view` folder.
+For example, the layout of the [`MainWindow`](https://github.com/AY2021S2-CS2103T-T13-1/tp/blob/master/src/main/java/seedu/weeblingo/ui/MainWindow.java)
+is specified in [`MainWindow.fxml`](https://github.com/AY2021S2-CS2103T-T13-1/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -99,7 +104,9 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
+
 * stores the Weeblingo data.
+
 * exposes an unmodifiable `ObservableList<Flashcard>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
@@ -114,11 +121,11 @@ The `Model`,
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2021S2-CS2103T-T13-1/tp/blob/master/src/main/java/seedu/weeblingo/storage/Storage.java)
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+* can save the flashcard book data (flashcards and scores) in json format and read it back.
 
 ### Common classes
 
@@ -149,6 +156,51 @@ The following activity diagram summarizes what happens when a user adds a new co
 The tags function ties together with the Start function of the application, as users can choose to start a quiz
 containing flashcards that have the same tag only (to be implemented...)
 
+### Quiz Command
+
+The quiz command is used to enter Quiz mode, allowing the user to start various quizzes from there.
+The following activity diagram summarizes what happens when a user enters the Quiz command:
+
+![QuizActivityDiagram](images/QuizActivityDiagram.png)
+
+The following sequence diagram shows how the Quiz command works:
+
+![QuizSequenceDiagram](images/QuizSequenceDiagram.png)
+
+### \[Proposed\] Quiz Scoring
+*{To be updated}*
+
+### View Past Quiz Attempts
+
+The view quiz history mechanism allows users to view their past attempts of quizzes. Each entry of quiz history is
+represented in a way similar how the flashcards are represented in the Weeblingo application. 
+
+Below is the class diagram
+for how `Score` is represented in *Model* component.
+
+![HistoryModelDiagram](images/HistoryModelDiagram.png)
+
+The *UI* component, which originally only handles the display of flashcards,
+now needs to handle the display for scoring history as well.
+
+The following sequence diagram shows how the UI switches display from flashcards to score history and vice versa.
+
+![HistoryUiSequenceDiagram](images/HistoryUiSequenceDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: How to represent `Score` in the application
+
+* **Alternative 1 (current choice):** Make `Score` and `Flashcard` two separate classes.
+    * Pros: Easy to implement.
+    * Cons: 
+      * May have the overhead of writing similar code. For instance, `JsonAdaptedFlashcard` and `JsonAdaptedScore`.
+      * Changing the UI display from flashcards to score history may be cumbersome. 
+* **Alternative 2:** Let `Score` have inheritance relationship with `Flashcard`.
+    * Pros: Changing UI display is easy.
+    * Cons:
+      * The design choice is not intuitive (`Score` does not seem to be a `Flashcard` and vice versa).
+      * The overhead of maintaining the inheritance is non-trivial.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -183,13 +235,18 @@ containing flashcards that have the same tag only (to be implemented...)
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                 | I want to …​                        | So that I can…​                              |
-| -------- | ------------------------------------------ | -------------------------------------- | ----------------------------------------------- |
-| `* * *`  | new user                                   | view valid commands                    | remember how to use the App                     |
-| `* * *`  | user                                       | view a flashcard                       |                                                 |
-| `* * *`  | user                                       | see the answer to a flashcard          | check if I answered correctly                   |
-| `* * *`  | user                                       | start a practice run of all flashcards | practice all flashcards in a single session     |
-| `* *`    | user                                       | view all flashcards                    | study the flashcards before a session           |
+| Priority | As a …​         | I want to …​                            | So that I can…​                              |
+| -------- | ------------------ | ------------------------------------------ | ----------------------------------------------- |
+| `* * *`  | new user           | view valid commands                        | remember how to use the Weeblingo               |
+| `* * *`  | user               | view a flashcard                           |                                                 |
+| `* * *`  | user               | see the answer to a flashcard              | check if I answered correctly                   |
+| `* * *`  | user               | start a practice run of all flashcards     | practice all flashcards in a single session     |
+| `* * *`  | user               | view all flashcards                        | study the flashcards before a session           |
+| `* *`    | user               | quiz myself on a specific set of flashcards| practice a specific group of words that I may be bad at |
+| `* *`    | user               | quiz myself on a specific number of random flashcards| spot test myself with a group of random words |
+| `* *`    | user               | add tags to certain flashcards             | group flashcards to test myself (e.g. specific coverage for an exam) |
+| `* *`    | user               | know how well I scored on a Quiz           | see how many mistakes I made in this Quiz       |
+| `* *`    | user               | see how I did on past Quizzes              | see how my scores have changed over time        |
 
 *{More to be added}*
 
@@ -270,18 +327,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 <!-- Updated and maintained by [Yucheng](https://github.com/cheng20010201) -->
 1.  The product should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  The product should be available for download and usage after each release.
-3.  The product's size should not exceed 100MB.
+3.  The product's size of the final Jar released should not exceed 100MB.
 4.  The product should be an offline application, which should work either with or without presence of internet
     connection.
 5.  The product should allow one user to have different instances of the application running at the same time.
-6.  The product should be able to hold up to 2000 Japanese words without a noticeable sluggishness in performance for typical usage.
-7.  The project's design in source code should be easy to maintain and extend.
-8.  The project should be open-sourced.
-9.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) and
+6.  The product should be able to hold up to 2000 Japanese words without causing a delay in commands longer than 0.5 seconds.
+7.  The project should be open-sourced.
+8.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) and
     beginner typing speed for simple Japanese text (i.e. simple words and sentences) should be able to accomplish most
     of the learning faster using commands than using the mouse.
 10. A user should find interacting with the user interface easy, even if he/she is relatively new to the application.
-11. More to be added.
+11. Each command should be processed within 3 seconds.
+12. More to be added.
 
 ### Glossary
 

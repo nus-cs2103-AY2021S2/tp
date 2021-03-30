@@ -7,8 +7,10 @@ import seedu.weeblingo.commons.core.GuiSettings;
 import seedu.weeblingo.logic.commands.CommandResult;
 import seedu.weeblingo.logic.commands.exceptions.CommandException;
 import seedu.weeblingo.logic.parser.exceptions.ParseException;
+import seedu.weeblingo.model.Model;
 import seedu.weeblingo.model.ReadOnlyFlashcardBook;
 import seedu.weeblingo.model.flashcard.Flashcard;
+import seedu.weeblingo.model.score.Score;
 
 /**
  * API of the Logic component
@@ -25,8 +27,14 @@ public interface Logic {
 
     ReadOnlyFlashcardBook getFlashcardBook();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
+    /** Returns an unmodifiable view of the filtered list of flashcards */
     ObservableList<Flashcard> getFilteredFlashcardList();
+
+    /** Returns an unmodifiable view of the filtered list of scores */
+    ObservableList<Score> getFilteredScoreHistoryList();
+
+
+
 
     /** Returns the current question number in the Quiz */
     int getCurrentIndex();
@@ -46,4 +54,25 @@ public interface Logic {
      */
     void setGuiSettings(GuiSettings guiSettings);
 
+    /**
+     *
+     */
+    Model getModel();
+
+    /**
+     * Returns current mode Weeblingo is in
+     */
+    int getCurrentMode();
+
+    /**
+     * True if cards should be shown.
+     */
+    boolean showCards();
+
+    /**
+     * True if answer should be shown.
+     */
+    boolean showAnswer();
+
+    boolean isShowingHistory();
 }

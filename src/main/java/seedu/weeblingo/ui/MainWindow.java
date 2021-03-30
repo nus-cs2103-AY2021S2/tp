@@ -36,6 +36,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private FlashcardListPanel flashcardListPanel;
+    private ScoreHistoryListPanel scoreHistoryListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -46,7 +47,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane flashcardListPanelPlaceholder;
+    private StackPane flashcardListPanelPlaceholder; // todo: refactor it into a general container
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -115,15 +116,10 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
 
-        // can have a separate Panel here for the quiz mode, structure similar to learn mode
-        // problem is fillInnerParts() is called in UiManager start method when the app starts,
-        // need to find a way to alternate between the two panels
-
         // display menu mode at the launch of app
-
         flashcardListPanel = new FlashcardListPanel(logic.getFilteredFlashcardList());
+        scoreHistoryListPanel = new ScoreHistoryListPanel(logic.getFilteredScoreHistoryList());
         flashcardListPanelPlaceholder.getChildren().add(flashcardListPanel.getRoot());
-
 
         // don't show flashcard panel at the start
         flashcardListPanelPlaceholder.setVisible(false);
@@ -158,8 +154,6 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     public void handleHelp() {
         if (!helpWindow.isShowing()) {
-            assert true;
-            logger.warning("Showing help");
             helpWindow.show();
         } else {
             helpWindow.focus();
@@ -197,9 +191,13 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            flashcardListPanelPlaceholder.setVisible(commandResult.isShowCards());
-            int index = (commandText.equals("next") || commandText.equals("check")) ? logic.getCurrentIndex() : -1;
-            flashcardListPanel.updateCard(index, commandResult.isShowAnswer());
+            int currentMode = logic.getCurrentMode();
+            logger.info(String.format("Current mode is %s", currentMode));
+
+            changePlaceHolderContent(logic.isShowingHistory());
+
+            flashcardListPanelPlaceholder.setVisible(logic.showCards());
+            flashcardListPanel.updateCard(logic.getCurrentIndex(), logic.showAnswer());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
@@ -217,10 +215,26 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    private void changePlaceHolderContent(boolean isShowingHistory) {
+        int index = -1;
+        if (isShowingHistory) {
+            index = flashcardListPanelPlaceholder.getChildren().indexOf(flashcardListPanel.getRoot());
+            if (index != -1) {
+                flashcardListPanelPlaceholder.getChildren().set(index, scoreHistoryListPanel.getRoot());
+            }
+        } else {
+            index = flashcardListPanelPlaceholder.getChildren().indexOf(scoreHistoryListPanel.getRoot());
+            if (index != -1) {
+                flashcardListPanelPlaceholder.getChildren().set(index, flashcardListPanel.getRoot());
+            }
+        }
+    }
+
     /**
      * Displays greetings message in resultDisplay.
      */
     public void displayGreetings() {
         resultDisplay.greetUser();
     }
+
 }
