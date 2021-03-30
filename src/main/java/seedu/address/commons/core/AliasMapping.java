@@ -76,7 +76,7 @@ public class AliasMapping implements Serializable {
     }
 
     /**
-     * Deletes an user-defined alias from the current mapping.
+     * Deletes a user-defined alias from the current mapping.
      *
      * @param aliasName The name of the alias to be deleted.
      */
