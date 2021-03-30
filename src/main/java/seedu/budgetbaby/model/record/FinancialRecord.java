@@ -17,10 +17,10 @@ import seedu.budgetbaby.logic.parser.YearMonthParser;
  */
 public class FinancialRecord {
 
-    private static final String FINANCIAL_RECORD_DETAILS_DELIMITER = " | ";
-    private static final SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
     public static final String TIMESTAMP_CONSTRAINTS =
         "Timestamp should follow the format of dd-mm-yyyy. Example: 31-12-2020.";
+    private static final String FINANCIAL_RECORD_DETAILS_DELIMITER = " | ";
+    private static final SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 
     // Data fields
     private final Description description;

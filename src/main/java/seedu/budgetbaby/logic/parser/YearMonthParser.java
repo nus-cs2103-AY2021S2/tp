@@ -1,7 +1,5 @@
 package seedu.budgetbaby.logic.parser;
 
-import seedu.budgetbaby.model.record.FinancialRecord;
-
 import java.time.YearMonth;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;

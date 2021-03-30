@@ -69,10 +69,6 @@ public class EditFrCommand extends BudgetBabyCommand {
         FinancialRecord frToEdit = lastShownList.get(index.getZeroBased());
         FinancialRecord editedFr = createEditedFr(frToEdit, editFrDescriptor);
 
-//        if (!frToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-//            throw new CommandException(MESSAGE_DUPLICATE_FR);
-//        }
-
         model.setFinancialRecord(frToEdit, editedFr);
         model.updateFilteredMonthList(BudgetBabyModel.PREDICATE_SHOW_ALL_RECORDS);
         return new CommandResult(String.format(MESSAGE_EDIT_FR_SUCCESS, editedFr));
