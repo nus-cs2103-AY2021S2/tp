@@ -143,33 +143,33 @@ public class Person {
                 .append(getPhone());
 
         Optional<School> school = getSchool();
-        if (!school.isPresent()) {
+        if (school.isPresent()) {
             builder.append("; School: ")
-                    .append(school);
+                    .append(school.get());
         }
 
         Optional<Email> email = getEmail();
-        if (!email.isPresent()) {
+        if (email.isPresent()) {
             builder.append("; Email: ")
-                    .append(email);
+                    .append(email.get());
         }
 
         Optional<Address> address = getAddress();
-        if (!address.isPresent()) {
+        if (address.isPresent()) {
             builder.append("; Address: ")
-                    .append(address);
+                    .append(address.get());
         }
 
         Optional<Name> guardianName = getGuardianName();
-        if (!guardianName.isPresent()) {
+        if (guardianName.isPresent()) {
             builder.append("; Guardian's Name: ")
-                    .append(guardianName);
+                    .append(guardianName.get());
         }
 
         Optional<Phone> guardianPhone = getGuardianPhone();
-        if (!guardianPhone.isPresent()) {
+        if (guardianPhone.isPresent()) {
             builder.append("; Guardian's Phone: ")
-                    .append(guardianPhone);
+                    .append(guardianPhone.get());
         }
 
         Set<Tag> tags = getTags();

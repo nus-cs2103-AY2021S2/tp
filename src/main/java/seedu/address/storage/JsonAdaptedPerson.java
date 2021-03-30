@@ -119,29 +119,29 @@ class JsonAdaptedPerson {
         }
         final Phone modelPhone = new Phone(phone);
 
-        if (!School.isValidSchool(school)) {
+        if (school != "" && !School.isValidSchool(school)) {
             throw new IllegalValueException(School.MESSAGE_CONSTRAINTS);
         }
         final Optional<School> modelSchool = school == "" ? Optional.empty() : Optional.of(new School(school));
 
-        if (!Email.isValidEmail(email)) {
+        if (email != "" && !Email.isValidEmail(email)) {
             throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
         }
         final Optional<Email> modelEmail = email == "" ? Optional.empty() : Optional.of(new Email(email));
 
-        if (!Address.isValidAddress(address)) {
+        if (address != "" && !Address.isValidAddress(address)) {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
         final Optional<Address> modelAddress = address == "" ? Optional.empty()
                 : Optional.of(new Address(address));
 
-        if (!Name.isValidName(guardianName)) {
+        if (guardianName!= "" && !Name.isValidName(guardianName)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
         final Optional<Name> modelGuardianName = guardianName == "" ? Optional.empty()
                 : Optional.of(new Name(guardianName));
 
-        if (!Phone.isValidPhone(guardianPhone)) {
+        if (guardianPhone!= "" && !Phone.isValidPhone(guardianPhone)) {
             throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
         }
         final Optional<Phone> modelGuardianPhone = guardianPhone == "" ? Optional.empty()
