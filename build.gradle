@@ -70,7 +70,7 @@ dependencies {
 }
 
 shadowJar {
-    archiveName = 'addressbook.jar'
+    archiveName = 'sunrez.jar'
 }
 
 defaultTasks 'clean', 'test'
