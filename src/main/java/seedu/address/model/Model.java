@@ -9,8 +9,10 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.budget.Budget;
 import seedu.address.model.event.Event;
+import seedu.address.model.filter.AppointmentFilter;
 import seedu.address.model.filter.PersonFilter;
 import seedu.address.model.grade.Grade;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.schedule.ReadOnlyScheduleTracker;
 import seedu.address.model.schedule.Schedule;
@@ -26,6 +28,7 @@ public interface Model {
     Predicate<Appointment> PREDICATE_SHOW_ALL_APPOINTMENT = unused -> true;
     Predicate<Grade> PREDICATE_SHOW_ALL_GRADE = unused -> true;
     Predicate<Schedule> PREDICATE_SHOW_ALL_SCHEDULE = unused -> true;
+    Predicate<Event> PREDICATE_SHOW_ALL_EVENT = unused -> true;
 
     /**
      * Returns the user prefs.
@@ -109,6 +112,12 @@ public interface Model {
     boolean hasPerson(Person person);
 
     /**
+     * @param name Name of tutor to search for.
+     * @return True is there exists a tutor with that name.
+     */
+    boolean hasTutorByName(Name name);
+
+    /**
      * Deletes the given person.
      * The person must exist in the address book.
      */
@@ -171,6 +180,7 @@ public interface Model {
      */
     boolean hasAppointment(Appointment appointment);
 
+
     /**
      * @param appointment Appointment to add (appointment must not already exist)
      */
@@ -204,6 +214,12 @@ public interface Model {
      * @return true if Appointment DateTime exists in the appointment list
      */
     boolean hasAppointmentDateTime(AppointmentDateTime appointmentDateTime);
+
+    /**
+     * @param name Name of tutor.
+     * @return True if appointment contains tutor.
+     */
+    boolean hasAppointmentContainingTutor(Name name);
 
     /**
      * @return Budget Book
@@ -290,6 +306,28 @@ public interface Model {
      * @param personFilter Filters to remove from model's person filter.
      */
     void removePersonFilter(PersonFilter personFilter);
+
+    /**
+     * Checks if any of the filters are in appointment filter.
+     *
+     * @param appointmentFilter Filters to check for inside model's appointment filter.
+     * @return true if model's appointment filter contains a filter that was passed in.
+     */
+    boolean hasAppointmentFilter(AppointmentFilter appointmentFilter);
+
+    /**
+     * Adds filters to appointment filter.
+     *
+     * @param appointmentFilter Filters to add to model's appointment filter.
+     */
+    void addAppointmentFilter(AppointmentFilter appointmentFilter);
+
+    /**
+     * Removes filters from appointment filter.
+     *
+     * @param appointmentFilter Filters to remove from model's appointment filter.
+     */
+    void removeAppointmentFilter(AppointmentFilter appointmentFilter);
 
     /**
      * Returns the AddressBook
