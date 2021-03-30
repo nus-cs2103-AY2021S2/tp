@@ -88,7 +88,7 @@ public class CommandBox extends UiPart<Region> {
      */
     private void selectNextCommand() {
         assert commandHistorySelector != null;
-        String cmd = commandHistorySelector.selectNext().orElse("");
+        String cmd = commandHistorySelector.selectNextUntilOnePastLast().orElse("");
         showCommand(cmd);
     }
 
@@ -97,7 +97,7 @@ public class CommandBox extends UiPart<Region> {
      */
     private void selectPreviousCommand() {
         assert commandHistorySelector != null;
-        String cmd = commandHistorySelector.selectPrevious().orElse("");
+        String cmd = commandHistorySelector.selectPreviousUntilFirst().orElse("");
         showCommand(cmd);
     }
 
