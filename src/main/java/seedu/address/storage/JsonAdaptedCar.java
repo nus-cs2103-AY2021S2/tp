@@ -1,34 +1,39 @@
 package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.customer.Car;
 
 public class JsonAdaptedCar {
-
-
-    private final String carId;
+    private final String carBrand;
+    private final String carType;
 
     /**
      * Constructs a {@code JsonAdaptedCar} with the given {@code carId}.
      */
     @JsonCreator
-    public JsonAdaptedCar(String carId) {
-        this.carId = carId;
+    public JsonAdaptedCar(@JsonProperty("carBrand") String carBrand, @JsonProperty("carType") String carType) {
+        this.carBrand = carBrand;
+        this.carType = carType;
     }
 
     /**
      * Converts a given {@code Car} into this class for Jackson use.
      */
     public JsonAdaptedCar(Car source) {
-        carId = source.carId;
+        this.carBrand = source.carBrand;
+        this.carType = source.carType;
     }
 
-    @JsonValue
-    public String getCarId() {
-        return carId;
+
+    public String getCarBrand() {
+        return carBrand;
+    }
+
+    public String getCarType() {
+        return carType;
     }
 
     /**
@@ -37,10 +42,10 @@ public class JsonAdaptedCar {
      * @throws IllegalValueException if there were any data constraints violated in the adapted car.
      */
     public Car toModelType() throws IllegalValueException {
-        if (!Car.isValidCar(carId)) {
+        if (!Car.isValidCar(carBrand, carType)) {
             throw new IllegalValueException(Car.MESSAGE_CONSTRAINTS);
         }
-        return new Car(carId);
+        return new Car(carBrand, carType);
     }
 
 

@@ -34,7 +34,7 @@ public class CustomerBuilder {
     private DateOfBirth dateOfBirth;
     private Set<Tag> tags;
     private Map<Car, CoeExpiry> carsOwned;
-
+    private Set<Car> carsPreferred;
 
     /**
      * Creates a {@code CustomerBuilder} with the default details.
@@ -47,6 +47,7 @@ public class CustomerBuilder {
         dateOfBirth = new DateOfBirth(DEFAULT_DATE_OF_BIRTH);
         tags = new HashSet<>();
         carsOwned = new HashMap<>();
+        carsPreferred = new HashSet<>();
     }
 
     /**
@@ -60,6 +61,7 @@ public class CustomerBuilder {
         dateOfBirth = customerToCopy.getDateOfBirth();
         tags = new HashSet<>(customerToCopy.getTags());
         carsOwned = new HashMap<>(customerToCopy.getCarsOwned());
+        carsPreferred = new HashSet<>(customerToCopy.getCarsPreferred());
     }
 
     /**
@@ -109,21 +111,25 @@ public class CustomerBuilder {
         this.dateOfBirth = new DateOfBirth(dateOfBirth);
         return this;
     }
+    /**
+     * Adds a new pairing of {@code Car} and {@code CoeExpiry} to the
+     * {@code Customer} that we are building.
+     */
+    public CustomerBuilder withAdditionalCar(String carBrand, String carType, String coeExpiry) {
+        this.carsOwned.put(new Car(carBrand, carType), new CoeExpiry(coeExpiry));
+        return this;
+    }
 
     /**
-     * Parses the {@code carsOwned} into a {@code Map<Car, CoeExpiry>} and set it to the {@code Customer} that we are
-     * building.
-     *
-     * @param carsOwned
-     * @return
+     * Parses the {@code cars} into a {@code Set<Car>} and set it to the {@code Customer} that we are building.
      */
-    public CustomerBuilder withCarsOwned(Map<Car, CoeExpiry> carsOwned) {
-        this.carsOwned = new HashMap<>(carsOwned);
+    public CustomerBuilder withCarsPreferred(String... cars) {
+        this.carsPreferred = SampleDataUtil.getCarSet(cars);
         return this;
     }
 
     public Customer build() {
-        return new Customer(name, phone, email, address, dateOfBirth, tags, carsOwned);
+        return new Customer(name, phone, email, address, dateOfBirth, tags, carsOwned, carsPreferred);
     }
 
 }

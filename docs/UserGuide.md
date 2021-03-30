@@ -22,7 +22,7 @@ while still having the benefits of a Graphical User Interface (GUI).
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`add`**`n/Bob Ang p/88765432 e/bobhnd@example.com a/John street, block 123, #01-01 c/BMW Coupe|2030 01 01 c/Porsche|2030 01 01` 
+   * **`add`**`n/Bob Ang p/88765432 e/bobhnd@example.com a/John street, block 123, #01-01 c/BMW+Coupe|2030 01 01 c/Porsche+SUV|2030 01 01` 
      : Adds a contact named `Bob Ang`
      
    * **`delete`**`John Doe` : Deletes 'John Doe' contact from contact list .
@@ -70,8 +70,8 @@ while still having the benefits of a Graphical User Interface (GUI).
 
 Adds a customer to the contact list.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS c/OWNED_CAR|COE_EXPIRY_DATE [t/TAG]…​`
-`n/add n/Bob Ang p/88765432 e/bobhnd@example.com a/John street, block 123, #01-01 c/BMW Coupe|2030 01 01 c/Porsche|2030 01 01`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS c/OWNED_CARBRAND+OWNED_CARTYPE|COE_EXPIRY_DATE [t/TAG]…​`
+`n/add n/Bob Ang p/88765432 e/bobhnd@example.com a/John street, block 123, #01-01 c/BMW+Coupe|2030 01 01 c/Porsche+SUV|2030 01 01`
 
 Note that the `COE_EXPIRY_DATE` input order: YYYY{space}MM{space}DD 
 
