@@ -1,18 +1,65 @@
 package seedu.address.model.session;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.SessionBuilder.DEFAULT_TIME;
+import static seedu.address.testutil.TypicalStudents.CARL;
 
 import org.junit.jupiter.api.Test;
 
-class RecurringSessionTest {
-    // TODO: Add RecurringSessionTest and other parse tests.
+class RecurringSessionTest extends SessionTest {
+    static final Interval WEEKLY = new Interval("7");
+    static final SessionDate SESSION_DATE = new SessionDate("2021-01-01", "10:00");
 
     @Test
-    void getInterval() {
+    public void constructor_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new RecurringSession(null,
+                null, null, null, null, null));
     }
 
     @Test
-    void getEndDateTime() {
+    public void isValidEnd() {
+        SessionDate consistent = new SessionDate("2021-01-15", "10:00");
+        SessionDate inconsistentDate = new SessionDate("2021-01-14", "10:00");
+        SessionDate inconsistentTime = new SessionDate("2021-01-15", "12:00");
+
+
+        assertTrue(RecurringSession.isValidEnd(SESSION_DATE, consistent, WEEKLY));
+        assertFalse(RecurringSession.isValidEnd(SESSION_DATE, inconsistentDate, WEEKLY));
+        assertFalse(RecurringSession.isValidEnd(SESSION_DATE, inconsistentTime, WEEKLY));
+    }
+
+    @Test
+    public void isConsistentDatesAndInterval() {
+        SessionDate consistent1 = new SessionDate("2021-01-15", "12:00");
+        SessionDate same = new SessionDate("2021-01-01", "10:00");
+        SessionDate inconsistentDate = new SessionDate("2021-01-14", "10:00");
+        Interval inconsistentInterval = new Interval("3");
+        Interval nextDay = new Interval("1");
+
+
+        assertTrue(RecurringSession.isConsistentDatesAndInterval(SESSION_DATE, consistent1, WEEKLY));
+        assertFalse(RecurringSession.isConsistentDatesAndInterval(SESSION_DATE, same, nextDay));
+        assertFalse(RecurringSession.isConsistentDatesAndInterval(SESSION_DATE, inconsistentDate, WEEKLY));
+        assertFalse(RecurringSession.isConsistentDatesAndInterval(SESSION_DATE, consistent1, inconsistentInterval));
+    }
+
+    @Test
+    void getInterval() {
+        if (CARL.getListOfSessions().get(0) instanceof RecurringSession) {
+            assertEquals(new Interval("7"), (
+                    (RecurringSession) CARL.getListOfSessions().get(0)).getInterval());
+        }
+    }
+
+    @Test
+    void getLastSessionDate() {
+        if (CARL.getListOfSessions().get(0) instanceof RecurringSession) {
+            assertEquals(new SessionDate("2021-01-15", DEFAULT_TIME), ((
+                    (RecurringSession) CARL.getListOfSessions().get(0)).getLastSessionDate()));
+        }
     }
 
     @Test

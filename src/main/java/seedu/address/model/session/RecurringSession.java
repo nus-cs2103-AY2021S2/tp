@@ -34,19 +34,32 @@ public class RecurringSession extends Session {
         this.lastSessionDate = lastSessionDate;
     }
 
-    // Checks that lastDate can be on given sessionDate.
-    private static boolean isValidEnd(SessionDate firstSessionDate, SessionDate lastSessionDate, Interval interval) {
+    /**
+     * Returns true if user input {@code firstSessionDate} and {@code interval} makes a valid {@code lastSessionDate}.
+     * @param firstSessionDate the SessionDate value for first session
+     * @param lastSessionDate the SessionDate value for last session
+     * @param interval the interval of recurrence
+     * @return true if the first session and last session is consistent, based on interval
+     */
+    public static boolean isValidEnd(SessionDate firstSessionDate, SessionDate lastSessionDate, Interval interval) {
         boolean occursAtTime = firstSessionDate.isSameTime(lastSessionDate);
         boolean occursAtDate = isConsistentDatesAndInterval(firstSessionDate, lastSessionDate, interval);
         return occursAtTime && occursAtDate;
     }
 
-    // Checks that sessionDate1 occurs on the date of sessionDate2, upon recurring 0 or more times at given interval.
-    private static boolean isConsistentDatesAndInterval(
+    /**
+     * Returns true if user input {@code firstSessionDate} and {@code interval} is consistent with Date of
+     * {@code lastSessionDate}.
+     * @param sessionDate1 the SessionDate value for first session
+     * @param sessionDate2 the SessionDate value for last session
+     * @param interval the interval of recurrence
+     * @return true if the first session and last session is consistent in terms of Date, based on interval
+     */
+    public static boolean isConsistentDatesAndInterval(
             SessionDate sessionDate1, SessionDate sessionDate2, Interval interval) {
         requireAllNonNull(sessionDate1, sessionDate2, interval);
         int daysBetween = sessionDate1.numOfDayTo(sessionDate2);
-        return daysBetween >= 0 && daysBetween % interval.getValue() == 0;
+        return daysBetween > 0 && daysBetween % interval.getValue() == 0;
     }
 
     public Interval getInterval() {
