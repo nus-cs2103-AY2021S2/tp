@@ -75,9 +75,9 @@ public class RecurringSession extends Session {
      */
     public boolean hasSessionOnDate(SessionDate sessionDate) {
         requireAllNonNull(sessionDate);
-        return !startAfter(sessionDate) &&
-                !endBefore(sessionDate) &&
-                isConsistentDatesAndInterval(getSessionDate(), sessionDate, getInterval());
+        return !startAfter(sessionDate)
+                && !endBefore(sessionDate)
+                && isConsistentDatesAndInterval(getSessionDate(), sessionDate, getInterval());
     }
 
     // THIS METHOD IS FOR SCHEDULE REMINDER TO RETRIEVE INFO ABOUT SESSION HAPPENING ON GIVEN DATE.
