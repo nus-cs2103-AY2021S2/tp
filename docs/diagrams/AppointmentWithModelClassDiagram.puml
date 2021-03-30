@@ -1,0 +1,75 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Model <<Rectangle>>{
+Interface ReadOnlyHeliBook <<Interface>>
+Interface Model <<Interface>>
+Interface ObservableList <<Interface>>
+Class AddressBook
+Class AppointmentBook
+Class Model
+Class ModelManager
+Class UserPrefs
+Class ReadOnlyUserPrefs
+
+Package Person {
+Class Person
+Class UniquePersonList
+}
+
+Class Address
+Class Name
+note "Name and Address, classes previously in Person package" as N1
+Name .. N1
+Address .. N1
+
+note "Previously known as\nReadOnlyAddressBook" as N2
+ReadOnlyHeliBook .up. N2
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Model
+
+AddressBook .right|> ReadOnlyHeliBook
+AppointmentBook .left|> ReadOnlyHeliBook
+
+ModelManager .up.|> Model
+Model .right.> ObservableList
+ModelManager o--> "1" AddressBook
+ModelManager o-left-> "1" UserPrefs
+UserPrefs .up.|> ReadOnlyUserPrefs
+
+AddressBook *--> "1" UniquePersonList
+UniquePersonList o--> "*" Person
+
+Person ---> Name
+Person ---> Address
+
+ModelManager --->"filtered list ~*" Person
+
+ModelManager o---> "1" AppointmentBook
+
+Package Appointment {
+Class Appointment
+Class UniqueAppointmentList
+Class DateTime
+}
+
+AppointmentBook *--> "1" UniqueAppointmentList
+UniqueAppointmentList o--> "*" Appointment
+
+Appointment ---> "name 1" Name
+Appointment --> "*" Address
+Appointment --> "*" DateTime
+
+ModelManager -->"filtered list *" Appointment
+note "Possible design considerations for ModelManager:\n- 2 subclass, one for Person and one for Appointment\n- As an implementation of the Model interface,\n  ModelManager can handle both" as N3
+
+note "Extra: Tag functions" as N4
+N4 .left. Appointment
+
+Appointment ---> "~* contact" Person
+
+@enduml

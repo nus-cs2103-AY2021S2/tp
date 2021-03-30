@@ -3,6 +3,8 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -36,6 +38,17 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_NAME_PTM = "PTM";
+    public static final String VALID_ADDRESS_PTM = "Child 1's school";
+    public static final String VALID_DATE_PTM = "09/01/2021 00:00";
+    public static final String VALID_NAME_PLAY_DATE = "Play date with xyz";
+    public static final String VALID_ADDRESS_PLAY_DATE = "xyz's house";
+    public static final String VALID_DATE_PLAY_DATE = "30/03/2021 10:00";
+    public static final String VALID_NAME_BALLET_RECITAL = "ballet recital";
+    public static final String VALID_ADDRESS_BALLET_RECITAL = "child 1's school";
+    public static final String VALID_DATE_BALLET_RECITAL = "23/12/2021 18:00";
+    public static final String VALID_CONTACT_1 = "1";
+    public static final String VALID_CONTACT_2 = "2";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -47,12 +60,26 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String NAME_DESC_PTM = " " + PREFIX_NAME + VALID_NAME_PTM;
+    public static final String ADDRESS_DESC_PTM = " " + PREFIX_ADDRESS + VALID_ADDRESS_PTM;
+    public static final String DATE_DESC_PTM = " " + PREFIX_DATE + VALID_DATE_PTM;
+    public static final String NAME_DESC_PLAY_DATE = " " + PREFIX_NAME + VALID_NAME_PLAY_DATE;
+    public static final String ADDRESS_DESC_PLAY_DATE = " " + PREFIX_ADDRESS + VALID_ADDRESS_PLAY_DATE;
+    public static final String DATE_DESC_PLAY_DATE = " " + PREFIX_DATE + VALID_DATE_PLAY_DATE;
+    public static final String NAME_DESC_BALLET_RECITAL = " " + PREFIX_NAME + VALID_NAME_BALLET_RECITAL;
+    public static final String ADDRESS_DESC_BALLET_RECITAL = " " + PREFIX_ADDRESS + VALID_ADDRESS_BALLET_RECITAL;
+    public static final String DATE_DESC_BALLET_RECITAL = " " + PREFIX_DATE + VALID_DATE_BALLET_RECITAL;
+    public static final String CONTACT_DESC_1 = " " + PREFIX_CONTACT + VALID_CONTACT_1;
+    public static final String CONTACT_DESC_2 = " " + PREFIX_CONTACT + VALID_CONTACT_2;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_DATE_DESC = " " + PREFIX_DATE
+            + "09-01-2021 00:00"; // should be '/' instead of '-'
+    public static final String INVALID_CONTACT_DESC = " " + PREFIX_CONTACT + "amy"; // only numbers accepted
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

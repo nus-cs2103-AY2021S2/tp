@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Person;
 
 /**
@@ -14,6 +15,14 @@ import seedu.address.model.person.Person;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+
+    /** {@code Predicate} that evaluates to true if a person is favourited */
+    Predicate<Person> PREDICATE_SHOW_FAVOURITES = person -> person.getFavourite().isFav();
+
+    //=========== UserPrefs ==================================================================================
+
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Appointment> PREDICATE_SHOW_ALL_APPOINTMENTS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -35,6 +44,8 @@ public interface Model {
      */
     void setGuiSettings(GuiSettings guiSettings);
 
+    //=========== AddressBook ================================================================================
+
     /**
      * Returns the user prefs' address book file path.
      */
@@ -52,6 +63,8 @@ public interface Model {
 
     /** Returns the AddressBook */
     ReadOnlyAddressBook getAddressBook();
+
+    //=========== Person ================================================================================
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
@@ -86,5 +99,69 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
+    /**
+     * Sets the person list to the given {@code persons}.
+     */
     void setPersons(List<Person> persons);
+
+    //=========== AppointmentBook ================================================================================
+
+    /**
+     * Returns the user prefs' appointment book file path.
+     */
+    Path getAppointmentBookFilePath();
+
+    /**
+     * Sets the user prefs' appointment book file path.
+     */
+    void setAppointmentBookFilePath(Path appointmentBookFilePath);
+
+    /**
+     * Replaces appointment book data with the data in {@code appointmentBook}.
+     */
+    void setAppointmentBook(ReadOnlyAppointmentBook appointmentBook);
+
+    /** Returns the AppointmentBook */
+    ReadOnlyAppointmentBook getAppointmentBook();
+
+    //=========== Appointment ================================================================================
+
+    /**
+     * Returns true if an appointment with the same identity as {@code appointment} exists in the appointment book.
+     */
+    boolean hasAppointment(Appointment appointment);
+
+    /**
+     * Deletes the given appointment.
+     * The appointment must exist in the appointment book.
+     */
+    void deleteAppointment(Appointment target);
+
+    /**
+     * Adds the given appointment.
+     * {@code appointment} must not already exist in the appointment book.
+     */
+    void addAppointment(Appointment appointment);
+
+    /**
+     * Replaces the given appointment {@code target} with {@code editedAppointment}.
+     * {@code target} must exist in the appointment book.
+     * The person identity of {@code editedAppointment} must not be the same as another existing appointment
+     * in the address book.
+     */
+    void setAppointment(Appointment target, Appointment editedAppointment);
+
+    void setAppointments(List<Appointment> appointments);
+
+    /** Returns an unmodifiable view of the filtered appointment list */
+    ObservableList<Appointment> getFilteredAppointmentList();
+
+    /**
+     * Updates the filter of the filtered appointment list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredAppointmentList(Predicate<Appointment> predicate);
+
+    /** Orders appointment list in increasing DateTime order. */
+    void orderAppointments();
 }
