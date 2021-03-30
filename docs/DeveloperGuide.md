@@ -166,9 +166,9 @@ A `Property consists of the following mandatory attributes,
   * a `Tag` set: a set of zero or more `Tag` objects
 
 and the following optional attributes,
-  * a `Remark`: a note about the property 
+  * a `Remark`: a note about the property
   * a `Status`: represents the current stage of the selling (Option, Sales Agreement, Completion)
-  * a `Client`: represents the seller of the property 
+  * a `Client`: represents the seller of the property
 
 A `Client` consists of at least one of the following attributes,
   * a `Name`: the name of the client
@@ -268,7 +268,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 * **Alternative 2 (current choice):** Saves the entire appointment/property list in the appointment/property book.
   * Pros: Easy to implement.
   * Cons: May have performance issues in terms of memory usage.
-    
+
 * **Alternative 3:** Saves only changes made by previous commands (Similar to commit and restore in version control).
   * Pros: Will use less memory (e.g. for `delete`, may only save the appointment/property being deleted, and the deleted appointment/property is added back if the command is undone).
   * Cons: Difficult to implement, different implementations are required to restore different changes.
@@ -289,7 +289,7 @@ The `Status` field consists of a `Status` interface with a `next()` method that 
 
 (insert class diagram of status)
 
-The `UpdateCommand` is assisted by 3 subcommands that extend the abstract class `UpdateCommand` which itself extends `Command`. The subcommands are, `UpdateNewCommand`, `UpdateProceedCommand` and `UpdateCancelCommand`. The subcommands help execute on the model when the user calls `u/new`, `u/proceed` or `u/cancel` respectively. 
+The `UpdateCommand` is assisted by 3 subcommands that extend the abstract class `UpdateCommand` which itself extends `Command`. The subcommands are, `UpdateNewCommand`, `UpdateProceedCommand` and `UpdateCancelCommand`. The subcommands help execute on the model when the user calls `u/new`, `u/proceed` or `u/cancel` respectively.
 
 * `UpdateNewCommand` — Takes in an `Index` and an Amount to create a new `Status` with the given Amount for the property at the given `Index`.
 * `UpdateProceedCommand` — Takes in an `Index` and moves the `Status` of the property at the given `Index` to the next `Status` if applicable.
