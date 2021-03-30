@@ -2,9 +2,11 @@ package seedu.address.model.room;
 
 import java.util.List;
 import java.util.function.Predicate;
+
 /**
  * Tests that a {@code Room}'s {@code RoomNumber} matches any of the keywords given.
  */
+
 public class RoomNumberOrTagsContainsKeywordsPredicate implements Predicate<Room> {
     private final List<String> keywords;
 
@@ -12,6 +14,12 @@ public class RoomNumberOrTagsContainsKeywordsPredicate implements Predicate<Room
         this.keywords = keywords;
     }
 
+    /**
+     * Tests if any of the keywords are contained in either the room's number or any of its tags.
+     *
+     * @param room Room whose number and tags need to be checked to see if they contain any of the given keywords
+     * @return True if keyword is contained in the room's number or tags.
+     */
     @Override
     public boolean test(Room room) {
         return keywords.stream()
