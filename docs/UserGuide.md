@@ -23,7 +23,7 @@ If you can type fast, `semester.config` can get your contact management tasks do
 1. Copy the file to the folder you want to use as the _home folder_ for your `semester.config`.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+   ![Ui](images/v1.3_Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -164,6 +164,17 @@ Format: sort `[dateTime] [taskName] [moduleCode] [priorityTag] [weightage]`
 * For `weightage`, the deadlines will be sorted in ascending order, with the lowest weightage deadline placed first.
 * For `taskName`, the deadlines will be sorted according to the lexicographical ordering of the task name.
 
+### PriorityTag: `ptag/`
+
+Every task will be given a default priorityTag of `LOW`
+
+#### Sorting based on priorityTag (See `sorting`)
+* User is able to sort tasks based on priority tag: `low`, `medium` and `high`
+
+#### Edit priorityTag (See `edit`)
+* User is able to edit status of priorityTag using the `edit` command 
+* User is able to sort the tasks based on `LOW`, `MEDIUM` and `HIGH`
+
 ### Clear Application: `clear`
 
 Clears all deadlines from the application.
@@ -216,7 +227,7 @@ Action | Format, Examples
 **notes** | `notes INDEX n/NOTES` <br> e.g, `notes 4 n/Assignment must be handwritten`
 **edit** | `edit INDEX [tn/TASK NAME] [mn/MODULE NAME] [mc/MODULE CODE] [d/ DEADLINE DATE] [t/DEADLINE TIME] [n/NOTES] [pt/PRIORITY]` <br> e.g, `edit 2 tn/Assignment 7`
 **clear** |`clear`
-**pt** | `pt [/LOW] [/MEDIUM] [/HIGH] INDEX` <br> e.g, `pt /MEDIUM 3`
+**ptag** | `pt [/LOW] [/MEDIUM] [/HIGH] INDEX` <br> e.g, `ptag/MEDIUM 3`
 **dueIn** | `dueIn [day/NUMBER_OF_DAYS] [week/NUMBER_OF_WEEKS]` <br> e.g, `dueIn`  `dueIn day/10` `dueIn week/2`
 
 
