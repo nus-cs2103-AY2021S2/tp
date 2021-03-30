@@ -32,9 +32,9 @@ class JsonSerializableOrderItems {
     }
 
     /**
-     * Converts a given {@code ReadOnlyCakeCollate} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyOrderItems} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableCakeCollate}.
+     * @param source future changes to this will not affect the created {@code JsonSerializableOrderItems}.
      */
     public JsonSerializableOrderItems(ReadOnlyOrderItems source) {
         orderItems.addAll(source.getOrderItemList().stream()
@@ -42,7 +42,7 @@ class JsonSerializableOrderItems {
     }
 
     /**
-     * Converts this cakecollate into the model's {@code CakeCollate} object.
+     * Converts this orderitems into the model's {@code OrderItems} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
