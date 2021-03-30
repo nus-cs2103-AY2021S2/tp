@@ -82,8 +82,7 @@ public class ListCommand extends Command {
                     + String.format(Messages.MESSAGE_PERSONS_LISTED_TAGS, tagsRepresentation));
         }
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW,
-                    model.getFilteredPersonList().size())
+                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size())
                         + String.format(Messages.MESSAGE_PERSONS_LISTED_TAGS, tagsRepresentation));
     }
 
@@ -96,7 +95,7 @@ public class ListCommand extends Command {
                 .sorted((x, y) -> x.getKey().tagName.compareTo(y.getKey().tagName))
                 .map(t -> String.format("%s (%d)", t.getKey(), t.getValue()))
                 .reduce((x, y) -> x + ", " + y)
-                .orElse("");
+                .orElse("None!");
 
         return output;
     }

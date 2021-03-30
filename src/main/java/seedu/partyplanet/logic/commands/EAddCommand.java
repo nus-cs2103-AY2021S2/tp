@@ -50,8 +50,10 @@ public class EAddCommand extends Command {
         }
 
         model.addEvent(toAdd);
-        model.addState(String.format(MESSAGE_SUCCESS, toAdd));
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+
+        String output = String.format(MESSAGE_SUCCESS, toAdd);
+        model.addState(output);
+        return new CommandResult(output);
     }
 
     @Override
