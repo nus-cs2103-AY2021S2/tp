@@ -47,8 +47,8 @@ public class MeetingCard extends UiPart<Region> {
         name.setText(meeting.getName().toString());
         LocalDateTime startDateTime = meeting.getStartLocalDateTime();
         LocalDateTime endDateTime = meeting.getTerminateLocalDateTime();
-        startDate.setText(DateTimeUtil.prettyPrintFormatDateTime(startDateTime);
-        endDate.setText(DateTimeUtil.prettyPrintFormatDateTime(endDateTime);
+        startDate.setText(DateTimeUtil.prettyPrintFormatDateTime(startDateTime));
+        endDate.setText(DateTimeUtil.prettyPrintFormatDateTime(endDateTime));
         description.setText(meeting.getDescription().toString());
         priority.setText(meeting.getPriority().toString());
         meeting.getGroups().stream()
