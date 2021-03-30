@@ -1,26 +1,28 @@
 package seedu.address.model.entry;
 
+import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
 
 public class EntryNameContainsKeywordsPredicate implements Predicate<Entry> {
 
-    private final String keyword;
+    private final List<String> keywords;
 
-    public EntryNameContainsKeywordsPredicate(String keyword) {
-        this.keyword = keyword;
+    public EntryNameContainsKeywordsPredicate(List<String> keywords) {
+        this.keywords = keywords;
     }
 
     @Override
     public boolean test(Entry entry) {
-        return StringUtil.containsWordIgnoreCase(entry.getEntryName().name, keyword);
+        return keywords.stream()
+                .allMatch(keyword -> StringUtil.containsWordIgnoreCase(entry.getEntryName().name, keyword));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof EntryNameContainsKeywordsPredicate // instanceof handles nulls
-                && keyword.equals(((EntryNameContainsKeywordsPredicate) other).keyword)); // state check
+                && keywords.equals(((EntryNameContainsKeywordsPredicate) other).keywords)); // state check
     }
 }
