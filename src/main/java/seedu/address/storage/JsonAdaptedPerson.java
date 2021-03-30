@@ -19,6 +19,7 @@ import seedu.address.model.person.Birthdate;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Note;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -38,6 +39,7 @@ class JsonAdaptedPerson {
     private final String birthdate;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final String meeting;
+    private final List<String> notes = new ArrayList<>();
     private final String planName;
     private final String premium;
 
@@ -50,7 +52,7 @@ class JsonAdaptedPerson {
                              @JsonProperty("gender") String gender, @JsonProperty("birthdate") String birthdate,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                              @JsonProperty("meeting") String meeting, @JsonProperty("planName") String planName,
-                             @JsonProperty("premium") String premium) {
+                             @JsonProperty("premium") String premium, @JsonProperty("notes") List<String> notes) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -63,6 +65,9 @@ class JsonAdaptedPerson {
         this.meeting = meeting;
         this.planName = planName;
         this.premium = premium;
+        if (notes != null) {
+            this.notes.addAll(notes);
+        }
     }
 
     /**
@@ -92,6 +97,11 @@ class JsonAdaptedPerson {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
+        }
+
+        final List<Note> personNotes = new ArrayList<>();
+        for (String note : notes) {
+            personNotes.add(new Note(note));
         }
 
         if (name == null) {
@@ -173,7 +183,7 @@ class JsonAdaptedPerson {
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelGender, modelBirthdate,
-                modelTags, modelMeeting, modelPlanName, modelPremium);
+                modelTags, modelMeeting, modelPlanName, modelPremium, personNotes);
     }
 
 }

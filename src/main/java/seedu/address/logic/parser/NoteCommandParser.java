@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE_VIEW;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.NoteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Note;
 
 /**
  * Parses input arguments and creates a new NoteCommand object
@@ -37,12 +38,8 @@ public class NoteCommandParser implements Parser<NoteCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, NoteCommand.MESSAGE_USAGE), pe);
         }
 
-        if (singlePrefix.equals(PREFIX_NOTE_RECORD)) {
-            Note note = ParserUtil.parseNote(argMultimap.getValue(PREFIX_NOTE_RECORD).get());
-            return new NoteCommand(index, singlePrefix, note);
-        } else {
-            return new NoteCommand(index, singlePrefix);
-        }
+        Note note = ParserUtil.parseNote(argMultimap.getValue(PREFIX_NOTE_RECORD).orElse("placeholder"));
+        return new NoteCommand(index, singlePrefix, note);
     }
 
     /**

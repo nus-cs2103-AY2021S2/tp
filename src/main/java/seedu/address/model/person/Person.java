@@ -2,8 +2,10 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
@@ -29,6 +31,7 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final List<Note> notes;
     private final InsurancePlanName planName;
     private final InsurancePremium premium;
 
@@ -40,7 +43,8 @@ public class Person {
      */
     public Person(Name name, Phone phone, Email email, Address address,
                   Gender gender, Birthdate birthdate, Set<Tag> tags) {
-        this(name, phone, email, address, gender, birthdate, tags, Optional.empty(), null, null);
+        this(name, phone, email, address, gender, birthdate, tags, Optional.empty(), null, null,
+                new ArrayList<Note>());
 
     }
 
@@ -48,8 +52,9 @@ public class Person {
      * Full Constructor that is only called internally for testing.
      */
     public Person(Name name, Phone phone, Email email, Address address, Gender gender, Birthdate birthdate,
-                  Set<Tag> tags, Optional<Meeting> meeting, InsurancePlanName planName, InsurancePremium premium) {
-        requireAllNonNull(name, phone, email, address, gender, birthdate, tags);
+                  Set<Tag> tags, Optional<Meeting> meeting, InsurancePlanName planName, InsurancePremium premium,
+                  List<Note> notes) {
+        requireAllNonNull(name, phone, email, address, gender, birthdate, tags, notes);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -60,6 +65,7 @@ public class Person {
         this.meeting = meeting;
         this.planName = planName;
         this.premium = premium;
+        this.notes = notes;
     }
 
     public Name getName() {
@@ -84,6 +90,10 @@ public class Person {
 
     public Birthdate getBirthdate() {
         return birthdate;
+    }
+
+    public List<Note> getNotes() {
+        return Collections.unmodifiableList(notes);
     }
 
     /**
@@ -119,21 +129,35 @@ public class Person {
      * Creates a Person object that is identical to the original, but contains a new Meeting.
      */
     public Person setMeeting(Optional<Meeting> meeting) {
-        return new Person(name, phone, email, address, gender, birthdate, tags, meeting, planName, premium);
+        return new Person(name, phone, email, address, gender, birthdate, tags, meeting, planName, premium, notes);
     }
 
     /**
      * Creates a Person object that is identical to the original, but contains a new InsurancePlanName.
      */
     public Person addPlanName(InsurancePlanName newPlanName) {
-        return new Person(name, phone, email, address, gender, birthdate, tags, meeting, newPlanName, premium);
+        return new Person(name, phone, email, address, gender, birthdate, tags, meeting, newPlanName, premium, notes);
     }
 
     /**
      * Creates a Person object that is identical to the original, but contains a new InsurancePremium.
      */
     public Person addPremium(InsurancePremium newPremium) {
-        return new Person(name, phone, email, address, gender, birthdate, tags, meeting, planName, newPremium);
+        return new Person(name, phone, email, address, gender, birthdate, tags, meeting, planName, newPremium, notes);
+    }
+
+    /**
+     * Adds a new Note to the back of notes.
+     */
+    public void addNote(Note note) {
+        notes.add(note);
+    }
+
+    /**
+     * Clears all notes.
+     */
+    public void clearNotes() {
+        notes.clear();
     }
 
     /**
@@ -175,13 +199,14 @@ public class Person {
                     : otherPerson.getPlanName().equals(getPlanName()))
                 && (otherPerson.getPremium() == null
                     ? getPremium() == null
-                    : otherPerson.getPremium().equals(getPremium()));
+                    : otherPerson.getPremium().equals(getPremium()))
+                && otherPerson.getNotes().equals(getNotes());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, gender, birthdate, tags, planName, premium);
+        return Objects.hash(name, phone, email, address, gender, birthdate, tags, planName, premium, notes);
     }
 
     @Override
