@@ -1,13 +1,16 @@
 package seedu.cakecollate.ui;
 
+import java.util.Optional;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
@@ -19,6 +22,8 @@ import seedu.cakecollate.logic.commands.CommandResult;
 import seedu.cakecollate.logic.commands.HelpCommand;
 import seedu.cakecollate.logic.commands.exceptions.CommandException;
 import seedu.cakecollate.logic.parser.exceptions.ParseException;
+
+import static javafx.scene.input.KeyCode.KP_UP;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -39,6 +44,7 @@ public class MainWindow extends UiPart<Stage> {
     private Panel orderPanel;
     private Panel helpPanel;
     private Button helpPanelToMain;
+    CommandBox commandBox;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -121,8 +127,9 @@ public class MainWindow extends UiPart<Stage> {
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getCakeCollateFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
-        CommandBox commandBox = new CommandBox(this::executeCommand);
+        commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+        commandBoxArrowShortcut();
     }
 
     void updateDeliveryStatuses() throws ParseException, CommandException {
@@ -142,6 +149,19 @@ public class MainWindow extends UiPart<Stage> {
         helpPanelToMain = new Button("Return to the order list");
         helpPanelToMain.setOnAction(event -> {
             resetMainWindow();
+        });
+    }
+
+    void commandBoxArrowShortcut() {
+        commandBox.getCommandTextField().setOnKeyPressed(event -> {
+            if (event.getCode().equals(KeyCode.UP)) {
+                Optional<String> input = commandBox.getPreviousInput();
+                input.ifPresent(string -> commandBox.getCommandTextField().setText(string));
+            } else if (event.getCode().equals(KeyCode.DOWN)) {
+                Optional<String> input = commandBox.getNextInput();
+                input.ifPresent(string -> commandBox.getCommandTextField().setText(string));
+            }
+            commandBox.getCommandTextField().positionCaret(commandBox.getTextInCommandTextField().length());
         });
     }
 
@@ -211,6 +231,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
+            commandBox.updateUserInputs(commandText);
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());

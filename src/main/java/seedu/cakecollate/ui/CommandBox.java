@@ -2,11 +2,15 @@ package seedu.cakecollate.ui;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
 import seedu.cakecollate.logic.commands.CommandResult;
 import seedu.cakecollate.logic.commands.exceptions.CommandException;
 import seedu.cakecollate.logic.parser.exceptions.ParseException;
+
+import java.util.ArrayList;
+import java.util.Optional;
 
 /**
  * The UI component that is responsible for receiving user command inputs.
@@ -17,6 +21,9 @@ public class CommandBox extends UiPart<Region> {
     private static final String FXML = "CommandBox.fxml";
 
     private final CommandExecutor commandExecutor;
+    private ArrayList<String> userInputs = new ArrayList<>();
+    private int userInputsIndex = 0;
+    private boolean firstDecrementAfterUserInput = true;
 
     @FXML
     private TextField commandTextField;
@@ -67,6 +74,54 @@ public class CommandBox extends UiPart<Region> {
         }
 
         styleClass.add(ERROR_STYLE_CLASS);
+    }
+
+    public void updateUserInputs(String input) {
+        userInputs.add(input);
+        incrementUserInputsIndex();
+        userInputsIndex = userInputs.size() - 1;
+        firstDecrementAfterUserInput = true;
+    }
+
+    private void incrementUserInputsIndex() {
+        if (userInputsIndex + 1 < userInputs.size() && userInputsIndex < userInputs.size()) {
+            userInputsIndex++;
+        }
+    }
+
+    private void decrementUserInputsIndex() {
+        if (!firstDecrementAfterUserInput && userInputsIndex > 0) {
+            userInputsIndex--;
+        }
+        firstDecrementAfterUserInput = false;
+    }
+
+    public Optional<String> getPreviousInput() {
+        decrementUserInputsIndex();
+        Optional<String> previous = Optional.ofNullable(input());
+        return previous;
+    }
+
+    public Optional<String> getNextInput() {
+        incrementUserInputsIndex();
+        Optional<String> next = Optional.ofNullable(input());
+        return next;
+    }
+
+    private String input() {
+        String output = null;
+        if (userInputsIndex > -1 && userInputsIndex < userInputs.size()) {
+            output = userInputs.get(userInputsIndex);
+        }
+        return output;
+    }
+
+    public TextField getCommandTextField() {
+        return commandTextField;
+    }
+
+    public String getTextInCommandTextField() {
+        return commandTextField.getText();
     }
 
     /**
