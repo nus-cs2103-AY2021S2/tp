@@ -391,7 +391,13 @@ public interface Model {
      */
     void setSchedule(Schedule target, Schedule editedSchedule);
 
-    /* Reminder Model Methods */
+    /**
+     * Checks if Appointment or Schedule have clashing date time in event list.
+     *
+     * @param event Event to check
+     * @return True if the new Appointment or Schedule have clashes in event list
+     */
+    boolean hasClashingDateTime(Event event);
 
     /**
      * Returns the ReminderTracker

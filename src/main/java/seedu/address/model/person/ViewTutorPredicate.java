@@ -19,7 +19,7 @@ public class ViewTutorPredicate implements Predicate<Person> {
     public boolean test(Person tutor) {
 
         for (Person p: targetTutors) {
-            if (p.equals(tutor)) {
+            if (p.isSamePerson(tutor)) {
                 return true;
             }
         }

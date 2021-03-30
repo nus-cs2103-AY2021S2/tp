@@ -11,6 +11,7 @@ import static seedu.address.testutil.TypicalGrades.getTypicalGradeBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalSchedules.getTypicalScheduleTracker;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -32,10 +33,12 @@ public class ViewCommandTest {
     @BeforeEach
     public void setUp() {
         model = new ModelManager(getTypicalAddressBook(), new UserPrefs(),
-                getTypicalAppointmentBook(), getTypicalBudgetBook(), getTypicalGradeBook());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(),
-                model.getAppointmentBook(), model.getBudgetBook(), model.getGradeBook());
+                getTypicalAppointmentBook(), getTypicalBudgetBook(), getTypicalGradeBook(),
+                getTypicalScheduleTracker());
 
+        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(),
+                getTypicalAppointmentBook(), getTypicalBudgetBook(), getTypicalGradeBook(),
+                getTypicalScheduleTracker());
     }
 
     @Test

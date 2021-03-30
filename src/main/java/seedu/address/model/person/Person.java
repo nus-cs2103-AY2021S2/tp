@@ -149,7 +149,8 @@ public class Person {
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getNotes().equals(getNotes())
                 && otherPerson.getSubjectList().equals(getSubjectList())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getTags().equals(getTags())
+                && otherPerson.isFavourite() == isFavourite();
     }
 
     @Override

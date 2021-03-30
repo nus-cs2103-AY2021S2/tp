@@ -29,7 +29,14 @@ public class Notes implements Filterable {
             this.isEmpty = false;
             this.value = notes;
         }
+    }
 
+    /**
+     * Generates an empty note
+     */
+    public Notes() {
+        this.isEmpty = true;
+        this.value = "";
     }
 
     public static boolean isValidNote(String test) {

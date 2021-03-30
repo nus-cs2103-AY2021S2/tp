@@ -12,6 +12,8 @@ import seedu.address.model.ReadOnlyAppointmentBook;
 import seedu.address.model.ReadOnlyGradeBook;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentDateTime;
+import seedu.address.model.common.Description;
+import seedu.address.model.common.Title;
 import seedu.address.model.grade.Grade;
 import seedu.address.model.grade.GradeEnum;
 import seedu.address.model.grade.GradedItem;
@@ -26,11 +28,9 @@ import seedu.address.model.reminder.ReadOnlyReminderTracker;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.reminder.ReminderDate;
 import seedu.address.model.reminder.ReminderTracker;
-import seedu.address.model.schedule.Description;
 import seedu.address.model.schedule.ReadOnlyScheduleTracker;
 import seedu.address.model.schedule.Schedule;
 import seedu.address.model.schedule.ScheduleTracker;
-import seedu.address.model.schedule.Title;
 import seedu.address.model.subject.SubjectExperience;
 import seedu.address.model.subject.SubjectLevel;
 import seedu.address.model.subject.SubjectList;
@@ -204,5 +204,4 @@ public class SampleDataUtil {
                 .map(Tag::new)
                 .collect(Collectors.toSet());
     }
-
 }
