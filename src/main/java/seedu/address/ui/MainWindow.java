@@ -134,7 +134,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        upcomingTuitionListPanel = new UpcomingTuitionListPanel(logic.getFilteredStudentList());
+        upcomingTuitionListPanel = new UpcomingTuitionListPanel(logic.getFullStudentList());
         upcomingTuitionListPanelPlaceholder.getChildren().add(upcomingTuitionListPanel.getRoot());
 
         studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
@@ -196,16 +196,18 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Display and refresh date time display on TutorBuddy every 1 second
+     * Displays and refreshes date time display on TutorBuddy every 1 second
      */
     private void displayDateAndTime() {
         final Timeline timeline = new Timeline(
                 new KeyFrame(
                     Duration.millis(1000),
                     event -> {
-                        time.setText(LocalDateTime.now().toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm"))
-                            + "     " + LocalDateTime.now().toLocalDate()
-                                .format(DateTimeFormatter.ofPattern("dd-MM-YYYY")));
+                        time.setText(
+                            LocalDateTime.now().toLocalDate()
+                            .format(DateTimeFormatter.ofPattern("dd-MMM-YYYY")) + "     "
+                            + LocalDateTime.now().toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm")));
+
                     }
                 )
         );

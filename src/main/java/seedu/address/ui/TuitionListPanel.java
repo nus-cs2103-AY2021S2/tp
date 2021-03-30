@@ -42,7 +42,7 @@ public class TuitionListPanel extends UiPart<Region> {
     }
 
     /**
-     * Populate the tuitionListView with the given {@code ObservableList}
+     * Populates the tuitionListView with the given {@code ObservableList}
      */
     private void populateTuitionListView(ObservableList<Student> studentList) {
         ObservableList<Student> studentWithSessionsList = filterStudentsWithSessions(studentList);
@@ -51,7 +51,7 @@ public class TuitionListPanel extends UiPart<Region> {
     }
 
     /**
-     * Filter and keep only students with at least 1 session in the list
+     * Filters and keep only students with at least 1 session in the list
      */
     private ObservableList<Student> filterStudentsWithSessions(ObservableList<Student> studentList) {
         return studentList.stream().filter(student -> student.getListOfSessions().size() != 0)

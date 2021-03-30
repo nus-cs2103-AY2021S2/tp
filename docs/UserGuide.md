@@ -2,49 +2,47 @@
 layout: page
 title: User Guide
 ---
-# TutorBuddy
-Welcome to the user guide for TutorBuddy!<br/>
-Are you a tuition teacher looking for a reliable way to keep track of
-your 1-to-1 lessons? Needing a system to remind you about upcoming lessons?
-Or an efficient way to calculate your lesson incomes? <br/>
-Then, you have come to the right place -- TutorBuddy shall help you!
 
 <div align="center">
   <img alt="logo" src="images/tutorbuddy_logo.png">
 </div>
 
-TutorBuddy is a desktop application made for freelance tutors to efficiently manage their students' contacts,
-provide a quick overview of scheduled tuition sessions at a glance, and handle monthly tuition fees calculation.
-TutorBuddy is also optimized for fast typing users to handle their day-to-day administrative responsibilities
-effectively.
-
-### About this guide
-This guide provides a basic introduction for using TutorBuddy, and a detailed description for each feature.<br/>
-Go to [Quick start](#quick-start), for a summary of step to get started with using the application.<br/>
-Go to [Features](#features), for a detailed explanation of each feature. <br/>
-Go to [FAQ](#faq), for answers to Frequently Asked Questions. <br/>
-Go to [Command Summary](#command-summary), for a basic summary to commands.
+# TutorBuddy - User Guide
 
 **Table of Contents**
+* [Introduction](#introduction)
 * [About](#about)
 * [Quick start](#quick-start)
-* [Features](#features)
-  * [Open help panel: `help`](#viewing-help--help)
-  * [Listing all students: `list_student`](#listing-all-students-list_student)
-  * [Locating student profile by name: `find_student`](#locating-student-profile-by-name-find_student)
-  * [Adding a student: `add_student`](#adding-a-student-add_student)
-  * [Deleting a student: `delete_student`](#deleting-a-student-delete_student)
-  * [Listing students' emails based on current list: `emails`](#listing-students-emails-based-on-current-list-emails)
-  * [Listing all tuition sessions: `list_session`](#listing-all-tuition-sessions-list_session)
-  <!--* [Locating tuition session by student name / date: `find_session`](#locating-tuition-session-by-student-name--date-find_session)-->
-  * [Adding a tuition session: `add_session`](#adding-a-single-tuition-session-add_session)
-  * [Adding a recurring tuition session: `add_rec_session`](#adding-a-recurring-tuition-session-add_rec_session)
-  * [Deleting a tuition session: `delete_session`](#deleting-a-tuition-session-delete_session)
-  * [Getting monthly fee for a particular student: `fee`](#getting-monthly-fee-for-a-particular-student-fee)
-  * [Clears all entries in the program: `clear`](#clearing-all-entries--clear)
-  * [Exit the program: `exit`](#exit-the-program-exit)
-* [FAQ](#faq)
+* [Commands](#commands)
+  * [General](#general)
+    * [Open help panel: `help`](#viewing-help--help)
+    * [Listing all students and sessions: `list_student`](#listing-all-students-and-sessions-list_student)
+    * [Clearing all data : `clear`](#clearing-all-data--clear)
+    * [Exit the program: `exit`](#exit-the-program-exit)
+  * [Managing Students](#managing-students)
+    * [Adding a student: `add_student`](#adding-a-student-add_student)
+    * [Locating student by name: `find_student`](#locating-student-by-name-find_student)
+    * [Editing a student: `edit_student`](#editing-a-student-edit_student)    
+    * [Deleting a student: `delete_student`](#deleting-a-student-delete_student)
+    * [Listing students' emails based on current list: `emails`](#listing-students-emails-based-on-current-list-emails)
+  * [Managing Sessions](#managing-sessions)
+    * [Adding a tuition session: `add_session`](#adding-a-single-tuition-session-add_session)
+    * [Adding a recurring tuition session: `add_rec_session`](#adding-a-recurring-tuition-session-add_rec_session)
+    * [Deleting a tuition session: `delete_session`](#deleting-a-tuition-session-delete_session)
+  * [Fees](#fees)
+    * [Getting monthly fee for a particular student: `fee`](#getting-monthly-fee-for-a-particular-student-fee)
 * [Command Summary](#command-summary)
+* [FAQ](#faq)
+* [Glossary](#glossary)
+
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
+## Introduction
+TutorBuddy is a desktop application made for freelance tutors who give one-to-one tuition to efficiently manage their students' contacts,
+provide a quick overview of scheduled tuition sessions, and handle monthly tuition fees calculation.
+TutorBuddy is also optimized for fast typing users to handle their day-to-day administrative responsibilities
+effectively.
 
 --------------------------------------------------------------------------------------------------------------------
 ## About
@@ -60,17 +58,19 @@ This guide uses the following features to make it easier for you to navigate aro
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: Boxes with the :information_source: icon contain additional useful information.
+Boxes with the :information_source: icon contain additional useful information.
 
 </div>
 
 <div markdown="block" class="alert alert-primary">
 
-:bulb: Boxes with the :bulb: icon contain additional tips and tricks to help you get the most out of TutorBuddy.
+Boxes with the :bulb: icon contain additional tips and tricks to help you get the most out of TutorBuddy.
 
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## Quick start
 This section provides information on how to quickly start using TutorBuddy.
 
@@ -79,11 +79,11 @@ Here are a few steps to get you started on TutorBuddy:
 
 1. Ensure you have **Java 11** or above installed in your computer.
 
-1. Download the latest version of TutorBuddy [here](https://github.com/AY2021S2-CS2103T-T11-1/tp/releases).
+2. Download the latest version of TutorBuddy [here](https://github.com/AY2021S2-CS2103T-T11-1/tp/releases).
 
-1. Move the downloaded TutorBuddy to a folder of your choice. This will be known as the home folder of TutorBuddy.
+3. Move the downloaded TutorBuddy to a folder of your choice. This will be known as the home folder of TutorBuddy.
 
-1. Double-click the file to start the application. An application similar to the one below should appear in a few
+4. Double-click the file to start the application. An application similar to the one below should appear in a few
    seconds.<br>
 
 ![Ui](images/Ui.png)
@@ -94,72 +94,92 @@ This section offers an overview of the layout in TutorBuddy.
 
 There are three main areas in TutorBuddy:
 
-1. the utility area,
+1. Utility area
 
-1. the main viewing area,
+2. Main viewing area
 
-1. the command box and result display box.
+3. Result display box and command box
 
-![ApplicationOverview](images/ApplicationOverview.png)
+<a name="application-overview"><img alt="application-overview" src="images/ApplicationOverview.png"></a>
 
 1. The utility area consists of 2 tabs: **File**, and **Help**.
-* The **File** tab consists of an exit button. To exit TutorBuddy, click on the exit button. Alternatively, use the `exit` command to exit the application.
-* The **Help** tab consists of a help button. If you require any assistance, click on the help button, copy the link
-  displayed and paste it into any web browser. Alternatively, press <kbd>F1</kbd> to bring up the help window.
+    * The **File** tab consists of an exit button. To exit TutorBuddy, click on the exit button. Alternatively, use the `exit` command to exit the application.
+    * The **Help** tab consists of a help button. If you require any assistance, click on the help button, copy the link displayed and paste it into any web browser. 
+    Alternatively, press <kbd>F1</kbd> to bring up the help window.
 
 2. The main viewing area consists of 3 tabs: **Home**, **Tuition** and **Calendar**.
-* The **Home** tab gives tutors a quick overview of important matters. This includes their upcoming tuition lessons, as well as tuition fees receivable for the past 3 months.
-* The **Tuition** tab allow tutors to view and manage their students and lessons.
-* The **Calendar** tab allow tutors to have a weekly view of all sessions.
+    * The **Home** tab gives tutors a quick overview of important matters. This includes their upcoming tuition lessons, as well as tuition fees receivable for the past 3 months.
+    * The **Tuition** tab allow tutors to view and manage their students and lessons.
+    * The **Calendar** tab allow tutors to have a weekly view of all sessions.
 
 3. The command box is the area for you to enter your commands. The result of each command will be shown in the result
    display box, which is located directly above the command box.
-
-* Type a command in the command box and press <kbd>Enter</kbd> to execute it.<br>
+    * Type a command in the command box and press <kbd>Enter</kbd> to execute it.<br>
 
   Here are some example commands you can try:
-
-  * **`list`** : Lists all students and sessions.
-
-  * **`add_student`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 l/Sec2 g/95421323 r/Mother` : Adds a student named `John Doe`
+  * **`list_student`** : Lists all students and sessions.
+  * **`add_student`**`n/John Doe p/98765432 e/johnd@example.com a/John street, Block 123, #01-01 l/Sec2 g/95421323 r/Mother` : Adds a student named `John Doe`
     to TutorBuddy.
-
   * **`delete_student`**`3` : Deletes the 3rd student shown in the Student section.
-
   * **`add_session`**`n/John Doe d/2021-01-01 t/13:00 k/120 s/Biology f/80`: Adds a single tuition session for John Doe happening on 2021-01-01
-
   * **`add_recurring_session`**`n/John Doe d/2021-01-01 t/18:00 k/120 s/Biology f/80 b/7 e/2021-01-15`: Adds a 7-day recurring session for John Doe happening from 2021-01-01 to 2021-01-15
+  * **`exit`** : Exits the application.<br>
 
-  * **`exit`** : Exits the application.
-
-* Refer to the [Features](#features) below for details of each command.
+Refer to the [Commands](#commands) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
-## Features
+## Commands
+
+Commands are the main way you interact with TutorBuddy.
+
+This section provides information about all commands that is available in TutorBuddy.
+
+### Command Format
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
 
+This section details the format of the commands available in TutorBuddy. We will adhere to the following:
+
+
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add_student n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `find_student KEYWORD [MORE_KEYWORDS]` can be used as `find_student John Samuel` or as `find_student John`.
+  e.g. `find_student KEYWORD [MORE_KEYWORDS]` can be used as `find_student John Samuel` or as `find_student John`.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+  e.g. if you specify `p/98765432 p/99999999`, only `p/98765432` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `emails`, `help`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `emails`, `help`, `exit`, `clear` and `list_student`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
+* Indexes **must be positive whole numbers** 1, 2, 3, …
+
+* The `STUDENT_INDEX` refers to the index number shown in the [displayed student list](#application-overview).
+
+* The `SESSION_INDEX` refers to the index number shown in the [displayed session list](#application-overview).
+
+* Time must be input in the format, `hh:mm`.
+  e.g. `13:00` is allowed, but not `1300`.
+  
+* Date must be input in the format, `yyyy-mm-dd`.
+  e.g. `2021-01-01` is allowed, but not `01-01-2021`.
+  
+  
 </div>
 
-### Viewing help : `help`
+The following subsections will elaborate on the specific details of each TutorBuddy's command.
+
+### General
+
+#### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
 
@@ -167,25 +187,60 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-### Listing all students: `list_student`
+#### Listing all students and sessions: `list_student`
 
-Shows a list of all students in the TutorBuddy
+Displays list of all students and all sessions in TutorBuddy.
+
+![list](images/command_list.png)
 
 Format: `list_student` <br>
 
-### Locating student profile by name: `find_student`
+#### Clearing all data : `clear`
 
-Finds students whose names contain any of the given keywords.
+Clears all student and session data.
+
+<div markdown="span" class="alert alert-primary">:bulb: Tip:
+TutorBuddy provides sample data to allow you to try out the application easily. <br>
+Run the <code>clear</code> command to start working with TutorBuddy in a clean slate.
+</div>
+
+Format: `clear`
+
+#### Exit the program: `exit`
+
+Exits the program
+
+Format: `exit`
+
+### Managing Students
+
+
+#### Adding a student: `add_student`
+
+Adds a student to TutorBuddy.
+
+Format: `add_student n/NAME p/STUDENT_PHONE_NUMBER e/EMAIL a/ADDRESS l/STUDY_LEVEL g/GUARDIAN_PHONE_NUMBER r/RELATIONSHIP_WITH_GUARDIAN` <br>
+
+<div markdown="block" class="alert alert-info">
+:information_source: <code>STUDENT_PHONE_NUMBER</code>, <code>GUARDIAN_PHONE_NUMBER</code> should be in Singapore's phone formatting (i.e. starting with either 6, 8 or 9 and with 8 digits)
+</div>
+
+Example:
+* `add_student n/John Doe p/98765432 e/johnd@example.com a/John street, Block 123, #01-01 l/Sec2 g/95421323 r/Mother`
+
+#### Locating student by name: `find_student`
+
+Find student(s) whose names contain any of the given keywords.
 
 Format: `find_student KEYWORD [MORE_KEYWORDS]`
-* The search will be case-insensitive. e.g. searching `stonks` will match `STONKS`
-* Only the student’s name will be searched
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Students matching at least one keyword will be returned (i.e. `OR` search)
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* The search will be case-insensitive. e.g. searching `john` will match `JOHN`
+* Only the name of students can be searched
+* The order of the keywords does not matter. e.g. `John Doe` will match `Doe John`
+* Only full words will be matched e.g. `Do` will not match `Doe`
+* Students with name matching at least one keyword will be returned (i.e. `OR` search)
+  e.g. `John Doe` will return `John Tan`, `Peter Doe`
 
-Examples:
+Example:
 
 \# | Student Name
 ---- |---------
@@ -198,43 +253,43 @@ Examples:
 
 Example command usages from the current student list shown in Figure 1:
 
-* `find_student John` returns John Lee
+* `find_student John` returns "John Lee"
 * `find_student Sam` returns nothing
 * `find_student Lee` returns "John Lee" and "Samuel Lee"
-* `find_student Johnz Lee` returns "Johnz Tan", "John Lee" and "Samuel Lee"
+* `find_student Johnz Lee` returns "John Lee", "Johnz Tan" and "Samuel Lee"
 
-### Adding a student: `add_student`
+#### Editing a student: `edit_student`
 
-Adds a student to the TutorBuddy
+Edits an existing student's detail(s) in TutorBuddy.
 
-Format: `add_student n/NAME p/STUDENT_PHONE_NUMBER e/EMAIL a/ADDRESS l/STUDY_LEVEL g/GUARDIAN_PHONE_NUMBER r/RELATIONSHIP_WITH_GUARDIAN` <br>
-* `STUDENT_PHONE_NUMBER`, `GUARDIAN_PHONE_NUMBER` should be in Singapore's phone formatting (i.e. starting with either 6, 8 or 9 and 8 digits)
+Format: `edit_student STUDENT_INDEX [n/NAME] [p/STUDENT_PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [l/STUDY_LEVEL] [g/GUARDIAN_PHONE_NUMBER] [r/RELATIONSHIP_WITH_GUARDIAN]` <br>
+* `STUDENT_PHONE_NUMBER` and `GUARDIAN_PHONE_NUMBER` should be in Singapore's phone formatting (i.e. starting with either 6, 8 or 9 with 8 digits)
 
 Examples:
-* `add_student n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 l/Sec2 g/95421323 r/Mother`
+* `edit_student 1 p/98825432 e/alexy@example.com a/Alex street, Block 123, #01-01` edits the student at index 1's `STUDENT_PHONE_NUMBER`, `EMAIL`, and `ADDRESS`
 
-### Deleting a student: `delete_student`
+#### Deleting a student: `delete_student`
 
-Deletes the specified student from TutorBuddy
+Deletes the specified student from TutorBuddy.
 
-Format: `delete_student INDEX` <br>
+Format: `delete_student STUDENT_INDEX` <br>
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-You could use `find_student` first to filter the list of students you want.<br>
-The INDEX would then be based on the current list instead.<br>
-(E.g. If John Doe is the 500th student, instead of delete_student 500, you can use find_student John Doe and
-delete_student 1 if the John Doe you would like to delete is the 1st in the list)
+<div markdown="span" class="alert alert-primary">:bulb: Tip:
+Use <code>find_student</code> command to filter the list of students you want.<br>
+The <code>STUDENT_INDEX</code> will be based on the current list.<br>
+(E.g. If John Doe is the 500th student, instead of <code>delete_student 500</code>, you can use <code>find_student John Doe</code> and
+<code>delete_student 1</code> if the John Doe you would like to delete is the 1st in the list)
 </div>
 
 Examples:
 * `delete_student 2` deletes the 2nd student based on the current list of students
 
-### Listing students' emails based on current list: `emails`
+#### Listing students' emails based on current list: `emails`
 Displays concatenated string of students' emails based on current list, separated by `;`. Useful for sending mass emails to students.
 
 Format: `emails`
 
-Examples:
+Example:
 
 \# | Student Name | Email
 ---- |---------|------|
@@ -256,90 +311,60 @@ Examples:
 
 * To get emails of specific students (see Figure 2.2): `find_student john jon` followed by  `emails` returns `johnlee@gmail.com;jonkoh@gmail.com;`
 
+### Managing Sessions
 
-### Listing all tuition sessions: `list_session`
+#### Adding a single tuition session: `add_session`
 
-Shows a list of all tuition sessions in TutorBuddy
-
-Format: `list_session`
-
-<!-- COMMENT OUT FOR FIND SESSION -->
-<!--### Locating tuition session by student name and session index: `find_session`
-
-Find tuition sessions that match the keyword given
-
-Format: `find_session s/STUDENT_NAME i/SESSION_INDEX`
-* The search will be case-insensitive. e.g. searching “stonks” will match “STONKS”
-* For student names:
-  * Any word that a student’s name contains will be matched. For example, if a session student’s name is “moon”, searching “moo” will match it
-
-Examples:<br>
-The command `list_session` will show the following:
-
-\# | Sessions
----- |---------
-1 | John Lee<br>15/2/2021 13:00<br>2h $60/h<br>Computer Science
-2 | Johnz Lee<br>16/2/2021 14:00<br>1.5h $30/h<br>Math
-3 | John Dam<br>18/2/2021 15:00<br>2h $0.10/h<br>Software Engineering
-4 | Sammuel Bruce Lee<br>19/2/2021 18:00<br>2h $30/h<br>Wing Chun
-
-* `find_session John` returns all John in TutorBuddy
-* `find_session Jo` returns all John in TutorBuddy
-* `find_session John Lee` returns all John Lee in TutorBuddy
-* `find_session Zach` returns nothing-->
-<!-- END OF COMMENT OUT FOR FIND SESSION -->
-
-### Adding a single tuition session: `add_session`
-
-Adds a single tuition session to the TutorBuddy
+Adds a single tuition session to TutorBuddy.
 
 Format: `add_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE`
 
 * `STUDENT_NAME` should match the exact student’s name in TutorBuddy
-* `DATE` should be in YYYY-MM-DD format
-* `TIME` should be in HH:MM 24-hr format
 * `DURATION` should be in minutes
 * `FEE` should be the total tuition fee for the total duration
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary">:bulb: Tip:
 TutorBuddy takes care of overlapping session for you by giving a gentle prompt, so you don't have to worry about it.
 </div>
 
-Examples:
+Example:
 * `add_session n/John Doe d/2021-01-01 t/18:00 k/120 s/Biology f/80`
 
-### Adding a recurring tuition session: `add_rec_session`
+#### Adding a recurring tuition session: `add_rec_session`
 
-Adds a recurring tuition session to the TutorBuddy
+Adds a recurring tuition session to TutorBuddy that allows you to specify the number of days between each recurring session.
 
-Format: `add_rec_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE b/INTERVAL e/LASTDATE`
+Format: `add_rec_session n/STUDENT_NAME d/START_DATE e/END_DATE b/INTERVAL t/TIME k/DURATION s/SUBJECT f/FEE `
 
-Similar to arguments for adding a single tuition session, except:
-* `DATE` refers to the starting date of the session
-
-Arguments additional to adding a single tuition session:  
-* `INTERVAL` should be in days, including the date from and excluding the date to <br/>
+Arguments similar to `add_session` command except the following:  
+* `START_DATE` should be the date of the first session
+* `END_DATE` should be the date of the last session
+* `INTERVAL` is the number of days to the next session <br/>
   e.g. `INTERVAL` = 7 for weekly sessions
-* `ENDDATE` should be an ending date of the recurring session, consistent with `DATE` and `INTERVAL`
 
-Examples:
-* `add_session n/John Doe d/2021-01-01 t/18:00 k/120 s/Biology f/80 b/7 e/2021-01-29`
-### Deleting a tuition session: `delete_session`
+Example:
+* `add_rec_session n/John Doe d/2021-01-01 e/2021-01-29 b/7 t/18:00 k/120 s/Biology f/80` adds a weekly session that starts on 
+2021-01-01 and ends on 2021-01-29
+  
+#### Deleting a tuition session: `delete_session`
 
-Deletes the specified tuition session from TutorBuddy
+Deletes the specified tuition session from TutorBuddy.
 
 Format: `delete_session n/STUDENT_NAME i/SESSION_INDEX`
 
+* `STUDENT_NAME` should match the exact student’s name in TutorBuddy
+* `SESSION_INDEX` refers to the session index for a particular student
 * Deletes the tuition session at the specified `SESSION_INDEX`
-* `SESSION_INDEX` refers to the session index respective to the student specified under `STUDENT_NAME`
 * The index must be a positive integer 1, 2, 3, …​
 
-Examples:
+Example:
 * `delete_session n/John Lee i/1` deletes John Lee's **first** session
 
-### Getting monthly fee for a particular student: `fee`
+### Fees
 
-Get the monthly fee for a particular student for a particular month and year
+#### Getting monthly fee for a particular student: `fee`
+
+Gets the monthly fee for a particular student for a particular month and year.
 
 Format: `fee n/STUDENT_NAME m/MONTH y/YEAR`
 
@@ -347,25 +372,48 @@ Format: `fee n/STUDENT_NAME m/MONTH y/YEAR`
 * `MONTH` should be a positive integer between 1 and 12
 * `YEAR` should be a positive integer between 1970 and 2037
 
-Examples:
-* `fee n/John Lee m/1 y/2021` get John Lee monthly fee for January 2021
+Example:
+* `fee n/John Lee m/1 y/2021` returns John Lee monthly fee for January 2021
 
-### Clearing all entries : `clear`
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
-Clears all entries from the TutorBuddy application.
+## Command summary
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-TutorBuddy gives you some sample data to work with at the start. <br>
-After trying out the application, you can run the `clear` command to start working with a fresh piece of TutorBuddy in a split second.
-</div>
+**General**
 
-Format: `clear`
+Action | Format 
+--------|------------------
+**Help** | `help`
+**List all students and sessions** | `list_student`
+**Clear all students and sessions** | `clear`
+**Exit TutorBuddy** | `exit`
 
-### Exit the program: `exit`
 
-Exits the program
+**Students**
 
-Format: `exit`
+Action | Format | Examples (if applicable)
+--------|------------------|-------
+**Add** | `add_student n/NAME p/STUDENT_PHONE_NUMBER e/EMAIL a/ADDRESS l/STUDY_LEVEL g/GUARDIAN_PHONE_NUMBER r/RELATIONSHIP_WITH_GUARDIAN` | `add_student n/John Doe p/98765432 e/johnd@example.com a/John street, Block 123, #01-01 l/Sec2 g/95421323 r/Mother`
+**Find** | `find_student KEYWORD [MORE_KEYWORDS]` | `find_student John Alex`
+**Edit** | `edit_student STUDENT_INDEX [n/NAME] [p/STUDENT_PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [l/STUDY_LEVEL] [g/GUARDIAN_PHONE_NUMBER] [r/RELATIONSHIP_WITH_GUARDIAN]` | `edit_student 1 p/98825432 e/alexy@example.com a/Alex street, Block 123, #01-01`
+**Delete** | `delete_student STUDENT_INDEX` | `delete_student 3`
+**List students' emails based on current list** | `emails`
+
+
+**Tuition Sessions**
+
+Action | Format | Examples
+--------|------------------|-------
+**Add Single Session** | `add_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE` | `add_session n/John Doe d/2021-01-01 t/18:00 k/120 s/Biology f/80`
+**Add Recurring Session** | `add_rec_session n/STUDENT_NAME d/DATE e/LASTDATE b/INTERVAL t/TIME k/DURATION s/SUBJECT f/FEE` | `add_rec_session n/John Doe d/2021-01-01 e/2021-01-15 b/7 t/20:00 k/120 s/Geography f/80`
+**Delete Session** | `delete_session n/STUDENT_NAME i/SESSION_INDEX` | `delete_session n/John Lee i/1`
+
+**Fees**
+
+Action | Format | Examples
+--------|------------------|-------
+**Check fee** | `fee n/STUDENT_NAME m/MONTH y/YEAR` | `fee n/John Lee m/1 y/2021`
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -376,38 +424,12 @@ Format: `exit`
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## Glossary
 
-**Students**
+This glossary provides definitions for the special terms used in this user guide.
 
-Action | Format, Examples
---------|------------------
-**List** | `list_student`
-**Find** | `find_student KEYWORD [MORE_KEYWORDS]`<br><br>e.g. `find_student John Alex`
-**Add** | `add_student n/NAME p/STUDENT_PHONE_NUMBER e/EMAIL a/ADDRESS l/STUDY_LEVEL g/GUARDIAN_PHONE_NUMBER r/RELATIONSHIP_WITH_GUARDIAN`<br><br> e.g., `add_student n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 l/Sec2 g/95421323 r/Mother`
-**Delete** | `delete_student INDEX`<br><br>e.g. `delete_student 3`
-**List students' emails based on current list** | `emails`
+**Single Session:** One time session on a particular date.
 
-**Tuition Session**
+**Recurring Session:** Repeating session that occurs every number of days.
 
-Action | Format, Examples
---------|------------------
-**List** | `list_session`
-**Find** | `find_session KEYWORD`<br><br>e.g. `find_session John`
-**Add Single** | `add_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE`<br><br> e.g. `add_session n/John Doe d/2021-01-01 t/18:00 k/120 s/Biology f/80`
-**Add Recurring** | `add_rec_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE b/INTERVAL e/LASTDATE`<br><br> e.g. `add_rec_session n/John Doe d/2021-01-01 t/20:00 k/120 s/Geography f/80 b/7 e/2021-01-15`
-**Delete** | `delete_session n/STUDENT_NAME i/SESSION_INDEX`<br><br>e.g. `delete_session n/John Lee i/1`
-
-**Fees**
-
-Action | Format, Examples
---------|------------------
-**Fee** | `fee n/STUDENT_NAME m/MONTH y/YEAR`<br><br>e.g. `fee n/John Lee m/1 y/2021`
-
-**Others**
-
-Action | Format, Examples
---------|------------------
-**Help** | `help`
-**Clear** | `clear`
-**Exit** | `exit`
+--------------------------------------------------------------------------------------------------------------------
