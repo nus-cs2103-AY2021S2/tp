@@ -18,6 +18,7 @@ import seedu.cakecollate.model.ReadOnlyCakeCollate;
 import seedu.cakecollate.model.order.DeliveryStatus;
 import seedu.cakecollate.model.order.Order;
 import seedu.cakecollate.model.order.Status;
+import seedu.cakecollate.model.orderitem.OrderItem;
 import seedu.cakecollate.storage.Storage;
 
 /**
@@ -107,6 +108,12 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+
+    @Override
+    public ObservableList<OrderItem> getFilteredOrderItemsList() {
+        return model.getFilteredOrderItemsList();
     }
 
 }
