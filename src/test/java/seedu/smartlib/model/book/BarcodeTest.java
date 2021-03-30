@@ -18,10 +18,10 @@ public class BarcodeTest {
     public void isValidBarcode() {
 
         // invalid barcode numbers
-        assertFalse(Barcode.isValidBarcode(1000000000-1)); // less than Barcode.MIN_VALUE
+        assertFalse(Barcode.isValidBarcode(1000000000 - 1)); // less than Barcode.MIN_VALUE
         assertFalse(Barcode.isValidBarcode(123)); // less than Barcode.MIN_VALUE
-        assertFalse(Barcode.isValidBarcode(2000000000+1)); // larger than Barcode.MAX_VALUE
-        assertFalse(Barcode.isValidBarcode(2000000010)); // larger than Barcode.MIN_VALUE
+        assertFalse(Barcode.isValidBarcode(2000000000 + 1)); // larger than Barcode.MAX_VALUE
+        assertFalse(Barcode.isValidBarcode(2000000010)); // larger than Barcode.MAX_VALUE
 
 
         // valid barcode numbers
