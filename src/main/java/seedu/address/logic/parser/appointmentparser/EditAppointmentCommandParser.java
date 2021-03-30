@@ -10,9 +10,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_FROM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_TO;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.appointmentcommands.EditAppointmentCommand;
 import seedu.address.logic.commands.appointmentcommands.EditAppointmentCommand.EditAppointmentDescriptor;
+import seedu.address.logic.commands.tutorcommands.EditCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
@@ -36,6 +36,7 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
                         PREFIX_DATE, PREFIX_TIME_FROM, PREFIX_TIME_TO, PREFIX_LOCATION);
 
         Index index;
+
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
@@ -51,13 +52,6 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
                     argMultimap.getValue(PREFIX_SUBJECT_NAME).get()));
         }
 
-        if (ArgumentTokenizer.arePrefixesPresent(argMultimap, PREFIX_DATE,
-                PREFIX_TIME_FROM, PREFIX_TIME_TO) || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    EditAppointmentCommand.MESSAGE_USAGE));
-        }
-
-        // TODO: Implement better handling of date and times (and combinations)
         if (argMultimap.getValue(PREFIX_DATE).isPresent() && argMultimap.getValue(PREFIX_TIME_FROM).isPresent()) {
 
             String dateString = argMultimap.getValue(PREFIX_DATE).get();
@@ -66,7 +60,7 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
             editAppointmentDescriptor.setTimeFrom(ParserUtil.parseDateTime(dateTimeString));
         }
 
-        if (argMultimap.getValue(PREFIX_TIME_TO).isPresent()) {
+        if (argMultimap.getValue(PREFIX_DATE).isPresent() && argMultimap.getValue(PREFIX_TIME_TO).isPresent()) {
             String dateString = argMultimap.getValue(PREFIX_DATE).get();
             String timeToString = argMultimap.getValue(PREFIX_TIME_TO).get();
             String dateTimeString = dateString + " " + timeToString;
