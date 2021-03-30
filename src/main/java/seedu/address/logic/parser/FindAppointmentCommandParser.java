@@ -15,6 +15,7 @@ import seedu.address.logic.commands.FindAppointmentCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.ApptAddressContainsKeywordsPredicate;
+import seedu.address.model.appointment.ApptAnyContainsKeywordsPredicate;
 import seedu.address.model.appointment.ApptDateContainsKeywordsPredicate;
 import seedu.address.model.appointment.ApptNameContainsKeywordsPredicate;
 
@@ -75,7 +76,7 @@ public class FindAppointmentCommandParser implements Parser<FindAppointmentComma
     public FindAppointmentCommand parseFindAll(String trimmedArgs) throws ParseException {
         String[] nameKeywords = trimmedArgs.split("\\s+");
         assert nameKeywords.length > 0 : "FindCommand keywords are empty";
-        return new FindAppointmentCommand(new ApptNameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        return new FindAppointmentCommand(new ApptAnyContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
     }
 
 }
