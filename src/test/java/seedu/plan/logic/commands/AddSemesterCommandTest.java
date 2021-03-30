@@ -41,7 +41,7 @@ public class AddSemesterCommandTest {
     @Test
     public void execute_semesterAcceptedByPlan_addSuccessful() throws Exception {
         ModelStubPlanAcceptingSemesterAdded modelStub = new ModelStubPlanAcceptingSemesterAdded();
-        Semester validSemester = new Semester(2); //fails build when new Semester(1) is used here
+        Semester validSemester = new Semester(1);
 
         CommandResult commandResult = new AddSemesterCommand(Index.fromOneBased(1), validSemester)
                 .execute(modelStub);
