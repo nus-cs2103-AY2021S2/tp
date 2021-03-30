@@ -39,7 +39,8 @@ public class InputHistory {
     }
 
     private boolean isDifferentFromLatest(String s) {
-        return !s.equals(lst.get(lst.size() - 1));
+        String latest = lst.get(lst.size() - 1);
+        return !s.equals(latest);
     }
 
     /**

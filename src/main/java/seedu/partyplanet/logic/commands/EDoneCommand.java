@@ -62,19 +62,23 @@ public class EDoneCommand extends Command {
             model.setEvent(e, e.setDone());
         }
 
+        String output;
 
-        if (invalidIndexes.isEmpty()) {
-            model.addState(String.format(MESSAGE_EVENT_DONE_SUCCESS, displayEvents(doneEvents)));
-            return new CommandResult(String.format(MESSAGE_EVENT_DONE_SUCCESS, displayEvents(doneEvents)));
-        } else if (doneEvents.isEmpty()) {
+        if (doneEvents.isEmpty()) {
             throw new CommandException(Messages.MESSAGE_NONE_INDEX_VALID);
+        } else if (invalidIndexes.isEmpty()) {
+            output = String.format(MESSAGE_EVENT_DONE_SUCCESS, displayEvents(doneEvents));
+
+            model.addState(output);
+            return new CommandResult(output);
+
         } else {
-            model.addState(String.format(MESSAGE_EVENT_DONE_SUCCESS + "\n" + MESSAGE_INVALID_EVENT_INDEX,
+            output = String.format(MESSAGE_EVENT_DONE_SUCCESS + "\n" + MESSAGE_INVALID_EVENT_INDEX,
                     displayEvents(doneEvents),
-                    String.join(", ", invalidIndexes)));
-            return new CommandResult(String.format(MESSAGE_EVENT_DONE_SUCCESS + "\n" + MESSAGE_INVALID_EVENT_INDEX,
-                    displayEvents(doneEvents),
-                    String.join(", ", invalidIndexes)));
+                    String.join(", ", invalidIndexes));
+
+            model.addState(output);
+            return new CommandResult(output);
         }
     }
 

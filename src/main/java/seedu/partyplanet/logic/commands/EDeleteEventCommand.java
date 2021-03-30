@@ -48,18 +48,24 @@ public class EDeleteEventCommand extends EDeleteCommand {
         for (Event eventToDelete : deletedEvents) {
             model.deleteEvent(eventToDelete);
         }
-        if (invalidIndexes.isEmpty()) {
-            model.addState(String.format(MESSAGE_DELETE_EVENT_SUCCESS, displayEvents(deletedEvents)));
-            return new CommandResult(String.format(MESSAGE_DELETE_EVENT_SUCCESS, displayEvents(deletedEvents)));
-        } else if (deletedEvents.isEmpty()) {
+
+        String output;
+
+        if (deletedEvents.isEmpty()) {
             throw new CommandException(Messages.MESSAGE_NONE_INDEX_VALID);
+        } else if (invalidIndexes.isEmpty()) {
+            output = String.format(MESSAGE_DELETE_EVENT_SUCCESS, displayEvents(deletedEvents));
+
+            model.addState(output);
+            return new CommandResult(output);
+
         } else {
-            model.addState(String.format(MESSAGE_DELETE_EVENT_SUCCESS + "\n" + MESSAGE_INVALID_EVENT_INDEX,
+            output = String.format(MESSAGE_DELETE_EVENT_SUCCESS + "\n" + MESSAGE_INVALID_EVENT_INDEX,
                     displayEvents(deletedEvents),
-                    String.join(", ", invalidIndexes)));
-            return new CommandResult(String.format(MESSAGE_DELETE_EVENT_SUCCESS + "\n" + MESSAGE_INVALID_EVENT_INDEX,
-                    displayEvents(deletedEvents),
-                    String.join(", ", invalidIndexes)));
+                    String.join(", ", invalidIndexes));
+
+            model.addState(output);
+            return new CommandResult(output);
         }
     }
 
@@ -68,16 +74,16 @@ public class EDeleteEventCommand extends EDeleteCommand {
      */
     private String displayEvents(List<Event> deletedEvents) {
         return deletedEvents.stream()
-            .map(e -> e.getName().toString())
-            .reduce((a, b) -> a + ", " + b)
-            .orElse("");
+                .map(e -> e.getName().toString())
+                .reduce((a, b) -> a + ", " + b)
+                .orElse("");
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof EDeleteEventCommand // instanceof handles nulls
-            && targetIndexes.equals(((EDeleteEventCommand) other).targetIndexes)); // state check
+                || (other instanceof EDeleteEventCommand // instanceof handles nulls
+                && targetIndexes.equals(((EDeleteEventCommand) other).targetIndexes)); // state check
     }
 }
 
