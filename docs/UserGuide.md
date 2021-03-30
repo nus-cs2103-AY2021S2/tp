@@ -392,6 +392,10 @@ Example usage:
     * Hit ENTER to run that command again.
     * Alternatively, select other commands via the UP and DOWN arrow keys.
 
+### Undo/redo history
+
+Undo/redo history is not saved to the hard disk, so it will be lost when SunRez is exited. 
+
 ### Save the data
 
 SunRez main application data and command history are saved in the hard disk automatically after any command 
