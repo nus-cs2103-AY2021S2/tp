@@ -22,6 +22,7 @@ import seedu.plan.model.plan.Semester;
 public class DeleteModuleCommandTest {
     private static final String INVALID_MODULE_CODE = "abcd";
     private Model model = new ModelManager(getTypicalModulePlanner(), new UserPrefs());
+    private final String invalidModuleCode = "abcd";
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -44,7 +45,7 @@ public class DeleteModuleCommandTest {
         model.addSemester(INDEX_FIRST_PLAN.getZeroBased(), semesterToDelete);
         //invalid module code
         DeleteModuleCommand deleteModuleCommand = new DeleteModuleCommand(INDEX_FIRST_PLAN,
-                INDEX_FIRST_PLAN, INVALID_MODULE_CODE);
+                INDEX_FIRST_PLAN, invalidModuleCode);
         assertCommandFailure(deleteModuleCommand, model,
                 Messages.MESSAGE_INVALID_MODULE_CODE_IN_SEMESTER);
 
