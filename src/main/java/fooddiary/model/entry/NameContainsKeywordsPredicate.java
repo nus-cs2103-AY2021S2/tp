@@ -70,10 +70,10 @@ public class NameContainsKeywordsPredicate implements Predicate<Entry> {
             sb.append(PRICE_RANGE_DASH).append(entry.getPrice().value);
         }
         return priceKeywords.stream().anyMatch(keyword ->
-                Integer.parseInt(keyword.split(PRICE_RANGE_DASH)[0])
-                <= Integer.parseInt(sb.toString().split(PRICE_RANGE_DASH)[1])
-                && Integer.parseInt(sb.toString().split(PRICE_RANGE_DASH)[0])
-                <= Integer.parseInt(keyword.split(PRICE_RANGE_DASH)[1]));
+            Integer.parseInt(keyword.split(PRICE_RANGE_DASH)[0])
+            <= Integer.parseInt(sb.toString().split(PRICE_RANGE_DASH)[1])
+            && Integer.parseInt(sb.toString().split(PRICE_RANGE_DASH)[0])
+            <= Integer.parseInt(keyword.split(PRICE_RANGE_DASH)[1]));
     }
 
     /**
@@ -95,7 +95,7 @@ public class NameContainsKeywordsPredicate implements Predicate<Entry> {
             sb.append(" ").append(t.tag);
         }
         return nonPriceKeywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(sb.toString(), keyword));
+            .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(sb.toString(), keyword));
     }
 
     /**
@@ -112,12 +112,12 @@ public class NameContainsKeywordsPredicate implements Predicate<Entry> {
         boolean containsPriceResemblingKeywords = false;
 
         if (keywords.stream().anyMatch(keyword
-                -> keyword.matches(ratingResemblingRegex) && !keyword.matches(ratingRegex))) {
+            -> keyword.matches(ratingResemblingRegex) && !keyword.matches(ratingRegex))) {
             containsRatingResemblingKeywords = true;
         }
         if (keywords.stream().anyMatch(keyword
-                -> keyword.length() > 1 && keyword.matches(priceResemblingRegex)
-                && !Price.isValidPrice(keyword.substring(1)))) {
+            -> keyword.length() > 1 && keyword.matches(priceResemblingRegex)
+            && !Price.isValidPrice(keyword.substring(1)))) {
             containsPriceResemblingKeywords = true;
         }
 
