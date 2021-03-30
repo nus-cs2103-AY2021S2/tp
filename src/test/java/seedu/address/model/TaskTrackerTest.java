@@ -87,7 +87,6 @@ public class TaskTrackerTest {
      */
     private static class TaskTrackerStub implements ReadOnlyTaskTracker {
         private final ObservableList<Task> tasks = FXCollections.observableArrayList();
-        private final ObservableList<Task> dailyTasks = FXCollections.observableArrayList();
 
         TaskTrackerStub(Collection<Task> tasks) {
             this.tasks.setAll(tasks);
@@ -96,11 +95,6 @@ public class TaskTrackerTest {
         @Override
         public ObservableList<Task> getTaskList() {
             return tasks;
-        }
-
-        @Override
-        public ObservableList<Task> getDailyTaskList() {
-            return dailyTasks;
         }
     }
 

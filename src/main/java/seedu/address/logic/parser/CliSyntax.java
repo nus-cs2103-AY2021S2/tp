@@ -11,7 +11,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_WEIGHTAGE = new Prefix("w/");
     public static final Prefix PREFIX_DEADLINE_DATE = new Prefix("d/");
     public static final Prefix PREFIX_DEADLINE_TIME = new Prefix("t/");
-    public static final Prefix PREFIX_FLAG = new Prefix("-");
     public static final Prefix PREFIX_REMARK = new Prefix("r/");
     public static final Prefix PREFIX_TAG = new Prefix("pt/");
     public static final Prefix PREFIX_PRIORITYTAG = new Prefix("ptag/");

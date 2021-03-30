@@ -1,4 +1,4 @@
-package seedu.address.logic.util;
+package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
@@ -24,44 +24,45 @@ public class SortingFlag {
     public static final String MESSAGE_CONSTRAINTS = "Sorting flag should be one of either [dateTime],"
             + "[taskName], [moduleCode], [priorityTag] or [weightage] (case-sensitive).";
 
-    public final SortingType sortingType;
+    public final SortingFlagType sortingFlagType;
 
     /**
      * Constructs a SortingFlag with the appropriate given type.
-     * @throws IllegalArgumentException if the given type is invalid.
+     * @throws IllegalArgumentException if the given type is invalid (i.e. does not belong to either one of the three
+     * types).
      */
     public SortingFlag(String sortingFlag) {
         requireNonNull(sortingFlag);
-        checkArgument(isValidSortingType(sortingFlag), SortingFlag.MESSAGE_CONSTRAINTS);
+        checkArgument(isValidSortingTypeFlag(sortingFlag), SortingFlag.MESSAGE_CONSTRAINTS);
         switch (sortingFlag) {
         case DATE_TIME_FLAG:
-            sortingType = SortingType.DATE_TIME;
+            sortingFlagType = SortingFlagType.DATE_TIME;
             break;
         case TASK_NAME_FLAG:
-            sortingType = SortingType.TASK_NAME;
+            sortingFlagType = SortingFlagType.TASK_NAME;
             break;
         case MODULE_CODE_FLAG:
-            sortingType = SortingType.MODULE_CODE;
+            sortingFlagType = SortingFlagType.MODULE_CODE;
             break;
         case PRIORITY_TAG_FLAG:
-            sortingType = SortingType.PRIORITY_TAG;
+            sortingFlagType = SortingFlagType.PRIORITY_TAG;
             break;
         case WEIGHTAGE_FLAG:
-            sortingType = SortingType.WEIGHTAGE;
+            sortingFlagType = SortingFlagType.WEIGHTAGE;
             break;
         default:
             throw new IllegalArgumentException(SortingFlag.MESSAGE_CONSTRAINTS);
         }
     }
 
-    public SortingType getSortingType() {
-        return sortingType;
+    public SortingFlagType getSortingFlagType() {
+        return sortingFlagType;
     }
 
     /**
-     * Checks if a given string represents a valid sorting type.
+     * Checks if a given string represents a valid sorting flag type.
      */
-    public static boolean isValidSortingType(String s) {
+    public static boolean isValidSortingTypeFlag(String s) {
         return s.equals(DATE_TIME_FLAG)
                 || s.equals(TASK_NAME_FLAG)
                 || s.equals(MODULE_CODE_FLAG)
@@ -70,10 +71,8 @@ public class SortingFlag {
     }
 
     @Override
-    public boolean equals(Object other) {
-        return other == this
-                || (other instanceof SortingFlag
-                && sortingType.equals(((SortingFlag) other).sortingType));
+    public String toString() {
+        return String.format("[%s]", sortingFlagType.getSortingFlag());
     }
 }
 
