@@ -19,9 +19,9 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.AppointmentDateTime;
-import seedu.address.model.schedule.Description;
+import seedu.address.model.common.Description;
+import seedu.address.model.common.Title;
 import seedu.address.model.schedule.Schedule;
-import seedu.address.model.schedule.Title;
 
 /**
  * Edits the details of an existing schedule in the schedule list.

@@ -3,6 +3,8 @@ package seedu.address.model.schedule;
 import java.util.Objects;
 
 import seedu.address.model.appointment.AppointmentDateTime;
+import seedu.address.model.common.Description;
+import seedu.address.model.common.Title;
 import seedu.address.model.event.Event;
 
 /**

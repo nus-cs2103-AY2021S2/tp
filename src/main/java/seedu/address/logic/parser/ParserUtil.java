@@ -12,6 +12,8 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.budget.Budget;
+import seedu.address.model.common.Description;
+import seedu.address.model.common.Title;
 import seedu.address.model.grade.GradeEnum;
 import seedu.address.model.grade.GradedItem;
 import seedu.address.model.person.Address;
@@ -19,8 +21,6 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.schedule.Description;
-import seedu.address.model.schedule.Title;
 import seedu.address.model.subject.SubjectExperience;
 import seedu.address.model.subject.SubjectLevel;
 import seedu.address.model.subject.SubjectList;
@@ -156,6 +156,7 @@ public class ParserUtil {
 
     /**
      * Parses {@code String budgetValue} into {@code Budget}
+     *
      * @param budgetValue Value to set as budget.
      * @throws ParseException
      */
