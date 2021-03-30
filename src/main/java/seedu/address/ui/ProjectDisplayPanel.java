@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_NO_GROUPMATES_TO_DISPLAY;
 import static seedu.address.commons.core.Messages.MESSAGE_NO_TODOS_TO_DISPLAY;
 
 import java.util.Comparator;
@@ -40,24 +41,20 @@ public class ProjectDisplayPanel extends UiPart<Region> {
     private static final int GROUPMATES_CARD_HEIGHT = 55;
 
     private final ListView<CompletableTodo> completableTodoListView = new ListView<>();
+    private final ListView<Groupmate> groupmateListView = new ListView<>();
 
     @FXML
     private Label projectName;
-
     @FXML
     private TabPane tabPane;
-
     @FXML
     private ListView<Event> eventListView;
-
     @FXML
     private ListView<CompletableDeadline> completableDeadlineListView;
-
     @FXML
     private StackPane todoListViewPlaceholder;
-
     @FXML
-    private ListView<Groupmate> groupmateListView;
+    private StackPane groupmateListViewPlaceholder;
 
     /**
      * Creates a {@code ProjectDisplayPanel}.
@@ -101,6 +98,15 @@ public class ProjectDisplayPanel extends UiPart<Region> {
                 .bind(Bindings.size(groupmates).multiply(GROUPMATES_CARD_HEIGHT).add(SAFETY_MARGIN));
         groupmateListView.setItems(new FilteredList<>(groupmates));
         groupmateListView.setCellFactory(listView -> new GroupmateListViewCell());
+
+        groupmateListViewPlaceholder.getChildren().clear();
+        if (groupmateListView.getItems().isEmpty()) {
+            Label noGroupmatesPlaceholder = new Label();
+            noGroupmatesPlaceholder.setText(MESSAGE_NO_GROUPMATES_TO_DISPLAY);
+            groupmateListViewPlaceholder.getChildren().add(noGroupmatesPlaceholder);
+        } else {
+            groupmateListViewPlaceholder.getChildren().add(groupmateListView);
+        }
     }
 
     private void setUpDeadlinesList(ObservableList<CompletableDeadline> deadlines) {
