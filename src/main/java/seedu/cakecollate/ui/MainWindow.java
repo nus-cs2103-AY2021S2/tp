@@ -154,14 +154,16 @@ public class MainWindow extends UiPart<Stage> {
 
     void commandBoxArrowShortcut() {
         commandBox.getCommandTextField().setOnKeyPressed(event -> {
+
             if (event.getCode().equals(KeyCode.UP)) {
-                Optional<String> input = commandBox.getPreviousInput();
-                input.ifPresent(string -> commandBox.getCommandTextField().setText(string));
+                commandBox.setCommandTextField(commandBox.getPreviousInput());
             } else if (event.getCode().equals(KeyCode.DOWN)) {
-                Optional<String> input = commandBox.getNextInput();
-                input.ifPresent(string -> commandBox.getCommandTextField().setText(string));
+                commandBox.setCommandTextField(commandBox.getNextInput());
+            } else if (event.getCode().equals(KeyCode.RIGHT)) {
+                commandBox.setCaretPositionRight();
+            } else if (event.getCode().equals(KeyCode.LEFT)) {
+                commandBox.setCaretPositionLeft();
             }
-            commandBox.getCommandTextField().positionCaret(commandBox.getTextInCommandTextField().length());
         });
     }
 

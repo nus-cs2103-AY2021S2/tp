@@ -2,7 +2,6 @@ package seedu.cakecollate.ui;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
 import seedu.cakecollate.logic.commands.CommandResult;
@@ -81,6 +80,7 @@ public class CommandBox extends UiPart<Region> {
         incrementUserInputsIndex();
         userInputsIndex = userInputs.size() - 1;
         firstDecrementAfterUserInput = true;
+        positionCaretInTheEnd();
     }
 
     private void incrementUserInputsIndex() {
@@ -96,6 +96,15 @@ public class CommandBox extends UiPart<Region> {
         firstDecrementAfterUserInput = false;
     }
 
+    public void setCommandTextField(Optional<String> input) {
+        input.ifPresent(string -> getCommandTextField().setText(string));
+        positionCaretInTheEnd();
+    }
+
+    private void positionCaretInTheEnd() {
+        getCommandTextField().positionCaret(getTextInCommandTextField().length());
+    }
+
     public Optional<String> getPreviousInput() {
         decrementUserInputsIndex();
         Optional<String> previous = Optional.ofNullable(input());
@@ -106,6 +115,18 @@ public class CommandBox extends UiPart<Region> {
         incrementUserInputsIndex();
         Optional<String> next = Optional.ofNullable(input());
         return next;
+    }
+
+    public void setCaretPositionRight() {
+        if (getTextInCommandTextField().length() > getCommandTextField().getCaretPosition()) {
+            getCommandTextField().positionCaret(commandTextField.getCaretPosition() + 1);
+        }
+    }
+
+    public void setCaretPositionLeft() {
+        if (getTextInCommandTextField().length() > 0) {
+            getCommandTextField().positionCaret(commandTextField.getCaretPosition() - 1);
+        }
     }
 
     private String input() {
