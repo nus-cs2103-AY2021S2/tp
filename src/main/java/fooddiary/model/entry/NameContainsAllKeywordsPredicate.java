@@ -12,7 +12,7 @@ import fooddiary.commons.util.StringUtil;
 import fooddiary.model.tag.Tag;
 
 /**
- * Tests that a {@code Entry}'s {@code Restaurant Name} matches all of the keywords given.
+ * Tests that an entry matches all of the keywords given.
  */
 public class NameContainsAllKeywordsPredicate implements Predicate<Entry> {
     private final List<String> keywords;
@@ -55,6 +55,13 @@ public class NameContainsAllKeywordsPredicate implements Predicate<Entry> {
                 && keywords.equals(((NameContainsAllKeywordsPredicate) other).keywords)); // state check
     }
 
+    /**
+     * Helper function that tests that an entry matches all of the price keywords given
+     *
+     * @param entry an entry to search for price keywords
+     * @param priceKeywords the price keywords to be used to search an entry
+     * @return true if entry contains all of the price keywords, false otherwise
+     */
     private boolean testPrice(Entry entry, List<String> priceKeywords) {
         //convert entry price to price range if necessary before comparison test against keywords
         StringBuilder sb = new StringBuilder(entry.getPrice().value);
@@ -68,6 +75,13 @@ public class NameContainsAllKeywordsPredicate implements Predicate<Entry> {
                         <= Integer.parseInt(keyword.split(PRICE_RANGE_DASH)[1]));
     }
 
+    /**
+     * Helper function that tests that an entry matches all of the non-price keywords given
+     *
+     * @param entry an entry to search for non-price keywords
+     * @param nonPriceKeywords the non-price keywords to be used to search an entry
+     * @return true if entry contains all of the non-price keywords, false otherwise
+     */
     private boolean testNonPrice(Entry entry, List<String> nonPriceKeywords) {
         //combine name, rating, and address into a single string to test for keywords
         StringBuilder sb = new StringBuilder(entry.getName().fullName);
