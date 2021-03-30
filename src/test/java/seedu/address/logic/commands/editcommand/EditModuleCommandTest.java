@@ -51,7 +51,7 @@ public class EditModuleCommandTest {
 
         Module moduleInList = modelCopy.getFilteredModuleList().get(INDEX_SECOND_MODULE.getZeroBased());
         EditModuleCommand editModuleCommand = new EditModuleCommand(INDEX_FIRST_MODULE.getOneBased(),
-                                                                    testTitle);
+                                                                    moduleInList.getTitle());
 
         assertCommandFailure(editModuleCommand, modelCopy, EditModuleCommand.MESSAGE_DUPLICATE_MODULE);
     }
