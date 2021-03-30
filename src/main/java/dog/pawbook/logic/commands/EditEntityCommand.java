@@ -6,7 +6,6 @@ import static dog.pawbook.logic.parser.CliSyntax.PREFIX_NAME;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_OWNERID;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_PHONE;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_SESSION;
-import static dog.pawbook.model.Model.PREDICATE_SHOW_ALL_ENTITIES;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Collections;
@@ -18,6 +17,7 @@ import dog.pawbook.commons.util.CollectionUtil;
 import dog.pawbook.logic.commands.exceptions.CommandException;
 import dog.pawbook.model.Model;
 import dog.pawbook.model.managedentity.Entity;
+import dog.pawbook.model.managedentity.IdMatchPredicate;
 import dog.pawbook.model.managedentity.Name;
 import dog.pawbook.model.managedentity.dog.Dog;
 import dog.pawbook.model.managedentity.owner.Owner;
@@ -82,7 +82,7 @@ public abstract class EditEntityCommand extends Command {
         }
 
         model.setEntity(id, editedEntity);
-        model.updateFilteredEntityList(PREDICATE_SHOW_ALL_ENTITIES);
+        model.updateFilteredEntityList(new IdMatchPredicate(id));
         return new CommandResult(getSuccessMessage(editedEntity));
     }
 

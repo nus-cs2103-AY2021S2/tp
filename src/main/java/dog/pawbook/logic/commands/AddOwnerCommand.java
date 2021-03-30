@@ -42,7 +42,7 @@ public class AddOwnerCommand extends AddCommand<Owner> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddOwnerCommand // instanceof handles nulls
-                && toAdd.equals(((AddOwnerCommand) other).toAdd));
+                        && toAdd.equals(((AddOwnerCommand) other).toAdd));
     }
 
     @Override

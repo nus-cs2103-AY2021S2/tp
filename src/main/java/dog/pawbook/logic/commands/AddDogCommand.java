@@ -92,6 +92,6 @@ public class AddDogCommand extends AddCommand<Dog> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddDogCommand // instanceof handles nulls
-                && toAdd.equals(((AddDogCommand) other).toAdd));
+                        && toAdd.equals(((AddDogCommand) other).toAdd));
     }
 }

@@ -1,5 +1,7 @@
 package dog.pawbook.logic.commands;
 
+import static dog.pawbook.model.Model.COMPARATOR_ID_ASCENDING_ORDER;
+import static dog.pawbook.model.Model.PREDICATE_SHOW_ALL_ENTITIES;
 import static java.util.Objects.requireNonNull;
 
 import java.util.NoSuchElementException;
@@ -48,6 +50,14 @@ public abstract class DeleteCommand extends Command {
             throw new CommandException(getInvalidIdMessage());
         }
         return entityToDelete;
+    }
+
+    /**
+     * Updates the filtered list and sorts it in the desired order.
+     */
+    protected final void filteredListShowAllAscendingId(Model model) {
+        model.updateFilteredEntityList(PREDICATE_SHOW_ALL_ENTITIES);
+        model.sortEntities(COMPARATOR_ID_ASCENDING_ORDER);
     }
 
     protected abstract String getInvalidIdMessage();

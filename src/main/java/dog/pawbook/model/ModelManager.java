@@ -4,6 +4,7 @@ import static dog.pawbook.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -142,6 +143,12 @@ public class ModelManager implements Model {
     public void updateFilteredEntityList(Predicate<Pair<Integer, Entity>> predicate) {
         requireNonNull(predicate);
         filteredEntities.setPredicate(predicate);
+    }
+
+    @Override
+    public void sortEntities(Comparator<Pair<Integer, Entity>> comparator) {
+        requireNonNull(comparator);
+        database.sortEntities(comparator);
     }
 
     @Override

@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static java.util.stream.Collectors.toList;
 
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -173,6 +174,14 @@ public class UniqueEntityList implements Iterable<Pair<Integer, Entity>> {
         }
 
         internalList.setAll(entities);
+    }
+
+    /**
+     * Sorts the internal list.
+     * @param comparator compares based on class types.
+     */
+    public void sortEntitiesBy(Comparator<Pair<Integer, Entity>> comparator) {
+        internalList.sort(comparator);
     }
 
     /**
