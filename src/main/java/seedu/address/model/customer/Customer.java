@@ -25,7 +25,7 @@ public class Customer {
     private final DateOfBirth dateOfBirth;
     private final Set<Tag> tags = new HashSet<>();
     private final Map<Car, CoeExpiry> carsOwned;
-    private final Set<Car> carsPreferred;
+    private final Set<Car> carsPreferred = new HashSet<>();
 
     /**
      * Every field must be present and not null.
@@ -43,7 +43,7 @@ public class Customer {
             carsOwned = new HashMap<>();
         }
         this.carsOwned = carsOwned;
-        this.carsPreferred = carsPreferred;
+        this.carsPreferred.addAll(carsPreferred);
     }
 
     public Name getName() {

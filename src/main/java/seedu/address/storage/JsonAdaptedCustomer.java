@@ -62,13 +62,13 @@ class JsonAdaptedCustomer {
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
-        if (this.carsOwned != null) {
+        if (carsOwned != null) {
             this.carsOwned.addAll(carsOwned);
         }
         if (coeExpiries != null) {
             this.coeExpiries.addAll(coeExpiries);
         }
-        if (this.carsPreferred != null) {
+        if (carsPreferred != null) {
             this.carsPreferred.addAll(carsPreferred);
         }
     }
