@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.customer.CustomerAddCommand;
+import seedu.address.logic.commands.customer.CustomerCommandUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyUserPrefs;
@@ -57,7 +58,7 @@ public class CustomerAddCommandTest {
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
 
         assertThrows(CommandException.class,
-                CustomerAddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+                CustomerCommandUtil.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
     }
 
     @Test
@@ -179,6 +180,11 @@ public class CustomerAddCommandTest {
         }
 
         @Override
+        public Dish getDishByIndex(int i) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deleteDish(Dish dish) {
             throw new AssertionError("This method should not be called.");
         }
@@ -220,6 +226,11 @@ public class CustomerAddCommandTest {
 
         @Override
         public boolean hasIngredient(Ingredient ingredient) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Ingredient getIngredientByIndex(int i) {
             throw new AssertionError("This method should not be called.");
         }
 
