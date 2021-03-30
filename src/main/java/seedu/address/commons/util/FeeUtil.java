@@ -33,7 +33,8 @@ public class FeeUtil {
     private static double getRecurringSessionFee(RecurringSession recurringSession, LocalDateTime startPeriod,
         LocalDateTime endPeriod) {
         SessionDate startDate = new SessionDate(startPeriod);
-        SessionDate endDate = new SessionDate(endPeriod);
+        // // Minus one day, because the end date for numOfSessionBetween method is inclusive
+        SessionDate endDate = new SessionDate(endPeriod.minusDays(1));
         int numOfSession = recurringSession.numOfSessionBetween(startDate, endDate);
 
         // Ensures that there is more than 0 session, so we can get the fees accordingly
