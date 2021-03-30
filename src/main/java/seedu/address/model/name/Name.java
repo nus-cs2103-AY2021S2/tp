@@ -54,7 +54,7 @@ public class Name implements Comparable<Name> {
             return false;
         }
         Name otherName = (Name) other;
-        return name.equals(otherName.name);
+        return name.equalsIgnoreCase(otherName.name);
     }
 
     @Override
