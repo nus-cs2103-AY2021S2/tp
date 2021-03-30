@@ -23,7 +23,6 @@ import dog.pawbook.model.managedentity.owner.Owner;
  * Adds a dog to the database.
  */
 public class AddDogCommand extends AddCommand<Dog> {
-
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds dog to the database. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
