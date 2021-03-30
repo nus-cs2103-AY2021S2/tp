@@ -24,7 +24,7 @@ import seedu.address.model.contact.exceptions.DuplicateContactException;
  *
  * Supports a minimal set of list operations.
  *
- * @see Contact#equals(Contact)
+ * @see Contact#isSameContact(Contact)
  */
 public class UniqueContactList implements Iterable<Contact> {
 
@@ -37,7 +37,7 @@ public class UniqueContactList implements Iterable<Contact> {
      */
     public boolean contains(Contact toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::equals);
+        return internalList.stream().anyMatch(toCheck::isSameContact);
     }
 
     /**
@@ -116,8 +116,8 @@ public class UniqueContactList implements Iterable<Contact> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof seedu.address.model.contact.UniqueContactList // instanceof handles nulls
-                && internalList.equals(((seedu.address.model.contact.UniqueContactList) other).internalList));
+                || (other instanceof UniqueContactList // instanceof handles nulls
+                && internalList.equals(((UniqueContactList) other).internalList));
     }
 
     @Override
@@ -131,7 +131,7 @@ public class UniqueContactList implements Iterable<Contact> {
     private boolean contactsAreUnique(List<Contact> contacts) {
         for (int i = 0; i < contacts.size() - 1; i++) {
             for (int j = i + 1; j < contacts.size(); j++) {
-                if (contacts.get(i).equals(contacts.get(j))) {
+                if (contacts.get(i).isSameContact(contacts.get(j))) {
                     return false;
                 }
             }

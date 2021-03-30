@@ -58,13 +58,8 @@ public class Contact {
      * Returns true if both contacts have the same name.
      * This defines a weaker notion of equality between two contacts.
      */
-    public boolean equals(Contact otherContact) {
-        if (otherContact == this) {
-            return true;
-        }
-
-        return otherContact != null
-                && otherContact.getName().equals(getName());
+    public boolean isSameContact(Contact otherContact) {
+        return equals(otherContact);
     }
 
     /**
@@ -81,11 +76,11 @@ public class Contact {
             return false;
         }
 
-        Contact otherPerson = (Contact) other;
-        return otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getTags().equals(getTags());
+        Contact otherContact = (Contact) other;
+        return otherContact.getName().equals(getName())
+                && otherContact.getPhone().equals(getPhone())
+                && otherContact.getEmail().equals(getEmail())
+                && otherContact.getTags().equals(getTags());
     }
 
     @Override
