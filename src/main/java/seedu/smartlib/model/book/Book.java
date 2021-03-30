@@ -1,7 +1,10 @@
 package seedu.smartlib.model.book;
 
 import static seedu.smartlib.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.smartlib.model.SmartLib.HOURS_BORROW_ALLOWED;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 import seedu.smartlib.commons.core.name.Name;
@@ -164,6 +167,21 @@ public class Book {
         return otherBook != null
                 && otherBook.getName().equals(getName())
                 && otherBook.getBarcode().equals(getBarcode());
+    }
+
+    /**
+     * Checks whether the book is overdue. Return false when the book is not borrowed
+     * or the book is not overdue yet.
+     * @return A boolean indicating whether the book is overdue.
+     */
+    public boolean isOverdue() {
+        if (dateBorrowed == null) {
+            return false;
+        }
+        LocalDateTime timeNow = LocalDateTime.now();
+        LocalDateTime startDate = LocalDateTime.parse(dateBorrowed.getValue());
+
+        return (int) Duration.between(startDate, timeNow).toHours() > HOURS_BORROW_ALLOWED;
     }
 
     /**
