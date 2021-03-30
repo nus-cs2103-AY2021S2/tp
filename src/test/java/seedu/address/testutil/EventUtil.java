@@ -12,9 +12,11 @@ public class EventUtil {
     /**
      * Returns an add command string for adding the {@code event}.
      */
+    /*
     public static String getAddCommand(Event event) {
         return AddCommand.COMMAND_WORD + " " + getEventDetails(event);
     }
+    */
 
     public static String getEventDetails(Event event) {
         StringBuilder sb = new StringBuilder();

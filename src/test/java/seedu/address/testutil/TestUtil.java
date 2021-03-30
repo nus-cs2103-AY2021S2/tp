@@ -6,9 +6,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import seedu.address.commons.core.identifier.Identifier;
-import seedu.address.commons.core.identifier.Index;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.event.Event;
 
 /**
  * A utility class for test cases.
@@ -48,9 +47,9 @@ public class TestUtil {
     }
 
     /**
-     * Returns the person in the {@code model}'s person list at {@code index}.
+     * Returns the event in the {@code model}'s event list at {@code identifier}.
      */
-    public static Person getPerson(Model model, Index index) {
-        return model.getFilteredPersonList().get(index.getZeroBased());
+    public static Event getEvent(Model model, Identifier identifier) {
+        return model.getFilteredEventList().get(identifier.getZeroBased());
     }
 }
