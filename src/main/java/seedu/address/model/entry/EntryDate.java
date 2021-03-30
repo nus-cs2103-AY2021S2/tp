@@ -57,7 +57,7 @@ public class EntryDate {
 
     @Override
     public String toString() {
-        return getDate().format(DEFAULT_FORMATTER);
+        return getDate().format(DEFAULT_FORMATTER).replace("T", " ");
     }
 
     @Override
