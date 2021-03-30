@@ -31,7 +31,7 @@ public class ListOccupyingEntryPredicate implements Predicate<Entry> {
         if ((entryStart).equals(entryEnd)) {
             return false;
         } else {
-            return (entryStart.isAfter(targetStart) && entryEnd.isBefore(targetEnd));
+            return (targetStart.isBefore(entryEnd) && entryStart.isBefore(targetEnd));
         }
     }
 }
