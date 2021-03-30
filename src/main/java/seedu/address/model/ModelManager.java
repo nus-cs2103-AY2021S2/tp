@@ -203,4 +203,9 @@ public class ModelManager implements Model {
     public boolean isAlias(String input) {
         return userPrefs.isAlias(input);
     }
+
+    @Override
+    public boolean isCommand(String input) {
+        return userPrefs.isCommand(input);
+    }
 }

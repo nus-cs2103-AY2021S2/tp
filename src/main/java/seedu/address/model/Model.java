@@ -133,7 +133,12 @@ public interface Model {
     String parseAlias(String input);
 
     /**
-     * Checks if input is alias
+     * Checks if input is an alias
      */
     boolean isAlias(String input);
+
+    /**
+     * Checks if input is a command
+     */
+    boolean isCommand(String input);
 }

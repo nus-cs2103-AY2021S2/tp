@@ -48,7 +48,10 @@ public class AliasMap {
         if (aliasMap.containsValue(alias)) {
             return false;
         }
-        if (Arrays.stream(commandsWord).anyMatch(c -> c.equals(alias))) {
+        if (isCommand(alias)) {
+            return false;
+        }
+        if (!isCommand(command)) {
             return false;
         }
         return true;
@@ -88,6 +91,13 @@ public class AliasMap {
      */
     public boolean isAlias(String input) {
         return aliasMap.containsValue(input);
+    }
+
+    /**
+     * Returns true if input is a command
+     */
+    public boolean isCommand(String input) {
+        return Arrays.stream(commandsWord).anyMatch(c -> c.equals(input));
     }
 
     public static class UnableToAddAliasException extends RuntimeException {
