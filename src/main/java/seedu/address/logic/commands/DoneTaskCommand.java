@@ -26,7 +26,7 @@ public class DoneTaskCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Marks the task(s) identified by the index number(s) as complete.\n"
-            + "Parameters: INDEX ...\n"
+            + "Parameters: INDEX1 [INDEX2] ...\n"
             + "Example: " + COMMAND_WORD + " 1 2\n"
             + "Also, note that: \n"
             + "1. Index number is the index shown in the displayed task list.\n"
