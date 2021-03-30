@@ -177,15 +177,18 @@ Format: `deletebook INDEX`
 Examples:
 * `listbook` followed by `deletebook 2` deletes the 2nd book in the book list.
 
-#### Finding books by name : `findbook`
+#### Finding books by keyword(s) : `findbook`
 
-Finds books whose names contain any of the given keywords.
+Finds books whose information (Title, Author, Publisher, ISBN, Genre) contains any of the given keywords.
 
 Format: `findbook KEYWORD [MORE_KEYWORDS]`
 
 Examples:
-*`findbook fiction` returns books related to fiction
-*`findbook history [American History]` returns books related to history, especially American history.
+*`findbook Suspense` returns books under the genre Suspense.
+*`findbook American History` returns books related to history, especially American history.
+*`findbook Brandon Sanderson` returns books by the author Brandon Sanderson.
+*`findbook Bloomsbury` returns books published by Bloomsbury.
+*`findbook 1234567890123` returns books with the corresponding ISBN.
 
 #### Listing all books : `listbook`
 
@@ -215,23 +218,22 @@ a book which name is The Old Man and the Sea
 
 Records a returning activity.
 
-Format: `return b/BOOKNAME r/READERNAME`
+Format: `return bc/BARCODE`
 
-* Let reader at the specified name READERNAME return the book specified by name BOOKNAME
+* Let reader returns the book specified by barcode BARCODE
 
 Examples:
-* `return b/The Old Man and the Sea r/Alex Yeoh` records a rental entry that reader whose name is Alex Yeoh returned
-a book which name is The Old Man and the Sea
+* `return bc/1202179131` records a rental entry that the book with the corresponding barcode has been returned.
 
-#### Finding records by name : `findrecord`
+#### Finding records by keyword(s) : `findrecord`
 
-Finds books whose names contain any of the given keywords.
+Finds relevant records with book titles containing any of the given keywords.
 
 Format: `findrecord KEYWORD [MORE_KEYWORDS]`
 
 #### Listing all records : `listrecord`
 
-Lists all the current in-store books.
+Lists all the current records related to borrowing and returning books .
 
 Format: `listrecord`
 
