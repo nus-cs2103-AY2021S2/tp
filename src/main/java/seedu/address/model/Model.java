@@ -117,6 +117,11 @@ public interface Model {
     boolean hasDish(Dish dish);
 
     /**
+     * Returns the {@code Dish} object at the specified index on the UI
+     */
+    Dish getDishByIndex(int i);
+
+    /**
      * Deletes the given dish.
      * The dish must exist.
      */
@@ -160,6 +165,11 @@ public interface Model {
      * Returns true if ingredient with the same name as {@code ingredient} exists in the address book.
      */
     boolean hasIngredient(Ingredient ingredient);
+
+    /**
+     * Returns the {@code Ingredient} object at the specified index on the UI
+     */
+    Ingredient getIngredientByIndex(int i);
 
     /**
      * Deletes the given ingredient.

@@ -215,6 +215,13 @@ public class ModelManager implements Model {
     }
 
     /**
+     * Returns the {@code Person} object at the specified index on the UI
+     */
+    public Dish getDishByIndex(int i) {
+        return getFilteredDishList().get(i);
+    }
+
+    /**
      * Deletes the given dish.
      * The dish must exist.
      */
@@ -274,6 +281,13 @@ public class ModelManager implements Model {
     public boolean hasIngredient(Ingredient ingredient) {
         requireNonNull(ingredient);
         return ingredientBook.hasIngredient(ingredient);
+    }
+
+    /**
+     * Returns the {@code Ingredient} object at the specified index on the UI
+     */
+    public Ingredient getIngredientByIndex(int i) {
+        return getFilteredIngredientList().get(i);
     }
 
     /**
