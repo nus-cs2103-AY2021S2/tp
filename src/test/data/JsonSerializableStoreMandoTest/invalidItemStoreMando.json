@@ -1,0 +1,10 @@
+{
+  "items": [
+    {
+      "name": "Mustard",
+      "quantity": "9",
+      "expirydate": "20010-1-1",
+      "location": "Refrigerator"
+    }
+  ]
+}

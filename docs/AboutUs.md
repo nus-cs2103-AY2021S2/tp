@@ -5,55 +5,50 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the email `e0406389@u.nus.edu`
 
-## Project team
+## StoreMando Project Team
 
-### John Doe
+### Chen Yan Jia Jay
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jaychenyj.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/JayChenYJ)]
+[[portfolio](team/jaychenyj.md)]
 
-* Role: Project Advisor
+* Role & Responsibilities: Team Lead, Scheduling and tracking, Deliverables and deadlines
 
-### Jane Doe
+### Chew Wei Hao
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/chewwh09.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/chewwh09)]
+[[portfolio](team/chewwh09.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Roles and Responsibilities: Logic expert, Code Quality, Documentation
 
-### Johnny Doe
+### Mohamed Fazil
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/md-fazil.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/Md-Fazil)] [[portfolio](team/mohamedfazil.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Roles & Responsibilities: In charge of documentation and integration. Git Expert.
 
-### Jean Doe
+### Kumaran S/O Selvvaratnam
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/kumsssss.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/kumsssss)]
+[[portfolio](team/kumaran.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role & Responsibilities: In charge of Code Quality and Model, Testing Expert
 
-### James Doe
+### Amanda Ang Yee Min
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/github-amanda.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/github-amanda)]
+[[portfolio](team/amandaang.md)]
 
-* Role: Developer
-* Responsibilities: UI
+* Roles & Responsibilities: UI Expert, Testing Expert & SourceTree Expert

@@ -6,7 +6,7 @@ title: Documentation guide
 **Setting up and maintaining the project website:**
 
 * We use [**Jekyll**](https://jekyllrb.com/) to manage documentation.
-* The `docs/` folder is used for documentation.
+* The `docs/` folder is used for the documentation.
 * To learn how set it up and maintain the project website, follow the guide [_[se-edu/guides] **Using Jekyll for project documentation**_](https://se-education.org/guides/tutorials/jekyll.html).
 
 

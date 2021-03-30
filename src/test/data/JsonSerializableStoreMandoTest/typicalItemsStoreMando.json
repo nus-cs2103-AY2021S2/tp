@@ -1,0 +1,61 @@
+{
+  "_comment": "StoreMando save file which contains the same item values as in TypicalItems#getTypicalStoreMando()",
+  "items": [
+    {
+      "name": "Apples",
+      "quantity": "9",
+      "expiryDate": "2021-04-08",
+      "location": "Kitchen Basket",
+      "tagged": [
+        "Expiring"
+      ]
+    },
+    {
+      "name": "Bread",
+      "quantity": "1",
+      "expiryDate": "2021-04-08",
+      "location": "Dining Table",
+      "tagged": [
+        "Expiring",
+        "Favourite"
+      ]
+    },
+    {
+      "name": "Cream Cheese",
+      "quantity": "1",
+      "expiryDate": "2023-10-10",
+      "location": "Kitchen Drawer",
+      "tagged": []
+    },
+    {
+      "name": "Donut",
+      "quantity": "5",
+      "expiryDate": "2021-10-10",
+      "location": "Refrigerator",
+      "tagged": [
+        "Favourite"
+      ]
+    },
+    {
+      "name": "Eggs",
+      "quantity": "10",
+      "expiryDate": "2021-10-10",
+      "location": "Kitchen Drawer",
+      "tagged": []
+    },
+    {
+      "name": "Flour",
+      "quantity": "3",
+      "expiryDate": "2021-10-09",
+      "location": "Kitchen Cabinet",
+      "tagged": []
+    },
+    {
+      "name": "Ginger",
+      "quantity": "20",
+      "expiryDate": "2021-10-08",
+      "location": "Kitchen Basket",
+      "tagged": []
+    }
+  ]
+}
