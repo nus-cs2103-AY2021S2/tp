@@ -7,8 +7,8 @@ import java.util.ArrayList;
  */
 public class InputCommandStorage {
 
+    private static ArrayList<String> inputCommandList = new ArrayList<String>();
     private static int currentPointer;
-    static ArrayList<String> inputCommandList = new ArrayList<String>();
 
     /**
      * Constructor for InputCommandStorage. No inputs have been keyed in by user,
@@ -23,18 +23,25 @@ public class InputCommandStorage {
     /**
      * Returns all previous user inputs stored in inputCommandList
      */
-    public static ArrayList<String> getInputCommandList() {
+    public ArrayList<String> getInputCommandList() {
         return inputCommandList;
     }
 
     /**
-     * Appends all new user inputs into inputCommandList. Pointer increments.
+     * Appends all new user inputs into inputCommandList.
+     * Pointer increments to latest input.
+     * @param userInput being parsed
      */
-    public void newInput(String args) {
-        inputCommandList.add(args);
+    public void newInput(String userInput) {
+        inputCommandList.add(userInput);
         currentPointer++;
     }
 
+    /**
+     * Returns previous or next user input according to index of currentPointer.
+     * Pointer increments or decrements based on {@code isBefore} boolean value.
+     * @param isBefore if user is calling the previous input
+     */
     public static String retrieveInput(boolean isBefore) {
         int inputCommandListSize = inputCommandList.size() - 1;
 
