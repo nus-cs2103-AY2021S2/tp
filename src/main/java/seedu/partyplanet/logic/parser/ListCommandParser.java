@@ -72,14 +72,14 @@ public class ListCommandParser implements Parser<ListCommand> {
         if (isExactSearch) {
             List<String> allNames = argMap.getAllValues(PREFIX_NAME);
             if (!allNames.isEmpty()) {
-                stringFind += "\nRequire exact name: " + String.join(", ", allNames);
+                stringFind += "\nRequires exact name: " + String.join(", ", allNames);
             }
             for (String name : allNames) {
                 predicates.add(new NameContainsExactKeywordsPredicate(name));
             }
             List<String> allTags = argMap.getAllValues(PREFIX_TAG);
             if (!allTags.isEmpty()) {
-                stringFind += "\nRequire exact tag: " + String.join(", ", allTags);
+                stringFind += "\nRequires exact tag: " + String.join(", ", allTags);
             }
             for (String tag : allTags) {
                 predicates.add(new TagsContainsExactTagPredicate(tag));
@@ -87,14 +87,14 @@ public class ListCommandParser implements Parser<ListCommand> {
         } else {
             List<String> allNames = argMap.getAllValues(PREFIX_NAME);
             if (!allNames.isEmpty()) {
-                stringFind += "\nRequire partial name: " + String.join(", ", allNames);
+                stringFind += "\nRequires partial name: " + String.join(", ", allNames);
             }
             for (String name : allNames) {
                 predicates.add(new NameContainsKeywordsPredicate(name));
             }
             List<String> allTags = argMap.getAllValues(PREFIX_TAG);
             if (!allTags.isEmpty()) {
-                stringFind += "\nRequire partial tag: " + String.join(", ", allTags);
+                stringFind += "\nRequires partial tag: " + String.join(", ", allTags);
             }
             for (String tag : allTags) {
                 predicates.add(new TagsContainsTagPredicate(tag));
@@ -102,7 +102,7 @@ public class ListCommandParser implements Parser<ListCommand> {
         }
         List<String> allMonths = argMap.getAllValues(PREFIX_BIRTHDAY);
         if (!allMonths.isEmpty()) {
-            stringFind += "\nRequire birthday month: " + String.join(", ", allMonths);
+            stringFind += "\nRequires birthday month: " + String.join(", ", allMonths);
         }
         for (String month : allMonths) {
             predicates.add(new BirthdayContainsMonthPredicate(month));
@@ -119,13 +119,13 @@ public class ListCommandParser implements Parser<ListCommand> {
         if (predicates.isEmpty()) {
             overallPredicate = PREDICATE_SHOW_ALL_PERSONS;
         } else if (isAnySearch) {
-            stringFind += "\nListed persons met at least 1 requirement stated above. ";
+            stringFind += "\nAt least 1 requirement above met. ";
             overallPredicate = x -> false;
             for (Predicate<Person> predicate : predicates) {
                 overallPredicate = overallPredicate.or(predicate);
             }
         } else {
-            stringFind += "\nListed persons met all requirements stated above. ";
+            stringFind += "\nAll requirements above met. ";
             overallPredicate = x -> true;
             for (Predicate<Person> predicate : predicates) {
                 overallPredicate = overallPredicate.and(predicate);
@@ -154,11 +154,11 @@ public class ListCommandParser implements Parser<ListCommand> {
             switch (sortType.get().toLowerCase()) {
             case "n": // fallthrough
             case "name":
-                stringSort += "Sorted name ";
+                stringSort += "Sorted names ";
                 return SORT_NAME;
             case "b": // fallthrough
             case "birthday":
-                stringSort += "Sorted birthday ";
+                stringSort += "Sorted birthdays ";
                 return SORT_BIRTHDAY;
             case "u": // fallthrough
             case "upcoming":
