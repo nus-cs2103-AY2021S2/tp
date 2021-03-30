@@ -1,19 +1,5 @@
 package seedu.address.logic.commands;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.parser.DeleteCommandParser;
-import seedu.address.logic.parser.EditCommandParser;
-import seedu.address.model.AddressBook;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Person;
-import seedu.address.testutil.PersonBuilder;
-
-import java.util.Arrays;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_POLICY_ID;
@@ -22,6 +8,23 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.parser.DeleteCommandParser;
+import seedu.address.logic.parser.EditCommandParser;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.AddressBook;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.person.Person;
+import seedu.address.testutil.PersonBuilder;
+
 /**
  * Contains integration tests (interaction with the Model) and unit tests for BatchCommand.
  */
@@ -29,22 +32,12 @@ public class BatchCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private EditCommandParser editCommandParser = new EditCommandParser();
     private DeleteCommandParser deleteCommandParser = new DeleteCommandParser();
-    private List<Index> listOfIndices = Arrays.asList(Index.fromOneBased(1), Index.fromOneBased(6),
-            Index.fromOneBased(7));
+    private List<Index> listOfIndices = Arrays.asList(Index.fromOneBased(7), Index.fromOneBased(6),
+            Index.fromOneBased(1));
     private String argsForEdit = "t/" + VALID_TAG_HUSBAND + " i/" + VALID_POLICY_ID + " i/" + VALID_POLICY_ID_WITH_URL;
 
-    /*
-    Things to test:
-    - valid index and arguments for edit (done)
-    - valid index for delete (done)
-    - invalid index for edit
-    - invalid index for delete
-    - invalid arguments for edit
-    - invalid index and argument for edit
-     */
-
     @Test
-    public void execute_validIndexUnfilteredList_batchEdit_success() {
+    public void execute_validIndexUnfilteredListForBatchEdit_success() {
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 
         for (Index index : listOfIndices) {
@@ -58,35 +51,42 @@ public class BatchCommandTest {
         }
 
         String expectedMessage = BatchCommand.SUCCESS_MESSAGE;
-        BatchCommand<EditCommand> batchEditCommand = new BatchCommand<>(editCommandParser, listOfIndices, argsForEdit);
+
+        List<EditCommand> listOfEditCommands = new ArrayList<>();
+        createEditCommands(listOfEditCommands);
+
+        BatchCommand<EditCommand> batchEditCommand = new BatchCommand<>(listOfEditCommands);
 
         assertCommandSuccess(batchEditCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
-    public void execute_validIndexUnfilteredList_batchDelete_success() {
+    public void execute_validIndexUnfilteredListForBatchDelete_success() {
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         for (Index index : listOfIndices) {
             Person personToDelete = model.getFilteredPersonList().get(index.getZeroBased());
             expectedModel.deletePerson(personToDelete);
         }
+
         String expectedMessage = BatchCommand.SUCCESS_MESSAGE;
-        BatchCommand<DeleteCommand> batchDeleteCommand = new BatchCommand<>(deleteCommandParser, listOfIndices);
+
+        List<DeleteCommand> listOfDeleteCommands = new ArrayList<>();
+        createDeleteCommands(listOfDeleteCommands);
+
+        BatchCommand<DeleteCommand> batchDeleteCommand = new BatchCommand<>(listOfDeleteCommands);
 
         assertCommandSuccess(batchDeleteCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
-    public void execute_invalidIndicesUnfilteredList_throwsCommandException() {
-
-    }
-
-    @Test
     public void equalsEdit() {
-        final BatchCommand standardBatchEdit = new BatchCommand(editCommandParser, listOfIndices, argsForEdit);
+        List<EditCommand> listOfEditCommands = new ArrayList<>();
+        createEditCommands(listOfEditCommands);
+
+        final BatchCommand<EditCommand> standardBatchEdit = new BatchCommand<>(listOfEditCommands);
 
         // same values -> returns true
-        BatchCommand commandWithSameValues = new BatchCommand(editCommandParser, listOfIndices, argsForEdit);
+        BatchCommand<EditCommand> commandWithSameValues = new BatchCommand<>(listOfEditCommands);
         assertTrue(standardBatchEdit.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -98,26 +98,27 @@ public class BatchCommandTest {
         // different types -> returns false
         assertFalse(standardBatchEdit.equals(new HelpCommand()));
 
-        // different parser -> returns false
-        assertFalse(standardBatchEdit.equals(new BatchCommand(new DeleteCommandParser(), listOfIndices, argsForEdit)));
+        // different list of edit commands with different indices -> returns false
+        List<EditCommand> anotherListOfEditCommandsWithDiffIndices = new ArrayList<>();
+        createAnotherListOfEditCommands(anotherListOfEditCommandsWithDiffIndices, argsForEdit);
+        assertFalse(standardBatchEdit.equals(new BatchCommand<>(anotherListOfEditCommandsWithDiffIndices)));
 
-        // different list of indices -> returns false
-        List<Index> anotherListOfIndices = Arrays.asList(Index.fromOneBased(2), Index.fromOneBased(3),
-                Index.fromOneBased(4));
-        assertFalse(standardBatchEdit.equals(new BatchCommand(editCommandParser, anotherListOfIndices, argsForEdit)));
-
-        // different arguments -> returns false
+        // different list of edit commands with different arguments -> returns false
         String anotherArgsForEdit = "t/bestfriend i/Pol_#456>www.facebook.com";
-        assertFalse(standardBatchEdit.equals(new BatchCommand(editCommandParser, anotherListOfIndices,
-                anotherArgsForEdit)));
+        List<EditCommand> anotherListOfEditCommandsWithDiffArgs = new ArrayList<>();
+        createAnotherListOfEditCommands(anotherListOfEditCommandsWithDiffArgs, anotherArgsForEdit);
+        assertFalse(standardBatchEdit.equals(new BatchCommand<>(anotherListOfEditCommandsWithDiffArgs)));
     }
 
     @Test
     public void equalsDelete() {
-        final BatchCommand standardBatchDelete = new BatchCommand(deleteCommandParser, listOfIndices);
+        List<DeleteCommand> listOfDeleteCommands = new ArrayList<>();
+        createDeleteCommands(listOfDeleteCommands);
+
+        BatchCommand<DeleteCommand> standardBatchDelete = new BatchCommand<>(listOfDeleteCommands);
 
         // same values -> returns true
-        BatchCommand commandWithSameValues = new BatchCommand(deleteCommandParser, listOfIndices);
+        BatchCommand commandWithSameValues = new BatchCommand<>(listOfDeleteCommands);
         assertTrue(standardBatchDelete.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -129,12 +130,62 @@ public class BatchCommandTest {
         // different types -> returns false
         assertFalse(standardBatchDelete.equals(new HelpCommand()));
 
-        // different parser -> returns false
-        assertFalse(standardBatchDelete.equals(new BatchCommand(new EditCommandParser(), listOfIndices)));
+        // different list of delete commands with different indices -> returns false
+        List<DeleteCommand> anotherListOfDeleteCommands = new ArrayList<>();
+        createAnotherListOfDeleteCommands(anotherListOfDeleteCommands);
+        assertFalse(standardBatchDelete.equals(new BatchCommand<>(anotherListOfDeleteCommands)));
 
-        // different list of indices -> returns false
-        List<Index> anotherListOfIndices = Arrays.asList(Index.fromOneBased(2), Index.fromOneBased(3),
-                Index.fromOneBased(4));
-        assertFalse(standardBatchDelete.equals(new BatchCommand(deleteCommandParser, anotherListOfIndices)));
+        // different list of edit commands -> returns false
+        List<EditCommand> listOfEditCommands = new ArrayList<>();
+        createEditCommands(listOfEditCommands);
+        assertFalse(standardBatchDelete.equals(new BatchCommand<>(listOfEditCommands)));
+    }
+
+    private void createDeleteCommands(List<DeleteCommand> listOfDeleteCommands) {
+        try {
+            for (Index index : listOfIndices) {
+                String newCommandInput = String.valueOf(index.getOneBased());
+                DeleteCommand deleteCommand = deleteCommandParser.parse(newCommandInput);
+                listOfDeleteCommands.add(deleteCommand);
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void createAnotherListOfDeleteCommands(List<DeleteCommand> listOfDeleteCommands) {
+        try {
+            for (Index index : listOfIndices) {
+                String newCommandInput = String.valueOf(1);
+                DeleteCommand deleteCommand = deleteCommandParser.parse(newCommandInput);
+                listOfDeleteCommands.add(deleteCommand);
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void createEditCommands(List<EditCommand> listOfEditCommands) {
+        try {
+            for (Index index : listOfIndices) {
+                String newCommandInput = String.valueOf(index.getOneBased()) + " " + argsForEdit;
+                EditCommand editCommand = editCommandParser.parse(newCommandInput);
+                listOfEditCommands.add(editCommand);
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void createAnotherListOfEditCommands(List<EditCommand> listOfEditCommands, String argsForEdit) {
+        try {
+            for (Index index : listOfIndices) {
+                String newCommandInput = String.valueOf(1) + " " + argsForEdit;
+                EditCommand editCommand = editCommandParser.parse(newCommandInput);
+                listOfEditCommands.add(editCommand);
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 }
