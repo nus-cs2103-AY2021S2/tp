@@ -11,7 +11,9 @@ public class Tag {
 
     public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
-
+    public static final String MESSAGE_CONSTRAINTS_2 = "Tags names should be \"urgent\", \"fragile\", \"bulky\", "
+        + "\"food\", \"liquid\", \"hot\", \"cold\", or \"heavy\".";
+    public static final String[] VALID_TAGS = {"urgent", "fragile", "bulky", "food", "liquid", "hot", "cold", "heavy"};
     public final String tagName;
 
     /**
@@ -30,6 +32,15 @@ public class Tag {
      */
     public static boolean isValidTagName(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    public static boolean isValidTag(String inputTag) {
+        for (String validTag : VALID_TAGS) {
+            if (validTag.matches(inputTag)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
