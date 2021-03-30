@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox id="cardPane" fx:id="cardPane" maxHeight="100.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <GridPane maxHeight="100.0" HBox.hgrow="SOMETIMES">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+        </columnConstraints>
+        <VBox alignment="CENTER_RIGHT" GridPane.columnIndex="0">
+            <padding>
+                <Insets left="5.0" right="5.0" top="5.0" />
+            </padding>
+            <HBox alignment="TOP_LEFT" spacing="5">
+                <Label fx:id="id" styleClass="cell_big_label">
+                    <minWidth>
+                        <!-- Ensures that the label text is never truncated -->
+                        <Region fx:constant="USE_PREF_SIZE" />
+                    </minWidth>
+                </Label>
+                <Label fx:id="notecontent" styleClass="cell_big_label" text="\$first" />
+            </HBox>
+            <FlowPane fx:id="tags" />
+         <BorderPane>
+            <right>
+               <VBox alignment="TOP_RIGHT" BorderPane.alignment="CENTER_RIGHT">
+                  <children>
+                        <Label fx:id="create" alignment="CENTER_RIGHT" focusTraversable="false" styleClass="cell_small_label" text="\$createtimestamp" />
+                        <Label fx:id="update" alignment="CENTER_RIGHT" focusTraversable="false" styleClass="cell_small_label" text="\$updatetimestamp" />
+                  </children>
+               </VBox>
+            </right>
+            <left>
+                  <Label fx:id="done" alignment="CENTER_RIGHT" focusTraversable="false" styleClass="cell_small_label" text="" BorderPane.alignment="CENTER" />
+            </left></BorderPane>
+        </VBox>
+      <rowConstraints>
+         <RowConstraints />
+      </rowConstraints>
+    </GridPane>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+</HBox>

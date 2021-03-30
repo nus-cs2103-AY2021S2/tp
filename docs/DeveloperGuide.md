@@ -2,8 +2,31 @@
 layout: page
 title: Developer Guide
 ---
+
 * Table of Contents
 {:toc}
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Introduction**
+### Purpose
+
+The purpose of this document is to cover the multi-level design architecture of Dictionote, so that the
+intended audience of this document can understand the relationship between components that make up Dictionote.
+
+### Audience
+
+This developer guide is for anyone who wants to understand the internal software architecture of Dictionote.
+The following groups of people are the intended audience:
+* Dictionote developers: anyone who wish to upgrade Dictionote to support more functions.
+* CS2103/T students: students of CS2103/T who want to improve their efficiency and productivity in learning.
+
+### Dictionote Overview
+
+Dictionote is a desktop app for CS2103/T Students, optimized for use via a Command Line Interface (CLI)
+while still having the benefits of a Graphical User Interface (GUI). Dictionote in general helps to organise content and
+definitions from the CS2103/T textbook, provide Note-keeping functions to facilitate learning, and enhance the ability
+for students to connect and learn together with their cohort mates.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -23,11 +46,11 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2021S2-CS2103T-W13-1/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2021S2-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/dictionote/Main.java) and [`MainApp`](https://github.com/AY2021S2-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -62,11 +85,11 @@ The sections below give more details of each component.
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 **API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2021S2-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/dictionote/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `DictionaryListPanel`, `DictionaryContentPanel` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S2-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S2-CS2103T-W13-1/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -78,7 +101,7 @@ The `UI` component,
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
 **API** :
-[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+[`Logic.java`](https://github.com/AY2021S2-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/dictionote/logic/Logic.java)
 
 1. `Logic` uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
@@ -97,7 +120,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2021S2-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/dictionote/model/Model.java)
 
 The `Model`,
 
@@ -117,7 +140,7 @@ The `Model`,
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2021S2-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/dictionote/storage/Storage.java)
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
@@ -125,7 +148,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.dictionote.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -133,6 +156,81 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Contact features
+
+#### Sending an email to a contact
+
+##### Implementation
+
+This feature is implemented as a command, `EmailCommand`, that extends `Command`. It is an index-dependent command, meaning that the user must provide an index number when typing the command as a reference to a specific contact on the contacts list.
+
+The index number was selected to refer to a particular contact. This is due to its character length being shorter in most cases than any other field of information in `Contact` objects, making it both simple and sufficient.
+
+The `execute()` method attempts to open a new window of the user's operating system (OS) default mail client. This is done by navigating to a `mailto` link with the contact's email address added to the end.
+
+As an example, consider running Dictionote on a Windows 10 machine with Microsoft Outlook as the OS default mail client:
+
+* Assume that the current state of the application is as follows (note the exisiting contacts on the left-side of the application's window):
+
+![ContactEmailFeatureInitState](images/ContactEmailFeatureInitState.png)
+
+* After typing in `emailcontact 2` and executing it, the result would be:
+
+![ContactEmailFeatureExecute](images/ContactEmailFeatureExecute.png)
+
+* A new window, belonging to Microsoft Outlook's `New Message` function, will pop up:
+
+![ContactEmailFeatureOSClient](images/ContactEmailFeatureOSClient.png)
+
+* Note that the email of the selected contact, Bob (referred to in the command by his index number), is automatically written in the `To...` field of the email's header information.
+
+Note that if the user does not have a mail client software set as default in their OS, then Dictionote will try to navigate to the `mailto` link through the user's default browser (i.e., the `mailto` link will be treated as an ordinary URL link).
+
+##### Design Considerations
+
+* **Alternative 1 (current choice):** make use of the OS mail client to facilitate email features.
+	* Pros: Easy to implement; utilizes a pre-existing and standardized system for invoking mail xyz.
+	* Cons: Requires the user to have a mail client installed on their OS, which is then set to be the default mail client of the system.
+
+* **Alternative 2:** implement basic email features directly into Dictionote.
+	* Pros: Does not depened on the existence of external software in the OS.
+	* Cons: Much harder to implement, as it requires the implementation of network-related functions to handle the connections to email servers.
+	
+	
+#### More implementation details to be added...
+
+### UI features
+
+#### Manipulation UI through Command
+#####  Implementation
+Dictionote provides a dynamic user interface that allows the user to open and close any panel. 
+When executing any given command, dictionote will have to be able to change the user interface. 
+While all commands can open or close the UI panel. The user is also given the ability to manipulate UI through user command. 
+The feature is implemented through the `CommandResult` that all `Command` in the system return.
+
+`CommandResult` store a string `feedbackToUser`, enum `UiAction` and enum `UiActionOption`. `feedbackToUser` will 
+be show on the `ResultDisplay` as the command execution feedback. 
+`UiAction` indicate the action the command the want the `UI` to take. 
+e.g `UiAction.OPEN`, `UiAction.CLOSE`, `UiAction.EXIT`, ... etc. `UiActionOption` is only applicable to some `UiAction`. 
+It indicate the specific option available for the `UiAction`. 
+e.g `UiActionOption.Dictionary` for `UiActionOpen` mean open dictionary panel.
+
+The following is the sequence diagram for  `OPENCOMMAND`
+
+![OpenCommandSequenceDiagram](images/OpenCommandSequenceDiagram.png)
+
+#### Design Consideration
+* **Alternative 1 (current choice):** Make use of the existing command `CommandResult` class
+    * Pros: make use of the existing system and easy to implement
+    * Cons: All command will have to decide on the response. (or use the default setting)
+* Alternative 2: Make use of the Model Component as an intermediary between Command and UI. The command will call a method available on the model to make a change to the UI.
+    * Pros: Only the class that requires to change in UI will be needed to call the method
+    * Cons: Increasing coupling.
+
+
+
+
+<!--
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -203,20 +301,22 @@ The following activity diagram summarizes what happens when a user executes a ne
 ##### Aspect: How undo & redo executes
 
 * **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+    * Pros: Easy to implement.
+    * Cons: May have performance issues in terms of memory usage.
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+    * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
+
 
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
 
+-->
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -236,42 +336,106 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Tech-Savvy CS2103T Student
+* want to ask questions
+* need to find answers
+* prefers to take notes
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**:
+
+* Main problem: no organized platform to facilitate extra learning outside of class.
+* Sub-Problems
+    * Easy and quick way for students to get answers for CS2103T questions.
+    * Easy for students to take notes.
+    * Easy way for students to find their classmates.
+
+* Limitations:
+    * Unable to provide students with thorough materials/all the answers.
+    * Unable to play videos from lectures.
 
 
 ### User stories
 
-Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
+#### User Stories : Main/UI
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                                   | I want to …​                                          | So that I can…​                                            | Category               |
+| -------- | -------------------------------------------------------------| -------------------------------------------------------- | ------------------------------------------------------------- | ---------------------- |
+|***Main***| | | |
+| `* *`    | CS2103 Student                                               | View note and dictionary side-by-side                    | Easily copy a note from dictionary                            | Main/UI/UX         |
+| `* *`    | CS2103 Student                                               | Open and close Contact panel                             | Have more space for other content                             | Main/Non-essential |
+| `* *`    | CS2103 Student                                               | Open and close Dictionary panel                          | Have more space for other content                             | Main/Non-essential |
+| `* *`    | CS2103 Student                                               | Open and close Dictionary manager panel                  | Have more space for other content                             | Main/Non-essential |
+| `* *`    | CS2103 Student                                               | Open and close Note panel                                | Have more space for other content                             | Main/Non-essential |
+| `* *`    | CS2103 Student                                               | Open and close Note Manager panel                        | Have more space for other content                             | Main/Non-essential |
+| `* *`    | CS2103 Student                                               | Save my UI configuration                                 | Save my time on re-adjust the Ui                              | Main/Non-essential |
+| `* *`    | CS2103 Student                                               | Change my UI configuration                               | do no need to adjust the UI using mouse                       | Main/Non-essential |
+| `* *`    | CS2103 Student                                               | Change my UI orientation                                 | use the space available more efficiently                      | Main/Non-essential |
+|***Dictionary*** | -- | -- | --  | -- |
+| `* * *`  | CS2103T student who find it troublesome to use the website   | Search for a definition of an SE term                    | Understand what it means                                      | Dictionary/Essential|
+| `* * *`  | CS2103T student                                              | Find content I need                                      | Save time having to dig through the textbook                  | Dictionary/Essential|
+| `* * *`  | CS2103T student                                              | List all the contents in the dictionary                  | View the extensive list of contents                           | Dictionary/Essential|
+| `* * *`  | CS2103T student                                              | List all the definitions in the dictionary               | View the extensive list of contents                           | Dictionary/Essential|
+| `*`      | CS2103T student                                              | Track my progress when reading through a summary         | Continue my preparation from where I left off                 | Dictionary/Non-essential|
+| `* *`    | CS2103T student                                              | Copy specific contents in the dictionary to the notes    | Keep track of the important content on my personal note list  | Dictionary/Non-essential|
+|***Note*** |  |  |  | |
+| `* * *`  | CS2103T student                                              | Take a new note                                          | Have easy access to my materials whenever I need them         | Note/Essential  |
+| `* * * ` | CS2103T student                                              | Delete an existing note                                  | Remove out-of-date notes.                                     | Note/Essential  |
+| `* * * ` | CS2103T student                                              | Edit a note                                              | Revise a small typo in the note.                              | Note/Essential  |
+| `* * * ` | CS2103T student                                              | Look at all notes                                        | Remember what is the content of the note                      | Note/Essential  |
+| `* * * ` | CS2103T student                                              | Show a specific note                                     | To read the content of a specific note in detail              | Note/Essential  |
+| `* * * ` | CS2103T student                                              | Edit a note in edit mode                                 | Modify the content of the note easily.                        | Note/Essential  |
+| `* * `   | CS2103T student                                              | Tag a note                                               | I can access notes easily.                                    | Note/Non-Essential  |
+| `* * `   | CS2103T student                                              | Track the date and time the note is created              | Find the note according to the time created                   | Note/Non-Essential  |
+| `* * `   | CS2103T student                                              | Sort a note alphabetically                               | I can read the notes in order.                                | Note/Non-Essential  |
+| `* * `   | CS2103T student                                              | Search a note using keyword                              | Find out what notes contain the specific keyword.             | Note/Non-Essential  |
+| `* * `   | CS2103T student                                              | Mark a note as undone                                    | Remember which part of the notes I have not done yet.         | Note/Non-Essential  |
+| `* * `   | CS2103T student                                              | Mark all notes as undone                                 | Reset all the features I have marked as done.                 | Note/Non-Essential  |
+| `* `     | CS2103T student                                              | Track the date and time the note is last modified        | Find the note according to the time last modify.              | Note/Non-Essential  |
+| `* `     | CS2103T student                                              | Mark a content of a note as done                         | Remember which part of the notes I have done.                 | Note/Non-Essential  |
+|***Contact***| | | | |
+| `* * *`  | CS2103T Student                                              | Add my contacts                                          | Easily manage the contacts list                               | Contact/Essential     |
+| `* * *`  | CS2103T Student                                              | Edit my contacts                                         | Easily manage the contacts list                               | Contact/Essential     |
+| `* * *`  | CS2103T Student                                              | Delete my contacts                                       | Easily manage the contacts list                               | Contact/Essential     |
+| `* * *`  | CS2103T Student                                              | Look at all contacts                                     | Easily manage the contacts list                               | Contact/Essential     |
+| `* *`    | CS2103T Student                                              | Tag a contact with a word                                | Find contacts based on their tags                             | Contact/Non-essential |
+| `* *`    | CS2103T Student                                              | Search for contacts using tags                           | Contact anyone from a particular tag                          | Contact/Non-essential |
+| `* *`    | CS2103T Student who wants to connect with others that I know | Email anyone from my contacts list                       | Ask questions, discuss topics, or exchange notes with them    | Contact/Non-essential |
+|***Guide*** | | | | |
+| `* * *`  | CS2103T student who is bad at remembering commands           | Access the list of commands with brief explanation       | Save time having to search through user guide for details     | Guide/Essential  |
+| `* * *`  | CS2103T student who uses commands often                      | Scan through the list of commands for a quick refresher  | Save time having to search through user guide for all command | Guide/Essential  |
 
-*{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+(For all use cases below, the **System** is the `Dictionote` and the **Actor** is the `user`, unless specified otherwise)
+
+**Use case: UC01 - Close Panel**
+
+**MSS**
+1.  User requests to close a specific display panel
+2.  Dictionote close the display Panel
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given display panel is invalid.
+    * 1a1. Dictionote shows an error message
+
+      Use case ends.
+
+
+
+
+**Use case: Delete a contact**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list contacts
+2.  Dictionote shows a list of contacts
+3.  User requests to delete a specific contact in the list
+4.  Dictionote deletes the contact
 
     Use case ends.
 
@@ -283,7 +447,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. Dictionote shows an error message.
 
       Use case resumes at step 2.
 
@@ -291,16 +455,50 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+#### User Requirement
+1. Typing Preferred User
+    * user should be targeting user who can type fast
+    * user should have above average typing speed for regular English text
 
-*{More to be added}*
+#### Software Requirement
+1. Single User
+    * should be for single user.
+1. Human Editable File
+    * data should be stored locally and should be in a human editable text file.
+1. Single File
+    * should work with a single JAR file
+1. File Size
+    * file sizes of the deliverables should not exceed the `100MB`
+
+
+#### Dependency Requirement
+1. Platform Independent
+    * should work on Windows, Linux and OS-X platform.
+    * avoid using OS-dependent libraries and OS-specific features
+1. Java version
+    * Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+    * should work without requiring an installer
+1. Portable
+    * should work without requiring an installer
+1. External Software
+    * Third party frameworks/libraries is subjected to approval, and only if they,
+        * are free, open-source, and have permissive license.
+        * do not require any installation by the user of your software.
+        * do not violate other constraint.
+1. No Database Management System
+    * should not use any database management system to store data.
+
+#### Documentation Requirement
+1. PDF Friendly
+    * The Developer Guide and User Guide should be PDF-friendly.
+    * do not use expandable panels, embedded videos, animated GIFs etc.
+1. File Size
+    * file sizes of documents should not exceed the `15MB`
+
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -317,15 +515,15 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
@@ -334,16 +532,16 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    1. Test case: `delete 1`<br>
+       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+    1. Test case: `delete 0`<br>
+       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
 
@@ -351,6 +549,6 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
