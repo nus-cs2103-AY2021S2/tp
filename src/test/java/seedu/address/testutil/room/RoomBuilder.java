@@ -16,7 +16,7 @@ import seedu.address.model.util.SampleDataUtil;
 public class RoomBuilder {
     public static final String DEFAULT_ROOM_NUMBER = "01-001";
     public static final String DEFAULT_ROOM_TYPE = "CORRIDOR_NON_AC";
-    public static final String DEFAULT_OCCUPANCY_STATUS = "y";
+    public static final String DEFAULT_OCCUPANCY_STATUS = "N";
 
     private RoomNumber roomNumber;
     private RoomType type;

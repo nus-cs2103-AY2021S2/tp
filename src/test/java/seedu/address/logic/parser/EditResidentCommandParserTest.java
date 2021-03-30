@@ -16,9 +16,9 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_RESIDENT;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_RESIDENT;
-import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_RESIDENT;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
+import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD;
 
 import org.junit.jupiter.api.Test;
 
@@ -84,7 +84,7 @@ public class EditResidentCommandParserTest {
 
     @Test
     public void parse_allFieldsSpecified_success() {
-        Index targetIndex = INDEX_SECOND_RESIDENT;
+        Index targetIndex = INDEX_SECOND;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + EMAIL_DESC_AMY + NAME_DESC_AMY;
 
         EditResidentDescriptor descriptor = new EditResidentDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -96,7 +96,7 @@ public class EditResidentCommandParserTest {
 
     @Test
     public void parse_someFieldsSpecified_success() {
-        Index targetIndex = INDEX_FIRST_RESIDENT;
+        Index targetIndex = INDEX_FIRST;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + EMAIL_DESC_AMY;
 
         EditResidentDescriptor descriptor = new EditResidentDescriptorBuilder().withPhone(VALID_PHONE_BOB)
@@ -109,7 +109,7 @@ public class EditResidentCommandParserTest {
     @Test
     public void parse_oneFieldSpecified_success() {
         // name
-        Index targetIndex = INDEX_THIRD_RESIDENT;
+        Index targetIndex = INDEX_THIRD;
         String userInput = targetIndex.getOneBased() + NAME_DESC_AMY;
         EditResidentDescriptor descriptor = new EditResidentDescriptorBuilder().withName(VALID_NAME_AMY).build();
         EditResidentCommand expectedCommand = new EditResidentCommand(targetIndex, descriptor);
@@ -130,7 +130,7 @@ public class EditResidentCommandParserTest {
 
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
-        Index targetIndex = INDEX_FIRST_RESIDENT;
+        Index targetIndex = INDEX_FIRST;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + PHONE_DESC_BOB + EMAIL_DESC_BOB;
@@ -146,7 +146,7 @@ public class EditResidentCommandParserTest {
     @Test
     public void parse_invalidValueFollowedByValidValue_success() {
         // no other valid values specified
-        Index targetIndex = INDEX_FIRST_RESIDENT;
+        Index targetIndex = INDEX_FIRST;
         String userInput = targetIndex.getOneBased() + INVALID_PHONE_DESC + PHONE_DESC_BOB;
         EditResidentDescriptor descriptor = new EditResidentDescriptorBuilder().withPhone(VALID_PHONE_BOB).build();
         EditResidentCommand expectedCommand = new EditResidentCommand(targetIndex, descriptor);

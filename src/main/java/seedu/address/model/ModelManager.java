@@ -264,7 +264,7 @@ public class ModelManager implements Model {
                 && filteredIssues.equals(other.filteredIssues);
     }
 
-    //=========== Alias =============================================================
+    // =========== Alias =============================================================
     @Override
     public AliasMapping getAliasMapping() {
         return userPrefs.getAliasMapping();
