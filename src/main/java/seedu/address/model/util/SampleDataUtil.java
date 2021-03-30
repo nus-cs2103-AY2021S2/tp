@@ -1,6 +1,7 @@
 package seedu.address.model.util;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -17,6 +18,7 @@ import seedu.address.model.person.Favourite;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.TimeAdded;
+import seedu.address.model.tag.ChildTag;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -64,15 +66,31 @@ public class SampleDataUtil {
                 .collect(Collectors.toSet());
     }
 
+    /**
+     * Returns a ChildTag set containing the list of strings given.
+     */
+    public static Set<Tag> getChildTagSet(String... strings) {
+        return Arrays.stream(strings)
+                .map(ChildTag::new)
+                .collect(Collectors.toSet());
+    }
+
 
     public static Appointment[] getSampleAppointments() {
+        Person[] samplePersons = getSamplePersons();
+
         return new Appointment[] {
-            new Appointment(new Name("Parent teacher meeting 1"), new Address("Child 1's school"),
-                    new DateTime("21/03/2021 10:00"), getPersonSet()),
-            new Appointment(new Name("Parent teacher meeting 2"), new Address("Child 2's school"),
-                    new DateTime("03/10/2021 14:00"), getPersonSet()),
-            new Appointment(new Name("Parent teacher meeting 3"), new Address("Child 3's school"),
-                    new DateTime("02/04/2021 11:00"), getPersonSet())
+            new Appointment(new Name("PTM"), new Address("ABC Primary School"),
+                    new DateTime("21/03/2021 10:00"),
+                    new HashSet<>(Arrays.asList(samplePersons[2])),
+                    getChildTagSet("child1")),
+            new Appointment(new Name("PSG meeting"), new Address("XYZ Secondary School"),
+                    new DateTime("15/04/2021 14:00"),
+                    new HashSet<>(Arrays.asList(samplePersons[5], samplePersons[1])),
+                    getChildTagSet("child2")),
+            new Appointment(new Name("Emily birthday party"), new Address("Our house"),
+                    new DateTime("09/01/2022 18:00"), new HashSet<>(),
+                    getChildTagSet("child3"))
         };
     }
 

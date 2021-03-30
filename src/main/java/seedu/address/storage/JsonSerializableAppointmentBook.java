@@ -14,7 +14,7 @@ import seedu.address.model.ReadOnlyAppointmentBook;
 import seedu.address.model.appointment.Appointment;
 
 /**
- * An Immutable AddressBook that is serializable to JSON format.
+ * An Immutable AppointmentBook that is serializable to JSON format.
  */
 @JsonRootName(value = "appointmentbook")
 class JsonSerializableAppointmentBook {
@@ -24,7 +24,7 @@ class JsonSerializableAppointmentBook {
     private final List<JsonAdaptedAppointment> appointments = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableAppointmentBook} with the given appointments.
      */
     @JsonCreator
     public JsonSerializableAppointmentBook(@JsonProperty("appointments") List<JsonAdaptedAppointment> appointments) {
@@ -32,9 +32,9 @@ class JsonSerializableAppointmentBook {
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyAppointmentBook} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created {@code JsonSerializableAppointmentBook}.
      */
     public JsonSerializableAppointmentBook(ReadOnlyAppointmentBook source) {
         appointments.addAll(source.getAppointmentList().stream().map(JsonAdaptedAppointment::new)
@@ -42,19 +42,23 @@ class JsonSerializableAppointmentBook {
     }
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this appointment book into the model's {@code AppointmentBook} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public AppointmentBook toModelType() throws IllegalValueException {
         AppointmentBook appointmentBook = new AppointmentBook();
+
         for (JsonAdaptedAppointment jsonAdaptedAppointment : appointments) {
             Appointment appointment = jsonAdaptedAppointment.toModelType();
+
             if (appointmentBook.hasAppointment(appointment)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_APPOINTMENT);
             }
+
             appointmentBook.addAppointment(appointment);
         }
+
         return appointmentBook;
     }
 

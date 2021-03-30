@@ -14,7 +14,7 @@ public class MarkdownPlainTextParser {
      */
     public String formatPlainText(String markdown, String type) {
         if (type == "title") {
-            return markdown.substring(4);
+            return markdown.substring(5);
         } else if (type == "info") {
             Scanner s = new Scanner(markdown);
             plainText = "";
@@ -23,6 +23,8 @@ public class MarkdownPlainTextParser {
                 String next = s.nextLine();
                 handleLine(next);
             }
+
+            plainText.replaceAll("…\u200B", "…");
 
             return plainText;
         } else {
@@ -55,6 +57,8 @@ public class MarkdownPlainTextParser {
             plainText += "\uD83D\uDCA1 " + divContent.substring(9, 13) + " ";
         } else if (divContent.startsWith(":exclamation:")) {
             plainText += "❗ " + divContent.substring(16, 24) + " ";
+        } else if (divContent.startsWith(":warning:")) {
+            plainText += "⚠ " + divContent.substring(12, 20) + " ";
         } else {
             plainText += divContent + "\n";
         }

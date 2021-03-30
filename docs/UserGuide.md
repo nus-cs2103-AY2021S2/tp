@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-HeliBook is a **desktop app for managing you children's contacts and their related appointments, 
+HeliBook is a **desktop app for managing your children's contacts and their related appointments, 
 optimized for use via a Command Line Interface** (CLI) while still having the benefits of a 
 Graphical User Interface (GUI). 
 If you can type fast, HeliBook can get your contact management tasks done faster than traditional GUI apps.
@@ -67,7 +67,16 @@ If you can type fast, HeliBook can get your contact management tasks done faster
 
 </div>
 
-### Viewing help : `help`
+This section is separated into the following sub-sections:
+* [General Commands](#general-commands): Commands related to navigating HeliBook
+* [Address Book Commands](#address-book-commands): Commands related to managing contacts
+* [Appointment Book Commands](#appointment-book-commands): Commands related to managing appointments
+
+The command summary table can also be accessed [here](#command-summary).
+
+### General Commands
+
+#### Viewing help : `help`
 
 Shows information about available commands and how they can be used.
 
@@ -80,9 +89,15 @@ Examples:
 * `help` Displays summary of all available commands.
 * `help find` Displays detailed information about the find command.
 
+#### Exiting the program : `exit`
 
+Exits the program.
 
-### Adding a person: `add`
+Format: `exit`
+
+### Address Book Commands
+
+#### Adding a person: `add`
 
 Adds a person to the address book.
 
@@ -100,7 +115,7 @@ Examples:
 * `add n/John Doe p/98765432`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Adding/replacing tags to a contact: `tag` 
+#### Adding/replacing tags to a contact: `tag` 
 
 Adds or replaces tags to the specified person by index.
 
@@ -116,7 +131,7 @@ Examples:
 *  `tag 2 o/rt tc/Alexa t/English` Replaces all existing tags of the 2nd person with the child tag Alexa and the tag English.
 
 
-### Listing all persons : `list`
+#### Listing all persons : `list`
 
 Shows a list of persons in the address book.
 
@@ -129,7 +144,7 @@ Examples:
 * `list` List all persons in the address book
 * `list o/fav` Lists all favourited persons in the address book
 
-### Editing a person : `edit`
+#### Editing a person : `edit`
 
 Edits an existing person in the address book.
 
@@ -148,7 +163,7 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find`
+#### Locating persons by name: `find`
 
 Finds persons whose names contain any of the given keywords.
 
@@ -169,7 +184,7 @@ Examples:
 
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+#### Deleting a person : `delete`
 
 Deletes the specified person from the address book.
 
@@ -183,7 +198,7 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Sorting all persons : `sort`
+#### Sorting all persons : `sort`
 
 Sorts the address book in the order based on the given option.
 
@@ -197,7 +212,7 @@ Examples:
 * `sort o/name` returns the contact list sorted in alphabetical order.
 * `sort o/date` returns the contact list sorted in chronological order.
 
-### Favourite a person : `fav`
+#### Favourite a person : `fav`
 
 Format: `fav INDEX [o/OPTION]`
 
@@ -218,7 +233,7 @@ When a person is favourited, the star next to their name will become filled/whit
 When a person is unfavourited, the star will turn empty.
 </div>
 
-### Clearing all entries : `clear`
+#### Clearing all entries : `clear`
 
 Clears all entries from the address book or clears all contacts with the specified tags.
 
@@ -234,21 +249,23 @@ Examples:
 * `clear` deletes all entries in the address book.
 * `clear t/teacher` deletes all contacts with the tag `teacher`
 
-### Adding an appointment : `addAppt`
+### Appointment Book Commands
+
+#### Adding an appointment : `addAppt`
 
 Adds an appointment to the appointment book.
 
-Format: `addAppt n/NAME a/ADDRESS d/DATE [c/CONTACT INDEX]...`
+Format: `addAppt n/NAME a/ADDRESS d/DATE [c/CONTACT_INDEX]…​ [tc/CHILDTAG]…​`
 
-* Contact in the address book at the specified `CONTACT INDEX` is added to the appointment.
+* Contact in the address book at the specified `CONTACT_INDEX` is added to the appointment.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * `DATE` has to be in the format "`dd`/`MM`/`yyyy` `HH`:`mm`".
 
 Examples:
-* `addAppt n/Parent teacher meeting a/Child 1's School d/27/03/2021 14:00`
+* `addAppt n/PTM a/ABC Primary School d/21/03/2021 10:00 c/2 ct/amy`
 
-### Deleting an appointment : `deleteAppt`
+#### Deleting an appointment : `deleteAppt`
 
 Deletes the specified appointment from the appointment book.
 
@@ -262,11 +279,11 @@ Examples:
 * `list` followed by `deleteAppt 2` deletes the 2nd appointment in the appointment book.
 * `findAppt ptm` followed by `deleteAppt 1` deletes the 1st appointment in the results of the `findAppt` command.
 
-### Finding appointments by name: `findAppt`
+#### Finding appointments by name: `findAppt`
 
 Finds appointments whose names contain any of the given keywords.
 
-Format: `findAppt KEYWORD [MORE_KEYWORDS]`
+Format: `findAppt KEYWORD [MORE_KEYWORDS]…​`
 
 * The search is case-insensitive. e.g `ptm` will match `PTM`
 * The order of the keywords does not matter. e.g. `Teacher meeting` will match `Meeting teacher`
@@ -280,11 +297,9 @@ Format: `findAppt KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `findAppt ptm` returns `PTM`
 
-### Exiting the program : `exit`
+--------------------------------------------------------------------------------------------------------------------
 
-Exits the program.
-
-Format: `exit`
+## Managing HeliBook Data
 
 ### Saving your data
 
@@ -331,13 +346,20 @@ that works with regular tags such as 'Find' or 'Sort' will also work with Child 
 
 Action | Format, Examples
 --------|------------------
+​ | **General Commands**
+**Help** | `help [COMMAND]` <br> e.g, `help find`
+**Exit** | `exit`
+​ | **Address Book Commands**
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [tc/CHILDTAG]…​ [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Clear** | `clear [t/TAG]…​`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [tc/CHILDTAG]…​ [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Fav** | `fav INDEX [o/OPTION]` <br> e.g., `fav 3 o/remove`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Tag** | `tag INDEX [o/OPTION] [tc/CHILDTAG]…​ [t/TAG]…​`<br> e.g., `tag 4 t/School t/English`
 **Sort** | `sort o/OPTION` <br> e.g., `sort o/name`
-**Help** | `help [COMMAND]` <br> e.g, `help find`
-**Exit** | `exit`
+​ | **Appointment Book Commands**
+**Add** | `addAppt n/NAME a/ADDRESS d/DATE [c/CONTACT_INDEX]…​ [tc/CHILDTAG]…​` <br> e.g., `addAppt n/PTM a/ABC Primary School d/21/03/2021 10:00 c/2`
+**Delete** | `deleteAppt INDEX` <br> e.g., `delete 2`
+**Find** | `find KEYWORD [MORE_KEYWORDS]…​` <br> e.g., `find PTM`
