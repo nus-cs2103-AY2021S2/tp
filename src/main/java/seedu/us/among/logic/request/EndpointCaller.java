@@ -81,7 +81,7 @@ public class EndpointCaller {
             } else {
                 throw new AbortRequestException(MESSAGE_CONNECTION_ERROR);
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             logger.warning(StringUtil.getDetails(e));
             throw new RequestException(MESSAGE_GENERAL_ERROR);
         } finally {
