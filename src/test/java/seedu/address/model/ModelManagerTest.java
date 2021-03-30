@@ -136,11 +136,13 @@ public class ModelManagerTest {
 
     @Test
     public void hasOverlappingSession_sessionOverlaps_returnsTrue() {
-        Session session = new SessionBuilder().build();
-        Session sessionOneHourLater = new SessionBuilder().withSessionDate("2021-01-01", "01:00").build();
+        Session session = new SessionBuilder().withSessionDate("2021-01-01", "01:00").build();
+        Session sessionOneHourLater = new SessionBuilder().withSessionDate("2021-01-01", "02:00").build();
+        Session sessionOneHourBefore = new SessionBuilder().build();
         modelManager.addStudent(ALICE);
         modelManager.addSession(ALICE.getName(), session);
         assertTrue(modelManager.hasOverlappingSession(sessionOneHourLater));
+        assertTrue(modelManager.hasOverlappingSession(sessionOneHourBefore));
     }
 
     @Test

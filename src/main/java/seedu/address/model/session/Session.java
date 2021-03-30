@@ -50,12 +50,19 @@ public class Session {
      * @param otherSession the other session that is compared to.
      */
     public boolean isOverlapping(Session otherSession) {
-        SessionDate otherSessionDate = otherSession.getSessionDate();
+        SessionDate otherSessionStartDate = otherSession.getSessionDate();
+        SessionDate otherSessionEndDate = otherSessionStartDate.getEndSessionDate(otherSession.duration);
         SessionDate sessionStartDate = sessionDate;
         SessionDate sessionEndDate = sessionStartDate.getEndSessionDate(duration);
-        return (otherSessionDate.getDateTime().isEqual(sessionStartDate.getDateTime())
-                || otherSessionDate.getDateTime().isAfter(sessionStartDate.getDateTime()))
-                && otherSessionDate.getDateTime().isBefore(sessionEndDate.getDateTime());
+        boolean otherSessionOverlapsAfterSessionStarts = (
+                otherSessionStartDate.getDateTime().isEqual(sessionStartDate.getDateTime())
+                        || otherSessionStartDate.getDateTime().isAfter(sessionStartDate.getDateTime()))
+                        && otherSessionStartDate.getDateTime().isBefore(sessionEndDate.getDateTime());
+        boolean sessionOverlapsAfterOtherSessionStarts = (
+                sessionStartDate.getDateTime().isEqual(otherSessionStartDate.getDateTime())
+                        || sessionStartDate.getDateTime().isAfter(otherSessionStartDate.getDateTime()))
+                        && sessionStartDate.getDateTime().isBefore(otherSessionEndDate.getDateTime());
+        return otherSessionOverlapsAfterSessionStarts || sessionOverlapsAfterOtherSessionStarts;
     }
 
     @Override
