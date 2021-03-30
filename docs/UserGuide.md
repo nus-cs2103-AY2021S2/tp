@@ -88,6 +88,19 @@ Format: `validate`
 
 > Tip: A plan is valid if the modules contained in its history match those of the current Master Plan.
 > This ensures that any valid plan is a viable option for the user.
+> 
+> ### Clearing all entries : `clear`
+
+Clears all entries from the address book.
+
+Format: `clear`
+
+### Exiting the program : `exit`
+
+Exits the program.
+
+Format: `exit`
+
 
 ## Plan commands
 ### List a summary of all plans: `list`
@@ -100,7 +113,7 @@ Marks the given plan as the master plan, and this plan should contain all the mo
 Example output:
 ![list plans](images/listPlans.png)
 
-### Create Plan: `addp/deletep`
+### Create/Delete Plan: `addp`/`deletep`
 
 Format for adding: `addp d/DESCRIPTION [OPTIONAL: t/TAG...]`
 
@@ -114,19 +127,27 @@ Constraints:
 - Trying to add a plan that already exist will not be allowed
 - Trying to delete a plan that does not exist will not be allowed
 
-### Set Plan as Master Plan: `master`
+Example output for adding plan:
+![add_plan](images/AddPlan.png)
 
+Example output for deleting plan:
+![delete_plan](images/DeletePlan.png)
+
+### Set Plan as Master Plan: `master`
 Format: `master p/PLAN_NUMBER`
 
 This command must be done by the user at least once before they can use other commands.
 Marks the given plan as the master plan, and this plan should contain all the modules that the user has taken (if any).
 
-## Semester commands
+Example output:
+![masterPlanExample](images/masterPlan.png)
 
+## Semester commands
 ### Show the number of MCs the user is currently taking: `show MCs`
 Format: `show mcs`
 
-Example output: `Current MCs this semester: xxx`
+Example output:
+![showMcsExample](images/showMcsExample.png)
 
 
 ### Calculate and show the current CAP (Cumulative academic points) of the student: `show CAP`
@@ -136,9 +157,11 @@ This command takes in the grades of modules user has marked as completed and ent
 
 ![modular-system](https://user-images.githubusercontent.com/67280376/109455909-9e9f8380-7a92-11eb-9ea1-f49801578a95.png)
 
-Example output `Current CAP is: xxx`
+Example output:
+![showCapExample](images/showCapExample.png)
 
-### Add/Delete Semester to/from Plan: `adds/deletes`
+
+### Add/Delete Semester to/from Plan: `adds`/`deletes`
 Format for adding: `adds p/PLAN_NUMBER s/SEM_NUMBER`
 
 Format for deleting: `deletes p/PLAN_NUMBER s/SEM_NUMBER`
@@ -149,6 +172,12 @@ Constraints:
 * Trying to add a semester that already exist will not be allowed
 * Trying to delete a semester that does not exist will not be allowed
 
+Example output for adding semester:
+![add_semester](images/AddSemester.png)
+
+Example output for deleting semester:
+![delete_semester](images/DeleteSemester.png)
+
 ### Set Semester as in-progress: `current semester`
 Format: `current s/SEM_NUMBER`
 
@@ -156,34 +185,32 @@ Marks the supplied semester as the current semester of the master plan.
 This indicates that all previous semesters are part of the user’s history and all future semesters have yet to be attempted.
 The user will have to manually update the current semester as time progresses.
 
-Example output success: `Successfully marked current semester: <SemNumber>`
-
-Example output failure: `The provided SEM_NUMBER does not match any existing semesters in the master plan.`
-
+Example output:
+![currentSemesterExample](images/currentSemesterExample.png)
 
 ### Show history: `history`
 Format: `history`
 
-The above command takes no arguments and shows the user a list of modules that they have completed up until before the *current semester*.
+The above command takes no arguments and shows the user a list of modules that they have completed up until **before** the *current semester*.
 
 > Tip: The *current semester* is the semester that was marked using the `current semester` command.
 
 Example output:
-![example history](images/exampleHistory.png)
 
-
-
+![historyCommandExample](images/historyCommandExample.png)
 
 ## Module commands
 
 ### Add/Delete module to/from semester: `addm/deletem`
 Format for adding: `addm m/MODULE_CODE p/PLAN_NUMBER s/SEM_NUMBER`
 
+Format for adding module with grade: `addm m/MODULE_CODE p/PLAN_NUMBER s/SEM_NUMBER g/GRADE`
+
 Format for deleting: `deletem m/MODULE_CODE p/PLAN_NUMBER s/SEM_NUMBER`
 
 > Tip: A user can view module info to see more details about it. (See `info`)
 
-This command takes in three arguments, `MODULE_CODE`, `PLAN_NUMBER` and `SEM_NUMBER`, and outputs meta details about the module being added/deleted, as well as whether the addition/deletion was successful or not.   
+This command takes in three arguments, `MODULE_CODE`, `PLAN_NUMBER` and `SEM_NUMBER`, and outputs meta details about the module being added/deleted, as well as whether the addition/deletion was successful or not.
 
 The details to output are as follows:
 
@@ -197,6 +224,12 @@ Constraints:
 
 Prompts:
 * Adding a module without prerequisites fulfilled results in a warning
+
+#### Example output for add module command:
+![AddModuleCommandDemo](images/AddModuleCommandDemo.png)
+
+#### Example output for deleting a module:
+![DeleteModuleCommandDemo](images/DeleteModuleCommandDemo.png)
 
 ### View module info: `info`
 Format: `info m/MODULE_CODE`
@@ -212,17 +245,3 @@ By default, this command takes in one optional argument, `MODULE_CODE` and outpu
 
 Constraints:
 * Module has to exist
-
-## Other commands
-
-### Clearing all entries : `clear`
-
-Clears all entries from the address book.
-
-Format: `clear`
-
-### Exiting the program : `exit`
-
-Exits the program.
-
-Format: `exit`
