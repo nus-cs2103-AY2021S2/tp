@@ -246,6 +246,7 @@ log n/NAME d/DESCRIPTION [p/PRIORITY]
 | 3   | `log n/CS2030 Assignment 1 d/Due on 23 Mar 2021 p/high`                      | New BackLog added: CS2030 Assignment 1; Priority: HIGH; Description: Due on 23 Mar 2021; Status: BACKLOG;                            |
 | 4   | `log n/Lunch with John d/At VivoCity on Friday p/medium`                     | New BackLog added: Lunch with John; Priority: MEDIUM; Description: At VivoCity on Friday; Status: BACKLOG;                           |
 | 5   | `log n/Run d/Exercise p/h`                                                   | New BackLog added: Run; Priority: HIGH; Description: Exercise; Status: BACKLOG;                                                      |
+
 [Return to Table of Contents](#table-of-contents)
 
 <div class="page-break-before"></div>
@@ -273,6 +274,7 @@ prog n/NAME d/DESCRIPTION [p/PRIORITY]
 | 3   | `prog n/Household Chores d/Cleaning the kitchen p/high`                       | New In-Progress added: Household Chores; Priority: HIGH; Description: Cleaning the kitchen; Status: IN_PROGRESS;                             |
 | 4   | `prog n/Lunch with John d/At VivoCity on Friday p/medium`                     | New In-Progress added: Lunch with John; Priority: MEDIUM; Description: At VivoCity on Friday; Status: IN_PROGRESS;                           |
 | 5   | `prog n/Run d/Exercise p/h`                                                   | New In-Progress added: Run; Priority: HIGH; Description: Exercise; Status: IN_PROGRESS;                                                      |
+
 [Return to Table of Contents](#table-of-contents)
 
 <div class="page-break-before"></div>
