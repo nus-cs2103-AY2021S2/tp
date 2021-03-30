@@ -164,18 +164,18 @@ Examples:
 * `filter RVRC` 
 
 
-### Deleting a student by their matriculation number: `deleteStud`
+### Deleting a student by their matriculation number: `delete`
 
 Deletes the specified student from Vax@NUS' records.
 
-Format: `deleteStud MATRICULATION NUMBER`
+Format: `delete MATRICULATION NUMBER`
 
 * If the matriculation number does not exist in the records, an error message will be displayed to inform users that 
   the matriculation number is not found.
   
 
 Examples:
-* `deleteStud A7654321J` deletes Betsy Crowe from the records.
+* `delete A7654321J` deletes Betsy Crowe from the records.
 
 
 ### Adding an appointment: `addAppt`
@@ -259,5 +259,5 @@ Action | Format, Examples
 **List Students** | `list students`
 **Find** | `find MATRICULATION_NUMBER` e.g., `find A1234567X`
 **Filter** | `filter VACCINATION_STATUS`  e.g., `filter VACCINATED` <br> `filter FACULTY ` e.g., `filter COM` <br> `filter SCHOOL_RESIDENCE` e.g., `filter RVRC` 
-**Delete Student** | `deleteStud MATRICULATION_NUMBER` e.g., `deleteStud A1234567X`
+**Delete Student** | `delete MATRICULATION_NUMBER` e.g., `delete A1234567X`
 **View Statistics** | `stats FACULTY` e.g., `stats COM` <br> `stats SCHOOL_RESIDENCE` e.g., `stats RC4` <br> `stats NUS` <br> `stats all` 
