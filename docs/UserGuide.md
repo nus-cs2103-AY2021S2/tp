@@ -123,6 +123,18 @@ Shows a list of all persons in the address book.
 
 Format: `list persons`
 
+### Listing all students : `list`
+
+Shows a list of all students in the address book.
+
+Format: `list students`
+
+### Listing all tutors : `list`
+
+Shows a list of all tutors in the address book.
+
+Format: `list tutors`
+
 ### Listing all sessions : `list`
 
 Shows a list of all sessions in the address book.
