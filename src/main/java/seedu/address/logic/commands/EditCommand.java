@@ -232,7 +232,6 @@ public class EditCommand extends Command {
 
         public void setPriorityTag(PriorityTag priorityTag) {
             this.priorityTag = priorityTag;
-            System.out.println(this.priorityTag.getTagName());
         }
 
         public Optional<PriorityTag> getPriorityTag() {
