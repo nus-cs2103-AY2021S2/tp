@@ -16,12 +16,8 @@ public class NameContainsKeywordsPredicateTest {
     public void equals() {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
-        List<String> f = firstPredicateKeywordList;
-        List<String> s = secondPredicateKeywordList;
-        NameContainsKeywordsPredicate firstPredicate =
-                new seedu.address.model.contact.NameContainsKeywordsPredicate(f);
-        NameContainsKeywordsPredicate secondPredicate =
-                new seedu.address.model.contact.NameContainsKeywordsPredicate(s);
+        NameContainsKeywordsPredicate firstPredicate = new NameContainsKeywordsPredicate(firstPredicateKeywordList);
+        NameContainsKeywordsPredicate secondPredicate = new NameContainsKeywordsPredicate(secondPredicateKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
