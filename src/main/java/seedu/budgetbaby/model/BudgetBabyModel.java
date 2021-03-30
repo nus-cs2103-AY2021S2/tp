@@ -155,9 +155,19 @@ public interface BudgetBabyModel {
     boolean canUndoBudgetTracker();
 
     /**
+     * Returns true if the model has undone budget tracker states to restore.
+     */
+    boolean canRedoBudgetTracker();
+
+    /**
      * Restores the model's budget tracker to its previous state.
      */
     void undoBudgetTracker();
+
+    /**
+     * Restores the model's budget tracker to its previously undone state.
+     */
+    void redoBudgetTracker();
 
     /**
      * Saves the current budget tracker state for undo/redo.

@@ -13,6 +13,7 @@ import seedu.budgetbaby.logic.commands.DeleteFrCommand;
 import seedu.budgetbaby.logic.commands.EditFrCommand;
 import seedu.budgetbaby.logic.commands.ExitCommand;
 import seedu.budgetbaby.logic.commands.FindFrCommand;
+import seedu.budgetbaby.logic.commands.RedoCommand;
 import seedu.budgetbaby.logic.commands.ResetFilterCommand;
 import seedu.budgetbaby.logic.commands.SetBudgetCommand;
 import seedu.budgetbaby.logic.commands.UndoCommand;
@@ -70,6 +71,9 @@ public class BudgetBabyParser {
 
         case UndoCommand.COMMAND_WORD:
             return new UndoCommandParser().parse(arguments);
+
+        case RedoCommand.COMMAND_WORD:
+            return new RedoCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

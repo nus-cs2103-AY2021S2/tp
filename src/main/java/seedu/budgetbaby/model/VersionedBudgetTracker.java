@@ -45,10 +45,28 @@ public class VersionedBudgetTracker extends BudgetTracker {
     }
 
     /**
+     * Restores the budget tracker to its previously undone state.
+     */
+    public void redo() {
+        if (!canRedo()) {
+            throw new NoRedoableStateException();
+        }
+        currentStatePointer++;
+        resetData(budgetTrackerStateList.get(currentStatePointer).getDeepClone());
+    }
+
+    /**
      * Returns true if {@code undo()} has budget tracker states to undo.
      */
     public boolean canUndo() {
         return currentStatePointer > 0;
+    }
+
+    /**
+     * Returns true if {@code redo()} has budget tracker states to redo.
+     */
+    public boolean canRedo() {
+        return currentStatePointer < budgetTrackerStateList.size() - 1;
     }
 
     @Override
@@ -77,6 +95,15 @@ public class VersionedBudgetTracker extends BudgetTracker {
     public static class NoUndoableStateException extends RuntimeException {
         private NoUndoableStateException() {
             super("Current state pointer at start of budgetTrackerState list, unable to undo.");
+        }
+    }
+
+    /**
+     * Thrown when trying to {@code redo()} but can't.
+     */
+    public static class NoRedoableStateException extends RuntimeException {
+        private NoRedoableStateException() {
+            super("Current state pointer at end of budgetTrackerState list, unable to redo.");
         }
     }
 }

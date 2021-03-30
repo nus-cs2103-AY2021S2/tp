@@ -242,8 +242,19 @@ public class BudgetBabyModelManager implements BudgetBabyModel {
     }
 
     @Override
+    public boolean canRedoBudgetTracker() {
+        return versionedBudgetTracker.canRedo();
+    }
+
+    @Override
     public void undoBudgetTracker() {
         versionedBudgetTracker.undo();
+        setCurrentDisplayMonth(getBudgetTracker().getCurrentDisplayMonth().getMonth());
+    }
+
+    @Override
+    public void redoBudgetTracker() {
+        versionedBudgetTracker.redo();
         setCurrentDisplayMonth(getBudgetTracker().getCurrentDisplayMonth().getMonth());
     }
 
@@ -251,6 +262,8 @@ public class BudgetBabyModelManager implements BudgetBabyModel {
     public void commitBudgetTracker() {
         versionedBudgetTracker.commit();
     }
+
+    //=========== Util methods =======================================================================
 
     @Override
     public boolean equals(Object obj) {
