@@ -2,10 +2,14 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_APPOINTMENT_LISTED_OVERVIEW;
 import static seedu.address.commons.core.Messages.MESSAGE_APPOINTMENT_LISTED_OVERVIEW_SINGULAR;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.parser.ParserUtil.parseAppointmentDate;
+import static seedu.address.logic.parser.ParserUtil.parseAppointmentTime;
+import static seedu.address.testutil.TypicalAppointments.MEET_ALEX;
 import static seedu.address.testutil.TypicalAppointments.MEET_BOB;
 import static seedu.address.testutil.TypicalAppointments.getTypicalAppointments;
 
@@ -14,8 +18,13 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.AppointmentContainsKeywordsPredicate;
+import seedu.address.model.appointment.AppointmentDatePredicate;
+import seedu.address.model.appointment.AppointmentPredicateList;
+import seedu.address.model.appointment.AppointmentRemarksPredicate;
+import seedu.address.model.appointment.AppointmentTimePredicate;
 import seedu.address.testutil.TypicalModelManager;
 
 /**
@@ -32,14 +41,17 @@ public class FindAppointmentCommandTest {
         AppointmentContainsKeywordsPredicate secondPredicate =
                 new AppointmentContainsKeywordsPredicate(Collections.singletonList("second"));
 
-        FindAppointmentCommand findFirstCommand = new FindAppointmentCommand(firstPredicate);
-        FindAppointmentCommand findSecondCommand = new FindAppointmentCommand(secondPredicate);
+        FindAppointmentCommand findFirstCommand = new FindAppointmentCommand(
+                new AppointmentPredicateList(Collections.singletonList(firstPredicate)));
+        FindAppointmentCommand findSecondCommand = new FindAppointmentCommand(
+                new AppointmentPredicateList(Collections.singletonList(secondPredicate)));
 
         // same object -> returns true
         assertTrue(findFirstCommand.equals(findFirstCommand));
 
         // same values -> returns true
-        FindAppointmentCommand findFirstCommandCopy = new FindAppointmentCommand(firstPredicate);
+        FindAppointmentCommand findFirstCommandCopy = new FindAppointmentCommand(
+                new AppointmentPredicateList(Collections.singletonList(firstPredicate)));
         assertTrue(findFirstCommand.equals(findFirstCommandCopy));
 
         // different types -> returns false
@@ -54,19 +66,18 @@ public class FindAppointmentCommandTest {
 
     @Test
     public void execute_zeroKeywords_noAppointmentsFound() {
-        String expectedMessage = String.format(MESSAGE_APPOINTMENT_LISTED_OVERVIEW_SINGULAR, 0);
-        AppointmentContainsKeywordsPredicate predicate = preparePredicate(" ");
-        FindAppointmentCommand command = new FindAppointmentCommand(predicate);
-        expectedModel.updateFilteredAppointmentList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredAppointmentList());
+        AppointmentContainsKeywordsPredicate predicate = new AppointmentContainsKeywordsPredicate(
+                Collections.singletonList(" "));
+        assertThrows(IllegalArgumentException.class, () -> expectedModel.updateFilteredAppointmentList(predicate));
     }
 
     @Test
     public void execute_oneResult() {
         String expectedMessage = String.format(MESSAGE_APPOINTMENT_LISTED_OVERVIEW_SINGULAR, 1);
-        AppointmentContainsKeywordsPredicate predicate = preparePredicate("bob");
-        FindAppointmentCommand command = new FindAppointmentCommand(predicate);
+        AppointmentContainsKeywordsPredicate predicate =
+                new AppointmentContainsKeywordsPredicate(Collections.singletonList("bob"));
+        FindAppointmentCommand command = new FindAppointmentCommand(
+                new AppointmentPredicateList(Collections.singletonList(predicate)));
         expectedModel.updateFilteredAppointmentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.singletonList(MEET_BOB), model.getFilteredAppointmentList());
@@ -75,8 +86,10 @@ public class FindAppointmentCommandTest {
     @Test
     public void execute_noResult() {
         String expectedMessage = String.format(MESSAGE_APPOINTMENT_LISTED_OVERVIEW_SINGULAR, 0);
-        AppointmentContainsKeywordsPredicate predicate = preparePredicate("someone");
-        FindAppointmentCommand command = new FindAppointmentCommand(predicate);
+        AppointmentContainsKeywordsPredicate predicate =
+                new AppointmentContainsKeywordsPredicate(Collections.singletonList("someone"));
+        FindAppointmentCommand command = new FindAppointmentCommand(
+                new AppointmentPredicateList(Collections.singletonList(predicate)));
         expectedModel.updateFilteredAppointmentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredAppointmentList());
@@ -85,59 +98,92 @@ public class FindAppointmentCommandTest {
     @Test
     public void execute_multipleResults() {
         String expectedMessage = String.format(MESSAGE_APPOINTMENT_LISTED_OVERVIEW, getTypicalAppointments().size());
-        AppointmentContainsKeywordsPredicate predicate = preparePredicate("meet");
-        FindAppointmentCommand command = new FindAppointmentCommand(predicate);
+        AppointmentContainsKeywordsPredicate predicate =
+                new AppointmentContainsKeywordsPredicate(Collections.singletonList("meet"));
+        FindAppointmentCommand command = new FindAppointmentCommand(
+                new AppointmentPredicateList(Collections.singletonList(predicate)));
         expectedModel.updateFilteredAppointmentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(getTypicalAppointments(), model.getFilteredAppointmentList());
     }
 
     @Test
-    public void execute_multipleKeywords() {
-        String expectedMessage = String.format(MESSAGE_APPOINTMENT_LISTED_OVERVIEW_SINGULAR, 0);
-        AppointmentContainsKeywordsPredicate predicate = preparePredicate("somebody unknown");
-        FindAppointmentCommand command = new FindAppointmentCommand(predicate);
-        expectedModel.updateFilteredAppointmentList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredAppointmentList());
-    }
-
-    @Test
     public void execute_multipleKeywordsSuccess() {
         String expectedMessage = String.format(MESSAGE_APPOINTMENT_LISTED_OVERVIEW_SINGULAR, 1);
-        AppointmentContainsKeywordsPredicate predicate = preparePredicate("bob bob");
-        FindAppointmentCommand command = new FindAppointmentCommand(predicate);
+        AppointmentContainsKeywordsPredicate predicate =
+                new AppointmentContainsKeywordsPredicate(Arrays.asList("bob", "bob"));
+        FindAppointmentCommand command = new FindAppointmentCommand(
+                new AppointmentPredicateList(Collections.singletonList(predicate)));
         expectedModel.updateFilteredAppointmentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.singletonList(MEET_BOB), model.getFilteredAppointmentList());
     }
 
     @Test
-    public void execute_manyKeywords() {
+    public void remarksTest() {
+        String expectedMessage = String.format(MESSAGE_APPOINTMENT_LISTED_OVERVIEW_SINGULAR, 1);
+        String remark = "To celebrate Christmas at Fullerton Hotel";
+        AppointmentRemarksPredicate predicate = new AppointmentRemarksPredicate(remark);
+        FindAppointmentCommand command = new FindAppointmentCommand(
+                new AppointmentPredicateList(Collections.singletonList(predicate)));
+        expectedModel.updateFilteredAppointmentList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.singletonList(MEET_ALEX), model.getFilteredAppointmentList());
+    }
+
+    @Test
+    public void remarksFailTest() {
         String expectedMessage = String.format(MESSAGE_APPOINTMENT_LISTED_OVERVIEW_SINGULAR, 0);
-        AppointmentContainsKeywordsPredicate predicate = preparePredicate(
-            "We're no strangers to love "
-                    + "You know the rules and so do I "
-                    + "A full commitment's what I'm thinking of "
-                    + "You wouldn't get this from any other guy "
-                    + "I just wanna tell you how I'm feeling "
-                    + "Gotta make you understand "
-                    + "Never gonna give you up "
-                    + "Never gonna let you down "
-                    + "Never gonna run around and desert you "
-                    + "Never gonna make you cry "
-                    + "Never gonna say goodbye "
-                    + "Never gonna tell a lie and hurt you");
-        FindAppointmentCommand command = new FindAppointmentCommand(predicate);
+        String remark = "some remarks here";
+        AppointmentRemarksPredicate predicate = new AppointmentRemarksPredicate(remark);
+        FindAppointmentCommand command = new FindAppointmentCommand(
+                new AppointmentPredicateList(Collections.singletonList(predicate)));
         expectedModel.updateFilteredAppointmentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredAppointmentList());
     }
 
-    /**
-     * Parses {@code userInput} into a {@code AppointmentContainsKeywordsPredicate}.
-     */
-    private AppointmentContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new AppointmentContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    @Test
+    public void dateTest() throws ParseException {
+        String expectedMessage = String.format(MESSAGE_APPOINTMENT_LISTED_OVERVIEW_SINGULAR, 1);
+        AppointmentDatePredicate predicate = new AppointmentDatePredicate(parseAppointmentDate("25-12-2021"));
+        FindAppointmentCommand command = new FindAppointmentCommand(
+                new AppointmentPredicateList(Collections.singletonList(predicate)));
+        expectedModel.updateFilteredAppointmentList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.singletonList(MEET_ALEX), model.getFilteredAppointmentList());
+    }
+
+    @Test
+    public void dateNoneTest() throws ParseException {
+        String expectedMessage = String.format(MESSAGE_APPOINTMENT_LISTED_OVERVIEW_SINGULAR, 0);
+        AppointmentDatePredicate predicate = new AppointmentDatePredicate(parseAppointmentDate("25-1-2040"));
+        FindAppointmentCommand command = new FindAppointmentCommand(
+                new AppointmentPredicateList(Collections.singletonList(predicate)));
+        expectedModel.updateFilteredAppointmentList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getFilteredAppointmentList());
+    }
+
+    @Test
+    public void timeTest() throws ParseException {
+        String expectedMessage = String.format(MESSAGE_APPOINTMENT_LISTED_OVERVIEW_SINGULAR, 1);
+        AppointmentTimePredicate predicate = new AppointmentTimePredicate(parseAppointmentTime("1500"));
+        FindAppointmentCommand command = new FindAppointmentCommand(
+                new AppointmentPredicateList(Collections.singletonList(predicate)));
+        expectedModel.updateFilteredAppointmentList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.singletonList(MEET_ALEX), model.getFilteredAppointmentList());
+    }
+
+    @Test
+    public void timeNoneTest() throws ParseException {
+        String expectedMessage = String.format(MESSAGE_APPOINTMENT_LISTED_OVERVIEW_SINGULAR, 0);
+        AppointmentTimePredicate predicate = new AppointmentTimePredicate(parseAppointmentTime("0100"));
+        FindAppointmentCommand command = new FindAppointmentCommand(
+                new AppointmentPredicateList(Collections.singletonList(predicate)));
+        expectedModel.updateFilteredAppointmentList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getFilteredAppointmentList());
     }
 }

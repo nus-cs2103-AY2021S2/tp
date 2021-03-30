@@ -1,0 +1,79 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":PocketEstateParser" as PocketEstateParser LOGIC_COLOR
+participant ":UpdateCommandParser" as UpdateCommandParser LOGIC_COLOR
+participant "uc:UpdateNewCommand" as UpdateNewCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":PropertyBook" as PropertyBook MODEL_COLOR
+participant "600000:Option" as Option MODEL_COLOR
+end box
+[-> LogicManager : execute("update 1 u/new 600000")
+activate LogicManager
+
+LogicManager -> PocketEstateParser : parseCommand("update 1 u/new 600000")
+activate PocketEstateParser
+
+create UpdateCommandParser
+PocketEstateParser -> UpdateCommandParser
+activate UpdateCommandParser
+
+create UpdateNewCommand
+UpdateCommandParser -> UpdateNewCommand
+activate UpdateNewCommand
+
+UpdateNewCommand --> UpdateCommandParser : uc
+deactivate UpdateNewCommand
+
+UpdateCommandParser --> PocketEstateParser : uc
+deactivate UpdateCommandParser
+destroy UpdateCommandParser
+
+PocketEstateParser --> LogicManager : uc
+deactivate PocketEstateParser
+
+LogicManager -> UpdateNewCommand : execute()
+activate UpdateNewCommand
+
+UpdateNewCommand -> Model : getProperty(1)
+activate Model
+
+Model -> PropertyBook : getProperty(1)
+activate PropertyBook
+
+PropertyBook --> Model : property1
+deactivate PropertyBook
+
+Model --> UpdateNewCommand : property1
+deactivate Model
+
+create Option
+UpdateNewCommand -> Option : new Option(600000)
+activate Option
+
+Option --> UpdateNewCommand : 600000
+deactivate Option
+
+UpdateNewCommand -> UpdateNewCommand : createEditedProperty(property1, 600000)
+activate UpdateNewCommand
+
+UpdateNewCommand --> UpdateNewCommand : editedProperty
+deactivate UpdateNewCommand
+
+UpdateNewCommand -> Model : setProperty(property1, editedProperty)
+activate Model
+
+deactivate Model
+
+UpdateNewCommand --> LogicManager : result
+deactivate UpdateNewCommand
+destroy UpdateNewCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
