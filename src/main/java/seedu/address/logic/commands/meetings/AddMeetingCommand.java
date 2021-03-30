@@ -85,6 +85,7 @@ public class AddMeetingCommand extends Command {
         }
 
         if (getConnectionToPerson().size() != 0) {
+            toAdd.setPersonMeetingConnection(model.getPersonMeetingConnection());
             List<Person> lastShownList = model.getFilteredPersonList();
             // Check whether the index is out of bounds
             for (Index index : getConnectionToPerson()) {

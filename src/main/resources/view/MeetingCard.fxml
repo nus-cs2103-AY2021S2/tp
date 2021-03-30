@@ -34,6 +34,7 @@
                 </HBox>
                 <Label fx:id="description" text="Description" wrapText="true"/>
             </children>
+            <FlowPane fx:id="personsRelated"/>
         </VBox>
     </children>
     <padding>
