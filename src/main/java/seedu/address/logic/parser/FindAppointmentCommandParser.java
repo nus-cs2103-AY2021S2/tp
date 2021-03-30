@@ -44,7 +44,7 @@ public class FindAppointmentCommandParser implements Parser<FindAppointmentComma
             String option = optionArgsArray[0];
             String optionArgs = optionArgsArray[1];
 
-            return parseFindOptions(new Option(option), optionArgs);
+            return parseFindOptions(option, optionArgs);
         } else { // find by all fields
             return parseFindAll(trimmedArgs);
         }
@@ -52,11 +52,11 @@ public class FindAppointmentCommandParser implements Parser<FindAppointmentComma
 
     /**
      * Parses other fields in find by options context
-     * @param option {@code Option} to determine the option selected
+     * @param option option to determine the option selected
      * @param optionArgs {@code optionArgs} for the rest of the args
      * @return {@code FindCommand}
      */
-    public FindAppointmentCommand parseFindOptions(Option option, String optionArgs) throws ParseException {
+    public FindAppointmentCommand parseFindOptions(String option, String optionArgs) throws ParseException {
         List<String> keywords = Arrays.asList(optionArgs.split("\\s+"));
         if (option.equals(OPTION_NAME)) { // find by name
             return new FindAppointmentCommand(new ApptNameContainsKeywordsPredicate(keywords));
