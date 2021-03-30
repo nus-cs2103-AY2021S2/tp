@@ -3,8 +3,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox fx:id="calendarPanel" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-    <HBox style="-fx-padding: 8 14 8 14;">
+<VBox  xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <HBox fx:id="calendarTitlePanel" style="-fx-padding: 8 14 8 14;">
         <Button fx:id="prevButton" alignment="TOP_LEFT" onAction="#handlePrevMonth" text="PREV"/>
         <Region HBox.hgrow="ALWAYS"/>
         <Label fx:id="monthYearLabel" text="month year" alignment="CENTER" textAlignment="CENTER"/>

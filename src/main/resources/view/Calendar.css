@@ -21,11 +21,11 @@
     -fx-padding: 7 7 7 7;
 }
 
-#calendarPanel .button:hover {
+#calendarTitlePanel .button:hover {
     -fx-background-color: #636363;
 }
 
-#calendarPanel .button:pressed {
+#calendarTitlePanel .button:pressed {
     -fx-background-color: #949494;
 }
 

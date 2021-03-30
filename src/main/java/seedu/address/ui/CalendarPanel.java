@@ -113,7 +113,7 @@ public class CalendarPanel extends UiPart<Region> implements Observer {
 
             if (dateCursor.equals(viewingDate)) {
                 day.setBorder(new Border(new BorderStroke(Color.valueOf("white"),
-                        BorderStrokeStyle.SOLID, new CornerRadii(50), new BorderWidths(1))));
+                        BorderStrokeStyle.SOLID, new CornerRadii(50), new BorderWidths(2))));
             }
 
             pane.getChildren().add(day);
