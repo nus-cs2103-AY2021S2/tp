@@ -15,6 +15,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.customer.Address;
 import seedu.address.model.customer.Car;
 import seedu.address.model.customer.CoeExpiry;
+import seedu.address.model.customer.DateOfBirth;
 import seedu.address.model.customer.Email;
 import seedu.address.model.customer.Name;
 import seedu.address.model.customer.Phone;
@@ -95,6 +96,21 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code String dateOfBirth} into an {@code DateOfBirth}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code email} is invalid.
+     */
+    public static DateOfBirth parseDateOfBirth(String dateOfBirth) throws ParseException {
+        requireNonNull(dateOfBirth);
+        String trimmedDateOfBirth = dateOfBirth.trim();
+        if (!DateOfBirth.isValidDateOfBirth(trimmedDateOfBirth)) {
+            throw new ParseException(DateOfBirth.MESSAGE_CONSTRAINTS);
+        }
+        return new DateOfBirth(trimmedDateOfBirth);
     }
 
     /**

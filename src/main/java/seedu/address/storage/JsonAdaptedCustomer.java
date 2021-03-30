@@ -16,6 +16,7 @@ import seedu.address.model.customer.Address;
 import seedu.address.model.customer.Car;
 import seedu.address.model.customer.CoeExpiry;
 import seedu.address.model.customer.Customer;
+import seedu.address.model.customer.DateOfBirth;
 import seedu.address.model.customer.Email;
 import seedu.address.model.customer.Name;
 import seedu.address.model.customer.Phone;
@@ -36,6 +37,7 @@ class JsonAdaptedCustomer {
     private final String phone;
     private final String email;
     private final String address;
+    private final String dateOfBirth;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<JsonAdaptedCar> cars = new ArrayList<>();
     private final List<JsonAdaptedCoeExpiry> coeExpiries = new ArrayList<>();
@@ -46,6 +48,7 @@ class JsonAdaptedCustomer {
     @JsonCreator
     public JsonAdaptedCustomer(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                                @JsonProperty("email") String email, @JsonProperty("address") String address,
+                               @JsonProperty("dateOfBirth") String dateOfBirth,
                                @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                                @JsonProperty("cars") List<JsonAdaptedCar> cars,
                                @JsonProperty("coeExpiries") List<JsonAdaptedCoeExpiry> coeExpiries) {
@@ -53,6 +56,7 @@ class JsonAdaptedCustomer {
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.dateOfBirth = dateOfBirth;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -72,6 +76,7 @@ class JsonAdaptedCustomer {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        dateOfBirth = source.getDateOfBirth().birthDate;
         tagged.addAll(source.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList()));
@@ -137,8 +142,17 @@ class JsonAdaptedCustomer {
         }
         final Address modelAddress = new Address(address);
 
+        if (dateOfBirth == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    DateOfBirth.class.getSimpleName()));
+        }
+        if (!DateOfBirth.isValidDateOfBirth(dateOfBirth)) {
+            throw new IllegalValueException(DateOfBirth.MESSAGE_CONSTRAINTS);
+        }
+        final DateOfBirth modelDateOfBirth = new DateOfBirth(dateOfBirth);
+
         final Set<Tag> modelTags = new HashSet<>(customerTags);
-        return new Customer(modelName, modelPhone, modelEmail, modelAddress, modelTags, allCars);
+        return new Customer(modelName, modelPhone, modelEmail, modelAddress, modelDateOfBirth, modelTags, allCars);
     }
 
 }
