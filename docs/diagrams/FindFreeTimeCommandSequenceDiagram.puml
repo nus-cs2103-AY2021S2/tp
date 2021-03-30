@@ -1,0 +1,64 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":SocheduleParser" as SocheduleParser LOGIC_COLOR
+participant ":FindFreeTimeCommandParser" as FindFreeTimeCommandParser LOGIC_COLOR
+participant "s:FindFreeTimeTaskCommand" as FindFreeTimeCommand LOGIC_COLOR
+participant "CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : parse(free_time)
+activate LogicManager
+
+LogicManager -> SocheduleParser : parseCommand(free_time)
+activate SocheduleParser
+
+SocheduleParser -> FindFreeTimeCommandParser: parse(args)
+activate FindFreeTimeCommandParser
+
+create FindFreeTimeCommand
+FindFreeTimeCommandParser -> FindFreeTimeCommand
+activate FindFreeTimeCommand
+FindFreeTimeCommandParser <--FindFreeTimeCommand : s
+deactivate FindFreeTimeCommand
+
+SocheduleParser <--FindFreeTimeCommandParser : s
+deactivate FindFreeTimeCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FindFreeTimeCommandParser -[hidden]->[
+destroy FindFreeTimeCommandParser
+
+LogicManager <-- SocheduleParser : s
+deactivate SocheduleParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+SocheduleParser -[hidden]->[
+destroy SocheduleParser
+
+LogicManager -> FindFreeTimeCommand : execute()
+activate FindFreeTimeCommand
+
+FindFreeTimeCommand -> Model : getFreeTimeSlots(Date date)
+activate Model
+FindFreeTimeCommand <-- Model
+deactivate Model
+
+create CommandResult
+FindFreeTimeCommand -> CommandResult
+activate CommandResult
+FindFreeTimeCommand <-- CommandResult
+deactivate CommandResult
+
+LogicManager <-- FindFreeTimeCommand
+deactivate FindFreeTimeCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FindFreeTimeCommand -[hidden]->[
+destroy FindFreeTimeCommand
+
+[<-- LogicManager : CommandResult
+@enduml

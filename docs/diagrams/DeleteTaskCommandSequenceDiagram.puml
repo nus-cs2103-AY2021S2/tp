@@ -16,7 +16,7 @@ end box
 [-> LogicManager : parse(delete_task)
 activate LogicManager
 
-LogicManager -> SocheduleParser : parseCommand(undo)
+LogicManager -> SocheduleParser : parseCommand(delete_task)
 activate SocheduleParser
 
 SocheduleParser -> DeleteTaskCommandParser: parse(args)
