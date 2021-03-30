@@ -65,7 +65,7 @@ public class InsurancePlan {
 
     @Override
     public String toString() {
-        return name + "($" + premium + ")";
+        return name + " ($" + premium + ")";
     }
 
     @Override

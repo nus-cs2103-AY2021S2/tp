@@ -151,6 +151,17 @@ public class Person {
     }
 
     /**
+     * Returns a list of string representations of the person's insurance plans with numbering.
+     */
+    public List<String> getPlanStringsList () {
+        List<String> planStrings = new ArrayList<>();
+        for (int i = 0; i < plans.size(); i++) {
+            planStrings.add((i + 1) + ". " + plans.get(i).toString() + " ");
+        }
+        return planStrings;
+    }
+
+    /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
