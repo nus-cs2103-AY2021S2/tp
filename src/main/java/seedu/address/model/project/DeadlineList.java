@@ -3,6 +3,7 @@ package seedu.address.model.project;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
@@ -172,6 +173,13 @@ public class DeadlineList {
      */
     public int size() {
         return deadlines.size();
+    }
+
+    /**
+     * Sorts the deadline list.
+     */
+    public void sort() {
+        Collections.sort(deadlines);
     }
 
     @Override
