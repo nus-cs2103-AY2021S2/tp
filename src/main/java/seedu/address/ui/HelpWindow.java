@@ -21,47 +21,41 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.StatusCommand;
 import seedu.address.logic.parser.CliSyntax;
-import seedu.address.logic.parser.Prefix;
-
 
 /**
  * Controller for a help page
  */
 public class HelpWindow extends UiPart<Stage> {
-    public static final Prefix NAME = CliSyntax.getPrefixName();
-    public static final Prefix PHONE = CliSyntax.getPrefixPhone();
-    public static final Prefix BOOKING = CliSyntax.getPrefixBooking();
-    public static final Prefix RA = CliSyntax.getPrefixResidenceAddress();
-    public static final Prefix CLEAN = CliSyntax.getPrefixCleanStatusTag();
-    public static final Prefix TAG = CliSyntax.getPrefixTag();
-    public static final Prefix START = CliSyntax.getPrefixBookingStartDate();
-    public static final Prefix END = CliSyntax.getPrefixBookingEndDate();
-    public static final Prefix RESIDENCE = CliSyntax.getPrefixResidence();
-
-
     public static final String USERGUIDE_URL = "https://github.com/AY2021S2-CS2103-T16-3/"
                                              + "tp/blob/master/docs/UserGuide.md";
 
     public static final String ADD_PROMPT = AddCommand.getCommandWord()
                                           + " - Adds a residence into ResidenceTracker."
                                           + "\nEnter \"" + AddCommand.getCommandWord()
-                                          + " " + NAME + "NAME_OF_RESIDENCE "
-                                          + RA + "ADDRESS "
-                                          + "[" + CLEAN + "[y or n]]"
-                                          + " [" + TAG + "TAG]...\""
+                                          + " " + CliSyntax.PREFIX_NAME + "NAME_OF_RESIDENCE "
+                                          + CliSyntax.PREFIX_RESIDENCE_ADDRESS + "ADDRESS "
+                                          + "[" + CliSyntax.PREFIX_CLEAN_STATUS_TAG + "VALID_CLEAN_STATUS]"
+                                          + " [" + CliSyntax.PREFIX_TAG + "TAG]...\""
                                           + "\nExample: " + AddCommand.getCommandWord() + " "
-                                          + NAME + "Clementi HDB " + RA + "459A Clementi Ave 3, #04-257, S121459 "
-                                          + CLEAN + "n " + TAG + "Reserved\n\n";
+                                          + CliSyntax.PREFIX_NAME + "Clementi HDB "
+                                          + CliSyntax.PREFIX_RESIDENCE_ADDRESS
+                                          + "459A Clementi Ave 3, #04-257, S121459 "
+                                          + CliSyntax.PREFIX_CLEAN_STATUS_TAG + "n "
+                                          + CliSyntax.PREFIX_TAG + "Reserved\n\n";
 
     public static final String ADDB_PROMPT = AddBookingCommand.getCommandWord()
                                            + " - Adds a booking to a residence."
                                            + "\nEnter \""
                                            + AddBookingCommand.getCommandWord() + " "
-                                           + NAME + "NAME_OF_BOOKER " + PHONE + "PHONE_OF_BOOKER "
-                                           + START + "START_TIME " + END + "END_TIME\""
+                                           + CliSyntax.PREFIX_NAME + "NAME_OF_BOOKER "
+                                           + CliSyntax.PREFIX_PHONE + "PHONE_OF_BOOKER "
+                                           + CliSyntax.PREFIX_BOOKING_START_DATE + "START_TIME "
+                                           + CliSyntax.PREFIX_BOOKING_END_DATE + "END_TIME\""
                                            + "\nExample: " + AddBookingCommand.getCommandWord()
-                                           + " " + NAME + "John " + PHONE + "91234567 "
-                                           + START + "01-01-2021 " + END + "02-01-2021\n\n";
+                                           + " " + CliSyntax.PREFIX_NAME + "John "
+                                           + CliSyntax.PREFIX_PHONE + "91234567 "
+                                           + CliSyntax.PREFIX_BOOKING_START_DATE + "01-01-2021 "
+                                           + CliSyntax.PREFIX_BOOKING_END_DATE + "02-01-2021\n\n";
 
     public static final String CLEAR_PROMPT = ClearCommand.getCommandWord()
                                             + " - Clears all entries from the residence tracker."
@@ -77,14 +71,18 @@ public class HelpWindow extends UiPart<Stage> {
                                               + " - Deletes the specified booking from the specified residence."
                                               + "based on index."
                                               + "\nEnter \"" + DeleteBookingCommand.getCommandWord()
-                                              + " " + RESIDENCE + "RESIDENCE_INDEX " + BOOKING + "BOOKING_INDEX\""
+                                              + " " + CliSyntax.PREFIX_RESIDENCE + "RESIDENCE_INDEX "
+                                              + CliSyntax.PREFIX_BOOKING + "BOOKING_INDEX\""
                                               + "\nExample: " + DeleteBookingCommand.getCommandWord()
-                                              + " " + RESIDENCE + "3 " + BOOKING + "2\n\n";
+                                              + " " + CliSyntax.PREFIX_RESIDENCE + "3 "
+                                              + CliSyntax.PREFIX_RESIDENCE + "2\n\n";
 
     public static final String EDIT_PROMPT = EditCommand.getCommandWord()
                                            + " - Edits fields of an existing residence (other than bookings)."
-                                           + "\nEnter \"" + EditCommand.getCommandWord() + " INDEX " + CLEAN + "n\""
-                                           + "\nExample: " + EditCommand.getCommandWord() + " 2 " + CLEAN + "n\n\n";
+                                           + "\nEnter \"" + EditCommand.getCommandWord() + " INDEX "
+                                           + CliSyntax.PREFIX_CLEAN_STATUS_TAG + "n\""
+                                           + "\nExample: " + EditCommand.getCommandWord() + " 2 "
+                                           + CliSyntax.PREFIX_CLEAN_STATUS_TAG + "n\n\n";
 
     public static final String EDITB_PROMPT = EditBookingCommand.getCommandWord()
                                             + " - Edits the details of the booking identified by "
@@ -92,11 +90,16 @@ public class HelpWindow extends UiPart<Stage> {
                                             + "based on the residence's index provided. "
                                             + "\nExisting values will be overwritten by the input values."
                                             + "\nEnter \"" + EditBookingCommand.getCommandWord()
-                                            + " " + RESIDENCE + " RESIDENCE_INDEX " + BOOKING + " BOOKING_INDEX "
-                                            + "[" + NAME + "NAME] " + "[" + PHONE + "PHONE] "
-                                            + "[" + START + "START_DATE] " + "[" + END + "END_DATE]\""
+                                            + " " + CliSyntax.PREFIX_RESIDENCE + " RESIDENCE_INDEX "
+                                            + CliSyntax.PREFIX_BOOKING + " BOOKING_INDEX "
+                                            + "[" + CliSyntax.PREFIX_NAME + "NAME] "
+                                            + "[" + CliSyntax.PREFIX_PHONE + "PHONE] "
+                                            + "[" + CliSyntax.PREFIX_BOOKING_START_DATE + "START_DATE] "
+                                            + "[" + CliSyntax.PREFIX_BOOKING_END_DATE + "END_DATE]\""
                                             + "\nExample: " + EditBookingCommand.getCommandWord()
-                                            + " " + RESIDENCE + "1 " + BOOKING + "1 " + START + "01-01-2020\n\n";
+                                            + " " + CliSyntax.PREFIX_RESIDENCE + "1 "
+                                            + CliSyntax.PREFIX_BOOKING + "1 "
+                                            + CliSyntax.PREFIX_BOOKING_START_DATE + "01-01-2020\n\n";
 
 
 
