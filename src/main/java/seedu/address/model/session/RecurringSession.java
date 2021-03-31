@@ -50,12 +50,12 @@ public class RecurringSession extends Session {
     }
 
     /**
-     * Returns true if Date of {@code lastSessionDate} is consistent with
-     * {@code firstSessionDate} and {@code interval}.
-     * @param sessionDate1 the SessionDate value for first session
-     * @param sessionDate2 the SessionDate value for last session
+     * Returns true if Date of {@code sessionDate1} is consistent with
+     * {@code sessionDate2} and {@code interval}.
+     * @param sessionDate1 the SessionDate value for a session
+     * @param sessionDate2 the SessionDate value for a session
      * @param interval the interval of recurrence
-     * @return true if the first session and last session is consistent in terms of Date, based on interval
+     * @return true if the session and other session is consistent in terms of Date, based on interval
      */
     public static boolean isConsistentDatesAndInterval(
             SessionDate sessionDate1, SessionDate sessionDate2, Interval interval) {
