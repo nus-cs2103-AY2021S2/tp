@@ -1,5 +1,6 @@
 package fooddiary.ui;
 
+import java.awt.*;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.logging.Logger;
@@ -12,11 +13,18 @@ import fooddiary.logic.commands.exceptions.CommandException;
 import fooddiary.logic.parser.CliSyntax;
 import fooddiary.logic.parser.exceptions.ParseException;
 import fooddiary.model.entry.Entry;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 /**
@@ -62,15 +70,72 @@ public class ReviseWindow extends UiPart<Stage> {
     private Button reviseButton;
 
     /**
-     * Creates a new ViewWindow.
+     * Creates a new ReviseWindow.
      *
-     * @param root Stage to use as the root of the ViewWindow.
+     * @param root Stage to use as the root of the ReviseWindow.
      */
     public ReviseWindow(Stage root) {
         super(FXML, root);
+        nameText.requestFocus();
+        final KeyCombination activateRevise = new KeyCodeCombination(KeyCode.S, KeyCombination.SHORTCUT_DOWN);
+        initRevise_ShortCut(activateRevise, reviseButton);
+        final KeyCombination tabOverReviews = new KeyCodeCombination(KeyCode.TAB);
+        initTabOverReviews_ShortCut(tabOverReviews);
+        final KeyCombination esc = new KeyCodeCombination(KeyCode.ESCAPE);
+        initEsc_ShortCut(esc);
         if (entry != null && index != null) {
             setEntryContent(entry, index, mainWindow);
         }
+    }
+
+    /**
+     * Sets up 'Ctrl + S' (Windows) or 'Command + S' (MAC) to complete revision
+     *
+     * @param keyCombination 'Ctrl + S' (Windows) or 'Command + S' (MAC)
+     * @param reviseButton Revise button to be activated
+     */
+    private void initRevise_ShortCut(KeyCombination keyCombination, Button reviseButton) {
+        getRoot().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getTarget() instanceof TextInputControl && keyCombination.match(event)) {
+                reviseButton.getOnAction().handle(new ActionEvent());
+                event.consume();
+            }
+        });
+    }
+
+    /**
+     * Sets up 'TAB' key to tab over Reviews TextArea
+     *
+     * @param tabOverReviews 'TAB' on keyboard
+     */
+    private void initTabOverReviews_ShortCut(KeyCombination tabOverReviews) {
+        getRoot().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getTarget() instanceof TextInputControl && tabOverReviews.match(event)) {
+                try {
+                    Robot robot = new Robot();
+                    robot.keyPress(KeyCode.CONTROL.getCode());
+                    robot.keyPress(KeyCode.TAB.getCode());
+                    robot.keyRelease(KeyCode.TAB.getCode());
+                    robot.keyRelease(KeyCode.CONTROL.getCode());
+                }
+                catch (AWTException e) { }
+                event.consume();
+            }
+        });
+    }
+
+    /**
+     * Sets up 'ESC' key to hide window
+     *
+     * @param esc 'ESC' on keyboard
+     */
+    private void initEsc_ShortCut(KeyCombination esc) {
+        getRoot().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (esc.match(event)) {
+                hide();
+                event.consume();
+            }
+        });
     }
 
     /**
@@ -126,6 +191,12 @@ public class ReviseWindow extends UiPart<Stage> {
         getRoot().requestFocus();
     }
 
+    public void keyPress_S(KeyEvent event) {
+        if (event.getCode() == KeyCode.S) { //KeyCode.valueOf("S") && event.isControlDown()
+            System.out.println("WORKS!");
+        }
+    }
+
     /**
      * Sets the content entry to be ready for revision.
      *
@@ -174,7 +245,6 @@ public class ReviseWindow extends UiPart<Stage> {
 
         String[] reviewsArr = reviewsText.getText().split("\\r?\\n|\\r");
         String reviewsStr = "";
-        System.out.println(Arrays.toString(reviewsArr));
         for (String review : reviewsArr) {
             if (!review.isEmpty()) {
                 reviewsStr += String.format(" %s%s", CliSyntax.PREFIX_REVIEW, review);
