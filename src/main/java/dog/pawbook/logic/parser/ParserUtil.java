@@ -2,6 +2,7 @@ package dog.pawbook.logic.parser;
 
 import static dog.pawbook.model.managedentity.dog.DateOfBirth.DATE_FORMAT;
 import static dog.pawbook.model.managedentity.dog.DateOfBirth.DATE_FORMATTER;
+import static dog.pawbook.model.managedentity.program.Session.DATETIME_FORMATTER;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
@@ -204,7 +205,7 @@ public class ParserUtil {
         if (!Session.isValidDateTime(trimmedDateTime)) {
             throw new ParseException(Session.MESSAGE_CONSTRAINTS);
         }
-        LocalDateTime localDateTime = LocalDateTime.parse(trimmedDateTime, DATE_FORMATTER);
+        LocalDateTime localDateTime = LocalDateTime.parse(trimmedDateTime, DATETIME_FORMATTER);
         return new Session(localDateTime);
     }
 
