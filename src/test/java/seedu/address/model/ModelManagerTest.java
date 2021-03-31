@@ -173,6 +173,10 @@ public class ModelManagerTest {
         // different aliases -> returns false
         assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs, differentAliases)));
 
+        // different selectedPersonList -> return false
+        modelManagerCopy.updateSelectedPersonList(modelManagerCopy.getFilteredPersonList());
+        assertFalse(modelManager.equals(modelManagerCopy));
+
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 

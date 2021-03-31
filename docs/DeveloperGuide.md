@@ -333,19 +333,24 @@ Additionally, there are also some missed out features
 In the future, a combination of full word and partial matches can be used with weighted metrics to avoid middle of name
 matches. To avoid both issue, string fuzzy search may not be sufficient. Levenshtein distance is not able to account for
 phonetic differences in names and expected result when doing name searches.
-    
 
-### [Proposed] Selecting Persons
 
-A proposed implementation of `SelectCommand` will be similar to `Alias` feature.
+### Selecting Persons
 
-Commands:
-- `select shown` implemented under `SelectIndexCommand`
-- `select clear` implemented under `SelectClearCommand`
-- `select 1` implemented under `SelectIndexCommand`
-- `select 1 2 3` implemented under `SelectIndexCommand`
+SelectCommand allows a user to select Person object(s) to apply actions on.
 
-`shown` will be a special index where it refers to all the items in the person list.
+#### Overview of Implementation
+
+{% include image.html url="images/SelectCommandClassDiagram.png" description="Select class diagram" %}
+{% include image.html url="images/SelectCommandParserSequenceDiagram.png" description="Select parser sequence diagram" %}
+{% include image.html url="images/SelectCommandParserSequenceDiagram_ref.png" description="Select parser sequence diagram ref" %}
+
+#### Implementation
+
+`ModelManager` contains a list of `Person` object which are selected by the user.
+When `SelectShowCommand` is called, a predicate will be applied onto the `filteredPersonList` to show
+only the selected list of `Person` objects. The application of predicate follows the same method as
+`FindCommand` and `ListCommand`.
 
 ### Email Person(s)
 
