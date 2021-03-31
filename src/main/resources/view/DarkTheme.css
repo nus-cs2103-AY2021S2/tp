@@ -317,3 +317,9 @@
     -fx-background-radius: 2;
     -fx-font-size: 11;
 }
+
+.pane_with_background {
+    -fx-background-color: -DP_1_ELEVATION;
+    -fx-padding: 10 10;
+    -fx-background-insets: 5 0;
+}

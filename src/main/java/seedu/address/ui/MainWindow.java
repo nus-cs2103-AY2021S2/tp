@@ -135,7 +135,6 @@ public class MainWindow extends UiPart<Stage> {
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
         setFeedbackToUser(MESSAGE_WELCOME);
 
-        contactListPanel = new ContactListPanel(logic.getFilteredContactList());
         projectDisplayPanel = new ProjectDisplayPanel();
         projectDisplayPanel.setMainWindow(this);
     }
@@ -238,11 +237,9 @@ public class MainWindow extends UiPart<Stage> {
     public void displayContacts() {
         sidePanel.clearButtonStyles();
         sidePanel.addContactButtonStyle();
-        if (!infoDisplayPlaceholder.getChildren().contains(contactListPanel.getRoot())) {
-            infoDisplayPlaceholder.getChildren().clear();
-            infoDisplayPlaceholder.getChildren().add(contactListPanel.getRoot());
-        }
-
+        contactListPanel = new ContactListPanel(logic.getFilteredContactList());
+        infoDisplayPlaceholder.getChildren().clear();
+        infoDisplayPlaceholder.getChildren().add(contactListPanel.getRoot());
         sidePanel.clearSelection();
     }
 
