@@ -452,6 +452,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | insurance agent                            | sort my clients                | see my clients in a more organized way                                 |
 | `* *`    | insurance agent on the go                  | lock ClientBook with a password| prevent the leakage of my clients' information                         |
 | `* *`    | insurance agent                            | schedule meetings with clients | check what meetings I have with my clients                             |
+| `*`      | busy insurance agents                      | have access to keyboard commands e.g. CTRL + J | minimize time spent typing.                         |
 
 ### Use cases
 
