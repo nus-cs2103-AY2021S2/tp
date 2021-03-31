@@ -9,6 +9,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.util.OperationFlag;
 import seedu.address.model.person.DeadlineDate;
 import seedu.address.model.person.DeadlineTime;
 import seedu.address.model.person.ModuleCode;
@@ -27,9 +28,13 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_WEIGHTAGE = "Weightage is not a positive percentage value.";
 
+
+    public static final String MESSAGE_INVALID_ARGS_LENGTH = "Invalid number of arguments provided.";
+  
     public static final String MESSAGE_INVALID_NUMBER_OF_DAYS = "Number of days is not a positive integer.";
 
     public static final String MESSAGE_INVALID_NUMBER_OF_WEEKS = "Number of weeks is not a positive integer.";
+
 
 
     /**
@@ -44,6 +49,20 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Parses {@code String operationFlag} into an {@code OperationFlag} and returns it. Leading and trailing
+     * whitespaces will be trimmed.
+     *
+     * @throws ParseException if given {@code operationFlag} is invalid.
+     */
+    public static OperationFlag parseOperationFlag(String operationFlag) throws ParseException {
+        String trimmedOperationFlag = operationFlag.trim();
+        if (!OperationFlag.isValidOperationType(trimmedOperationFlag)) {
+            throw new ParseException(OperationFlag.MESSAGE_CONSTRAINTS);
+        }
+        return new OperationFlag(trimmedOperationFlag);
     }
 
     /**

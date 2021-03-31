@@ -14,4 +14,9 @@ public interface ReadOnlyTaskTracker {
      */
     ObservableList<Task> getTaskList();
 
+    /**
+     * Returns an unmodifiable view of the daily tasks list.
+     * This list will not contain any duplicate tasks.
+     */
+    ObservableList<Task> getDailyTaskList();
 }

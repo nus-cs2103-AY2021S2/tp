@@ -81,6 +81,18 @@ public interface Model {
     void addTask(Task task);
 
     /**
+     * Adds the given task to the daily to-do list.
+     * {@code task} must not already exist in the daily to-do list.
+     */
+    void addToDailyToDoList(Task taskToAdd);
+
+    /**
+     * Removes the given task from the daily to-do list.
+     * {@code task} must not already exist in the daily to-do list.
+     */
+    void removeFromDailyToDoList(Task dailyTask);
+
+    /**
      * Replaces the given task {@code target} with {@code editedTask}.
      * {@code target} must exist in the task tracker.
      * The task identity of {@code editedTask} must not be the same as another existing task in the task tracker.
@@ -99,11 +111,23 @@ public interface Model {
 
 
     /**
+     * Returns an unmodifiable view of the daily task list
+     */
+    ObservableList<Task> getDailyTaskList();
+
+    /**
      * Updates the filter of the filtered task list to filter by the given {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredTaskList(Predicate<Task> predicate);
+
+    /**
+     * Updates the filter of the daily task list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateDailyTaskList(Predicate<Task> predicate);
 
     /**
      * Commits the taskTracker

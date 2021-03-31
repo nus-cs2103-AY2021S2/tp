@@ -4,7 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.SortingFlag;
+import seedu.address.logic.util.SortingFlag;
 
 public class SortCommandParser implements Parser<SortCommand> {
 
@@ -18,7 +18,7 @@ public class SortCommandParser implements Parser<SortCommand> {
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
-        } else if (!SortingFlag.isValidSortingTypeFlag(trimmedArgs)) {
+        } else if (!SortingFlag.isValidSortingType(trimmedArgs)) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortingFlag.MESSAGE_CONSTRAINTS));
         }
