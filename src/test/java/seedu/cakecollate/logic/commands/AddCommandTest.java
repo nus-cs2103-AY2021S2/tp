@@ -35,9 +35,9 @@ import seedu.cakecollate.testutil.OrderBuilder;
  * todo: Tests
  * - order desc that already exists in order item model stub
  * - new order desc + existing order desc + order index
- *
+ * <p>
  * basically stub equivalent of addCommandIntegrationTest
- *
+ * <p>
  * check if equivalent tests exist in parser
  */
 
@@ -112,14 +112,10 @@ public class AddCommandTest {
     }
 
 
-
     // ======== TESTS ADDED AFTER ORDER ITEM FEATURE ========
 
 
-
     // ======== MODEL STUBS ========
-
-
 
 
     /**
@@ -232,7 +228,7 @@ public class AddCommandTest {
      */
     private class ModelStubWithOrder extends ModelStub {
         private final Order order;
-        final ArrayList<OrderItem> orderItemsStub = new ArrayList<>();
+        private final ArrayList<OrderItem> orderItemsStub = new ArrayList<>();
 
         ModelStubWithOrder(Order order) {
             requireNonNull(order);

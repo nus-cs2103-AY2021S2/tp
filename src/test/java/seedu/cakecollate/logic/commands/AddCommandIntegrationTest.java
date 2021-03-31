@@ -62,9 +62,9 @@ public class AddCommandIntegrationTest {
     @Test
     public void execute_duplicateOrder_throwsCommandException() {
         // TODO: problem with sample and test data
-//        Order orderInList = model.getCakeCollate().getOrderList().get(0);
-//        AddCommand.AddOrderDescriptor descriptor = new AddOrderDescriptorBuilder(orderInList).build();
-//        assertCommandFailure(new AddCommand(null, descriptor), model, AddCommand.MESSAGE_DUPLICATE_ORDER);
+        //        Order orderInList = model.getCakeCollate().getOrderList().get(0);
+        //        AddCommand.AddOrderDescriptor descriptor = new AddOrderDescriptorBuilder(orderInList).build();
+        //        assertCommandFailure(new AddCommand(null, descriptor), model, AddCommand.MESSAGE_DUPLICATE_ORDER);
     }
 
 
@@ -76,7 +76,8 @@ public class AddCommandIntegrationTest {
     @Test
     public void execute_invalidListIndex_uhh() throws CommandException {
         Model emptyModel = new ModelManager();
-        AddCommand.AddOrderDescriptor descriptor = new AddOrderDescriptorBuilder(new OrderBuilder().withOrderDescriptions().build()).build();
+        AddCommand.AddOrderDescriptor descriptor =
+                new AddOrderDescriptorBuilder(new OrderBuilder().withOrderDescriptions().build()).build();
 
         Command addCommand = new AddCommand(nonNullIndexList, descriptor);
 
@@ -100,7 +101,8 @@ public class AddCommandIntegrationTest {
         Order finalOrderToAddToModel = new OrderBuilder(validOrder).withOrderDescriptions(stringify(toAdd)).build();
 
         // construct expected model
-        Model expectedModel = new ModelManager(model.getCakeCollate(), new UserPrefs(), model.getOrderItems()); // todo change all/most 2nd arg
+        Model expectedModel = new ModelManager(model.getCakeCollate(), new UserPrefs(), model.getOrderItems()); //
+        // todo change all/most 2nd arg
         expectedModel.addOrder(finalOrderToAddToModel);
 
         assertCommandSuccess(new AddCommand(indexList, descriptor), model,
@@ -111,10 +113,6 @@ public class AddCommandIntegrationTest {
     public void execute_multipleIndexList_allAddedToOrder() {
 
     }
-
-
-
-
 
 
     // === TESTS RELATED TO ORDER DESC/ORDER ITEM INDEXES ===
@@ -174,8 +172,7 @@ public class AddCommandIntegrationTest {
 
 
     @Test
-    public void execute_bothOrderDescAndIndexList_AllOrder() {
-
+    public void execute_bothOrderDescAndIndexList_allAddedToOrder() {
 
 
     }

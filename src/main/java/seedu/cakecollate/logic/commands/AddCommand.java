@@ -73,12 +73,11 @@ public class AddCommand extends Command {
      *
      * @param orderItemIndexList null if no index was given by user
      *                           (todo not sure if should change to empty indexlist instead)
-     *
      * @param addOrderDescriptor contains all other fields needed for Order to be built and added into model
      */
     public AddCommand(IndexList orderItemIndexList, AddOrderDescriptor addOrderDescriptor) {
         // requireNonNull(orderItemIndexList);
-        
+
         requireNonNull(addOrderDescriptor);
         this.orderItemIndexList = orderItemIndexList;
         this.addOrderDescriptor = new AddOrderDescriptor(addOrderDescriptor); // defensive copy like in edit command
@@ -112,6 +111,7 @@ public class AddCommand extends Command {
 
     /**
      * Adds new order descriptions to order items model if they aren't already in the model
+     *
      * @param model
      */
     private void addToOrderItems(Model model) {
@@ -175,9 +175,9 @@ public class AddCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-//        return other == this // short circuit if same object
-//                || (other instanceof AddCommand // instanceof handles nulls
-//                && toAdd.equals(((AddCommand) other).toAdd));
+        //        return other == this // short circuit if same object
+        //                || (other instanceof AddCommand // instanceof handles nulls
+        //                && toAdd.equals(((AddCommand) other).toAdd));
 
         // short circuit if same object
         if (other == this) {
@@ -194,8 +194,8 @@ public class AddCommand extends Command {
         return (Objects.equals(orderItemIndexList, a.orderItemIndexList))
                 && addOrderDescriptor.equals(a.addOrderDescriptor);
     }
-    
-    
+
+
     /**
      * Stores the details to edit the order with. Each non-empty field value will replace the
      * corresponding field value of the order.
@@ -210,7 +210,8 @@ public class AddCommand extends Command {
         private DeliveryDate deliveryDate;
         private Request request;
 
-        public AddOrderDescriptor() {}
+        public AddOrderDescriptor() {
+        }
 
         /**
          * Copy constructor.
@@ -262,7 +263,8 @@ public class AddCommand extends Command {
         // modified this to allow multiple sets, check
         // may not need this version
         public void setOrderDescriptions(Set<OrderDescription> orderDescriptions) {
-//            this.orderDescriptions = (orderDescriptions != null) ? new HashSet<>(orderDescriptions) : null;
+            //            this.orderDescriptions = (orderDescriptions != null) ? new HashSet<>(orderDescriptions) :
+            //            null;
             if (this.orderDescriptions == null) {
                 if (orderDescriptions != null) {
                     this.orderDescriptions = new HashSet<>(orderDescriptions);
@@ -341,6 +343,10 @@ public class AddCommand extends Command {
                     && getDeliveryDate().equals(e.getDeliveryDate());
         }
 
+        /**
+         * Builds an order based on the fields added to the descriptor
+         * @return
+         */
         public Order build() {
             return new Order(this.name, this.phone, this.email, this.address, this.orderDescriptions, this.tags,
                     this.deliveryDate, this.request);

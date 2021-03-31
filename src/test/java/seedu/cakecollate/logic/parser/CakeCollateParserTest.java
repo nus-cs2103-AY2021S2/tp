@@ -19,6 +19,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.cakecollate.commons.core.index.Index;
 import seedu.cakecollate.commons.core.index.IndexList;
+import seedu.cakecollate.logic.commands.AddCommand;
 import seedu.cakecollate.logic.commands.ClearCommand;
 import seedu.cakecollate.logic.commands.DeleteCommand;
 import seedu.cakecollate.logic.commands.EditCommand;
@@ -34,6 +35,7 @@ import seedu.cakecollate.model.order.ContainsKeywordsPredicate;
 import seedu.cakecollate.model.order.Order;
 import seedu.cakecollate.model.order.ReminderDatePredicate;
 import seedu.cakecollate.model.order.Request;
+import seedu.cakecollate.testutil.AddOrderDescriptorBuilder;
 import seedu.cakecollate.testutil.EditOrderDescriptorBuilder;
 import seedu.cakecollate.testutil.OrderBuilder;
 import seedu.cakecollate.testutil.OrderUtil;
@@ -42,12 +44,15 @@ public class CakeCollateParserTest {
 
     private final CakeCollateParser parser = new CakeCollateParser();
 
-//    @Test
-//    public void parseCommand_add() throws Exception {
-//        Order order = new OrderBuilder().build();
-//        AddCommand command = (AddCommand) parser.parseCommand(OrderUtil.getAddCommand(order));
-//        assertEquals(new AddCommand(order), command);
-//    }
+    @Test
+    public void parseCommand_add() throws Exception {
+        Order order = new OrderBuilder().build();
+        AddCommand.AddOrderDescriptor descriptor = new AddOrderDescriptorBuilder(order).build();
+
+        AddCommand command = (AddCommand) parser.parseCommand(OrderUtil.getAddCommand(order));
+
+        assertEquals(new AddCommand(null, descriptor), command);
+    }
 
     @Test
     public void parseCommand_clear() throws Exception {

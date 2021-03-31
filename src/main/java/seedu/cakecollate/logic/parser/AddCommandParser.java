@@ -33,6 +33,7 @@ public class AddCommandParser implements Parser<AddCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddCommand parse(String args) throws ParseException {
@@ -47,13 +48,14 @@ public class AddCommandParser implements Parser<AddCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        AddCommand.AddOrderDescriptor addOrderDescriptor= new AddCommand.AddOrderDescriptor();
+        AddCommand.AddOrderDescriptor addOrderDescriptor = new AddCommand.AddOrderDescriptor();
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        Set<OrderDescription> orderDescriptionSet = ParserUtil.parseOrderDescriptions(argMultimap.getAllValues(PREFIX_ORDER_DESCRIPTION));
+        Set<OrderDescription> orderDescriptionSet =
+                ParserUtil.parseOrderDescriptions(argMultimap.getAllValues(PREFIX_ORDER_DESCRIPTION));
 
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         DeliveryDate deliveryDate = ParserUtil.parseDeliveryDate(argMultimap.getValue(PREFIX_DATE).get());
@@ -73,9 +75,9 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         IndexList orderItemIndexList =
                 argMultimap.getValue(PREFIX_ORDER_ITEM_IDX).isEmpty()
-                ? null
-                : ParserUtil.parseIndexList(argMultimap.getValue(PREFIX_ORDER_ITEM_IDX).get());
-                // unhelpful error messages here if oi/string is used, if can't edit error messages should put in FAQ
+                        ? null
+                        : ParserUtil.parseIndexList(argMultimap.getValue(PREFIX_ORDER_ITEM_IDX).get());
+        // unhelpful error messages here if oi/string is used, if can't edit error messages should put in FAQ
 
         return new AddCommand(orderItemIndexList, addOrderDescriptor);
     }

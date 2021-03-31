@@ -37,12 +37,12 @@ public class SampleDataUtil {
         return new Order[] {
             new Order(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Address("Blk 30 Geylang Street 29, #06-40"),
-                    getOrderDescriptionSet("2 x Chocolate Cake"), getTagSet("friends"),
+                    getOrderDescriptionSet("Chocolate Cake"), getTagSet("friends"),
                     new DeliveryDate(dateFormatter.format(dateToday.plusDays(3L))), EMPTY_REQUEST
             ),
             new Order(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                    getOrderDescriptionSet("2 x Vanilla Cake"), getTagSet("colleagues", "friends"),
+                    getOrderDescriptionSet("Vanilla Cake"), getTagSet("colleagues", "friends"),
                     new DeliveryDate(dateFormatter.format(dateToday.plusDays(4L))), EMPTY_REQUEST
             ),
             new Order(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
@@ -58,13 +58,13 @@ public class SampleDataUtil {
             ),
             new Order(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
                 new Address("Blk 47 Tampines Street 20, #17-35"),
-                    getOrderDescriptionSet("1 x Strawberry Cake", "1 x Chocolate Vanilla Cake", "1 x Berries Cake"),
+                    getOrderDescriptionSet("Strawberry Cake", "1 x Chocolate Vanilla Cake", "1 x Berries Cake"),
                     getTagSet("classmates"), new DeliveryDate(dateFormatter.format(dateToday.plusDays(7L))),
                     NON_EMPTY_REQUEST_2
             ),
             new Order(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                 new Address("Blk 45 Aljunied Street 85, #11-31"),
-                    getOrderDescriptionSet("1 x Black Forest Cake"), getTagSet("colleagues"),
+                    getOrderDescriptionSet("Black Forest Cake"), getTagSet("colleagues"),
                     new DeliveryDate(dateFormatter.format(dateToday.plusDays(8L))), NON_EMPTY_REQUEST_2
             ),
         };
@@ -74,7 +74,11 @@ public class SampleDataUtil {
         return new OrderItem[] { new OrderItem(new Type("Banana Cake"), new Cost("5.0")),
             new OrderItem(new Type("GME Banana Cake"), new Cost("42690.0")),
             new OrderItem(new Type("Strawberry Cake"), new Cost("5.0")),
-            new OrderItem(new Type("Chocolate Cake"), new Cost("5.0"))
+            new OrderItem(new Type("Chocolate Cake"), new Cost("5.0")),
+            new OrderItem(new Type("Black Forest Cake"), new Cost("5.0")),
+            new OrderItem(new Type("Vanilla Cake"), new Cost("5.0")),
+            new OrderItem(new Type("1 x Chocolate Vanilla Cake"), new Cost("5.0")),
+            new OrderItem(new Type("1 x Berries Cake"), new Cost("5.0"))
         };
     }
 

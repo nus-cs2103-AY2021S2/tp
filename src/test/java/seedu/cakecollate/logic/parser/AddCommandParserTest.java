@@ -70,27 +70,27 @@ public class AddCommandParserTest {
         // todo requests are actually different here
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + ORDER_DESC_BOB + TAG_DESC_FRIEND + DELIVERY_DATE_DESC_BOB,
+                        + ADDRESS_DESC_BOB + ORDER_DESC_BOB + TAG_DESC_FRIEND + DELIVERY_DATE_DESC_BOB,
                 new AddCommand(indexList, descriptor));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + ORDER_DESC_BOB + TAG_DESC_FRIEND + DELIVERY_DATE_DESC_BOB,
+                        + ADDRESS_DESC_BOB + ORDER_DESC_BOB + TAG_DESC_FRIEND + DELIVERY_DATE_DESC_BOB,
                 new AddCommand(indexList, descriptor));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + ORDER_DESC_BOB + TAG_DESC_FRIEND + DELIVERY_DATE_DESC_BOB,
+                        + ADDRESS_DESC_BOB + ORDER_DESC_BOB + TAG_DESC_FRIEND + DELIVERY_DATE_DESC_BOB,
                 new AddCommand(indexList, descriptor));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + ORDER_DESC_BOB + TAG_DESC_FRIEND + DELIVERY_DATE_DESC_BOB,
+                        + ADDRESS_DESC_BOB + ORDER_DESC_BOB + TAG_DESC_FRIEND + DELIVERY_DATE_DESC_BOB,
                 new AddCommand(indexList, descriptor));
 
-        // multiple addresses - last cakecollate accepted
+        // multiple addresses - last address accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
-                + ADDRESS_DESC_BOB + ORDER_DESC_BOB + TAG_DESC_FRIEND + DELIVERY_DATE_DESC_BOB,
+                        + ADDRESS_DESC_BOB + ORDER_DESC_BOB + TAG_DESC_FRIEND + DELIVERY_DATE_DESC_BOB,
                 new AddCommand(indexList, descriptor));
 
         //  multiple order descriptions - all accepted
@@ -98,17 +98,23 @@ public class AddCommandParserTest {
                 .withOrderDescriptions(VALID_CHOCOLATE_ORDER, VALID_BERRY_ORDER)
                 .withTags(VALID_TAG_FRIEND)
                 .build();
-        AddCommand.AddOrderDescriptor descriptorMultipleDesc = new AddOrderDescriptorBuilder(expectedOrderMultipleOrderDescriptions).build();
+
+        AddCommand.AddOrderDescriptor descriptorMultipleDesc =
+                new AddOrderDescriptorBuilder(expectedOrderMultipleOrderDescriptions).build();
+
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + ORDER_DESC_AMY + ORDER_DESC_BOB + TAG_DESC_FRIEND + DELIVERY_DATE_DESC_BOB,
+                        + ORDER_DESC_AMY + ORDER_DESC_BOB + TAG_DESC_FRIEND + DELIVERY_DATE_DESC_BOB,
                 new AddCommand(indexList, descriptorMultipleDesc));
 
         // multiple tags - all accepted
         Order expectedOrderMultipleTags = new OrderBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
-        AddCommand.AddOrderDescriptor descriptorMultipleTags = new AddOrderDescriptorBuilder(expectedOrderMultipleTags).build();
+
+        AddCommand.AddOrderDescriptor descriptorMultipleTags =
+                new AddOrderDescriptorBuilder(expectedOrderMultipleTags).build();
+
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + ORDER_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + DELIVERY_DATE_DESC_BOB,
+                        + ORDER_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + DELIVERY_DATE_DESC_BOB,
                 new AddCommand(indexList, descriptorMultipleTags));
 
         //  multiple delivery dates - last accepted
@@ -141,19 +147,19 @@ public class AddCommandParserTest {
 
         // missing name prefix
         assertParseFailure(parser, VALID_NAME_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                        + ORDER_DESC_BOB + DELIVERY_DATE_DESC_BOB, expectedMessage);
+                + ORDER_DESC_BOB + DELIVERY_DATE_DESC_BOB, expectedMessage);
 
         // missing phone prefix
         assertParseFailure(parser, NAME_DESC_BOB + VALID_PHONE_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                        + ORDER_DESC_BOB + DELIVERY_DATE_DESC_BOB, expectedMessage);
+                + ORDER_DESC_BOB + DELIVERY_DATE_DESC_BOB, expectedMessage);
 
         // missing email prefix
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + VALID_EMAIL_BOB + ADDRESS_DESC_BOB
-                        + ORDER_DESC_BOB + DELIVERY_DATE_DESC_BOB, expectedMessage);
+                + ORDER_DESC_BOB + DELIVERY_DATE_DESC_BOB, expectedMessage);
 
-        // missing cakecollate prefix
+        // missing address prefix
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + VALID_ADDRESS_BOB
-                        + ORDER_DESC_BOB + DELIVERY_DATE_DESC_BOB, expectedMessage);
+                + ORDER_DESC_BOB + DELIVERY_DATE_DESC_BOB, expectedMessage);
 
         // missing order description prefix
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
@@ -165,39 +171,44 @@ public class AddCommandParserTest {
 
         // all prefixes missing
         assertParseFailure(parser, VALID_NAME_BOB + VALID_PHONE_BOB + VALID_EMAIL_BOB
-                        + VALID_ADDRESS_BOB + VALID_BERRY_ORDER + VALID_DELIVERY_DATE_BOB, expectedMessage);
+                + VALID_ADDRESS_BOB + VALID_BERRY_ORDER + VALID_DELIVERY_DATE_BOB, expectedMessage);
     }
 
     @Test
     public void parse_invalidValue_failure() {
         // invalid name
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + ORDER_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + DELIVERY_DATE_DESC_BOB, Name.MESSAGE_CONSTRAINTS);
+                        + ORDER_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + DELIVERY_DATE_DESC_BOB,
+                Name.MESSAGE_CONSTRAINTS);
 
         // invalid phone
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + ORDER_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + DELIVERY_DATE_DESC_BOB, Phone.MESSAGE_CONSTRAINTS);
+                        + ORDER_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + DELIVERY_DATE_DESC_BOB,
+                Phone.MESSAGE_CONSTRAINTS);
 
         // invalid email
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC + ADDRESS_DESC_BOB
-                + ORDER_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + DELIVERY_DATE_DESC_BOB, Email.MESSAGE_CONSTRAINTS);
+                        + ORDER_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + DELIVERY_DATE_DESC_BOB,
+                Email.MESSAGE_CONSTRAINTS);
 
         // invalid cakecollate
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
-                + ORDER_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + DELIVERY_DATE_DESC_BOB, Address.MESSAGE_CONSTRAINTS);
+                        + ORDER_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + DELIVERY_DATE_DESC_BOB,
+                Address.MESSAGE_CONSTRAINTS);
 
         // invalid order description
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + INVALID_ORDER_DESC + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + DELIVERY_DATE_DESC_BOB,
+                        + INVALID_ORDER_DESC + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + DELIVERY_DATE_DESC_BOB,
                 OrderDescription.MESSAGE_CONSTRAINTS);
 
         // invalid tag
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + ORDER_DESC_BOB + INVALID_TAG_DESC + VALID_TAG_FRIEND + DELIVERY_DATE_DESC_BOB, Tag.MESSAGE_CONSTRAINTS);
+                        + ORDER_DESC_BOB + INVALID_TAG_DESC + VALID_TAG_FRIEND + DELIVERY_DATE_DESC_BOB,
+                Tag.MESSAGE_CONSTRAINTS);
 
         // invalid delivery date
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + ORDER_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + INVALID_DELIVERY_DATE_DESC,
+                        + ORDER_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + INVALID_DELIVERY_DATE_DESC,
                 DeliveryDate.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
@@ -206,14 +217,15 @@ public class AddCommandParserTest {
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + ORDER_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + DELIVERY_DATE_DESC_BOB,
+                        + ADDRESS_DESC_BOB + ORDER_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND
+                        + DELIVERY_DATE_DESC_BOB,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
-    
-    // ========== TESTS WITH INDEX LIST
+
+    // ========== TESTS WITH INDEX LIST ==========
 
     @Test
-    public void test_with_order_index() {
+    public void parse_withOrderItemIndexAndDesc_success() {
         Order expectedOrder = new OrderBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
         AddCommand.AddOrderDescriptor descriptor = new AddOrderDescriptorBuilder(expectedOrder).build();
 
@@ -231,7 +243,7 @@ public class AddCommandParserTest {
     }
 
     @Test
-    public void withorderindex_andnodescription() {
+    public void parse_withOrderItemIndexAndNoDesc_success() {
         Order expectedOrder = new OrderBuilder(BOB).withTags(VALID_TAG_FRIEND).withOrderDescriptions().build();
         AddCommand.AddOrderDescriptor descriptor = new AddOrderDescriptorBuilder(expectedOrder).build();
 
@@ -240,7 +252,7 @@ public class AddCommandParserTest {
         indexList.add(INDEX_FIRST_ORDER);
         indexList.add(INDEX_SECOND_ORDER);
 
-        String orderItemIndex = " " + PREFIX_ORDER_ITEM_IDX + " 1 2 "; // todo has indexlist parsing been tested
+        String orderItemIndex = " " + PREFIX_ORDER_ITEM_IDX + " 1 2 ";
 
         // 1 order and a set of indices
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
