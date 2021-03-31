@@ -2,127 +2,192 @@ package seedu.address.logic.commands.editcommand;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GENERAL_EVENT_DATE_1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GENERAL_EVENT_DATE_2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GENERAL_EVENT_DESCRIPTION_1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GENERAL_EVENT_DESCRIPTION_2;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showModuleAtIndex;
+import static seedu.address.logic.commands.CommandTestUtil.showEventAtIndex;
+import static seedu.address.testutil.GeneralEventBuilder.DEFAULT_DATE;
+import static seedu.address.testutil.GeneralEventBuilder.DEFAULT_DESCRIPTION;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EVENT;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MODULE;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_MODULE;
-import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_MODULE;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_EVENT;
 import static seedu.address.testutil.TypicalRemindMe.getTypicalRemindMe;
-import static seedu.address.testutil.typicalmodules.ModuleBuilder.DEFAULT_TITLE;
+
+import java.time.LocalDateTime;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.LocalDateTimeUtil;
 import seedu.address.logic.commands.clearcommand.ClearModulesCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.RemindMe;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.event.GeneralEvent;
-import seedu.address.model.module.Module;
-import seedu.address.model.module.Title;
+import seedu.address.model.module.Description;
 import seedu.address.testutil.GeneralEventBuilder;
-import seedu.address.testutil.typicalmodules.ModuleBuilder;
 
 public class EditEventCommandTest {
     private Model model = new ModelManager(getTypicalRemindMe(), new UserPrefs());
 
     @Test
     public void execute_descriptionFieldsSpecifiedUnfilteredList_success() {
-        GeneralEvent editedEvent = new GeneralEventBuilder().build();
+        Description edit = new Description(DEFAULT_DESCRIPTION);
+        EditEventCommand editEventCommand = new EditEventCommand(INDEX_FIRST_EVENT.getOneBased(), edit, null);
 
-        EditEventCommand editEventCommand = new EditEventCommand(INDEX_FIRST_EVENT.getOneBased(), edit);
-
-        String expectedMessage = String.format(EditModuleCommand.MESSAGE_SUCCESS, edit);
+        GeneralEvent editedEvent = new GeneralEventBuilder().withDescription(DEFAULT_DESCRIPTION)
+                                        .withDate(LocalDateTime.parse(VALID_GENERAL_EVENT_DATE_1,
+                                                LocalDateTimeUtil.DATETIME_FORMATTER))
+                                        .build();
+        String expectedMessage = String.format(EditEventCommand.MESSAGE_SUCCESS, editedEvent);
 
         Model expectedModel = new ModelManager(
                 new RemindMe(model.getRemindMe()), new UserPrefs());
-        expectedModel.setModule(model.getFilteredModuleList().get(0), editedMod);
+        expectedModel.setEvent(model.getFilteredEventList().get(0), editedEvent);
 
-        assertCommandSuccess(editModuleCommand, model, expectedMessage, expectedModel);
-    }
-
-
-    @Test
-    public void execute_duplicateModuleUnfilteredList_failure() {
-        Title testTitle = new Title("CS Test");
-        Module testModule = new Module(testTitle);
-        Model modelCopy = new ModelManager(new RemindMe(model.getRemindMe()), new UserPrefs());
-        modelCopy.addModule(testModule);
-
-        Module moduleInList = modelCopy.getFilteredModuleList().get(INDEX_SECOND_MODULE.getZeroBased());
-        EditModuleCommand editModuleCommand = new EditModuleCommand(INDEX_FIRST_MODULE.getOneBased(),
-                moduleInList.getTitle());
-
-        assertCommandFailure(editModuleCommand, modelCopy, EditModuleCommand.MESSAGE_DUPLICATE_MODULE);
+        assertCommandSuccess(editEventCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
-    public void execute_duplicateModuleFilteredList_failure() {
-        Title testTitle = new Title("CS Test");
-        Module testModule = new Module(testTitle);
-        Model modelCopy = new ModelManager(new RemindMe(model.getRemindMe()), new UserPrefs());
-        modelCopy.addModule(testModule);
+    public void execute_dateFieldsSpecifiedUnfilteredList_success() {
+        LocalDateTime edit = DEFAULT_DATE;
+        EditEventCommand editEventCommand = new EditEventCommand(INDEX_FIRST_EVENT.getOneBased(), null, edit);
 
-        showModuleAtIndex(modelCopy, INDEX_FIRST_MODULE);
+        GeneralEvent editedEvent = new GeneralEventBuilder().withDescription(VALID_GENERAL_EVENT_DESCRIPTION_1)
+                                        .withDate(DEFAULT_DATE)
+                                        .build();
+        String expectedMessage = String.format(EditEventCommand.MESSAGE_SUCCESS, editedEvent);
 
-        Module moduleInList = modelCopy.getRemindMe().getModuleList().get(INDEX_SECOND_MODULE.getZeroBased());
-        EditModuleCommand editModuleCommand = new EditModuleCommand(INDEX_FIRST_MODULE.getOneBased(),
-                moduleInList.getTitle());
+        Model expectedModel = new ModelManager(
+                new RemindMe(model.getRemindMe()), new UserPrefs());
+        expectedModel.setEvent(model.getFilteredEventList().get(0), editedEvent);
 
-        assertCommandFailure(editModuleCommand, modelCopy, EditModuleCommand.MESSAGE_DUPLICATE_MODULE);
+        assertCommandSuccess(editEventCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
-    public void execute_invalidModuleIndexUnfilteredList_failure() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredModuleList().size() + 1);
-        EditModuleCommand editModuleCommand = new EditModuleCommand(outOfBoundIndex.getOneBased(),
-                new Title("Title"));
+    public void execute_descriptionDuplicateGeneralEventUnfilteredList_failure() {
+        Description edit = new Description(VALID_GENERAL_EVENT_DESCRIPTION_1);
+        EditEventCommand editEventCommand = new EditEventCommand(INDEX_SECOND_EVENT.getOneBased(), edit, null);
 
-        assertCommandFailure(editModuleCommand, model, editModuleCommand.MESSAGE_NO_MODULE);
+        String expectedMessage = String.format(EditEventCommand.MESSAGE_DUPLICATE_EVENT);
+
+        assertCommandFailure(editEventCommand, model, expectedMessage);
     }
 
-    /**
-     * Edit filtered list where index is larger than size of filtered list,
-     * but smaller than size of address book
-     */
     @Test
-    public void execute_invalidModuleIndexFilteredList_failure() {
-        showModuleAtIndex(model, INDEX_FIRST_MODULE);
-        Index outOfBoundIndex = INDEX_THIRD_MODULE;
+    public void execute_dateDuplicateGeneralEventUnfilteredList_failure() {
+        LocalDateTime edit = LocalDateTime.parse(VALID_GENERAL_EVENT_DATE_2, LocalDateTimeUtil.DATETIME_FORMATTER);
+        EditEventCommand editEventCommand = new EditEventCommand(INDEX_FIRST_EVENT.getOneBased(), null, edit);
 
-        EditModuleCommand editModuleCommand = new EditModuleCommand(outOfBoundIndex.getOneBased(),
-                new Title("Title"));
+        String expectedMessage = String.format(EditEventCommand.MESSAGE_DUPLICATE_EVENT);
 
-        assertCommandFailure(editModuleCommand, model, EditModuleCommand.MESSAGE_NO_MODULE);
+        assertCommandFailure(editEventCommand, model, expectedMessage);
+    }
+
+    @Test
+    public void execute_descriptionDuplicateGeneralEventFilteredList_failure() {
+        showEventAtIndex(model, INDEX_FIRST_EVENT);
+        Description edit = new Description(VALID_GENERAL_EVENT_DESCRIPTION_1);
+        EditEventCommand editEventCommand = new EditEventCommand(INDEX_SECOND_EVENT.getOneBased(), edit, null);
+
+        String expectedMessage = String.format(EditEventCommand.MESSAGE_DUPLICATE_EVENT);
+
+        assertCommandFailure(editEventCommand, model, expectedMessage);
+    }
+
+    @Test
+    public void execute_dateDuplicateGeneralEventFilteredList_failure() {
+        showEventAtIndex(model, INDEX_SECOND_EVENT);
+        LocalDateTime edit = LocalDateTime.parse(VALID_GENERAL_EVENT_DATE_2, LocalDateTimeUtil.DATETIME_FORMATTER);
+        EditEventCommand editEventCommand = new EditEventCommand(INDEX_FIRST_EVENT.getOneBased(), null, edit);
+
+        String expectedMessage = String.format(EditEventCommand.MESSAGE_DUPLICATE_EVENT);
+
+        assertCommandFailure(editEventCommand, model, expectedMessage);
+    }
+
+    @Test
+    public void execute_descriptionInvalidGeneralEventIndexUnfilteredList_failure() {
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredEventList().size() + 1);
+        Description edit = new Description(DEFAULT_DESCRIPTION);
+        EditEventCommand editEventCommand = new EditEventCommand(outOfBoundIndex.getOneBased(), edit, null);
+
+        assertCommandFailure(editEventCommand, model, EditEventCommand.MESSAGE_NO_EVENT);
+    }
+
+    @Test
+    public void execute_dateInvalidGeneralEventIndexUnfilteredList_failure() {
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredEventList().size() + 1);
+        LocalDateTime edit = DEFAULT_DATE;
+        EditEventCommand editEventCommand = new EditEventCommand(outOfBoundIndex.getOneBased(), null, edit);
+
+        assertCommandFailure(editEventCommand, model, EditEventCommand.MESSAGE_NO_EVENT);
+    }
+
+    @Test
+    public void execute_allFieldsSpecifiedUnfilteredList_failure() {
+        Description descriptionEdit = new Description(DEFAULT_DESCRIPTION);
+        LocalDateTime dateEdit = DEFAULT_DATE;
+        EditEventCommand editEventCommand = new EditEventCommand(INDEX_FIRST_EVENT.getOneBased(),
+                                                                    descriptionEdit, dateEdit);
+
+        assertCommandFailure(editEventCommand, model, EditEventCommand.MESSAGE_EDIT_BOTH_PARTS);
+    }
+
+    @Test
+    public void execute_noFieldsSpecifiedUnfilteredList_failure() {
+        EditEventCommand editEventCommand = new EditEventCommand(INDEX_FIRST_EVENT.getOneBased(), null, null);
+
+        assertCommandFailure(editEventCommand, model, EditEventCommand.MESSAGE_NULL_EDIT);
     }
 
     @Test
     public void equals() {
-        Title edit = new Title("CS2101");
-        final EditModuleCommand standardCommand = new EditModuleCommand(INDEX_FIRST_MODULE.getOneBased(), edit);
+        Description descriptionEdit = new Description(DEFAULT_DESCRIPTION);
+        LocalDateTime dateEdit = DEFAULT_DATE;
+        final EditEventCommand standardCommandDescription = new EditEventCommand(INDEX_FIRST_EVENT.getOneBased(),
+                                                                                    descriptionEdit, null);
+        final EditEventCommand standardCommandDate = new EditEventCommand(INDEX_FIRST_EVENT.getOneBased(),
+                                                                    null, dateEdit);
 
         // same values -> returns true
-        Title editCopy = new Title("CS2101");
-        EditModuleCommand commandWithSameValues = new EditModuleCommand(INDEX_FIRST_MODULE.getOneBased(), editCopy);
-        assertTrue(standardCommand.equals(commandWithSameValues));
+        Description descriptionCopy = new Description(DEFAULT_DESCRIPTION);
+        LocalDateTime dateCopy = DEFAULT_DATE;
+        EditEventCommand commandWithSameValuesDescription = new EditEventCommand(INDEX_FIRST_EVENT.getOneBased(),
+                                                                                    descriptionCopy, null);
+        EditEventCommand commandWithSameValuesDate = new EditEventCommand(INDEX_FIRST_EVENT.getOneBased(),
+                                                                            null, dateCopy);
+        assertTrue(standardCommandDescription.equals(commandWithSameValuesDescription));
+        assertTrue(standardCommandDate.equals(commandWithSameValuesDate));
 
         // same object -> returns true
-        assertTrue(standardCommand.equals(standardCommand));
+        assertTrue(standardCommandDescription.equals(standardCommandDescription));
+        assertTrue(standardCommandDate.equals(standardCommandDate));
 
         // null -> returns false
-        assertFalse(standardCommand.equals(null));
+        assertFalse(standardCommandDescription.equals(null));
+        assertFalse(standardCommandDate.equals(null));
 
         // different types -> returns false
-        assertFalse(standardCommand.equals(new ClearModulesCommand()));
+        assertFalse(standardCommandDescription.equals(new ClearModulesCommand()));
+        assertFalse(standardCommandDate.equals(new ClearModulesCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditModuleCommand(INDEX_SECOND_MODULE.getOneBased(), edit)));
+        assertFalse(standardCommandDescription.equals(new EditEventCommand(INDEX_SECOND_EVENT.getOneBased(),
+                                                                            descriptionEdit, null)));
+        assertFalse(standardCommandDate.equals(new EditEventCommand(INDEX_SECOND_EVENT.getOneBased(),
+                                                            null, dateEdit)));
 
-        // different descriptor -> returns false
-        Title diffEdit = new Title("CS2102");
-        assertFalse(standardCommand.equals(new EditModuleCommand(INDEX_FIRST_MODULE.getOneBased(), diffEdit)));
+        // different description -> returns false
+        Description diffDescription = new Description(VALID_GENERAL_EVENT_DESCRIPTION_2);
+        LocalDateTime diffDate = LocalDateTime.parse(VALID_GENERAL_EVENT_DATE_2, LocalDateTimeUtil.DATETIME_FORMATTER);
+        assertFalse(standardCommandDescription.equals(new EditEventCommand(INDEX_FIRST_EVENT.getOneBased(),
+                                                                            diffDescription, null)));
+        assertFalse(standardCommandDate.equals(new EditEventCommand(INDEX_FIRST_EVENT.getOneBased(),
+                                                            null, diffDate)));
     }
 }

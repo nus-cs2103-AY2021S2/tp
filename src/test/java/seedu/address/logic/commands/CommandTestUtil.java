@@ -17,6 +17,8 @@ import seedu.address.logic.commands.editcommand.EditPersonCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.RemindMe;
+import seedu.address.model.event.DescriptionContainsKeywordsPredicate;
+import seedu.address.model.event.GeneralEvent;
 import seedu.address.model.module.Exam;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.TitleContainsKeywordsPredicate;
@@ -144,6 +146,20 @@ public class CommandTestUtil {
         Module module = model.getFilteredModuleList().get(targetIndex.getZeroBased());
         final String[] splitTitle = module.getTitle().modTitle.split("\\s+");
         model.updateFilteredModuleList(new TitleContainsKeywordsPredicate(Arrays.asList(splitTitle[0])));
+
+        assertEquals(2, model.getFilteredModuleList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the general event at the given {@code targetIndex} in the
+     * {@code model}'s remindMe event list.
+     */
+    public static void showEventAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredModuleList().size());
+
+        GeneralEvent event = model.getFilteredEventList().get(targetIndex.getZeroBased());
+        final String[] splitTitle = event.getDescription().description.split("\\s+");
+        model.updateFilteredEventList(new DescriptionContainsKeywordsPredicate(Arrays.asList(splitTitle[0])));
 
         assertEquals(2, model.getFilteredModuleList().size());
     }

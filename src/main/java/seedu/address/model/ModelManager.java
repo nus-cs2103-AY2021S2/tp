@@ -340,4 +340,10 @@ public class ModelManager implements Model {
         return remindMe.getEvent(index);
     }
 
+    @Override
+    public void setEvent(GeneralEvent target, GeneralEvent editedEvent) {
+        requireAllNonNull(target, editedEvent);
+        remindMe.setEvent(target, editedEvent);
+    }
+
 }

@@ -6,7 +6,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_GENERAL_EVENT_D
 import static seedu.address.storage.JsonAdaptedGeneralEvent.MESSAGE_CONSTRAINTS;
 import static seedu.address.storage.JsonAdaptedGeneralEvent.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalRemindMe.VALID_GENERAL_EVENT;
+import static seedu.address.testutil.TypicalRemindMe.VALID_GENERAL_EVENT_1;
 
 import java.time.LocalDateTime;
 
@@ -25,7 +25,7 @@ class JsonAdaptedGeneralEventTest {
             new JsonAdaptedGeneralEvent(VALID_GENERAL_EVENT_DESCRIPTION_1,
                     VALID_GENERAL_EVENT_DATE_1);
 
-        assertEquals(VALID_GENERAL_EVENT, generalEvent.toModelType());
+        assertEquals(VALID_GENERAL_EVENT_1, generalEvent.toModelType());
     }
 
     @Test

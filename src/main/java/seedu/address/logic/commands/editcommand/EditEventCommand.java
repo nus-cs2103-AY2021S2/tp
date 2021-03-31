@@ -65,23 +65,41 @@ public class EditEventCommand extends EditCommand {
                 throw new CommandException(MESSAGE_DUPLICATE_EVENT);
             }
             model.editEvent(toEditIndex, eventEdit);
-        } else if (isNull(eventEdit) && isNull(dateEdit)) {
+        } else if (!isNull(eventEdit) && !isNull(dateEdit)) {
             throw new CommandException(MESSAGE_EDIT_BOTH_PARTS);
         } else {
             throw new CommandException(MESSAGE_NULL_EDIT);
         }
 
         GeneralEvent edited = model.getEvent(toEditIndex);
-
+        model.updateFilteredEventList(Model.PREDICATE_SHOW_ALL_EVENTS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, edited));
     }
 
     @Override
     public boolean equals(Object other) {
+        if (!(other instanceof EditEventCommand)) {
+            return false;
+        }
+        boolean dateIsNull = isNull(dateEdit);
+        boolean descriptionIsNull = isNull(eventEdit);
+        boolean sameDate;
+        boolean sameDescription;
+        if (dateIsNull) {
+            sameDate = isNull(((EditEventCommand) other).dateEdit);
+        } else {
+            sameDate = dateEdit.equals(((EditEventCommand) other).dateEdit);
+        }
+        if (descriptionIsNull) {
+            sameDescription = isNull(((EditEventCommand) other).eventEdit);
+        } else {
+            sameDescription = eventEdit.equals(((EditEventCommand) other).eventEdit);
+        }
+
         return other == this
                 || (other instanceof EditEventCommand)
-                && eventEdit.equals(((EditEventCommand) other).eventEdit)
-                && dateEdit.equals(((EditEventCommand) other).dateEdit)
-                && toEditIndex == ((EditEventCommand) other).toEditIndex;
+                && toEditIndex == ((EditEventCommand) other).toEditIndex
+                && sameDate
+                && sameDescription;
     }
 }
