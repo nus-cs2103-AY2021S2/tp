@@ -29,6 +29,7 @@ public class EventListPaneKanbanView extends UiPart<Region> {
         super(FXML);
         this.eventList = eventList;
         eventListView.setItems(eventList);
+        eventListView.setMouseTransparent(true);
         eventListView.setCellFactory(listView -> new EventListViewCell());
     }
 
