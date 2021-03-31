@@ -57,7 +57,7 @@ public class AddMeetingCommand extends Command {
     }
 
     /**
-     * Set the connection indices to meetings.
+     * Set the connection indices to persons.
      */
     public AddMeetingCommand setConnectionToPerson(Set<Index> indices) {
         this.connectionToPerson.addAll(indices);
@@ -65,7 +65,7 @@ public class AddMeetingCommand extends Command {
     }
 
     /**
-     * Get the connection indices to meetings.
+     * Get the connection indices to persons.
      */
     public Set<Index> getConnectionToPerson() {
         return this.connectionToPerson;
@@ -97,6 +97,7 @@ public class AddMeetingCommand extends Command {
     private void addConnectionsToPersons(Meeting toAdd, Model model) throws CommandException {
         // Use set to ensure unique element.
         HashSet<Person> personsConnection = new HashSet<>();
+        toAdd.setPersonMeetingConnection(model.getPersonMeetingConnection());
 
         if (!toAdd.getGroups().isEmpty()) {
             for (Group group : toAdd.getGroups()) {
@@ -107,7 +108,6 @@ public class AddMeetingCommand extends Command {
         }
 
         if (getConnectionToPerson().size() != 0) {
-            toAdd.setPersonMeetingConnection(model.getPersonMeetingConnection());
             List<Person> lastShownList = model.getFilteredPersonList();
             // Check whether the index is out of bounds
             for (Index index : getConnectionToPerson()) {
