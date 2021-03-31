@@ -57,7 +57,7 @@ public class EditEntryCommandParser implements Parser<EditEntryCommand> {
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(tempEntry::setTags);
 
-        if (!tempEntry.isAnyFieldEdited) {
+        if (!tempEntry.isUpdated()) {
             throw new ParseException(MESSAGE_NOT_EDITED);
         }
 

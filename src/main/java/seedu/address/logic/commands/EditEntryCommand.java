@@ -1,25 +1,17 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATED_ENTRY;
-import static seedu.address.commons.core.Messages.MESSAGE_EDIT_ENTRY_SUCCESS;
-import static seedu.address.commons.core.Messages.MESSAGE_NO_SUCH_ENTRY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_END_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ENTRIES;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.EditEntryCommandParser;
 import seedu.address.model.Model;
 import seedu.address.model.entry.Entry;
 import seedu.address.model.entry.EntryDate;
@@ -66,16 +58,16 @@ public class EditEntryCommand extends Command {
         requireNonNull(model);
         List<Entry> lastShownList = model.getFilteredEntryList();
 
-        if (!lastShownList.stream().anyMatch(predicate)) {
+        if (lastShownList.stream().noneMatch(predicate)) {
             throw new CommandException(Messages.MESSAGE_NO_SUCH_ENTRY);
         }
 
         Entry target = lastShownList.stream().filter(predicate).findFirst().get();
 
-        EntryName updatedEntryName = tempEntry.entryName.orElse(target.getEntryName());
-        EntryDate updatedEntryStartDate = tempEntry.startDate.orElse(target.getOriginalStartDate());
-        EntryDate updatedEntryEndDate = tempEntry.endDate.orElse(target.getOriginalEndDate());
-        Set<Tag> updatedTags = tempEntry.tags.orElse(target.getTags());
+        EntryName updatedEntryName = tempEntry.getEntryName().orElse(target.getEntryName());
+        EntryDate updatedEntryStartDate = tempEntry.getStartDate().orElse(target.getOriginalStartDate());
+        EntryDate updatedEntryEndDate = tempEntry.getEndDate().orElse(target.getOriginalEndDate());
+        Set<Tag> updatedTags = tempEntry.getTags().orElse(target.getTags());
         Entry updatedEntry = new Entry(updatedEntryName, updatedEntryStartDate, updatedEntryEndDate, updatedTags);
 
         model.deleteEntry(target);
@@ -86,7 +78,7 @@ public class EditEntryCommand extends Command {
 
         model.addEntry(updatedEntry);
         model.updateFilteredEntryList(PREDICATE_SHOW_ALL_ENTRIES);
-        return new CommandResult(String.format(MESSAGE_EDIT_ENTRY_SUCCESS, updatedEntry));
+        return new CommandResult(String.format(Messages.MESSAGE_EDIT_ENTRY_SUCCESS, updatedEntry));
     }
 
     @Override

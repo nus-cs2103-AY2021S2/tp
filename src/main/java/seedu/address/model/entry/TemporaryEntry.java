@@ -6,18 +6,42 @@ import java.util.Set;
 import seedu.address.model.tag.Tag;
 
 public class TemporaryEntry {
-    public boolean isAnyFieldEdited;
-    public Optional<EntryName> entryName;
-    public Optional<EntryDate> startDate;
-    public Optional<EntryDate> endDate;
-    public Optional<Set<Tag>> tags;
+    private boolean isAnyFieldEdited;
+    private Optional<EntryName> entryName;
+    private Optional<EntryDate> startDate;
+    private Optional<EntryDate> endDate;
+    private Optional<Set<Tag>> tags;
 
+    /**
+     * Constructs a TemporaryEntry object which is a partial
+     * Entry object with optional fields.
+     */
     public TemporaryEntry() {
         isAnyFieldEdited = false;
         entryName = Optional.empty();
         startDate = Optional.empty();
         endDate = Optional.empty();
         tags = Optional.empty();
+    }
+
+    public boolean isUpdated() {
+        return isAnyFieldEdited;
+    }
+
+    public Optional<EntryName> getEntryName() {
+        return entryName;
+    }
+
+    public Optional<EntryDate> getStartDate() {
+        return startDate;
+    }
+
+    public Optional<EntryDate> getEndDate() {
+        return endDate;
+    }
+
+    public Optional<Set<Tag>> getTags() {
+        return tags;
     }
 
     public void setEntryName(EntryName name) {
