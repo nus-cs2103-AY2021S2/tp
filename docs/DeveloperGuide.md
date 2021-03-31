@@ -978,17 +978,14 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: There must be at least one reviewed flashcard in the list.
     
     1. Test case: `stats`
-    
        Expected: The UI will be updated to display a pie chart representing the overall correct rate of all flashcards in the list.
        The total review count, total correct count and overall correct rate is also displayed below the pie chart.
        
     1. Test case: `stats 1`
-    
        Expected: The UI  will be updated to display a pie chart representing the correct rate of the flash card represented
        by index 1 in the list. The review count, correct count and correct rate is also displayed below the pie chart. 
        
     1. Test case: `stats abc`
-    
        Expected: No statistics will be displayed. An invalid command format error message will be shown on the result display. 
         
 ### Undoing a command
@@ -1010,7 +1007,6 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: There must be at least one command that is undone.
    
    1. Test case: `redo`
-   
       Expected: FlashBack will be updated to the previous state before `undo` is executed.
       The UI will be updated to display all flashcards in FlashBack.
       The result display shows a message: `FlashBack has been redo!`.
@@ -1022,17 +1018,14 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: The application is in Main Window.
     
     1. Test case: `alias c/add n/a`
-    
        Expected: The alias `a` will be mapped to `add`. Users will now be able to perform add command using `a`
        The result display shows a message: `New alias added for "add" command: a`.
     
     1. Test case: `alias c/add n/delete`
-    
        Expected: No alias is added, and the text in `CommandBox` turns red to indicate an error.
        The result display shows a message: `The alias "delete" should not be a command in FlashBack.`.
     
     1. Test case: `alias c/cleaaar n/c`
-    
        Expected: No alias is added, and the text in `CommandBox` turns red to indicate an error.
        The result display shows a message: `The command "cleaaar" does not exist in FlashBack.`.
 
