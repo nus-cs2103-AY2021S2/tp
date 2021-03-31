@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Tag in the address book.
+ * Represents a Tag in the remindMe.
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
  */
 public class Tag {
@@ -23,6 +23,13 @@ public class Tag {
         requireNonNull(tagName);
         checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
         this.tagName = tagName;
+    }
+
+    /**
+     * Constructs an empty {@code Tag}
+     */
+    public Tag() {
+        this.tagName = "";
     }
 
     /**
@@ -50,5 +57,6 @@ public class Tag {
     public String toString() {
         return '[' + tagName + ']';
     }
+
 
 }

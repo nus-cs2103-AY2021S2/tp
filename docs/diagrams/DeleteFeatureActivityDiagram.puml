@@ -1,0 +1,25 @@
+
+@startuml
+start
+:User executes command;
+:Check input;
+if() then ([user input is valid])
+    :Create delete command;
+    :find the targeted module;
+    if() then ([if module exists])
+        :Find the target assignment in the module;
+        if() then ([assignment exists)
+                : Retrieve the module from the uniqueModuleList in the model;
+                : Delete the assignment from the module AssignmentList;
+                : show successful command result;
+        else([assignment does not exist])
+            : show error message to user;
+        endif
+    else([if module does not exist])
+        :Show error message to user;
+    endif
+else([user input is invalid])
+    :Show error message to user;
+endif
+stop
+@enduml

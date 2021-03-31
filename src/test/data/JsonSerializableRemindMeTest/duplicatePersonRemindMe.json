@@ -1,0 +1,20 @@
+{
+  "modules" : [ ],
+  "persons" : [ {
+    "name" : "Alice",
+    "birthday" : "22/10/2020",
+    "tagged" : [ ]
+  },
+    {
+      "name" : "Alice",
+      "birthday" : "22/10/2020",
+      "tagged" : [ ]
+    },
+    {
+      "name" : "Alice",
+      "birthday" : "22/10/2020",
+      "tagged" : [ ]
+    }
+  ],
+  "events" : []
+}

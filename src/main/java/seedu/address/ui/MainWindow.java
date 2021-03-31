@@ -1,7 +1,10 @@
 package seedu.address.ui;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.util.logging.Logger;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -16,6 +19,9 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.storage.CalendarStorage;
+import seedu.address.ui.calendar.CalendarWindow;
+import seedu.address.ui.calendar.schedule.UpcomingSchedule;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -23,7 +29,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class MainWindow extends UiPart<Stage> {
 
-    private static final String FXML = "MainWindow.fxml";
+    private static final String FXML = "MainWindow2.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -31,9 +37,12 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private DisplayPanel displayPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private CalendarWindow calendarWindow;
+    private CalendarStorage calendarStorage;
+    private UpcomingSchedule upcomingSchedule;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -42,7 +51,10 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private MenuItem calendarMenuItem;
+
+    @FXML
+    private StackPane displayPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -50,20 +62,30 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane statusbarPlaceholder;
 
+
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
     public MainWindow(Stage primaryStage, Logic logic) {
         super(FXML, primaryStage);
-
+        requireAllNonNull(primaryStage, logic);
         // Set dependencies
         this.primaryStage = primaryStage;
+        // When main window is closed, all other window closes.
+        primaryStage.setOnHidden(e -> {
+            Platform.exit();
+            System.exit(0);
+        });
         this.logic = logic;
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
-
         setAccelerators();
+
+        //Create calendar dependecies and window
+        calendarStorage = new CalendarStorage(logic);
+        upcomingSchedule = new UpcomingSchedule(calendarStorage);
+        calendarWindow = new CalendarWindow(calendarStorage, upcomingSchedule);
 
         helpWindow = new HelpWindow();
     }
@@ -74,6 +96,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private void setAccelerators() {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
+        setAccelerator(calendarMenuItem, KeyCombination.keyCombination("F2"));
     }
 
     /**
@@ -110,17 +133,18 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        displayPanel = new DisplayPanel(logic);
+        displayPanelPlaceholder.getChildren().add(displayPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getRemindMeFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
     }
 
     /**
@@ -132,6 +156,18 @@ public class MainWindow extends UiPart<Stage> {
         if (guiSettings.getWindowCoordinates() != null) {
             primaryStage.setX(guiSettings.getWindowCoordinates().getX());
             primaryStage.setY(guiSettings.getWindowCoordinates().getY());
+        }
+    }
+
+    /**
+     * Opens the calendar window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleCalendar() {
+        if (!calendarWindow.isShowing()) {
+            calendarWindow.show();
+        } else {
+            calendarWindow.focus();
         }
     }
 
@@ -163,8 +199,8 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    public DisplayPanel getDisplayPanel() {
+        return displayPanel;
     }
 
     /**
@@ -174,12 +210,17 @@ public class MainWindow extends UiPart<Stage> {
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
+
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
+            }
+
+            if (commandResult.isShowCalendar()) {
+                handleCalendar();
             }
 
             if (commandResult.isExit()) {

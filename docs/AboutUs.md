@@ -9,51 +9,52 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Michael Ong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/maikongeh.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
 
-* Role: Project Advisor
+[[github](https://github.com/maikongeh)]
+[[portfolio](team/maikongeh.md)]
 
-### Jane Doe
+* Role: Developer
+* Responsibility: Testing
 
-<img src="images/johndoe.png" width="200px">
+### Huang Zhenxin
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+<img src="images/hzxin.png" width="200px">
+
+[[github](http://github.com/Hzxin)]
+[[portfolio](team/hzxin.md)]
+
+* Role: Integration
+* Responsibilities: UI
+
+### Jeremias Shae
+
+<img src="images/jellymias.png" width="200px">
+
+[[github](http://github.com/jellymias)]
+[[portfolio](team/jellymias.md)]
+* Role: Developer
+* Responsibilities: Documentation, Testing
+
+### Chiang Kee Woon Jonathan
+
+<img src="images/banchiang.png" width="200px">
+
+[[github](http://github.com/banchiang)]
+[[portfolio](team/banchiang.md)]
+
+* Role: Developer
+* Responsibilities: Code Quality checking
+
+### Marcus Ong
+
+<img src="images/markuz5116.png" width="200px">
+
+[[github](http://github.com/markuz5116)]
+[[portfolio](team/markuz5116.md)]
 
 * Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI
+* Responsibilities: Deliverables and Deadlines
