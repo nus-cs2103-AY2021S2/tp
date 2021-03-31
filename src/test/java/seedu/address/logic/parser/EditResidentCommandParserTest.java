@@ -29,7 +29,7 @@ import seedu.address.logic.parser.resident.EditResidentCommandParser;
 import seedu.address.model.resident.Email;
 import seedu.address.model.resident.Name;
 import seedu.address.model.resident.Phone;
-import seedu.address.testutil.EditResidentDescriptorBuilder;
+import seedu.address.testutil.resident.EditResidentDescriptorBuilder;
 
 public class EditResidentCommandParserTest {
     private static final String MESSAGE_INVALID_FORMAT =

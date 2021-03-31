@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalResidents.ALICE;
-import static seedu.address.testutil.TypicalResidents.BOB;
+import static seedu.address.testutil.resident.TypicalResidents.ALICE;
+import static seedu.address.testutil.resident.TypicalResidents.BOB;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.resident.exceptions.DuplicateResidentException;
 import seedu.address.model.resident.exceptions.ResidentNotFoundException;
-import seedu.address.testutil.ResidentBuilder;
+import seedu.address.testutil.resident.ResidentBuilder;
 
 public class UniqueResidentListTest {
 
@@ -23,7 +23,7 @@ public class UniqueResidentListTest {
 
     @Test
     public void contains_nullResident_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueResidentList.contains(null));
+        assertThrows(NullPointerException.class, () -> uniqueResidentList.contains((Resident) null));
     }
 
     @Test

@@ -24,7 +24,10 @@ import static seedu.address.testutil.alias.AliasUtil.ALIAS_RESIDENT_DELETE;
 import static seedu.address.testutil.alias.AliasUtil.ALIAS_RESIDENT_EDIT;
 import static seedu.address.testutil.alias.AliasUtil.ALIAS_RESIDENT_FIND;
 import static seedu.address.testutil.alias.AliasUtil.ALIAS_RESIDENT_LIST;
+import static seedu.address.testutil.alias.AliasUtil.ALIAS_RESIDENT_LIST_UNALLOC;
 import static seedu.address.testutil.alias.AliasUtil.ALIAS_ROOM_ADD;
+import static seedu.address.testutil.alias.AliasUtil.ALIAS_ROOM_ALLOC;
+import static seedu.address.testutil.alias.AliasUtil.ALIAS_ROOM_DEALLOC;
 import static seedu.address.testutil.alias.AliasUtil.ALIAS_ROOM_DELETE;
 import static seedu.address.testutil.alias.AliasUtil.ALIAS_ROOM_EDIT;
 import static seedu.address.testutil.alias.AliasUtil.ALIAS_ROOM_FIND;
@@ -48,6 +51,7 @@ public class AliasMappingTest {
     public void isReservedKeyword_aliasNameIsReserved_returnsTrue() {
         AliasMapping aliasMapping = new AliasMapping();
 
+        //System command
         assertTrue(aliasMapping.isReservedKeyword(ALIAS_HELP.getAliasName()));
         assertTrue(aliasMapping.isReservedKeyword(ALIAS_HISTORY.getAliasName()));
         assertTrue(aliasMapping.isReservedKeyword(ALIAS_EXIT.getAliasName()));
@@ -55,18 +59,25 @@ public class AliasMappingTest {
         assertTrue(aliasMapping.isReservedKeyword(ALIAS_ALIAS_ADD.getAliasName()));
         assertTrue(aliasMapping.isReservedKeyword(ALIAS_ALIAS_LIST.getAliasName()));
         assertTrue(aliasMapping.isReservedKeyword(ALIAS_ALIAS_DELETE.getAliasName()));
+
+        //Resident command
         assertTrue(aliasMapping.isReservedKeyword(ALIAS_RESIDENT_ADD.getAliasName()));
         assertTrue(aliasMapping.isReservedKeyword(ALIAS_RESIDENT_LIST.getAliasName()));
         assertTrue(aliasMapping.isReservedKeyword(ALIAS_RESIDENT_FIND.getAliasName()));
         assertTrue(aliasMapping.isReservedKeyword(ALIAS_RESIDENT_EDIT.getAliasName()));
         assertTrue(aliasMapping.isReservedKeyword(ALIAS_RESIDENT_DELETE.getAliasName()));
+        assertTrue(aliasMapping.isReservedKeyword(ALIAS_RESIDENT_LIST_UNALLOC.getAliasName()));
+
+        //Room command
         assertTrue(aliasMapping.isReservedKeyword(ALIAS_ROOM_ADD.getAliasName()));
         assertTrue(aliasMapping.isReservedKeyword(ALIAS_ROOM_LIST.getAliasName()));
         assertTrue(aliasMapping.isReservedKeyword(ALIAS_ROOM_FIND.getAliasName()));
         assertTrue(aliasMapping.isReservedKeyword(ALIAS_ROOM_EDIT.getAliasName()));
         assertTrue(aliasMapping.isReservedKeyword(ALIAS_ROOM_DELETE.getAliasName()));
-        //assertTrue(aliasMapping.isReservedKeyword(ALIAS_ROOM_ALLOC.getAliasName()));
-        //assertTrue(aliasMapping.isReservedKeyword(ALIAS_ROOM_DEALLOC.getAliasName()));
+        assertTrue(aliasMapping.isReservedKeyword(ALIAS_ROOM_ALLOC.getAliasName()));
+        assertTrue(aliasMapping.isReservedKeyword(ALIAS_ROOM_DEALLOC.getAliasName()));
+
+        //Issue command
         assertTrue(aliasMapping.isReservedKeyword(ALIAS_ISSUE_ADD.getAliasName()));
         assertTrue(aliasMapping.isReservedKeyword(ALIAS_ISSUE_LIST.getAliasName()));
         assertTrue(aliasMapping.isReservedKeyword(ALIAS_ISSUE_FIND.getAliasName()));

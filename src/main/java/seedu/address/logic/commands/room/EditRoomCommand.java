@@ -19,6 +19,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.residentroom.ResidentRoom;
 import seedu.address.model.room.IsOccupied;
 import seedu.address.model.room.Room;
 import seedu.address.model.room.RoomNumber;
@@ -45,6 +46,8 @@ public class EditRoomCommand extends Command {
     public static final String MESSAGE_EDIT_ROOM_SUCCESS = "Edited Room: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_ROOM = "This room already exists in the address book.";
+    public static final String MESSAGE_ROOM_ALLOCATED_FAILURE =
+            "The room has already been allocated to another resident. Please deallocate the room before editing.";
 
     private final Index index;
     private final EditRoomDescriptor editRoomDescriptor;
@@ -77,8 +80,13 @@ public class EditRoomCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_ROOM);
         }
 
+        if (model.hasEitherResidentRoom(new ResidentRoom(null, roomToEdit.getRoomNumber()))) {
+            throw new CommandException(MESSAGE_ROOM_ALLOCATED_FAILURE);
+        }
+
         model.setRoom(roomToEdit, editedRoom);
         model.updateFilteredRoomList(PREDICATE_SHOW_ALL_ROOMS);
+        model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_EDIT_ROOM_SUCCESS, editedRoom));
     }
 
@@ -86,12 +94,12 @@ public class EditRoomCommand extends Command {
      * Creates and returns a {@code Room} with the details of {@code roomToEdit}
      * edited with {@code editRoomDescriptor}.
      */
-    private static Room createEditedRoom(Room roomToEdit, EditRoomDescriptor editRoomDescriptor) {
+    public static Room createEditedRoom(Room roomToEdit, EditRoomDescriptor editRoomDescriptor) {
         assert roomToEdit != null;
 
         RoomNumber updatedRoomNumber = editRoomDescriptor.getRoomNumber().orElse(roomToEdit.getRoomNumber());
         RoomType updatedRoomType = editRoomDescriptor.getRoomType().orElse(roomToEdit.getRoomType());
-        IsOccupied updatedIsOccupied = roomToEdit.isOccupied();
+        IsOccupied updatedIsOccupied = editRoomDescriptor.getIsOccupied().orElse(roomToEdit.isOccupied());
         Set<Tag> updatedTags = editRoomDescriptor.getTags().orElse(roomToEdit.getTags());
 
         return new Room(updatedRoomNumber, updatedRoomType, updatedIsOccupied, updatedTags);

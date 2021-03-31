@@ -43,6 +43,7 @@ public class DeleteIssueCommand extends Command {
 
         Issue issueToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteIssue(issueToDelete);
+        model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_DELETE_ISSUE_SUCCESS, issueToDelete));
     }
 

@@ -109,6 +109,11 @@ public class AddResidentCommandTest {
         }
 
         @Override
+        public void commitAddressBook() {
+            // called by {@code AddResidentCommand#execute()}
+        }
+
+        @Override
         public ReadOnlyAddressBook getAddressBook() {
             return new AddressBook();
         }

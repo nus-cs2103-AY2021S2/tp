@@ -54,6 +54,7 @@ public class AddIssueCommand extends Command {
         requireNonNull(model);
 
         model.addIssue(toAdd);
+        model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

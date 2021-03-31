@@ -20,11 +20,16 @@ import seedu.address.logic.commands.resident.DeleteResidentCommand;
 import seedu.address.logic.commands.resident.EditResidentCommand;
 import seedu.address.logic.commands.resident.FindResidentCommand;
 import seedu.address.logic.commands.resident.ListResidentCommand;
+import seedu.address.logic.commands.resident.ListUnallocatedResidentsCommand;
+import seedu.address.logic.commands.residentroom.AllocateResidentRoomCommand;
+import seedu.address.logic.commands.residentroom.DeallocateResidentRoomCommand;
 import seedu.address.logic.commands.room.AddRoomCommand;
 import seedu.address.logic.commands.room.DeleteRoomCommand;
 import seedu.address.logic.commands.room.EditRoomCommand;
 import seedu.address.logic.commands.room.FindRoomCommand;
 import seedu.address.logic.commands.room.ListRoomCommand;
+import seedu.address.logic.commands.undoredo.RedoCommand;
+import seedu.address.logic.commands.undoredo.UndoCommand;
 
 /**
  * A utility class for Alias.
@@ -55,20 +60,24 @@ public class AliasUtil {
     public static final Alias ALIAS_ALIAS_ADD = new Alias(AliasCommand.COMMAND_WORD, VALID_COMMAND);
     public static final Alias ALIAS_ALIAS_LIST = new Alias(ListAliasCommand.COMMAND_WORD, VALID_COMMAND);
     public static final Alias ALIAS_ALIAS_DELETE = new Alias(UnaliasCommand.COMMAND_WORD, VALID_COMMAND);
+    public static final Alias ALIAS_UNDO = new Alias(UndoCommand.COMMAND_WORD, VALID_COMMAND);
+    public static final Alias ALIAS_REDO = new Alias(RedoCommand.COMMAND_WORD, VALID_COMMAND);
 
     public static final Alias ALIAS_RESIDENT_ADD = new Alias(AddResidentCommand.COMMAND_WORD, VALID_COMMAND);
     public static final Alias ALIAS_RESIDENT_LIST = new Alias(ListResidentCommand.COMMAND_WORD, VALID_COMMAND);
     public static final Alias ALIAS_RESIDENT_FIND = new Alias(FindResidentCommand.COMMAND_WORD, VALID_COMMAND);
     public static final Alias ALIAS_RESIDENT_EDIT = new Alias(EditResidentCommand.COMMAND_WORD, VALID_COMMAND);
     public static final Alias ALIAS_RESIDENT_DELETE = new Alias(DeleteResidentCommand.COMMAND_WORD, VALID_COMMAND);
+    public static final Alias ALIAS_RESIDENT_LIST_UNALLOC = new Alias(ListUnallocatedResidentsCommand.COMMAND_WORD,
+            VALID_COMMAND);
 
     public static final Alias ALIAS_ROOM_ADD = new Alias(AddRoomCommand.COMMAND_WORD, VALID_COMMAND);
     public static final Alias ALIAS_ROOM_LIST = new Alias(ListRoomCommand.COMMAND_WORD, VALID_COMMAND);
     public static final Alias ALIAS_ROOM_FIND = new Alias(FindRoomCommand.COMMAND_WORD, VALID_COMMAND);
     public static final Alias ALIAS_ROOM_EDIT = new Alias(EditRoomCommand.COMMAND_WORD, VALID_COMMAND);
     public static final Alias ALIAS_ROOM_DELETE = new Alias(DeleteRoomCommand.COMMAND_WORD, VALID_COMMAND);
-    //public static final Alias ALIAS_ROOM_ALLOC = new Alias(DeleteRoomCommand.COMMAND_WORD, VALID_COMMAND);
-    //public static final Alias ALIAS_ROOM_DEALLOC = new Alias(DeleteRoomCommand.COMMAND_WORD, VALID_COMMAND);
+    public static final Alias ALIAS_ROOM_ALLOC = new Alias(AllocateResidentRoomCommand.COMMAND_WORD, VALID_COMMAND);
+    public static final Alias ALIAS_ROOM_DEALLOC = new Alias(DeallocateResidentRoomCommand.COMMAND_WORD, VALID_COMMAND);
 
     public static final Alias ALIAS_ISSUE_ADD = new Alias(AddIssueCommand.COMMAND_WORD, VALID_COMMAND);
     public static final Alias ALIAS_ISSUE_LIST = new Alias(ListIssueCommand.COMMAND_WORD, VALID_COMMAND);
