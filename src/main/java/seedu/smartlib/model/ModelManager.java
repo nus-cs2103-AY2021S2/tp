@@ -262,6 +262,7 @@ public class ModelManager implements Model {
         boolean status = smartLib.borrowBook(readerName, barcode);
         updateFilteredReaderList(PREDICATE_SHOW_ALL_READERS);
         updateFilteredBookList(PREDICATE_SHOW_ALL_BOOKS);
+        updateFilteredRecordList(PREDICATE_SHOW_ALL_RECORDS);
         return status;
     }
 

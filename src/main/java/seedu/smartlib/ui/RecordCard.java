@@ -28,7 +28,7 @@ public class RecordCard extends UiPart<Region> {
      *
      * @see <a href="https://github.com/se-edu/addressrecord-level4/issues/336">The issue on AddressRecord level 4</a>
      */
-    @javafx.fxml.FXML
+    @FXML
     private HBox cardPane;
     @FXML
     private Label id;
