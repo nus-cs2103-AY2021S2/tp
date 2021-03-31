@@ -205,7 +205,7 @@ public class NextCommandTest {
 
         @Override
         public void switchModeQuizSessionEnded() {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
