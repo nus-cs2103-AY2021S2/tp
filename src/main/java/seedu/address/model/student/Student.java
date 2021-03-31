@@ -144,7 +144,7 @@ public class Student {
             }
         } else if (sessionEndDate.equals(sessionDate)) {
             getListOfSessions().set(sessionIndex.getZeroBased(),
-                    recurringSession.withLastSessionDate(sessionStartDate.minusDays(recurringInterval.getValue())));
+                    recurringSession.withLastSessionDate(sessionEndDate.minusDays(recurringInterval.getValue())));
         } else {
             recurringSession =
                     recurringSession.withLastSessionDate(sessionDate.minusDays(recurringInterval.getValue()));
