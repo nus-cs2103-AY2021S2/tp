@@ -91,9 +91,9 @@ public class ClientDetailFragment extends UiPart<Region> {
         try {
             InputStream is = new FileInputStream(String.valueOf(Path.of("data", imageRes)));
             profileImageRef.setText(imageRes);
-            return new Image(is);
+            return new Image(is, 120, 120, false, true);
         } catch (FileNotFoundException e) {
-            profileImageRef.setText(imageRes + " (image not found)");
+            profileImageRef.setText(imageRes + "\n(image not found)");
             return placeholderImage;
         }
     }
