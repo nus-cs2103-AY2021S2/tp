@@ -8,7 +8,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIE
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.TypicalDates.getTypicalDatesBook;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
@@ -31,7 +31,7 @@ import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.predicate.NameSchoolAndSubjectContainsKeywordsPredicate;
+import seedu.address.model.person.predicate.NameSchoolAndTagContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code SearchCommand}.
@@ -44,11 +44,11 @@ public class SearchCommandTest {
 
     @Test
     public void equals() {
-        NameSchoolAndSubjectContainsKeywordsPredicate firstPredicate =
-                new NameSchoolAndSubjectContainsKeywordsPredicate(Collections.singletonList("first"),
+        NameSchoolAndTagContainsKeywordsPredicate firstPredicate =
+                new NameSchoolAndTagContainsKeywordsPredicate(Collections.singletonList("first"),
                         null, null);
-        NameSchoolAndSubjectContainsKeywordsPredicate secondPredicate =
-                new NameSchoolAndSubjectContainsKeywordsPredicate(Collections.singletonList("second"),
+        NameSchoolAndTagContainsKeywordsPredicate secondPredicate =
+                new NameSchoolAndTagContainsKeywordsPredicate(Collections.singletonList("second"),
                         Collections.singletonList("Jurong"), Collections.singletonList("B"));
 
         SearchCommand searchFirstCommand = new SearchCommand(firstPredicate);
@@ -74,7 +74,7 @@ public class SearchCommandTest {
     @Test
     public void execute_multipleNameKeywords_multipleStudentsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-        NameSchoolAndSubjectContainsKeywordsPredicate predicate = preparePredicate(" n/Kurz Elle Kunz");
+        NameSchoolAndTagContainsKeywordsPredicate predicate = preparePredicate(" n/Kurz Elle Kunz");
         SearchCommand command = new SearchCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -84,7 +84,7 @@ public class SearchCommandTest {
     @Test
     public void execute_multipleSchoolKeywords_multipleStudentsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
-        NameSchoolAndSubjectContainsKeywordsPredicate predicate = preparePredicate(" s/Clementi Town");
+        NameSchoolAndTagContainsKeywordsPredicate predicate = preparePredicate(" s/Clementi Town");
         SearchCommand command = new SearchCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -92,9 +92,9 @@ public class SearchCommandTest {
     }
 
     @Test
-    public void execute_multipleSubjectKeywords_multipleStudentsFound() {
+    public void execute_multipleTagKeywords_multipleStudentsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
-        NameSchoolAndSubjectContainsKeywordsPredicate predicate = preparePredicate(" t/chinese math");
+        NameSchoolAndTagContainsKeywordsPredicate predicate = preparePredicate(" t/sec3 math");
         SearchCommand command = new SearchCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -104,7 +104,7 @@ public class SearchCommandTest {
     @Test
     public void execute_nonMatchingKeywords_zeroStudentsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        NameSchoolAndSubjectContainsKeywordsPredicate predicate = preparePredicate(" n/Jade s/abc");
+        NameSchoolAndTagContainsKeywordsPredicate predicate = preparePredicate(" n/Jade s/abc");
         SearchCommand command = new SearchCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -114,7 +114,7 @@ public class SearchCommandTest {
     @Test
     public void execute_keywordsOrderSwitched_success() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
-        NameSchoolAndSubjectContainsKeywordsPredicate predicate = preparePredicate(" s/West Jurong");
+        NameSchoolAndTagContainsKeywordsPredicate predicate = preparePredicate(" s/West Jurong");
         SearchCommand command = new SearchCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -124,14 +124,14 @@ public class SearchCommandTest {
     /**
      * Parses {@code userInput} into a {@code NameAndSchoolContainsKeywordsPredicate}.
      */
-    private NameSchoolAndSubjectContainsKeywordsPredicate preparePredicate(String userInput) {
+    private NameSchoolAndTagContainsKeywordsPredicate preparePredicate(String userInput) {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(userInput, PREFIX_NAME, PREFIX_SCHOOL, PREFIX_SUBJECT);
+                ArgumentTokenizer.tokenize(userInput, PREFIX_NAME, PREFIX_SCHOOL, PREFIX_TAG);
         System.out.println(argMultimap);
 
         String[] nameKeywords = null;
         String[] schoolKeywords = null;
-        String[] subjectKeywords = null;
+        String[] tagKeywords = null;
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             nameKeywords = extractKeywords(argMultimap, PREFIX_NAME);
@@ -139,15 +139,15 @@ public class SearchCommandTest {
         if (argMultimap.getValue(PREFIX_SCHOOL).isPresent()) {
             schoolKeywords = extractKeywords(argMultimap, PREFIX_SCHOOL);
         }
-        if (argMultimap.getValue(PREFIX_SUBJECT).isPresent()) {
-            subjectKeywords = extractKeywords(argMultimap, PREFIX_SUBJECT);
+        if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
+            tagKeywords = extractKeywords(argMultimap, PREFIX_TAG);
         }
         List<String> nameKeywordsList = nameKeywords == null ? null : Arrays.asList(nameKeywords);
         List<String> schoolKeywordsList = schoolKeywords == null ? null : Arrays.asList(schoolKeywords);
-        List<String> subjectKeywordsList = subjectKeywords == null ? null : Arrays.asList(subjectKeywords);
+        List<String> tagKeywordsList = tagKeywords == null ? null : Arrays.asList(tagKeywords);
 
-        return new NameSchoolAndSubjectContainsKeywordsPredicate(
-                nameKeywordsList, schoolKeywordsList, subjectKeywordsList);
+        return new NameSchoolAndTagContainsKeywordsPredicate(
+                nameKeywordsList, schoolKeywordsList, tagKeywordsList);
     }
 
     /**
@@ -160,8 +160,8 @@ public class SearchCommandTest {
             keywords = argMultimap.getValue(PREFIX_NAME).get();
         } else if (prefix.equals(PREFIX_SCHOOL)) {
             keywords = argMultimap.getValue(PREFIX_SCHOOL).get();
-        } else if (prefix.equals(PREFIX_SUBJECT)) {
-            keywords = argMultimap.getValue(PREFIX_SUBJECT).get();
+        } else if (prefix.equals(PREFIX_TAG)) {
+            keywords = argMultimap.getValue(PREFIX_TAG).get();
         }
         requireNonNull(keywords);
         String trimmedName = keywords.trim();

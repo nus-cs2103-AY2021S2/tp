@@ -154,7 +154,7 @@ Given below is an example usage scenario and how the add mechanism behaves at ea
 
 <div markdown="span" class="alert alert-primary">:bulb: **Note:**
 Name and phone are compulsory details which must be included in add command, while school, email, address,
-guardian's name, guardian's phone, subjects and lessons are optional. Any missing optional details can be added in later
+guardian's name, guardian's phone, tags and lessons are optional. Any missing optional details can be added in later
 by using Edit feature. Here, an example of a student with only compulsory details available is used.
 </div>
 
@@ -246,7 +246,7 @@ The activity diagram shows the workflow when a delete command is executed:
 
 * **Alternative 2:** Provide options to delete specific fields that belong to a Student.
     * Pros: Unnecessary information can be removed easily.
-    * Cons: Certain fields such as subjects and lessons can already be cleared easily with the `edit` command.
+    * Cons: Certain fields such as tags and lessons can already be cleared easily with the `edit` command.
 
 ### Detail feature
 
@@ -488,7 +488,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user                                       | find a student by school        | plan my lesson/schedules according to their school’s curriculum        |
 | `* *`    | user                                       | sort students by lesson days    | I can see my schedule for the week                                     |
 | `* *`    | user                                       | easily access guardians’ contact| I can quickly reach them in case of any emergencies or sudden changes  |
-| `*`      | expert user                                | add customized subjects to contacts | I will be able to access each group of students more easily
+| `*`      | expert user                                | add customized tags to contacts | I will be able to access each group of students more easily
 | `*`      | expert user                                | attach remarks to contacts      | So I remember details that might not be covered in the original program|
 | `*`      | user                                       | hide private contact details    | minimize chance of someone else seeing them by accident                |
 
