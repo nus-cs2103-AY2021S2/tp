@@ -36,19 +36,19 @@
                <children>
                   <ImageView fitHeight="100.0" pickOnBounds="true" preserveRatio="true" styleClass="logo-left" HBox.hgrow="ALWAYS">
                      <image>
-                        <Image url="@../images/left.png" />
+                        <Image url="@../images/logo_left.png" />
                      </image>
                   </ImageView>
                   <Region maxHeight="100.0" HBox.hgrow="ALWAYS" />
                   <ImageView fitHeight="100.0" pickOnBounds="true" preserveRatio="true" styleClass="logo-center">
                      <image>
-                        <Image url="@../images/center.png" />
+                        <Image url="@../images/logo_center.png" />
                      </image>
                   </ImageView>
                   <Region maxHeight="100.0" HBox.hgrow="ALWAYS" />
                   <ImageView fitHeight="100.0" pickOnBounds="true" preserveRatio="true" styleClass="logo-right">
                      <image>
-                        <Image url="@../images/right.png" />
+                        <Image url="@../images/logo_right.png" />
                      </image>
                   </ImageView>
                </children>
