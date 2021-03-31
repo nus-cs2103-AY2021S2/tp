@@ -182,7 +182,7 @@ Parameter:
 
 1. `Index of entry`
 
-Example: (Refer to View Window Ui in Appendix)
+Example: 
 
     view 1
 ![View Window UI](images/ViewWindowUi.png)
