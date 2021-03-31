@@ -3,7 +3,9 @@ layout: page
 title: Developer Guide
 ---
 
-![DietLAH!](images/dietlah-slim.png)
+<div style="text-align: center">
+  <img src="images/dietlah-slim.png" alt="DietLAH!">
+</div>
 
 ## Table of Contents
 <!--ts-->
