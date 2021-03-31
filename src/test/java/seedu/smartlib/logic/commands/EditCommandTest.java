@@ -6,7 +6,7 @@ import static seedu.smartlib.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.smartlib.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_TAG_VIP;
 import static seedu.smartlib.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.smartlib.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.smartlib.logic.commands.CommandTestUtil.showReaderAtIndex;
@@ -55,10 +55,10 @@ public class EditCommandTest {
 
         ReaderBuilder readerInList = new ReaderBuilder(lastReader);
         Reader editedReader = readerInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
+                .withTags(VALID_TAG_VIP).build();
 
         EditCommand.EditReaderDescriptor descriptor = new EditReaderDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
+                .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_VIP).build();
         EditCommand editCommand = new EditCommand(indexLastReader, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_READER_SUCCESS, editedReader);
