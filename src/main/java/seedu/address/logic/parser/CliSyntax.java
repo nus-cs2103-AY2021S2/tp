@@ -16,10 +16,11 @@ public class CliSyntax {
     public static final Prefix PREFIX_DATE = new Prefix("d/");
     public static final Prefix PREFIX_CONTACT = new Prefix("c/");
 
-    /* Definition for PREFIX_OPTION */
+    /* Options Definition for PREFIX_OPTION */
     public static final String OPTION_TAG = "tag";
     public static final String OPTION_NAME = "name";
     public static final String OPTION_DATE = "date";
     public static final String OPTION_ADDRESS = "address";
+    public static final String OPTION_CONTACT = "contact";
 
 }
