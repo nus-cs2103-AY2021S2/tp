@@ -21,7 +21,10 @@ public class DeleteNoteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete_note";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " " + "INDEX";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Deletes a note to a tutor specified by the index number. The tutor must already have a note\n"
+            + "Parameters: INDEX (must be a positive integer) \n"
+            + "Example: " + COMMAND_WORD + " 1 ";
 
     public static final String MESSAGE_SUCCESS = "Successfully deleted note from Tutor: %s";
 

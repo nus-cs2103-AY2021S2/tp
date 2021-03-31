@@ -22,7 +22,13 @@ public class EditNoteCommand extends Command {
 
     public static final String COMMAND_WORD = "edit_note";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " " + "INDEX" + " " + "NOTE";
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Edits a note to a tutor specified by the index number. The tutor must already have a note\n"
+            + "Parameters: INDEX (must be a positive integer) "
+            + "[NOTES] \n"
+            + "Example: " + COMMAND_WORD + " 1 "
+            + "This is an edited note";
 
     public static final String MESSAGE_SUCCESS = "Successfully edited note to Tutor: %s";
 
