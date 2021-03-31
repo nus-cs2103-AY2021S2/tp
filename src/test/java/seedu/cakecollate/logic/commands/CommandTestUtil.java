@@ -23,6 +23,8 @@ import seedu.cakecollate.model.CakeCollate;
 import seedu.cakecollate.model.Model;
 import seedu.cakecollate.model.order.ContainsKeywordsPredicate;
 import seedu.cakecollate.model.order.Order;
+import seedu.cakecollate.model.orderitem.OrderItem;
+import seedu.cakecollate.model.orderitem.Type;
 import seedu.cakecollate.testutil.EditOrderDescriptorBuilder;
 
 /**
@@ -63,12 +65,15 @@ public class CommandTestUtil {
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
-    public static final String ORDER_AMY = " " + PREFIX_ORDER_DESCRIPTION + VALID_CHOCOLATE_ORDER;
-    public static final String ORDER_BOB = " " + PREFIX_ORDER_DESCRIPTION + VALID_BERRY_ORDER;
+    public static final String ORDER_DESC_AMY = " " + PREFIX_ORDER_DESCRIPTION + VALID_CHOCOLATE_ORDER;
+    public static final String ORDER_DESC_BOB = " " + PREFIX_ORDER_DESCRIPTION + VALID_BERRY_ORDER;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
     public static final String DELIVERY_DATE_DESC_AMY = " " + PREFIX_DATE + VALID_DELIVERY_DATE_AMY;
     public static final String DELIVERY_DATE_DESC_BOB = " " + PREFIX_DATE + VALID_DELIVERY_DATE_BOB;
+
+    // corresponding order item to add into order items model for testing
+    public static final OrderItem ORDER_ITEM_AMY = new OrderItem(new Type(VALID_CHOCOLATE_ORDER));
 
     // these are some user input fields with prefixes, invalid according to validation specified in model classes
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names

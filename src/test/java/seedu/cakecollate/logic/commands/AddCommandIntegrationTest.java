@@ -53,6 +53,7 @@ public class AddCommandIntegrationTest {
 
         Model expectedModel = new ModelManager(model.getCakeCollate(), new UserPrefs(), model.getOrderItems());
         expectedModel.addOrder(validOrder);
+        expectedModel.addOrderItem(OrderBuilder.getDefaultOrderItem()); // corresponds to order desc in the valid order
 
         assertCommandSuccess(new AddCommand(null, descriptor), model,
                 String.format(AddCommand.MESSAGE_SUCCESS, validOrder), expectedModel);
@@ -135,7 +136,7 @@ public class AddCommandIntegrationTest {
 
         model.hasOrderItem(existingOrderItem);
 
-        // int initialSize = model.getOrderItemLists.size();
+        int initialSize = model.getFilteredOrderItemsList().size();
 
         Command addCommand = new AddCommand(null, descriptor);
 
@@ -146,6 +147,7 @@ public class AddCommandIntegrationTest {
         String expectedMessage = String.format(AddCommand.MESSAGE_SUCCESS, order);
 
         assertCommandSuccess(addCommand, model, expectedMessage, expectedModel);
+        assertTrue(model.getFilteredOrderItemsList().size() == initialSize + 1);
         // assertTrue()
         // assertEquals size has remained the same
 

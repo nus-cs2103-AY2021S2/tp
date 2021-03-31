@@ -131,7 +131,7 @@ public class AddCommand extends Command {
 
         for (Index i : list) {
             if (i.getZeroBased() >= lastShownOrderItems.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
+                throw new CommandException(Messages.MESSAGE_INVALID_ORDER_ITEM_INDEX);
             }
         }
 
