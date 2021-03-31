@@ -4,6 +4,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalAppointments.getTypicalAppointmentBook;
 import static seedu.address.testutil.TypicalGrades.getTypicalGradeBook;
+import static seedu.address.testutil.TypicalReminders.getTypicalReminderTracker;
 import static seedu.address.testutil.TypicalSchedules.getTypicalScheduleTracker;
 import static seedu.address.testutil.TypicalTutors.getTypicalTutorBook;
 
@@ -56,11 +57,11 @@ public class AddTutorFilterCommandTest {
     public void setUp() {
         model = new ModelManager(getTypicalTutorBook(), new UserPrefs(),
                 getTypicalAppointmentBook(), new BudgetBook(), getTypicalGradeBook(),
-                getTypicalScheduleTracker());
+                getTypicalScheduleTracker(), getTypicalReminderTracker());
 
         expectedModel = new ModelManager(getTypicalTutorBook(), new UserPrefs(),
                 getTypicalAppointmentBook(), new BudgetBook(), getTypicalGradeBook(),
-                getTypicalScheduleTracker());
+                getTypicalScheduleTracker(), getTypicalReminderTracker());
 
         this.nameFilters = new LinkedHashSet<>();
         this.genderFilters = new LinkedHashSet<>();

@@ -32,9 +32,11 @@ public class ViewAppointmentCommandTest {
         DateViewPredicate predicate = new DateViewPredicate(APPOINTMENT_FIRST_DATE);
         Appointment appointmentToView = model.getFilteredAppointmentList().filtered(predicate).get(0);
         ViewAppointmentCommand viewCommand = new ViewAppointmentCommand(predicate);
+        expectedModel.updateFilteredAppointmentList(predicate);
 
         String expectedMessage = String.format(ViewAppointmentCommand.MESSAGE_VIEW_APPOINTMENT_SUCCESS,
                 appointmentToView.getTimeFrom().toDateString());
+        System.out.println(expectedMessage);
         assertCommandSuccess(viewCommand, model, expectedMessage, expectedModel);
     }
 
@@ -45,6 +47,7 @@ public class ViewAppointmentCommandTest {
         DateViewPredicate predicate = new DateViewPredicate(APPOINTMENT_FIRST_DATE);
         Appointment appointmentToView = model.getFilteredAppointmentList().filtered(predicate).get(0);
         ViewAppointmentCommand viewCommand = new ViewAppointmentCommand(predicate);
+        expectedModel.updateFilteredAppointmentList(predicate);
 
         String expectedMessage = String.format(ViewAppointmentCommand.MESSAGE_VIEW_APPOINTMENT_SUCCESS,
                 appointmentToView.getTimeFrom().toDateString());

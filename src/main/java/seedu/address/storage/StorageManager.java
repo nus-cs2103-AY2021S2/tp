@@ -13,6 +13,7 @@ import seedu.address.model.ReadOnlyGradeBook;
 import seedu.address.model.ReadOnlyTutorBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.reminder.ReadOnlyReminderTracker;
 import seedu.address.model.schedule.ReadOnlyScheduleTracker;
 
 /**
@@ -27,6 +28,7 @@ public class StorageManager implements Storage {
     private BudgetBookStorage budgetBookStorage;
     private GradeBookStorage gradeBookStorage;
     private ScheduleTrackerStorage scheduleTrackerStorage;
+    private ReminderTrackerStorage reminderTrackerStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code TutorBookStorage} and {@code UserPrefStorage}.
@@ -35,7 +37,8 @@ public class StorageManager implements Storage {
                           UserPrefsStorage userPrefsStorage,
                           AppointmentBookStorage appointmentBookStorage,
                           GradeBookStorage gradeBookStorage,
-                          ScheduleTrackerStorage scheduleTrackerStorage) {
+                          ScheduleTrackerStorage scheduleTrackerStorage,
+                          ReminderTrackerStorage reminderTrackerStorage) {
         super();
         this.tutorBookStorage = tutorBookStorage;
         this.userPrefsStorage = userPrefsStorage;
@@ -44,6 +47,7 @@ public class StorageManager implements Storage {
         this.budgetBookStorage = new BudgetBookStorage();
         this.gradeBookStorage = gradeBookStorage;
         this.scheduleTrackerStorage = scheduleTrackerStorage;
+        this.reminderTrackerStorage = reminderTrackerStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -201,5 +205,33 @@ public class StorageManager implements Storage {
     public void saveScheduleTracker(ReadOnlyScheduleTracker scheduleTracker, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         scheduleTrackerStorage.saveScheduleTracker(scheduleTracker, filePath);
+    }
+
+    @Override
+    public Path getReminderTrackerFilePath() {
+        return reminderTrackerStorage.getReminderTrackerFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyReminderTracker> readReminderTracker() throws DataConversionException, IOException {
+        return readReminderTracker(reminderTrackerStorage.getReminderTrackerFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyReminderTracker> readReminderTracker(Path filePath)
+            throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return reminderTrackerStorage.readReminderTracker(filePath);
+    }
+
+    @Override
+    public void saveReminderTracker(ReadOnlyReminderTracker reminderTracker) throws IOException {
+        saveReminderTracker(reminderTracker, reminderTrackerStorage.getReminderTrackerFilePath());
+    }
+
+    @Override
+    public void saveReminderTracker(ReadOnlyReminderTracker reminderTracker, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        reminderTrackerStorage.saveReminderTracker(reminderTracker, filePath);
     }
 }

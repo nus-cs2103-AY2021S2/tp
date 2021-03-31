@@ -37,9 +37,10 @@ public class StorageManagerTest {
         JsonGradeBookStorage gradeBookStorage = new JsonGradeBookStorage(getTempFilePath("gr"));
 
         JsonScheduleTrackerStorage scheduleTrackerStorage = new JsonScheduleTrackerStorage(getTempFilePath("st"));
+        JsonReminderTrackerStorage reminderTrackerStorage = new JsonReminderTrackerStorage(getTempFilePath("rt"));
 
         storageManager = new StorageManager(tutorBookStorage, userPrefsStorage,
-                appointmentBookStorage, gradeBookStorage, scheduleTrackerStorage);
+                appointmentBookStorage, gradeBookStorage, scheduleTrackerStorage, reminderTrackerStorage);
     }
 
     private Path getTempFilePath(String fileName) {
