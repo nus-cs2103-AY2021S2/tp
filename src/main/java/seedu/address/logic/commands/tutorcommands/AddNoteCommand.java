@@ -38,7 +38,10 @@ public class AddNoteCommand extends Command {
      * @param targetIndex of the Tutor
      * @param editTutorDescriptor with descriptor of the note to be added
      */
-    public AddNoteCommand (Index targetIndex, EditCommand.EditTutorDescriptor editTutorDescriptor) {
+    public AddNoteCommand (Index targetIndex, EditTutorDescriptor editTutorDescriptor) {
+        requireNonNull(targetIndex);
+        requireNonNull(editTutorDescriptor);
+
         this.targetIndex = targetIndex;
         this.editTutorDescriptor = editTutorDescriptor;
     }
@@ -52,7 +55,7 @@ public class AddNoteCommand extends Command {
         ArrayList<Tutor> tutorPredicateList = new ArrayList<>(tutorList);
 
         if (targetIndex.getZeroBased() >= tutorList.size()) {
-            throw new CommandException(String.format(MESSAGE_INVALID_INDEX, targetIndex.getZeroBased()));
+            throw new CommandException(String.format(MESSAGE_INVALID_INDEX, targetIndex.getOneBased()));
         }
 
         Tutor tutor = tutorList.get(targetIndex.getZeroBased());
@@ -66,6 +69,15 @@ public class AddNoteCommand extends Command {
         model.updateFilteredTutorList(new ViewTutorPredicate(tutorPredicateList));
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, tutor.getName().toString()));
+
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof AddNoteCommand // instanceof handles nulls
+                && targetIndex.equals(((AddNoteCommand) other).targetIndex)
+                && editTutorDescriptor.equals(((AddNoteCommand) other).editTutorDescriptor));
 
     }
 }

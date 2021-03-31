@@ -36,6 +36,8 @@ public class TutorBuilder {
     private SubjectList subjectList;
     private Set<Tag> tags;
 
+    private boolean isFavourite;
+
     /**
      * Creates a {@code TutorBuilder} with the default details.
      */
@@ -48,6 +50,7 @@ public class TutorBuilder {
         notes = new Notes(DEFAULT_NOTE);
         subjectList = new SubjectList();
         tags = new HashSet<>();
+        isFavourite = false;
     }
 
     /**
@@ -62,6 +65,7 @@ public class TutorBuilder {
         notes = tutorToCopy.getNotes();
         subjectList = tutorToCopy.getSubjectList();
         tags = new HashSet<>(tutorToCopy.getTags());
+        isFavourite = tutorToCopy.isFavourite();
     }
 
     /**
@@ -121,6 +125,14 @@ public class TutorBuilder {
     }
 
     /**
+     * Sets the {@code isFavourite} of the {@code Tutor} that we are building.
+     */
+    public TutorBuilder withFavourite(boolean isFavourite) {
+        this.isFavourite = isFavourite;
+        return this;
+    }
+
+    /**
      * Parses the {@code subject} and add it to the {@code Tutor} that we are building.
      */
     public TutorBuilder withSubject(
@@ -140,7 +152,7 @@ public class TutorBuilder {
     }
 
     public Tutor build() {
-        return new Tutor(name, gender, phone, email, address, notes, subjectList, tags);
+        return new Tutor(name, gender, phone, email, address, notes, subjectList, tags, isFavourite);
     }
 }
 

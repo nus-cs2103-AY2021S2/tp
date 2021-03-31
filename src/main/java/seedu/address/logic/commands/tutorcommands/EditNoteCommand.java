@@ -28,7 +28,7 @@ public class EditNoteCommand extends Command {
 
     public static final String MESSAGE_INVALID_INDEX = "Invalid index %d";
 
-    public static final String MESSAGE_DOES_NOTE_HAVE_NOTES = "Tutor: %s does not have notes, try add_note command";
+    public static final String MESSAGE_DOES_NOT_HAVE_NOTES = "Tutor: %s does not have notes, try add_note command";
 
     private final Index targetIndex;
 
@@ -39,6 +39,9 @@ public class EditNoteCommand extends Command {
      * @param editTutorDescriptor with a descriptor of the edited note
      */
     public EditNoteCommand (Index targetIndex, EditTutorDescriptor editTutorDescriptor) {
+        requireNonNull(targetIndex);
+        requireNonNull(editTutorDescriptor);
+
         this.targetIndex = targetIndex;
         this.editTutorDescriptor = editTutorDescriptor;
     }
@@ -52,12 +55,12 @@ public class EditNoteCommand extends Command {
         ArrayList<Tutor> tutorPredicateList = new ArrayList<>(tutorList);
 
         if (targetIndex.getZeroBased() >= tutorList.size()) {
-            throw new CommandException(String.format(MESSAGE_INVALID_INDEX, targetIndex.getZeroBased()));
+            throw new CommandException(String.format(MESSAGE_INVALID_INDEX, targetIndex.getOneBased()));
         }
 
         Tutor tutor = tutorList.get(targetIndex.getZeroBased());
         if (!tutor.hasNotes()) {
-            throw new CommandException(String.format(MESSAGE_DOES_NOTE_HAVE_NOTES, tutor.getName().toString()));
+            throw new CommandException(String.format(MESSAGE_DOES_NOT_HAVE_NOTES, tutor.getName().toString()));
         }
 
         Tutor editedTutor = createEditedTutor(tutor, editTutorDescriptor);
@@ -66,6 +69,15 @@ public class EditNoteCommand extends Command {
         model.updateFilteredTutorList(new ViewTutorPredicate(tutorPredicateList));
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, tutor.getName().toString()));
+
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof EditNoteCommand // instanceof handles nulls
+                && targetIndex.equals(((EditNoteCommand) other).targetIndex)
+                && editTutorDescriptor.equals(((EditNoteCommand) other).editTutorDescriptor));
 
     }
 }

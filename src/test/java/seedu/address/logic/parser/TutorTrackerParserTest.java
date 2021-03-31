@@ -49,6 +49,7 @@ public class TutorTrackerParserTest {
     public void parseCommand_edit() throws Exception {
         Tutor tutor = new TutorBuilder().build();
         EditCommand.EditTutorDescriptor descriptor = new EditTutorDescriptorBuilder(tutor).build();
+        descriptor.setIsFavourite(null);
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + TutorUtil.getEditTutorDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);

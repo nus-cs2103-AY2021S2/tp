@@ -13,14 +13,15 @@
       "subjectRate" : "60",
       "subjectExperience" : "5",
       "subjectQualification" : "A-Level"
-    } ]
+    } ],
+    "isFavourite" : "true"
   }, {
     "name" : "Benson Meier",
     "gender" : "Male",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
-    "notes" : "benson note",
+    "notes" : "",
     "tagged" : [ "owesMoney", "friends" ],
     "tutorSubjects" : [ {
       "subjectName" : "English",
@@ -34,7 +35,8 @@
       "subjectRate" : "60",
       "subjectExperience" : "4",
       "subjectQualification" : "A-Level"
-    } ]
+    } ],
+    "isFavourite" : "false"
   }, {
     "name" : "Carl Kurz",
     "gender" : "Male",
@@ -55,7 +57,8 @@
       "subjectRate" : "50",
       "subjectExperience" : "5",
       "subjectQualification" : "A-Level"
-    } ]
+    } ],
+    "isFavourite" : "false"
   }, {
     "name" : "Daniel Meier",
     "gender" : "Male",
@@ -70,7 +73,8 @@
       "subjectRate" : "50",
       "subjectExperience" : "6",
       "subjectQualification" : "A-Level"
-    } ]
+    } ],
+    "isFavourite" : "false"
   }, {
     "name" : "Elle Meyer",
     "gender" : "Female",
@@ -85,7 +89,8 @@
       "subjectRate" : "40",
       "subjectExperience" : "3",
       "subjectQualification" : "A-Level"
-    } ]
+    } ],
+    "isFavourite" : "false"
   }, {
     "name" : "Fiona Kunz",
     "gender" : "Female",
@@ -100,7 +105,8 @@
       "subjectRate" : "40",
       "subjectExperience" : "7",
       "subjectQualification" : "A-Level"
-    } ]
+    } ],
+    "isFavourite" : "false"
   }, {
     "name" : "George Best",
     "gender" : "Male",
@@ -115,6 +121,7 @@
       "subjectRate" : "40",
       "subjectExperience" : "4",
       "subjectQualification" : "A-Level"
-    } ]
+    } ],
+    "isFavourite" : "false"
   } ]
 }

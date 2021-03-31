@@ -44,6 +44,7 @@ public class EditTutorDescriptorBuilder {
         descriptor.setNotes(tutor.getNotes());
         descriptor.setSubjectList(tutor.getSubjectList());
         descriptor.setTags(tutor.getTags());
+        descriptor.setIsFavourite(tutor.isFavourite());
     }
 
     /**
@@ -101,6 +102,14 @@ public class EditTutorDescriptorBuilder {
     public EditTutorDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
+        return this;
+    }
+
+    /**
+     * Sets the {@code isFavourite} of the {@code EditTutorDescriptor} that we are building.
+     */
+    public EditTutorDescriptorBuilder withIsFavourite(Boolean isFavourite) {
+        descriptor.setIsFavourite(isFavourite);
         return this;
     }
 
