@@ -888,6 +888,7 @@ testers are expected to do more *exploratory* testing.
        Expected: The list will be updated, listing the flashcards that have `new` contained in its question, `mid` contained in its priority, and `formula` contained in any of its tags. The result display states the number of flashcards listed.
        
     1. Test case: `filter c/math physics p/mid`<br>
+       Expected: The list will be updated, listing the flashcards that have either `math` or `physics` contained in its question, and `mid` contained in its priority. The result display will state the number of flashcards listed.
 
 ### Clearing all flashcards
 
