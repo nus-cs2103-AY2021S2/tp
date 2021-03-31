@@ -118,7 +118,7 @@ Example: `delete_tutor 1`
 
 ### Editing a tutor: `edit_tutor`
 
-Edit a tutor's information by index. Only the attributes present are changed in the tutor.
+Edit a tutor's information by index. Only the attributes present can be changed in the tutor, including notes.
 
 Format: `edit_tutor INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GENDER] [a/ADDRESS] [<s/SUBJECT_NAME r/RATE l/EDUCATION_LEVEL y/YEARS q/QUALIFICATIONS>] notes/NOTES`
 
@@ -134,7 +134,7 @@ Example: `view_tutor 1`
 
 Example Output:<br>
 ```
-John Doe
+1. John Doe
 98765432
 John street, block 123, #01-01
 johnd@example.com
@@ -156,7 +156,7 @@ Example: `add_note 1 patient tutor`
 Example Output:
 on the right of ,<br>
 ```
-John Doe 
+1. John Doe 
 98765432
 John street, block 123, #01-01
 johnd@example.com
@@ -182,7 +182,7 @@ Example: `edit_note 1 not patient`
 Example Output:
 on the right of ,<br>
 ```
-John Doe 
+1. John Doe 
 98765432
 John street, block 123, #01-01
 johnd@example.com
@@ -231,7 +231,7 @@ Example: `favourite 1`
 
 Example Output:<br>
 ```
-John Doe *
+1. John Doe *
 98765432
 John street, block 123, #01-01
 johnd@example.com
