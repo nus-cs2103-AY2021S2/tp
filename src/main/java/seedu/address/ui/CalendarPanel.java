@@ -103,12 +103,13 @@ public class CalendarPanel extends UiPart<Region> implements Observer {
             isCursorOnDiffMonth = decideStyleOfDay(isCursorOnDiffMonth, dateCursor, day);
 
             if (dateCursor.equals(currentDate)) {
-                day.setBackground(new Background(new BackgroundFill(Color.web("#9d75cb"),
+                day.setBackground(new Background(new BackgroundFill(Color.WHITE,
                         new CornerRadii(50), Insets.EMPTY)));
+                day.setStyle("-fx-text-fill: black;");
             }
 
             if (dateCursor.equals(viewingDate)) {
-                day.setBorder(new Border(new BorderStroke(Color.valueOf("white"),
+                day.setBorder(new Border(new BorderStroke(Color.WHITE,
                         BorderStrokeStyle.SOLID, new CornerRadii(50), new BorderWidths(2))));
             }
 
