@@ -128,6 +128,22 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Adds the {@code Tag} to the {@code Person} that we are building.
+     */
+    public PersonBuilder addTags(Set<Tag> tag) {
+        this.tags.addAll(tag);
+        return this;
+    }
+
+    /**
+     * Deletes the {@code Tag} of the {@code Person} that we are building.
+     */
+    public PersonBuilder deleteTags(Set<Tag> tag) {
+        this.tags.removeAll(tag);
+        return this;
+    }
+
     public Person build() {
         return new Person(name, phone, email, company, jobTitle, address, remark, tags);
     }

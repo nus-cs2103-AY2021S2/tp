@@ -108,7 +108,7 @@ Shows a message explaining how to access the help page.
 
 Adds a person to the address book.
 
-**Format**: `add -n NAME -p PHONE_NUMBER -e EMAIL -c COMPANY -j JOB_TITLE -a ADDRESS [-r REMARK] [-t TAG]…`
+**Format**: `add -n NAME -p PHONE_NUMBER -e EMAIL -a ADDRESS [-r REMARK] [-t TAG]…`
 
 <div markdown="block" class="alert alert-info">
 
@@ -122,11 +122,11 @@ Adds a person to the address book.
 
 **Examples**:
 
-| Example                                                                                                                                | Description                                                                                                                                                                                                                                                                  |
-| -------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `add -n John Doe -p 98765432 -e johnd@example.com -c Google -j HR Manager -a John street`                                              | Adds a person named `John Doe`, with phone number `91234567`, email address `johndoe@example.com`, company `Google`, job title `HR Manager` and address `John street`.                                                                                                       |
-| `add -n Betsy Crowe -p 1234567 -e betsycrowe@example.com -c Amazon -j Manager -a Betsy Avenue -t Recruiter -t Intern Manager`          | Adds a person named `Betsy Crowe`, with phone number `1234567`, email address `betsycrowe@example.com`, company `Amazon`, job title `Manager` and address `Betsy Avenue`. This person is also tagged with the following tags: `Recruiter` and `Intern Manager`.              |
-| `add -n Charlie -p 7654321 -e charlie@example.com -c Facebook -j Software Engineer -a Charlie Road -t IT Support -r Emergency contact` | Adds a person named `Charlie`, with phone number `7654321`, email address `charlie@example.com`, company `Facebook`, job title `Software Engineer` and address `Charlie Road`. This person is also tagged with the tag `IT Support`, and has the remark `Emergency contact`. |
+| Example                                                                                           | Description                                                                                                                                                                                               |
+| ------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `add -n John Doe -p 98765432 -e johnd@example.com -a John street`                                 | Adds a person named `John Doe`, with phone number `91234567`, email address `johndoe@example.com`, and address `John street`.                                                                             |
+| `add -n Betsy Crowe -t Manager -e betsycrowe@example.com -a Betsy Avenue -p 1234567 -t Recruiter` | Adds a person named `Betsy Crowe`, with phone number `1234567`, email address `betsycrowe@example.com`, and address `Betsy Avenue`. This person is also tagged with the following tags: `Manager` and `Recruiter`.|
+| `add -n Charlie -e charlie@example.com -a Charlie Road -p 7654321 -t IT -r Emergency contact`     | Adds a person named `Charlie`, with phone number `7654321`, email address `charlie@example.com`, and address `Charlie Road`. This person is also tagged with the tag `IT`, and has the remark `Emergency contact`. |
 
 ### Listing all persons : `list`
 
@@ -138,7 +138,7 @@ Lists all persons in the address book.
 
 Edits an existing person in the address book.
 
-**Format**: `edit INDEX [-n NAME] [-p PHONE] [-e EMAIL] [-c COMPANY] [-j JOB_TITLE] [-a ADDRESS] [-r REMARK] [-t TAG]…`
+**Format**: `edit INDEX [-n NAME] [-p PHONE] [-e EMAIL] [-a ADDRESS] [-r REMARK] [-t TAG]…`
 
 <div markdown="block" class="alert alert-info">
 
@@ -332,6 +332,38 @@ Options which are excluded will be hidden.
 
 Users will be able to press tab to cycle through the available options. -->
 
+### Tag
+
+Tag allows addition and deletion of specific tags of person.
+
+#### Add Tag: `tag add`
+
+Adds tags to person in address book.
+
+**Format**: `tag add { shown | selected | INDEX ... } -t TAG ...`
+
+**Examples**:
+
+| Example                                     | Description                                                                  |
+| ------------------------------------------- | ---------------------------------------------------------------------------- |
+| `tag add shown -t Photoshop`                | Adds `Photoshop` tag to the people shown in the UI.                          |
+| `tag add selected -t Illustrator`           | Adds `Illustrator` tag to the people selected.                               |
+| `tag add 1 2 3 -t Photoshop -t Illustrator` | Adds `Photoshop` and `Illustrator` tags to people at index `1`, `2` and `3`. |
+
+#### Delete Tag: `tag delete`
+
+Deletes tags from person in address book.
+
+**Format**: `tag delete { shown | selected | INDEX ... } -t TAG ...`
+
+**Examples**:
+
+| Example                                        | Description                                                                       |
+| ---------------------------------------------- | --------------------------------------------------------------------------------- |
+| `tag delete shown -t Photoshop`                | Deletes `Photoshop` tag from the people shown in the UI.                          |
+| `tag delete selected -t Illustrator`           | Deletes `Illustrator` tag from the people selected.                               |
+| `tag delete 1 2 3 -t Photoshop -t Illustrator` | Deletes `Photoshop` and `Illustrator` tags from people at index `1`, `2` and `3`. |
+
 ### Saving the data
 
 A-Bash Book data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
@@ -374,30 +406,30 @@ Install the app in the other computer and overwrite the empty data file it creat
 
 ## Command summary
 
-| Action           | Format, Examples                                                                                                                                                                                                                   |
-| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Add**          | `add -n NAME -p PHONE_NUMBER -e EMAIL -c COMPANY -j JOB_TITLE -a ADDRESS [-r REMARK] [-t TAG]…` <br> e.g., `add -n James Ho -p 22224444 -e jamesho@example.com -a 123, Clementi Rd, 1234665 -r Likes ramen -t friend -t colleague` |
-| **Clear**        | `clear`                                                                                                                                                                                                                            |
-| **Delete**       | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                |
-| **Edit**         | `edit INDEX [-n NAME] [-p PHONE_NUMBER] [-e EMAIL] [-a ADDRESS] [-r REMARK] [-t TAG]…`<br> e.g.,`edit 2 -n James Lee -e jameslee@example.com`                                                                                      |
-| **Find**         | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                         |
-| **Filter**       | `filter [-p] [-e] [-a] [-t]` <br> e.g., `filter -p -a` to see only the phone number and address                                                                                                                                    |
-| **List**         | `list`                                                                                                                                                                                                                             |
-| **Help**         | `help`                                                                                                                                                                                                                             |
-| **Add Alias**    | `alias add [ALIAS] [COMMAND]`<br> e.g. `alias add ls list`                                                                                                                                                                         |
-| **Delete Alias** | `alias delete [ALIAS]`<br> e.g. `alias delete ls`                                                                                                                                                                                  |
-| **List Alias**   | `alias list`                                                                                                                                                                                                                       |
+| Action           | Format, Examples                                                                                                                                                                                           |
+| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Add**          | `add -n NAME -p PHONE_NUMBER -e EMAIL -a ADDRESS [-r REMARK] [-t TAG]…` <br> e.g., `add -n James Ho -p 22224444 -e jamesho@example.com -a 123, Clementi Rd, 1234665 -r Likes ramen -t friend -t colleague` |
+| **Clear**        | `clear`                                                                                                                                                                                                    |
+| **Delete**       | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                        |
+| **Edit**         | `edit INDEX [-n NAME] [-p PHONE_NUMBER] [-e EMAIL] [-a ADDRESS] [-r REMARK] [-t TAG]…`<br> e.g.,`edit 2 -n James Lee -e jameslee@example.com`                                                              |
+| **Find**         | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                 |
+| **Filter**       | `filter [-p] [-e] [-a] [-t]` <br> e.g., `filter -p -a` to see only the phone number and address                                                                                                            |
+| **List**         | `list`                                                                                                                                                                                                     |
+| **Help**         | `help`                                                                                                                                                                                                     |
+| **Add Alias**    | `alias add [ALIAS] [COMMAND]`<br> e.g. `alias add ls list`                                                                                                                                                 |
+| **Delete Alias** | `alias delete [ALIAS]`<br> e.g. `alias delete ls`                                                                                                                                                          |
+| **List Alias**   | `alias list`                                                                                                                                                                                               |
+| **Add Tag**      | `tag add { shown | selected | INDEX ... } -t TAG ...` <br> e.g., `tag add 1 2 3 -t Photoshop -t Illustrator`                                                                                               |
+| **Delete Tag**   | `tag delete { shown | selected | INDEX ... } -t TAG ...` <br> e.g., `tag delete shown -t Illustrator`                                                                                                      |
 
 ## Field Summary
 
 | Mandatory | Field        | Command Flag | Restrictions                                                                                                                                                                                                                                                                                                                                                                                                          |
 | --------- | ------------ | ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Yes       | Name         | `-n`         | Names should only contain alphanumeric characters and spaces, and it should not be blank                                                                                                                                                                                                                                                                                                                              |
-| Yes       | Phone Number | `-p`         | Phone numbers should only contain numbers, and it should be at least 3 digits long                                                                                                                                                                                                                                                                                                                                    |
 | Yes       | Email        | `-e`         | Emails should be of the format local-part@domain and adhere to the following constraints:<br>1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (!#$%&'*+/=?`{|}~^.-) `.<br>2. This is followed by a '@' and then a domain name. The domain name must:<br>    - be at least 2 characters long<br>    - start and end with alphanumeric characters |
-| Yes       | Company      | `-c`         | Company can take any values, and it should not be blank                                                                                                                                                                                                                                                                                                                                                               |
-| Yes       | Job Title    | `-j`         | Job Title can take any values, and it should not be blank                                                                                                                                                                                                                                                                                                                                                             |
 | Yes       | Address      | `-a`         | Addresses can take any values, and it should not be blank                                                                                                                                                                                                                                                                                                                                                             |
+| Yes       | Phone Number | `-p`         | Phone numbers should only contain numbers, and it should be at least 3 digits long                                                                                                                                                                                                                                                                                                                                    |
 | No        | Tag          | `-t`         | Tags names should be alphanumeric and contains no spaces or symbols                                                                                                                                                                                                                                                                                                                                                   |
 | No        | Remark       | `-r`         | None                                                                                                                                                                                                                                                                                                                                                                                                                  |
 

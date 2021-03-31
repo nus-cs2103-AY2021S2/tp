@@ -244,6 +244,13 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        /**
+         * Adds {@code tags} to this object's {@code tags}.
+         */
+        public void addTags(Set<Tag> tags) {
+            this.tags.addAll(tags);
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
