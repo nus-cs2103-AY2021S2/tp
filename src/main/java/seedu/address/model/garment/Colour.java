@@ -2,14 +2,10 @@ package seedu.address.model.garment;
 
 import static java.util.Objects.requireNonNull;
 
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import javax.imageio.ImageIO;
 
 /**
  * Represents a Garment's colour in the wardrobe.
@@ -37,7 +33,7 @@ public class Colour {
 
     public static final HashSet<String> COLOURS = new HashSet<>(Arrays.asList(COLOURARRAY));
 
-    public static final HashMap<String, BufferedImage> SAMPLES = new HashMap<>();
+    public static final HashMap<String, String> SAMPLES = new HashMap<>();
 
     public static final HashMap<String, List<String>> MATCHES = new HashMap<>();
 
@@ -70,7 +66,8 @@ public class Colour {
         "beige"
     );
 
-    public static final List<String> GREEN_MATCHES = Arrays.asList("green",
+    public static final List<String> GREEN_MATCHES = Arrays.asList(
+        "green",
         "orange",
         "purple",
         "white",
@@ -215,59 +212,19 @@ public class Colour {
     /**
      * Initialises the HashMap of colours and their respective sample images.
      */
-    public static void initialiseSamples() throws IOException {
-        try {
-            BufferedImage redSample = ImageIO.read(
-                new File("./src/main/resources/images/redSample.jpg")
-            );
-            BufferedImage orangeSample = ImageIO.read(
-                new File("./src/main/resources/images/orangeSample.jpg")
-            );
-            BufferedImage yellowSample = ImageIO.read(
-                new File("./src/main/resources/images/yellowSample.jpg")
-            );
-            BufferedImage greenSample = ImageIO.read(
-                new File("./src/main/resources/images/greenSample.jpg")
-            );
-            BufferedImage blueSample = ImageIO.read(
-                new File("./src/main/resources/images/blueSample.jpg")
-            );
-            BufferedImage pinkSample = ImageIO.read(
-                new File("./src/main/resources/images/pinkSample.jpg")
-            );
-            BufferedImage purpleSample = ImageIO.read(
-                new File("./src/main/resources/images/purpleSample.jpg")
-            );
-            BufferedImage brownSample = ImageIO.read(
-                new File("./src/main/resources/images/brownSample.jpg")
-            );
-            BufferedImage blackSample = ImageIO.read(
-                new File("./src/main/resources/images/blackSample.jpg")
-            );
-            BufferedImage whiteSample = ImageIO.read(
-                new File("./src/main/resources/images/whiteSample.jpg")
-            );
-            BufferedImage greySample = ImageIO.read(
-                new File("./src/main/resources/images/greySample.jpg")
-            );
-            BufferedImage beigeSample = ImageIO.read(
-                new File("./src/main/resources/images/beigeSample.jpg")
-            );
-            SAMPLES.put("red", redSample);
-            SAMPLES.put("orange", orangeSample);
-            SAMPLES.put("yellow", yellowSample);
-            SAMPLES.put("green", greenSample);
-            SAMPLES.put("blue", blueSample);
-            SAMPLES.put("pink", pinkSample);
-            SAMPLES.put("purple", purpleSample);
-            SAMPLES.put("brown", brownSample);
-            SAMPLES.put("black", blackSample);
-            SAMPLES.put("white", whiteSample);
-            SAMPLES.put("grey", greySample);
-            SAMPLES.put("beige", beigeSample);
-        } catch (IOException e) {
-            e.printStackTrace(); //MAY NEED TO EDIT
-        }
+    public static void initialiseSamples() {
+        SAMPLES.put("red", "images/redSample.jpg");
+        SAMPLES.put("orange", "images/orangeSample.jpg");
+        SAMPLES.put("yellow", "images/yellowSample.jpg");
+        SAMPLES.put("green", "images/greenSample.jpg");
+        SAMPLES.put("blue", "images/blueSample.jpg");
+        SAMPLES.put("pink", "images/pinkSample.jpg");
+        SAMPLES.put("purple", "images/purpleSample.jpg");
+        SAMPLES.put("brown", "images/brownSample.jpg");
+        SAMPLES.put("black", "images/blackSample.jpg");
+        SAMPLES.put("white", "images/whiteSample.jpg");
+        SAMPLES.put("grey", "images/greySample.jpg");
+        SAMPLES.put("beige", "images/beigeSample.jpg");
     }
 
     public List<String> getMatches() {
