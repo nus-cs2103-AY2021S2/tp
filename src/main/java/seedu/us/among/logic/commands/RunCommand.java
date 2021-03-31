@@ -71,11 +71,7 @@ public class RunCommand extends Command {
         Response response = endpointCaller.callEndpoint();
 
         Endpoint endpointWithResponse = new Endpoint(toRun, response);
-        return new CommandResult(endpointWithResponse.getResponseEntity(),
-                endpointWithResponse,
-                false,
-                false,
-                true);
+        return new CommandResult(endpointWithResponse.getResponseEntity(), endpointWithResponse);
     }
 
     @Override

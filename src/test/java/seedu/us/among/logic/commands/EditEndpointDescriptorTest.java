@@ -36,24 +36,24 @@ public class EditEndpointDescriptorTest {
         assertFalse(DESC_GET.equals(DESC_POST));
 
         // different name -> returns false
-        EditEndpointDescriptor editedAmy = new EditEndpointDescriptorBuilder(DESC_GET).withName(VALID_METHOD_POST)
+        EditEndpointDescriptor editedGet = new EditEndpointDescriptorBuilder(DESC_GET).withMethod(VALID_METHOD_POST)
                 .build();
-        assertFalse(DESC_GET.equals(editedAmy));
+        assertFalse(DESC_GET.equals(editedGet));
 
         // different address -> returns false
-        editedAmy = new EditEndpointDescriptorBuilder(DESC_GET).withAddress(VALID_ADDRESS_FACT).build();
-        assertFalse(DESC_GET.equals(editedAmy));
+        editedGet = new EditEndpointDescriptorBuilder(DESC_GET).withAddress(VALID_ADDRESS_FACT).build();
+        assertFalse(DESC_GET.equals(editedGet));
 
         // different data -> return false
-        editedAmy = new EditEndpointDescriptorBuilder(DESC_GET).withData(VALID_DATA_PAIR_NEW).build();
-        assertFalse(DESC_GET.equals(editedAmy));
+        editedGet = new EditEndpointDescriptorBuilder(DESC_GET).withData(VALID_DATA_PAIR_NEW).build();
+        assertFalse(DESC_GET.equals(editedGet));
 
         // different header -> return false
-        editedAmy = new EditEndpointDescriptorBuilder(DESC_GET).withHeaders(VALID_HEADER_PAIR_NEW).build();
-        assertFalse(DESC_GET.equals(editedAmy));
+        editedGet = new EditEndpointDescriptorBuilder(DESC_GET).withHeaders(VALID_HEADER_PAIR_NEW).build();
+        assertFalse(DESC_GET.equals(editedGet));
 
         // different tags -> returns false
-        editedAmy = new EditEndpointDescriptorBuilder(DESC_GET).withTags(VALID_TAG_CAT).build();
-        assertFalse(DESC_GET.equals(editedAmy));
+        editedGet = new EditEndpointDescriptorBuilder(DESC_GET).withTags(VALID_TAG_CAT).build();
+        assertFalse(DESC_GET.equals(editedGet));
     }
 }

@@ -32,6 +32,7 @@ import seedu.us.among.model.endpoint.Response;
  */
 public class EndpointCaller {
     private static final Logger logger = LogsCenter.getLogger(EndpointCaller.class);
+    private static boolean requestAborted = false;
 
     private final Endpoint endpointToSend;
 
@@ -42,6 +43,14 @@ public class EndpointCaller {
      */
     public EndpointCaller(Endpoint endpointToSend) {
         this.endpointToSend = endpointToSend;
+    }
+
+    /**
+     * Sets the requestAborted variable to true for exception thrown to be accurately determined to be
+     * because of user requested abortion.
+     */
+    public static void abortRequest() {
+        requestAborted = true;
     }
 
     /**
@@ -67,10 +76,16 @@ public class EndpointCaller {
             throw new RequestException(MESSAGE_INVALID_JSON);
         } catch (IllegalStateException | SSLException | NoHttpResponseException | InterruptedIOException e) {
             logger.warning(StringUtil.getDetails(e));
-            throw new AbortRequestException(MESSAGE_CALL_CANCELLED);
-        } catch (IOException e) {
+            if (requestAborted) {
+                throw new AbortRequestException(MESSAGE_CALL_CANCELLED);
+            } else {
+                throw new AbortRequestException(MESSAGE_CONNECTION_ERROR);
+            }
+        } catch (Exception e) {
             logger.warning(StringUtil.getDetails(e));
             throw new RequestException(MESSAGE_GENERAL_ERROR);
+        } finally {
+            requestAborted = false;
         }
 
         return response;

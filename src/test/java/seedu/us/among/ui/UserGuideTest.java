@@ -30,16 +30,4 @@ class UserGuideTest {
         assertEquals(userGuide.getFormat(), "Hello");
         userGuide.setFormat("");
     }
-
-    @Test
-    void getExample() {
-        assertEquals(userGuide.getExample(), "");
-    }
-
-    @Test
-    void setExample() {
-        userGuide.setExample("Hello");
-        assertEquals(userGuide.getExample(), "Hello");
-        userGuide.setExample("");
-    }
 }

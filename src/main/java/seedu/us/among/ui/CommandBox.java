@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 import seedu.us.among.logic.commands.CommandResult;
 import seedu.us.among.logic.commands.exceptions.CommandException;
 import seedu.us.among.logic.parser.exceptions.ParseException;
+import seedu.us.among.logic.request.EndpointCaller;
 import seedu.us.among.logic.request.Request;
 import seedu.us.among.logic.request.exceptions.AbortRequestException;
 import seedu.us.among.logic.request.exceptions.RequestException;
@@ -154,6 +155,7 @@ public class CommandBox extends UiPart<Region> {
     public void closeHttpClient(KeyEvent event) throws IOException {
         KeyCombination kc = new KeyCodeCombination(KeyCode.D, KeyCombination.CONTROL_DOWN);
         if (kc.match(event)) {
+            EndpointCaller.abortRequest();
             Request.getHttpclient().close();
         }
     }
@@ -165,7 +167,7 @@ public class CommandBox extends UiPart<Region> {
      * @param event key event for pressed keys
      */
     public void setLastCommand(KeyEvent event) {
-        KeyCombination kc = new KeyCodeCombination(KeyCode.UP, KeyCombination.CONTROL_DOWN);
+        KeyCombination kc = new KeyCodeCombination(KeyCode.UP, KeyCombination.SHORTCUT_DOWN);
         if (kc.match(event) && !lastCommand.isEmpty()) {
             commandTextField.setText(lastCommand);
         }

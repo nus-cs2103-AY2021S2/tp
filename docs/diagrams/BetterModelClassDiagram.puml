@@ -4,18 +4,21 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-AddressBook *-right-> "1" UniquePersonList
-AddressBook *-right-> "1" UniqueTagList
-UniqueTagList -[hidden]down- UniquePersonList
-UniqueTagList -[hidden]down- UniquePersonList
+EndpointList *-right-> "1" UniqueEndpointList
+EndpointList *-right-> "1" UniqueTagList
+EndpointList *-up-> "1" UniqueHeaderList
+UniqueTagList -[hidden]down- UniqueEndpointList
+UniqueTagList -[hidden]down- UniqueEndpointList
 
 UniqueTagList *-right-> "*" Tag
+UniqueHeaderList *-right-> "*" Header
 UniqueEndpointList o-right-> Endpoint
 
 Endpoint -up-> "*" Tag
+Endpoint -up-> "*" Header
 
 Endpoint *--> Method
 Endpoint *--> Address
 Endpoint *--> Data
-Endpoint *--> Header
+Endpoint *--> Response
 @enduml

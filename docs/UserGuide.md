@@ -101,7 +101,7 @@ As an example, a basic command to add an endpoint could look like the following:
 
 <span class="main-command">add</span> <span class="compulsory-param">-x GET</span> <span class="compulsory-param">-u https://google.com</span>
 
-In the example above, <span class="main-command">add</span> is the command word while <span class="compulsory-param">-x</span> and <span class="compulsory-param">-u</span> are the prefixes of the <span class="compulsory-param">GET</span> and <span class="compulsory-param">https://google.com</span> parameters respectively. Note that the parameters allowed differ for each command and may be optional. For your convenience, a list of all parameters along with their prefixes and descriptions have been included in the following table:
+In the example above, <span class="main-command">add</span> is the command word while <span class="compulsory-param">-x</span> and <span class="compulsory-param">-u</span> are the prefixes of the <span class="compulsory-param">GET</span> and <span class="compulsory-param">https://google.com</span> parameters respectively. For your convenience, a list of all parameters along with their prefixes and descriptions have been included in the table below. An example usage of all the parameters are also demonstrated in the [add command](#421-add-an-api-endpoint-add).
 
 <a name="prefix-table"></a>
 
@@ -109,7 +109,7 @@ In the example above, <span class="main-command">add</span> is the command word 
 | ------------ | ------ | --------------------------------------------------------------------- |
 | INDEX        |  None  | The index of the endpoint as shown in the endpoint panel list         |
 | THEME        |  None  | The theme for the application                                         |
-| METHOD       |   -x   | The [request method](#83-request-methods) to use for an endpoint      |
+| METHOD       |   -x   | The [request method](#84-request-methods) to use for an endpoint      |
 | ADDRESS      |   -u   | The URL to use for an endpoint                                        |
 | HEADER       |   -h   | The header to use for an endpoint **(must be enclosed with "")**      |
 | DATA         |   -d   | The data to use for an endpoint **(must be in JSON format)**          |
@@ -125,8 +125,7 @@ Check out the screenshot of each command for an idea of the expected output in t
 
 #### 4.1.1 View help: `help`
 
-**Description:** Get the relevant helpful information such as the link to the user guide, and the command summary 
-table in the form of a pop up window.
+**Description:** New or stuck with one of the commands? Get the relevant helpful information through a quick pop up window!
 
 **Format:** <span class="main-command">help</span>
 
@@ -138,7 +137,7 @@ table in the form of a pop up window.
 
 #### 4.1.2 Toggle theme: `toggle`
 
-**Description:** Toggle the theme for the application **(light, dark, or imposter)**.
+**Description:** Seeking a more personal visual design? Go ahead and toggle the theme for the application **(light, dark, or imposter)**!
 
 **Format:** <span class="main-command">toggle</span> <span class="compulsory-param">THEME</span>
 
@@ -152,7 +151,7 @@ table in the form of a pop up window.
 
 #### 4.1.3 Exit program: `exit`
 
-**Description:** Exit the application.
+**Description:** Closing the application is simple but do come back soon!
 
 **Format:** <span class="main-command">exit</span>
 
@@ -166,13 +165,14 @@ table in the form of a pop up window.
 
 **Format:** <span class="main-command">add</span> <span class="compulsory-param">-x METHOD</span> <span class="compulsory-param">-u URL</span> <span class="optional-param">-d DATA</span> <span class="optional-param">[-h HEADER]</span> <span class="optional-param">[-t TAG]</span>
 
-**Example & Output:** <span class="main-command">add</span> <span class="compulsory-param">-x GET</span> <span class="compulsory-param">-u https://api.data.gov.sg/v1/environment/pm25</span>
+**Example & Output:** <span class="main-command">add</span> <span class="compulsory-param">-x POST</span> <span class="compulsory-param">-u https://reqres.in/api/users</span> <span class="optional-param">-d {"name": "tarzan", "job": "the jungle man"}</span> <span class="optional-param">-h "Content-Type: application/json"</span> <span class="optional-param">-t nature</span>
 
+//to-do tanjin update picture
 <p align="center">
   <img width="450px" src="images/commands/add.png" >
 </p>
 
-<div markdown="span" class="alert alert-warning">:bulb: **Tip:**
+<div markdown="span" class="alert alert-danger">:exclamation: **Caution**
 Multiple headers/tags must be unique and duplicates will be ignored
 </div>
 
@@ -271,7 +271,7 @@ If you wish to generate a set of sample endpoints, you may delete the **imposter
 
 #### 4.2.8 Call a saved API endpoint: `send`
 
-**Description:** Call an API endpoint from the API endpoint list **(an ongoing call can be cancelled with <kbd>ctrl</kbd> + <kbd>d</kbd>)**.
+**Description:** [Call](#7-glossary) an API endpoint from the API endpoint list **(an ongoing call can be cancelled with <kbd>ctrl</kbd> + <kbd>d</kbd>)**.
 
 **Format** <span class="main-command">send</span> <span class="compulsory-param">INDEX</span>
 
@@ -283,7 +283,7 @@ If you wish to generate a set of sample endpoints, you may delete the **imposter
 
 #### 4.2.9 Call an API endpoint directly without saving: `run`
 
-**Description:** Call an API endpoint on the fly (without saving) **(an ongoing call can be cancelled with <kbd>ctrl</kbd> + <kbd>d</kbd>)**.
+**Description:** [Call](#7-glossary) an API endpoint directly (without saving) **(an ongoing call can be cancelled with <kbd>ctrl</kbd> + <kbd>d</kbd>)**.
 
 **Format:** <span class="main-command">run</span> <span class="compulsory-param">-x METHOD</span> <span class="compulsory-param">-u URL</span> <span class="optional-param">-d DATA</span> <span class="optional-param">[-h HEADER]</span>
 
@@ -304,10 +304,11 @@ A shorthand for <span class="compulsory-param">GET</span> requests can be done w
 #### 4.3.1 Retrieve the last valid command
 
 **Description:** Given that the last valid command from a user is most likely to be repeated during the API development
-& verification process, a special key combination <kbd>ctrl</kbd> + <kbd>up-arrow</kbd> is available to set the 
+& verification process, a special key combination <kbd>ctrl</kbd> + <kbd>up-arrow</kbd> (Windows) / <kbd>cmd</kbd> + 
+<kbd>up-arrow</kbd> (Mac) is available to set the 
 command box with the last command.
 
-**Format:** <kbd>ctrl</kbd> + <kbd>up-arrow</kbd>
+**Format:** <kbd>ctrl</kbd> + <kbd>up-arrow</kbd> (Windows) / <kbd>cmd</kbd> + <kbd>up-arrow</kbd> (Mac)
 
 #### 4.3.2 Switch focused component
 
@@ -321,11 +322,17 @@ command box with the last command.
 
 **Format:** <kbd>Page Up</kbd> and <kbd>Page Down</kbd> (<kbd>fn</kbd> + <kbd>up</kbd> and <kbd>fn</kbd> + <kbd>down</kbd> on **MacOS**)
 
-## 5. FAQ
+<div style="page-break-after: always;"></div>
+
+## 5. Frequently Asked Questions (FAQ)
+
+**Q**: I am completely new to APIs, how do I get an [endpoint](#7-glossary)?<br> **A**: While the use of APIs is commonplace, not all applications provide their API endpoints publicly. **Google** is your best friend for searching of public APIs but if you are new and just looking to try things out, fear not! We have prepared an extensive list of [sample endpoints](#86-sample-endpoints) to get you started!
 
 **Q**: How do I transfer my data to another Computer?<br> **A**: Install the
 application in the other computer and overwrite the empty data file it creates
 with the file that contains the data of your previous imPoster home folder.
+
+**Q**: How can I send non-JSON data in the request body?<br> **A**: This current version of imPoster only supports the sending of [JSON](#85-json-format) data in the request body which is the format used by an estimated over 70% of APIs worldwide. We apologise for the inconvenience caused but we are happy to share that plans are in place to include support for other data formats in future versions!
 
 {more to be added}
 
@@ -363,14 +370,16 @@ A quick overview of all supported commands, their formats and examples are given
 
 | Term                                         | Description                                               |
 | -------------------------------------------- | --------------------------------------------------------- |
-| **API (Application Programming Interface)** | An interface for two systems to interact with each other  |
-| **Endpoint** | The point of entry in a communication channel for two systems to interact with each other |
-| **Request** | A process in which information is sent out to an endpoint through one of the [request methods](#83-request-methods) |
-| **Response** | The information obtained from an endpoint after a request is sent to it (commonly in the [JSON format](#84-json-format)) |
+| **API** | API is short for **Application Programming Interface** and allows two systems to interact with each other  |
+| **Call** | A call to an API endpoint refers to the process of sending a [request](#83-what-are-requests-and-responses) to the server           |
+| **Endpoint** | The communication point of a system that allows it to interact with another system, commonly accessed through a URL |
+| **Request** | A process in which information is sent out to an endpoint through one of the [request methods](#84-request-methods) (a more detailed explanation can be found [here](#83-what-are-requests-and-responses)) |
+| **Response** | The information obtained from an endpoint after a request is sent to it (a more detailed explanation can be found [here](#83-what-are-requests-and-responses)) |
 | **Parameter**   | Information passed in as part of a command with its type identified by a prefix (e.g. <span class="compulsory-param">METHOD</span>) |
 | **Prefix**   | Characters used to identify the following parameter (e.g. <span class="compulsory-param">-x</span> is the prefix for the parameter <span class="compulsory-param">METHOD</span>) |
-| **JSON (JavaScript Object Notation)** | A lightweight format for data storage (a more detailed explanation can be found [here](#84-json-format)) |
-| **CURL (Client URL)** | A command-line tool used in the transfer of data via different network protocols |
+| **JSON** | JSON is short for **JavaScript Object Notation** which is a lightweight format for data storage (a more detailed explanation can be found [here](#85-json-format)) |
+| **CURL** | CURL is short for **Client URL** and is a command-line tool used in the transfer of data via different network protocols |
+| **Index** | Index in this guide refers to the position of the endpoint in the endpoint list (represented by the number beside the endpoint) |
 
 <div style="page-break-after: always;"></div>
 
@@ -378,7 +387,7 @@ A quick overview of all supported commands, their formats and examples are given
 
 ### 8.1 What is an API?
 
-Broadly speaking, an **API** is an interface that enables and defines how **two systems** interact with one another. In a classic analogy, the interaction above is usually likened to a **waiter** communicating a **customer** order to the restaurant **kitchen**. In this analogy, the **customer** and **kitchen** represents the **two systems**, and the **waiter** represents the **API** allowing them to communicate. The **order** and **food** delivered then corresponds to the terms **request** and **response** associated with an API call. The annotated diagrams below capture these interactions and may aid in providing a better understanding:
+Broadly speaking, an **API** is an interface that enables and defines how **two systems** interact with one another. In a classic analogy, the interaction above is usually likened to a **waiter** communicating a **customer** order to the restaurant **kitchen**. In this analogy, the **customer** and **kitchen** represents the **two systems**, and the **waiter** represents the **API** allowing them to communicate. The **order** and **food** delivered then corresponds to the terms **request** and **response** associated with an API call. The annotated diagram below captures these interactions and may aid in providing a better understanding:
 
 <p align="center">
   <img width="700px" src="images/ApiExplanation.png" >
@@ -386,25 +395,61 @@ Broadly speaking, an **API** is an interface that enables and defines how **two 
 
 Note that for the **waiter** to pass the order to the **kitchen**, a **window/door** is required to allow communication and this is represented by the term [**endpoint**](#7-glossary) which is frequently used in relation to an API.
 
+<div style="page-break-after: always;"></div>
+
 ### 8.2 Why learn about APIs?
 
-You may be surprised to know that APIs are not only widely used in our daily lives, it is also likely that you have been using them frequently without actually noticing them! For example, the simple act of visiting a website involves an API request which is responsible for bringing back a response to you in the form of a webpage. Even a simple text message to your friend relies on an API to reliably deliver your message! The use of APIs is extensive in today’s highly connected world so even if they are completely unrelated to your job, it helps to have some basic understanding of them!
+You may be surprised to know that APIs are not only widely used in our daily lives, it is also likely that you have been using them frequently without actually noticing them! For example, the simple act of visiting a website involves an API request which is responsible for bringing back a response to you in the form of a webpage. Even a simple text message to your friend relies on an API to reliably deliver your message! APIs are used extensively in our world today so even if they are unrelated to your job, it helps to have some basic understanding of them!
 
-### 8.3 Request Methods
-Officially, there are 39 HTTP methods but for the latest version of our application, only the 7 most common methods are supported. We recommend individuals who are interested to learn more about the request types to refer to official documentation even though a brief explanation for the 7 supported requests have been provided below:
+### 8.3 What are requests and responses?
+
+The terms **requests** and **responses** are both messages used in the exchange of information between two systems (sender and receiver). Typically, the sender sends out a request containing information to be sent to the receiver. Next, when the receiver receives the request containing the information from the sender, it returns a response. This response is then received by the original sender, thus completing a single API call.
+
+### 8.4 Request Methods
+As of the latest version of our application, we support 7 commonly used request methods. We recommend individuals who are interested to learn more about request types to refer to [official documentation](#https://webconcepts.info/concepts/http-method/). A brief explanation for the 7 supported requests have been provided below:
 
 | Method      | Description                                                                                                 |
 | ----------- | ----------------------------------------------------------------------------------------------------------- |
-| **GET**     | Retrieves information from a server through a specified URI (unable to modify server data)                  |
-| **POST**    | Sends data to a server, commonly in JSON/html form format. (able to modify server data - create)            |
-| **PUT**     | Sends data to a server, commonly in JSON/html form format. (able to modify server data - overwrite)         |
-| **DELETE**  | Removes information from a server through a specified URI (able to modify server data - delete)             |
+| **GET**     | Retrieves information from a server through a specified URI                  |
+| **POST**    | Sends data to a server, commonly in JSON/html form format           |
+| **PUT**     | Sends data to a server, commonly in JSON/html form format      |
+| **DELETE**  | Removes information from a server through a specified URI             |
 | **HEAD**    | Similar to GET, but returns only the header section of the response                                         |
-| **PATCH**   | Sends data to a server, commonly in JSON/html form format. (able to modify server data - partial overwrite) |
+| **PATCH**   | Sends data to a server, commonly in JSON/html form format |
 | **OPTIONS** | Retrieves the allowed communication options (methods) for a specified URI                                   |
 
-### 8.4 JSON Format
+### 8.5 JSON Format
 JSON is short for JavaScript Object Notation and is a common lightweight format for data storage. In an API call, the JSON format is also commonly used to send data between two systems. For the current version of our application, JSON is the only format supported for sending data. The following are some examples of data in JSON format:
 - `{}`
 - `{"name": "john doe"}`
 - `{"persons": {"name": "john doe"}}`
+
+### 8.6 Sample Endpoints
+An extensive list of sample endpoints have been provided below for new users to test and try out. Note that the **header** field has been omitted in the samples to keep them beginner friendly. Rest assured that the following **examples will work without the header** field specified although for the more adventurous, you may refer to this full [list of http headers](https://en.wikipedia.org/wiki/List_of_HTTP_header_fields). Go ahead and try out the sample endpoints below!
+
+<span class="pseudo-header">GET</span>
+
+| URL                                                            |
+| -------------------------------------------------------------- |
+| http://imposter-dev.tk:6000/api/v1/resources/books/all         |
+| http://imposter-dev.tk:6000/api/v1/resources/books?id=1        |
+| https://project-billboard.herokuapp.com/laugh                  |
+| https://api.data.gov.sg/v1/environment/psi                     |
+| https://api.data.gov.sg/v1/environment/4-day-weather-forecast  |
+| https://api.data.gov.sg/v1/environment/2-hour-weather-forecast |
+| https://api.data.gov.sg/v1/environment/rainfall                |
+| https://api.data.gov.sg/v1/environment/relative-humidity       |
+| https://api.data.gov.sg/v1/environment/wind-speed              |
+| https://api.data.gov.sg/v1/environment/wind-direction          |
+| https://api.data.gov.sg/v1/environment/air-temperature         |
+| https://api.data.gov.sg/v1/technology/ipos/trademarks          |
+| https://api.data.gov.sg/v1/technology/ipos/patents             |
+| https://api.data.gov.sg/v1/technology/ipos/designs             |
+| https://api.data.gov.sg/v1/transport/taxi-availability         |
+
+<span class="pseudo-header">POST</span>
+
+| URL                                                           | Data (JSON)                                       |
+| ------------------------------------------------------------- |                                                   |
+| https://jsonplaceholder.typicode.com/posts                    | title, body, userId                               |
+

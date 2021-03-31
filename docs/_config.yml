@@ -4,6 +4,7 @@ theme: minima
 header_pages:
   - UserGuide.md
   - DeveloperGuide.md
+  - WorkflowGuide.md
   - AboutUs.md
 
 markdown: kramdown

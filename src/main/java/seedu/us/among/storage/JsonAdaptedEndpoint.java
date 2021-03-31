@@ -50,7 +50,7 @@ class JsonAdaptedEndpoint {
             this.headers.addAll(headers);
         }
         if (tagged != null) {
-            this.tagged.addAll(tagged); // to-do
+            this.tagged.addAll(tagged);
         }
         if (response != null) {
             this.response = response;

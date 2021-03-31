@@ -31,53 +31,70 @@ public class CommandResult {
     /** API endpoint to be consumed by the UI for displaying response. */
     private final Endpoint endpoint;
 
-
     /**
      * Constructs a {@code CommandResult} with the specified fields.
+     * This is the primary private constructor of CommandResult to be used in other factor constructors.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean isList) {
-        this.feedbackToUser = requireNonNull(feedbackToUser);
-        this.showHelp = showHelp;
-        this.exit = exit;
-        this.isApiResponse = false;
-        this.isList = isList;
-        this.toggleTheme = null;
-        this.endpoint = null;
-    }
-
-    /**
-     * Constructs a {@code CommandResult} with the specified fields, including the newly added isApiResponse.
-     */
-    public CommandResult(String feedbackToUser, Endpoint endpoint, boolean showHelp, boolean exit,
-                         boolean isApiResponse) {
+    private CommandResult(String feedbackToUser, String toggleTheme, Endpoint endpoint,
+                          boolean showHelp, boolean exit, boolean isList,
+                          boolean isApiResponse) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
         this.isApiResponse = isApiResponse;
-        this.isList = false;
-        this.toggleTheme = null;
+        this.isList = isList;
+        this.toggleTheme = toggleTheme;
         this.endpoint = endpoint;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
+     * and other fields set to their default value. This is the convenient constructor for commands with a string
+     * feedback.
+     */
+    public CommandResult(String feedbackToUser) {
+        this(feedbackToUser, null,
+                null, false, false, false, false);
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified fields. This is the constructor for request related
+     * commands such send & run.
+     */
+    public CommandResult(String feedbackToUser, Endpoint endpoint) {
+        this(feedbackToUser, null, endpoint,
+                false, false, false, true);
     }
 
     /**
      * Constructs a {@code CommandResult} with the specified fields, including the newly added theme to toggle.
      */
     public CommandResult(String feedbackToUser, String themeToToggle) {
-        this.feedbackToUser = requireNonNull(feedbackToUser);
-        this.showHelp = false;
-        this.exit = false;
-        this.isApiResponse = false;
-        this.isList = false;
-        this.toggleTheme = themeToToggle;
-        this.endpoint = null;
+        this(feedbackToUser, themeToToggle, null, false, false, false, false);
     }
 
     /**
-     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
-     * and other fields set to their default value.
+     * Constructs a {@code CommandResult} for exit command.
      */
-    public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, false);
+    public static CommandResult exitCommandResult(String feedbackToUser) {
+        return new CommandResult(feedbackToUser, null, null,
+                false, true, false, false);
+    }
+
+    /**
+     * Constructs a {@code CommandResult} for help command.
+     */
+    public static CommandResult helpCommandResult(String feedbackToUser) {
+        return new CommandResult(feedbackToUser, null, null,
+                true, false, false, false);
+    }
+
+    /**
+     * Constructs a {@code CommandResult} for list command.
+     */
+    public static CommandResult listCommandResult(String feedbackToUser) {
+        return new CommandResult(feedbackToUser, null, null,
+                false, false, true, false);
     }
 
     public String getFeedbackToUser() {

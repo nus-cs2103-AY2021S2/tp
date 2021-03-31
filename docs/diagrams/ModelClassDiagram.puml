@@ -20,6 +20,7 @@ Class Endpoint
 Class Address
 Class Data
 Class Method
+Class Response
 Class UniqueEndpointList
 }
 
@@ -48,6 +49,7 @@ UniqueEndpointList o--> "*" Endpoint
 Endpoint *--> "1" Method
 Endpoint *--> "1" Data
 Endpoint *--> "1" Address
+Endpoint *--> "0..1" Response
 Endpoint *--> "*" Header
 Endpoint *--> "*" Tag
 
