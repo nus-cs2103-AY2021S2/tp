@@ -13,9 +13,9 @@ import seedu.booking.model.ModelManager;
  */
 public class PromptCreateBookingCommand extends Command {
 
-    public static final String COMMAND_WORD = "create_booking";
+    public static final String COMMAND_WORD = "add_booking";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Starts the multi-step create booking.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Starts the multi-step add booking.\n"
             + "Example: " + COMMAND_WORD;
 
     @Override
