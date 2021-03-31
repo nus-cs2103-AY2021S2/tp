@@ -42,7 +42,7 @@ The rest of the App consists of four components.
 
 Each of the four components,
 
-* defines its *API* in an `interface` with the same moduleName as the Component.
+* defines its *API* in an `interface` with the same `Name` as the Component.
 * exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
 
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
@@ -53,7 +53,7 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+![Architecture Sequence Diagram](images/ArchitectureSequenceDiagram.png)
 
 The sections below give more details of each component.
 
@@ -101,7 +101,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 The `Model`,
 
-* stores a `UserPref` object that represents the user’s preferences.
+* stores a `UserPrefs` object that represents the user’s preferences.
 * stores the task tracker data.
 * exposes an unmodifiable `ObservableList<Task>` that can be 'observed' e.g. the UI can be bound to this list so that
   the UI automatically updates when the data in the list change.
@@ -112,6 +112,7 @@ The `Model`,
 
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `TaskTracker`, which `Person` references. This allows `TaskTracker` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
+
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
 </div>
@@ -124,7 +125,7 @@ The `Model`,
 **API** : [`Storage.java`](https://github.com/AY2021S2-CS2103-T14-4/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 The `Storage` component,
-* can save `UserPref` objects in json format and read it back.
+* can save `UserPrefs` objects in json format and read it back.
 * can save the task tracker data in json format and read it back.
 
 ### Common classes
@@ -151,7 +152,7 @@ The sorting operation is exposed in the `Model` interface as `Model#sortTasks(Co
 
 Given below is an example usage scenario and how the sorting mechanism behaves at each step.
 
-Step 1. The user launches the application, and it is assumed that there is existing data in the `TaskTracker`. The user executes the command `sort moduleCode` in order to sort the tasks by module code. The `sort` command creates a new SortingFlag with type `MODULE_CODE`, and creates a `ModuleCodeComparator` to be used for sorting.
+Step 1. The user launches the application, and it is assumed that there is existing data in the `TaskTracker`. The user executes the command <br>`sort moduleCode` in order to sort the tasks by module code. The `sort` command creates a new SortingFlag with type `MODULE_CODE`, and creates a `ModuleCodeComparator` to be used for sorting.
 
 Step 2. The `sort` command then calls the `Model#sortTasks(Comparator)`  method, and passes the `ModuleCodeComparator` as a parameter to be used for the sorting.
 
@@ -178,42 +179,44 @@ predicate will be passed on to the `dueIn` command.
 Step 2. The `dueIn` command then calls the `Model#updateFilteredTaskList(Predicate)`
 method, and passes the `DeadlineDateInRangePredicate` as a parameter to be used for the filtering.
 
-Step 3. The `Model#updateFilteredTaskList(Preducate)` method then filters the `UniqueTaskList`,
+Step 3. The `Model#updateFilteredTaskList(Predicate)` method then filters the `UniqueTaskList`,
 and the filtered list is then reflected in the UI.
 
 ![DueInSequenceDiagram](images/DueInSequenceDiagram.png)
 
-### \[Proposed\] Undo/redo feature
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DueInCommand` & `DueInCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
-#### Proposed Implementation
+</div>
 
-The proposed undo/redo mechanism is facilitated by `VersionedTaskTracker`. It extends `TaskTracker` with an undo/redo history, stored internally as an `taskTrackerStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+### Undo/redo feature
 
-* `VersionedTaskTracker#commit()` — Saves the current address book state in its history.
-* `VersionedTaskTracker#undo()` — Restores the previous address book state from its history.
-* `VersionedTaskTracker#redo()` — Restores a previously undone address book state from its history.
+The undo/redo mechanism is facilitated by `VersionedTaskTracker`. It extends `TaskTracker` with an undo/redo history, stored internally as an `taskTrackerStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+
+* `VersionedTaskTracker#commit()` — Saves the current task tracker state in its history.
+* `VersionedTaskTracker#undo()` — Restores the previous task tracker state from its history.
+* `VersionedTaskTracker#redo()` — Restores a previously undone task tracker state from its history.
 
 These operations are exposed in the `Model` interface as `Model#commitTaskTracker()`, `Model#undoTaskTracker()` and `Model#redoTaskTracker()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedTaskTracker` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The user launches the application for the first time. The `VersionedTaskTracker` will be initialized with the initial task tracker state, and the `currentStatePointer` pointing to that single task tracker state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitTaskTracker()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `taskTrackerStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th task in the task tracker. The `delete` command calls `Model#commitTaskTracker()`, causing the modified state of the task tracker after the `delete 5` command executes to be saved in the `taskTrackerStateList`, and the `currentStatePointer` is shifted to the newly inserted task tracker state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitTaskTracker()`, causing another modified address book state to be saved into the `taskTrackerStateList`.
+Step 3. The user executes `add tn/PE1 …​` to add a new task. The `add` command also calls `Model#commitTaskTracker()`, causing another modified task tracker state to be saved into the `taskTrackerStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitTaskTracker()`, so the address book state will not be saved into the `taskTrackerStateList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitTaskTracker()`, so the task tracker state will not be saved into the `taskTrackerStateList`.
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoTaskTracker()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the task was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoTaskTracker()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous task tracker state, and restores the task tracker to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
@@ -230,17 +233,17 @@ The following sequence diagram shows how the undo operation works:
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoTaskTracker()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+The `redo` command does the opposite — it calls `Model#redoTaskTracker()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the task tracker to that state.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `taskTrackerStateList.size() - 1`, pointing to the latest address book state, then there are no undone TaskTracker states to restore. The `redo` command uses `Model#canRedoTaskTracker()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `taskTrackerStateList.size() - 1`, pointing to the latest task tracker state, then there are no undone TaskTracker states to restore. The `redo` command uses `Model#canRedoTaskTracker()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
-
+<br>
 Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitTaskTracker()`, `Model#undoTaskTracker()` or `Model#redoTaskTracker()`. Thus, the `taskTrackerStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitTaskTracker()`. Since the `currentStatePointer` is not pointing at the end of the `taskTrackerStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitTaskTracker()`. Since the `currentStatePointer` is not pointing at the end of the `taskTrackerStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/PE1 …​` command. This is the behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
@@ -252,13 +255,13 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ##### Aspect: How undo & redo executes
 
-* **Alternative 1 (current choice):** Saves the entire address book.
+* **Alternative 1 (current choice):** Saves the entire task tracker.
   * Pros: Easy to implement.
   * Cons: May have performance issues in terms of memory usage.
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  * Pros: Will use less memory (e.g. for `delete`, just save the task being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
@@ -271,7 +274,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 #### Proposed Implementation
 
-The proposed priority tag mechanism is facilitated by `PriorityTag` class. It extends the `Tag` class. The priority tag feature will allow using to key in 3 different `Enum` states - `LOW`, `MEDIUM` and `HIGH`. This is to aid user in identifying different CS modules that requires varying amount of attention at any point during the semester.
+The proposed priority tag mechanism is facilitated by `PriorityTag` class. The priority tag feature will allow using to key in 3 different `Enum` states - `LOW`, `MEDIUM` and `HIGH`. This is to aid user in identifying different CS modules that requires varying amount of attention at any point during the semester.
 * include pt/<low/medium/high> input during creation of a task
 * include editing of priority tag for existing tasks
 * include sorting of existing task according to `LOW`, `MEDIUM` and `HIGH` respectively
