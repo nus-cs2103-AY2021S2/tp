@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
 
 import java.util.Comparator;
 import java.util.function.Predicate;
@@ -16,11 +16,11 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.comparators.PersonLessonComparator;
 import seedu.address.model.person.comparators.PersonNameComparator;
 import seedu.address.model.person.comparators.PersonSchoolComparator;
-import seedu.address.model.person.comparators.PersonTagComparator;
+import seedu.address.model.person.comparators.PersonSubjectComparator;
 import seedu.address.model.person.predicate.HasLessonPredicate;
 import seedu.address.model.person.predicate.HasNamePredicate;
 import seedu.address.model.person.predicate.HasSchoolPredicate;
-import seedu.address.model.person.predicate.HasTagPredicate;
+import seedu.address.model.person.predicate.HasSubjectPredicate;
 
 /**
  * Sorts all students in TutorsPet by lesson day and time.
@@ -29,12 +29,12 @@ public class SortCommand extends Command {
     public static final String COMMAND_WORD = "sort";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Sort students according to specified sorting criteria ie name, school, tag, lesson."
+            + ": Sort students according to specified sorting criteria ie name, school, subject, lesson."
             + "The first valid sorting criteria listed will be the sorting criteria used. \n "
             + "Parameters:"
             + "[" + PREFIX_NAME + "] "
             + "OR [" + PREFIX_SCHOOL + "] "
-            + "OR [" + PREFIX_TAG + "TAG]... "
+            + "OR [" + PREFIX_SUBJECT + "SUBJECT]... "
             + "OR [" + PREFIX_LESSON + "LESSON]...\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_SCHOOL;
 
@@ -55,9 +55,9 @@ public class SortCommand extends Command {
         } else if (prefix.equals(PREFIX_SCHOOL)) {
             this.comparator = new PersonSchoolComparator();
             this.predicate = new HasSchoolPredicate();
-        } else if (prefix.equals(PREFIX_TAG)) {
-            this.comparator = new PersonTagComparator();
-            this.predicate = new HasTagPredicate();
+        } else if (prefix.equals(PREFIX_SUBJECT)) {
+            this.comparator = new PersonSubjectComparator();
+            this.predicate = new HasSubjectPredicate();
         } else {
             this.comparator = new PersonLessonComparator();
             this.predicate = new HasLessonPredicate();

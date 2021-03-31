@@ -94,7 +94,7 @@ Format: `add n/NAME p/PHONE [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] 
 
 * `n/NAME p/PHONE` are compulsory fields that must be provided, while `s/SCHOOL e/EMAIL a/ADDRESS gn/GUARDIAN_NAME gp/GUARDIAN_PHONE [t/TAG]…​ [l/LESSON]…​` are optional.
   
-* A student’s contact can have any number of tags (including 0)
+* A student’s contact can have any number of subjects (including 0)
   
 * A student’s contact can have any number of lessons (including 0)
 
@@ -107,7 +107,7 @@ Examples:
 
 ### Listing all contacts : `list`
 
-Shows a list of all student contacts in TutorsPet. Each student's name, phone number, tags and lessons are displayed. 
+Shows a list of all student contacts in TutorsPet. Each student's name, phone number, subjects and lessons are displayed. 
 
 Format: `list`
 
@@ -122,13 +122,13 @@ Format: `edit INDEX [n/NAME] [s/SCHOOL] [p/PHONE] [e/EMAIL] [a/ADDRESS] [gn/GUAR
 * The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags or lessons, the existing tags or lessons of the student will be removed i.e adding of tags or lessons are not cumulative.
-* You can remove all the student’s tags by typing `t/` without
-    specifying any tags after it.
+* When editing subjects or lessons, the existing subjects or lessons of the student will be removed i.e adding of subjects or lessons are not cumulative.
+* You can remove all the student’s subjects by typing `t/` without
+    specifying any subjects after it.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing tags.
+*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing subjects.
 *  `edit 1 l/monday 1300 l/tuesday 1400` Edits the 1st student's contact to add 2 lesson details, `monday 1300` and `tuesday 1400`
 
 ### Searching for a contact: `search`
@@ -141,7 +141,7 @@ Format: `search [n/KEYWORDS] [s/KEYWORDS] [t/KEYWORDS] [MORE_KEYWORDS]`
 * Any number of prefixes can be used concurrently.
 * The search is case-insensitive. E.g. `TAN` will match `Tan` .
 * The order of the keywords does not matter. E.g. `Tan Alice` will match `Alice Tan`.
-* Name, school and tags can be searched according to the prefix.
+* Name, school and subjects can be searched according to the prefix.
 * Only full words will be matched e.g. `Ta` will not match `Tan`
 * Contacts matching at least one keyword will be returned. 
   E.g. `Alice Tan` will return `Alice Ng` and `Bob Tan`.
@@ -290,9 +290,10 @@ If your changes to the data file makes its format invalid, TutorsPet will discar
 
 ##Coming soon
 
-### Tag a student with one or more specific subjects`[coming in v1.4]`
+### Add a subject to teach`[coming in v1.4]`
 
-_In v1.3, any texts can be parsed through tags, while in v1.4, we will specialise tags to the subjects a student is learning._
+_Format: `add-subject SUBJECT_NAME` <br> In v1.3, there is a fixed list of subjects that is available to teach and can be tagged in TutorsPet, 
+while in v1.4, more personalised subjects can be added in._
 
 ### Undo/Redo `[coming in v2.0]`
 

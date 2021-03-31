@@ -7,7 +7,8 @@
     "address": "123, Jurong West Ave 6, #08-111",
     "guardianName" : "Amanda Pauline",
     "guardianPhone" : "94351254",
-    "tagged": [ "sec1" ]
+    "subjects": [ "physics" ],
+    "lessons" : [ ]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
@@ -15,6 +16,8 @@
     "email": "pauline@example.com",
     "address": "4th street",
     "guardianName" : "Amanda Pauline",
-    "guardianPhone" : "94351254"
+    "guardianPhone" : "94351254",
+    "subjects": [ ],
+    "lessons" : [ ]
   } ]
 }

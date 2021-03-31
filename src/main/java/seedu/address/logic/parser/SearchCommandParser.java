@@ -4,14 +4,14 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
 
 import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.logic.commands.SearchCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.predicate.NameSchoolAndTagContainsKeywordsPredicate;
+import seedu.address.model.person.predicate.NameSchoolAndSubjectContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new SearchCommand object
@@ -31,7 +31,7 @@ public class SearchCommandParser implements Parser<SearchCommand> {
         }
 
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_SCHOOL, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_SCHOOL, PREFIX_SUBJECT);
 
         String[] nameKeywords = null;
         String[] schoolKeywords = null;
@@ -39,7 +39,7 @@ public class SearchCommandParser implements Parser<SearchCommand> {
 
         if (!argMultimap.getValue(PREFIX_NAME).isPresent()
                 && !argMultimap.getValue(PREFIX_SCHOOL).isPresent()
-                && !argMultimap.getValue(PREFIX_TAG).isPresent()) {
+                && !argMultimap.getValue(PREFIX_SUBJECT).isPresent()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchCommand.MESSAGE_USAGE));
         }
@@ -49,14 +49,14 @@ public class SearchCommandParser implements Parser<SearchCommand> {
         if (argMultimap.getValue(PREFIX_SCHOOL).isPresent()) {
             schoolKeywords = extractKeywordsAsArray(argMultimap, PREFIX_SCHOOL);
         }
-        if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
-            tagKeywords = extractKeywordsAsArray(argMultimap, PREFIX_TAG);
+        if (argMultimap.getValue(PREFIX_SUBJECT).isPresent()) {
+            tagKeywords = extractKeywordsAsArray(argMultimap, PREFIX_SUBJECT);
         }
         List<String> nameKeywordsList = nameKeywords == null ? null : Arrays.asList(nameKeywords);
         List<String> schoolKeywordsList = schoolKeywords == null ? null : Arrays.asList(schoolKeywords);
         List<String> tagKeywordsList = tagKeywords == null ? null : Arrays.asList(tagKeywords);
 
-        return new SearchCommand(new NameSchoolAndTagContainsKeywordsPredicate(
+        return new SearchCommand(new NameSchoolAndSubjectContainsKeywordsPredicate(
                 nameKeywordsList, schoolKeywordsList, tagKeywordsList));
     }
 
@@ -75,8 +75,8 @@ public class SearchCommandParser implements Parser<SearchCommand> {
             keywords = argMultimap.getValue(PREFIX_NAME).get();
         } else if (prefix.equals(PREFIX_SCHOOL)) {
             keywords = argMultimap.getValue(PREFIX_SCHOOL).get();
-        } else if (prefix.equals(PREFIX_TAG)) {
-            keywords = argMultimap.getValue(PREFIX_TAG).get();
+        } else if (prefix.equals(PREFIX_SUBJECT)) {
+            keywords = argMultimap.getValue(PREFIX_SUBJECT).get();
         }
 
         requireNonNull(keywords);
