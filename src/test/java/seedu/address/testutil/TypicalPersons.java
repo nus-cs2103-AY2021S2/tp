@@ -49,7 +49,8 @@ public class TypicalPersons {
             .withLessons("Friday 1000").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street").withSchool("Clementi Town Secondary School")
-            .withGuardianName("Jay Maier").withGuardianPhone("98765433").withLevel("sec1").withSubjects("chinese").build();
+            .withGuardianName("Jay Maier").withGuardianPhone("98765433").withLevel("sec1")
+            .withSubjects("chinese").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com").withAddress("michegan ave").withSchool("Michegan Secondary School")
             .withGuardianName("John Meyer").withGuardianPhone("9482225").withLevel("sec1").build();

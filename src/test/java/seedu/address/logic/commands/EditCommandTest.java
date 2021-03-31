@@ -21,8 +21,6 @@ import static seedu.address.testutil.TypicalPersons.getTypicalLessonBook;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.MainApp;
-import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
@@ -35,8 +33,6 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
-
-import java.util.logging.Logger;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
