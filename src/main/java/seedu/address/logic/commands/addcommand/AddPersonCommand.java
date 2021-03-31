@@ -16,12 +16,13 @@ import seedu.address.model.person.Person;
 public class AddPersonCommand extends AddCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to RemindMe. "
-            + "Parameters: "
+            + "\nParameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_BIRTHDAY + "BIRTHDAY "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
+            + PREFIX_BIRTHDAY + "19/12/1998 "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 

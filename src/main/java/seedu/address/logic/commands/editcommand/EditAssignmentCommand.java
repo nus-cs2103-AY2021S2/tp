@@ -19,14 +19,14 @@ import seedu.address.model.module.Module;
 public class EditAssignmentCommand extends EditCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits an assignment in RemindMe."
-            + "Parameters: "
-            + PREFIX_MODULE + " MODULE TITLE "
-            + PREFIX_ASSIGNMENT + " ASSIGNMENT INDEX "
-            + "[" + PREFIX_DESCRIPTION + " NEW DESCRIPTION OR"
-            + PREFIX_DEADLINE + " NEW DEADLINE]\n"
+            + "\nParameters: "
+            + PREFIX_MODULE + "MODULE TITLE "
+            + PREFIX_ASSIGNMENT + "ASSIGNMENT INDEX\n"
+            + "[" + PREFIX_DESCRIPTION + "NEW DESCRIPTION OR "
+            + PREFIX_DEADLINE + "NEW DEADLINE]\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_MODULE + "CS2103T"
-            + PREFIX_ASSIGNMENT + "1"
+            + PREFIX_MODULE + "CS2103T "
+            + PREFIX_ASSIGNMENT + "1 "
             + PREFIX_DESCRIPTION + "Complete DG";
 
     public static final String MESSAGE_SUCCESS = "Assignment edited: %1$s";

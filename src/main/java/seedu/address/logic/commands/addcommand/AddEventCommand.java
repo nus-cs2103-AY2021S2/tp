@@ -11,7 +11,7 @@ import seedu.address.model.event.GeneralEvent;
 
 public class AddEventCommand extends AddCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a general event. "
-            + "Parameters: "
+            + "\nParameters: "
             + PREFIX_GENERAL_EVENT + "EVENT DESCRIPTION "
             + PREFIX_DATE + "DATE"
             + "\nExample: " + COMMAND_WORD + " "

@@ -12,7 +12,8 @@ import seedu.address.model.event.DescriptionContainsKeywordsPredicate;
 public class FindEventCommand extends FindCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all events whose description"
-            + "contains any of the specified keywords (case-insensitive) and displays them as a "
+            + "contains any of the specified keywords (case-insensitive)"
+            + "\nand displays them as a "
             + "list with index numbers.\n"
             + "Parameters: "
             + PREFIX_GENERAL_EVENT + "KEYWORD [MORE KEYWORDS]...\n"
