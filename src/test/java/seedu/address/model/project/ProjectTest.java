@@ -113,7 +113,7 @@ public class ProjectTest {
         assertEquals(0, project.getGroupmates().size());
         project.addGroupmate(SYLPH);
         assertEquals(1, project.getGroupmates().size());
-        assertEquals(SYLPH, project.getGroupmates().getGroupmates().get(0));
+        assertEquals(SYLPH, project.getGroupmates().getSortedGroupmates().get(0));
     }
 
     @Test
@@ -130,16 +130,16 @@ public class ProjectTest {
     @Test
     public void deleteGroupmate_success() {
         GroupmateList groupmateList = new GroupmateList();
-        groupmateList.addGroupmate(SYLPH);
         groupmateList.addGroupmate(ROXY);
+        groupmateList.addGroupmate(SYLPH);
         Project project = new ProjectBuilder().withName(CS1101S_NAME.toString())
                 .withGroupmateList(groupmateList).build();
         int size = project.getGroupmates().size();
-        assertEquals(project.getGroupmate(size - 1), ROXY);
-        assertEquals(project.getGroupmate(size - 2), SYLPH);
+        assertEquals(project.getGroupmate(size - 1), SYLPH);
+        assertEquals(project.getGroupmate(size - 2), ROXY);
         project.deleteGroupmate(size - 1);
         assertEquals(project.getGroupmates().size(), size - 1);
-        assertEquals(project.getGroupmate(size - 2), SYLPH);
+        assertEquals(project.getGroupmate(size - 2), ROXY);
         project.deleteGroupmate(size - 2);
         assertEquals(project.getGroupmates().size(), size - 2);
     }
@@ -168,7 +168,7 @@ public class ProjectTest {
         Todo todo = new Todo("deadline");
         project.addTodo(todo);
         assertEquals(1, project.getTodos().size());
-        assertEquals(todo, project.getTodos().getTodos().get(INDEX_FIRST.getZeroBased()));
+        assertEquals(todo, project.getTodos().getSortedTodos().get(INDEX_FIRST.getZeroBased()));
     }
 
     @Test void deleteDeadline_success() {
@@ -213,9 +213,9 @@ public class ProjectTest {
         todoList.addTodo(new Todo("todo"));
         Project project = new ProjectBuilder().withName(CS1101S_NAME.toString()).withTodoList(todoList).build();
         assertEquals(1, project.getTodos().size());
-        assertEquals(false, project.getTodos().getTodos().get(0).getIsDone());
+        assertEquals(false, project.getTodos().getSortedTodos().get(0).getIsDone());
         project.markTodo(INDEX_FIRST.getZeroBased());
-        assertEquals(true, project.getTodos().getTodos().get(0).getIsDone());
+        assertEquals(true, project.getTodos().getSortedTodos().get(0).getIsDone());
     }
 
     @Test
@@ -266,7 +266,7 @@ public class ProjectTest {
         builder.append("; Events: ");
         builder.append(eventList.getSortedEventList().get(0).toString());
         builder.append("; Todos: ");
-        builder.append(todoList.getTodos().get(0).toString());
+        builder.append(todoList.getSortedTodos().get(0).toString());
         builder.append("; Deadlines: ");
         builder.append(deadlineList.getSortedDeadlineList().get(0).toString());
         builder.append("; Groupmates: ");

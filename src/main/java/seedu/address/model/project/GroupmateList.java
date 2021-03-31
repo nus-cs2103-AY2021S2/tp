@@ -3,21 +3,31 @@ package seedu.address.model.project;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Stream;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.model.groupmate.Groupmate;
 
+/**
+ * Represents a list of Groupmates.
+ * Groupmate list ensures that there are no duplicates.
+ * Also maintains an internal list of sorted groupmates.
+ */
 public class GroupmateList {
 
     private final ObservableList<Groupmate> groupmates = FXCollections.observableArrayList();
+    private final SortedList<Groupmate> sortedGroupmates = new SortedList<>(groupmates,
+            Comparator.comparing(Groupmate::toString, String::compareToIgnoreCase));
 
     /**
      * Constructs an empty {@code GroupmateList}.
      */
-    public GroupmateList() {}
+    public GroupmateList() {
+    }
 
     /**
      * Constructs a {@code GroupmateList}.
@@ -31,16 +41,16 @@ public class GroupmateList {
     }
 
     /**
-     * Returns the groupmates as a {@code ObservableList<Groupmate>}.
+     * Returns groupmates as a {@code SortedList<Groupmate>}.
      *
-     * @return the groupmates as a {@code ObservableList<Groupmate>}.
+     * @return groupmates as a {@code SortedList<Groupmate>}.
      */
-    public ObservableList<Groupmate> getGroupmates() {
-        return groupmates;
+    public SortedList<Groupmate> getSortedGroupmates() {
+        return sortedGroupmates;
     }
 
     /**
-     *  Returns the number of groupmates in the {@code GroupmateList}.
+     * Returns the number of groupmates in the {@code GroupmateList}.
      *
      * @return the number of groupmates in the {@code GroupmateList}.
      */
@@ -49,22 +59,26 @@ public class GroupmateList {
     }
 
     /**
-     *  Returns the {@code Groupmate} at the specified position in this {@code GroupmateList}.
+     * Returns the {@code Groupmate} at the specified position in the sorted {@code GroupmateList}.
      *
-     * @return the {@code Groupmate} at the specified position in this {@code GroupmateList}.
+     * @return the {@code Groupmate} at the specified position in the sorted {@code GroupmateList}.
      */
     public Groupmate get(int index) {
-        return groupmates.get(index);
+        int groupmatesIndex = sortedGroupmates.getSourceIndex(index);
+
+        return groupmates.get(groupmatesIndex);
     }
 
     /**
      * Deletes a {@code Groupmate} from this {@code GroupmateList}.
      *
-     * @param i Index of {@code Groupmate} to be deleted.
+     * @param i Index of {@code Groupmate} in the sorted list to be deleted.
      */
     public void delete(Integer i) {
         requireNonNull(i);
-        groupmates.remove(i.intValue());
+
+        int groupmatesIndex = sortedGroupmates.getSourceIndex(i);
+        groupmates.remove(groupmatesIndex);
     }
 
     /**
@@ -73,7 +87,7 @@ public class GroupmateList {
      * @return A copy of this {@code GroupmateList}
      */
     public GroupmateList getCopy() {
-        return new GroupmateList(getGroupmates());
+        return new GroupmateList(getSortedGroupmates());
     }
 
     /**
@@ -95,15 +109,16 @@ public class GroupmateList {
     }
 
     /**
-     * Set the {@code Groupmate} specified by index with a new {@code Groupmate}.
+     * Set the {@code Groupmate} specified by index in the sorted list with a new {@code Groupmate}.
      *
-     * @param i index number specifies the target {@code Groupmate}.
+     * @param i index number specifies the target {@code Groupmate} in the sorted list.
      * @param groupmate new {@code Groupmate} for this index.
      */
     public void setGroupmate(Integer i, Groupmate groupmate) {
         requireAllNonNull(groupmate, i);
 
-        this.groupmates.set(i, groupmate);
+        int groupmatesIndex = sortedGroupmates.getSourceIndex(i);
+        this.groupmates.set(groupmatesIndex, groupmate);
     }
 
     /**
