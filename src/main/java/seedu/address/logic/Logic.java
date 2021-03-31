@@ -10,7 +10,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyDatesBook;
 import seedu.address.model.date.ImportantDate;
-import seedu.address.model.person.education.lesson.Lesson;
+import seedu.address.model.lesson.Lesson;
 import seedu.address.model.person.Person;
 
 /**

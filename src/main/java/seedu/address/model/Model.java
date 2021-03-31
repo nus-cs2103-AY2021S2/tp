@@ -7,7 +7,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.date.ImportantDate;
-import seedu.address.model.person.education.lesson.Lesson;
+import seedu.address.model.lesson.Lesson;
 import seedu.address.model.person.Person;
 
 /**

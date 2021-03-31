@@ -6,10 +6,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GUARDIAN_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GUARDIAN_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSON;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_LEVEL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-//import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
@@ -24,16 +22,14 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.lesson.Lesson;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.education.School;
-import seedu.address.model.person.education.lesson.Lesson;
-import seedu.address.model.person.education.level.Level;
-import seedu.address.model.person.education.tag.Tag;
-
+import seedu.address.model.person.School;
+import seedu.address.model.tag.Tag;
 
 /**
  * Edits the details of an existing student in TutorsPet.
@@ -53,7 +49,6 @@ public class EditCommand extends Command {
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_GUARDIAN_NAME + "GUARDIAN_NAME] "
             + "[" + PREFIX_GUARDIAN_PHONE + "GUARDIAN_PHONE] "
-            + "[" + PREFIX_LEVEL + "LEVEL] "
             + "[" + PREFIX_TAG + "TAG]... "
             + "[" + PREFIX_LESSON + "LESSON]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
@@ -134,13 +129,11 @@ public class EditCommand extends Command {
                 ? editPersonDescriptor.getGuardianName() : personToEdit.getGuardianName();
         Optional<Phone> updatedGuardianPhone = editPersonDescriptor.getGuardianPhone().isPresent()
                 ? editPersonDescriptor.getGuardianPhone() : personToEdit.getGuardianPhone();
-        Optional<Level> updatedLevel = editPersonDescriptor.getLevel().isPresent()
-                ? editPersonDescriptor.getLevel() : personToEdit.getLevel();
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Set<Lesson> updatedLessons = editPersonDescriptor.getLessons().orElse(personToEdit.getLessons());
 
         return new Person(updatedName, updatedPhone, updatedSchool, updatedEmail, updatedAddress,
-                updatedGuardianName, updatedGuardianPhone, updatedLevel, updatedTags, updatedLessons);
+                updatedGuardianName, updatedGuardianPhone, updatedTags, updatedLessons);
     }
 
     @Override
@@ -173,7 +166,6 @@ public class EditCommand extends Command {
         private Optional<Address> address = Optional.empty();
         private Optional<Name> guardianName = Optional.empty();
         private Optional<Phone> guardianPhone = Optional.empty();
-        private Optional<Level> level = Optional.empty();
         private Set<Tag> tags;
         private Set<Lesson> lessons;
 
@@ -191,7 +183,6 @@ public class EditCommand extends Command {
             setAddress(toCopy.address);
             setGuardianName(toCopy.guardianName);
             setGuardianPhone(toCopy.guardianPhone);
-            setLevel(toCopy.level);
             setTags(toCopy.tags);
             setLessons(toCopy.lessons);
         }
@@ -259,14 +250,6 @@ public class EditCommand extends Command {
 
         public Optional<Phone> getGuardianPhone() {
             return guardianPhone;
-        }
-
-        public void setLevel(Optional<Level> level) {
-            this.level = level;
-        }
-
-        public Optional<Level> getLevel() {
-            return level;
         }
 
         /**

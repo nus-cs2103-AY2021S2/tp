@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.education.lesson.Lesson;
+import seedu.address.model.lesson.Lesson;
 
 /**
  * Jackson-friendly version of {@link Lesson}.

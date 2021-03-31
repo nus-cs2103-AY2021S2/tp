@@ -15,7 +15,7 @@ import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.date.ImportantDate;
-import seedu.address.model.person.education.lesson.Lesson;
+import seedu.address.model.lesson.Lesson;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.comparators.ImportantDateDetailsComparator;
 

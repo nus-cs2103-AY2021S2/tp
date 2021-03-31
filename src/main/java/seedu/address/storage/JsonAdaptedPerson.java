@@ -11,15 +11,14 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.lesson.Lesson;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.education.School;
-import seedu.address.model.person.education.lesson.Lesson;
-import seedu.address.model.person.education.level.Level;
-import seedu.address.model.person.education.tag.Tag;
+import seedu.address.model.person.School;
+import seedu.address.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -33,7 +32,6 @@ class JsonAdaptedPerson {
     private final String school;
     private final String email;
     private final String address;
-    private final String level;
     private final String guardianName;
     private final String guardianPhone;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
@@ -48,7 +46,6 @@ class JsonAdaptedPerson {
                              @JsonProperty("address") String address,
                              @JsonProperty("guardianName") String guardianName,
                              @JsonProperty("guardianPhone") String guardianPhone,
-                             @JsonProperty("level") String level,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                              @JsonProperty("lessons") List<JsonAdaptedLesson> lessons) {
         this.name = name;
@@ -58,7 +55,6 @@ class JsonAdaptedPerson {
         this.address = address;
         this.guardianName = guardianName;
         this.guardianPhone = guardianPhone;
-        this.level = level;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -97,11 +93,6 @@ class JsonAdaptedPerson {
             guardianPhone = source.getGuardianPhone().get().value;
         } else {
             guardianPhone = "";
-        }
-        if (source.getLevel().isPresent()) {
-            level = source.getLevel().get().level;
-        } else {
-            level = "";
         }
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -185,19 +176,10 @@ class JsonAdaptedPerson {
         final Optional<Phone> modelGuardianPhone = guardianPhone.equals("") ? Optional.empty()
                 : Optional.of(new Phone(guardianPhone));
 
-        if (level == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Level.class.getSimpleName()));
-        }
-        if (!level.equals("") && !Level.isValidLevel(level)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
-        }
-        final Optional<Level> modelLevel = level.equals("") ? Optional.empty()
-                : Optional.of(new Level(level));
-
         final Set<Tag> modelTags = new HashSet<>(personTags);
         final Set<Lesson> modelLessons = new HashSet<>(personLessons);
         return new Person(modelName, modelPhone, modelSchool, modelEmail, modelAddress, modelGuardianName,
-                modelGuardianPhone, modelLevel, modelTags, modelLessons);
+                modelGuardianPhone, modelTags, modelLessons);
     }
 
 }

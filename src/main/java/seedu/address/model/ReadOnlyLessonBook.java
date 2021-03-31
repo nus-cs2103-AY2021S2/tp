@@ -1,7 +1,7 @@
 package seedu.address.model;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.person.education.lesson.Lesson;
+import seedu.address.model.lesson.Lesson;
 
 /**
  * Unmodifiable view of a lesson book

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.function.Predicate;
 
 import seedu.address.model.person.Person;
-import seedu.address.model.person.education.tag.Tag;
+import seedu.address.model.tag.Tag;
 
 public class HasTagPredicate implements Predicate<Person> {
 

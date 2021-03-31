@@ -3,8 +3,8 @@ package seedu.address.model.person.predicate;
 import java.util.ArrayList;
 import java.util.function.Predicate;
 
+import seedu.address.model.lesson.Lesson;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.education.lesson.Lesson;
 
 public class HasLessonPredicate implements Predicate<Person> {
 

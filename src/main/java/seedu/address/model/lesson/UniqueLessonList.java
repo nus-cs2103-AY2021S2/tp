@@ -11,7 +11,6 @@ import javafx.collections.ObservableList;
 import seedu.address.model.lesson.exceptions.DuplicateLessonException;
 import seedu.address.model.lesson.exceptions.LessonNotFoundException;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.education.lesson.Lesson;
 
 /**
  * A list of lessons that enforces uniqueness between its elements and does not allow nulls.

@@ -4,15 +4,14 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
+import seedu.address.model.lesson.Lesson;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.education.School;
-import seedu.address.model.person.education.lesson.Lesson;
-import seedu.address.model.person.education.level.Level;
-import seedu.address.model.person.education.tag.Tag;
+import seedu.address.model.person.School;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -27,7 +26,6 @@ public class PersonBuilder {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_GUARDIAN_NAME = "Ben Bee";
     public static final String DEFAULT_GUARDIAN_PHONE = "88886666";
-    public static final String DEFAULT_LEVEL = "sec3";
 
     private Name name;
     private Phone phone;
@@ -36,7 +34,6 @@ public class PersonBuilder {
     private Optional<Address> address;
     private Optional<Name> guardianName;
     private Optional<Phone> guardianPhone;
-    private Optional<Level> level;
     private Set<Tag> tags;
     private Set<Lesson> lessons;
 
@@ -51,7 +48,6 @@ public class PersonBuilder {
         address = Optional.of(new Address(DEFAULT_ADDRESS));
         guardianName = Optional.of(new Name(DEFAULT_GUARDIAN_NAME));
         guardianPhone = Optional.of(new Phone(DEFAULT_GUARDIAN_PHONE));
-        level = Optional.of(new Level(DEFAULT_LEVEL));
         tags = new HashSet<>();
         lessons = new HashSet<>();
     }
@@ -67,7 +63,6 @@ public class PersonBuilder {
         address = personToCopy.getAddress();
         guardianName = personToCopy.getGuardianName();
         guardianPhone = personToCopy.getGuardianPhone();
-        level = personToCopy.getLevel();
         tags = new HashSet<>(personToCopy.getTags());
         lessons = new HashSet<>(personToCopy.getLessons());
     }
@@ -145,19 +140,11 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Level} of the {@code Person} that we are building.
-     */
-    public PersonBuilder withLevel(String level) {
-        this.level = Optional.of(new Level(level));
-        return this;
-    }
-
-    /**
      * Builds the {@code Person}.
      */
     public Person build() {
         return new Person(name, phone, school, email,
-                address, guardianName, guardianPhone, level, tags, lessons);
+                address, guardianName, guardianPhone, tags, lessons);
     }
 
 }

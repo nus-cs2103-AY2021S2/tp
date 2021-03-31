@@ -2,7 +2,7 @@ package seedu.address.model.person.predicate;
 
 import java.util.function.Predicate;
 
-import seedu.address.model.person.education.lesson.Lesson;
+import seedu.address.model.lesson.Lesson;
 
 /**
  * Tests that a {@code Person}'s {@code Lesson} matches the keyword given.
