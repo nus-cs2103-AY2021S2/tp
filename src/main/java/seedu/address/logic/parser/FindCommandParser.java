@@ -65,20 +65,21 @@ public class FindCommandParser implements Parser<FindCommand> {
     public FindCommand parseFindOptions(String option, String optionArgs) throws ParseException {
         // get keywords
         List<String> keywords = Arrays.asList(optionArgs.split("\\s+"));
-        if (option.equals(OPTION_NAME)) { // find by name
+        switch (option) {
+        case OPTION_NAME: // find by name
             return new FindCommand(new NameContainsKeywordsPredicate(keywords));
-        } else if (option.equals(OPTION_ADDRESS)) { // find by address
+        case OPTION_ADDRESS: // find by address
             return new FindCommand(new AddressContainsKeywordsPredicate(keywords));
-        } else if (option.equals(OPTION_PHONE)) { // find by phone
+        case OPTION_PHONE: // find by phone
             return new FindCommand(new PhoneContainsKeywordsPredicate(keywords));
-        } else if (option.equals(OPTION_EMAIL)) { // find by email
+        case OPTION_EMAIL: // find by email
             return new FindCommand(new EmailContainsKeywordsPredicate(keywords));
-        } else if (option.equals(OPTION_TAG)) { // find by tag
+        case OPTION_TAG: // find by tag
             // get tags
             ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(optionArgs, PREFIX_OPTION);
             Set<Tag> tagSet = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
             return new FindCommand(new TagsMatchKeywordPredicate(tagSet));
-        } else {
+        default:
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
@@ -86,8 +87,8 @@ public class FindCommandParser implements Parser<FindCommand> {
 
     /**
      * Parses args in find by all context
-     * @param trimmedArgs
-     * @return
+     * @param trimmedArgs args without trailing whitespace
+     * @return {@code FindCommand}
      */
     public FindCommand parseFindAll(String trimmedArgs) {
         String[] keywords = trimmedArgs.split("\\s+");
