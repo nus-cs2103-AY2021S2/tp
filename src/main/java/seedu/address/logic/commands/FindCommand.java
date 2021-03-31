@@ -41,6 +41,10 @@ public class FindCommand extends Command {
         return new CommandResult(showMessage());
     }
 
+    //is this the correct class to have this method? Listcommand also has the message in its class tho
+    /**
+     * Returns the message to be shown
+     */
     public String showMessage() {
         String result = "Showing garments that match the following:";
         if (predicates.isPrefixValuePresent(PREFIX_NAME)) {
