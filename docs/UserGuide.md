@@ -3,11 +3,13 @@ layout: page
 title: User Guide
 ---
 
-Car@leads is a **desktop app for managing customer contacts, optimized for use via a Command Line Interface** (CLI) <br>
-while still having the benefits of a Graphical User Interface (GUI).
+#Welcome to Car@leads
+Car@leads is a **desktop app for a car salesperson to manage customer contacts** (CLI).
+<br> Users can add new customer contacts which include details such as customer's car brand and car type preferences along with other personal information.
+<br> Users can filter through the customer data using specific filters, such as filtering out customers who prefer a specific car brand and follow up with them for sales opportunities.
+<br> Car@leads is optimized for use via a Command Line Interface, while still having the benefits of a Graphical User Interface (GUI).
 <br> If you can type fast, Car@leads can get your contact management tasks done faster than traditional GUI apps.
-<br> Allows car salesperson user to create customer contacts which includes customer's car brand and type preferences.
-<br> Car salesperson user can filter through the customer data having specific preferences and follow up with them.
+
 
 * Table of Contents
 {:toc}
