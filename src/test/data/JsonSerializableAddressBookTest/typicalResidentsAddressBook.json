@@ -110,28 +110,28 @@
       "category": "Furniture"
     },
     {
-      "roomNumber": "20-109",
+      "roomNumber": "11-110",
       "description": "Flickering light",
       "timestamp": "2021/03/20 8:35am",
       "status": "closed",
       "category": "Electrical"
     },
     {
-      "roomNumber": "15-112",
+      "roomNumber": "09-100",
       "description": "Chair cylinder exploded",
       "timestamp": "2020/12/11 6:53pm",
       "status": "pending",
       "category": "Furniture"
     },
     {
-      "roomNumber": "04-119",
+      "roomNumber": "09-110",
       "description": "Bed soaked from rain due to open window",
       "timestamp": "2020/11/29 11:23pm",
       "status": "closed",
       "category": "Furniture"
     },
     {
-      "roomNumber": "08-104",
+      "roomNumber": "12-110",
       "description": "Cockroach everywhere",
       "timestamp": "2020/08/10 8:48am",
       "status": "pending",

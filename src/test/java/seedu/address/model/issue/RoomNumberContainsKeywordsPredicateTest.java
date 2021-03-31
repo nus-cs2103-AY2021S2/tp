@@ -78,7 +78,7 @@ public class RoomNumberContainsKeywordsPredicateTest {
                         IssueBuilder.DEFAULT_TIMESTAMP,
                         IssueBuilder.DEFAULT_STATUS,
                         IssueBuilder.DEFAULT_CATEGORY));
-        assertFalse(predicate.test(new IssueBuilder().withRoomNumber("10-100").build()));
+        assertFalse(predicate.test(new IssueBuilder().withRoomNumber("01-001").build()));
     }
 
 }
