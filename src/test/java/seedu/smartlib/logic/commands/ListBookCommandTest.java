@@ -36,4 +36,5 @@ public class ListBookCommandTest {
         showBookAtIndex(model, INDEX_FIRST_READER);
         assertCommandSuccess(new ListBookCommand(), model, ListBookCommand.MESSAGE_SUCCESS, expectedModel);
     }
+
 }

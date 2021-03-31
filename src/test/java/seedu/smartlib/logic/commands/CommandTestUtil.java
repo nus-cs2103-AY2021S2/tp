@@ -37,6 +37,7 @@ import seedu.smartlib.testutil.EditReaderDescriptorBuilder;
 public class CommandTestUtil {
 
     //=========== Books ==================================================================================
+
     public static final String VALID_NAME_HARRY = "Harry Potter";
     public static final String VALID_NAME_MAZE = "Maze Runner";
     public static final String VALID_AUTHOR_HARRY = "JK Rowling";
@@ -64,7 +65,9 @@ public class CommandTestUtil {
     public static final String INVALID_PUBLISHER_DESC = " " + PREFIX_PUBLISHER;
     public static final String INVALID_ISBN_DESC = " " + PREFIX_ISBN + "837aa";
     public static final String INVALID_GENRE_DESC = " " + PREFIX_GENRE + "Sci-Fi";
+
     //=========== Readers ==================================================================================
+
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_PHONE_AMY = "11111111";
@@ -150,6 +153,7 @@ public class CommandTestUtil {
         assertEquals(expectedSmartLib, actualModel.getSmartLib());
         assertEquals(expectedFilteredList, actualModel.getFilteredReaderList());
     }
+
     /**
      * Updates {@code model}'s filtered list to show only the reader at the given {@code targetIndex} in the
      * {@code model}'s smartlib.
@@ -190,6 +194,5 @@ public class CommandTestUtil {
         model.updateFilteredRecordList((new RecordContainsBarcodePredicate(barcode)));
         assertEquals(1, model.getFilteredRecordList().size());
     }
-
 
 }
