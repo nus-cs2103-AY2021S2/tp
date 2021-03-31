@@ -82,7 +82,7 @@ Parameters:
   positive integer (e.g. 1,2,3,...)
 - At least one of the optional fields must be provided
 - Existing reviews in the FoodDiary entry (at the specified `INDEX`) will be added on to the input reviews
-- Existing price/price range in the FoodDiary entry (at the specified `INDEX`) will be updated according the 
+- Existing price/price range in the FoodDiary entry (at the specified `INDEX`) will be updated according the
 input price
 
 Examples:
@@ -112,7 +112,8 @@ Finds FoodDiary entries whose names, ratings, price, address, categories and sch
 
 - More than one keyword per field can be accepted as parameters.
 - Different fields can also be simultaneously accepted as parameters.
-- For the price field, a price range can also be accepted as a parameter, and any FoodDiary entry that contains at least one of the prices within the specified range will be returned as a search result.
+- For the price field, a price range can also be accepted as a parameter, and any
+ FoodDiary entry that contains at least one of the prices within the specified range will be returned as a search result.
 
 Format: `find <KEYWORD> ...`
 
@@ -140,10 +141,10 @@ Finds for FoodDiary entries whose names, ratings, price, address, categories and
 
 - More than one keyword per field can be accepted as parameters.
 - Different fields can also be simultaneously accepted as parameters.
-- For the price field, a price range can also be accepted as a parameter, and any FoodDiary entry that contains at least 
-one of the prices within the specified range will be returned as a search result.
+- For the price field, a price range can also be accepted as a parameter, and any FoodDiary entry that contains at least
+ one of the prices within the specified range will be returned as a search result.
 - **Unlike the find feature, the findall feature only returns search results of FoodDiary entries that contain all of
-the provided keywords.**
+ the provided keywords.**
 
 Format: `findall <KEYWORD> ...`
 
@@ -284,7 +285,7 @@ Action | Keyboard Shortcut| Windows where Keyboard shortcut is available
 :-------:|:------------------:|:---------------------------------------------:
 **Exit/Close Window** | `ESC` | Main Window, View Window, Revise Window, Help Window
 **Open Help Window** | `F1` | Main Window
-**Skip through text fields in Revise Window** | `TAB` | Revise Window 
+**Skip through text fields in Revise Window** | `TAB` | Revise Window
 **Save Changes in Revise Window** | `Ctrl + S (Windows OS)` or `Command + S (macOS)` | Revise Window
 
 ## Glossary
