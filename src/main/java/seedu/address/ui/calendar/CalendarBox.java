@@ -1,5 +1,7 @@
 package seedu.address.ui.calendar;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.time.LocalDate;
 import java.util.logging.Logger;
 
@@ -48,6 +50,7 @@ public class CalendarBox extends UiPart<Region> {
      */
     public CalendarBox(LocalDate dateTime, EventList events) {
         super(FXML);
+        requireAllNonNull(dateTime, events);
         this.dateTime = dateTime;
         this.events = events;
         initializeCalenderBoxInfo(dateTime);

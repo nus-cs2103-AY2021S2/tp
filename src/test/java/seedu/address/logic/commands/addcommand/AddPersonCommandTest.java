@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.addcommand;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.logic.commands.addcommand.AddPersonCommand;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyRemindMe;
@@ -175,6 +175,11 @@ public class AddPersonCommandTest {
 
         @Override
         public Module getModule(int index) {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public void setModule(Module target, Module editedMod) {
             throw new AssertionError("This method should not be called");
         }
 

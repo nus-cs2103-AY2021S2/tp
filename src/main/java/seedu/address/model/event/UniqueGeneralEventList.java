@@ -12,7 +12,6 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.model.event.exceptions.DuplicateGeneralEventException;
 import seedu.address.model.event.exceptions.GeneralEventNotFoundException;
-import seedu.address.model.module.exceptions.ModuleNotFoundException;
 
 public class UniqueGeneralEventList implements Iterable<GeneralEvent> {
 
@@ -99,7 +98,7 @@ public class UniqueGeneralEventList implements Iterable<GeneralEvent> {
     public void remove(GeneralEvent toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new ModuleNotFoundException();
+            throw new GeneralEventNotFoundException();
         }
     }
 

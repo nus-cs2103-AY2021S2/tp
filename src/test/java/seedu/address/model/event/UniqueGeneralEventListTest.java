@@ -14,7 +14,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.event.exceptions.DuplicateGeneralEventException;
 import seedu.address.model.event.exceptions.GeneralEventNotFoundException;
 import seedu.address.model.module.Description;
-import seedu.address.model.module.exceptions.ModuleNotFoundException;
 
 public class UniqueGeneralEventListTest {
     private final Description description1 = new Description("Event1");
@@ -101,7 +100,7 @@ public class UniqueGeneralEventListTest {
         // last event -> returns event3
         assertEquals(event3, list2.getGeneralEvent(list2.size()));
 
-        // index < 1 > -> throws
+        // index < 1  -> throws
         assertThrows(GeneralEventNotFoundException.class, () -> list2.getGeneralEvent(0));
 
         // index > size -> throws
@@ -148,11 +147,12 @@ public class UniqueGeneralEventListTest {
         list1.add(event3);
 
         // remove event not found -> throws
-        assertThrows(ModuleNotFoundException.class, () -> list1.remove(event4));
+        assertThrows(GeneralEventNotFoundException.class, () -> list1.remove(event4));
 
         UniqueGeneralEventList list2 = new UniqueGeneralEventList();
         list2.add(event2);
         list2.add(event3);
+
         list1.remove(event1);
         assertEquals(list1, list2);
     }

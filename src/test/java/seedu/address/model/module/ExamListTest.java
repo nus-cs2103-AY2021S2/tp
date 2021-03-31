@@ -1,5 +1,6 @@
 package seedu.address.model.module;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EXAM_DATETIME_1;
@@ -14,26 +15,26 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.tag.Tag;
 
 public class ExamListTest {
-    private ExamList examList1 = new ExamList();
+    private final ExamList examList1 = new ExamList();
     private ExamList examList2 = new ExamList();
-    private LocalDateTime date1 = LocalDateTime.parse(VALID_EXAM_DATETIME_1,
+    private final LocalDateTime date1 = LocalDateTime.parse(VALID_EXAM_DATETIME_1,
             Exam.EXAM_DATE_FORMATTER);
-    private LocalDateTime date2 = LocalDateTime.parse(VALID_EXAM_DATETIME_2,
+    private final LocalDateTime date2 = LocalDateTime.parse(VALID_EXAM_DATETIME_2,
             Exam.EXAM_DATE_FORMATTER);
-    private Exam exam1 = new Exam(date1, new Tag("mod1"));
-    private Exam exam2 = new Exam(date2, new Tag("mod2"));
+    private final Exam exam1 = new Exam(date1, new Tag("mod1"));
+    private final Exam exam2 = new Exam(date2, new Tag("mod2"));
 
     @Test
     public void add() {
         // empty list add one exam -> returns true
         examList1.add(exam1);
         examList2.add(exam2);
-        assertTrue(examList1.size() == 1);
-        assertTrue(examList2.size() == 1);
+        assertEquals(examList1.size(), 1);
+        assertEquals(examList2.size(), 1);
 
         // size of list is 2
         examList1.add(exam2);
-        assertTrue(examList1.size() == 2);
+        assertEquals(examList1.size(), 2);
     }
 
     @Test
@@ -101,26 +102,26 @@ public class ExamListTest {
     @Test
     public void getIndex() {
         // empty list -> returns -1
-        assertTrue(examList1.getIndex(exam1) == -1);
+        assertEquals(-1, examList1.getIndex(exam1));
 
         // null -> returns -1
         examList1.add(exam1);
-        assertTrue(examList1.getIndex(null) == -1);
+        assertEquals(-1, examList1.getIndex(null));
 
         // has exam -> returns 0
-        assertTrue(examList1.getIndex(exam1) == 0);
+        assertEquals(examList1.getIndex(exam1), 0);
 
         // doesn't have exam -> returns -1
-        assertTrue(examList1.getIndex(exam2) == -1);
+        assertEquals(-1, examList1.getIndex(exam2));
 
         // multiple exams
         examList1.add(exam2);
 
         // has exam at index 0 -> returns 0
-        assertTrue(examList1.getIndex(exam1) == 0);
+        assertEquals(examList1.getIndex(exam1), 0);
 
         // has exam at index 1 -> return 1
-        assertTrue(examList1.getIndex(exam2) == 1);
+        assertEquals(examList1.getIndex(exam2), 1);
     }
 
     @Test
@@ -237,5 +238,18 @@ public class ExamListTest {
                 + "1. " + exam1.toString() + "\n"
                 + "2. " + exam2.toString() + "\n";
         assertTrue(examList1.toString().equals(output));
+    }
+
+    @Test
+    public void set() {
+        ExamList exams1 = new ExamList();
+        ExamList exams2 = new ExamList();
+
+        exams1.add(exam1);
+        exams2.add(exam2);
+
+        // set exam1 to exam2 at index 0
+        exams1.set(0, exam2);
+        assertEquals(exams1, exams2);
     }
 }

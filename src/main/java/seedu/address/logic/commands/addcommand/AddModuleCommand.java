@@ -11,7 +11,7 @@ import seedu.address.model.module.Module;
 public class AddModuleCommand extends AddCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a module to RemindMe."
-            + "Parameters: "
+            + "\nParameters: "
             + PREFIX_MODULE + "MODULE TITLE\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_MODULE + "CS2103";

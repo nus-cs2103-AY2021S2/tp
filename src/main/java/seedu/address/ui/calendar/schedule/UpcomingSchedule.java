@@ -1,5 +1,6 @@
 package seedu.address.ui.calendar.schedule;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.ScheduleUiUtil.CURRENT_TIME_POINTER_PADDING;
 import static seedu.address.commons.util.ScheduleUiUtil.calendarTextToDate;
 import static seedu.address.commons.util.ScheduleUiUtil.getMarginFromTime;
@@ -59,6 +60,7 @@ public class UpcomingSchedule extends UiPart<Region> implements EventHandler<Mou
      */
     public UpcomingSchedule(CalendarStorage calendarStorage) {
         super(FXML);
+        requireNonNull(calendarStorage);
         this.calendarStorage = calendarStorage;
         currentDay = LocalDate.now();
         timeScale = new TimeScale();

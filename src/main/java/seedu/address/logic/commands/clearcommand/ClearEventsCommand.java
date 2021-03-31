@@ -13,7 +13,7 @@ public class ClearEventsCommand extends ClearCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Clears ALL general events in RemindMe. "
-            + "Parameters: " + PREFIX_GENERAL_EVENT
+            + "\nParameters: " + PREFIX_GENERAL_EVENT
             + "\nExample: " + COMMAND_WORD + " "
             + PREFIX_GENERAL_EVENT;
 

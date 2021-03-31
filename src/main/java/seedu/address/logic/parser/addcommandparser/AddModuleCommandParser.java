@@ -1,5 +1,6 @@
 package seedu.address.logic.parser.addcommandparser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
@@ -27,10 +28,17 @@ public class AddModuleCommandParser extends AddCommandParser implements Parser<A
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_MODULE, PREFIX_EXAM, PREFIX_ASSIGNMENT);
 
-        Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_MODULE).get());
+        try {
 
-        Module module = new Module(title);
+            Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_MODULE)
+                    .orElseThrow(() -> new ParseException("")));
 
-        return new AddModuleCommand(module);
+            Module module = new Module(title);
+
+            return new AddModuleCommand(module);
+        } catch (ParseException e) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, e.getMessage()
+            + "\n" + AddModuleCommand.MESSAGE_USAGE));
+        }
     }
 }

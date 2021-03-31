@@ -120,6 +120,13 @@ public interface Model {
     Module getModule(int index);
 
     /**
+     * Replaces the given person {@code target} with {@code editedMod}.
+     * {@code target} must exist in the RemindMe.
+     * The person identity of {@code editedMod} must not be the same as another existing person in the RemindMe.
+     */
+    void setModule(Module target, Module editedMod);
+
+    /**
      * Returns true if an assignment that has the same description and deadline
      * as {@code assignment} exists in the same module.
      */

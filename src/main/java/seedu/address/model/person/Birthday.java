@@ -47,11 +47,6 @@ public class Birthday extends Event {
     }
 
     @Override
-    public int getDuration() {
-        return 0;
-    }
-
-    @Override
     public String toString() {
         return this.birthday.format(LocalDateTimeUtil.DATE_FORMATTER);
     }

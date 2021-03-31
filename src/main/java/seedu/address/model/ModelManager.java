@@ -150,7 +150,8 @@ public class ModelManager implements Model {
         return remindMe.equals(other.remindMe)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons)
-                && filteredModules.equals(other.filteredModules);
+                && filteredModules.equals(other.filteredModules)
+                && filteredEvents.equals(other.filteredEvents);
     }
 
     //=========== RemindMe =============================================================
@@ -217,6 +218,7 @@ public class ModelManager implements Model {
     public void addModule(Module module) {
         requireNonNull(module);
         remindMe.addModule(module);
+        updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
     }
 
     @Override
@@ -238,6 +240,12 @@ public class ModelManager implements Model {
     public void editModule(int index, Title title) {
         requireNonNull(title);
         remindMe.editModule(index, title);
+    }
+
+    @Override
+    public void setModule(Module target, Module editedMod) {
+        requireAllNonNull(target, editedMod);
+        remindMe.setModule(target, editedMod);
     }
 
     @Override
@@ -324,10 +332,12 @@ public class ModelManager implements Model {
     public void addEvent(GeneralEvent event) {
         requireNonNull(event);
         remindMe.addEvent(event);
+        updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
     }
 
     @Override
     public GeneralEvent getEvent(int index) {
         return remindMe.getEvent(index);
     }
+
 }

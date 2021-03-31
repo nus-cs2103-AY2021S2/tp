@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -25,6 +27,7 @@ public class ModuleListPanel extends UiPart<Region> {
      */
     public ModuleListPanel(ObservableList<Module> moduleList) {
         super(FXML);
+        requireNonNull(moduleList);
         moduleListView.setItems(moduleList);
         moduleListView.setCellFactory(listView -> new ModuleListViewCell());
     }

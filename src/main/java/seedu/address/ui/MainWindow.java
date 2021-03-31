@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.util.logging.Logger;
 
 import javafx.application.Platform;
@@ -66,7 +68,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     public MainWindow(Stage primaryStage, Logic logic) {
         super(FXML, primaryStage);
-
+        requireAllNonNull(primaryStage, logic);
         // Set dependencies
         this.primaryStage = primaryStage;
         // When main window is closed, all other window closes.
