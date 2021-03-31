@@ -24,6 +24,7 @@ import seedu.booking.model.booking.Booking;
 import seedu.booking.model.booking.Id;
 import seedu.booking.model.person.Email;
 import seedu.booking.model.person.Person;
+import seedu.booking.model.person.Phone;
 import seedu.booking.model.venue.Venue;
 import seedu.booking.model.venue.VenueName;
 import seedu.booking.testutil.VenueBuilder;
@@ -121,7 +122,7 @@ public class AddVenueCommandTest {
 
         @Override
         public void addBooking(Booking booking) {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -161,6 +162,11 @@ public class AddVenueCommandTest {
 
         @Override
         public boolean hasPersonWithEmail(Email email) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasPersonWithPhone(Phone phone) {
             throw new AssertionError("This method should not be called.");
         }
 

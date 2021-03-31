@@ -121,7 +121,7 @@ The `Model`,
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+* can save the booking system data in json format and read it back.
 
 ### Common classes
 
@@ -139,31 +139,31 @@ This section describes some noteworthy details on how certain features are imple
 
 The proposed undo/redo mechanism is facilitated by `VersionedBookingSystem`. It extends `BookingSystem` with an undo/redo history, stored internally as an `bookingSystemStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
-* `VersionedBookingSystem#commit()` — Saves the current address book state in its history.
-* `VersionedBookingSystem#undo()` — Restores the previous address book state from its history.
-* `VersionedBookingSystem#redo()` — Restores a previously undone address book state from its history.
+* `VersionedBookingSystem#commit()` — Saves the current booking system state in its history.
+* `VersionedBookingSystem#undo()` — Restores the previous booking system state from its history.
+* `VersionedBookingSystem#redo()` — Restores a previously undone booking system state from its history.
 
 These operations are exposed in the `Model` interface as `Model#commitBookingSystem()`, `Model#undoBookingSystem()` and `Model#redoBookingSystem()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedBookingSystem` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The user launches the application for the first time. The `VersionedBookingSystem` will be initialized with the initial booking system state, and the `currentStatePointer` pointing to that single booking system state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitBookingSystem()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `bookingSystemStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th person in the booking system. The `delete` command calls `Model#commitBookingSystem()`, causing the modified state of the booking system after the `delete 5` command executes to be saved in the `bookingSystemStateList`, and the `currentStatePointer` is shifted to the newly inserted booking system state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitBookingSystem()`, causing another modified address book state to be saved into the `bookingSystemStateList`.
+Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitBookingSystem()`, causing another modified booking system state to be saved into the `bookingSystemStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitBookingSystem()`, so the address book state will not be saved into the `bookingSystemStateList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitBookingSystem()`, so the booking system state will not be saved into the `bookingSystemStateList`.
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoBookingSystem()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoBookingSystem()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous booking system state, and restores the booking system to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
@@ -180,17 +180,17 @@ The following sequence diagram shows how the undo operation works:
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoBookingSystem()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+The `redo` command does the opposite — it calls `Model#redoBookingSystem()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the booking system to that state.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `bookingSystemStateList.size() - 1`, pointing to the latest address book state, then there are no undone BookingSystem states to restore. The `redo` command uses `Model#canRedoBookingSystem()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `bookingSystemStateList.size() - 1`, pointing to the latest booking system state, then there are no undone BookingSystem states to restore. The `redo` command uses `Model#canRedoBookingSystem()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitBookingSystem()`, `Model#undoBookingSystem()` or `Model#redoBookingSystem()`. Thus, the `bookingSystemStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the booking system, such as `list`, will usually not call `Model#commitBookingSystem()`, `Model#undoBookingSystem()` or `Model#redoBookingSystem()`. Thus, the `bookingSystemStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitBookingSystem()`. Since the `currentStatePointer` is not pointing at the end of the `bookingSystemStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitBookingSystem()`. Since the `currentStatePointer` is not pointing at the end of the `bookingSystemStateList`, all booking system states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
@@ -202,7 +202,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ##### Aspect: How undo & redo executes
 
-* **Alternative 1 (current choice):** Saves the entire address book.
+* **Alternative 1 (current choice):** Saves the entire booking system.
   * Pros: Easy to implement.
   * Cons: May have performance issues in terms of memory usage.
 
@@ -453,7 +453,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to edit information about a specific venue.
 2.  BookCoin To The Moon edits the venue information.
-
+3.  BookCoin To The Moon edits the corresponding booking information.
+    
     Use case ends.
 
 **Extensions**
@@ -476,6 +477,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The booking requested cannot be found.
     * 1a1. BookCoin To The Moon shows an error message.
+* 1b. The booker email does not exist in the system.
+    * 1b1. BookCoin To The Moon shows an error message.
+* 1c. The venue name does not exist in the system.
+    * 1c1. BookCoin To The Moon shows an error message.
+* 1d. The ending time is not later than the starting time.
+    * 1d1. BookCoin To The Moon shows an error message.
+* 1e. The time slot required has been booked already.
+    * 1e1. BookCoin To The Moon shows an error message.
 
   Use case ends.
 
@@ -486,6 +495,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to edit information about a specific booker.
 2.  BookCoin To The Moon edits the booker information.
+3.  BookCoin To The Moon edits the corresponding booking information.
 
     Use case ends.
 

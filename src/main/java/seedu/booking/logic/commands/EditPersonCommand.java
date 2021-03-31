@@ -38,13 +38,16 @@ public class EditPersonCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "TAG]\n"
             + "Example: " + COMMAND_WORD + " eo/johndoe@example.com "
             + PREFIX_EMAIL + "doe@example.com";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the booking system.";
+    public static final String MESSAGE_DUPLICATE_EMAIL =
+            "The email to be edited to belongs to another person in the booking system.";
+    public static final String MESSAGE_DUPLICATE_PHONE =
+            "The phone number to be edited to belongs to another person in the booking system.";
 
     private final Email email;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -73,8 +76,13 @@ public class EditPersonCommand extends Command {
         Person personToEdit = getPersonByEmail(email, lastShownList);
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (!personToEdit.getEmail().isSameEmail(editedPerson) && model.hasPersonWithEmail(editedPerson.getEmail())) {
+            throw new CommandException(MESSAGE_DUPLICATE_EMAIL);
+        }
+
+        if (!personToEdit.getPhone().equals(editedPerson.getPhone())
+                && model.hasPersonWithPhone(editedPerson.getPhone())) {
+            throw new CommandException(MESSAGE_DUPLICATE_PHONE);
         }
 
         model.setPerson(personToEdit, editedPerson);

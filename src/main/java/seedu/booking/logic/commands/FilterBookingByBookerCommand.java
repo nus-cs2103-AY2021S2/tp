@@ -15,9 +15,9 @@ public class FilterBookingByBookerCommand extends Command {
     public static final String COMMAND_WORD = "filter_booking_by_booker";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all bookings booked by the booker "
-            + "the specified booker name (case-sensitive) and displays them as a list.\n"
-            + "Parameters: n/bookerName\n"
-            + "Example: " + COMMAND_WORD + " n/John Rose";
+            + "the specified booker email and displays them as a list.\n"
+            + "Parameters: e/[EMAIL]\n"
+            + "Example: " + COMMAND_WORD + " e/JohnRose@abc.com";
 
     private final BookingContainsBookerPredicate predicate;
 

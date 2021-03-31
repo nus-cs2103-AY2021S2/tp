@@ -28,7 +28,7 @@ package seedu.booking.logic.commands;
 import seedu.booking.model.Model;
 
 /**
- * Changes the remark of an existing person in the address book.
+ * Changes the remark of an existing person in the booking system.
  */
 public class RemarkCommand extends Command {
 
@@ -292,7 +292,7 @@ While the changes to code may be minimal, the test data will have to be updated 
 
 <div markdown="span" class="alert alert-warning">
 
-:exclamation: You must delete BookingSystem’s storage file located at `/data/addressbook.json` before running it! Not doing so will cause BookingSystem to default to an empty address book!
+:exclamation: You must delete BookCoin’s storage file located at `/data/addressbook.json` before running it! Not doing so will cause BookCoin to default to an empty booking system!
 
 </div>
 

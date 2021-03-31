@@ -9,8 +9,8 @@ import static seedu.booking.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.booking.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.booking.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.booking.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.booking.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.booking.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.booking.testutil.TypicalIndexes.INDEX_FIRST;
+import static seedu.booking.testutil.TypicalIndexes.INDEX_SECOND;
 import static seedu.booking.testutil.TypicalPersons.getTypicalBookingSystem;
 
 import org.junit.jupiter.api.Test;
@@ -35,7 +35,7 @@ public class EditPersonCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Person editedPerson = new PersonBuilder().build();
+        Person editedPerson = new PersonBuilder().withEmail(VALID_EMAIL_AMY_GMAIL).withPhone("33333333").build();
         EditPersonDescriptor descriptor = new EditPersonCommandDescriptorBuilder(editedPerson).build();
         EditPersonCommand editPersonCommand = new EditPersonCommand(new Email(VALID_EMAIL_AMY_GMAIL), descriptor);
 
@@ -52,7 +52,7 @@ public class EditPersonCommandTest {
     public void execute_noFieldSpecifiedUnfilteredList_success() {
         EditPersonCommand editPersonCommand =
                 new EditPersonCommand(new Email(VALID_EMAIL_AMY_GMAIL), new EditPersonDescriptor());
-        Person editedPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person editedPerson = model.getFilteredPersonList().get(INDEX_FIRST.getZeroBased());
 
         String expectedMessage = String.format(EditPersonCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
@@ -63,9 +63,9 @@ public class EditPersonCommandTest {
 
     @Test
     public void execute_filteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showPersonAtIndex(model, INDEX_FIRST);
 
-        Person personInFilteredList = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person personInFilteredList = model.getFilteredPersonList().get(INDEX_FIRST.getZeroBased());
         Person editedPerson = new PersonBuilder(personInFilteredList).withName(VALID_NAME_BOB).build();
         EditPersonCommand editPersonCommand = new EditPersonCommand(new Email(VALID_EMAIL_AMY_GMAIL),
                 new EditPersonCommandDescriptorBuilder().withName(VALID_NAME_BOB).build());
@@ -89,14 +89,14 @@ public class EditPersonCommandTest {
 
     @Test
     public void execute_duplicatePersonFilteredList_failure() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showPersonAtIndex(model, INDEX_FIRST);
 
-        // edit person in filtered list into a duplicate in address book
-        Person personInList = model.getBookingSystem().getPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
+        // edit person in filtered list into a duplicate in booking system
+        Person personInList = model.getBookingSystem().getPersonList().get(INDEX_SECOND.getZeroBased());
         EditPersonCommand editPersonCommand = new EditPersonCommand(new Email(VALID_EMAIL_AMY_GMAIL),
                 new EditPersonCommandDescriptorBuilder(personInList).build());
 
-        assertCommandFailure(editPersonCommand, model, EditPersonCommand.MESSAGE_DUPLICATE_PERSON);
+        assertCommandFailure(editPersonCommand, model, EditPersonCommand.MESSAGE_DUPLICATE_EMAIL);
     }
 
     @Test

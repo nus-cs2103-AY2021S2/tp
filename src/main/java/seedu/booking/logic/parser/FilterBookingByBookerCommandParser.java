@@ -1,18 +1,19 @@
 package seedu.booking.logic.parser;
 
 import static seedu.booking.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.booking.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_EMAIL;
 
 import java.util.stream.Stream;
 
 import seedu.booking.logic.commands.FilterBookingByBookerCommand;
 import seedu.booking.logic.parser.exceptions.ParseException;
 import seedu.booking.model.booking.BookingContainsBookerPredicate;
+import seedu.booking.model.person.Email;
 
 /**
  * Parses input arguments and creates a new FilterBookingByBookerCommand object.
  */
-public class FilterBookingByBookerCommandParser {
+public class FilterBookingByBookerCommandParser implements Parser<FilterBookingByBookerCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the FilterBookingByBookerCommand
@@ -21,16 +22,16 @@ public class FilterBookingByBookerCommandParser {
      */
     public FilterBookingByBookerCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME);
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
-                || argMultimap.getValue(PREFIX_NAME).isEmpty()) {
+                ArgumentTokenizer.tokenize(args, PREFIX_EMAIL);
+        if (!arePrefixesPresent(argMultimap, PREFIX_EMAIL)
+                || argMultimap.getValue(PREFIX_EMAIL).isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     FilterBookingByBookerCommand.MESSAGE_USAGE));
         }
 
-        String bookerName = argMultimap.getValue(PREFIX_NAME).get();
+        Email email = new Email(argMultimap.getValue(PREFIX_EMAIL).get());
 
-        return new FilterBookingByBookerCommand(new BookingContainsBookerPredicate(bookerName));
+        return new FilterBookingByBookerCommand(new BookingContainsBookerPredicate(email));
     }
 
     /**

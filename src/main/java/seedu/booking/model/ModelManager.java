@@ -16,11 +16,12 @@ import seedu.booking.model.booking.Booking;
 import seedu.booking.model.booking.Id;
 import seedu.booking.model.person.Email;
 import seedu.booking.model.person.Person;
+import seedu.booking.model.person.Phone;
 import seedu.booking.model.venue.Venue;
 import seedu.booking.model.venue.VenueName;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the booking system data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -40,7 +41,7 @@ public class ModelManager implements Model {
         super();
         requireAllNonNull(bookingSystem, userPrefs);
 
-        logger.fine("Initializing with address book: " + bookingSystem + " and user prefs " + userPrefs);
+        logger.fine("Initializing with booking system: " + bookingSystem + " and user prefs " + userPrefs);
 
         this.bookingSystem = new BookingSystem(bookingSystem);
         this.userPrefs = new UserPrefs(userPrefs);
@@ -157,6 +158,12 @@ public class ModelManager implements Model {
     public boolean hasPersonWithEmail(Email email) {
         requireNonNull(email);
         return bookingSystem.hasPersonWithEmail(email);
+    }
+
+    @Override
+    public boolean hasPersonWithPhone(Phone phone) {
+        requireNonNull(phone);
+        return bookingSystem.hasPersonWithPhone(phone);
     }
 
 

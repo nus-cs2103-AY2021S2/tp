@@ -3,7 +3,10 @@ package seedu.booking.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKER;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_END;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_ID;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_START;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_CAPACITY;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -23,6 +26,8 @@ import seedu.booking.commons.core.index.Index;
 import seedu.booking.logic.commands.exceptions.CommandException;
 import seedu.booking.model.BookingSystem;
 import seedu.booking.model.Model;
+import seedu.booking.model.booking.Booking;
+import seedu.booking.model.booking.BookingIdContainsKeywordsPredicate;
 import seedu.booking.model.booking.VenueNameContainsKeywordsPredicate;
 import seedu.booking.model.person.NameContainsKeywordsPredicate;
 import seedu.booking.model.person.Person;
@@ -51,6 +56,8 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_DATE_FEBRUARY = "2020-02-12";
+    public static final String VALID_DATE_MARCH = "2020-03-12";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -93,7 +100,6 @@ public class CommandTestUtil {
     public static final String VENUE_NAME_DESC_FIELD = " " + PREFIX_VENUE + VALID_VENUE_NAME_FIELD;
     public static final String VENUE_NAME_DESC_VENUE1 = " " + PREFIX_VENUE + VALID_VENUE_NAME_VENUE1;
     public static final String VENUE_NAME_DESC_VENUE2 = " " + PREFIX_VENUE + VALID_VENUE_NAME_VENUE2;
-
     public static final String VENUE_CAPACITY_DESC_HALL = " " + PREFIX_CAPACITY + VALID_VENUE_CAPACITY_HALL;
     public static final String VENUE_CAPACITY_DESC_FIELD = " " + PREFIX_CAPACITY + VALID_VENUE_CAPACITY_FIELD;
 
@@ -128,6 +134,41 @@ public class CommandTestUtil {
 
     public static final EditVenueCommand.EditVenueDescriptor DESC_COURT;
     public static final EditVenueCommand.EditVenueDescriptor DESC_HALL;
+
+
+    public static final String VALID_BOOKING_VENUE_NAME_HALL = "Victoria Hall";
+    public static final String VALID_BOOKING_VENUE_NAME_FIELD = "Town Green";
+    public static final String VALID_BOOKING_BOOKER_EMAIL_AMY = "amy@example.com";
+    public static final String VALID_BOOKING_BOOKER_EMAIL_BOB = "bob@example.com";
+    public static final String VALID_BOOKING_DESCRIPTION_HALL = "For FYP meeting";
+    public static final String VALID_BOOKING_DESCRIPTION_FIELD = "For sports meeting";
+    public static final String VALID_BOOKING_START_HALL = "2021-02-02 07:00:00";
+    public static final String VALID_BOOKING_START_FIELD = "2021-02-02 07:00:00";
+    public static final String VALID_BOOKING_END_HALL = "2021-02-02 08:00:00";
+    public static final String VALID_BOOKING_END_FIELD = "2021-02-02 08:00:00";
+    public static final String VALID_BOOKING_TAGS_HALL = "Indoors";
+    public static final String VALID_BOOKING_ID_HALL = "111111111";
+    public static final String VALID_BOOKING_ID_FIELD = "222222222";
+
+
+    public static final String BOOKING_VENUE_NAME_DESC_HALL = " " + PREFIX_VENUE + VALID_VENUE_NAME_HALL;
+    public static final String BOOKING_VENUE_NAME_DESC_FIELD = " " + PREFIX_VENUE + VALID_VENUE_NAME_FIELD;
+    public static final String BOOKING_BOOKER_EMAIL_AMY_DESC_HALL =
+            " " + PREFIX_BOOKER + VALID_BOOKING_BOOKER_EMAIL_AMY;
+    public static final String BOOKING_BOOKER_EMAIL_BOB_DESC_FIELD =
+            " " + PREFIX_BOOKER + VALID_BOOKING_BOOKER_EMAIL_BOB;
+    public static final String BOOKING_DESCRIPTION_DESC_HALL =
+            " " + PREFIX_DESCRIPTION + VALID_BOOKING_DESCRIPTION_HALL;
+    public static final String BOOKING_DESCRIPTION_DESC_FIELD =
+            " " + PREFIX_DESCRIPTION + VALID_BOOKING_DESCRIPTION_FIELD;
+    public static final String BOOKING_START_DESC_HALL = " " + PREFIX_BOOKING_START + VALID_BOOKING_START_HALL;
+    public static final String BOOKING_START_DESC_FIELD = " " + PREFIX_BOOKING_START + VALID_BOOKING_START_FIELD;
+    public static final String BOOKING_END_DESC_HALL = " " + PREFIX_BOOKING_END + VALID_BOOKING_END_HALL;
+    public static final String BOOKING_END_DESC_FIELD = " " + PREFIX_BOOKING_END + VALID_BOOKING_END_FIELD;
+    public static final String BOOKING_TAGS_DESC_HALL = " " + PREFIX_TAG + VALID_BOOKING_TAGS_HALL;
+    public static final String BOOKING_ID_DESC_HALL = " " + PREFIX_BOOKING_ID + VALID_BOOKING_ID_HALL;
+    public static final String BOOKING_ID_DESC_FIELD = " " + PREFIX_BOOKING_ID + VALID_BOOKING_ID_FIELD;
+    public static final String INVALID_BOOKER_EMAIL = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
 
 
     static {
@@ -177,7 +218,7 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the address book, filtered person list and selected person in {@code actualModel} remain unchanged
+     * - the booking system, filtered person list and selected person in {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
@@ -192,7 +233,7 @@ public class CommandTestUtil {
 
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
-     * {@code model}'s address book.
+     * {@code model}'s booking system.
      */
     public static void showPersonAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
@@ -200,7 +241,6 @@ public class CommandTestUtil {
         Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
         final String[] splitName = person.getName().fullName.split("\\s+");
         model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
-
         assertEquals(1, model.getFilteredPersonList().size());
     }
 
@@ -217,5 +257,21 @@ public class CommandTestUtil {
 
         assertEquals(1, model.getFilteredVenueList().size());
     }
+
+
+    /**
+     * Updates {@code model}'s filtered list to show only the booking at the given {@code targetIndex} in the
+     * {@code model}'s booking system.
+     */
+
+    public static void showBookingAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredBookingList().size());
+
+        Booking booking = model.getFilteredBookingList().get(targetIndex.getZeroBased());
+        final String splitName = booking.getId().toString();
+        model.updateFilteredBookingList(new BookingIdContainsKeywordsPredicate(splitName));
+        assertEquals(1, model.getFilteredBookingList().size());
+    }
+
 
 }

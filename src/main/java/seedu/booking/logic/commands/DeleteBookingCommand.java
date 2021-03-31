@@ -11,7 +11,7 @@ import seedu.booking.model.booking.Booking;
 import seedu.booking.model.booking.Id;
 
 /**
- * Changes the remark of an existing person in the address book.
+ * Changes the remark of an existing person in the booking system.
  */
 public class DeleteBookingCommand extends Command {
 

@@ -144,6 +144,15 @@ public class UniquePersonList implements Iterable<Person> {
 
     }
 
+    /**
+     * Returns true if the list contains an equivalent person as the given phone number.
+     */
+    public boolean containsPhone(ObservableList<Person> list, Phone phoneToCheck) {
+        requireNonNull(phoneToCheck);
+        return list.stream().anyMatch(person -> person.getPhone().equals(phoneToCheck));
+
+    }
+
 
 
 }

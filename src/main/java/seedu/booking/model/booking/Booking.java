@@ -108,6 +108,9 @@ public class Booking {
         if (otherBooking == null) {
             return false;
         }
+        if (otherBooking.getId().equals(getId())) {
+            return false;
+        }
         if (otherBooking.getVenueName().equals(this.venueName)) {
             return ((this.bookingStart.value.isAfter(otherBooking.bookingStart.value)
                             || this.bookingStart.value.equals(otherBooking.bookingStart.value))

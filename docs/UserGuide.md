@@ -63,14 +63,16 @@ Format: `create_venue v/VENUE_NAME [max/MAXIMUM_OCCUPANCY]`
 Examples:
 * `create_venue v/Chua Thian Poh Hall max/40`
 
-### Adding a booking : `create_booking`
+### Adding a booking : `add_booking`
 
-Adds a new booking into the booking app. The default booking is set to one hour for the first iteration.
+Adds a new booking into the booking app. The default booking is set to one hour for the first iteration. The system will
+then prompt user to provide details of the booking step by step. During the multi-step prompting, user would only be
+allowed to give input that matches the format allowed by prompting question, command inputs would not be accepted during this process.
 
-Format: `create_booking d/DATE t/TIMING n/VENUE_NAME`
+Format: `add_booking`
 
 Examples:
-* `create_booking d/2020-12-12 t/2359 n/Chua Thian Poh Hall`
+* `add_booking`
 
 ### Listing all venues : `list_venues`
 
@@ -138,11 +140,45 @@ Format: `edit_person eo/EMAIL [e/EMAIL] [p/PHONE_NUMBER] [n/NAME]`
 Examples:
 * `edit_person eo/amy@example.com p/83984029`
 
+### Filtering bookings by booker : `filter_booking_by_booker`
+
+Shows a list of bookings booked by the booker identified by the email address given.
+
+Format: `filter_booking_by_booker [e/EMAIL]`
+
+Examples:
+* `filter_booking_by_booker e/JohnRose@abc.com`
+
+### Filtering bookings by date : `filter_booking_by_date`
+
+Shows a list of bookings on the specific date.
+
+Format: `filter_booking_by_date [date/DATE]`
+
+Examples:
+* `filter_booking_by_date date/2020-12-12`
+
+### Filtering bookings by venue : `filter_booking_by_venue`
+
+Shows a list of bookings of a specific venue.
+
+Format: `filter_booking_by_venue [v/VENUE]`
+
+Examples:
+* `filter_booking_by_venue v/Sports Hall`
+
 ### Exiting the program : `bye`
 
 Exits the program.
 
 Format: `bye`
+
+### Exiting prompting : `exit_prompt`
+
+Exits the multi-step prompting under add_booking or add_venue. After exiting prompting, user would be able to give command 
+inputs again.
+
+Format: `exit_prompt`
 
 ### Saving the data
 
@@ -169,7 +205,7 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add_venue n/VENUE_NAME [max/MAXIMUM_OCCUPANCY]` <br> e.g., `add_venue n/Chua Thian Poh Hall max/40`<br><br> `add_booking`e.g., `add_booking d/2020-12-12 t/2359 n/Chua Thian Poh Hall`
+**Add** | `add_venue n/VENUE_NAME [max/MAXIMUM_OCCUPANCY]` <br> e.g., `add_venue n/Chua Thian Poh Hall max/40`<br><br> `add_booking`e.g., `add_booking`
 **Delete** | `delete_venue v/VENUE_ID`<br> e.g., `delete_venue v/1` <br><br> `delete_booking b/BOOKING_ID`<br> e.g., `delete_booking b/2`
 **Find** | `find_venue v/VENUE_ID`<br> e.g., `find_venue v/1`<br><br> `find_booking b/BOOKING_ID`<br> e.g., `find_booking b/2`
 **List** | `list_venues` <br> `list_bookings`

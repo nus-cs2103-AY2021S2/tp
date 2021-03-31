@@ -1,6 +1,7 @@
 package seedu.booking.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.booking.commons.exceptions.IllegalValueException;
 import seedu.booking.model.Tag;
@@ -26,6 +27,11 @@ class JsonAdaptedTag {
      */
     public JsonAdaptedTag(Tag source) {
         tagName = source.tagName;
+    }
+
+    @JsonValue
+    public String getTagName() {
+        return tagName;
     }
 
     /**

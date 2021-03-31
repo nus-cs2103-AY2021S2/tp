@@ -10,19 +10,19 @@ import seedu.booking.model.person.Email;
  */
 public class BookingContainsBookerPredicate implements Predicate<Booking> {
 
-    private final String bookerEmail;
+    private final Email bookerEmail;
 
-    public BookingContainsBookerPredicate(String bookerEmail) {
+    public BookingContainsBookerPredicate(Email bookerEmail) {
         this.bookerEmail = bookerEmail;
     }
 
-    public String getBookerEmail() {
+    public Email getBookerEmail() {
         return this.bookerEmail;
     }
 
     @Override
     public boolean test(Booking booking) {
-        return booking.getBookerEmail().equals(new Email(this.bookerEmail));
+        return booking.getBookerEmail().equals(this.bookerEmail);
     }
 
     @Override
