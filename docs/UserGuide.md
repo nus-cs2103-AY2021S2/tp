@@ -134,7 +134,7 @@ Format: `rdel INDEX`
 * `INDEX` refers to the index number shown in the displayed resident list. `INDEX` **must be a positive integer 1,2,3, ...**.
 *  A resident allocated to a room cannot be deleted until it is first deallocated. Run `dealloc` commmand before deletion.
 e.g. `dealloc n/John Tan r/03-100`.
-   
+
 Example:
 * `rdel 1` deletes the 1st resident in the resident list.
 
@@ -162,7 +162,7 @@ Finds all rooms by room number or tag that contain any of the given keywords.
 
 Format: `ofind KEYWORD [MORE_KEYWORDS]`
 * The search matches any part of the room number. e.g. `10` will match `10-111` and `14-101`.
-* The search for tags matches any part of the tag and is NOT case-sensitive. e.g `mell`, `smell`, `smelly` or `room` all work to match `smellyroom`. `s` will match both `smellyroom` and `SHN`. 
+* The search for tags matches any part of the tag and is NOT case-sensitive. e.g `mell`, `smell`, `smelly` or `room` all work to match `smellyroom`. `s` will match both `smellyroom` and `SHN`.
 * The order of the keywords does not matter. e.g. `11- 10-` will match `10-100`, `10-101`, `11-100`, and `11-101`.
 * Only the room number and tags are searched.
 * Rooms matching at least one keyword will be returned (i.e. OR search). e.g. `10 20` will return `10-100`, `11-120`.
@@ -199,16 +199,16 @@ Example:
 * `odel 1` Deletes the 1st room in the room list.
 
 ### Allocate resident to room: `alloc`
-Allocates an existing resident to an existing room. 
+Allocates an existing resident to an existing room.
 
 Format: `alloc n/NAME r/ROOM_NO`
 * `NAME` and `ROOM_NO` must already exist.
 * Exact match for `NAME` is required.
 * `NAME` is case-sensitive.
-* Both fields must be provided. 
+* Both fields must be provided.
 
 Example:
-* `alloc r/John Tan n/03-100` Allocates resident named John Tan to room 03-100. 
+* `alloc r/John Tan n/03-100` Allocates resident named John Tan to room 03-100.
 
 ### Deallocate resident from room: `dealloc`
 Deallocates an existing resident from an existing room.
@@ -217,7 +217,7 @@ Format: `dealloc n/NAME r/ROOM_NO`
 * `NAME` and `ROOM_NO` must already exist.
 * Exact match for `NAME` is required.
 * `NAME` is case-sensitive.
-* The allocation must already exist. 
+* The allocation must already exist.
 * Both fields must be provided.
 * Ensure that the resident to be deallocated is visible. Use `rlist` to view all.
 
@@ -268,15 +268,15 @@ Example:
 * `iedit 1 r/20-109 s/Closed` Edits the room number and status of the 1st issue to be `20-109` and `Closed` respectively.
 
 
-### Close an issue : `icol`
+### Close an issue : `iclo`
 
 Marks as closed the issue at a specified index.
 
-Format: `icol INDEX`
+Format: `iclo INDEX`
 * `INDEX` refers to the index number shown in the displayed issue list. `INDEX` **must be a positive integer 1, 2, 3, …**.
 
 Example:
-* `icol 1` Closes the 1st issue.
+* `iclo 1` Closes the 1st issue.
 
 
 ### Delete an issue : `idel`
@@ -317,12 +317,12 @@ Format: `undo`
 Examples:
 * `rdel 1` <br>
   `undo` Undoes the `rdel 1` command.
-  
+
 * `iedit 1 r/20-109 s/Closed` <br>
   `clear` <br>
   `undo` Undoes the `clear` command. <br>
   `undo` Undoes the `iedit 1 r/20-109 s/Closed` command.
-  
+
 * `history 5` <br>
   `undo` Fails because `history 5` did not modify SunRez's data.
 
@@ -346,7 +346,7 @@ Examples:
 * `rdel 1` <br>
   `undo` Undoes the `rdel 1` command.
   `redo` Redoes the `rdel 1` command.
-  
+
 * `rdel 1` <br>
   `redo` Fails because there are no previous `undo` commands.
 
@@ -412,11 +412,11 @@ Example usage:
 
 ### Undo/redo history
 
-Undo/redo history is not saved to the hard disk, so it will be lost when SunRez is exited. 
+Undo/redo history is not saved to the hard disk, so it will be lost when SunRez is exited.
 
 ### Save the data
 
-SunRez main application data and command history are saved in the hard disk automatically after any command 
+SunRez main application data and command history are saved in the hard disk automatically after any command
 that changes the data. There is no need to save manually.
 
 ### Edit the data files
@@ -424,7 +424,7 @@ that changes the data. There is no need to save manually.
 * SunRez main application data is saved as a JSON file `[JAR_file_location]/data/sunrez.json`.
 * SunRez command history is saved as a plain-text file `[JAR_file_location]/data/commandhistory.txt`.
     * Each command history entry is a single line in the file.
-    * The entire command history can be cleared by simply deleting the contents of the command history file. 
+    * The entire command history can be cleared by simply deleting the contents of the command history file.
 
 Advanced users are welcome to edit these files directly.
 
@@ -438,7 +438,7 @@ If your changes to the data file makes its format invalid, SunRez will discard a
 ## FAQ
 
 **Q**: How do I transfer my data to another computer?<br>
-**A**: Install the app on the other computer and overwrite the empty data files it creates with the files 
+**A**: Install the app on the other computer and overwrite the empty data files it creates with the files
 from your previous **SunRez** home folder.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -459,16 +459,16 @@ Action | Format, Examples
 **Find rooms** |  `ofind KEYWORD [MORE_KEYWORDS]` <br> e.g. `ofind 10- 15-`
 **Edit a room record** |  `oedit INDEX [r/ROOM_NO] [t/TYPE] [g/TAG] [o/OCCUPATION_STATUS]` <br> e.g. `oedit 1 o/Y`
 **Delete a room** | `odel INDEX` <br> e.g. `odel 1`
-**Allocate a Resident to Room** | `alloc n/NAME r/ROOM_NO` <br> e.g. `alloc n/John Tan r/03-100` 
+**Allocate a Resident to Room** | `alloc n/NAME r/ROOM_NO` <br> e.g. `alloc n/John Tan r/03-100`
 **Deallocate a Resident from Room** | `dealloc n/NAME r/ROOM_NO` <br> e.g. `dealloc n/John Tan r/03-100`
 **Add an open issue** | `iadd r/ROOM_NO d/DESCRIPTION [t/TIMESTAMP] [s/STATUS] [c/CATEGORY] [g/TAG]` <br> e.g. `iadd r/10-100 d/Broken light c/Furniture g/HIGH`
 **List all issues** | `ilist`
 **Find issues** | `ifind KEYWORD [MORE_KEYWORDS]` <br> e.g. `ifind wardrobe table`
 **Edit an issue record** | `iedit INDEX [r/ROOM] [d/DESCRIPTION] [t/TIMESTAMP] [s/STATUS] [c/CATEGORY] [g/TAG]` <br> e.g. `iedit 1 r/20-109 s/Closed`
-**Close an issue** | `icol INDEX` <br> e.g. `icol 1`
+**Close an issue** | `iclo INDEX` <br> e.g. `iclo 1`
 **Delete an issue** | `idel INDEX` <br> e.g. `idel 1`
 **View command history** | `history [COUNT]` <br> e.g. `history 5`
-**Undo previous command** | `undo` <br> `CTRL+Z`/`CMD+Z` (keyboard shortcuts) 
+**Undo previous command** | `undo` <br> `CTRL+Z`/`CMD+Z` (keyboard shortcuts)
 **Redo previously undone command** | `redo` <br> `CTRL+SHIFT+Z`/`CMD+SHIFT+Z` (keyboard shortcuts)
 **Add an alias** | `alias a/ALIAS_NAME cmd/COMMAND` <br> e.g. `alias a/il cmd/ilist`
 **Delete an alias** | `unalias a/ALIAS_NAME` <br> e.g. `unalias a/findBob`

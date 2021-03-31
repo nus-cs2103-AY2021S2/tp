@@ -18,7 +18,7 @@ import seedu.address.model.issue.IssueStatus;
  */
 public class CloseIssueCommand extends Command {
 
-    public static final String COMMAND_WORD = "icol";
+    public static final String COMMAND_WORD = "iclo";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Closes the issue identified by the index number used in the displayed issue list.\n"
