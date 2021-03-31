@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
 
+import fooddiary.commons.core.index.Index;
 import fooddiary.model.entry.Entry;
 
 /**
@@ -13,10 +14,15 @@ public class CommandResult {
 
     private final String feedbackToUser;
 
-    /** A view of the specified entry should be shown to the user. */
-    private final boolean viewEntry;
-
     private final Entry entry;
+
+    private final Index index;
+
+    /** A view of the specified entry should be shown to the user. */
+    private final boolean enableView;
+
+    /** A window for revision of the specified entry should be shown to the user. */
+    private final boolean enableRevise;
 
     /** Help information should be shown to the user. */
     private final boolean showHelp;
@@ -26,13 +32,15 @@ public class CommandResult {
 
     /**
      * Constructs a {@code CommandResult} with the specified fields,
-     * used for help command
+     * used for help, view, revise, exit
      */
-    public CommandResult(Entry entry, String feedbackToUser, boolean showHelp,
-                         boolean viewEntry, boolean exit) {
+    public CommandResult(Entry entry, Index index, String feedbackToUser, boolean showHelp,
+                         boolean enableView, boolean enableRevise, boolean exit) {
         this.entry = entry;
         this.feedbackToUser = requireNonNull(feedbackToUser);
-        this.viewEntry = viewEntry;
+        this.enableView = enableView;
+        this.index = index;
+        this.enableRevise = enableRevise;
         this.showHelp = showHelp;
         this.exit = exit;
     }
@@ -42,7 +50,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(null, feedbackToUser, false, false, false);
+        this(null, null, feedbackToUser, false, false, false, false);
     }
 
     public String getFeedbackToUser() {
@@ -53,12 +61,20 @@ public class CommandResult {
         return showHelp;
     }
 
-    public boolean isViewEntry() {
-        return viewEntry;
+    public boolean isEnableView() {
+        return enableView;
+    }
+
+    public boolean isReviseEntry() {
+        return enableRevise;
     }
 
     public Entry getEntry() {
         return entry;
+    }
+
+    public Index getIndex() {
+        return index;
     }
 
     public boolean isExit() {
@@ -77,14 +93,18 @@ public class CommandResult {
         }
 
         CommandResult otherCommandResult = (CommandResult) other;
-        return feedbackToUser.equals(otherCommandResult.feedbackToUser)
+        return entry == otherCommandResult.entry
+                && index == otherCommandResult.index
+                && feedbackToUser.equals(otherCommandResult.feedbackToUser)
+                && enableView == otherCommandResult.enableView
+                && enableRevise == otherCommandResult.enableRevise
                 && showHelp == otherCommandResult.showHelp
                 && exit == otherCommandResult.exit;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+        return Objects.hash(entry, index, feedbackToUser, showHelp, enableView, enableRevise, exit);
     }
 
 }

@@ -19,7 +19,7 @@ import fooddiary.model.entry.Name;
 import fooddiary.model.entry.Price;
 import fooddiary.model.entry.Rating;
 import fooddiary.model.entry.Review;
-import fooddiary.model.tag.Tag;
+import fooddiary.model.tag.TagCategory;
 import fooddiary.testutil.EditEntryDescriptorBuilder;
 
 
@@ -72,7 +72,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1"
                 + CommandTestUtil.INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
         assertParseFailure(parser, "1"
-                + CommandTestUtil.INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
+                + CommandTestUtil.INVALID_TAG_CATEGORY_DESC, TagCategory.MESSAGE_CONSTRAINTS); // invalid tag
 
         // invalid rating followed by valid email
         assertParseFailure(parser, "1" + CommandTestUtil.INVALID_RATING_DESC
@@ -86,11 +86,11 @@ public class EditCommandParserTest {
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Entry} being edited,
         // parsing it together with a valid tag results in error
         assertParseFailure(parser, "1" + CommandTestUtil.TAG_DESC_FASTFOOD
-                + CommandTestUtil.TAG_DESC_WESTERN + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
+                + CommandTestUtil.TAG_DESC_WESTERN + TAG_EMPTY, TagCategory.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser, "1" + CommandTestUtil.TAG_DESC_FASTFOOD
-                + TAG_EMPTY + CommandTestUtil.TAG_DESC_WESTERN, Tag.MESSAGE_CONSTRAINTS);
+                + TAG_EMPTY + CommandTestUtil.TAG_DESC_WESTERN, TagCategory.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser, "1" + TAG_EMPTY + CommandTestUtil.TAG_DESC_FASTFOOD
-                + CommandTestUtil.TAG_DESC_WESTERN, Tag.MESSAGE_CONSTRAINTS);
+                + CommandTestUtil.TAG_DESC_WESTERN, TagCategory.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + CommandTestUtil.INVALID_NAME_DESC + CommandTestUtil.INVALID_REVIEW_DESC
@@ -110,7 +110,8 @@ public class EditCommandParserTest {
                 new EditEntryDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_A)
                 .withRating(CommandTestUtil.VALID_RATING_B).withReviews(CommandTestUtil.VALID_REVIEW_A)
                 .withAddress(CommandTestUtil.VALID_ADDRESS_A)
-                .withTagCategories(CommandTestUtil.VALID_TAG_WESTERN, CommandTestUtil.VALID_TAG_FASTFOOD).build();
+                .withTagCategories(CommandTestUtil.VALID_TAG_CATEGORY_WESTERN,
+                                    CommandTestUtil.VALID_TAG_CATEGORY_FASTFOOD).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -166,7 +167,8 @@ public class EditCommandParserTest {
 
         // tags
         userInput = targetIndex.getOneBased() + CommandTestUtil.TAG_DESC_FASTFOOD;
-        descriptor = new EditEntryDescriptorBuilder().withTagCategories(CommandTestUtil.VALID_TAG_FASTFOOD).build();
+        descriptor = new EditEntryDescriptorBuilder()
+                        .withTagCategories(CommandTestUtil.VALID_TAG_CATEGORY_FASTFOOD).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -187,7 +189,8 @@ public class EditCommandParserTest {
                 .withReviews(CommandTestUtil.VALID_REVIEW_A,
                         CommandTestUtil.VALID_REVIEW_A, CommandTestUtil.VALID_REVIEW_B)
                         .withAddress(CommandTestUtil.VALID_ADDRESS_B)
-                .withTagCategories(CommandTestUtil.VALID_TAG_FASTFOOD, CommandTestUtil.VALID_TAG_WESTERN).build();
+                .withTagCategories(CommandTestUtil.VALID_TAG_CATEGORY_FASTFOOD,
+                        CommandTestUtil.VALID_TAG_CATEGORY_WESTERN).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);

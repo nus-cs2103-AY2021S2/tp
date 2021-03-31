@@ -170,6 +170,76 @@ public class NameContainsKeywordsPredicateTest {
     }
 
     @Test
+    public void test_priceRangeContainsKeywords_returnsTrue() {
+        // One keyword - keyword single price, entry price range
+        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(
+                Collections.singletonList("$8"));
+        assertTrue(predicate.test(new EntryBuilder().withName("KFC").withPrice("8-10").build()));
+
+        // Only one matching keyword - keyword single price, entry price range
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("$5", "$9"));
+        assertTrue(predicate.test(new EntryBuilder().withName("PGP Canteen").withPrice("4-7").build()));
+
+        // One keyword - keyword price range, entry single price
+        predicate = new NameContainsKeywordsPredicate(
+                Collections.singletonList("$4-9"));
+        assertTrue(predicate.test(new EntryBuilder().withName("KFC").withPrice("6").build()));
+
+        // Only one matching keyword - keyword price range, entry single price
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("$3-5", "$9-11"));
+        assertTrue(predicate.test(new EntryBuilder().withName("PGP Canteen").withPrice("10").build()));
+
+        // One keyword - keyword price range, entry price range
+        predicate = new NameContainsKeywordsPredicate(
+                Collections.singletonList("$4-9"));
+        assertTrue(predicate.test(new EntryBuilder().withName("KFC").withPrice("6-11").build()));
+
+        // Only one matching keyword - keyword price range, entry price range
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("$3-5", "$9-11"));
+        assertTrue(predicate.test(new EntryBuilder().withName("PGP Canteen").withPrice("7-10").build()));
+    }
+
+    @Test
+    public void test_priceRangeDoesNotContainKeywords_returnsTrue() {
+        // Zero keywords
+        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Collections.emptyList());
+        assertFalse(predicate.test(new EntryBuilder().withName("Frontier").withPrice("2-9").build()));
+
+        // Keywords match review, but does not match price range
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Spicy"));
+        assertFalse(predicate.test(new EntryBuilder().withName("Macdonalds").withReviews("Mcspicy not very spicy")
+                .withPrice("4-12").build()));
+
+        // Non-matching keyword - keyword single price, entry price range (higher)
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("$2"));
+        assertFalse(predicate.test(new EntryBuilder().withName("Techno Edge").withPrice("3-7").build()));
+
+        // Non-matching keyword - keyword single price, entry price range (lower)
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("$8"));
+        assertFalse(predicate.test(new EntryBuilder().withName("Techno Edge").withPrice("3-7").build()));
+
+        // Non-matching keyword - keyword single price, entry price range (higher)
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("$2"));
+        assertFalse(predicate.test(new EntryBuilder().withName("Techno Edge").withPrice("3-7").build()));
+
+        // Non-matching keyword - keyword price range, entry single price (lower)
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("$13-18"));
+        assertFalse(predicate.test(new EntryBuilder().withName("KFC").withPrice("12").build()));
+
+        // Non-matching keyword - keyword price range, entry single price (higher)
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("$6-11"));
+        assertFalse(predicate.test(new EntryBuilder().withName("KFC").withPrice("12").build()));
+
+        // Non-matching keyword - keyword price range, entry price range (lower)
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("$8-12"));
+        assertFalse(predicate.test(new EntryBuilder().withName("Frontier").withPrice("4-7").build()));
+
+        // Non-matching keyword - keyword price range, entry price range (higher)
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("$2-3"));
+        assertFalse(predicate.test(new EntryBuilder().withName("Frontier").withPrice("4-7").build()));
+    }
+
+    @Test
     public void test_addressContainsKeywords_returnsTrue() {
         // One keyword
         NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(
