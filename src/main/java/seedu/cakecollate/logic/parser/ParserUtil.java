@@ -17,6 +17,9 @@ import seedu.cakecollate.model.order.Email;
 import seedu.cakecollate.model.order.Name;
 import seedu.cakecollate.model.order.OrderDescription;
 import seedu.cakecollate.model.order.Phone;
+import seedu.cakecollate.model.orderitem.Cost;
+import seedu.cakecollate.model.orderitem.OrderItem;
+import seedu.cakecollate.model.orderitem.Type;
 import seedu.cakecollate.model.tag.Tag;
 
 /**
@@ -188,5 +191,23 @@ public class ParserUtil {
             throw new ParseException(DeliveryDate.MESSAGE_CONSTRAINTS);
         }
         return new DeliveryDate(trimmedDeliveryDate);
+    }
+
+    /**
+     * Parses a {@code String orderItemType} into an {@code OrderItem}.
+     * The {@code Cost} is set to a default value of 10 for now.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param orderItemType Type of the order item as entered by the user.
+     *
+     * @throws ParseException if the given {@code orderItemType} is invalid.
+     */
+    public static OrderItem parseOrderItem(String orderItemType) throws ParseException {
+        requireNonNull(orderItemType);
+        String trimmedOrderItemDescription = orderItemType.trim();
+        if (!Type.isValidType(trimmedOrderItemDescription)) {
+            throw new ParseException(Type.MESSAGE_CONSTRAINTS);
+        }
+        return new OrderItem(new Type(trimmedOrderItemDescription), new Cost("10"));
     }
 }
