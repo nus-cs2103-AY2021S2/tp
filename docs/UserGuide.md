@@ -446,7 +446,7 @@ Examples:
 
 Each `Project` may have `Groupmates`. Hence, each of the commands related to `Groupmates` are done w.r.t the `Project` identified by `PROJECT_INDEX`.
 
-#### Add a groupmate to a project: `addG`
+#### Adding a groupmate to a project: `addG`
 
 Adds a groupmate to a specified project.
 
@@ -606,7 +606,7 @@ Format: `todos`
 
 * This command can only be used when a project is currently being displayed.
 
-#### View Today Panel : `today`
+#### Viewing Today Panel : `today`
 
 Shows the today panel.
 
