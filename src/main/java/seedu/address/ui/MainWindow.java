@@ -167,7 +167,6 @@ public class MainWindow extends UiPart<Stage> {
     public void handleNotif() {
         notifWindow.setContentText(logic.getNotifications());
         notifWindow.show();
-        System.out.println(logic.getNotifications());
         logger.info("Displaying notif window...");
     }
 
@@ -177,7 +176,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     public void handleNotes(String notes) {
         notesWindow.setContentText(notes);
-        notesWindow.showAndWait();
+        notesWindow.show();
         logger.info("Displaying notes window...");
     }
 

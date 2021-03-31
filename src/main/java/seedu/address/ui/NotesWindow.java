@@ -16,6 +16,7 @@ public class NotesWindow extends Alert {
         getDialogPane().getStylesheets().add("view/DarkTheme.css");
         setTitle("Notes");
         setHeaderText("Here are your notes:");
+        setResizable(true);
         initOwner(owner);
     }
 
