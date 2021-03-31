@@ -1,7 +1,9 @@
 package seedu.address.ui;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_JOB_TITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -46,6 +48,10 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label phone;
     @FXML
+    private Label company;
+    @FXML
+    private Label jobTitle;
+    @FXML
     private Label address;
     @FXML
     private Label email;
@@ -64,6 +70,8 @@ public class PersonCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
+        company.setText(person.getCompany().value);
+        jobTitle.setText(person.getJobTitle().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
         remark.setText(person.getRemark().value);
@@ -81,6 +89,10 @@ public class PersonCard extends UiPart<Region> {
         address.setManaged(displayFilter.test(PREFIX_ADDRESS));
         email.setVisible(displayFilter.test(PREFIX_EMAIL));
         email.setManaged(displayFilter.test(PREFIX_EMAIL));
+        company.setVisible(displayFilter.test(PREFIX_COMPANY));
+        company.setManaged(displayFilter.test(PREFIX_COMPANY));
+        jobTitle.setVisible(displayFilter.test(PREFIX_JOB_TITLE));
+        jobTitle.setManaged(displayFilter.test(PREFIX_JOB_TITLE));
         tags.setVisible(displayFilter.test(PREFIX_TAG));
         tags.setManaged(displayFilter.test(PREFIX_TAG));
         remark.setVisible(displayFilter.test(PREFIX_REMARK));
