@@ -1,6 +1,7 @@
 package dog.pawbook.storage;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -42,8 +43,10 @@ class JsonSerializableDatabase {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableDatabase(ReadOnlyDatabase source) {
-        entities.addAll(source.getEntityList().stream().map(JsonSerializableDatabase::adaptEntity)
-                .collect(Collectors.toList()));
+        entities.addAll(source.getEntityList().stream()
+                            .sorted(Comparator.comparing(Pair::getKey))
+                            .map(JsonSerializableDatabase::adaptEntity)
+                            .collect(Collectors.toList()));
     }
 
     /**
