@@ -1,24 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Scene?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root resizable="false" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root resizable="false" title="Schedule" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
-    <Image url="@/images/help_icon.png" />
+    <Image url="@/images/important_dates.png" />
   </icons>
   <scene>
     <Scene>
-         <VBox alignment="CENTER">
+        <stylesheets>
+            <URL value="@DarkTheme.css" />
+            <URL value="@Extensions.css" />
+        </stylesheets>
+         <VBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="344.0" prefWidth="1046.0">
             <opaqueInsets>
                <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
             </opaqueInsets>
@@ -26,7 +31,7 @@
                <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
             </padding>
             <children>
-               <GridPane fx:id="gridPane">
+               <GridPane fx:id="gridPane" prefHeight="35.0" prefWidth="693.0">
                  <columnConstraints>
                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -49,15 +54,15 @@
                      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="105.0" text="Monday" textAlignment="CENTER" GridPane.columnIndex="1" />
                   </children>
                </GridPane>
-               <HBox fx:id="scheduleList" prefHeight="100.0" prefWidth="200.0">
+               <HBox fx:id="scheduleList" prefHeight="303.0" prefWidth="700.0">
                   <children>
-                     <ListView fx:id="sunList" minHeight="-Infinity" prefHeight="200.0" prefWidth="200.0" />
-                     <ListView fx:id="monList" prefHeight="200.0" prefWidth="200.0" />
-                     <ListView fx:id="tuesList" prefHeight="200.0" prefWidth="200.0" />
-                     <ListView fx:id="wedList" prefHeight="200.0" prefWidth="200.0" />
-                     <ListView fx:id="thursList" prefHeight="200.0" prefWidth="200.0" />
-                     <ListView fx:id="friList" prefHeight="200.0" prefWidth="200.0" />
-                     <ListView fx:id="satList" prefHeight="200.0" prefWidth="200.0" />
+                     <StackPane fx:id="sundayListPanelPlaceholder" prefHeight="150.0" prefWidth="200.0" />
+                     <StackPane fx:id="mondayListPanelPlaceholder" prefHeight="150.0" prefWidth="200.0" />
+                     <StackPane fx:id="tuesdayListPanelPlaceholder" prefHeight="150.0" prefWidth="200.0" />
+                     <StackPane fx:id="wednesdayListPanelPlaceholder" prefHeight="150.0" prefWidth="200.0" />
+                     <StackPane fx:id="thursdayListPanelPlaceholder" prefHeight="150.0" prefWidth="200.0" />
+                     <StackPane fx:id="fridayListPanelPlaceholder" prefHeight="150.0" prefWidth="200.0" />
+                     <StackPane fx:id="saturdayListPanelPlaceholder" prefHeight="150.0" prefWidth="200.0" />
                   </children>
                </HBox>
             </children>

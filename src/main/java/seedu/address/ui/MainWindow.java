@@ -191,10 +191,6 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-    public void handleSavedCommand(String commandText) {
-
-    }
-
     void show() {
         primaryStage.show();
     }

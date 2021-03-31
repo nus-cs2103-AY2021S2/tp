@@ -33,6 +33,14 @@ public interface Logic {
 
     ObservableList<String> getLessonsForDayInString(String keyword);
 
+    ObservableList<Lesson> getMondayLesson();
+    ObservableList<Lesson> getTuesdayLesson();
+    ObservableList<Lesson> getWednesdayLesson();
+    ObservableList<Lesson> getThursdayLesson();
+    ObservableList<Lesson> getFridayLesson();
+    ObservableList<Lesson> getSaturdayLesson();
+    ObservableList<Lesson> getSundayLesson();
+
     /**
      * Returns the AddressBook.
      *
