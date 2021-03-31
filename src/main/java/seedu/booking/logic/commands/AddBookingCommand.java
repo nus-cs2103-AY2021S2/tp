@@ -5,7 +5,6 @@ import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKER;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_END;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_START;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.booking.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_VENUE;
 
 import seedu.booking.logic.commands.exceptions.CommandException;
@@ -26,14 +25,12 @@ public class AddBookingCommand extends Command {
             + PREFIX_DESCRIPTION + "DESCRIPTION "
             + PREFIX_BOOKING_START + "DATETIME "
             + PREFIX_BOOKING_END + "DATETIME\n"
-            + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_BOOKER + "example@gmail.com "
             + PREFIX_VENUE + "Hall "
             + PREFIX_DESCRIPTION + "For FYP Meeting. "
             + PREFIX_BOOKING_START + "2012-01-31 22:59:59 "
-            + PREFIX_BOOKING_END + "2012-01-31 23:59:59"
-            + PREFIX_TAG + "StudentAffairs";
+            + PREFIX_BOOKING_END + "2012-01-31 23:59:59";
 
     public static final String MESSAGE_SUCCESS = "New booking added: %1$s";
     public static final String MESSAGE_DUPLICATE_BOOKING = "This booking already exists in the booking system.";
