@@ -84,7 +84,7 @@ Adds an order to the CakeCollate database.
 
 #### Simple format
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS d/DELIVERY_DATE o/ORDER_DESCRIPTION... oi/ORDER_ITEM_INDEXES [t/TAG]...`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS d/DELIVERY_DATE o/ORDER_DESCRIPTION... [t/TAG]...`
 
 Examples:
 
@@ -95,9 +95,11 @@ Examples:
 
 #### Alternative format 
 
-Advanced Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS d/DELIVERY_DATE [o/ORDER_DESCRIPTION]... oi/ORDER_ITEM_INDEXES [t/TAG]...`
+Advanced Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS d/DELIVERY_DATE oi/ORDER_ITEM_INDEXES [o/ORDER_DESCRIPTION]... [t/TAG]...`
 
-* If an order description already exists in the order items table of the GUI, you can specify its index instead of typing its entire name out.
+* The difference here compared to the previous format is that you can omit the `ORDER_DESCRIPTION` parameter is optional, but you need to include an `ORDER_ITEM_INDEXES` parameter.
+
+* This alternative format is aimed at saving you some typing. If an order description you want to type already exists in the order items table of the GUI, you can specify its index instead of typing its entire name out.
 
 * For example, for an order that involves chocolate cake, if `chocolate cake` exists in the order items table as shown in the screenshot below, instead of typing `o/chocolate cake`, you can type out `oi/1`
 
