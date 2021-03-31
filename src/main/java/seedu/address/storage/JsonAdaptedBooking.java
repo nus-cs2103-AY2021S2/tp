@@ -38,7 +38,7 @@ class JsonAdaptedBooking {
      * Converts a given {@code Booking} into this class for Json use.
      */
     public JsonAdaptedBooking(Booking source) {
-        name = source.getName().fullName;
+        name = source.getName().toString();
         phone = source.getPhone().value;
         start = source.getStart();
         end = source.getEnd();
