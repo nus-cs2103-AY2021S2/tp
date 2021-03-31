@@ -1,7 +1,7 @@
 package fooddiary.ui;
 
-import java.awt.*;
-import java.util.Arrays;
+import java.awt.AWTException;
+import java.awt.Robot;
 import java.util.Comparator;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -14,13 +14,12 @@ import fooddiary.logic.parser.CliSyntax;
 import fooddiary.logic.parser.exceptions.ParseException;
 import fooddiary.model.entry.Entry;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
@@ -78,64 +77,14 @@ public class ReviseWindow extends UiPart<Stage> {
         super(FXML, root);
         nameText.requestFocus();
         final KeyCombination activateRevise = new KeyCodeCombination(KeyCode.S, KeyCombination.SHORTCUT_DOWN);
-        initRevise_ShortCut(activateRevise, reviseButton);
+        setReviseShortCut(activateRevise, reviseButton);
         final KeyCombination tabOverReviews = new KeyCodeCombination(KeyCode.TAB);
-        initTabOverReviews_ShortCut(tabOverReviews);
+        setTabOverReviewsShortCut(tabOverReviews);
         final KeyCombination esc = new KeyCodeCombination(KeyCode.ESCAPE);
-        initEsc_ShortCut(esc);
+        setEscShortCut(esc);
         if (entry != null && index != null) {
             setEntryContent(entry, index, mainWindow);
         }
-    }
-
-    /**
-     * Sets up 'Ctrl + S' (Windows) or 'Command + S' (MAC) to complete revision
-     *
-     * @param keyCombination 'Ctrl + S' (Windows) or 'Command + S' (MAC)
-     * @param reviseButton Revise button to be activated
-     */
-    private void initRevise_ShortCut(KeyCombination keyCombination, Button reviseButton) {
-        getRoot().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
-            if (event.getTarget() instanceof TextInputControl && keyCombination.match(event)) {
-                reviseButton.getOnAction().handle(new ActionEvent());
-                event.consume();
-            }
-        });
-    }
-
-    /**
-     * Sets up 'TAB' key to tab over Reviews TextArea
-     *
-     * @param tabOverReviews 'TAB' on keyboard
-     */
-    private void initTabOverReviews_ShortCut(KeyCombination tabOverReviews) {
-        getRoot().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
-            if (event.getTarget() instanceof TextInputControl && tabOverReviews.match(event)) {
-                try {
-                    Robot robot = new Robot();
-                    robot.keyPress(KeyCode.CONTROL.getCode());
-                    robot.keyPress(KeyCode.TAB.getCode());
-                    robot.keyRelease(KeyCode.TAB.getCode());
-                    robot.keyRelease(KeyCode.CONTROL.getCode());
-                }
-                catch (AWTException e) { }
-                event.consume();
-            }
-        });
-    }
-
-    /**
-     * Sets up 'ESC' key to hide window
-     *
-     * @param esc 'ESC' on keyboard
-     */
-    private void initEsc_ShortCut(KeyCombination esc) {
-        getRoot().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
-            if (esc.match(event)) {
-                hide();
-                event.consume();
-            }
-        });
     }
 
     /**
@@ -191,10 +140,55 @@ public class ReviseWindow extends UiPart<Stage> {
         getRoot().requestFocus();
     }
 
-    public void keyPress_S(KeyEvent event) {
-        if (event.getCode() == KeyCode.S) { //KeyCode.valueOf("S") && event.isControlDown()
-            System.out.println("WORKS!");
-        }
+    /**
+     * Sets up 'Ctrl + S' (Windows) or 'Command + S' (MAC) to complete revision
+     *
+     * @param keyCombination 'Ctrl + S' (Windows) or 'Command + S' (MAC)
+     * @param reviseButton Revise button to be activated
+     */
+    private void setReviseShortCut(KeyCombination keyCombination, Button reviseButton) {
+        getRoot().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getTarget() instanceof TextInputControl && keyCombination.match(event)) {
+                reviseButton.getOnAction().handle(new ActionEvent());
+                event.consume();
+            }
+        });
+    }
+
+    /**
+     * Sets up 'TAB' key to tab over Reviews TextArea
+     *
+     * @param tabOverReviews 'TAB' on keyboard
+     */
+    private void setTabOverReviewsShortCut(KeyCombination tabOverReviews) {
+        getRoot().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getTarget() instanceof TextInputControl && tabOverReviews.match(event)) {
+                try {
+                    Robot robot = new Robot();
+                    robot.keyPress(KeyCode.CONTROL.getCode());
+                    robot.keyPress(KeyCode.TAB.getCode());
+                    robot.keyRelease(KeyCode.TAB.getCode());
+                    robot.keyRelease(KeyCode.CONTROL.getCode());
+                } catch (AWTException e) {
+                    return;
+                }
+                event.consume();
+            }
+        });
+    }
+
+    /**
+     * Sets up 'ESC' key to hide window
+     *
+     * @param esc 'ESC' on keyboard
+     */
+    private void setEscShortCut(KeyCombination esc) {
+        getRoot().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (esc.match(event)) {
+                hide();
+                event.consume();
+            }
+        });
     }
 
     /**
