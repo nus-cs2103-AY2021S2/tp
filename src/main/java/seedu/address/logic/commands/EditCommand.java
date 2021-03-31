@@ -26,6 +26,7 @@ import seedu.address.model.person.Birthdate;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Note;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -108,8 +109,15 @@ public class EditCommand extends Command {
         Birthdate updatedBirthdate = editPersonDescriptor.getBirthdate().orElse(personToEdit.getBirthdate());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
-                updatedGender, updatedBirthdate, updatedTags);
+        Person editedPerson = new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedGender,
+                updatedBirthdate, updatedTags);
+        editedPerson = editedPerson.setMeeting(personToEdit.getMeeting());
+        editedPerson = editedPerson.setPlans(personToEdit.getPlans());
+        for (Note n : personToEdit.getNotes()) {
+            editedPerson.addNote(n);
+        }
+
+        return editedPerson;
     }
 
     @Override

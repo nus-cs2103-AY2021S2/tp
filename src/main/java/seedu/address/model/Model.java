@@ -1,10 +1,12 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 
 /**
@@ -58,6 +60,11 @@ public interface Model {
     boolean hasPerson(Person person);
 
     /**
+     * Returns true if a person's meeting time clashes with another meeting in the address book.
+     */
+    Optional<Meeting> clash(Person person);
+
+    /**
      * Deletes the given person.
      * The person must exist in the address book.
      */
@@ -84,4 +91,7 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /** Returns a string containing notifications */
+    String getNotifications();
 }

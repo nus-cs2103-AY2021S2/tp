@@ -57,34 +57,34 @@ public class AddCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + GENDER_DESC_BOB + BIRTHDATE_DESC_BOB + TAG_DESC_LIFE,
+                        + ADDRESS_DESC_BOB + GENDER_DESC_BOB + BIRTHDATE_DESC_BOB + TAG_DESC_LIFE,
                 new AddCommand(expectedPerson));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + GENDER_DESC_BOB + BIRTHDATE_DESC_BOB + TAG_DESC_LIFE,
+                        + ADDRESS_DESC_BOB + GENDER_DESC_BOB + BIRTHDATE_DESC_BOB + TAG_DESC_LIFE,
                 new AddCommand(expectedPerson));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + GENDER_DESC_BOB + BIRTHDATE_DESC_BOB + TAG_DESC_LIFE,
+                        + ADDRESS_DESC_BOB + GENDER_DESC_BOB + BIRTHDATE_DESC_BOB + TAG_DESC_LIFE,
                 new AddCommand(expectedPerson));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + GENDER_DESC_BOB + BIRTHDATE_DESC_BOB + TAG_DESC_LIFE,
+                        + ADDRESS_DESC_BOB + GENDER_DESC_BOB + BIRTHDATE_DESC_BOB + TAG_DESC_LIFE,
                 new AddCommand(expectedPerson));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
-                + ADDRESS_DESC_BOB + GENDER_DESC_BOB + BIRTHDATE_DESC_BOB + TAG_DESC_LIFE,
+                        + ADDRESS_DESC_BOB + GENDER_DESC_BOB + BIRTHDATE_DESC_BOB + TAG_DESC_LIFE,
                 new AddCommand(expectedPerson));
 
         // multiple tags - all accepted
         Person expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_LIFE, VALID_TAG_MEDICAL)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + GENDER_DESC_BOB + BIRTHDATE_DESC_BOB + TAG_DESC_MEDICAL + TAG_DESC_LIFE,
+                        + GENDER_DESC_BOB + BIRTHDATE_DESC_BOB + TAG_DESC_MEDICAL + TAG_DESC_LIFE,
                 new AddCommand(expectedPersonMultipleTags));
     }
 
@@ -141,12 +141,12 @@ public class AddCommandParserTest {
 
         // invalid gender
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + INVALID_GENDER_DESC + BIRTHDATE_DESC_BOB + TAG_DESC_MEDICAL + TAG_DESC_LIFE,
+                        + INVALID_GENDER_DESC + BIRTHDATE_DESC_BOB + TAG_DESC_MEDICAL + TAG_DESC_LIFE,
                 Gender.MESSAGE_CONSTRAINTS);
 
         // invalid birthdate
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + GENDER_DESC_BOB + INVALID_BIRTHDATE_DESC + TAG_DESC_MEDICAL + TAG_DESC_LIFE,
+                        + GENDER_DESC_BOB + INVALID_BIRTHDATE_DESC + TAG_DESC_MEDICAL + TAG_DESC_LIFE,
                 Birthdate.MESSAGE_CONSTRAINTS);
 
         // invalid tag
@@ -159,7 +159,7 @@ public class AddCommandParserTest {
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + GENDER_DESC_BOB + BIRTHDATE_DESC_BOB + TAG_DESC_MEDICAL + TAG_DESC_LIFE,
+                        + ADDRESS_DESC_BOB + GENDER_DESC_BOB + BIRTHDATE_DESC_BOB + TAG_DESC_MEDICAL + TAG_DESC_LIFE,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 }

@@ -26,6 +26,7 @@ public class Birthdate {
         requireNonNull(birthdate);
         checkArgument(isValidBirthdate(birthdate), MESSAGE_CONSTRAINTS);
         this.value = LocalDate.parse(birthdate);
+        assert this.value instanceof LocalDate : "Birthdate should be a LocalDate object";
     }
 
     /**

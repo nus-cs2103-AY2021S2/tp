@@ -3,6 +3,9 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
+import java.time.MonthDay;
+import java.time.temporal.ChronoUnit;
 import java.util.Iterator;
 import java.util.List;
 
@@ -95,6 +98,25 @@ public class UniquePersonList implements Iterable<Person> {
         }
 
         internalList.setAll(persons);
+    }
+
+    public String getNotifications() {
+        StringBuilder sb = new StringBuilder();
+        LocalDate today = LocalDate.now();
+        String template = "%s's birthday is coming up in %d days.\n";
+        int year = today.getYear();
+        for (Person person : internalList) {
+            MonthDay birthday = MonthDay.from(person.getBirthdate().value);
+            LocalDate nextBday = birthday.atYear(year);
+            if (nextBday.isBefore(today)) {
+                nextBday = birthday.atYear(year + 1);
+            }
+            long period = ChronoUnit.DAYS.between(today, nextBday);
+            if (period >= 0 && period < 14) {
+                sb.append(String.format(template, person.getName().fullName, period));
+            }
+        }
+        return sb.toString();
     }
 
     /**

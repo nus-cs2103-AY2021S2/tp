@@ -9,12 +9,14 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.insurance.InsurancePlan;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Birthdate;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Note;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -156,6 +158,37 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String plan} into an {@code InsurancePlan}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code plan} is invalid.
+     */
+    public static InsurancePlan parsePlan(String plan) throws ParseException {
+        requireNonNull(plan);
+        String trimmedPlan = plan.trim();
+        if (trimmedPlan.split(" ", 2)[0].equals("remove") && !trimmedPlan.contains("$")) {
+            return null;
+        }
+        if (!InsurancePlan.isValidPlan(trimmedPlan)) {
+            throw new ParseException(InsurancePlan.MESSAGE_CONSTRAINTS);
+        }
+        return new InsurancePlan(trimmedPlan);
+    }
+
+    /**
+     * Retrieves the plan index from a remove plan command.
+     *
+     * @throws ParseException if the given {@code command} is invalid.
+     */
+    public static Index parseRemovePlanIndex(String command) throws ParseException {
+        requireNonNull(command);
+        String trimmedCommand = command.trim();
+        String[] fragments = trimmedCommand.split(" ", 2);
+        Index planIndex = parseIndex(fragments[1]);
+        return planIndex;
+    }
+
+    /**
      * Parses a {@code String meeting} into an {@code Meeting}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -171,5 +204,20 @@ public class ParserUtil {
             throw new ParseException(Meeting.MESSAGE_CONSTRAINTS);
         }
         return new Meeting(trimmedMeeting);
+    }
+
+    /**
+     * Parses a {@code String note} into an {@code Note}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code note} is invalid.
+     */
+    public static Note parseNote(String note) throws ParseException {
+        requireNonNull(note);
+        String trimmedNote = note.trim();
+        if (!Note.isValidNote(trimmedNote)) {
+            throw new ParseException(Note.MESSAGE_CONSTRAINTS);
+        }
+        return new Note(trimmedNote);
     }
 }

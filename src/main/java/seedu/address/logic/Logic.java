@@ -33,6 +33,12 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
 
+    /** Returns an unmodifiable view of the list of meetings */
+    ObservableList<Person> getMeetingList();
+
+    /** Returns a string containing notifications */
+    String getNotifications();
+
     /**
      * Returns the user prefs' address book file path.
      */
