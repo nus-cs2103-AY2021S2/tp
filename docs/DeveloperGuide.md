@@ -34,7 +34,7 @@ object which is passed back to the `Ui`.
 certain actions, such as displaying help to the user.
 
 Given below is the Sequence Diagram for interactions within the `Logic` component
-for the `execute("deletecheese 1")` API call. 
+for the `execute("deletecheese 1")` API call.
 
 <img src="images/DeleteCheeseSeqDiagram_CHIM.png">
 
@@ -44,7 +44,9 @@ for the `execute("deletecheese 1")` API call.
 
 ### Common classes
 
-## **Implementation** [In Progress]
+--------------------------------------------------------------------------------------------------------------------
+
+## **Implementation**
 
 ### Delete Feature
 
@@ -91,8 +93,7 @@ Deleting an order will not delete the customer who placed the order.
 Furthermore, deleting a cheese which has been assigned to an order is not allowed.
 This is to prevent any extra erroneous deletions.
 * All `execute()` calls by `DeleteCustomerCommand`, `DeleteOrderCommand` and `DeleteCheeseCommand`
-will call on `Model.AddressBook` which will handle the cascading of delete commands in one place,
-as opposed to implementation within the different `Command` classes.
+will call on `Model.AddressBook` which will handle the cascading of delete commands in one place.
 
 
 ## **Documentation, logging, testing, configuration, dev-ops** [In Progress]
