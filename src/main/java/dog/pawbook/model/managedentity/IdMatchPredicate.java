@@ -1,7 +1,8 @@
 package dog.pawbook.model.managedentity;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import javafx.util.Pair;
@@ -11,12 +12,12 @@ import javafx.util.Pair;
  */
 public class IdMatchPredicate implements Predicate<Pair<Integer, Entity>> {
 
-    private final List<Integer> relatedIds = new ArrayList<>();
+    private final Set<Integer> relatedIds = new HashSet<>();
 
     /**
      * Construct a predicate from a list of IDs.
      */
-    public IdMatchPredicate(ArrayList<Integer> idList) {
+    public IdMatchPredicate(Collection<Integer> idList) {
         this.relatedIds.addAll(idList);
     }
 
