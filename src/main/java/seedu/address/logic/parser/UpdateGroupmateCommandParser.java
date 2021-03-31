@@ -2,9 +2,9 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_UPDATE_INDEX;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -31,16 +31,16 @@ public class UpdateGroupmateCommandParser implements Parser<UpdateGroupmateComma
      */
     public UpdateGroupmateCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_UPDATE_INDEX, PREFIX_NAME,
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_INDEX, PREFIX_NAME,
                 PREFIX_ROLE);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_UPDATE_INDEX) || argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_INDEX) || argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     UpdateGroupmateCommand.MESSAGE_USAGE));
         }
 
         Index projectIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
-        Index targetGroupmateIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_UPDATE_INDEX).get());
+        Index targetGroupmateIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
 
         UpdateGroupmateCommand.UpdateGroupmateDescriptor updateGroupmateDescriptor =
                 new UpdateGroupmateCommand.UpdateGroupmateDescriptor();

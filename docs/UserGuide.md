@@ -275,7 +275,7 @@ Examples:
 
 Deletes a specified todo from a specified project.
 
-Format: `deleteT PROJECT_INDEX r/TODO_INDEX`
+Format: `deleteT PROJECT_INDEX i/TODO_INDEX`
 
 * Deletes the todo at the specified `TODO_INDEX` from the project at the specified `PROJECT_INDEX`.
 * The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
@@ -283,8 +283,8 @@ Format: `deleteT PROJECT_INDEX r/TODO_INDEX`
 * Both indexes **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `deleteT 1 r/1`
-* `deleteT 2 r/2`
+* `deleteT 1 i/1`
+* `deleteT 2 i/2`
 
 ### _**4.1.2 Deadlines**_
 
@@ -312,7 +312,7 @@ Examples:
 
 Deletes a specified deadline from a specified project.
 
-Format: `deleteD PROJECT_INDEX r/DEADLINE_INDEX`
+Format: `deleteD PROJECT_INDEX i/DEADLINE_INDEX`
 
 * Deletes the deadline at the specified `DEADLINE_INDEX` from the project at the specified `PROJECT_INDEX`.
 * The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
@@ -320,8 +320,8 @@ Format: `deleteD PROJECT_INDEX r/DEADLINE_INDEX`
 * Both indexes **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `deleteD 1 r/1`
-* `deleteD 2 r/2`
+* `deleteD 1 i/1`
+* `deleteD 2 i/2`
 
 ### _**4.1.3 Events**_
 
@@ -358,7 +358,7 @@ Examples:
 
 Deletes a specified event from a specified project.
 
-Format: `deleteE PROJECT_INDEX r/EVENT_INDEX`
+Format: `deleteE PROJECT_INDEX i/EVENT_INDEX`
 
 * Deletes the event at the specified `EVENT_INDEX` from the project at the specified `PROJECT_INDEX`.
 * The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
@@ -366,8 +366,8 @@ Format: `deleteE PROJECT_INDEX r/EVENT_INDEX`
 * Both indexes **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `deleteE 1 r/1`
-* `deleteE 2 r/2`
+* `deleteE 1 i/1`
+* `deleteE 2 i/2`
 
 ### _**4.1.4 Groupmates**_
 
@@ -397,7 +397,7 @@ Examples:
 
 Deletes a specified contact from a specified project.
 
-Format: `deleteCfrom PROJECT_INDEX r/GROUPMATE_INDEX`
+Format: `deleteCfrom PROJECT_INDEX i/GROUPMATE_INDEX`
 
 * Deletes the contact at the specified `GROUPMATE_INDEX` from the project at the specified `PROJECT_INDEX`.
 * The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
@@ -405,8 +405,8 @@ Format: `deleteCfrom PROJECT_INDEX r/GROUPMATE_INDEX`
 * Both indexes **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `deleteCfrom 1 r/1`
-* `deleteCfrom 2 r/2`
+* `deleteCfrom 1 i/1`
+* `deleteCfrom 2 i/2`
 
 ### **4.2 Contacts**
 
@@ -596,10 +596,10 @@ Action | Format, Examples
 **Add Participant to Project** | `addCto PROJECT_INDEX n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 **Add Todo to Project** | `addTto PROJECT_INDEX d/DESCRIPTION`
 **Delete Project** | `deleteP PROJECT_INDEX`
-**Delete Deadline from Project** | `deleteD PROJECT_INDEX r/DEADLINE_INDEX`
-**Delete Event from Project** | `deleteE PROJECT_INDEX r/EVENT_INDEX`
-**Delete Participant from Project** | `deleteCfrom PROJECT_INDEX r/GROUPMATE_INDEX`
-**Delete Todo from Project** | `deleteT PROJECT_INDEX r/TODO_INDEX`
+**Delete Deadline from Project** | `deleteD PROJECT_INDEX i/DEADLINE_INDEX`
+**Delete Event from Project** | `deleteE PROJECT_INDEX i/EVENT_INDEX`
+**Delete Participant from Project** | `deleteCfrom PROJECT_INDEX i/GROUPMATE_INDEX`
+**Delete Todo from Project** | `deleteT PROJECT_INDEX i/TODO_INDEX`
 
 ### Contacts
 
