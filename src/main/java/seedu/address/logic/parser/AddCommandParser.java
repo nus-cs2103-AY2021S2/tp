@@ -51,6 +51,7 @@ public class AddCommandParser implements Parser<AddCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
+
         TaskName taskName = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         ModuleCode moduleCode = ParserUtil.parseCode(argMultimap.getValue(PREFIX_CODE).get());
         Weightage weightage = ParserUtil.parseWeightage(argMultimap.getValue(PREFIX_WEIGHTAGE).get());
@@ -64,8 +65,9 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         // if ptag is present
         if (arePrefixesPresent(argMultimap, PREFIX_PRIORITYTAG)) {
+
             PriorityTag priorityTag = ParserUtil.parsePriorityTag(argMultimap.getValue(PREFIX_PRIORITYTAG).get());
-            System.out.println(priorityTag.getTagName());
+
             Task task = new Task(taskName, moduleCode, deadlineDate,
                     deadlineTime, status, weightage, remark, tagList, priorityTag);
             return new AddCommand(task);

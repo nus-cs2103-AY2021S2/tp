@@ -8,6 +8,7 @@ package seedu.address.model.tag;
 public class PriorityTag {
 
     public static final String MESSAGE_CONSTRAINTS = "PriorityTag should be a LOW/MEDIUM/HGIH";
+    public static final String MESSAGE_INVALID_INPUT = "Invalid Input, setting priority tag to default LOW";
 
     private State state;
     private String tagName;
@@ -63,7 +64,7 @@ public class PriorityTag {
      * @return boolean value to validated
      */
 
-    private boolean validateTag(String tagName) {
+    public boolean validateTag(String tagName) {
         if (tagName.equals("LOW") || tagName.equals("MEDIUM") || tagName.equals("HIGH")) {
             return true;
         } else {
