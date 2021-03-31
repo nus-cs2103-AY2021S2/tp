@@ -390,7 +390,7 @@ Users will be able to press tab to cycle through the available options. -->
 Email command provides the user with the choice to mass email person(s) of their choice.
 Executing the `email` command will open up the **operating system's email client**.
 
-Format: `email { shown | INDEX… }`
+Format: `email { shown | selected | INDEX… }`
 
 <div markdown="span" class="alert alert-info">
 :bulb: **Notes on `email` command:**
@@ -402,11 +402,12 @@ Format: `email { shown | INDEX… }`
 
 Examples:
 
-| Example | Description |
-| --------------- | -------- |
-|`email 1`| Email person with index 1 |
-|`email 1 2`| Email person with index 1 and 2 |
-|`email shown`| Email all the person in the visible person list |
+| Example          | Description                                     |
+| ---------------- | ----------------------------------------------- |
+| `email 1`        | Email person with index 1                       |
+| `email 1 2`      | Email person with index 1 and 2                 |
+| `email shown`    | Email all the person in the visible person list |
+| `email selected` | Email all the selected persons                  |
 
 ### Saving the data
 
