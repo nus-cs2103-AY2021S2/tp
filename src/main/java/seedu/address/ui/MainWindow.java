@@ -236,6 +236,8 @@ public class MainWindow extends UiPart<Stage> {
      * Shows contacts tab.
      */
     public void displayContacts() {
+        sidePanel.clearButtonStyles();
+        sidePanel.addContactButtonStyle();
         if (!infoDisplayPlaceholder.getChildren().contains(contactListPanel.getRoot())) {
             infoDisplayPlaceholder.getChildren().clear();
             infoDisplayPlaceholder.getChildren().add(contactListPanel.getRoot());
@@ -248,6 +250,8 @@ public class MainWindow extends UiPart<Stage> {
      * Shows today tab.
      */
     public void displayToday() {
+        sidePanel.clearButtonStyles();
+        sidePanel.addTodayButtonStyle();
         todayPanel = new TodayPanel(logic.getColabFolder(), LocalDate.now());
         infoDisplayPlaceholder.getChildren().clear();
         infoDisplayPlaceholder.getChildren().add(todayPanel.getRoot());
