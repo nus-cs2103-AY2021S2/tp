@@ -90,7 +90,7 @@ public class EditResidentCommand extends Command {
         model.updateFilteredResidentList(PREDICATE_SHOW_ALL_RESIDENTS);
         model.commitAddressBook();
 
-        return new CommandResult(String.format(MESSAGE_EDIT_RESIDENT_SUCCESS, editedResident)).setResidentCommand();
+        return new CommandResult(String.format(MESSAGE_EDIT_RESIDENT_SUCCESS, editedResident));
     }
 
     /**

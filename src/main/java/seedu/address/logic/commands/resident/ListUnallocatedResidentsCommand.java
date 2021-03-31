@@ -22,6 +22,6 @@ public class ListUnallocatedResidentsCommand extends Command {
         requireNonNull(model);
         ResidentUnallocatedPredicate predicate = new ResidentUnallocatedPredicate();
         model.updateFilteredResidentList(predicate);
-        return new CommandResult(MESSAGE_SUCCESS).setResidentCommand();
+        return new CommandResult(MESSAGE_SUCCESS);
     }
 }

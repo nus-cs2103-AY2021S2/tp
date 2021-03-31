@@ -32,8 +32,7 @@ public class FindResidentCommand extends Command {
         requireNonNull(model);
         model.updateFilteredResidentList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_RESIDENTS_LISTED_OVERVIEW, model.getFilteredResidentList().size()))
-                .setResidentCommand();
+                String.format(Messages.MESSAGE_RESIDENTS_LISTED_OVERVIEW, model.getFilteredResidentList().size()));
     }
 
     @Override

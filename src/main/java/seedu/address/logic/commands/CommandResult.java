@@ -47,24 +47,6 @@ public class CommandResult {
         return feedbackToUser;
     }
 
-    /**
-     * Sets the state of this command result to indicate that it is a Resident command
-     *
-     * @return CommandResult object indicating the result of the executed command
-     */
-    public CommandResult setResidentCommand() {
-        return new CommandResult(this.feedbackToUser, this.showHelp, this.exit);
-    }
-
-    /**
-     * Sets the state of this command result to indicate that it is a Room command
-     *
-     * @return CommandResult object indicating the result of the executed command
-     */
-    public CommandResult setResidentRoomCommand() {
-        return new CommandResult(this.feedbackToUser, this.showHelp, this.exit);
-    }
-
     public boolean isShowHelp() {
         return showHelp;
     }

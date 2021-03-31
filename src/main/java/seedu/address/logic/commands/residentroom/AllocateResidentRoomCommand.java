@@ -82,7 +82,7 @@ public class AllocateResidentRoomCommand extends Command {
 
         // Set ResidentRoom
         model.addResidentRoom(toAllocate);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAllocate)).setResidentRoomCommand();
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAllocate));
     }
 
     @Override
