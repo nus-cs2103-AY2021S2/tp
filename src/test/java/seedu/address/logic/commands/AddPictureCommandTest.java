@@ -26,13 +26,13 @@ import seedu.address.model.person.Picture;
 
 public class AddPictureCommandTest {
 
+    private static UserPrefs userPrefs;
+
     private final Path testFilesDir = Path.of("src", "test", "data", "PictureTest");
     private final Path fileNotFoundPath = testFilesDir.resolve("non_existant.jpeg");
     private final Path fileWrongExtPath = testFilesDir.resolve("invalid_format.txt");
     private final Path validPath = testFilesDir.resolve("picture.jpg");
     private final Path validPathWithSpaces = testFilesDir.resolve("picture with space.jpg");
-
-    private static UserPrefs userPrefs;
     private final Model model = new ModelManager(getTypicalAddressBook(), userPrefs);
 
     @BeforeAll
@@ -52,7 +52,7 @@ public class AddPictureCommandTest {
     public static void deletePictureDir() {
         File pictureDir = userPrefs.getPictureStorageDirPath().toFile();
 
-        for(File file: pictureDir.listFiles()) {
+        for (File file : pictureDir.listFiles()) {
             file.delete();
         }
 

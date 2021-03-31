@@ -13,24 +13,17 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.io.IOException;
-import java.nio.file.CopyOption;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.UUID;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.opentest4j.TestAbortedException;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.commons.util.FileUtil;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Picture;
@@ -38,10 +31,8 @@ import seedu.address.model.person.Picture;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class DeletePictureCommandTest {
 
-    // private static Path pictureDir;
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-
     private final Path testPicPath = Path.of("src", "test", "data", "PictureTest", "picture.jpg");
+    private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void execute_invalidIndex_throwsCommandException() {

@@ -7,11 +7,12 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeletePictureCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-public class DeletePictureCommandParser implements Parser{
+public class DeletePictureCommandParser implements Parser {
 
     /**
      * Parses the given {@code String} of arguments in the context of the DeletePictureCommand
      * and returns a DeletePictureCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform to the expected format
      */
     public DeletePictureCommand parse(String args) throws ParseException {
