@@ -37,13 +37,17 @@ To learn more about StoreMando's features and commands, head over to the [“Fea
 
 If you need an overview of StoreMando’s commands, check out the [“Command Summary"](#5-command-summary) section.
 
-Please note the following symbols used in the User Guide which may serve as points of interests:
+<div markdown="block" class="alert alert-info">
+
+**Please note the following symbols used in the User Guide which may serve as points of interests:**
 
 `command` : The grey highlight indicates commands that can be executed by StoreMando.
 
 :information_source: : This symbol indicates information that you may wish to take note.
 
 :bulb: : This symbol indicates tips provided by us.
+
+</div>
 
 ----
 
@@ -59,13 +63,13 @@ Please note the following symbols used in the User Guide which may serve as poin
 1. Copy the file to the folder you want to use as the _home folder_ for your StoreMando.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app
-   contains some sample data for you to see how the app looks.<br>
+   contains some sample data for you to see how the app looks.
    ![Ui](images/Ui.png)
 
 1. Before adding your own items, you may want to [clear](#39-clearing-storemando--clear) the sample data to start
    afresh.
 
-1. Type the command in the [command box](#command-box-) and press Enter on your keyboard to execute it.<br>
+1. Type the command in the [command box](#command-box-) and press Enter on your keyboard to execute it.
 
 1. Refer to the [“Features"](#3-features) below for details of each command.
 
@@ -320,7 +324,6 @@ Examples:
   with an expiry date of 20 March 2021.
     * `reminder 5 days` returns the chocolate only.
     * `reminder 2 weeks` returns both the chocolate and the banana.
-      <br>
 * `reminder -7 days` returns a list of items that have been expired for at least 7 days.
 * `reminder -2 weeks` returns a list of items that have been expired for at least 2 weeks.
 * Given today is 30 March 2021, and the inventory has 2 items: apple with expiry date of 27 March 2021 and banana with
