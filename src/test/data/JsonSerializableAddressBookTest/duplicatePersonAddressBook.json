@@ -7,7 +7,7 @@
     "address": "123, Jurong West Ave 6, #08-111",
     "guardianName" : "Amanda Pauline",
     "guardianPhone" : "94351254",
-    "subjects": [ "physics" ],
+    "subjects": [ "phys" ],
     "lessons" : [ ]
   }, {
     "name": "Alice Pauline",
