@@ -28,6 +28,7 @@ import seedu.booking.logic.commands.FilterBookingByVenueCommand;
 import seedu.booking.logic.commands.FindBookingCommand;
 import seedu.booking.logic.commands.FindCommand;
 import seedu.booking.logic.commands.FindPersonCommand;
+import seedu.booking.logic.commands.FindVenueByTagCommand;
 import seedu.booking.logic.commands.FindVenueCommand;
 import seedu.booking.logic.commands.HelpCommand;
 import seedu.booking.logic.commands.ListBookingCommand;
@@ -138,6 +139,9 @@ public class BookingSystemParser {
 
         case FindVenueCommand.COMMAND_WORD:
             return new FindVenueCommandParser().parse(arguments);
+
+        case FindVenueByTagCommand.COMMAND_WORD:
+            return new FindVenueByTagCommandParser().parse(arguments);
 
         case FindBookingCommand.COMMAND_WORD:
             return new FindBookingCommandParser().parse(arguments);
