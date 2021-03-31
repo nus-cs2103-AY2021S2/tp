@@ -267,17 +267,18 @@ Examples:
 
 #### 3.8.1 Searching properties: `find property`
 
-Finds all properties containing any of the specified keywords (case-insensitive) and/or with the given parameters. 
+Finds all properties containing any of the specified keywords (case-insensitive) and/or with the given options. 
 
 Formats:
 * `find property [n/NAME] [pl/UPPER_PRICE_LIMIT] [pm/LOWER_PRICE_LIMIT] [t/PROPERTY_TYPE] [a/ADDRESS]* 
 [p/POSTAL_CODE]* [d/DEADLINE]* [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT]* 
 [ce/CLIENT_EMAIL]* [tags/TAGS_SEPARATED_BY_COMMA]`
-* Note that all parameters marked with `*` are limited to one per query. 
+* Note that all options marked with `*` are limited to one per query. 
 
 Description:
-* There can be 1 or more parameters. Other than parameters marked with `*`, there can be multiple of 
-each parameter. All text are case insensitive.
+* There can be 1 or more parameters. Other than options marked with `*`, there can be multiple of 
+each option. 
+* All text are case insensitive.
 
 Options:
 * `[n/NAME]`
@@ -348,13 +349,39 @@ Examples:
 
 #### 3.8.2 Searching appointments: `find appointment`
 
-Finds appointments that match the criterion provided.
+Finds all appointments containing any of the specified keywords (case-insensitive) and/or with the given parameters. 
 
 Formats:
-* `find appointment [KEYWORD]...`
+* `find appointment [n/NAME] [r/REMARKS] [d/DATE]* [t/TIME]*`
+* Note that all options marked with `*` are limited to one per query. 
 
 Description:
-* There can be 0 or more keywords. Keywords are case insensitive.
+* There can be 1 or more options. Other than options marked with `*`, there can be multiple of 
+each option. 
+* All text are case insensitive.
+
+Options: 
+* `[n/NAME]`
+    
+    Searches for appointments with `[NAME]` in their names. 
+    
+* `[r/REMARKS]` 
+
+    Searches for appointments containing `[REMARKS]` in their remarks. 
+    
+* `[d/DATE]`
+    
+    Searches for properties with `[DATE]` as date. 
+    
+    Limited to one per query. 
+    
+* `[t/TIME]`
+    
+    Searches for properties with `[TIME]` as time. 
+    
+    Limited to one per query. 
+
+
 
 Examples:
 * `find appointment bob`
