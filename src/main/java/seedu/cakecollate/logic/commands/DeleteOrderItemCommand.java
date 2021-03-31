@@ -17,7 +17,7 @@ import seedu.cakecollate.model.orderitem.OrderItem;
  */
 public class DeleteOrderItemCommand extends Command {
 
-    public static final String COMMAND_WORD = "deleteOrder";
+    public static final String COMMAND_WORD = "deleteItem";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the order items identified by the index number used in the displayed order item list.\n"
