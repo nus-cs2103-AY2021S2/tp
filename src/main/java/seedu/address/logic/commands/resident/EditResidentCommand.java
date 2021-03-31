@@ -156,7 +156,7 @@ public class EditResidentCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, room);
+            return CollectionUtil.isAnyNonNull(name, phone, email, year, room);
         }
 
         public void setName(Name name) {

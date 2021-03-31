@@ -601,6 +601,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *` | power user | access my command history | efficiently repeat similar commands |
 | `* *` | power user | access command history from previous sessions | easily reuse commands from previous sessions |
 | `* *` | power user | create aliases for longer commands | avoid typing the same command multiple times |
+| `* *` | power user | delete aliases that are no longer needed | avoid triggering the wrong command |
 
 ## Use cases
 
@@ -926,7 +927,7 @@ Use case ends.
 
 **MSS**
 
-1. User wants to assign an alias name for a command.
+1. User requests to assign an alias name for a command.
 2. SunRez validates the alias name and command.
 3. SunRez saves the alias mapping to the user’s preferences.
 
@@ -934,15 +935,32 @@ Use case ends.
 
 **Extensions**
 
-* 1a. Alias name is invalid.
-    * 1a1. SunRez shows an error message. 
+* 2a. Alias name is invalid.
+    * 2a1. SunRez shows an error message. 
 
         Use case ends.
 
-* 2a. An alias with the same name exists.
-    * 2a1. SunRez overwrites the existing alias. 
+* 3a. An alias with the same name exists.
+    * 3a1. SunRez overwrites the existing alias. 
 
-        Use case resumes from step 3.
+        Use case ends.
+
+### UC-023 Delete an alias
+
+**MSS**
+
+1. User requests to delete an alias.
+2. SunRez validates the alias name.
+3. SunRez removes the alias and updates the alias mapping in the user’s preferences.
+
+Use case ends.
+
+**Extensions**
+
+* 2a. Alias is not found in the current alias mapping.
+    * 2a1. SunRez shows an error message.
+
+      Use case ends.
 
 ## Non-Functional Requirements
 
