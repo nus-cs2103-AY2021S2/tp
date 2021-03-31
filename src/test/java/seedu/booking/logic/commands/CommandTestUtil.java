@@ -23,6 +23,8 @@ import seedu.booking.commons.core.index.Index;
 import seedu.booking.logic.commands.exceptions.CommandException;
 import seedu.booking.model.BookingSystem;
 import seedu.booking.model.Model;
+import seedu.booking.model.booking.Booking;
+import seedu.booking.model.booking.BookingIdContainsKeywordsPredicate;
 import seedu.booking.model.booking.VenueNameContainsKeywordsPredicate;
 import seedu.booking.model.person.NameContainsKeywordsPredicate;
 import seedu.booking.model.person.Person;
@@ -200,7 +202,6 @@ public class CommandTestUtil {
         Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
         final String[] splitName = person.getName().fullName.split("\\s+");
         model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
-
         assertEquals(1, model.getFilteredPersonList().size());
     }
 
@@ -217,5 +218,21 @@ public class CommandTestUtil {
 
         assertEquals(1, model.getFilteredVenueList().size());
     }
+
+
+    /**
+     * Updates {@code model}'s filtered list to show only the booking at the given {@code targetIndex} in the
+     * {@code model}'s booking system.
+     */
+
+    public static void showBookingAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredBookingList().size());
+
+        Booking booking = model.getFilteredBookingList().get(targetIndex.getZeroBased());
+        final String splitName = booking.getId().toString();
+        model.updateFilteredBookingList(new BookingIdContainsKeywordsPredicate(splitName));
+        assertEquals(1, model.getFilteredBookingList().size());
+    }
+
 
 }

@@ -7,8 +7,12 @@ import static seedu.booking.logic.commands.CommandTestUtil.VALID_VENUE_DESCRIPTI
 import static seedu.booking.logic.commands.CommandTestUtil.VALID_VENUE_NAME_FIELD;
 import static seedu.booking.logic.commands.CommandTestUtil.VALID_VENUE_NAME_HALL;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 
+import seedu.booking.model.BookingSystem;
 import seedu.booking.model.venue.Capacity;
 import seedu.booking.model.venue.Venue;
 import seedu.booking.model.venue.VenueName;
@@ -42,4 +46,19 @@ public class TypicalVenues {
             .build();
 
     private TypicalVenues() {} // prevents instantiation
+
+    /**
+     * Returns an {@code BookingSystem} with all the typical persons.
+     */
+    public static BookingSystem getTypicalBookingSystem() {
+        BookingSystem ab = new BookingSystem();
+        for (Venue venue : getTypicalVenues()) {
+            ab.addVenue(venue);
+        }
+        return ab;
+    }
+
+    public static List<Venue> getTypicalVenues() {
+        return new ArrayList<>(Arrays.asList(HALL, FIELD));
+    }
 }

@@ -9,8 +9,8 @@ import static seedu.booking.logic.commands.CommandTestUtil.VALID_VENUE_NAME_VENU
 import static seedu.booking.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.booking.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.booking.logic.commands.CommandTestUtil.showVenueAtIndex;
-import static seedu.booking.testutil.TypicalIndexes.INDEX_FIRST_VENUE;
-import static seedu.booking.testutil.TypicalIndexes.INDEX_SECOND_VENUE;
+import static seedu.booking.testutil.TypicalIndexes.INDEX_FIRST;
+import static seedu.booking.testutil.TypicalIndexes.INDEX_SECOND;
 import static seedu.booking.testutil.TypicalPersons.getTypicalBookingSystem;
 import static seedu.booking.testutil.TypicalVenues.VENUE1;
 import static seedu.booking.testutil.TypicalVenues.VENUE3;
@@ -55,7 +55,7 @@ public class EditVenueCommandTest {
         model.addVenue(VENUE1);
         EditVenueCommand editVenueCommand =
                 new EditVenueCommand(new VenueName(VALID_VENUE_NAME_VENUE1), new EditVenueDescriptor());
-        Venue editedVenue = model.getFilteredVenueList().get(INDEX_FIRST_VENUE.getZeroBased());
+        Venue editedVenue = model.getFilteredVenueList().get(INDEX_FIRST.getZeroBased());
 
         String expectedMessage = String.format(EditVenueCommand.MESSAGE_EDIT_VENUE_SUCCESS, editedVenue);
 
@@ -67,9 +67,9 @@ public class EditVenueCommandTest {
     @Test
     public void execute_filteredList_success() {
         model.addVenue(VENUE1);
-        showVenueAtIndex(model, INDEX_FIRST_VENUE);
+        showVenueAtIndex(model, INDEX_FIRST);
 
-        Venue venueInFilteredList = model.getFilteredVenueList().get(INDEX_FIRST_VENUE.getZeroBased());
+        Venue venueInFilteredList = model.getFilteredVenueList().get(INDEX_FIRST.getZeroBased());
         Venue editedVenue = new VenueBuilder(venueInFilteredList).withName(VALID_VENUE_NAME_HALL).build();
         EditVenueCommand editVenueCommand = new EditVenueCommand(new VenueName(VALID_VENUE_NAME_VENUE1),
                 new EditVenueDescriptorBuilder().withVenueName(VALID_VENUE_NAME_HALL).build());
@@ -86,7 +86,7 @@ public class EditVenueCommandTest {
     public void execute_duplicatePersonUnfilteredList_failure() {
         model.addVenue(VENUE1);
         model.addVenue(VENUE3);
-        Venue firstVenue = model.getFilteredVenueList().get(INDEX_FIRST_VENUE.getZeroBased());
+        Venue firstVenue = model.getFilteredVenueList().get(INDEX_FIRST.getZeroBased());
         EditVenueDescriptor descriptor = new EditVenueDescriptorBuilder(firstVenue).build();
         EditVenueCommand editVenueCommand = new EditVenueCommand(new VenueName(VALID_VENUE_NAME_VENUE3), descriptor);
 
@@ -97,10 +97,10 @@ public class EditVenueCommandTest {
     public void execute_duplicatePersonFilteredList_failure() {
         model.addVenue(VENUE1);
         model.addVenue(VENUE3);
-        showVenueAtIndex(model, INDEX_FIRST_VENUE);
+        showVenueAtIndex(model, INDEX_FIRST);
 
         // edit venue in filtered list into a duplicate in the booking system
-        Venue venueInList = model.getBookingSystem().getVenueList().get(INDEX_SECOND_VENUE.getZeroBased());
+        Venue venueInList = model.getBookingSystem().getVenueList().get(INDEX_SECOND.getZeroBased());
         EditVenueCommand editVenueCommand = new EditVenueCommand(new VenueName(VALID_VENUE_NAME_VENUE1),
                 new EditVenueDescriptorBuilder(venueInList).build());
 
