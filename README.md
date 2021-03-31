@@ -153,5 +153,17 @@
     1. Only commands which modify the state of the TaskTracker will be redone
     2. There must be an available state to redo to
     
+11. ### Add a task to the daily task list: `doToday`
+
+- Adds the specified task from the regular task list to the daily task list.
+
+- Format: `doToday [-a OR -r] INDEX`
+
+  1. Flag to add or remove must be specified: `-a` to add a daily task, `-r` to remove a daily task.
+
+  2. For add flag `-a`: Index must be available on the task list else an error will be thrown.
+
+  3. For remove flag `-r`: Index must be available on the daily task list else an error will be thrown.
+
 ## Acknowledgements
 1. This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org)
