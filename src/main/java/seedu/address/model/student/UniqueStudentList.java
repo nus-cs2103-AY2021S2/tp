@@ -178,13 +178,26 @@ public class UniqueStudentList implements Iterable<Student> {
     }
 
     /**
-     * Adds a {@code Session} to the target {@code Student} in the student list.
+     * Deletes a {@code Session} in the target {@code Student} of the student list.
      *
      * @param target Target student.
      * @param sessionIndex Index of session to be deleted.
      */
     public void deleteSession(Student target, Index sessionIndex) {
         target.removeSession(sessionIndex);
+        int index = internalList.indexOf(target);
+        internalList.set(index, target);
+    }
+
+    /**
+     * Deletes a {@code Session} from a {@code RecurringSession} in the target {@code Student} in the student list.
+     *
+     * @param target Target student.
+     * @param sessionIndex Index of session to be deleted.
+     * @param sessionDate Date to be removed from the recurring session.
+     */
+    public void deleteRecurringSession(Student target, Index sessionIndex, SessionDate sessionDate) {
+        target.removeRecurringSession(sessionIndex, sessionDate);
         int index = internalList.indexOf(target);
         internalList.set(index, target);
     }

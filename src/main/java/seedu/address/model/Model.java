@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.session.Session;
+import seedu.address.model.session.SessionDate;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Student;
 
@@ -96,6 +97,12 @@ public interface Model {
      * The student must exist in the address book.
      */
     void deleteSession(Name name, Index sessionIndex);
+
+    /**
+     * Deletes the given session from a recurring session.
+     * The student must exist in the address book and the session must be a recurring session.
+     */
+    void deleteRecurringSession(Name name, Index sessionIndex, SessionDate sessionDate);
 
     /**
      * Returns true if a student with this name exists in the unique student list

@@ -11,6 +11,7 @@ import seedu.address.logic.commands.AddSessionCommand;
 import seedu.address.logic.commands.AddStudentCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.DeleteRecurringSessionCommand;
 import seedu.address.logic.commands.DeleteSessionCommand;
 import seedu.address.logic.commands.DeleteStudentCommand;
 import seedu.address.logic.commands.EditStudentCommand;
@@ -88,6 +89,9 @@ public class AddressBookParser {
 
         case AddRecurringSessionCommand.COMMAND_WORD:
             return new AddRecurringSessionCommandParser().parse(arguments);
+
+        case DeleteRecurringSessionCommand.COMMAND_WORD:
+            return new DeleteRecurringSessionCommandParser().parse(arguments);
 
         case GetMonthlyFeeCommand.COMMAND_WORD:
             return new GetMonthlyFeeCommandParser().parse(arguments);

@@ -15,6 +15,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.FeeUtil;
 import seedu.address.model.session.Session;
+import seedu.address.model.session.SessionDate;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Student;
 
@@ -131,6 +132,12 @@ public class ModelManager implements Model {
     public void deleteSession(Name name, Index sessionIndex) {
         requireAllNonNull(name, sessionIndex);
         addressBook.removeSession(name, sessionIndex);
+    }
+
+    @Override
+    public void deleteRecurringSession(Name name, Index sessionIndex, SessionDate sessionDate) {
+        requireAllNonNull(name, sessionIndex, sessionDate);
+        addressBook.removeRecurringSession(name, sessionIndex, sessionDate);
     }
 
     @Override
