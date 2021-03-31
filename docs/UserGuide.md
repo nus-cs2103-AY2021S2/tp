@@ -264,9 +264,17 @@ Format: `list_appointments`
 
 Example outputs:
 ```
-1) john.doe@example.com - 2021-4-20 2:00pm @ Bedok National Library
-2) jane.doe@example.com - 2021-4-21 2:00pm @ Bedok National Library
-3) peter.ng@example.com - 2021-4-24 2:00pm @ Bedok National Library
+1. Mathematics
+Tutor: Alex Yeoh
+Mar 24 2021
+02:00 PM - 04:00 PM
+Location: Geylang
+
+2. Science
+Tutor: Bernice Yu
+Mar 27 2021
+03:00 PM - 05:00 PM
+Location: Hougang
 ```
 
 ### View tuition appointment details: `view_appointment`
@@ -277,16 +285,15 @@ Format:
 `view_appointment DATE`
 
 Example:
-`view_appointment 2021-4-20`
+`view_appointment 2021-03-24`
 
 Example Output:
 ```
-Appointment Details
-
-Tutor Email: chloe.lim@example.com
-Appointment Date: 2021-4-20
-Appointment Time: 2:00pm
-Location: Bedok National Library
+1. Mathematics
+Tutor: Alex Yeoh
+Mar 24 2021
+02:00 PM - 04:00 PM
+Location: Geylang
 ```
 
 ### Find tuition appointment details: `find_appointment`
@@ -297,16 +304,15 @@ Format:
 `find_appointment NAME...`
 
 Example:
-`find_appointment john.doe@example.com`
+`find_appointment Alex Yeoh`
 
 Example Output:
 ```
-Appointment Details
-
-Tutor Email: john.doe@gmail.com
-Appointment Date: 2021-4-21
-Appointment Time: 2:00pm
-Location: Bedok National Library
+1. Mathematics
+Tutor: Alex Yeoh
+Mar 24 2021
+02:00 PM - 04:00 PM
+Location: Geylang
 ```
 
 ### Delete a tuition appointment: `delete_appointment`
@@ -324,8 +330,11 @@ Example:
 
 Example Output:
 ```
-1) jane.doe@example.com - 2021-4-21 2:00pm @ Bedok National Library
-2) peter.ng@example.com - 2021-4-24 2:00pm @ Bedok National Library
+1. Science
+Tutor: Bernice Yu
+Mar 27 2021
+03:00 PM - 05:00 PM
+Location: Hougang
 ```
 
 ### Editing an appointment : `edit_appointment`
