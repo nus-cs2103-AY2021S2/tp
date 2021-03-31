@@ -222,6 +222,7 @@ Action | Format, Examples
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Deleteb** | `deleteb r/RESIDENCE_INDEX b/BOOKING_INDEX`<br> e.g., `delete r/3 b/2`
 **Edit** | `edit INDEX c/[y or n]`<br> e.g.,`edit 2 c/n`
+**Editb** | `editb RESIDENCE_INDEX b/BOOKING_INDEX` <br> e.g., `editb r/1 b/2 p/90069009 s/03-28-2021`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Heights`
 **List** | `list`
 **Help** | `help`
