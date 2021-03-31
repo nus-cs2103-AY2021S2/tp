@@ -1,7 +1,7 @@
 package seedu.address.logic.parser.commands.menu;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DISH;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INGREDIENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.ArrayList;
@@ -24,12 +24,12 @@ public class MenuFindCommandParser implements Parser<MenuFindCommand> {
     @Override
     public MenuFindCommand parse(String userInput) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(userInput, PREFIX_NAME, PREFIX_DISH);
+                ArgumentTokenizer.tokenize(userInput, PREFIX_NAME, PREFIX_INGREDIENT);
 
         boolean namePresent = ParserUtil.arePrefixesPresent(argMultimap, PREFIX_NAME);
-        boolean dishPresent = ParserUtil.arePrefixesPresent(argMultimap, PREFIX_DISH);
+        boolean ingredientPresent = ParserUtil.arePrefixesPresent(argMultimap, PREFIX_INGREDIENT);
 
-        if (!namePresent && !dishPresent) {
+        if (!namePresent && !ingredientPresent) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     MenuFindCommand.MESSAGE_USAGE));
         }
@@ -42,7 +42,7 @@ public class MenuFindCommandParser implements Parser<MenuFindCommand> {
         List<Predicate<Dish>> predicates = new ArrayList<>();
 
         Optional<String> nameArgs = argMultimap.getValue(PREFIX_NAME);
-        Optional<String> dishArg = argMultimap.getValue(PREFIX_DISH);
+        Optional<String> ingredientArg = argMultimap.getValue(PREFIX_INGREDIENT);
 
         if (nameArgs.isPresent()) {
             List<String> keywords;
@@ -55,10 +55,10 @@ public class MenuFindCommandParser implements Parser<MenuFindCommand> {
             predicates.add(new DishNameContainsWordsPredicate(keywords));
         }
 
-        if (dishArg.isPresent()) {
+        if (ingredientArg.isPresent()) {
             String keyword;
             try {
-                keyword = ParserUtil.parseKeyword(dishArg.get());
+                keyword = ParserUtil.parseKeyword(ingredientArg.get());
             } catch (ParseException pe) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                         MenuFindCommand.MESSAGE_USAGE), pe);
