@@ -35,6 +35,7 @@ import seedu.cakecollate.model.order.ContainsKeywordsPredicate;
 import seedu.cakecollate.model.order.Order;
 import seedu.cakecollate.model.order.ReminderDatePredicate;
 import seedu.cakecollate.model.order.Request;
+import seedu.cakecollate.testutil.AddOrderDescriptorBuilder;
 import seedu.cakecollate.testutil.EditOrderDescriptorBuilder;
 import seedu.cakecollate.testutil.OrderBuilder;
 import seedu.cakecollate.testutil.OrderUtil;
@@ -46,8 +47,11 @@ public class CakeCollateParserTest {
     @Test
     public void parseCommand_add() throws Exception {
         Order order = new OrderBuilder().build();
+        AddCommand.AddOrderDescriptor descriptor = new AddOrderDescriptorBuilder(order).build();
+
         AddCommand command = (AddCommand) parser.parseCommand(OrderUtil.getAddCommand(order));
-        assertEquals(new AddCommand(order), command);
+
+        assertEquals(new AddCommand(null, descriptor), command);
     }
 
     @Test

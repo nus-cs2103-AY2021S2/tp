@@ -98,6 +98,8 @@ public interface Model {
      */
     void addOrderItem(OrderItem orderItem);
 
+    boolean hasOrderItem(OrderItem orderItem);
+
     /**
      * Deletes the given orderItem.
      * The order must exist in the orderItems.

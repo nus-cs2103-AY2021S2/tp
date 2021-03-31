@@ -5,16 +5,20 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.cakecollate.testutil.Assert.assertThrows;
+import static seedu.cakecollate.testutil.TypicalIndexes.INDEX_FIRST_ORDER;
+import static seedu.cakecollate.testutil.TypicalIndexes.INDEX_THIRD_ORDER;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.cakecollate.commons.core.GuiSettings;
+import seedu.cakecollate.commons.core.index.IndexList;
 import seedu.cakecollate.logic.commands.exceptions.CommandException;
 import seedu.cakecollate.model.CakeCollate;
 import seedu.cakecollate.model.Model;
@@ -23,21 +27,42 @@ import seedu.cakecollate.model.ReadOnlyOrderItems;
 import seedu.cakecollate.model.ReadOnlyUserPrefs;
 import seedu.cakecollate.model.order.Order;
 import seedu.cakecollate.model.orderitem.OrderItem;
+import seedu.cakecollate.testutil.AddOrderDescriptorBuilder;
 import seedu.cakecollate.testutil.OrderBuilder;
 
+
+/**
+ * todo: Tests
+ * - order desc that already exists in order item model stub
+ * - new order desc + existing order desc + order index
+ * <p>
+ * basically stub equivalent of addCommandIntegrationTest
+ * <p>
+ * check if equivalent tests exist in parser
+ */
+
 public class AddCommandTest {
+    private final IndexList nonNullIndexList = new IndexList(new ArrayList<>());
+
+    @BeforeEach
+    public void setUp() {
+        nonNullIndexList.add(INDEX_FIRST_ORDER);
+        nonNullIndexList.add(INDEX_THIRD_ORDER);
+    }
 
     @Test
-    public void constructor_nullOrder_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+    public void constructor_nullAddOrderDescriptor_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AddCommand(null, null));
+        assertThrows(NullPointerException.class, () -> new AddCommand(nonNullIndexList, null));
     }
 
     @Test
     public void execute_orderAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingOrderAdded modelStub = new ModelStubAcceptingOrderAdded();
         Order validOrder = new OrderBuilder().build();
+        AddCommand.AddOrderDescriptor descriptor = new AddOrderDescriptorBuilder(validOrder).build();
 
-        CommandResult commandResult = new AddCommand(validOrder).execute(modelStub);
+        CommandResult commandResult = new AddCommand(null, descriptor).execute(modelStub);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validOrder), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validOrder), modelStub.ordersAdded);
@@ -46,7 +71,8 @@ public class AddCommandTest {
     @Test
     public void execute_duplicateOrder_throwsCommandException() {
         Order validOrder = new OrderBuilder().build();
-        AddCommand addCommand = new AddCommand(validOrder);
+        AddCommand.AddOrderDescriptor descriptor = new AddOrderDescriptorBuilder(validOrder).build();
+        AddCommand addCommand = new AddCommand(null, descriptor);
         ModelStub modelStub = new ModelStubWithOrder(validOrder);
 
         assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_ORDER, () -> addCommand.execute(modelStub));
@@ -56,14 +82,16 @@ public class AddCommandTest {
     public void equals() {
         Order alice = new OrderBuilder().withName("Alice").build();
         Order bob = new OrderBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        AddCommand.AddOrderDescriptor descriptorAlice = new AddOrderDescriptorBuilder(alice).build();
+        AddCommand.AddOrderDescriptor descriptorBob = new AddOrderDescriptorBuilder(bob).build();
+        AddCommand addAliceCommand = new AddCommand(null, descriptorAlice);
+        AddCommand addBobCommand = new AddCommand(null, descriptorBob);
 
         // same object -> returns true
         assertTrue(addAliceCommand.equals(addAliceCommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
+        AddCommand addAliceCommandCopy = new AddCommand(null, descriptorAlice);
         assertTrue(addAliceCommand.equals(addAliceCommandCopy));
 
         // different types -> returns false
@@ -72,9 +100,24 @@ public class AddCommandTest {
         // null -> returns false
         assertFalse(addAliceCommand.equals(null));
 
-        // different order -> returns false
+        // same null index list, different order -> returns false
+        assertFalse(addAliceCommand.equals(addBobCommand));
+
+        // same order, different index list -> return false
+        assertFalse(addAliceCommand.equals(new AddCommand(nonNullIndexList, descriptorAlice)));
+
+        // same non-null index list, different order -> returns false
+        addAliceCommand = new AddCommand(nonNullIndexList, descriptorAlice);
+        addBobCommand = new AddCommand(nonNullIndexList, descriptorBob);
         assertFalse(addAliceCommand.equals(addBobCommand));
     }
+
+
+    // ======== TESTS ADDED AFTER ORDER ITEM FEATURE ========
+
+
+    // ======== MODEL STUBS ========
+
 
     /**
      * A default model stub that have all of the methods failing.
@@ -171,6 +214,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasOrderItem(OrderItem orderItem) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ReadOnlyOrderItems getOrderItems() {
             throw new AssertionError("This method should not be called.");
         }
@@ -181,6 +229,7 @@ public class AddCommandTest {
      */
     private class ModelStubWithOrder extends ModelStub {
         private final Order order;
+        private final ArrayList<OrderItem> orderItemsStub = new ArrayList<>();
 
         ModelStubWithOrder(Order order) {
             requireNonNull(order);
@@ -192,6 +241,17 @@ public class AddCommandTest {
             requireNonNull(order);
             return this.order.isSameOrder(order);
         }
+
+        @Override
+        public boolean hasOrderItem(OrderItem orderItem) {
+            requireNonNull(orderItem);
+            return orderItemsStub.contains(orderItem);
+        }
+
+        @Override
+        public void addOrderItem(OrderItem orderItem) {
+            orderItemsStub.add(orderItem);
+        }
     }
 
     /**
@@ -199,6 +259,7 @@ public class AddCommandTest {
      */
     private class ModelStubAcceptingOrderAdded extends ModelStub {
         final ArrayList<Order> ordersAdded = new ArrayList<>();
+        final ArrayList<OrderItem> orderItemsStub = new ArrayList<>();
 
         @Override
         public boolean hasOrder(Order order) {
@@ -215,6 +276,20 @@ public class AddCommandTest {
         @Override
         public ReadOnlyCakeCollate getCakeCollate() {
             return new CakeCollate();
+        }
+
+        // ======= NEEDED TO ADD NEW ORDER DESCRIPTIONS INTO ORDER ITEM MODEL
+
+        @Override
+        public boolean hasOrderItem(OrderItem item) {
+            requireNonNull(item);
+            return orderItemsStub.stream().anyMatch(item::isSameOrderItem);
+        }
+
+        @Override
+        public void addOrderItem(OrderItem item) {
+            orderItemsStub.add(item);
+            // updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS); ?
         }
     }
 

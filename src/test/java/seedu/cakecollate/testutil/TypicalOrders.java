@@ -31,7 +31,7 @@ public class TypicalOrders {
     // needs to correspond to typicalOrdersCakeCollate
     public static final Order ALICE = new OrderBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
-            .withPhone("94351253").withOrderDescriptions("2 x Strawberry Cakes").withTags("friends")
+            .withPhone("94351253").withOrderDescriptions("Strawberry Cake").withTags("friends")
             .withDeliveryDate("01/01/2022").withDeliveryStatus()
             .withRequest("").build();
     public static final Order BENSON = new OrderBuilder().withName("Benson Meier")
