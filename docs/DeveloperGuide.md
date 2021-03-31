@@ -17,7 +17,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ### Architecture
 
-<img src="images/ArchitectureDiagram.png" width="450px">
+<img src="images/Architecture.png" width="500px">
 
 The **Architecture Diagram** given above explains the high-level design of the
 App. Given below is a quick overview of each component.
@@ -50,7 +50,7 @@ Similarly, we have `Model` interface and `ModelManager` class that implements
 The Sequence Diagram below shows how the components interact with each other
 for the scenario where the user issues the command `delete 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="450px">
+<img src="images/ArchitectureSequence.png" width="550px">
 
 The sections below give more details of each component.
 
@@ -241,6 +241,10 @@ The diagram below shows how the `FindCommand`, specifically the `FindCheeseComma
 
 Currently we support editing of the three models: `Cheese`, `Customer` and `Order`,
 but only under certain preconditions to reflect the real life domains.
+
+The Sequence Diagram below shows how an `EditOrderCommand` is executed.
+
+<img src="images/EditCommandSequenceDiagram.png" width="750px">
 
 #### Editing a Customer
 We always allow editing of all fields of any `Customer` instances. This is possible
@@ -662,7 +666,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
-**Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Mainstream OS**: Windows, Linux, Unix, OS-X
 
 --------------------------------------------------------------------------------------------------------------------
 
