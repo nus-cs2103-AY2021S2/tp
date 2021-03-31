@@ -2,7 +2,9 @@ package seedu.address.logic.parser;
 
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_JOB_TITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -26,12 +28,10 @@ class FilterCommandParserTest {
 
     @Test
     public void parse_allFields_success() {
-        String arguments =
-                PREFIX_PHONE + " " + PREFIX_EMAIL + " " + PREFIX_ADDRESS + " " + PREFIX_TAG + " "
-                        + PREFIX_REMARK;
-        ArgumentMultimap argumentMultimap = ArgumentTokenizer
-                .tokenize(arguments, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG,
-                        PREFIX_REMARK);
+        String arguments = PREFIX_PHONE + " " + PREFIX_EMAIL + " " + PREFIX_COMPANY + " " + PREFIX_JOB_TITLE + " "
+                + PREFIX_ADDRESS + " " + PREFIX_TAG + " " + PREFIX_REMARK;
+        ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(arguments, PREFIX_PHONE, PREFIX_EMAIL,
+                PREFIX_COMPANY, PREFIX_JOB_TITLE, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_REMARK);
         FilterCommand expectedFilterCommand = new FilterCommand(
                 new DisplayFilterPredicate(argumentMultimap));
         assertParseSuccess(parser, arguments, expectedFilterCommand);
@@ -40,9 +40,8 @@ class FilterCommandParserTest {
     @Test
     public void parse_someFields_success() {
         String arguments = PREFIX_ADDRESS + " " + PREFIX_TAG + " " + PREFIX_REMARK;
-        ArgumentMultimap argumentMultimap = ArgumentTokenizer
-                .tokenize(arguments, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG,
-                        PREFIX_REMARK);
+        ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(arguments, PREFIX_PHONE, PREFIX_EMAIL,
+                PREFIX_COMPANY, PREFIX_JOB_TITLE, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_REMARK);
         FilterCommand expectedFilterCommand = new FilterCommand(
                 new DisplayFilterPredicate(argumentMultimap));
         assertParseSuccess(parser, arguments, expectedFilterCommand);

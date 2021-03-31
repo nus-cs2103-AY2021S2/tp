@@ -19,6 +19,8 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    private final Company company;
+    private final JobTitle jobTitle;
 
     // Data fields
     private final Address address;
@@ -28,11 +30,14 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, remark, tags);
+    public Person(Name name, Phone phone, Email email, Company company, JobTitle jobTitle, Address address,
+                  Remark remark, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, company, jobTitle, address, remark, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
+        this.company = company;
+        this.jobTitle = jobTitle;
         this.address = address;
         this.remark = remark;
         this.tags.addAll(tags);
@@ -48,6 +53,14 @@ public class Person {
 
     public Email getEmail() {
         return email;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public JobTitle getJobTitle() {
+        return jobTitle;
     }
 
     public Address getAddress() {
@@ -97,6 +110,8 @@ public class Person {
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
+                && otherPerson.getCompany().equals(getCompany())
+                && otherPerson.getJobTitle().equals(getJobTitle())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getRemark().equals(getRemark())
                 && otherPerson.getTags().equals(getTags());
@@ -105,13 +120,17 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, remark, tags);
+        return Objects.hash(name, phone, email, company, jobTitle, address, remark, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
+                .append("; Company: ")
+                .append(getCompany())
+                .append("; Job Title:")
+                .append(getJobTitle())
                 .append("; Phone: ")
                 .append(getPhone())
                 .append("; Email: ")
