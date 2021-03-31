@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
+import java.util.Optional;
 
 import seedu.address.commons.core.index.Index;
 
@@ -20,7 +21,7 @@ public class CommandResult {
     private final boolean showNotif;
 
     /** Notes of a certain client should be shown to the user. */
-    private final Index noteIndex;
+    private final Optional<Index> noteIndex;
 
     /** The application should exit. */
     private final boolean exit;
@@ -28,7 +29,7 @@ public class CommandResult {
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean showNotif, Index noteIndex, boolean exit) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean showNotif, Optional<Index> noteIndex, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.showNotif = showNotif;
@@ -41,7 +42,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, Index.fromOneBased(0), false);
+        this(feedbackToUser, false, false, Optional.empty(), false);
     }
 
     public String getFeedbackToUser() {
@@ -57,11 +58,11 @@ public class CommandResult {
     }
 
     public boolean isShowNote() {
-        return (!noteIndex.equals(Index.fromOneBased(0)));
+        return (!noteIndex.isEmpty());
     }
 
     public Index getNoteIndex() {
-        return this.noteIndex;
+        return this.noteIndex.get();
     }
 
     public boolean isExit() {

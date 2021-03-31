@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE_VIEW;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
+import java.util.Optional;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -70,7 +71,7 @@ public class NoteCommand extends Command {
             model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
             return new CommandResult(String.format(MESSAGE_RECORD_SUCCESS, personToNote.getName(), note));
         } else if (action.equals(PREFIX_NOTE_VIEW)) {
-            return new CommandResult(String.format(MESSAGE_VIEW_SUCCESS, personToNote.getName()), false, false, index, false);
+            return new CommandResult(String.format(MESSAGE_VIEW_SUCCESS, personToNote.getName()), false, false, Optional.of(index), false);
         } else if (action.equals(PREFIX_NOTE_CLEAR)) {
             personToNote.clearNotes();
             model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
