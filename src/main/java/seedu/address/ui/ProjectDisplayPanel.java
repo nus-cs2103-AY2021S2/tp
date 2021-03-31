@@ -8,11 +8,16 @@ import static seedu.address.commons.core.Messages.MESSAGE_NO_TODOS_TO_DISPLAY;
 
 import javafx.beans.binding.Bindings;
 import javafx.collections.transformation.SortedList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import seedu.address.logic.commands.ViewOverviewCommand;
@@ -63,11 +68,17 @@ public class ProjectDisplayPanel extends UiPart<Region> {
     public ProjectDisplayPanel() {
         super(FXML);
 
-        tabPane.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue.equals(OVERVIEW_TAB)) {
-                setFeedbackToUser(ViewOverviewCommand.MESSAGE_SUCCESS);
-            } else if (newValue.equals(TODOS_TAB)) {
-                setFeedbackToUser(ViewTodosCommand.MESSAGE_SUCCESS);
+        tabPane.setOnMouseClicked(event -> {
+            if (event.getButton() == MouseButton.PRIMARY) {
+                Node selected = event.getPickResult().getIntersectedNode();
+                if (selected.toString().contains("Text") || selected.toString().contains("TabPaneSkin")) {
+                    int index = tabPane.getSelectionModel().getSelectedIndex();
+                    if (index == OVERVIEW_TAB) {
+                        setFeedbackToUser(ViewOverviewCommand.MESSAGE_SUCCESS);
+                    } else if (index == TODOS_TAB) {
+                        setFeedbackToUser(ViewTodosCommand.MESSAGE_SUCCESS);
+                    }
+                }
             }
         });
     }
