@@ -4,8 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.logging.Logger;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
