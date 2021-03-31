@@ -542,9 +542,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Property**: A property listing with mandatory attributes: Name, Property type, Address, Postal code and Deadline,
-    optional attributes: Client name, Client contact, Client email, Client asking price, Remarks
-* **Appointment**: An appointment listing with mandatory attributes: Name, Remarks, Date,  optional attribute: Time
+* **Property**: A property listing with mandatory attributes: Name, Property type, Address, Postal code, Deadline, and with optional attributes: Remarks, Status, Tags, Client name, Client contact, Client email, Client asking price
+* **Appointment**: An appointment listing with mandatory attributes: Name, Remarks, Date, Time
 
 --------------------------------------------------------------------------------------------------------------------
 
