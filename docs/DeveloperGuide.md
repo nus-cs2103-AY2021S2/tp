@@ -135,6 +135,67 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add feature
+
+#### Implementation
+The add mechanism is facilitated by `AddCommand` and `AddCommandParser`.
+
+`AddCommand` extends `Command` and implements the following operation:
+
+* `AddCommand#execute()` — adds the student with personal details if the details are valid, and returns a new
+  `CommandResult` with a success message.
+
+`AddCommandParser` implements the `Parser` interface and implements the following operation:
+
+* `AddCommandParser#parse()`  —  parses the user's input and returns a `AddCommand` if the command format
+  is valid
+
+Given below is an example usage scenario and how the add mechanism behaves at each step.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Note:**
+Name and phone are compulsory details which must be included in add command, while school, email, address,
+guardian's name, guardian's phone, tags and lessons are optional. Any missing optional details can be added in later
+by using Edit feature. Here, an example of a student with only compulsory details available is used.
+</div>
+
+Step 1. The user executes `add n/John Doe p/98765432` command to add a new student who is called John Doe 
+and has a phone number of 98765432 in TutorsPet.
+
+Step 2. The user input is parsed by `AddressBookParser`, which passes the add command's argument to `AddCommandParser`.
+
+Step 3. `AddCommandParser` creates a new `Person` object for the new student and returns a new `AddCommand` 
+if the argument is valid. Otherwise, a `ParseException` is thrown.
+
+Step 4. `LogicManager` then calls `AddCommand#execute()`.
+
+Step 5. `AddCommand#execute()` checks if the student represented by the `Person`object exists. 
+If the student does not exist, he/she gets added and a new `CommandResult` is returned. 
+Otherwise, a `CommandException` is thrown.
+
+Step 6. If the add command has been successfully executed, the success message will be displayed.
+
+#### Sequence Diagram
+
+The sequence diagram below shows how the add feature works:
+![Sequence Diagram for Add Command](images/DeleteSequenceDiagram.png)
+
+#### Activity Diagram
+
+The activity diagram shows the workflow when an add command is executed:
+![Activity Diagram for Add Command](images/DeleteActivityDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: Whether to allow incomplete fields(i.e. some personal details can be missing when adding a new student) 
+
+* **Alternative 1 (current choice):** Certain fields are optional when a new student are added.
+    * Pros: More flexible and user-friendly.
+    * Cons: It may take some time to add in the missing fields in the future.
+
+* **Alternative 2:** All fields of a student must be added at first.
+    * Pros: More standardized and easier to track.
+    * Cons: Certain fields of a new student may not be known by the user at once.
+
 ### Delete feature
 
 #### Implementation
