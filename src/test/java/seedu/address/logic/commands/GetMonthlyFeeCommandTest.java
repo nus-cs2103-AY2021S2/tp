@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.util.FeeUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -29,7 +30,7 @@ public class GetMonthlyFeeCommandTest {
         LocalDateTime startPeriod = LocalDateTime.of(2021, 2, 1, 0, 0);
         LocalDateTime endPeriod = LocalDateTime.of(2021, 3, 1, 0, 0);
 
-        double expectedFee = model.getFeePerStudent(ALICE, startPeriod, endPeriod);
+        double expectedFee = FeeUtil.getFeePerStudent(ALICE, startPeriod, endPeriod);
 
         assertEquals(String.format("Monthly fee for %s on %s, %s is $%.2f", ALICE.getName(),
             new Month(2).getMonthName(), new Year(2021).toString(), expectedFee),
