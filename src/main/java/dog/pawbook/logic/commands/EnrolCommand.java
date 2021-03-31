@@ -3,6 +3,8 @@ package dog.pawbook.logic.commands;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_DOGID;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_PROGRAMID;
 
+import java.util.Set;
+
 public class EnrolCommand extends ProgramCommand {
     public static final String COMMAND_WORD = "enrol";
 
@@ -16,26 +18,26 @@ public class EnrolCommand extends ProgramCommand {
 
     public static final String MESSAGE_ALREADY_ENROLLED_FORMAT = "Dog %s has already been enrolled in program %s!";
 
-    private final int dogId;
+    private final Set<Integer> dogIdSet;
 
-    private final int programId;
+    private final Set<Integer> programIdSet;
 
     /**
      * Constructor for Enrol command to add the specified dog into the specified program.
-     * @param dogId Id of the dog.
-     * @param programId Id of the program.
+     * @param dogIdSet Id of the dog.
+     * @param programIdSet Id of the program.
      */
-    public EnrolCommand(int dogId, int programId) {
-        this.dogId = dogId;
-        this.programId = programId;
+    public EnrolCommand(Set<Integer> dogIdSet, Set<Integer> programIdSet) {
+        this.dogIdSet = dogIdSet;
+        this.programIdSet = programIdSet;
     }
 
-    protected int getDogId() {
-        return this.dogId;
+    protected Set<Integer> retrieveDogIdSet() {
+        return this.dogIdSet;
     }
 
-    protected int getProgramId() {
-        return this.programId;
+    protected Set<Integer> retrieveProgramIdSet() {
+        return this.programIdSet;
     }
 
     @Override
@@ -45,11 +47,11 @@ public class EnrolCommand extends ProgramCommand {
 
     @Override
     protected String getSuccessMessage() {
-        return String.format(MESSAGE_SUCCESS_FORMAT, dogId, programId);
+        return String.format(MESSAGE_SUCCESS_FORMAT, dogIdSet, programIdSet);
     }
 
     @Override
     protected String getDuplicateMessage() {
-        return String.format(MESSAGE_ALREADY_ENROLLED_FORMAT, dogId, programId);
+        return String.format(MESSAGE_ALREADY_ENROLLED_FORMAT, dogIdSet, programIdSet);
     }
 }

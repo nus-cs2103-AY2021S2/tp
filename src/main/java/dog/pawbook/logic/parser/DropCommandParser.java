@@ -3,15 +3,20 @@ package dog.pawbook.logic.parser;
 import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_DOGID;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_PROGRAMID;
+import static dog.pawbook.logic.parser.CliSyntax.PREFIX_SESSION;
+import static dog.pawbook.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.Set;
 import java.util.stream.Stream;
+
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import dog.pawbook.logic.commands.DropCommand;
 import dog.pawbook.logic.parser.exceptions.ParseException;
 
 public class DropCommandParser implements Parser<DropCommand> {
 
-    private static final Prefix[] DROP_COMPULSORY_PREFIXES = { PREFIX_DOGID, PREFIX_PROGRAMID };
+    private static final Prefix[] DROP_COMPULSORY_PREFIXES = {PREFIX_DOGID, PREFIX_PROGRAMID};
     private static final Prefix[] DROP_ALL_PREFIXES =
             Stream.of(DROP_COMPULSORY_PREFIXES).toArray(Prefix[]::new);
 
@@ -69,9 +74,9 @@ public class DropCommandParser implements Parser<DropCommand> {
     public DropCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = extractArguments(args);
 
-        int dogId = ParserUtil.parseId(argMultimap.getValue(PREFIX_DOGID).get());
-        int programId = ParserUtil.parseId(argMultimap.getValue(PREFIX_PROGRAMID).get());
+        Set<Integer> dogIdList = ParserUtil.parseIds(argMultimap.getAllValues(PREFIX_DOGID));
+        Set<Integer> programIdList = ParserUtil.parseIds(argMultimap.getAllValues(PREFIX_PROGRAMID));
 
-        return new DropCommand(dogId, programId);
+        return new DropCommand(dogIdList, programIdList);
     }
 }

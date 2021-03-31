@@ -3,6 +3,8 @@ package dog.pawbook.logic.commands;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_DOGID;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_PROGRAMID;
 
+import java.util.Set;
+
 public class DropCommand extends ProgramCommand {
     public static final String COMMAND_WORD = "drop";
 
@@ -16,38 +18,36 @@ public class DropCommand extends ProgramCommand {
 
     public static final String MESSAGE_FAILURE_FORMAT = "Dog cannot be dropped! Dog %s was not enrolled in program %s.";
 
-    private final int dogId;
+    private final Set<Integer> dogIdSet;
 
-    private final int programId;
+    private final Set<Integer> programIdSet;
 
     /**
      * Constructor for Drop command to remove the specified dog from the specified program.
-     * @param dogId Id of the dog.
-     * @param programId Id of the program.
+     * @param dogIdSet Id of the dog.
+     * @param programIdSet Id of the program.
      */
-    public DropCommand(int dogId, int programId) {
-        this.dogId = dogId;
-        this.programId = programId;
+    public DropCommand(Set<Integer> dogIdSet, Set<Integer> programIdSet) {
+        this.dogIdSet = dogIdSet;
+        this.programIdSet = programIdSet;
     }
 
-    @Override
-    protected int getDogId() {
-        return this.dogId;
+    protected Set<Integer> retrieveDogIdSet() {
+        return this.dogIdSet;
     }
 
-    @Override
-    protected int getProgramId() {
-        return this.programId;
+    protected Set<Integer> retrieveProgramIdSet() {
+        return this.programIdSet;
     }
 
     @Override
     protected String getSuccessMessage() {
-        return String.format(MESSAGE_SUCCESS_FORMAT, dogId, programId);
+        return String.format(MESSAGE_SUCCESS_FORMAT, dogIdSet, programIdSet);
     }
 
     @Override
     protected String getDuplicateMessage() {
-        return String.format(MESSAGE_FAILURE_FORMAT, dogId, programId);
+        return String.format(MESSAGE_FAILURE_FORMAT, dogIdSet, programIdSet);
     }
 
     @Override

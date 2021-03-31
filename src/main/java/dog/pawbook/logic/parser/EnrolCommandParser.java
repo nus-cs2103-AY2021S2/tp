@@ -3,6 +3,7 @@ package dog.pawbook.logic.parser;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_DOGID;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_PROGRAMID;
 
+import java.util.Set;
 import java.util.stream.Stream;
 
 import dog.pawbook.logic.commands.EnrolCommand;
@@ -44,9 +45,9 @@ public class EnrolCommandParser extends CommandWithCompulsoryPrefixNoPreamblePar
     public EnrolCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = extractArguments(args);
 
-        int dogId = ParserUtil.parseId(argMultimap.getValue(PREFIX_DOGID).get());
-        int programId = ParserUtil.parseId(argMultimap.getValue(PREFIX_PROGRAMID).get());
+        Set<Integer> dogIdList = ParserUtil.parseIds(argMultimap.getAllValues(PREFIX_DOGID));
+        Set<Integer> programIdList = ParserUtil.parseIds(argMultimap.getAllValues(PREFIX_PROGRAMID));
 
-        return new EnrolCommand(dogId, programId);
+        return new EnrolCommand(dogIdList, programIdList);
     }
 }

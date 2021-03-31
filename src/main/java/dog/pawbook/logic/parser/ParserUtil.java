@@ -6,6 +6,9 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonTypeId;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
 import dog.pawbook.logic.parser.exceptions.ParseException;
 import dog.pawbook.model.managedentity.Name;
 import dog.pawbook.model.managedentity.dog.Breed;
@@ -83,21 +86,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Tag}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code tag} is invalid.
-     */
-    public static Tag parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
-        }
-        return new Tag(trimmedTag);
-    }
-
-    /**
      * Parses a {@code String breed} into a {@code Breed}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -143,18 +131,20 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String id} into a {@code int}.
+     * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code tag} is invalid.
      */
-    public static int parseId(String id) throws ParseException {
-        requireNonNull(id);
-        String trimmedOwnerId = id.trim();
-        try {
-            return Integer.parseInt(trimmedOwnerId);
-        } catch (NumberFormatException e) {
-            throw new ParseException("ID must be a positive integer!");
+    public static Tag parseTag(String tag) throws ParseException {
+        requireNonNull(tag);
+        String trimmedTag = tag.trim();
+        if (!Tag.isValidTagName(trimmedTag)) {
+            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }
+        return new Tag(trimmedTag);
     }
+
 
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
@@ -169,15 +159,29 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code Collection<String> dop} into a {@code Set<Session>}.
+     * Parses a {@code String id} into a {@code int}.
+     * Leading and trailing whitespaces will be trimmed.
      */
-    public static Set<Session> parseSessions(Collection<String> sessions) throws ParseException {
-        requireNonNull(sessions);
-        final Set<Session> dateSet = new HashSet<>();
-        for (String s : sessions) {
-            dateSet.add(parseSession(s));
+    public static int parseId(String id) throws ParseException {
+        requireNonNull(id);
+        String trimmedOwnerId = id.trim();
+        try {
+            return Integer.parseInt(trimmedOwnerId);
+        } catch (NumberFormatException e) {
+            throw new ParseException("ID must be a positive integer!");
         }
-        return dateSet;
+    }
+
+    /**
+     * Parses {@code Collection<String> id} into a {@code Set<JsonTypeInfo.Id>}.
+     */
+    public static Set<Integer> parseIds(Collection<String> ids) throws ParseException {
+        requireNonNull(ids);
+        final Set<Integer> idSet = new HashSet<>();
+        for (String id : ids) {
+            idSet.add(parseId(id));
+        }
+        return idSet;
     }
 
     /**
@@ -193,6 +197,18 @@ public class ParserUtil {
             throw new ParseException(Session.MESSAGE_CONSTRAINTS);
         }
         return new Session(trimmedDop);
+    }
+
+    /**
+     * Parses {@code Collection<String> dop} into a {@code Set<Session>}.
+     */
+    public static Set<Session> parseSessions(Collection<String> sessions) throws ParseException {
+        requireNonNull(sessions);
+        final Set<Session> dateSet = new HashSet<>();
+        for (String s : sessions) {
+            dateSet.add(parseSession(s));
+        }
+        return dateSet;
     }
 
 }
