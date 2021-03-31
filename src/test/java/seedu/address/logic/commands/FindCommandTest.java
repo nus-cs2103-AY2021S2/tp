@@ -23,7 +23,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Patient;
 import seedu.address.testutil.PersonBuilder;
 
 /**
@@ -83,11 +83,11 @@ public class FindCommandTest {
     @Test
     public void execute_keywordsForArchivedPersons_onlyArchivedPersonsFound() {
         Model newModel = new ModelManager(new AddressBook(), new UserPrefs());
-        Person newAlice = new PersonBuilder(ALICE).build();
-        Person newBenson = new PersonBuilder(BENSON).build();
-        Person newCarl = new PersonBuilder(CARL).build();
-        Person newElle = new PersonBuilder(ELLE).build();
-        Person newFiona = new PersonBuilder(FIONA).build();
+        Patient newAlice = new PersonBuilder(ALICE).build();
+        Patient newBenson = new PersonBuilder(BENSON).build();
+        Patient newCarl = new PersonBuilder(CARL).build();
+        Patient newElle = new PersonBuilder(ELLE).build();
+        Patient newFiona = new PersonBuilder(FIONA).build();
         newModel.addPerson(newAlice);
         newModel.addPerson(newBenson);
         newModel.addPerson(newCarl);

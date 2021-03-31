@@ -18,7 +18,7 @@ import seedu.address.model.tag.Tag;
  * Represents a Person in DocBob.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person implements Comparable<Person> {
+public class Patient implements Comparable<Patient> {
 
     // Identity fields
     private final Name name;
@@ -43,7 +43,7 @@ public class Person implements Comparable<Person> {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Height height, Weight weight, Set<Tag> tags) {
+    public Patient(Name name, Phone phone, Email email, Address address, Height height, Weight weight, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, height, weight, tags);
         this.name = name;
         this.phone = phone;
@@ -58,8 +58,8 @@ public class Person implements Comparable<Person> {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Height height, Weight weight,
-                  Set<Tag> tags, List<Appointment>appointments) {
+    public Patient(Name name, Phone phone, Email email, Address address, Height height, Weight weight,
+                   Set<Tag> tags, List<Appointment>appointments) {
         requireAllNonNull(name, phone, email, address, height, weight, tags);
         this.name = name;
         this.phone = phone;
@@ -124,13 +124,13 @@ public class Person implements Comparable<Person> {
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
-    public boolean isSamePerson(Person otherPerson) {
-        if (otherPerson == this) {
+    public boolean isSamePerson(Patient otherPatient) {
+        if (otherPatient == this) {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getName().equals(getName());
+        return otherPatient != null
+                && otherPatient.getName().equals(getName());
     }
 
     /**
@@ -143,21 +143,21 @@ public class Person implements Comparable<Person> {
             return true;
         }
 
-        if (!(other instanceof Person)) {
+        if (!(other instanceof Patient)) {
             return false;
         }
 
-        Person otherPerson = (Person) other;
-        return otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getHeight().equals(getHeight())
-                && otherPerson.getWeight().equals(getWeight())
-                && otherPerson.getTags().equals(getTags())
-                && otherPerson.getAppointments().equals(getAppointments())
-                && otherPerson.getRecords().equals(getRecords())
-                && (otherPerson.isArchived() == isArchived());
+        Patient otherPatient = (Patient) other;
+        return otherPatient.getName().equals(getName())
+                && otherPatient.getPhone().equals(getPhone())
+                && otherPatient.getEmail().equals(getEmail())
+                && otherPatient.getAddress().equals(getAddress())
+                && otherPatient.getHeight().equals(getHeight())
+                && otherPatient.getWeight().equals(getWeight())
+                && otherPatient.getTags().equals(getTags())
+                && otherPatient.getAppointments().equals(getAppointments())
+                && otherPatient.getRecords().equals(getRecords())
+                && (otherPatient.isArchived() == isArchived());
     }
 
     @Override
@@ -182,6 +182,18 @@ public class Person implements Comparable<Person> {
                 .append("; Weight: ")
                 .append(getWeight());
 
+        List<Appointment> appts = getAppointments();
+        if (!appts.isEmpty()) {
+            builder.append("; Appts: ");
+            appts.forEach(builder::append);
+        }
+
+        List<MedicalRecord> mrecs = getRecords();
+        if (!mrecs.isEmpty()) {
+            builder.append("; Mrecs: ");
+            mrecs.forEach(builder::append);
+        }
+
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
@@ -198,12 +210,21 @@ public class Person implements Comparable<Person> {
         this.appointments.sort(Comparator.comparing(Appointment::getDate));
     }
 
-    public void addMedicalRecord(MedicalRecord record) {
-        this.records.add(record);
+    /**
+     * Adds a medical record if it is new, or replace the record if its an edited old record
+     */
+    public void addMedicalRecord(MedicalRecord newRecord) {
+        for (MedicalRecord oldRecord : this.records) {
+            if (newRecord.equals(oldRecord)) {
+                this.records.set(this.records.indexOf(oldRecord), newRecord);
+                return;
+            }
+        }
+        this.records.add(newRecord);
     }
 
     @Override
-    public int compareTo(Person p) {
+    public int compareTo(Patient p) {
         return this.name.fullName.compareTo(p.name.fullName);
     }
 }

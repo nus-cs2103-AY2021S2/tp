@@ -10,7 +10,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.medical.Appointment;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Patient;
 
 /**
  * Lists all upcoming appointments to the user.
@@ -29,9 +29,9 @@ public class ListAppointmentsCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Patient> lastShownList = model.getFilteredPersonList();
         List<Appointment> appointments = new ArrayList<>();
-        for (Person p: lastShownList) {
+        for (Patient p: lastShownList) {
             List<Appointment> appointmentList = p.getAppointments();
             for (Appointment appt : appointmentList) {
                 appointments.add(appt.setPerson(p));

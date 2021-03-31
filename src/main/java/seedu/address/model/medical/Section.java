@@ -7,8 +7,11 @@ package seedu.address.model.medical;
 public class Section {
     public static final int MAX_TITLE_LENGTH = 30;
     public static final String MESSAGE_CONSTRAINTS = "Title must be less than " + MAX_TITLE_LENGTH + " characters long";
-    private String title;
-    private String body;
+    private String title = "";
+
+
+
+    private String body = "";
 
     /**
      * Every field must be present and not null.
@@ -22,7 +25,12 @@ public class Section {
      */
     public Section(String title, String body) {
         this.title = title;
-        this.body = "";
+        this.body = body;
+    }
+
+    @Override
+    public int hashCode() {
+        return title.hashCode() + body.hashCode();
     }
 
     public static boolean isValidTitleBody(String title, String body) {
@@ -35,5 +43,18 @@ public class Section {
 
     public String getBody() {
         return body;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setBody(String body) {
+        this.body = body;
+    }
+
+    @Override
+    public String toString() {
+        return "Section: " + title + " - " + body;
     }
 }

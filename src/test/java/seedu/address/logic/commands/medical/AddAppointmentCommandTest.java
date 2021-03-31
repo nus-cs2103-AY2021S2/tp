@@ -20,7 +20,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Patient;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddAppointmentCommandTest {
@@ -66,7 +66,7 @@ public class AddAppointmentCommandTest {
     @Test
     public void execute_addAppointmentToArchivedPerson_failure() {
         Model newModel = new ModelManager(new AddressBook(), new UserPrefs());
-        Person newAlice = new PersonBuilder(ALICE).build();
+        Patient newAlice = new PersonBuilder(ALICE).build();
         newModel.addPerson(newAlice);
         newModel.archivePerson(newAlice);
         LocalDateTime dateTime = LocalDateTime.of(2021, 12, 12, 18, 00);

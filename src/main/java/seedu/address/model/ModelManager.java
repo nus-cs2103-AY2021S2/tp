@@ -11,7 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Patient;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -21,7 +21,8 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Patient> filteredPatients;
+    private Patient selectedPatient;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -34,7 +35,9 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredPatients = new FilteredList<>(this.addressBook.getPersonList());
+        // initialise to only show main persons (no archived patients)
+        updateFilteredPersonList(PREDICATE_SHOW_MAIN_PERSONS);
     }
 
     public ModelManager() {
@@ -89,38 +92,40 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public boolean hasPerson(Patient patient) {
+        requireNonNull(patient);
+        return addressBook.hasPerson(patient);
     }
 
     @Override
-    public void deletePerson(Person target) {
+    public void deletePerson(Patient target) {
         addressBook.removePerson(target);
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
+    public void addPerson(Patient patient) {
+        addressBook.addPerson(patient);
         updateFilteredPersonList(PREDICATE_SHOW_MAIN_PERSONS);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
-
-        addressBook.setPerson(target, editedPerson);
+    public void setPerson(Patient target, Patient editedPatient) {
+        requireAllNonNull(target, editedPatient);
+        addressBook.setPerson(target, editedPatient);
+        if (target.equals(this.selectedPatient)) {
+            selectPatient(editedPatient);
+        }
     }
 
     @Override
-    public void archivePerson(Person target) {
+    public void archivePerson(Patient target) {
         requireNonNull(target);
         addressBook.archivePerson(target);
         updateFilteredPersonList(PREDICATE_SHOW_ARCHIVED_PERSONS);
     }
 
     @Override
-    public void unarchivePerson(Person target) {
+    public void unarchivePerson(Patient target) {
         requireNonNull(target);
         addressBook.unarchivePerson(target);
         updateFilteredPersonList(PREDICATE_SHOW_MAIN_PERSONS);
@@ -133,14 +138,24 @@ public class ModelManager implements Model {
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Patient> getFilteredPersonList() {
+        return filteredPatients;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredPersonList(Predicate<Patient> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredPatients.setPredicate(predicate);
+    }
+
+    @Override
+    public void selectPatient(Patient patient) {
+        this.selectedPatient = patient;
+    }
+
+    @Override
+    public Patient getSelectedPatient() {
+        return this.selectedPatient;
     }
 
     @Override
@@ -159,7 +174,7 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPatients.equals(other.filteredPatients);
     }
 
 }

@@ -8,15 +8,16 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.medical.MedicalRecord;
 import seedu.address.model.person.Patient;
 
 import java.util.List;
 
-public class OpenMedicalRecordCommand extends Command {
+public class ViewMedicalRecordCommand extends Command {
 
-    public static final String COMMAND_WORD = "mrec";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Opens an editor for a medical report for a patient "
-            + "identified by the index number used in the displayed person list. \n"
+    public static final String COMMAND_WORD = "vrec";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Views a past medical report of a patient "
+            + "identified by the index number of the medical record of the currently selected patient. \n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 3";
 
@@ -27,7 +28,7 @@ public class OpenMedicalRecordCommand extends Command {
     /**
      * @param index of the patient in the filtered patient list to edit
      */
-    public OpenMedicalRecordCommand(Index index) {
+    public ViewMedicalRecordCommand(Index index) {
         requireNonNull(index);
         this.index = index;
     }
@@ -35,12 +36,8 @@ public class OpenMedicalRecordCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Patient> lastShownList = model.getFilteredPersonList();
-
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-        }
-        Patient patient = lastShownList.get(index.getZeroBased());
-        return new CommandResult(String.format(MESSAGE_SUCCESS, patient.getName()), false, true, patient, null, false);
+        Patient patient = model.getSelectedPatient();
+        MedicalRecord mrec = patient.getRecords().get(index.getZeroBased());
+        return new CommandResult(String.format(MESSAGE_SUCCESS, patient.getName()), false, true, patient, mrec, false);
     }
 }

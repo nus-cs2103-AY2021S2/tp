@@ -4,7 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
 
-import seedu.address.model.person.Person;
+import seedu.address.model.medical.MedicalRecord;
+import seedu.address.model.person.Patient;
 
 /**
  * Represents the result of a command execution.
@@ -20,7 +21,10 @@ public class CommandResult {
     private final boolean showEdit;
 
     /** Patient whose view box will be shown to the user. */
-    private final Person patient;
+    private final Patient patient;
+
+    /** MedicalRecord to be viewed/edited. */
+    private final MedicalRecord medicalRecord;
 
     /** The application should exit. */
     private final boolean exit;
@@ -28,11 +32,13 @@ public class CommandResult {
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean showEdit, Person patient, boolean exit) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean showEdit,
+                         Patient patient, MedicalRecord medicalRecord, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.showEdit = showEdit;
         this.patient = patient;
+        this.medicalRecord = medicalRecord;
         this.exit = exit;
     }
 
@@ -41,7 +47,7 @@ public class CommandResult {
      * set to default value.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
-        this(feedbackToUser, showHelp, false, null, exit);
+        this(feedbackToUser, showHelp, false, null, null, exit);
     }
 
     /**
@@ -72,8 +78,12 @@ public class CommandResult {
         return exit;
     }
 
-    public Person getPatient() {
+    public Patient getPatient() {
         return patient;
+    }
+
+    public MedicalRecord getMedicalRecord() {
+        return medicalRecord;
     }
 
     @Override

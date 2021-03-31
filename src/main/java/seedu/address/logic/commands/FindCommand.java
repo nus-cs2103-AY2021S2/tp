@@ -9,7 +9,7 @@ import java.util.List;
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Patient;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
@@ -33,11 +33,11 @@ public class FindCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
-        Person checkPerson;
+        List<Patient> lastShownList = model.getFilteredPersonList();
+        Patient checkPatient;
         try {
-            checkPerson = lastShownList.get(0);
-            if (checkPerson.isArchived()) {
+            checkPatient = lastShownList.get(0);
+            if (checkPatient.isArchived()) {
                 model.updateFilteredPersonList(predicate.and(PREDICATE_SHOW_ARCHIVED_PERSONS));
             } else {
                 model.updateFilteredPersonList(predicate.and(PREDICATE_SHOW_MAIN_PERSONS));
