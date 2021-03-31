@@ -126,6 +126,14 @@ class JsonAdaptedClient {
 
         final Set<Tag> modelTags = new HashSet<>(clientTags);
 
+        if (imageRes == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Image.class.getSimpleName()));
+        }
+        if (!Image.isValidImageRes(imageRes)) {
+            throw new IllegalValueException(String.format(Image.MESSAGE_CONSTRAINTS,
+                    Image.class.getSimpleName()));
+        }
         final Image modelImage = new Image(imageRes);
 
         return new Client(modelName, modelPhone, modelEmail, modelLocation, modelPlan, modelTags, modelImage);
