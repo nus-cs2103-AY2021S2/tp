@@ -68,7 +68,6 @@ public class TypicalAliases {
     public static UniqueAliasMap getTypicalAliases() {
         UniqueAliasMap aliases = new UniqueAliasMap();
         for (CommandAlias commandAlias : getTypicalCommandAliases()) {
-            System.out.println(commandAlias);
             aliases.addAlias(commandAlias);
         }
         return aliases;

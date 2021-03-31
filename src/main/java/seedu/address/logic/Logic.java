@@ -76,6 +76,11 @@ public interface Logic {
     ObservableList<String> getAutocompleteCommands(String value);
 
     /**
+     * Returns aliases in an ObservableList of String.
+     */
+    ObservableList<String> getObservableStringAliases();
+
+    /**
      * Gets a List of flags of a provided command.
      *
      * @param command command to retrieve flags from
