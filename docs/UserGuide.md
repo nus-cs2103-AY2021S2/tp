@@ -54,7 +54,7 @@ EzManage is a **desktop app for managing students, tutors and classes, optimized
   e.g `n/NAME [tag/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[tag/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[tag/TAG]…​` can be used as ` ` (i.e. 0 times), `tag/friend`, `tag/friend tag/family` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -62,7 +62,7 @@ EzManage is a **desktop app for managing students, tutors and classes, optimized
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
@@ -210,12 +210,15 @@ Edits an existing session in the address book.
 
 Format: `edit_session c/ID [d/DAY] [ts/TIMESLOT] [s/SUBJECT] [tag/TAG]…​`
 
-* Edits the session with the specified session ID. The session ID can be found from the displayed session list. The session ID has to be a valid session ID i.e. session has to exist in the Address Book.
+* Edits the session with the specified session ID. The session ID can be found from the displayed session list. 
+* The session ID has to be a valid session ID i.e. the session has to exist in the Address Book.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * DAY should match the format of a valid day in the week.
 * TIMESLOT should be in the format `HH:MM to HH:MM` and the end time should only be after the start time.
 * When editing tags, the existing tags of the session will be removed i.e adding of tags is not cumulative.
+* A user can *ONLY* edit a session’s day and time slot if the session does not have any assigned tutor and assigned students, to avoid potential timeslot clashes when session is edited.
+* Unassign students/tutor should be called before editing any session’s timeslot or day.
 
 Examples:
 *  `edit_session c/1 d/Monday s/Biology` Edits the day and subject of the session c/1 to be `Monday` and `Biology` respectively.
