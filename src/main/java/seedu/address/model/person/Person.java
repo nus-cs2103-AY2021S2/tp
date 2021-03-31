@@ -2,6 +2,8 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.io.IOException;
+import java.nio.file.Files;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -10,8 +12,10 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.DateUtil;
 import seedu.address.model.tag.Tag;
 
@@ -22,14 +26,16 @@ import seedu.address.model.tag.Tag;
  */
 public class Person {
 
+    private static final Logger logger = LogsCenter.getLogger(Person.class);
+
     // Identity fields
     private final Name name;
     private final Phone phone;
     private final Email email;
     private final Birthday birthday;
-    private final Goal goal;
 
     // Data fields
+    private final Goal goal;
     private final Address address;
     private final Picture picture;
     private final Debt debt;
@@ -87,6 +93,10 @@ public class Person {
         return birthday;
     }
 
+    public Goal getGoal() {
+        return goal;
+    }
+
     public Address getAddress() {
         return address;
     }
@@ -101,10 +111,6 @@ public class Person {
 
     public Optional<Picture> getPicture() {
         return Optional.ofNullable(picture);
-    }
-
-    public Goal getGoal() {
-        return this.goal;
     }
 
     public Person withPicture(Picture picture) {
@@ -161,6 +167,26 @@ public class Person {
                 .max(LocalDate::compareTo)
                 .orElse(DateUtil.ZERO_DAY);
         return goal.getGoalDeadline(latestMeetingDate);
+    }
+
+    /**
+     * Deletes the picture from person. The person is guaranteed to have {@code Picture} as null after
+     * running this method.
+     */
+    public Person deletePicture() {
+        if (picture == null) {
+            return this;
+        }
+
+        try {
+            // It is not that critical for the physical file of picture to get deleted so we just log the error.
+            picture.deleteFile();
+        } catch (IOException e) {
+            logger.warning("Unable to delete original picture file for " + toString());
+            logger.warning("IOException caught: " + e.getMessage());
+        }
+
+        return withPicture(null);
     }
 
     /**

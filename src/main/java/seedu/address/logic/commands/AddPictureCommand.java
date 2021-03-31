@@ -63,18 +63,6 @@ public class AddPictureCommand extends Command {
         ReadOnlyUserPrefs userPrefs = model.getUserPrefs();
         Path pictureDir = userPrefs.getPictureStorageDirPath();
 
-        Optional<Picture> oldPic = personToEdit.getPicture();
-        if (oldPic.isPresent()) {
-            try {
-                // We still let the user change picture even if the deletion did not go because it is not that crucial
-                // for the old picture to be deleted.
-                oldPic.get().deleteFile();
-            } catch (IOException e) {
-                logger.warning("Unable to delete original picture file for " + oldPic.toString());
-                logger.warning("IOException caught: " + e.getMessage());
-            }
-        }
-
         UUID uuid = UUID.randomUUID();
         String ext = FileUtil.extractExtension(filePath);
         String newFileName = uuid.toString() + ext;
@@ -88,7 +76,7 @@ public class AddPictureCommand extends Command {
         }
 
         Picture picture = new Picture(newFilePath);
-        Person editedPerson = personToEdit.withPicture(picture);
+        Person editedPerson = personToEdit.deletePicture().withPicture(picture);
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
