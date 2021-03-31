@@ -77,6 +77,7 @@ Format: `help`
 Adds a resident to the housing management system.
 
 Format: `radd n/NAME p/PHONE_NUMBER e/EMAIL y/YEAR`
+* `NAME` is the unique identifier of a resident.  
 
 Examples:
 * `radd n/John Doe p/91234567 e/e0123456@u.nus.edu y/3` Adds a resident named `John Doe` with phone number `91234567`, email `e0123456@u.nus.edu`, and as a 3rd year student, without any room allocated.
