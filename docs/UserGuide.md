@@ -44,7 +44,7 @@ CakeCollate is a **desktop app for managing cake orders, optimized for use via a
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
+**:information_source: How to interpret the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
@@ -52,8 +52,7 @@ CakeCollate is a **desktop app for managing cake orders, optimized for use via a
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+* Items with `…`​ after them can be used multiple times. <br>  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc. <!-- order desc? --> 
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -62,6 +61,10 @@ CakeCollate is a **desktop app for managing cake orders, optimized for use via a
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 * `d/DELIVERY_DATE` should specify a date at least 3 days after the date the command is executed.
+
+* `INDEXES` refer to the list number of orders on the left of the GUI while `ORDER_ITEM_INDEXES` refers to the list number of order items on the right of the GUI <!-- [comment]: <> (can add a link to the gui screenshot and annotate which index refers to what) -->
+* Items that are `INDEXES` or `ORDER_ITEM_INDEXES` take in whole number parameters separated by spaces. 
+  For example, for a command that takes in `oi/ORDER_ITEM_INDEXES`, you can input `oi/1` or `oi/1 4 5`.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -79,16 +82,38 @@ Format: `help`
 
 Adds an order to the CakeCollate database.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS d/DELIVERY_DATE [o/ORDER_DESCRIPTION]... [oi/ORDER_ITEM_INDEX]... [t/TAG]...`
+#### Simple format
 
-* An order item index refers to the list number of order items on the right of the GUI
-* At least one of either an order item index or an order description must be specified
-* Zero or more tags can be specified for an order
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS d/DELIVERY_DATE o/ORDER_DESCRIPTION... [t/TAG]...`
 
 Examples:
+
+* `add n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 d/13-05-2100 o/chocolate cake o/5 durian cake o/10 mochi cake 100 t/friend t/daughter` adds an order with all compulsory fields, three order descriptions, and a friend and daughter tag.
+
+* `add n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 d/13-05-2100 o/chocolate cake` adds an order with all compulsory fields, one order description and no tags.
+
+
+#### Alternative format 
+
+Advanced Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS d/DELIVERY_DATE oi/ORDER_ITEM_INDEXES [o/ORDER_DESCRIPTION]... [t/TAG]...`
+
+* The difference here compared to the previous format is that you can omit the `ORDER_DESCRIPTION` parameter is optional, but you need to include an `ORDER_ITEM_INDEXES` parameter.
+
+* This alternative format is aimed at saving you some typing. If an order description you want to type already exists in the order items table of the GUI, you can specify its index instead of typing its entire name out.
+
+* For example, for an order that involves chocolate cake, if `chocolate cake` exists in the order items table as shown in the screenshot below, instead of typing `o/chocolate cake`, you can type out `oi/1`
+
+[comment]: <> ({screenshot})
+
+Examples
+
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/13-05-2021 oi/1 4 5` adds an order with all compulsory fields and adds order items 1, 4, 5 of order items table to the order.
+
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/13-05-2021 o/strawberry cake oi/1` adds an order with all compulsory fields, an order description of strawberry cake and the first item in the list of order items in the GUI.
-* `add n/Betsy Crowe t/daughter e/betsycrowe@example.com a/Newgate Prison p/1234567 t/friend d/13-05-2100 o/chocolate cake o/5 durian cake o/10 mochi cake 100` adds an order with all compulsory fields, three specified order descriptions, and a friend tag.
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/13-05-2021 oi/1 4 5` adds an order with all compulsory fields and adds order items 1, 4, 5 of the currently displayed list to the order.
+
+:information_source: **How are items added to the order items table?**<br>
+
+When you specify an order description using the prefix `o/`, e.g. `o/chocolate cake`, the app automatically adds it into the order items table. As such, you don't need to go through extra steps to add in items into the order items table manually.
 
 ### List all existing orders : `list`
 
@@ -274,9 +299,9 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action | Format, Examples
+Action  | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] d/DELIVERY_DATE o/ORDER_TYPE` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/13-05-2021 o/ strawberry cake 3`
+**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS d/DELIVERY_DATE o/ORDER_DESCRIPTION... [t/TAG]...` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/13-05-2021 o/strawberry cake 3` <br><br> `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS d/DELIVERY_DATE oi/ORDER_ITEM_INDEXES [o/ORDER_DESCRIPTION]... [t/TAG]...` <br> e.g. `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/13-05-2021 o/strawberry cake oi/1` <br>
 **Clear** | `clear`
 **Delete** | `delete INDEXES`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
