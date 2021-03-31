@@ -3,6 +3,8 @@ layout: page
 title: Developer Guide
 ---
 
+![DietLAH!](images/dietlah-slim.png)
+
 ## Table of Contents
 <!--ts-->
 * [Design](#design)

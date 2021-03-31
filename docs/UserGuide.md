@@ -2,6 +2,9 @@
 layout: page
 title: User Guide
 ---
+
+![DietLAH!](images/dietlah-slim.png)
+
 ## Table of Contents
 
 <!--ts-->
