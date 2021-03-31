@@ -126,6 +126,7 @@ public class ModelManager implements Model {
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
         this.addressBook.resetData(addressBook);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
@@ -162,6 +163,7 @@ public class ModelManager implements Model {
     @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
@@ -173,7 +175,6 @@ public class ModelManager implements Model {
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         addressBook.setPerson(target, editedPerson);
     }
 
@@ -187,6 +188,7 @@ public class ModelManager implements Model {
     @Override
     public void setLessonBook(ReadOnlyLessonBook lessonBook) {
         this.lessonBook.resetData(lessonBook);
+        updateFilteredLessonList(PREDICATE_SHOW_ALL_LESSONS);
     }
 
     @Override
@@ -209,6 +211,7 @@ public class ModelManager implements Model {
     @Override
     public void deleteLesson(Lesson target) {
         lessonBook.removeLesson(target);
+        updateFilteredLessonList(PREDICATE_SHOW_ALL_LESSONS);
     }
 
     @Override
@@ -225,6 +228,7 @@ public class ModelManager implements Model {
     @Override
     public void removePersonFromLesson(Person person) {
         lessonBook.removePersonFromLesson(person);
+        updateFilteredLessonList(PREDICATE_SHOW_ALL_LESSONS);
     }
 
     @Override
@@ -303,6 +307,7 @@ public class ModelManager implements Model {
     @Override
     public void setDatesBook(ReadOnlyDatesBook datesBook) {
         this.datesBook.resetData(datesBook);
+        updateFilteredImportantDatesList(PREDICATE_SHOW_ALL_IMPORTANT_DATES);
     }
 
     @Override

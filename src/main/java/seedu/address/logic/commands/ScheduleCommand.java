@@ -2,6 +2,8 @@ package seedu.address.logic.commands;
 
 import seedu.address.model.Model;
 
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_LESSONS;
+
 /**
  * Opens up a schedule window displaying weekly lessons for the user.
  */
@@ -16,6 +18,7 @@ public class ScheduleCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
+        model.updateFilteredLessonList(PREDICATE_SHOW_ALL_LESSONS);
         return new CommandResult(SHOWING_HELP_MESSAGE, true, false, false, false);
     }
 }
