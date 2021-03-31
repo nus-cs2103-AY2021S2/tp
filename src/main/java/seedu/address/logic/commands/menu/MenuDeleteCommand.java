@@ -27,8 +27,8 @@ public class MenuDeleteCommand extends Command {
             + "Example: " + COMPONENT_WORD + " " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_DISH_SUCCESS = "Deleted dish: %1$s";
-    public static final String MESSAGE_DELETE_DISH_FAILURE = "Failed to deleted dish: %1$s due to outstanding orders, " +
-            "add -f flag to confirm";
+    public static final String MESSAGE_DELETE_DISH_FAILURE = "Failed to deleted dish: %1$s due to outstanding orders, "
+            + "add -f flag to confirm";
 
     private final Index targetIndex;
     private final boolean isForce;

@@ -14,7 +14,9 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.dish.Dish;
 import seedu.address.model.order.Order;
+import seedu.address.model.person.Person;
 
 /**
  * Adds a person to the address book.
@@ -59,10 +61,17 @@ public class OrderAddCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        Order toAdd = OrderCommandUtil.constructValidOrder(dateTime, customerId,
-                dishNumberQuantityList, model);
+        List<Pair<Dish, Integer>> dishQuantityList =
+                OrderCommandUtil.lookupDishIds(dishNumberQuantityList, model);
 
-        model.addOrder(toAdd);
+        Person customer = OrderCommandUtil.getValidCustomerByOneIndex(customerId, model);
+
+        Order toAdd = new Order(dateTime, customer, dishQuantityList);
+
+        if (OrderCommandUtil.isValidOrderAddition(toAdd, model)) {
+            model.addOrder(toAdd);
+        }
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), CommandResult.CRtype.ORDER);
     }
 
