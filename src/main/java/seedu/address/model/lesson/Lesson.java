@@ -65,6 +65,14 @@ public class Lesson implements Comparable<Lesson> {
         return time.timeOfTuition;
     }
 
+    public boolean isEmptyLesson() {
+        return this.persons.isEmpty();
+    }
+
+    public int getNumberOfPerson() {
+        return this.persons.size();
+    }
+
     /**
      * Adds a person to the lesson.
      * @param person person to be added.
@@ -74,6 +82,16 @@ public class Lesson implements Comparable<Lesson> {
             persons.add(person);
         } else {
             throw new DuplicatePersonException();
+        }
+    }
+
+    /**
+     * Removes a person from the lesson.
+     * @param person person to be removed.
+     */
+    public void removePerson(Person person) {
+        if (containsPerson(person)) {
+            persons.remove(person);
         }
     }
 

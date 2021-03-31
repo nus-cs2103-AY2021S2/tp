@@ -71,6 +71,16 @@ public interface Model {
     Person getSelectedPerson();
 
     /**
+     * Returns true if the state is saved.
+     */
+    boolean isSavedState();
+
+    /**
+     * Set the boolean of the saved state.
+     */
+    void setSavedState(boolean isSavedState);
+
+    /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
     boolean hasPerson(Person person);
@@ -158,6 +168,8 @@ public interface Model {
      */
     boolean hasLesson(Lesson lesson);
 
+    Lesson getLesson(Lesson lesson);
+
     /**
      * Deletes the given lesson.
      * The lesson must exist in the lesson book.
@@ -175,6 +187,8 @@ public interface Model {
      * {@code person} must not already exist in the lesson.
      */
     void addPersonToLesson(Person person);
+
+    public void removePersonFromLesson(Person person);
 
     void filterLesson(Predicate<Lesson> predicate);
 

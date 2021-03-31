@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import static seedu.address.commons.core.Messages.MESSAGE_DO_NOT_PROCEED_COMMAND;
+
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -189,6 +191,10 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    public void handleSavedCommand(String commandText) {
+
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -218,6 +224,14 @@ public class MainWindow extends UiPart<Stage> {
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
+            if (commandBox.isWaitForNextInput()) {
+                if (logic.isProceed(commandText)) {
+                    commandText = commandBox.getPreviousUserInput();
+                } else {
+                    throw new CommandException(MESSAGE_DO_NOT_PROCEED_COMMAND);
+                }
+                commandBox.setWaitForNextInput(false);
+            }
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
@@ -240,11 +254,13 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isShowImportantDates()) {
                 handleImportantDates();
             }
-
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
+            if (e.getMessage().startsWith("You have a lesson at ")) {
+                commandBox.setWaitForNextInput(true);
+            }
             throw e;
         }
     }

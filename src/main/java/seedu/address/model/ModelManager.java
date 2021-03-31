@@ -39,6 +39,7 @@ public class ModelManager implements Model {
     private final ObservableList<Person> transformedPersons;
     private final ObservableList<Lesson> transformedLessons;
     private Person selectedPerson;
+    private boolean isSavedState;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -67,6 +68,7 @@ public class ModelManager implements Model {
         transformedPersons = FXCollections.observableArrayList(this.addressBook.getPersonList());
         transformedLessons = FXCollections.observableArrayList(this.lessonBook.getLessonList());
         selectedPerson = null;
+        isSavedState = false;
     }
 
     public ModelManager() {
@@ -142,6 +144,16 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean isSavedState() {
+        return this.isSavedState;
+    }
+
+    @Override
+    public void setSavedState(boolean isSavedState) {
+        this.isSavedState = isSavedState;
+    }
+
+    @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
         return addressBook.hasPerson(person);
@@ -189,6 +201,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Lesson getLesson(Lesson lesson) {
+        requireNonNull(lesson);
+        return lessonBook.getLesson(lesson);
+    }
+
+    @Override
     public void deleteLesson(Lesson target) {
         lessonBook.removeLesson(target);
     }
@@ -202,6 +220,11 @@ public class ModelManager implements Model {
     @Override
     public void addPersonToLesson(Person person) {
         lessonBook.addPersonToLesson(person);
+    }
+
+    @Override
+    public void removePersonFromLesson(Person person) {
+        lessonBook.removePersonFromLesson(person);
     }
 
     @Override
