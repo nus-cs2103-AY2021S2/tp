@@ -42,7 +42,7 @@ The rest of the App consists of four components.
 
 Each of the four components,
 
-* defines its *API* in an `interface` with the same tenantName as the Component.
+* defines its *API* in an `interface` with the same name as the Component.
 * exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
 
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
@@ -255,7 +255,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | new user                                   | See a list of all commands         | refer to instructions when I forget how to use the App                   |
 | `* * *`  | user                                       | add a new residence                | keep track of all my residences                                                                         |
 | `* * *`  | user                                       | delete a residence                 | remove places that I no longer need to track                             |
-| `* * *`  | user                                       | find a residence by tenantName           | locate details of residence without having to go through the entire list |
+| `* * *`  | user                                       | find a residence by name           | locate details of residence without having to go through the entire list |
 | `* *`    | user                                       | edit a residence status            | keep track of all my residences status as and when they change           |
 | `*`      | user owning and renting out many residences| view list of all residence status  | minimize the time needed to get a quick overview of all my residences    |
 | `*`      | busy advanced user                         | clear user input quickly           | my time is used more efficiently                                         |
@@ -303,7 +303,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case(UC03): Find a residence** <br>
 **MSS** <br>
 1.  User keys in the keywords to search residences
-2.  System returns the residence(s) which include the keyword in their tenantName
+2.  System returns the residence(s) which include the keyword in their name
 <br>    Use case ends.
 
 **Extensions** <br>
