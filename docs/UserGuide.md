@@ -50,10 +50,10 @@ TutorsPet is a **desktop app designed for private tutors to manage students’ i
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/sec3` or as `n/John Doe`.
+  e.g `n/NAME [t/SUBJECT]` can be used as `n/John Doe t/sec3` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/sec1`, `t/physics t/maths` etc.
+  e.g. `[t/SUBJECT]…​` can be used as ` ` (i.e. 0 times), `t/sec1`, `t/physics t/maths` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -86,13 +86,13 @@ Format: `schedule`
 
 Adds a student’s contact to TutorsPet.
 
-Format: `add n/NAME p/PHONE [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] [gp/GUARDIAN_PHONE] [t/TAG]…​ [l/LESSON]…​`
+Format: `add n/NAME p/PHONE [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] [gp/GUARDIAN_PHONE] [t/SUBJECT]…​ [l/LESSON]…​`
 
 <div markdown="span" class="alert alert-primary">
 
 :bulb:**Tip:**<br>
 
-* `n/NAME p/PHONE` are compulsory fields that must be provided, while `s/SCHOOL e/EMAIL a/ADDRESS gn/GUARDIAN_NAME gp/GUARDIAN_PHONE [t/TAG]…​ [l/LESSON]…​` are optional.
+* `n/NAME p/PHONE` are compulsory fields that must be provided, while `s/SCHOOL e/EMAIL a/ADDRESS gn/GUARDIAN_NAME gp/GUARDIAN_PHONE [t/SUBJECT]…​ [l/LESSON]…​` are optional.
   
 * A student’s contact can have any number of subjects (including 0)
   
@@ -115,7 +115,7 @@ Format: `list`
 
 Edits an existing student in TutorsPet.
 
-Format: `edit INDEX [n/NAME] [s/SCHOOL] [p/PHONE] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] [gp/GUARDIAN_PHONE] [t/TAG] [l/LESSON]…​`
+Format: `edit INDEX [n/NAME] [s/SCHOOL] [p/PHONE] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] [gp/GUARDIAN_PHONE] [t/SUBJECT] [l/LESSON]…​`
 
 * Edits the student at the specified `INDEX`.
 * The index refers to the index number shown in the displayed student list.
@@ -147,7 +147,7 @@ Format: `search [n/KEYWORDS] [s/KEYWORDS] [t/KEYWORDS] [MORE_KEYWORDS]`
   E.g. `Alice Tan` will return `Alice Ng` and `Bob Tan`.
 
 Examples:
-* `search n/eliza s/woodlands t/math` returns student whose name is `Eliza`, students who are studying in `woodlands primary school`, and students with the `math` tag
+* `search n/eliza s/woodlands t/math` returns student whose name is `Eliza`, students who are studying in `woodlands primary school`, and students with the `math` subject
 * `search n/Patrick Lim` returns `patrick lim` and `Lim Zi Ying`
 * `search s/woodlands` returns students studying in `woodlands primary school` and `woodlands secondary school`
 * `search s/raffles hwa` returns students studying in `Raffles Institution` and `Hwa chong institution`
@@ -190,21 +190,21 @@ Examples:
 * `search s/woodlands` returns students studying in `woodlands primary school` and `woodlands secondary school`
 * `search s/raffles hwa` returns students studying in `Raffles Institution` and `Hwa chong institution`
 
-### Searching for a contact by tag: `search t/...`
-Searches for a student's contact with a specific tag using keywords
+### Searching for a contact by subject: `search t/...`
+Searches for a student's contact with a specific subject using keywords
 
 Format: `search t/KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. <br/>
-  e.g `MATH` will match students with tag `math`
+  e.g `MATH` will match students with subject `math`
 * Only the stated keyword is searched.
 * Only full words will be matched e.g. `Math` will not match `Maths`
 
 Examples:
-* `search t/science` returns students with the tag `SCIENCE` and `science`
+* `search t/chemistry`, `search t/chemistry`, and `search t/chemistry` can all return students with the subject `chemistry`
 
 ### Sorting contacts: `sort`
-Sorting for student’s contacts by name, school, tags or lessons.
+Sorting for student’s contacts by name, school, subjects or lessons.
 
 Format: `search n/`, `search s/`, `search t/` or `search l/`
 
@@ -295,7 +295,7 @@ If your changes to the data file makes its format invalid, TutorsPet will discar
 
 ##Coming soon
 
-### Add a subject to teach`[coming in v1.4]`
+### Add a subject to teach`[coming in v2.0]`
 
 _Format: `add-subject SUBJECT_NAME` <br> In v1.3, there is a fixed list of subjects that is available to teach and can be tagged in TutorsPet, 
 while in v1.4, more personalised subjects can be added in._
@@ -321,10 +321,10 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] [gp/GUARDIAN_PHONE] [t/TAG]…​ [l/LESSON]…​` <br> e.g., `add n/Bob Lee p/87654321 s/Def Secondary School a/Bob street, block 321, #01-02 gn/John Lee gp/12345678 t/sec3`
+**Add** | `add n/NAME p/PHONE [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] [gp/GUARDIAN_PHONE] [t/SUBJECT]…​ [l/LESSON]…​` <br> e.g., `add n/Bob Lee p/87654321 s/Def Secondary School a/Bob street, block 321, #01-02 gn/John Lee gp/12345678 t/sec3`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [s/SCHOOL] [p/PHONE] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] [gp/GUARDIAN_PHONE] [t/TAG]…​ [l/LESSON]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit** | `edit INDEX [n/NAME] [s/SCHOOL] [p/PHONE] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] [gp/GUARDIAN_PHONE] [t/SUBJECT]…​ [l/LESSON]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Search** | `search [n/KEYWORDS] [s/KEYWORDS] [t/KEYWORDS] [MORE_KEYWORDS]`<br> e.g., `search n/James Jake s/woodlands t/science`
 **Schedule** | `schedule`
 **Detail** | `detail INDEX` <br> e.g., `detail 1`
