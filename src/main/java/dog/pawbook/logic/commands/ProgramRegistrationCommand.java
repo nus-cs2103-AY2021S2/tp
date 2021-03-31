@@ -1,6 +1,7 @@
 package dog.pawbook.logic.commands;
 
 import static dog.pawbook.commons.util.CollectionUtil.requireAllNonNull;
+import static dog.pawbook.model.Model.COMPARATOR_ID_ASCENDING_ORDER;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Collections;
@@ -10,6 +11,7 @@ import java.util.stream.Collectors;
 
 import dog.pawbook.logic.commands.exceptions.CommandException;
 import dog.pawbook.model.Model;
+import dog.pawbook.model.managedentity.IdMatchPredicate;
 import dog.pawbook.model.managedentity.dog.Dog;
 import dog.pawbook.model.managedentity.program.Program;
 
@@ -89,6 +91,10 @@ public abstract class ProgramRegistrationCommand extends Command {
             model.setEntity(programId,
                     new Program(program.getName(), program.getSessions(), program.getTags(), updatedEnrolledDogs));
         }
+
+        model.updateFilteredEntityList(new IdMatchPredicate(programIdSet));
+        model.sortEntities(COMPARATOR_ID_ASCENDING_ORDER);
+
         return new CommandResult(
                 String.format(getSuccessMessageFormat(),
                         dogIdSet.stream().map(String::valueOf).collect(Collectors.joining(", ")),
