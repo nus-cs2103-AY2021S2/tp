@@ -33,12 +33,12 @@ public class FindCommandParser implements Parser<FindCommand> {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_OPTION, PREFIX_TAG);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_OPTION);
         Optional<String> option = argMultimap.getValue(PREFIX_OPTION);
         if (option.isPresent()) {
             String unboxedOption = option.get();
             return parseOptions(new Option(unboxedOption), argMultimap);
-        } else { // find by name
+        } else { // find by name, email
             String[] nameKeywords = trimmedArgs.split("\\s+");
             assert nameKeywords.length > 0 : "FindCommand keywords are empty";
             return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
