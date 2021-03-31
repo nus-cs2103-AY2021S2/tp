@@ -39,13 +39,10 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
 
         AttributesContainsKeywordsPredicate predicates = new AttributesContainsKeywordsPredicate(argMultimap);
-
-        //can instead give a list of predicates
         return new FindCommand(predicates);
     }
 
     //maybe can separate to each prefix, but that sorta forces each prefic to be present
-
     /**
      * Returns true if the argumentMultiMap has valid prefixes and is non-empty
      */

@@ -1,10 +1,17 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COLOUR;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DRESSCODE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SIZE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.garment.AttributesContainsKeywordsPredicate;
+
+import java.util.List;
 
 /**
  * Finds and lists all garments in wardrobe whose name contains any of the argument keywords.
@@ -20,18 +27,6 @@ public class FindCommand extends Command {
             + "Parameters: n/KEYWORD [MORE_KEYWORDS] or s/KEYWORD [MORE_KEYWORDS] ... for each attribute\n"
             + "Example: " + COMMAND_WORD + " n/alice bob charlie";
 
-    /*private final ContainsKeywordsPredicate predicate;
-
-    public FindCommand(ContainsKeywordsPredicate predicate) {
-        this.predicate = predicate;
-    }*/
-
-    /*private final List<ContainsKeywordsPredicate> predicateList;
-
-    public FindCommand(List<ContainsKeywordsPredicate> predicateList) {
-        this.predicateList = predicateList;
-    }*/
-
     private final AttributesContainsKeywordsPredicate predicates;
 
     public FindCommand(AttributesContainsKeywordsPredicate predicates) {
@@ -41,17 +36,40 @@ public class FindCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        //model.update is what affects whats being shown
-        //somehow need to pass in either a list of predicates
-        //or pass in a combined pred.
-        //model.updateFilteredGarmentList(predicate);
-
-        //model.updateFilteredGarmentList(predicateList);
-
         model.updateFilteredGarmentList(predicates);
-        //command res is just a string feedback
-        return new CommandResult(
-                String.format(Messages.MESSAGE_GARMENTS_LISTED_OVERVIEW, model.getFilteredGarmentList().size()));
+        //return new CommandResult(
+        //        String.format(Messages.MESSAGE_GARMENTS_LISTED_OVERVIEW, model.getFilteredGarmentList().size()));
+        String result = "Showing garments that match the following:";
+        if (predicates.isPrefixValuePresent(PREFIX_NAME)) {
+            result = result + "\nname: " + predicates.getPrefixValue(PREFIX_NAME);
+        }
+        if (predicates.isPrefixValuePresent(PREFIX_SIZE)) {
+            result = result + "\nsize: " + predicates.getPrefixValue(PREFIX_SIZE);
+        }
+        if (predicates.isPrefixValuePresent(PREFIX_COLOUR)) {
+            result = result + "\ncolour: " + predicates.getPrefixValue(PREFIX_COLOUR);
+        }
+        if (predicates.isPrefixValuePresent(PREFIX_DRESSCODE)) {
+            result = result + "\ndresscode: " + predicates.getPrefixValue(PREFIX_DRESSCODE);
+        }
+        if (predicates.isPrefixValuePresent(PREFIX_TYPE)) {
+            result = result + "\ntype: " + predicates.getPrefixValue(PREFIX_TYPE);
+        }
+        /*result = result + predicates.ifPrefixPresentGetValue(PREFIX_NAME)
+                + predicates.ifPrefixPresentGetValue(PREFIX_SIZE)
+                + predicates.ifPrefixPresentGetValue(PREFIX_COLOUR)
+                + predicates.ifPrefixPresentGetValue(PREFIX_DRESSCODE)
+                + predicates.ifPrefixPresentGetValue(PREFIX_TYPE);*/
+        List<String> predicateDesc = predicates.getDescriptionValue();
+        boolean firstDesc = true;
+        for (String desc : predicateDesc) {
+            if (firstDesc) {
+                result = result + "\ndescriptions: ";
+                firstDesc = false;
+            }
+            result = result + desc + " ";
+        }
+        return new CommandResult(result);
     }
 
     @Override
