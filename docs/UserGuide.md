@@ -424,11 +424,11 @@ Format: `add_grade s/SUBJECT_NAME gi/GRADED_ITEM gr/GRADE_ALPHABET`
 * Valid `GRADE_ALPHABET` recognized by the system only include A to F, S and U.
 * `SUBJECT_NAME` is case-insensitive and `GRADE_ALPHABET` must be uppercase.
 
-Example: `add_grade s/Mathematics gi/Final gr/A`
+Example: `add_grade s/English gi/Final gr/A`
 
 Example Output:
 ```
-New grade added: Mathematics (Final): A
+New grade added: English (Final): A
 ```
 
 ### Editing a grade : `edit_grade`
