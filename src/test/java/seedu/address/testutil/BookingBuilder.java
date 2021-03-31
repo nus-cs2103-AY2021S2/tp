@@ -3,8 +3,8 @@ package seedu.address.testutil;
 import java.time.LocalDate;
 
 import seedu.address.model.booking.Booking;
-import seedu.address.model.booking.TenantName;
 import seedu.address.model.booking.Phone;
+import seedu.address.model.booking.TenantName;
 
 /**
  * A utility class to help with building Booking objects.

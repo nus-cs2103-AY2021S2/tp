@@ -19,8 +19,8 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.booking.Booking;
-import seedu.address.model.booking.TenantName;
 import seedu.address.model.booking.Phone;
+import seedu.address.model.booking.TenantName;
 import seedu.address.model.residence.BookingList;
 import seedu.address.model.residence.Residence;
 

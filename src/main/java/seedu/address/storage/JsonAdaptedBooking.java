@@ -7,8 +7,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.booking.Booking;
-import seedu.address.model.booking.TenantName;
 import seedu.address.model.booking.Phone;
+import seedu.address.model.booking.TenantName;
 
 /**
  * Json-friendly version of {@link Booking}.
@@ -52,7 +52,8 @@ class JsonAdaptedBooking {
     public Booking toModelType() throws IllegalValueException {
 
         if (tenantName == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, TenantName.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    TenantName.class.getSimpleName()));
         }
         if (!TenantName.isValidName(tenantName)) {
             throw new IllegalValueException(TenantName.MESSAGE_CONSTRAINTS);

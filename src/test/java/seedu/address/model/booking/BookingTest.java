@@ -36,7 +36,8 @@ public class BookingTest {
 
     @Test
     public void constructor_invalidBooking_throwsIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class, () -> new Booking(new TenantName(""), validPhone, validStart, validEnd));
+        assertThrows(IllegalArgumentException.class, () -> new Booking(new TenantName(""),
+                validPhone, validStart, validEnd));
         assertThrows(
                 IllegalArgumentException.class, () -> new Booking(validName, new Phone("12"), validStart, validEnd));
     }
