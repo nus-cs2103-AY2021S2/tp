@@ -232,7 +232,7 @@ Each Project may have `Todos`, `Deadlines`, `Events` & `Groupmates` that are rel
 
 Adds a project to CoLAB.
 
-Format: `addP n/PROJECT_NAME`
+Format: `addP n/NAME`
 
 Examples:
 * `addP n/CS2103T Team Project`
@@ -242,9 +242,9 @@ Examples:
 
 Updates a specified project in CoLAB.
 
-Format `updateP PROJECT_INDEX n/PROJECT_NAME`
+Format `updateP PROJECT_INDEX n/NAME`
 
-* Updates name of the project at the specified `PROJECT_INDEX` to new name `PROJECT_NAME`.
+* Updates name of the project at the specified `PROJECT_INDEX` to new name `NAME`.
 * The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
 * The index **must be a positive integer** 1, 2, 3, …​
 
@@ -681,12 +681,12 @@ Format: `redo'
 
 Action | Format, Examples
 --------|------------------
-**Add Project** | `addP n/PROJECT_NAME`
+**Add Project** | `addP n/NAME`
 **Add Deadline to Project** | `addDto PROJECT_INDEX d/DESCRIPTION by/DATE`
 **Add Event to Project** | `addEto PROJECT_INDEX d/DESCRIPTION on/DATE at/TIME w/REPEAT_WEEKLY`
 **Add Groupmate to Project** | `addG PROJECT_INDEX n/NAME [r/ROLE]…​`
 **Add Todo to Project** | `addTto PROJECT_INDEX d/DESCRIPTION`
-**Update Project** | `updateP PROJECT_INDEX n/PROJECT_NAME`
+**Update Project** | `updateP PROJECT_INDEX n/NAME`
 **Update Deadline** | `updateD PROJECT_INDEX i/DEADLINE_INDEX [d/DESCRIPTION] [by/DATE]`
 **Update Event** | `updateE PROJECT_INDEX i/EVENT_INDEX [d/DESCRIPTION] [on/DATE] [at/TIME] [w/REPEAT_WEEKLY]`
 **Update Groupmate** | `updateG PROJECT_INDEX i/GROUPMATE_INDEX [n/NAME] [r/ROLE]…​`
