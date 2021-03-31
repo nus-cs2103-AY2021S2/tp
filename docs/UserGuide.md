@@ -684,15 +684,17 @@ Action | Format, Examples
 **Add Project** | `addP n/PROJECT_NAME`
 **Add Deadline to Project** | `addDto PROJECT_INDEX d/DESCRIPTION by/DATE`
 **Add Event to Project** | `addEto PROJECT_INDEX d/DESCRIPTION on/DATE at/TIME w/REPEAT_WEEKLY`
-**Add Participant to Project** | `addG PROJECT_INDEX n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+**Add Groupmate to Project** | `addG PROJECT_INDEX n/NAME [r/ROLE]…​`
 **Add Todo to Project** | `addTto PROJECT_INDEX d/DESCRIPTION`
 **Update Project** | `updateP PROJECT_INDEX n/PROJECT_NAME`
 **Update Deadline** | `updateD PROJECT_INDEX i/DEADLINE_INDEX [d/DESCRIPTION] [by/DATE]`
 **Update Event** | `updateE PROJECT_INDEX i/EVENT_INDEX [d/DESCRIPTION] [on/DATE] [at/TIME] [w/REPEAT_WEEKLY]`
+**Update Groupmate** | `updateG PROJECT_INDEX i/GROUPMATE_INDEX [n/NAME] [r/ROLE]…​`
 **Update Todo** | `updateT PROJECT_INDEX i/TODO_INDEX d/DESCRIPTION`
 **Delete Project** | `deleteP PROJECT_INDEX`
 **Delete Deadline from Project** | `deleteD PROJECT_INDEX i/DEADLINE_INDEX`
 **Delete Event from Project** | `deleteE PROJECT_INDEX i/EVENT_INDEX`
+**Delete Groupmate from Project** | `deleteG PROJECT_INDEX i/GROUPMATE_INDEX`
 **Delete Participant from Project** | `deleteG PROJECT_INDEX i/GROUPMATE_INDEX`
 **Delete Todo from Project** | `deleteT PROJECT_INDEX i/TODO_INDEX`
 
@@ -701,10 +703,9 @@ Action | Format, Examples
 Action | Format, Examples
 --------|------------------
 **Add Contact** | `addC n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Delete Contact** | `delete CONTACT_INDEX`<br> e.g., `delete 3`
-**Clear Contacts** | `clear`
-**Edit Contact** | `edit CONTACT_INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find Contact** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Delete Contact** | `deleteC CONTACT_INDEX`<br> e.g., `delete 3`
+**Update Contact** | `updateC CONTACT_INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Find Contact** | `findC KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 
 ### Navigating the UI
 
@@ -716,6 +717,12 @@ Action | Format, Examples
 **View Todos** | `todos`
 **View Today Panel** | `today`
 **Help** | `help`
+
+### Others
+
+Action | Format, Examples
+--------|------------------
+**Clear All Entries** | `clear`
 
 ## **7.Acknowledgements**
 
