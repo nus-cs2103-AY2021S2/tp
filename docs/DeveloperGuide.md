@@ -734,8 +734,10 @@ in step 1 and 2 of MSS
 
     Use case ends.
 
-* 2a. The given field is invalid.
-    * 2a1. FlashBack shows an error message.
+* 1b. The given field is invalid.
+    * 1b1. FlashBack shows an error message.
+    
+    Use case ends.
 
 ### Non-Functional Requirements
 
