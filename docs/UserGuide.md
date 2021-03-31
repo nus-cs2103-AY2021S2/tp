@@ -149,14 +149,33 @@ Examples:
 
 Deletes the specified booking from the specified residence.
 
-Format: `deleteb r/INDEX1 b/INDEX2`
+Format: `deleteb r/RESIDENCE_INDEX b/BOOKING_INDEX`
 
-* Deletes the booking at the specified `INDEX2` from the residence at the specified `INDEX1`
-* `INDEX1` and `INDEX2` refers to the index number as shown in ResidenceTracker (i.e. **NOT** zero-indexed).
-* `INDEX1` and `INDEX2` must be **positive integer** (>0)
+* Deletes the booking at the specified `BOOKING_INDEX` from the residence at the specified `RESIDENCE_INDEX`
+* `RESIDENCE_INDEX` and `BOOKING_INDEX` refers to the index number as shown in ResidenceTracker (i.e. **NOT** zero-indexed).
+* `RESIDENCE_INDEX` and `BOOKING_INDEX` must be **positive integer** (>0)
 
 Examples:
 * `list` followed by `deleteb r/3 b/2` deletes the 2nd booking from the 3rd residence.
+
+### Editing a booking: `editb`
+
+Edits the specified booking from the specified residence.
+
+Format: `editb r/RESIDENCE_INDEX b/BOOKING_INDEX [n/TENANT_NAME] [p/PHONE] [s/START_DATE] [e/END_DATE]` 
+
+* `RESIDENCE_INDEX` and `BOOKING_INDEX` refers to the index number as shown in ResidenceTracker (i.e. **NOT** zero-indexed).
+* `RESIDENCE_INDEX` and `BOOKING_INDEX` must be **positive integer** (>0)
+* At least one of the optional fields must be provided.
+* It is invalid to edit the `START_DATE` to be later than the `END_DATE`. Likewise, it is invalid to update the `END_DATE`
+to be earlier than the `START_DATE`.
+* It is invalid to edit `START_DATE` or `END_DATE` such that it overlaps with dates of other bookings.
+* Existing values will be updated to the input values.
+
+Examples:
+* `editb r/1 b/2 p/90069009 s/03-28-2021` Edits the phone number and start date of 2nd booking of the 1st residence to be
+`90069009` and `03-28-2021` respectively.
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -198,6 +217,7 @@ Action | Format, Examples
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Deleteb** | `deleteb r/RESIDENCE_INDEX b/BOOKING_INDEX`<br> e.g., `delete r/3 b/2`
 **Edit** | `edit INDEX c/[y or n]`<br> e.g.,`edit 2 c/n`
+**Editb** | `editb RESIDENCE_INDEX b/BOOKING_INDEX` <br> e.g., `editb r/1 b/2 p/90069009 s/03-28-2021`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Heights`
 **List** | `list`
 **Help** | `help`
