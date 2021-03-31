@@ -18,5 +18,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_EVENT_DATE = new Prefix("on/");
     public static final Prefix PREFIX_EVENT_TIME = new Prefix("at/");
     public static final Prefix PREFIX_EVENT_WEEKLY = new Prefix("w/");
-    public static final Prefix PREFIX_MARK_TASK_INDEX = new Prefix("m/");
+    public static final Prefix PREFIX_MARK_TASK_INDEX = new Prefix("i/");
 }

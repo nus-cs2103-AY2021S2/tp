@@ -19,7 +19,7 @@ public class AddContactCommand extends Command {
 
     public static final String COMMAND_WORD = "addC";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a contact to CoLAB. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a contact to CoLAB.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "

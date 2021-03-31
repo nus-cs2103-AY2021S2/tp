@@ -22,11 +22,11 @@ public class DeleteEventCommand extends Command {
     public static final String COMMAND_WORD = "deleteE";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the event identified by it's index number within the displayed project.\n"
-            + "Parameters: PROJECT_INDEX (must be a positive integer)"
+            + ": Deletes the event identified by the index number used within the displayed project.\n"
+            + "Parameters: PROJECT_INDEX "
             + PREFIX_INDEX + "EVENT_INDEX \n"
-            + "Example: " + COMMAND_WORD + " 1" + " "
-            + PREFIX_INDEX + " 2";
+            + "Example: " + COMMAND_WORD + " 1 "
+            + PREFIX_INDEX + " 1";
 
     private final Index projectIndex;
     private final Index targetEventIndex;
@@ -65,8 +65,8 @@ public class DeleteEventCommand extends Command {
         projectToEdit.deleteEvent(targetEventIndex.getZeroBased());
         model.updateFilteredProjectList(Model.PREDICATE_SHOW_ALL_PROJECTS);
 
-        return new CommandResult(String.format(Messages.MESSAGE_DELETE_EVENT_SUCCESS, targetEventIndex.getOneBased()),
-                new ViewProjectAndOverviewUiCommand(projectIndex));
+        return new CommandResult(String.format(Messages.MESSAGE_DELETE_EVENT_SUCCESS, targetEventIndex.getOneBased(),
+                projectToEdit.getProjectName()), new ViewProjectAndOverviewUiCommand(projectIndex));
     }
 
     @Override

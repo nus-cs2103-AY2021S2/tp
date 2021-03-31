@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_ADD_GROUPMATE_SUCCESS;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_GROUPMATE;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
@@ -22,17 +24,14 @@ public class AddGroupmateCommand extends Command {
 
     public static final String COMMAND_WORD = "addG";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an existing groupmate to an existing project. "
-            + "Parameters: INDEX (must be a positive integer) "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a groupmate to an existing project.\n"
+            + "Parameters: PROJECT_INDEX "
             + PREFIX_NAME + "NAME "
             + "[" + PREFIX_ROLE + "ROLE]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NAME + "John Doe "
             + PREFIX_ROLE + "leader "
             + PREFIX_ROLE + "frontend-developer";
-
-    public static final String MESSAGE_SUCCESS = "New groupmate %1$s added to project %2$s";
-    public static final String MESSAGE_DUPLICATE_GROUPMATE = "This groupmate already exists under project %1$s";
 
     private final Index projectToAddToIndex;
     private final Groupmate groupmateToAdd;
@@ -59,7 +58,7 @@ public class AddGroupmateCommand extends Command {
         Project projectToAddTo = requireNonNull(lastShownProjectList.get(projectToAddToIndex.getZeroBased()));
 
         if (projectToAddTo.hasGroupmate(groupmateToAdd)) {
-            throw new CommandException(String.format(MESSAGE_DUPLICATE_GROUPMATE, projectToAddTo.getProjectName()));
+            throw new CommandException(MESSAGE_DUPLICATE_GROUPMATE);
         }
 
         // logic goes here
@@ -67,7 +66,7 @@ public class AddGroupmateCommand extends Command {
         model.updateFilteredProjectList(model.PREDICATE_SHOW_ALL_PROJECTS);
 
         return new CommandResult(
-                String.format(MESSAGE_SUCCESS, groupmateToAdd.getName(), projectToAddTo.getProjectName()),
+                String.format(MESSAGE_ADD_GROUPMATE_SUCCESS, groupmateToAdd.getName(), projectToAddTo.getProjectName()),
                 new ViewProjectAndOverviewUiCommand(projectToAddToIndex)
         );
     }

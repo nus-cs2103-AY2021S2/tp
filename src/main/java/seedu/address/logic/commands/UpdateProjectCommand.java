@@ -26,15 +26,14 @@ public class UpdateProjectCommand extends Command {
     public static final String COMMAND_WORD = "updateP";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Updates the name of the project specified "
-            + "by the index number used in the displayed project list. "
-            + "Existing value will be overwritten by the input value.\n"
-            + "Parameters: PROJECT_INDEX (must be a positive integer) "
+            + "by the index number used in the side panel.\n"
+            + "Parameters: PROJECT_INDEX "
             + PREFIX_NAME + "PROJECT_NAME\n"
-            + "Example:\n"
-            + COMMAND_WORD + " 1 " + PREFIX_NAME + "new name";
+            + "Example: "
+            + COMMAND_WORD + " 1 " + PREFIX_NAME + "CS2102 Group Project";
 
-    public static final String MESSAGE_UPDATE_PROJECT_SUCCESS = "Edited Project: %1$s";
-    public static final String MESSAGE_DUPLICATE_NAME = "This project name already exists in CoLAB.";
+    public static final String MESSAGE_UPDATE_PROJECT_SUCCESS = "Updated Project: %1$s";
+    public static final String MESSAGE_DUPLICATE_NAME = "This project already exists in CoLAB.";
 
     private final Index targetIndex;
     private final ProjectName name;

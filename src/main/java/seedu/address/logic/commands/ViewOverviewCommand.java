@@ -15,7 +15,7 @@ public class ViewOverviewCommand extends Command {
             + ": Displays the overview of an open project.\n"
             + "Example: " + COMMAND_WORD;
 
-    public static final String MESSAGE_SUCCESS = "Viewing Overview";
+    public static final String MESSAGE_SUCCESS = "Viewing Overview of a Project.";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {

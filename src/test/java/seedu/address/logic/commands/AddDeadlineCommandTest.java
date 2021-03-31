@@ -38,9 +38,10 @@ public class AddDeadlineCommandTest {
                 .withByDate(LocalDate.of(2020, 01, 01)).build();
 
         CommandResult commandResult = new AddDeadlineCommand(INDEX_FIRST, validDeadline).execute(model);
+        Project projectToEdit = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
 
-        assertEquals(String.format(Messages.MESSAGE_ADD_DEADLINE_SUCCESS, validDeadline),
-                commandResult.getFeedbackToUser());
+        assertEquals(String.format(Messages.MESSAGE_ADD_DEADLINE_SUCCESS, validDeadline,
+                projectToEdit.getProjectName()), commandResult.getFeedbackToUser());
     }
 
     @Test
@@ -59,7 +60,7 @@ public class AddDeadlineCommandTest {
     @Test
     public void execute_duplicateDeadline_throwsCommandException() {
         Deadline deadlineToAdd = new DeadlineBuilder().withDescription("CS2106 Tutorial")
-                .withByDate(LocalDate.of(2020, 01, 01)).build();
+                .withByDate(LocalDate.of(2020, 1, 1)).build();
         Project projectToAddTo = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
         AddDeadlineCommand addDeadlineCommand = new AddDeadlineCommand(INDEX_FIRST, deadlineToAdd);
 

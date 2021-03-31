@@ -16,12 +16,14 @@ public class AddProjectCommand extends Command {
 
     public static final String COMMAND_WORD = "addP";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a project to CoLAB. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a project to CoLAB.\n"
             + "Parameters: "
-            + PREFIX_NAME + "PROJECT_NAME";
+            + PREFIX_NAME + "PROJECT_NAME\n"
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_NAME + "CS2102 Group Project";
 
     public static final String MESSAGE_SUCCESS = "New project added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PROJECT = "This project already exists";
+    public static final String MESSAGE_DUPLICATE_PROJECT = "This project already exists in CoLAB";
 
     private final Project toAdd;
 

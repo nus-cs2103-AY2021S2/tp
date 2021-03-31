@@ -40,8 +40,10 @@ public class AddEventCommandTest {
                 .withIsWeekly(false).build();
 
         CommandResult commandResult = new AddEventCommand(INDEX_FIRST, validEvent).execute(model);
+        Project projectToEdit = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
 
-        assertEquals(String.format(Messages.MESSAGE_ADD_EVENT_SUCCESS, validEvent), commandResult.getFeedbackToUser());
+        assertEquals(String.format(Messages.MESSAGE_ADD_EVENT_SUCCESS, validEvent,
+                projectToEdit.getProjectName()), commandResult.getFeedbackToUser());
     }
 
     @Test

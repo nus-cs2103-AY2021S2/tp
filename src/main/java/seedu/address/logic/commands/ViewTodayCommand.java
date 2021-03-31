@@ -15,7 +15,7 @@ public class ViewTodayCommand extends Command {
             + ": Displays the today panel.\n"
             + "Example: " + COMMAND_WORD;
 
-    public static final String MESSAGE_SUCCESS = "Viewing Today Panel";
+    public static final String MESSAGE_SUCCESS = "Viewing Today Panel.";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {

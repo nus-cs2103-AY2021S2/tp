@@ -35,8 +35,10 @@ public class AddTodoCommandTest {
         Todo validTodo = new TodoBuilder().withDescription("CS2106 Assignment").build();
 
         CommandResult commandResult = new AddTodoCommand(INDEX_FIRST, validTodo).execute(model);
+        Project projectToEdit = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
 
-        assertEquals(String.format(Messages.MESSAGE_ADD_TODO_SUCCESS, validTodo), commandResult.getFeedbackToUser());
+        assertEquals(String.format(Messages.MESSAGE_ADD_TODO_SUCCESS, validTodo,
+                projectToEdit.getProjectName()), commandResult.getFeedbackToUser());
     }
 
     @Test
