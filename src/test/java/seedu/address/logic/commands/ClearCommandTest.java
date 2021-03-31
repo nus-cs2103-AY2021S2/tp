@@ -5,6 +5,7 @@ import static seedu.address.testutil.TypicalAppointments.getTypicalAppointmentBo
 import static seedu.address.testutil.TypicalBudgets.getTypicalBudgetBook;
 import static seedu.address.testutil.TypicalGrades.getTypicalGradeBook;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalReminders.getTypicalReminderTracker;
 import static seedu.address.testutil.TypicalSchedules.getTypicalScheduleTracker;
 
 import org.junit.jupiter.api.Test;
@@ -29,10 +30,10 @@ public class ClearCommandTest {
     public void execute_nonEmptyAddressBook_success() {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(),
             getTypicalAppointmentBook(), getTypicalBudgetBook(), getTypicalGradeBook(),
-            getTypicalScheduleTracker());
+            getTypicalScheduleTracker(), getTypicalReminderTracker());
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(),
             getTypicalAppointmentBook(), getTypicalBudgetBook(), getTypicalGradeBook(),
-            getTypicalScheduleTracker());
+            getTypicalScheduleTracker(), getTypicalReminderTracker());
 
         expectedModel.setAddressBook(new AddressBook());
 

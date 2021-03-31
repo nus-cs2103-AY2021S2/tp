@@ -6,6 +6,7 @@ import static seedu.address.testutil.TypicalAppointments.getTypicalAppointmentBo
 import static seedu.address.testutil.TypicalBudgets.getTypicalBudgetBook;
 import static seedu.address.testutil.TypicalGrades.getTypicalGradeBook;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalReminders.getTypicalReminderTracker;
 import static seedu.address.testutil.TypicalSchedules.getTypicalScheduleTracker;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -29,7 +30,7 @@ public class AddCommandIntegrationTest {
     public void setUp() {
         model = new ModelManager(getTypicalAddressBook(), new UserPrefs(),
                 getTypicalAppointmentBook(), getTypicalBudgetBook(), getTypicalGradeBook(),
-                getTypicalScheduleTracker());
+                getTypicalScheduleTracker(), getTypicalReminderTracker());
     }
 
     @Test
@@ -38,7 +39,7 @@ public class AddCommandIntegrationTest {
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(),
                 getTypicalAppointmentBook(), getTypicalBudgetBook(), getTypicalGradeBook(),
-                getTypicalScheduleTracker());
+                getTypicalScheduleTracker(), getTypicalReminderTracker());
 
         expectedModel.addPerson(validPerson);
 

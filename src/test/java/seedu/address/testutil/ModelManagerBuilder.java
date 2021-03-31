@@ -4,6 +4,7 @@ import static seedu.address.testutil.TypicalAppointments.getTypicalAppointmentBo
 import static seedu.address.testutil.TypicalBudgets.getTypicalBudgetBook;
 import static seedu.address.testutil.TypicalGrades.getTypicalGradeBook;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalReminders.getTypicalReminderTracker;
 import static seedu.address.testutil.TypicalSchedules.getTypicalScheduleTracker;
 
 import seedu.address.model.BudgetBook;
@@ -13,6 +14,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyAppointmentBook;
 import seedu.address.model.ReadOnlyGradeBook;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.reminder.ReadOnlyReminderTracker;
 import seedu.address.model.schedule.ReadOnlyScheduleTracker;
 
 /**
@@ -26,7 +28,7 @@ public class ModelManagerBuilder {
     public static ModelManager getModelManager() {
         return new ModelManager(getTypicalAddressBook(), new UserPrefs(),
                 getTypicalAppointmentBook(), getTypicalBudgetBook(), getTypicalGradeBook(),
-                getTypicalScheduleTracker());
+                getTypicalScheduleTracker(), getTypicalReminderTracker());
     }
 
     /**
@@ -38,6 +40,7 @@ public class ModelManagerBuilder {
         BudgetBook bb = getTypicalBudgetBook();
         ReadOnlyGradeBook gb = getTypicalGradeBook();
         ReadOnlyScheduleTracker st = getTypicalScheduleTracker();
+        ReadOnlyReminderTracker rt = getTypicalReminderTracker();
 
         switch (modelType) {
         case ADDRESSBOOK:
@@ -55,11 +58,14 @@ public class ModelManagerBuilder {
         case SCHEDULETRACKER:
             st = model.getScheduleTracker();
             break;
+        case REMINDERTRACKER:
+            rt = model.getReminderTracker();
+            break;
         default:
             break;
         }
 
-        return new ModelManager(ab, new UserPrefs(), apb, bb, gb, st);
+        return new ModelManager(ab, new UserPrefs(), apb, bb, gb, st, rt);
     }
 
     public enum ModelType {
@@ -67,6 +73,7 @@ public class ModelManagerBuilder {
         APPOINTMENTBOOK,
         BUDGETBOOK,
         GRADEBOOK,
-        SCHEDULETRACKER
+        SCHEDULETRACKER,
+        REMINDERTRACKER
     }
 }
