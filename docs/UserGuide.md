@@ -54,11 +54,21 @@ BookCoinToTheMoon is a **desktop app for managing bookings and presents users a 
 
 </div>
 
-### Adding a venue : `create_venue`
+### Adding a person : `add_person`
 
-Adds a new venue for the booking app.
+Adds a new person for the booking app. Email and phone number must be unique.
 
-Format: `create_venue v/VENUE_NAME [max/MAXIMUM_OCCUPANCY]`
+Format: `add_person n/PERSON_NAME p/PERSON_PHONE_NUMBER e/PERSON_EMAIL`
+
+Examples:
+* `create_venue n/Vanessa p/90008000 e/Van@gmail.com`
+
+### Adding a venue : `add_venue`
+
+Adds a new venue for the booking app. `add_venue` is a multi-step command that will prompt you for additional input. 
+Capacity, description and tags are optional. Default capacity without an input will be set to 10.
+
+Format: `add_venue v/VENUE_NAME`
 
 Examples:
 * `create_venue v/Chua Thian Poh Hall max/40`
@@ -74,13 +84,13 @@ Format: `add_booking`
 Examples:
 * `add_booking`
 
-### Listing all venues : `list_venues`
+### Listing all venues : `list_venue`
 
 Shows a list of all venues and their corresponding IDs in the booking app.
 
 Format: `list_venues`
 
-### Listing all bookings : `list_bookings`
+### Listing all bookings : `list_booking`
 
 Shows a list of all bookings and their corresponding IDs in the booking app.
 
@@ -205,8 +215,8 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add_venue n/VENUE_NAME [max/MAXIMUM_OCCUPANCY]` <br> e.g., `add_venue n/Chua Thian Poh Hall max/40`<br><br> `add_booking`e.g., `add_booking`
-**Delete** | `delete_venue v/VENUE_ID`<br> e.g., `delete_venue v/1` <br><br> `delete_booking b/BOOKING_ID`<br> e.g., `delete_booking b/2`
+**Add** | `add_venue v/VENUE_NAME` <br> `add_booking` (Note: add_venue and add_booking are multi-step commands)
+**Delete** | `delete_venue v/VENUE_NAME`<br> e.g., `delete_venue v/Chua Thian Poh Hall` <br><br> `delete_booking b/BOOKING_ID`<br> e.g., `delete_booking b/2`
 **Find** | `find_venue v/VENUE_ID`<br> e.g., `find_venue v/1`<br><br> `find_booking b/BOOKING_ID`<br> e.g., `find_booking b/2`
-**List** | `list_venues` <br> `list_bookings`
-**Exit** | `bye`
+**List** | `list_person`<br>`list_venue` <br> `list_booking`
+**Exit** | `exit`
