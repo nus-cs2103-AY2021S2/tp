@@ -38,15 +38,15 @@ public class MenuAddCommandParser implements Parser<MenuAddCommand> {
 
         String name = argMultimap.getValue(PREFIX_NAME).get().trim();
         double price = parseDouble(argMultimap.getValue(PREFIX_PRICE).get().trim());
-        List<String> ingNums = argMultimap.getAllValues(PREFIX_INGREDIENT);
-        List<String> ingQuants = argMultimap.getAllValues(PREFIX_QUANTITY);
+        List<String> ingredientNumbers = argMultimap.getAllValues(PREFIX_INGREDIENT);
+        List<String> ingredientQuantities = argMultimap.getAllValues(PREFIX_QUANTITY);
 
         List<Pair<Integer, Integer>> ingredientQuantityList = new ArrayList<>();
 
-        for (int idx = 0; idx < ingNums.size(); idx++) {
+        for (int i = 0; i < ingNums.size(); i++) {
             Pair<Integer, Integer> dishComponent =
-                    new Pair<>(Integer.parseInt(ingNums.get(idx)),
-                            Integer.parseInt(ingQuants.get(idx)));
+                    new Pair<>(Integer.parseInt(ingredientNumbers.get(idx)),
+                            Integer.parseInt(ingredientQuantities.get(idx)));
             ingredientQuantityList.add(dishComponent);
         }
 
