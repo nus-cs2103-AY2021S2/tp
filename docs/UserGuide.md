@@ -176,18 +176,20 @@ Edits an existing meeting in iScam.
 Format: `editmeet INDEX [c/CLIENT_NAME] [on/DATE_TIME] [l/ADDRESS] [d/DESCRIPTION] [t/TAG(s)] [done/YES_OR_NO]`
 
 * `INDEX` refer to the meeting's index number shown in the displayed meeting list from `listmeet`. The index **must be a 
-  positive integer 1, 2, 3, …**   
+  positive integer 1, 2, 3, …**
+* At least one of the optional fields must be provided. 
+* Existing values will be replaced by the input values.
 * Date and time is in the format of `dd-MM-yyyy HH:mm` where:
   * `dd` is the day of the month in double digits.
   * `MM` is the month in double digits. 
   * `yyyy` is the year.
-  * `HH:mm` is the time in 24 hour format. 
+  * `HH:mm` is the time in 24 hours format. 
 * The specified date and time **cannot be in the past**.
-* The specified date and time cannot be in conflict with existing meetings in iScam.
+* The specified date and time **cannot be in conflict with existing meetings** in iScam.
+* When editing tags, the existing tags of the client will be removed i.e adding of tags is not cumulative.
 * The `done` parameter **only accepts `yes` or `no`**.
 
 Examples:
-
 * `editmeet 1 l/Macdonald, Simei d/Client's family will be coming along`
 
 ### Relocating a meeting: `relocate`
@@ -199,7 +201,6 @@ Format: `relocate INDEX l/LOCATION`
 * `INDEX` refer to the meeting's index in the displayed list from `listmeet`.
 
 Examples:
-
 * `relocate 1 l/KFC, Block 556 Bugis`
 
 ### Rescheduling a meeting: `reschedule`
@@ -219,7 +220,6 @@ Format: `reschedule INDEX on/DATE_TIME`
 * The modified date and time cannot be in conflict with existing meetings in iScam.
 
 Examples:
-
 * `reschedule 3 on/08-10-2021 20:00`
 
 ### Finding meetings by keywords: `findmeet`
