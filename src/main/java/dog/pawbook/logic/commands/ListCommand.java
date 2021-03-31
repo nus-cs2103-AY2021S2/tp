@@ -16,7 +16,7 @@ public class ListCommand extends Command {
     public static final String COMMAND_WORD = "list";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": List all entities or a specified group only.\n"
+            + ": List all entities or a specified entity only.\n"
             + "Parameters: ENTITY_TYPE";
 
     public static final String MESSAGE_SUCCESS_FORMAT = "Listed all %s(s)";

@@ -159,7 +159,7 @@ public class PawbookParser {
     }
 
     private ListCommand generateListCommand(String entityType, String arguments) throws ParseException {
-        if (!arguments.isBlank()) {
+        if (!arguments.isBlank() && !Pattern.matches("^ s*\\s*$", arguments)) {
             throw new ParseException(ListCommand.MESSAGE_USAGE);
         }
 
