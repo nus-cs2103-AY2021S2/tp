@@ -117,7 +117,8 @@ public class HelpPanel extends UiPart<Region> {
                 new CommandSyntax("todo", "todos"),
                 new CommandSyntax("addT", "addT PROJECT_INDEX d/DESCRIPTION"),
                 new CommandSyntax("updateT", "updateT PROJECT_INDEX i/TODO_INDEX d/DESCRIPTION"),
-                new CommandSyntax("deleteT", "deleteT PROJECT_INDEX i/TODO_INDEX")
+                new CommandSyntax("deleteT", "deleteT PROJECT_INDEX i/TODO_INDEX"),
+                new CommandSyntax("markT", "markT PROJECT_INDEX i/TODO_INDEX")
         );
     }
 
@@ -126,7 +127,8 @@ public class HelpPanel extends UiPart<Region> {
                 new CommandSyntax("addD", "addD PROJECT_INDEX d/DESCRIPTION by/DATE"),
                 new CommandSyntax("updateD",
                         "updateD PROJECT_INDEX i/DEADLINE_INDEX [d/DESCRIPTION] [by/DATE]"),
-                new CommandSyntax("deleteD", "deleteD PROJECT_INDEX i/DEADLINE_INDEX")
+                new CommandSyntax("deleteD", "deleteD PROJECT_INDEX i/DEADLINE_INDEX"),
+                new CommandSyntax("markD", "markD PROJECT_INDEX i/DEADLINE_INDEX")
         );
     }
 
