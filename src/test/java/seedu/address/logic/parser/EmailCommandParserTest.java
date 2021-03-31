@@ -84,9 +84,9 @@ public class EmailCommandParserTest {
         // valid index
         assertValidCommandToAliasSuccess(parser, VALID_INDEX_STRING);
 
-        // valid index with whitespac
-        assertValidCommandToAliasSuccess(parser, PREAMBLE_WHITESPACE +
-                VALID_INDEX_STRING + PREAMBLE_WHITESPACE);
+        // valid index with whitespace
+        assertValidCommandToAliasSuccess(parser,
+                PREAMBLE_WHITESPACE + VALID_INDEX_STRING + PREAMBLE_WHITESPACE);
 
         String inputIndexes = VALID_INDEXES.stream()
                 .map(Index::getOneBased).map(String::valueOf)

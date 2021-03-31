@@ -36,7 +36,6 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUniqueAliasMap;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonAliasesStorage;
