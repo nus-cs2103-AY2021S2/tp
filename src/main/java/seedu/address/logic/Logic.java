@@ -89,10 +89,27 @@ public interface Logic {
     List<String> getAutocompleteFlags(String command);
 
     /**
-     * Returns a list of flags that is not inside the provided current strings
+     * Returns a list of flags that is not inside the provided current strings.
      *
      * @param command currentStrings
      * @return Returns a list of unused flags for a specified command
      */
-    List<String> processAutocompleteFlags(String currentStrings, String command);
+    List<String> filterExistingFlags(String currentStrings, String command);
+
+    /**
+     * Checks if the given string has flags for autocompletion.
+     *
+     * @param commandString string provided from a command box
+     * @return Returns true if the text provided has flags available for autocompletion
+     */
+    boolean isAutocompleteFlag(String commandString);
+
+    /**
+     * Processes a given command string and returns a list of available commands for a specified command
+     * in the commandString.
+     *
+     * @param commandString string provided from a command box
+     * @return Returns a list of available flags for a specified command
+     */
+    List<String> getAvailableFlags(String commandString);
 }

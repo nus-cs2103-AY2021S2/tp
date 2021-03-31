@@ -78,32 +78,16 @@ public class MainWindow extends UiPart<Stage> {
 
         getRoot().addEventFilter(KeyEvent.KEY_RELEASED, (KeyEvent event) -> {
             if (event.getCode() == KeyCode.TAB) {
-                // TODO: Extract code
                 String currentlyInBox = commandBox.getTextFieldText();
-                String command = currentlyInBox.split("-")[0];
+                boolean isAutocompleteFlag = logic.isAutocompleteFlag(currentlyInBox);
 
-                if (command.startsWith(AddCommand.COMMAND_WORD)) {
-                    // Get possible flags for "ADD" command
-                    List<String> availFlags = logic.processAutocompleteFlags(currentlyInBox, AddCommand.COMMAND_WORD);
-                    if (availFlags.size() != 0) {
-                        commandBox.setAndAppendFlag(availFlags.get(0));
-                    }
-                } else if (command.startsWith(EditCommand.COMMAND_WORD)) {
-                    try {
-                        // Check if Edit command already has index
-                        Integer.parseInt(command.split("-")[0].replaceAll("\\D+", ""));
-                        List<String> availFlags = logic.processAutocompleteFlags(currentlyInBox,
-                                EditCommand.COMMAND_WORD);
-                        if (availFlags.size() != 0) {
-                            commandBox.setAndAppendFlag(availFlags.get(0));
-                        }
-                    } catch (NumberFormatException e) {
-                        logger.info("Edit Command does not have an index. Autocomplete flags failed...");
-                    }
+                if (isAutocompleteFlag) {
+                    List<String> availFlags = logic.getAvailableFlags(currentlyInBox);
+                    commandBox.setAndAppendFlag(availFlags.get(0));
                 } else {
                     autocompleteListPanel.processTabKey((value) -> {
-                        commandBox.setTextValue(value);
-                    });
+                                        commandBox.setTextValue(value);
+                                    });
                     event.consume();
                 }
             }

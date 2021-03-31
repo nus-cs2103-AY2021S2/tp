@@ -172,11 +172,49 @@ public class LogicManager implements Logic {
         }
     }
 
-    // TODO: Add Tests
     @Override
-    public List<String> processAutocompleteFlags(String currentStrings, String command) {
+    public List<String> filterExistingFlags(String currentStrings, String command) {
         List<String> flags = getAutocompleteFlags(command);
         flags.removeIf(f -> currentStrings.contains(f));
         return flags;
+    }
+
+    @Override
+    public boolean isAutocompleteFlag(String commandStrings) {
+        String command = commandStrings.split("-")[0];
+        if (command.startsWith(AddCommand.COMMAND_WORD + " ") || command.startsWith(EditCommand.COMMAND_WORD + " ")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public List<String> getAvailableFlags(String commandStrings) {
+
+        String command = commandStrings.split("-")[0];
+
+        if (command.startsWith(AddCommand.COMMAND_WORD + " ")) {
+            // Get possible flags for "ADD" command
+            List<String> availFlags = this.filterExistingFlags(commandStrings, AddCommand.COMMAND_WORD);
+            if (availFlags.size() != 0) {
+                return availFlags;
+            }
+        }
+
+        if (command.startsWith(EditCommand.COMMAND_WORD + " ")) {
+            try {
+                // Check if Edit command already has index
+                Integer.parseInt(command.split("-")[0].replaceAll("\\D+", ""));
+                List<String> availFlags = this.filterExistingFlags(commandStrings,
+                        EditCommand.COMMAND_WORD);
+                if (availFlags.size() != 0) {
+                    return availFlags;
+                }
+            } catch (NumberFormatException e) {
+                logger.info("Edit Command does not have an index. Autocomplete flags failed...");
+            }
+        }
+        return new ArrayList<>();
     }
 }
