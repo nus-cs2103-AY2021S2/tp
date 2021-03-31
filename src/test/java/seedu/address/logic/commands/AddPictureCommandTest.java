@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_FILE_NOT_FOUND;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_FILE_EXTENSION;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -58,12 +59,6 @@ public class AddPictureCommandTest {
         pictureDir.delete();
     }
 
-    public void addPictureValidFileHelper(AddPictureCommand cmd) {
-        Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        String expectedMessage = String.format(AddPictureCommand.MESSAGE_ADD_PICTURE_SUCCESS, firstPerson.getName());
-        assertCommandSuccess(cmd, model, expectedMessage);
-    }
-
     @Test
     public void execute_addPictureInvalidFile_failure() {
         AddPictureCommand cmd;
@@ -78,12 +73,21 @@ public class AddPictureCommandTest {
                 Picture.ALLOWED_FILE_EXTENSIONS_STRING));
     }
 
+    public void testAddPicture(AddPictureCommand cmd) {
+        Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        String expectedMessage = String.format(AddPictureCommand.MESSAGE_ADD_PICTURE_SUCCESS, firstPerson.getName());
+        assertCommandSuccess(cmd, model, expectedMessage);
+
+        Person editedPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        assertTrue(Files.exists(editedPerson.getPicture().get().getFilePath()));
+    }
+
     @Test
     public void execute_addPictureValidFile_success() {
         AddPictureCommand cmd1 = new AddPictureCommand(INDEX_FIRST_PERSON, validPath);
         AddPictureCommand cmd2 = new AddPictureCommand(INDEX_FIRST_PERSON, validPathWithSpaces);
 
-        addPictureValidFileHelper(cmd1);
-        addPictureValidFileHelper(cmd2);
+        testAddPicture(cmd1);
+        testAddPicture(cmd2);
     }
 }
