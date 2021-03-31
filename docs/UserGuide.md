@@ -652,7 +652,7 @@ Restores CoLAB to the state before the previous undoable command was executed.
 
 Format: `undo'
 
-* Undoable commands are start with `add`, `update` or `delete`.
+* Commands that modify data are undoable. These commands include all commands that start with `add`, `update`, `delete` or `mark` as well as the `clear` command.
 * All other commands are not undoable.
 
 Example:
