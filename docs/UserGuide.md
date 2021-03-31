@@ -344,7 +344,7 @@ Options:
 
 Examples:
 * `find property n/jurong west`
-* `find property bishan north t/hdb pl/$1,000,000`
+* `find property n/bishan north t/hdb pl/$1,000,000`
 * `find property pl/1000000 t/hdb a/1 Jurong East Street 32, #08-111 tags/3 bedrooms, need renovation cc/91234567`
 
 #### 3.8.2 Searching appointments: `find appointment`
