@@ -97,7 +97,9 @@ Legend | Description
 
 ### 1.1 Input weight, height and ideal weight
 
-On the application's first launch, you will be prompted to enter your height, weight and ideal weight. Other commands will be unavailable until you complete the bmi setting step.
+On the application's first launch, you will be prompted to enter your height, weight and ideal weight.
+
+**Note:** Other commands will be unavailable until you complete the BMI setup.
 
 **Command Format:** `bmi g/GENDER a/AGE h/HEIGHT(CM) w/WEIGHT(KG) i/IDEAL_WEIGHT(KG)`
 
@@ -268,7 +270,7 @@ Deletes the specified food item stored in the application.
 
 ### 3.5 Input food intake
 
-For tracking your diet plan progress, you are encouraged to record your daily food intake. For your convenience, there are a few ways to input a food intake. Check out the different scenarios outlined below!
+For tracking your diet plan progress, you are encouraged to record your daily food intake. For your convenience, there are a few ways to input a food intake. Refer to the different scenarios outlined below!
 
 **Note:** If there are multiple food intakes with the same date and name, the food name will be automatically renamed to include a duplicate count for easy identification. E.g. Chicken rice, Chicken rice 2
 
@@ -352,7 +354,7 @@ Delete a food intake record from the application.
 
 ### 3.8 Query food intake
 
-View the list of food intakes on a given day or over a period of days. Check out the different scenarios outlined below!
+View the list of food intakes on a given day or over a period of days. Refer to the different scenarios outlined below!
 
 ### 3.8.1 Query food intake on a day
 
@@ -397,7 +399,7 @@ Generates a progress report based on your current active diet plan. Your food in
   <img src="images/user-guide/progress-report.png">
 </p>
 
-##5. Miscellaneous
+## 5. Miscellaneous
 
 ### 5.1 Reset application to blank
 
