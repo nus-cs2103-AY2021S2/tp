@@ -27,58 +27,67 @@ import seedu.booking.model.person.Person;
 import seedu.booking.model.person.Phone;
 import seedu.booking.model.venue.Venue;
 import seedu.booking.model.venue.VenueName;
-import seedu.booking.testutil.PersonBuilder;
+import seedu.booking.testutil.BookingBuilder;
 
-public class AddPersonCommandTest {
+class AddBookingCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddPersonCommand(null));
+    public void constructor_nullBooking_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AddBookingCommand(null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().build();
+    public void execute_bookingAcceptedByModel_addSuccessful() throws Exception {
+        AddBookingCommandTest.ModelStubAcceptingBookingAdded modelStub = new AddBookingCommandTest
+                .ModelStubAcceptingBookingAdded();
+        Booking validBooking = new BookingBuilder().build();
 
-        CommandResult commandResult = new AddPersonCommand(validPerson).execute(modelStub);
+        CommandResult commandResult = new AddBookingCommand(validBooking).execute(modelStub);
 
-        assertEquals(String.format(AddPersonCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+        assertEquals(String.format(AddBookingCommand.MESSAGE_SUCCESS, validBooking), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validBooking), modelStub.bookingsAdded);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Person validPerson = new PersonBuilder().build();
-        AddPersonCommand addPersonCommand = new AddPersonCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
+    public void execute_duplicateBooking_throwsCommandException() {
+        Booking validBooking = new BookingBuilder().build();
+        AddBookingCommand createBookingCommand = new AddBookingCommand(validBooking);
+        AddBookingCommandTest.ModelStub modelStub = new AddBookingCommandTest.ModelStubWithBooking(validBooking);
 
         assertThrows(CommandException.class,
-                AddPersonCommand.MESSAGE_DUPLICATE_PERSON, () -> addPersonCommand.execute(modelStub));
+                createBookingCommand.MESSAGE_DUPLICATE_BOOKING, () -> createBookingCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
-        AddPersonCommand addAliceCommand = new AddPersonCommand(alice);
-        AddPersonCommand addBobCommand = new AddPersonCommand(bob);
+        Booking bookHall = new BookingBuilder().withVenue("Victoria Hall").withBooker("SpiderMan@gmail.com")
+                .withDescription("VIP")
+                .withBookingStart("2021-02-02 07:00:00")
+                .withBookingEnd("2021-02-02 08:00:00")
+                .build();
+        Booking bookField = new BookingBuilder().withVenue("Town Green").withBooker("SpiderMan@gmail.com")
+                .withDescription("VIP")
+                .withBookingStart("2021-02-02 07:00:00")
+                .withBookingEnd("2021-02-02 08:00:00")
+                .build();
+        AddBookingCommand addHallCommand = new AddBookingCommand(bookHall);
+        AddBookingCommand addFieldCommand = new AddBookingCommand(bookField);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addHallCommand.equals(addHallCommand));
 
         // same values -> returns true
-        AddPersonCommand addAliceCommandCopy = new AddPersonCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        AddBookingCommand addHallCommandCopy = new AddBookingCommand(bookHall);
+        assertTrue(addHallCommand.equals(addHallCommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addHallCommand.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addHallCommand.equals(null));
 
         // different person -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertFalse(addHallCommand.equals(addFieldCommand));
     }
 
     /**
@@ -132,12 +141,12 @@ public class AddPersonCommandTest {
 
         @Override
         public void updateVenueInBookings(VenueName oldVenueName, VenueName newVenueName) {
-            throw new AssertionError("This method should not be called.");
+
         }
 
         @Override
         public void updatePersonInBookings(Email oldEmail, Email newEmail) {
-            throw new AssertionError("This method should not be called.");
+
         }
 
         @Override
@@ -162,12 +171,12 @@ public class AddPersonCommandTest {
 
         @Override
         public boolean hasPersonWithEmail(Email email) {
-            throw new AssertionError("This method should not be called.");
+            return true;
         }
 
         @Override
         public boolean hasPersonWithPhone(Phone phone) {
-            throw new AssertionError("This method should not be called.");
+            return false;
         }
 
         @Override
@@ -187,7 +196,7 @@ public class AddPersonCommandTest {
 
         @Override
         public boolean hasVenueWithVenueName(VenueName venueName) {
-            throw new AssertionError("This method should not be called.");
+            return true;
         }
 
         @Override
@@ -207,11 +216,16 @@ public class AddPersonCommandTest {
 
         @Override
         public void setVenue(Venue target, Venue editedVenue) {
-            throw new AssertionError("This method should not be called.");
+
         }
 
         @Override
         public ObservableList<Person> getFilteredPersonList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Venue> getFilteredVenueList() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -222,11 +236,6 @@ public class AddPersonCommandTest {
 
         @Override
         public ObservableList<Booking> getFilteredBookingList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ObservableList<Venue> getFilteredVenueList() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -243,49 +252,50 @@ public class AddPersonCommandTest {
 
         @Override
         public void updateFilteredBookingList(Predicate<Booking> predicate) {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void updateFilteredVenueList(Predicate<Venue> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a single venue.
      */
-    private class ModelStubWithPerson extends ModelStub {
-        private final Person person;
+    private class ModelStubWithBooking extends AddBookingCommandTest.ModelStub {
+        private final Booking booking;
 
-        ModelStubWithPerson(Person person) {
-            requireNonNull(person);
-            this.person = person;
+        ModelStubWithBooking(Booking booking) {
+            requireNonNull(booking);
+            this.booking = booking;
         }
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
+        public boolean hasBooking(Booking booking) {
+            requireNonNull(booking);
+            return this.booking.isSameBooking(booking);
         }
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the venue being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
+    private class ModelStubAcceptingBookingAdded extends AddBookingCommandTest.ModelStub {
+        final ArrayList<Booking> bookingsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+        public boolean hasBooking(Booking booking) {
+            requireNonNull(booking);
+            return bookingsAdded.stream().anyMatch(booking::isSameBooking);
         }
 
         @Override
-        public void addPerson(Person person) {
-            requireNonNull(person);
-            personsAdded.add(person);
+        public void addBooking(Booking booking) {
+            requireNonNull(booking);
+            bookingsAdded.add(booking);
         }
 
         @Override
@@ -293,5 +303,4 @@ public class AddPersonCommandTest {
             return new BookingSystem();
         }
     }
-
 }

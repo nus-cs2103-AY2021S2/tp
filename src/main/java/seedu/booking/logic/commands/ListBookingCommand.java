@@ -16,39 +16,21 @@ public class ListBookingCommand extends Command {
 
     public static final String COMMAND_WORD = "list_booking";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Displays all existing bookings.\n"
-            + "Parameters: NILL\n"
-            + "Example: " + COMMAND_WORD;
+    public static final String MESSAGE_BOOKING_LISTED_SUCCESS = "Here are all bookings currently in the system:\n";
 
-    public static final String MESSAGE_BOOKING_LISTED_SUCCESS = "Here are all current bookings:\n";
-
-    public static final String MESSAGE_BOOKING_LISTED_LINEBREAK = "-------------------------------\n";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Booking> lastShownList = model.getFilteredBookingList();
-        String outputString = "";
+        final StringBuilder outputString = new StringBuilder();
 
-        if (model.getFilteredBookingList().size() == 0) {
+        if (lastShownList.isEmpty()) {
             throw new CommandException(Messages.MESSAGE_BOOKING_LISTED_EMPTY);
         }
 
-        outputString += MESSAGE_BOOKING_LISTED_SUCCESS;
+        outputString.append(MESSAGE_BOOKING_LISTED_SUCCESS);
 
-        for (Booking booking : lastShownList) {
-            outputString += MESSAGE_BOOKING_LISTED_LINEBREAK;
-            outputString += ("Booking ID: " + String.valueOf(booking.getId()) + "\n");
-            outputString += ("Venue Name: " + booking.getVenueName() + "\n");
-            outputString += ("Booker Email: " + booking.getBookerEmail() + "\n");
-            outputString += ("Description: " + booking.getDescription() + "\n");
-            outputString += ("From: " + booking.getBookingStart() + "\n");
-            outputString += ("Till: " + booking.getBookingEnd() + "\n");
-            outputString += (MESSAGE_BOOKING_LISTED_LINEBREAK);
-        }
-
-
-        return new CommandResult(outputString);
+        return new CommandResult(outputString.toString());
     }
 }

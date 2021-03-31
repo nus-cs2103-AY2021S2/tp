@@ -19,8 +19,8 @@ class BookingTest {
         // null -> returns false
         assertFalse(BOOKING1.isOverlapping(null));
 
-        // overlapping timings -> returns true
-        assertTrue(BOOKING1.isOverlapping(BOOKING2));
+        // overlapping timings -> returns false
+        assertFalse(BOOKING1.isOverlapping(BOOKING2));
 
         // different venue -> returns false
         assertFalse(BOOKING1.isOverlapping(BOOKING3));
