@@ -25,9 +25,9 @@ public class CustomerFindCommandParser implements Parser<CustomerFindCommand> {
      * and returns a FindCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public CustomerFindCommand parse(String args) throws ParseException {
+    public CustomerFindCommand parse(String userInput) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME);
+                ArgumentTokenizer.tokenize(userInput, PREFIX_NAME);
 
         if (!ParserUtil.arePrefixesPresent(argMultimap, PREFIX_NAME)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,

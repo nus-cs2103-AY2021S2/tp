@@ -21,6 +21,6 @@ public class Messages {
 
     // Item messages
     public static final String MESSAGE_INVALID_ITEM_DISPLAYED_INDEX = "The %s index provided is invalid";
-    public static final String MESSAGE_ITEMS_LISTED_OVERVIEW = "%1$d %s listed!";
+    public static final String MESSAGE_ITEMS_LISTED_OVERVIEW = "%d %s listed!";
 }
 
