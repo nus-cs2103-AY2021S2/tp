@@ -80,6 +80,7 @@ public class EditEntryCommand extends Command {
 
         model.deleteEntry(target);
         if (model.isOverlappingEntry(updatedEntry)) {
+            model.addEntry(target);
             throw new CommandException(Messages.MESSAGE_OVERLAPPING_ENTRY);
         }
 

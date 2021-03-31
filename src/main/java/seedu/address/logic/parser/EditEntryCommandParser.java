@@ -53,7 +53,7 @@ public class EditEntryCommandParser implements Parser<EditEntryCommand> {
         }
         if (argMultimap.getValue(PREFIX_END_DATE).isPresent()) {
             tempEntry.setEntryEndDate(ParserUtil
-                    .parseEntryDate(argMultimap.getValue(PREFIX_START_DATE).get()));
+                    .parseEntryDate(argMultimap.getValue(PREFIX_END_DATE).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(tempEntry::setTags);
 
