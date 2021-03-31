@@ -217,19 +217,9 @@ Example:
 #### Deallocate resident from room: `dealloc`
 Deallocates an existing resident from an existing room.
 
-<<<<<<< HEAD
 Format: `dealloc INDEX`
 * `INDEX` refers to the index number shown in the displayed resident list. `INDEX` **must be a positive integer 1,2,3, ...**.
-* The resident at the `INDEX` must already be allocated. 
-=======
-Format: `dealloc n/NAME r/ROOM_NO`
-* `NAME` and `ROOM_NO` must already exist.
-* Exact match for `NAME` is required.
-* `NAME` is case-sensitive.
-* The allocation must already exist.
-* Both fields must be provided.
-* Ensure that the resident to be deallocated is visible. Use `rlist` to view all.
->>>>>>> master
+* The resident at the `INDEX` must already be allocated.
 
 Example:
 * `dealloc 1` Deallocates the 1st resident in the resident list from its allocated room.
@@ -386,6 +376,8 @@ command history.
 Adds a user-defined alias, which represents a shortcut to a longer command.
 
 Format: `alias a/ALIAS_NAME cmd/COMMAND`
+* Parameters must be in this exact order.
+* Any parameters after `cmd/` will be parsed as part of the command.
 
 Examples:
 * `alias a/ol cmd/olist` Adds the `ol` alias which is a shortcut for `olist` command.
