@@ -18,6 +18,7 @@ title: Developer Guide
     * [Statistics feature](#implemented-statistics-feature)
     * [UndoRedo feature](#implemented-undoredo-feature)  
     * [Filter feature](#implemented-filter-feature)
+    * [Alias feature](#implemented-alias-feature)
 * [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 * [Appendix: Requirements](#appendix-requirements)
     * [Product scope](#product-scope)
@@ -448,10 +449,6 @@ These operations are exposed in the `Model` interface as `Model#addAlias(String 
 To add an alias, `LogicManager` first calls `FlashBackParser#parseCommand` to parse through user input.
 If user input is recognized as a command to add an alias, `AliasCommandParser#parse` is invoked to 
 create a new `AliasCommand` object.
-
-To show flashcard statistics, `LogicManager` first calls `FlashBackParser#parseCommand` to parse through user input.
-If user input is recognized as a command to display statistics, `StatsCommandParser#parse` is invoked to create
-a new `StatsCommand` object.
 
 The `AliasCommand` is then executed:
 * If the alias already exists in FlashBack, a message associating to that error will be generated.
