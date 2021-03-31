@@ -39,7 +39,7 @@ public class TypicalIssues {
             .withRoomNumber("08-104")
             .withDescription("Cockroach everywhere")
             .withTimestamp("2020/08/10 8:48am")
-            .withStatus("closed")
+            .withStatus("pending")
             .withCategory("Others")
             .build();
 

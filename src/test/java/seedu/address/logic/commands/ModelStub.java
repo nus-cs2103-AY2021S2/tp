@@ -150,6 +150,11 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public void closeIssue(Issue target) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public ObservableList<Issue> getFilteredIssueList() {
         throw new AssertionError("This method should not be called.");
     }

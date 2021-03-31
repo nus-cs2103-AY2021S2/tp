@@ -11,6 +11,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESTAMP;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.issue.Issue;
+import seedu.address.testutil.issue.EditIssueDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -44,6 +45,26 @@ public class IssueCommandTestUtil {
     public static final String INVALID_TIMESTAMP_DESC = " " + PREFIX_TIMESTAMP + "2020/01/32 12:00pm"; // invalid date
     public static final String INVALID_STATUS_DESC = " " + PREFIX_STATUS + "done"; // done is invalid
     public static final String INVALID_CATEGORY_DESC = " " + PREFIX_CATEGORY + "@Furniture"; // non alphanumerical
+
+    public static final EditIssueCommand.EditIssueDescriptor DESC_10_100;
+    public static final EditIssueCommand.EditIssueDescriptor DESC_20_109;
+
+    static {
+        DESC_10_100 = new EditIssueDescriptorBuilder()
+                .withRoomNumber(VALID_ISSUE_ROOM_NUMBER_10_100)
+                .withDescription(VALID_ISSUE_DESCRIPTION_10_100)
+                .withTimestamp(VALID_ISSUE_TIMESTAMP_10_100)
+                .withStatus(VALID_ISSUE_STATUS_10_100)
+                .withCategory(VALID_ISSUE_CATEGORY_10_100)
+                .build();
+        DESC_20_109 = new EditIssueDescriptorBuilder()
+                .withRoomNumber(VALID_ISSUE_ROOM_NUMBER_20_109)
+                .withDescription(VALID_ISSUE_DESCRIPTION_20_109)
+                .withTimestamp(VALID_ISSUE_TIMESTAMP_20_109)
+                .withStatus(VALID_ISSUE_STATUS_20_109)
+                .withCategory(VALID_ISSUE_CATEGORY_20_109)
+                .build();
+    }
 
     /**
      * Updates {@code model}'s filtered list to show only the issue at the given {@code targetIndex} in the

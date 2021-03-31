@@ -171,6 +171,12 @@ public interface Model {
     void setIssue(Issue target, Issue editedIssue);
 
     /**
+     * Closes the given issue.
+     * The issue must exist in SunRez.
+     */
+    void closeIssue(Issue target);
+
+    /**
      * Returns an unmodifiable view of the filtered issue list.
      */
     ObservableList<Issue> getFilteredIssueList();
