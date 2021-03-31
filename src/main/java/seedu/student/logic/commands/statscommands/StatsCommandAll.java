@@ -11,6 +11,9 @@ import seedu.student.model.student.Faculty;
 import seedu.student.model.student.SchoolResidence;
 import seedu.student.model.student.Student;
 
+/**
+ * Calculates percentages of students vaccinated from each faculty and residence.
+ */
 public class StatsCommandAll extends StatsCommand {
     public static final String MESSAGE_STATS_SUCCESS = "%s: %.2f%%";
 
@@ -24,7 +27,7 @@ public class StatsCommandAll extends StatsCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Student> studentList = model.getStudentBook().getStudentList();
+        List<Student> studentList = model.getStudentList();
         for (String residence : listResidences) {
             SchoolResidence currResidence = new SchoolResidence(residence);
             try {

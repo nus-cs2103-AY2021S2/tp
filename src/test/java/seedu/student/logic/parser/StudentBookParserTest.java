@@ -22,6 +22,7 @@ import seedu.student.logic.commands.HelpCommand;
 import seedu.student.logic.commands.ListCommand;
 import seedu.student.logic.parser.exceptions.ParseException;
 import seedu.student.model.appointment.AppointmentContainsMatriculationNumberPredicate;
+import seedu.student.model.appointment.AppointmentListContainsMatriculationNumberPredicate;
 import seedu.student.model.student.MatriculationNumber;
 import seedu.student.model.student.Student;
 import seedu.student.model.student.StudentContainsMatriculationNumberPredicate;
@@ -83,6 +84,7 @@ public class StudentBookParserTest {
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + matriculationNumber);
         assertEquals(new FindCommand(new StudentContainsMatriculationNumberPredicate(matriculationNumber),
+                new AppointmentListContainsMatriculationNumberPredicate(matriculationNumber),
                 new AppointmentContainsMatriculationNumberPredicate(matriculationNumber)), command);
     }
 

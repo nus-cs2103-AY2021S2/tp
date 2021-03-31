@@ -6,9 +6,7 @@ import static seedu.student.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.student.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.student.logic.commands.CommandTestUtil.showStudentWithMatricNum;
 import static seedu.student.testutil.TypicalMatricNumbers.MATRIC_NUMBER_FIRST_STUDENT;
-import static seedu.student.testutil.TypicalMatricNumbers.MATRIC_NUMBER_FOURTH_STUDENT;
 import static seedu.student.testutil.TypicalMatricNumbers.MATRIC_NUMBER_SECOND_STUDENT;
-import static seedu.student.testutil.TypicalStudents.getTypicalStudentBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -16,8 +14,11 @@ import seedu.student.commons.core.Messages;
 import seedu.student.model.Model;
 import seedu.student.model.ModelManager;
 import seedu.student.model.UserPrefs;
+import seedu.student.model.appointment.Appointment;
 import seedu.student.model.student.MatriculationNumber;
 import seedu.student.model.student.Student;
+import seedu.student.testutil.TypicalAppointments;
+import seedu.student.testutil.TypicalStudents;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -25,45 +26,53 @@ import seedu.student.model.student.Student;
  */
 public class DeleteStudentCommandTest {
 
-    private Model model = new ModelManager(getTypicalStudentBook(), new UserPrefs());
-
-    @Test
-    public void execute_validMatricNumUnfilteredList_success() {
-        MatriculationNumber matricNumberToDelete = new MatriculationNumber(MATRIC_NUMBER_FOURTH_STUDENT);
-        Student studentToDelete = model.getStudent(matricNumberToDelete);
-        DeleteStudentCommand deleteStudentCommand = new DeleteStudentCommand(matricNumberToDelete);
-
-        String expectedMessage = String.format(DeleteStudentCommand.MESSAGE_DELETE_STUDENT_SUCCESS, studentToDelete);
-
-        ModelManager expectedModel = new ModelManager(model.getStudentBook(), new UserPrefs());
-        expectedModel.deleteStudent(studentToDelete);
-
-        assertCommandSuccess(deleteStudentCommand, model, expectedMessage, expectedModel);
-    }
+    private Model modelWithNoAppointments = new ModelManager(TypicalStudents.getTypicalStudentBook(), new UserPrefs());
+    private Model modelWithAppointments = new ModelManager(TypicalAppointments.getTypicalStudentBook(),
+            new UserPrefs());
 
     @Test
     public void execute_invalidMatricNumUnfilteredList_throwsCommandException() {
         DeleteStudentCommand deleteStudentCommand = new DeleteStudentCommand(new MatriculationNumber(
                 MATRIC_NUMBER_FIRST_STUDENT));
 
-        assertCommandFailure(deleteStudentCommand, model, Messages.MESSAGE_NONEXISTENT_MATRIC_NUM);
+        assertCommandFailure(deleteStudentCommand, modelWithNoAppointments, Messages.MESSAGE_NONEXISTENT_MATRIC_NUM);
     }
 
     @Test
     public void execute_validMatricNumFilteredList_success() {
-        MatriculationNumber matricNumberToDelete = new MatriculationNumber(MATRIC_NUMBER_FOURTH_STUDENT);
-        showStudentWithMatricNum(model, matricNumberToDelete);
+        MatriculationNumber matricNumberToDelete = TypicalStudents.ALICE.getMatriculationNumber();
+        showStudentWithMatricNum(modelWithNoAppointments, matricNumberToDelete);
 
-        Student studentToDelete = model.getStudent(matricNumberToDelete);
+        Student studentToDelete = modelWithNoAppointments.getStudent(matricNumberToDelete);
         DeleteStudentCommand deleteStudentCommand = new DeleteStudentCommand(matricNumberToDelete);
 
         String expectedMessage = String.format(DeleteStudentCommand.MESSAGE_DELETE_STUDENT_SUCCESS, studentToDelete);
 
-        Model expectedModel = new ModelManager(model.getStudentBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(modelWithNoAppointments.getStudentBook(), new UserPrefs());
         expectedModel.deleteStudent(studentToDelete);
         showNoStudent(expectedModel);
 
-        assertCommandSuccess(deleteStudentCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteStudentCommand, modelWithNoAppointments, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_validMatricNumWithAppt_success() {
+        MatriculationNumber matricNumberToDelete = TypicalStudents.ALICE.getMatriculationNumber();
+
+        Student studentToDelete = modelWithAppointments.getStudent(matricNumberToDelete);
+        Appointment apptOfStudentToDelete = modelWithAppointments.getAppointment(matricNumberToDelete);
+
+        DeleteStudentCommand deleteStudentCommand = new DeleteStudentCommand(matricNumberToDelete);
+
+        String expectedMessage = String.format(DeleteStudentCommand.MESSAGE_DELETE_STUDENT_SUCCESS, studentToDelete);
+
+        Model expectedModel = new ModelManager(modelWithAppointments.getStudentBook(), new UserPrefs());
+        expectedModel.deleteStudent(studentToDelete);
+        if (apptOfStudentToDelete != null) {
+            expectedModel.deleteAppointment(apptOfStudentToDelete);
+        }
+
+        assertCommandSuccess(deleteStudentCommand, modelWithAppointments, expectedMessage, expectedModel);
     }
 
     @Test

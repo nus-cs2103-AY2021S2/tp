@@ -69,24 +69,24 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s student book and {@code userPrefs}. <br>
+     * The data from the sample student book will be used instead if {@code storage}'s student book is not found,
+     * or an empty student book will be used instead if errors occur when reading {@code storage}'s student book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyStudentBook> addressBookOptional;
+        Optional<ReadOnlyStudentBook> studentBookOptional;
         ReadOnlyStudentBook initialData;
         try {
-            addressBookOptional = storage.readStudentBook();
-            if (!addressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
+            studentBookOptional = storage.readStudentBook();
+            if (!studentBookOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample StudentBook");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleStudentBook);
+            initialData = studentBookOptional.orElseGet(SampleDataUtil::getSampleStudentBook);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
+            logger.warning("Data file not in the correct format. Will be starting with an empty StudentBook");
             initialData = new StudentBook();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty StudentBook");
             initialData = new StudentBook();
         }
 
@@ -151,7 +151,7 @@ public class MainApp extends Application {
                     + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty StudentBook");
             initializedPrefs = new UserPrefs();
         }
 
@@ -173,7 +173,7 @@ public class MainApp extends Application {
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Address Book ] =============================");
+        logger.info("============================ [ Stopping Student Book ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {

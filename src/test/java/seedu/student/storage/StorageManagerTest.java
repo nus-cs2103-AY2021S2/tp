@@ -1,6 +1,7 @@
 package seedu.student.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static seedu.student.testutil.TypicalStudents.getTypicalStudentBook;
 
@@ -24,9 +25,9 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonStudentBookStorage addressBookStorage = new JsonStudentBookStorage(getTempFilePath("ab"));
+        JsonStudentBookStorage studentBookStorage = new JsonStudentBookStorage(getTempFilePath("studentBook"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
+        storageManager = new StorageManager(studentBookStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -45,6 +46,11 @@ public class StorageManagerTest {
         storageManager.saveUserPrefs(original);
         UserPrefs retrieved = storageManager.readUserPrefs().get();
         assertEquals(original, retrieved);
+    }
+
+    @Test
+    public void validUserPrefs_notNull() {
+        assertFalse(storageManager.getUserPrefsFilePath().equals(null));
     }
 
     @Test

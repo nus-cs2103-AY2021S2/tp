@@ -18,11 +18,10 @@ import seedu.student.model.student.VaccinationStatusContainsKeywords;
  */
 public class FilterCommandParser implements Parser<FilterCommand> {
 
-
-
     private static final List<String> VACCINATED_STATUS = VaccinationStatus.getVaccinationStatusAbbreviation();
     private static final List<String> FACULTY = Faculty.getFacultyAbbreviation();
     private static final List<String> SCHOOL_RESIDENCE = SchoolResidence.getResidenceAbbreviation();
+    private static final String UNVACCINATED_STATUS = "NOT_VACCINATED";
 
     /**
      * Parses the given {@code String} of arguments in the context of the FilterCommand
@@ -33,8 +32,11 @@ public class FilterCommandParser implements Parser<FilterCommand> {
     public FilterCommand parse(String args) throws ParseException {
 
         String condition = args.trim();
+        if (condition.equals("unvaccinated")) {
+            condition = UNVACCINATED_STATUS;
+        }
 
-        if (VACCINATED_STATUS.contains(condition)) {
+        if (VACCINATED_STATUS.contains((condition.toUpperCase()))) {
             return new FilterCommand(new VaccinationStatusContainsKeywords(condition));
         } else if (FACULTY.contains(condition)) {
             return new FilterCommand(new FacultyContainsKeywords(condition));

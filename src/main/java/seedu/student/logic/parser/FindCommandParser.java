@@ -6,6 +6,7 @@ import seedu.student.logic.LogicManager;
 import seedu.student.logic.commands.FindCommand;
 import seedu.student.logic.parser.exceptions.ParseException;
 import seedu.student.model.appointment.AppointmentContainsMatriculationNumberPredicate;
+import seedu.student.model.appointment.AppointmentListContainsMatriculationNumberPredicate;
 import seedu.student.model.student.MatriculationNumber;
 import seedu.student.model.student.StudentContainsMatriculationNumberPredicate;
 
@@ -31,6 +32,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         assert matriculationNumber.toString().equals(matriculationNumber.toString().toUpperCase());
 
         return new FindCommand(new StudentContainsMatriculationNumberPredicate(matriculationNumber),
+                new AppointmentListContainsMatriculationNumberPredicate(matriculationNumber),
                 new AppointmentContainsMatriculationNumberPredicate(matriculationNumber));
     }
 }

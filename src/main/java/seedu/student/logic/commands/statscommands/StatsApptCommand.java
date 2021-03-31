@@ -12,15 +12,16 @@ import seedu.student.logic.commands.exceptions.CommandException;
 import seedu.student.model.Model;
 import seedu.student.model.appointment.Appointment;
 
+/**
+ * Calculates the number of upcoming and previous appointments within 6 days from the current day and
+ * including the day itself.
+ */
 public class StatsApptCommand extends Command {
 
     public static final String COMMAND_WORD = "statsAppt";
 
     public static final String MESSAGE_STATS_SUCCESS = "Number of upcoming appointments in the next week: %d" + "\n"
             + "Number of appointments in the past week: %d";
-    public static final String MESSAGE_STATS_FAILURE = "No available data on appointments.";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD;
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
@@ -57,6 +58,12 @@ public class StatsApptCommand extends Command {
         }
 
         return new CommandResult(String.format(MESSAGE_STATS_SUCCESS, numNextWeek, numPastWeek));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof StatsApptCommand); // instanceof handles nulls
     }
 
 }

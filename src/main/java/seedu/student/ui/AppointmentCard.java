@@ -9,7 +9,7 @@ import seedu.student.model.appointment.Appointment;
 import seedu.student.model.student.Student;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * A UI component that displays information of an {@code Appointment}.
  */
 public class AppointmentCard extends UiPart<Region> {
 
@@ -42,11 +42,13 @@ public class AppointmentCard extends UiPart<Region> {
     private Label email;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates an {@code AppointmentCard} with the given {@code Appointment} and index to display.
+     * A {@code studentList} is provided to look up the contact information of the student that the appointment is for.
      */
     public AppointmentCard(Appointment appointment, int displayedIndex, ObservableList<Student> studentList) {
         super(FXML);
         this.appointment = appointment;
+
         this.student = studentList.stream().filter(student -> student.getMatriculationNumber()
                 .equals(appointment.getMatriculationNumber())).findFirst().get();
         id.setText(displayedIndex + ". ");
