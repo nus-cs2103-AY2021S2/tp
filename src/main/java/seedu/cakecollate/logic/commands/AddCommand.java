@@ -118,14 +118,14 @@ public class AddCommand extends Command {
     private void addToOrderItems(Model model) {
         this.addOrderDescriptor.getOrderDescriptions().get().stream()
                 .map(OrderDescription::getValue) // because a string is needed for creating a new Type for new OrderItem
-                .map(o -> new OrderItem(new Type(o), null)) // map to order item so can check if already in model
+                .map(o -> new OrderItem(new Type(o))) // map to order item so can check if already in model
                 .filter(o -> !model.hasOrderItem(o)) // filters out items that already exist in model
                 .forEach(model::addOrderItem);
 
     }
 
     private void mapIndexToOrderItems(Model model) throws CommandException {
-        List<OrderItem> lastShownOrderItems = temporary(); // todo
+        List<OrderItem> lastShownOrderItems = model.getFilteredOrderItemsList();
 
         List<Index> list = orderItemIndexList.getIndexList(); // gets the inner list to perform operations on each index
 
@@ -164,7 +164,7 @@ public class AddCommand extends Command {
 
         Set<OrderDescription> orderDescriptionSet = addOrderDescriptor.getOrderDescriptions().get();
         orderDescriptionSet.stream()
-                .map(o -> new OrderItem(new Type(o.toString()), null))
+                .map(o -> new OrderItem(new Type(o.toString())))
                 .filter(o -> !model.hasOrderItem(o))
                 .forEach(model::addOrderItem);
     }

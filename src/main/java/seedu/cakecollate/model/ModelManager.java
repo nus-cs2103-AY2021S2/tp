@@ -187,6 +187,7 @@ public class ModelManager implements Model {
 
     @Override
     public void addOrderItem(OrderItem orderItem) {
+        logger.info(String.format("adding order item %s to orderitems %s", orderItem, orderItems));
         orderItems.addOrderItem(orderItem);
     }
 

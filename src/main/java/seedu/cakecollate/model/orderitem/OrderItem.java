@@ -30,7 +30,7 @@ public class OrderItem {
     public OrderItem(Type type) {
         requireAllNonNull(type);
         this.type = type;
-        this.cost = null;
+        this.cost = new Cost("1.00"); // placeholder to avoid NPE
     }
 
     public Type getType() {
