@@ -55,6 +55,10 @@ public class TaskTracker implements ReadOnlyTaskTracker {
         this.tasks.setTasks(tasks);
     }
 
+    public void setDailyTasks(List<Task> dailyTasks) {
+        this.dailyTasks.setTasks(dailyTasks);
+    }
+
     /**
      * Resets the existing data of this {@code TaskTracker} with {@code newData}.
      */
@@ -62,6 +66,7 @@ public class TaskTracker implements ReadOnlyTaskTracker {
         requireNonNull(newData);
 
         setTasks(newData.getTaskList());
+        setDailyTasks(newData.getDailyTaskList());
     }
 
     //// sorting operation
@@ -76,11 +81,19 @@ public class TaskTracker implements ReadOnlyTaskTracker {
     //// task-level operations
 
     /**
-     * Returns true if a task with the same identity as {@code task} exists in the address book.
+     * Returns true if a task with the same identity as {@code task} exists in the task tracker.
      */
     public boolean hasTask(Task task) {
         requireNonNull(task);
         return tasks.contains(task);
+    }
+
+    /**
+     * Returns true if a task with the same identity as {@code task} exists in the daily task list.
+     */
+    public boolean hasDailyTask(Task task) {
+        requireNonNull(task);
+        return dailyTasks.contains(task);
     }
 
     /**
@@ -139,10 +152,24 @@ public class TaskTracker implements ReadOnlyTaskTracker {
     }
     /**
      * Finishes {@code task} from this {@code TaskTracker}.
-     * {@code task} must exist in the address book.
+     * {@code task} must exist in the task tracker.
      */
     public void finishTask(Task task) {
         tasks.finish(task);
+    }
+
+    public void finishDailyTask(Task task) {
+        dailyTasks.finish(task);
+    }
+
+    /**
+     * Refreshes the daily task list after any changes have been made.
+     * {@code task} must exist in the task tracker.
+     */
+    public void refreshDailyTasks(Task target, Task editedTask) {
+        if (dailyTasks.contains(target)) {
+            dailyTasks.setTask(target, editedTask);
+        }
     }
 
     //// util methods
@@ -174,4 +201,6 @@ public class TaskTracker implements ReadOnlyTaskTracker {
     public int hashCode() {
         return tasks.hashCode();
     }
+
+
 }

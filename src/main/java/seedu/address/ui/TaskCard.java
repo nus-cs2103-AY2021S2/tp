@@ -30,6 +30,8 @@ public class TaskCard extends UiPart<Region> {
     private HBox cardPane;
     @FXML
     private Label taskName;
+    // @FXML
+    // private Label priorityTag;
     @FXML
     private Label moduleCode;
     @FXML
@@ -55,6 +57,7 @@ public class TaskCard extends UiPart<Region> {
         this.task = task;
         id.setText(displayedIndex + ". ");
         taskName.setText(task.getTaskName().fullName);
+        // priorityTag.setText(task.getPriorityTag().getTagName());
         moduleCode.setText(task.getModuleCode().moduleCode);
         deadlineDate.setText("Submission date : " + task.getDeadlineDate().toString());
         deadlineTime.setText("Submission time : " + task.getDeadlineTime().toString());

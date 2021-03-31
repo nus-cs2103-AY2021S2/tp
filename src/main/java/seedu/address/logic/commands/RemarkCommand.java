@@ -61,6 +61,7 @@ public class RemarkCommand extends Command {
 
         model.setTask(taskToEdit, editedTask);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+        model.refreshDailyTasks(taskToEdit, editedTask);
 
         return new CommandResult(generateSuccessMessage(editedTask));
     }
