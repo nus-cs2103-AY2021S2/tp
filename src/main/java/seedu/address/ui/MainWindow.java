@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_UI_PROJECT_NOT_DISPLAYED;
+import static seedu.address.commons.core.Messages.MESSAGE_WELCOME;
 import static seedu.address.logic.commands.HelpCommand.SHOWING_HELP_MESSAGE;
 
 import java.time.LocalDate;
@@ -132,6 +133,7 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+        setFeedbackToUser(MESSAGE_WELCOME);
 
         contactListPanel = new ContactListPanel(logic.getFilteredContactList());
         projectDisplayPanel = new ProjectDisplayPanel();
