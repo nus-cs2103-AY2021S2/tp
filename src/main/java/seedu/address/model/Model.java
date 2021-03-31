@@ -16,6 +16,8 @@ import seedu.address.model.connection.PersonMeetingConnection;
 import seedu.address.model.group.Group;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.ReadOnlyMeetingBook;
+import seedu.address.model.note.Note;
+import seedu.address.model.note.ReadOnlyNoteBook;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.ReadOnlyAddressBook;
 import seedu.address.model.reminder.ReadOnlyReminderBook;
@@ -27,6 +29,7 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
     Predicate<Meeting> PREDICATE_SHOW_ALL_MEETINGS = unused -> true;
+    Predicate<Note> PREDICATE_SHOW_ALL_NOTES = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -222,6 +225,50 @@ public interface Model {
      * Empty list will be returned if there is no value found in the hashMap.
      */
     ObservableList<Person> getFilteredPersonListByMeetingConnection(Meeting meeting);
+
+    // ======================= Note part of the note Model interface ============================ //
+
+    /**
+     * Replaces note book data with the data in {@code noteBook}.
+     */
+    void setNoteBook(ReadOnlyNoteBook noteBook);
+
+    /** Returns the NoteBook */
+    ReadOnlyNoteBook getNoteBook();
+
+    /**
+     * Returns true if a note with the same content as {@code note} exists in the note book.
+     */
+    boolean hasNote(Note note);
+
+
+    /**
+     * Deletes the given note.
+     * The note must exist in the note book.
+     */
+    void deleteNote(Note target);
+
+    /**
+     * Adds the given note.
+     * {@code note} must not already exist in the note book.
+     */
+    void addNote(Note note);
+
+    /**
+     * Replaces the given note {@code target} with {@code editedNote}.
+     * {@code target} must exist in the note book.
+     * The content of {@code editedNote} must not be the same as another existing note in the note book.
+     */
+    void setNote(Note target, Note editedNote);
+
+    /** Returns an unmodifiable view of the filtered note list */
+    ObservableList<Note> getFilteredNoteList();
+
+    /**
+     * Updates the filter of the filtered note list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredNoteList(Predicate<Note> predicate);
 
 
     //============================= Timetable settings =====================================
