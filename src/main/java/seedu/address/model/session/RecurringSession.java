@@ -61,7 +61,7 @@ public class RecurringSession extends Session {
             SessionDate sessionDate1, SessionDate sessionDate2, Interval interval) {
         requireAllNonNull(sessionDate1, sessionDate2, interval);
         int daysBetween = sessionDate1.numOfDayTo(sessionDate2);
-        return daysBetween > 0 && daysBetween % interval.getValue() == 0;
+        return daysBetween >= 0 && daysBetween % interval.getValue() == 0;
     }
 
     public Interval getInterval() {
@@ -109,6 +109,7 @@ public class RecurringSession extends Session {
      */
     private Session buildSessionOnDate(SessionDate sessionDate) {
         requireAllNonNull(sessionDate);
+        assert(hasSessionOnDate(sessionDate));
         return new Session(sessionDate, getDuration(), getSubject(), getFee());
     }
 
