@@ -9,7 +9,7 @@ import java.util.function.Predicate;
 /**
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
  */
-public class FieldContainsKeywordsPredicate implements Predicate<Person> {
+public abstract class FieldContainsKeywordsPredicate implements Predicate<Person> {
     private final List<String> keywords;
 
     public FieldContainsKeywordsPredicate(List<String> keywords) {
@@ -21,11 +21,7 @@ public class FieldContainsKeywordsPredicate implements Predicate<Person> {
     }
 
     @Override
-    public boolean test(Person person) {
-        return keywords.stream()
-                .anyMatch(keyword ->
-                        StringUtil.containsWordIgnoreCase(person.getName().fullName, keyword));
-    }
+    public abstract boolean test(Person person);
 
     @Override
     public boolean equals(Object other) {
