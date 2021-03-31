@@ -341,12 +341,12 @@ Location: Hougang
 
 Edits an appointment with a specific index. Only the attributes present are changed in the appointment.
 
-Format: `edit_appointment [e/EMAIL] [s/SUBJECT_NAME] [d/DATE] [fr/TIME_FROM] [l/LOCATION]`
+Format: `edit_appointment INDEX [n/NAME] [s/SUBJECT_NAME] [d/DATE] [fr/TIME_FROM] [to/TIME_TO] [l/LOCATION]`
 
-* The date format `yyyy-mm-dd` must be strictly followed. e.g. `2021-3-1`and `2021-03-01`.
-* The time format `hh:mm a` must be strictly followed. e.g. `9:01 am` and `10:30 pm`.
+* The date format `YYYY-MM-DD` must be strictly followed. e.g. `2021-03-01`and `2021-04-20`.
+* The time format `HH:MM AM/PM` must be strictly followed. e.g. `9:01 AM` and `10:30 PM`.
 
-Examples: `edit_appointment e/andrewng@example.com l/Clementi`
+Examples: `edit_appointment 1 s/English l/Clementi`
 
 ### Adding Budget : `add_budget`
 
