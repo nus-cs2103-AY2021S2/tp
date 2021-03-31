@@ -2,7 +2,8 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ALIAS_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ALIAS_NAME;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -16,15 +17,15 @@ public class AliasCommandParserTest {
     @Test
     public void parse_invalidFields_success() {
         assertParseFailure(parser, " ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, AliasCommand.MESSAGE_USAGE));
-        assertParseFailure(parser, " c/add name/a",
+        assertParseFailure(parser, " " + PREFIX_ALIAS_COMMAND + "add" + " name/a",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AliasCommand.MESSAGE_USAGE));
         assertParseFailure(parser, " command/add name/a",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AliasCommand.MESSAGE_USAGE));
-        assertParseFailure(parser, " command/add n/a",
+        assertParseFailure(parser, " command/add" + PREFIX_ALIAS_NAME + "a",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AliasCommand.MESSAGE_USAGE));
-        assertParseFailure(parser, " c/add",
+        assertParseFailure(parser, " " + PREFIX_ALIAS_COMMAND + "add",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AliasCommand.MESSAGE_USAGE));
-        assertParseFailure(parser, " n/a",
+        assertParseFailure(parser, " " + PREFIX_ALIAS_NAME + "a",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AliasCommand.MESSAGE_USAGE));
     }
 
