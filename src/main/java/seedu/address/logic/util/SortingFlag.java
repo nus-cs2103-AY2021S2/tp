@@ -75,6 +75,11 @@ public class SortingFlag {
                 || (other instanceof SortingFlag
                 && sortingType.equals(((SortingFlag) other).sortingType));
     }
+
+    @Override
+    public String toString() {
+        return sortingType.getSortingFlag();
+    }
 }
 
 

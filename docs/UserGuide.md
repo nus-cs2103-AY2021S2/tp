@@ -30,11 +30,11 @@ your contact management tasks done faster than traditional GUI apps.
    open the help window.<br>
    Some example commands you can try:
 
-    * **`list`** : Lists all deadlines.
+    * **`list`** : Lists all tasks.
 
-    * **`delete`**`3` : Deletes the 3rd deadline shown in the current list.
+    * **`delete`**`3` : Deletes the 3rd task shown in the current list.
 
-    * **`clear`** : Deletes all deadlines.
+    * **`clear`** : Deletes all tasks.
 
     * **`exit`** : Exits the app.
 
@@ -49,74 +49,62 @@ your contact management tasks done faster than traditional GUI apps.
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/CS2103 Assignment`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `n/NAME [pt/TAG]` can be used as `n/CS2103 Assignment pt/core` or as `n/CS2103 Assignment`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+* Items with `…` after them can be used multiple times including zero times.<br>
+  e.g. `[pt/TAG]…` can be used as  `(i.e. 0 times)` OR `pt/core`OR `pt/difficult pt/SUable` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `n/TASK_NAME mc/MODULE_CODE`, `mc/MODULE_CODE n/TASK_NAME` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of
   the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+  e.g. if you specify `mc/CS2103 mc/CS2105`, only `mc/CS2105` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `instructions`, `list`, `exit` and `clear`)
+* Extraneous parameters for commands that do not take in parameters (such as `list`, `exit` and `clear`)
   will be ignored.<br>
-  e.g. if the command specifies `instructions 123`, it will be interpreted as `instructions`.
+  e.g. if the command specifies `list 123`, it will be interpreted as `list`.
 
 </div>
 
-### See the list of instructions: `instructions`
+### Prefixes for `add` and `edit` commands
 
-List down all possible commands in semester.config.
+This table outlines all the available prefixes that can be used for the `add` and `edit` commands.
 
-Format: `instructions`
+| Prefix   | Name          | Applicable Commands | Example Usage        |
+| -------- | ------------- | ------------------- | -------------------- |
+| `n/`     | Task Name     | `add`, `edit`       | `n/Assignment 2`     |
+| `mc/`    | Module Code   | `add`, `edit`       | `mc/CS2103`          |
+| `d/`     | Deadline Date | `add`, `edit`       | `d/10-10-2021`       |
+| `t/`     | Deadline Time | `add`, `edit`       | `t/18:00`            |
+| `w/`     | Weightage     | `add`, `edit`       | `w/25%`              |
+| `pt/`    | Tags          | `add`, `edit`       | `pt/core mod`        |
+| `ptag/`  | Priority Tag  | `add`, `edit`       | `ptag/HIGH`          |
+| `notes/` | Notes         | `edit`              | `notes/Hello World!` |
 
-### Add a deadline: `add`
+### Add a task: `add`
 
-Add a deadline to the list
+Add a task to the list.
 
-Format: `add mc/MODULE_CODE n/TASK_NAME d/DATE t/TIME w/WEIGHTAGE [r/REMARK] [pt/TAG] [ptag/PRIORITY TAG]`
+Format: `add mc/MODULE_CODE n/TASK_NAME d/DEADLINE_DATE t/DEADLINE_TIME w/WEIGHTAGE [pt/TAGS] [ptag/PRIORITY_TAG]`
 
 Example:
 
-* `add mc/CS3243 n/Project 1 d/15-04-2021 t/10:00 w/10%` will add this deadline to the list
+* `add mc/CS3243 n/Project 1 d/15-04-2021 t/10:00 w/10%` will add this task to the list
 * Priority tag of a task will be set to `LOW` by default if there are not inputs
 * Note that the order of inputs does not matter, for e.g. there is no difference between entering `add mc/CS3243 n/Project 1` and `add n/Project 1 mc/CS3243` .
 
-### Clear Application : `clear`
+### Edit a task: `edit`
 
-Clears all deadlines from the application
+Edits an existing task in the application
 
-Format: `clear`
+Format: `edit INDEX [n/TASK_NAME] [mc/MODULE_CODE] [d/DEADLINE_DATE]
+[t/DEADLINE_TIME] [notes/NOTES] [pt/TAG] [ptag/PRIORITY_TAG]`
 
-### Delete a deadline: `delete`
-
-Deletes the specified deadline from the list
-
-Format: `delete INDEX`
-
-* Index to be inserted must be positive, and
-* Index must be available on the list else an error will be thrown
-
-Example:
-
-* `delete 3` will delete the 3rd deadline on the list
-* Using `list` to show all deadlines, the user wants to delete the 2nd deadline. User use command `delete 2` to delete
-  the 2nd deadline from the list.
-
-### Edit a deadline: `edit`
-
-Edits an existing deadline in the application
-
-Format: `edit INDEX [n/TASK NAME] [mc/MODULE CODE] [d/DEADLINE DATE]
-[t/DEADLINE TIME] [r/REMARK] [pt/TAG] [ptag/PRIORITY TAG]`
-
-* Edits the deadline at the specified index
+* Edits the task at the specified index
 * The index must be a positive integer 1,2,3,...
 * The index must be on the list else an error will be thrown
 * At least one of the optional fields must be provided
@@ -125,21 +113,42 @@ Format: `edit INDEX [n/TASK NAME] [mc/MODULE CODE] [d/DEADLINE DATE]
 
 Examples:
 
-* `edit 1 n/Lecture Quiz mc/CS2103` edits the task name and module code of the deadline at index 1 to be “Lecture Quiz”
+* `edit 1 n/Lecture Quiz mc/CS2103` edits the task name and module code of the task at index 1 to be “Lecture Quiz”
   and “CS2103” respectively.
-* `edit 2 d/15-04-2021 r/Open Book` edits the date and notes of the deadline at index 2 to be “15 April 2021” and “Open
+* `edit 2 d/15-04-2021 notes/Open Book` edits the date and notes of the task at index 2 to be “15 April 2021” and “Open
   Book” respectively.
-  `edit 3 n/Finals ptag/HIGH` edits the task name and priority tag of the task at index 3 to be "Finals" and "HIGH" respectively
+* `edit 3 n/Finals ptag/HIGH` edits the task name and priority tag of the task at index 3 to be "Finals" and "HIGH" respectively.
 
-### Locating deadlines by moduleName: `find`
+### Clear Application : `clear`
 
-Find deadlines whose taskName contains any of the given keywords.
+Clears all tasks from the application
+
+Format: `clear`
+
+### Delete a task: `delete`
+
+Deletes the task at the specified index.
+
+Format: `delete INDEX`
+
+* Index to be inserted must be positive, and
+* Index must be available on the list else an error will be thrown
+
+Example:
+
+* `delete 3` will delete the 3rd task on the list
+* Using `list` to show all tasks, the user wants to delete the 2nd task. User use command `delete 2` to delete
+  the 2nd task from the list.
+
+### Locating tasks by taskName: `find`
+
+Find tasks whose taskName contains any of the given keywords.
 
 Format: `find KEYWORD...`
 
 * The search is case-insensitive. e.g “Assignment” will match “assignment”
-* The order of the keywords does not matter. e.g. “programming modular” will “match modular programming”
-* Only the deadline moduleName is searched.
+* The order of the keywords does not matter. e.g. “programming modular” will match "modular programming”
+* Only the task's taskName is searched.
 * Only full words will be matched e.g. “Java” will not match “Javascript”
 * Persons matching at least one keyword will be returned (i.e. OR search). e.g. “SQL Python” will return “SQL Quiz,
   Python Assignment”
@@ -149,15 +158,15 @@ Examples:
 * `find C++` will return `C++ project` and `C++ graded quiz`
 * `find assignment` exam will return `Final Assignment, Midterm exam`
 
-### List all deadlines: `list`
+### List all tasks: `list`
 
-List out all deadlines (might be unsorted)
+List out all tasks (might be unsorted)
 
 Format: `list`
 
 ### Toggle the status of a task: `done`
 
-Toggle the status of a deadline from finished to unfinished or from unfinished to finished.
+Toggle the status of a task from finished to unfinished or from unfinished to finished.
 
 Format: `done INDEX`
 
@@ -171,38 +180,24 @@ Example:
   to be finished again.
 * Task 1 hasn't finished. `done 1` will mark task 1 to be finished.
 
-### Sort deadlines: `sort`
+### Sort tasks: `sort`
 
-Sorts deadlines according to the specified parameter.
+Sorts tasks according to the specified parameter.
 
-Format: sort `[dateTime] [taskName] [moduleCode] [priorityTag] [weightage]`
+Format: `sort [dateTime OR taskName OR moduleCode OR priorityTag OR weightage]`
 
-* Deadlines can be sorted according to these three parameters: date & time `dateTime`, module code `moduleCode`,
+* Tasks can be sorted according to these five parameters: date & time `dateTime`, module code `moduleCode`,
   priority tag `priorityTag`, weightage `weightage`, and task name `taskName`.
-* If no arguments given, an error will be thrown.
-* For `date & time`, the deadlines will be sorted in ascending order, with the earliest deadline placed first.
-* For `module code`, the deadlines will be sorted according to the lexicographical ordering of the module codes.
-* For `priority tag`, the deadlines will be sorted according to this order: HIGH > MEDIUM > LOW. Deadlines with a high
-  priority will then be shown at the top of the list.
-* For `weightage`, the deadlines will be sorted in ascending order, with the lowest weightage deadline placed first.
-* For `taskName`, the deadlines will be sorted according to the lexicographical ordering of the task name.
-
-### PriorityTag: `ptag/`
-
-Every task will be given a default priorityTag of `LOW`
-
-#### Sorting based on priorityTag (See `sorting`)
-
-* User is able to sort tasks based on priority tag: `LOW`, `MEDIUM` and `HIGH`
-
-#### Edit priorityTag (See `edit`)
-
-* User is able to edit status of priorityTag using the `edit` command
-* User is able to sort the tasks based on `LOW`, `MEDIUM` and `HIGH`
+* If no arguments are given, an error will be thrown.
+* For date & time, the tasks will be sorted in chronological order, with the earliest deadline placed first.
+* For module code, the tasks will be sorted according to the lexicographical ordering of the module codes.
+* For priority tag, the tasks will be sorted according to this order: HIGH > MEDIUM > LOW. Tasks with higher priority will then be shown at the top of the list.
+* For weightage, the tasks will be sorted in a descending order, starting from the heaviest weightage.
+* For task name, the tasks will be sorted according to the lexicographical order of the task names.
 
 ### Clear Application: `clear`
 
-Clears all deadlines from the application.
+Clears all tasks from the application.
 
 Format: `clear`
 
@@ -210,16 +205,16 @@ Format: `clear`
 
 Show tasks that are due within the days/weeks specified by the user (if any).
 
-Format: `dueIn [start/START_DATE] [end/END_DATE]`
+Format: `dueIn [day/NUMBER_OF_DAYS OR week/NUMBER_OF_WEEKS]`
 
-* If no parameters given, tasks shown will be deadlines that will be due by **next week**.
+* If no parameters given, tasks shown will be tasks that will be due by **next week**.
 * `NUMBER_OF_DAYS` & `NUMBER_OF_WEEKS` must be a positive integer
-* If both `day/` & `week/` given, the `NUMBER_OF_DAYS` will be used.
-* Tasks shown are tasks with deadline starting from today's date.
+* If both `day/` & `week/` are given, an error will be thrown.
+* Tasks shown are tasks with deadlines starting from today's date.
 
 Example:
 
-* Task 1's deadline is 10 March 2020. Task 2's deadline is 11 March 2020. Today is 3 March 2020. `dueIn`, `dueIn day/7`,
+* Task 1's task is 10 March 2020. Task 2's task is 11 March 2020. Today is 3 March 2020. `dueIn`, `dueIn day/7`,
   and `dueIn week/1` will lists task 1 on the list.
 
 ### Add a task to the daily task list: `doToday`
@@ -277,18 +272,16 @@ the data of your previous `semester.config` home folder.
 
 Action | Format, Examples
 --------|------------------
-**instructions** | `instructions`
-**add** | `add mc/MODULE_CODE n/TASK_NAME d/DATE t/TIME w/WEIGHTAGE [pt/TAGS]` <br> e.g, `add mc/CS1010 n/Practical Exam d/12-12-2020 t/10:10 w/10` 
-**delete** | `delete INDEX` <br> e.g, `delete 3` `delete 1`
+**add** | `add mc/MODULE_CODE n/TASK_NAME d/DEADLINE_DATE t/DEADLINE_TIME w/WEIGHTAGE [pt/TAGS] [ptag/PRIORITY_TAG]` <br> e.g, `add mc/CS1010 n/Practical Exam d/12-12-2020 t/10:10 w/10%` 
+ **delete**  | `delete INDEX` <br> e.g, `delete 3` `delete 1`
 **find** | `find KEYWORD ...` <br> e.g, `find Database` `find Software`
 **list** | `list`
 **done** | `done INDEX` <br> e.g, `done 1`
-**sort** | `sort [dateTime] [taskName] [moduleCode] [priorityTag] [weightage]` <br> e.g, `sort dateTime` `sort moduleCode`
-**notes** | `notes INDEX n/NOTES` <br> e.g, `notes 4 n/Assignment must be handwritten`
-**edit** | `edit INDEX [n/TASK NAME] [mn/MODULE NAME] [mc/MODULE CODE] [d/ DEADLINE DATE] [t/DEADLINE TIME] [n/NOTES] [ptag/PRIORITY]` <br> e.g, `edit 2 tn/Assignment 7` 
+**sort** | `sort [dateTime OR taskName OR moduleCode OR priorityTag OR weightage]` <br> e.g, `sort dateTime` `sort moduleCode` 
+**notes** | `notes INDEX notes/NOTES` <br> e.g, `notes 4 notes/Assignment must be handwritten` 
+**edit** | `edit INDEX [n/TASK NAME] [mc/MODULE CODE] [d/DEADLINE_DATE] [t/DEADLINE_TIME] [notes/NOTES] [ptag/PRIORITY_TAG]` <br> e.g, `edit 2 n/Assignment 7` 
 **clear** |`clear`
-**ptag** | `edit INDEX ptag[/LOW] [/MEDIUM] [/HIGH]` <br> e.g, `edit 3 ptag/MEDIUM`
-**dueIn** | `dueIn [day/NUMBER_OF_DAYS] [week/NUMBER_OF_WEEKS]` <br> e.g, `dueIn`  `dueIn day/10` `dueIn week/2`
+**dueIn** | `dueIn [day/NUMBER_OF_DAYS OR week/NUMBER_OF_WEEKS]` <br> e.g, `dueIn`  `dueIn day/10` `dueIn week/2` 
 **doToday** | `doToday [-a OR -r] INDEX` <br>e.g, `doToday -a 2` `doToday -r 2` 
 **undo** | `undo`
 **redo** | `redo`
