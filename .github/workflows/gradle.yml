@@ -45,9 +45,11 @@ jobs:
           fail_ci_if_error: true
 
       - name: Build ShadowJar
+        if: runner.os == 'Linux'
         run: ./gradlew shadowJar
 
       - name: Upload Artifacts
+        if: runner.os == 'Linux'
         uses: actions/upload-artifact@v2
         with:
           name: Package
