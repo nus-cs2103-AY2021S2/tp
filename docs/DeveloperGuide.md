@@ -289,7 +289,7 @@ The following sequence diagram illustrates this scenario.
 </div>
 
 ### \[Implemented\] Undo/redo feature
-The proposed undo/redo mechanism is facilitated by `VersionedFlashBack`. It extends `FlashBack` with an undo/redo
+The undo/redo mechanism is facilitated by `VersionedFlashBack`. It extends `FlashBack` with an undo/redo
 history, stored internally as an `flashBackStates` and `currentStatePointer`. Additionally, it implements the
 following operations:
 
@@ -370,12 +370,12 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ##### Aspect: How undo & redo executes
 
-* **Alternative 1 (current choice):** Saves the entire FlashBack.
+* **Alternative 1 (implemented):** Saves the entire FlashBack.
     * Pros: Easy to implement.
     * Cons: May have performance issues in terms of memory usage.
 
 * **Alternative 2:** Individual command knows how to undo/redo by itself.
-    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+    * Pros: Will use less memory (e.g. for `delete`, just save the flashcard being deleted).
     * Cons: We must ensure that the implementation of each individual command are correct.
 
 ### \[Implemented\] Filter feature
@@ -434,6 +434,40 @@ The following sequence diagram shows how the filter operation works:
 The following activity diagram summarizes what happens when a user executes the filter command:
 ![FilterActivityDiagram](images/FilterActivityDiagram.png)
 
+### \[Implemented\] Alias feature
+
+The alias feature is faciliated by `AliasMap`. It is a seperate class that is stored in `UserPrefs` and 
+contains the mapping of aliases, stored internally as an `aliasMap`. 
+Additionally, it implements the following operations:
+
+* `AliasMap#addAlias(String command, String alias)` — Adds an alias to the mapping.
+* `AliasMap#parseAlias(String input)` — Returns the actual command text if the input is an alias.
+
+These operations are exposed in the `Model` interface as `Model#addAlias(String command, String alias)` and `Model#parseAlias(String input)` respectively.
+
+To add an alias, `LogicManager` first calls `FlashBackParser#parseCommand` to parse through user input.
+If user input is recognized as a command to add an alias, `AliasCommandParser#parse` is invoked to 
+create a new `AliasCommand` object.
+
+To show flashcard statistics, `LogicManager` first calls `FlashBackParser#parseCommand` to parse through user input.
+If user input is recognized as a command to display statistics, `StatsCommandParser#parse` is invoked to create
+a new `StatsCommand` object.
+
+The `AliasCommand` is then executed:
+* If the alias already exists in FlashBack, a message associating to that error will be generated.
+* If the command contains invalid fields, a message associating to that error will be generated.
+* If all the fields are valid and is not duplicate alias, the alias will be added to the mapping in `AliasMap` 
+by calling `Model#addAlias(String command, String alias)`
+
+A `CommandResult` is created with the generated message. It is then passed to `MainWindow`, where
+the UI is updated to display the retrieved message.
+
+
+![AliasSequenceDiagram](images/AliasSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AliasCommandParser` and `AliasCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -687,6 +721,25 @@ Similar to UC05 except:
 in step 1 and 2 of MSS
 * FlashBack shows error message if given keywords of specified fields are empty instead of given keywords in 1c of Extensions.
 
+**Use case: UC12 - Define an alias**
+
+**MSS**
+
+1. User requests to add an alias to a command.
+1. FlashBack displays alias added successfully.
+
+    Use case ends
+
+**Extensions**
+
+* 1a. The alias already exist in FlashBack.
+    * 1a1. FlashBack shows an error message.
+
+    Use case ends.
+
+* 2a. The given field is invalid.
+    * 2a1. FlashBack shows an error message.
+
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -895,7 +948,51 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `stats abc`
     
        Expected: No statistics will be displayed. An invalid command format error message will be shown on the result display. 
+        
+### Undo a command
+
+1. Undoing an undoable command in FlashBack
+
+    1. Prerequisites: There must be at least one undoable command executed.
     
+    1. Test case: `undo`
+    
+       Expected: FlashBack will be updated to the previous state before the undoable command is executed.
+       The UI will be updated to display all flashcards in FlashBack.
+       The result display shows a message: `FlashBack has been undo!`.
+       
+### Redo a command
+
+1. Redoing an undone command in FlashBack
+
+   1. Prerequisites: There must be at least one command that is undone.
+   
+   1. Test case: `redo`
+   
+      Expected: FlashBack will be updated to the previous state before `undo` is executed.
+      The UI will be updated to display all flashcards in FlashBack.
+      The result display shows a message: `FlashBack has been redo!`.
+      
+### Define an alias
+
+1. Defining an alias for a command in FlashBack
+    
+    1. Prerequisites: The application is in Main Window.
+    
+    1. Test case: `alias c/add n/a`
+    
+        Expected: The alias `a` will be mapped to `add`. Users will now be able to perform add command using `a`
+        The result display shows a message: `New alias added for "add" command: a`.
+    
+    1. Test case: `alias c/add n/delete`
+    
+        Expected: No alias is added, and the text in `CommandBox` turns red to indicate an error.
+        The result display shows a message: `The alias "delete" should not be a command in FlashBack.`.
+    
+    1. Test case: `alias c/cleaaar n/c`
+    
+        Expected: No alias is added, and the text in `CommandBox` turns red to indicate an error.
+        The result display shows a message: `The command "cleaaar" does not exist in FlashBack.`.
 
 ------------------------------------------------------------------------------------------------------------------------
 
