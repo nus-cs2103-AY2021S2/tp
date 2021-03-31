@@ -177,12 +177,12 @@ Step 6. If the add command has been successfully executed, the success message w
 #### Sequence Diagram
 
 The sequence diagram below shows how the add feature works:
-![Sequence Diagram for Add Command](images/DeleteSequenceDiagram.png)
+![Sequence Diagram for Add Command](images/AddSequenceDiagram.png)
 
 #### Activity Diagram
 
 The activity diagram shows the workflow when an add command is executed:
-![Activity Diagram for Add Command](images/DeleteActivityDiagram.png)
+![Activity Diagram for Add Command](images/AddActivityDiagram.png)
 
 #### Design consideration:
 
