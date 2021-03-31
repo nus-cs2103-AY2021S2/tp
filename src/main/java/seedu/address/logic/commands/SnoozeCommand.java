@@ -35,12 +35,12 @@ public class SnoozeCommand extends Command {
             + ": Postpones the date of a task by a given number of days. "
             + "If no number of days is given, the default number of days is set to 1.\n"
             + "Parameters: INDEX [NUMBER] (both must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + "3\n"
-            + "This postpones the task at index 3 by 1 day"
-            + "Example: " + COMMAND_WORD + "4 2\n"
-            + "This postpones the task at index  by 2 days";
+            + "Example: " + COMMAND_WORD + " 3\n"
+            + "This postpones the task at index 3 by 1 day\n"
+            + "Example: " + COMMAND_WORD + " 4 2\n"
+            + "This postpones the task at index 4 by 2 days";
 
-    public static final String MESSAGE_SNOOZE_TASK_SUCCESS = "Task: %1$s Snoozed by %2$s days.";
+    public static final String MESSAGE_SNOOZE_TASK_SUCCESS = "Task: %1$s Snoozed by %2$d days.";
 
     private final Index index;
 

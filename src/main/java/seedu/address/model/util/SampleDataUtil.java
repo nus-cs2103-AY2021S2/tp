@@ -20,25 +20,29 @@ import seedu.address.model.task.Title;
 public class SampleDataUtil {
     public static Task[] getSampleTasks() {
         return new Task[] {
-            new Task(new Title("Assignment 79"), new Date("13/12/2021"), new Duration("12:30-13:30"),
-                    new RecurringSchedule("[10/06/2021][Mon][biweekly]"), new Description("Build the next Google"),
-                    new Status("not done"), getTagSet("priorities")),
-            new Task(new Title("Build a gaming PC"), new Date("12/12/2021"), new Duration("12:30-13:30"),
-                    new RecurringSchedule("[08/06/2021][Tue][weekly]"),
-                    new Description("buy: coffee, \n3080, \n40-inch monitor"),
-                    new Status("done"), getTagSet("findMoney", "priorities")),
-            new Task(new Title("Countdown to finals"), new Date("09/09/2021"), new Duration("12:30-13:30"),
-                    new RecurringSchedule("[10/06/2021][Wed][weekly]"), new Description("aiken doeet"),
-                    new Status("done"), getTagSet("trying")),
-            new Task(new Title("Demo our amazing product"), new Date("25/09/2021"), new Duration("12:30-13:30"),
-                    new RecurringSchedule("[05/06/2021][Thu][biweekly]"), new Description("Number 1 for real"),
-                    new Status("done"), getTagSet("fact")),
-            new Task(new Title("Ensure that I eat lunch"), new Date("20/10/2021"), new Duration("12:30-13:30"),
-                    new RecurringSchedule("[02/06/2021][Wed][weekly]"), new Description("budget 3$"),
-                    new Status("done"), getTagSet("reminder")),
-            new Task(new Title("Final project consult again"), new Date("20/10/2021"), new Duration("12:30-13:30"),
-                    new RecurringSchedule("[03/06/2021][Fri][biweekly]"), new Description("at COM2"),
-                    new Status("done"), getTagSet("serious"))
+            new Task(new Title("Assignment 3"), new Date("13/05/2021"), new Duration(""),
+                    new RecurringSchedule(""), new Description("Commands: bash test.sh"),
+                    new Status("done"), getTagSet("CS2105", "Assignment")),
+            new Task(new Title("CS2103 Team Meeting"), new Date(""), new Duration("12:30-18:30"),
+                    new RecurringSchedule("[08/06/2021][Mon][weekly]"),
+                    new Description("Check feature updates with teammates\nFinalise UI layout, \nStandardise UG & DG"),
+                    new Status("not done"), getTagSet("CS2103", "Project")),
+            new Task(new Title("Countdown to finals"), new Date("09/05/2021"), new Duration(""),
+                    new RecurringSchedule(""), new Description("aiken doeet"),
+                    new Status("not done"), getTagSet("Finals")),
+            new Task(new Title("Demo our amazing product"), new Date("25/05/2021"), new Duration("12:30-14:30"),
+                    new RecurringSchedule(""), new Description("Product demo to NUS Computing Students"),
+                    new Status("not done"), getTagSet("CS2103", "Project")),
+            new Task(new Title("Ensure that I eat lunch"), new Date(""), new Duration("12:30-13:30"),
+                    new RecurringSchedule("[02/06/2021][Wed][weekly]"), new Description("budget $3"),
+                    new Status("not done"), getTagSet("reminder")),
+            new Task(new Title("Final project consultation"), new Date(""), new Duration("12:30-13:30"),
+                    new RecurringSchedule("[03/06/2021][Fri][biweekly]"), new Description("Location at COM2"),
+                    new Status("not done"), getTagSet("CS2103", "Project")),
+            new Task(new Title("CS2103 last milestone"), new Date("04/06/2021"), new Duration(""),
+                   new RecurringSchedule(""), new Description("Wrap up project and release jar file"),
+                   new Status("done"), getTagSet("CS2103", "Project")),
+
         };
     }
 
