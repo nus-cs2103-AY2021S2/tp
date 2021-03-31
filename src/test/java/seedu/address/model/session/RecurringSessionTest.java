@@ -10,8 +10,11 @@ import static seedu.address.testutil.TypicalStudents.CARL;
 import org.junit.jupiter.api.Test;
 
 class RecurringSessionTest extends SessionTest {
-    static final Interval WEEKLY = new Interval("7");
+    static final Interval INTERVAL = new Interval("7");
     static final SessionDate SESSION_DATE = new SessionDate("2021-01-01", "10:00");
+    static final Duration DURATION = new Duration("60");
+    static final Subject SUBJECT = new Subject("English");
+    static final Fee FEE = new Fee("40");
 
     @Test
     public void constructor_null_throwsNullPointerException() {
@@ -26,9 +29,9 @@ class RecurringSessionTest extends SessionTest {
         SessionDate inconsistentTime = new SessionDate("2021-01-15", "12:00");
 
 
-        assertTrue(RecurringSession.isValidEnd(SESSION_DATE, consistent, WEEKLY));
-        assertFalse(RecurringSession.isValidEnd(SESSION_DATE, inconsistentDate, WEEKLY));
-        assertFalse(RecurringSession.isValidEnd(SESSION_DATE, inconsistentTime, WEEKLY));
+        assertTrue(RecurringSession.isValidEnd(SESSION_DATE, consistent, INTERVAL));
+        assertFalse(RecurringSession.isValidEnd(SESSION_DATE, inconsistentDate, INTERVAL));
+        assertFalse(RecurringSession.isValidEnd(SESSION_DATE, inconsistentTime, INTERVAL));
     }
 
     @Test
@@ -40,16 +43,16 @@ class RecurringSessionTest extends SessionTest {
         Interval nextDay = new Interval("1");
 
 
-        assertTrue(RecurringSession.isConsistentDatesAndInterval(SESSION_DATE, consistent1, WEEKLY));
+        assertTrue(RecurringSession.isConsistentDatesAndInterval(SESSION_DATE, consistent1, INTERVAL));
         assertFalse(RecurringSession.isConsistentDatesAndInterval(SESSION_DATE, same, nextDay));
-        assertFalse(RecurringSession.isConsistentDatesAndInterval(SESSION_DATE, inconsistentDate, WEEKLY));
+        assertFalse(RecurringSession.isConsistentDatesAndInterval(SESSION_DATE, inconsistentDate, INTERVAL));
         assertFalse(RecurringSession.isConsistentDatesAndInterval(SESSION_DATE, consistent1, inconsistentInterval));
     }
 
     @Test
     void getInterval() {
         if (CARL.getListOfSessions().get(0) instanceof RecurringSession) {
-            assertEquals(new Interval("7"), (
+            assertEquals(INTERVAL, (
                     (RecurringSession) CARL.getListOfSessions().get(0)).getInterval());
         }
     }
@@ -63,26 +66,55 @@ class RecurringSessionTest extends SessionTest {
     }
 
     @Test
+    void hasSessionOnDate() {
+        RecurringSession startAfter =  new RecurringSession(new SessionDate("2021-03-01", "10:00"),
+                DURATION, SUBJECT, FEE, INTERVAL, new SessionDate("2021-03-15", "10:00"));
+        RecurringSession endBefore =  new RecurringSession(new SessionDate("2020-03-01", "10:00"),
+                DURATION, SUBJECT, FEE, INTERVAL, new SessionDate("2020-03-15", "10:00"));
+        RecurringSession notOnDate = new RecurringSession(new SessionDate("2020-12-31", "10:00"),
+                DURATION, SUBJECT, FEE, INTERVAL, new SessionDate("2021-01-14", "10:00"));
+        RecurringSession onDate = new RecurringSession(new SessionDate("2020-12-11", "10:00"),
+                DURATION, SUBJECT, FEE, INTERVAL, new SessionDate("2021-01-15", "10:00"));
+
+        assertFalse(startAfter.hasSessionOnDate(SESSION_DATE));
+        assertFalse(endBefore.hasSessionOnDate(SESSION_DATE));
+        assertFalse(notOnDate.hasSessionOnDate(SESSION_DATE));
+        assertTrue(onDate.hasSessionOnDate(SESSION_DATE));
+    }
+
+    @Test
+    void lastSessionOnOrBefore() {
+        RecurringSession recurringSession = new RecurringSession(new SessionDate("2020-12-11", "10:00"),
+                DURATION, SUBJECT, FEE, INTERVAL, new SessionDate("2021-01-15", "10:00"));
+        Session session = new Session(new SessionDate("2021-01-01", "10:00"), DURATION, SUBJECT, FEE);
+        assertEquals(session, recurringSession.lastSessionOnOrBefore(SESSION_DATE));
+
+        RecurringSession startAfter = new RecurringSession(new SessionDate("2021-12-11", "10:00"),
+                DURATION, SUBJECT, FEE, INTERVAL, new SessionDate("2022-01-15", "10:00"));
+        assertThrows(IllegalArgumentException.class, () -> startAfter.lastSessionOnOrBefore(SESSION_DATE));
+    }
+
+
+    @Test
     void numOfSessionBetween() {
         SessionDate firstSessionDate = new SessionDate("2021-02-28", "10:00");
         SessionDate lastSessionDate = new SessionDate("2021-04-11", "10:00");
         SessionDate firstOfMarch = new SessionDate("2021-03-01", "00:00");
         SessionDate lastOfMarch = new SessionDate("2021-03-31", "23:59");
 
-        int eyeBalledAns1 = 2;
+
         Interval interval1 = new Interval("14");
         //first and last must match
         RecurringSession s = new RecurringSession(firstSessionDate, new Duration("100"), new Subject("Math"),
                 new Fee("40"), interval1, lastSessionDate);
         int ans1 = s.numOfSessionBetween(firstOfMarch, lastOfMarch);
-        assertEquals(ans1, eyeBalledAns1);
+        assertEquals(2, ans1);
 
-        int eyeBalledAns2 = 31;
         Interval interval2 = new Interval("1");
         s = new RecurringSession(firstSessionDate, new Duration("100"), new Subject("Math"),
                 new Fee("40"), interval2, lastSessionDate);
         int ans2 = s.numOfSessionBetween(firstOfMarch, lastOfMarch);
-        assertEquals(ans2, eyeBalledAns2);
+        assertEquals(31, ans2);
     }
 
 }
