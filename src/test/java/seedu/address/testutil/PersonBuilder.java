@@ -1,17 +1,19 @@
 package seedu.address.testutil;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.address.model.insurance.InsurancePlanName;
-import seedu.address.model.insurance.InsurancePremium;
+import seedu.address.model.insurance.InsurancePlan;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Birthdate;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Note;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -28,8 +30,6 @@ public class PersonBuilder {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_GENDER = "Female";
     public static final String DEFAULT_BIRTHDATE = "1990-01-01";
-    public static final String DEFAULT_PLAN_NAME = "Protecc";
-    public static final String DEFAULT_PREMIUM = "4800";
 
     private Name name;
     private Phone phone;
@@ -39,8 +39,8 @@ public class PersonBuilder {
     private Birthdate birthdate;
     private Set<Tag> tags;
     private Optional<Meeting> meeting;
-    private InsurancePlanName planName;
-    private InsurancePremium premium;
+    private List<InsurancePlan> plans;
+    private List<Note> notes;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -54,8 +54,8 @@ public class PersonBuilder {
         birthdate = new Birthdate(DEFAULT_BIRTHDATE);
         tags = new HashSet<>();
         meeting = Optional.empty();
-        planName = new InsurancePlanName(DEFAULT_PLAN_NAME);
-        premium = new InsurancePremium(DEFAULT_PREMIUM);
+        plans = new ArrayList<>();
+        notes = new ArrayList<>();
     }
 
     /**
@@ -70,8 +70,8 @@ public class PersonBuilder {
         birthdate = personToCopy.getBirthdate();
         tags = new HashSet<>(personToCopy.getTags());
         meeting = personToCopy.getMeeting();
-        planName = personToCopy.getPlanName();
-        premium = personToCopy.getPremium();
+        plans = new ArrayList<>(personToCopy.getPlans());
+        notes = new ArrayList<>(personToCopy.getNotes());
     }
 
     /**
@@ -138,8 +138,26 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Parses the {@code plans} into a {@code List<InsurancePlan>} and set it to the {@code Person} that we
+     * are building.
+     */
+    public PersonBuilder withPlans(String ... plans) {
+        this.plans = SampleDataUtil.getPlanList(plans);
+        return this;
+    }
+
+    /**
+     * Parses the {@code notes} into a {@code List<Note>} and set it to the {@code Person} that we
+     * are building.
+     */
+    public PersonBuilder withNotes(String ... notes) {
+        this.notes = SampleDataUtil.getNoteList(notes);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, address, gender, birthdate, tags, meeting, planName, premium);
+        return new Person(name, phone, email, address, gender, birthdate, tags, meeting, plans, notes);
     }
 
 }

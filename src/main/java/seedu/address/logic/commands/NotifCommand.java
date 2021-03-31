@@ -1,5 +1,7 @@
 package seedu.address.logic.commands;
 
+import java.util.Optional;
+
 import seedu.address.model.Model;
 
 /**
@@ -13,7 +15,7 @@ public class NotifCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
-        return new CommandResult(SHOWING_NOTIF_MESSAGE, false, true, false);
+        return new CommandResult(SHOWING_NOTIF_MESSAGE, false, true, Optional.empty(), false);
     }
 
 }

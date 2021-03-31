@@ -185,6 +185,21 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    /**
+     * Displays notes to the user.
+     */
+    @FXML
+    public void handleNotes(String notes) {
+        notifWindow = new Alert(Alert.AlertType.INFORMATION);
+        notifWindow.getDialogPane().getStylesheets().add("view/DarkTheme.css");
+        notifWindow.initOwner(getPrimaryStage());
+        notifWindow.setTitle("Notes");
+        notifWindow.setHeaderText("Here are your notes:");
+        notifWindow.setContentText(notes);
+        notifWindow.showAndWait();
+        logger.info("Displaying notes window...");
+    }
+
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
     }
@@ -210,6 +225,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowNotif()) {
                 handleNotif();
+            }
+
+            if (commandResult.isShowNote()) {
+                handleNotes(commandResult.getNotes());
             }
 
             return commandResult;
