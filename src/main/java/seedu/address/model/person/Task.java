@@ -26,7 +26,7 @@ public class Task {
     private final PriorityTag priorityTag;
 
     // Data fields
-    private final Remark remark;
+    private final Notes notes;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
@@ -34,7 +34,7 @@ public class Task {
      */
     public Task(TaskName taskName, ModuleCode moduleCode, DeadlineDate deadlineDate,
                 DeadlineTime deadlineTime, Status status, Weightage weightage,
-                Remark remark, Set<Tag> tags, PriorityTag priorityTag) {
+                Notes notes, Set<Tag> tags, PriorityTag priorityTag) {
         requireAllNonNull(taskName, moduleCode, status, tags);
         this.taskName = taskName;
         this.moduleCode = moduleCode;
@@ -42,7 +42,7 @@ public class Task {
         this.deadlineTime = deadlineTime;
         this.status = status;
         this.weightage = weightage;
-        this.remark = remark;
+        this.notes = notes;
         this.tags.addAll(tags);
         this.priorityTag = priorityTag;
 
@@ -53,7 +53,7 @@ public class Task {
      */
     public Task(TaskName taskName, ModuleCode moduleCode, DeadlineDate deadlineDate,
                 DeadlineTime deadlineTime, Status status, Weightage weightage,
-                Remark remark, Set<Tag> tags) {
+                Notes notes, Set<Tag> tags) {
         requireAllNonNull(taskName, moduleCode, status, tags);
         this.taskName = taskName;
         this.moduleCode = moduleCode;
@@ -61,7 +61,7 @@ public class Task {
         this.deadlineTime = deadlineTime;
         this.status = status;
         this.weightage = weightage;
-        this.remark = remark;
+        this.notes = notes;
         this.tags.addAll(tags);
         this.priorityTag = new PriorityTag("LOW");
 
@@ -93,8 +93,8 @@ public class Task {
         return weightage;
     }
 
-    public Remark getRemark() {
-        return remark;
+    public Notes getNotes() {
+        return notes;
     }
 
     public PriorityTag getPriorityTag() {
@@ -110,7 +110,7 @@ public class Task {
      */
     public Task finishTask() {
         return new Task(this.taskName, this.moduleCode, this.deadlineDate,
-                this.deadlineTime, this.status.toggle(), this.weightage, this.remark, this.tags);
+                this.deadlineTime, this.status.toggle(), this.weightage, this.notes, this.tags);
     }
 
     /**
@@ -155,14 +155,14 @@ public class Task {
             && otherTask.getDeadlineTime().equals(getDeadlineTime())
             && otherTask.getStatus().equals(getStatus())
             && otherTask.getWeightage().equals(getWeightage())
-            && otherTask.getRemark().equals(getRemark())
+            && otherTask.getNotes().equals(getNotes())
             && otherTask.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(taskName, moduleCode, weightage, remark, tags);
+        return Objects.hash(taskName, moduleCode, weightage, notes, tags);
     }
 
     @Override
@@ -179,8 +179,8 @@ public class Task {
             .append(getStatus())
             .append("; Weightage: ")
             .append(getWeightage())
-            .append("; Remark: ")
-            .append(getRemark())
+            .append("; Notes: ")
+            .append(getNotes())
                 .append("; PriorityTag: ")
                 .append(getPriorityTag().getTagName());
 

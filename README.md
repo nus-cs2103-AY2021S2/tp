@@ -24,7 +24,7 @@
       * edit task : `edit 3 w/25%` will allow user to edit the 3rd module tasks and change the weightage to "25%"
       * edit task : `edit pt/non-core` will allow user to edit the 3rd module tasks and change the tag to "non-core"
       * edit task : `edit ptag/MEDIUM` will allow user to edit the 3rd module tasks and change the priority tag to "MEDIUM"
-      * add notes : `remark 3 hello world!` will add notes to the 3rd module task from the list
+      * add notes : `notes 3` will add notes to the 3rd module task from the list
       * Time-based alert : `dueIn` will show a list of immediate tasks that will be due by next week
       * clear : `clear` will delete all module tasks on the list
   6. Refer to the features for each individual commands for more details

@@ -53,7 +53,7 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label remark;
+    private Label notes;
     @FXML
     private FlowPane tags;
 
@@ -84,7 +84,7 @@ public class TaskCard extends UiPart<Region> {
         deadlineTime.setText("Submission time : " + task.getDeadlineTime().toString());
         status.setText(task.getStatus().toString());
         weightage.setText("Weightage : " + task.getWeightage().toString());
-        remark.setText(task.getRemark().value);
+        notes.setText(task.getNotes().value);
         task.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

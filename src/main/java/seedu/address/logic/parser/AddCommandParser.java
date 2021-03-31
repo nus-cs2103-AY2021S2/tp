@@ -17,7 +17,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.DeadlineDate;
 import seedu.address.model.person.DeadlineTime;
 import seedu.address.model.person.ModuleCode;
-import seedu.address.model.person.Remark;
+import seedu.address.model.person.Notes;
 import seedu.address.model.person.Status;
 import seedu.address.model.person.Task;
 import seedu.address.model.person.TaskName;
@@ -60,7 +60,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         DeadlineTime deadlineTime = ParserUtil.parseDeadlineTime(argMultimap
             .getValue(PREFIX_DEADLINE_TIME).get());
         Status status = new Status();
-        Remark remark = new Remark(""); // add command does not allow adding remarks straightaway
+        Notes notes = new Notes(""); // add command does not allow adding remarks straightaway
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         // if ptag is present
@@ -69,11 +69,11 @@ public class AddCommandParser implements Parser<AddCommand> {
             PriorityTag priorityTag = ParserUtil.parsePriorityTag(argMultimap.getValue(PREFIX_PRIORITYTAG).get());
 
             Task task = new Task(taskName, moduleCode, deadlineDate,
-                    deadlineTime, status, weightage, remark, tagList, priorityTag);
+                    deadlineTime, status, weightage, notes, tagList, priorityTag);
             return new AddCommand(task);
         } else {
             Task task = new Task(taskName, moduleCode, deadlineDate,
-                    deadlineTime, status, weightage, remark, tagList);
+                    deadlineTime, status, weightage, notes, tagList);
             return new AddCommand(task);
         }
 

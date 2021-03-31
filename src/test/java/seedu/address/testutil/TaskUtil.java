@@ -4,7 +4,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WEIGHTAGE;
 
@@ -31,15 +31,15 @@ public class TaskUtil {
      * Returns the part of command string for the given {@code task}'s details.
      */
     public static String getTaskDetails(Task task) {
-        // add and edit do not have remark fields
+        // add and edit do not have notes fields
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + task.getTaskName().fullName + " ");
         sb.append(PREFIX_CODE + task.getModuleCode().moduleCode + " ");
         sb.append(PREFIX_WEIGHTAGE + task.getWeightage().weightage.toString() + "% ");
         sb.append(PREFIX_DEADLINE_DATE + task.getDeadlineDate().toString() + " ");
         sb.append(PREFIX_DEADLINE_TIME + task.getDeadlineTime().toString() + " ");
-        // cannot add remark directly using add command yet.
-        // sb.append(PREFIX_REMARK + task.getRemark().value + " ");
+        // cannot add notes directly using add command yet.
+        // sb.append(PREFIX_NOTES + task.getNotes().value + " ");
         task.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
@@ -62,8 +62,8 @@ public class TaskUtil {
                 .append(time.toString()).append(" "));
         descriptor.getWeightage().ifPresent(weightage -> sb.append(PREFIX_WEIGHTAGE)
                 .append(weightage.toString()).append(" "));
-        descriptor.getRemark().ifPresent(remark -> sb.append(PREFIX_REMARK)
-                .append(remark.value).append(" "));
+        descriptor.getNotes().ifPresent(notes -> sb.append(PREFIX_NOTES)
+                .append(notes.value).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {
