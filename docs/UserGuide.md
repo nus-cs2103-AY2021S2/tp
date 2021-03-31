@@ -26,6 +26,7 @@ Donavan Lim, Marcus Lee Eugene, Chong Sidney, Dinesh S/O Magesvaran, Prabhakaran
     * UI mock-up
 
 --------------------------------------------------------------------------------------------------------------------
+
 ## Description
 
 The Food Diary is a desktop app for managing food diary entries, optimized with a Command Line Interface (CLI)
@@ -39,6 +40,7 @@ eat around the NUS vicinity. The Food Diary especially caters to students chiefl
 1. The ability for users to save food diary entries for future reference.
 2. The ability for users to find entries where food are within a certain price range.
 3. The ability to effortlessly reference food options based on relevant filters in a user-friendly GUI
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
@@ -119,12 +121,11 @@ Example:
 
 Finds entries whose names, ratings, price, address and categories match any of the provided keywords.
 
-Format: `find <KEYWORD> ...`
+- More than one keyword per field can be accepted as parameters.
+- Different fields can also be simultaneously accepted as parameters.
+- For the price field, a price range can also be accepted as a parameter, and any entry that contains at least one of the prices within the specified range will be returned as a search result.
 
-- More than one keyword per field can be accepted as parameters. Different fields can also be simultaneously
-accepted as parameters.
-- For the price field, a price range can also be accepted as a parameter,
-and any entry that contains at least one of the prices within the specified range will be returned as a search result.
+Format: `find <KEYWORD> ...`
 
 Parameters:
 
@@ -148,10 +149,10 @@ Example:
 
 Finds for entries whose names, ratings, price, address and categories match all of the provided keywords.
 
-- More than one keyword per field can be accepted as parameters. Different fields can also be simultaneously
-accepted as parameters.
+- More than one keyword per field can be accepted as parameters.
+- Different fields can also be simultaneously accepted as parameters.
 - For the price field, a price range can also be accepted as a parameter, and any entry that contains at least one of the prices within the specified range will be returned as a search result.
-**Unlike the find feature, the findall feature only returns search results of entries that contain all of
+- **Unlike the find feature, the findall feature only returns search results of entries that contain all of
 the provided keywords.**
 
 Format: `findall <KEYWORD> ...`
@@ -216,6 +217,16 @@ Example:
 
 -------------------------------------------------------------------------------------
 
+## FAQ
+
+Q: How do I transfer my data to another Computer?
+
+A: Install the app in the other computer and overwrite the empty data file it creates with the file that
+contains the data of your previous AddressBook home folder.
+
+
+-------------------------------------------------------------------------------------
+
 ## Command summary
 
 Action | Format, Examples
@@ -229,6 +240,22 @@ Action | Format, Examples
 **Help** | `help`
 **View** |`view <INDEX>` <br> e.g `view 1`
 **Revise** |`revise <INDEX>` <br> e.g `revise 1`
+
+## Keyboard Shortcuts Summary
+
+Action | Keyboard Shortcut| Windows where Keyboard shortcut is available
+:-------:|:------------------:|:---------------------------------------------:
+**Exit/Close Window** | `ESC` | Main Window, View Window, Revise Window, Help Window
+**Open Help Window** | `F1` | Main Window 
+**Skip through text fields in Revise Window** | `TAB` | Revise Window 
+**Save Changes in Revise Window** | `Ctrl + S (Windows OS)` or `Command + S (macOS)` | Revise Window
+
+## Glossary 
+
+- **Main Window:** The Window that appears when the application starts up
+- **View Window:** The Window that appears when viewing a FoodDiary entry through the `view` command
+- **Revise Window** The Window that appears when revising a FoodDairy entry through the `edit` command
+
 
 ## <center> Appendix </center>
 
