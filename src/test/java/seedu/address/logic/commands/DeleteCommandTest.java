@@ -9,6 +9,7 @@ import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalAliases.getTypicalAliases;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.testutil.TypicalIndexes.VALID_INDEXES;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.Collections;
@@ -133,23 +134,36 @@ public class DeleteCommandTest {
         DeleteCommand deleteSecondCommand = DeleteCommand.buildDeleteIndexCommand(
                 Collections.singletonList(INDEX_SECOND_PERSON));
 
-        // same object -> returns true
+        // same object -> equals
         assertEquals(deleteFirstCommand, deleteFirstCommand);
 
-        // same values -> returns true
+        // same indexes -> equals
         DeleteCommand deleteFirstCommandCopy = DeleteCommand.buildDeleteIndexCommand(
                 Collections.singletonList(INDEX_FIRST_PERSON));
         assertEquals(deleteFirstCommandCopy, deleteFirstCommand);
         assertEquals(DeleteCommand.buildDeleteShownCommand(),
                 DeleteCommand.buildDeleteShownCommand());
 
-        // different types -> returns false
+        // same type: shown -> equals
+        assertEquals(DeleteCommand.buildDeleteShownCommand(),
+                DeleteCommand.buildDeleteShownCommand());
+
+        // same type: selected -> equals
+        assertEquals(DeleteCommand.buildDeleteSelectedCommand(),
+                DeleteCommand.buildDeleteSelectedCommand());
+
+        // different indexes -> not equals
+        assertNotEquals(DeleteCommand
+                        .buildDeleteIndexCommand(Collections.singletonList(INDEX_FIRST_PERSON)),
+                DeleteCommand.buildDeleteIndexCommand(VALID_INDEXES));
+
+        // different types -> not equals
         assertNotEquals(deleteFirstCommand, 1);
 
-        // null -> returns false
+        // null -> not equals
         assertNotEquals(deleteFirstCommand, null);
 
-        // different person -> returns false
+        // different person -> not equals
         assertNotEquals(deleteSecondCommand, deleteFirstCommand);
     }
 

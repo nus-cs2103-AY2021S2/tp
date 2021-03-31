@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalAliases.getTypicalAliases;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.VALID_INDEXES;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
@@ -60,16 +61,20 @@ public class SelectIndexCommandTest {
 
     @Test
     public void equals() {
-        List<Index> validIndexes = new ArrayList<>(VALID_INDEXES);
         List<Index> validIndexesReversed = new ArrayList<>(VALID_INDEXES);
         Collections.reverse(validIndexesReversed);
 
         // same indexes -> equals
-        assertEquals(new SelectIndexCommand(validIndexes), new SelectIndexCommand(validIndexes));
+        assertEquals(new SelectIndexCommand(VALID_INDEXES), new SelectIndexCommand(VALID_INDEXES));
 
         // same indexes, different order -> equals
-        assertEquals(new SelectIndexCommand(validIndexes),
+        assertEquals(new SelectIndexCommand(VALID_INDEXES),
                 new SelectIndexCommand(validIndexesReversed));
+
+        // different indexes -> not equals
+        assertNotEquals(
+                new SelectIndexCommand(Collections.singletonList(INDEX_FIRST_PERSON)),
+                new SelectIndexCommand(VALID_INDEXES));
 
         // different instance, same values -> equals
         assertEquals(new SelectIndexCommand(), new SelectIndexCommand());
@@ -78,7 +83,7 @@ public class SelectIndexCommandTest {
         assertNotEquals(new SelectIndexCommand(), new ListCommand());
 
         // different indexes -> not equals
-        assertNotEquals(new SelectIndexCommand(), new SelectIndexCommand(validIndexes));
+        assertNotEquals(new SelectIndexCommand(), new SelectIndexCommand(VALID_INDEXES));
 
         // different types -> not equals
         assertNotEquals(null, new SelectIndexCommand());

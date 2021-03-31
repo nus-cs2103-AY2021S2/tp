@@ -67,6 +67,11 @@ public class EmailCommandTest {
         assertEquals(EmailCommand.buildEmailIndexCommand(VALID_INDEXES),
                 EmailCommand.buildEmailIndexCommand(validIndexesReversed));
 
+        // different indexes - not equals
+        assertNotEquals(
+                EmailCommand.buildEmailIndexCommand(Collections.singletonList(INDEX_FIRST_PERSON)),
+                EmailCommand.buildEmailIndexCommand(VALID_INDEXES));
+
         // different instance, same values -> equals
         assertEquals(EmailCommand.buildEmailShownCommand(), EmailCommand.buildEmailShownCommand());
         assertEquals(EmailCommand.buildEmailSelectedCommand(),
