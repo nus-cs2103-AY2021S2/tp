@@ -22,6 +22,7 @@ import seedu.booking.logic.commands.ExitCommand;
 import seedu.booking.logic.commands.ExitPromptCommand;
 import seedu.booking.logic.commands.FilterBookingByBookerCommand;
 import seedu.booking.logic.commands.FilterBookingByDateCommand;
+import seedu.booking.logic.commands.FilterBookingByTagCommand;
 import seedu.booking.logic.commands.FilterBookingByVenueCommand;
 import seedu.booking.logic.commands.FindBookingCommand;
 import seedu.booking.logic.commands.FindCommand;
@@ -172,6 +173,9 @@ public class BookingSystemParser {
 
         case FilterBookingByDateCommand.COMMAND_WORD:
             return new FilterBookingByDateCommandParser().parse(arguments);
+
+        case FilterBookingByTagCommand.COMMAND_WORD:
+            return new FilterBookingByTagCommandParser().parse(arguments);
 
         case PromptCreateBookingCommand.COMMAND_WORD:
             return new PromptCreateBookingCommand();

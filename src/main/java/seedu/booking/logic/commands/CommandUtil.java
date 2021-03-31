@@ -1,9 +1,9 @@
 package seedu.booking.logic.commands;
 
+import java.util.List;
+
 import seedu.booking.model.booking.Booking;
 import seedu.booking.model.booking.Id;
-
-import java.util.List;
 
 /**
  * Contains utility methods used for commands in the various *Command classes.

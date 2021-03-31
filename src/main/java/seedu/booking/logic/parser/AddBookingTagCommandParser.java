@@ -1,5 +1,9 @@
 package seedu.booking.logic.parser;
 
+import static seedu.booking.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_ID;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_TAG;
+
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -7,22 +11,7 @@ import seedu.booking.logic.commands.AddBookingTagCommand;
 import seedu.booking.logic.commands.DeleteBookingCommand;
 import seedu.booking.logic.parser.exceptions.ParseException;
 import seedu.booking.model.Tag;
-import seedu.booking.model.booking.Booking;
-import seedu.booking.model.booking.Description;
-import seedu.booking.model.booking.EndTime;
 import seedu.booking.model.booking.Id;
-import seedu.booking.model.booking.StartTime;
-import seedu.booking.model.person.Email;
-import seedu.booking.model.venue.VenueName;
-
-import static seedu.booking.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKER;
-import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_END;
-import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_ID;
-import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_START;
-import static seedu.booking.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.booking.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.booking.logic.parser.CliSyntax.PREFIX_VENUE;
 
 /**
  * Parses input arguments and creates a new AddCommand object

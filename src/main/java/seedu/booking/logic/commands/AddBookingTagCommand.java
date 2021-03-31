@@ -1,26 +1,21 @@
 package seedu.booking.logic.commands;
 
-import seedu.booking.commons.core.Messages;
-import seedu.booking.logic.commands.exceptions.CommandException;
-import seedu.booking.model.Model;
-import seedu.booking.model.Tag;
-import seedu.booking.model.booking.Booking;
-import seedu.booking.model.booking.Id;
+import static java.util.Objects.requireNonNull;
+import static seedu.booking.logic.commands.CommandUtil.getBookingById;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.booking.model.Model.PREDICATE_SHOW_ALL_BOOKINGS;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.booking.logic.commands.CommandUtil.getBookingById;
-import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKER;
-import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_END;
-import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_START;
-import static seedu.booking.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.booking.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.booking.logic.parser.CliSyntax.PREFIX_VENUE;
-import static seedu.booking.model.Model.PREDICATE_SHOW_ALL_BOOKINGS;
+import seedu.booking.commons.core.Messages;
+import seedu.booking.logic.commands.exceptions.CommandException;
+import seedu.booking.model.Model;
+import seedu.booking.model.Tag;
+import seedu.booking.model.booking.Booking;
+import seedu.booking.model.booking.Id;
 
 /**
  * Adds a booking to the booking system.
