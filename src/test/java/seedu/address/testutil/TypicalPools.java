@@ -18,7 +18,7 @@ public class TypicalPools {
             .withDriver(TypicalDrivers.ALICE)
             .withTripDay(DayOfWeek.FRIDAY)
             .withTripTime(LocalTime.of(18, 0))
-            .withPassengers(new PassengerSetBuilder().withDefaultPassengers().build())
+            .withPassengers(new PassengerListBuilder().withDefaultPassengers().build())
             .withTags("friends")
             .build();
 
@@ -26,14 +26,14 @@ public class TypicalPools {
             .withDriver(TypicalDrivers.ALICE)
             .withTripDay(DayOfWeek.MONDAY)
             .withTripTime(LocalTime.of(6, 30))
-            .withPassengers(new PassengerSetBuilder().withDefaultPassengers().build())
+            .withPassengers(new PassengerListBuilder().withDefaultPassengers().build())
             .withTags("owesMoney", "friends").build();
 
     public static final Pool WORKPOOL = new PoolBuilder()
             .withDriver(TypicalDrivers.BOB)
             .withTripDay(DayOfWeek.WEDNESDAY)
             .withTripTime(LocalTime.of(14, 0))
-            .withPassengers(new PassengerSetBuilder().withDefaultPassengers().build())
+            .withPassengers(new PassengerListBuilder().withDefaultPassengers().build())
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER

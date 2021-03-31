@@ -27,9 +27,11 @@ For a quick overview of GME’s commands, refer to the [“Command Summary”](#
 Please note the following symbols used in the User Guide which may serve as points of interests:
 
 
-`command`: The grey highlight indicates commands that can be executed by GME.
+* `command`: The grey highlight indicates commands that can be executed by GME.
 
-:information_source: : This symbol indicates noteworthy information.
+* :information_source: : This symbol indicates noteworthy information.
+
+* :warning: : This symbol indicates information that may irrevesibly corrupt data.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -147,62 +149,90 @@ Format: `find PREFIX/KEYWORD` where PREFIX is one of the following: `n`, `a`, `p
 
 Deletes the specific passenger from the GME terminal.
 
-Format: `delete INDEX`
+Format: `delete INDEX [INDEX]`
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the delete command:**<br>
 
 * Deletes the passenger at the specified `INDEX`.
+* Multiple passengers can be deleted by including additional indexes after the first. 
 * The index refers to the index number shown in the displayed passenger list.
 * The index **must be a positive integer** 1, 2, 3, …​
-* `search female` followed by `delete 3` deletes the *1st* passenger in the results of `search female` command
+* `search female` followed by `delete 3` deletes the *1st* passenger in the results of `search female` command.
+* Passengers with a carpool arrangement cannot be deleted, `unpool` must first be done on the pools they are in before deletion.
 </div>
 
 **Examples:**
-* `list` followed by `delete 3` deletes the *3rd* person in the address book
+* `list` followed by `delete 3` deletes the *3rd* person in the passenger list.
+* `delete 1 2 5` deletes the 1st, 2nd and 4th person in the passenger list. 
 
 
-### Select passengers to arrange a carpool: `pool`
+### 3.7 Select passengers to arrange a carpool: `pool`
 
 Selects passengers from the current view in the GME terminal to arrange a carpool.
 
-Format: `pool n/DRIVER_NAME p/DRIVER_PHONE c/INDEX [c/INDEX c/INDEX...]`
+Format: `pool n/DRIVER_NAME p/DRIVER_PHONE c/INDEX d/DAY t/TIME [c/INDEX c/INDEX...] [tag/TAG]`
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the drive command:**<br>
+**:information_source: Notes about the pool command:**<br>
 
+* GME will not allow you to `delete` a passenger that is assigned to a Pool.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * The order of the passengers' index does not matter
 * You must select at least 1 person to pool with one command
 </div>
 
-
 **Examples**:
-* `find tag/female` followed by `pool n/Alice p/91234567 c/2 c/3 c/4` selects the the *2nd*, *3rd* and *4th* person in the results of `find tag/female` command, and assigns *Alice* with number *91234567* to be their driver
+* `find tag/female` followed by `pool n/Alice p/91234567 d/MONDAY t/1930 c/2 c/3` selects the *2nd* and *3rd* person in the
+  results of `find tag/female` command, and assigns *Alice* with number *91234567* to be the driver of the passengers specified by the indices.
 
 
-### 3.8 Clearing all entries : `clear`
+### 3.8 Remove pools: `unpool`
 
-Clears all entries from the address book.
+Removes the pool specified by an index from the GME terminal.
+
+Format: `unpool INDEX`
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about the unpool command:**<br>
+
+* Removes the pool at the specified `INDEX`.
+* The index refers to the index number shown in the current displayed pool list.
+* The index **must be a positive integer** 1, 2, 3, …​
+</div>
+
+**Examples:**
+* `findPool n/Aileen` followed by `delete 3` deletes the *3rd* person in the results of `findPool n/Aileen` command.
+
+### 3.9 Clearing all entries : `clear`
+
+Clears all entries from the passenger list.
 
 Format: `clear`
 
-### 3.9 Exiting the program : `exit`
+### 3.10 Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
 
-### 3.10 Saving the data
+### 3.11 Saving the data
 
 GME data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### 3.11 Editing the data file
+### 3.12 Editing the data file
 
 GME data is saved as a JSON file `[JAR file location]/data/GreenMileageEfforts.json`. Advanced users are welcome to update data directly by editing that data file.
+
+<div markdown="block" class="alert-warning">
+
+**:warning: GME will replace the JSON file with a new one if it cannot read the file, do make a backup and edit at your own risk.**
+
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -222,7 +252,8 @@ Action | Format, Examples
 **list** | `list`
 **edit** | `edit INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [d/DAY] [t/TIME] [tag/TAG]` <br> e.g., `edit 8 a/Changi Airport d/SATURDAY`
 **delete** | `delete INDEX`<br> e.g.,`delete 3`
-**drive** | `drive n/DRIVER_NAME p/DRIVER_PHONE c/INDEX [c/INDEX c/INDEX...]`<br> e.g., `drive n/Ben p/91234567 c/2 c/3 c/4`
+**pool** | `pool n/DRIVER_NAME p/DRIVER_PHONE c/INDEX [c/INDEX c/INDEX...]`<br> e.g., `drive n/Ben p/91234567 c/2 c/3 c/4`
+**unpool** | `unpool INDEX`<br> e.g, `unpool 3`
 **find** | `find a/ADDRESS` or `find n/NAME` or `find p/PHONE NUMBER` or `find tag/TAG` <br> e.g., `find tag/female`
 
 --------------------------------------------------------------------------------------------------------------------

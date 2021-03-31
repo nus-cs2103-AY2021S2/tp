@@ -98,14 +98,20 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(editedPassenger);
 
         passengers.setPassenger(target, editedPassenger);
+        pools.setPassenger(target, editedPassenger);
     }
 
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
+     * @return true if {@code key} has been removed, false if a {@code Pool} references {@code key}.
      */
-    public void removePassenger(Passenger key) {
+    public boolean removePassenger(Passenger key) {
+        if (pools.containsPassenger(key)) {
+            return false;
+        }
         passengers.remove(key);
+        return true;
     }
 
 

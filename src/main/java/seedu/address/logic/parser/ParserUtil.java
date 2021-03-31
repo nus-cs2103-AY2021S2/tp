@@ -6,8 +6,10 @@ import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
@@ -121,7 +123,7 @@ public class ParserUtil {
     /**
      * Parses a {@code String tripDay} into a {@code TripDay}.
      * Leading and trailing whitespaces will be trimmed.
-     * and converted to uppercase for case-insensitive enum instantiation of {@code DayOfWeek}
+     * and converted to uppercase for case-insensitive enum instantiation of {@code DayOfWeek}.
      * @throws ParseException if the given {@code tripDay} is invalid.
      */
     public static TripDay parseTripDay(String tripDay) throws ParseException {
@@ -184,4 +186,22 @@ public class ParserUtil {
         return indicesSet;
     }
 
+    /**
+     * Parses {@code oneBasedIndexes} into an {@code List<Index>} and returns it.
+     * Leading and trailing whitespaces will be trimmed.
+     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     */
+    public static List<Index> parseDeleteIndex(String oneBasedIndexes) throws ParseException {
+        String[] arguments = oneBasedIndexes.split("\\s+");
+        List<Index> indexes = new ArrayList<>();
+
+        for (String s : arguments) {
+            if (s.length() > 0) {
+                Index index = ParserUtil.parseIndex(s.trim());
+                indexes.add(index);
+            }
+        }
+
+        return indexes;
+    }
 }
