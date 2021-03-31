@@ -1,5 +1,6 @@
 package dog.pawbook.ui;
 
+import java.util.Collection;
 import java.util.Comparator;
 
 import dog.pawbook.model.managedentity.Entity;
@@ -41,14 +42,14 @@ public class EntityCard extends UiPart<Region> {
     /**
      * Creates a {@code EntityCard} with the given {@code Entity} and index to display.
      */
-    public EntityCard(Entity entity, int displayedIndex) {
+    public EntityCard(Entity entity, int displayedId) {
         super(FXML);
         this.entity = entity;
-        id.setText(displayedIndex + ": ");
+        id.setText(displayedId + ": ");
         name.setText(entity.getName().fullName);
 
         // todo: extract a method for this and use stream like tags
-        String[] properties = entity.getOtherPropertiesAsString();
+        Collection<String> properties = entity.getOtherPropertiesAsString();
         for (String property : properties) {
             Label propertyLabel = new Label(property);
             propertyLabel.getStyleClass().add("cell_small_label");
