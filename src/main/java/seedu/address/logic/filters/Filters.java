@@ -46,6 +46,19 @@ public class Filters {
             return new DobFilter(argumentMultimap.getValue(PREFIX_DOB).get());
         }
 
+        if (argumentMultimap.getValue(PREFIX_NAME).isPresent()) {
+            return new NameFilter(argumentMultimap.getValue(PREFIX_NAME).get());
+        }
+
+        if (argumentMultimap.getValue(PREFIX_CARS_OWNED).isPresent()) {
+            return new CarsOwnedFilter(argumentMultimap.getValue(PREFIX_CARS_OWNED).get());
+        }
+
+        if (argumentMultimap.getValue(PREFIX_CARS_PREFERRED).isPresent()) {
+            return new CarsPreferredFilter(argumentMultimap.getValue(PREFIX_CARS_PREFERRED).get());
+        }
+
+
         /*
          * throw new IllegalArgumentException("No appropriate filter for : " + info);
          */

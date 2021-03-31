@@ -58,10 +58,9 @@ public class FilterCombinator implements Predicate<Customer> {
         for (int i = 0; i < description.length(); i++) {
             char c = description.charAt(i);
 
-            while(!allPositions.isEmpty() && i > allPositions.getFirst().getStartPosition()) {
+            while (!allPositions.isEmpty() && i > allPositions.getFirst().getStartPosition()) {
                 allPositions.removeFirst();
             }
-
 
 
             // first check if the character is part of a logical operator prefix
@@ -101,7 +100,7 @@ public class FilterCombinator implements Predicate<Customer> {
                     inSubtreeScope = new StringBuilder("");
                 }
             } else {
-                if(nestingLevel > 0) {
+                if (nestingLevel > 0) {
                     inSubtreeScope.append(c);
                 } else {
                     inPresentScope.append(c);
