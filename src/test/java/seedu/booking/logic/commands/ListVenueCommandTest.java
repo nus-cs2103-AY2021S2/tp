@@ -1,9 +1,9 @@
 package seedu.booking.logic.commands;
 
 import static seedu.booking.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.booking.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.booking.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.booking.testutil.TypicalPersons.getTypicalBookingSystem;
+import static seedu.booking.logic.commands.CommandTestUtil.showVenueAtIndex;
+import static seedu.booking.testutil.TypicalIndexes.INDEX_FIRST_VENUE;
+import static seedu.booking.testutil.TypicalVenues.getTypicalBookingSystem;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,9 +13,9 @@ import seedu.booking.model.ModelManager;
 import seedu.booking.model.UserPrefs;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for ListVenueCommand.
  */
-public class ListCommandTest {
+public class ListVenueCommandTest {
 
     private Model model;
     private Model expectedModel;
@@ -28,12 +28,14 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListPersonCommand(), model, ListPersonCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListVenueCommand(), model,
+                ListVenueCommand.MESSAGE_VENUE_LISTED_SUCCESS, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
-        assertCommandSuccess(new ListPersonCommand(), model, ListPersonCommand.MESSAGE_SUCCESS, expectedModel);
+        showVenueAtIndex(model, INDEX_FIRST_VENUE);
+        assertCommandSuccess(new ListVenueCommand(), model,
+                ListVenueCommand.MESSAGE_VENUE_LISTED_SUCCESS, expectedModel);
     }
 }

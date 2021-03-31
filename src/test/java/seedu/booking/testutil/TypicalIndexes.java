@@ -14,7 +14,6 @@ public class TypicalIndexes {
     public static final Index INDEX_SECOND_VENUE = Index.fromOneBased(2);
 
     public static final Index INDEX_FIRST_BOOKING = Index.fromOneBased(1);
-    public static final Index INDEX_SECOND_BOOKING = Index.fromOneBased(2);
 }
 
 
