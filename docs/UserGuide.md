@@ -372,6 +372,8 @@ command history.
 Adds a user-defined alias, which represents a shortcut to a longer command.
 
 Format: `alias a/ALIAS_NAME cmd/COMMAND`
+* Parameters must be in this exact order.
+* Any parameters after `cmd/` will be parsed as part of the command.
 
 Examples:
 * `alias a/ol cmd/olist` Adds the `ol` alias which is a shortcut for `olist` command.
