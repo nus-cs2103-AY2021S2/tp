@@ -94,7 +94,8 @@ public class EditCommand extends Command {
 
         if (!model.isSavedState()) {
             for (Lesson lesson : editedPerson.getLessons()) {
-                if (model.hasLesson(lesson)) {
+                if (model.hasLesson(lesson) && !(model.getLesson(lesson).getNumberOfPerson() == 1
+                && model.getLesson(lesson).containsPerson(personToEdit))) {
                     model.setSavedState(true);
                     throw new CommandException(String.format(MESSAGE_DUPLICATE_LESSON,
                             lesson.formatString(), model.getLesson(lesson).getPersonInString()));

@@ -345,16 +345,28 @@ public class AddCommandTest {
      */
     private class ModelStubWithPerson extends ModelStub {
         private final Person person;
+        private boolean isSavedState;
 
         ModelStubWithPerson(Person person) {
             requireNonNull(person);
             this.person = person;
+            this.isSavedState = false;
         }
 
         @Override
         public boolean hasPerson(Person person) {
             requireNonNull(person);
             return this.person.isSamePerson(person);
+        }
+
+        @Override
+        public boolean isSavedState() {
+            return this.isSavedState;
+        }
+
+        @Override
+        public void setSavedState(boolean isSavedState) {
+            this.isSavedState = isSavedState;
         }
     }
 
@@ -363,6 +375,7 @@ public class AddCommandTest {
      */
     private class ModelStubAcceptingPersonAdded extends ModelStub {
         final ArrayList<Person> personsAdded = new ArrayList<>();
+        private boolean isSavedState = false;
 
         @Override
         public boolean hasPerson(Person person) {
@@ -378,6 +391,16 @@ public class AddCommandTest {
         public void addPerson(Person person) {
             requireNonNull(person);
             personsAdded.add(person);
+        }
+
+        @Override
+        public boolean isSavedState() {
+            return this.isSavedState;
+        }
+
+        @Override
+        public void setSavedState(boolean isSavedState) {
+            this.isSavedState = isSavedState;
         }
 
         @Override

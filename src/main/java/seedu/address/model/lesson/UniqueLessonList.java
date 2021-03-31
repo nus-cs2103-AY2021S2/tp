@@ -106,6 +106,9 @@ public class UniqueLessonList implements Iterable<Lesson> {
             if (contains(lesson)) {
                 int index = internalList.indexOf(lesson);
                 internalList.get(index).removePerson(person);
+                if (internalList.get(index).isEmptyLesson()) {
+                    remove(internalList.get(index));
+                }
             }
         }
     }
