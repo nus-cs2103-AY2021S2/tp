@@ -73,4 +73,9 @@ public interface Logic {
      * @return Returns a filtered ObservableList of commands
      */
     ObservableList<String> getAutocompleteCommands(String value);
+
+    /**
+     * Returns aliases in an ObservableList of String.
+     */
+    ObservableList<String> getObservableStringAliases();
 }
