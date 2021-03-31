@@ -5,52 +5,64 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Interface ReadOnlyAddressBook <<Interface>>
+Interface ReadOnlyTaskTracker <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
-Class AddressBook
-Class ReadOnlyAddressBook
+Class TaskTracker
+Class ReadOnlyTaskTracker
 Class Model
 Class ModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
 
-Package Person {
-Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
-Class UniquePersonList
+Package Task {
+Class Task
+Class DeadlineDate
+Class DeadlineTime
+Class TaskName
+Class ModuleCode
+Class UniqueTaskList
+Class Notes
+Class Status
+Class Weightage
 }
 
 Package Tag {
 Class Tag
+Class PriorityTag
 }
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+TaskTracker .up.|> ReadOnlyTaskTracker
 
 ModelManager .up.|> Model
 Model .right.> ObservableList
-ModelManager o--> "1" AddressBook
+ModelManager o--> "1" TaskTracker
 ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList o--> "*" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+TaskTracker *--> "1" UniqueTaskList
+UniqueTaskList o--> "*" Task
+Task *--> "1" TaskName
+Task *--> "1" ModuleCode
+Task *--> "1" DeadlineTime
+Task *--> "1" DeadlineDate
+Task *--> "1" Notes
+Task *--> "1" Status
+Task *--> "1" Weightage
+Task *--> "*" Tag
+Task *--> "1" PriorityTag
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+TaskName -[hidden]right-> ModuleCode
+ModuleCode -[hidden]right-> DeadlineDate
+DeadlineDate -[hidden]right-> DeadlineTime
+DeadlineTime -[hidden]right-> Notes
+Notes -[hidden]right-> Status
+Status -[hidden]right-> Weightage
+Tag -[hidden]right-> PriorityTag
 
-ModelManager ----->" ~* filtered list" Person
+ModelManager -----> Task : " ~* filtered list"
 @enduml
