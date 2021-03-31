@@ -78,10 +78,10 @@ public class PawbookParser {
             return new FindCommandParser().parse(arguments);
 
         case EnrolCommand.COMMAND_WORD:
-            return new EnrolCommandParser().parse(arguments);
+            return new EnrolDropCommandParser(true).parse(arguments);
 
         case DropCommand.COMMAND_WORD:
-            return new DropCommandParser().parse(arguments);
+            return new EnrolDropCommandParser(false).parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
