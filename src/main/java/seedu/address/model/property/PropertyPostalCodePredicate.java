@@ -6,15 +6,15 @@ import java.util.function.Predicate;
  * Tests that a {@code Property}'s {@code PostalCode} matches the postal given.
  */
 public class PropertyPostalCodePredicate implements Predicate<Property> {
-    private final String postal;
+    private final PostalCode postal;
 
-    public PropertyPostalCodePredicate(String postal) {
+    public PropertyPostalCodePredicate(PostalCode postal) {
         this.postal = postal;
     }
 
     @Override
     public boolean test(Property property) {
-        return property.getPostalCode().postal.equals(postal);
+        return property.getPostalCode().equals(postal);
     }
 
     @Override
