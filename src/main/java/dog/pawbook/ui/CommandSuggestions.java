@@ -11,7 +11,7 @@ public class CommandSuggestions {
         "add dog", "add owner", "add program",
         "delete dog", "delete owner", "delete program",
         "edit dog", "edit owner", "edit program", "enrol", "drop", "find", "view", "schedule",
-        "list dog", "list owner", "list program", "exit", "help"
+        "list", "list dog", "list owner", "list program", "exit", "help"
     );
 
     public static List<String> getSuggestions() {
