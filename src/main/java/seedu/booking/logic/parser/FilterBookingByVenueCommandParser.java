@@ -6,13 +6,14 @@ import static seedu.booking.logic.parser.CliSyntax.PREFIX_VENUE;
 import java.util.stream.Stream;
 
 import seedu.booking.logic.commands.FilterBookingByVenueCommand;
+import seedu.booking.logic.commands.FindBookingCommand;
 import seedu.booking.logic.parser.exceptions.ParseException;
 import seedu.booking.model.booking.BookingContainsVenuePredicate;
 
 /**
  * Parses input arguments and creates a new FilterBookingByVenueCommand object.
  */
-public class FilterBookingByVenueCommandParser {
+public class FilterBookingByVenueCommandParser implements Parser<FilterBookingByVenueCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the FilterBookingByVenueCommandParser
