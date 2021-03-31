@@ -180,6 +180,18 @@ Example:
 
     revise 1
 
+### Clear all entries
+Clearing all entries from food diary.
+
+Format: `clear`
+
+
+### Exiting food diary 
+Close and exit the program.
+
+Format: `exit`
+
+
 -------------------------------------------------------------------------------------
 
 ## Command summary
@@ -188,6 +200,8 @@ Action | Format, Examples
 --------|------------------
 **Add** | `add n/<RESTAURANT NAME> ra/<RATING FROM 0-5> p/<PRICE> re/<REVIEW> a/<ADDRESS> c/<CATEGORIES>` <br> e.g., `add  n/Al Amaan Restaurant ra/4 p/6 re/best for Butter Chicken a/12 Clementi Rd, Singapore 129742 c/Indian Muslim`
 **AddOn** |`addon <INDEX> [re/REVIEW] [p/PRICE]` or `addon <INDEX> [p/PRICE] [re/REVIEW]` <br>e.g,`addon 1 re/I like this food a lot p/5`
+**Clear** | `clear`
+**Exit** | `exit
 **Delete** | `delete <INDEX>` <br> e.g., `delete 1`
 **List** | `list`
 **Find** | `find <KEYWORDS>` <br> e.g., `find kfc`
