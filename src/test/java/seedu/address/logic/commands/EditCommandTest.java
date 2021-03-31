@@ -285,7 +285,6 @@ public class EditCommandTest {
         // different index -> returns false
         assertNotEquals(EditCommand.buildEditIndexCommand(Collections.singletonList(INDEX_SECOND_PERSON), DESC_AMY),
                 standardCommand);
-        assertEquals(commandWithIndexes, standardCommand);
 
         // different descriptor -> returns false
         assertNotEquals(EditCommand.buildEditIndexCommand(Collections.singletonList(INDEX_FIRST_PERSON), DESC_BOB),

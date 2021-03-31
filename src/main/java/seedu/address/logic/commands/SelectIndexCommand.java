@@ -67,7 +67,8 @@ public class SelectIndexCommand extends SelectCommand {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof SelectIndexCommand // instanceof handles nulls
+                && isSpecialIndex == ((SelectIndexCommand) other).isSpecialIndex)
                 && ((SelectIndexCommand) other).selectedIndexes.containsAll(selectedIndexes)
-                && isSpecialIndex == ((SelectIndexCommand) other).isSpecialIndex);
+                && selectedIndexes.containsAll(((SelectIndexCommand) other).selectedIndexes);
     }
 }

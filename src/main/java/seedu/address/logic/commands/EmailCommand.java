@@ -150,6 +150,7 @@ public class EmailCommand extends Command {
                 || (other instanceof EmailCommand) // instanceof handles nulls
                 && isSpecialIndex == ((EmailCommand) other).isSpecialIndex
                 && isEmailSelected == ((EmailCommand) other).isEmailSelected
+                && selectedIndexes.containsAll(((EmailCommand) other).selectedIndexes)
                 && ((EmailCommand) other).selectedIndexes.containsAll(selectedIndexes);
     }
 

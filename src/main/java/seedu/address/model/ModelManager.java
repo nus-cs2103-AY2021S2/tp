@@ -255,7 +255,8 @@ public class ModelManager implements Model {
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons)
                 && aliases.equals(other.aliases)
-                && selectedPersonList.containsAll(other.selectedPersonList);
+                && selectedPersonList.containsAll(other.selectedPersonList)
+                && other.selectedPersonList.containsAll(selectedPersonList);
     }
 
 }

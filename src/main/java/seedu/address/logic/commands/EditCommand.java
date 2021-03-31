@@ -286,6 +286,7 @@ public class EditCommand extends Command {
                 && isSpecialIndex == ((EditCommand) other).isSpecialIndex
                 && isEditSelected == ((EditCommand) other).isEditSelected
                 && targetIndexes.containsAll(((EditCommand) other).targetIndexes)
+                && ((EditCommand) other).targetIndexes.containsAll(targetIndexes)
                 && editPersonDescriptor.equals(e.editPersonDescriptor);
     }
 
