@@ -1,6 +1,6 @@
 [![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S2-CS2103-T14-4/tp/actions)
 
-![Ui](docs/images/Ui.png)
+![Ui](docs/images/v1.3_Ui.png)
 
 * ## **Instructions**
   1. Ensure that you have Java 11 or above installed in your computer
@@ -8,15 +8,15 @@
   3. Copy the file download location to the folder that you want to use as the home folder for your [App moduleName]
   4. Double click on the file to start the app
   5. Once the app is started, you can begin by typing certain commands in the command box to execute certain actions. E.g: typing help and pressing enter will open the help windows for guidance on some command executions.
-      * add module : mc/CS2103 n/iP Level 10 d/15-11-2020 t/18:00 will add this module to the list
-      * delete module : delete 3 will delete 3rd task from the listlist : will shown all module tasks
-      * mark as done : mark as done 3 will mark 3rd task from the list as done
-      * sort : sort dateTime will sort based on deadline date and time and show all of the tasks in list.
-      * edit task : edit 3 will allow user to edit the 3rd module task from the list
-      * add notes : add notes 3 will add notes to the 3rd module task from the list
-      * Priority tag HIGH/MEDIUM/LOW : pt/HIGH 3 will assign a high priority to the 3rd task on the list.
-      * Time-based alert : alert will show a list of immediate tasks that will be due next week
-      * clear : will delete all module tasks on the list
+      * add module : `add mc/CS2103 n/iP Level 10 d/15-11-2020 t/18:00 w/10%` will add this module to the list
+      * delete module : `delete 3` will delete 3rd task from the list
+      * see all task : `list` will shown all module tasks
+      * mark as done : `done 3` will mark 3rd task from the list as done
+      * sort : `sort dateTime` will sort based on deadline date and time and show all of the tasks in list.
+      * edit task : `edit 3 n/PE` will allow user to edit the 3rd module task and change the task name to be "PE"
+      * add notes : `remark 3` will add notes to the 3rd module task from the list
+      * Time-based alert : `dueIn` will show a list of immediate tasks that will be due by next week
+      * clear : `clear` will delete all module tasks on the list
   6. Refer to the features for each individual commands for more details
 
 ## **Commands**
@@ -29,7 +29,6 @@
     4. Example: Using the command list to show all tasks, the user wants to delete the 2nd task. User use command delete 2 to delete the 2nd task from the list
 
 
-
 2. ### Priority tag: *pt/Priority*
   * Format: pt/HIGH 3
     1. Will assignment a priority of HIGH to the 3rd task on the list
@@ -39,20 +38,16 @@
     5. Priority tag must be either HIGH, MEDIUM or LOW.
     6. Example: list to show all tasks on the list followed by pt/LOW 2 to assign a priority tag of LOW to the 2nd task on the list followed by sort LOW/low to view the list according to priority level
 
-
-
 3. ### Module moduleName: *mn/*
   * Format: mn/ {module moduleName}
     1. Sets the module moduleName of a task
     2. Example: mn/Software Engineering. Sets the module moduleName of the task to “Software Engineering”
 
 
-
 4. ### Module code: *mc/*
   * Format: mc/ {module code}
     1. Sets the module code of a task
     2. Module code must be a CS module code
-
 
 
 5. ### Edit Task: *edit*
@@ -62,15 +57,13 @@
     3. The index must be on the list else an error will be thrown
     4. At least one of the optional fields must be provided
     5. Existing values will be updated to the input values
-    6. Example: edit 1 mn/Software Engineering mc/CS2103. Edits the module moduleName and module code of the task at index 1 to be “Software Engineering” and “CS2103” respectively.
-    7. Example: edit 2 tn/Finals n/Open Book. Edits the task moduleName and notes of the task at index 2 to be “Finals” and “Open Book” respectively.
-
+  * Example: edit 1 mn/Software Engineering mc/CS2103. Edits the module moduleName and module code of the task at index 1 to be “Software Engineering” and “CS2103” respectively.
+  * Example: edit 2 tn/Finals n/Open Book. Edits the task moduleName and notes of the task at index 2 to be “Finals” and “Open Book” respectively.
 
 
 6. ### Clear Application: *clear*
   * Clears all tasks from the application
   * Format: clear
-
 
 
 7. ### Locating tasks by moduleName: *find*
@@ -81,9 +74,7 @@
     3. Only the task moduleName is searched.
     4. Only full words will be matched e.g. Java will not match Javascript
     5. Persons matching at least one keyword will be returned (i.e. OR search). e.g. SQL Python will return SQL Quiz, Python Assignment
-    6. Example: find C++ will return C++ project and C++ graded quiz
-    7. find assignment exam will return Final Assignment, Midterm exam
-
+  * Example: find C++ will return C++ project and C++ graded quiz find assignment exam will return Final Assignment, Midterm exam
 
 
 8. ### Sort tasks: *sort*
@@ -95,22 +86,28 @@
     4. For priority tag, the tasks will be sorted according to this order: HIGH > MEDIUM > LOW. Tasks with high priority will then be shown at the top of the list.
 
 
-
 9. ### Add notes to tasks: *notes*
   * Adds any additional notes or remarks to an exisiting task
   * Format: notes INDEX [n/NOTES]
     1. Adds user input NOTES to the task at the specified INDEX. The index refers to the index number shown in the displayed task list. The index must be a positive integer 1, 2, 3, …
     2. Adding notes to a task that already has existing notes will overwrite the previous notes.
-    3. Example: list followed by notes 2 n/Hello World! adds the note “Hello World!” to the 2nd task in the task list.
-    4. Example: find assignment followed by notes 1 n/fooBar adds the note “fooBar” to the 1st task in the results of the find command.
+  * Example: list followed by notes 2 n/Hello World! adds the note “Hello World!” to the 2nd task in the task list.
+  * Example: find assignment followed by notes 1 n/fooBar adds the note “fooBar” to the 1st task in the results of the find command.
 
-10. ### Shows alert(s) for incoming deadlines based on the time range (if give)
-  * Format: show start/START_DATE end/END_DATE
-    1. If no time range is given, alert(s) shown will be deadlines from next week until next 2 weeks.
-    2. If only START_DATE is given, alert(s) shown will be from the START_DATE until the latest deadline.
-    3. If only END_DATE is given, alert(s) shown will be from today’s date until the END_DATE.
-    4. show start/10-10-2020 will show deadlines starting from 10 October 2020 onwards.
-
+10. ### List tasks which need to be subitted soon: *dueIn*
+  * List all tasks that are due within the days specified
+  * Format: `dueIn [day/NUMBER_OF_DAYS] [week/NUMBER_OF_WEEKS]`
+    1. If no parameters given, tasks shown will be deadlines that will be due by next week.
+    2. `NUMBER_OF_DAYS` & `NUMBER_OF_WEEKS` must be a positive integer
+    3. If both `day/` & `week/` given, the `NUMBER_OF_DAYS` will be used.
+  * Example: `dueIn day/2` will show tasks that have deadlines within the next 2 days.
+  
+11. ### Toggle the status of a Task: *done*
+  * Toggle a status of a task
+  * Format: `done INDEX`
+    1. The `INDEX` must be a positive integer, and
+    2. Exists on the task list
+  * Example: Task 3 has finished. `done 3` will mark task 3 to be unfinished. If the user type `done 3` again, it will mark task 3 to be finished again.
 
 ## Acknowledgements
 1. This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org)

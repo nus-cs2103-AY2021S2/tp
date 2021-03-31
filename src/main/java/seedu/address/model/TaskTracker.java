@@ -18,6 +18,7 @@ public class TaskTracker implements ReadOnlyTaskTracker {
 
 
     private final UniqueTaskList tasks;
+    private final UniqueTaskList dailyTasks;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -28,6 +29,7 @@ public class TaskTracker implements ReadOnlyTaskTracker {
      */
     {
         tasks = new UniqueTaskList();
+        dailyTasks = new UniqueTaskList();
     }
 
     public TaskTracker() {
@@ -90,6 +92,14 @@ public class TaskTracker implements ReadOnlyTaskTracker {
     }
 
     /**
+     * Adds a task to the daily task list.
+     * The task must not already exist in the task tracker.
+     */
+    public void addDailyTask(Task taskToAdd) {
+        dailyTasks.add(taskToAdd);
+    }
+
+    /**
      * Replaces the given task {@code target} in the list with {@code editedTask}.
      * {@code target} must exist in the address book.
      * The task identity of {@code editedTask} must not be the same as another existing task in the address book.
@@ -109,6 +119,13 @@ public class TaskTracker implements ReadOnlyTaskTracker {
     }
 
     /**
+     * Removes {@code key} from the daily task list.
+     * {@code key} must exist in the task tracker.
+     */
+    public void removeDailyTask(Task key) {
+        dailyTasks.remove(key);
+    }
+    /**
      * Finishes {@code task} from this {@code TaskTracker}.
      * {@code task} must exist in the address book.
      */
@@ -127,6 +144,11 @@ public class TaskTracker implements ReadOnlyTaskTracker {
     @Override
     public ObservableList<Task> getTaskList() {
         return tasks.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Task> getDailyTaskList() {
+        return dailyTasks.asUnmodifiableObservableList();
     }
 
     @Override

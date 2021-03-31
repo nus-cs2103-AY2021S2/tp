@@ -115,8 +115,17 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setTaskTracker(ReadOnlyTaskTracker newData) {
+        public void addToDailyToDoList(Task task) {
+            throw new AssertionError("This method should not be called.");
+        }
 
+        @Override
+        public void removeFromDailyToDoList(Task task) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setTaskTracker(ReadOnlyTaskTracker newData) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -157,12 +166,17 @@ public class AddCommandTest {
         }
 
         @Override
-        public ObservableList<Task> getFinishedTaskList() {
+        public ObservableList<Task> getDailyTaskList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void updateFilteredTaskList(Predicate<Task> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateDailyTaskList(Predicate<Task> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 

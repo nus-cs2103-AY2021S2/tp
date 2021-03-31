@@ -38,10 +38,11 @@ public interface Logic {
      */
     ObservableList<Task> getFilteredTaskList();
 
+
     /**
-     * Returns an unmodifiable view of the list of finished tasks
+     * Returns an unmodifiable view of the list of daily tasks
      */
-    ObservableList<Task> getFinishedTaskList();
+    ObservableList<Task> getDailyTaskList();
 
     /**
      * Returns the user prefs' address book file path.
