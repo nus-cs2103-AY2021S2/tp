@@ -34,11 +34,12 @@ public class TypicalTutors {
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253")
             .withNotes("Some notes about Alice")
+            .withFavourite(true)
             .withSubject("Mathematics", "Secondary 4", "60", "5", "A-Level")
             .withTags("friends").build();
     public static final Tutor BENSON = new TutorBuilder().withName("Benson Meier").withGender("Male")
             .withAddress("311, Clementi Ave 2, #02-25")
-            .withNotes("benson note")
+            .withNotes("")
             .withEmail("johnd@example.com").withPhone("98765432")
             .withSubject("English", "Secondary 4", "60", "4", "A-Level")
             .withSubject("Geography", "Secondary 4", "60", "4", "A-Level")

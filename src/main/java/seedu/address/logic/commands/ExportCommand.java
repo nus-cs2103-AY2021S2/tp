@@ -32,6 +32,8 @@ public class ExportCommand extends Command {
      * Target Index of the Tutor to export
      */
     public ExportCommand (Index targetIndex) {
+        requireNonNull(targetIndex);
+
         this.targetIndex = targetIndex;
     }
 
@@ -43,7 +45,7 @@ public class ExportCommand extends Command {
         List<Tutor> tutorList = model.getFilteredTutorList();
 
         if (targetIndex.getZeroBased() >= tutorList.size()) {
-            throw new CommandException(String.format(MESSAGE_INVALID_INDEX, targetIndex.getZeroBased()));
+            throw new CommandException(String.format(MESSAGE_INVALID_INDEX, targetIndex.getOneBased()));
         }
 
         Tutor tutor = tutorList.get(targetIndex.getZeroBased());
