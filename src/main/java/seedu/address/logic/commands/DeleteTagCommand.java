@@ -32,7 +32,7 @@ public class DeleteTagCommand extends TagCommand {
             + "Parameters: " + DELETE_SUB_COMMAND_WORD + " INDEX ... [-t] TAG ...\n"
             + "Example: " + COMMAND_WORD + " " + DELETE_SUB_COMMAND_WORD + " 1 2 Python";
 
-    public static final String MESSAGE_SUCCESS = "Tag(s) deleted from %1%d person: %2$s";
+    public static final String MESSAGE_SUCCESS = "Tag%1$s deleted from %2$d person: %3$s";
 
     private final Set<Tag> tags;
     private final List<Index> targetIndexes;
@@ -103,8 +103,11 @@ public class DeleteTagCommand extends TagCommand {
             model.setPerson(person, editedPerson);
         }
 
+        String singularOrPlural = personList.size() > 1 ? "s" : "";
+        int updateCount = personList.size();
+
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, personList.size(), tags.toString()));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, singularOrPlural, updateCount, tagsToString(tags)));
     }
 
     /**
@@ -145,8 +148,11 @@ public class DeleteTagCommand extends TagCommand {
             model.setPerson(person, editedPerson);
         }
 
+        String singularOrPlural = targetIndexes.size() > 1 ? "s" : "";
+        int updateCount = targetIndexes.size();
+
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, targetIndexes.size(), tags.toString()));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, singularOrPlural, updateCount, tagsToString(tags)));
     }
 
     /**
@@ -167,6 +173,20 @@ public class DeleteTagCommand extends TagCommand {
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedCompany, updatedJobTitle,
                 updatedAddress, updatedRemark, updatedTags);
+    }
+
+    /**
+     * Returns output string format for {@code tags}.
+     */
+    private static String tagsToString(Set<Tag> tags) {
+        StringBuilder builder = new StringBuilder();
+
+        for (Tag tag : tags) {
+            builder.append(tag.tagName + ", ");
+        }
+
+        String returnValue = builder.toString();
+        return returnValue.substring(0, returnValue.length() - 2);
     }
 
     @Override
