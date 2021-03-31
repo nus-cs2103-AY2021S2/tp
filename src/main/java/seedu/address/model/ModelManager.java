@@ -525,10 +525,15 @@ public class ModelManager implements Model {
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons)
                 && personFilter.equals(other.personFilter)
+                && filteredAppointment.equals(other.filteredAppointment)
                 && appointmentBook.equals(other.appointmentBook)
+                && gradeBook.equals(other.gradeBook)
+                && filteredGrades.equals(other.filteredGrades)
                 && budgetBook.equals(other.budgetBook)
                 && filteredSchedules.equals(other.filteredSchedules)
-                && scheduleTracker.equals(other.scheduleTracker);
+                && scheduleTracker.equals(other.scheduleTracker)
+                && filteredReminders.equals(other.filteredReminders)
+                && reminderTracker.equals(other.reminderTracker);
     }
 
     /* Schedule Methods */

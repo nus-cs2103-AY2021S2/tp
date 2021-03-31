@@ -109,7 +109,7 @@ public class GradeList implements Iterable<Grade> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof seedu.address.model.grade.Grade // instanceof handles nulls
+                || (other instanceof seedu.address.model.grade.GradeList // instanceof handles nulls
                 && internalList.equals(((seedu.address.model.grade.GradeList) other).internalList));
     }
 
