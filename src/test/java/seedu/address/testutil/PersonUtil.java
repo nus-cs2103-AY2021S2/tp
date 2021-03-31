@@ -8,7 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
 
 import java.util.Set;
 
@@ -16,7 +16,7 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.lesson.Lesson;
 import seedu.address.model.person.Person;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.subject.Subject;
 
 /**
  * A utility class for Person.
@@ -54,8 +54,8 @@ public class PersonUtil {
         if (person.getGuardianPhone().isPresent()) {
             sb.append(PREFIX_GUARDIAN_PHONE + person.getGuardianPhone().get().value + " ");
         }
-        person.getTags().stream().forEach(
-            s -> sb.append(PREFIX_TAG + s.tagName + " ")
+        person.getSubjects().stream().forEach(
+            s -> sb.append(PREFIX_SUBJECT + s.subjectName + " ")
         );
         person.getLessons().stream().forEach(
             l -> sb.append(PREFIX_LESSON + l.formatString() + " ")
@@ -77,12 +77,12 @@ public class PersonUtil {
                 .append(guardianName.fullName).append(" "));
         descriptor.getGuardianPhone().ifPresent(guardianPhone -> sb.append(PREFIX_GUARDIAN_PHONE)
                 .append(guardianPhone.value).append(" "));
-        if (descriptor.getTags().isPresent()) {
-            Set<Tag> tags = descriptor.getTags().get();
-            if (tags.isEmpty()) {
-                sb.append(PREFIX_TAG).append(" ");
+        if (descriptor.getSubjects().isPresent()) {
+            Set<Subject> subjects = descriptor.getSubjects().get();
+            if (subjects.isEmpty()) {
+                sb.append(PREFIX_SUBJECT).append(" ");
             } else {
-                tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
+                subjects.forEach(s -> sb.append(PREFIX_SUBJECT).append(s.subjectName).append(" "));
             }
         }
         if (descriptor.getLessons().isPresent()) {

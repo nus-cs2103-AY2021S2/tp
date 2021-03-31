@@ -11,7 +11,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.School;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.subject.Subject;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -34,7 +34,7 @@ public class PersonBuilder {
     private Optional<Address> address;
     private Optional<Name> guardianName;
     private Optional<Phone> guardianPhone;
-    private Set<Tag> tags;
+    private Set<Subject> subjects;
     private Set<Lesson> lessons;
 
     /**
@@ -48,7 +48,7 @@ public class PersonBuilder {
         address = Optional.of(new Address(DEFAULT_ADDRESS));
         guardianName = Optional.of(new Name(DEFAULT_GUARDIAN_NAME));
         guardianPhone = Optional.of(new Phone(DEFAULT_GUARDIAN_PHONE));
-        tags = new HashSet<>();
+        subjects = new HashSet<>();
         lessons = new HashSet<>();
     }
 
@@ -63,7 +63,7 @@ public class PersonBuilder {
         address = personToCopy.getAddress();
         guardianName = personToCopy.getGuardianName();
         guardianPhone = personToCopy.getGuardianPhone();
-        tags = new HashSet<>(personToCopy.getTags());
+        subjects = new HashSet<>(personToCopy.getSubjects());
         lessons = new HashSet<>(personToCopy.getLessons());
     }
 
@@ -84,10 +84,10 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Parses the {@code subjects} into a {@code Set<Subject>} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+    public PersonBuilder withSubjects(String ... subjects) {
+        this.subjects = SampleDataUtil.getSubjectSet(subjects);
         return this;
     }
 
@@ -144,7 +144,7 @@ public class PersonBuilder {
      */
     public Person build() {
         return new Person(name, phone, school, email,
-                address, guardianName, guardianPhone, tags, lessons);
+                address, guardianName, guardianPhone, subjects, lessons);
     }
 
 }
