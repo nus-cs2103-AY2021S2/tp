@@ -211,7 +211,7 @@ public class ModelManager implements Model {
     @Override
     public boolean hasIssue(Issue issue) {
         requireNonNull(issue);
-        return addressBook.hasIssue(issue);
+        return statefulAddressBook.hasIssue(issue);
     }
 
     @Override
@@ -301,7 +301,7 @@ public class ModelManager implements Model {
         userPrefs.deleteAlias(aliasName);
     }
 
-    //=========== Undo/Redo =============================================================
+    // =========== Undo/Redo =============================================================
     @Override
     public boolean canUndoAddressBook() {
         return statefulAddressBook.canUndo();

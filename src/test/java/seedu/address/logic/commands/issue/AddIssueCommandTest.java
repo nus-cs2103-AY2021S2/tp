@@ -127,5 +127,10 @@ public class AddIssueCommandTest {
         public ReadOnlyAddressBook getAddressBook() {
             return new AddressBook();
         }
+
+        @Override
+        public void commitAddressBook() {
+
+        }
     }
 }
