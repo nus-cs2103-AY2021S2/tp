@@ -104,6 +104,7 @@ The `Model`,
 * stores a `UserPref` object that represents the user’s preferences.
 * stores the cakecollate data.
 * exposes an unmodifiable `ObservableList<Order>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* exposes an unmodifiable `ObservableList<OrderItem>` that can also be 'observed'.
 * does not depend on any of the other three components.
 
 
@@ -297,8 +298,8 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
 1.  User requests to list order
 2.  CakeCollate shows a list of orders
-3.  User requests to delete a specific order in the list
-4.  CakeCollate deletes the order
+3.  User requests to delete a specific list of orders
+4.  CakeCollate deletes the specified orders
 
     Use case ends.
 
@@ -308,7 +309,7 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. The given list of indices is invalid.
 
     * 3a1. CakeCollate shows an error message.
 
@@ -429,22 +430,22 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a order
+### Deleting multiple orders
 
-1. Deleting a order while all orders are being shown
+1. Deleting multiple orders while all orders are being show
+    1. Prerequisites: List all orders using the `list` command. Multiple orders in the list.
+    1. Test case: `delete 1`<br>
+       Expected: First order is deleted from the list. Details of the deleted order shown in the status message.
+    1. Test case: `delete 1 2` <br>
+       Expected: First and second orders are deleted from the list. Details of the deleted orders are shown in the status message.
+    
+    1. Test case: `delete 0 1`<br>
+       Expected: No order is deleted. Error details shown in the status message.
+       
+    1. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
 
-   1. Prerequisites: List all orders using the `list` command. Multiple orders in the list.
-
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
-   1. Test case: `delete 0`<br>
-      Expected: No order is deleted. Error details shown in the status message. Status bar remains the same.
-
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
+1. _{ more test cases …​ }
 
 ### Receiving reminders for orders
 
