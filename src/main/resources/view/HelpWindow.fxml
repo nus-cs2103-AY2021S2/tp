@@ -35,8 +35,9 @@
                             <Insets right="5.0" />
                         </HBox.margin>
                     </Label>
-                    <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyUrl" text="Copy URL" textAlignment="RIGHT">
-                        <HBox.margin>
+<!--                    <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyUrl" text="Copy URL" textAlignment="RIGHT">-->
+                    <Button fx:id="openButton" mnemonicParsing="false" onAction="#openUrl" text="OPEN URL" textAlignment="RIGHT">
+                    <HBox.margin>
                             <Insets left="5.0" />
                         </HBox.margin>
                     </Button>

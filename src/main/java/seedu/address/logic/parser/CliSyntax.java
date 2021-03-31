@@ -17,5 +17,13 @@ public class CliSyntax {
     public static final Prefix PREFIX_CONTACT = new Prefix("c/");
 
     /* Options Definition for PREFIX_OPTION */
-    public static final Option OPTION_TAG = new Option("tag");
+    public static final String OPTION_TAG = "tag";
+    public static final String OPTION_NAME = "name";
+    public static final String OPTION_DATE = "date";
+    public static final String OPTION_ADDRESS = "address";
+    public static final String OPTION_CONTACT = "contact";
+    public static final String OPTION_PHONE = "phone";
+    public static final String OPTION_EMAIL = "email";
+    public static final String OPTION_FAVORITE = "fav";
+    public static final String OPTION_REMOVE = "remove";
 }

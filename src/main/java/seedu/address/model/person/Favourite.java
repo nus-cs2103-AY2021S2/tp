@@ -30,6 +30,11 @@ public class Favourite {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Favourite // instanceof handles nulls
-                && value.equals(((Favourite) other).value)); // state check
+                && Boolean.compare(isFav, ((Favourite) other).isFav) == 0); // state check
+    }
+
+    @Override
+    public int hashCode() {
+        return value.hashCode();
     }
 }
