@@ -3,12 +3,17 @@ package dog.pawbook.model.managedentity.program;
 import static dog.pawbook.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.Vector;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import dog.pawbook.model.managedentity.Entity;
 import dog.pawbook.model.managedentity.Name;
@@ -117,8 +122,24 @@ public class Program extends Entity {
     }
 
     @Override
-    public String[] getOtherPropertiesAsString() {
-        return new String[]{getSessions().toString()};
+    public Collection<String> getOtherPropertiesAsString() {
+        Collection<String> properties = new Vector<>();
+
+        Stream<Session> upcomingSessions = sessionSet.stream()
+                .filter(session -> LocalDateTime.now().isBefore(session.dateTime));
+        if (upcomingSessions.count() > 0) {
+            properties.add(upcomingSessions
+                    .sorted(Comparator.comparing(session -> session.dateTime))
+                    .map(session -> session.value)
+                    .collect(Collectors.joining(", ", "Upcoming timeslot(s): ", "")));
+        }
+        if (!dogidSet.isEmpty()) {
+            properties.add(dogidSet.stream()
+                    .sorted()
+                    .map(String::valueOf)
+                    .collect(Collectors.joining(", ", "Participating Dog ID(s): ", "")));
+        }
+        return properties;
     }
 
 }

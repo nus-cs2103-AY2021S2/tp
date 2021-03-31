@@ -40,7 +40,10 @@ public class ListCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
+
         model.updateFilteredEntityList(predicate);
+        model.sortEntities(model.COMPARATOR_ID_ASCENDING_ORDER);
+
         return new CommandResult(String.format(MESSAGE_SUCCESS_FORMAT, entityName));
     }
 }

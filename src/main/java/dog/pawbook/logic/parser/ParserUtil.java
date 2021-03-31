@@ -1,7 +1,13 @@
 package dog.pawbook.logic.parser;
 
+import static dog.pawbook.model.managedentity.dog.DateOfBirth.DATE_FORMAT;
+import static dog.pawbook.model.managedentity.dog.DateOfBirth.DATE_FORMATTER;
+import static dog.pawbook.model.managedentity.program.Session.DATETIME_FORMATTER;
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -98,6 +104,22 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String dateString} into {@code LocalDate}.
+     *
+     * @throws ParseException if the given {@code dateString} is not in a valid format.
+     */
+    public static LocalDate parseDate(String dateString) throws ParseException {
+        requireNonNull(dateString);
+        LocalDate date;
+        try {
+            date = LocalDate.parse(dateString.trim(), DATE_FORMATTER);
+        } catch (DateTimeParseException d) {
+            throw new ParseException("Date should be in the " + DATE_FORMAT + " format");
+        }
+        return date;
+    }
+
+    /**
      * Parses a {@code String dob} into a {@code DateOfBirth}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -105,11 +127,14 @@ public class ParserUtil {
      */
     public static DateOfBirth parseDob(String dob) throws ParseException {
         requireNonNull(dob);
-        String trimmedDob = dob.trim();
-        if (!DateOfBirth.isValidDob(trimmedDob)) {
+        LocalDate localDate;
+        try {
+            localDate = parseDate(dob.trim());
+        } catch (ParseException pe) {
             throw new ParseException(DateOfBirth.MESSAGE_CONSTRAINTS);
         }
-        return new DateOfBirth(trimmedDob);
+
+        return new DateOfBirth(localDate);
     }
 
     /**
@@ -180,20 +205,20 @@ public class ParserUtil {
         }
         return idSet;
     }
-
     /**
-     * Parses a {@code String dop} into a {@code Session}.
+     * Parses a {@code String dateTimeString} into a {@code Session}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code dop} is invalid.
+     * @throws ParseException if the given {@code dateTimeString} is invalid.
      */
-    public static Session parseSession(String dop) throws ParseException {
-        requireNonNull(dop);
-        String trimmedDop = dop.trim();
-        if (!Session.isValidDate(trimmedDop)) {
+    public static Session parseSession(String dateTimeString) throws ParseException {
+        requireNonNull(dateTimeString);
+        String trimmedDateTime = dateTimeString.trim();
+        if (!Session.isValidDateTime(trimmedDateTime)) {
             throw new ParseException(Session.MESSAGE_CONSTRAINTS);
         }
-        return new Session(trimmedDop);
+        LocalDateTime localDateTime = LocalDateTime.parse(trimmedDateTime, DATETIME_FORMATTER);
+        return new Session(localDateTime);
     }
 
     /**

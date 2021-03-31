@@ -22,6 +22,7 @@ import dog.pawbook.logic.commands.ExitCommand;
 import dog.pawbook.logic.commands.FindCommand;
 import dog.pawbook.logic.commands.HelpCommand;
 import dog.pawbook.logic.commands.ListCommand;
+import dog.pawbook.logic.commands.ScheduleCommand;
 import dog.pawbook.logic.commands.ViewCommand;
 import dog.pawbook.logic.parser.exceptions.ParseException;
 import dog.pawbook.model.managedentity.Entity;
@@ -82,6 +83,9 @@ public class PawbookParser {
 
         case DropCommand.COMMAND_WORD:
             return new EnrolDropCommandParser(false).parse(arguments);
+
+        case ScheduleCommand.COMMAND_WORD:
+            return new ScheduleCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
@@ -165,11 +169,9 @@ public class PawbookParser {
         case Owner.ENTITY_WORD:
             predicate = IS_OWNER_PREDICATE;
             break;
-
         case Dog.ENTITY_WORD:
             predicate = IS_DOG_PREDICATE;
             break;
-
         case Program.ENTITY_WORD:
             predicate = IS_PROGRAM_PREDICATE;
             break;
@@ -177,7 +179,6 @@ public class PawbookParser {
         default:
             throw new ParseException(MESSAGE_UNKNOWN_ENTITY);
         }
-
         return new ListCommand(predicate, entityType);
     }
 }

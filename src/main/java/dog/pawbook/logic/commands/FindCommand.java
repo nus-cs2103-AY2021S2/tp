@@ -1,8 +1,9 @@
 package dog.pawbook.logic.commands;
 
+import static dog.pawbook.commons.core.Messages.MESSAGE_ENTITIES_LISTED_OVERVIEW;
+import static dog.pawbook.model.Model.COMPARATOR_ID_ASCENDING_ORDER;
 import static java.util.Objects.requireNonNull;
 
-import dog.pawbook.commons.core.Messages;
 import dog.pawbook.model.Model;
 import dog.pawbook.model.managedentity.NameContainsKeywordsPredicate;
 
@@ -14,8 +15,8 @@ public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all owners whose names contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Finds all entities which contains the specified keywords. \n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 
@@ -28,9 +29,11 @@ public class FindCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
+
         model.updateFilteredEntityList(predicate);
-        return new CommandResult(
-                String.format(Messages.MESSAGE_ENTITIES_LISTED_OVERVIEW, model.getFilteredEntityList().size()));
+        model.sortEntities(COMPARATOR_ID_ASCENDING_ORDER);
+
+        return new CommandResult(String.format(MESSAGE_ENTITIES_LISTED_OVERVIEW, model.getFilteredEntityList().size()));
     }
 
     @Override

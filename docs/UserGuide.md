@@ -2,31 +2,8 @@
 layout: page
 title: User Guide
 ---
-# **Table of Contents**
-
-1. [Overview](#overview)
-   * [Introduction](#introduction)
-   * [Purpose](#purpose)
-   * [Contributors](#contributors)
-   * [Navigating the User Guide](#navigating-the-user-guide)
-2. [About the User Guide](#about-the-user-guide)
-   * [Syntax Format](#syntax-format)
-   * [GUI Layout](#gui-layout)
-3. [Quick Start](#quick-start)
-4. [Commands](#commands)
-   * [Add Command](#add-command)
-   * [Delete Command](#delete-command)
-   * [Edit Command](#edit-command)
-   * [Enrol Command](#enrol-command)
-   * [Drop Command](#drop-command)
-   * [List Command](#list-command)
-   * [Find Command](#find-command)
-   * [View Command](#view-command)
-   * [Help Command](#help-command)
-   * [Exit Command](#exit-command)
-5. [FAQ](#faq)
-6. [Command Summary](#command-summary)
-7.  [Glossary](#glossary)
+* Table of Contents
+{:toc}
 
 # Overview
 
@@ -62,6 +39,9 @@ The aim of this user guide is to guide novel users on how to get started with Pa
 It also aids more experienced users by providing a detailed explanation on the different features and components of Pawbook. 
 This allows old and new users alike to easily use the various features and functionalities provided by Pawbook. 
 
+# About the User Guide 
+In this section, we will teach you everything you need to know to effectively use this user guide. 
+
 ## Contributors
 
 This user guide is created by **CS2103T-T10-Group1**.
@@ -93,18 +73,14 @@ Here are some important syntax to take note of to facilitate your reading before
 | **Bold** | Note-worthy keywords |
 | [Repeated Parameters] | Indicates the parameters/prefixes that may be repeated multiple times |
 | :bulb: | Indicates there is something important to take note of
-
-
-# About the User Guide
-
-In this section, you will learn what the different notations and symbols used in Pawbook. 
+| :heavy_exclamation_mark: | Indicates something that the user should take caution of. |
 
 ## Syntax Format
 
 Syntax | Meaning  | Example
 --------|------------------|----------
 **`lower_case/`** |  Prefix | `n/`, `p/`, `t/`
-**`[UPPER_CASE]/`** |  Parameter | [keyword] [entity ID]
+**`[UPPER_CASE]`** |  Parameter | [keyword] [entity ID]
 
 ## GUI Layout
 
@@ -121,15 +97,23 @@ You will be directed to the main page upon launching Pawbook. On this page, you 
 that are currently stored in Pawbook. <br>
 
 Here is how the main page looks like:
-<img src="images/UIExample.png" width="790"/>
+
+![MainPageView](images/PawbookMainPageView.png)
+
+Component | Purpose
+--------|-----------------
+**Menu Bar** | A menu bar that allows users to click on shortcuts. 
+**Dashboard** (Coming soon...) | A dashboard that shows the user the status of Pawbook. 
+**Main Display** | The main display that shows the results of each command.
+**Response Display** | A display that shows the response message from Pawbook after a command has been executed.
+**Card Component** | Each card component represents one entity profile (i.e. Dog, Owner, Program). 
+**Command Box** | A text field for the user to enter his/her command.
 
 ### Help Page View
 
-This page helps you to better understand what each component seen on screen represents.
+This help page provides a short summary list of commands that you can use, as well as a link to this main user guide page.
 
-* Table of Contents
-{:toc}
-
+![HelpPageView](images/PawbookHelpPageView.png)
 ---
 
 ## Quick Start
@@ -146,6 +130,8 @@ If this is your first time using Pawbook, follow these simple steps to jump stra
    the database.
 
 :bulb: Please refer to the features below for details of each command.
+:heavy_exclamation_mark: Ensure that the pawbook.json file is not corrupted. If corrupted, Pawbook 
+will not be able to use the data from JSON to build the list for usage. 
 
 ----
 
@@ -155,7 +141,9 @@ In this section, you will learn about the commands available in Pawbook and how 
 
 ### Add Command
 
-Adds a **dog/owner/program** to Pawbook.
+**Function**: Adds a **dog/owner/program** to Pawbook.<br>
+**Usage**: When you want to add an entity into Pawbook, you can simply use the add command. The add command adds the new entity at the end of the current list. 
+For instance, when a new dog arrives at the school with its owner, you will need to add the owner profile and the dog profile and store it in Pawbook. 
 
 Format:
 
@@ -165,8 +153,7 @@ add owner n/OWNERNAME p/PHONE_NUMBER e/EMAIL a/ADDRESS
 add program n/PROGRAMNAME s/TIMEANDDATEOFSESSION t/TAG
 ```
 
-You can use this command to add an entity (dog/owner/program) to Pawbook.
-
+Note:
 - Different prefixes should be used for the respective entities to specify details.
 - Tags are optional.
 
@@ -181,11 +168,16 @@ Examples:
    
 :bulb: The order of the prefixes do not matter, feel free to add your information in any order that is convenient for you!
 
-![Add Command](images/AddCommandScreenshot1.png) | ![Add Command Result](images/AddCommandScreenshot2.png)
+![Add Command](images/AddCommandScreenshot1.png) ![Add Command Result](images/AddCommandScreenshot2.png)
 
 ### Delete Command
 
-Deletes a dog/owner/program from Pawbook.
+**Function**: Deletes an entity (dog/owner/program) from Pawbook. <br>
+**Usage**: When you want to delete an entity, you can use the delete command and delete the entity that you want via the ID number. 
+For instance, when a dog is no longer under your care, you can delete the dog's profile using this command. 
+
+:heavy_exclamation_mark: Take note that deleting an owner will automatically delete all the dogs that belong to that owner as well. 
+We do not allow dogs in Pawbook to not have an owner tagged to it!
 
 Format:
 
@@ -195,9 +187,8 @@ delete owner [OWNER ID]
 delete program [PROGRAM ID]
 ```
 
-You can use this command to delete an entity (dog/owner/program) from Pawbook.
+Note: 
 
-- Deletes the dog/owner/program with the given ID.
 - The ID must be a positive integer 1, 2, 3 etc
 
 Examples:
@@ -213,11 +204,14 @@ Examples:
 When a new entity is added to Pawbook, the system assigns a unique ID to each entity and is given by the first number
 of each entity in the list.
 
-![Delete Command](images/DeleteCommandScreenshot1.png) | ![Delete Command Result](images/DeleteCommandScreenshot2.png)
+![Delete Command](images/DeleteCommandScreenshot1.png) ![Delete Command Result](images/DeleteCommandScreenshot2.png)
 
 ### Edit Command
 
-Edits a dog/owner/program from Pawbook.
+**Function**: Edits a dog/owner/program from Pawbook.<br>
+**Usage**: This command allows you to edit the information of the entity (dog/owner/program) in your Pawbook. Let's say 
+you just added an entry for a dog but you realised that you filled in the owner information wrongly. The edit command 
+allows you to quickly correct that mistake.  
 
 Format:
 
@@ -227,9 +221,8 @@ edit owner o/[OWNER ID] n/[NAME] p/[PHONE] e/[EMAIL] a/[ADDRESS] [t/TAGS]...
 edit program o/[PROGRAM ID] n/[NAME] [s/SESSION]... [t/TAGS]...
 ```
 
-You can use this command to change the details of specific fields of an entity.
+Note: 
 
-- Edits the dog/owner/program with the given ID.
 - The ID must be a positive integer 1, 2, 3, ...
 - Only include the variables that need to be edited after the integer
 
@@ -242,12 +235,15 @@ Examples:
 3. Edits the program with ID 3 in Pawbook.<br>
    Command: `edit program 3 t/learn`
 
-![Edit Command](images/EditCommandScreenshot1.png) | ![Edit Command Result](images/EditCommandScreenshot2.png)
+![Edit Command](images/EditCommandScreenshot1.png) ![Edit Command Result](images/EditCommandScreenshot2.png)
 
    
 ### Enrol Command
 
-Adds a specified dog to a specified program that the dog was previously not enrolled in.
+**Function**: Adds a specified dog to a specified program that the dog was previously not enrolled in. <br>
+**Usage**: When you want to enrol a dog into a specific program, you can use this command. One instance is when after 
+a new dog Bruce has just joined the school and is enrolled for Obedience Training. You can then enrol Bruce into the 
+Obedience training program after you have added Bruce into the system. 
 
 Format:
 
@@ -255,7 +251,7 @@ Format:
 enrol d/[DOG ID] p/[PROGRAM ID]
 ```
 
-You can use this command to associate a specific dog with a specific program.
+Note: 
 
 - The dog and program must both be valid.
 
@@ -265,19 +261,20 @@ Examples:
    Program ID 3. <br> 
    Command: `enrol d/2 p/3`
    
-![Enrol Command](images/EnrolCommandScreenshot1.png) | ![Enrol Command Result](images/EnrolCommandScreenshot2.png)
+![Enrol Command](images/EnrolCommandScreenshot1.png) ![Enrol Command Result](images/EnrolCommandScreenshot2.png)
 
 ### Drop Command
 
-Removes a specified dog from a specified program that the dog was previously enrolled in.
+**Function**: Removes a specified dog from a specified program that the dog was previously enrolled in. <br>
+**Usage**: After a dog has finished a program or has dropped out of the program, you can drop him from the program using
+this command. After a dog has been dropped from the program, the program will no longer have that dog ID stored. 
 
 Format:
 ```
 drop d/[DOG ID] p/[PROGRAM ID]
 ```
 
-You can use this command to delete a specific dog from a specific program.
-
+Note:
 - The dog and program must both be valid.
 - Dog must be enrolled in the program.
 
@@ -286,18 +283,42 @@ Examples:
    Program ID 3. <br> 
    Command: `drop d/2 p/3`
    
-![Drop Command](images/DropCommandScreenshot1.png) | ![Drop Command Result](images/DropCommandScreenshot2.png)
+![Drop Command](images/DropCommandScreenshot1.png) ![Drop Command Result](images/DropCommandScreenshot2.png)
+
+### Schedule Command 
+
+**Function**: Display all programs happenings on the current day or any specified date. <br>
+**Usage**: As a busy dog school manager, this allows you to view at one glance what are the programs that are 
+lined up on any given day. 
+
+Format:
+```
+schedule [date]
+```
+Note: 
+- Date has to be specified in the `d-M-yyyy` format.
+- If no date is provided, the schedule command will display all programs that occur on the current day.
+
+Examples:
+
+1. Display the schedule for today:
+   Command: `schedule`
+2. Display the schedule for 1st April 2021:
+   Command: `schedule 1-4-2021`
+
 
 ### List Command
 
-Display entities filtered by type.
+**Function**: Display entities filtered by type.
+**Usage**: To see the three different types of entities (dog/owner/program), you can simply use this command. Let's say
+you want to see all the dogs that you are in-charge of. Simply list them and this command will provide you the full list. 
 
 Format:
 ```
 list [dog/owner/program]
 ```
 
-You can use this command to see the all the entries of the specified entity.
+Note:
 
 - At most one keyword needs to be provided
 - If no keyword is provided, i.e. `list`, then all dogs/owner/program will be displayed
@@ -309,11 +330,13 @@ Examples:
 2. List all owners.<br>
    Command: `list owner`
   
-![List Command](images/ListCommandScreenshot1.png) | ![List Command Result](images/ListCommandScreenshot2.png)
+![List Command](images/ListCommandScreenshot1.png) ![List Command Result](images/ListCommandScreenshot2.png)
 
 ### Find Command 
 
-Shows the list of search results based on one/many keywords. 
+**Function**: Shows the list of search results based on one/many keywords. 
+**Usage**: When you want to find a particular entity (dog/owner/program), you can simply find them by their name. You
+can also find multiple entities by providing multiple keywords. This may be helpful when you want to see just one specific entity profile. 
 
 Format: 
 
@@ -323,7 +346,8 @@ find [KEYWORD1] [KEYWORD2]
 find [KEYWORD1] [KEYWORD2] [KEYWORD3] 
 ```
 
-You can use this command to easily find entities related to the entered keywords.
+Note: 
+- At least one keyword is needed. 
 
 Examples: 
 
@@ -334,12 +358,15 @@ Examples:
    
 :bulb: Find is able to take in multiple keywords and returns all results as long as the name contains any one of the keywords. 
 
-![Find Command](images/FindCommandScreenshot1.png) | ![Find Command Result](images/FindCommandScreenshot2.png)
+![Find Command](images/FindCommandScreenshot1.png) ![Find Command Result](images/FindCommandScreenshot2.png)
 
 ### View Command 
 
-Views the list of all entities related to the searched entity. Used in cases when trying to find all the dogs enrolled 
-in a program or all the dogs belonging to one owner. 
+**Function**: Views the list of all entities related to the searched entity. <br>
+**Usage**: When you want to have a more detailed view of a particular entity (dog/owner/program), you can use this command
+to see more details. At the top entry, it will be the profile of the entity you want to view. This is followed by the 
+all its related entities. For instance, when you view Bruce the dog, you will first see the his profile, followed by his 
+owner's profile and finally all the programs that Bruce is enrolled in. 
 
 ```
 view [ENTITY ID] 
@@ -356,21 +383,33 @@ Examples:
 3. If entity 3 is a program, a list of the program with Program ID 3 and all the dogs enrolled in this program will be displayed. <br>
    Command: `view 3`
 
-![View Command](images/ViewCommandScreenshot1.png) | ![View Command Result](images/ViewCommandScreenshot2.png)
+![View Command](images/ViewCommandScreenshot1.png) ![View Command Result](images/ViewCommandScreenshot2.png)
 
 ### Help Command
 
-If you are unsure about how to use Pawbook, execute the `help` command to view a complete list of application instructions.
+**Function**: Shows the help page. <br>
+**Usage**: If you are unsure about how to use Pawbook, execute this help command to view a complete list of application 
+instructions.
 
-Format: `help`
+Format: 
+```
+help
+```
 
-![Help Command](images/HelpCommandScreenshot1.png) | ![Help Command Result](images/HelpCommandScreenshot2.png)
+![Help Command](images/HelpCommandScreenshot1.png) ![Help Command Result](images/HelpCommandScreenshot2.png)
 
 ### Exit Command
 
+**Function**: Exit Program. <br>
+**Usage**: It's the end of the day and you want to close Pawbook. Simply use this command to exit. The data will be 
+automatically saved upon exit and will be ready for use the next time you reopen Pawbook. 
+
 Pawbook automatically saves the existing information of the dogs and will close the program.
 
-Format: `exit`
+Format: 
+```
+exit
+```
 
 ![Exit Command](images/ExitCommandScreenshot.png)
 
@@ -407,11 +446,13 @@ Action | Format
 --------|------------------
 **Add** | 1. `add dog n/DOGNAME b/BREED d/DATE OF BIRTH s/SEX o/OWNERID t/TAG`<br> 2. `add owner n/OWNERNAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]...`<br> 3. `add  program n/NAME [s/DATE OF SESSION]... [t/tag]...`
 **Delete** | 1. `delete dog d/DOGID`<br> 2. `delete owner o/OWNERID`<br> 3. `delete program p/PROGRAMID`
+**Edit** | 1. `edit dog d/[DOG ID] n/[NAME] b/[BREED] d/[DATEOFBIRTH] s/[SEX] o/[OWNERID] [t/TAGS]...`<br> 2. `edit owner o/[OWNER ID] n/[NAME] p/[PHONE] e/[EMAIL] a/[ADDRESS] [t/TAGS]...`<br> 3. `edit program o/[PROGRAM ID] n/[NAME] [s/SESSION]... [t/TAGS]...`
 **Enrol** | `enrol d/[DOG ID] p/[PROGRAM ID]`
 **Drop** | `drop d/[DOG ID] p/[PROGRAM ID]`
 **List** | `list [dog/owner/program]`
 **Find** | `find [keyword1] [keyword2] [keyword3] ...`
 **View** | `view [ID number]`
+**Schedule** | `schedule [DATE]`
 **Help** | `help`
 **Exit** | `exit`
 

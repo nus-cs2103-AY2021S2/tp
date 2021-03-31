@@ -15,14 +15,14 @@ import static java.util.Objects.requireNonNull;
 import dog.pawbook.logic.commands.exceptions.CommandException;
 import dog.pawbook.model.Model;
 import dog.pawbook.model.managedentity.Entity;
+import dog.pawbook.model.managedentity.IdMatchPredicate;
 import dog.pawbook.model.managedentity.dog.Dog;
 import dog.pawbook.model.managedentity.owner.Owner;
 import dog.pawbook.model.managedentity.program.Program;
 
 public abstract class AddCommand<T extends Entity> extends Command {
     public static final String COMMAND_WORD = "add";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a owner/dog/program to the database. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a owner/dog/program to the database. \n"
             + "Example for Owner: " + COMMAND_WORD + " " + Owner.ENTITY_WORD + " "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
@@ -40,8 +40,6 @@ public abstract class AddCommand<T extends Entity> extends Command {
             + PREFIX_NAME + "NAME "
             + PREFIX_SESSION + "SESSION "
             + "[" + PREFIX_TAG + "TAG]...";
-
-
     public static final String MESSAGE_SUCCESS_FORMAT = "New %s added: ";
 
     protected final T toAdd;
@@ -52,20 +50,21 @@ public abstract class AddCommand<T extends Entity> extends Command {
     }
 
     /**
-     * Execute the adding of the entity into the model.
+     * Executes the adding of the entity into the model.
+     *
      * @param model {@code Model} which the command should operate on.
      * @throws CommandException if entity already exists in the model.
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
         executeAdd(model);
         return new CommandResult(getSuccessMessage());
     }
 
     /**
-     * Add the new entity into the model.
+     * Adds the new entity into the model.
+     *
      * @param model {@code Model} which the command should operate on.
      * @return ID of the newly added entity.
      * @throws CommandException if entity already exists in the model.
@@ -74,8 +73,9 @@ public abstract class AddCommand<T extends Entity> extends Command {
         if (model.hasEntity(toAdd)) {
             throw new CommandException(getDuplicateMessage());
         }
-
-        return model.addEntity(toAdd);
+        int addedEntityId = model.addEntity(toAdd);
+        model.updateFilteredEntityList(new IdMatchPredicate(addedEntityId));
+        return addedEntityId;
     }
 
     protected abstract String getSuccessMessage();

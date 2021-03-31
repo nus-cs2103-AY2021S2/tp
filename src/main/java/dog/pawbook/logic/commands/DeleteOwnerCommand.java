@@ -50,6 +50,9 @@ public class DeleteOwnerCommand extends DeleteCommand {
 
         // then actually delete the owner
         model.deleteEntity(targetId);
+
+        filteredListShowAllAscendingId(model);
+
         return new CommandResult(MESSAGE_SUCCESS + ownerToDelete);
     }
 
@@ -61,6 +64,7 @@ public class DeleteOwnerCommand extends DeleteCommand {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DeleteOwnerCommand && targetId.equals(((DeleteOwnerCommand) other).targetId));
+                || (other instanceof DeleteOwnerCommand
+                && targetId.equals(((DeleteOwnerCommand) other).targetId));
     }
 }

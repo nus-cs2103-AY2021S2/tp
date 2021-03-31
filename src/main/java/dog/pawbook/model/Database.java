@@ -2,6 +2,7 @@ package dog.pawbook.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Comparator;
 import java.util.List;
 
 import dog.pawbook.model.managedentity.Entity;
@@ -37,7 +38,7 @@ public class Database implements ReadOnlyDatabase {
         resetData(toBeCopied);
     }
 
-    //// list overwrite operations
+    // list overwrite operations
 
     /**
      * Replaces the contents of the entity list with {@code owners}.
@@ -123,7 +124,7 @@ public class Database implements ReadOnlyDatabase {
         return entities.validateReferences();
     }
 
-    //// util methods
+    // util methods
 
     @Override
     public String toString() {
@@ -134,6 +135,13 @@ public class Database implements ReadOnlyDatabase {
     @Override
     public ObservableList<Pair<Integer, Entity>> getEntityList() {
         return entities.asUnmodifiableObservableList();
+    }
+
+    /**
+     * Calls the internal list to sort.
+     */
+    public void sortEntities(Comparator<Pair<Integer, Entity>> comparator) {
+        entities.sortEntitiesBy(comparator);
     }
 
     @Override

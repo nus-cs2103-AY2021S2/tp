@@ -55,7 +55,7 @@ public abstract class Entity {
     /**
      * Returns an array of properties that should be displayed.
      */
-    public abstract String[] getOtherPropertiesAsString();
+    public abstract Collection<String> getOtherPropertiesAsString();
 
     /**
      * Returns an array of IDs that are closely related to the entity.

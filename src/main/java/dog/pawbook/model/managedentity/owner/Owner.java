@@ -8,6 +8,8 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.Vector;
+import java.util.stream.Collectors;
 
 import dog.pawbook.model.managedentity.Entity;
 import dog.pawbook.model.managedentity.Name;
@@ -88,8 +90,17 @@ public class Owner extends Entity {
     }
 
     @Override
-    public String[] getOtherPropertiesAsString() {
-        return new String[] {phone.value, address.value, email.value};
+    public Collection<String> getOtherPropertiesAsString() {
+        Collection<String> properties = new Vector<>();
+        properties.add("Phone: " + phone.value);
+        properties.add("Address: " + address.value);
+        properties.add("Email: " + email.value);
+        if (!dogidSet.isEmpty()) {
+            properties.add(dogidSet.stream()
+                    .map(String::valueOf)
+                    .collect(Collectors.joining(", ", "ID of Dog(s) owned: ", "")));
+        }
+        return properties;
     }
 
     @Override

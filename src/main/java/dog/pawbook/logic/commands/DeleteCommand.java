@@ -1,5 +1,7 @@
 package dog.pawbook.logic.commands;
 
+import static dog.pawbook.model.Model.COMPARATOR_ID_ASCENDING_ORDER;
+import static dog.pawbook.model.Model.PREDICATE_SHOW_ALL_ENTITIES;
 import static java.util.Objects.requireNonNull;
 
 import java.util.NoSuchElementException;
@@ -15,11 +17,11 @@ public abstract class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE =
-            COMMAND_WORD + ": Deletes the owner/dog/program identified by ID.\n"
+            COMMAND_WORD + ": Deletes the owner/dog/program identified by ID. \n"
             + "Parameters: ID (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " " + Owner.ENTITY_WORD + " 1\n"
             + "Example: " + COMMAND_WORD + " " + Dog.ENTITY_WORD + " 2\n"
-            + "Example: " + COMMAND_WORD + " " + Program.ENTITY_WORD + "3";
+            + "Example: " + COMMAND_WORD + " " + Program.ENTITY_WORD + " 3";
 
     public static final String MESSAGE_DELETE_SUCCESS_FORMAT = "Deleted %s: ";
 
@@ -30,7 +32,6 @@ public abstract class DeleteCommand extends Command {
      */
     public DeleteCommand(Integer id) {
         requireNonNull(id);
-
         this.targetId = id;
     }
 
@@ -48,6 +49,14 @@ public abstract class DeleteCommand extends Command {
             throw new CommandException(getInvalidIdMessage());
         }
         return entityToDelete;
+    }
+
+    /**
+     * Updates the filtered list and sorts it in the desired order.
+     */
+    protected final void filteredListShowAllAscendingId(Model model) {
+        model.updateFilteredEntityList(PREDICATE_SHOW_ALL_ENTITIES);
+        model.sortEntities(COMPARATOR_ID_ASCENDING_ORDER);
     }
 
     protected abstract String getInvalidIdMessage();

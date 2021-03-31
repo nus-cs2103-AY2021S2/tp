@@ -39,7 +39,7 @@ class JsonAdaptedSession {
      * @throws IllegalValueException if there were any data constraints violated in the adapted session.
      */
     public Session toModelType() throws IllegalValueException {
-        if (!Session.isValidDate(session)) {
+        if (!Session.isValidDateTime(session)) {
             throw new IllegalValueException(Session.MESSAGE_CONSTRAINTS);
         }
         return new Session(session);

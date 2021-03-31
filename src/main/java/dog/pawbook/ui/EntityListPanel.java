@@ -1,8 +1,5 @@
 package dog.pawbook.ui;
 
-import java.util.logging.Logger;
-
-import dog.pawbook.commons.core.LogsCenter;
 import dog.pawbook.model.managedentity.Entity;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -16,7 +13,6 @@ import javafx.util.Pair;
  */
 public class EntityListPanel extends UiPart<Region> {
     private static final String FXML = "EntityListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(EntityListPanel.class);
 
     @FXML
     private ListView<Pair<Integer, Entity>> entityListView;
@@ -31,7 +27,7 @@ public class EntityListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Owner} using a {@code OwnerCard}.
+     * Custom {@code ListCell} that displays the graphics of an {@code Entity} using a {@code EntityCard}.
      */
     class EntityListViewCell extends ListCell<Pair<Integer, Entity>> {
         @Override

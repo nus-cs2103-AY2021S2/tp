@@ -54,6 +54,9 @@ public class DeleteDogCommand extends DeleteCommand {
 
         // then actually delete the dog
         model.deleteEntity(targetId);
+
+        filteredListShowAllAscendingId(model);
+
         return new CommandResult(MESSAGE_SUCCESS + dogToDelete);
     }
 
@@ -62,6 +65,7 @@ public class DeleteDogCommand extends DeleteCommand {
                 .filter(idEntityPair -> idEntityPair.getValue() instanceof Program)
                 .filter(idEntityPair -> ((Program) idEntityPair.getValue()).getDogIdSet().contains(targetId))
                 .collect(toList());
+
         for (Pair<Integer, Entity> pair : relatedPrograms) {
             int programId = pair.getKey();
             Program program = (Program) pair.getValue();
@@ -82,6 +86,6 @@ public class DeleteDogCommand extends DeleteCommand {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DeleteDogCommand // instanceof handles nulls
-                        && targetId.equals(((DeleteDogCommand) other).targetId)); // state check
+                && targetId.equals(((DeleteDogCommand) other).targetId)); // state check
     }
 }

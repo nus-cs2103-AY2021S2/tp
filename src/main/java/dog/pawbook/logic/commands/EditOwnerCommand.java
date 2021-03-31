@@ -85,7 +85,8 @@ public class EditOwnerCommand extends EditEntityCommand {
         Address updatedAddress = editOwnerDescriptor.getAddress().orElse(ownerToEdit.getAddress());
         Set<Tag> updatedTags = editOwnerDescriptor.getTags().orElse(ownerToEdit.getTags());
 
-        return new Owner(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Owner(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags,
+                ownerToEdit.getDogIdSet());
     }
 
     public static class EditOwnerDescriptor extends EditEntityDescriptor {

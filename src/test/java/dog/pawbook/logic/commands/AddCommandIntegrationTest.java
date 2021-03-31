@@ -12,6 +12,7 @@ import dog.pawbook.model.Model;
 import dog.pawbook.model.ModelManager;
 import dog.pawbook.model.UserPrefs;
 import dog.pawbook.model.managedentity.Entity;
+import dog.pawbook.model.managedentity.IdMatchPredicate;
 import dog.pawbook.model.managedentity.owner.Owner;
 import dog.pawbook.testutil.OwnerBuilder;
 
@@ -32,7 +33,8 @@ public class AddCommandIntegrationTest {
         Owner validOwner = new OwnerBuilder().build();
 
         Model expectedModel = new ModelManager(model.getDatabase(), new UserPrefs());
-        expectedModel.addEntity(validOwner);
+        int id = expectedModel.addEntity(validOwner);
+        expectedModel.updateFilteredEntityList(new IdMatchPredicate(id));
 
         assertCommandSuccess(new AddOwnerCommand(validOwner), model,
                 AddOwnerCommand.MESSAGE_SUCCESS + validOwner, expectedModel);
