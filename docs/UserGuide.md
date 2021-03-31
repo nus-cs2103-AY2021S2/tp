@@ -215,14 +215,14 @@ This subsection serves to list out the parameters used in this document. We have
 This section contains documentation on CoLAB's features and commands.
 
 It is split into 4 subsections,
-* [Projects](#projects)
-    * [Todos](#todos)
-    * [Deadlines](#deadlines)
-    * [Events](#events)
-    * [Groupmates](#groupmates)
-* [Contacts](#contacts)
-* [Navigating the UI](#navigating-the-ui)
-* [Others](#others)
+* [Projects](#41-projects)
+    * [Todos](#411-todos)
+    * [Deadlines](#412-deadlines)
+    * [Events](#413-events)
+    * [Groupmates](#414-groupmates)
+* [Contacts](#42-contacts)
+* [Navigating the UI](#43-navigating-the-ui)
+* [Others](#44-others)
 
 ### **4.1 Projects**
 
