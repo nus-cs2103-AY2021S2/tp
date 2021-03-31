@@ -2,7 +2,6 @@ package seedu.address.model.garment;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.io.IOException;
 import java.time.LocalDate;
 import java.util.*;
 
