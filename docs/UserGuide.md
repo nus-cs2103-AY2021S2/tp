@@ -22,6 +22,7 @@ Donavan Lim, Marcus Lee Eugene, Chong Sidney, Dinesh S/O Magesvaran, Prabhakaran
         * help
         * view
         * revise
+        * edit
     * Command Summary
     * UI mock-up
 
@@ -170,7 +171,7 @@ Example:
 
     findall clementi fastfood 5/5 $9
 
-### View a specific entry
+### View a specific entry: `view`
 
 Opens up a window, showing the details of a specified entry in a full expanded view. Allows the user to read through
  reviews that are too lengthy to be shown in the main UI window.
@@ -184,8 +185,9 @@ Parameter:
 Example: (Refer to View Window Ui in Appendix)
 
     view 1
+![View Window UI](images/ViewWindowUi.png)
 
-### View all the food reviews : `list`
+### List all the food reviews : `list`
 
 Opens up a window to show a condensed form of all the different commands,
  and parameters of the commands,
@@ -199,10 +201,18 @@ Example: (Refer to Help Window in Appendix)
 
     help
 
-### Revise a specific entry
+### Revise a specific entry `revise`
 
-Opens up a window, showing the existing details of an entry and allowing for quick corrections and updates without
- requiring the use of prefixes and command syntax in the UI.
+Opens up a window, showing the existing details of an entry and allows for quick corrections and updates without 
+requiring the use of prefixes and command syntax in the UI. 
+
+Use `TAB` key to iterate through fields, `Ctrl + S` (Windows) or `Command + S` (Mac) to save, `ESC` key to quickly 
+exit the revise window.
+
+Note:
+- Leave a white-space between categories to separate them
+- Leave a white-space between schools to separate them
+- Leave a blank line to differentiate between each reviews
 
 Format: `revise <INDEX>`
 
@@ -214,6 +224,27 @@ Example:
 
     revise 1
 
+![Revise Window UI](images/ReviseWindowUi.png)
+
+### Editing a specific entry `edit`
+
+Edits the details of the entry specified. Existing values will be overwritten by the new values.
+
+Format: `edit <INDEX> n/<RESTAURANT NAME> ra/<RATING> p/<PRICE> re/<REVIEW> a/<ADDRESS> c/<CATEGORIES> s/<SCHOOLS>`
+
+Parameters:
+
+1. `Restaurant Name`
+2. `Rating`
+3. `Price`
+3. `Address`
+4. `Review`
+5. `Categories (tag)`
+6. `Schools (tag)`
+
+Example:
+
+    edit 1 ra/5 p/7 re/I like this food a lot! a/Science c/Indian c/Halal s/Ventus
 -------------------------------------------------------------------------------------
 
 ## Command summary
@@ -229,17 +260,13 @@ Action | Format, Examples
 **Help** | `help`
 **View** |`view <INDEX>` <br> e.g `view 1`
 **Revise** |`revise <INDEX>` <br> e.g `revise 1`
+**Edit** |`edit <INDEX> n/<RESTAURANT NAME> ra/<RATING> p/<PRICE> re/<REVIEW> a/<ADDRESS> c/<CATEGORIES> s/<SCHOOLS>` <br> e.g `edit 1 ra/5 p/7 re/I like this food a lot! a/Science c/Indian c/Halal s/Ventus`
 
-## <center> Appendix </center>
-
-### Main Window UI
-
+### UI mock-up
 ![Main Window UI](images/Ui.png)
 
 ### Help Window UI
-
 ![Help Window UI](images/HelpWindowUi.png)
 
-### View Window UI
 
-![View Window UI](images/ViewWindowUi.png)
+
