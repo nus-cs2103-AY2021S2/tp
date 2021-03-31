@@ -46,6 +46,8 @@ public class FeeUtil {
         SessionDate endDate = new SessionDate(endPeriod.minusDays(1));
         int numOfSession = recurringSession.numOfSessionBetween(startDate, endDate);
 
+        assert numOfSession >= 0 : "Number of session cannot be less than 0";
+
         // Ensures that there is more than 0 session, so we can get the fees accordingly
         if (numOfSession > 0) {
             return recurringSession.getFee().getFee() * numOfSession;
