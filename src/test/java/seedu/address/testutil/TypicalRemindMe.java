@@ -96,7 +96,23 @@ public class TypicalRemindMe {
      */
     public static RemindMe getTypicalRemindMe() {
         RemindMe mp = new RemindMe();
-        mp.addModule(MOD_1);
+        mp.addModule(new ModuleBuilder(MOD_1).build());
+        mp.addModule(new ModuleBuilder(MOD_2).build());
+
+        for (Person person : getTypicalPersons()) {
+            mp.addPerson(person);
+        }
+
+        return mp;
+    }
+
+    /**
+     * Returns an {@code RemindMe} with all the typical persons.
+     */
+    public static RemindMe getTypicalRemindMeWithFilledModules() {
+        RemindMe mp = new RemindMe();
+        mp.addModule(new ModuleBuilder(MOD_1_WITH_ASSIGNMENTS).build());
+        mp.addModule(new ModuleBuilder(MOD_2).withExams(VALID_EXAM_DATETIME_1, VALID_EXAM_DATETIME_2).build());
 
         for (Person person : getTypicalPersons()) {
             mp.addPerson(person);

@@ -27,7 +27,7 @@ public class EditExamCommand extends EditCommand {
             + PREFIX_DATE + "22/03/2021 2359";
 
     public static final String MESSAGE_SUCCESS = "Exam edited: %1$s";
-    public static final String MESSAGE_NO_MODULE = "This module does not exists in RemindMe";
+    public static final String MESSAGE_NO_MODULE = "This module does not exist in RemindMe";
     public static final String MESSAGE_NO_EXAM = "This module does not contain any exam at this index.";
     public static final String MESSAGE_NO_CHANGE = "The input given does not change anything!";
     public static final String MESSAGE_NO_VALID_CHANGES = "Please input a valid edit.";
@@ -87,11 +87,20 @@ public class EditExamCommand extends EditCommand {
 
     @Override
     public boolean equals(Object other) {
+        if (!(other instanceof EditExamCommand)) {
+            return false;
+        }
+        boolean sameEdit;
+        if (isNull(edit)) {
+            sameEdit = isNull(((EditExamCommand) other).edit);
+        } else {
+            sameEdit = edit.equals(((EditExamCommand) other).edit);
+        }
         return other == this
-                || (other instanceof EditAssignmentCommand)
+                || other instanceof EditExamCommand
                 && module.equals(((EditExamCommand) other).module)
                 && toEditIndex == ((EditExamCommand) other).toEditIndex
-                && edit.equals(((EditExamCommand) other).edit);
+                && sameEdit;
     }
 }
 

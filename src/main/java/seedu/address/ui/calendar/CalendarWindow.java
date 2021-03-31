@@ -1,5 +1,7 @@
 package seedu.address.ui.calendar;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.time.LocalDate;
 import java.time.Year;
 import java.time.YearMonth;
@@ -75,6 +77,7 @@ public class CalendarWindow extends UiPart<Stage> {
      */
     public CalendarWindow(CalendarStorage calendarStorage, UpcomingSchedule upcomingSchedule) {
         super(FXML);
+        requireAllNonNull(calendarStorage, upcomingSchedule);
         this.todayDate = LocalDate.now();
         this.day = todayDate.getDayOfMonth();
         this.month = todayDate.getMonthValue();

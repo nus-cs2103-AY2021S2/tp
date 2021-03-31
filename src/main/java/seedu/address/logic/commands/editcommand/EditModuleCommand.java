@@ -20,7 +20,7 @@ public class EditModuleCommand extends EditCommand {
             + PREFIX_MODULE + "CS2103T";
 
     public static final String MESSAGE_SUCCESS = "Module edited: %1$s";
-    public static final String MESSAGE_NO_MODULE = "This module does not exists in RemindMe";
+    public static final String MESSAGE_NO_MODULE = "This module does not exist in RemindMe";
     public static final String MESSAGE_DUPLICATE_MODULE = "This module already exists in RemindMe";
 
     private final int toEdit;

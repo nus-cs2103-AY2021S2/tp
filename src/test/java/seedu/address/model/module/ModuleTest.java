@@ -20,87 +20,92 @@ import seedu.address.model.tag.Tag;
 import seedu.address.testutil.typicalmodules.ModuleBuilder;
 
 public class ModuleTest {
-    private Assignment assignment1 = new Assignment(new Description(VALID_ASSIGNMENT_DESCRIPTION_1),
+    private final Assignment assignment1 = new Assignment(new Description(VALID_ASSIGNMENT_DESCRIPTION_1),
             DATE_1, new Tag("MOD1"));
-    private Assignment assignment2 = new Assignment(new Description(VALID_ASSIGNMENT_DESCRIPTION_2),
+    private final Assignment assignment2 = new Assignment(new Description(VALID_ASSIGNMENT_DESCRIPTION_2),
             DATE_2, new Tag("MOD2"));
-    private Exam exam1 = new Exam(DATE_1, new Tag("MOD1"));
-    private Exam exam2 = new Exam(DATE_2, new Tag("MOD2"));
+    private final Exam exam1 = new Exam(DATE_1, new Tag("MOD1"));
+    private final Exam exam2 = new Exam(DATE_2, new Tag("MOD2"));
 
     @Test
     public void isSameModule() {
+        Module mod1 = new ModuleBuilder(MOD_1).build();
         // same instance -> returns true
-        assertTrue(MOD_1.isSameModule(MOD_1));
+        assertTrue(mod1.isSameModule(mod1));
 
         // null -> returns false
-        assertFalse(MOD_1.isSameModule(null));
+        assertFalse(mod1.isSameModule(null));
 
         // same title, all other attributes are different -> returns true
         Module moduleCompared = new ModuleBuilder(MOD_1)
                 .withAssignments(VALID_ASSIGNMENT_DESCRIPTION_1, VALID_ASSIGNMENT_DESCRIPTION_2)
                 .withExams(VALID_EXAM_DATETIME_1, VALID_EXAM_DATETIME_2).build();
-        assertTrue(MOD_1.isSameModule(moduleCompared));
+        assertTrue(mod1.isSameModule(moduleCompared));
 
         // different title, but all other attributes are similar -> returns false
         moduleCompared = new ModuleBuilder(MOD_1).withTitle(VALID_TITLE_CS2101).build();
-        assertFalse(MOD_1.isSameModule(moduleCompared));
+        assertFalse(mod1.isSameModule(moduleCompared));
 
         // title is lowered case, all other attributes are the same -> returns false
         moduleCompared = new ModuleBuilder(MOD_1)
                 .withTitle(VALID_TITLE_CS2103.toLowerCase()).build();
-        assertFalse(MOD_1.isSameModule(moduleCompared));
+        assertFalse(mod1.isSameModule(moduleCompared));
 
         // title has whitespaces trailing, all other attributes are the same -> returns false
         String titleWithTrailingSpaces = VALID_TITLE_CS2103 + "    ";
         moduleCompared = new ModuleBuilder(MOD_1).withTitle(titleWithTrailingSpaces).build();
-        assertFalse(MOD_1.isSameModule(moduleCompared));
+        assertFalse(mod1.isSameModule(moduleCompared));
     }
 
     @Test
     public void equals() {
+        Module mod1 = new ModuleBuilder(MOD_1).build();
+        Module mod2 = new ModuleBuilder(MOD_2).build();
         // same instance -> returns true
-        assertTrue(MOD_1.equals(MOD_1));
+        assertTrue(mod1.equals(mod1));
 
         // same attributes -> returns true
         Module moduleCompared = new ModuleBuilder(MOD_1).build();
-        assertTrue(MOD_1.equals(moduleCompared));
+        assertTrue(mod1.equals(moduleCompared));
 
         // null -> returns false
-        assertFalse(MOD_1.equals(null));
+        assertFalse(mod1.equals(null));
 
         // different class -> returns false
-        assertFalse(MOD_1.equals("HI"));
+        assertFalse(mod1.equals("HI"));
 
         // different module -> returns false
-        assertFalse(MOD_1.equals(MOD_2));
+        assertFalse(mod1.equals(mod2));
 
         // different title -> returns false
         moduleCompared = new ModuleBuilder(MOD_1).withTitle(VALID_TITLE_CS2101).build();
-        assertFalse(MOD_1.equals(moduleCompared));
+        assertFalse(mod1.equals(moduleCompared));
 
         // different assignments -> return false
         moduleCompared = new ModuleBuilder(MOD_1)
                 .withAssignments(VALID_ASSIGNMENT_DESCRIPTION_1).build();
-        assertFalse(MOD_1.equals(moduleCompared));
+        assertFalse(mod1.equals(moduleCompared));
 
         // different exams -> return false
         moduleCompared = new ModuleBuilder(MOD_1)
                 .withExams(VALID_EXAM_DATETIME_1).build();
-        assertFalse(MOD_1.equals(moduleCompared));
+        assertFalse(mod1.equals(moduleCompared));
     }
 
     @Test
     public void editTitle() {
+        Module mod1 = new ModuleBuilder(MOD_1).build();
+        Module mod2 = new ModuleBuilder(MOD_2).build();
         // same title -> returns true
-        assertTrue(MOD_1.equals(MOD_1));
+        assertTrue(mod1.equals(mod1));
 
         // different title -> returns false
         Module moduleCompared = new ModuleBuilder(MOD_1).build();
         moduleCompared.editTitle(new Title("MOD 2"));
-        assertFalse(MOD_1.equals(moduleCompared));
+        assertFalse(mod1.equals(moduleCompared));
 
         // same title after changing -> returns true
-        assertTrue(MOD_2.equals(moduleCompared));
+        assertTrue(mod2.equals(moduleCompared));
     }
 
     @Test
@@ -141,6 +146,27 @@ public class ModuleTest {
 
         // does not have the assignment -> returns false
         assertFalse(copyMod2.hasAssignment(assignment2));
+
+        // index------------------------------------------------
+        Module copyMod1 = new ModuleBuilder(MOD_1).emptyBuild();
+
+        // empty list -> returns false
+        assertFalse(copyMod1.hasAssignment(0));
+
+        // one assignment in the list -> returns true
+        copyMod1.addAssignment(assignment2);
+        assertTrue(copyMod1.hasAssignment(1));
+
+        // index <= 0 -> returns false
+        assertFalse(copyMod1.hasAssignment(0));
+        assertFalse(copyMod1.hasAssignment(-2));
+
+        // index = size of assignment list -> returns true
+        assertTrue(copyMod1.hasAssignment(1));
+
+        // index > size of assignment list -> returns false
+        assertFalse(copyMod1.hasAssignment(2));
+        assertFalse(copyMod1.hasAssignment(5));
     }
 
     @Test
@@ -155,6 +181,27 @@ public class ModuleTest {
 
         // does not have exam -> returns false
         assertFalse(copyMod2.hasExam(exam1));
+
+        // index------------------------------------------------
+        Module copyMod1 = new ModuleBuilder(MOD_1).emptyBuild();
+
+        // empty list -> returns false
+        assertFalse(copyMod1.hasExam(0));
+
+        // one assignment in the list -> returns true
+        copyMod1.addExam(exam1);
+        assertTrue(copyMod1.hasExam(1));
+
+        // index <= 0 -> returns false
+        assertFalse(copyMod1.hasExam(0));
+        assertFalse(copyMod1.hasExam(-2));
+
+        // index = size of assignment list -> returns true
+        assertTrue(copyMod1.hasExam(1));
+
+        // index > size of assignment list -> returns false
+        assertFalse(copyMod1.hasExam(2));
+        assertFalse(copyMod1.hasExam(5));
     }
 
     @Test
@@ -231,13 +278,69 @@ public class ModuleTest {
 
     @Test
     public void compareTo() {
+        Module mod1 = new ModuleBuilder(MOD_1).build();
+        Module mod2 = new ModuleBuilder(MOD_2).build();
         // same module -> returns 0
-        assertEquals(0, MOD_1.compareTo(MOD_1));
+        assertEquals(0, mod1.compareTo(mod1));
 
         // different titles -> return -1
-        assertTrue(MOD_1.compareTo(MOD_2) == -1);
+        assertEquals(-1, mod1.compareTo(mod2));
 
         // different titles -> return 1
-        assertTrue(MOD_2.compareTo(MOD_1) == 1);
+        assertEquals(mod2.compareTo(mod1), 1);
+    }
+
+    @Test
+    public void toggleAssignmentDoneStatus() {
+        Module mod1 = new ModuleBuilder(MOD_1).emptyBuild();
+        Module mod2 = new ModuleBuilder(MOD_1).emptyBuild();
+
+        mod1.addAssignment(new Assignment(assignment1.description, assignment1.deadline,
+                new Tag("Test"), false));
+        mod2.addAssignment(new Assignment(assignment1.description, assignment1.deadline,
+                new Tag("Test"), true));
+
+        // toggle assignment done at index 0
+        mod1.toggleAssignmentDoneStatus(0);
+        assertEquals(mod1, mod2);
+    }
+
+    @Test
+    public void editAssignment() {
+        // for description --------------------------------------------------------------
+        Module mod1 = new ModuleBuilder(MOD_1).emptyBuild();
+        Module mod2 = new ModuleBuilder(MOD_1).emptyBuild();
+        mod1.addAssignment(new Assignment(assignment1.description, assignment1.deadline,
+                new Tag("Test")));
+        mod2.addAssignment(new Assignment(assignment2.description, assignment1.deadline,
+                new Tag("Test")));
+
+        // edit assignment description at index 0
+        mod1.editAssignment(0, assignment2.description);
+        assertEquals(mod1, mod2);
+
+        // for date --------------------------------------------------------------------
+        mod1 = new ModuleBuilder(MOD_2).emptyBuild();
+        mod2 = new ModuleBuilder(MOD_2).emptyBuild();
+        mod1.addAssignment(new Assignment(assignment1.description, assignment1.deadline,
+                new Tag("Test")));
+        mod2.addAssignment(new Assignment(assignment1.description, assignment2.deadline,
+                new Tag("Test")));
+
+        // edit assignment date at index 0
+        mod2.editAssignment(0, assignment1.deadline);
+        assertEquals(mod1, mod2);
+    }
+
+    @Test
+    public void editExam() {
+        Module mod1 = new ModuleBuilder(MOD_1).emptyBuild();
+        Module mod2 = new ModuleBuilder(MOD_1).emptyBuild();
+        mod1.addExam(new Exam(exam1.examDate, new Tag("TEST")));
+        mod2.addExam(new Exam(exam2.examDate, new Tag("TEST")));
+
+        // edit exam date at index 0
+        mod1.editExam(0, exam2.examDate);
+        assertEquals(mod1, mod2);
     }
 }
