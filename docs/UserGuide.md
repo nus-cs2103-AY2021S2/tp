@@ -555,11 +555,25 @@ CoLAB's data is saved as a JSON file `[JAR file location]/data/colab.json`. Adva
 If your changes to the data file makes its format invalid, CoLAB will discard all data and start with an empty data file at the next run.
 </div>
 
-### **4.5 Coming soon**
+#### Undoing previous command : `undo`
 
-#### Undo/Redo `[coming soon]`
+Restores colab to the state before the previous undoable command was executed.
 
-_Details coming soon ..._
+Format: `undo'
+
+* Undoable commands are start with `add`, `update` or `delete`.
+* All other commands are not undoable.
+
+Example:
+
+* `deleteP 1` Deletes the first project in the list.
+* `undo` Reverses the `deleteP 1` command. 
+
+#### Redoing previous command : `redo`
+
+Reverses the most recent undo command.
+
+Format: `redo'
 
 --------------------------------------------------------------------------------------------------------------------
 
