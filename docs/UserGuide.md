@@ -25,6 +25,7 @@ FlashBack is a **desktop application for managing notes, optimized for use via a
         * [Sorting all flashcards](#sorting-all-flashcards-sort): `sort`
         * [Entering review mode](#entering-review-mode-review): `review`
         * [Viewing statistics of cards](#viewing-statistics-of-cards-stats): `stats`
+        * [Adding a new alias](#adding-a-new-alias-alias): `alias`
         * [Exiting the program](#exiting-the-program--exit): `exit`
         * [Saving data](#saving-the-data)
         * [Editing the data file](#editing-the-data-file)
@@ -358,6 +359,26 @@ Examples:
 
 ![UiStats](./images/UiStatsNoIndex.png) <br><br>
 
+### Adding a new alias: `alias`
+Define an alias for a command in FlashBack.
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Note:** You can only add alias for Main mode commands.
+
+</div>
+
+Format: `alias cmd/COMMAND al/ALIAS` <br>
+
+Examples:
+
+`alias cmd/delete al/d` creates an alias `d` for command `delete`.
+
+![UiNewDeleteAlias](./images/UiNewDeleteAlias.png) <br><br>
+
+`d 1` shows the usage of alias `d`.
+
+![UiUseDeleteAlias](./images/UiUseDeleteAlias.png) <br><br>
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -476,6 +497,7 @@ Action | Format, Examples
 **Sort** | `sort OPTION ORDER` <br> e.g. `sort priority -a`
 **Review** | `review`
 **Statistics** | `stats [INDEX]` <br> e.g. `stats 4`, `stats`
+**Alias** | `alias cmd/COMMAND al/ALIAS` <br> e.g. `alias cmd/add al/a`, `alias cmd/delete al/a`
 **List** | `list`
 **Help** | `help`
 **Exit** | `exit`
