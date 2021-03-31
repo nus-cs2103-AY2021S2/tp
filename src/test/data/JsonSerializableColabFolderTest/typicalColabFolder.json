@@ -51,17 +51,17 @@
       "time" : "20:00",
       "isWeekly" : true
     } ],
-    "todoList" : [ {
-      "description" : "Update documentation",
-      "isDone" : true
-    }, {
-      "description" : "Finish add command",
-      "isDone" : false
-    }, {
+    "todoList" : [{
       "description" : "Add unit tests",
       "isDone" : false
     }, {
       "description" : "Brainstorm new feature",
+      "isDone" : false
+    }, {
+      "description" : "Finish add command",
+      "isDone" : true
+    }, {
+      "description" : "Update documentation",
       "isDone" : false
     } ],
     "deadlineList" : [ {
@@ -118,14 +118,14 @@
       "isWeekly" : false
     } ],
     "todoList" : [ {
-      "description" : "Split Workload",
-      "isDone" : true
-    }, {
       "description" : "Do up slides for pitch",
       "isDone" : false
     }, {
       "description" : "Do up video for demo",
       "isDone" : false
+    },{
+      "description" : "Split Workload",
+      "isDone" : true
     } ],
     "deadlineList" : [ {
       "description" : "Product Demo Internal Deadline",
