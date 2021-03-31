@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_OPTION;
+import static seedu.address.logic.parser.CliSyntax.OPTION_REMOVE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OPTION;
 
 import java.util.Optional;
@@ -33,7 +34,7 @@ public class FavouriteCommandParser implements Parser<FavouriteCommand> {
 
         if (option.isPresent()) {
             String unboxedOption = option.get();
-            if (unboxedOption.equals(FavouriteCommand.OPTION_REMOVE_FAV)) {
+            if (unboxedOption.equals(OPTION_REMOVE)) {
                 isFav = false;
             } else {
                 throw new ParseException(String.format(MESSAGE_INVALID_OPTION, unboxedOption));
