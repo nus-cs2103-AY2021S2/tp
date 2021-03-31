@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BOOKING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLEAN_STATUS_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RESIDENCE_ADDRESS;
@@ -70,8 +69,6 @@ public class CommandTestUtil {
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&";
     // 'a' not allowed in phones
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a";
-    // missing '@' symbol
-    public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo";
     // empty string not allowed for addresses
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_RESIDENCE_ADDRESS;
     // must be 'y' or 'clean'
@@ -148,7 +145,7 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredResidenceList().size());
 
         Residence residence = model.getFilteredResidenceList().get(targetIndex.getZeroBased());
-        final String[] splitName = residence.getResidenceName().fullName.split("\\s+");
+        final String[] splitName = residence.getResidenceName().toString().split("\\s+");
         model.updateFilteredResidenceList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredResidenceList().size());

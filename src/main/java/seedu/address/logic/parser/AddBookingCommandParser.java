@@ -49,7 +49,6 @@ public class AddBookingCommandParser implements Parser<AddBookingCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddBookingCommand.MESSAGE_USAGE));
         }
 
-
         Name name = ParserUtil.parseVisitorName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Booking booking = ParserUtil.parseBooking(name, phone,
