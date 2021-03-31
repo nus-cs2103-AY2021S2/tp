@@ -4,7 +4,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Objects;
 import java.util.Set;
 
@@ -27,7 +26,7 @@ public class Task {
     private final PriorityTag priorityTag;
 
     // Data fields
-    private final Remark remark;
+    private final Notes notes;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
@@ -35,7 +34,7 @@ public class Task {
      */
     public Task(TaskName taskName, ModuleCode moduleCode, DeadlineDate deadlineDate,
                 DeadlineTime deadlineTime, Status status, Weightage weightage,
-                Remark remark, Set<Tag> tags, PriorityTag priorityTag) {
+                Notes notes, Set<Tag> tags, PriorityTag priorityTag) {
         requireAllNonNull(taskName, moduleCode, status, tags);
         this.taskName = taskName;
         this.moduleCode = moduleCode;
@@ -43,11 +42,9 @@ public class Task {
         this.deadlineTime = deadlineTime;
         this.status = status;
         this.weightage = weightage;
-        this.remark = remark;
-        tags = removeOldPriorityTags(tags);
+        this.notes = notes;
         this.tags.addAll(tags);
         this.priorityTag = priorityTag;
-        this.tags.add(new Tag(this.priorityTag.getTagName()));
 
     }
 
@@ -56,7 +53,7 @@ public class Task {
      */
     public Task(TaskName taskName, ModuleCode moduleCode, DeadlineDate deadlineDate,
                 DeadlineTime deadlineTime, Status status, Weightage weightage,
-                Remark remark, Set<Tag> tags) {
+                Notes notes, Set<Tag> tags) {
         requireAllNonNull(taskName, moduleCode, status, tags);
         this.taskName = taskName;
         this.moduleCode = moduleCode;
@@ -64,15 +61,9 @@ public class Task {
         this.deadlineTime = deadlineTime;
         this.status = status;
         this.weightage = weightage;
-        this.remark = remark;
+        this.notes = notes;
         this.tags.addAll(tags);
-
-        if (findPriorityTag(this.tags)) {
-            this.priorityTag = obtainPriorityTag(this.tags);
-        } else {
-            this.priorityTag = new PriorityTag("LOW");
-            this.tags.add(new Tag("LOW"));
-        }
+        this.priorityTag = new PriorityTag("LOW");
 
 
     }
@@ -102,8 +93,8 @@ public class Task {
         return weightage;
     }
 
-    public Remark getRemark() {
-        return remark;
+    public Notes getNotes() {
+        return notes;
     }
 
     public PriorityTag getPriorityTag() {
@@ -119,7 +110,7 @@ public class Task {
      */
     public Task finishTask() {
         return new Task(this.taskName, this.moduleCode, this.deadlineDate,
-                this.deadlineTime, this.status.toggle(), this.weightage, this.remark, this.tags);
+                this.deadlineTime, this.status.toggle(), this.weightage, this.notes, this.tags);
     }
 
     /**
@@ -164,14 +155,14 @@ public class Task {
             && otherTask.getDeadlineTime().equals(getDeadlineTime())
             && otherTask.getStatus().equals(getStatus())
             && otherTask.getWeightage().equals(getWeightage())
-            && otherTask.getRemark().equals(getRemark())
+            && otherTask.getNotes().equals(getNotes())
             && otherTask.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(taskName, moduleCode, weightage, remark, tags);
+        return Objects.hash(taskName, moduleCode, weightage, notes, tags);
     }
 
     @Override
@@ -188,8 +179,8 @@ public class Task {
             .append(getStatus())
             .append("; Weightage: ")
             .append(getWeightage())
-            .append("; Remark: ")
-            .append(getRemark())
+            .append("; Notes: ")
+            .append(getNotes())
                 .append("; PriorityTag: ")
                 .append(getPriorityTag().getTagName());
 
@@ -199,76 +190,6 @@ public class Task {
             tags.forEach(builder::append);
         }
         return builder.toString();
-    }
-
-    /**
-     *
-     * Method that finds if there is a priority tag associated
-     * with the tags
-     *
-     * @param tags data containing all the tags in String
-     * @return boolean whether the pt is found
-     */
-    private boolean findPriorityTag(Set<Tag> tags) {
-
-        Iterator<Tag> it = tags.iterator();
-
-        while (it.hasNext()) {
-            Tag hold = it.next();
-            if (hold.tagName.equals("LOW")
-                    || hold.tagName.equals("MEDIUM")
-                    || hold.tagName.equals("HIGH")) {
-                return true;
-            }
-        }
-
-        return false;
-
-    }
-
-    /**
-     *
-     * Method that returns a priority tag associated
-     * with the task
-     *
-     * @param tags data containing all the tags in String
-     * @return the priority tag to be stored
-     */
-    private PriorityTag obtainPriorityTag(Set<Tag> tags) {
-
-        Iterator<Tag> it = tags.iterator();
-
-        while (it.hasNext()) {
-            Tag hold = it.next();
-            if (hold.tagName.equals("LOW")
-                    || hold.tagName.equals("MEDIUM")
-                    || hold.tagName.equals("HIGH")) {
-                return new PriorityTag(hold.tagName);
-            }
-        }
-
-        return new PriorityTag("LOW");
-
-    }
-
-    /**
-     * method to remove outdated instances of priority tags in set
-     * @param tags data struct that stores the tags
-     * @return a tag set free of old ptag
-     */
-    private Set<Tag> removeOldPriorityTags(Set<Tag> tags) {
-        Iterator<Tag> it = tags.iterator();
-        Set<Tag> hold = new HashSet<>();
-        while (it.hasNext()) {
-            Tag check = it.next();
-            if (check.tagName.equals("LOW")
-                    || check.tagName.equals("MEDIUM")
-                    || check.tagName.equals("HIGH")) {
-            } else {
-                hold.add(check);
-            }
-        }
-        return hold;
     }
 
 }

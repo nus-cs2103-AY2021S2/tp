@@ -68,11 +68,15 @@ public interface Model {
      */
     void deleteTask(Task target);
 
+    void deleteDailyTask(Task target);
+
     /**
      * Finishes the given task.
      * The task must exist in the task tracker.
      */
     void finishTask(Task target);
+
+    void finishDailyTask(Task target);
 
     /**
      * Adds the given task.
@@ -98,6 +102,13 @@ public interface Model {
      * The task identity of {@code editedTask} must not be the same as another existing task in the task tracker.
      */
     void setTask(Task target, Task editedTask);
+
+    /**
+     * Replaces the given task {@code target} with {@code editedTask} in the daily task tracker.
+     * {@code target} must exist in the task tracker.
+     * The task identity of {@code editedTask} must not be the same as another existing task in the task tracker.
+     */
+    void setDailyTask(Task target, Task editedTask);
 
     /**
      * Sorts the TaskTracker according to the given {@code comparator}.
@@ -128,6 +139,8 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateDailyTaskList(Predicate<Task> predicate);
+
+    void refreshDailyTasks(Task target, Task editedTask);
 
     /**
      * Commits the taskTracker

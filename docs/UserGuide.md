@@ -24,7 +24,7 @@ your contact management tasks done faster than traditional GUI apps.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app
    contains some sample data.<br>
-   ![Ui](images/v1.3_Ui.png)
+   ![Ui](images/v1.3.1_Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
    open the help window.<br>
@@ -80,11 +80,12 @@ Format: `instructions`
 
 Add a deadline to the list
 
-Format: `add mc/MODULE_CODE n/TASK_NAME d/DATE t/TIME w/WEIGHTAGE [r/REMARK]`
+Format: `add mc/MODULE_CODE n/TASK_NAME d/DATE t/TIME w/WEIGHTAGE [r/REMARK] [pt/TAG] [ptag/PRIORITY TAG]`
 
 Example:
 
 * `add mc/CS3243 n/Project 1 d/15-04-2021 t/10:00 w/10%` will add this deadline to the list
+* Priority tag of a task will be set to `LOW` by default if there are not inputs 
 
 ### Clear Application : `clear`
 
@@ -112,7 +113,7 @@ Example:
 Edits an existing deadline in the application
 
 Format: `edit INDEX [n/TASK NAME] [mc/MODULE CODE] [d/DEADLINE DATE]
-[t/DEADLINE TIME] [r/REMARK] [pt/PRIORITY]`
+[t/DEADLINE TIME] [r/REMARK] [pt/TAG] [ptag/PRIORITY TAG]`
 
 * Edits the deadline at the specified index
 * The index must be a positive integer 1,2,3,...
@@ -124,8 +125,9 @@ Examples:
 
 * `edit 1 n/Lecture Quiz mc/CS2103` edits the task name and module code of the deadline at index 1 to be “Lecture Quiz”
   and “CS2103” respectively.
-* `edit 2 d/15-04-2021 r/Open Book` edits the date and remark of the deadline at index 2 to be “15 April 2021” and “Open
+* `edit 2 d/15-04-2021 r/Open Book` edits the date and notes of the deadline at index 2 to be “15 April 2021” and “Open
   Book” respectively.
+  `edit 3 n/Finals ptag/HIGH` edits the task name and priority tag of the task at index 3 to be "Finals" and "HIGH" respectively
 
 ### Locating deadlines by moduleName: `find`
 
@@ -189,7 +191,7 @@ Every task will be given a default priorityTag of `LOW`
 
 #### Sorting based on priorityTag (See `sorting`)
 
-* User is able to sort tasks based on priority tag: `low`, `medium` and `high`
+* User is able to sort tasks based on priority tag: `LOW`, `MEDIUM` and `HIGH`
 
 #### Edit priorityTag (See `edit`)
 
@@ -264,7 +266,7 @@ the data of your previous `semester.config` home folder.
 Action | Format, Examples
 --------|------------------
 **instructions** | `instructions`
-**add** | `add mc/MODULE_CODE n/TASK_NAME d/DATE t/TIME w/WEIGHTAGE [r/remark]` <br> e.g, `add mc/CS1010 n/Practical Exam d/12-12-2020 t/10:10 w/10`
+**add** | `add mc/MODULE_CODE n/TASK_NAME d/DATE t/TIME w/WEIGHTAGE [r/notes]` <br> e.g, `add mc/CS1010 n/Practical Exam d/12-12-2020 t/10:10 w/10`
 **delete** | `delete INDEX` <br> e.g, `delete 3` `delete 1`
 **find** | `find KEYWORD ...` <br> e.g, `find Database` `find Software`
 **list** | `list`
@@ -273,7 +275,7 @@ Action | Format, Examples
 **notes** | `notes INDEX n/NOTES` <br> e.g, `notes 4 n/Assignment must be handwritten`
 **edit** | `edit INDEX [tn/TASK NAME] [mn/MODULE NAME] [mc/MODULE CODE] [d/ DEADLINE DATE] [t/DEADLINE TIME] [n/NOTES] [pt/PRIORITY]` <br> e.g, `edit 2 tn/Assignment 7`
 **clear** |`clear`
-**ptag** | `pt [/LOW] [/MEDIUM] [/HIGH] INDEX` <br> e.g, `ptag/MEDIUM 3`
+**ptag** | `edit INDEX ptag[/LOW] [/MEDIUM] [/HIGH]` <br> e.g, `edit 3 ptag/MEDIUM`
 **dueIn** | `dueIn [day/NUMBER_OF_DAYS] [week/NUMBER_OF_WEEKS]` <br> e.g, `dueIn`  `dueIn day/10` `dueIn week/2`
 **undo** | `undo`
 **redo** | `redo`

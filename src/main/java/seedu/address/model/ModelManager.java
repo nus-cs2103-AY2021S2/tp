@@ -106,8 +106,22 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteDailyTask(Task target) {
+        if (taskTracker.hasDailyTask(target)) {
+            taskTracker.removeDailyTask(target);
+        }
+    }
+
+    @Override
     public void finishTask(Task target) {
         taskTracker.finishTask(target);
+    }
+
+    @Override
+    public void finishDailyTask(Task target) {
+        if (taskTracker.hasDailyTask(target)) {
+            taskTracker.finishDailyTask(target);
+        }
     }
 
     @Override
@@ -137,9 +151,20 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setDailyTask(Task target, Task editedTask) {
+        requireAllNonNull(target, editedTask);
+        taskTracker.setDailyTask(target, editedTask);
+    }
+
+    @Override
     public void sortTasks(Comparator<Task> comparator) {
         requireNonNull(comparator);
         taskTracker.sortTasks(comparator);
+    }
+
+    @Override
+    public void refreshDailyTasks(Task target, Task editedTask) {
+        taskTracker.refreshDailyTasks(target, editedTask);
     }
 
     @Override

@@ -7,7 +7,7 @@
     "deadlineTime" : "10:10",
     "status" : "Unfinished",
     "weightage" : 0,
-    "remark" : "Being a software engineer is fun",
+    "notes" : "Being a software engineer is fun",
     "tagged" : [ "friends" ]
   }, {
     "taskName": "Take Home lab 1",
@@ -16,7 +16,7 @@
     "deadlineTime" : "10:10",
     "status" : "Unfinished",
     "weightage" : 0,
-    "remark" : "Favourite pastime: Kattis",
+    "notes" : "Favourite pastime: Kattis",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "taskName": "Tutorial 6",
@@ -25,7 +25,7 @@
     "deadlineTime" : "10:10",
     "status" : "Unfinished",
     "weightage" : 0,
-    "remark" : "PE1",
+    "notes" : "PE1",
     "tagged" : [ ]
   }, {
     "taskName": "Tutorial 5",
@@ -34,7 +34,7 @@
     "deadlineTime" : "10:10",
     "status" : "Unfinished",
     "weightage" : 0,
-    "remark" : "PE2",
+    "notes" : "PE2",
     "tagged" : [ "friends" ]
   }, {
     "taskName": "Weekly Readings",
@@ -43,7 +43,7 @@
     "deadlineTime" : "10:10",
     "status" : "Unfinished",
     "weightage" : 0,
-    "remark" : "",
+    "notes" : "",
     "tagged" : [ ]
   }, {
     "taskName": "Write Tests",
@@ -52,7 +52,7 @@
     "deadlineTime" : "10:10",
     "status" : "Unfinished",
     "weightage" : 0,
-    "remark" : "",
+    "notes" : "",
     "tagged" : [ ]
   } ]
 }

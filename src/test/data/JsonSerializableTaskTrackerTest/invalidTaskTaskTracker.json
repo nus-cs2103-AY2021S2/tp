@@ -6,7 +6,7 @@
     "deadlineTime" : "10:101",
     "status" : "Unfinished",
     "weightage" : -10,
-    "remark" : "",
+    "notes" : "",
     "tagged" : [ "core" ]
   } ]
 }

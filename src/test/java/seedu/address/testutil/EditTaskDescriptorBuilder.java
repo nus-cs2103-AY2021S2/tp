@@ -8,7 +8,7 @@ import seedu.address.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.address.model.person.DeadlineDate;
 import seedu.address.model.person.DeadlineTime;
 import seedu.address.model.person.ModuleCode;
-import seedu.address.model.person.Remark;
+import seedu.address.model.person.Notes;
 import seedu.address.model.person.Status;
 import seedu.address.model.person.Task;
 import seedu.address.model.person.TaskName;
@@ -41,7 +41,7 @@ public class EditTaskDescriptorBuilder {
         descriptor.setDeadlineTime(task.getDeadlineTime());
         descriptor.setStatus(task.getStatus());
         descriptor.setWeightage(task.getWeightage());
-        descriptor.setRemark(task.getRemark());
+        descriptor.setNotes(task.getNotes());
         descriptor.setTags(task.getTags());
     }
 
@@ -86,7 +86,7 @@ public class EditTaskDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Remark} of the {@code EditTaskDescriptor} that we are building.
+     * Sets the {@code Notes} of the {@code EditTaskDescriptor} that we are building.
      */
     public EditTaskDescriptorBuilder withWeightage(Integer weightage) {
         descriptor.setWeightage(new Weightage(weightage));
@@ -94,10 +94,10 @@ public class EditTaskDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Remark} of the {@code EditTaskDescriptor} that we are building.
+     * Sets the {@code Notes} of the {@code EditTaskDescriptor} that we are building.
      */
-    public EditTaskDescriptorBuilder withRemark(String remark) {
-        descriptor.setRemark(new Remark(remark));
+    public EditTaskDescriptorBuilder withNotes(String notes) {
+        descriptor.setNotes(new Notes(notes));
         return this;
     }
 

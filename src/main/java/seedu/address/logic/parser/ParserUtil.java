@@ -13,7 +13,7 @@ import seedu.address.logic.util.OperationFlag;
 import seedu.address.model.person.DeadlineDate;
 import seedu.address.model.person.DeadlineTime;
 import seedu.address.model.person.ModuleCode;
-import seedu.address.model.person.Remark;
+import seedu.address.model.person.Notes;
 import seedu.address.model.person.TaskName;
 import seedu.address.model.person.Weightage;
 import seedu.address.model.tag.PriorityTag;
@@ -143,13 +143,13 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String remark} into a {@code Remark}.
+     * Parses a {@code String notes} into a {@code Notes}.
      * Leading and trailing whitespaces will be trimmed.
      */
-    public static Remark parseRemark(String remark) {
-        requireNonNull(remark);
-        String trimmedRemark = remark.trim();
-        return new Remark(trimmedRemark);
+    public static Notes parseNotes(String notes) {
+        requireNonNull(notes);
+        String trimmedRemark = notes.trim();
+        return new Notes(trimmedRemark);
     }
 
     /**
@@ -172,10 +172,16 @@ public class ParserUtil {
      * @param priorityTag String value of ptag
      * @return correct string value of ptag
      */
-    public static PriorityTag parsePriorityTag(String priorityTag) {
+    public static PriorityTag parsePriorityTag(String priorityTag) throws ParseException {
         requireNonNull(priorityTag);
 
-        return new PriorityTag(priorityTag);
+        if (priorityTag.equals("LOW")
+                || priorityTag.equals("MEDIUM")
+                || priorityTag.equals("HIGH")) {
+            return new PriorityTag(priorityTag);
+        } else {
+            throw new ParseException(PriorityTag.MESSAGE_CONSTRAINTS);
+        }
     }
 
     /**

@@ -110,6 +110,21 @@ public class AddCommandTest {
         }
 
         @Override
+        public void refreshDailyTasks(Task target, Task editTask) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void finishDailyTask(Task task) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteDailyTask(Task task) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addTask(Task task) {
             throw new AssertionError("This method should not be called.");
         }
@@ -157,6 +172,11 @@ public class AddCommandTest {
 
         @Override
         public void setTask(Task target, Task editedTask) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setDailyTask(Task target, Task editedTask) {
             throw new AssertionError("This method should not be called.");
         }
 
