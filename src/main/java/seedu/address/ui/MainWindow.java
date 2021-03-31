@@ -88,22 +88,19 @@ public class MainWindow extends UiPart<Stage> {
                     if (availFlags.size() != 0) {
                         commandBox.setAndAppendFlag(availFlags.get(0));
                     }
-                }
-
-                else if (command.startsWith(EditCommand.COMMAND_WORD)) {
+                } else if (command.startsWith(EditCommand.COMMAND_WORD)) {
                     try {
                         // Check if Edit command already has index
-                        Integer.parseInt(command.split("-")[0].replaceAll("\\D+",""));
-                        List<String> availFlags = logic.processAutocompleteFlags(currentlyInBox, EditCommand.COMMAND_WORD);
+                        Integer.parseInt(command.split("-")[0].replaceAll("\\D+", ""));
+                        List<String> availFlags = logic.processAutocompleteFlags(currentlyInBox,
+                                EditCommand.COMMAND_WORD);
                         if (availFlags.size() != 0) {
                             commandBox.setAndAppendFlag(availFlags.get(0));
                         }
                     } catch (NumberFormatException e) {
                         logger.info("Edit Command does not have an index. Autocomplete flags failed...");
                     }
-                }
-
-                else {
+                } else {
                     autocompleteListPanel.processTabKey((value) -> {
                         commandBox.setTextValue(value);
                     });

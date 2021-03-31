@@ -16,8 +16,9 @@ import seedu.address.commons.core.LogsCenter;
 public class AutocompleteListPanel extends UiPart<Region> {
 
     private static final String FXML = "AutocompleteListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(AutocompleteListPanel.class);
     private static final int INDEX_OUT_OF_BOUNDS = -1;
+    private final Logger logger = LogsCenter.getLogger(AutocompleteListPanel.class);
+
 
     @FXML
     private ListView<String> autocompleteListView;
