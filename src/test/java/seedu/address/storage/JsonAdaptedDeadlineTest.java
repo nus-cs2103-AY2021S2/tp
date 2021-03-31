@@ -7,6 +7,7 @@ import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.task.CompletableDeadline;
 import seedu.address.model.task.deadline.Deadline;
 import seedu.address.testutil.DeadlineBuilder;
@@ -44,8 +45,8 @@ public class JsonAdaptedDeadlineTest {
     }
 
     @Test
-    public void toModelType_nullDescription_throwsNullPointerException() {
+    public void toModelType_nullDescription_throwsIllegalValueException() {
         JsonAdaptedDeadline deadline = new JsonAdaptedDeadline(null, VALID_DATE_STRING, VALID_IS_DONE);
-        assertThrows(NullPointerException.class, deadline::toModelType);
+        assertThrows(IllegalValueException.class, deadline::toModelType);
     }
 }

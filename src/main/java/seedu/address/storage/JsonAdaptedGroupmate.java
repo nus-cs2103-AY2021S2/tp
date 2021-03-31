@@ -60,9 +60,11 @@ class JsonAdaptedGroupmate {
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
+
         if (!Name.isValidName(name)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
+
         final Name modelName = new Name(name);
 
         final Set<Role> modelRoles = new HashSet<>(groupmateRoles);

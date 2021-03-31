@@ -5,6 +5,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.task.CompletableTodo;
 import seedu.address.model.task.todo.Todo;
 import seedu.address.testutil.TodoBuilder;
@@ -33,8 +34,8 @@ public class JsonAdaptedTodoTest {
     }
 
     @Test
-    public void toModelType_nullName_throwsNullPointerException() {
+    public void toModelType_nullName_throwsIllegalValueException() {
         JsonAdaptedTodo todo = new JsonAdaptedTodo(null, VALID_IS_DONE);
-        assertThrows(NullPointerException.class, todo::toModelType);
+        assertThrows(IllegalValueException.class, todo::toModelType);
     }
 }

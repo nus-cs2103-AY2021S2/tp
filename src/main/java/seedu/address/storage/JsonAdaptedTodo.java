@@ -38,6 +38,14 @@ class JsonAdaptedTodo {
      * @throws IllegalValueException if there were any data constraints violated in the adapted event.
      */
     public CompletableTodo toModelType() throws IllegalValueException {
+        if (description == null) {
+            throw new IllegalValueException("Todo description should not be null.");
+        }
+
+        if (isDone == null) {
+            throw new IllegalValueException("Todo isDone should not be null.");
+        }
+
         return new Todo(description, isDone);
     }
 }

@@ -39,6 +39,10 @@ class JsonAdaptedRole {
      * @throws IllegalValueException if there were any data constraints violated in the adapted role.
      */
     public Role toModelType() throws IllegalValueException {
+        if (roleName == null) {
+            throw new IllegalValueException("Role should not be null.");
+        }
+
         if (!Role.isValidRoleName(roleName)) {
             throw new IllegalValueException(Role.MESSAGE_CONSTRAINTS);
         }
