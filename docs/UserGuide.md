@@ -64,22 +64,22 @@ Add a new tutor and enter their basic details.
 
 Details:
 * Name
+* Gender
 * Phone Number
 * Email
-* Gender
-* Location (multiple allowed)
+* Address
 * Subjects (multiple allowed)
     * Subject Name
-    * Hourly Rate
-    * Education Level
-    * Years of Experience
-    * Qualifications
+    * Subject Hourly Rate
+    * Subject Education Level
+    * Subject Years of Experience
+    * Subject Qualifications
 
 Format:
-`add_tutor n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS... <s/SUBJECT_NAME r/RATE l/EDUCATION_LEVEL y/YEARS q/QUALIFICATIONS> note/NOTE`
+`add_tutor n/NAME g/GENDER p/PHONE_NUMBER e/EMAIL  a/ADDRESS <s/SUBJECT_NAME r/SUBJECT_RATE l/SUBJECT_EDUCATION_LEVEL y/SUBJECT_YEARS_EXPERIENCE q/SUBJECT_QUALIFICATIONS>... note/NOTE`
 
 Example Input:
-`add_tutor n/John Doe p/98765432 e/johnd@example.com g/Male a/John street, block 123, #01-01 s/English r/50 l/Sec 3 y/5 q/A-Level s/Mathematics r/60 l/Sec 4 y/6 q/A-Level note/Patient`
+`add_tutor n/John Doe g/Male p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/English r/50 l/Secondary 3 y/5 q/A-Level s/Mathematics r/60 l/Secondary 4 y/6 q/A-Level note/Patient`
 
 ### List all tutors: `list_tutors`
 
