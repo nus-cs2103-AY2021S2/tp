@@ -34,7 +34,7 @@
         </MenuBar>
 
         <VBox>
-          <VBox fx:id="upcomingBookingList" style="display: none;" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
+          <!--<VBox fx:id="upcomingBookingList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
             <padding>
               <Insets top="10" right="10" bottom="10" left="10" />
             </padding>
@@ -47,9 +47,9 @@
             </padding>
             <Label fx:id="favoritePlaceholder" styleClass="cell_title_label" text="Status of favorite venues:" />
             <StackPane fx:id="favoriteVenueListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-          </VBox>
+          </VBox>-->
 
-          <VBox style="-fx-background-color: #c4c4c4;" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
+          <VBox style="-fx-background-color: #c4c4c4;" styleClass="pane-with-border" minWidth="340" prefWidth="340">
             <padding>
               <Insets top="5" right="10" bottom="5" left="10" />
             </padding>
@@ -65,7 +65,7 @@
             </padding>
           </StackPane>
 
-          <VBox fx:id="resultList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
+          <VBox fx:id="resultList" styleClass="pane-with-border" minWidth="340" prefWidth="340">
             <padding>
               <Insets top="10" right="10" bottom="10" left="10" />
             </padding>
