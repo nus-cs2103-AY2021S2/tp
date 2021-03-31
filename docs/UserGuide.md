@@ -126,7 +126,7 @@ This subsection serves to list out the parameters used in this document. We have
 ##### `INDEX`
 
 * Indexes are used to identify specific items in CoLAB. There are 6 types of indexes:
-    * `CONTACT_INDEX` refers to the number shown beside the contact in the Main Panel when contacts is displayed.
+    * `CONTACT_INDEX` refers to the number shown beside the contact in the Main Panel when contacts are displayed.
     * `DEADLINE_INDEX` refers to the number shown beside the deadline in the Main Panel when a project is displayed.
     * `EVENT INDEX` refers to the number shown beside the event in the Main Panel when a project is displayed.
     * `GROUPMATE_INDEX` refers to the number shown beside the groupmate in the Main Panel when a project is displayed.
@@ -146,7 +146,7 @@ This subsection serves to list out the parameters used in this document. We have
 
 ##### `KEYWORD`
 
-* The keyword used to seach for contacts.
+* The keyword used to search for contacts.
 * `MORE KEYWORDS` also follows this definition.
 
 ##### `NAME`
@@ -466,7 +466,7 @@ Examples:
 
 #### Updating a groupmate : `updateG`
 
-Updates an existing groupmate in a specifiedd project.
+Updates an existing groupmate in a specified project.
 
 Format: `updateG PROJECT_INDEX i/GROUPMATE_INDEX [n/NAME] [r/ROLE]…​`
 
@@ -648,7 +648,7 @@ If your changes to the data file makes its format invalid, CoLAB will discard al
 
 #### Undoing previous command : `undo`
 
-Restores colab to the state before the previous undoable command was executed.
+Restores CoLAB to the state before the previous undoable command was executed.
 
 Format: `undo'
 
