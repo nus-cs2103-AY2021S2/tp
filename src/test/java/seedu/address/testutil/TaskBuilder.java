@@ -6,7 +6,7 @@ import java.util.Set;
 import seedu.address.model.person.DeadlineDate;
 import seedu.address.model.person.DeadlineTime;
 import seedu.address.model.person.ModuleCode;
-import seedu.address.model.person.Remark;
+import seedu.address.model.person.Notes;
 import seedu.address.model.person.Status;
 import seedu.address.model.person.Task;
 import seedu.address.model.person.TaskName;
@@ -33,7 +33,7 @@ public class TaskBuilder {
     private DeadlineTime deadlineTime;
     private Status status;
     private Weightage weightage;
-    private Remark remark;
+    private Notes notes;
     private Set<Tag> tags;
 
     /**
@@ -46,7 +46,7 @@ public class TaskBuilder {
         deadlineTime = new DeadlineTime(DEFAULT_TIME);
         status = new Status(DEFAULT_STATUS);
         weightage = new Weightage(DEFAULT_WEIGHTAGE);
-        remark = new Remark(DEFAULT_REMARK);
+        notes = new Notes(DEFAULT_REMARK);
         tags = new HashSet<>();
     }
 
@@ -60,7 +60,7 @@ public class TaskBuilder {
         deadlineTime = taskToCopy.getDeadlineTime();
         status = taskToCopy.getStatus();
         weightage = taskToCopy.getWeightage();
-        remark = taskToCopy.getRemark();
+        notes = taskToCopy.getNotes();
         tags = new HashSet<>(taskToCopy.getTags());
     }
 
@@ -122,10 +122,10 @@ public class TaskBuilder {
     }
 
     /**
-     * Sets the {@code Remark} of the {@code Task} that we are building.
+     * Sets the {@code Notes} of the {@code Task} that we are building.
      */
-    public TaskBuilder withRemark(String remark) {
-        this.remark = new Remark(remark);
+    public TaskBuilder withNotes(String notes) {
+        this.notes = new Notes(notes);
         return this;
     }
 
@@ -134,7 +134,7 @@ public class TaskBuilder {
      */
     public Task build() {
         return new Task(taskName, moduleCode, deadlineDate,
-            deadlineTime, status, weightage, remark, tags);
+            deadlineTime, status, weightage, notes, tags);
     }
 
 }

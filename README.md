@@ -14,7 +14,7 @@
       * mark as done : `done 3` will mark the 3rd task from the list as done
       * sort : `sort dateTime` will sort based on deadline date and time and show all the tasks in list.
       * edit task : `edit 3 n/PE` will allow user to edit the 3rd module task and change the task name to be "PE"
-      * add notes : `remark 3` will add notes to the 3rd module task from the list
+      * add notes : `notes 3` will add notes to the 3rd module task from the list
       * Time-based alert : `dueIn` will show a list of immediate tasks that will be due by next week
       * clear : `clear` will delete all module tasks on the list
   6. Refer to the features for each individual commands for more details

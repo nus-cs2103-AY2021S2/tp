@@ -6,7 +6,7 @@
     "deadlineTime" : "10:10",
     "status" : "Unfinished",
     "weightage" : 0,
-    "remark" : "",
+    "notes" : "",
     "tagged" : [ "core" ]
   }, {
     "taskName" : "Weekly Quiz",
@@ -15,7 +15,7 @@
     "deadlineTime" : "10:10",
     "status" : "Unfinished",
     "weightage" : 0,
-    "remark" : "",
+    "notes" : "",
     "tagged" : [ "core" ]
   } ]
 }

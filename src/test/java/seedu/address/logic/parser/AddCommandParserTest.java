@@ -54,7 +54,7 @@ public class AddCommandParserTest {
     @Test
     public void parse_allFieldsPresent_success() {
         // remarks are empty by default
-        Task expectedTask = new TaskBuilder(BOB).withCode(VALID_CODE_BOB).withWeightage(50).withRemark("")
+        Task expectedTask = new TaskBuilder(BOB).withCode(VALID_CODE_BOB).withWeightage(50).withNotes("")
             .withDeadlineDate(VALID_DATE_AMY).withDeadlineTime(VALID_TIME_AMY)
             .withStatus("").withTags(VALID_TAG_FRIEND).build();
 
@@ -82,7 +82,7 @@ public class AddCommandParserTest {
         Task expectedTaskMultipleTags = new TaskBuilder(BOB)
             .withCode(VALID_CODE_BOB)
             .withWeightage(50)
-            .withRemark("")
+            .withNotes("")
             .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
             .build();
 
@@ -97,7 +97,7 @@ public class AddCommandParserTest {
 
         Task expectedTask = new TaskBuilder(AMY).withWeightage(25).withDeadlineDate("10-10-2020").withDeadlineTime("10"
             + ":10")
-            .withStatus("").withRemark("").withTags().build();
+            .withStatus("").withNotes("").withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + CODE_DESC_AMY + WEIGHTAGE_DESC_AMY + DATE_DESC_AMY + TIME_DESC_AMY,
             new AddCommand(expectedTask));
     }

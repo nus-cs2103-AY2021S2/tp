@@ -124,7 +124,7 @@ Examples:
 
 * `edit 1 n/Lecture Quiz mc/CS2103` edits the task name and module code of the deadline at index 1 to be “Lecture Quiz”
   and “CS2103” respectively.
-* `edit 2 d/15-04-2021 r/Open Book` edits the date and remark of the deadline at index 2 to be “15 April 2021” and “Open
+* `edit 2 d/15-04-2021 r/Open Book` edits the date and notes of the deadline at index 2 to be “15 April 2021” and “Open
   Book” respectively.
 
 ### Locating deadlines by moduleName: `find`
@@ -264,7 +264,7 @@ the data of your previous `semester.config` home folder.
 Action | Format, Examples
 --------|------------------
 **instructions** | `instructions`
-**add** | `add mc/MODULE_CODE n/TASK_NAME d/DATE t/TIME w/WEIGHTAGE [r/remark]` <br> e.g, `add mc/CS1010 n/Practical Exam d/12-12-2020 t/10:10 w/10`
+**add** | `add mc/MODULE_CODE n/TASK_NAME d/DATE t/TIME w/WEIGHTAGE [r/notes]` <br> e.g, `add mc/CS1010 n/Practical Exam d/12-12-2020 t/10:10 w/10`
 **delete** | `delete INDEX` <br> e.g, `delete 3` `delete 1`
 **find** | `find KEYWORD ...` <br> e.g, `find Database` `find Software`
 **list** | `list`

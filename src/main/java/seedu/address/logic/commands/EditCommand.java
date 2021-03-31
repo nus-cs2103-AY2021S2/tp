@@ -3,8 +3,8 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITYTAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
@@ -22,7 +22,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.DeadlineDate;
 import seedu.address.model.person.DeadlineTime;
 import seedu.address.model.person.ModuleCode;
-import seedu.address.model.person.Remark;
+import seedu.address.model.person.Notes;
 import seedu.address.model.person.Status;
 import seedu.address.model.person.Task;
 import seedu.address.model.person.TaskName;
@@ -43,7 +43,7 @@ public class EditCommand extends Command {
         + "Parameters: INDEX (must be a positive integer) "
         + "[" + PREFIX_NAME + "NAME] "
         + "[" + PREFIX_CODE + "CODE] "
-        + "[" + PREFIX_REMARK + "REMARK] "
+        + "[" + PREFIX_NOTES + "REMARK] "
             + "[" + PREFIX_PRIORITYTAG + "REMARK]"
         + "[" + PREFIX_TAG + "TAG]...\n"
         + "Example: " + COMMAND_WORD + " 1 "
@@ -110,13 +110,13 @@ public class EditCommand extends Command {
         Status updatedStatus = taskToEdit.getStatus();
         Weightage updatedWeightage = editTaskDescriptor.getWeightage()
                 .orElse(taskToEdit.getWeightage());
-        Remark updatedRemark = editTaskDescriptor.getRemark().orElse(taskToEdit.getRemark());
+        Notes updatedNotes = editTaskDescriptor.getNotes().orElse(taskToEdit.getNotes());
         PriorityTag priorityTag = editTaskDescriptor.getPriorityTag().orElse(taskToEdit.getPriorityTag());
         Set<Tag> updatedTags = editTaskDescriptor.getTags().orElse(taskToEdit.getTags());
 
         return new Task(updatedTaskName, updatedModuleCode, updatedDeadlineDate,
             updatedDeadlineTime, updatedStatus, updatedWeightage,
-            updatedRemark, updatedTags, priorityTag);
+                updatedNotes, updatedTags, priorityTag);
     }
 
     @Override
@@ -142,13 +142,13 @@ public class EditCommand extends Command {
      * corresponding field value of the task.
      */
     public static class EditTaskDescriptor {
-        // descriptors should not be allowed to have a remark field, since editing of remarks is not supported for now
+        // descriptors should not be allowed to have a notes field, since editing of remarks is not supported for now
         private TaskName taskName;
         private ModuleCode moduleCode;
         private DeadlineDate deadlineDate;
         private DeadlineTime deadlineTime;
         private Weightage weightage;
-        private Remark remark;
+        private Notes notes;
         private Set<Tag> tags;
         private Status status;
         private PriorityTag priorityTag;
@@ -166,7 +166,7 @@ public class EditCommand extends Command {
             setDeadlineDate(toCopy.deadlineDate);
             setDeadlineTime(toCopy.deadlineTime);
             setWeightage(toCopy.weightage);
-            setRemark(toCopy.remark);
+            setNotes(toCopy.notes);
             setTags(toCopy.tags);
             setPriorityTag(toCopy.priorityTag);
         }
@@ -176,7 +176,7 @@ public class EditCommand extends Command {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(taskName, moduleCode,
-                deadlineDate, deadlineTime, weightage, remark, tags, priorityTag);
+                deadlineDate, deadlineTime, weightage, notes, tags, priorityTag);
         }
 
         public void setTaskName(TaskName taskName) {
@@ -227,12 +227,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(weightage);
         }
 
-        public void setRemark(Remark remark) {
-            this.remark = remark;
+        public void setNotes(Notes notes) {
+            this.notes = notes;
         }
 
-        public Optional<Remark> getRemark() {
-            return Optional.ofNullable(remark);
+        public Optional<Notes> getNotes() {
+            return Optional.ofNullable(notes);
         }
 
         public void setPriorityTag(PriorityTag priorityTag) {
@@ -278,7 +278,7 @@ public class EditCommand extends Command {
             return getTaskName().equals(e.getTaskName())
                 && getModuleCode().equals(e.getModuleCode())
                 && getWeightage().equals(e.getWeightage())
-                && getRemark().equals(e.getRemark())
+                && getNotes().equals(e.getNotes())
                 && getDeadlineDate().equals(e.getDeadlineDate())
                 && getDeadlineTime().equals(e.getDeadlineTime())
                 && getStatus().equals(e.getStatus())
