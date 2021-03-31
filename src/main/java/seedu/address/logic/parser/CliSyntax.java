@@ -14,6 +14,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_REMARK = new Prefix("r/");
     public static final Prefix PREFIX_FLAG = new Prefix("-");
 
-    public static final Prefix PREFIX_ALIAS_COMMAND = new Prefix("c/");
-    public static final Prefix PREFIX_ALIAS_NAME = new Prefix("n/");
+    public static final Prefix PREFIX_ALIAS_COMMAND = new Prefix("cmd/");
+    public static final Prefix PREFIX_ALIAS_NAME = new Prefix("al/");
 }
