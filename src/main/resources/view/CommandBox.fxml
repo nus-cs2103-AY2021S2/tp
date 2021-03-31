@@ -3,6 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import dog.pawbook.ui.AutoCompleteTextField?>
 <StackPane styleClass="stack-pane" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
-  <TextField fx:id="commandTextField" onAction="#handleCommandEntered" promptText="Enter command here" />
+  <AutoCompleteTextField fx:id="commandTextField" onAction="#handleCommandEntered" promptText="Enter command here" />
 </StackPane>
