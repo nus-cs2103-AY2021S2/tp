@@ -8,7 +8,7 @@ import static dog.pawbook.model.managedentity.program.Program.ENTITY_WORD;
 import dog.pawbook.model.managedentity.program.Program;
 
 public class AddProgramCommand extends AddCommand<Program> {
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds program to the database. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds program to the database. \n"
         + "Parameters: "
         + PREFIX_NAME + "NAME "
         + "[" + PREFIX_SESSION + "DATE&TIME OF SESSION]... "

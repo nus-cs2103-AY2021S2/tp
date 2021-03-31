@@ -22,7 +22,7 @@ import dog.pawbook.model.managedentity.program.Program;
 
 public abstract class AddCommand<T extends Entity> extends Command {
     public static final String COMMAND_WORD = "add";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a owner/dog/program to the database. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a owner/dog/program to the database. \n"
             + "Example for Owner: " + COMMAND_WORD + " " + Owner.ENTITY_WORD + " "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "

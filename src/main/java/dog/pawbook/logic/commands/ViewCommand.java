@@ -24,9 +24,8 @@ public class ViewCommand extends Command {
 
     public static final String COMMAND_WORD = "view";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Views all related entities of one entity based on ID"
-            + " and displays them as a list with index numbers.\n"
-            + "Allows user to quickly search for e.g. All the owner's dogs or all the dogs in a program.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Views all related entities of the specified ID. \n"
             + "Parameters: [ID]...\n"
             + "Example: " + COMMAND_WORD + " 1";
 
