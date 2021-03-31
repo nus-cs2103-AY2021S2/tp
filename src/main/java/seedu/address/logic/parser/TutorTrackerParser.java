@@ -41,6 +41,7 @@ import seedu.address.logic.commands.schedulecommands.AddScheduleCommand;
 import seedu.address.logic.commands.schedulecommands.DeleteScheduleCommand;
 import seedu.address.logic.commands.schedulecommands.EditScheduleCommand;
 import seedu.address.logic.commands.schedulecommands.ListScheduleCommand;
+import seedu.address.logic.commands.schedulecommands.ViewScheduleCommand;
 import seedu.address.logic.commands.tutorcommands.AddCommand;
 import seedu.address.logic.commands.tutorcommands.AddNoteCommand;
 import seedu.address.logic.commands.tutorcommands.DeleteCommand;
@@ -77,6 +78,7 @@ import seedu.address.logic.parser.reminderparser.EditReminderCommandParser;
 import seedu.address.logic.parser.scheduleparser.AddScheduleCommandParser;
 import seedu.address.logic.parser.scheduleparser.DeleteScheduleCommandParser;
 import seedu.address.logic.parser.scheduleparser.EditScheduleCommandParser;
+import seedu.address.logic.parser.scheduleparser.ViewScheduleCommandParser;
 import seedu.address.logic.parser.tutorparser.AddCommandParser;
 import seedu.address.logic.parser.tutorparser.AddNoteCommandParser;
 import seedu.address.logic.parser.tutorparser.DeleteCommandParser;
@@ -229,6 +231,9 @@ public class TutorTrackerParser {
 
         case ListScheduleCommand.COMMAND_WORD:
             return new ListScheduleCommand();
+
+        case ViewScheduleCommand.COMMAND_WORD:
+            return new ViewScheduleCommandParser().parse(arguments);
 
         case ViewTimeTableCommand.COMMAND_WORD:
             return new ViewTimeTableCommand();
