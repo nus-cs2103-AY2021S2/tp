@@ -260,11 +260,11 @@ public class ModelManager implements Model {
         Bmi bmi = user.getBmi();
 
         if (bmi.getWeight() <= bmi.getLowerBoundWeight()) {
-            return PlanType.WEIGHTGAIN;
+            return PlanType.WEIGHT_GAIN;
         } else if (bmi.getWeight() >= bmi.getUpperBoundWeight()) {
-            return PlanType.WEIGHTLOSS;
+            return PlanType.WEIGHT_LOSS;
         } else {
-            return PlanType.WEIGHTMAINTAIN;
+            return PlanType.WEIGHT_MAINTAIN;
         }
 
     }

@@ -111,6 +111,7 @@ public class TemplateInitializer {
      * @return DietPlanList template
      */
     public DietPlanList createDietPlanTemplate() {
+        // ------------------------ WEIGHT LOSS DIETS ------------------------
         DietPlan firstDietPlan = new DietPlan("Standard Ketogenic Diet",
                 "The Standard Ketogenic Diet is a high-fat, low-carb weight-loss diet. "
                 + "It is designed in such a way that by reducing the intake of carbohydrates, "
@@ -119,30 +120,46 @@ public class TemplateInitializer {
                 + "The Standard Ketogenic Diet is suitable for individuals suffering from Type II Diabetes where "
                 + "excess carbohydrates would have been converted into glucose.\n",
                 new MacroNutrientComposition(70, 10, 20),
-                PlanType.WEIGHTLOSS);
+                PlanType.WEIGHT_LOSS);
         DietPlan secondDietPlan = new DietPlan("High-Protein Ketogenic Diet",
                 "The High-Protein Ketogenic Diet is a variation of the Ketogenic Diet (high-fat, low-carb) "
                 + "which increases the protein intake. This variation is designed to help athletes and "
                 + "bodybuilders maintain their muscle mass whilst burning fat.",
-                new MacroNutrientComposition(60, 35, 5),
-                PlanType.WEIGHTLOSS);
-        DietPlan thirdDietPlan = new DietPlan("Skinny Guy BodyBuilding",
-                "The goal for bodybuilders is to increase muscle mass. Consume high-quality, nutrient-dense "
-                        + "carbs when the body needs them most, around workouts. The hyperenergetic diet "
-                        + "plan recommends consuming starchy food during and after workouts, and less "
-                        + "starchy content on off-hours.",
+                new MacroNutrientComposition(60, 5, 35),
+                PlanType.WEIGHT_LOSS);
+        // ------------------------ WEIGHT GAIN DIETS ------------------------
+        DietPlan thirdDietPlan = new DietPlan("Balanced Plan For Weight Gain",
+                "This plan is aimed at individuals who are intending to gain healthy weight "
+                        + "in a balanced manner. Some exercise coupled with this diet plan will allow individuals "
+                        + "to gain some muscle steadily.",
+                new MacroNutrientComposition(30, 35, 35),
+                PlanType.WEIGHT_GAIN);
+        DietPlan fourthDietPlan = new DietPlan("Clean Bulk",
+                "The clean bulk is a process which bodybuilders use to gain lean muscle mass. The clean "
+                        + "bulk emphasizes consuming healthy whole foods as compared to eating sugary and processed "
+                        + "foods to hit the calorie intake.",
+                new MacroNutrientComposition(30, 30, 40),
+                PlanType.WEIGHT_GAIN);
+        DietPlan fifthDietPlan = new DietPlan("High Carbohydrates Bulk",
+                "This plan is intended for athletes who are involved in high intensity sports which require "
+                        + "high energy consumption. As such, this plan prescribes a higher amount of carbohydrates "
+                        + "to offset this need whilst ensuring the protein intake is enough to promote muscle growth "
+                        + "and in turn, healthy weight gain.",
                 new MacroNutrientComposition(15, 55, 30),
-                PlanType.WEIGHTGAIN);
-        DietPlan forthDietPlan = new DietPlan("Balanced Plan",
+                PlanType.WEIGHT_GAIN);
+        // ------------------------ WEIGHT MAINTENANCE DIETS ------------------------
+        DietPlan sixthDietPlan = new DietPlan("Balanced Plan",
                 "The perfect ying-yang. Eat healthy food and complete the calorie goal. Eat lots of fruits "
                         + "and vegetables, and base meals on higher fiber starchy carbohydrates.",
                 new MacroNutrientComposition(30, 40, 30),
-                PlanType.WEIGHTMAINTAIN);
+                PlanType.WEIGHT_MAINTAIN);
         DietPlanList dietPlanList = new DietPlanList();
         dietPlanList.addDietPlan(firstDietPlan);
         dietPlanList.addDietPlan(secondDietPlan);
         dietPlanList.addDietPlan(thirdDietPlan);
-        dietPlanList.addDietPlan(forthDietPlan);
+        dietPlanList.addDietPlan(fourthDietPlan);
+        dietPlanList.addDietPlan(fifthDietPlan);
+        dietPlanList.addDietPlan(sixthDietPlan);
         return dietPlanList;
     }
 }

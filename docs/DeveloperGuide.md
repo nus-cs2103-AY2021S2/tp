@@ -1,11 +1,13 @@
 ---
 layout: page
-title: Developer Guide
+
 ---
 
 <p align="center">
-  <img src="images/dietlah-slim.png" alt="DietLAH!">
+  <img src="images/dietlah.png" alt="DietLAH!">
 </p>
+
+# Developer Guide
 
 ## Table of Contents
 <!--ts-->

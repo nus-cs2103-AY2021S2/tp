@@ -1,5 +1,5 @@
 package seedu.address.model.diet;
 
 public enum PlanType {
-    WEIGHTGAIN, WEIGHTLOSS, WEIGHTMAINTAIN;
+    WEIGHT_GAIN, WEIGHT_LOSS, WEIGHT_MAINTAIN;
 }
