@@ -123,6 +123,7 @@ public class UniqueMeetingList implements Iterable<Person> {
     public void setPersons(List<Person> persons) {
         requireAllNonNull(persons);
         meetingMap.clear();
+        internalList.setAll(meetingMap.values());
         persons.forEach(this::add);
     }
 

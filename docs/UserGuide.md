@@ -67,8 +67,8 @@ Action                            | Format
 **Filter by attribute**           | `filter PREFIX/KEYWORD [PREFIX/MORE_KEYWORDS]`
 **Find by name**                  | `find KEYWORD [MORE_KEYWORDS]`
 **List all clients**              | `list`
-**Record, clear or view notes**   | `note INDEX r/NOTE` (record), `note INDEX c/` (clear), `note INDEX v/` (view)
-**Schedule or remove meetings**   | `schedule INDEX m/DESCRIPTION @ DATE_TIME` (schedule), `schedule INDEX m/remove` (unschedule)
+**Record, clear or view notes**   | `note INDEX r/NOTE` (record) <br>`note INDEX c/` (clear)<br>`note INDEX v/` (view)
+**Schedule or remove meetings**   | `schedule INDEX m/DESCRIPTION @ DATE_TIME` (schedule)<br/>`schedule INDEX m/remove` (unschedule)
 **Show notifications**            | `notif`
 **View Help**                     | `help`
 
