@@ -1,6 +1,7 @@
 ----
 layout: page
 title: User Guide
+----
 
 * Table of Contents 
 {:toc}
@@ -56,15 +57,22 @@ If you need an overview of StoreMando’s commands, check out the [“Command Su
 ### 2.1. Installation
 
 1. Ensure you have Java `11` or above installed in your Computer.
+
 1. Download the latest `storemando.jar`
    from [here](https://github.com/AY2021S2-CS2103T-W10-2/tp/releases/tag/v1.3)
+
 1. Copy the file to the folder you want to use as the _home folder_ for your StoreMando.
+
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app
    contains some sample data for you to see how the app looks.
+
    ![Ui](images/Ui.png)
+
 1. Before adding your own items, you may want to [clear](#38-clearing-storemando--clear) the sample data to start
    afresh.
-1. Type the command in the [command box](#command-box-) and press Enter on your keyboard to execute it.
+
+1. Type the command in the [command box](#command-box) and press Enter on your keyboard to execute it.
+
 1. Refer to the [“Features"](#3-features) below for details of each command.
 
 ### 2.2. StoreMando's layout
@@ -220,8 +228,8 @@ You can use this command in 2 different ways.
   Examples:
   
     * `find Chocolate` returns `chocolate` and `Chocolate Milk`
-    * `find potato chip` returns `Potato Biscuit` and `chocolate chip`
-
+    * `find potato chip` returns `Potato Biscuit` and `chocolate chip`<br>
+    
   <div markdown="block" class="alert alert-info">
 
   **:information_source: Notes about the command:**
@@ -237,7 +245,7 @@ You can use this command in 2 different ways.
   Examples:
   
     * `find */Burger` returns `CheeseBurger` and `fishburger`
-    * `find */cheese egg` returns `MacAndCheese` and `eggs`
+    * `find */cheese egg` returns `MacAndCheese` and `eggs`<br>
 
   <div markdown="block" class="alert alert-info">
 
@@ -270,7 +278,7 @@ You can use this command in 3 different ways.
   Format: `list l/LOCATION`
 
   Example:
-    * `list l/kitchen` displays all the items in the kitchen.
+    * `list l/kitchen` displays all the items in the kitchen.<br>
 
   <div markdown="block" class="alert alert-info">
 
@@ -292,7 +300,7 @@ You can use this command in 3 different ways.
 
   Example:
 
-    * `list t/favourite` displays all the items with the "favourite" tag.
+    * `list t/favourite` displays all the items with the "favourite" tag.<br>
 
   <div markdown="block" class="alert alert-info">
 
@@ -348,7 +356,7 @@ You can use this command in 3 different ways.
 
       Example:
       
-        * `sort quantity asc` sorts the items in the displayed list in ascending order of quantity.
+        * `sort quantity asc` sorts the items in the displayed list in ascending order of quantity.<br>
 
       <div markdown="block" class="alert alert-info">
 
@@ -358,13 +366,13 @@ You can use this command in 3 different ways.
 
       </div>
 
-    * ##### 3.7.1.2 Descending quantity
+    * ##### 3.7.1.2. Descending quantity
       
       Format: `sort quantity desc`
 
       Example:
       
-        * `sort quantity desc` sorts the items in the displayed list in descending order of quantity.
+        * `sort quantity desc` sorts the items in the displayed list in descending order of quantity.<br>
 
       <div markdown="block" class="alert alert-info">
 
@@ -380,7 +388,7 @@ You can use this command in 3 different ways.
 
   Example:
   
-    * `sort expiryDate` sorts the items in the displayed list from the earliest expiry date to the latest.
+    * `sort expiryDate` sorts the items in the displayed list from the earliest expiry date to the latest.<br>
 
   <div markdown="block" class="alert alert-info">
 
@@ -411,7 +419,7 @@ You can use this command in 2 different ways.
 
   Example:
   
-    * `clear l/kitchen` clears all the items with location `kitchen`.
+    * `clear l/kitchen` clears all the items with location `kitchen`.<br>
 
   <div markdown="block" class="alert alert-info">
 
