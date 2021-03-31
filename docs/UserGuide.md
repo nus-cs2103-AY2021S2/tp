@@ -22,7 +22,7 @@ title: User Guide
   * [Managing Students](#managing-students)
     * [Adding a student: `add_student`](#adding-a-student-add_student)
     * [Locating student by name: `find_student`](#locating-student-by-name-find_student)
-    * [Editing a student: `edit_student`](#editing-a-student-edit_student)    
+    * [Editing a student: `edit_student`](#editing-a-student-edit_student)
     * [Deleting a student: `delete_student`](#deleting-a-student-delete_student)
     * [Listing students' emails based on current list: `emails`](#listing-students-emails-based-on-current-list-emails)
   * [Managing Sessions](#managing-sessions)
@@ -104,7 +104,7 @@ There are three main areas in TutorBuddy:
 
 1. The utility area consists of 2 tabs: **File**, and **Help**.
     * The **File** tab consists of an exit button. To exit TutorBuddy, click on the exit button. Alternatively, use the `exit` command to exit the application.
-    * The **Help** tab consists of a help button. If you require any assistance, click on the help button, copy the link displayed and paste it into any web browser. 
+    * The **Help** tab consists of a help button. If you require any assistance, click on the help button, copy the link displayed and paste it into any web browser.
     Alternatively, press <kbd>F1</kbd> to bring up the help window.
 
 2. The main viewing area consists of 3 tabs: **Home**, **Tuition** and **Calendar**.
@@ -171,8 +171,8 @@ This section details the format of the commands available in TutorBuddy. We will
   
 * Date must be input in the format, `yyyy-mm-dd`.
   e.g. `2021-01-01` is allowed, but not `01-01-2021`.
-  
-  
+
+
 </div>
 
 The following subsections will elaborate on the specific details of each TutorBuddy's command.
@@ -336,16 +336,16 @@ Adds a recurring tuition session to TutorBuddy that allows you to specify the nu
 
 Format: `add_rec_session n/STUDENT_NAME d/START_DATE e/END_DATE b/INTERVAL t/TIME k/DURATION s/SUBJECT f/FEE `
 
-Arguments similar to `add_session` command except the following:  
+Arguments similar to `add_session` command except the following:
 * `START_DATE` should be the date of the first session
 * `END_DATE` should be the date of the last session
 * `INTERVAL` is the number of days to the next session <br/>
   e.g. `INTERVAL` = 7 for weekly sessions
 
 Example:
-* `add_rec_session n/John Doe d/2021-01-01 e/2021-01-29 b/7 t/18:00 k/120 s/Biology f/80` adds a weekly session that starts on 
+* `add_rec_session n/John Doe d/2021-01-01 e/2021-01-29 b/7 t/18:00 k/120 s/Biology f/80` adds a weekly session that starts on
 2021-01-01 and ends on 2021-01-29
-  
+
 #### Deleting a tuition session: `delete_session`
 
 Deletes the specified tuition session from TutorBuddy.
@@ -382,7 +382,7 @@ Example:
 
 **General**
 
-Action | Format 
+Action | Format
 --------|------------------
 **Help** | `help`
 **List all students and sessions** | `list_student`
