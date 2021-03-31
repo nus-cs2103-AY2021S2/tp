@@ -74,6 +74,11 @@ public class DeleteRecurringSessionCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_DATE_OF_RECURRING_SESSION);
         }
 
+        if (!recurringSessionToDelete.getSessionDate().isSameTime(sessionDate)) {
+            throw new CommandException(Messages.MESSAGE_INVALID_TIME_OF_RECURRING_SESSION);
+        }
+
+
         model.deleteRecurringSession(studentName, targetIndex, sessionDate);
         return new CommandResult(String.format(MESSAGE_DELETE_SESSION_OF_RECURRING_SESSION_SUCCESS,
                 sessionToDelete.toString()));
