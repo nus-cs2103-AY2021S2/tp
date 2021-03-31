@@ -13,6 +13,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -27,6 +28,9 @@ import seedu.address.model.tag.Tag;
  */
 public class EditCommandParser implements Parser<EditCommand> {
 
+    public static final String SPECIAL_INDEX = "shown";
+    public static final String SELECTED = "selected";
+
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
      * and returns an EditCommand object for execution.
@@ -38,14 +42,43 @@ public class EditCommandParser implements Parser<EditCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_COMPANY,
                         PREFIX_JOB_TITLE, PREFIX_ADDRESS, PREFIX_REMARK, PREFIX_TAG);
 
-        Index index;
+        List<Index> targetIndexes;
+        EditPersonDescriptor editPersonDescriptor;
 
-        try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+        // Parse special index
+        if (argMultimap.getPreamble().equals(SPECIAL_INDEX)) {
+            editPersonDescriptor = parseEditPersonDescriptor(argMultimap);
+            if (!editPersonDescriptor.isAnyFieldEdited()) {
+                throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
+            }
+            return EditCommand.buildEditShownCommand(editPersonDescriptor);
         }
 
+        if (argMultimap.getPreamble().trim().equals(SELECTED)) {
+            editPersonDescriptor = parseEditPersonDescriptor(argMultimap);
+            if (!editPersonDescriptor.isAnyFieldEdited()) {
+                throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
+            }
+            return EditCommand.buildEditSelectedCommand(editPersonDescriptor);
+        }
+
+        try {
+            targetIndexes = ParserUtil.parseIndexes(argMultimap.getPreamble());
+        } catch (ParseException pe) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE),
+                    pe);
+        }
+
+        editPersonDescriptor = parseEditPersonDescriptor(argMultimap);
+        if (!editPersonDescriptor.isAnyFieldEdited()) {
+            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
+        }
+        return EditCommand.buildEditIndexCommand(targetIndexes, editPersonDescriptor);
+    }
+
+    private EditPersonDescriptor parseEditPersonDescriptor(ArgumentMultimap argMultimap)
+            throws ParseException {
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
@@ -70,11 +103,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
-        if (!editPersonDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
-        }
-
-        return new EditCommand(index, editPersonDescriptor);
+        return editPersonDescriptor;
     }
 
     /**
@@ -101,6 +130,14 @@ public class EditCommandParser implements Parser<EditCommand> {
     @Override
     public boolean isValidCommandToAlias(String userInput) {
         if (userInput.trim().isEmpty()) {
+            return true;
+        }
+
+        if (userInput.trim().equals(SPECIAL_INDEX)) {
+            return true;
+        }
+
+        if (userInput.trim().equals(SELECTED)) {
             return true;
         }
 
