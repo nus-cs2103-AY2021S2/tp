@@ -12,32 +12,62 @@
 
 <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" styleClass="help-panel">
   <stylesheets>
-    <URL value="@HelpPanel.css" />
+    <URL value="@HelpPanel.css"/>
   </stylesheets>
 
   <HBox alignment="CENTER">
-      <Label fx:id="helpMessage" text="Label">
-        <HBox.margin>
-          <Insets right="5.0"/>
-        </HBox.margin>
-      </Label>
-      <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyUrl" text="Copy URL">
-        <HBox.margin>
-          <Insets left="5.0"/>
-        </HBox.margin>
-      </Button>
+    <Label fx:id="helpMessage" wrapText="true" minHeight="-Infinity" text="Label">
+      <HBox.margin>
+        <Insets left="5.0" right="5.0"/>
+      </HBox.margin>
+    </Label>
+    <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyUrl" text="Copy URL" minWidth="-Infinity">
+      <HBox.margin>
+        <Insets left="5.0" right="5.0"/>
+      </HBox.margin>
+    </Button>
   </HBox>
 
   <ScrollPane fitToWidth="true">
     <VBox styleClass="commands-display-vbox">
-      <Label styleClass="label-header" text="Projects" />
+      <Label styleClass="label-header" text="Projects"/>
       <TableView fx:id="projectsTableView">
         <VBox.margin>
           <Insets top="10.0"/>
         </VBox.margin>
       </TableView>
-      <Label styleClass="label-header" text="Contacts" />
+      <Label styleClass="label-header" text="Todos"/>
+      <TableView fx:id="todosTableView">
+        <VBox.margin>
+          <Insets top="10.0"/>
+        </VBox.margin>
+      </TableView>
+      <Label styleClass="label-header" text="Deadlines"/>
+      <TableView fx:id="deadlinesTableView">
+        <VBox.margin>
+          <Insets top="10.0"/>
+        </VBox.margin>
+      </TableView>
+      <Label styleClass="label-header" text="Events"/>
+      <TableView fx:id="eventsTableView">
+        <VBox.margin>
+          <Insets top="10.0"/>
+        </VBox.margin>
+      </TableView>
+      <Label styleClass="label-header" text="Groupmates"/>
+      <TableView fx:id="groupmatesTableView">
+        <VBox.margin>
+          <Insets top="10.0"/>
+        </VBox.margin>
+      </TableView>
+      <Label styleClass="label-header" text="Contacts"/>
       <TableView fx:id="contactsTableView">
+        <VBox.margin>
+          <Insets top="10.0"/>
+        </VBox.margin>
+      </TableView>
+      <Label styleClass="label-header" text="Others"/>
+      <TableView fx:id="othersTableView">
         <VBox.margin>
           <Insets top="10.0"/>
         </VBox.margin>

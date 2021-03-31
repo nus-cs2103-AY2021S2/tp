@@ -37,7 +37,7 @@ public class UpdateEventCommand extends Command {
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_EVENT_DATE + "DATE] "
             + "[" + PREFIX_EVENT_TIME + "TIME]"
-            + "[" + PREFIX_EVENT_WEEKLY + "REPEATS WEEKLY]\n"
+            + "[" + PREFIX_EVENT_WEEKLY + "REPEATS_WEEKLY]\n"
             + "Example:\n" + COMMAND_WORD + " 1 "
             + PREFIX_UPDATE_INDEX + "1 "
             + PREFIX_DESCRIPTION + "Project meeting "

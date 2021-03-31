@@ -17,6 +17,8 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+import seedu.address.logic.commands.ViewOverviewCommand;
+import seedu.address.logic.commands.ViewTodosCommand;
 import seedu.address.model.groupmate.Groupmate;
 import seedu.address.model.project.Project;
 import seedu.address.model.task.CompletableDeadline;
@@ -42,6 +44,8 @@ public class ProjectDisplayPanel extends UiPart<Region> {
     private final ListView<Event> eventListView = new ListView<>();
     private final ListView<CompletableDeadline> completableDeadlineListView = new ListView<>();
 
+    private MainWindow mainWindow = null;
+
     @FXML
     private Label projectName;
     @FXML
@@ -60,6 +64,14 @@ public class ProjectDisplayPanel extends UiPart<Region> {
      */
     public ProjectDisplayPanel() {
         super(FXML);
+
+        tabPane.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.equals(OVERVIEW_TAB)) {
+                setFeedbackToUser(ViewOverviewCommand.MESSAGE_SUCCESS);
+            } else if (newValue.equals(TODOS_TAB)) {
+                setFeedbackToUser(ViewTodosCommand.MESSAGE_SUCCESS);
+            }
+        });
     }
 
     /**
@@ -141,6 +153,12 @@ public class ProjectDisplayPanel extends UiPart<Region> {
         }
     }
 
+    private void setFeedbackToUser(String feedbackToUser) {
+        if (mainWindow != null) {
+            mainWindow.setFeedbackToUser(feedbackToUser);
+        }
+    }
+
     /**
      * Displays the overview tab.
      */
@@ -153,6 +171,10 @@ public class ProjectDisplayPanel extends UiPart<Region> {
      */
     public void showTodosTab() {
         tabPane.getSelectionModel().select(TODOS_TAB);
+    }
+
+    public void setMainWindow(MainWindow mainWindow) {
+        this.mainWindow = mainWindow;
     }
 
     /**

@@ -4,8 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.logging.Logger;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
@@ -15,6 +13,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.ViewProjectCommand;
 import seedu.address.model.project.Project;
 
 /**
@@ -39,13 +38,12 @@ public class ProjectListPanel extends UiPart<Region> {
                 event.consume();
             }
         });
-        projectListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Project>() {
-            @Override
-            public void changed(ObservableValue<? extends Project> observable, Project oldValue, Project newValue) {
-                if (newValue != null) {
-                    mainWindow.clearButtonStyles();
-                    mainWindow.displayProject(newValue);
-                }
+        projectListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                mainWindow.setFeedbackToUser(String.format(ViewProjectCommand.MESSAGE_SUCCESS,
+                        newValue.getProjectName()));
+                mainWindow.clearButtonStyles();
+                mainWindow.displayProject(newValue);
             }
         });
     }

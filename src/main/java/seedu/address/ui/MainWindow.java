@@ -135,6 +135,7 @@ public class MainWindow extends UiPart<Stage> {
 
         contactListPanel = new ContactListPanel(logic.getFilteredContactList());
         projectDisplayPanel = new ProjectDisplayPanel();
+        projectDisplayPanel.setMainWindow(this);
     }
 
     /**
@@ -282,6 +283,9 @@ public class MainWindow extends UiPart<Stage> {
         sidePanel.selectProject(index);
     }
 
+    /**
+     * Clears side panel button styles.
+     */
     public void clearButtonStyles() {
         sidePanel.clearButtonStyles();
     }
