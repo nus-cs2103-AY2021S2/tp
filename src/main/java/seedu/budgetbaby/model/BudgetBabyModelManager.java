@@ -206,6 +206,13 @@ public class BudgetBabyModelManager implements BudgetBabyModel {
         versionedBudgetTracker.setBudget(budget);
     }
 
+    //===========  Full List Accessors =============================================================
+
+    @Override
+    public ObservableList<Month> getFullMonthList() {
+        return versionedBudgetTracker.getMonthList();
+    }
+
     //=========== Filtered List Accessors =============================================================
 
     @Override

@@ -37,6 +37,7 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private CategoryStatsWindow categoryStatsWindow;
+    private MonthStatsWindow monthStatsWindow;
 
     @FXML
     private StackPane budgetDisplayPlaceHolder;
@@ -119,7 +120,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        budgetDisplay = new BudgetDisplay(logic.getFilteredMonthList(), logic.getTopCategories());
+        budgetDisplay = new BudgetDisplay(logic.getFilteredMonthList(), logic.getTopCategoryStatistics());
         budgetDisplayPlaceHolder.getChildren().add(budgetDisplay.getRoot());
 
         financialRecordListPanel = new FinancialRecordListPanel(logic.getFilteredFinancialRecordList());
@@ -142,7 +143,8 @@ public class MainWindow extends UiPart<Stage> {
      */
     void setUpWindows() {
         helpWindow = new HelpWindow();
-        categoryStatsWindow = new CategoryStatsWindow(logic.getTopCategories());
+        categoryStatsWindow = new CategoryStatsWindow(logic.getTopCategoryStatistics());
+        monthStatsWindow = new MonthStatsWindow(logic.getPastMonthStatistics());
     }
 
     /**
@@ -152,9 +154,10 @@ public class MainWindow extends UiPart<Stage> {
         // Automatically updates UI when changes are made to BudgetTracker
         logic.getBudgetTracker().addListener(observable -> {
             budgetDisplay.updateBudgetUi(logic.getFilteredMonthList());
-            budgetDisplay.updateTopCategoriesUi(logic.getTopCategories());
+            budgetDisplay.updateTopCategoriesUi(logic.getTopCategoryStatistics());
             financialRecordListPanel.updateObservableList(logic.getFilteredFinancialRecordList());
-            categoryStatsWindow.updateStatistics(logic.getTopCategories());
+            categoryStatsWindow.updateStatistics(logic.getTopCategoryStatistics());
+            monthStatsWindow.updateStatistics(logic.getPastMonthStatistics());
         });
     }
 
@@ -203,11 +206,22 @@ public class MainWindow extends UiPart<Stage> {
      * Opens the Category Statistics window or focuses on it if it's already opened.
      */
     @FXML
-    public void handleStatsWindow() {
+    public void handleCategoryStatsWindow() {
         if (!categoryStatsWindow.isShowing()) {
             categoryStatsWindow.show();
         } else {
             categoryStatsWindow.focus();
+        }
+    }
+    /**
+     * Opens the Category Statistics window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleMonthStatsWindow() {
+        if (!monthStatsWindow.isShowing()) {
+            monthStatsWindow.show();
+        } else {
+            monthStatsWindow.focus();
         }
     }
 
