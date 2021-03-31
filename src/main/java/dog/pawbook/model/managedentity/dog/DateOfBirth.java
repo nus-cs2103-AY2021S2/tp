@@ -53,6 +53,7 @@ public class DateOfBirth {
 
     /**
      * Gets Age of Dog in years.
+     *
      * @return Age of dog in years.
      */
     public int getAge() {

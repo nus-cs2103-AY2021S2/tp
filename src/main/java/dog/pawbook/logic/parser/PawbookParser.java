@@ -169,11 +169,9 @@ public class PawbookParser {
         case Owner.ENTITY_WORD:
             predicate = IS_OWNER_PREDICATE;
             break;
-
         case Dog.ENTITY_WORD:
             predicate = IS_DOG_PREDICATE;
             break;
-
         case Program.ENTITY_WORD:
             predicate = IS_PROGRAM_PREDICATE;
             break;
@@ -181,7 +179,6 @@ public class PawbookParser {
         default:
             throw new ParseException(MESSAGE_UNKNOWN_ENTITY);
         }
-
         return new ListCommand(predicate, entityType);
     }
 }

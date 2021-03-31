@@ -303,7 +303,7 @@ public class UniqueEntityList implements Iterable<Pair<Integer, Entity>> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof UniqueEntityList // instanceof handles nulls
-                        && internalList.equals(((UniqueEntityList) other).internalList));
+                && internalList.equals(((UniqueEntityList) other).internalList));
     }
 
     @Override

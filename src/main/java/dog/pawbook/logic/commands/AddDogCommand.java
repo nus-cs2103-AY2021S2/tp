@@ -62,23 +62,29 @@ public class AddDogCommand extends AddCommand<Dog> {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        //Ensure that getOwnerId() is not null
-        assert(toAdd.getOwnerId() != null) : "OwnerID should not return a null";
-        // ensure that the owner exists and retrieve it
+
+        // Ensure that getOwnerId() is not null
+        if (toAdd.getOwnerId() == null) {
+            throw new CommandException(Messages.MESSAGE_DOG_MISSING_OWNER_ID);
+        }
+
+        // Ensure that the owner exists and retrieve it
         if (!model.hasEntity(toAdd.getOwnerId())) {
             throw new CommandException(Messages.MESSAGE_INVALID_OWNER_ID);
         }
+
         Entity entity = model.getEntity(toAdd.getOwnerId());
 
         if (!(entity instanceof Owner)) {
             throw new CommandException(Messages.MESSAGE_INVALID_OWNER_ID);
         }
+
         Owner owner = (Owner) entity;
 
-        // the actual adding
+        // Adding the dog entity
         int idNumber = executeAdd(model);
 
-        // modify the owner accordingly
+        // Modify the owner accordingly
         Set<Integer> editedDogIdSet = new HashSet<>(owner.getDogIdSet());
         editedDogIdSet.add(idNumber);
 
@@ -92,6 +98,6 @@ public class AddDogCommand extends AddCommand<Dog> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddDogCommand // instanceof handles nulls
-                        && toAdd.equals(((AddDogCommand) other).toAdd));
+                && toAdd.equals(((AddDogCommand) other).toAdd));
     }
 }
