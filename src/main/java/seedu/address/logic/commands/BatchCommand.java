@@ -20,6 +20,7 @@ public class BatchCommand<T extends Command> extends Command {
     public static final String COMMAND_WORD = "batch";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Batch operation for all the listed clients.\n"
+            + "The same rules apply here, just like for the individual commands.\n"
             + "Parameters: COMMAND (only edit or delete command are supported) "
             + "ARGUMENTS (for the chosen command)\n"
             + "Example: " + COMMAND_WORD + " edit 1, 2 t/colleagues";

@@ -24,8 +24,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class BatchCommandParser implements Parser<BatchCommand> {
     public static final String INVALID_BATCH_COMMAND = "Invalid batch operation!\nOnly edit and delete operations "
             + "are supported.";
-    public static final String INVALID_EDIT_ARGUMENTS = "Invalid arguments for edit command!\nOnly tags and "
-            + "insurance policies can be edited in batch.";
+    public static final String INVALID_EDIT_ARGUMENTS = "Invalid arguments for edit command!\nOnly "
+            + "phone numbers, addresses, tags and insurance policies can be edited in batch.";
 
     /**
      * Parses input to prepare for a {@code BatchCommand}, and the {@code Commands} that will be executed by it.
@@ -45,11 +45,10 @@ public class BatchCommandParser implements Parser<BatchCommand> {
 
             // Checks the validity of the Command that the user passed as input to the BatchCommand
             switch (inputCommand) {
-
             case EditCommand.COMMAND_WORD:
+                /* falls through */
             case DeleteCommand.COMMAND_WORD:
                 break;
-
             default:
                 throw new ParseException(INVALID_BATCH_COMMAND);
             }
@@ -95,9 +94,12 @@ public class BatchCommandParser implements Parser<BatchCommand> {
         }
 
         // Joins the rest of the input by user to be passed to the EditCommands
+        List<String> listOfPhoneNumbers = argMultimap.getAllValues(PREFIX_PHONE);
+        List<String> listOfAddresses = argMultimap.getAllValues(PREFIX_ADDRESS);
         List<String> listOfTags = argMultimap.getAllValues(PREFIX_TAG);
         List<String> listOfInsurancePolicies = argMultimap.getAllValues(PREFIX_INSURANCE_POLICY);
-        String inputCommandArgs = concatAllArguments(listOfTags, listOfInsurancePolicies);
+        String inputCommandArgs = concatAllArguments(listOfPhoneNumbers, listOfAddresses, listOfTags,
+                listOfInsurancePolicies);
 
         List<EditCommand> listOfEditCommands = createEditCommands(listOfIndices, inputCommandArgs);
 
@@ -136,9 +138,22 @@ public class BatchCommandParser implements Parser<BatchCommand> {
         return listOfDeleteCommands;
     }
 
-    private String concatAllArguments(List<String> listOfTags, List<String> listOfInsurancePolicies) {
+    private String concatAllArguments(List<String> listOfPhoneNumbers, List<String> listOfAddresses,
+                                      List<String> listOfTags, List<String> listOfInsurancePolicies) {
         StringBuilder stringBuilder = new StringBuilder();
 
+        for (int i = 0; i < listOfPhoneNumbers.size(); i++) {
+            stringBuilder
+                    .append(PREFIX_PHONE.getPrefix())
+                    .append(listOfPhoneNumbers.get(i))
+                    .append(" ");
+        }
+        for (int i = 0; i < listOfAddresses.size(); i++) {
+            stringBuilder
+                    .append(PREFIX_ADDRESS.getPrefix())
+                    .append(listOfAddresses.get(i))
+                    .append(" ");
+        }
         for (int i = 0; i < listOfTags.size(); i++) {
             stringBuilder
                     .append(PREFIX_TAG.getPrefix())
@@ -157,8 +172,6 @@ public class BatchCommandParser implements Parser<BatchCommand> {
 
     private boolean areOtherPrefixesEntered(ArgumentMultimap argMultimap) {
         return argMultimap.getValue(PREFIX_NAME).isPresent()
-                || argMultimap.getValue(PREFIX_PHONE).isPresent()
-                || argMultimap.getValue(PREFIX_EMAIL).isPresent()
-                || argMultimap.getValue(PREFIX_ADDRESS).isPresent();
+                || argMultimap.getValue(PREFIX_EMAIL).isPresent();
     }
 }
