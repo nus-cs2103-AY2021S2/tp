@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.DeleteCommandParser.SELECTED;
+import static seedu.address.logic.parser.DeleteCommandParser.SPECIAL_INDEX;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.ArrayList;
@@ -22,8 +24,11 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the person identified by the index number used in the displayed person list.\n"
-            + "Parameters: INDEX [INDEX…] (must be a valid positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + "Parameters: { shown | selected | INDEX… } (must be a valid positive integer)\n"
+            + "Example:\n"
+            + COMMAND_WORD + " 1\n"
+            + COMMAND_WORD + " " + SPECIAL_INDEX + "\n"
+            + COMMAND_WORD + " " + SELECTED;
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted person: %1$s";
     public static final String MESSAGE_DELETE_PERSONS_SUCCESS = "Deleted multiple persons:\n%1$s";
