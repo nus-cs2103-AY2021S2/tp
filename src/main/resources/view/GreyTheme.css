@@ -351,17 +351,11 @@
 
 #resultDisplay .content {
     -fx-background-color: derive(#F7F4EA, 20%);
-    -fx-background-radius: 15;
-    -fx-border-radius: 15;
-    -fx-border-width: 0;
 }
 
 #resultDisplay .label {
     -fx-background-color: derive(#C5C3C6, 30%);
     -fx-text-fill: black !important;
-    -fx-background-radius: 15;
-    -fx-border-radius: 15;
-    -fx-border-width: 0;
 }
 
 #tags {
