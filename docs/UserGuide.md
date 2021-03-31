@@ -566,12 +566,6 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd contact in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st contact in the results of the `find` command.
 
-#### Clearing all entries : `clear`
-
-Clears all entries from CoLAB. Both contacts and projects will be cleared.
-
-Format: `clear`
-
 ### **4.3 Navigating the UI**
 
 Although most of the buttons you see on the screen are clickable, the UI has been designed primarily to be navigated using the command line interface.
@@ -645,6 +639,12 @@ CoLAB's data is saved as a JSON file `[JAR file location]/data/colab.json`. Adva
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, CoLAB will discard all data and start with an empty data file at the next run.
 </div>
+
+#### Clearing all entries : `clear`
+
+Clears all entries from CoLAB. Both contacts and projects will be cleared.
+
+Format: `clear`
 
 #### Undoing previous command : `undo`
 
