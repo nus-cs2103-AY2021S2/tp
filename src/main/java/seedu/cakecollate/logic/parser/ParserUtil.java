@@ -187,8 +187,13 @@ public class ParserUtil {
     public static DeliveryDate parseDeliveryDate(String deliveryDate) throws ParseException {
         requireNonNull(deliveryDate);
         String trimmedDeliveryDate = deliveryDate.trim();
-        if (!DeliveryDate.isValidDeliveryDate(trimmedDeliveryDate)) {
-            throw new ParseException(DeliveryDate.MESSAGE_CONSTRAINTS);
+        if (!DeliveryDate.isValidFormat(trimmedDeliveryDate)) {
+            System.out.println("not valid format");
+            throw new ParseException(DeliveryDate.MESSAGE_CONSTRAINTS_FORMAT);
+        }
+        if (!DeliveryDate.isXDaysLater(trimmedDeliveryDate, 0L)) {
+            System.out.println("not future date");
+            throw new ParseException(String.format(DeliveryDate.MESSAGE_CONSTRAINTS_VALUE, trimmedDeliveryDate));
         }
         return new DeliveryDate(trimmedDeliveryDate);
     }

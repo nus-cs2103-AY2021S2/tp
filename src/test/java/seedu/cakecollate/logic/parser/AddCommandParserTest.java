@@ -8,7 +8,7 @@ import static seedu.cakecollate.logic.commands.CommandTestUtil.DELIVERY_DATE_DES
 import static seedu.cakecollate.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.cakecollate.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.cakecollate.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
-import static seedu.cakecollate.logic.commands.CommandTestUtil.INVALID_DELIVERY_DATE_DESC;
+import static seedu.cakecollate.logic.commands.CommandTestUtil.INVALID_DELIVERY_DATE_DESC1;
 import static seedu.cakecollate.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.cakecollate.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.cakecollate.logic.commands.CommandTestUtil.INVALID_ORDER_DESC;
@@ -208,8 +208,9 @@ public class AddCommandParserTest {
 
         // invalid delivery date
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                        + ORDER_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + INVALID_DELIVERY_DATE_DESC,
-                DeliveryDate.MESSAGE_CONSTRAINTS);
+                + ORDER_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + INVALID_DELIVERY_DATE_DESC1,
+                DeliveryDate.MESSAGE_CONSTRAINTS_FORMAT);
+
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
