@@ -247,14 +247,14 @@ Example: `list_favourites`
 
 Adds an appointment with a specific tutor to the schedule.<br>
 
-Format: `add_appointment e/EMAIL s/SUBJECT d/DATE fr/TIME_FROM l/LOCATION`
+Format: `add_appointment n/NAME s/SUBJECT d/DATE fr/TIME_FROM to/TIME_TO l/LOCATION`
 
-* The date format `yyyy-mm-dd` must be strictly followed. e.g. `2021-3-1`and `2021-03-01`.
-* The time format `hh:mm a` must be strictly followed. e.g. `9:01 am` and `10:30 pm`.
+* The date format `YYYY-MM-DD` must be strictly followed. e.g. `2021-03-01`and `2021-04-20`.
+* The time format `HH:MM AM/PM` must be strictly followed. e.g. `9:01 AM` and `10:30 PM`.
 
 Examples:<br>
-* `appointment n/andew.ng@example.com s/Mathematics d/2021-3-1 fr/10:00am l/Bedok`
-* `appointment n/chloe.lim@example.com s/English d/2021-4-20 fr/2:00pm l/Bedok`
+* `add_appointment n/David Li s/Mathematics d/2021-03-01 fr/10:00 AM to/12:00 PM l/Bedok`
+* `add_appointment n/Alex Yeoh s/English d/2021-04-20 fr/2:00 PM to/4:00 PM l/Bedok`
 
 ### Listing all tuition appointments : `list_appointments`
 
