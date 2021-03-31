@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_RESIDENTS;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalResidents.ALICE;
-import static seedu.address.testutil.TypicalResidents.BENSON;
+import static seedu.address.testutil.resident.TypicalResidents.ALICE;
+import static seedu.address.testutil.resident.TypicalResidents.BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.resident.NameContainsKeywordsPredicate;
+import seedu.address.model.resident.Resident;
 import seedu.address.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {
@@ -74,7 +75,7 @@ public class ModelManagerTest {
 
     @Test
     public void hasResident_nullResident_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.hasResident(null));
+        assertThrows(NullPointerException.class, () -> modelManager.hasResident((Resident) null));
     }
 
     @Test

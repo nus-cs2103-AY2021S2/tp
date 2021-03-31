@@ -3,7 +3,7 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedResident.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalResidents.BENSON;
+import static seedu.address.testutil.resident.TypicalResidents.BENSON;
 
 import org.junit.jupiter.api.Test;
 

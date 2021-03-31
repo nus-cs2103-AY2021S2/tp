@@ -26,6 +26,9 @@ import seedu.address.logic.commands.resident.DeleteResidentCommand;
 import seedu.address.logic.commands.resident.EditResidentCommand;
 import seedu.address.logic.commands.resident.FindResidentCommand;
 import seedu.address.logic.commands.resident.ListResidentCommand;
+import seedu.address.logic.commands.resident.ListUnallocatedResidentsCommand;
+import seedu.address.logic.commands.residentroom.AllocateResidentRoomCommand;
+import seedu.address.logic.commands.residentroom.DeallocateResidentRoomCommand;
 import seedu.address.logic.commands.room.AddRoomCommand;
 import seedu.address.logic.commands.room.DeleteRoomCommand;
 import seedu.address.logic.commands.room.EditRoomCommand;
@@ -46,6 +49,8 @@ import seedu.address.logic.parser.resident.AddResidentCommandParser;
 import seedu.address.logic.parser.resident.DeleteResidentCommandParser;
 import seedu.address.logic.parser.resident.EditResidentCommandParser;
 import seedu.address.logic.parser.resident.FindResidentCommandParser;
+import seedu.address.logic.parser.residentroom.AllocateResidentRoomCommandParser;
+import seedu.address.logic.parser.residentroom.DeallocateResidentRoomCommandParser;
 import seedu.address.logic.parser.room.AddRoomCommandParser;
 import seedu.address.logic.parser.room.DeleteRoomCommandParser;
 import seedu.address.logic.parser.room.EditRoomCommandParser;
@@ -96,6 +101,9 @@ public class AddressBookParser {
         case DeleteResidentCommand.COMMAND_WORD:
             return new DeleteResidentCommandParser().parse(arguments);
 
+        case ListUnallocatedResidentsCommand.COMMAND_WORD:
+            return new ListUnallocatedResidentsCommand();
+
         // ====== Room Commands ======
         case AddRoomCommand.COMMAND_WORD:
             return new AddRoomCommandParser().parse(arguments);
@@ -111,6 +119,13 @@ public class AddressBookParser {
 
         case DeleteRoomCommand.COMMAND_WORD:
             return new DeleteRoomCommandParser().parse(arguments);
+
+        // ====== ResidentRoom Commands ======
+        case AllocateResidentRoomCommand.COMMAND_WORD:
+            return new AllocateResidentRoomCommandParser().parse(arguments);
+
+        case DeallocateResidentRoomCommand.COMMAND_WORD:
+            return new DeallocateResidentRoomCommandParser().parse(arguments);
 
         // ====== Issue Commands ======
         case AddIssueCommand.COMMAND_WORD:

@@ -21,7 +21,6 @@ public class CommandResult {
      */
     private final boolean shouldExit;
 
-
     /**
      * Constructs a simpler CommandResult which assumes that the command is neither a resident nor room command.
      * The command therefore can only be a help or exit command.

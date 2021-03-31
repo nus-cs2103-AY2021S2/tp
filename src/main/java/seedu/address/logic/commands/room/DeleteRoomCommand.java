@@ -10,6 +10,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.residentroom.ResidentRoom;
 import seedu.address.model.room.Room;
 
 /**
@@ -24,6 +25,8 @@ public class DeleteRoomCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_ROOM_SUCCESS = "Deleted room: %1$s";
+    public static final String MESSAGE_ROOM_ALLOCATED_FAILURE =
+            "The room has been allocated to another resident. Please deallocate the room before deletion.";
 
     private final Index targetIndex;
 
@@ -41,6 +44,11 @@ public class DeleteRoomCommand extends Command {
         }
 
         Room roomToDelete = lastShownList.get(targetIndex.getZeroBased());
+
+        if (model.hasEitherResidentRoom(new ResidentRoom(null, roomToDelete.getRoomNumber()))) {
+            throw new CommandException(MESSAGE_ROOM_ALLOCATED_FAILURE);
+        }
+
         model.deleteRoom(roomToDelete);
         model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_DELETE_ROOM_SUCCESS, roomToDelete));

@@ -253,7 +253,7 @@ Examples of verification functions in each of the fields include `RoomNumber#isV
 
 ![The Room Class](images/room/RoomClass.png)
 
-The `Room` objects are stored in a `UniqueRoomList` which is held by `AddressBook`.  
+The `Room` objects are stored in a `UniqueRoomList` which is held by `AddressBook`.
 
 ##### Alternatives considered
 * **Alternative 1 (current choice):** Abstract fields of Room out as separate classes

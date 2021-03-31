@@ -6,10 +6,9 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.ROOM_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.YEAR_DESC_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalResidents.AMY;
+import static seedu.address.testutil.resident.TypicalResidents.AMY;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -32,7 +31,8 @@ import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.commandhistory.PlainTextCommandHistoryStorage;
-import seedu.address.testutil.ResidentBuilder;
+import seedu.address.testutil.resident.ResidentBuilder;
+
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -86,8 +86,7 @@ public class LogicManagerTest {
 
         // Execute add command
         String addCommand = AddResidentCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + YEAR_DESC_AMY
-                + ROOM_DESC_AMY;
+                + YEAR_DESC_AMY;
         Resident expectedResident = new ResidentBuilder(AMY).build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.appendCommandHistoryEntry(addCommand);

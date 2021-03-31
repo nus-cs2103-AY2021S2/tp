@@ -219,6 +219,11 @@ Example:
 ### Deallocate resident from room: `dealloc`
 Deallocates an existing resident from an existing room.
 
+<<<<<<< HEAD
+Format: `dealloc INDEX`
+* `INDEX` refers to the index number shown in the displayed resident list. `INDEX` **must be a positive integer 1,2,3, ...**.
+* The resident at the `INDEX` must already be allocated. 
+=======
 Format: `dealloc n/NAME r/ROOM_NO`
 * `NAME` and `ROOM_NO` must already exist.
 * Exact match for `NAME` is required.
@@ -226,9 +231,10 @@ Format: `dealloc n/NAME r/ROOM_NO`
 * The allocation must already exist.
 * Both fields must be provided.
 * Ensure that the resident to be deallocated is visible. Use `rlist` to view all.
+>>>>>>> master
 
 Example:
-* `dealloc r/John Tan n/03-100` Deallocates resident named John Tan from room 03-100.
+* `dealloc 1` Deallocates the 1st resident in the resident list from its allocated room.
 
 ### Add an open issue : `iadd`
 
