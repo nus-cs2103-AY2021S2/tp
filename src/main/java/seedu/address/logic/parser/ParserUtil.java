@@ -172,10 +172,16 @@ public class ParserUtil {
      * @param priorityTag String value of ptag
      * @return correct string value of ptag
      */
-    public static PriorityTag parsePriorityTag(String priorityTag) {
+    public static PriorityTag parsePriorityTag(String priorityTag) throws ParseException {
         requireNonNull(priorityTag);
 
-        return new PriorityTag(priorityTag);
+        if (priorityTag.equals("LOW")
+                || priorityTag.equals("MEDIUM")
+                || priorityTag.equals("HIGH")) {
+            return new PriorityTag(priorityTag);
+        } else {
+            throw new ParseException(PriorityTag.MESSAGE_CONSTRAINTS);
+        }
     }
 
     /**
