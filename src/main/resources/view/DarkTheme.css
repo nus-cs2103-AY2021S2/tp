@@ -392,10 +392,8 @@
 }
 
 #bookingListPane .label {
-    -fx-background-color: #ffdde6 ;
     -fx-border-radius: 3;
     -fx-font-size: 13;
-    -fx-text-fill: #333333;
 }
 
 #bookingTitlePane .label {
