@@ -7,12 +7,12 @@ import seedu.address.model.ColabFolder;
 import seedu.address.model.Model;
 
 /**
- * Clears the project & contact list.
+ * Clears the projects & contacts list.
  */
-public class ClearContactCommand extends Command {
+public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
-    public static final String MESSAGE_SUCCESS = "Project & Contact data has been cleared!";
+    public static final String MESSAGE_SUCCESS = "Projects & Contacts data have been cleared!";
 
     @Override
     public CommandResult execute(Model model) {
