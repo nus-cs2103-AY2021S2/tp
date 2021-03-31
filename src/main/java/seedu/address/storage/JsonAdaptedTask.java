@@ -147,7 +147,7 @@ class JsonAdaptedTask {
         }
         final Remark modelRemark = new Remark(remark);
 
-        if(priorityTag == null) {
+        if (priorityTag == null) {
             throw new IllegalValueException(PriorityTag.MESSAGE_CONSTRAINTS);
         }
 
@@ -155,7 +155,7 @@ class JsonAdaptedTask {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         return new Task(modelTaskName, modelModuleCode, modelDeadlineDate,
-            modelDeadlineTime, modelStatus, modelWeightage, modelRemark, modelTags,modelPriorityTag);
+            modelDeadlineTime, modelStatus, modelWeightage, modelRemark, modelTags, modelPriorityTag);
     }
 
 }
