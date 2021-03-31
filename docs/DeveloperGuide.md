@@ -279,7 +279,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. Error in submission if user did not provide all relevant fields. <br>
     * 2a1. ResidenceTracker shows an error message. <br>
       use case restarts from 1.
-      
 <br>
 
 **Use case (UC02): Delete a residence**
