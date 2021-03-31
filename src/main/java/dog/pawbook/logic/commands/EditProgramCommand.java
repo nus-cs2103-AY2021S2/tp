@@ -68,6 +68,8 @@ public class EditProgramCommand extends EditEntityCommand {
             throw new CommandException(Messages.MESSAGE_INVALID_PROGRAM_ID);
         }
 
+        assert editEntityDescriptor instanceof EditProgramDescriptor;
+
         EditProgramDescriptor editProgramDescriptor = (EditProgramDescriptor) editEntityDescriptor;
 
         Program programToEdit = (Program) entityToEdit;

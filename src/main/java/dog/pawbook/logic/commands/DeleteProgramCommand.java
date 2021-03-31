@@ -28,13 +28,16 @@ public class DeleteProgramCommand extends DeleteCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
         Entity programToDelete = getEntityToDelete(model);
         // if the id exists but doesn't belong to a program means it is invalid
         if (!(programToDelete instanceof Program)) {
             throw new CommandException(MESSAGE_INVALID_PROGRAM_ID);
         }
+
         model.deleteEntity(targetId);
         filteredListShowAllAscendingId(model);
+
         return new CommandResult(MESSAGE_SUCCESS + programToDelete);
     }
 

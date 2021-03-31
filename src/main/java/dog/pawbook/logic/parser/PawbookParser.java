@@ -131,6 +131,7 @@ public class PawbookParser {
             return new EditDogCommandParser().parse(arguments);
         case Program.ENTITY_WORD:
             return new EditProgramCommandParser().parse(arguments);
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_ENTITY);
         }
@@ -151,6 +152,7 @@ public class PawbookParser {
             return new DeleteDogCommandParser().parse(arguments);
         case Program.ENTITY_WORD:
             return new DeleteProgramCommandParser().parse(arguments);
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_ENTITY);
         }
@@ -173,6 +175,7 @@ public class PawbookParser {
         case Program.ENTITY_WORD:
             predicate = IS_PROGRAM_PREDICATE;
             break;
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_ENTITY);
         }
