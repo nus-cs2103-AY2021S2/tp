@@ -2,17 +2,26 @@ package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INVALID_INDEX_STRING;
+import static seedu.address.testutil.TypicalIndexes.OUT_OF_RANGE_INDEX_STRING;
+import static seedu.address.testutil.TypicalIndexes.VALID_INDEXES;
+import static seedu.address.testutil.TypicalIndexes.VALID_INDEXES_STRING;
+import static seedu.address.testutil.TypicalIndexes.VALID_INDEX_STRING;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Company;
@@ -23,6 +32,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
+
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
@@ -44,22 +54,52 @@ public class ParserUtilTest {
 
     @Test
     public void parseIndex_invalidInput_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseIndex("10 a"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseIndex(INVALID_INDEX_STRING));
     }
 
     @Test
     public void parseIndex_outOfRangeInput_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
-            -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
+        assertThrows(ParseException.class,
+                MESSAGE_INVALID_INDEX, () -> ParserUtil.parseIndex(OUT_OF_RANGE_INDEX_STRING));
     }
 
     @Test
     public void parseIndex_validInput_success() throws Exception {
         // No whitespaces
-        assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("1"));
+        assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex(VALID_INDEX_STRING));
 
         // Leading and trailing whitespaces
-        assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("  1  "));
+        assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex(
+                PREAMBLE_WHITESPACE + INDEX_FIRST_PERSON.getOneBased() + PREAMBLE_WHITESPACE));
+    }
+
+    @Test
+    public void parseIndexes_invalidInput_throwsParseException() {
+        assertThrows(ParseException.class,
+                MESSAGE_INVALID_INDEX, () -> ParserUtil.parseIndexes(INVALID_INDEX_STRING));
+    }
+
+    @Test
+    public void parseIndexes_outOfRangeInput_throwsParseException() {
+        String inputString =
+                INDEX_FIRST_PERSON.getOneBased() + PREAMBLE_WHITESPACE + OUT_OF_RANGE_INDEX_STRING;
+        assertThrows(ParseException.class,
+                MESSAGE_INVALID_INDEX, () -> ParserUtil.parseIndexes(inputString));
+    }
+
+    @Test
+    public void parseIndexes_validInput_success() throws Exception {
+        List<Index> parsedIndexes = ParserUtil.parseIndexes(VALID_INDEXES_STRING);
+        assertEquals(VALID_INDEXES, parsedIndexes);
+    }
+
+    @Test
+    public void parseIndexes_validInputWithWhitespace_success() throws Exception {
+        String inputString = VALID_INDEXES.stream()
+                .map(Index::getOneBased).map(String::valueOf)
+                .collect(Collectors.joining(PREAMBLE_WHITESPACE));
+        List<Index> parsedIndexes = ParserUtil.parseIndexes(inputString);
+        assertEquals(VALID_INDEXES, parsedIndexes);
     }
 
     @Test
@@ -241,7 +281,8 @@ public class ParserUtilTest {
     @Test
     public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {
         Set<Tag> actualTagSet = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
-        Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
+        Set<Tag> expectedTagSet = new HashSet<Tag>(
+                Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
     }

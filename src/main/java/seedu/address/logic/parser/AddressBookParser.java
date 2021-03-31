@@ -18,6 +18,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.TagCommand;
+import seedu.address.logic.commands.SelectCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyUniqueAliasMap;
 
@@ -90,6 +91,9 @@ public class AddressBookParser {
         case TagCommand.COMMAND_WORD:
             return new TagCommandParser().parse(arguments);
 
+        case SelectCommand.COMMAND_WORD:
+            return new SelectCommandParser().parse(arguments);
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
@@ -137,6 +141,9 @@ public class AddressBookParser {
 
         case TagCommand.COMMAND_WORD:
             return new TagCommandParser().isValidCommandToAlias(arguments);
+
+        case SelectCommand.COMMAND_WORD:
+            return new SelectCommandParser().isValidCommandToAlias(arguments);
 
         default:
             return false;

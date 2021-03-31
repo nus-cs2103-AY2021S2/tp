@@ -10,8 +10,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAliases.getTypicalAlias;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.VALID_INDEXES;
+import static seedu.address.testutil.TypicalIndexes.VALID_INDEXES_STRING;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,6 +33,10 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListAliasCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.SelectClearCommand;
+import seedu.address.logic.commands.SelectCommand;
+import seedu.address.logic.commands.SelectIndexCommand;
+import seedu.address.logic.commands.SelectShowCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.DisplayFilterPredicate;
 import seedu.address.model.UniqueAliasMap;
@@ -65,7 +72,12 @@ public class AddressBookParserTest {
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
                 DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased(), emptyAliases);
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+        assertEquals(DeleteCommand
+                .buildDeleteIndexCommand(Collections.singletonList(INDEX_FIRST_PERSON)), command);
+
+        DeleteCommand commandMultipleIndexes = (DeleteCommand) parser.parseCommand(
+                DeleteCommand.COMMAND_WORD + " " + VALID_INDEXES_STRING, emptyAliases);
+        assertEquals(DeleteCommand.buildDeleteIndexCommand(VALID_INDEXES), commandMultipleIndexes);
     }
 
     @Test
@@ -75,7 +87,9 @@ public class AddressBookParserTest {
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " "
                 + PersonUtil.getEditPersonDescriptorDetails(descriptor), emptyAliases);
-        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+        assertEquals(EditCommand
+                        .buildEditIndexCommand(Collections.singletonList(INDEX_FIRST_PERSON), descriptor),
+                command);
     }
 
     @Test
@@ -143,9 +157,25 @@ public class AddressBookParserTest {
     }
 
     @Test
+    public void parseCommand_select() throws Exception {
+        assertTrue(parser.parseCommand(
+                SelectCommand.COMMAND_WORD + " " + SelectIndexCommandParser.SPECIAL_INDEX,
+                emptyAliases) instanceof SelectIndexCommand);
+        assertTrue(parser.parseCommand(
+                SelectCommand.COMMAND_WORD + " " + VALID_INDEXES_STRING,
+                emptyAliases) instanceof SelectIndexCommand);
+        assertTrue(parser.parseCommand(
+                SelectCommand.COMMAND_WORD + " " + SelectCommand.CLEAR_SUB_COMMAND_WORD,
+                emptyAliases) instanceof SelectClearCommand);
+        assertTrue(parser.parseCommand(
+                SelectCommand.COMMAND_WORD + " " + SelectCommand.SHOW_SUB_COMMAND_WORD,
+                emptyAliases) instanceof SelectShowCommand);
+    }
+
+    @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
-        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
-            -> parser.parseCommand("", emptyAliases));
+        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                HelpCommand.MESSAGE_USAGE), () -> parser.parseCommand("", emptyAliases));
     }
 
     @Test
