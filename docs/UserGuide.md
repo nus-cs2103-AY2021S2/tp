@@ -374,8 +374,8 @@ Adds a user-defined alias, which represents a shortcut to a longer command.
 Format: `alias a/ALIAS_NAME cmd/COMMAND`
 
 Examples:
-* `alias a/ol cmd/olist` Adds `ol` alias which is a shortcut for `olist` command.
-* `alias a/fNemo cmd/rfind Nemo` Adds `fNemo` alias which is a shortcut for `rfind Nemo` command.
+* `alias a/ol cmd/olist` Adds the `ol` alias which is a shortcut for `olist` command.
+* `alias a/fNemo cmd/rfind Nemo` Adds the `fNemo` alias which is a shortcut for `rfind Nemo` command.
 
 ### Delete an alias : `unalias`
 
@@ -384,7 +384,7 @@ Deletes a previously defined alias.
 Format: `unalias a/ALIAS_NAME`
 
 Examples:
-* `unalias a/findBob` Deletes `findBob` alias, provided that the alias was previously added.
+* `unalias a/findBob` Deletes the `findBob` alias, provided that the alias was previously added.
 
 ### List all aliases : `aliases`
 
