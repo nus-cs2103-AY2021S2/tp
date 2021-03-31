@@ -1,0 +1,14 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:User execute help command;
+if () then ([User has Internet Connection])
+    :Redirect user to StoreMando's User Guide;
+else ([User does not has Internet Connection])
+    :A pop-out window appears with StoreMando's User Guide link;
+endif
+
+stop
+
+@enduml
