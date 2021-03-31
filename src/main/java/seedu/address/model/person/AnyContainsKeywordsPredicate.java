@@ -3,9 +3,6 @@ package seedu.address.model.person;
 import java.util.List;
 import java.util.function.Predicate;
 
-import seedu.address.commons.util.StringUtil;
-import seedu.address.model.Address;
-
 /**
  * Tests that any of {@code Person}'s fields matches any of the keywords given.
  */

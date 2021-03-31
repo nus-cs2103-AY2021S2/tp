@@ -1,10 +1,9 @@
 package seedu.address.model.person;
 
-import seedu.address.commons.util.StringUtil;
-import seedu.address.model.appointment.Appointment;
-import seedu.address.model.appointment.ApptFieldContainsKeywordsPredicate;
-
 import java.util.List;
+
+import seedu.address.commons.util.StringUtil;
+
 
 /**
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.

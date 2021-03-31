@@ -78,7 +78,7 @@ public class FindCommandParser implements Parser<FindCommand> {
             ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(optionArgs, PREFIX_OPTION);
             Set<Tag> tagSet = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
             return new FindCommand(new TagsMatchKeywordPredicate(tagSet));
-        }  else {
+        } else {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
