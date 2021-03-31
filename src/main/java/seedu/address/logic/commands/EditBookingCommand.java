@@ -32,7 +32,7 @@ public class EditBookingCommand extends Command {
     public static final String COMMAND_WORD = "editb";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the booking identified by "
-            + "booking index of the residence identified by the residence index provided. "
+            + "booking index of the residence identified based on the residence index provided"
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: "
             + PREFIX_RESIDENCE + "RESIDENCE_INDEX "
@@ -137,6 +137,10 @@ public class EditBookingCommand extends Command {
                 && editBookingDescriptor.equals(e.editBookingDescriptor);
     }
 
+    public static String getCommandWord() {
+        return COMMAND_WORD;
+    }
+
     /**
      * Stores the details to edit the booking with. Each non-empty field value will replace the
      * corresponding field value of the booking.
@@ -198,7 +202,6 @@ public class EditBookingCommand extends Command {
         public Optional<LocalDate> getEndDate() {
             return Optional.ofNullable(endDate);
         }
-
 
         @Override
         public boolean equals(Object other) {

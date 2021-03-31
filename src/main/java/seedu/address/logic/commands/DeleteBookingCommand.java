@@ -63,6 +63,10 @@ public class DeleteBookingCommand extends Command {
                 residenceIndex.getOneBased(), bookingToDelete));
     }
 
+    public static String getCommandWord() {
+        return COMMAND_WORD;
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
@@ -70,7 +74,5 @@ public class DeleteBookingCommand extends Command {
                 && residenceIndex.equals(((DeleteBookingCommand) other).residenceIndex)
                 && bookingIndex.equals(((DeleteBookingCommand) other).bookingIndex)); // state check
     }
-
-
 }
 
