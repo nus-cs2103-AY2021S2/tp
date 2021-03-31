@@ -43,10 +43,10 @@ public class MenuAddCommandParser implements Parser<MenuAddCommand> {
 
         List<Pair<Integer, Integer>> ingredientQuantityList = new ArrayList<>();
 
-        for (int i = 0; i < ingNums.size(); i++) {
+        for (int i = 0; i < ingredientNumbers.size(); i++) {
             Pair<Integer, Integer> dishComponent =
-                    new Pair<>(Integer.parseInt(ingredientNumbers.get(idx)),
-                            Integer.parseInt(ingredientQuantities.get(idx)));
+                    new Pair<>(Integer.parseInt(ingredientNumbers.get(i)),
+                            Integer.parseInt(ingredientQuantities.get(i)));
             ingredientQuantityList.add(dishComponent);
         }
 
