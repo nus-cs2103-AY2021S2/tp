@@ -5,6 +5,7 @@ import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.date.ImportantDate;
 import seedu.address.model.lesson.Lesson;
@@ -218,6 +219,9 @@ public interface Model {
      * @throws NullPointerException if {@code comparator} is null.
      */
     void filterThenSortLessonList(Predicate<Lesson> predicate, Comparator<Lesson> comparator);
+
+    ObservableList<Lesson> filterThenSortLessonDayList(FilteredList<Lesson> lessonDayList, Predicate<Lesson> predicate,
+            Comparator<Lesson> comparator);
 
     ObservableList<Lesson> getMondayLesson();
     ObservableList<Lesson> getTuesdayLesson();
