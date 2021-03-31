@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_UPDATE_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 
 import java.util.stream.Stream;
 
@@ -27,15 +27,15 @@ public class UpdateDeadlineCommandParser implements Parser<UpdateDeadlineCommand
     public UpdateDeadlineCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
-                PREFIX_UPDATE_INDEX, PREFIX_DESCRIPTION, PREFIX_DEADLINE_DATE);
+                PREFIX_INDEX, PREFIX_DESCRIPTION, PREFIX_DEADLINE_DATE);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_UPDATE_INDEX) || argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_INDEX) || argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdateDeadlineCommand.MESSAGE_USAGE));
         }
 
         Index projectIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
-        Index targetDeadlineIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_UPDATE_INDEX).get());
+        Index targetDeadlineIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
 
         UpdateDeadlineCommand.UpdateDeadlineDescriptor updateDeadlineDescriptor =
                 new UpdateDeadlineCommand.UpdateDeadlineDescriptor();

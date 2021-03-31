@@ -1,7 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_REMOVE_TASK_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
@@ -13,7 +13,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeleteGroupmateCommand;
 
 public class DeleteGroupmateCommandParserTest {
-    private DeleteContactFromCommandParser parser = new DeleteContactFromCommandParser();
+    private DeleteGroupmateCommandParser parser = new DeleteGroupmateCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
@@ -21,7 +21,7 @@ public class DeleteGroupmateCommandParserTest {
         Index expectedContactIndex = Index.fromOneBased(1);
 
         // all field appear once
-        assertParseSuccess(parser, INDEX_FIRST.getOneBased() + " " + PREFIX_REMOVE_TASK_INDEX + " "
+        assertParseSuccess(parser, INDEX_FIRST.getOneBased() + " " + PREFIX_INDEX + " "
                         + INDEX_FIRST.getOneBased(),
                 new DeleteGroupmateCommand(expectedProjectIndex, expectedContactIndex)
         );
@@ -32,7 +32,7 @@ public class DeleteGroupmateCommandParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteGroupmateCommand.MESSAGE_USAGE);
 
         // missing project index
-        assertParseFailure(parser, PREFIX_REMOVE_TASK_INDEX + " " + INDEX_FIRST.getOneBased(),
+        assertParseFailure(parser, PREFIX_INDEX + " " + INDEX_FIRST.getOneBased(),
                 expectedMessage);
 
         // missing remove prefix
@@ -42,11 +42,11 @@ public class DeleteGroupmateCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         // invalid project index
-        assertParseFailure(parser, "0 " + PREFIX_REMOVE_TASK_INDEX + " "
+        assertParseFailure(parser, "0 " + PREFIX_INDEX + " "
                 + INDEX_FIRST.getOneBased(), MESSAGE_INVALID_INDEX);
 
         // invalid remove
-        assertParseFailure(parser, INDEX_FIRST.getOneBased() + " " + PREFIX_REMOVE_TASK_INDEX + " 0",
+        assertParseFailure(parser, INDEX_FIRST.getOneBased() + " " + PREFIX_INDEX + " 0",
                 MESSAGE_INVALID_INDEX);
     }
 }

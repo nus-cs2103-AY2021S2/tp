@@ -16,7 +16,7 @@ import seedu.address.commons.exceptions.DateConversionException;
  */
 public class DateUtil {
     /*
-        Inconsistency in naming of year: uuuu in formatters, yyyy in error messages.
+        Inconsistency in naming of year: uuuu in formatters, yyyy in some error messages.
         Java uses uuuu for years (yyyy is year-of-era).
         However, yyyy is the more commonly accepted symbol for year and will be more intuitive for users.
      */
@@ -36,6 +36,7 @@ public class DateUtil {
 
     /**
      * Encodes a date passed as a String into a LocalDate.
+     *
      * @param date Date in the uuuu-mm-dd format.
      * @return A LocalDate object.
      * @throws DateConversionException Occurs when a date had been passed in with the wrong format.
@@ -51,6 +52,7 @@ public class DateUtil {
 
     /**
      * Decodes a date passed as a LocalDate into a String in the dd MMM uuuu format.
+     *
      * @param date A LocalDate object.
      * @return A date String in the dd MMM uuuu format.
      */
@@ -61,16 +63,29 @@ public class DateUtil {
 
     /**
      * Decodes a date passed as a LocalDate into a String in the EEEE, dd MMM uuuu format.
+     *
      * @param date A LocalDate object.
      * @return A date String in the EEEE, dd MMM uuuu format.
      */
     public static String decodeDateWithDay(LocalDate date) {
         requireNonNull(date);
-        return date.format(DateTimeFormatter.ofPattern("EEEE, dd MMM uuuu"));
+        return date.format(DateTimeFormatter.ofPattern("EEE, dd MMM uuuu"));
+    }
+
+    /**
+     * Decodes a date passed as a LocalDate into a String in the EEEE format.
+     *
+     * @param date A LocalDate object.
+     * @return A date String in the EEEE format.
+     */
+    public static String decodeDateIntoDay(LocalDate date) {
+        requireNonNull(date);
+        return date.format(DateTimeFormatter.ofPattern("EEEE"));
     }
 
     /**
      * Decodes a date passed as a LocalDate into a String in the uuuu-MM-dd format.
+     *
      * @param date A LocalDate object.
      * @return A date String in the uuuu-MM-dd format.
      */

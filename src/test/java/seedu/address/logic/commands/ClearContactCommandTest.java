@@ -5,6 +5,7 @@ import static seedu.address.testutil.TypicalColabFolder.getTypicalColabFolder;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.uicommands.ShowTodayUiCommand;
 import seedu.address.model.ColabFolder;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -17,7 +18,8 @@ public class ClearContactCommandTest {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
-        assertCommandSuccess(new ClearContactCommand(), model, ClearContactCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearContactCommand(), model, ClearContactCommand.MESSAGE_SUCCESS,
+                new ShowTodayUiCommand(), expectedModel);
     }
 
     @Test
@@ -26,7 +28,8 @@ public class ClearContactCommandTest {
         Model expectedModel = new ModelManager(getTypicalColabFolder(), new UserPrefs());
         expectedModel.setColabFolder(new ColabFolder());
 
-        assertCommandSuccess(new ClearContactCommand(), model, ClearContactCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearContactCommand(), model, ClearContactCommand.MESSAGE_SUCCESS,
+                new ShowTodayUiCommand(), expectedModel);
     }
 
 }

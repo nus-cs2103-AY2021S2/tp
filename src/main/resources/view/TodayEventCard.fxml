@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+  <stylesheets>
+    <URL value="@ProjectDisplayPanel.css"/>
+  </stylesheets>
+
+  <GridPane HBox.hgrow="ALWAYS">
+    <columnConstraints>
+      <ColumnConstraints hgrow="ALWAYS" minWidth="10"/>
+    </columnConstraints>
+    <VBox alignment="CENTER_LEFT" GridPane.columnIndex="0">
+      <padding>
+        <Insets top="5" right="5" bottom="10" left="15"/>
+      </padding>
+      <HBox spacing="5">
+        <Label fx:id="id" styleClass="cell_big_label" minWidth="-Infinity"/>
+        <Label fx:id="eventDescription" text="\$first" minWidth="-Infinity" styleClass="cell_big_label"/>
+      </HBox>
+      <Label fx:id="projectName" styleClass="cell_small_label" minWidth="-Infinity">
+        <padding>
+          <Insets top="0" right="0" bottom="0" left="5"/>
+        </padding>
+      </Label>
+      <HBox>
+        <padding>
+          <Insets top="0" right="0" bottom="0" left="5"/>
+        </padding>
+        <Label fx:id="time" styleClass="cell_small_label" minWidth="-Infinity"/>
+        <Label fx:id="date" styleClass="cell_small_label" minWidth="-Infinity">
+          <padding>
+            <Insets top="0" right="5" bottom="0" left="5"/>
+          </padding>
+        </Label>
+        <Label fx:id="day" styleClass="cell_small_label" minWidth="-Infinity"/>
+      </HBox>
+    </VBox>
+  </GridPane>
+</HBox>

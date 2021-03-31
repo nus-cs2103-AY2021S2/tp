@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_REMOVE_TASK_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -10,6 +10,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.uicommands.ViewProjectAndOverviewUiCommand;
 import seedu.address.model.Model;
 import seedu.address.model.project.Project;
 
@@ -23,9 +24,9 @@ public class DeleteDeadlineCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the deadline identified by it's index number within the displayed project.\n"
             + "Parameters: PROJECT_INDEX (must be a positive integer)"
-            + PREFIX_REMOVE_TASK_INDEX + "DEADLINE_INDEX \n"
+            + PREFIX_INDEX + "DEADLINE_INDEX \n"
             + "Example: " + COMMAND_WORD + " 1" + " "
-            + PREFIX_REMOVE_TASK_INDEX + " 2";
+            + PREFIX_INDEX + " 2";
 
     private final Index projectIndex;
     private final Index targetDeadlineIndex;
@@ -53,7 +54,7 @@ public class DeleteDeadlineCommand extends Command {
         }
 
         if (targetDeadlineIndex.getZeroBased() >= lastShownList.get(projectIndex.getZeroBased())
-                .getDeadlines().getDeadlines().size()) {
+                .getDeadlines().getSortedDeadlineList().size()) {
             logger.info("----------------[DeleteDeadlineCommand][Invalid Deadline Index]");
             throw new CommandException(Messages.MESSAGE_INVALID_DEADLINE_DISPLAYED_INDEX);
         }
@@ -65,7 +66,7 @@ public class DeleteDeadlineCommand extends Command {
         model.updateFilteredProjectList(Model.PREDICATE_SHOW_ALL_PROJECTS);
 
         return new CommandResult(String.format(Messages.MESSAGE_DELETE_DEADLINE_SUCCESS,
-                targetDeadlineIndex.getOneBased()));
+                targetDeadlineIndex.getOneBased()), new ViewProjectAndOverviewUiCommand(projectIndex));
     }
 
     @Override

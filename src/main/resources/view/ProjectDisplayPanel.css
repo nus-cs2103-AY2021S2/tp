@@ -83,7 +83,7 @@
 
 /* list view */
 .list-view {
-    -fx-background-insets: 0;
+    -fx-background-insets: 0 0 10 0;
     -fx-padding: 0;
     -fx-background-color: -DP_1_ELEVATION;
 }
@@ -120,4 +120,18 @@
 
 #interval {
     -fx-padding: 0 10 0 0;
+}
+
+#roles {
+    -fx-hgap: 7;
+    -fx-vgap: 3;
+}
+
+#roles .label {
+    -fx-text-fill: white;
+    -fx-background-color: -COLOR_ACCENT;
+    -fx-padding: 1 3 1 3;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+    -fx-font-size: 11;
 }

@@ -7,19 +7,19 @@ import seedu.address.logic.uicommands.ShowContactsUiCommand;
 import seedu.address.model.Model;
 
 /**
- * Lists all Contacts in the contact list to the user.
+ * Shows all Contacts in the contact list to the user.
  */
-public class ListContactsCommand extends Command {
+public class ViewContactsCommand extends Command {
 
-    public static final String COMMAND_WORD = "listC";
+    public static final String COMMAND_WORD = "contacts";
 
-    public static final String MESSAGE_SUCCESS = "Listed all contacts";
+    public static final String MESSAGE_SUCCESS = "Viewing all Contacts";
 
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredContactList(PREDICATE_SHOW_ALL_CONTACTS);
-        return new CommandResult(MESSAGE_SUCCESS, new ShowContactsUiCommand());
+        return new CommandResult(MESSAGE_SUCCESS, new ShowContactsUiCommand()).setIgnoreHistory(true);
     }
 }

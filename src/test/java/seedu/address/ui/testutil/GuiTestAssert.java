@@ -1,7 +1,8 @@
 package seedu.address.ui.testutil;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.commons.util.DateUtil.decodeDateWithDay;
+import static seedu.address.commons.util.DateUtil.decodeDate;
+import static seedu.address.commons.util.DateUtil.decodeDateIntoDay;
 import static seedu.address.commons.util.TimeUtil.decodeTime;
 
 import java.util.List;
@@ -24,7 +25,7 @@ import seedu.address.ui.CompletableTodoCard;
 
 /**
  * @@author {se-edu}-reused
- * Reused from AB4 https://github.com/se-edu/addressbook-level4/
+ * Reused with modification from AB4 https://github.com/se-edu/addressbook-level4/
  *
  * A set of assertion methods useful for writing GUI tests.
  */
@@ -59,7 +60,8 @@ public class GuiTestAssert {
     public static void assertCardDisplaysCompletableDeadline(
             CompletableDeadline expectedDeadline, CompletableDeadlineCardHandle actualCard) {
         assertEquals(expectedDeadline.getDescription(), actualCard.getDescription());
-        assertEquals(decodeDateWithDay(expectedDeadline.getBy()), actualCard.getDate());
+        assertEquals(decodeDate(expectedDeadline.getBy()), actualCard.getDate());
+        assertEquals(decodeDateIntoDay(expectedDeadline.getBy()), actualCard.getDay());
         String expectedCompletedText = CompletableDeadlineCard
                 .getTextToDisplay(expectedDeadline.getIsDone());
         assertEquals(expectedCompletedText, actualCard.getCompleted());
@@ -81,8 +83,13 @@ public class GuiTestAssert {
      */
     public static void assertCardDisplaysEvent(Event expectedEvent, EventCardHandle actualCard) {
         assertEquals(expectedEvent.getDescription(), actualCard.getDescription());
-        assertEquals(decodeDateWithDay(expectedEvent.getDate()), actualCard.getDate());
         assertEquals(decodeTime(expectedEvent.getTime()), actualCard.getTime());
+        assertEquals(decodeDateIntoDay(expectedEvent.getDate()), actualCard.getDay());
+        if (expectedEvent.getIsWeekly()) {
+            assertEquals("every", actualCard.getDate());
+        } else {
+            assertEquals(decodeDate(expectedEvent.getDate()), actualCard.getDate());
+        }
     }
 
     /**

@@ -18,6 +18,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.uicommands.ShowContactsUiCommand;
 import seedu.address.model.Model;
 import seedu.address.model.contact.Address;
 import seedu.address.model.contact.Contact;
@@ -51,20 +52,20 @@ public class UpdateContactCommand extends Command {
     public static final String MESSAGE_DUPLICATE_CONTACT = "This contact already exists in CoLAB.";
 
     private final Index index;
-    private final EditContactDescriptor editContactDescriptor;
+    private final UpdateContactDescriptor updateContactDescriptor;
 
     /**
-     * Constructs an {@code EditCommand} with an {@code index} and a {@code editContactDescriptor}.
+     * Constructs an {@code EditCommand} with an {@code index} and a {@code updateContactDescriptor}.
      *
      * @param index of the contact in the filtered contact list to edit
-     * @param editContactDescriptor details to edit the contact with
+     * @param updateContactDescriptor details to edit the contact with
      */
-    public UpdateContactCommand(Index index, EditContactDescriptor editContactDescriptor) {
+    public UpdateContactCommand(Index index, UpdateContactDescriptor updateContactDescriptor) {
         requireNonNull(index);
-        requireNonNull(editContactDescriptor);
+        requireNonNull(updateContactDescriptor);
 
         this.index = index;
-        this.editContactDescriptor = new EditContactDescriptor(editContactDescriptor);
+        this.updateContactDescriptor = new UpdateContactDescriptor(updateContactDescriptor);
     }
 
     @Override
@@ -77,7 +78,7 @@ public class UpdateContactCommand extends Command {
         }
 
         Contact contactToEdit = lastShownList.get(index.getZeroBased());
-        Contact editedContact = createEditedContact(contactToEdit, editContactDescriptor);
+        Contact editedContact = createEditedContact(contactToEdit, updateContactDescriptor);
 
         if (!contactToEdit.isSameContact(editedContact) && model.hasContact(editedContact)) {
             throw new CommandException(MESSAGE_DUPLICATE_CONTACT);
@@ -85,21 +86,22 @@ public class UpdateContactCommand extends Command {
 
         model.setContact(contactToEdit, editedContact);
         model.updateFilteredContactList(PREDICATE_SHOW_ALL_CONTACTS);
-        return new CommandResult(String.format(MESSAGE_EDIT_CONTACT_SUCCESS, editedContact));
+        return new CommandResult(String.format(MESSAGE_EDIT_CONTACT_SUCCESS, editedContact),
+                new ShowContactsUiCommand());
     }
 
     /**
      * Creates and returns a {@code Contact} with the details of {@code contactToEdit}
-     * edited with {@code editContactDescriptor}.
+     * edited with {@code updateContactDescriptor}.
      */
-    private static Contact createEditedContact(Contact contactToEdit, EditContactDescriptor editContactDescriptor) {
+    private static Contact createEditedContact(Contact contactToEdit, UpdateContactDescriptor updateContactDescriptor) {
         assert contactToEdit != null;
 
-        Name updatedName = editContactDescriptor.getName().orElse(contactToEdit.getName());
-        Phone updatedPhone = editContactDescriptor.getPhone().orElse(contactToEdit.getPhone());
-        Email updatedEmail = editContactDescriptor.getEmail().orElse(contactToEdit.getEmail());
-        Address updatedAddress = editContactDescriptor.getAddress().orElse(contactToEdit.getAddress());
-        Set<Tag> updatedTags = editContactDescriptor.getTags().orElse(contactToEdit.getTags());
+        Name updatedName = updateContactDescriptor.getName().orElse(contactToEdit.getName());
+        Phone updatedPhone = updateContactDescriptor.getPhone().orElse(contactToEdit.getPhone());
+        Email updatedEmail = updateContactDescriptor.getEmail().orElse(contactToEdit.getEmail());
+        Address updatedAddress = updateContactDescriptor.getAddress().orElse(contactToEdit.getAddress());
+        Set<Tag> updatedTags = updateContactDescriptor.getTags().orElse(contactToEdit.getTags());
 
         return new Contact(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
     }
@@ -119,27 +121,27 @@ public class UpdateContactCommand extends Command {
         // state check
         UpdateContactCommand e = (UpdateContactCommand) other;
         return index.equals(e.index)
-                && editContactDescriptor.equals(e.editContactDescriptor);
+                && updateContactDescriptor.equals(e.updateContactDescriptor);
     }
 
     /**
      * Stores the details to edit the contact with. Each non-empty field value will replace the
      * corresponding field value of the contact.
      */
-    public static class EditContactDescriptor {
+    public static class UpdateContactDescriptor {
         private Name name;
         private Phone phone;
         private Email email;
         private Address address;
         private Set<Tag> tags;
 
-        public EditContactDescriptor() {}
+        public UpdateContactDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditContactDescriptor(EditContactDescriptor toCopy) {
+        public UpdateContactDescriptor(UpdateContactDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
@@ -211,12 +213,12 @@ public class UpdateContactCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditContactDescriptor)) {
+            if (!(other instanceof UpdateContactDescriptor)) {
                 return false;
             }
 
             // state check
-            EditContactDescriptor e = (EditContactDescriptor) other;
+            UpdateContactDescriptor e = (UpdateContactDescriptor) other;
 
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())

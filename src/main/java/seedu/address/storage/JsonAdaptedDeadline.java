@@ -47,6 +47,18 @@ class JsonAdaptedDeadline {
      * @throws IllegalValueException if there were any data constraints violated in the adapted event.
      */
     public CompletableDeadline toModelType() throws IllegalValueException {
+        if (description == null) {
+            throw new IllegalValueException("Deadline description should not be null.");
+        }
+
+        if (isDone == null) {
+            throw new IllegalValueException("Deadline isDone should not be null.");
+        }
+
+        if (by == null) {
+            throw new IllegalValueException("Deadline by date should not be null.");
+        }
+
         try {
             LocalDate date = DateUtil.encodeDate(by);
             return new Deadline(description, date , isDone);

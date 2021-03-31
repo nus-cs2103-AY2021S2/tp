@@ -23,18 +23,21 @@ import seedu.address.logic.commands.DeleteTodoCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindContactCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListContactsCommand;
 import seedu.address.logic.commands.MarkDeadlineCommand;
 import seedu.address.logic.commands.MarkTodoCommand;
-import seedu.address.logic.commands.ShowOverviewTabCommand;
-import seedu.address.logic.commands.ShowTodayCommand;
-import seedu.address.logic.commands.ShowTodosTabCommand;
+import seedu.address.logic.commands.RedoCommand;
+import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.commands.UpdateContactCommand;
 import seedu.address.logic.commands.UpdateDeadlineCommand;
 import seedu.address.logic.commands.UpdateEventCommand;
+import seedu.address.logic.commands.UpdateGroupmateCommand;
 import seedu.address.logic.commands.UpdateProjectCommand;
 import seedu.address.logic.commands.UpdateTodoCommand;
+import seedu.address.logic.commands.ViewContactsCommand;
+import seedu.address.logic.commands.ViewOverviewCommand;
 import seedu.address.logic.commands.ViewProjectCommand;
+import seedu.address.logic.commands.ViewTodayCommand;
+import seedu.address.logic.commands.ViewTodosCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -65,13 +68,13 @@ public class AddressBookParser {
         switch (commandWord) {
 
         case AddContactCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
+            return new AddContactCommandParser().parse(arguments);
 
         case AddProjectCommand.COMMAND_WORD:
             return new AddProjectCommandParser().parse(arguments);
 
         case AddGroupmateCommand.COMMAND_WORD:
-            return new AddContactToCommandParser().parse(arguments);
+            return new AddGroupmateCommandParser().parse(arguments);
 
         case AddDeadlineCommand.COMMAND_WORD:
             return new AddDeadlineCommandParser().parse(arguments);
@@ -83,13 +86,13 @@ public class AddressBookParser {
             return new AddTodoCommandParser().parse(arguments);
 
         case UpdateContactCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
+            return new UpdateContactCommandParser().parse(arguments);
 
         case DeleteContactCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
+            return new DeleteContactCommandParser().parse(arguments);
 
         case DeleteGroupmateCommand.COMMAND_WORD:
-            return new DeleteContactFromCommandParser().parse(arguments);
+            return new DeleteGroupmateCommandParser().parse(arguments);
 
         case DeleteProjectCommand.COMMAND_WORD:
             return new DeleteProjectCommandParser().parse(arguments);
@@ -107,10 +110,10 @@ public class AddressBookParser {
             return new ClearContactCommand();
 
         case FindContactCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
+            return new FindContactCommandParser().parse(arguments);
 
-        case ListContactsCommand.COMMAND_WORD:
-            return new ListContactsCommand();
+        case ViewContactsCommand.COMMAND_WORD:
+            return new ViewContactsCommand();
 
         case MarkDeadlineCommand.COMMAND_WORD:
             return new MarkDeadlineCommandParser().parse(arguments);
@@ -136,17 +139,26 @@ public class AddressBookParser {
         case UpdateProjectCommand.COMMAND_WORD:
             return new UpdateProjectCommandParser().parse(arguments);
 
+        case UpdateGroupmateCommand.COMMAND_WORD:
+            return new UpdateGroupmateCommandParser().parse(arguments);
+
         case ViewProjectCommand.COMMAND_WORD:
             return new ViewProjectCommandParser().parse(arguments);
 
-        case ShowOverviewTabCommand.COMMAND_WORD:
-            return new ShowOverviewTabCommand();
+        case ViewOverviewCommand.COMMAND_WORD:
+            return new ViewOverviewCommand();
 
-        case ShowTodosTabCommand.COMMAND_WORD:
-            return new ShowTodosTabCommand();
+        case ViewTodosCommand.COMMAND_WORD:
+            return new ViewTodosCommand();
 
-        case ShowTodayCommand.COMMAND_WORD:
-            return new ShowTodayCommand();
+        case ViewTodayCommand.COMMAND_WORD:
+            return new ViewTodayCommand();
+
+        case UndoCommand.COMMAND_WORD:
+            return new UndoCommand();
+
+        case RedoCommand.COMMAND_WORD:
+            return new RedoCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

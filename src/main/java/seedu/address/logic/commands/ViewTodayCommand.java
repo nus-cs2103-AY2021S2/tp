@@ -7,7 +7,7 @@ import seedu.address.model.Model;
 /**
  * Show Today panel.
  */
-public class ShowTodayCommand extends Command {
+public class ViewTodayCommand extends Command {
 
     public static final String COMMAND_WORD = "today";
 
@@ -19,7 +19,6 @@ public class ShowTodayCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        return new CommandResult(MESSAGE_SUCCESS,
-                new ShowTodayUiCommand());
+        return new CommandResult(MESSAGE_SUCCESS, new ShowTodayUiCommand()).setIgnoreHistory(true);
     }
 }

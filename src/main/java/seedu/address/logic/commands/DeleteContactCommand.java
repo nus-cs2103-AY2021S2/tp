@@ -7,6 +7,7 @@ import java.util.List;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.uicommands.ShowContactsUiCommand;
 import seedu.address.model.Model;
 import seedu.address.model.contact.Contact;
 
@@ -41,7 +42,8 @@ public class DeleteContactCommand extends Command {
 
         Contact contactToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteContact(contactToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_CONTACT_SUCCESS, contactToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_CONTACT_SUCCESS, contactToDelete),
+                new ShowContactsUiCommand());
     }
 
     @Override

@@ -25,6 +25,7 @@ public abstract class CompletableDeadline {
 
     /**
      * Constructor for CompletableDeadline.
+     *
      * @param description Description of the CompletableDeadline.
      * @param by Deadline of the CompletableDeadline.
      */
@@ -38,6 +39,7 @@ public abstract class CompletableDeadline {
 
     /**
      * Constructor for CompletableDeadline.
+     *
      * @param description Description of the CompletableDeadline.
      * @param by Deadline of the CompletableDeadline.
      * @param isDone Marks whether the CompletableDeadline is Done.
@@ -52,6 +54,7 @@ public abstract class CompletableDeadline {
 
     /**
      * Returns the deadline of the Deadline.
+     *
      * @return A LocalDate representing the deadline of the Deadline.
      */
     public LocalDate getBy() {
@@ -61,6 +64,7 @@ public abstract class CompletableDeadline {
 
     /**
      * Returns the CompletableDeadline description.
+     *
      * @return A String representing the CompletableDeadline description.
      */
     public String getDescription() {
@@ -79,6 +83,7 @@ public abstract class CompletableDeadline {
 
     /**
      * Returns the status of the CompletableDeadline.
+     *
      * @return A Boolean representing the CompletableDeadline's status.
      */
     public Boolean getIsDone() {
@@ -95,6 +100,7 @@ public abstract class CompletableDeadline {
 
     /**
      * Returns a String representation of the by date.
+     *
      * @return String representation of by date.
      */
     public String getStringByDate() {
@@ -111,6 +117,7 @@ public abstract class CompletableDeadline {
 
     /**
      * Checks if an instance of a CompletableDeadline is equal to another Object.
+     *
      * @param other Object to be compared with.
      * @return True if both objects are equal. Else return false.
      */
@@ -122,6 +129,7 @@ public abstract class CompletableDeadline {
 
     /**
      * Returns a String representation of the CompletableDeadline.
+     *
      * @return A String representation of the CompletableDeadline.
      */
     @Override

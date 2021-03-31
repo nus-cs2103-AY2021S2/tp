@@ -3,7 +3,9 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.uicommands.ViewProjectAndOverviewUiCommand;
 import seedu.address.model.Model;
 import seedu.address.model.project.Project;
 
@@ -39,8 +41,10 @@ public class AddProjectCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PROJECT);
         }
 
+        Index index = Index.fromZeroBased(model.getFilteredProjectList().size());
+
         model.addProject(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), new ViewProjectAndOverviewUiCommand(index));
     }
 
     @Override

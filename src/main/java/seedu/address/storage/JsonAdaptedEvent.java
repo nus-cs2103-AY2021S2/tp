@@ -53,6 +53,13 @@ class JsonAdaptedEvent {
      * @throws IllegalValueException if there were any data constraints violated in the adapted event.
      */
     public Event toModelType() throws IllegalValueException {
+        if (description == null) {
+            throw new IllegalValueException("Event description should not be null.");
+        }
+
+        if (date == null) {
+            throw new IllegalValueException("Event date should not be null.");
+        }
         LocalDate encodedDate;
         try {
             encodedDate = DateUtil.encodeDate(date);
@@ -60,6 +67,9 @@ class JsonAdaptedEvent {
             throw new IllegalValueException(e.getMessage());
         }
 
+        if (time == null) {
+            throw new IllegalValueException("Event time should not be null.");
+        }
         LocalTime encodedTime;
         try {
             encodedTime = TimeUtil.encodeTime(time);
@@ -68,7 +78,7 @@ class JsonAdaptedEvent {
         }
 
         if (isWeekly == null) {
-            throw new IllegalValueException("Boolean should not be null.");
+            throw new IllegalValueException("Event isWeekly should not be null.");
         }
 
         return new Event(description, encodedDate, encodedTime, isWeekly);

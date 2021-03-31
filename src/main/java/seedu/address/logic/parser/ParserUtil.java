@@ -46,12 +46,12 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String name} into a {@code Name}.
+     * Parses a {@code String name} into a {@code seedu.address.model.contact.Name}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
-    public static Name parseName(String name) throws ParseException {
+    public static Name parseContactName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
         if (!Name.isValidName(trimmedName)) {
@@ -156,7 +156,7 @@ public class ParserUtil {
     public static Role parseRole(String role) throws ParseException {
         requireNonNull(role);
         String trimmedRole = role.trim();
-        if (!Tag.isValidTagName(trimmedRole)) {
+        if (!Role.isValidRoleName(trimmedRole)) {
             throw new ParseException(Role.MESSAGE_CONSTRAINTS);
         }
         return new Role(trimmedRole);

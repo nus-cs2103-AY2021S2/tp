@@ -21,7 +21,7 @@ import seedu.address.logic.commands.AddContactCommand;
 import seedu.address.logic.commands.AddProjectCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.DeleteContactCommand;
-import seedu.address.logic.commands.ListContactsCommand;
+import seedu.address.logic.commands.ViewContactsCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.CliSyntax;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -69,8 +69,8 @@ public class LogicManagerTest {
 
     @Test
     public void execute_validCommand_success() throws Exception {
-        String listCommand = ListContactsCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListContactsCommand.MESSAGE_SUCCESS, model);
+        String listCommand = ViewContactsCommand.COMMAND_WORD;
+        assertCommandSuccess(listCommand, ViewContactsCommand.MESSAGE_SUCCESS, model);
     }
 
     @Test

@@ -1,6 +1,5 @@
 package seedu.address.ui;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import javafx.fxml.FXML;
@@ -27,23 +26,11 @@ public class EventCard extends UiPart<Region> {
     @FXML
     private Label eventDescription;
     @FXML
+    private Label day;
+    @FXML
     private Label date;
     @FXML
     private Label time;
-
-    /**
-     * Creates an {@code EventCard} with the given {@code Event} without an index to display.
-     */
-    public EventCard(Event event) {
-        super(FXML);
-        requireNonNull(event);
-
-        this.event = event;
-        id.setText("");
-        eventDescription.setText(event.getDescription());
-        date.setText(DateUtil.decodeDateWithDay(event.getDate()));
-        time.setText(TimeUtil.decodeTime(event.getTime()));
-    }
 
     /**
      * Creates an {@code EventCard} with the given {@code Event} and index to display.
@@ -55,8 +42,14 @@ public class EventCard extends UiPart<Region> {
         this.event = event;
         id.setText(displayedIndex + ". ");
         eventDescription.setText(event.getDescription());
-        date.setText(DateUtil.decodeDateWithDay(event.getDate()));
+        day.setText(DateUtil.decodeDateIntoDay(event.getDate()));
         time.setText(TimeUtil.decodeTime(event.getTime()));
+
+        if (event.getIsWeekly()) {
+            date.setText("every");
+        } else {
+            date.setText(DateUtil.decodeDate(event.getDate()));
+        }
     }
 
     @Override

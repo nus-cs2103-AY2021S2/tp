@@ -5,7 +5,7 @@ import java.util.List;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.uicommands.ViewProjectUiCommand;
+import seedu.address.logic.uicommands.ViewProjectAndOverviewUiCommand;
 import seedu.address.model.Model;
 import seedu.address.model.project.Project;
 
@@ -14,7 +14,7 @@ import seedu.address.model.project.Project;
  */
 public class ViewProjectCommand extends Command {
 
-    public static final String COMMAND_WORD = "viewP";
+    public static final String COMMAND_WORD = "project";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Displays the project identified by the index number used in the displayed projects list.\n"
@@ -41,6 +41,7 @@ public class ViewProjectCommand extends Command {
         }
 
         return new CommandResult(String.format(MESSAGE_SUCCESS,
-                lastShownList.get(index.getZeroBased()).getProjectName()), new ViewProjectUiCommand(index));
+                lastShownList.get(index.getZeroBased()).getProjectName()), new ViewProjectAndOverviewUiCommand(index))
+                    .setIgnoreHistory(true);
     }
 }

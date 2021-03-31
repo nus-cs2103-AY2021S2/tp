@@ -7,7 +7,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.logic.uicommands.ViewProjectUiCommand;
+import seedu.address.logic.uicommands.ViewProjectAndOverviewUiCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.project.Project;
@@ -28,7 +28,7 @@ public class ViewProjectCommandTest {
 
         assertCommandSuccess(new ViewProjectCommand(INDEX_FIRST), model,
                 String.format(ViewProjectCommand.MESSAGE_SUCCESS, validProject),
-                new ViewProjectUiCommand(INDEX_FIRST), expectedModel);
+                new ViewProjectAndOverviewUiCommand(INDEX_FIRST), expectedModel);
     }
 
     @Test

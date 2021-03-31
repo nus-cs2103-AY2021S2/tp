@@ -10,6 +10,7 @@ import java.util.List;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.uicommands.ViewProjectAndOverviewUiCommand;
 import seedu.address.model.Model;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.exceptions.DuplicateDeadlineException;
@@ -20,7 +21,7 @@ import seedu.address.model.task.deadline.Deadline;
  */
 public class AddDeadlineCommand extends Command {
 
-    public static final String COMMAND_WORD = "addDto";
+    public static final String COMMAND_WORD = "addD";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds deadline to a specified project.\n"
             + "Parameters:\nPROJECT_INDEX\n"
@@ -65,7 +66,8 @@ public class AddDeadlineCommand extends Command {
         }
 
         model.updateFilteredProjectList(Model.PREDICATE_SHOW_ALL_PROJECTS);
-        return new CommandResult(String.format(Messages.MESSAGE_ADD_DEADLINE_SUCCESS, toAdd));
+        return new CommandResult(String.format(Messages.MESSAGE_ADD_DEADLINE_SUCCESS, toAdd),
+                new ViewProjectAndOverviewUiCommand(index));
     }
 
     @Override

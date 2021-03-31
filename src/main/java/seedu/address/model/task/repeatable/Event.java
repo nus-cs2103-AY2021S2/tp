@@ -15,6 +15,7 @@ public class Event extends Repeatable {
 
     /**
      * Constructor for Event.
+     *
      * @param description Description of the Event.
      * @param date Date of the Event.
      * @param time Time of the Event.
@@ -25,6 +26,7 @@ public class Event extends Repeatable {
 
     /**
      * Constructor for Repeatable.
+     *
      * @param description Description of the Repeatable.
      * @param date Date of the Repeatable.
      * @param time Time of the Repeatable.
@@ -36,6 +38,7 @@ public class Event extends Repeatable {
 
     /**
      * Returns the isWeekly status of the Event.
+     *
      * @return A Boolean representing the Event's isWeekly status.
      */
     public Boolean getIsWeekly() {
@@ -45,6 +48,7 @@ public class Event extends Repeatable {
 
     /**
      * Checks if an instance of a Event is equal to another Object.
+     *
      * @param other Object to be compared with.
      * @return True if both objects are equal. Else return false.
      */
@@ -73,15 +77,16 @@ public class Event extends Repeatable {
 
     /**
      * Returns a String representation of the Event.
+     *
      * @return A String representation of the Event.
      */
     @Override
     public String toString() {
-        if (getIsWeekly() == false) {
+        if (!getIsWeekly()) {
             return this.description + " (on: " + DateUtil.decodeDate(date) + " at:" + TimeUtil.decodeTime(time) + ")";
         }
 
-        return this.description + " (on: " + DateUtil.decodeDateWithDay(date) + " at:" + TimeUtil.decodeTime(time)
-                + " [WEEKLY])";
+        return this.description + " (every " + DateUtil.decodeDateIntoDay(date) + " at:" + TimeUtil.decodeTime(time)
+                + ")";
     }
 }

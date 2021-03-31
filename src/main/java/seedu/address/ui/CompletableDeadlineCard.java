@@ -1,6 +1,5 @@
 package seedu.address.ui;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import javafx.fxml.FXML;
@@ -15,7 +14,7 @@ import seedu.address.model.task.CompletableDeadline;
  */
 public class CompletableDeadlineCard extends UiPart<Region> {
 
-    private static final String FXML = "CompletableDeadlineListCard.fxml";
+    private static final String FXML = "CompletableDeadlineCard.fxml";
 
     public final CompletableDeadline deadline;
 
@@ -28,21 +27,9 @@ public class CompletableDeadlineCard extends UiPart<Region> {
     @FXML
     private Label date;
     @FXML
+    private Label day;
+    @FXML
     private Label completedLabel;
-
-    /**
-     * Creates a {@code CompletableDeadlineCard} with the given {@code CompletableDeadline} without an index to display.
-     */
-    public CompletableDeadlineCard(CompletableDeadline deadline) {
-        super(FXML);
-        requireNonNull(deadline);
-
-        this.deadline = deadline;
-        id.setText("");
-        description.setText(deadline.getDescription());
-        date.setText(DateUtil.decodeDateWithDay(deadline.getBy()));
-        completedLabel.setText(deadline.getIsDone() ? "✔" : "");
-    }
 
     /**
      * Creates a {@code CompletableDeadlineCard} with the given {@code CompletableDeadline} and index to display.
@@ -54,7 +41,8 @@ public class CompletableDeadlineCard extends UiPart<Region> {
         this.deadline = deadline;
         id.setText(displayedIndex + ". ");
         description.setText(deadline.getDescription());
-        date.setText(DateUtil.decodeDateWithDay(deadline.getBy()));
+        date.setText(DateUtil.decodeDate(deadline.getBy()));
+        day.setText(DateUtil.decodeDateIntoDay(deadline.getBy()));
         completedLabel.setText(getTextToDisplay(deadline.getIsDone()));
     }
 

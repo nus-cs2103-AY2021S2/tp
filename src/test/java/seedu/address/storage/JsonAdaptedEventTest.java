@@ -65,9 +65,9 @@ public class JsonAdaptedEventTest {
     }
 
     @Test
-    public void toModelType_nullDescription_throwsNullPointerException() {
+    public void toModelType_nullDescription_throwsIllegalValueException() {
         JsonAdaptedEvent event = new JsonAdaptedEvent(null, VALID_DATE_STRING, VALID_TIME_STRING, VALID_IS_WEEKLY);
-        assertThrows(NullPointerException.class, event::toModelType);
+        assertThrows(IllegalValueException.class, event::toModelType);
     }
 
     @Test

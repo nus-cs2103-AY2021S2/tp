@@ -42,15 +42,6 @@ public abstract class CompletableTodo {
     }
 
     /**
-     * Returns a status icon dependent on the status of the CompletableTodo.
-     * @return A string representing the CompletableTodo's status.
-     */
-    public String getStatusIcon() {
-        assert isDone != null;
-        return (isDone ? "[X]" : "[ ]");
-    }
-
-    /**
      * Returns the CompletableTodo description.
      * @return A String representing the CompletableTodo description.
      */

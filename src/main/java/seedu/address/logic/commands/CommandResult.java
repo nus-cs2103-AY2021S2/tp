@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
@@ -17,12 +16,15 @@ public class CommandResult {
     /** Information on which UI command to execute **/
     private final UiCommand uiCommand;
 
+    /** Setting this boolean flag to true will ignore history **/
+    private boolean ignoreHistory = false;
+
     /**
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser} and {@code uiCommand}.
      * All other fields are set to their default value.
      */
     public CommandResult (String feedbackToUser, UiCommand uiCommand) {
-        requireAllNonNull(feedbackToUser, uiCommand);
+        requireNonNull(feedbackToUser);
         this.feedbackToUser = feedbackToUser;
         this.uiCommand = uiCommand;
     }
@@ -47,10 +49,26 @@ public class CommandResult {
 
     /**
      * Returns true if there is a UiCommand.
+     *
      * @return true if UiCommand is not null and false otherwise.
      */
     public boolean hasUiCommand() {
         return getUiCommand() != null;
+    }
+
+    public boolean isIgnoreHistory() {
+        return ignoreHistory;
+    }
+
+    /**
+     * Sets ignore history flag.
+     *
+     * @param ignoreHistory new state of ignore history flag.
+     * @return this, for method chaining.
+     */
+    public CommandResult setIgnoreHistory(boolean ignoreHistory) {
+        this.ignoreHistory = ignoreHistory;
+        return this;
     }
 
     @Override

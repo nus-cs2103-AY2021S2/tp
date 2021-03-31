@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_UPDATE_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -14,6 +14,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.uicommands.ViewProjectAndOverviewUiCommand;
 import seedu.address.model.Model;
 import seedu.address.model.project.DeadlineList;
 import seedu.address.model.project.Project;
@@ -30,11 +31,11 @@ public class UpdateDeadlineCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Updates a deadline of a project specified "
             + "by 2 index numbers: project index and target deadline index.\n"
             + "Parameters: PROJECT_INDEX (must be a positive integer) "
-            + PREFIX_UPDATE_INDEX + "DEADLINE_INDEX "
+            + PREFIX_INDEX + "DEADLINE_INDEX "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_DEADLINE_DATE + "DATE]\n"
             + "Example:\n" + COMMAND_WORD + " 1 "
-            + PREFIX_UPDATE_INDEX + "1 "
+            + PREFIX_INDEX + "1 "
             + PREFIX_DESCRIPTION + "Project tasks ";
 
     public static final String MESSAGE_UPDATE_DEADLINE_SUCCESS = "Edited deadline: %1$s";
@@ -90,7 +91,8 @@ public class UpdateDeadlineCommand extends Command {
             projectToUpdate.getDeadlines().setDeadline(targetDeadlineIndex.getZeroBased(), updatedDeadline);
         }
         model.updateFilteredProjectList(Model.PREDICATE_SHOW_ALL_PROJECTS);
-        return new CommandResult(String.format(MESSAGE_UPDATE_DEADLINE_SUCCESS, updatedDeadline));
+        return new CommandResult(String.format(MESSAGE_UPDATE_DEADLINE_SUCCESS, updatedDeadline),
+                new ViewProjectAndOverviewUiCommand(projectIndex));
     }
 
     /**

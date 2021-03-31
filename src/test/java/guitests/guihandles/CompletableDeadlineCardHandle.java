@@ -1,6 +1,7 @@
 package guitests.guihandles;
 
 import static seedu.address.commons.util.DateUtil.decodeDate;
+import static seedu.address.commons.util.DateUtil.decodeDateIntoDay;
 
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -15,11 +16,13 @@ public class CompletableDeadlineCardHandle extends NodeHandle<Node> {
     private static final String DESCRIPTION_FIELD_ID = "#description";
     private static final String DATE_FIELD_ID = "#date";
     private static final String COMPLETED_FIELD_ID = "#completedLabel";
+    private static final String DAY_FIELD_ID = "#day";
 
     private final Label idLabel;
     private final Label descriptionLabel;
     private final Label dateLabel;
     private final Label completedLabel;
+    private final Label dayLabel;
 
     /**
      * Constructs a {@code CompletableDeadlineCardHandle} handler object.
@@ -32,6 +35,7 @@ public class CompletableDeadlineCardHandle extends NodeHandle<Node> {
         descriptionLabel = getChildNode(DESCRIPTION_FIELD_ID);
         dateLabel = getChildNode(DATE_FIELD_ID);
         completedLabel = getChildNode(COMPLETED_FIELD_ID);
+        dayLabel = getChildNode(DAY_FIELD_ID);
     }
 
     public String getId() {
@@ -50,12 +54,17 @@ public class CompletableDeadlineCardHandle extends NodeHandle<Node> {
         return completedLabel.getText();
     }
 
+    public String getDay() {
+        return dayLabel.getText();
+    }
+
     /**
      * Returns true if this handle contains a {@code CompletableDeadline}.
      */
     public boolean equals(CompletableDeadline deadline) {
         return getDescription().equals(deadline.getDescription())
                 && getDate().equals(decodeDate(deadline.getBy()))
+                && getDay().equals(decodeDateIntoDay(deadline.getBy()))
                 && getCompleted().equals(CompletableDeadlineCard.getTextToDisplay(deadline.getIsDone()));
     }
 }

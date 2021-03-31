@@ -8,6 +8,7 @@ import java.util.List;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.uicommands.ViewProjectAndOverviewUiCommand;
 import seedu.address.model.Model;
 import seedu.address.model.project.Project;
 
@@ -49,7 +50,7 @@ public class MarkDeadlineCommand extends Command {
         }
 
         if (targetDeadlineIndex.getZeroBased() >= lastShownList.get(projectIndex.getZeroBased())
-                .getDeadlines().getDeadlines().size()) {
+                .getDeadlines().getSortedDeadlineList().size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_DEADLINE_DISPLAYED_INDEX);
         }
 
@@ -60,7 +61,7 @@ public class MarkDeadlineCommand extends Command {
         model.updateFilteredProjectList(Model.PREDICATE_SHOW_ALL_PROJECTS);
 
         return new CommandResult(String.format(Messages.MESSAGE_MARK_DEADLINE_SUCCESS, targetDeadlineIndex
-                .getOneBased()));
+                .getOneBased()), new ViewProjectAndOverviewUiCommand(projectIndex));
     }
 
     @Override

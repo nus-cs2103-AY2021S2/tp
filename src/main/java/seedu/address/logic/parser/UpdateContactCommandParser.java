@@ -15,14 +15,13 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.UpdateContactCommand;
-import seedu.address.logic.commands.UpdateContactCommand.EditContactDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new EditCommand object
  */
-public class EditCommandParser implements Parser<UpdateContactCommand> {
+public class UpdateContactCommandParser implements Parser<UpdateContactCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
@@ -43,26 +42,27 @@ public class EditCommandParser implements Parser<UpdateContactCommand> {
                     pe);
         }
 
-        EditContactDescriptor editContactDescriptor = new EditContactDescriptor();
+        UpdateContactCommand.UpdateContactDescriptor updateContactDescriptor =
+                new UpdateContactCommand.UpdateContactDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            editContactDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
+            updateContactDescriptor.setName(ParserUtil.parseContactName(argMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            editContactDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
+            updateContactDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            editContactDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
+            updateContactDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
         }
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            editContactDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
+            updateContactDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editContactDescriptor::setTags);
+        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(updateContactDescriptor::setTags);
 
-        if (!editContactDescriptor.isAnyFieldEdited()) {
+        if (!updateContactDescriptor.isAnyFieldEdited()) {
             throw new ParseException(UpdateContactCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new UpdateContactCommand(index, editContactDescriptor);
+        return new UpdateContactCommand(index, updateContactDescriptor);
     }
 
     /**

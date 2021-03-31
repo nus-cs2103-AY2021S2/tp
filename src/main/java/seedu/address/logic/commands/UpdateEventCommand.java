@@ -6,7 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_WEEKLY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_UPDATE_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -17,6 +17,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.uicommands.ViewProjectAndOverviewUiCommand;
 import seedu.address.model.Model;
 import seedu.address.model.project.EventList;
 import seedu.address.model.project.Project;
@@ -32,13 +33,13 @@ public class UpdateEventCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Updates the event "
             + "identified by it's index number within the displayed project.\n"
             + "Parameters: PROJECT_INDEX (must be a positive integer) "
-            + PREFIX_UPDATE_INDEX + "EVENT_INDEX "
+            + PREFIX_INDEX + "EVENT_INDEX "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_EVENT_DATE + "DATE] "
             + "[" + PREFIX_EVENT_TIME + "TIME]"
-            + "[" + PREFIX_EVENT_WEEKLY + "REPEATS WEEKLY]\n"
+            + "[" + PREFIX_EVENT_WEEKLY + "REPEATS_WEEKLY]\n"
             + "Example:\n" + COMMAND_WORD + " 1 "
-            + PREFIX_UPDATE_INDEX + "1 "
+            + PREFIX_INDEX + "1 "
             + PREFIX_DESCRIPTION + "Project meeting "
             + PREFIX_EVENT_DATE + "24-04-2021 "
             + PREFIX_EVENT_TIME + "1830 "
@@ -92,7 +93,8 @@ public class UpdateEventCommand extends Command {
 
         projectToUpdate.setEvent(targetEventIndex.getZeroBased(), updatedEvent);
         model.updateFilteredProjectList(Model.PREDICATE_SHOW_ALL_PROJECTS);
-        return new CommandResult(String.format(MESSAGE_UPDATE_EVENT_SUCCESS, updatedEvent));
+        return new CommandResult(String.format(MESSAGE_UPDATE_EVENT_SUCCESS, updatedEvent),
+                new ViewProjectAndOverviewUiCommand(projectIndex));
     }
 
     /**

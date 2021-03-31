@@ -53,9 +53,9 @@ public class JsonColabFolderStorage implements ColabFolderStorage {
 
         try {
             return Optional.of(jsonColabFolder.get().toModelType());
-        } catch (IllegalValueException ive) {
-            logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
-            throw new DataConversionException(ive);
+        } catch (IllegalValueException | NullPointerException e) {
+            logger.info("Illegal values found in " + filePath + ": " + e.getMessage());
+            throw new DataConversionException(e);
         }
     }
 

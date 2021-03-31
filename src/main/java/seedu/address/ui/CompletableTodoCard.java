@@ -11,7 +11,7 @@ import seedu.address.model.task.CompletableTodo;
  */
 public class CompletableTodoCard extends UiPart<Region> {
 
-    private static final String FXML = "CompletableTodoListCard.fxml";
+    private static final String FXML = "CompletableTodoCard.fxml";
 
     public final CompletableTodo todo;
 

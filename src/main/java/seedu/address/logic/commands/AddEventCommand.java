@@ -12,6 +12,7 @@ import java.util.List;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.uicommands.ViewProjectAndOverviewUiCommand;
 import seedu.address.model.Model;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.exceptions.DuplicateEventException;
@@ -22,18 +23,18 @@ import seedu.address.model.task.repeatable.Event;
  */
 public class AddEventCommand extends Command {
 
-    public static final String COMMAND_WORD = "addEto";
+    public static final String COMMAND_WORD = "addE";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds event to a specified project.\n"
             + "Parameters:\nPROJECT_INDEX\n"
             + PREFIX_DESCRIPTION + "DESCRIPTION "
             + PREFIX_EVENT_DATE + "DATE "
             + PREFIX_EVENT_TIME + "TIME "
-            + PREFIX_EVENT_WEEKLY + "REPEATS WEEKLY\n"
+            + PREFIX_EVENT_WEEKLY + "REPEATS_WEEKLY\n"
             + "Example:\n" + COMMAND_WORD + " 1 "
             + PREFIX_DESCRIPTION + "Project meeting "
-            + PREFIX_EVENT_DATE + "24-04-2021"
-            + PREFIX_EVENT_TIME + "1730"
+            + PREFIX_EVENT_DATE + "24-04-2021 "
+            + PREFIX_EVENT_TIME + "1730 "
             + PREFIX_EVENT_WEEKLY + "Y";
 
     private final Index index;
@@ -70,7 +71,8 @@ public class AddEventCommand extends Command {
         }
 
         model.updateFilteredProjectList(Model.PREDICATE_SHOW_ALL_PROJECTS);
-        return new CommandResult(String.format(Messages.MESSAGE_ADD_EVENT_SUCCESS, toAdd));
+        return new CommandResult(String.format(Messages.MESSAGE_ADD_EVENT_SUCCESS, toAdd),
+                new ViewProjectAndOverviewUiCommand(index));
     }
 
     @Override

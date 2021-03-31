@@ -153,7 +153,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
    public CommandResult execute(Model model) throws CommandException {
        ...
        Person contactToEdit = lastShownList.get(index.getZeroBased());
-       Person editedContact = createEditedPerson(contactToEdit, editContactDescriptor);
+       Person editedContact = createEditedPerson(contactToEdit, updateContactDescriptor);
        if (!contactToEdit.isSamePerson(editedContact) && model.hasPerson(editedContact)) {
            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
        }

@@ -11,15 +11,20 @@ import java.util.stream.Stream;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.model.project.exceptions.DuplicateEventException;
 import seedu.address.model.task.repeatable.Event;
+import seedu.address.model.task.repeatable.RepeatableComparator;
 
 /**
  * Represents a list of Events.
+ * Event list ensures that there are no duplicates.
+ * Also maintains an internal list of sorted events.
  */
 public class EventList {
 
     private final ObservableList<Event> events = FXCollections.observableArrayList();
+    private final SortedList<Event> sortedEvents = new SortedList<>(events, new RepeatableComparator());
 
     /**
      * Constructs an empty {@code EventList}.
@@ -53,19 +58,20 @@ public class EventList {
     }
 
     /**
-     * Set the {@code Event} specified by index with a new {@code Event}.
+     * Set the {@code Event} specified by index in the sorted event list with a new {@code Event}.
      *
-     * @param i index number specifies the target {@code Event}.
+     * @param i index number specifies the target {@code Event} in the sorted list.
      * @param event new {@code Event} for this index.
      */
     public void setEvent(Integer i, Event event) {
         requireAllNonNull(event, i);
 
-        this.events.set(i, event);
+        int eventsIndex = sortedEvents.getSourceIndex(i);
+        this.events.set(eventsIndex, event);
     }
 
     /**
-     * Get the {@code Event} specified by index in {@code EventList}.
+     * Get the {@code Event} specified by index in sorted {@code EventList}.
      *
      * @param i index number specifies the target {@code Event}.
      * @return The {@code Event} specified.
@@ -73,17 +79,19 @@ public class EventList {
     public Event getEvent(Integer i) {
         requireNonNull(i);
 
-        return events.get(i);
+        return sortedEvents.get(i);
     }
 
     /**
      * Deletes an event from this {@code EventList}.
      *
-     * @param i Index of {@code Event} to be deleted.
+     * @param i Index of {@code Event} in the sorted list to be deleted.
      */
     public void deleteEvent(Integer i) {
         requireNonNull(i);
-        this.events.remove((int) i);
+
+        int eventsIndex = sortedEvents.getSourceIndex(i);
+        this.events.remove(eventsIndex);
     }
 
     /**
@@ -92,7 +100,7 @@ public class EventList {
      * @return A copy of this {@code EventList}
      */
     public EventList getCopy() {
-        return new EventList(getEvents());
+        return new EventList(getSortedEventList());
     }
 
     /**
@@ -105,12 +113,12 @@ public class EventList {
     }
 
     /**
-     * Returns {@code events} as an {@code ObservableList<Event>}
+     * Returns {@code events} as an {@code SortedList<Event>}
      *
-     * @return An {@code ObservableList<Event>}
+     * @return A {@code SortedList<Event>}
      */
-    public ObservableList<Event> getEvents() {
-        return events;
+    public SortedList<Event> getSortedEventList() {
+        return sortedEvents;
     }
 
     /**
@@ -121,7 +129,15 @@ public class EventList {
      */
     public FilteredList<Event> getEventsOnDate(LocalDate dateOfEvent) {
         requireNonNull(dateOfEvent);
-        Predicate<Event> predicate = event -> event.getDate().isEqual(dateOfEvent);
+
+        Predicate<Event> predicate = event -> {
+            if (event.getIsWeekly()) {
+                return event.getDate().getDayOfWeek().equals(dateOfEvent.getDayOfWeek());
+            } else {
+                return event.getDate().isEqual(dateOfEvent);
+            }
+        };
+
         return events.filtered(predicate);
     }
 

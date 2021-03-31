@@ -17,6 +17,6 @@ public class HelpCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
-        return new CommandResult(SHOWING_HELP_MESSAGE, new ShowHelpUiCommand());
+        return new CommandResult(SHOWING_HELP_MESSAGE, new ShowHelpUiCommand()).setIgnoreHistory(true);
     }
 }

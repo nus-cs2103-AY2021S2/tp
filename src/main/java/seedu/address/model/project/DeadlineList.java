@@ -3,6 +3,7 @@ package seedu.address.model.project;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
@@ -10,16 +11,21 @@ import java.util.stream.Stream;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.model.project.exceptions.DuplicateDeadlineException;
 import seedu.address.model.task.CompletableDeadline;
 import seedu.address.model.task.deadline.Deadline;
 
 /**
  * Represents a list of Deadlines.
+ * Deadline list ensures that there are no duplicates.
+ * Also maintains an internal list of sorted deadlines.
  */
 public class DeadlineList {
 
     private final ObservableList<CompletableDeadline> deadlines = FXCollections.observableArrayList();
+    private final SortedList<CompletableDeadline> sortedDeadlines = new SortedList<>(deadlines,
+            Comparator.comparing(CompletableDeadline::getBy).thenComparing(CompletableDeadline::getDescription));
 
     /**
      * Constructs a empty {@code DeadlineList}.
@@ -54,36 +60,36 @@ public class DeadlineList {
     }
 
     /**
-     * Get the {@code Deadline} specified by index.
+     * Get the {@code Deadline} in the sorted list specified by index.
      *
-     * @param i index specifies the target {@code Deadline}.
+     * @param i index specifies the target {@code Deadline} in the sorted list.
      * @return {@code Deadline} at this index.
      */
     public CompletableDeadline getDeadline(Integer i) {
         requireNonNull(i);
 
-        return this.deadlines.get(i);
+        return this.sortedDeadlines.get(i);
     }
 
     /**
-     * Set the {@code Deadline} specified by index with a new {@code Deadline}.
+     * Set the {@code Deadline} specified by index in the sorted list with a new {@code Deadline}.
      *
      * @param index index specifies the target {@code Deadline}.
      * @param deadline new {@code Deadline} for this index.
      */
     public void setDeadline(Integer index, CompletableDeadline deadline) {
         requireNonNull(deadline);
-
-        this.deadlines.set(index, deadline);
+        int deadlineIndex = sortedDeadlines.getSourceIndex(index);
+        this.deadlines.set(deadlineIndex, deadline);
     }
 
     /**
-     * Returns {@code deadlines} as an {@code ObservableList<CompletableDeadline>}
+     * Returns {@code deadlines} as an {@code SortedList<CompletableDeadline>}
      *
-     * @return An {@code ObservableList<CompletableDeadline>}
+     * @return A {@code SortedList<CompletableDeadline>}
      */
-    public ObservableList<CompletableDeadline> getDeadlines() {
-        return this.deadlines;
+    public SortedList<CompletableDeadline> getSortedDeadlineList() {
+        return this.sortedDeadlines;
     }
 
     /**
@@ -93,7 +99,8 @@ public class DeadlineList {
      */
     public void deleteDeadline(Integer i) {
         requireNonNull(i);
-        this.deadlines.remove((int) i);
+        int deadlinesIndex = sortedDeadlines.getSourceIndex(i);
+        this.deadlines.remove(deadlinesIndex);
     }
 
     /**
@@ -103,11 +110,12 @@ public class DeadlineList {
      */
     public void markAsDone(Integer i) {
         requireNonNull(i);
-        CompletableDeadline deadline = deadlines.get(i);
+        CompletableDeadline deadline = sortedDeadlines.get(i);
+
         deadline.markAsDone();
 
         // Force observable list to update
-        this.deadlines.set(i, deadline);
+        setDeadline(i, deadline);
     }
 
     /**
@@ -116,7 +124,7 @@ public class DeadlineList {
      * @return A copy of this {@code DeadlineList}
      */
     public DeadlineList getCopy() {
-        return new DeadlineList(getDeadlines());
+        return new DeadlineList(getSortedDeadlineList());
     }
 
     /**
@@ -156,13 +164,13 @@ public class DeadlineList {
     }
 
     /**
-     * Checks if a {@code Deadline} in the {@code DeadlineList} done or not.
+     * Checks if a {@code Deadline} at a specific index in the {@code DeadlineList} done.
      *
-     * @param index index of that {@code Deadline}.
-     * @return true if that {@code Deadline} is done, false otherwise.
+     * @param index index of the {@code Deadline}.
+     * @return true if the {@code Deadline} is done, false otherwise.
      */
     public boolean checkIsDone(Integer index) {
-        return deadlines.get(index).getIsDone();
+        return sortedDeadlines.get(index).getIsDone();
     }
 
     /**

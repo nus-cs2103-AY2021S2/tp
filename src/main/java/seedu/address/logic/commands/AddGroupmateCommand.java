@@ -10,6 +10,7 @@ import java.util.List;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.uicommands.ViewProjectAndOverviewUiCommand;
 import seedu.address.model.Model;
 import seedu.address.model.groupmate.Groupmate;
 import seedu.address.model.project.Project;
@@ -28,7 +29,7 @@ public class AddGroupmateCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NAME + "John Doe "
             + PREFIX_ROLE + "leader "
-            + PREFIX_ROLE + "frontend developer";
+            + PREFIX_ROLE + "frontend-developer";
 
     public static final String MESSAGE_SUCCESS = "New groupmate %1$s added to project %2$s";
     public static final String MESSAGE_DUPLICATE_GROUPMATE = "This groupmate already exists under project %1$s";
@@ -66,7 +67,8 @@ public class AddGroupmateCommand extends Command {
         model.updateFilteredProjectList(model.PREDICATE_SHOW_ALL_PROJECTS);
 
         return new CommandResult(
-                String.format(MESSAGE_SUCCESS, groupmateToAdd.getName(), projectToAddTo.getProjectName())
+                String.format(MESSAGE_SUCCESS, groupmateToAdd.getName(), projectToAddTo.getProjectName()),
+                new ViewProjectAndOverviewUiCommand(projectToAddToIndex)
         );
     }
 

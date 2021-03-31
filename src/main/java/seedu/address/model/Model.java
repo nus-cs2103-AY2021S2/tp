@@ -5,6 +5,10 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.model.colabfolderhistory.SavedState;
+import seedu.address.model.colabfolderhistory.exceptions.NoRedoableStateException;
+import seedu.address.model.colabfolderhistory.exceptions.NoUndoableStateException;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.project.Project;
 
@@ -133,4 +137,39 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredProjectList(Predicate<Project> predicate);
+
+    //=========== Colab Folder History ======================================================================
+
+    /**
+     * Returns the previous state in {@code ColabFolderHistory}
+     *
+     * @throws NoUndoableStateException if previous state not found.
+     */
+    SavedState getUndoState() throws NoUndoableStateException;
+
+    /**
+     * Returns the next state in {@code ColabFolderHistory}
+     *
+     * @throws NoRedoableStateException if next state not found.
+     */
+    SavedState getRedoState() throws NoRedoableStateException;
+
+    /**
+     * Undo the {@code ColabFolder} to the previous state and returns the command result used to get to that state.
+     *
+     * @throws NoUndoableStateException if previous state not found.
+     */
+    CommandResult undo() throws NoUndoableStateException;
+
+    /**
+     * Redo the {@code ColabFolder} to the next state and returns the command result used to get to that state.
+     *
+     * @throws NoRedoableStateException if next state not found.
+     */
+    CommandResult redo() throws NoRedoableStateException;
+
+    /**
+     * Commits the current {@code ColabFolder} state to {@code ColabFolderHistory}.
+     */
+    void commitState(CommandResult commandResult);
 }

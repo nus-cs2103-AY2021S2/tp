@@ -17,6 +17,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.DateConversionException;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.uicommands.ViewProjectAndOverviewUiCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -36,7 +37,7 @@ public class DeleteGroupmateCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() throws DateConversionException {
-        Groupmate contactToDelete = new GroupmateBuilder().build();
+        Groupmate contactToDelete = new GroupmateBuilder().withName("a").build();
         Project projectToEdit = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
         Project editedProject = new ProjectBuilder(projectToEdit).build();
         editedProject.addGroupmate(contactToDelete);
@@ -46,17 +47,17 @@ public class DeleteGroupmateCommandTest {
                 editedProject
         );
 
-        Index lastContactIndex = Index.fromOneBased(
-                model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased()).getGroupmates().size());
+        Index firstContactIndex = Index.fromOneBased(1); //groupmate is first in sorted list
 
-        DeleteGroupmateCommand deleteGroupmateCommand = new DeleteGroupmateCommand(INDEX_FIRST, lastContactIndex);
+        DeleteGroupmateCommand deleteGroupmateCommand = new DeleteGroupmateCommand(INDEX_FIRST, firstContactIndex);
 
         String expectedMessage = String.format(MESSAGE_DELETE_PROJECT_SUCCESS,
                 contactToDelete.getName(), projectToEdit.getProjectName());
 
         ModelManager expectedModel = new ModelManager(getTypicalColabFolder(), new UserPrefs());
 
-        assertCommandSuccess(deleteGroupmateCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteGroupmateCommand, model, expectedMessage,
+                new ViewProjectAndOverviewUiCommand(INDEX_FIRST), expectedModel);
     }
 
     @Test

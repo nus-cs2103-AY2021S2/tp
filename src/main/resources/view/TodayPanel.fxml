@@ -32,6 +32,5 @@
 
   <styleClass>
     <String fx:value="pane-with-border"/>
-    <String fx:value="white-text"/>
   </styleClass>
 </VBox>

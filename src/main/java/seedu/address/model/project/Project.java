@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Objects;
 
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.model.groupmate.Groupmate;
 import seedu.address.model.task.CompletableDeadline;
 import seedu.address.model.task.CompletableTodo;
@@ -181,6 +182,18 @@ public class Project {
     }
 
     /**
+     * Set the {@code Groupmate} specified by index with a new {@code Groupmate}.
+     *
+     * @param i index number specifies the target {@code Groupmate}.
+     * @param groupmate new {@code Groupmate} for this index.
+     */
+    public void setGroupmate(Integer i, Groupmate groupmate) {
+        requireAllNonNull(groupmate, i);
+
+        this.groupmates.setGroupmate(i, groupmate);
+    }
+
+    /**
      *  Deletes a groupmate from {@code groupmates} field of this {@code Project}.
      *
      * @param i Index of {@code Person} to be deleted.
@@ -254,6 +267,56 @@ public class Project {
     }
 
     /**
+     * Returns a new copy of this project.
+     *
+     * @return a copy of this project.
+     */
+    public Project getCopy() {
+        EventList eventList = this.events.getCopy();
+        DeadlineList deadlineList = this.deadlines.getCopy();
+        TodoList todoList = this.todos.getCopy();
+        GroupmateList groupmateList = this.groupmates.getCopy();
+
+        return new Project(this.getProjectName(), eventList, todoList, deadlineList, groupmateList);
+    }
+
+    /**
+     * Returns {@code deadlines} as an {@code SortedList<CompletableDeadline>}
+     *
+     * @return A {@code SortedList<CompletableDeadline>}
+     */
+    public SortedList<CompletableDeadline> getSortedDeadlines() {
+        return deadlines.getSortedDeadlineList();
+    }
+
+    /**
+     * Returns {@code events} as an {@code SortedList<Event>}
+     *
+     * @return A {@code SortedList<Event>}
+     */
+    public SortedList<Event> getSortedEvents() {
+        return events.getSortedEventList();
+    }
+
+    /**
+     * Returns {@code todos} as a {@code SortedList<CompletableTodo>}
+     *
+     * @return A {@code SortedList<CompletableTodo>}
+     */
+    public SortedList<CompletableTodo> getSortedTodos() {
+        return todos.getSortedTodos();
+    }
+
+    /**
+     * Returns {@code groupmates} as a {@code SortedList<Groupmate>}
+     *
+     * @return A {@code SortedList<Groupmate>}
+     */
+    public SortedList<Groupmate> getSortedGroupmates() {
+        return groupmates.getSortedGroupmates();
+    }
+
+    /**
      * Returns true if both projects have the same identity and data fields.
      * This defines a stronger notion of equality between two projects.
      */
@@ -285,25 +348,25 @@ public class Project {
         final StringBuilder builder = new StringBuilder();
         builder.append(getProjectName());
 
-        List<Event> events = getEvents().getEvents();
+        List<Event> events = getEvents().getSortedEventList();
         if (!events.isEmpty()) {
             builder.append("; Events: ");
             events.forEach(builder::append);
         }
 
-        List<CompletableTodo> todos = getTodos().getTodos();
+        List<CompletableTodo> todos = getTodos().getSortedTodos();
         if (!todos.isEmpty()) {
             builder.append("; Todos: ");
             todos.forEach(builder::append);
         }
 
-        List<CompletableDeadline> deadlines = getDeadlines().getDeadlines();
+        List<CompletableDeadline> deadlines = getDeadlines().getSortedDeadlineList();
         if (!deadlines.isEmpty()) {
             builder.append("; Deadlines: ");
             deadlines.forEach(builder::append);
         }
 
-        List<Groupmate> groupmates = getGroupmates().getGroupmates();
+        List<Groupmate> groupmates = getGroupmates().getSortedGroupmates();
         if (!groupmates.isEmpty()) {
             builder.append("; Groupmates: ");
             groupmates.forEach(builder::append);
@@ -311,4 +374,5 @@ public class Project {
 
         return builder.toString();
     }
+
 }

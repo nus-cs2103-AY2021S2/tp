@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.DateConversionException;
+import seedu.address.logic.uicommands.ShowTodayUiCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -39,7 +40,7 @@ public class DeleteProjectCommandTest {
         ModelManager expectedModel = new ModelManager(getTypicalColabFolder(), new UserPrefs());
         expectedModel.deleteProject(projectToDelete);
 
-        assertCommandSuccess(deleteProjectCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteProjectCommand, model, expectedMessage, new ShowTodayUiCommand(), expectedModel);
     }
 
     @Test
@@ -63,7 +64,7 @@ public class DeleteProjectCommandTest {
         expectedModel.deleteProject(projectToDelete);
         showNoProject(expectedModel);
 
-        assertCommandSuccess(deleteProjectCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteProjectCommand, model, expectedMessage, new ShowTodayUiCommand(), expectedModel);
     }
 
     @Test

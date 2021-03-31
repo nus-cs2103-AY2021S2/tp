@@ -26,7 +26,7 @@ import seedu.address.model.groupmate.Role;
 import seedu.address.testutil.GroupmateBuilder;
 
 public class AddGroupmateCommandParserTest {
-    private AddContactToCommandParser parser = new AddContactToCommandParser();
+    private AddGroupmateCommandParser parser = new AddGroupmateCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {

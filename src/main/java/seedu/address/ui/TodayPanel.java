@@ -1,12 +1,14 @@
 package seedu.address.ui;
 
-import static seedu.address.commons.core.Messages.MESSAGE_NO_DEADLINES_TO_DISPLAY;
-import static seedu.address.commons.core.Messages.MESSAGE_NO_EVENTS_TO_DISPLAY;
+import static seedu.address.commons.core.Messages.MESSAGE_NO_DEADLINES_TO_DISPLAY_TODAY;
+import static seedu.address.commons.core.Messages.MESSAGE_NO_EVENTS_TO_DISPLAY_TODAY;
 
 import java.time.LocalDate;
+import java.util.Comparator;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
@@ -16,8 +18,8 @@ import javafx.scene.layout.StackPane;
 import seedu.address.commons.util.DateUtil;
 import seedu.address.model.ReadOnlyColabFolder;
 import seedu.address.model.project.Project;
-import seedu.address.model.task.CompletableDeadline;
-import seedu.address.model.task.repeatable.Event;
+import seedu.address.model.task.deadline.DeadlineWithProject;
+import seedu.address.model.task.repeatable.EventWithProject;
 
 /**
  * Panel displaying today screen.
@@ -28,11 +30,8 @@ public class TodayPanel extends UiPart<Region> {
     private final LocalDate currentDate;
     private final ObservableList<Project> projectsList;
 
-    private final ListView<Event> eventsListView = new ListView<>();
-    private final ListView<CompletableDeadline> deadlinesListView = new ListView<>();
-
-    private Label noEventsPlaceholder;
-    private Label noDeadlinesPlaceholder;
+    private final ListView<EventWithProject> eventsListView = new ListView<>();
+    private final ListView<DeadlineWithProject> deadlinesListView = new ListView<>();
 
     @FXML
     private Label date;
@@ -45,6 +44,7 @@ public class TodayPanel extends UiPart<Region> {
 
     /**
      * Creates a {@code TodayPanel}.
+     *
      * @param colabFolder CoLAB folder used to create today panel.
      */
     public TodayPanel(ReadOnlyColabFolder colabFolder, LocalDate date) {
@@ -59,16 +59,23 @@ public class TodayPanel extends UiPart<Region> {
     }
 
     private void initDeadlinesSection() {
-        ObservableList<CompletableDeadline> deadlinesListViewItems = deadlinesListView.getItems();
-        deadlinesListView.setCellFactory(listView -> new CompletableDeadlineListViewCell());
+        deadlinesListView.setCellFactory(listView -> new TodayDeadlineListViewCell());
+        ObservableList<DeadlineWithProject> observableList = FXCollections.observableArrayList();
+
         for (Project project : projectsList) {
-            FilteredList<CompletableDeadline> deadlineList = project.getDeadlinesOnDate(currentDate);
-            deadlinesListViewItems.addAll(deadlineList);
+            project.getDeadlinesOnDate(currentDate)
+                    .forEach(x -> observableList.add(new DeadlineWithProject(x, project.getProjectName())));
         }
 
-        if (deadlinesListViewItems.isEmpty()) {
-            noDeadlinesPlaceholder = new Label();
-            noDeadlinesPlaceholder.setText(MESSAGE_NO_DEADLINES_TO_DISPLAY);
+        SortedList<DeadlineWithProject> sortedDeadlineList = new SortedList<>(observableList,
+                Comparator.comparing(DeadlineWithProject::getDescription));
+
+        deadlinesListView.setItems(sortedDeadlineList);
+
+
+        if (observableList.isEmpty()) {
+            Label noDeadlinesPlaceholder = new Label();
+            noDeadlinesPlaceholder.setText(MESSAGE_NO_DEADLINES_TO_DISPLAY_TODAY);
             deadlinesListViewPlaceholder.getChildren().add(noDeadlinesPlaceholder);
         } else {
             deadlinesListViewPlaceholder.getChildren().add(deadlinesListView);
@@ -76,16 +83,22 @@ public class TodayPanel extends UiPart<Region> {
     }
 
     private void initEventsSection() {
-        ObservableList<Event> eventsListViewItems = eventsListView.getItems();
-        eventsListView.setCellFactory(listView -> new EventListViewCell());
+        eventsListView.setCellFactory(listView -> new TodayEventListViewCell());
+        ObservableList<EventWithProject> observableList = FXCollections.observableArrayList();
+
         for (Project project : projectsList) {
-            FilteredList<Event> eventList = project.getEventsOnDate(currentDate);
-            eventsListViewItems.addAll(eventList);
+            project.getEventsOnDate(currentDate)
+                    .forEach(x -> observableList.add(new EventWithProject(x, project.getProjectName())));
         }
 
-        if (eventsListViewItems.isEmpty()) {
-            noEventsPlaceholder = new Label();
-            noEventsPlaceholder.setText(MESSAGE_NO_EVENTS_TO_DISPLAY);
+        SortedList<EventWithProject> sortedEventList = new SortedList<>(observableList,
+                Comparator.comparing(EventWithProject::getDescription));
+
+        eventsListView.setItems(sortedEventList);
+
+        if (observableList.isEmpty()) {
+            Label noEventsPlaceholder = new Label();
+            noEventsPlaceholder.setText(MESSAGE_NO_EVENTS_TO_DISPLAY_TODAY);
             eventsListViewPlaceholder.getChildren().add(noEventsPlaceholder);
         } else {
             eventsListViewPlaceholder.getChildren().add(eventsListView);
@@ -95,34 +108,34 @@ public class TodayPanel extends UiPart<Region> {
     /**
      * Custom {@code ListCell} that displays the graphics of an {@code Event} using an {@code EventCard}.
      */
-    class EventListViewCell extends ListCell<Event> {
+    static class TodayEventListViewCell extends ListCell<EventWithProject> {
         @Override
-        protected void updateItem(Event event, boolean empty) {
-            super.updateItem(event, empty);
+        protected void updateItem(EventWithProject eventWithProject, boolean empty) {
+            super.updateItem(eventWithProject, empty);
 
-            if (empty || event == null) {
+            if (empty || eventWithProject == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new EventCard(event).getRoot());
+                setGraphic(new TodayEventCard(eventWithProject).getRoot());
             }
         }
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code CompletableDeadline} using
-     * a {@code CompletableDeadlineCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code DeadlineWithProject} using
+     * a {@code TodayDeadlineCard}.
      */
-    class CompletableDeadlineListViewCell extends ListCell<CompletableDeadline> {
+    static class TodayDeadlineListViewCell extends ListCell<DeadlineWithProject> {
         @Override
-        protected void updateItem(CompletableDeadline completableDeadline, boolean empty) {
-            super.updateItem(completableDeadline, empty);
+        protected void updateItem(DeadlineWithProject deadlineWithProject, boolean empty) {
+            super.updateItem(deadlineWithProject, empty);
 
-            if (empty || completableDeadline == null) {
+            if (empty || deadlineWithProject == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new CompletableDeadlineCard(completableDeadline).getRoot());
+                setGraphic(new TodayDeadlineCard(deadlineWithProject).getRoot());
             }
         }
     }

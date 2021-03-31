@@ -7,6 +7,7 @@ import static seedu.address.testutil.TypicalColabFolder.getTypicalColabFolder;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.uicommands.ShowContactsUiCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -33,7 +34,8 @@ public class AddContactCommandIntegrationTest {
         expectedModel.addContact(validContact);
 
         assertCommandSuccess(new AddContactCommand(validContact), model,
-                String.format(AddContactCommand.MESSAGE_SUCCESS, validContact), expectedModel);
+                String.format(AddContactCommand.MESSAGE_SUCCESS, validContact),
+                new ShowContactsUiCommand(), expectedModel);
     }
 
     @Test

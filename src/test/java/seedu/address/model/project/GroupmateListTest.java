@@ -19,7 +19,7 @@ public class GroupmateListTest {
     @Test
     public void constructor_empty_createEmptyGroupmateList() {
         GroupmateList emptyGroupmateList = new GroupmateList();
-        assertTrue(emptyGroupmateList.getGroupmates().isEmpty());
+        assertTrue(emptyGroupmateList.getSortedGroupmates().isEmpty());
     }
 
     @Test
@@ -39,7 +39,7 @@ public class GroupmateListTest {
         ArrayList<Groupmate> groupmates = new ArrayList<>();
         groupmates.add(SYLPH);
         GroupmateList groupmateList = new GroupmateList(groupmates);
-        assertEquals(groupmates, groupmateList.getGroupmates());
+        assertEquals(groupmates, groupmateList.getSortedGroupmates());
     }
 
     @Test
@@ -56,10 +56,10 @@ public class GroupmateListTest {
     @Test
     public void get_validGroupmateList_correct() {
         ArrayList<Groupmate> groupmates = new ArrayList<>();
-        groupmates.add(SYLPH);
+        groupmates.add(ROXY);
         GroupmateList groupmateList = new GroupmateList(groupmates);
         assertEquals(groupmates.get(0), groupmateList.get(0));
-        groupmates.add(ROXY);
+        groupmates.add(SYLPH);
         groupmateList = new GroupmateList(groupmates);
         assertEquals(groupmates.get(0), groupmateList.get(0));
         assertEquals(groupmates.get(1), groupmateList.get(1));
@@ -68,13 +68,13 @@ public class GroupmateListTest {
     @Test
     public void delete_validGroupmateList_correct() {
         ArrayList<Groupmate> groupmates = new ArrayList<>();
-        groupmates.add(SYLPH);
         groupmates.add(ROXY);
+        groupmates.add(SYLPH);
         GroupmateList groupmateList = new GroupmateList(groupmates);
         assertEquals(2, groupmateList.size());
         groupmateList.delete(0);
         assertEquals(1, groupmateList.size());
-        assertEquals(groupmateList.get(0), ROXY);
+        assertEquals(groupmateList.get(0), SYLPH);
         groupmateList.delete(0);
         assertEquals(0, groupmateList.size());
     }

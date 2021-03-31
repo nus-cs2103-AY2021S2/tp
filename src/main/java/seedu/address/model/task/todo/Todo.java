@@ -58,6 +58,6 @@ public class Todo extends CompletableTodo {
      */
     @Override
     public String toString() {
-        return "[T]" + this.getStatusIcon() + " " + this.description;
+        return this.description;
     }
 }

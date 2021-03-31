@@ -8,6 +8,7 @@ import java.util.List;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.uicommands.ViewProjectAndTodosUiCommand;
 import seedu.address.model.Model;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.exceptions.DuplicateTodoException;
@@ -15,12 +16,12 @@ import seedu.address.model.task.todo.Todo;
 
 public class AddTodoCommand extends Command {
 
-    public static final String COMMAND_WORD = "addTto";
+    public static final String COMMAND_WORD = "addT";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a Task to CoLAB. "
             + "Parameters:\nPROJECT_INDEX\n"
             + PREFIX_DESCRIPTION + "DESCRIPTION "
-            + "Example: " + COMMAND_WORD + " "
+            + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_DESCRIPTION + "Submit project report ";
 
     private final Index index;
@@ -56,7 +57,8 @@ public class AddTodoCommand extends Command {
         }
 
         model.updateFilteredProjectList(Model.PREDICATE_SHOW_ALL_PROJECTS);
-        return new CommandResult(String.format(Messages.MESSAGE_ADD_TODO_SUCCESS, toAdd));
+        return new CommandResult(String.format(Messages.MESSAGE_ADD_TODO_SUCCESS, toAdd),
+                new ViewProjectAndTodosUiCommand(index));
     }
 
     @Override
