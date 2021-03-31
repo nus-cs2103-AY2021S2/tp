@@ -376,9 +376,7 @@ public class ModelManager implements Model {
         requireNonNull(books);
 
         for (Book b : books) {
-            if (!b.isBorrowed()) {
-                return b.getBarcode();
-            }
+            return b.getBarcode();
         }
 
         return null;
