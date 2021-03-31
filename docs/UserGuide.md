@@ -117,6 +117,21 @@ Client Mode displays lists of clients and client details.
 
 Format: `list`
 
+### Showing a particular client : `show`
+
+Display client details on the right panel of the Ui.
+
+Format: `show INDEX`
+
+* Only displays when iScam is in **Client Mode**
+* Shows the client at the specified `INDEX`. The index refers to the index number shown in the displayed client list. The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `show 1` Shows the details (such as name, phone number, profile picture, insurance, etc) of the first Client on the right panel of the UI.
+
+
+
+
 ### Editing a client : `edit`
 
 Edits an existing client in iScam.
@@ -343,6 +358,7 @@ Action | Format, Examples
 **Help** | `help`
 **Add Client** | `add n/NAME p/PHONE e/EMAIL l/LOCATION [ip/INSURANCE_PLAN] [i/IMAGE_FILE] [t/TAG]…​` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com l/01 Singapore Street, #23-45 ip/MediShield Life i/john_doe.png t/friends t/owesMoney`
 **List Clients** | `list`
+**Show Client** | `show INDEX` <br> e.g., `show 1`
 **Edit Client** | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [l/LOCATION] [ip/INSURANCE_PLAN] [i/IMAGE_FILE] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find Client by Name** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **Find Client by Insurance Plan** | `findplan KEYWORD [MORE_KEYWORDS]` <br> e.g., `findplan MediShield`
