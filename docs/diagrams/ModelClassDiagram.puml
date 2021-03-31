@@ -14,6 +14,7 @@ Class Model
 Class ModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
+Class ObservableCalendarDate
 
 Package Task {
 Class Task
@@ -43,9 +44,10 @@ ModelManager o--> "1" Planner
 ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
+Planner *-left-> "1" ObservableCalendarDate
 Planner *--> "1" UniqueTaskList
 UniqueTaskList o--> "*" Task
-Planner *--> "1" UniqueTagList
+Planner *-left-> "1" UniqueTagList
 UniqueTagList o--> "*" Tag
 Task *--> Title
 Task *--> Deadline

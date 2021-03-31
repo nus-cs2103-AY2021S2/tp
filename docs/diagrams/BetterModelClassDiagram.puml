@@ -4,6 +4,7 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
+Planner *-left> "1" ObservableCalendarDate
 Planner *-right-> "1" UniqueTaskList
 Planner *-right-> "1" UniqueTagList
 UniqueTagList -[hidden]down- UniqueTaskList

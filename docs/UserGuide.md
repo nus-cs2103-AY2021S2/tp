@@ -3,9 +3,14 @@ layout: page
 title: User Guide
 ---
 
-**PlanIT** is a todo list, calendar application for NUS computer science students with a busy schedule to quickly
-and efficiently add classes for modules and easily view their tasks.
-It is optimised for users who prefer typing.
+**PlanIT** is a task managing application made specially for NUS computing students like you, from computing students
+like us. Forgot to submit your lab worksheet, or too many assignments and you don't know where to get started? PlanIT
+gives you the confidence that your busy schedule is organized and accounted for. Quickly and efficiently make and edit
+various tasks, mark deadlines, take note of remaining tasks, and more.
+
+PlanIt also includes a calendar and a countdown feature to better manage your deadlines. It is even optimised for all of
+you who prefer typing, so that bookkeeping can be done faster. Now you can make progress on the things that are
+more important to you.
 
 * Table of Contents
 {:toc}
@@ -16,25 +21,27 @@ It is optimised for users who prefer typing.
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `planit.jar` from [here](https://github.com/AY2021S2-CS2103T-T10-2/tp/releases).
+2. Download the latest `planit.jar` from [here](https://github.com/AY2021S2-CS2103T-T10-2/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your planner.
+3. Copy the file to the folder you want to use as the _home folder_ for your planner.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds.
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds.
+   
+
    Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and
    pressing Enter will display a list of commonly used commands for first time users.<br>
    Some example commands you can try:
 
-   * **`ls`** : Lists all contacts.
+   * **`ls`** : Lists all tasks.
 
-   * **`mk`**`n/eat dinner` : Adds a task titled `eat dinner` to the todo list.
+   * **`mk`**`n/eat dinner` : Makes a task titled `eat dinner` to the todo list.
 
    * **`rmt`**`3` : Deletes the 3rd task shown in the current list.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -44,8 +51,12 @@ It is optimised for users who prefer typing.
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+* Words in `UPPER_CASE` are the parameters to be supplied by the user. Type in the prefixes along with the 
+  parameters.<br>
   e.g. in `mk n/TITLE`, `n/TITLE` is a parameter which can be used as `n/eat dinner`.
+  
+* Some commands might not require prefixes as written in their formats.<br>
+  e.g. in `rmt INDEX`, it can be used as `rmt 4`.
 
 * Items in square brackets are optional.<br>
   e.g `n/TITLE [t/TAG]` can be used as `n/Join Dance t/leisure` or as `n/Join Dance`.
@@ -75,23 +86,23 @@ Displays a list of commonly used possible commands along with each of their form
 Format: `help`
 
 
-### Adding a task: `mk`
+### Making a task: `mk`
 
-Adds a task to the todo list.
+Makes a task to the todo list.
 
-Format: `mk n/TITLE [set/DEADLINE] [s/START TIME] [d/DESCRIPTION]
-[r/RECURRING SCHEDULE] [st/STATUS] [t/TAG]…​`
+Format: `mk n/TITLE [set/DATE] [s/DURATION] [d/DESCRIPTION]
+[r/RECURRING SCHEDULE] [st/STATUS] [t/TAG]…`
 
 * Only title is compulsory.
-* Deadline should be in the format dd/mm/yyyy like `12/05/2021`.
-* Start time should be numeric and should be in 24 hours format with a colon like `22:30`.
-* Description (can be optional) can have multiple lines by adding a line break using <kbd>shift</kbd>+<kbd>enter</kbd>.
-* Recurring schedule (can be optional) should have 3 conditions which consist of:
-  * An end date when the task stops recurring, in the same format as a date where
-    it cannot be older than the current date or less than a week away from current date.
-  * A day of the week that the task recurs on which is case-insensitive can be
-    represented in the form of the first 3 letters of the day.
-  * Frequency of the recurring task, which is case-insensitive can be weekly or biweekly.
+* Date should be in the format dd/mm/yyyy like `12/05/2021`.
+* Duration should be numeric, contain 2 timings, and should be in 24 hours format with a colon, like `22:30-22:45`.
+* Description can have multiple lines by adding a line break using <kbd>shift</kbd>+<kbd>enter</kbd>.
+* Recurring schedule should have 3 conditions which consist of:
+  * An end date when the task stops recurring, in the same format as a date, which
+    cannot be older than the current date or less than a week away from current date.
+  * A day of the week that the task recurs on, which can be
+    represented in the form of the first 3 letters of the day and is case-insensitive.
+  * Frequency of the recurring task, which can be weekly or biweekly and is case-insensitive.
   * E.g. `[23/10/2021][Mon][weekly]`
 * Status can only be `done` or `not done`, and is by default `not done`.
 
@@ -100,10 +111,11 @@ A task can have any number of tags (including 0)
 </div>
 
 Examples:
-* `mk n/eat dinner`
-* `mk n/do project r/[29/05/2021][thu][Biweekly]`
+* `mk n/eat dinner`<br>Makes a task titled 'eat dinner'.
+* `mk n/do project r/[29/05/2021][thu][Biweekly]` <br>Makes a task titled 'do project' and will recur every
+  thursday, biweekly until 29th May 2021.
 
-Example of adding task with multiple lines of description:
+Example of making task with multiple lines of description:
 ```
 mk n/take a break d/
 - do 1
@@ -112,7 +124,7 @@ mk n/take a break d/
 
 ### Listing all tasks : `ls`
 
-Shows a list of all tasks in the planner.
+Shows a list of all tasks in the planner. Automatically brings your calendar back to the current date.
 
 Format: `ls`
 
@@ -260,10 +272,24 @@ Format: `stat`
 
 * Planner must consist of at least one task.
 
+### View tasks on a date : `view`
+
+Displays the tasks happening on a particular date, including those recurring tasks, and brings the calendar to the date
+specified.
+
+Format: `view DATE`
+
+* Date should be in the format of dd/mm/yyyy like 12/12/2021.
+* The specified date can only be future dates, after the current date.
+
+Examples:
+* `view 03/07/2021`<br>Lists all tasks with dates or recurring dates on 03/07/2021, and brings the calendar to July
+2021.
+
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the planner.
+Clears all entries from the planner. Automatically brings your calendar back to the current date.
 
 Format: `clear`
 
@@ -290,6 +316,21 @@ start with an empty data file at the next run.
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Calendar Navigation
+
+You can click on the `prev` and `next` buttons on the calendar to move to the previous and next months respectively,
+or you can simply type in the following commands, if you are more inclined to using the command line interface.
+
+### Navigate to the previous month on the calendar : `prev`
+
+### Navigate to the next month on the calendar : `next`
+
+* These 2 commands do not take in parameters. As per the feature commands, extraneous parameters will be ignored.
+    
+    E.g. if the command specifies `prev 987`, it will be interpreted as `prev`.
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
@@ -302,7 +343,7 @@ that contains the data of your previous PlanIT home folder.
 
 Action | Format, Examples
 --------|------------------
-**Add** | `mk n/TITLE [set/DEADLINE] [s/START TIME] [d/DESCRIPTION] [r/RECURRING SCHEDULE] [st/STATUS] [t/TAG]…​`<br> e.g.,`mk n/eat dinner t/important`
+**Make** | `mk n/TITLE [set/DATE] [s/DURATION] [d/DESCRIPTION] [r/RECURRING SCHEDULE] [st/STATUS] [t/TAG]…​`<br> e.g.,`mk n/eat dinner t/important`
 **Clear** | `clear`
 **Delete Task** | `rmt INDEX`<br> e.g., `rmt 3`
 **Delete Field** | `rmf INDEX FIELD`<br> e.g., `rmf 1 d/`
@@ -310,5 +351,7 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]`e.g., `find CS2103 team project` <br>`find [t/TAG] `e.g., `find t/CS2103` <br> `find [d/DESCRIPTION] `e.g., `find d/CS2103 milestone postmortem`
 **Countdown** | `count INDEX` <br> e.g., `count 2`
 **Statistics** | `stat`
+**View** | `view DATE`<br> e.g., `view 10/10/2021`
 **List** | `ls`
 **Help** | `help`
+**Calendar Navigation** | `next` `prev`

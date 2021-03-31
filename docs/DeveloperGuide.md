@@ -104,6 +104,7 @@ The `Model`,
 * stores a `UserPref` object that represents the user’s preferences.
 * stores the planner data.
 * exposes an unmodifiable `ObservableList<Task>` and `ObservableList<Tag>` that can be 'observed' e.g. the UI can be bound to these lists so that the UI automatically updates when the data in the lists change.
+* exposes an unmodifiable `ObservableCalendarDate` for the calendar to observe.
 * does not depend on any of the other three components.
 
 ### Storage component
@@ -205,7 +206,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### Viewing list of tags
+### Viewing list of tags in the tags panel
 
 Each task may be associated with 0 or more tags that are stored in the `UniqueTagList`. The `UniqueTagList` ensures that
 no 2 tags are duplicate in the program at 1 time, emphasizing the abstraction of tags as an Object.
@@ -228,9 +229,39 @@ below:
 
 As seen, there is a clear separation of responsibilities between the `UI`, `Logic` and `Model`, which complies with
 the Observer pattern where the view in `UI` communicates with the `UniqueTagList` in `Model` through an
-interface, subscribing to the changes in the list.
+interface, subscribing to the changes in the list. Thus, coupling is reduced.
 This interface is actually `<<Logic>>` and `<<Model>>`, implemented by `LogicManager` and `ModelManager`, which are
 abstracted out of the diagram for more concrete representation.
+
+### Viewing tasks on a date and bringing the calendar to the date
+
+The `view` command can get and list all tasks with dates and their recurring schedule's dates on a particular date. The
+next argument for the command is taken as the `DATE` and used in the predicate that filters the task list stored. The
+resulting filtered task list is displayed on the `TaskListPanel` in the app. The following activity diagram illustrates
+the workflow when a user uses the `view` command:
+
+![ViewDateActivityDiagram](images/ViewDateActivityDiagram.png)
+
+The given date argument is used in `TaskOnDatePredicate` which is an aggregation of 2 other predicates:
+`TaskDateOnDatePredicate` and `TaskScheduledOnDatePredicate`. The sequence diagram below shows how the command is parsed
+and executed:
+
+![ViewDateSequenceDiagram](images/ViewDateSequenceDiagram.png)
+
+Updating the filtered task list causes a change in the `ObservableTaskList` encapsulated in a `UniqueTaskList`, in turn
+encapsulated within the model and planner. The `ObservableTaskList` then propagates the changes to the `TaskListPanel`
+to be viewed.
+
+#### Changing the calendar's viewing date
+
+The date given in the view command is also used to update the calendar. This is implemented as an `Observable` object
+called `ObservableCalendarDate`, stored within the model encapsulated by the planner. It is passed to the
+`CalendarPanel` upon instantiation in the `MainWindow` view. The `CalendarPanel` implements an `Observer` interface,
+which subscribes to the `Observable` for notifications whenever there is a change in date caused by the `view` command.
+
+![ObservableCalendarDateDiagram](images/ObservableCalendarDateClassDiagram.png)
+
+Thus, `CalendarPanel` and `ObservableCalendarDate` conforms to the observer pattern, reducing coupling.
 
 ### Mark task as done
 
@@ -430,7 +461,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-#### **Use case: Viewing all tasks**
+#### **Use case: Listing all tasks**
 
 **MSS**
 
