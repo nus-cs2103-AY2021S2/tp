@@ -5,42 +5,24 @@ package seedu.address.model.subject;
  * Both abbreviated and full name are included for a subject.
  */
 public enum AvailableSubject {
-    bio("bio", "biology"),
-    biology("bio", "biology"),
+    bio("biology"),
+    chem("chemistry"),
+    cn("chinese"),
+    econ("economics"),
+    eng("english"),
+    geo("geography"),
+    hist("history"),
+    math("mathematics"),
+    phys("physics");
 
-    chem("chem", "chemistry"),
-    chemistry("chem", "chemistry"),
 
-    cn("cn", "chinese"),
-    chinese("cn", "chinese"),
-
-    econ("econ", "economics"),
-    economics("econ", "economics"),
-
-    eng("eng", "english"),
-    english("eng", "english"),
-
-    geo("geo", "geography"),
-    geography("geo", "geography"),
-
-    hist("hist", "history"),
-    history("hist","history"),
-
-    math("math","mathematics"),
-    mathematics("math","mathematics"),
-
-    phys("phys","physics"),
-    physics("phys", "physics");
-
-    private final String abbr;
     private final String full;
-    private AvailableSubject(String abbr, String full) {
-        this.abbr = abbr;
+    private AvailableSubject(String full) {
         this.full = full;
     }
     @Override
     public String toString() {
-        return abbr;
+        return full;
     }
 }
 

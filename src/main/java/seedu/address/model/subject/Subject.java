@@ -9,9 +9,10 @@ import java.util.Locale;
  * Guarantees: immutable; name is valid as declared in {@link #isValidSubjectName(String)}
  */
 public class Subject implements Comparable<Subject> {
-    public static final String MESSAGE_CONSTRAINTS = "Subjects should be from the list "
-            + "[biology, chemistry, chinese, economics, english, geography, history, mathematics, physics]"
-            + ", and their abbreviated names [bio, chem, cn, econ, eng, geo, hist, math, phys] are also acceptable";
+    public static final String MESSAGE_CONSTRAINTS = "Subject names should be an abbreviation from the list "
+            + "[bio, chem, cn, econ, eng, geo, hist, math, phys], which respectively means "
+            + "[biology, chemistry, chinese, economics, english, geography, history, mathematics, physics]";
+    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     public final String subjectName;
 
@@ -30,9 +31,11 @@ public class Subject implements Comparable<Subject> {
      * Returns true if a given string is a valid subject name.
      */
     public static boolean isValidSubjectName(String test) {
-        for (AvailableSubject subject : AvailableSubject.values()) {
-            if (subject.name().equals(test)) {
-                return true;
+        if(test.matches(VALIDATION_REGEX)){
+            for (AvailableSubject subject : AvailableSubject.values()) {
+                if (subject.name().equals(test)) {
+                    return true;
+                }
             }
         }
         return false;
