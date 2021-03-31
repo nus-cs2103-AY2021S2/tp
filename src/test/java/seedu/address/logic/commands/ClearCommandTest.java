@@ -11,14 +11,14 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 
-public class ClearContactCommandTest {
+public class ClearCommandTest {
 
     @Test
     public void execute_emptyContactList_success() {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
-        assertCommandSuccess(new ClearContactCommand(), model, ClearContactCommand.MESSAGE_SUCCESS,
+        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS,
                 new ShowTodayUiCommand(), expectedModel);
     }
 
@@ -28,7 +28,7 @@ public class ClearContactCommandTest {
         Model expectedModel = new ModelManager(getTypicalColabFolder(), new UserPrefs());
         expectedModel.setColabFolder(new ColabFolder());
 
-        assertCommandSuccess(new ClearContactCommand(), model, ClearContactCommand.MESSAGE_SUCCESS,
+        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS,
                 new ShowTodayUiCommand(), expectedModel);
     }
 

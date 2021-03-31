@@ -15,7 +15,7 @@ import seedu.address.model.contact.Contact;
  * Provides a handle for {@code ContactListPanel} containing the list of {@code ContactCard}.
  */
 public class ContactListPanelHandle extends NodeHandle<ListView<Contact>> {
-    public static final String CONTACT_LIST_VIEW_ID = "#contactListView";
+    public static final String CONTACT_LIST_VIEW_ID = "#contactListViewPlaceholder";
 
     private static final String CARD_PANE_ID = "#cardPane";
 

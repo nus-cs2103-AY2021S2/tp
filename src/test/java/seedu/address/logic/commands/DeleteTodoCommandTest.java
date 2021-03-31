@@ -51,7 +51,8 @@ public class DeleteTodoCommandTest {
 
         DeleteTodoCommand deleteTodoCommand = new DeleteTodoCommand(INDEX_FIRST, firstTodoIndex);
 
-        String expectedMessage = String.format(MESSAGE_DELETE_TODO_SUCCESS, firstTodoIndex.getOneBased());
+        String expectedMessage = String.format(MESSAGE_DELETE_TODO_SUCCESS, firstTodoIndex.getOneBased(),
+                projectToEdit.getProjectName());
 
         ModelManager expectedModel = new ModelManager(getTypicalColabFolder(), new UserPrefs());
 

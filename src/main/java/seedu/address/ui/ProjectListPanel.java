@@ -13,7 +13,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.ViewProjectCommand;
 import seedu.address.model.project.Project;
 
 /**
@@ -40,8 +39,6 @@ public class ProjectListPanel extends UiPart<Region> {
         });
         projectListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
-                mainWindow.setFeedbackToUser(String.format(ViewProjectCommand.MESSAGE_SUCCESS,
-                        newValue.getProjectName()));
                 mainWindow.clearButtonStyles();
                 mainWindow.displayProject(newValue);
             }

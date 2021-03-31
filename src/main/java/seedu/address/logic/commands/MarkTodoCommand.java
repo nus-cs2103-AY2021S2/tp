@@ -20,10 +20,10 @@ public class MarkTodoCommand extends Command {
     public static final String COMMAND_WORD = "markT";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Marks the todo identified by its index number as done within the displayed project.\n"
-            + "Parameters: PROJECT_INDEX (must be a positive integer)"
+            + ": Marks the todo identified by the index number used within the displayed project as done.\n"
+            + "Parameters: PROJECT_INDEX"
             + PREFIX_MARK_TASK_INDEX + "TODO_INDEX \n"
-            + "Example: " + COMMAND_WORD + " 1" + " "
+            + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_MARK_TASK_INDEX + " 2";
 
     private final Index projectIndex;

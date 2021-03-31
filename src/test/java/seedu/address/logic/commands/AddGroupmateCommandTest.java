@@ -2,6 +2,8 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static seedu.address.commons.core.Messages.MESSAGE_ADD_GROUPMATE_SUCCESS;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_GROUPMATE;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalColabFolder.getTypicalColabFolder;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
@@ -37,7 +39,7 @@ public class AddGroupmateCommandTest {
 
         CommandResult commandResult = new AddGroupmateCommand(INDEX_FIRST, validGroupmate).execute(model);
 
-        assertEquals(String.format(AddGroupmateCommand.MESSAGE_SUCCESS, validGroupmate.getName(),
+        assertEquals(String.format(MESSAGE_ADD_GROUPMATE_SUCCESS, validGroupmate.getName(),
                 validProject.getProjectName()), commandResult.getFeedbackToUser());
     }
 
@@ -63,7 +65,7 @@ public class AddGroupmateCommandTest {
         assertThrows(
                 CommandException.class,
                 String.format(
-                        AddGroupmateCommand.MESSAGE_DUPLICATE_GROUPMATE,
+                        MESSAGE_DUPLICATE_GROUPMATE,
                         projectToAddTo.getProjectName()
                 ), () -> addGroupmateCommand.execute(model)
         );

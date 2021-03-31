@@ -30,22 +30,22 @@ public class UpdateEventCommand extends Command {
 
     public static final String COMMAND_WORD = "updateE";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Updates the event "
-            + "identified by it's index number within the displayed project.\n"
-            + "Parameters: PROJECT_INDEX (must be a positive integer) "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Updates the event of a project"
+            + "identified by 2 index numbers: project index and event index.\n"
+            + "Parameters: PROJECT_INDEX "
             + PREFIX_INDEX + "EVENT_INDEX "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_EVENT_DATE + "DATE] "
             + "[" + PREFIX_EVENT_TIME + "TIME]"
             + "[" + PREFIX_EVENT_WEEKLY + "REPEATS_WEEKLY]\n"
-            + "Example:\n" + COMMAND_WORD + " 1 "
+            + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_INDEX + "1 "
             + PREFIX_DESCRIPTION + "Project meeting "
             + PREFIX_EVENT_DATE + "24-04-2021 "
             + PREFIX_EVENT_TIME + "1830 "
             + PREFIX_EVENT_WEEKLY + "N";
 
-    public static final String MESSAGE_UPDATE_EVENT_SUCCESS = "Edited event: %1$s";
+    public static final String MESSAGE_UPDATE_EVENT_SUCCESS = "Updated event: %1$s";
     public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in this project.";
 
     private final Index projectIndex;

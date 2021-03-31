@@ -20,11 +20,11 @@ public class DeleteTodoCommand extends Command {
     public static final String COMMAND_WORD = "deleteT";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the todo identified by it's index number within the displayed project.\n"
-            + "Parameters: PROJECT_INDEX (must be a positive integer)"
-            + PREFIX_INDEX + "TODO_INDEX \n"
-            + "Example: " + COMMAND_WORD + " 1" + " "
-            + PREFIX_INDEX + " 2";
+            + ": Deletes the todo identified by the index number used within the displayed project.\n"
+            + "Parameters: PROJECT_INDEX"
+            + PREFIX_INDEX + "TODO_INDEX\n"
+            + "Example: " + COMMAND_WORD + " 1 "
+            + PREFIX_INDEX + " 1";
 
     private final Index projectIndex;
     private final Index targetTodoIndex;
@@ -59,8 +59,8 @@ public class DeleteTodoCommand extends Command {
         projectToEdit.deleteTodo(targetTodoIndex.getZeroBased());
         model.updateFilteredProjectList(Model.PREDICATE_SHOW_ALL_PROJECTS);
 
-        return new CommandResult(String.format(Messages.MESSAGE_DELETE_TODO_SUCCESS, targetTodoIndex.getOneBased()),
-                new ViewProjectAndTodosUiCommand(projectIndex));
+        return new CommandResult(String.format(Messages.MESSAGE_DELETE_TODO_SUCCESS, targetTodoIndex.getOneBased(),
+                projectToEdit.getProjectName()), new ViewProjectAndTodosUiCommand(projectIndex));
     }
 
     @Override

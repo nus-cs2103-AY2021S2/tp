@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_UI_PROJECT_NOT_DISPLAYED;
+import static seedu.address.commons.core.Messages.MESSAGE_WELCOME;
 import static seedu.address.logic.commands.HelpCommand.SHOWING_HELP_MESSAGE;
 
 import java.time.LocalDate;
@@ -132,8 +133,8 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+        setFeedbackToUser(MESSAGE_WELCOME);
 
-        contactListPanel = new ContactListPanel(logic.getFilteredContactList());
         projectDisplayPanel = new ProjectDisplayPanel();
         projectDisplayPanel.setMainWindow(this);
     }
@@ -234,11 +235,11 @@ public class MainWindow extends UiPart<Stage> {
      * Shows contacts tab.
      */
     public void displayContacts() {
-        if (!infoDisplayPlaceholder.getChildren().contains(contactListPanel.getRoot())) {
-            infoDisplayPlaceholder.getChildren().clear();
-            infoDisplayPlaceholder.getChildren().add(contactListPanel.getRoot());
-        }
-
+        sidePanel.clearButtonStyles();
+        sidePanel.addContactButtonStyle();
+        contactListPanel = new ContactListPanel(logic.getFilteredContactList());
+        infoDisplayPlaceholder.getChildren().clear();
+        infoDisplayPlaceholder.getChildren().add(contactListPanel.getRoot());
         sidePanel.clearSelection();
     }
 
@@ -246,6 +247,8 @@ public class MainWindow extends UiPart<Stage> {
      * Shows today tab.
      */
     public void displayToday() {
+        sidePanel.clearButtonStyles();
+        sidePanel.addTodayButtonStyle();
         todayPanel = new TodayPanel(logic.getColabFolder(), LocalDate.now());
         infoDisplayPlaceholder.getChildren().clear();
         infoDisplayPlaceholder.getChildren().add(todayPanel.getRoot());

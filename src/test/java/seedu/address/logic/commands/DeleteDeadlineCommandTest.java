@@ -51,7 +51,8 @@ public class DeleteDeadlineCommandTest {
 
         DeleteDeadlineCommand deleteDeadlineCommand = new DeleteDeadlineCommand(INDEX_FIRST, firstDeadlineIndex);
 
-        String expectedMessage = String.format(MESSAGE_DELETE_DEADLINE_SUCCESS, firstDeadlineIndex.getOneBased());
+        String expectedMessage = String.format(MESSAGE_DELETE_DEADLINE_SUCCESS, firstDeadlineIndex.getOneBased(),
+                projectToEdit.getProjectName());
 
         ModelManager expectedModel = new ModelManager(getTypicalColabFolder(), new UserPrefs());
 

@@ -2,8 +2,8 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static seedu.address.commons.core.Messages.MESSAGE_DELETE_GROUPMATE_SUCCESS;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.DeleteGroupmateCommand.MESSAGE_DELETE_PROJECT_SUCCESS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalColabFolder.getTypicalColabFolder;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
@@ -51,7 +51,7 @@ public class DeleteGroupmateCommandTest {
 
         DeleteGroupmateCommand deleteGroupmateCommand = new DeleteGroupmateCommand(INDEX_FIRST, firstContactIndex);
 
-        String expectedMessage = String.format(MESSAGE_DELETE_PROJECT_SUCCESS,
+        String expectedMessage = String.format(MESSAGE_DELETE_GROUPMATE_SUCCESS,
                 contactToDelete.getName(), projectToEdit.getProjectName());
 
         ModelManager expectedModel = new ModelManager(getTypicalColabFolder(), new UserPrefs());

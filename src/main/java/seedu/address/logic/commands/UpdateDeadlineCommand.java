@@ -28,17 +28,17 @@ public class UpdateDeadlineCommand extends Command {
 
     public static final String COMMAND_WORD = "updateD";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Updates a deadline of a project specified "
-            + "by 2 index numbers: project index and target deadline index.\n"
-            + "Parameters: PROJECT_INDEX (must be a positive integer) "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Updates the deadline of a project "
+            + "identified by 2 index numbers: project index and deadline index.\n"
+            + "Parameters: PROJECT_INDEX"
             + PREFIX_INDEX + "DEADLINE_INDEX "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_DEADLINE_DATE + "DATE]\n"
-            + "Example:\n" + COMMAND_WORD + " 1 "
+            + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_INDEX + "1 "
-            + PREFIX_DESCRIPTION + "Project tasks ";
+            + PREFIX_DESCRIPTION + "Submission deadline";
 
-    public static final String MESSAGE_UPDATE_DEADLINE_SUCCESS = "Edited deadline: %1$s";
+    public static final String MESSAGE_UPDATE_DEADLINE_SUCCESS = "Updated deadline: %1$s";
     public static final String MESSAGE_DUPLICATE_DEADLINE = "This deadline already exists in this project.";
 
     private final Index projectIndex;

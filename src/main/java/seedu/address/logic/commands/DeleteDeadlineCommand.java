@@ -22,11 +22,11 @@ public class DeleteDeadlineCommand extends Command {
     public static final String COMMAND_WORD = "deleteD";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the deadline identified by it's index number within the displayed project.\n"
-            + "Parameters: PROJECT_INDEX (must be a positive integer)"
+            + ": Deletes the deadline identified by the index number used within a displayed project.\n"
+            + "Parameters: PROJECT_INDEX "
             + PREFIX_INDEX + "DEADLINE_INDEX \n"
-            + "Example: " + COMMAND_WORD + " 1" + " "
-            + PREFIX_INDEX + " 2";
+            + "Example: " + COMMAND_WORD + " 1 "
+            + PREFIX_INDEX + " 1";
 
     private final Index projectIndex;
     private final Index targetDeadlineIndex;
@@ -66,7 +66,8 @@ public class DeleteDeadlineCommand extends Command {
         model.updateFilteredProjectList(Model.PREDICATE_SHOW_ALL_PROJECTS);
 
         return new CommandResult(String.format(Messages.MESSAGE_DELETE_DEADLINE_SUCCESS,
-                targetDeadlineIndex.getOneBased()), new ViewProjectAndOverviewUiCommand(projectIndex));
+                targetDeadlineIndex.getOneBased(), projectToEdit.getProjectName()),
+                new ViewProjectAndOverviewUiCommand(projectIndex));
     }
 
     @Override

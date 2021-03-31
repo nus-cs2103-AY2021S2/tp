@@ -25,13 +25,13 @@ public class AddEventCommand extends Command {
 
     public static final String COMMAND_WORD = "addE";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds event to a specified project.\n"
-            + "Parameters:\nPROJECT_INDEX\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an event to a specified project.\n"
+            + "Parameters: PROJECT_INDEX "
             + PREFIX_DESCRIPTION + "DESCRIPTION "
             + PREFIX_EVENT_DATE + "DATE "
             + PREFIX_EVENT_TIME + "TIME "
             + PREFIX_EVENT_WEEKLY + "REPEATS_WEEKLY\n"
-            + "Example:\n" + COMMAND_WORD + " 1 "
+            + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_DESCRIPTION + "Project meeting "
             + PREFIX_EVENT_DATE + "24-04-2021 "
             + PREFIX_EVENT_TIME + "1730 "
@@ -71,8 +71,8 @@ public class AddEventCommand extends Command {
         }
 
         model.updateFilteredProjectList(Model.PREDICATE_SHOW_ALL_PROJECTS);
-        return new CommandResult(String.format(Messages.MESSAGE_ADD_EVENT_SUCCESS, toAdd),
-                new ViewProjectAndOverviewUiCommand(index));
+        return new CommandResult(String.format(Messages.MESSAGE_ADD_EVENT_SUCCESS, toAdd,
+                projectToEdit.getProjectName()), new ViewProjectAndOverviewUiCommand(index));
     }
 
     @Override

@@ -4,9 +4,11 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.contact.Contact;
 
@@ -17,8 +19,11 @@ public class ContactListPanel extends UiPart<Region> {
     private static final String FXML = "ContactListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(ContactListPanel.class);
 
+    private final ListView<Contact> contactListView = new ListView<>();
+    private final Label noContactsLabel = new Label();
+
     @FXML
-    private ListView<Contact> contactListView;
+    private StackPane contactListViewPlaceholder;
 
     /**
      * Creates a {@code ContactListPanel} with the given {@code ObservableList}.
@@ -27,6 +32,13 @@ public class ContactListPanel extends UiPart<Region> {
         super(FXML);
         contactListView.setItems(contactList);
         contactListView.setCellFactory(listView -> new ContactListViewCell());
+
+        if (contactListView.getItems().isEmpty()) {
+            noContactsLabel.setText("You have no contacts!");
+            contactListViewPlaceholder.getChildren().add(noContactsLabel);
+        } else {
+            contactListViewPlaceholder.getChildren().add(contactListView);
+        }
     }
 
     /**

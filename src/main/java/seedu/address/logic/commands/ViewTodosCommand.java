@@ -15,7 +15,7 @@ public class ViewTodosCommand extends Command {
             + ": Displays the todos of an open project.\n"
             + "Example: " + COMMAND_WORD;
 
-    public static final String MESSAGE_SUCCESS = "Viewing Todos";
+    public static final String MESSAGE_SUCCESS = "Viewing Todos of a Project.";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {

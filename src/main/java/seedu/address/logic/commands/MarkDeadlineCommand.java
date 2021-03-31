@@ -20,11 +20,11 @@ public class MarkDeadlineCommand extends Command {
     public static final String COMMAND_WORD = "markD";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Marks the deadline identified by it's index number as done within the displayed project.\n"
-            + "Parameters: PROJECT_INDEX (must be a positive integer)"
+            + ": Marks the deadline identified by the index number used within the displayed project as done.\n"
+            + "Parameters: PROJECT_INDEX"
             + PREFIX_MARK_TASK_INDEX + "DEADLINE_INDEX \n"
-            + "Example: " + COMMAND_WORD + " 1" + " "
-            + PREFIX_MARK_TASK_INDEX + " 2";
+            + "Example: " + COMMAND_WORD + " 1 "
+            + PREFIX_MARK_TASK_INDEX + " 1";
 
     private final Index projectIndex;
     private final Index targetDeadlineIndex;
