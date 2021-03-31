@@ -6,7 +6,8 @@ package seedu.booking.commons.core;
 public class Messages {
 
     // Venue related messages
-    public static final String PROMPT_CAPACITY_MESSAGE = "Please enter the capacity of the venue.";
+    public static final String PROMPT_CAPACITY_MESSAGE = "Please enter the capacity of the venue.\n"
+            + "Default capacity is set to 10 if no input is provided.";
     public static final String PROMPT_VENUE_DESC_MESSAGE = "Please provide an optional booking description.\n";
     public static final String PROMPT_DUPLICATE_VENUE_MESSAGE = "A venue already exists "
             + "in the system with the same name!\n";
