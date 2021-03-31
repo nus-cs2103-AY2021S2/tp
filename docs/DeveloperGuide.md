@@ -601,6 +601,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *` | power user | access my command history | efficiently repeat similar commands |
 | `* *` | power user | access command history from previous sessions | easily reuse commands from previous sessions |
 | `* *` | power user | create aliases for longer commands | avoid typing the same command multiple times |
+| `* *` | power user | delete aliases that are no longer needed | |
 
 ## Use cases
 
@@ -943,6 +944,23 @@ Use case ends.
     * 2a1. SunRez overwrites the existing alias. 
 
         Use case resumes from step 3.
+
+### UC-023 Delete an alias
+
+**MSS**
+
+1. User wants to delete an alias.
+2. SunRez validates the alias name.
+3. SunRez removes the alias and updates the alias mapping in the user’s preferences.
+
+Use case ends.
+
+**Extensions**
+
+* 1a. Alias is not found in the current alias mapping.
+    * 1a1. SunRez shows an error message.
+
+      Use case ends.
 
 ## Non-Functional Requirements
 
