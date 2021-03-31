@@ -37,7 +37,7 @@ import org.junit.jupiter.api.Test;
 
 public class AliasMappingTest {
     @Test
-    void containsAlias() {
+    public void containsAlias() {
         AliasMapping aliasMapping = new AliasMapping();
         aliasMapping.addAlias(VALID_ALIAS_1);
 
@@ -45,7 +45,7 @@ public class AliasMappingTest {
     }
 
     @Test
-    void isReservedKeyword_aliasNameIsReserved_returnsTrue() {
+    public void isReservedKeyword_aliasNameIsReserved_returnsTrue() {
         AliasMapping aliasMapping = new AliasMapping();
 
         assertTrue(aliasMapping.isReservedKeyword(ALIAS_HELP.getAliasName()));
@@ -77,7 +77,7 @@ public class AliasMappingTest {
     }
 
     @Test
-    void isReservedKeyword_aliasNameIsNotReserved_returnsFalse() {
+    public void isReservedKeyword_aliasNameIsNotReserved_returnsFalse() {
         AliasMapping aliasMapping = new AliasMapping();
 
         assertFalse(aliasMapping.isReservedKeyword(VALID_ALIAS_1.getAliasName()));
@@ -86,7 +86,7 @@ public class AliasMappingTest {
     }
 
     @Test
-    void isRecursiveKeyword_aliasCommandIsNotRecursive_returnsFalse() {
+    public void isRecursiveKeyword_aliasCommandIsNotRecursive_returnsFalse() {
         AliasMapping aliasMapping = new AliasMapping();
 
         assertFalse(aliasMapping.isRecursiveKeyword(VALID_ALIAS_1.getCommand()));
@@ -95,14 +95,14 @@ public class AliasMappingTest {
     }
 
     @Test
-    void isRecursiveKeyword_aliasCommandIsRecursive_returnsTrue() {
+    public void isRecursiveKeyword_aliasCommandIsRecursive_returnsTrue() {
         AliasMapping aliasMapping = new AliasMapping();
         aliasMapping.addAlias(ALIAS_1_TO_2);
         assertTrue(aliasMapping.isRecursiveKeyword(ALIAS_3_TO_1.getCommand()));
     }
 
     @Test
-    void equals() {
+    public void equals() {
         AliasMapping map1 = new AliasMapping();
         AliasMapping map2 = new AliasMapping();
         // both are empty

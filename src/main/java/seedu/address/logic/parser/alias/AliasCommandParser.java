@@ -29,13 +29,15 @@ public class AliasCommandParser implements Parser<AliasCommand> {
     public AliasCommand parse(String args) throws ParseException {
         requireAllNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_ALIAS, PREFIX_COMMAND);
+        String[] parsedArgs = args.split("\\s+", 3);
 
-        if (argMultimap.getValue(PREFIX_ALIAS).isEmpty() || argMultimap.getValue(PREFIX_COMMAND).isEmpty()) {
+        if (argMultimap.getValue(PREFIX_ALIAS).isEmpty()
+                || argMultimap.getValue(PREFIX_COMMAND).isEmpty()
+                || parsedArgs.length < 3) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, AliasCommand.MESSAGE_USAGE));
         }
 
-        String[] parsedArgs = args.split("\\s+", 3);
         String aliasName = parsedArgs[1].substring(PREFIX_ALIAS.toString().length());
         String command = parsedArgs[2].substring(PREFIX_COMMAND.toString().length());
 

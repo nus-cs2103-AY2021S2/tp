@@ -15,7 +15,7 @@ public class AliasTest {
     public static final String VALID_COMMAND = "validCommand";
 
     @Test
-    void equals() {
+    public void equals() {
         // same alias
         assertEquals(VALID_ALIAS_1, VALID_ALIAS_1);
 
@@ -30,7 +30,7 @@ public class AliasTest {
     }
 
     @Test
-    void isValidName() {
+    public void isValidName() {
         // valid name
         assertTrue(Alias.isValidName("valid")); // alphabets only
         assertTrue(Alias.isValidName("54110")); // numbers only
