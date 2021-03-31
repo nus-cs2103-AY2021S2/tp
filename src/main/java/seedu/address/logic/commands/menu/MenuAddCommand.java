@@ -1,7 +1,7 @@
 package seedu.address.logic.commands.menu;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DISH;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INGREDIENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
@@ -27,14 +27,14 @@ public class MenuAddCommand extends Command {
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PRICE + "PRICE "
-            + PREFIX_DISH + "INGREDIENT_ID "
+            + PREFIX_INGREDIENT + "INGREDIENT_ID "
             + PREFIX_QUANTITY + "INGREDIENT_QUANTITY "
-            + "[" + PREFIX_DISH + "INGREDIENT_ID "
+            + "[" + PREFIX_INGREDIENT + "INGREDIENT_ID "
             + PREFIX_QUANTITY + "INGREDIENT_QUANTITY...]\n"
             + "Example: " + COMPONENT_WORD + " " + COMMAND_WORD + " "
             + PREFIX_NAME + "Fries "
             + PREFIX_PRICE + "5.10 "
-            + PREFIX_DISH + "2 "
+            + PREFIX_INGREDIENT + "2 "
             + PREFIX_QUANTITY + "1";
 
     public static final String MESSAGE_SUCCESS = "New dish added: %1$s";
