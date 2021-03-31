@@ -36,7 +36,7 @@ public class DeleteCommandTest {
     public void execute_validIndexUnfilteredList_success() {
         Person personToDelete = model.getFilteredPersonList()
                 .get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(
+        DeleteCommand deleteCommand = DeleteCommand.buildDeleteIndexCommand(
                 Collections.singletonList(INDEX_FIRST_PERSON));
 
         String expectedMessage = String
@@ -55,7 +55,7 @@ public class DeleteCommandTest {
                 .get(INDEX_FIRST_PERSON.getZeroBased());
         Person secondPersonToDelete = model.getFilteredPersonList()
                 .get(INDEX_SECOND_PERSON.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(
+        DeleteCommand deleteCommand = DeleteCommand.buildDeleteIndexCommand(
                 List.of(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON));
 
         String expectedMessage = String
@@ -73,7 +73,8 @@ public class DeleteCommandTest {
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        DeleteCommand deleteCommand = new DeleteCommand(Collections.singletonList(outOfBoundIndex));
+        DeleteCommand deleteCommand = DeleteCommand
+                .buildDeleteIndexCommand(Collections.singletonList(outOfBoundIndex));
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
@@ -82,7 +83,7 @@ public class DeleteCommandTest {
     public void execute_invalidIndexesUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
         Index secondOutOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 2);
-        DeleteCommand deleteCommand = new DeleteCommand(
+        DeleteCommand deleteCommand = DeleteCommand.buildDeleteIndexCommand(
                 List.of(outOfBoundIndex, secondOutOfBoundIndex));
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
@@ -93,7 +94,8 @@ public class DeleteCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(Collections.singletonList(INDEX_FIRST_PERSON));
+        DeleteCommand deleteCommand = DeleteCommand
+                .buildDeleteIndexCommand(Collections.singletonList(INDEX_FIRST_PERSON));
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
 
@@ -112,26 +114,34 @@ public class DeleteCommandTest {
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
 
-        DeleteCommand deleteCommand = new DeleteCommand(Collections.singletonList(outOfBoundIndex));
+        DeleteCommand deleteCommand = DeleteCommand
+                .buildDeleteIndexCommand(Collections.singletonList(outOfBoundIndex));
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
+    public void execute_deleteSelected_failureNoSelected() {
+        assertCommandFailure(DeleteCommand.buildDeleteSelectedCommand(), model,
+                DeleteCommand.MESSAGE_NO_SELECTED);
+    }
+
+    @Test
     public void equals() {
-        DeleteCommand deleteFirstCommand = new DeleteCommand(
+        DeleteCommand deleteFirstCommand = DeleteCommand.buildDeleteIndexCommand(
                 Collections.singletonList(INDEX_FIRST_PERSON));
-        DeleteCommand deleteSecondCommand = new DeleteCommand(
+        DeleteCommand deleteSecondCommand = DeleteCommand.buildDeleteIndexCommand(
                 Collections.singletonList(INDEX_SECOND_PERSON));
 
         // same object -> returns true
         assertEquals(deleteFirstCommand, deleteFirstCommand);
 
         // same values -> returns true
-        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(
+        DeleteCommand deleteFirstCommandCopy = DeleteCommand.buildDeleteIndexCommand(
                 Collections.singletonList(INDEX_FIRST_PERSON));
         assertEquals(deleteFirstCommandCopy, deleteFirstCommand);
-        assertEquals(new DeleteCommand(), new DeleteCommand());
+        assertEquals(DeleteCommand.buildDeleteShownCommand(),
+                DeleteCommand.buildDeleteShownCommand());
 
         // different types -> returns false
         assertNotEquals(deleteFirstCommand, 1);

@@ -6,6 +6,8 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertValidCommandToAliasFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertValidCommandToAliasSuccess;
+import static seedu.address.logic.parser.DeleteCommandParser.SELECTED;
+import static seedu.address.logic.parser.DeleteCommandParser.SPECIAL_INDEX;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INVALID_INDEX_STRING;
 import static seedu.address.testutil.TypicalIndexes.NEGATIVE_INDEX_STRING;
@@ -34,12 +36,27 @@ public class DeleteCommandParserTest {
     @Test
     public void parse_validArgsSingleIndex_returnsDeleteCommand() {
         assertParseSuccess(parser, VALID_INDEX_STRING,
-                new DeleteCommand(Collections.singletonList(INDEX_FIRST_PERSON)));
+                DeleteCommand.buildDeleteIndexCommand(Collections.singletonList(INDEX_FIRST_PERSON)));
     }
 
     @Test
     public void parse_validArgsMultipleIndex_returnsDeleteCommand() {
-        assertParseSuccess(parser, VALID_INDEXES_STRING, new DeleteCommand(VALID_INDEXES));
+        assertParseSuccess(parser, VALID_INDEXES_STRING, DeleteCommand.buildDeleteIndexCommand(VALID_INDEXES));
+    }
+
+    @Test
+    public void parse_shown_returnsDeleteCommand() {
+        assertParseSuccess(parser, SPECIAL_INDEX, DeleteCommand.buildDeleteShownCommand());
+    }
+
+    @Test
+    public void parse_selected_returnsDeleteCommand() {
+        assertParseSuccess(parser, SELECTED, DeleteCommand.buildDeleteSelectedCommand());
+    }
+
+    @Test
+    public void parse_validArgsShown_returnsDeleteCommand() {
+        assertParseSuccess(parser, SPECIAL_INDEX, DeleteCommand.buildDeleteShownCommand());
     }
 
     @Test
@@ -54,6 +71,12 @@ public class DeleteCommandParserTest {
 
         // valid index
         assertValidCommandToAliasSuccess(parser, VALID_INDEX_STRING);
+
+        // shown
+        assertValidCommandToAliasSuccess(parser, SPECIAL_INDEX);
+
+        // selected
+        assertValidCommandToAliasSuccess(parser, SELECTED);
     }
 
     @Test
