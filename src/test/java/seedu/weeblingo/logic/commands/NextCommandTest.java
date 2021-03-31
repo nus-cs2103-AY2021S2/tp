@@ -204,6 +204,11 @@ public class NextCommandTest {
         }
 
         @Override
+        public void switchModeQuizSessionEnded() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addScore() {
             throw new AssertionError("This method should not be called.");
         }
@@ -230,6 +235,10 @@ public class NextCommandTest {
 
         @Override
         public void switchModeQuizSession() {
+        }
+
+        @Override
+        public void switchModeQuizSessionEnded() {
         }
     }
 

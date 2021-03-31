@@ -10,6 +10,7 @@ public class Mode {
     public static final int MODE_QUIZ_SESSION = 4;
     public static final int MODE_CHECK_SUCCESS = 5;
     public static final int MODE_HISTORY = 6;
+    public static final int MODE_QUIZ_SESSION_ENDED = 7;
 
     private int currentMode;
 
@@ -40,6 +41,11 @@ public class Mode {
     public void switchModeHistory() {
         this.currentMode = MODE_HISTORY;
     }
+
+    public void switchModeQuizSessionEnded() {
+        this.currentMode = MODE_QUIZ_SESSION_ENDED;
+    }
+
     /**
      * Returns the current mode of the app.
      *

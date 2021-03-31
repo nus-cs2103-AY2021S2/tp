@@ -220,10 +220,18 @@ public class ModelManager implements Model {
         return quizInstance.isCorrectAttempt(attempt);
     }
 
+    /**
+     * Deletes this quiz instance.
+     */
     public void clearQuizInstance() {
         quizInstance = null;
     }
 
+    /**
+     * Gets this quiz instance.
+     *
+     * @return this quiz instance.
+     */
     public Quiz getQuizInstance() {
         return quizInstance;
     }
@@ -265,5 +273,9 @@ public class ModelManager implements Model {
 
     public void switchModeCheckSuccess() {
         this.mode.switchModeCheckSuccess();
+    }
+
+    public void switchModeQuizSessionEnded() {
+        this.mode.switchModeQuizSessionEnded();
     }
 }
