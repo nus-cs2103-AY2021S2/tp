@@ -125,10 +125,12 @@ Tip:
 
 #### Finding readers by name : `findreader`
 
-Finds readers whose names contain any of the given keywords.
+You can use this command to find readers whose names contain any of the given keywords.
 
 Format: `findreader KEYWORD [MORE_KEYWORDS]`
 
+**:information_source: Notes:**
+* Refer to [Readers' Command Parameters]() for more details about each parameter.
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
@@ -136,10 +138,21 @@ Format: `findreader KEYWORD [MORE_KEYWORDS]`
 * Readers matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
-Examples:
-* `findreader John` returns `john` and `John Doe`
-* `findreader alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'findreader alex david'](images/findAlexDavidResult.png)
+Example use:
+
+Let's say you have many readers in your reader list,
+and you are trying to find more information about a particular reader (e.g. Bob).
+You can follow the steps below to obtain a list of readers named Bob.
+
+Steps:
+
+1. Type `findreader Bob` in the _Command Box_.
+1. Press `Enter` to execute your input.
+
+Outcome:
+* The _Result Display_ will show a message indicating success.
+* SmartLib will list out all the clients with "Bob" in their name.<br><br>
+  ![result for 'findreader alex david'](images/findBobResult.png)
 
 #### Listing all readers : `listreader`
 
