@@ -1,6 +1,6 @@
 [![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S2-CS2103-T14-4/tp/actions)
 
-![Ui](docs/images/v1.3_Ui.png)
+![Ui](docs/images/v1.3.1_Ui.png)
 
 * ## **Instructions**
   1. Ensure that you have Java 11 or above installed in your computer
