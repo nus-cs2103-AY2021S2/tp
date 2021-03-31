@@ -353,7 +353,7 @@ Examples: `edit_appointment 1 s/English l/Clementi`
 Adds a budget with an amount specified by user. Stores budget in user system.
 Budget must not already exist in user system, otherwise use edit_budget instead.
 
-Format: `add_budget [b/BUDGET]`
+Format: `add_budget b/BUDGET`
 
 Example:
 `add_budget b/500`
@@ -369,7 +369,7 @@ Budget of 500 is sucessfully added
 
 Edits an already existing budget with an amount specified by user.
 
-Format : `edit_budget [b/BUDGET]`
+Format : `edit_budget b/BUDGET`
 
 Example:
 `edit_budget b/600`
