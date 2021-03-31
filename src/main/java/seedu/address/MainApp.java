@@ -26,6 +26,8 @@ import seedu.address.model.ReadOnlyTutorBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.TutorBook;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.reminder.ReadOnlyReminderTracker;
+import seedu.address.model.reminder.ReminderTracker;
 import seedu.address.model.schedule.ReadOnlyScheduleTracker;
 import seedu.address.model.schedule.ScheduleTracker;
 import seedu.address.model.util.SampleDataUtil;
@@ -33,9 +35,11 @@ import seedu.address.storage.AppointmentBookStorage;
 import seedu.address.storage.GradeBookStorage;
 import seedu.address.storage.JsonAppointmentBookStorage;
 import seedu.address.storage.JsonGradeBookStorage;
+import seedu.address.storage.JsonReminderTrackerStorage;
 import seedu.address.storage.JsonScheduleTrackerStorage;
 import seedu.address.storage.JsonTutorBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.ReminderTrackerStorage;
 import seedu.address.storage.ScheduleTrackerStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
@@ -61,6 +65,8 @@ public class MainApp extends Application {
             + "be starting with a sample GradeBook";
     private static final String SCHEDULE_TRACKER_NOT_FOUND = "Data file not found. Will "
             + "be starting with a sample Schedule Tracker";
+    private static final String REMINDER_TRACKER_NOT_FOUND = "Data file not found. Will "
+            + "be starting with a sample Reminder Tracker";
 
     protected Ui ui;
     protected Logic logic;
@@ -85,9 +91,11 @@ public class MainApp extends Application {
 
         ScheduleTrackerStorage scheduleTrackerStorage =
                 new JsonScheduleTrackerStorage(userPrefs.getScheduleTrackerFilePath());
+        ReminderTrackerStorage reminderTrackerStorage =
+                new JsonReminderTrackerStorage(userPrefs.getReminderTrackerFilePath());
 
         storage = new StorageManager(tutorBookStorage, userPrefsStorage, appointmentBookStorage,
-                gradeBookStorage, scheduleTrackerStorage);
+                gradeBookStorage, scheduleTrackerStorage, reminderTrackerStorage);
 
         initLogging(config);
 
@@ -109,11 +117,13 @@ public class MainApp extends Application {
         Optional<ReadOnlyAppointmentBook> appointmentBookOptional;
         Optional<ReadOnlyGradeBook> gradeBookOptional;
         Optional<ReadOnlyScheduleTracker> scheduleTrackerOptional;
+        Optional<ReadOnlyReminderTracker> reminderTrackerOptional;
 
         ReadOnlyTutorBook initialData;
         ReadOnlyAppointmentBook initialAppointments;
         ReadOnlyGradeBook initialGrades;
         ReadOnlyScheduleTracker initialSchedules;
+        ReadOnlyReminderTracker initialReminders;
 
         try {
             tutorBookOptional = storage.readTutorBook();
@@ -167,8 +177,18 @@ public class MainApp extends Application {
             initialSchedules = new ScheduleTracker();
         }
 
+        try {
+            reminderTrackerOptional = storage.readReminderTracker();
+            if (!reminderTrackerOptional.isPresent()) {
+                logger.info(REMINDER_TRACKER_NOT_FOUND);
+            }
+            initialReminders = reminderTrackerOptional.orElseGet(SampleDataUtil::getSampleReminderTracker);
+        } catch (DataConversionException | IOException e) {
+            initialReminders = new ReminderTracker();
+        }
+
         return new ModelManager(initialData, userPrefs, initialAppointments,
-                budgetBook, initialGrades, initialSchedules);
+                budgetBook, initialGrades, initialSchedules, initialReminders);
     }
 
     private void initLogging(Config config) {

@@ -15,7 +15,7 @@ import seedu.address.model.UserPrefs;
  * API of the Storage component
  */
 public interface Storage extends TutorBookStorage, AppointmentBookStorage, GradeBookStorage,
-        UserPrefsStorage, ScheduleTrackerStorage {
+        UserPrefsStorage, ScheduleTrackerStorage, ReminderTrackerStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;

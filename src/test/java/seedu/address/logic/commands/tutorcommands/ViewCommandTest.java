@@ -10,6 +10,7 @@ import static seedu.address.testutil.TypicalBudgets.getTypicalBudgetBook;
 import static seedu.address.testutil.TypicalGrades.getTypicalGradeBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.testutil.TypicalReminders.getTypicalReminderTracker;
 import static seedu.address.testutil.TypicalSchedules.getTypicalScheduleTracker;
 import static seedu.address.testutil.TypicalTutors.getTypicalTutorBook;
 
@@ -34,10 +35,11 @@ public class ViewCommandTest {
 
         model = new ModelManager(getTypicalTutorBook(), new UserPrefs(),
                 getTypicalAppointmentBook(), getTypicalBudgetBook(), getTypicalGradeBook(),
-                getTypicalScheduleTracker());
+                getTypicalScheduleTracker(), getTypicalReminderTracker());
+
         expectedModel = new ModelManager(model.getTutorBook(), new UserPrefs(),
                 getTypicalAppointmentBook(), getTypicalBudgetBook(), getTypicalGradeBook(),
-                getTypicalScheduleTracker());
+                getTypicalScheduleTracker(), getTypicalReminderTracker());
     }
 
     @Test

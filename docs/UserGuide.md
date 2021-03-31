@@ -5,10 +5,10 @@ title: User Guide
 _**Tutor Tracker**_ is a **desktop app designed to help secondary school students manage tutors and tuition appointments, optimised for use via a Command Line Interface** (CLI) for a fast and streamlined experience while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Tutor Tracker can get your tuition contact management tasks done faster than traditional GUI apps.
 
 * Table of Contents
-    * Quick Start
-    * Features
-    * Q&A
+{:toc}
+
 --------------------------------------------------------------------------------------------------------------------
+
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -23,7 +23,7 @@ _**Tutor Tracker**_ is a **desktop app designed to help secondary school student
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-    * **`appointment`**`n/Chloe Lim s/English d/2021-4-20 fr/2:00pm l/Bedok` : Adds an appointment with a tutor named `Chloe Lim` to the Tutor Tracker.
+    * **`add_appointment`** `n/Charlotte Oliveiro s/English d/2021-04-20 fr/2:00 PM to/4:00 PM l/Bedok` : Adds an appointment with a tutor named `Charlotte Oliveiro` to the Tutor Tracker.
     * **`list_appointments`** : Lists all personal tuition appointments.
 
 1. Refer to the [Features](#features) below for details of each command.
@@ -37,7 +37,7 @@ _**Tutor Tracker**_ is a **desktop app designed to help secondary school student
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `appointment n/NAME`, `NAME` is a parameter which can be used as `appointment n/John Doe`.
+  e.g. in `add_tutor n/NAME`, `NAME` is a parameter which can be used as `add_tutor n/John Doe`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [l/LOCATION]` can be used as `n/John Doe l/Clementi` or as `n/John Doe`.
@@ -51,37 +51,37 @@ _**Tutor Tracker**_ is a **desktop app designed to help secondary school student
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `l/Bedok l/Clementi`, only `l/Clementi` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help` and `exit`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-* Parameters in angle brackets (`<`, `>`) must be supplied together in order as a group. eg. with `<s/SUBJECT_NAME r/RATE>`, both subject name and rate must be supplied in order.
+* Parameters in angle brackets (`<`, `>`) must be supplied together as a group. eg. with `<s/SUBJECT_NAME r/RATE>`, both subject name and rate must be supplied.
 
 </div>
 
-### Add new tutor details: `add_tutor`
+### Add a new tutor: `add_tutor`
 
 Add a new tutor and enter their basic details as well as an optional Note.
 
 Details:
 * Name
+* Gender
 * Phone Number
 * Email
-* Gender
-* Location (multiple allowed)
+* Address
 * Subjects (multiple allowed)
     * Subject Name
-    * Hourly Rate
-    * Education Level
-    * Years of Experience
-    * Qualifications
+    * Subject Hourly Rate
+    * Subject Education Level
+    * Subject Years of Experience
+    * Subject Qualifications
 
 Format:
-`add_tutor n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS... <s/SUBJECT_NAME r/RATE l/EDUCATION_LEVEL y/YEARS q/QUALIFICATIONS> notes/NOTE`
+`add_tutor n/NAME g/GENDER p/PHONE_NUMBER e/EMAIL  a/ADDRESS <s/SUBJECT_NAME r/SUBJECT_RATE l/SUBJECT_EDUCATION_LEVEL y/SUBJECT_YEARS_EXPERIENCE q/SUBJECT_QUALIFICATIONS>... notes/NOTE`
 
 Example Input:
-`add_tutor n/John Doe p/98765432 e/johnd@example.com g/Male a/John street, block 123, #01-01 s/English r/50 l/Sec 3 y/5 q/A-Level s/Mathematics r/60 l/Sec 4 y/6 q/A-Level notes/Patient`
+`add_tutor n/John Doe g/Male p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/English r/50 l/Secondary 3 y/5 q/A-Level s/Mathematics r/60 l/Secondary 4 y/6 q/A-Level notes/Patient`
 
-### List all tutors: `list_tutors`
+### List tutors: `list_tutors`
 
 View a list of all tutors known. Will ignore all input after `list_tutors`.
 
@@ -108,23 +108,23 @@ English
     Qualification: Bacholar of English Literature
 ```
 
-### Deleting a tutor: `delete_tutor`
+### Delete a tutor: `delete_tutor`
 
-Delete a tutor by index. 
+Delete a tutor by index.
 
 Format: `delete_tutor INDEX`
 
 Example: `delete_tutor 1`
 
-### Editing a tutor: `edit_tutor`
+### Edit a tutor: `edit_tutor`
 
 Edit a tutor's information by index. Only the attributes present can be changed in the tutor, including notes.
 
-Format: `edit_tutor INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GENDER] [a/ADDRESS] [<s/SUBJECT_NAME r/RATE l/EDUCATION_LEVEL y/YEARS q/QUALIFICATIONS>] notes/NOTES`
+Format: `edit_tutor INDEX [n/NAME] [g/GENDER] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [<s/SUBJECT_NAME r/SUBJECT_RATE l/SUBJECT_EDUCATION_LEVEL y/SUBJECT_YEARS_EXPERIENCE q/SUBJECT_QUALIFICATIONS>]... notes/NOTES`
 
 Example: `edit_tutor 1 p/99824314 s/English r/50 l/Secondary 5 y/9 q/A-Level notes/Impatient`
 
-### Viewing a tutor: `view_tutor`
+### View tutor details: `view_tutor`
 
 Views a tutor's personal information.
 
@@ -145,7 +145,7 @@ English
     Experience: 6 years
     Qualification: Bacholar of English Literature
 ```
-### Adding a note: `add_note`
+### Add note to a tutor: `add_note`
 
 Shortcut for adding note to tutor at a particular index
 
@@ -171,7 +171,7 @@ English
 Notes:
 patient tutor
 ```
-### Adding a note: `edit_note`
+### Edit note of a tutor: `edit_note`
 
 Shortcut for editing note to tutor at a particular index
 
@@ -198,7 +198,7 @@ English
 Notes:
 not patient
 ```
-### Deleting a note `delete_note`
+### Delete note of a tutor: `delete_note`
 
 Deletes solely the note to tutor at a particular index
 
@@ -211,7 +211,7 @@ Lists all the tutor with note. Will ignore all input after `list_mote`.
 
 Format:`list_note`
 
-### Export tutor details with note `export`
+### Export the tutor details: `export`
 Export the tutor details of that index together with the notes and subject list into a text file 
 exit
 in the directory you saved
@@ -221,7 +221,7 @@ Format:`export INDEX`
 
 Example: `export 1`
 
-### Adding a favourite: `favourite`
+### Favourite a tutor: `favourite`
 
 Label a tutor as a favourite.
 
@@ -243,7 +243,7 @@ English
     Qualification: Bacholar of English Literature
 ```
 
-### Removing a favourite: `unfavourite`
+### Unfavourite a tutor: `unfavourite`
 
 Removes the favourite label from a tutor
 
@@ -251,7 +251,7 @@ Format: `unfavourite INDEX`
 
 Example: `unfavourite 1`
 
-### List all favourites: `list_favourites`
+### List favourites: `list_favourites`
 
 View a list of all favourites
 
@@ -259,20 +259,20 @@ Format: `list_favourites`
 
 Example: `list_favourites`
 
-### Adding an appointment : `add_appointment`
+### Add a new appointment: `add_appointment`
 
 Adds an appointment with a specific tutor to the schedule.<br>
 
-Format: `add_appointment e/EMAIL s/SUBJECT d/DATE fr/TIME_FROM l/LOCATION`
+Format: `add_appointment n/NAME s/SUBJECT d/DATE fr/TIME_FROM to/TIME_TO l/LOCATION`
 
-* The date format `yyyy-mm-dd` must be strictly followed. e.g. `2021-3-1`and `2021-03-01`.
-* The time format `hh:mm a` must be strictly followed. e.g. `9:01 am` and `10:30 pm`.
+* The date format `YYYY-MM-DD` must be strictly followed. e.g. `2021-03-01`and `2021-04-20`.
+* The time format `HH:MM AM/PM` must be strictly followed. e.g. `9:01 AM` and `10:30 PM`.
 
 Examples:<br>
-* `appointment n/andew.ng@example.com s/Mathematics d/2021-3-1 fr/10:00am l/Bedok`
-* `appointment n/chloe.lim@example.com s/English d/2021-4-20 fr/2:00pm l/Bedok`
+* `add_appointment n/David Li s/Mathematics d/2021-03-01 fr/10:00 AM to/12:00 PM l/Bedok`
+* `add_appointment n/Alex Yeoh s/English d/2021-04-20 fr/2:00 PM to/4:00 PM l/Bedok`
 
-### Listing all tuition appointments : `list_appointments`
+### List tuition appointments: `list_appointments`
 
 Shows a list of all upcoming tuition schedules in the personal tuition appointment list.
 
@@ -280,9 +280,17 @@ Format: `list_appointments`
 
 Example outputs:
 ```
-1) john.doe@example.com - 2021-4-20 2:00pm @ Bedok National Library
-2) jane.doe@example.com - 2021-4-21 2:00pm @ Bedok National Library
-3) peter.ng@example.com - 2021-4-24 2:00pm @ Bedok National Library
+1. Mathematics
+Tutor: Alex Yeoh
+Mar 24 2021
+02:00 PM - 04:00 PM
+Location: Geylang
+
+2. Science
+Tutor: Bernice Yu
+Mar 27 2021
+03:00 PM - 05:00 PM
+Location: Hougang
 ```
 
 ### View tuition appointment details: `view_appointment`
@@ -293,19 +301,18 @@ Format:
 `view_appointment DATE`
 
 Example:
-`view_appointment 2021-4-20`
+`view_appointment 2021-03-24`
 
 Example Output:
 ```
-Appointment Details
-
-Tutor Email: chloe.lim@example.com
-Appointment Date: 2021-4-20
-Appointment Time: 2:00pm
-Location: Bedok National Library
+1. Mathematics
+Tutor: Alex Yeoh
+Mar 24 2021
+02:00 PM - 04:00 PM
+Location: Geylang
 ```
 
-### Find tuition appointment details: `find_appointment`
+### Find tuition appointments: `find_appointment`
 
 Find list of tuition appointments based on tutor's name.
 
@@ -313,16 +320,15 @@ Format:
 `find_appointment NAME...`
 
 Example:
-`find_appointment john.doe@example.com`
+`find_appointment Alex Yeoh`
 
 Example Output:
 ```
-Appointment Details
-
-Tutor Email: john.doe@gmail.com
-Appointment Date: 2021-4-21
-Appointment Time: 2:00pm
-Location: Bedok National Library
+1. Mathematics
+Tutor: Alex Yeoh
+Mar 24 2021
+02:00 PM - 04:00 PM
+Location: Geylang
 ```
 
 ### Delete a tuition appointment: `delete_appointment`
@@ -340,27 +346,30 @@ Example:
 
 Example Output:
 ```
-1) jane.doe@example.com - 2021-4-21 2:00pm @ Bedok National Library
-2) peter.ng@example.com - 2021-4-24 2:00pm @ Bedok National Library
+1. Science
+Tutor: Bernice Yu
+Mar 27 2021
+03:00 PM - 05:00 PM
+Location: Hougang
 ```
 
-### Editing an appointment : `edit_appointment`
+### Editing an appointment: `edit_appointment`
 
 Edits an appointment with a specific index. Only the attributes present are changed in the appointment.
 
-Format: `edit_appointment [e/EMAIL] [s/SUBJECT_NAME] [d/DATE] [fr/TIME_FROM] [l/LOCATION]`
+Format: `edit_appointment INDEX [n/NAME] [s/SUBJECT_NAME] [d/DATE] [fr/TIME_FROM] [to/TIME_TO] [l/LOCATION]`
 
-* The date format `yyyy-mm-dd` must be strictly followed. e.g. `2021-3-1`and `2021-03-01`.
-* The time format `hh:mm a` must be strictly followed. e.g. `9:01 am` and `10:30 pm`.
+* The date format `YYYY-MM-DD` must be strictly followed. e.g. `2021-03-01`and `2021-04-20`.
+* The time format `HH:MM AM/PM` must be strictly followed. e.g. `9:01 AM` and `10:30 PM`.
 
-Examples: `edit_appointment e/andrewng@example.com l/Clementi`
+Examples: `edit_appointment 1 s/English l/Clementi`
 
-### Adding Budget : `add_budget`
+### Add a budget: `add_budget`
 
 Adds a budget with an amount specified by user. Stores budget in user system.
 Budget must not already exist in user system, otherwise use edit_budget instead.
 
-Format: `add_budget [b/BUDGET]`
+Format: `add_budget b/BUDGET`
 
 Example:
 `add_budget b/500`
@@ -372,11 +381,11 @@ Budget of 500 is sucessfully added
 
 * BUDGET must be a positive integer inclusive of zero
 
-### Editing a Budget : `edit_budget`
+### Edit a budget: `edit_budget`
 
 Edits an already existing budget with an amount specified by user.
 
-Format : `edit_budget [b/BUDGET]`
+Format : `edit_budget b/BUDGET`
 
 Example:
 `edit_budget b/600`
@@ -389,7 +398,7 @@ Budget of 600 is sucessfully updated.
 
 * BUDGET must be a positive integer inclusive of zero
 
-### Deleting a budget : `delete_budget`
+### Delete a budget: `delete_budget`
 
 Deletes an already existing budget.
 
@@ -403,7 +412,7 @@ Example Output:
 Budget of 600 is sucessfully deleted.
 ```
 
-### Viewing a budget : `view_budget`
+### View a budget: `view_budget`
 
 Views an already existing budget.
 
@@ -422,7 +431,7 @@ Total Cost of Appointments: 100.
 ```
 
 
-### Adding a Grade : `add_grade`
+### Add a grade: `add_grade`
 
 Adds a grade with a subject, a graded item and a grade alphabet specified by user. Stores in user system.
 
@@ -431,14 +440,14 @@ Format: `add_grade s/SUBJECT_NAME gi/GRADED_ITEM gr/GRADE_ALPHABET`
 * Valid `GRADE_ALPHABET` recognized by the system only include A to F, S and U.
 * `SUBJECT_NAME` is case-insensitive and `GRADE_ALPHABET` must be uppercase.
 
-Example: `add_grade s/Mathematics gi/Final gr/A`
+Example: `add_grade s/English gi/Final gr/A`
 
 Example Output:
 ```
-New grade added: Mathematics (Final): A
+New grade added: English (Final): A
 ```
 
-### Editing a grade : `edit_grade`
+### Edit a grade: `edit_grade`
 
 Edits an already existing grade at the specified index. Only the attributes present are changed in the grade.
 
@@ -451,7 +460,7 @@ Example Output:
 Edited Grade: Science (Lab 1): B
 ```
 
-### Deleting a grade : `delete_grade`
+### Delete a grade: `delete_grade`
 
 Deletes an already existing grade at the specified index.
 
@@ -464,7 +473,7 @@ Example Output:
 Deleted Grade: Science (Lab 1): B
 ```
 
-### Listing all grades: `list_grades`
+### List grades: `list_grades`
 
 Views a list of all already existing grades in storage.
 
@@ -572,42 +581,46 @@ Example: `delete_appointment_filter to/>2021-03-25 10:00 AM`
 
 Example_Output: `Appointment filters deleted: Date Time: > Mar 25 2021 10:00AM`
 
-### Exiting `exit`
+### Exit App: `exit`
 
 Closes the app.
 
-Q & A
 --------------------------------------------------------------------------------------------------------------------
+
+## FAQ
+
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Tutor Tracker home folder.
 --------------------------------------------------------------------------------------------------------------------
 
+## Command Summary
+
 Action | Format, Examples
 --------|------------------
-**Add a new tutor** | `add_tutor n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS... <s/SUBJECT_NAME r/RATE l/EDUCATION_LEVEL y/YEARS q/QUALIFICATIONS> note/NOTE` <br> e.g., `add_tutor n/John Doe p/98765432 e/johnd@example.com g/Male a/John street, block 123, #01-01 s/English r/50 l/Sec 3 y/5 q/A-Level s/Mathematics r/60 l/Sec 4 y/6 q/A-Level note/Patient`
+**Add a new tutor** | `add_tutor n/NAME g/GENDER p/PHONE_NUMBER e/EMAIL  a/ADDRESS <s/SUBJECT_NAME r/SUBJECT_RATE l/SUBJECT_EDUCATION_LEVEL y/SUBJECT_YEARS_EXPERIENCE q/SUBJECT_QUALIFICATIONS>... notes/NOTE` <br> e.g., `add_tutor n/John Doe g/Male p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/English r/50 l/Secondary 3 y/5 q/A-Level s/Mathematics r/60 l/Secondary 4 y/6 q/A-Level notes/Patient`
 **List tutors** | `list_tutors`
 **Delete a tutor** | `delete_tutor INDEX`, <br> e.g. `delete_tutor 1`
-**Edit a tutor** | `edit_tutor INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GENDER] [a/ADDRESS] [<s/SUBJECT_NAME r/RATE l/EDUCATION_LEVEL y/YEARS q/QUALIFICATIONS> note/NOTE`, <br> e.g. `edit_tutor 1 p/99824314 s/English r/50 l/Secondary 5 y/9 q/A-Level note/Impatient`
-**View a tutor details** | `view_tutor INDEX`, <br> e.g. `view_tutor 1`
-**Add note to a tutor** | `add_note INDEX NOTE`, <br> e.g. `add_note 1 patient`
-**Edit note of a tutor** | `edit_note INDEX NOTE`, <br> e.g. `edit_note impatient`
+**Edit a tutor** | `edit_tutor INDEX [n/NAME] [g/GENDER] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [<s/SUBJECT_NAME r/SUBJECT_RATE l/SUBJECT_EDUCATION_LEVEL y/SUBJECT_YEARS_EXPERIENCE q/SUBJECT_QUALIFICATIONS>]... notes/NOTES`, <br> e.g. `edit_tutor 1 p/99824314 s/English r/50 l/Secondary 5 y/9 q/A-Level notes/Impatient`
+**View tutor details** | `view_tutor INDEX`, <br> e.g. `view_tutor 1`
+**Add note to a tutor** | `add_note INDEX NOTE`, <br> e.g. `add_note 1 patient tutor`
+**Edit note of a tutor** | `edit_note INDEX NOTE`, <br> e.g. `edit_note 1 not patient`
 **Delete note of a tutor** | `delete_note INDEX`, <br> e.g. `delete_note 1`
 **List tutors with note** | `list_note`, <br> e.g. `list_note`
 **Export the tutor details**| `export INDEX`, <br> e.g. `export 1`
 **Favourite a tutor** | `favourite INDEX`, <br> e.g. `favourite 1`
 **Unfavourite a tutor** | `unfavourite INDEX`, <br> e.g. `Unfavourite 1`
 **List favourites** | `list_favourites`, <br> e.g. `list_favourites`
-**Add a new appointment** | `add_appointment e/EMAIL s/SUBJECT d/DATE fr/TIME_FROM l/LOCATION` <br> e.g., `add_appointment e/chloe.lim@example.com s/English d/2021-4-20 fr/2:00pm l/Bedok`
+**Add a new appointment** | `add_appointment n/NAME s/SUBJECT d/DATE fr/TIME_FROM to/TIME_TO l/LOCATION` <br> e.g., `add_appointment n/David Li s/Mathematics d/2021-03-01 fr/10:00 AM to/12:00 PM l/Bedok`
 **List tuition appointments** | `list_appointments`
-**View a tuition appointment details** | `view_appointment` <br> e.g. `view_appointment 2020-03-24`
-**Find tuition appointments** | `find_appointment` <br> e.g. `find_appointment John`
-**Delete a tuition appointment** | `delete_appointment` <br> e.g. `delete_appointment 1`
-**Edit a tuition appointment** | `n/NAME s/SUBJECT d/DATE fr/TIME FROM to/TIME TO l/LOCATION` <br> e.g. `add_appointment n/Chloe Lim s/English d/2021-3-1 fr/10:00am to/12:00pm l/Bedok`
-**Add a budget** | `add_budget` <br> e.g.`add_budget b/500`
-**Edit a budget** | `edit_budget` <br> e.g. `edit_budget b/600`
-**Deleting a budget** | `delete_budget` <br> e.g. `delete_budget`
-**Viewing a budget** | `view_budget` <br> e.g. `view_budget`
-**Add a grade** | `add_grade s/SUBJECT_NAME gi/GRADED_ITEM gr/GRADE_ALPHABET`, <br> e.g. `add_grade s/Mathematics gi/Final gr/A` 
+**View tuition appointment details** | `view_appointment DATE` <br> e.g. `view_appointment 2020-03-24`
+**Find tuition appointments** | `find_appointment NAME...` <br> e.g. `find_appointment Alex Yeoh`
+**Delete a tuition appointment** | `delete_appointment INDEX` <br> e.g. `delete_appointment 1`
+**Edit a tuition appointment** | `edit_appointment INDEX [n/NAME] [s/SUBJECT_NAME] [d/DATE] [fr/TIME_FROM] [to/TIME_TO] [l/LOCATION]` <br> e.g. `edit_appointment 1 s/English l/Clementi`
+**Add a budget** | `add_budget b/BUDGET` <br> e.g.`add_budget b/500`
+**Edit a budget** | `edit_budget b/BUDGET` <br> e.g. `edit_budget b/600`
+**Delete a budget** | `delete_budget` <br> e.g. `delete_budget`
+**View a budget** | `view_budget` <br> e.g. `view_budget`
+**Add a grade** | `add_grade s/SUBJECT_NAME gi/GRADED_ITEM gr/GRADE_ALPHABET`, <br> e.g. `add_grade s/English gi/Final gr/A` 
 **Edit a grade** | `edit_grade INDEX [s/SUBJECT_NAME] [gi/GRADED_ITEM] [gr/GRADE_ALPHABET]`, <br> e.g. `edit_grade 1 gr/B`
 **Delete a grade** | `delete_grade INDEX`, <br> e.g. `delete_grade 1`
 **List grades** | `list_grades`
@@ -615,4 +628,4 @@ Action | Format, Examples
 **Delete a Tutor Filter** | `delete_tutor_filter [n/NAME]... [g/GENDER]... [p/PHONE_NUMBER]... [e/EMAIL]... [a/ADDRESS]... [s/SUBJECT_NAME]... [r/SUBJECT_RATE]... [l/SUBJECT_EDUCATION_LEVEL]... [y/SUBJECT_YEARS_EXPERIENCE]... [q/SUBJECT_QUALIFICATIONS]...` <br> e.g. `delete_tutor_filter r/<60 l/Secondary`
 **Add an Appointment Filter** | `add_appointment_filter [n/NAME]... [s/SUBJECT_NAME]... [fr/FROM_DATE_TIME]... [to/TO_DATE_TIME]... [l/LOCATION]...` <br> e.g. `add_appointment_filter to/>2021-03-25 10:00 AM`
 **Delete an Appointment Filter** | `delete_appointment_filter [n/NAME]... [s/SUBJECT_NAME]... [fr/FROM_DATE_TIME]... [to/TO_DATE_TIME]... [l/LOCATION]...` <br> e.g. `delete_appointment_filter to/>2021-03-25 10:00 AM`
-**exit** | `bye`
+**Exit App** | `exit`

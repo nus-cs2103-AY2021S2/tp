@@ -5,6 +5,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalAppointments.getTypicalAppointmentBook;
 import static seedu.address.testutil.TypicalBudgets.getTypicalBudgetBook;
 import static seedu.address.testutil.TypicalGrades.getTypicalGradeBook;
+import static seedu.address.testutil.TypicalReminders.getTypicalReminderTracker;
 import static seedu.address.testutil.TypicalSchedules.getTypicalScheduleTracker;
 import static seedu.address.testutil.TypicalTutors.getTypicalTutorBook;
 
@@ -27,17 +28,17 @@ public class AddCommandIntegrationTest {
     @BeforeEach
     public void setUp() {
         model = new ModelManager(getTypicalTutorBook(), new UserPrefs(),
-                getTypicalAppointmentBook(), getTypicalBudgetBook(),
-                getTypicalGradeBook(), getTypicalScheduleTracker());
+                getTypicalAppointmentBook(), getTypicalBudgetBook(), getTypicalGradeBook(),
+                getTypicalScheduleTracker(), getTypicalReminderTracker());
     }
 
     @Test
     public void execute_newPerson_success() {
         Tutor validTutor = new TutorBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getTutorBook(),
-                new UserPrefs(), model.getAppointmentBook(), model.getBudgetBook(),
-                model.getGradeBook(), getTypicalScheduleTracker());
+        Model expectedModel = new ModelManager(model.getTutorBook(), new UserPrefs(),
+                getTypicalAppointmentBook(), getTypicalBudgetBook(), getTypicalGradeBook(),
+                getTypicalScheduleTracker(), getTypicalReminderTracker());
 
         expectedModel.addTutor(validTutor);
 

@@ -28,7 +28,6 @@ import seedu.address.model.schedule.Schedule;
 import seedu.address.model.schedule.ScheduleTracker;
 import seedu.address.model.tutor.Name;
 import seedu.address.model.tutor.Tutor;
-import seedu.address.model.util.SampleDataUtil;
 
 /**
  * Represents the in-memory model of the tutor book data.
@@ -60,14 +59,12 @@ public class ModelManager implements Model {
     public ModelManager(ReadOnlyTutorBook tutorBook,
                         ReadOnlyUserPrefs userPrefs,
                         ReadOnlyAppointmentBook appointmentBook,
-                        BudgetBook budgetBook,
-                        ReadOnlyGradeBook gradeBook,
-                        ReadOnlyScheduleTracker scheduleTracker) {
+                        BudgetBook budgetBook, ReadOnlyGradeBook gradeBook,
+                        ReadOnlyScheduleTracker scheduleTracker,
+                        ReadOnlyReminderTracker reminderTracker) {
         super();
-
-        requireAllNonNull(tutorBook, appointmentBook, userPrefs, budgetBook);
-
-        logger.fine("Initializing with tutor book: " + tutorBook + " and user prefs " + userPrefs);
+        requireAllNonNull(tutorBook, appointmentBook, userPrefs, budgetBook, scheduleTracker, reminderTracker);
+        logger.fine("Initializing Tutor Tracker: with tutor book: " + tutorBook + " and user prefs " + userPrefs);
 
         this.tutorBook = new TutorBook(tutorBook);
         this.appointmentBook = new AppointmentBook(appointmentBook);
@@ -77,9 +74,9 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
 
         this.eventTracker = new EventTracker(appointmentBook, scheduleTracker);
+        this.reminderTracker = new ReminderTracker(reminderTracker);
         this.tutorFilter = new TutorFilter();
         this.filteredTutors = new FilteredList<>(this.tutorBook.getTutorList());
-        this.reminderTracker = new ReminderTracker(SampleDataUtil.getSampleReminderTracker());
         this.filteredAppointment = new FilteredList<>(this.appointmentBook.getAppointmentList());
         this.filteredGrades = new FilteredList<>(this.gradeBook.getGradeList());
         this.filteredSchedules = new FilteredList<>(this.scheduleTracker.getScheduleList());
@@ -92,12 +89,8 @@ public class ModelManager implements Model {
      * Default constructor without params. Initializes with empty books.
      */
     public ModelManager() {
-        this(new TutorBook(),
-                new UserPrefs(),
-                new AppointmentBook(),
-                new BudgetBook(),
-                new GradeBook(),
-                new ScheduleTracker());
+        this(new TutorBook(), new UserPrefs(), new AppointmentBook(),
+                new BudgetBook(), new GradeBook(), new ScheduleTracker(), new ReminderTracker());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -533,10 +526,15 @@ public class ModelManager implements Model {
                 && userPrefs.equals(other.userPrefs)
                 && filteredTutors.equals(other.filteredTutors)
                 && tutorFilter.equals(other.tutorFilter)
+                && filteredAppointment.equals(other.filteredAppointment)
                 && appointmentBook.equals(other.appointmentBook)
+                && gradeBook.equals(other.gradeBook)
+                && filteredGrades.equals(other.filteredGrades)
                 && budgetBook.equals(other.budgetBook)
                 && filteredSchedules.equals(other.filteredSchedules)
-                && scheduleTracker.equals(other.scheduleTracker);
+                && scheduleTracker.equals(other.scheduleTracker)
+                && filteredReminders.equals(other.filteredReminders)
+                && reminderTracker.equals(other.reminderTracker);
     }
 
     /* Schedule Methods */
@@ -587,6 +585,16 @@ public class ModelManager implements Model {
     @Override
     public boolean hasClashingDateTime(Event event) {
         return eventTracker.hasClashingDateTime(event);
+    }
+
+    /**
+     * Sets grade book file path.
+     *
+     * @param scheduleTrackerFilePath To be supplied by user
+     */
+    public void setScheduleTrackerFilePath(Path scheduleTrackerFilePath) {
+        requireNonNull(scheduleTrackerFilePath);
+        userPrefs.setScheduleTrackerFilePath(scheduleTrackerFilePath);
     }
 
     @Override
