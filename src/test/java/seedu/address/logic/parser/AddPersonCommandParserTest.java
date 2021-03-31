@@ -76,15 +76,20 @@ public class AddPersonCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid name
         assertParseFailure(parser, INVALID_NAME_DESC + BIRTHDAY_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, Name.MESSAGE_CONSTRAINTS + "\n"
+                + AddPersonCommand.MESSAGE_USAGE));
 
         // invalid tag
         assertParseFailure(parser, NAME_DESC_BOB + BIRTHDAY_DESC_BOB
-                + INVALID_TAG_DESC + VALID_TAG_FRIEND, Tag.MESSAGE_CONSTRAINTS);
+                + INVALID_TAG_DESC + VALID_TAG_FRIEND,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, Tag.MESSAGE_CONSTRAINTS + "\n"
+                + AddPersonCommand.MESSAGE_USAGE));
 
         // invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + BIRTHDAY_DESC_BOB,
-                Name.MESSAGE_CONSTRAINTS);
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, Name.MESSAGE_CONSTRAINTS + "\n"
+                        + AddPersonCommand.MESSAGE_USAGE));
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + BIRTHDAY_DESC_BOB
