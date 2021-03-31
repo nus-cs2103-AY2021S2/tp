@@ -2,8 +2,14 @@
   <img src="docs/images/dietlah-slim.png" alt="DietLAH!">
 </p>
 
-[![CI Status](https://github.com/AY2021S2-CS2103T-T12-2/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S2-CS2103T-T12-2/tp/actions)
-[![codecov](https://codecov.io/gh/AY2021S2-CS2103T-T12-2/tp/branch/master/graph/badge.svg?token=1H94FQ5BPQ)](https://codecov.io/gh/AY2021S2-CS2103T-T12-2/tp)
+<p align="center">
+  <a href="https://github.com/AY2021S2-CS2103T-T12-2/tp/actions">
+    <img src="https://github.com/AY2021S2-CS2103T-T12-2/tp/workflows/Java%20CI/badge.svg" alt="CI Status">
+  </a>
+  <a href="https://codecov.io/gh/AY2021S2-CS2103T-T12-2/tp">
+    <img src="https://codecov.io/gh/AY2021S2-CS2103T-T12-2/tp/branch/master/graph/badge.svg?token=1H94FQ5BPQ" alt="codecov">
+  </a>
+</p>
 
 ### Welcome to DietLAH!
 
