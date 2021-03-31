@@ -449,25 +449,25 @@ Get rid of all existing records and populate it with the sample template data.
 
 Action | Format, Examples
 -------|------------------
-**Input weight, height and ideal weight** | `bmi h/height(cm) w/weight(kg) i/ideal_weight(kg)​` <br> e.g., `bmi h/170 w/70 i/80`
+**Input weight, height and ideal weight** | `bmi h/height(cm) w/weight(kg) i/ideal_weight(kg)​` <br> e.g. `bmi h/170 w/70 i/80`
 **Query weight, height and BMI** | `bmi query`
-**Update weight, height and ideal weight** | `bmi update h/height(cm) w/weight(kg) i/ideal_weight(kg)`<br> e.g., `bmi update h/170 w/70 i/80`
+**Update weight, height and ideal weight** | `bmi update h/height(cm) w/weight(kg) i/ideal_weight(kg)`<br> e.g. `bmi update h/170 w/70 i/80`
 **Get diet recommendation based on current BMI** | `plan recommended`
 **View active diet plan** | `plan current`
-**Select active diet plan** | `plan active p/plan`<br> e.g., `plan active p/1`
+**Select active diet plan** | `plan active p/plan`<br> e.g. `plan active p/1`
 **List all available diet plans** | `plan list`
-**View information about a particular diet plan** | `plan t/ID​`<br> e.g.,`plan t/1`
-**Add food item** | `food_add n/FOOD_NAME c/CARBOS(G) f/FATS(G) p/PROTEINS(G)` <br> e.g., `food_add n/tomato c/10 f/10 p/10`
-**Update food item** | `food_update n/FOOD_NAME c/CARBOS(G) f/FATS(G) p/PROTEINS(G)` <br> e.g., `food_update n/tomato c/20 f/30 p/40`
+**View information about a particular diet plan** | `plan t/ID​`<br> e.g. `plan t/1`
+**Add food item** | `food_add n/FOOD_NAME c/CARBOS(G) f/FATS(G) p/PROTEINS(G)` <br> e.g. `food_add n/tomato c/10 f/10 p/10`
+**Update food item** | `food_update n/FOOD_NAME c/CARBOS(G) f/FATS(G) p/PROTEINS(G)` <br> e.g. `food_update n/tomato c/20 f/30 p/40`
 **List food item** | `food_list`
-**Delete food item** | `food_delete n/FOOD_NAME` <br> e.g., `food_delete n/tomato`
-**Input food intake (For new food items that are not created before)** | `food_intake_add d/DATE(in d MMM yyyy format) n/FOOD_NAME c/CARBOHYDRATES(G) f/FATS(G) p/PROTEINS(G)` <br> e.g.,`food_intake_add d/31 Mar 2021 n/tomato c/10 f/10 p/10`
-**Input food intake (For existing food items)** | `food_intake_add d/DATE(in d MMM yyyy format) n/FOOD_NAME` <br> e.g., `food_intake_add d/31 Mar 2021 n/tomato`
-**Input food intake (For existing food items, using different nutrient value(s))** | `food_intake_add d/DATE(in d MMM yyyy format) n/FOOD_NAME c/CARBOHYDRATES(G) f/FATS(G) p/PROTEINS(G)` <br> e.g., `food_intake_add d/31 Mar 2021 n/tomato c/20 f/35 p/50`
-**Update food intake** | `food_intake_update d/DATE(in d MMM yyyy format) n/FOOD_NAME c/CARBOS f/FATS p/PROTEINS` <br> e.g., `food_intake_update d/31 Mar 2021 n/tomato c/20 f/40 p/50`
-**Delete food intake** | `food_intake_delete d/DATE(in d MMM yyyy format) n/FOOD_NAME` <br> e.g., `food_intake_delete d/31 Mar 2021 n/tomato`
-**Query food intake on a day** | `food_intake_query d/DATE(in d MMM yyyy format)` <br> e.g., `food_intake_query d/31 Mar 2021`
-**Query food intake over a period of days** | `food_intake_query df/DATE_FROM(in d MMM yyyy format) dt/DATE_TO(in d MMM yyyy format)` <br> e.g., `food_intake_query df/1 Mar 2021 dt/31 Mar 2021`
+**Delete food item** | `food_delete n/FOOD_NAME` <br> e.g. `food_delete n/tomato`
+**Input food intake (For new food items that are not created before)** | `food_intake_add d/DATE(in d MMM yyyy format) n/FOOD_NAME c/CARBOHYDRATES(G) f/FATS(G) p/PROTEINS(G)` <br> e.g.`food_intake_add d/31 Mar 2021 n/tomato c/10 f/10 p/10`
+**Input food intake (For existing food items)** | `food_intake_add d/DATE(in d MMM yyyy format) n/FOOD_NAME` <br> e.g. `food_intake_add d/31 Mar 2021 n/tomato`
+**Input food intake (For existing food items, using different nutrient value(s))** | `food_intake_add d/DATE(in d MMM yyyy format) n/FOOD_NAME c/CARBOHYDRATES(G) f/FATS(G) p/PROTEINS(G)` <br> e.g. `food_intake_add d/31 Mar 2021 n/tomato c/20 f/35 p/50`
+**Update food intake** | `food_intake_update d/DATE(in d MMM yyyy format) n/FOOD_NAME c/CARBOS f/FATS p/PROTEINS` <br> e.g. `food_intake_update d/31 Mar 2021 n/tomato c/20 f/40 p/50`
+**Delete food intake** | `food_intake_delete d/DATE(in d MMM yyyy format) n/FOOD_NAME` <br> e.g. `food_intake_delete d/31 Mar 2021 n/tomato`
+**Query food intake on a day** | `food_intake_query d/DATE(in d MMM yyyy format)` <br> e.g. `food_intake_query d/31 Mar 2021`
+**Query food intake over a period of days** | `food_intake_query df/DATE_FROM(in d MMM yyyy format) dt/DATE_TO(in d MMM yyyy format)` <br> e.g. `food_intake_query df/1 Mar 2021 dt/31 Mar 2021`
 **Generate progress report** | `progress`
 
 ---
