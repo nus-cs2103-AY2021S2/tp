@@ -1,13 +1,12 @@
 package seedu.budgetbaby.logic.statistics;
 
-import java.time.YearMonth;
-import java.util.*;
-import java.util.logging.Logger;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
-import seedu.budgetbaby.MainApp;
-import seedu.budgetbaby.commons.core.LogsCenter;
 import seedu.budgetbaby.model.BudgetBabyModel;
 import seedu.budgetbaby.model.month.Month;
 import seedu.budgetbaby.model.record.Category;
@@ -16,7 +15,6 @@ import seedu.budgetbaby.model.record.FinancialRecord;
 public class Statistics {
     private final ObservableList<Month> monthList;
     private BudgetBabyModel model;
-    private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
     /**
      * Instantiates the Statistics object by taking in a BudgetBabyModel during initialisation.
