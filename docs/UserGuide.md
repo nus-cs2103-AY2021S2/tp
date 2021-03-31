@@ -97,7 +97,7 @@ Here are the important syntaxes to take note of that are used to place emphasis 
 
 ### Viewing help : `help`
 
-Shows a message explaining how to access the help page.
+Displays the entire User Guide for ease of reference.
 
 ![Help Message UI](images/helpMessage.png)
 
