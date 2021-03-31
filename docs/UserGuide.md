@@ -51,7 +51,7 @@ You can also easily sift through CoLAB's various commands and features by referr
 
 ### 2.2 Reading this Document
 
-This subsection serves to provide explanations on the symbols, syntax and technical terms used throughout this User Guide. Familiarising yourself with this subsection will make the User Guide easier to read.
+This subsection serves to provide explanations on the application's user interface (UI) as well as symbols, syntax and technical terms used throughout this User Guide. Familiarising yourself with this subsection will make the User Guide easier to read.
 
 #### 2.2.1 Sections of the Application Window
 
