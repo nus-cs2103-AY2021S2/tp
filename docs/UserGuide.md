@@ -74,13 +74,13 @@ Format: `start [n/NUMBER] [t/TAG]`
 
 * NUMBER specifies the number of questions for the quiz session.
 * TAG specifies the type of questions for the quiz session.
-* You should not include both NUMBER and TAG in the start command, 
-  TAG is for practicing while NUMBER is for testing.
+* Both NUMBER and TAG are optional.
 * Keep the NUMBER to between 1 and 154, inclusive.
 
 Examples:
 * start n/10
 * start t/hiragana
+* start n/10 t/hiragana
 
 ### Checking flashcard answers: `check`
 
