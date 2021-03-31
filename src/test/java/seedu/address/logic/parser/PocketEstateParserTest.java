@@ -21,9 +21,9 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListAllCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.AppointmentContainsKeywordsPredicate;
-import seedu.address.model.property.PropertyNamePredicate;
 import seedu.address.model.appointment.AppointmentPredicateList;
 import seedu.address.model.appointment.AppointmentRemarksPredicate;
+import seedu.address.model.property.PropertyNamePredicate;
 import seedu.address.model.property.PropertyPredicateList;
 
 public class PocketEstateParserTest {
