@@ -60,7 +60,7 @@ title: User Guide
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `n/John Doe n/Jane Doe`, only `n/Jane Doe` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `ilist`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
@@ -313,6 +313,11 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
+#### Delete all data : `clear`
+
+Deletes all rooms, residents and issues in SunRez.
+
+Format: `clear`
 
 #### Undo previous command : `undo`
 
@@ -504,4 +509,5 @@ Action | Format, Examples
 **Add an alias** | `alias a/ALIAS_NAME cmd/COMMAND` <br> e.g. `alias a/il cmd/ilist`
 **Delete an alias** | `unalias a/ALIAS_NAME` <br> e.g. `unalias a/findBob`
 **List all aliases** | `aliases`
+**Delete all data** | `clear`
 **Exit the app** | `exit`
