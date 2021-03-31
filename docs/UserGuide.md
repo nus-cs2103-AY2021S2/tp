@@ -2,13 +2,10 @@
 layout: page
 title: User Guide
 ---
-Have you ever been overwhelmed by the number of assignments given by your module instructors? How amazing would it be 
-if you just have a helper, to note down those things for you, and remind you as the deadline gets closer. If 
-this is you, then ModuleBook3.5 is the right fit for you.
-
 ModuleBook3.5 is the go-to tool for busy students/professionals who are confident that typing can save them time. 
 Using ModuleBook3.5, one can organise and keep track of tasks and their deadlines without the need for consistent 
-internet connection.
+internet connection. Even if your online learning portal fails, you can still see your task details
+on ModuleBook3.5.
 
 
 * Table of Contents
@@ -33,10 +30,20 @@ Current module codes supported: CS1101S, CS1231S, CS2030, CS2040S, CS2101,
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
+![add message](images/addCommand.png)
+1. At the top of the display is a toolbar to either exit the app (under `File`) 
+   or access this user guide (under `Help`).
+   
+1. Below the toolbar is a command line to key in any of the below commands. 
+   The result is displayed in a box underneath this command line.
+   
+1. A list of modules for which tasks are available is also shown.
+    1. For each module, the number of tasks across each workload rating is displayed.
+    1. The distribution of workload across all modules is calculated and displayed on a pie chart.
 
-1. Tasks are colour coded based on done status. 
-   1. Done tasks are coloured green. 
-   1. Tasks that are not done are coloured pink.
+1. Tasks are colour coded based on done status.
+    1. Done tasks are coloured pink.
+    1. Tasks that are not done are coloured differently.
   
 <div style="page-break-after: always;"></div>
 
@@ -67,7 +74,7 @@ Current module codes supported: CS1101S, CS1231S, CS2030, CS2040S, CS2101,
   e.g. if the command specifies `d/DESCRIPTION t/TAG`, `t/TAG d/DESCRIPTION` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `d/CS2103T team project for week7 d/CS3243 Assignment 4`, only `d/CS2103T team project for week7` will be taken.
+  e.g. if you specify `d/CS2103T team project for week7 d/CS3243 Assignment 4`, only `d/CS3243 Assignment 4` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as`list`) will be ignored.<br>
   e.g. if the command specifies `list 123`, it will be interpreted as `list`.
@@ -276,7 +283,7 @@ Format:  `sort n/` or `sort d/` or `sort m/` or `sort w/` or `sort b/` or `sort 
 *  `sort n/` Sorts the tasks by name alphabetically in ascending order.
 *  `sort d/` Sorts the tasks by description alphabetically in ascending order.
 *  `sort w/` Sorts the tasks by workload in descending order.
-*  `sort b/` Sorts the tasks by deadline so that the the task with closer the deadline in the list, the higher the task.
+*  `sort b/` Sorts the tasks by deadline so that a task with a closer deadline is positioned at the top of the list.
 *  `sort m/` Sorts the tasks by module code alphabetically in descending order.
 *  `sort t/` Sorts the tasks by number of tags in descending order.
 
