@@ -137,27 +137,37 @@ Do you have an item to add to the inventory? This command is the right one for y
 
 Format: `add n/ITEM_NAME l/LOCATION q/QUANTITY [e/EXPIRY_DATE] [t/TAG]…​`
 
-<div markdown="span" class="alert alert-primary">
-
-:bulb:**Tip:** An item can have any number of tags (including 0)
-</div>
-
-<div markdown="span" class="alert alert-primary">
-
-:bulb: **Tip:** Expiry date of an item is optional.
-</div>
-
 Examples:
 
 * `add n/Chocolate Milk l/kitchen refrigerator q/2` adds 2 Chocolate Milk to the kitchen refrigerator.
 * `add n/Sunshine Bread l/kitchen cupboard q/10 e/2021-05-11 t/favourite` adds 10 Sunshine Bread with expiry date,
   2021-05-11, and "favourite" tag to the kitchen cupboard.
 
+<div markdown="span" class="alert alert-primary">
+
+:bulb:**Tip:** An item can have any number of tags (including 0)
+
+</div>
+
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:** Expiry date of an item is optional.
+
+</div>
+
 ### 3.3. Editing an item : `edit`
 
 If you want to edit any details of an existing item in the inventory, you can do so by using this command.
 
 Format: `edit INDEX [n/ITEM_NAME] [l/LOCATION] [q/QUANTITY] [e/EXPIRY_DATE] [t/TAG]…​`
+
+Examples:
+
+* `edit 1 q/10 e/2022-10-11` edits the quantity of the 1st item to be `10` and expiry date of the 1st item to
+  be `2022-10-11` if the existing quantity and expiry date of the 1st item are both not `10` and `2022-10-11`
+  respectively.
+* `edit 2 n/Chocolate Bread t/` edits the name of the 2nd item to be `Chocolate Bread` and clears all existing tags if
+  there are existing tags and/or existing name of the 2nd item is not `Chocolate Bread`.
 
 <div markdown="block" class="alert alert-info">
 
@@ -172,14 +182,6 @@ Format: `edit INDEX [n/ITEM_NAME] [l/LOCATION] [q/QUANTITY] [e/EXPIRY_DATE] [t/T
 
 </div>
 
-Examples:
-
-* `edit 1 q/10 e/2022-10-11` edits the quantity of the 1st item to be `10` and expiry date of the 1st item to
-  be `2022-10-11` if the existing quantity and expiry date of the 1st item are both not `10` and `2022-10-11`
-  respectively.
-* `edit 2 n/Chocolate Bread t/` edits the name of the 2nd item to be `Chocolate Bread` and clears all existing tags if
-  there are existing tags and/or existing name of the 2nd item is not `Chocolate Bread`.
-
 ### 3.4. Listing items : `list`
 
 Do you want to view all your items? What about items at a specific location or with a specific tag? This command helps
@@ -189,17 +191,20 @@ You can use this command in 3 different ways.
 
 * #### 3.4.1. Listing all items in StoreMando
   This command allows you to view all the items in the inventory.
-  <br>
+  
   Format: `list`
-  <br>
+  
   Example:
     * `list` displays all the items in the inventory.
 
 * #### 3.4.2. Listing all items at a specific location
   This command allows you to view all items at a specific location.
-  <br>
+  
   Format: `list l/LOCATION`
 
+  Example:
+    * `list l/kitchen` displays all the items in the kitchen.
+  
   <div markdown="block" class="alert alert-info">
 
   **:information_source: Notes about the command:**
@@ -211,23 +216,21 @@ You can use this command in 3 different ways.
       room 1' will not match 'Living room'<br>
   </div>
 
-  Example:
-    * `list l/kitchen` displays all the items in the kitchen.
-
 * #### 3.4.3. Listing all items with a specific tag
-  This command allows you to view all items containing a specific tag.
-  <br>
+  This command allows you to view all items containing a specific tag. 
+
   Format: `list t/TAG`
+
+  Example:
+    * `list t/favourite` displays all the items with the "favourite" tag.
 
   <div markdown="block" class="alert alert-info">
 
   **:information_source: Notes about the command:**
 
     * Tag keyword must be a single word.
-  </div>
 
-  Example:
-    * `list t/favourite` displays all the items with the "favourite" tag.
+  </div>
 
 ### 3.5. Finding items by name : `find`
 
