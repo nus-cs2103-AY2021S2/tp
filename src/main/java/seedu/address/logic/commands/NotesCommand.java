@@ -57,7 +57,7 @@ public class NotesCommand extends Command {
         Task editedTask = new Task(taskToEdit.getTaskName(), taskToEdit.getModuleCode(),
                 taskToEdit.getDeadlineDate(), taskToEdit.getDeadlineTime(),
                 taskToEdit.getStatus(), taskToEdit.getWeightage(),
-                notes, taskToEdit.getTags());
+                notes, taskToEdit.getTags(), taskToEdit.getPriorityTag());
 
         model.setTask(taskToEdit, editedTask);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);

@@ -110,7 +110,7 @@ public class Task {
      */
     public Task finishTask() {
         return new Task(this.taskName, this.moduleCode, this.deadlineDate,
-                this.deadlineTime, this.status.toggle(), this.weightage, this.notes, this.tags);
+                this.deadlineTime, this.status.toggle(), this.weightage, this.notes, this.tags, this.priorityTag);
     }
 
     /**
