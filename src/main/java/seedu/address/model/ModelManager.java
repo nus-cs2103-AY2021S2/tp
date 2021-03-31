@@ -437,9 +437,20 @@ public class ModelManager implements Model {
     /**
      * Sets the state of the order to cancelled
      */
+    @Override
     public void cancelOrder(Order target) {
         orderBook.completeOrder(target);
     }
+
+    /**
+     * Sets the state of the orders to cancelled
+     */
+    @Override
+    public void cancelOrders(List<Order> targets) {
+        for (Order o : targets) {
+            cancelOrder(o);
+        }
+    };
 
     /**
      * Returns an unmodifiable view of the filtered order list with one predicate

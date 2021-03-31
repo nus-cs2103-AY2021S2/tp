@@ -63,7 +63,7 @@ public class MenuDeleteCommand extends Command {
                     CommandResult.CRtype.DISH);
         }
 
-        model.deleteOrders(outstandingOrders);
+        model.cancelOrders(outstandingOrders);
         model.deleteDish(dishToDelete);
 
         return new CommandResult(String.format(MESSAGE_DELETE_DISH_SUCCESS, dishToDelete),

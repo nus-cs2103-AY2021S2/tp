@@ -268,4 +268,14 @@ public interface Model {
     List<Order> getOrdersFromPerson(Person target);
 
     void completeOrder(Order orderToComplete);
+
+    /**
+     * Sets the state of the order to cancelled
+     */
+    void cancelOrder(Order target);
+
+    /**
+     * Sets the state of the orders to cancelled
+     */
+    void cancelOrders(List<Order> targets);
 }
