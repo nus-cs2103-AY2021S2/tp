@@ -69,7 +69,12 @@ public class EditSessionCommand extends Command {
         Optional<Session> optSessionToEdit = lastShownList.stream()
                 .filter(x-> x.getClassId().equals(sessionId)).findAny();
 
-        if (optSessionToEdit.isPresent()) {
+        boolean hasDayOrTime = this.editSessionDescriptor.hasDay() || this.editSessionDescriptor.hasTimeslot();
+        boolean emptySession = emptySession(optSessionToEdit);
+
+        if ((!emptySession) && hasDayOrTime) {
+            throw new CommandException(Messages.MESSAGE_CANNOT_EDIT);
+        } else if (optSessionToEdit.isPresent()) {
             Session sessionToEdit = optSessionToEdit.get();
             Session editedSession = createEditedSession(sessionToEdit, editSessionDescriptor);
             model.setSession(sessionToEdit, editedSession);
@@ -79,6 +84,22 @@ public class EditSessionCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_SESSION_DISPLAYED_INDEX);
         }
 
+    }
+
+    /**
+     * Checks if session to be edited has existing tutor assigned or students assigned.
+     * Only checks if session day or timeslot is to be edited.
+     */
+
+    private static boolean emptySession(Optional<Session> sessionToEdit) {
+        if (!sessionToEdit.isPresent()) {
+            return true;
+        } else if (sessionToEdit.get().emptyTutor()
+                && sessionToEdit.get().emptyStudentList()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -94,7 +115,10 @@ public class EditSessionCommand extends Command {
         Timeslot updatedTimeSlot = editSessionDescriptor.getTimeSlot().orElse(sessionToEdit.getTimeslot());
         Set<Tag> updatedTags = editSessionDescriptor.getTags().orElse(sessionToEdit.getTags());
 
-        return new Session(sessionId, updatedDay, updatedTimeSlot, updatedSubject, updatedTags);
+        Session newSession = new Session(sessionId, updatedDay, updatedTimeSlot, updatedSubject, updatedTags);
+        newSession.setStudents(sessionToEdit.getStudents());
+        newSession.setTutor(sessionToEdit.getTutor());
+        return newSession;
     }
 
     @Override
@@ -154,6 +178,10 @@ public class EditSessionCommand extends Command {
             return Optional.ofNullable(day);
         }
 
+        public boolean hasDay() {
+            return Optional.ofNullable(day).isPresent();
+        }
+
         public void setSubject(Subject subject) {
             this.subject = subject;
         }
@@ -170,6 +198,9 @@ public class EditSessionCommand extends Command {
             return Optional.ofNullable(timeslot);
         }
 
+        public boolean hasTimeslot() {
+            return Optional.ofNullable(timeslot).isPresent();
+        }
 
         public void setSessionId(SessionId sessionId) {
             this.sessionId = sessionId;
