@@ -11,7 +11,7 @@ public class ListCommandCommand extends Command {
 
     public static final String SHOWING_LIST_COMMAND_MESSAGE =
         "Dictionary Command List (enter `listcommandd` for more details)\n"
-        + FindContentCommand.COMMAND_WORD + ", "
+        + FindContentCommand.COMMAND_WORD + ",git "
         + FindDefinitionCommand.COMMAND_WORD + ", "
         + ListContentCommand.COMMAND_WORD + ", "
         + ListDefinitionCommand.COMMAND_WORD + ", "
