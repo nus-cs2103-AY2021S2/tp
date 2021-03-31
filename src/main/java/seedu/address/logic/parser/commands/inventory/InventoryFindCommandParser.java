@@ -27,9 +27,9 @@ public class InventoryFindCommandParser implements Parser<InventoryFindCommand> 
      *
      * @throws ParseException if the user input does not conform the expected format
      */
-    public InventoryFindCommand parse(String args) throws ParseException {
+    public InventoryFindCommand parse(String userInput) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_QUANTITY);
+                ArgumentTokenizer.tokenize(userInput, PREFIX_NAME, PREFIX_QUANTITY);
 
         boolean namePresent = ParserUtil.arePrefixesPresent(argMultimap, PREFIX_NAME);
         boolean quantityPresent = ParserUtil.arePrefixesPresent(argMultimap, PREFIX_QUANTITY);
