@@ -16,16 +16,16 @@ public class AliasTest {
 
     @Test
     public void equals() {
-        // same alias
+        // same alias -> true
         assertEquals(VALID_ALIAS_1, VALID_ALIAS_1);
 
-        // same argument
+        // same argument -> true
         assertEquals(new Alias(VALID_ALIAS_NAME, VALID_COMMAND), new Alias(VALID_ALIAS_NAME, VALID_COMMAND));
 
-        // null alias
+        // null alias -> false
         assertNotEquals(VALID_ALIAS_1, null);
 
-        // different instance
+        // different instance -> false
         assertNotEquals(VALID_ALIAS_1, new AliasMapping());
     }
 

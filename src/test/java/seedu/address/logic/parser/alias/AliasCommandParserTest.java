@@ -17,7 +17,7 @@ import seedu.address.commons.core.Alias;
 import seedu.address.logic.commands.alias.AliasCommand;
 
 public class AliasCommandParserTest {
-    private AliasCommandParser parser = new AliasCommandParser();
+    private final AliasCommandParser parser = new AliasCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
@@ -52,7 +52,7 @@ public class AliasCommandParserTest {
 
         // missing alias name
         assertParseFailure(parser,
-                String.format(" %s %s command", PREFIX_ALIAS, PREFIX_COMMAND),
+                String.format(" %s %scommand", PREFIX_ALIAS, PREFIX_COMMAND),
                 Alias.MESSAGE_NAME_CONSTRAINTS);
     }
 
@@ -72,13 +72,17 @@ public class AliasCommandParserTest {
 
         // missing alias name
         assertParseFailure(parser,
-                String.format(" %s command", PREFIX_COMMAND),
+                String.format(" %scommand", PREFIX_COMMAND),
                 expectedMessage);
     }
 
-    /*
     @Test
     public void parse_invalidAliasName_failure() {
+        // empty alias name
+        assertParseFailure(parser,
+                String.format(" %s %scommand", PREFIX_ALIAS, PREFIX_COMMAND),
+                Alias.MESSAGE_NAME_CONSTRAINTS);
+
         // contains space
         assertParseFailure(parser,
                 String.format(" %sna me %scommand", PREFIX_ALIAS, PREFIX_COMMAND),
@@ -94,5 +98,11 @@ public class AliasCommandParserTest {
                 String.format(" %sn@ me %scommand", PREFIX_ALIAS, PREFIX_COMMAND),
                 Alias.MESSAGE_NAME_CONSTRAINTS);
     }
-    */
+
+    @Test
+    public void parse_invalidCommand_failure() {
+        assertParseFailure(parser,
+                String.format(" %sname %s", PREFIX_ALIAS, PREFIX_COMMAND),
+                Alias.MESSAGE_COMMAND_CONSTRAINTS);
+    }
 }

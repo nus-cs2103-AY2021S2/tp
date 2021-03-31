@@ -33,16 +33,16 @@ public class AliasUtil {
 
     // recursive aliases
     public static final Alias ALIAS_1_TO_2 = new Alias("1", "2");
-    public static final Alias ALIAS_2_TO_3 = new Alias("2", "3");
-    public static final Alias ALIAS_3_TO_1 = new Alias("3", "1");
+    public static final Alias ALIAS_2_TO_1 = new Alias("3", "1");
 
+    // valid aliases
     public static final Alias VALID_ALIAS_1 = new Alias("h", "help");
     public static final Alias VALID_ALIAS_2 = new Alias("rls", "rlist");
     public static final Alias VALID_ALIAS_3 = new Alias(
             "pest",
             "alias a/pest cmd/iadd r/12-200 d/Cockroach " + "infestation c/Pest");
 
-    // An alias mapping valid aliases .
+    // alias mapping valid aliases
     public static final AliasMapping VALID_ALIAS_MAPPING;
 
     private static final String VALID_COMMAND = "validCommand";

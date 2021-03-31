@@ -38,6 +38,10 @@ public class AliasCommandParser implements Parser<AliasCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, AliasCommand.MESSAGE_USAGE));
         }
 
+        if (!parsedArgs[2].startsWith("cmd/")) {
+            throw new ParseException(Alias.MESSAGE_NAME_CONSTRAINTS);
+        }
+
         String aliasName = parsedArgs[1].substring(PREFIX_ALIAS.toString().length());
         String command = parsedArgs[2].substring(PREFIX_COMMAND.toString().length());
 

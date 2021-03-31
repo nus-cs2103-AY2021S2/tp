@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.alias.AliasUtil.ALIAS_1_TO_2;
-import static seedu.address.testutil.alias.AliasUtil.ALIAS_3_TO_1;
+import static seedu.address.testutil.alias.AliasUtil.ALIAS_2_TO_1;
 import static seedu.address.testutil.alias.AliasUtil.ALIAS_ALIAS_ADD;
 import static seedu.address.testutil.alias.AliasUtil.ALIAS_ALIAS_DELETE;
 import static seedu.address.testutil.alias.AliasUtil.ALIAS_ALIAS_LIST;
@@ -98,7 +98,7 @@ public class AliasMappingTest {
     public void isRecursiveKeyword_aliasCommandIsRecursive_returnsTrue() {
         AliasMapping aliasMapping = new AliasMapping();
         aliasMapping.addAlias(ALIAS_1_TO_2);
-        assertTrue(aliasMapping.isRecursiveKeyword(ALIAS_3_TO_1.getCommand()));
+        assertTrue(aliasMapping.isRecursiveKeyword(ALIAS_2_TO_1.getCommand()));
     }
 
     @Test
