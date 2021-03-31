@@ -13,119 +13,59 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
+## **Design** [In Progress]
 
 ### Architecture
-
-<img src="images/ArchitectureDiagram.png" width="450" />
-
-The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
-
-<div markdown="span" class="alert alert-primary">
-
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
-
-</div>
-
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
-* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
-* At shut down: Shuts down the components and invokes cleanup methods where necessary.
-
-[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
-
-The rest of the App consists of four components.
-
-* [**`UI`**](#ui-component): The UI of the App.
-* [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
-
-Each of the four components,
-
-* defines its *API* in an `interface` with the same name as the Component.
-* exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
-
-For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
-
-![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
-
-**How the architecture components interact with each other**
-
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
-
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
-
-The sections below give more details of each component.
 
 ### UI component
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-**API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+**API**: `Ui.java`
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StatusBarFooter` etc. All
+these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFX UI framework. The layout of these UI parts are defined in matching `.fxml` files that
+are in the `src/main/resources/view` folder. For example, the layout of the `MainWindow` is specified in
+`MainWindow.fxml`.
 
-The `UI` component,
+The `UI` component:
 
-* Executes user commands using the `Logic` component.
+* Executes users' commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
+* Any changes in `Model` data, i.e. customers, cheeses or orders data, are reflected through the `Panels` and `Cards`
+  sub-components.
+
+The class diagram below shows in more detail the compositions of the `Panels` and `Cards` components as well as their
+relationships with other classes.
+
+![Structure of the Panels & Cards Component](images/UiPanelsCardsClassDiagram.png)
 
 ### Logic component
 
-![Structure of the Logic Component](images/LogicClassDiagram.png)
+<img src="images/LogicClassDiagram_CHIM.png">
 
-**API** :
-[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API**: `Logic.java`
 
 1. `Logic` uses the `AddressBookParser` class to parse the user command.
-1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a person).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
-1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
+2. This results in a `Command` object which is executed by the `LogicManager`.
+3. The command execution can affect the `Model` (e.g. by adding customers, orders or cheeses).
+4. The result of the command execution is encapsulated as a `CommandResult`
+object which is passed back to the `Ui`.
+5. In addition, the `CommandResult` object can also instruct the `Ui` to perform
+certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component
+for the `execute("deletecheese 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
+<img src="images/DeleteCheeseSeqDiagram_CHIM.png">
 
 ### Model component
 
-![Structure of the Model Component](images/ModelClassDiagram.png)
-
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
-
-The `Model`,
-
-* stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* does not depend on any of the other three components.
-
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
-![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
-
-</div>
-
-
 ### Storage component
 
-![Structure of the Storage Component](images/StorageClassDiagram.png)
-
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
-
-The `Storage` component,
-* can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
-
 ### Common classes
-
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -133,100 +73,87 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### Delete Feature
 
-#### Proposed Implementation
+#### Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+Deleting customers, orders and cheeses are implemented in `DeleteCustomerCommand`,
+`DeleteOrderCommand` and `DeleteCheeseCommand` respectively. These commands extend
+abstract class `DeleteCommand`, and they all implement the operations `execute()` and `equals()`.
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+Cascading of Delete commands has been implemented such that if a customer is deleted,
+any orders they have placed are also deleted. Similarly, when an order is deleted,
+any cheeses assigned to it are deleted.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+An example usage scenario representing the cascading of delete commands is given below.
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+Step 1. The user launches CHIM which has been initialised with customers,
+orders (both complete and incomplete), and cheeses.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 2. The user executes `deletecustomer p/87438807` to delete the customer with the
+phone number `87438807`. The command calls `DeleteCustomerCommand.execute()`
+which calls on `ModelManager.deleteCustomer()`.
 
-![UndoRedoState0](images/UndoRedoState0.png)
+Step 3. The `ModelManager` calls `AddressBook.deleteCustomer()` where CHIM will delete
+the customer and iterate through the orders list to find any orders placed by this customer.
+These orders are deleted by calling `AddressBook.deleteOrder()`.
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 4. `AddressBook.deleteOrder()` will delete the order. If the order was completed,
+it will iterate through the cheeses list to find any cheeses assigned to this order.
+These cheeses are deleted by calling `AddressBook.deleteCheese()`.
 
-![UndoRedoState1](images/UndoRedoState1.png)
+Step 5. `AddressBook.deleteCheese()` will delete the cheese.
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+The following sequence diagram shows how the operation `deletecustomer p/87438807`
+is carried out as detailed above.
 
-![UndoRedoState2](images/UndoRedoState2.png)
+<img src="images/DeleteCustomerSeqDiagram_CHIM.png">
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+#### Design consideration
 
-</div>
+* Cascading of Delete commands has been implemented with the assumption that when a customer
+or order is deleted, all information related to that customer or order must also be removed from CHIM.
+* The cascading of Delete commands is implemented only in one direction (Customer to Order to Cheese).
+Deleting an order will not delete the customer who placed the order.
+Furthermore, deleting a cheese which has been assigned to an order is not allowed.
+This is to prevent any extra erroneous deletions.
+* All `execute()` calls by `DeleteCustomerCommand`, `DeleteOrderCommand` and `DeleteCheeseCommand`
+will call on `Model.AddressBook` which will handle the cascading of delete commands in one place.
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
-![UndoRedoState3](images/UndoRedoState3.png)
+### Automatic Toggling of UI List Panels
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+#### Implementation
 
-</div>
+The application's user-interface shows, at any one time, **only one** of the following three lists:
 
-The following sequence diagram shows how the undo operation works:
+1. Customer List
+2. Cheese List
+3. Order List
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+The UI automatically toggles between the three lists with respect to the user's latest command. For example:
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+- After running the `ListCheeseCommand`, the UI switches to showing the cheese list.
+- After running the `AddCustomerCommand`, the UI switches to showing the customer list.
+- After running the `FindOrderCommand`, the UI switches to showing the order list.
 
-</div>
+To enable the toggling, `GuiSettings` (of the `commons` package) stores an enumerable property to control which list to
+show.
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+When the user keys in a valid input:
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+1. The `Command` object corresponding to the input, when executed, updates the enum in `GuiSettings`; the enum records
+   which list is to be shown. This is done through the `ModelManager`.
+2. The `UI` component then checks the `GuiSettings` and renders the desired list.
 
-</div>
+To better illustrate the idea - take, for instance, when the user inputs `listcheeses` which executes the
+`ListCheesesCommand`:
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
-
-#### Design consideration:
-
-##### Aspect: How undo & redo executes
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
+![ListPanelTogglingSequenceDiagram](images/ListPanelTogglingSequenceDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
-
-* [Documentation guide](Documentation.md)
-* [Testing guide](Testing.md)
-* [Logging guide](Logging.md)
-* [Configuration guide](Configuration.md)
-* [DevOps guide](DevOps.md)
+## **Documentation, logging, testing, configuration, dev-ops** [In Progress]
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -235,122 +162,381 @@ _{Explain here how the data archiving feature will be implemented}_
 ### Product scope
 
 **Target user profile**:
+* Freelance cheesemaker
+* Runs home-based business
+* Prefers desktop apps over other types
+* Can type fast
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
-
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**:
+1. Specific properties of each cheese
+2. Track order status of each cheese (either by batches or individually)
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                      | I want to …​                     | So that I can …​                                                        |
+| -------- | ----------------------------| ------------------------------- | ---------------------------------------------------------------------- |
+| `* * *`  | New user                    | Input a new order |  |
+| `* * *`  | New user                    | Delete an existing order |  |
+| `* * *`  | New user                    | Add cheese entries |  |
+| `* * *`  | New user                    | Mark a sample order as delivered |  |
+| `* * *`  | New user                    | Search for a customer | Find the customer’s contact information |
+| `* *`    | New user                    | Save the data input | Retrieve the same information later |
+| `* *`    | User with some familiarity  | View a summary of my inventory | See if there is a need to increase production |
+| `* *`    | User                        | See the introduction message |  |
+| `*`      | User with some familiarity  | Search up orders of a specific customer | Efficiently find the order status |
 
-*{More to be added}*
+[More to be added]
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `CHIM` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+#### Use case: Input a new order
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User adds an order by specifying the cheese type and quantity of the order, and the phone number of the customer, with optional field order date.
+2. CHIM creates the order and shows the details of the new order.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
+1a. The given cheese quantity is invalid.
+  * 1a1. CHIM shows an error message.
 
-* 2a. The list is empty.
+    Use case resumes at step 1.
+
+1b. The customer with the given phone number cannot be found.
+  * 1b1. CHIM shows an error message.
+
+    Use case resumes at step 1.
+
+#### Use case: Input a cheese
+
+**MSS**
+
+1. User adds a cheese to the inventory by specifying its type and quantity.
+2. CHIM shows a confirmation message that the cheese has been added.
+
+   Use case ends.
+
+**Extensions**
+1a. The given cheese quantity is invalid.
+  * 1a1. CHIM shows an error message.
+
+    Use case reumes at step 1.
+
+#### Use case: Input a Customer
+
+**MSS**
+
+1. User adds a customer by specifying name, phone number and address.
+2. CHIM creates the new customer and shows details of the new customer.
+
+   Use case ends.
+
+**Extensions**
+* 1a. The given phone number is invalid.
+  * 1a1. CHIM displays an error message.
+
+    Use case resumes at step 1.
+
+* 1b. The given phone number is a duplicated customer.
+  * 1b1. CHIM displays an error message.
+
+    Use case resumes at step 1.
+
+#### Use case: Edit an Order
+
+**MSS**
+
+1. User enters an order number to edit with at least 1 field: cheese type, quantity, phone number and order date.
+2. CHIM edits the order and shows details of the new order.
+
+   Use case ends.
+
+**Extensions**
+* 1a. The supplied fields are all the same.
+  * 1a1. CHIM displays an error message.
+
+    Use case resumes at step 1.
+
+* 1b. The order is marked as completed.
+  * 1b1. CHIM shows an error message.
+
+    Use case resumes at step 1.
+
+* 1c. The given cheese quantity is invalid.
+  * 1c1. CHIM shows an error message.
+
+    Use case resumes at step 1.
+
+* 1d. The customer with the given phone number cannot be found.
+  * 1d1. CHIM shows an error message.
+
+    Use case resumes at step 1.
+
+#### Use case: Edit an Cheese
+
+**MSS**
+
+1. User enters a cheese number to edit with at least 1 field: cheese type, manufacture date, maturity date and expiry date.
+2. CHIM edits the cheese and shows details of the new cheese.
+
+   Use case ends.
+
+**Extensions**
+* 1a. The supplied fields are all the same.
+  * 1a1. CHIM displays an error message.
+
+    Use case resumes at step 1.
+
+* 1b. The given cheese is marked as assigned.
+  * 1b1. CHIM shows an error message.
+
+    Use case resumes at step 1.
+
+#### Use case: Edit a Customer
+
+**MSS**
+
+1. User enters a customer number to edit with at least 1 field: name, phone number, email and address.
+2. CHIM edits the customer and shows details of the new customer.
+
+   Use case ends.
+
+**Extensions**
+* 1a. The supplied fields are all the same.
+  * 1a1. CHIM displays an error message.
+
+    Use case resumes at step 1.
+
+* 1b. The given phone number is invalid.
+  * 1b1. CHIM displays an error message.
+
+    Use case resumes at step 1.
+
+* 1c. The given phone number is a duplicated customer.
+  * 1c1. CHIM displays an error message.
+
+    Use case resumes at step 1.
+
+#### Use case: Delete an Order
+
+**MSS**
+
+1. User enters an order number to delete.
+2. CHIM deletes the order from the list of orders.
+
+   Use case ends.
+
+**Extensions**
+* 1a. No such order with the specified order number exists.
+  * 1a1. CHIM displays an error message.
+
+    Use case resumes at step 1.
+
+#### Use case: Delete a cheese
+
+**MSS**
+
+1. User enters the index of cheese to be deleted.
+2. CHIM deletes the cheese from the list of cheese.
+
+   Use case ends.
+
+**Extensions**
+* 1a. The list is empty.
+    * 1a1. CHIM responds that there are no existing customers.
+
+        Use case ends.
+* 1b. No such cheese with the specified cheese number.
+    * 1b1. CHIM shows an error message.
+
+        Use case resumes at step 1.
+
+#### Use case: Delete a customer
+
+**MSS**
+
+1. User enters the index of the customer to be deleted.
+2. CHIM deletes the customer.
+
+   Use case ends.
+
+**Extensions**
+* 1a. The list is empty.
+    * 1a1. CHIM responds that there are no existing customers.
+
+        Use case ends.
+* 1b. The given index is invalid.
+    * 1b1. CHIM shows an error message.
+
+        Use case resumes at step 1.
+
+
+#### Use case: List orders
+
+**MSS**
+
+1. User enters the command to list all the orders recorded in CHIM.
+2. CHIM displays a list with the customers’ summary details.
+
+   Use case ends.
+
+**Extensions**
+* 1a. CHIM does not have any orders added.
+  * 1a1. CHIM informs the user that there are no orders recorded in the application.
+
+    Use case resumes at step 1.
+
+#### Use case: List cheeses
+
+**MSS**
+
+1. User enters the command to list all the cheeses recorded in CHIM.
+2. CHIM displays all the cheeses in CHIM.
+
+   Use case ends.
+
+**Extensions**
+* 1a. CHIM does not have any cheese added.
+  * 1a1. CHIM informs the user that there is no cheese recorded in the application.
+
+    Use case resumes at step 1.
+
+* 1b. User provides an optional parameter, CHEESE_TYPE.
+  * 1b1. User enters a valid CHEESE_TYPE.
+    * 1b1a1. CHIM displays the current inventory count for the specific cheese_TYPE.
+
+      Use case resumes at step 1.
+
+  * 1b1. User enters a invalid CHEESE_TYPE.
+    * 1b1b1. CHIM displays an error message.
+
+      Use case resumes at step 1.
+
+#### Use case: List customers
+
+**MSS**
+
+1. User enters the command to list all the customers recorded in CHIM.
+1. CHIM displays a list with the customers’ summary details.
+
+   Use case ends.
+
+**Extensions**
+* 1a. CHIM does not have any customers added.
+  * 1a1. CHIM informs the user that there are no customers recorded in the application.
+
+    Use case resumes at step 1.
+
+
+#### Use case: Marks order as complete
+
+**MSS**
+1. User enters the index of the order to be marked as complete.
+1. CHIM assigns avaliable cheeses to the order and marks the order as complete.
+
+   Use case ends.
+
+**Extensions**
+* 1a. User provides an index which does not exist.
+  * 1a1. CHIM displays an error message.
+
+    Use case resumes at step 1.
+
+* 1b. User provides an index in which order is already completed.
+  * 1b1. CHIM responds that the order is already completed.
+
+    Use case resumes at step 1.
+
+* 1c. User provides an index of an order that cannot be completed due to lack of cheeses in inventory.
+  * 1c1. CHIM responds that there are insufficient cheeses to complete the order.
+
+    Use case resumes at step 1.
+
+#### Use case: Search for a customer
+
+**MSS**
+1. User enters a request to search for a customer by a particular name.
+1. CHIM shows the customer’s details.
+
+   Use case ends.
+
+**Extensions**
+* 1a. More than one customer has the input name.
+  * 1a1. CHIM shows a list of customers with the matching name.
+
+    Use case ends.
+* 1b. There are no existing customers with the input name.
+  * 1b1. CHIM responds that there are no existing customers with the input name.
+
+    Use case resumes at step 1.
+
+
+#### Use case: Search for particular cheeses
+
+**MSS**
+1. User enters a request to search for cheeses matching certain cheese types or assignment status.
+2. CHIM shows the matching cheeses.
+
+   Use case ends.
+
+***Extensions**
+* 1a. No cheeses match the input given by the user.
+  * 1a1. CHIM shows an empty list.
+
+   Use case ends.
+
+* 1b. User input is invalid.
+  * 1b1. CHIM shows an error message.
+
+   Use case ends.
+
+
+#### Use case: Search for particular orders
+
+**MSS**
+1. User enters a request to search for orders matching certain cheese types, customer names, phone number or completion status.
+2. CHIM shows the matching orders.
+
+   Use case ends.
+
+**Extensions**
+* 1a. No orders match the input given by the user.
+    * 1a1. CHIM shows an empty list.
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 1b. User input is invalid.
+    * 1b1. CHIM shows an error message.
 
-    * 3a1. AddressBook shows an error message.
+  Use case ends.
 
-      Use case resumes at step 2.
 
-*{More to be added}*
+#### Use case: Exit the application
+
+**MSS**
+1. User enters the command to exit the application.
+2. CHIM saves customers, orders and cheese data into data files.
+
+   Use case ends.
+
 
 ### Non-Functional Requirements
-
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
 
-Given below are instructions to test the app manually.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
-testers are expected to do more *exploratory* testing.
-
-</div>
 
 ### Launch and shutdown
 
-1. Initial launch
-
-   1. Download the jar file and copy into an empty folder
-
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
-
-1. Saving window preferences
-
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
-
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
-
-### Deleting a person
-
-1. Deleting a person while all persons are being shown
-
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
-
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
-
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_

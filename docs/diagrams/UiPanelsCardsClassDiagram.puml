@@ -1,0 +1,51 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor UI_COLOR_T4
+skinparam classBackgroundColor UI_COLOR
+
+package UI <<Rectangle>>{
+Class HiddenInside #FFFFFF
+Class "{abstract}\nUiPart" as UiPart
+Class MainWindow
+package Cards {
+Class CustomerCard
+Class CheeseCard
+Class OrderCard
+}
+package Panels {
+Class CustomerListPanel
+Class CheeseListPanel
+Class OrderListPanel
+}
+}
+
+package Model <<Rectangle>> {
+Class HiddenModel #FFFFFF
+}
+
+package Logic <<Rectangle>> {
+Class HiddenLogic #FFFFFF
+}
+
+HiddenInside --> MainWindow
+
+MainWindow *-down-> CustomerListPanel
+MainWindow *-down-> CheeseListPanel
+MainWindow *-down-> OrderListPanel
+
+CustomerListPanel --> CustomerCard
+CheeseListPanel --> CheeseCard
+OrderListPanel --> OrderCard
+
+MainWindow --|> UiPart
+Panels --|> UiPart
+Cards --|> UiPart
+
+CustomerCard ..> Model
+CheeseCard ..> Model
+OrderCard ..> Model
+
+MainWindow -right-> Logic
+
+@enduml

@@ -3,38 +3,24 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+Cheese Inventory Management (CHIM) is a desktop app for managing the contacts, inventory, and orders of a home-based
+cheese making business.
 
-* Table of Contents
-{:toc}
+The app is optimized for use via a Command Line Interface (CLI) while still having the
+benefits of a Graphical User Interface (GUI). If you can type fast, CHIM can get your management tasks done
+faster than traditional GUI apps.
+
+* Table of Content
+  - [Quick start](#quick-start)
+  - [Features](#features)
+  - [FAQ](#faq)
+  - [Command summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
-
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
-
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
-
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
-
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
-
-   * **`list`** : Lists all contacts.
-
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
-
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
-
-   * **`clear`** : Deletes all contacts.
-
-   * **`exit`** : Exits the app.
-
-1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -45,137 +31,194 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `addcustomer n/CUSTOMER_NAME`, `CUSTOMER_NAME` is a parameter that is to be used
+  as `addcustomer n/John Doe ...`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `listcheeses [t/CHEESE_TYPE]` can be used as `listcheeses` or as `listcheeses t/Brie`.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `n/CUSTOMER_NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/CUSTOMER_NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of
+  the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+* Extraneous parameters for commands that do not take in parameters (such as `listcustomers` and `exit`) will be
+  ignored.<br>
+  e.g. if the command specifies `listcustomers 123`, it will be interpreted as `listcustomers`.
 
 </div>
 
-### Viewing help : `help`
+### Adding an order: `addorder`
 
-Shows a message explaning how to access the help page.
+Adds an order to CHIM.
 
-![help message](images/helpMessage.png)
+Format: `addorder t/CHEESE_TYPE q/QUANTITY p/PHONE_NUMBER [d/ORDER_DATE]`
+* The specified `QUANTITY` must be a positive integer.
+* The specified `PHONE_NUMBER` must belong to an existing user.
 
-Format: `help`
+Example: `addorder t/Parmesan q/2 p/65555555`
+
+### Adding a cheese: `addcheese`
+
+Adds a cheese to CHIM.
+
+Format: `addcheese t/CHEESE_TYPE q/QUANTITY [d/MANUFACTURE_DATE] [m/MATURITY_DATE] [d/EXPIRY_DATE]`
+* The specified `QUANTITY` must be a positive integer.
+
+Example: `addcheese t/Parmesan q/2`
+
+### Adding a customer: `addcustomer`
+
+Adds a customer to CHIM.
+
+Format: `addcustomer n/CUSTOMER_NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/tags...]`
+
+Example: `addcustomer n/John Doe p/65555555 e/johndoe@gmail.com a/Blk 436 Serangoon Gardens St 26 #01-01`
+
+### Editing an order: `editorder`
+
+Edits an existing uncompleted order in CHIM.
+
+Format: `editorder INDEX [t/CHEESE_TYPE] [q/QUANTITY] [p/PHONE_NUMBER] [d/ORDER_DATE]`
+* The specified `INDEX` and `QUANTITY` must be a positive integer.
+* The specified `PHONE_NUMBER` must belong to an existing user.
+
+Example: `editorder 2 t/Parmesan q/2 p/65555555`
+
+### Editing a cheese: `editcheese`
+
+Edits an existing unassigned cheese in CHIM.
+
+Format: `editcheese INDEX [t/CHEESE_TYPE] [d/MANUFACTURE_DATE] [m/MATURITY_DATE] [d/EXPIRY_DATE]`
+* The specified `INDEX` must be a positive integer.
+
+Example: `editcheese 1 t/Parmesan d/2021-03-12`
+
+### Editing a customer: `editcustomer`
+
+Edits an existing customer in CHIM.
+
+Format: `editcustomer [n/CUSTOMER_NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/tags...]`
+
+Example: `addcustomer 4 n/Jane Lim p/65558888`
+
+### Delete an order: `deleteorder`
+
+Deletes a specific order from CHIM, identified by its index.
+
+If the order is complete and has cheeses assigned to it, those cheeses will be deleted by CHIM.
+
+Format: `deleteorder ORDER_INDEX`
+* Deletes the order at the specified `ORDER_INDEX`. The index must be a positive integer.
+
+Example: `deleteorder 2`
+* Deletes the second order in the list of orders.
+
+### Delete cheese from inventory: `deletecheese`
+
+Deletes a specified cheese from the inventory.
+
+The cheese must be unassigned.
+
+Format: `deletecheese CHEESE_INDEX`
+* Deletes the cheese at the specified `CHEESE_INDEX`. The index must be a positive integer.
+
+Example: `deletecheese 2`
+
+### Delete customer: `deletecustomer`
+
+Deletes a customer from the list of customers, using their phone number as identifier.
+
+If the customer has orders, their orders will be deleted by CHIM.
+
+Format: `deletecustomer p/PHONE_NUMBER`
+
+Example: `deletecustomer p/65555555`
 
 
-### Adding a person: `add`
+### Listing orders: `listorders`
 
-Adds a person to the address book.
+Displays all orders in CHIM.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `listorders`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+### Listing cheese: `listcheeses`
+
+Displays all cheeses in CHIM.
+
+Format: `listcheeses`
+
+
+### Listing customers: `listcustomers`
+
+Displays the customers in CHIM.
+
+Format: `listcustomers`
+
+### Marking an order as complete: `done`
+
+Marks an incomplete order as complete from CHIM, identified by its index.
+
+Format: `done ORDER_INDEX`
+* Marks the order at the specified `ORDER_INDEX`.
+* The `ORDER_INDEX` must be a positive integer.
+
+Example: `done 2`
+* Mark the second order in the list of orders as complete.
+
+### Finding customers: `findcustomer`
+
+Searches for a customer in CHIM.
+
+Format: `findcustomer [n/NAME_KEYWORDS...] [p/PHONE_KEYWORDS...] [e/EMAIL_KEYWORDS...] [a/ADDRESS_KEYWORDS...] `
+* Search is case-insensitive, e.g. Betty will match betty.
+* Search will search by given keywords as prefix, e.g. Bet will match Betty.
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `findcustomer n/Betty`
+* `findcustomer a/Clementi Road`
 
-### Listing all persons : `list`
+### Finding cheeses: `findcheese`
 
-Shows a list of all persons in the address book.
+Searches for particular cheeses in CHIM.
 
-Format: `list`
-
-### Editing a person : `edit`
-
-Edits an existing person in the address book.
-
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
-
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+Format: `findcheese [t/CHEESE_TYPE_KEYWORDS...] [s/ASSIGNMENT_STATUS]`
+* Search is case-insensitive, e.g. Brie will match brie.
+* Assignment status parameter must be either 'assigned' or 'unassigned'.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+* `findcheese t/Brie Feta`
+* `findcheese s/unassigned`
+* `findcheese t/Gouda s/assigned`
 
-### Locating persons by name: `find`
+### Finding orders: `findorder`
 
-Finds persons whose names contain any of the given keywords.
+Searches for particular orders in CHIM.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+Format: `findorder [t/CHEESE_TYPE_KEYWORDS...] [n/CUSTOMER_NAME_KEYWORDS] [p/CUSTOMER_PHONE_KEYWORDS] [s/COMPLETION_STATUS]`
+* Search is case-insensitive, e.g. Brie will match brie.
+* Assignment status parameter must be either 'complete' or 'incomplete'.
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `findorder t/Brie Feta s/incomplete`
+* `findorder n/Alice s/incomplete`
+* `findorder p/92280919`
 
-### Deleting a person : `delete`
-
-Deletes the specified person from the address book.
-
-Format: `delete INDEX`
-
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
-
-### Clearing all entries : `clear`
-
-Clears all entries from the address book.
-
-Format: `clear`
-
-### Exiting the program : `exit`
+### Exiting the program: `exit`
 
 Exits the program.
 
 Format: `exit`
 
-### Saving the data
-
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Editing the data file
-
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
-</div>
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous CHIM home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -183,10 +226,17 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+**Add Order** | `addorder t/CHEESE_TYPE q/QUANTITY p/PHONE_NUMBER` <br> e.g. `addorder t/Parmesan q/2 p/65555555`
+**Add Cheese** | `addcheese t/CHEESE_TYPE q/QUANTITY` <br> e.g. `addcheese t/CHEESE_TYPE q/QUANTITY`
+**Add Customer** | `addcustomer n/CUSTOMER_NAME p/PHONE_NUMBER a/ADDRESS` <br> e.g. `addcustomer n/John Doe p/65555555 a/Blk 436 Serangoon Gardens St 26 #01-01`
+**Delete Order** | `deleteorder ORDER_INDEX` <br> e.g. `deleteorder 2`
+**Delete Cheese** | `deletecheese CHEESE_INDEX` <br> Example: `deletecheese 5`
+**Delete Customer**| `deletecustomer p/PHONE_NUMBER` <br> Example: `deletecustomer p/65555555`
+**List Orders** | `listorder`
+**List Cheese** | `listcheese` <br> e.g. `listcheese`
+**List Customer** | `listcustomer`
+**Mark As Done** | `done INDEX` <br> e.g. `done 2`
+**Find Customer** | `findcustomer [n/NAME_KEYWORDS...] [p/PHONE_KEYWORDS...] [e/EMAIL_KEYWORDS...] [a/ADDRESS_KEYWORDS...]` <br> e.g. `findcustomer n/Betty`
+**Find Cheese** | `findcheese [t/CHEESE_TYPE_KEYWORDS...] [s/ASSIGNMENT_STATUS]` <br> e.g. `findcheese t/Brie Feta s/unassigned`
+**Find Order** | `findorder [t/CHEESE_TYPE_KEYWORDS...] [n/CUSTOMER_NAME_KEYWORDS] [p/CUSTOMER_PHONE_KEYWORDS] [s/COMPLETION_STATUS]`  <br> e.g. `findorder t/gouda s/complete
+**Exit** | `exit`

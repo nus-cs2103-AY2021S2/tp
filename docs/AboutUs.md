@@ -5,55 +5,55 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
 
-### John Doe
+### Aaron Saw Min Sern
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/aaronsms.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/aaronsms)]
+[[portfolio](team/aaronsms.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Software Testing
 
-### Jean Doe
+### Daniel Lau Yew En
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/daniellau88.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/daniellau88)]
+[[portfolio](team/daniellau.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: DevOps (CI)
+
+### Lauren Lee Hui Ying
+
+<img src="images/laurenlhy.png" width="200px">
+
+[[github](http://github.com/laurenlhy)]
+[[portfolio](team/laurenlhy.md)]
+
+* Role: Developer
+* Responsibilities:
+
+### Lim Li Quan
+
+<img src="images/ahquanz.png" width="200px">
+
+[[github](http://github.com/ahquanz)]
+
+[[portfolio](team/ahquanz.md)]
+
+* Role: Developer
+* Responsibilities:
+
+### Ng Wei Xue
+
+<img src="images/weixue123.png" width="200px">
+
+[[github](http://github.com/weixue123)]
+[[portfolio](team/weixue123.md)]
+
+* Role: Developer
+* Responsibilities: Documentation

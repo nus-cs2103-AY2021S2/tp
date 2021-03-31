@@ -11,7 +11,9 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.cheese.Cheese;
+import seedu.address.model.customer.Customer;
+import seedu.address.model.order.Order;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -19,16 +21,24 @@ import seedu.address.model.person.Person;
 @JsonRootName(value = "addressbook")
 class JsonSerializableAddressBook {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_CUSTOMER = "Customers list contains duplicate customer(s).";
+    public static final String MESSAGE_DUPLICATE_CHEESE = "Cheese list contains duplicate cheese(s).";
+    public static final String MESSAGE_DUPLICATE_ORDER = "Order list contains duplicate order(s).";
 
-    private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedCustomer> customers = new ArrayList<>();
+    private final List<JsonAdaptedCheese> cheeses = new ArrayList<>();
+    private final List<JsonAdaptedOrder> orders = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableAddressBook} with the given customers, cheeses and orders.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
-        this.persons.addAll(persons);
+    public JsonSerializableAddressBook(@JsonProperty("customers") List<JsonAdaptedCustomer> customers,
+                                       @JsonProperty("cheeses") List<JsonAdaptedCheese> cheeses,
+                                       @JsonProperty("orders") List<JsonAdaptedOrder> orders) {
+        this.customers.addAll(customers);
+        this.cheeses.addAll(cheeses);
+        this.orders.addAll(orders);
     }
 
     /**
@@ -37,7 +47,9 @@ class JsonSerializableAddressBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        customers.addAll(source.getCustomerList().stream().map(JsonAdaptedCustomer::new).collect(Collectors.toList()));
+        cheeses.addAll(source.getCheeseList().stream().map(JsonAdaptedCheese::new).collect(Collectors.toList()));
+        orders.addAll(source.getOrderList().stream().map(JsonAdaptedOrder::new).collect(Collectors.toList()));
     }
 
     /**
@@ -47,13 +59,32 @@ class JsonSerializableAddressBook {
      */
     public AddressBook toModelType() throws IllegalValueException {
         AddressBook addressBook = new AddressBook();
-        for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
-            Person person = jsonAdaptedPerson.toModelType();
-            if (addressBook.hasPerson(person)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+        for (JsonAdaptedCustomer jsonAdaptedCustomer : customers) {
+            Customer customer = jsonAdaptedCustomer.toModelType();
+            if (addressBook.hasCustomer(customer)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_CUSTOMER);
             }
-            addressBook.addPerson(person);
+            addressBook.addCustomer(customer);
         }
+
+        for (JsonAdaptedCheese jsonAdaptedCheese : cheeses) {
+            Cheese cheese = jsonAdaptedCheese.toModelType();
+            if (addressBook.hasCheese(cheese)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_CHEESE);
+            }
+            addressBook.addCheese(cheese);
+        }
+
+        for (JsonAdaptedOrder jsonAdaptedOrder : orders) {
+            Order order = jsonAdaptedOrder.toModelType();
+            if (addressBook.hasOrder(order)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_ORDER);
+            }
+            addressBook.addOrder(order);
+        }
+
+        addressBook.checkAddressBook();
+
         return addressBook;
     }
 

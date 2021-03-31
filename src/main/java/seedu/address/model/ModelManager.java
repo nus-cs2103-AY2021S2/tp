@@ -4,14 +4,22 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
-import java.util.function.Predicate;
+import java.util.Set;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
+import seedu.address.model.cheese.Cheese;
+import seedu.address.model.cheese.CheeseId;
+import seedu.address.model.cheese.CheeseType;
+import seedu.address.model.customer.Customer;
+import seedu.address.model.customer.Phone;
+import seedu.address.model.order.Order;
+import seedu.address.model.order.OrderId;
+import seedu.address.model.order.Quantity;
+import seedu.address.model.util.FilteredSortedList;
+import seedu.address.model.util.predicate.FieldPredicate;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -21,7 +29,9 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredSortedList<Customer> filteredAndSortedCustomers;
+    private final FilteredSortedList<Order> filteredAndSortedOrders;
+    private final FilteredSortedList<Cheese> filteredAndSortedCheeses;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -34,7 +44,9 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredAndSortedCustomers = new FilteredSortedList<>(this.addressBook.getCustomerList());
+        filteredAndSortedOrders = new FilteredSortedList<>(this.addressBook.getOrderList());
+        filteredAndSortedCheeses = new FilteredSortedList<>(this.addressBook.getCheeseList());
     }
 
     public ModelManager() {
@@ -88,45 +100,209 @@ public class ModelManager implements Model {
         return addressBook;
     }
 
+    //=========== Customer Operations ==========================================================================
+
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public boolean hasCustomer(Customer customer) {
+        requireNonNull(customer);
+        return addressBook.hasCustomer(customer);
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+    public boolean hasCustomerWithPhone(Phone phone) {
+        requireNonNull(phone);
+        return addressBook.hasCustomerWithPhone(phone);
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public Customer getCustomerWithPhone(Phone phone) {
+        requireNonNull(phone);
+        return addressBook.getCustomerWithPhone(phone);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
-
-        addressBook.setPerson(target, editedPerson);
+    public void deleteCustomer(Customer target) {
+        addressBook.deleteCustomer(target);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    @Override
+    public void addCustomer(Customer customer) {
+        addressBook.addCustomer(customer);
+        updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
+    }
+
+    @Override
+    public void setCustomer(Customer target, Customer editedCustomer) {
+        requireAllNonNull(target, editedCustomer);
+
+        addressBook.setCustomer(target, editedCustomer);
+    }
+
+    @Override
+    public ObservableList<Customer> getCompleteCustomerList() {
+        return addressBook.getCustomerList();
+    }
+
+    //=========== Order Operations ==========================================================================
+
+    @Override
+    public boolean hasOrder(Order order) {
+        requireNonNull(order);
+        return addressBook.hasOrder(order);
+    }
+
+    @Override
+    public void deleteOrder(Order target) {
+        addressBook.deleteOrder(target);
+    }
+
+    @Override
+    public void addOrder(Order order) {
+        addressBook.addOrder(order);
+        updateFilteredOrderList(PREDICATE_SHOW_ALL_ORDERS);
+    }
+
+    @Override
+    public void setOrder(Order target, Order editedOrder) {
+        requireAllNonNull(target, editedOrder);
+
+        addressBook.setOrder(target, editedOrder);
+    }
+
+    @Override
+    public Order getOrderWithId(OrderId orderId) {
+        requireNonNull(orderId);
+        return addressBook.getOrderWithId(orderId);
+    }
+
+    //=========== Cheese Operations ==========================================================================
+
+    @Override
+    public boolean hasCheese(Cheese cheese) {
+        requireNonNull(cheese);
+        return addressBook.hasCheese(cheese);
+    }
+
+    @Override
+    public void deleteCheese(Cheese target) {
+        addressBook.deleteCheese(target);
+    }
+
+    @Override
+    public void addCheese(Cheese cheese) {
+        addressBook.addCheese(cheese);
+        updateFilteredCheeseList(PREDICATE_SHOW_ALL_CHEESES);
+    }
+
+    @Override
+    public void setCheese(Cheese target, Cheese editedCheese) {
+        requireAllNonNull(target, editedCheese);
+
+        addressBook.setCheese(target, editedCheese);
+    }
+
+    @Override
+    public Cheese getCheeseWithId(CheeseId cheeseId) {
+        requireNonNull(cheeseId);
+
+        return addressBook.getCheeseWithId(cheeseId);
+    }
+
+    @Override
+    public Set<CheeseId> getUnassignedCheeses(CheeseType cheeseType, Quantity quantity) {
+        return addressBook.getUnassignedCheeses(cheeseType, quantity);
+    }
+
+    @Override
+    public void updateCheesesStatus(Set<CheeseId> cheesesAssigned) {
+        addressBook.updateCheesesStatus(cheesesAssigned);
+    }
+
+
+    //=========== Filtered Customer List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Customer} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Customer> getFilteredCustomerList() {
+        return filteredAndSortedCustomers.getObservableList();
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Order} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Order> getFilteredOrderList() {
+        return filteredAndSortedOrders.getObservableList();
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public int getFilteredOrderListIncompleteCount() {
+        int c = 0;
+        for (Order o : getFilteredOrderList()) {
+            if (o.isComplete()) {
+                c++;
+            }
+        }
+        return c;
+    }
+
+    @Override
+    public int getFilteredCheeseListUnassignedCount() {
+        int c = 0;
+        for (Cheese cheese : getFilteredCheeseList()) {
+            if (cheese.isCheeseAssigned()) {
+                c++;
+            }
+        }
+        return c;
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Cheese} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Cheese> getFilteredCheeseList() {
+        return filteredAndSortedCheeses.getObservableList();
+    }
+
+    @Override
+    public void updateFilteredCustomerList(FieldPredicate<Customer> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredAndSortedCustomers.setModelPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredOrderList(FieldPredicate<Order> predicate) {
+        requireNonNull(predicate);
+        filteredAndSortedOrders.setModelPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredCheeseList(FieldPredicate<Cheese> predicate) {
+        requireNonNull(predicate);
+        filteredAndSortedCheeses.setModelPredicate(predicate);
+    }
+
+    //=========== For Toggling UI Panel ==================================================================
+
+    @Override
+    public void setPanelToCustomerList() {
+        getGuiSettings().setPanelToCustomerList();
+    }
+
+    @Override
+    public void setPanelToCheeseList() {
+        getGuiSettings().setPanelToCheeseList();
+    }
+
+    @Override
+    public void setPanelToOrderList() {
+        getGuiSettings().setPanelToOrderList();
     }
 
     @Override
@@ -145,7 +321,9 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredAndSortedCustomers.equals(other.filteredAndSortedCustomers)
+                && filteredAndSortedOrders.equals(other.filteredAndSortedOrders)
+                && filteredAndSortedCheeses.equals(other.filteredAndSortedCheeses);
     }
 
 }

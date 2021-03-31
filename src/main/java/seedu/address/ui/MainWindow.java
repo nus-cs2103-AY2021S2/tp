@@ -11,11 +11,18 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.GuiSettings.PanelToShow;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.ListCheesesCommand;
+import seedu.address.logic.commands.ListCustomersCommand;
+import seedu.address.logic.commands.ListOrdersCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.ui.panels.CheeseListPanel;
+import seedu.address.ui.panels.CustomerListPanel;
+import seedu.address.ui.panels.OrderListPanel;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -27,13 +34,17 @@ public class MainWindow extends UiPart<Stage> {
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
-    private Stage primaryStage;
-    private Logic logic;
+    private final Stage primaryStage;
+    private final Logic logic;
+
+    private PanelToShow panel;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private CustomerListPanel customerListPanel;
+    private CheeseListPanel cheeseListPanel;
+    private OrderListPanel orderListPanel;
     private ResultDisplay resultDisplay;
-    private HelpWindow helpWindow;
+    private final HelpWindow helpWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -42,7 +53,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane listPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -62,6 +73,7 @@ public class MainWindow extends UiPart<Stage> {
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
+        setDefaultPanel(logic.getGuiSettings());
 
         setAccelerators();
 
@@ -78,6 +90,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -110,17 +123,54 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        customerListPanel = new CustomerListPanel(logic.getFilteredCustomerList());
+        cheeseListPanel = new CheeseListPanel(logic.getFilteredCheeseList());
+        orderListPanel = new OrderListPanel(logic.getFilteredOrderList(), logic.getCompleteCustomerList());
 
-        resultDisplay = new ResultDisplay();
-        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+        // Set the information to show when starting the app
+        setListPanel();
+        setDefaultResultDisplay();
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+    }
+
+    /**
+     * Set what information to render in list panel.
+     * Called at initialization and every time after a command is executed.
+     */
+    void setListPanel() {
+        listPanelPlaceholder.getChildren().clear();
+        panel = logic.getGuiSettings().getPanel();
+
+        if (panel == PanelToShow.CHEESE_LIST) {
+            listPanelPlaceholder.getChildren().add(cheeseListPanel.getRoot());
+        } else if (panel == PanelToShow.ORDER_LIST) {
+            listPanelPlaceholder.getChildren().add(orderListPanel.getRoot());
+        } else {
+            listPanelPlaceholder.getChildren().add(customerListPanel.getRoot());
+        }
+    }
+
+    /**
+     * Sets the default results display to show; called at initialization.
+     */
+    void setDefaultResultDisplay() {
+        resultDisplay = new ResultDisplay();
+        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+
+        panel = logic.getGuiSettings().getPanel();
+
+        if (panel == PanelToShow.CHEESE_LIST) {
+            resultDisplay.setFeedbackToUser(ListCheesesCommand.MESSAGE_SUCCESS);
+        } else if (panel == PanelToShow.ORDER_LIST) {
+            resultDisplay.setFeedbackToUser(ListOrdersCommand.MESSAGE_SUCCESS);
+        } else {
+            resultDisplay.setFeedbackToUser(ListCustomersCommand.MESSAGE_SUCCESS);
+        }
     }
 
     /**
@@ -133,6 +183,13 @@ public class MainWindow extends UiPart<Stage> {
             primaryStage.setX(guiSettings.getWindowCoordinates().getX());
             primaryStage.setY(guiSettings.getWindowCoordinates().getY());
         }
+    }
+
+    /**
+     * Sets the default panel based on {@code guiSettings}.
+     */
+    private void setDefaultPanel(GuiSettings guiSettings) {
+        panel = guiSettings.getPanel();
     }
 
     /**
@@ -156,15 +213,16 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     private void handleExit() {
-        GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
-                (int) primaryStage.getX(), (int) primaryStage.getY());
+        GuiSettings guiSettings = new GuiSettings(
+                panel,
+                primaryStage.getWidth(),
+                primaryStage.getHeight(),
+                (int) primaryStage.getX(),
+                (int) primaryStage.getY()
+        );
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
-    }
-
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
     }
 
     /**
@@ -177,6 +235,7 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            setListPanel();
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
