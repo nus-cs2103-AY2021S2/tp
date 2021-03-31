@@ -301,6 +301,21 @@ Examples:
 * `updateT 1 i/2 d/Review new PR`
 * `updateT 2 i/1 d/Merge new PR`
 
+#### Marking a todo as done: `markT`
+
+Marks a todo from a specified project as done.
+
+Format: `markT PROJECT_INDEX i/TODO_INDEX`
+
+* Marks the todo at the specified `TODO_INDEX` from the project at the specified `PROJECT_INDEX` as done.
+* The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
+* The `TODO_INDEX` refers to the number shown beside the todo when viewing the project.
+* Both indexes **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `markT 1 i/1
+* `markT 2 i/3`
+
 #### Deleting a todo from a project: `deleteT`
 
 Deletes a specified todo from a specified project.
@@ -354,6 +369,21 @@ Format: `updateD PROJECT_INDEX i/DEADLINE_INDEX [d/DESCRIPTION] [by/DATE]`
 Examples:
 * `updateD 1 i/2 d/Finish v1.3`
 * `updateD 2 i/1 by/31-03-2021`
+
+#### Marking a deadline as done: `markD`
+
+Marks a deadline from a specified project as done.
+
+Format: `markD PROJECT_INDEX i/DEADLINE_INDEX`
+
+* Marks the deadline at the specified `DEADLINE_INDEX` from the project at the specified `PROJECT_INDEX` as done.
+* The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
+* The `DEADLINE_INDEX` refers to the number shown beside the deadline when viewing the project.
+* Both indexes **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `markD 1 i/1
+* `markD 2 i/3`
 
 #### Deleting a deadline from a project: `deleteD`
 
@@ -686,6 +716,8 @@ Action | Format, Examples
 **Add Event to Project** | `addEto PROJECT_INDEX d/DESCRIPTION on/DATE at/TIME w/REPEAT_WEEKLY`
 **Add Groupmate to Project** | `addG PROJECT_INDEX n/NAME [r/ROLE]…​`
 **Add Todo to Project** | `addTto PROJECT_INDEX d/DESCRIPTION`
+**Mark Deadline as done** | `markD PROJECT_INDEX i/DEADLINE_INDEX`
+**Mark Todo as done** | `markT PROJECT_INDEX i/TODO_INDEX`
 **Update Project** | `updateP PROJECT_INDEX n/NAME`
 **Update Deadline** | `updateD PROJECT_INDEX i/DEADLINE_INDEX [d/DESCRIPTION] [by/DATE]`
 **Update Event** | `updateE PROJECT_INDEX i/EVENT_INDEX [d/DESCRIPTION] [on/DATE] [at/TIME] [w/REPEAT_WEEKLY]`
