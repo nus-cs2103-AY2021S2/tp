@@ -56,9 +56,8 @@ public class IssueTest {
         assertFalse(ISSUE_10_100.equals(editedIssue10100));
 
         // different status -> returns false
-        final String closedStatusString = "closed";
         editedIssue10100 = new IssueBuilder(ISSUE_10_100)
-                .withStatus(closedStatusString)
+                .withStatus(ISSUE_20_109.getStatus().value.toString())
                 .build();
         assertFalse(ISSUE_10_100.equals(editedIssue10100));
 

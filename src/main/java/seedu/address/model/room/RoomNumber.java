@@ -33,10 +33,18 @@ public class RoomNumber {
         return test.matches(VALIDATION_REGEX);
     }
 
-
     @Override
     public String toString() {
         return roomNumber;
+    }
+
+
+    /**
+     * Returns true if a room has the same number.
+     * This defines a weaker notion of equality between two rooms.
+     */
+    public boolean isSameRoom(Room room) {
+        return this.equals(room.getRoomNumber());
     }
 
     @Override
