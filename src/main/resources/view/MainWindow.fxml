@@ -8,26 +8,51 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.stage.*?>
 
-<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="Address App" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root fx:id="mainStage" minHeight="600" minWidth="700.0" onCloseRequest="#handleExit" title="JJIMY" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
   <scene>
-    <Scene>
+    <Scene fx:id="mainScene" fill="#ffffff00">
       <stylesheets>
         <URL value="@DarkTheme.css" />
         <URL value="@Extensions.css" />
       </stylesheets>
 
-      <VBox>
-        <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
-          <Menu mnemonicParsing="false" text="File">
-            <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
+      <VBox fx:id="mainVBox" styleClass="main-v-box">
+        <MenuBar fx:id="menuBar" nodeOrientation="RIGHT_TO_LEFT">
+          <Menu fx:id="menuSettings" mnemonicParsing="false">
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
+            <MenuItem fx:id="exitMenuItem" mnemonicParsing="false" onAction="#handleExit" text="Exit" />
           </Menu>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets right="-10.0" />
+               </padding>
         </MenuBar>
+            <HBox alignment="CENTER" maxHeight="100.0" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
+               <children>
+                  <ImageView fitHeight="100.0" pickOnBounds="true" preserveRatio="true" styleClass="logo-left" HBox.hgrow="ALWAYS">
+                     <image>
+                        <Image url="@../images/logo_left.png" />
+                     </image>
+                  </ImageView>
+                  <Region maxHeight="100.0" HBox.hgrow="ALWAYS" />
+                  <ImageView fitHeight="100.0" pickOnBounds="true" preserveRatio="true" styleClass="logo-center">
+                     <image>
+                        <Image url="@../images/logo_center.png" />
+                     </image>
+                  </ImageView>
+                  <Region maxHeight="100.0" HBox.hgrow="ALWAYS" />
+                  <ImageView fitHeight="100.0" pickOnBounds="true" preserveRatio="true" styleClass="logo-right">
+                     <image>
+                        <Image url="@../images/logo_right.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
 
         <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
           <padding>
@@ -40,24 +65,43 @@
             <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
         </StackPane>
-            <HBox styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+            <HBox style="-fx-background-color: white;" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
                <children>
                   <VBox fx:id="personList" layoutX="11.0" layoutY="11.0" minWidth="340.0" prefWidth="340.0" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
                      <padding>
-                        <Insets bottom="10" left="10" right="10" top="10" />
+                        <Insets left="10.0" right="10.0" top="10.0" />
                      </padding>
                      <children>
                         <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
                      </children>
                   </VBox>
                   <VBox fx:id="componentList" layoutX="10.0" layoutY="10.0" minWidth="340.0" prefWidth="340.0" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
-                     <padding>
-                        <Insets bottom="10" left="10" right="10" top="10" />
-                     </padding>
                      <children>
-                        <StackPane fx:id="menuListPanelPlaceholder" VBox.vgrow="ALWAYS" />
-                        <StackPane fx:id="inventoryListPanelPlaceholder" VBox.vgrow="ALWAYS" />
-                        <StackPane fx:id="orderListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                        <StackPane fx:id="menuListPanelPlaceholder" VBox.vgrow="ALWAYS">
+                           <padding>
+                              <Insets left="10.0" right="10.0" top="10.0" />
+                           </padding></StackPane>
+                        <StackPane fx:id="inventoryListPanelPlaceholder" VBox.vgrow="ALWAYS">
+                           <padding>
+                              <Insets left="10.0" right="10.0" top="10.0" />
+                           </padding></StackPane>
+                        <StackPane fx:id="orderListPanelPlaceholder" VBox.vgrow="ALWAYS">
+                           <padding>
+                              <Insets left="10.0" right="10.0" top="10.0" />
+                           </padding></StackPane>
+                        <HBox fx:id="componentTabs" alignment="CENTER" maxHeight="50.0" minHeight="50.0" prefHeight="50.0" styleClass="component-tab-hbox" VBox.vgrow="ALWAYS">
+                           <children>
+                              <ToggleButton fx:id="menuTab" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="component-tab" text="Menu" HBox.hgrow="ALWAYS">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="componentTabGroup" />
+                                 </toggleGroup></ToggleButton>
+                              <ToggleButton fx:id="orderTab" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="component-tab" text="Order" toggleGroup="$componentTabGroup" HBox.hgrow="ALWAYS" />
+                              <ToggleButton fx:id="inventoryTab" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" styleClass="component-tab" text="Inventory" toggleGroup="$componentTabGroup" HBox.hgrow="ALWAYS" />
+                           </children>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </HBox>
                      </children>
                   </VBox>
                </children>

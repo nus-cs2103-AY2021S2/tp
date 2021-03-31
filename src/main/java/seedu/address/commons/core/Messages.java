@@ -6,6 +6,7 @@ package seedu.address.commons.core;
 public class Messages {
 
     // General
+    public static final String MESSAGE_WELCOME = "Welcome to JJIMY, the friendly restaurant management app.";
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
 

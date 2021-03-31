@@ -97,8 +97,8 @@ public interface Model {
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
-     * @throws NullPointerException if {@code predicate} is null.
      * @param predicate
+     * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<? super Person> predicate);
 
@@ -146,8 +146,8 @@ public interface Model {
 
     /**
      * Updates the filter of the filtered dish list to filter by the given {@code predicate}.
-     * @throws NullPointerException if {@code predicate} is null.
      * @param predicate
+     * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredDishList(Predicate<? super Dish> predicate);
 
@@ -197,8 +197,8 @@ public interface Model {
 
     /**
      * Updates the filter of the filtered ingredient list to filter by the given {@code predicate}.
-     * @throws NullPointerException if {@code predicate} is null.
      * @param predicate
+     * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredIngredientList(Predicate<? super Ingredient> predicate);
 
@@ -259,8 +259,8 @@ public interface Model {
 
     /**
      * Updates the filter of the filtered ingredient list to filter by the given {@code predicate}.
-     * @throws NullPointerException if {@code predicate} is null.
      * @param predicate
+     * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredOrderList(Predicate<? super Order> predicate);
 

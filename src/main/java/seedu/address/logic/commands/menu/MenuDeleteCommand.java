@@ -27,8 +27,9 @@ public class MenuDeleteCommand extends Command {
             + "Example: " + COMPONENT_WORD + " " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_DISH_SUCCESS = "Deleted dish: %1$s";
-    public static final String MESSAGE_DELETE_DISH_FAILURE = "Failed to deleted dish: %1$s due to outstanding orders, " +
-            "add -f flag to confirm";
+    public static final String MESSAGE_DELETE_DISH_FAILURE =
+            "Failed to deleted dish: %1$s due to outstanding orders, "
+            + "add -f flag to confirm";
 
     private final Index targetIndex;
     private final boolean isForce;
@@ -37,6 +38,11 @@ public class MenuDeleteCommand extends Command {
         this(targetIndex, false);
     }
 
+    /**
+     * Forces delete dish with given index along with associated ingredients
+     * @param targetIndex index in menu list
+     * @param isForce forces delete a dish
+     */
     public MenuDeleteCommand(Index targetIndex, boolean isForce) {
         this.targetIndex = targetIndex;
         this.isForce = isForce;
