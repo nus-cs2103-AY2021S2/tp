@@ -213,18 +213,18 @@ public class Colour {
      * Initialises the HashMap of colours and their respective sample images.
      */
     public static void initialiseSamples() {
-        SAMPLES.put("red", "images/redSample.jpg");
-        SAMPLES.put("orange", "images/orangeSample.jpg");
-        SAMPLES.put("yellow", "images/yellowSample.jpg");
-        SAMPLES.put("green", "images/greenSample.jpg");
-        SAMPLES.put("blue", "images/blueSample.jpg");
-        SAMPLES.put("pink", "images/pinkSample.jpg");
-        SAMPLES.put("purple", "images/purpleSample.jpg");
-        SAMPLES.put("brown", "images/brownSample.jpg");
-        SAMPLES.put("black", "images/blackSample.jpg");
-        SAMPLES.put("white", "images/whiteSample.jpg");
-        SAMPLES.put("grey", "images/greySample.jpg");
-        SAMPLES.put("beige", "images/beigeSample.jpg");
+        SAMPLES.put("red", "images/redSamples");
+        SAMPLES.put("orange", "images/orangeSamples");
+        SAMPLES.put("yellow", "images/yellowSamples");
+        SAMPLES.put("green", "images/greenSamples");
+        SAMPLES.put("blue", "images/blueSamples");
+        SAMPLES.put("pink", "images/pinkSamples");
+        SAMPLES.put("purple", "images/purpleSamples");
+        SAMPLES.put("brown", "images/brownSamples");
+        SAMPLES.put("black", "images/blackSamples");
+        SAMPLES.put("white", "images/whiteSamples");
+        SAMPLES.put("grey", "images/greySamples");
+        SAMPLES.put("beige", "images/beigeSamples");
     }
 
     public List<String> getMatches() {
