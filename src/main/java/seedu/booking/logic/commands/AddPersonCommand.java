@@ -26,8 +26,7 @@ public class AddPersonCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
-            + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_TAG + "Professor";
+            + PREFIX_EMAIL + "johnd@example.com ";
 
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
