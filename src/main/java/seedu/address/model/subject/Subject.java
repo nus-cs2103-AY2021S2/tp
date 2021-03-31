@@ -5,12 +5,13 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.util.Locale;
 /**
- * Represents a Tag in TutorsPet.
+ * Represents a Subject in TutorsPet.
  * Guarantees: immutable; name is valid as declared in {@link #isValidSubjectName(String)}
  */
 public class Subject implements Comparable<Subject> {
-
-    public static final String MESSAGE_CONSTRAINTS = "Subject names should be alphanumeric";
+    public static final String MESSAGE_CONSTRAINTS = "Subject names should be an abbreviation from the list "
+            + "[bio, chem, cn, econ, eng, geo, hist, math, phys], which respectively means "
+            + "[biology, chemistry, chinese, economics, english, geography, history, mathematics, physics]";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     public final String subjectName;
@@ -22,7 +23,7 @@ public class Subject implements Comparable<Subject> {
      */
     public Subject(String subjectName) {
         requireNonNull(subjectName);
-        checkArgument(isValidSubjectName(subjectName), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidSubjectName(subjectName.toLowerCase(Locale.ROOT)), MESSAGE_CONSTRAINTS);
         this.subjectName = subjectName;
     }
 
@@ -30,7 +31,14 @@ public class Subject implements Comparable<Subject> {
      * Returns true if a given string is a valid subject name.
      */
     public static boolean isValidSubjectName(String test) {
-        return test.matches(VALIDATION_REGEX);
+        if (test.matches(VALIDATION_REGEX)) {
+            for (AvailableSubject subject : AvailableSubject.values()) {
+                if (subject.name().equals(test)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     @Override
