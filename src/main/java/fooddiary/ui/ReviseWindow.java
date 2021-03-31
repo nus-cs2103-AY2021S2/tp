@@ -1,5 +1,6 @@
 package fooddiary.ui;
 
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -171,10 +172,13 @@ public class ReviseWindow extends UiPart<Stage> {
         String rating = String.format("%s%s", CliSyntax.PREFIX_RATING.toString(), ratingText.getText());
         String price = String.format("%s%s", CliSyntax.PREFIX_PRICE.toString(), priceText.getText());
 
-        String[] reviewsArr = reviewsText.getText().split("\\r?\\n\n|\\r\r");
+        String[] reviewsArr = reviewsText.getText().split("\\r?\\n|\\r");
         String reviewsStr = "";
+        System.out.println(Arrays.toString(reviewsArr));
         for (String review : reviewsArr) {
-            reviewsStr += String.format(" %s%s", CliSyntax.PREFIX_REVIEW, review);
+            if (!review.isEmpty()) {
+                reviewsStr += String.format(" %s%s", CliSyntax.PREFIX_REVIEW, review);
+            }
         }
 
         String[] categoriesArr = categoriesText.getText().split(" ");
