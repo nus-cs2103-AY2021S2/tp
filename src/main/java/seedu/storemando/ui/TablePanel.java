@@ -68,6 +68,11 @@ public class TablePanel extends UiPart<Region> implements Initializable {
         private String daysBeforeExpiry;
         private String numberOfItems;
 
+        /**
+         * Expiring Item constructor.
+         * @param daysBeforeExpiry   The number of days before the item expire.
+         * @param itemList   The list of items in StoreMando.
+         */
         public ExpiringItem(int daysBeforeExpiry, ObservableList<Item> itemList) {
             this.daysBeforeExpiry = String.valueOf(daysBeforeExpiry) + " days from expiring";
             this.numberOfItems = Long.toString(getExpiringItemWithinDays(daysBeforeExpiry, itemList)) + " items";
