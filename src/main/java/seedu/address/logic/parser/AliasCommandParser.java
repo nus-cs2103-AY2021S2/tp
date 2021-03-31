@@ -22,7 +22,7 @@ public class AliasCommandParser implements Parser<AliasCommand> {
      */
     public AliasCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        
+
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_ALIAS_COMMAND,
                 PREFIX_ALIAS_NAME);
 
