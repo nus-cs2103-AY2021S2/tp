@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
@@ -133,9 +134,9 @@ public class UniqueMeetingList implements Iterable<Person> {
         for (Person person : internalList) {
             person.getMeeting()
                     .map(meeting -> meeting.dateTime)
-                    .filter(date -> date.toLocalDate().equals(LocalDate.now()))
-                    .map(date -> sb.append(String.format(template, person.getName().fullName, date.toLocalTime())))
-                    .isPresent();
+                    .filter(datetime -> datetime.toLocalDate().equals(LocalDate.now()))
+                    .filter(datetime -> datetime.toLocalTime().compareTo(LocalTime.now()) > 0)
+                    .map(datetime -> sb.append(String.format(template, person.getName().fullName, datetime.toLocalTime())));
         }
         return sb.toString();
     }
