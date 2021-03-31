@@ -15,10 +15,10 @@ public abstract class TagCommand extends Command {
             + "Parameters: "
             + "SUB_COMMAND [PARAMETERS]\n"
             + "Sub Commands: "
-            + ADD_SUB_COMMAND_WORD + " INDEX ... [-t] TAG ..., "
-            + DELETE_SUB_COMMAND_WORD + " INDEX ... [-t] TAG ...\n"
+            + ADD_SUB_COMMAND_WORD + " INDEX … -t TAG …, "
+            + DELETE_SUB_COMMAND_WORD + " INDEX … -t TAG …\n"
             + "Example: "
-            + COMMAND_WORD + " " + ADD_SUB_COMMAND_WORD + " 1 2 -t 30 Java Python"
-            + COMMAND_WORD + " " + DELETE_SUB_COMMAND_WORD + " 1 2 3 Python";
+            + COMMAND_WORD + " " + ADD_SUB_COMMAND_WORD + " 1 2 -t Java -t Python"
+            + COMMAND_WORD + " " + DELETE_SUB_COMMAND_WORD + " 1 2 3 -t Python";
 
 }

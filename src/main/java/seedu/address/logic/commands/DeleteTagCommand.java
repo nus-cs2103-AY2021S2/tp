@@ -29,9 +29,9 @@ import seedu.address.model.tag.Tag;
  */
 public class DeleteTagCommand extends TagCommand {
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Delete tags of person(s) in the address book. "
-            + "Parameters: " + DELETE_SUB_COMMAND_WORD + " INDEX ... [-t] TAG ...\n"
-            + "Example: " + COMMAND_WORD + " " + DELETE_SUB_COMMAND_WORD + " 1 2 Python";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Delete tags of person(s) in the address book.\n"
+            + "Parameters: " + DELETE_SUB_COMMAND_WORD + " INDEX … -t TAG …\n"
+            + "Example: " + COMMAND_WORD + " " + DELETE_SUB_COMMAND_WORD + " 1 2 -t Python";
 
     public static final String MESSAGE_SUCCESS = "Tag%1$s deleted from %2$d person: %3$s";
 
@@ -181,7 +181,8 @@ public class DeleteTagCommand extends TagCommand {
         return other == this // short circuit if same object
                 || (other instanceof DeleteTagCommand // instanceof handles nulls
                 && tags.equals(((DeleteTagCommand) other).tags)
-                && targetIndexes.equals(((DeleteTagCommand) other).targetIndexes)
+                && targetIndexes.containsAll(((DeleteTagCommand) other).targetIndexes)
+                && ((DeleteTagCommand) other).targetIndexes.containsAll(targetIndexes)
                 && isShownIndex == ((DeleteTagCommand) other).isShownIndex)
                 && isSelectedIndex == ((DeleteTagCommand) other).isSelectedIndex;
     }

@@ -29,9 +29,9 @@ import seedu.address.model.tag.Tag;
  */
 public class AddTagCommand extends TagCommand {
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Add tags to person(s) in the address book. "
-            + "Parameters: " + ADD_SUB_COMMAND_WORD + " INDEX ... [-t] TAG ...\n"
-            + "Example: " + COMMAND_WORD + " " + ADD_SUB_COMMAND_WORD + " 1 2 -t 30 Java Python";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Add tags to person(s) in the address book.\n"
+            + "Parameters: " + ADD_SUB_COMMAND_WORD + " INDEX … -t TAG …\n"
+            + "Example: " + COMMAND_WORD + " " + ADD_SUB_COMMAND_WORD + " 1 2 -t Java -t Python";
 
     public static final String MESSAGE_SUCCESS = "New tag%1$s added to %2$d person: %3$s";
 
@@ -180,7 +180,8 @@ public class AddTagCommand extends TagCommand {
         return other == this // short circuit if same object
                 || (other instanceof AddTagCommand // instanceof handles nulls
                 && tags.equals(((AddTagCommand) other).tags)
-                && targetIndexes.equals(((AddTagCommand) other).targetIndexes)
+                && targetIndexes.containsAll(((AddTagCommand) other).targetIndexes)
+                && ((AddTagCommand) other).targetIndexes.containsAll(targetIndexes)
                 && isShownIndex == ((AddTagCommand) other).isShownIndex)
                 && isSelectedIndex == ((AddTagCommand) other).isSelectedIndex;
     }

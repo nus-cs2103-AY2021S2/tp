@@ -6,6 +6,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import seedu.address.logic.commands.TagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -83,14 +84,7 @@ public class TagCommandParser implements Parser<TagCommand> {
      * Returns output string format for {@code tags}.
      */
     public static String tagsToString(Set<Tag> tags) {
-        StringBuilder builder = new StringBuilder();
-
-        for (Tag tag : tags) {
-            builder.append(tag.tagName + ", ");
-        }
-
-        String returnValue = builder.toString();
-        return returnValue.substring(0, returnValue.length() - 2);
+        return tags.stream().map(tag -> tag.tagName).collect(Collectors.joining(", "));
     }
 
 }

@@ -14,6 +14,7 @@ import static seedu.address.testutil.TypicalTags.getCommonTags;
 import static seedu.address.testutil.TypicalTags.getTypicalTags;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -176,8 +177,16 @@ public class DeleteTagCommandTest {
         assertNotEquals(deleteTagFromTargetIndexes, deleteTagFromSelectedIndex);
         assertNotEquals(deleteTagFromSelectedIndex, deleteTagFromShownIndex);
 
-        // different types -> returns false
-        assertNotEquals(deleteTagFromTargetIndexes, 1);
+        // different indexes -> not equals
+        assertNotEquals(
+                DeleteTagCommand.createWithTargetIndexes(Collections.singletonList(INDEX_FIRST_PERSON),
+                        getTypicalTags()),
+                DeleteTagCommand.createWithTargetIndexes(TypicalIndexes.VALID_INDEXES, getTypicalTags()));
+
+        // different tags -> not equals
+        assertNotEquals(
+                DeleteTagCommand.createWithTargetIndexes(TypicalIndexes.VALID_INDEXES, getCommonTags()),
+                DeleteTagCommand.createWithTargetIndexes(TypicalIndexes.VALID_INDEXES, getTypicalTags()));
 
         // null -> returns false
         assertNotEquals(deleteTagFromTargetIndexes, null);

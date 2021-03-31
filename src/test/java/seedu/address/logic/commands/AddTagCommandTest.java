@@ -10,9 +10,11 @@ import static seedu.address.testutil.TypicalAliases.getTypicalAliases;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalTags.getCommonTags;
 import static seedu.address.testutil.TypicalTags.getTypicalTags;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -160,23 +162,30 @@ public class AddTagCommandTest {
         AddTagCommand addTagToShownIndex = AddTagCommand.createWithShownIndex(getTypicalTags());
         AddTagCommand addTagToSelectedIndex = AddTagCommand.createWithSelectedIndex(getTypicalTags());
 
-        // same object -> returns true
+        // same object -> equals
         assertEquals(addTagToTargetIndexes, addTagToTargetIndexes);
 
-        // same values -> returns true
+        // same values -> equals
         AddTagCommand addTagToTargetIndexesCopy = AddTagCommand.createWithTargetIndexes(
                 new ArrayList<>(), getTypicalTags());
         assertEquals(addTagToTargetIndexesCopy, addTagToTargetIndexes);
 
-        // different AddTagCommand types -> returns false
+        // different AddTagCommand types -> not equals
         assertNotEquals(addTagToTargetIndexes, addTagToShownIndex);
         assertNotEquals(addTagToTargetIndexes, addTagToSelectedIndex);
         assertNotEquals(addTagToSelectedIndex, addTagToShownIndex);
 
-        // different types -> returns false
-        assertNotEquals(addTagToTargetIndexes, 1);
+        // different indexes -> not equals
+        assertNotEquals(
+                AddTagCommand.createWithTargetIndexes(Collections.singletonList(INDEX_FIRST_PERSON), getTypicalTags()),
+                AddTagCommand.createWithTargetIndexes(TypicalIndexes.VALID_INDEXES, getTypicalTags()));
 
-        // null -> returns false
+        // different tags -> not equals
+        assertNotEquals(
+                AddTagCommand.createWithTargetIndexes(TypicalIndexes.VALID_INDEXES, getCommonTags()),
+                AddTagCommand.createWithTargetIndexes(TypicalIndexes.VALID_INDEXES, getTypicalTags()));
+
+        // null -> not equals
         assertNotEquals(addTagToTargetIndexes, null);
     }
 
