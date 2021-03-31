@@ -43,10 +43,11 @@ class RecurringSessionTest extends SessionTest {
         Interval nextDay = new Interval("1");
 
 
-        assertTrue(RecurringSession.isConsistentDatesAndInterval(SESSION_DATE, consistent1, INTERVAL));
+        assertTrue(RecurringSession.isConsistentDatesAndInterval(SESSION_DATE, consistentDateAndInterval, INTERVAL));
         assertFalse(RecurringSession.isConsistentDatesAndInterval(SESSION_DATE, same, nextDay));
         assertFalse(RecurringSession.isConsistentDatesAndInterval(SESSION_DATE, inconsistentDate, INTERVAL));
-        assertFalse(RecurringSession.isConsistentDatesAndInterval(SESSION_DATE, consistent1, inconsistentInterval));
+        assertFalse(RecurringSession.isConsistentDatesAndInterval(
+                SESSION_DATE, consistentDateAndInterval, inconsistentInterval));
     }
 
     @Test
@@ -67,9 +68,9 @@ class RecurringSessionTest extends SessionTest {
 
     @Test
     void hasSessionOnDateTest() {
-        RecurringSession startAfter =  new RecurringSession(new SessionDate("2021-03-01", "10:00"),
+        RecurringSession startAfter = new RecurringSession(new SessionDate("2021-03-01", "10:00"),
                 DURATION, SUBJECT, FEE, INTERVAL, new SessionDate("2021-03-15", "10:00"));
-        RecurringSession endBefore =  new RecurringSession(new SessionDate("2020-03-01", "10:00"),
+        RecurringSession endBefore = new RecurringSession(new SessionDate("2020-03-01", "10:00"),
                 DURATION, SUBJECT, FEE, INTERVAL, new SessionDate("2020-03-15", "10:00"));
         RecurringSession notOnDate = new RecurringSession(new SessionDate("2020-12-31", "10:00"),
                 DURATION, SUBJECT, FEE, INTERVAL, new SessionDate("2021-01-14", "10:00"));
