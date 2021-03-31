@@ -38,6 +38,10 @@ public class FindCommand extends Command {
         model.updateFilteredGarmentList(predicates);
         //return new CommandResult(
         //        String.format(Messages.MESSAGE_GARMENTS_LISTED_OVERVIEW, model.getFilteredGarmentList().size()));
+        return new CommandResult(showMessage());
+    }
+
+    public String showMessage() {
         String result = "Showing garments that match the following:";
         if (predicates.isPrefixValuePresent(PREFIX_NAME)) {
             result = result + "\nname: " + predicates.getPrefixValue(PREFIX_NAME);
@@ -68,7 +72,7 @@ public class FindCommand extends Command {
             }
             result = result + desc + " ";
         }
-        return new CommandResult(result);
+        return result;
     }
 
     @Override
