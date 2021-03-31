@@ -19,7 +19,7 @@
 //    private TenantName name;
 //    private Phone phone;
 //    private LocalDate start;
-//    private BookingList end;
+//    private LocalDate end;
 //
 //    /**
 //     * Creates a {@code BookingBuilder} with the default details.

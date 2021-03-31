@@ -38,7 +38,7 @@ public class ResidenceAddress {
     }
 
     /**
-     * Returns {@code String} value of this {@code ResidenceAddress}.
+     * Returns value of this {@code ResidenceAddress}.
      */
     public String getValue() {
         return value;

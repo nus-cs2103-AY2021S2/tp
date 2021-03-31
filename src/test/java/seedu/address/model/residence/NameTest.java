@@ -6,37 +6,35 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.booking.TenantName;
-
 public class NameTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new TenantName(null));
+        assertThrows(NullPointerException.class, () -> new ResidenceName(null));
     }
 
     @Test
     public void constructor_invalidName_throwsIllegalArgumentException() {
         String invalidName = "";
-        assertThrows(IllegalArgumentException.class, () -> new TenantName(invalidName));
+        assertThrows(IllegalArgumentException.class, () -> new ResidenceName(invalidName));
     }
 
     @Test
     public void isValidName() {
         // null name
-        assertThrows(NullPointerException.class, () -> TenantName.isValidName(null));
+        assertThrows(NullPointerException.class, () -> ResidenceName.isValidResidenceName(null));
 
         // invalid name
-        assertFalse(TenantName.isValidName("")); // empty string
-        assertFalse(TenantName.isValidName(" ")); // spaces only
-        assertFalse(TenantName.isValidName("^")); // only non-alphanumeric characters
-        assertFalse(TenantName.isValidName("peter*")); // contains non-alphanumeric characters
+        assertFalse(ResidenceName.isValidResidenceName("")); // empty string
+        assertFalse(ResidenceName.isValidResidenceName(" ")); // spaces only
+        assertFalse(ResidenceName.isValidResidenceName("^")); // only non-alphanumeric characters
+        assertFalse(ResidenceName.isValidResidenceName("peter*")); // contains non-alphanumeric characters
 
         // valid name
-        assertTrue(TenantName.isValidName("Hudson Village")); // alphabets only
-        assertTrue(TenantName.isValidName("12345")); // numbers only
-        assertTrue(TenantName.isValidName("North Tower 2")); // alphanumeric characters
-        assertTrue(TenantName.isValidName("Capital Heights")); // with capital letters
-        assertTrue(TenantName.isValidName("Pinnacle Duxton Cantonment Rd HDB")); // long names
+        assertTrue(ResidenceName.isValidResidenceName("Hudson Village")); // alphabets only
+        assertTrue(ResidenceName.isValidResidenceName("12345")); // numbers only
+        assertTrue(ResidenceName.isValidResidenceName("North Tower 2")); // alphanumeric characters
+        assertTrue(ResidenceName.isValidResidenceName("Capital Heights")); // with capital letters
+        assertTrue(ResidenceName.isValidResidenceName("Pinnacle Duxton Cantonment Rd HDB")); // long names
     }
 }

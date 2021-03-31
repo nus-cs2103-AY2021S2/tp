@@ -39,7 +39,7 @@ public class ResidenceName extends CommonName {
     }
 
     /**
-     * Returns {@code String} value of this {@code ResidenceName}.
+     * Returns value of this {@code ResidenceName}.
      */
     public String getValue() {
         return fullName;

@@ -48,7 +48,7 @@ public class CleanStatusTag {
 
     //@@author Soorya
     /**
-     * Returns {@code String} value of this {@code CleanStatusTag}.
+     * Returns value of this {@code CleanStatusTag}.
      */
     public String getValue() {
         return cleanStatus;
