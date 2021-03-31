@@ -8,6 +8,7 @@
     "address" : "123, Jurong West Ave 6, #08-111",
     "guardianName" : "Amanda Pauline",
     "guardianPhone" : "94351254",
+    "level" : "sec1",
     "subjects" : [ "phys" ],
     "lessons" : [ "Sunday 1000"]
   }, {
@@ -18,6 +19,8 @@
     "address" : "311, Clementi Ave 2, #02-25",
     "guardianName" : "Jay Maier",
     "guardianPhone" : "98765433",
+    "level" : "sec3",
+    "subjects" : [ "chinese", "math" ],
     "subjects" : [ "cn", "math" ],
     "lessons" : [ "Monday 1800" ]
   }, {
@@ -28,6 +31,7 @@
     "address" : "wall street",
     "guardianName" : "Louis Kurz",
     "guardianPhone" : "95352564",
+    "level" : "pri3",
     "subjects" : [ ],
     "lessons" : [ "Friday 1000" ]
   }, {
@@ -38,6 +42,7 @@
     "address" : "10th street",
     "guardianName" : "Jay Maier",
     "guardianPhone" : "98765433",
+    "level" : "sec1",
     "subjects" : [ "cn" ],
     "lessons" : [ ]
   }, {
@@ -48,6 +53,7 @@
     "address" : "michegan ave",
     "guardianName" : "John Meyer",
     "guardianPhone" : "9482225",
+    "level" : "sec1",
     "subjects" : [ ],
     "lessons" : [ ]
   }, {
@@ -58,6 +64,7 @@
     "address" : "little tokyo",
     "guardianName" : "Fay Kunz",
     "guardianPhone" : "9482425",
+    "level" : "sec1",
     "subjects" : [ ],
     "lessons" : [ ]
   }, {
@@ -68,6 +75,7 @@
     "address" : "4th street",
     "guardianName" : "Barbara Best",
     "guardianPhone" : "9482444",
+    "level" : "sec1",
     "subjects" : [ ],
     "lessons" : [ ]
   } ]

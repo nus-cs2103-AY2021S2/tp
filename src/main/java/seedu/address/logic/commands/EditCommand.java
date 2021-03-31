@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GUARDIAN_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GUARDIAN_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSON;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LEVEL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
@@ -29,6 +30,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.School;
+import seedu.address.model.person.level.Level;
 import seedu.address.model.subject.Subject;
 
 /**
@@ -49,6 +51,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_GUARDIAN_NAME + "GUARDIAN_NAME] "
             + "[" + PREFIX_GUARDIAN_PHONE + "GUARDIAN_PHONE] "
+            + "[" + PREFIX_LEVEL + "LEVEL] "
             + "[" + PREFIX_SUBJECT + "SUBJECT]... "
             + "[" + PREFIX_LESSON + "LESSON]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
@@ -129,11 +132,13 @@ public class EditCommand extends Command {
                 ? editPersonDescriptor.getGuardianName() : personToEdit.getGuardianName();
         Optional<Phone> updatedGuardianPhone = editPersonDescriptor.getGuardianPhone().isPresent()
                 ? editPersonDescriptor.getGuardianPhone() : personToEdit.getGuardianPhone();
+        Optional<Level> updatedLevel = editPersonDescriptor.getLevel().isPresent()
+                ? editPersonDescriptor.getLevel() : personToEdit.getLevel();
         Set<Subject> updatedSubjects = editPersonDescriptor.getSubjects().orElse(personToEdit.getSubjects());
         Set<Lesson> updatedLessons = editPersonDescriptor.getLessons().orElse(personToEdit.getLessons());
 
         return new Person(updatedName, updatedPhone, updatedSchool, updatedEmail, updatedAddress,
-                updatedGuardianName, updatedGuardianPhone, updatedSubjects, updatedLessons);
+                updatedGuardianName, updatedGuardianPhone, updatedLevel, updatedSubjects, updatedLessons);
     }
 
     @Override
@@ -166,6 +171,7 @@ public class EditCommand extends Command {
         private Optional<Address> address = Optional.empty();
         private Optional<Name> guardianName = Optional.empty();
         private Optional<Phone> guardianPhone = Optional.empty();
+        private Optional<Level> level = Optional.empty();
         private Set<Subject> subjects;
         private Set<Lesson> lessons;
 
@@ -183,6 +189,7 @@ public class EditCommand extends Command {
             setAddress(toCopy.address);
             setGuardianName(toCopy.guardianName);
             setGuardianPhone(toCopy.guardianPhone);
+            setLevel(toCopy.level);
             setSubjects(toCopy.subjects);
             setLessons(toCopy.lessons);
         }
@@ -193,7 +200,7 @@ public class EditCommand extends Command {
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(name, phone, subjects, lessons)
                     || school.isPresent() || email.isPresent() || address.isPresent()
-                    || guardianName.isPresent() || guardianPhone.isPresent();
+                    || guardianName.isPresent() || guardianPhone.isPresent() || level.isPresent();
         }
 
         public void setName(Name name) {
@@ -252,6 +259,13 @@ public class EditCommand extends Command {
             return guardianPhone;
         }
 
+        public void setLevel(Optional<Level> level) {
+            this.level = level;
+        }
+
+        public Optional<Level> getLevel() {
+            return level;
+        }
         /**
          * Sets {@code subjects} to this object's {@code subjects}.
          * A defensive copy of {@code subjects} is used internally.
@@ -299,6 +313,7 @@ public class EditCommand extends Command {
                     && getAddress().equals(e.getAddress())
                     && getGuardianName().equals(e.getGuardianName())
                     && getGuardianPhone().equals(e.getGuardianPhone())
+                    && getLevel().equals(e.getLevel())
                     && getSubjects().equals(e.getSubjects())
                     && getLessons().equals(e.getLessons());
         }

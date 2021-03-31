@@ -52,9 +52,11 @@ public class EditCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(),
                 new DatesBook(model.getDatesBook()), new LessonBook(model.getLessonBook()));
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
-        expectedModel.removePersonFromLesson(model.getFilteredPersonList().get(0));
+        expectedModel.setPerson(model.getTransformedPersonList().get(0), editedPerson);
+
+        expectedModel.removePersonFromLesson(model.getTransformedPersonList().get(0));
         expectedModel.addPersonToLesson(editedPerson);
+
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 

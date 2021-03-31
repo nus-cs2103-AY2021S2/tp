@@ -9,6 +9,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.lesson.Lesson;
+import seedu.address.model.person.level.Level;
 import seedu.address.model.subject.Subject;
 
 /**
@@ -27,6 +28,7 @@ public class Person {
     private final Optional<Name> guardianName;
     private final Optional<Phone> guardianPhone;
     private final Optional<Address> address;
+    private final Optional<Level> level;
     private final Set<Subject> subjects = new HashSet<>();
     private final Set<Lesson> lessons = new HashSet<>();
 
@@ -35,10 +37,10 @@ public class Person {
      * Student's name and phone number must be present.
      */
     public Person(Name name, Phone phone, Optional<School> school, Optional<Email> email, Optional<Address> address,
-                  Optional<Name> guardianName, Optional<Phone> guardianPhone, Set<Subject> subjects,
-                  Set<Lesson> lessons) {
+                  Optional<Name> guardianName, Optional<Phone> guardianPhone, Optional<Level> level,
+                  Set<Subject> subjects, Set<Lesson> lessons) {
         requireAllNonNull(name, phone, school, email, address, guardianName,
-                guardianPhone, subjects, lessons);
+                guardianPhone, level, subjects, lessons);
         this.name = name;
         this.phone = phone;
         this.school = school;
@@ -46,6 +48,7 @@ public class Person {
         this.address = address;
         this.guardianName = guardianName;
         this.guardianPhone = guardianPhone;
+        this.level = level;
         this.subjects.addAll(subjects);
         this.lessons.addAll(lessons);
     }
@@ -76,6 +79,10 @@ public class Person {
 
     public Optional<Phone> getGuardianPhone() {
         return guardianPhone;
+    }
+
+    public Optional<Level> getLevel() {
+        return level;
     }
 
     /**
@@ -171,6 +178,12 @@ public class Person {
         if (guardianPhone.isPresent()) {
             builder.append("; Guardian's Phone: ")
                     .append(guardianPhone.get());
+        }
+
+        Optional<Level> level = getLevel();
+        if (level.isPresent()) {
+            builder.append("; Level: ")
+                    .append(level.get());
         }
 
         Set<Subject> subjects = getSubjects();
