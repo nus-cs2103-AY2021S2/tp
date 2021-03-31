@@ -7,6 +7,8 @@ package seedu.address.model.tag;
 
 public class PriorityTag {
 
+    public static final String MESSAGE_CONSTRAINTS = "PriorityTag should be a LOW/MEDIUM/HGIH";
+
     private State state;
     private String tagName;
 

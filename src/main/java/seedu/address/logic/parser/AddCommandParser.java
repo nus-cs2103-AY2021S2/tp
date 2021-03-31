@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITYTAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WEIGHTAGE;
 
@@ -21,6 +22,7 @@ import seedu.address.model.person.Status;
 import seedu.address.model.person.Task;
 import seedu.address.model.person.TaskName;
 import seedu.address.model.person.Weightage;
+import seedu.address.model.tag.PriorityTag;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -38,7 +40,7 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         ArgumentMultimap argMultimap =
             ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_CODE, PREFIX_WEIGHTAGE,
-                PREFIX_DEADLINE_DATE, PREFIX_DEADLINE_TIME, PREFIX_TAG);
+                PREFIX_DEADLINE_DATE, PREFIX_DEADLINE_TIME, PREFIX_TAG, PREFIX_PRIORITYTAG);
 
         // weightage is compulsory for now
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_CODE,
@@ -60,9 +62,19 @@ public class AddCommandParser implements Parser<AddCommand> {
         Remark remark = new Remark(""); // add command does not allow adding remarks straightaway
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Task task = new Task(taskName, moduleCode, deadlineDate,
-            deadlineTime, status, weightage, remark, tagList);
-        return new AddCommand(task);
+        // if ptag is present
+        if (arePrefixesPresent(argMultimap, PREFIX_PRIORITYTAG)) {
+            PriorityTag priorityTag = ParserUtil.parsePriorityTag(argMultimap.getValue(PREFIX_PRIORITYTAG).get());
+            System.out.println(priorityTag.getTagName());
+            Task task = new Task(taskName, moduleCode, deadlineDate,
+                    deadlineTime, status, weightage, remark, tagList, priorityTag);
+            return new AddCommand(task);
+        } else {
+            Task task = new Task(taskName, moduleCode, deadlineDate,
+                    deadlineTime, status, weightage, remark, tagList);
+            return new AddCommand(task);
+        }
+
     }
 
     /**

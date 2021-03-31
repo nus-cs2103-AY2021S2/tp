@@ -107,7 +107,9 @@ public class ModelManager implements Model {
 
     @Override
     public void deleteDailyTask(Task target) {
-        taskTracker.removeDailyTask(target);
+        if (taskTracker.hasDailyTask(target)) {
+            taskTracker.removeDailyTask(target);
+        }
     }
 
     @Override
@@ -117,7 +119,9 @@ public class ModelManager implements Model {
 
     @Override
     public void finishDailyTask(Task target) {
-        taskTracker.finishDailyTask(target);
+        if (taskTracker.hasDailyTask(target)) {
+            taskTracker.finishDailyTask(target);
+        }
     }
 
     @Override

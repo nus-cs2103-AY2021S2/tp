@@ -81,11 +81,19 @@ public class TaskTracker implements ReadOnlyTaskTracker {
     //// task-level operations
 
     /**
-     * Returns true if a task with the same identity as {@code task} exists in the address book.
+     * Returns true if a task with the same identity as {@code task} exists in the task tracker.
      */
     public boolean hasTask(Task task) {
         requireNonNull(task);
         return tasks.contains(task);
+    }
+
+    /**
+     * Returns true if a task with the same identity as {@code task} exists in the daily task list.
+     */
+    public boolean hasDailyTask(Task task) {
+        requireNonNull(task);
+        return dailyTasks.contains(task);
     }
 
     /**
