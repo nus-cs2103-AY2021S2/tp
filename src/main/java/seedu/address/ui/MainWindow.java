@@ -17,6 +17,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.ui.reminderpanel.ReminderListPanel;
 import seedu.address.ui.schedulepanel.ScheduleListPanel;
 import seedu.address.ui.timetablepanel.TimeTableWindow;
 
@@ -41,6 +42,7 @@ public class MainWindow extends UiPart<Stage> {
     private CalendarView calendarView;
     private AppointmentListPanel appointmentListPanel;
     private GradeListPanel gradeListPanel;
+    private ReminderListPanel reminderListPanel;
     private FiltersPanel filtersPanel;
     private ScheduleListPanel scheduleListPanel;
 
@@ -72,7 +74,13 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane scheduleListPanelPlaceholder;
 
     @FXML
+    private StackPane reminderListPanelPlaceholder;
+
+    @FXML
     private TabPane tabPanePlaceHolder;
+
+    @FXML
+    private TabPane tabSidePanePlaceHolder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -142,12 +150,15 @@ public class MainWindow extends UiPart<Stage> {
         appointmentListPanel = new AppointmentListPanel(logic.getFilteredAppointmentList());
         appointmentListPanelPlaceholder.getChildren().add(appointmentListPanel.getRoot());
 
+        scheduleListPanel = new ScheduleListPanel(logic.getFilteredScheduleList());
+        scheduleListPanelPlaceholder.getChildren().add(scheduleListPanel.getRoot());
+
         /* Grade List */
         gradeListPanel = new GradeListPanel(logic.getFilteredGradeList());
         gradeListPanelPlaceholder.getChildren().add(gradeListPanel.getRoot());
 
-        scheduleListPanel = new ScheduleListPanel(logic.getFilteredScheduleList());
-        scheduleListPanelPlaceholder.getChildren().add(scheduleListPanel.getRoot());
+        reminderListPanel = new ReminderListPanel(logic.getFilteredReminderList());
+        reminderListPanelPlaceholder.getChildren().add(reminderListPanel.getRoot());
 
         resultDisplay = new ResultBarFooter();
         statusbarPlaceholder.getChildren().add(resultDisplay.getRoot());

@@ -25,7 +25,7 @@
                     <font>
                         <Font size="18.0" />
                     </font></Text>
-                <ImageView fx:id="leftButton" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#handleToPrev" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
+                <ImageView fx:id="leftButton" accessibleRole="BUTTON" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#handleToPrev" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
                     <GridPane.margin>
                         <Insets left="10.0" />
                     </GridPane.margin>
@@ -33,7 +33,7 @@
                         <Image url="@../images/arrow_backward_icon.png" />
                     </image>
                 </ImageView>
-                <ImageView fx:id="rightButton" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#handleToNext" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
+                <ImageView fx:id="rightButton" accessibleRole="BUTTON" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#handleToNext" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
                     <GridPane.margin>
                         <Insets right="10.0" />
                     </GridPane.margin>

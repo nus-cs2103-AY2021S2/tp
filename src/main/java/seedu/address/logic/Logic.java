@@ -11,6 +11,7 @@ import seedu.address.model.ReadOnlyTutorBook;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.event.Event;
 import seedu.address.model.grade.Grade;
+import seedu.address.model.reminder.Reminder;
 import seedu.address.model.schedule.Schedule;
 import seedu.address.model.tutor.Tutor;
 
@@ -69,6 +70,11 @@ public interface Logic {
      * Returns an unmodifiable view of the filtered list of schedules
      */
     ObservableList<Schedule> getFilteredScheduleList();
+
+    /**
+     * Returns an unmodifiable view of the appointment filter string list.
+     */
+    ObservableList<Reminder> getFilteredReminderList();
 
     /**
      * Returns the user prefs' address book file path.
