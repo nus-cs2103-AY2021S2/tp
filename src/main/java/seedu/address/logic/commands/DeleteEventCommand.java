@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_REMOVE_TASK_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -24,9 +24,9 @@ public class DeleteEventCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the event identified by it's index number within the displayed project.\n"
             + "Parameters: PROJECT_INDEX (must be a positive integer)"
-            + PREFIX_REMOVE_TASK_INDEX + "EVENT_INDEX \n"
+            + PREFIX_INDEX + "EVENT_INDEX \n"
             + "Example: " + COMMAND_WORD + " 1" + " "
-            + PREFIX_REMOVE_TASK_INDEX + " 2";
+            + PREFIX_INDEX + " 2";
 
     private final Index projectIndex;
     private final Index targetEventIndex;

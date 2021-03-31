@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_UPDATE_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 
 import java.util.List;
 
@@ -26,10 +26,10 @@ public class UpdateTodoCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Updates a todo of a project specified "
             + "by 2 index numbers: project index and target todo index.\n"
             + "Parameters: PROJECT_INDEX (must be a positive integer) "
-            + PREFIX_UPDATE_INDEX + "TODO_INDEX "
+            + PREFIX_INDEX + "TODO_INDEX "
             + PREFIX_DESCRIPTION + "DESCRIPTION\n"
             + "Example:\n" + COMMAND_WORD + " 1 "
-            + PREFIX_UPDATE_INDEX + "1 "
+            + PREFIX_INDEX + "1 "
             + PREFIX_DESCRIPTION + "Project tasks";
 
     public static final String MESSAGE_UPDATE_TODO_SUCCESS = "Edited todo: %1$s";

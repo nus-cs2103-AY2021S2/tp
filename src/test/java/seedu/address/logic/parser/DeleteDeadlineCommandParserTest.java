@@ -1,7 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_REMOVE_TASK_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
@@ -21,7 +21,7 @@ public class DeleteDeadlineCommandParserTest {
         Index expectedProjectIndex = Index.fromOneBased(1);
         Index expectedDeadlineIndex = Index.fromOneBased(1);
 
-        String userInput = INDEX_FIRST.getOneBased() + " " + PREFIX_REMOVE_TASK_INDEX + " " + INDEX_FIRST.getOneBased();
+        String userInput = INDEX_FIRST.getOneBased() + " " + PREFIX_INDEX + " " + INDEX_FIRST.getOneBased();
 
         DeleteDeadlineCommand command = new DeleteDeadlineCommand(expectedProjectIndex, expectedDeadlineIndex);
 
@@ -33,7 +33,7 @@ public class DeleteDeadlineCommandParserTest {
     public void parse_compulsoryFieldMissing_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteDeadlineCommand.MESSAGE_USAGE);
 
-        String userInputMissingProject = PREFIX_REMOVE_TASK_INDEX + " " + INDEX_FIRST.getOneBased();
+        String userInputMissingProject = PREFIX_INDEX + " " + INDEX_FIRST.getOneBased();
 
         // missing project index
         assertParseFailure(parser, userInputMissingProject, expectedMessage);
@@ -43,7 +43,7 @@ public class DeleteDeadlineCommandParserTest {
         // missing remove prefix
         assertParseFailure(parser, userInputMissingPrefix, expectedMessage);
 
-        String userInputMissingDeadline = INDEX_FIRST.getOneBased() + " " + PREFIX_REMOVE_TASK_INDEX;
+        String userInputMissingDeadline = INDEX_FIRST.getOneBased() + " " + PREFIX_INDEX;
         String expectedMessageMissingDeadline = "Index is not a non-zero unsigned integer.";
 
         // missing remove prefix
@@ -55,25 +55,25 @@ public class DeleteDeadlineCommandParserTest {
         Index validProjectIndex = Index.fromOneBased(1);
         Index validDeadlineIndex = Index.fromOneBased(1);
 
-        String userInputInvalidProjectIndex = "0 " + PREFIX_REMOVE_TASK_INDEX + " "
+        String userInputInvalidProjectIndex = "0 " + PREFIX_INDEX + " "
                 + validDeadlineIndex;
 
         // invalid project index
         assertParseFailure(parser, userInputInvalidProjectIndex, MESSAGE_INVALID_INDEX);
 
-        String userInputInvalidDeadlineIndex = validProjectIndex + " " + PREFIX_REMOVE_TASK_INDEX + " 0";
+        String userInputInvalidDeadlineIndex = validProjectIndex + " " + PREFIX_INDEX + " 0";
 
         // invalid remove deadline index
         assertParseFailure(parser, userInputInvalidDeadlineIndex,
                 MESSAGE_INVALID_INDEX);
 
-        String userInputInvalidProjectIndexExceeded = "10 " + PREFIX_REMOVE_TASK_INDEX + " "
+        String userInputInvalidProjectIndexExceeded = "10 " + PREFIX_INDEX + " "
                 + validDeadlineIndex;
 
         // invalid project index
         assertParseFailure(parser, userInputInvalidProjectIndexExceeded, MESSAGE_INVALID_INDEX);
 
-        String userInputInvalidDeadlineIndexExceeded = validProjectIndex + " " + PREFIX_REMOVE_TASK_INDEX + " 10";
+        String userInputInvalidDeadlineIndexExceeded = validProjectIndex + " " + PREFIX_INDEX + " 10";
 
         // invalid remove deadline index
         assertParseFailure(parser, userInputInvalidDeadlineIndexExceeded,

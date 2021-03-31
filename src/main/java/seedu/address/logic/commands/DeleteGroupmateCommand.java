@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_REMOVE_TASK_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 
 import java.util.List;
 
@@ -23,8 +23,8 @@ public class DeleteGroupmateCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the groupmate identified by GROUPMATE_INDEX from a project identified by PROJECT_INDEX.\n"
             + "Parameters: PROJECT_INDEX (must be a positive integer) "
-            + PREFIX_REMOVE_TASK_INDEX + "GROUPMATE_INDEX \n"
-            + "Sample: " + COMMAND_WORD + " 2" + PREFIX_REMOVE_TASK_INDEX + " 1";
+            + PREFIX_INDEX + "GROUPMATE_INDEX \n"
+            + "Sample: " + COMMAND_WORD + " 2" + PREFIX_INDEX + " 1";
     public static final String MESSAGE_DELETE_PROJECT_SUCCESS = "Deleted Groupmate %1$s from Project %2$s";
 
     private final Index targetProjectIndex;

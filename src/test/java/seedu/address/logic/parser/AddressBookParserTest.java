@@ -9,7 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_WEEKLY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_REMOVE_TASK_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 
@@ -135,7 +135,7 @@ public class AddressBookParserTest {
         Index projectIndex = Index.fromOneBased(1);
         DeleteGroupmateCommand command = (DeleteGroupmateCommand) parser.parseCommand(
                 DeleteGroupmateCommand.COMMAND_WORD + " " + projectIndex.getOneBased() + " "
-                + PREFIX_REMOVE_TASK_INDEX + " " + projectIndex.getOneBased()
+                + PREFIX_INDEX + " " + projectIndex.getOneBased()
         );
         assertEquals(new DeleteGroupmateCommand(INDEX_FIRST, INDEX_FIRST), command);
     }
@@ -147,7 +147,7 @@ public class AddressBookParserTest {
 
         DeleteDeadlineCommand command = (DeleteDeadlineCommand) parser.parseCommand(
                 DeleteDeadlineCommand.COMMAND_WORD + " " + projectIndex.getOneBased() + " "
-                        + PREFIX_REMOVE_TASK_INDEX + " " + deadlineIndex.getOneBased()
+                        + PREFIX_INDEX + " " + deadlineIndex.getOneBased()
         );
 
         assertEquals(new DeleteDeadlineCommand(projectIndex, deadlineIndex), command);
@@ -160,7 +160,7 @@ public class AddressBookParserTest {
 
         DeleteTodoCommand command = (DeleteTodoCommand) parser.parseCommand(
                 DeleteTodoCommand.COMMAND_WORD + " " + projectIndex.getOneBased() + " "
-                        + PREFIX_REMOVE_TASK_INDEX + " " + todoIndex.getOneBased()
+                        + PREFIX_INDEX + " " + todoIndex.getOneBased()
         );
 
         assertEquals(new DeleteTodoCommand(projectIndex, todoIndex), command);
@@ -173,7 +173,7 @@ public class AddressBookParserTest {
 
         DeleteEventCommand command = (DeleteEventCommand) parser.parseCommand(
                 DeleteEventCommand.COMMAND_WORD + " " + projectIndex.getOneBased() + " "
-                        + PREFIX_REMOVE_TASK_INDEX + " " + eventIndex.getOneBased()
+                        + PREFIX_INDEX + " " + eventIndex.getOneBased()
         );
 
         assertEquals(new DeleteEventCommand(projectIndex, eventIndex), command);

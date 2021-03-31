@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_UPDATE_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -31,11 +31,11 @@ public class UpdateDeadlineCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Updates a deadline of a project specified "
             + "by 2 index numbers: project index and target deadline index.\n"
             + "Parameters: PROJECT_INDEX (must be a positive integer) "
-            + PREFIX_UPDATE_INDEX + "DEADLINE_INDEX "
+            + PREFIX_INDEX + "DEADLINE_INDEX "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_DEADLINE_DATE + "DATE]\n"
             + "Example:\n" + COMMAND_WORD + " 1 "
-            + PREFIX_UPDATE_INDEX + "1 "
+            + PREFIX_INDEX + "1 "
             + PREFIX_DESCRIPTION + "Project tasks ";
 
     public static final String MESSAGE_UPDATE_DEADLINE_SUCCESS = "Edited deadline: %1$s";

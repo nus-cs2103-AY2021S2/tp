@@ -116,8 +116,8 @@ public class HelpPanel extends UiPart<Region> {
         return FXCollections.observableArrayList(
                 new CommandSyntax("todo", "todos"),
                 new CommandSyntax("addT", "addT PROJECT_INDEX d/DESCRIPTION"),
-                new CommandSyntax("updateT", "updateT PROJECT_INDEX u/TODO_INDEX d/DESCRIPTION"),
-                new CommandSyntax("deleteT", "deleteT PROJECT_INDEX r/TODO_INDEX")
+                new CommandSyntax("updateT", "updateT PROJECT_INDEX i/TODO_INDEX d/DESCRIPTION"),
+                new CommandSyntax("deleteT", "deleteT PROJECT_INDEX i/TODO_INDEX")
         );
     }
 
@@ -125,8 +125,8 @@ public class HelpPanel extends UiPart<Region> {
         return FXCollections.observableArrayList(
                 new CommandSyntax("addD", "addD PROJECT_INDEX d/DESCRIPTION by/DATE"),
                 new CommandSyntax("updateD",
-                        "updateD PROJECT_INDEX u/DEADLINE_INDEX [d/DESCRIPTION] [by/DATE]"),
-                new CommandSyntax("deleteD", "deleteD PROJECT_INDEX r/DEADLINE_INDEX")
+                        "updateD PROJECT_INDEX i/DEADLINE_INDEX [d/DESCRIPTION] [by/DATE]"),
+                new CommandSyntax("deleteD", "deleteD PROJECT_INDEX i/DEADLINE_INDEX")
         );
     }
 
@@ -135,9 +135,9 @@ public class HelpPanel extends UiPart<Region> {
                 new CommandSyntax("addE",
                         "addE PROJECT_INDEX d/DESCRIPTION on/DATE at/TIME w/REPEAT_WEEKLY"),
                 new CommandSyntax("updateE",
-                        "updateE PROJECT_INDEX u/EVENT_INDEX [d/DESCRIPTION] [on/DATE] [at/TIME] "
+                        "updateE PROJECT_INDEX i/EVENT_INDEX [d/DESCRIPTION] [on/DATE] [at/TIME] "
                                 + "[w/REPEATS_WEEKLY]"),
-                new CommandSyntax("deleteE", "deleteE PROJECT_INDEX r/EVENT_INDEX")
+                new CommandSyntax("deleteE", "deleteE PROJECT_INDEX i/EVENT_INDEX")
         );
     }
 
@@ -145,8 +145,8 @@ public class HelpPanel extends UiPart<Region> {
         return FXCollections.observableArrayList(
                 new CommandSyntax("addG", "addG PROJECT_INDEX n/NAME [r/ROLE]..."),
                 new CommandSyntax("updateG",
-                        "updateG PROJECT_INDEX u/GROUPMATE_INDEX [n/NAME] [r/ROLE]..."),
-                new CommandSyntax("deleteC", "deleteC PROJECT_INDEX r/GROUPMATE_INDEX")
+                        "updateG PROJECT_INDEX i/GROUPMATE_INDEX [n/NAME] [r/ROLE]..."),
+                new CommandSyntax("deleteC", "deleteC PROJECT_INDEX i/GROUPMATE_INDEX")
         );
     }
 
