@@ -17,15 +17,17 @@ https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/179/commits/aec461182c194c9ca2
   <img alt="logo" src="images/logo.png">
 </div>
 
-Welcome to the user guide of **CoLAB**! Are you a university student in search of a reliable app to keep track of your school projects? Do you struggle to keep track of the many todos and deadlines for various school projects? Do you also tend to forget the various group meetings you have scheduled? You have come to the right place!
+Welcome and thank you for downloading **CoLAB**! Are you a university student in search of a reliable app to keep track of your school projects? Do you struggle to keep track of the many todos and deadlines for various school projects? Do you also tend to forget the various group meetings you have scheduled? You have come to the right place!
 
-CoLAB (Collaboration Lab) is a **desktop app for students currently enrolled in a university to manage their school projects.** It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, CoLAB can get your project management tasks done faster than traditional GUI apps. CoLAB's main features include:
+CoLAB (Collaboration Lab) is a **desktop app for university students to manage their school projects.**  CoLAB's main features include:
 
 - Project management
 - Contacts management
-- Today View
+- Today View that surfaces an overview of upcoming events and deadlines 
 
-With CoLAB, you can efficiently manage all your school projects through our comprehensive project management tools. We have put in a lot of time and effort into designing a user-friendly User Interface (UI) such that CoLAB remains intuitive to both first-time users and seasoned ones. We look forward to seeing what you accomplish with CoLAB with a clean and inviting UI. What are you waiting for? Get your journey started with the [Quick Start section](#3quick-start)!
+It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, CoLAB can get your project management tasks done faster than traditional GUI apps.
+
+With CoLAB, you can efficiently manage all your school projects through our comprehensive project management tools. We have designed a user-friendly User Interface (UI) such that CoLAB remains intuitive to both first-time users and seasoned ones. We look forward to seeing what you accomplish with CoLAB with a clean and inviting UI. Get your journey started with the [Quick Start section](#3quick-start)!
 
 ## **2. About**
 
@@ -570,6 +572,12 @@ Examples:
 
 Although most of the buttons you see on the screen are clickable, the UI has been designed primarily to be navigated using the command line interface. The commands listed in this section will help you navigate the UI without leaving keyboard.
 
+#### Viewing Today Panel : `today`
+
+Displays a panel containing information (Events & Deadlines) relevant to today.
+
+Format: `today`
+
 #### Viewing all contacts : `contacts`
 
 Displays a panel with a list of all contacts in CoLAB.
@@ -605,12 +613,6 @@ Displays a panel containing the todos of the project that is currently displayed
 Format: `todos`
 
 * This command can only be used when a project is currently being displayed.
-
-#### Viewing Today Panel : `today`
-
-Displays a panel containing information relevant to today.
-
-Format: `today`
 
 #### Viewing help : `help`
 
