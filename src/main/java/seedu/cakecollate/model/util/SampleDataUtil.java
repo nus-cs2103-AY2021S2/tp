@@ -70,11 +70,17 @@ public class SampleDataUtil {
         };
     }
 
+    // sample order items should include the order descriptions above so it doesn't confuse users
+    // since order descriptions typed by users should always be added to the order items table
     public static OrderItem[] getSampleOrderItem() {
         return new OrderItem[] { new OrderItem(new Type("Banana Cake"), new Cost("5.0")),
             new OrderItem(new Type("GME Banana Cake"), new Cost("42690.0")),
-            new OrderItem(new Type("Strawberry Cake"), new Cost("5.0")),
-            new OrderItem(new Type("Chocolate Cake"), new Cost("5.0"))
+            new OrderItem(new Type("1 x Strawberry Cake"), new Cost("5.0")),
+            new OrderItem(new Type("2 x Chocolate Cake"), new Cost("5.0")),
+            new OrderItem(new Type("1 x Black Forest Cake"), new Cost("5.0")),
+            new OrderItem(new Type("1 x Vanilla Cake"), new Cost("5.0")),
+            new OrderItem(new Type("1 x Chocolate Vanilla Cake"), new Cost("5.0")),
+            new OrderItem(new Type("1 x Berries Cake"), new Cost("5.0"))
         };
     }
 

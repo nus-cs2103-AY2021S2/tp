@@ -54,4 +54,7 @@ public class Type {
         return value.hashCode();
     }
 
+    public String getValue() {
+        return value;
+    }
 }

@@ -8,14 +8,14 @@ import static seedu.cakecollate.logic.commands.CommandTestUtil.DELIVERY_DATE_DES
 import static seedu.cakecollate.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.cakecollate.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.cakecollate.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
-import static seedu.cakecollate.logic.commands.CommandTestUtil.INVALID_DELIVERY_DATE_DESC;
+import static seedu.cakecollate.logic.commands.CommandTestUtil.INVALID_DELIVERY_DATE_DESC2;
 import static seedu.cakecollate.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.cakecollate.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.cakecollate.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.cakecollate.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.cakecollate.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.cakecollate.logic.commands.CommandTestUtil.ORDER_AMY;
-import static seedu.cakecollate.logic.commands.CommandTestUtil.ORDER_BOB;
+import static seedu.cakecollate.logic.commands.CommandTestUtil.ORDER_DESC_AMY;
+import static seedu.cakecollate.logic.commands.CommandTestUtil.ORDER_DESC_BOB;
 import static seedu.cakecollate.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.cakecollate.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.cakecollate.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
@@ -99,8 +99,8 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
         assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid cakecollate
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
-        assertParseFailure(parser, "1" + INVALID_DELIVERY_DATE_DESC,
-                DeliveryDate.MESSAGE_CONSTRAINTS); // invalid delivery date
+        assertParseFailure(parser, "1" + INVALID_DELIVERY_DATE_DESC2,
+                String.format(DeliveryDate.MESSAGE_CONSTRAINTS_VALUE, "01/01/2000")); // invalid delivery date
 
         // invalid phone followed by valid email
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC + EMAIL_DESC_AMY, Phone.MESSAGE_CONSTRAINTS);
@@ -116,11 +116,11 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
 
         // order description
-        assertParseFailure(parser, "1" + ORDER_AMY + ORDER_BOB + ORDER_DESC_EMPTY,
+        assertParseFailure(parser, "1" + ORDER_DESC_AMY + ORDER_DESC_BOB + ORDER_DESC_EMPTY,
                 OrderDescription.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + ORDER_AMY + ORDER_DESC_EMPTY + ORDER_BOB,
+        assertParseFailure(parser, "1" + ORDER_DESC_AMY + ORDER_DESC_EMPTY + ORDER_DESC_BOB,
                 OrderDescription.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + ORDER_DESC_EMPTY + ORDER_AMY + ORDER_BOB,
+        assertParseFailure(parser, "1" + ORDER_DESC_EMPTY + ORDER_DESC_AMY + ORDER_DESC_BOB,
                 OrderDescription.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser, "1" + ORDER_DESC_EMPTY, OrderDescription.MESSAGE_CONSTRAINTS);
 
@@ -134,7 +134,7 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_SECOND_ORDER;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + TAG_DESC_HUSBAND
                 + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY
-                + ORDER_AMY + ORDER_BOB + DELIVERY_DATE_DESC_AMY
+                + ORDER_DESC_AMY + ORDER_DESC_BOB + DELIVERY_DATE_DESC_AMY
                 + TAG_DESC_FRIEND;
 
         EditCommand.EditOrderDescriptor descriptor = new EditOrderDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -186,7 +186,7 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // order description
-        userInput = targetIndex.getOneBased() + ORDER_AMY;
+        userInput = targetIndex.getOneBased() + ORDER_DESC_AMY;
         descriptor = new EditOrderDescriptorBuilder().withOrderDescriptions(VALID_CHOCOLATE_ORDER).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);

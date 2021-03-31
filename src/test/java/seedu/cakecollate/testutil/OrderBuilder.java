@@ -13,6 +13,8 @@ import seedu.cakecollate.model.order.OrderDescription;
 import seedu.cakecollate.model.order.Phone;
 import seedu.cakecollate.model.order.Request;
 import seedu.cakecollate.model.order.Status;
+import seedu.cakecollate.model.orderitem.OrderItem;
+import seedu.cakecollate.model.orderitem.Type;
 import seedu.cakecollate.model.tag.Tag;
 import seedu.cakecollate.model.util.SampleDataUtil;
 
@@ -68,6 +70,10 @@ public class OrderBuilder {
         deliveryDate = orderToCopy.getDeliveryDate();
         deliveryStatus = orderToCopy.getDeliveryStatus();
         request = orderToCopy.getRequest();
+    }
+
+    public static OrderItem getDefaultOrderItem() {
+        return new OrderItem(new Type(DEFAULT_ORDER_DESCRIPTION));
     }
 
     /**
