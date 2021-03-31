@@ -110,6 +110,7 @@ public class RecurringSession extends Session {
      */
     private Session buildSessionOnDate(SessionDate sessionDate) {
         requireAllNonNull(sessionDate);
+        assert(hasSessionOnDate(sessionDate));
         return new Session(sessionDate, getDuration(), getSubject(), getFee());
     }
 
