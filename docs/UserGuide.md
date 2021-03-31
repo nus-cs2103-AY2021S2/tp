@@ -59,7 +59,7 @@ Parameter: none
 Example:
 (Refer to Main Window Ui in Appendix)
 
-### Add an entry: `add`
+### Add a FoodDiary entry: `add`
 
 Adds an entry to the Food Diary.
 
@@ -190,6 +190,7 @@ Parameter:
 Example: 
 
     view 1
+    
 ![View Window UI](images/ViewWindowUi.png)
 
 ### List all the FoodDiary entries : `list`
@@ -263,6 +264,7 @@ Parameters:
 Example:
 
     edit 1 ra/5 p/7 re/I like this food a lot! a/Science c/Indian c/Halal s/Ventus
+    edit 1 re/I like the chicken re/ I like the rice
 -------------------------------------------------------------------------------------
 
 ## FAQ
