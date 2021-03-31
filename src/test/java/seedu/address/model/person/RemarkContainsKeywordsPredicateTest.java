@@ -86,7 +86,8 @@ public class RemarkContainsKeywordsPredicateTest {
                 .withEmail("alice@email.com").withAddress("Main Street").withName("Alice Gordon").build()));
     }
 
-    @Test void test_remarkComparatorSort_compare() {
+    @Test
+    public void test_remarkComparatorSort_compare() {
         Comparator<Person> comparator = new RemarkContainsKeywordsPredicate(Collections.singletonList("Contractor"));
 
         // Sort by similarity

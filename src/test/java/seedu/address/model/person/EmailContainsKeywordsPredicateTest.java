@@ -83,7 +83,8 @@ public class EmailContainsKeywordsPredicateTest {
                 .withEmail("alice@email.com").withAddress("Main Street").withTags("Researcher").build()));
     }
 
-    @Test void test_emailComparatorSort_compare() {
+    @Test
+    public void test_emailComparatorSort_compare() {
         Comparator<Person> comparator = new EmailContainsKeywordsPredicate(Collections.singletonList("Shaun"));
 
         // Sort by similarity
