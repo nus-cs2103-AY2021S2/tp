@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.model.garment.AttributesContainsKeywordsPredicate;
 
+//failing tests
 public class FindCommandParserTest {
 
     private FindCommandParser parser = new FindCommandParser();
@@ -36,7 +37,7 @@ public class FindCommandParserTest {
         assertParseSuccess(parser, args, expectedFindCommand);
 
         // multiple whitespaces between keywords
-    //        assertParseSuccess(parser, " n/\n Alice \n \t Bob  \t", expectedFindCommand);
+        //        assertParseSuccess(parser, " n/\n Alice \n \t Bob  \t", expectedFindCommand);
     }
 
     @Test
@@ -51,7 +52,7 @@ public class FindCommandParserTest {
         assertParseSuccess(parser, " s/22 10", expectedFindCommand);
 
         // multiple whitespaces between keywords
-    //        assertParseSuccess(parser, " s/\n 22 \n \t 10  \t", expectedFindCommand);
+        //        assertParseSuccess(parser, " s/\n 22 \n \t 10  \t", expectedFindCommand);
     }
 
     @Test
@@ -66,7 +67,7 @@ public class FindCommandParserTest {
         assertParseSuccess(parser, " c/red black", expectedFindCommand);
 
         // multiple whitespaces between keywords
-    //    assertParseSuccess(parser, " c/\n red \n \t black  \t", expectedFindCommand);
+        //    assertParseSuccess(parser, " c/\n red \n \t black  \t", expectedFindCommand);
     }
 
     @Test
@@ -81,7 +82,7 @@ public class FindCommandParserTest {
         assertParseSuccess(parser, " r/active casual", expectedFindCommand);
 
         // multiple whitespaces between keywords
-    //        assertParseSuccess(parser, " r/\n active \n \t casual  \t", expectedFindCommand);
+        //        assertParseSuccess(parser, " r/\n active \n \t casual  \t", expectedFindCommand);
     }
 
     //test issue desc more than one
@@ -124,10 +125,10 @@ public class FindCommandParserTest {
                         PREFIX_DESCRIPTION, PREFIX_TYPE);
         FindCommand expectedFindCommand =
                 new FindCommand(new AttributesContainsKeywordsPredicate(argumentMultimap));
-    //        assertParseSuccess(parser, " d/husband", expectedFindCommand);
+        //        assertParseSuccess(parser, " d/husband", expectedFindCommand);
 
         // multiple whitespaces between keywords
-    //    assertParseSuccess(parser, " d/\n husband \n  \t", expectedFindCommand);
+        //    assertParseSuccess(parser, " d/\n husband \n  \t", expectedFindCommand);
 
     }
 }

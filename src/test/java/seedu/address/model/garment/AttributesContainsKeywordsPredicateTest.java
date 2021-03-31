@@ -10,18 +10,16 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SIZE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.FindCommand;
+
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
-import seedu.address.logic.parser.FindCommandParser;
-import seedu.address.logic.parser.WardrobeParser;
 
-public class AtrtibutesContainsKeywordsPredicateTest {
+public class AttributesContainsKeywordsPredicateTest {
 
     @Test
     public void equals() {
         String argsFirst = " n/Alice Bob s/23 22 c/red black r/casual t/upper lower";
-        String argsSecond = " n/Alic Bob s/23 22 c/red black r/casual t/upper lower";//one letter missing from Alice
+        String argsSecond = " n/Alic Bob s/23 22 c/red black r/casual t/upper lower"; //one letter missing from Alice
         ArgumentMultimap argFirstPredicate =
                 ArgumentTokenizer.tokenize(argsFirst, PREFIX_NAME, PREFIX_SIZE, PREFIX_COLOUR, PREFIX_DRESSCODE,
                         PREFIX_DESCRIPTION, PREFIX_TYPE);

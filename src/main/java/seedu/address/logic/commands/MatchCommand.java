@@ -16,12 +16,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
-import seedu.address.logic.parser.FindCommandParser;
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.garment.AttributesContainsKeywordsPredicate;
-import seedu.address.model.garment.ColourContainsKeywordsPredicate;
-import seedu.address.model.garment.ContainsKeywordsPredicate;
 import seedu.address.model.garment.Garment;
 
 /**

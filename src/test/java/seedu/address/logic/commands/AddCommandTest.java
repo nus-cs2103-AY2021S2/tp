@@ -9,7 +9,6 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -21,7 +20,6 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.ReadOnlyWardrobe;
 import seedu.address.model.Wardrobe;
-import seedu.address.model.garment.ContainsKeywordsPredicate;
 import seedu.address.model.garment.Garment;
 import seedu.address.testutil.GarmentBuilder;
 

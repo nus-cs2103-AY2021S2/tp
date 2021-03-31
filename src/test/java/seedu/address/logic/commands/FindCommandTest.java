@@ -18,27 +18,18 @@ import static seedu.address.testutil.TypicalGarments.DANIEL;
 import static seedu.address.testutil.TypicalGarments.ELLE;
 import static seedu.address.testutil.TypicalGarments.FIONA;
 import static seedu.address.testutil.TypicalGarments.GEORGE;
-import static seedu.address.testutil.TypicalGarments.HOON;
 import static seedu.address.testutil.TypicalGarments.getTypicalWardrobe;
 
 import java.util.Arrays;
-import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
-import seedu.address.logic.parser.FindCommandParser;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.garment.AttributesContainsKeywordsPredicate;
-import seedu.address.model.garment.ColourContainsKeywordsPredicate;
-import seedu.address.model.garment.DescriptionContainsKeywordsPredicate;
-import seedu.address.model.garment.DressCodeContainsKeywordsPredicate;
-import seedu.address.model.garment.Garment;
-import seedu.address.model.garment.NameContainsKeywordsPredicate;
-import seedu.address.model.garment.SizeContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
@@ -93,7 +84,7 @@ public class FindCommandTest {
         assertEquals(Collections.emptyList(), model.getFilteredGarmentList());
     }*/
 
-   /*@Test //my random check
+    /*@Test //my random check
     public void check() {
         String args = " n/Alice Bob";
         ArgumentMultimap argumentMultimap =
@@ -109,7 +100,8 @@ public class FindCommandTest {
         //catch(Exception e){}
         //FindCommand c2 = new FindCommand(pred);
         assertEquals(argumentMultimap, argumentMultimap2);
-    }*/
+    }
+    */
 
     @Test
     public void execute_multipleKeywordsName_multipleGarmentsFound() {
@@ -166,7 +158,7 @@ public class FindCommandTest {
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 
-   /* @Test
+    /* @Test
     public void execute_zeroKeywordsSize_noGarmentFound() {
         String expectedMessage = String.format(MESSAGE_GARMENTS_LISTED_OVERVIEW, 0);
         AttributesContainsKeywordsPredicate predicate = prepareAttributesPredicate(" s/ ");
@@ -174,7 +166,8 @@ public class FindCommandTest {
         expectedModel.updateFilteredGarmentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredGarmentList());
-    }*/
+    }
+    */
 
     @Test
     public void execute_multipleKeywordsSize_multipleGarmentsFound() {
@@ -230,7 +223,8 @@ public class FindCommandTest {
         expectedModel.updateFilteredGarmentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredGarmentList());
-    }*/
+    }
+    */
 
     @Test
     public void execute_multipleKeywordsColour_multipleGarmentsFound() {
@@ -285,7 +279,8 @@ public class FindCommandTest {
         expectedModel.updateFilteredGarmentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredGarmentList());
-    }*/
+    }
+    */
 
     @Test
     public void execute_multipleKeywordsDressCode_multipleGarmentsFound() {
@@ -341,7 +336,8 @@ public class FindCommandTest {
         expectedModel.updateFilteredGarmentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredGarmentList());
-    }*/
+    }
+    */
 
     @Test
     public void execute_multipleKeywordsDescription_multipleGarmentsFound() {
@@ -396,7 +392,8 @@ public class FindCommandTest {
         expectedModel.updateFilteredGarmentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredGarmentList());
-    }*/
+    }
+    */
 
     @Test
     public void execute_multipleKeywordsType_multipleGarmentsFound() {
@@ -405,7 +402,7 @@ public class FindCommandTest {
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredGarmentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(ALICE, BENSON, DANIEL, ELLE, FIONA,GEORGE), model.getFilteredGarmentList());
+        assertEquals(Arrays.asList(ALICE, BENSON, DANIEL, ELLE, FIONA, GEORGE), model.getFilteredGarmentList());
     }
 
     /*@Test
@@ -416,7 +413,8 @@ public class FindCommandTest {
         expectedModel.updateFilteredGarmentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredGarmentList());
-    }*/
+    }
+    */
 
     @Test
     public void execute_multipleKeywordsMultipleAtttributes_multipleGarmentsFound() {

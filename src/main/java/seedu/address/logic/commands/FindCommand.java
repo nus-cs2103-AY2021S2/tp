@@ -5,12 +5,6 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.garment.AttributesContainsKeywordsPredicate;
-import seedu.address.model.garment.ContainsKeywordsPredicate;
-import seedu.address.model.garment.Garment;
-
-import java.util.function.Predicate;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Finds and lists all garments in wardrobe whose name contains any of the argument keywords.

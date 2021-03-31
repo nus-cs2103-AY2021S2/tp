@@ -1,16 +1,16 @@
 package seedu.address.model.garment;
 
-import seedu.address.logic.parser.ArgumentMultimap;
-
-import java.util.Arrays;
-import java.util.function.Predicate;
-
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COLOUR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DRESSCODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SIZE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
+
+import java.util.Arrays;
+import java.util.function.Predicate;
+
+import seedu.address.logic.parser.ArgumentMultimap;
 
 public class AttributesContainsKeywordsPredicate implements Predicate<Garment> {
 

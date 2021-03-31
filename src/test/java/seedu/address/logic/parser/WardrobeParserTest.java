@@ -13,10 +13,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_GARMENT;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
@@ -31,7 +27,6 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.garment.AttributesContainsKeywordsPredicate;
 import seedu.address.model.garment.Garment;
-import seedu.address.model.garment.NameContainsKeywordsPredicate;
 import seedu.address.testutil.EditGarmentDescriptorBuilder;
 import seedu.address.testutil.GarmentBuilder;
 import seedu.address.testutil.GarmentUtil;

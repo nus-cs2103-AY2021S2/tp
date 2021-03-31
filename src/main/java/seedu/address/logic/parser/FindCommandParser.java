@@ -8,19 +8,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SIZE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.garment.AttributesContainsKeywordsPredicate;
-import seedu.address.model.garment.ColourContainsKeywordsPredicate;
-import seedu.address.model.garment.ContainsKeywordsPredicate;
-import seedu.address.model.garment.DescriptionContainsKeywordsPredicate;
-import seedu.address.model.garment.DressCodeContainsKeywordsPredicate;
-import seedu.address.model.garment.NameContainsKeywordsPredicate;
-import seedu.address.model.garment.SizeContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -55,6 +45,10 @@ public class FindCommandParser implements Parser<FindCommand> {
     }
 
     //maybe can separate to each prefix, but that sorta forces each prefic to be present
+
+    /**
+     * Returns true if the argumentMultiMap has valid prefixes and is non-empty
+     */
     public boolean isValidInput(ArgumentMultimap argMultimap) {
         String[] keywords = {""};
         boolean isValidSyntax = false;
@@ -92,6 +86,9 @@ public class FindCommandParser implements Parser<FindCommand> {
         return isValidSyntax && isNotEmpty;
     }
 
+    /**
+     * Returns true if the input is non empty
+     */
     public boolean isNotEmpty(String[] input) {
         if (!(input[0].equals(""))) {
             return true;

@@ -1,11 +1,11 @@
 package seedu.address.model.garment;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Garment's DressCode in the wardrobe.
@@ -54,6 +54,9 @@ public class Type {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Initialises the HashMap of types and their respective matching types.
+     */
     public static void initialiseMatches() {
         MATCHES.put("upper", UPPER_MATCHES);
         MATCHES.put("lower", LOWER_MATCHES);
@@ -64,7 +67,7 @@ public class Type {
         return MATCHES.get(value);
     }
 
-        @Override
+    @Override
     public String toString() {
         return value;
     }
