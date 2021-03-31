@@ -14,6 +14,8 @@ title: Developer Guide
     * [List food item feature](#list-food-item-feature)
     * [Delete food item feature](#delete-food-item-feature)
   * [FoodIntake Object](#foodintake-object)
+  * [Progress Report feature](#progress-report-feature)
+  * [Mifflin-St Joer Formula](#mifflin-st-joer-formula)
 * [Product Scope](#product-scope)
 * [User Stories](#user-stories)
 * [Use Cases](#use-cases)
@@ -303,6 +305,99 @@ Two constructors were used to get-around the restrictions by the `Food` name fie
 
 [Work in progress]
 
+### Progress Report feature
+
+The progress report gives the user the ability to track the progress of his/her food intake against the requirements of the diet plan selected by the user.
+Each progress report provides the following information:
+
+* The general details of the active diet plan, such as the name, description and its macronutrient composition.
+* The required daily macronutrient intake based on the user's Body Mass Index (BMI)
+* The foods consumed by the user, grouped in the day it was consumed, and their macronutrient compositions
+* How much the daily intake has adhered to the diet plan's macronutrient requirements
+* How much the user has adhered to the diet plan's macronutrient requirements in total
+
+Example: `progress`
+
+#### Implementation:
+Before the `progress` command can be successfully run, the user needs to have selected an active diet plan to follow. Otherwise, the user will be prompted to select a diet plan first.
+A progress report will then be generated whenever the `progress` command is entered.
+
+Below is an example of a usage scenario:
+
+Step 1: The user launches the application and executes `plan_set p/1` to set an active diet plan.
+
+Step 2: The user adds the food consumed using the `food_intake_add` command (refer to the Add food intake feature for more details)
+
+Step 3: The user executes `progress` to view a progress report based on the active diet plan and his/her food intake.
+
+#### ProgressCalculator class
+
+The `ProgressCalulator` class is a static class containing the `calculateProgress` method which accepts a `user` input parameter in the form of a `User` class object. 
+This `user` object will contain the necessary information required to calculate the precentage of adherence to the diet plan. These information are:
+
+1. The `DietPlan` class object which contains the macronutrients requirements for the plan
+2. The `FoodIntakeList` class object which contains the list of foods consumed by the user on which day
+
+The progress calculator will first calculate the required calories and macronutrients to fit the goal of the user's active diet plan. Documented below are the steps involved in deciding the daily amount of calories and macronutrients needed for the user to adhere to the diet plan:
+
+1. The user's weight maintenance calories are calculated based on the **Mifflin-St Joer Formula**. 
+2. Depending on the type of diet plan (weight gain, weight loss or weight maintenance), the amount of calories required is calculated:
+ * For weight gain plans, the daily amount of calories required is **maintenance calories + 400**
+ * For weight loss plans, the daily amount of calories required is **maintenance calories - 500**
+ * For weight maintenance plans, the daily amount of calories required is the **maintenance calories**
+3. The *macronutrients' percentages* for the diet plan is applied to the calculated calories to determine how much of each macronutrient is required (in grams).
+
+The progress calculator then uses the *macronutrients' percentages* to decide whether the user has fulfiled the diet plan's requirements. This information is displayed via 3 main sections of the report:
+* Active diet plan details
+* Daily report
+* Total report
+
+The following sections will explain how each of these information is collected by the `ProgressCalculator` class.
+
+#### Active diet plan details
+
+This section of the progress report details information pertaining to the active diet plan. These information is retrieved from the respective `DietPlan` class of the active diet plan selected by the user.
+This includes the name of the diet plan, a brief description of the diet plan and the macronutrient requirements (in percentages).
+<br/>
+
+Additionally, this section also shows the daily macronutrients requirements the user needs to follow in order to fulfil the plan's requirements. This includes the daily calorie intake, daily carbohydrate intake, daily protein intake and daily fats intake, in grams.
+
+#### Daily report
+
+This section of the progress report details the foods consumed within each day as well as whether the daily total of each macronutrient adheres to the plan's requirements. <br/>
+
+The total of each macronutrient intake is calculated by summing up the macronutrients *(carbohydrates, proteins and fats)* in each food consumed within that particular day. 
+These totals are divided by their respective daily macronutrient requirements to get a percentage of how much the user has adhered to the plan's requirements. This * daily adherence percentage* indicates whether the user has exceeded, is under or is within the diet plan's requirements for that day.
+
+A leeway value of **5%** is allowed should the user's *daily adherence percentage* fall just above or below the required amount.
+
+#### Total report
+
+This section of the progress report details the user's total adherence to the diet plan's requirements. This is calculated by taking the average of all *daily adherence percentages* of each day.
+This *total adherence percentage* is then reported to the user.
+
+Similar to the *daily adherence percentage*, the *total adherence percentage* has a leeway value of **10%** should it fall just above or below the required amount.
+
+#### Design consideration:
+
+The are certain design considerations made when adding the progress calculator feature. The first of which is the use of the Mifflin-St Joer Formula to calculate the BMR as opposed to other formulas.
+Frankenfield (2005) studied 4 equations that were commonly used in calculating BMR. These equations were the Mifflin-St Joer equation, the Harris-Benedict equation, the Owen equation and the WHO/FAO/UNU equation.
+The study found that the Mifflin-St Joer formula was most accurate in calculating the BMR, being within 10% of the actual value measured. 
+As such, the DietLAH! team has decided to use the Mifflin-St Joer formula as the basis for calculating BMR of users.
+<br/>
+Secondly, there are leeways given for the *daily adherence percentage* and the *total adherence percentage* to provide more flexibility to the application. This is made in consideration of human errors, such as inaccurate estimation of macronutrients, as well as inaccuracies in nutrition labels.
+
+
+### Mifflin-St Joer Formula
+
+The Mifflin-St Joer Formula is used to calculate the Basal Metabolic Rate (BMR), which is the rate at which calories are burned daily when the individual is not performing any activity. 
+The formula takes into account the individual's weight, height, age and sex.
+<br/>
+For men, the formula is as follows: **(10 * weight(kg)) + (6.25 x height(cm)) – (5 x age(years)) + 5**
+<br/>
+For women, the formula is as follows: **(10 * weight(kg)) + (6.25 x height(cm)) – (5 x age(years)) - 161**
+
+
 ### Product Scope
 
 **Target user profile**
@@ -443,3 +538,8 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 *{More to be added}*
+
+
+### References
+
+Frankenfield, D., Roth-Yousey L. & Compher C. (2005). Comparison of predictive equations for resting metabolic rate in healthy nonobese and obese adults: a systematic review. *Journal of the American Dietetic Association*, 105(5), 775-89. doi: 10.1016/j.jada.2005.02.005.
