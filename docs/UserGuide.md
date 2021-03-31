@@ -38,7 +38,7 @@ The Food Diary will allow students to save time and effort when finding places t
 eat around the NUS vicinity. The Food Diary especially caters to students chiefly on 3 aspects:
 1. The ability for users to save food diary entries for future reference.
 2. The ability for users to find entries where food are within a certain price range.
-3. The ability to effortlessly reference food options based on relevant filters in a user-friendly GUI 
+3. The ability to effortlessly reference food options based on relevant filters in a user-friendly GUI
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
@@ -79,7 +79,7 @@ Example:
 ### Addon a review or a price to an entry: `addon`
 Adds-on a review and/or a price to an entry of the Food Diary.
 
-Format: `addon <INDEX> re/<REVIEW> p/<PRICE>` or `addon <INDEX> p/<PRICE> re/<REVIEW>` 
+Format: `addon <INDEX> re/<REVIEW> p/<PRICE>` or `addon <INDEX> p/<PRICE> re/<REVIEW>`
 
 Parameters: 
 
@@ -107,7 +107,7 @@ Deletes an entry from the Food Diary.
 
 Format: `delete n/<NAME>` or `delete i/<INDEX>`
 
-Parameters: 
+Parameters:
 
 1. `Restaurant name` or `Index`.
 
@@ -126,7 +126,7 @@ accepted as parameters.
 - For the price field, a price range can also be accepted as a parameter,
 and any entry that contains at least one of the prices within the specified range will be returned as a search result.
 
-Parameters: 
+Parameters:
 
 Keyword(s) of any number and sequence:
 1. `Restaurant Name`
@@ -138,8 +138,8 @@ Keyword(s) of any number and sequence:
 
 
 Example:
-    
-    find techno    
+  
+    find techno
     find science fass
     find fastfood indian $6
     find clementi 5/5 $8-15 western
@@ -156,7 +156,7 @@ the provided keywords.**
 
 Format: `findall <KEYWORD> ...`
 
-Parameters: 
+Parameters:
 
 Keyword(s) of any number and sequence:
 1. `Restaurant Name`
@@ -172,8 +172,8 @@ Example:
 
 ### View a specific entry
 
-Opens up a window, showing the details of a specified entry in a full expanded view. Allows the user to read through 
-reviews that are too lengthy to be shown in the main UI window.
+Opens up a window, showing the details of a specified entry in a full expanded view. Allows the user to read through
+ reviews that are too lengthy to be shown in the main UI window.
 
 Format: `view <INDEX>`
 
@@ -187,9 +187,9 @@ Example: (Refer to View Window Ui in Appendix)
 
 ### View all the food reviews : `list`
 
-Opens up a window to show a condensed form of all the different commands, 
-and parameters of the commands,
-that can be typed by the user in The Food Diary.
+Opens up a window to show a condensed form of all the different commands,
+ and parameters of the commands,
+ that can be typed by the user in The Food Diary.
 
 Format: `help`
 
@@ -201,8 +201,8 @@ Example: (Refer to Help Window in Appendix)
 
 ### Revise a specific entry
 
-Opens up a window, showing the existing details of an entry and allowing for quick corrections and updates without 
-requiring the use of prefixes and command syntax in the UI.
+Opens up a window, showing the existing details of an entry and allowing for quick corrections and updates without
+ requiring the use of prefixes and command syntax in the UI.
 
 Format: `revise <INDEX>`
 
