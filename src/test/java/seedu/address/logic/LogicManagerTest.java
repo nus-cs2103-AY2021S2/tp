@@ -69,7 +69,8 @@ public class LogicManagerTest {
     @Test
     public void execute_customerCommandExecutionError_throwsCommandException() {
         String deleteCommand = "customer delete 9";
-        assertCommandException(deleteCommand, String.format(Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX, Messages.ITEM_PERSON));
+        assertCommandException(deleteCommand, String.format(
+                Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX, Messages.ITEM_PERSON));
     }
 
     @Test

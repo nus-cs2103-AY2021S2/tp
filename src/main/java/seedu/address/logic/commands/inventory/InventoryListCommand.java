@@ -1,14 +1,14 @@
 package seedu.address.logic.commands.inventory;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ITEMS;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all ingredients in the inventory book to the user.
  */
 public class InventoryListCommand extends Command {
 
@@ -20,7 +20,7 @@ public class InventoryListCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredIngredientList(PREDICATE_SHOW_ALL_ITEMS);
         return new CommandResult(MESSAGE_SUCCESS, CommandResult.CRtype.INGREDIENT);
     }
 }

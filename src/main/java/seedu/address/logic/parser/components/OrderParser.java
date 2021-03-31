@@ -10,9 +10,12 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.order.OrderAddCommand;
+import seedu.address.logic.commands.order.OrderCompleteCommand;
 import seedu.address.logic.commands.order.OrderDeleteCommand;
+import seedu.address.logic.commands.order.OrderHistoryCommand;
 import seedu.address.logic.commands.order.OrderListCommand;
 import seedu.address.logic.parser.commands.order.OrderAddCommandParser;
+import seedu.address.logic.parser.commands.order.OrderCompleteCommandParser;
 import seedu.address.logic.parser.commands.order.OrderDeleteCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -51,6 +54,12 @@ public class OrderParser implements ComponentParser {
 
         case OrderListCommand.COMMAND_WORD:
             return new OrderListCommand();
+
+        case OrderCompleteCommand.COMMAND_WORD:
+            return new OrderCompleteCommandParser().parse(arguments);
+
+        case OrderHistoryCommand.COMMAND_WORD:
+            return new OrderHistoryCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

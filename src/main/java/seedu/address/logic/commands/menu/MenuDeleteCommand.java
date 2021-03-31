@@ -11,6 +11,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.dish.Dish;
+import seedu.address.model.order.Order;
 
 /**
  * Deletes a dish identified using it's displayed index from the address book.
@@ -26,11 +27,25 @@ public class MenuDeleteCommand extends Command {
             + "Example: " + COMPONENT_WORD + " " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_DISH_SUCCESS = "Deleted dish: %1$s";
+    public static final String MESSAGE_DELETE_DISH_FAILURE =
+            "Failed to deleted dish: %1$s due to outstanding orders, "
+            + "add -f flag to confirm";
 
     private final Index targetIndex;
+    private final boolean isForce;
 
     public MenuDeleteCommand(Index targetIndex) {
+        this(targetIndex, false);
+    }
+
+    /**
+     * Forces delete dish with given index along with associated ingredients
+     * @param targetIndex index in menu list
+     * @param isForce forces delete a dish
+     */
+    public MenuDeleteCommand(Index targetIndex, boolean isForce) {
         this.targetIndex = targetIndex;
+        this.isForce = isForce;
     }
 
     @Override
@@ -45,6 +60,16 @@ public class MenuDeleteCommand extends Command {
         }
 
         Dish dishToDelete = lastShownList.get(targetIndex.getZeroBased());
+
+        List<Order> outstandingOrders = model.getIncompleteOrdersContainingDish(dishToDelete);
+        boolean isOutstandingOrders = !outstandingOrders.isEmpty();
+
+        if (isOutstandingOrders && !isForce) {
+            return new CommandResult(String.format(MESSAGE_DELETE_DISH_FAILURE, dishToDelete),
+                    CommandResult.CRtype.DISH);
+        }
+
+        model.cancelOrders(outstandingOrders);
         model.deleteDish(dishToDelete);
 
         return new CommandResult(String.format(MESSAGE_DELETE_DISH_SUCCESS, dishToDelete),

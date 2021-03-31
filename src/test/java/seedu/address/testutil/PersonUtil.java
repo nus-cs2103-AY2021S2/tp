@@ -7,7 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.List;
-import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.address.logic.commands.customer.CustomerAddCommand;
 import seedu.address.logic.commands.customer.CustomerEditCommand.EditPersonDescriptor;
@@ -38,6 +38,13 @@ public class PersonUtil {
             s -> sb.append(PREFIX_TAG + s + " ")
         );
         return sb.toString();
+    }
+
+    /**
+     * Returns the part of command string for find.
+     */
+    public static String getPersonFind(List<String> keywords) {
+        return PREFIX_NAME + keywords.stream().collect(Collectors.joining(" "));
     }
 
     /**

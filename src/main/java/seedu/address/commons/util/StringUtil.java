@@ -65,4 +65,34 @@ public class StringUtil {
             return false;
         }
     }
+
+    /**
+     * Returns true if {@code s} represents a non-negative integer
+     * @throws NullPointerException if {@code s} is null.
+     */
+    public static boolean isNonNegativeInt(String s) {
+        requireNonNull(s);
+
+        try {
+            double value = Integer.parseInt(s);
+            return value >= 0 && !s.startsWith("+"); // "+1" is successfully parsed by Integer#parseInt(String)
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+    }
+
+    /**
+     * Returns true if {@code s} represents a non-negative double
+     * @throws NullPointerException if {@code s} is null.
+     */
+    public static boolean isNonNegativeDouble(String s) {
+        requireNonNull(s);
+
+        try {
+            double value = Double.parseDouble(s);
+            return value >= 0 && !s.startsWith("+"); // "+1" is successfully parsed by Double#parseDouble(String)
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+    }
 }

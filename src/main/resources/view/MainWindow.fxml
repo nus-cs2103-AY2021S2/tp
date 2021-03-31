@@ -23,7 +23,7 @@
         <MenuBar fx:id="menuBar" nodeOrientation="RIGHT_TO_LEFT">
           <Menu fx:id="menuSettings" mnemonicParsing="false">
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
-            <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
+            <MenuItem fx:id="exitMenuItem" mnemonicParsing="false" onAction="#handleExit" text="Exit" />
           </Menu>
                <VBox.margin>
                   <Insets />

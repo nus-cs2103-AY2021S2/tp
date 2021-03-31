@@ -1,5 +1,7 @@
 package seedu.address.model.util;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -80,12 +82,14 @@ public class SampleDataUtil {
         Dish fries = new Dish("French fries", 3.50, new ArrayList<Pair<Ingredient, Integer>>());
 
         return new Order[] {
-            new Order("14-02-2021 18:30", bernice,
+            new Order(LocalDateTime.parse("14-02-2021 18:30", DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")),
+                    bernice,
                     new ArrayList<>(Arrays.asList(
                             new Pair<>(burger, 2),
                             new Pair<>(wings, 2)
                     ))),
-            new Order("14-02-2021 19:15", david,
+            new Order(LocalDateTime.parse("14-02-2021 19:15", DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")),
+                    david,
                     new ArrayList<>(Arrays.asList(
                             new Pair<>(burger, 1),
                             new Pair<>(fries, 1)

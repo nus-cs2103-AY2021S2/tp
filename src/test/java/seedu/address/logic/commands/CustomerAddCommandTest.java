@@ -9,6 +9,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -17,6 +18,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.customer.CustomerAddCommand;
+import seedu.address.logic.commands.customer.CustomerCommandUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyUserPrefs;
@@ -56,7 +58,7 @@ public class CustomerAddCommandTest {
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
 
         assertThrows(CommandException.class,
-                CustomerAddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+                CustomerCommandUtil.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
     }
 
     @Test
@@ -158,7 +160,7 @@ public class CustomerAddCommandTest {
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
+        public void updateFilteredPersonList(Predicate<? super Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -174,6 +176,11 @@ public class CustomerAddCommandTest {
 
         @Override
         public boolean hasDish(Dish dish) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Dish getDishByIndex(int i) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -198,7 +205,7 @@ public class CustomerAddCommandTest {
         }
 
         @Override
-        public void updateFilteredDishList(Predicate<Dish> predicate) {
+        public void updateFilteredDishList(Predicate<? super Dish> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -223,6 +230,11 @@ public class CustomerAddCommandTest {
         }
 
         @Override
+        public Ingredient getIngredientByIndex(int i) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deleteIngredient(Ingredient ingredient) {
             throw new AssertionError("This method should not be called.");
         }
@@ -243,7 +255,7 @@ public class CustomerAddCommandTest {
         }
 
         @Override
-        public void updateFilteredIngredientList(Predicate<Ingredient> predicate) {
+        public void updateFilteredIngredientList(Predicate<? super Ingredient> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -283,17 +295,58 @@ public class CustomerAddCommandTest {
         }
 
         @Override
-        public ObservableList<Order> getFilteredOrderList() {
+        public ObservableList<Order> getFilteredOrderList(Order.State state) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        /**
+         * Returns an unmodifiable view of the filtered order list
+         *
+         * @param firstState
+         * @param secState
+         */
+        @Override
+        public ObservableList<Order> getFilteredOrderList(Order.State firstState, Order.State secState) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredOrderList(Predicate<Order> predicate) {
+        public ObservableList<Order> getFilteredOrderList(Comparator<Order> comparator, Order.State state) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public List<Order> getIncompleteOrdersContainingDish(Dish target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public List<Order> getIncompleteOrders() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredOrderList(Predicate<? super Order> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public List<Order> getOrdersFromPerson(Person target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void completeOrder(Order orderToComplete) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void cancelOrder(Order target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void cancelOrders(List<Order> targets) {
             throw new AssertionError("This method should not be called.");
         }
     }

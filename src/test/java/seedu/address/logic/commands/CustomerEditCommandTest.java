@@ -84,23 +84,6 @@ public class CustomerEditCommandTest {
     }
 
     @Test
-    public void execute_filteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
-
-        Person personInFilteredList = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Person editedPerson = new PersonBuilder(personInFilteredList).withName(VALID_NAME_BOB).build();
-        CustomerEditCommand editCommand = new CustomerEditCommand(INDEX_FIRST_PERSON,
-                new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
-
-        String expectedMessage = String.format(CustomerEditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
-
-        Model expectedModel = new ModelManager(new PersonBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
-
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
     public void execute_duplicatePersonUnfilteredList_failure() {
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(firstPerson).build();
@@ -127,7 +110,8 @@ public class CustomerEditCommandTest {
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build();
         CustomerEditCommand editCommand = new CustomerEditCommand(outOfBoundIndex, descriptor);
 
-        assertCommandFailure(editCommand, model, String.format(Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX, Messages.ITEM_PERSON));
+        assertCommandFailure(editCommand, model, String.format(
+                Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX, Messages.ITEM_PERSON));
     }
 
     /**
@@ -144,7 +128,8 @@ public class CustomerEditCommandTest {
         CustomerEditCommand editCommand = new CustomerEditCommand(outOfBoundIndex,
                 new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
-        assertCommandFailure(editCommand, model, String.format(Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX, Messages.ITEM_PERSON));
+        assertCommandFailure(editCommand, model, String.format(
+                Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX, Messages.ITEM_PERSON));
     }
 
     @Test

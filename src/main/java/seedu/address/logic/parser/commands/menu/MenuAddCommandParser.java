@@ -1,22 +1,21 @@
 package seedu.address.logic.parser.commands.menu;
 import static java.lang.Double.parseDouble;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INGREDIENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
 
 import seedu.address.commons.core.Pair;
 import seedu.address.logic.commands.menu.MenuAddCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
-import seedu.address.logic.parser.Prefix;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.commands.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.dish.Dish;
-import seedu.address.model.ingredient.Ingredient;
 
 /**
  * Parses input arguments and creates a new MenuAddCommand object
@@ -30,28 +29,27 @@ public class MenuAddCommandParser implements Parser<MenuAddCommand> {
      */
     public MenuAddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PRICE);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PRICE, PREFIX_INGREDIENT, PREFIX_QUANTITY);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PRICE)
+        if (!ParserUtil.arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PRICE, PREFIX_INGREDIENT, PREFIX_QUANTITY)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MenuAddCommand.MESSAGE_USAGE));
         }
 
         String name = argMultimap.getValue(PREFIX_NAME).get().trim();
         double price = parseDouble(argMultimap.getValue(PREFIX_PRICE).get().trim());
+        List<String> ingredientNumbers = argMultimap.getAllValues(PREFIX_INGREDIENT);
+        List<String> ingredientQuantities = argMultimap.getAllValues(PREFIX_QUANTITY);
 
-        List<Pair<Ingredient, Integer>> ingredientQuantityList = new ArrayList<>();
-        Dish dish = new Dish(name, price, ingredientQuantityList);
+        List<Pair<Integer, Integer>> ingredientQuantityList = new ArrayList<>();
 
-        return new MenuAddCommand(dish);
+        for (int i = 0; i < ingredientNumbers.size(); i++) {
+            Pair<Integer, Integer> dishComponent =
+                    new Pair<>(Integer.parseInt(ingredientNumbers.get(i)),
+                            Integer.parseInt(ingredientQuantities.get(i)));
+            ingredientQuantityList.add(dishComponent);
+        }
+
+        return new MenuAddCommand(name, price, ingredientQuantityList);
     }
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-    }
-
 }

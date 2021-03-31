@@ -8,7 +8,7 @@ import javafx.scene.layout.Region;
 import seedu.address.model.ingredient.Ingredient;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of ingredients.
  */
 public class InventoryListPanel extends UiPart<Region> {
     private static final String FXML = "InventoryListPanel.fxml";

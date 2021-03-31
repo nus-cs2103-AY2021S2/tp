@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -40,7 +41,7 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Dish> filteredDishes;
     private final FilteredList<Ingredient> filteredIngredients;
-    private final FilteredList<Order> filteredOrders;
+    private FilteredList<Order> filteredOrders;
 
     /**
      * Initializes a ModelManager with the given books and userPrefs.
@@ -164,7 +165,6 @@ public class ModelManager implements Model {
     @Override
     public void addPerson(Person person) {
         personBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
@@ -183,8 +183,32 @@ public class ModelManager implements Model {
         return filteredPersons;
     }
 
+    public List<Order> getIncompleteOrders() {
+        ObservableList<Order> orders = getOrderBook().getOrderList();
+        List<Order> incompleteOrders = new ArrayList<>();
+        for (Order o : orders) {
+            if (o.getState() == Order.State.UNCOMPLETED) {
+                incompleteOrders.add(o);
+            }
+        }
+        return incompleteOrders;
+    }
+
+    //@@ author kangtinglee
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public List<Order> getIncompleteOrdersContainingDish(Dish target) {
+        List<Order> incompleteOrders = getIncompleteOrders();
+        List<Order> incompleteAndContainsDishOrders = new ArrayList<>();
+        for (Order o : incompleteOrders) {
+            if (o.contains(target)) {
+                incompleteAndContainsDishOrders.add(o);
+            }
+        }
+        return incompleteAndContainsDishOrders;
+    }
+
+    @Override
+    public void updateFilteredPersonList(Predicate<? super Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
@@ -211,6 +235,13 @@ public class ModelManager implements Model {
     public boolean hasDish(Dish dish) {
         requireNonNull(dish);
         return dishBook.hasDish(dish);
+    }
+
+    /**
+     * Returns the {@code Person} object at the specified index on the UI
+     */
+    public Dish getDishByIndex(int i) {
+        return getFilteredDishList().get(i);
     }
 
     /**
@@ -246,7 +277,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredDishList(Predicate<Dish> predicate) {
+    public void updateFilteredDishList(Predicate<? super Dish> predicate) {
         requireNonNull(predicate);
         filteredDishes.setPredicate(predicate);
     }
@@ -273,6 +304,13 @@ public class ModelManager implements Model {
     public boolean hasIngredient(Ingredient ingredient) {
         requireNonNull(ingredient);
         return ingredientBook.hasIngredient(ingredient);
+    }
+
+    /**
+     * Returns the {@code Ingredient} object at the specified index on the UI
+     */
+    public Ingredient getIngredientByIndex(int i) {
+        return getFilteredIngredientList().get(i);
     }
 
     /**
@@ -308,7 +346,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredIngredientList(Predicate<Ingredient> predicate) {
+    public void updateFilteredIngredientList(Predicate<? super Ingredient> predicate) {
         requireNonNull(predicate);
         filteredIngredients.setPredicate(predicate);
     }
@@ -369,6 +407,7 @@ public class ModelManager implements Model {
         }
     }
 
+
     /**
      * Adds the given order.
      * {@code order} must not already exist
@@ -388,13 +427,64 @@ public class ModelManager implements Model {
         orderBook.setOrder(target, editedOrder);
     }
 
-    /** Returns an unmodifiable view of the filtered person list */
-    public ObservableList<Order> getFilteredOrderList() {
-        return filteredOrders;
+    /**
+     * Sets the state of the order to complete
+     */
+    public void completeOrder(Order target) {
+        orderBook.completeOrder(target);
+    }
+
+    /**
+     * Sets the state of the order to cancelled
+     */
+    @Override
+    public void cancelOrder(Order target) {
+        orderBook.completeOrder(target);
+    }
+
+    /**
+     * Sets the state of the orders to cancelled
+     */
+    @Override
+    public void cancelOrders(List<Order> targets) {
+        for (Order o : targets) {
+            cancelOrder(o);
+        }
+    };
+
+    /**
+     * Returns an unmodifiable view of the filtered order list with one predicate
+     */
+    @Override
+    public ObservableList<Order> getFilteredOrderList(Order.State state) {
+        return filteredOrders.filtered(order -> order.getState() == state);
+    }
+
+    /**
+     * Returns an unmodifiable view of the filtered order list with two predicates
+     */
+    @Override
+    public ObservableList<Order> getFilteredOrderList(Order.State firstState, Order.State secState) {
+        return filteredOrders.filtered(order -> order.getState() == firstState || order.getState() == secState);
+    }
+
+    /** Returns an sorted view of the filtered order list */
+    public ObservableList<Order> getFilteredOrderList(Comparator<Order> comparator, Order.State state) {
+        sortOrder(comparator);
+        return getFilteredOrderList(state);
+    }
+
+    /**
+     *  Returns a sorted view of the filtered Order List
+     * @param comparator
+     * @return
+     */
+    public void sortOrder(Comparator<Order> comparator) {
+        orderBook.sortItemsByDateTime(comparator);
     }
 
     @Override
-    public void updateFilteredOrderList(Predicate<Order> predicate) {
+    public void updateFilteredOrderList(Predicate<? super Order> predicate) {
         requireNonNull(predicate);
         filteredOrders.setPredicate(predicate);
     }

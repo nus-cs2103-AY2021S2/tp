@@ -28,7 +28,6 @@ public class InventoryAddCommand extends Command {
             + PREFIX_QUANTITY + "51";
 
     public static final String MESSAGE_SUCCESS = "New ingredient added: %1$s";
-    public static final String MESSAGE_DUPLICATE_INGREDIENT = "This ingredient already exists in the inventory";
 
     private final Ingredient toAdd;
 
@@ -44,12 +43,10 @@ public class InventoryAddCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        // Check model has ingredient here throw MESSAGE_DUPLICATE_INGREDIENT
-        if (model.hasIngredient(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_INGREDIENT);
+        if (InventoryCommandUtil.isValidIngredient(toAdd, model)) {
+            model.addIngredient(toAdd);
         }
 
-        model.addIngredient(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd),
                 CommandResult.CRtype.INGREDIENT);
     }

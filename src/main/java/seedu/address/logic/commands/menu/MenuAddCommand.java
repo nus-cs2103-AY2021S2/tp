@@ -1,9 +1,14 @@
 package seedu.address.logic.commands.menu;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INGREDIENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
 
+import java.util.List;
+
+import seedu.address.commons.core.Pair;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -21,33 +26,41 @@ public class MenuAddCommand extends Command {
     public static final String MESSAGE_USAGE = COMPONENT_WORD + " " + COMMAND_WORD + ": Adds a dish to the menu. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
-            + PREFIX_PRICE + "PRICE\n"
+            + PREFIX_PRICE + "PRICE "
+            + PREFIX_INGREDIENT + "INGREDIENT_ID "
+            + PREFIX_QUANTITY + "INGREDIENT_QUANTITY "
+            + "[" + PREFIX_INGREDIENT + "INGREDIENT_ID "
+            + PREFIX_QUANTITY + "INGREDIENT_QUANTITY...]\n"
             + "Example: " + COMPONENT_WORD + " " + COMMAND_WORD + " "
             + PREFIX_NAME + "Fries "
-            + PREFIX_PRICE + "5.10";
+            + PREFIX_PRICE + "5.10 "
+            + PREFIX_INGREDIENT + "2 "
+            + PREFIX_QUANTITY + "1";
 
     public static final String MESSAGE_SUCCESS = "New dish added: %1$s";
-    public static final String MESSAGE_DUPLICATE_DISH = "This dish already exists in the menu";
 
-    private final Dish toAdd;
+    private final String name;
+    private final double price;
+    private final List<Pair<Integer, Integer>> ingredientQuantityList;
 
     /**
      * Creates an MenuAddCommand to add the specified {@code Dish}
      */
-    public MenuAddCommand(Dish dish) {
-        requireNonNull(dish);
-        toAdd = dish;
+    public MenuAddCommand(String name, double price,
+                          List<Pair<Integer, Integer>> ingredientQuantityList) {
+        this.name = name;
+        this.price = price;
+        this.ingredientQuantityList = ingredientQuantityList;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasDish(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_DISH);
-        }
+        Dish toAdd = MenuCommandUtil.constructValidDish(name, price, ingredientQuantityList, model);
 
         model.addDish(toAdd);
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), CommandResult.CRtype.DISH);
     }
 
@@ -55,6 +68,8 @@ public class MenuAddCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof MenuAddCommand // instanceof handles nulls
-                && toAdd.equals(((MenuAddCommand) other).toAdd));
+                && name.equals(((MenuAddCommand) other).name)
+                && price == ((MenuAddCommand) other).price
+                && ingredientQuantityList.equals(((MenuAddCommand) other).ingredientQuantityList));
     }
 }

@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -20,7 +21,7 @@ import seedu.address.model.person.ReadOnlyPersonBook;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Item> PREDICATE_SHOW_ALL_ITEMS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -96,9 +97,10 @@ public interface Model {
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * @param predicate
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void updateFilteredPersonList(Predicate<? super Person> predicate);
 
     //=========== DishBook ================================================================================
 
@@ -114,6 +116,11 @@ public interface Model {
      * Returns true if a dish with the same name as {@code dish} exists in the address book.
      */
     boolean hasDish(Dish dish);
+
+    /**
+     * Returns the {@code Dish} object at the specified index on the UI
+     */
+    Dish getDishByIndex(int i);
 
     /**
      * Deletes the given dish.
@@ -139,9 +146,10 @@ public interface Model {
 
     /**
      * Updates the filter of the filtered dish list to filter by the given {@code predicate}.
+     * @param predicate
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredDishList(Predicate<Dish> predicate);
+    void updateFilteredDishList(Predicate<? super Dish> predicate);
 
     /** Returns a list of dishes that use a particular ingredient */
     List<Dish> getDishesByIngredients(Ingredient ingredient);
@@ -159,6 +167,11 @@ public interface Model {
      * Returns true if ingredient with the same name as {@code ingredient} exists in the address book.
      */
     boolean hasIngredient(Ingredient ingredient);
+
+    /**
+     * Returns the {@code Ingredient} object at the specified index on the UI
+     */
+    Ingredient getIngredientByIndex(int i);
 
     /**
      * Deletes the given ingredient.
@@ -184,9 +197,10 @@ public interface Model {
 
     /**
      * Updates the filter of the filtered ingredient list to filter by the given {@code predicate}.
+     * @param predicate
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredIngredientList(Predicate<Ingredient> predicate);
+    void updateFilteredIngredientList(Predicate<? super Ingredient> predicate);
 
     //=========== OrderBook ================================================================================
     /**
@@ -228,14 +242,40 @@ public interface Model {
     void setOrder(Order target, Order editedOrder);
 
     /** Returns an unmodifiable view of the filtered order list */
-    ObservableList<Order> getFilteredOrderList();
+    ObservableList<Order> getFilteredOrderList(Order.State state);
+
+    /** Returns an unmodifiable view of the filtered order list */
+    ObservableList<Order> getFilteredOrderList(Order.State firstState, Order.State secState);
+
+    /** Sorts and filters and then returns an unmodifiable view of the filtered order list */
+    ObservableList<Order> getFilteredOrderList(Comparator<Order> comparator, Order.State state);
+
+    //@@ author kangtinglee
+    /** Returns a list of orders that have not been fulfilled and contain a given dish */
+    List<Order> getIncompleteOrdersContainingDish(Dish target);
+
+    /** Returns a list of orders that have not been fulfilled */
+    List<Order> getIncompleteOrders();
 
     /**
      * Updates the filter of the filtered ingredient list to filter by the given {@code predicate}.
+     * @param predicate
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredOrderList(Predicate<Order> predicate);
+    void updateFilteredOrderList(Predicate<? super Order> predicate);
 
     /** Returns an list of the orders belonging to a particular customer */
     List<Order> getOrdersFromPerson(Person target);
+
+    void completeOrder(Order orderToComplete);
+
+    /**
+     * Sets the state of the order to cancelled
+     */
+    void cancelOrder(Order target);
+
+    /**
+     * Sets the state of the orders to cancelled
+     */
+    void cancelOrders(List<Order> targets);
 }
