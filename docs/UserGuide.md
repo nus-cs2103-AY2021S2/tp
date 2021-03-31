@@ -115,7 +115,6 @@ Review mode | This is where you can review all your flashcards. You can enter th
   e.g. If you specify `c/Geography c/History`, only `c/History` will be taken.
 
 </div>
-
 <div style="page-break-after: always;"></div>
 
 ## Main mode
@@ -134,7 +133,6 @@ Format: `add q/QUESTION a/ANSWER c/CATEGORY p/PRIORITY [t/TAG]...` <br />
 The `TAG` is optional when adding a new flashcard.<br>
 Priority can only take 1 out of 3 values: `High`, `Mid` or `Low`.
 </div>
-
 <div style="page-break-after: always;"></div>
 
 Examples:
@@ -157,8 +155,6 @@ Format: `edit INDEX [q/NEW QUESTION] [a/NEW ANSWER] [c/NEW CATEGORY] [p/NEW PRIO
 * New tag(s) should be alphanumeric, and there should not be any spacing between characters.
 * New priority can only be "Low", "Mid" or "High", case-sensitive.
 
-<div style="page-break-after: always;"></div>
-
 Examples:
 
 * `edit 1 p/Low` <br><br>
@@ -170,13 +166,11 @@ Examples:
 Shows all flashcards in the flashcard list.
 
 Format: `list`
-
 <div style="page-break-after: always;"></div>
 
 ### Deleting a flashcard : `delete`
 
-Deletes the specified flashcard from the flashcard list.
-
+Deletes the specified flashcard from the flashcard list. <br>
 Format: `delete INDEX`
 
 * Deletes the flashcard at the specified `INDEX`.
@@ -186,9 +180,11 @@ Format: `delete INDEX`
 Examples:
 
 * `list` followed by `delete 2` deletes the 2nd flashcard in the flashcard list. <br>
-  Before executing command `delete 2`: <br>
+  Before executing command `delete 2`: <br><br>
   ![UIBeforeDelete](./images/UiBeforeDelete.png) <br>
-  After executing command `delete 2`: <br>
+  <div style="page-break-after: always;"></div>
+  
+  After executing command `delete 2`: <br><br>
   ![UIAfterDelete](./images/UiAfterDelete.png)
 
 ### Viewing a flashcard : `view`
@@ -200,7 +196,6 @@ Format: `view INDEX`
 * Views the flashcard at the specified `INDEX`.
 * The index refers to the index number shown in the displayed flashcard list.
 * The index **must be a positive integer** 1, 2, 3, …​
-
 <div style="page-break-after: always;"></div>
 
 Examples:
@@ -230,7 +225,9 @@ Examples:
 * `find computer` will return cards with `computer` in any of its fields.<br><br>
 ![result for `find computer`](images/findComputerResult.png) <br><br>
 * `find computer formula` will return cards with `computer` or `formula` in any of its fields.<br><br>
-![result for `find computer formula`](images/findComputerFormulaResult.png) <br><br>
+![result for `find computer formula`](images/findComputerFormulaResult.png) <br>
+<div style="page-break-after: always;"></div>
+
 * `find phy` will return cards with `phy` contained in any of the words in any of its fields.<br><br>
 ![result for `find phy`](images/findPhyResult.png) <br><br>
 
@@ -259,13 +256,15 @@ Format: `filter [q/QUESTION] [c/CATEGORY] [p/PRIORITY] [t/TAG]`
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 Examples:
 * `filter q/charles recursion` will return cards with `charles` or `recursion` contained in its question.<br><br>
-  ![result for `filter q/charles recursion`](images/filterCharlesRecursionResult.png) <br><br>
-* `filter p/mid q/formula` will return cards with `formula` contained in its question and `mid` priority.<br><br>
-  ![result for `filter p/mid q/formula`](images/filterMidFormulaResult.png) <br><br>
-* `filter c/com t/ran` will return cards with `com` contained in its category and `ran`contained in any of its tags.<br><br>
-  ![result for `filter c/com t/ran`](images/filterComRanResult.png) <br><br>
+  ![result for `filter q/charles recursion`](images/filterCharlesRecursionResult.png) <br>
+* `filter p/mid q/formula` will return cards with `formula` contained in its question and `mid` priority.<br>
+  ![result for `filter p/mid q/formula`](images/filterMidFormulaResult.png) <br>
+* `filter c/com t/ran` will return cards with `com` contained in its category and `ran`contained in any of its tags.<br>
+  ![result for `filter c/com t/ran`](images/filterComRanResult.png) <br>
 
 ### Clearing all entries : `clear`
 
@@ -284,12 +283,14 @@ Format: `undo`
 
 Examples:
 `delete 3` <br><br>
-![UiDeleteBeforeUndo](./images/UiDeleteBeforeUndo.png) <br><br>
-`clear`  <br><br>
+![UiDeleteBeforeUndo](./images/UiDeleteBeforeUndo.png) <br>
+<div style="page-break-after: always;"></div>
+
+`clear`  <br>
 ![UiClearBeforeUndo](./images/UiClearBeforeUndo.png) <br><br>
-`undo` will reverse the `clear` command. <br><br>
+`undo` will reverse the `clear` command. <br>
 ![UiClearAfterUndo](./images/UiClearAfterUndo.png) <br><br>
-`undo` will reverse the `delete 3` command. <br><br>
+`undo` will reverse the `delete 3` command. <br>
 ![UiDeleteAfterUndo](./images/UiDeleteAfterUndo.png) <br><br>
 
 ### Redoing a command : `redo`
@@ -303,6 +304,8 @@ Examples:
 ![UiClearBeforeUndoBeforeRedo](./images/UiClearBeforeUndoBeforeRedo.png) <br><br>
 `undo` will reverse the `clear` command. <br><br>
 ![UiClearAfterUndoBeforeRedo](./images/UiClearAfterUndoBeforeRedo.png) <br><br>
+<div style="page-break-after: always;"></div>
+
 `redo` will reverse the `undo` command. <br><br>
 ![UiClearAfterUndoAfterRedo](./images/UiClearAfterUndoAfterRedo.png) <br><br>
 
@@ -321,17 +324,21 @@ Examples:
 `sort priority -d` will sort the flashcards by descending priority. <br>
 `sort question -a` will sort the flashcards by ascending question. <br>
 `sort question -d` will sort the flashcards by descending question. <br>
+<div style="page-break-after: always;"></div>
+
 Before sort command is executed. <br><br>
 ![UiBeforeSort](./images/UiBeforeSort.png) <br><br>
 `sort priority -a`<br><br>
 After sort command is executed. <br><br>
 ![UiAfterSort](./images/UiAfterSort.png)
+<div style="page-break-after: always;"></div>
 
 ### Entering review mode: `review`
 Reviews the current list of flashcards.<br>
 When the user enters `review` in the command box, this new window will appear. <br><br>
 ![UiReviewMode](./images/UiReviewModeNoAnswer.png) <br><br>
 Format: `review`
+<div style="page-break-after: always;"></div>
 
 ### Viewing statistics of flashcards: `stats`
 Shows the statistics of an individual flashcard, or the statistics of all flashcards.
@@ -402,6 +409,7 @@ If your changes to the data file makes its format invalid, FlashBack will discar
 file at the next run.
 
 </div>
+<div style="page-break-after: always;"></div>
 
 ## Review mode
 
@@ -412,12 +420,16 @@ Format: `n` <br>
 Example: <br><br>
 ![UiReviewModeNext](./images/UiReviewNext.png)
 
+<div style="page-break-after: always;"></div>
+
 ### Showing previous flashcard : `p`
 
 Moves back to the previous flashcard. <br>
 Format: `p` <br>
 Example: <br><br>
 ![UiReviewModePrev](./images/UiReviewPrev.png)
+
+<div style="page-break-after: always;"></div>
 
 ### Showing answer : `a`
 
@@ -426,12 +438,16 @@ Format: `a` <br>
 Example: <br><br>
 ![UiReviewModeWithAnswer](./images/UiReviewModeWindow.png)
 
+<div style="page-break-after: always;"></div>
+
 ### Hiding answer : `h`
 
 Hides the answer of the current flashcard. <br>
 Format: `h` <br>
 Example: <br><br>
 ![UiReviewModeHide](./images/UiReviewHide.png)
+
+<div style="page-break-after: always;"></div>
 
 ### Reviewing a flashcard as correct: `t`
 
@@ -446,6 +462,8 @@ Format: `t` <br>
 Example: <br><br>
 ![UiReviewModeCorrectAnswer](./images/UiReviewAnsTrue.png)
 
+<div style="page-break-after: always;"></div>
+
 ### Reviewing a flashcard as wrong : `f`
 
 Marks that the user got the answer wrong for the current flashcard. <br>
@@ -458,6 +476,8 @@ Marks that the user got the answer wrong for the current flashcard. <br>
 Format: `f` <br>
 Example: <br><br>
 ![UiReviewModeWrongAnswer](./images/UiReviewAnsFalse.png)
+
+<div style="page-break-after: always;"></div>
 
 ### Quitting review mode : `q`
 
