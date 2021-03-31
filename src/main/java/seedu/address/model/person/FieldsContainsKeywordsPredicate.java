@@ -58,7 +58,8 @@ public class FieldsContainsKeywordsPredicate implements Predicate<Person>, Compa
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof FieldsContainsKeywordsPredicate // instanceof handles nulls
-                && keywords.containsAll(((FieldsContainsKeywordsPredicate) other).keywords)); // state check
+                && keywords.containsAll(((FieldsContainsKeywordsPredicate) other).keywords)
+                && ((FieldsContainsKeywordsPredicate) other).keywords.containsAll(keywords)); // state check
     }
 
 }

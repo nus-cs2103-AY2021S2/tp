@@ -57,7 +57,8 @@ public class EmailContainsKeywordsPredicate implements Predicate<Person>, Compar
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof EmailContainsKeywordsPredicate // instanceof handles nulls
-                && keywords.containsAll(((EmailContainsKeywordsPredicate) other).keywords)); // state check
+                && keywords.containsAll(((EmailContainsKeywordsPredicate) other).keywords)
+                && ((EmailContainsKeywordsPredicate) other).keywords.containsAll(keywords)); // state check
     }
 
 }

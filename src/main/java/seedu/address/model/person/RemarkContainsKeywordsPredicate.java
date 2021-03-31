@@ -57,7 +57,8 @@ public class RemarkContainsKeywordsPredicate implements Predicate<Person>, Compa
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof RemarkContainsKeywordsPredicate // instanceof handles nulls
-                && keywords.containsAll(((RemarkContainsKeywordsPredicate) other).keywords)); // state check
+                && keywords.containsAll(((RemarkContainsKeywordsPredicate) other).keywords)
+                && ((RemarkContainsKeywordsPredicate) other).keywords.containsAll(keywords)); // state check
     }
 
 }

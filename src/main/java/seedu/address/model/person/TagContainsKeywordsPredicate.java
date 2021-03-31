@@ -70,7 +70,8 @@ public class TagContainsKeywordsPredicate implements Predicate<Person>, Comparat
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof TagContainsKeywordsPredicate // instanceof handles nulls
-                && keywords.containsAll(((TagContainsKeywordsPredicate) other).keywords)); // state check
+                && keywords.containsAll(((TagContainsKeywordsPredicate) other).keywords)
+                && ((TagContainsKeywordsPredicate) other).keywords.containsAll(keywords)); // state check
     }
 
 }
