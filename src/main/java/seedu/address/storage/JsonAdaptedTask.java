@@ -18,6 +18,7 @@ import seedu.address.model.person.Status;
 import seedu.address.model.person.Task;
 import seedu.address.model.person.TaskName;
 import seedu.address.model.person.Weightage;
+import seedu.address.model.tag.PriorityTag;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -35,6 +36,7 @@ class JsonAdaptedTask {
     private final Integer weightage;
     private final String remark;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final String priorityTag;
 
     /**
      * Constructs a {@code JsonAdaptedTask} with the given person details.
@@ -55,6 +57,7 @@ class JsonAdaptedTask {
         this.status = status;
         this.weightage = weightage;
         this.remark = remark;
+        this.priorityTag = "LOW";
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -74,6 +77,7 @@ class JsonAdaptedTask {
         tagged.addAll(source.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList()));
+        priorityTag = source.getPriorityTag().getTagName();
     }
 
     /**
@@ -143,9 +147,15 @@ class JsonAdaptedTask {
         }
         final Remark modelRemark = new Remark(remark);
 
+        if (priorityTag == null) {
+            throw new IllegalValueException(PriorityTag.MESSAGE_CONSTRAINTS);
+        }
+
+        final PriorityTag modelPriorityTag = new PriorityTag(priorityTag);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
         return new Task(modelTaskName, modelModuleCode, modelDeadlineDate,
-            modelDeadlineTime, modelStatus, modelWeightage, modelRemark, modelTags);
+            modelDeadlineTime, modelStatus, modelWeightage, modelRemark, modelTags, modelPriorityTag);
     }
 
 }
