@@ -3,11 +3,13 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.TagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new TagCommand object.
@@ -75,6 +77,20 @@ public class TagCommandParser implements Parser<TagCommand> {
         default:
             return false;
         }
+    }
+
+    /**
+     * Returns output string format for {@code tags}.
+     */
+    public static String tagsToString(Set<Tag> tags) {
+        StringBuilder builder = new StringBuilder();
+
+        for (Tag tag : tags) {
+            builder.append(tag.tagName + ", ");
+        }
+
+        String returnValue = builder.toString();
+        return returnValue.substring(0, returnValue.length() - 2);
     }
 
 }

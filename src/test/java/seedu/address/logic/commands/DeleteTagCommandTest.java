@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.parser.TagCommandParser.tagsToString;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAliases.getTypicalAliases;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -66,6 +67,7 @@ public class DeleteTagCommandTest {
         selectedPersonList.add(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
         selectedPersonList.add(model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased()));
         model.updateSelectedPersonList(selectedPersonList);
+        expectedModel.updateSelectedPersonList(selectedPersonList);
 
         for (Person person : selectedPersonList) {
             Person editedPerson = new PersonBuilder(person).deleteTags(tags).build();
@@ -74,8 +76,11 @@ public class DeleteTagCommandTest {
 
         DeleteTagCommand deleteTagCommand = DeleteTagCommand.createWithSelectedIndex(tags);
 
-        String expectedMessage = String.format(DeleteTagCommand.MESSAGE_SUCCESS,
-                selectedPersonList.size(), tags.toString());
+        String singularOrPlural = selectedPersonList.size() > 1 ? "s" : "";
+        int updateCount = selectedPersonList.size();
+
+        String expectedMessage = String.format(DeleteTagCommand.MESSAGE_SUCCESS, singularOrPlural,
+                updateCount, tagsToString(tags));
         assertCommandSuccess(deleteTagCommand, model, expectedMessage, expectedModel);
     }
 
@@ -93,7 +98,11 @@ public class DeleteTagCommandTest {
 
         DeleteTagCommand deleteTagCommand = DeleteTagCommand.createWithShownIndex(tags);
 
-        String expectedMessage = String.format(DeleteTagCommand.MESSAGE_SUCCESS, personList.size(), tags.toString());
+        String singularOrPlural = personList.size() > 1 ? "s" : "";
+        int updateCount = personList.size();
+
+        String expectedMessage = String.format(DeleteTagCommand.MESSAGE_SUCCESS, singularOrPlural,
+                updateCount, tagsToString(tags));
         assertCommandSuccess(deleteTagCommand, model, expectedMessage, expectedModel);
     }
 
@@ -104,7 +113,6 @@ public class DeleteTagCommandTest {
         Set<Tag> tags = getTypicalTags();
 
         List<Index> indexes = TypicalIndexes.VALID_INDEXES;
-
         List<Person> personList = model.getFilteredPersonList();
 
         for (Index index : indexes) {
@@ -115,7 +123,11 @@ public class DeleteTagCommandTest {
 
         DeleteTagCommand deleteTagCommand = DeleteTagCommand.createWithTargetIndexes(indexes, tags);
 
-        String expectedMessage = String.format(DeleteTagCommand.MESSAGE_SUCCESS, indexes.size(), tags.toString());
+        String singularOrPlural = indexes.size() > 1 ? "s" : "";
+        int updateCount = indexes.size();
+
+        String expectedMessage = String.format(DeleteTagCommand.MESSAGE_SUCCESS, singularOrPlural,
+                updateCount, tagsToString(tags));
         assertCommandSuccess(deleteTagCommand, model, expectedMessage, expectedModel);
     }
 
@@ -130,6 +142,7 @@ public class DeleteTagCommandTest {
     @Test
     public void execute_noSelectedPerson_throwsCommandException() throws Exception {
         model.updateSelectedPersonList(new ArrayList<>());
+        model.applySelectedPredicate();
         assertCommandFailure(DeleteTagCommand.createWithSelectedIndex(getTypicalTags()),
                 model, DeleteTagCommand.MESSAGE_NO_SELECTED_PERSON);
     }

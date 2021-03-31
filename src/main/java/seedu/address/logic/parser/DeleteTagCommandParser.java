@@ -27,7 +27,6 @@ public class DeleteTagCommandParser implements Parser<DeleteTagCommand> {
      */
     public DeleteTagCommand parse(String args) throws ParseException {
         requireNonNull(args);
-
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TAG);
 
         if (argMultimap.getPreamble().trim().isEmpty()) {
@@ -36,7 +35,6 @@ public class DeleteTagCommandParser implements Parser<DeleteTagCommand> {
 
         List<Index> targetIndexes;
         Set<Tag> tags = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-
         if (tags.isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTagCommand.MESSAGE_USAGE));
         }
@@ -76,8 +74,17 @@ public class DeleteTagCommandParser implements Parser<DeleteTagCommand> {
             }
         }
 
+        List<String> tags = argMultimap.getAllValues(PREFIX_TAG);
+        if (tags.isEmpty()) {
+            return true;
+        }
+
         try {
-            ParserUtil.validateAllButLastTag(argMultimap.getAllValues(PREFIX_TAG));
+            if (tags.get(tags.size() - 1).isEmpty()) {
+                ParserUtil.validateAllButLastTag(tags);
+                return true;
+            }
+            ParserUtil.parseTags(tags);
             return true;
         } catch (ParseException pe) {
             return false;

@@ -15,7 +15,6 @@ import static seedu.address.testutil.TypicalTags.getTypicalTags;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.DeleteTagCommand;
-import seedu.address.testutil.IndexesUtil;
 import seedu.address.testutil.TagsUtil;
 import seedu.address.testutil.TypicalIndexes;
 
@@ -32,7 +31,7 @@ public class DeleteTagCommandParserTest {
 
     @Test
     public void parse_validDeleteFromTargetIndexesArgs_returnsDeleteTagCommand() {
-        String commandString = IndexesUtil.getIndexesDetails(TypicalIndexes.VALID_INDEXES) + " "
+        String commandString = TypicalIndexes.VALID_INDEXES_STRING + " "
                 + TagsUtil.getTagsDetails(getTypicalTags());
         assertParseSuccess(parser, commandString,
                 DeleteTagCommand.createWithTargetIndexes(TypicalIndexes.VALID_INDEXES, getTypicalTags()));
@@ -58,7 +57,7 @@ public class DeleteTagCommandParserTest {
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTagCommand.MESSAGE_USAGE));
 
         // missing tags with typical indexes
-        commandString = IndexesUtil.getIndexesDetails(TypicalIndexes.VALID_INDEXES) + " ";
+        commandString = TypicalIndexes.VALID_INDEXES_STRING + " ";
         assertParseFailure(parser, commandString,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTagCommand.MESSAGE_USAGE));
 
@@ -80,12 +79,12 @@ public class DeleteTagCommandParserTest {
 
         // valid indexes
         assertValidCommandToAliasSuccess(parser, TypicalIndexes.VALID_INDEX_STRING);
-        assertValidCommandToAliasSuccess(parser, IndexesUtil.getIndexesDetails(TypicalIndexes.VALID_INDEXES));
+        assertValidCommandToAliasSuccess(parser, TypicalIndexes.VALID_INDEXES_STRING);
         assertValidCommandToAliasSuccess(parser, DeleteTagCommandParser.SHOWN_INDEX);
         assertValidCommandToAliasSuccess(parser, DeleteTagCommandParser.SELECTED_INDEX);
 
         // valid indexes and tags
-        assertValidCommandToAliasSuccess(parser, IndexesUtil.getIndexesDetails(TypicalIndexes.VALID_INDEXES)
+        assertValidCommandToAliasSuccess(parser, TypicalIndexes.VALID_INDEXES_STRING
                 + TAG_DESC_HUSBAND);
         assertValidCommandToAliasSuccess(parser, DeleteTagCommandParser.SHOWN_INDEX
                 + TAG_DESC_HUSBAND);
@@ -93,7 +92,7 @@ public class DeleteTagCommandParserTest {
                 + TAG_DESC_HUSBAND);
 
         // valid indexes and empty last tag
-        assertValidCommandToAliasSuccess(parser, IndexesUtil.getIndexesDetails(TypicalIndexes.VALID_INDEXES)
+        assertValidCommandToAliasSuccess(parser, TypicalIndexes.VALID_INDEXES_STRING
                 + TAG_DESC_FRIEND + EMPTY_TAG_DESC);
         assertValidCommandToAliasSuccess(parser, DeleteTagCommandParser.SHOWN_INDEX
                 + TAG_DESC_FRIEND + EMPTY_TAG_DESC);
@@ -107,11 +106,11 @@ public class DeleteTagCommandParserTest {
         assertValidCommandToAliasFailure(parser, TypicalIndexes.INVALID_INDEX_STRING);
 
         // invalid tags
-        assertValidCommandToAliasFailure(parser, IndexesUtil.getIndexesDetails(TypicalIndexes.VALID_INDEXES)
+        assertValidCommandToAliasFailure(parser, TypicalIndexes.VALID_INDEXES_STRING
                 + INVALID_TAG_DESC);
 
         // empty tag in the middle
-        assertValidCommandToAliasFailure(parser, IndexesUtil.getIndexesDetails(TypicalIndexes.VALID_INDEXES)
+        assertValidCommandToAliasFailure(parser, TypicalIndexes.VALID_INDEXES_STRING
                 + TAG_DESC_HUSBAND + EMPTY_TAG_DESC + TAG_DESC_FRIEND);
     }
 }

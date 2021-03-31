@@ -21,7 +21,6 @@ import seedu.address.logic.commands.DeleteTagCommand;
 import seedu.address.logic.commands.TagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
-import seedu.address.testutil.IndexesUtil;
 import seedu.address.testutil.TagsUtil;
 import seedu.address.testutil.TypicalIndexes;
 
@@ -34,7 +33,7 @@ public class TagCommandParserTest {
         Set<Tag> tags = getTypicalTags();
         List<Index> indexes = TypicalIndexes.VALID_INDEXES;
         AddTagCommand command = (AddTagCommand) parser.parse(AddTagCommand.ADD_SUB_COMMAND_WORD + " "
-                + IndexesUtil.getIndexesDetails(indexes) + " " + TagsUtil.getTagsDetails(tags));
+                + TypicalIndexes.VALID_INDEXES_STRING + " " + TagsUtil.getTagsDetails(tags));
         assertEquals(AddTagCommand.createWithTargetIndexes(indexes, tags), command);
     }
 
@@ -43,7 +42,7 @@ public class TagCommandParserTest {
         Set<Tag> tags = getTypicalTags();
         List<Index> indexes = TypicalIndexes.VALID_INDEXES;
         DeleteTagCommand command = (DeleteTagCommand) parser.parse(DeleteTagCommand.DELETE_SUB_COMMAND_WORD + " "
-                + IndexesUtil.getIndexesDetails(indexes) + " " + TagsUtil.getTagsDetails(tags));
+                + TypicalIndexes.VALID_INDEXES_STRING + " " + TagsUtil.getTagsDetails(tags));
         assertEquals(DeleteTagCommand.createWithTargetIndexes(indexes, tags), command);
     }
 

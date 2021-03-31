@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.List;
@@ -26,11 +27,17 @@ public class AddTagCommandParser implements Parser<AddTagCommand> {
      */
     public AddTagCommand parse(String args) throws ParseException {
         requireNonNull(args);
-
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TAG);
+
+        if (argMultimap.getPreamble().trim().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTagCommand.MESSAGE_USAGE));
+        }
 
         List<Index> targetIndexes;
         Set<Tag> tags = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        if (tags.isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTagCommand.MESSAGE_USAGE));
+        }
 
         if (argMultimap.getPreamble().equals(SHOWN_INDEX)) {
             return AddTagCommand.createWithShownIndex(tags);
@@ -67,8 +74,17 @@ public class AddTagCommandParser implements Parser<AddTagCommand> {
             }
         }
 
+        List<String> tags = argMultimap.getAllValues(PREFIX_TAG);
+        if (tags.isEmpty()) {
+            return true;
+        }
+
         try {
-            ParserUtil.validateAllButLastTag(argMultimap.getAllValues(PREFIX_TAG));
+            if (tags.get(tags.size() - 1).isEmpty()) {
+                ParserUtil.validateAllButLastTag(tags);
+                return true;
+            }
+            ParserUtil.parseTags(tags);
             return true;
         } catch (ParseException pe) {
             return false;

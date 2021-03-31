@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.TagCommandParser.tagsToString;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.ArrayList;
@@ -172,20 +173,6 @@ public class AddTagCommand extends TagCommand {
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedCompany, updatedJobTitle,
                 updatedAddress, updatedRemark, updatedTags);
-    }
-
-    /**
-     * Returns output string format for {@code tags}.
-     */
-    private static String tagsToString(Set<Tag> tags) {
-        StringBuilder builder = new StringBuilder();
-
-        for (Tag tag : tags) {
-            builder.append(tag.tagName + ", ");
-        }
-
-        String returnValue = builder.toString();
-        return returnValue.substring(0, returnValue.length() - 2);
     }
 
     @Override

@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.parser.TagCommandParser.tagsToString;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAliases.getTypicalAliases;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -63,6 +64,7 @@ public class AddTagCommandTest {
         selectedPersonList.add(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
         selectedPersonList.add(model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased()));
         model.updateSelectedPersonList(selectedPersonList);
+        expectedModel.updateSelectedPersonList(selectedPersonList);
 
         for (Person person : selectedPersonList) {
             Person editedPerson = new PersonBuilder(person).addTags(tags).build();
@@ -71,8 +73,11 @@ public class AddTagCommandTest {
 
         AddTagCommand addTagCommand = AddTagCommand.createWithSelectedIndex(tags);
 
-        String expectedMessage = String.format(AddTagCommand.MESSAGE_SUCCESS, selectedPersonList.size(),
-                tags.toString());
+        String singularOrPlural = selectedPersonList.size() > 1 ? "s" : "";
+        int updateCount = selectedPersonList.size();
+
+        String expectedMessage = String.format(AddTagCommand.MESSAGE_SUCCESS, singularOrPlural,
+                updateCount, tagsToString(tags));
         assertCommandSuccess(addTagCommand, model, expectedMessage, expectedModel);
     }
 
@@ -90,7 +95,11 @@ public class AddTagCommandTest {
 
         AddTagCommand addTagCommand = AddTagCommand.createWithShownIndex(tags);
 
-        String expectedMessage = String.format(AddTagCommand.MESSAGE_SUCCESS, personList.size(), tags.toString());
+        String singularOrPlural = personList.size() > 1 ? "s" : "";
+        int updateCount = personList.size();
+
+        String expectedMessage = String.format(AddTagCommand.MESSAGE_SUCCESS, singularOrPlural,
+                updateCount, tagsToString(tags));
         assertCommandSuccess(addTagCommand, model, expectedMessage, expectedModel);
     }
 
@@ -101,7 +110,6 @@ public class AddTagCommandTest {
         Set<Tag> tags = getTypicalTags();
 
         List<Index> indexes = TypicalIndexes.VALID_INDEXES;
-
         List<Person> personList = model.getFilteredPersonList();
 
         for (Index index : indexes) {
@@ -112,7 +120,11 @@ public class AddTagCommandTest {
 
         AddTagCommand addTagCommand = AddTagCommand.createWithTargetIndexes(indexes, tags);
 
-        String expectedMessage = String.format(AddTagCommand.MESSAGE_SUCCESS, indexes.size(), tags.toString());
+        String singularOrPlural = indexes.size() > 1 ? "s" : "";
+        int updateCount = indexes.size();
+
+        String expectedMessage = String.format(AddTagCommand.MESSAGE_SUCCESS, singularOrPlural,
+                updateCount, tagsToString(tags));
         assertCommandSuccess(addTagCommand, model, expectedMessage, expectedModel);
     }
 
@@ -127,6 +139,7 @@ public class AddTagCommandTest {
     @Test
     public void execute_noSelectedPerson_throwsCommandException() throws Exception {
         model.updateSelectedPersonList(new ArrayList<>());
+        model.applySelectedPredicate();
         assertCommandFailure(AddTagCommand.createWithSelectedIndex(getTypicalTags()),
                 model, AddTagCommand.MESSAGE_NO_SELECTED_PERSON);
     }
