@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -9,6 +10,7 @@ import static seedu.address.testutil.TypicalIndexes.INVALID_INDEX_STRING;
 import static seedu.address.testutil.TypicalIndexes.OUT_OF_RANGE_INDEX_STRING;
 import static seedu.address.testutil.TypicalIndexes.VALID_INDEXES;
 import static seedu.address.testutil.TypicalIndexes.VALID_INDEXES_STRING;
+import static seedu.address.testutil.TypicalIndexes.VALID_INDEX_STRING;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -46,7 +48,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseIndex_invalidInput_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseIndex("10 a"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseIndex(INVALID_INDEX_STRING));
     }
 
     @Test
@@ -58,10 +60,11 @@ public class ParserUtilTest {
     @Test
     public void parseIndex_validInput_success() throws Exception {
         // No whitespaces
-        assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("1"));
+        assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex(VALID_INDEX_STRING));
 
         // Leading and trailing whitespaces
-        assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex("  1  "));
+        assertEquals(INDEX_FIRST_PERSON, ParserUtil.parseIndex(
+                PREAMBLE_WHITESPACE + INDEX_FIRST_PERSON.getOneBased() + PREAMBLE_WHITESPACE));
     }
 
     @Test
@@ -72,7 +75,8 @@ public class ParserUtilTest {
 
     @Test
     public void parseIndexes_outOfRangeInput_throwsParseException() {
-        String inputString = INDEX_FIRST_PERSON.getOneBased() + " " + OUT_OF_RANGE_INDEX_STRING;
+        String inputString =
+                INDEX_FIRST_PERSON.getOneBased() + PREAMBLE_WHITESPACE + OUT_OF_RANGE_INDEX_STRING;
         assertThrows(ParseException.class,
                 MESSAGE_INVALID_INDEX, () -> ParserUtil.parseIndexes(inputString));
     }
@@ -87,7 +91,7 @@ public class ParserUtilTest {
     public void parseIndexes_validInputWithWhitespace_success() throws Exception {
         String inputString = VALID_INDEXES.stream()
                 .map(Index::getOneBased).map(String::valueOf)
-                .collect(Collectors.joining("  "));
+                .collect(Collectors.joining(PREAMBLE_WHITESPACE));
         List<Index> parsedIndexes = ParserUtil.parseIndexes(inputString);
         assertEquals(VALID_INDEXES, parsedIndexes);
     }
