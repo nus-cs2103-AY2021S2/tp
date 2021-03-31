@@ -10,8 +10,8 @@ public class CliSyntax {
     public static final String PREFIX_ADDRESS_STRING = "a/";
     public static final String PREFIX_TAG_STRING = "tag/";
     public static final String PREFIX_ALL_STRING = "all/";
-    public static final String PREFIX_TRIPTIME_STRING = "d/";
-    public static final String PREFIX_TRIPDAY_STRING = "t/";
+    public static final String PREFIX_TRIPTIME_STRING = "t/";
+    public static final String PREFIX_TRIPDAY_STRING = "d/";
     public static final String PREFIX_PRICE_STRING = "pr/";
     public static final String PREFIX_COMMUTER_STRING = "c/";
 
