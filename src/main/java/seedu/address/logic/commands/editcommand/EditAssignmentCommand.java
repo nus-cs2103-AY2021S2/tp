@@ -75,7 +75,7 @@ public class EditAssignmentCommand extends EditCommand {
             throw new CommandException(MESSAGE_NO_CHANGE);
         }
 
-        if (isNull(descriptionEdit) && isNull(dateEdit)) {
+        if (!isNull(descriptionEdit) && !isNull(dateEdit)) {
             throw new CommandException(MESSAGE_TWO_CHANGES);
         }
 
@@ -105,11 +105,29 @@ public class EditAssignmentCommand extends EditCommand {
 
     @Override
     public boolean equals(Object other) {
+        if (!(other instanceof EditAssignmentCommand)) {
+            return false;
+        }
+        boolean dateIsNull = isNull(dateEdit);
+        boolean descriptionIsNull = isNull(descriptionEdit);
+        boolean sameDate;
+        boolean sameDescription;
+        if (dateIsNull) {
+            sameDate = isNull(((EditAssignmentCommand) other).dateEdit);
+        } else {
+            sameDate = dateEdit.equals(((EditAssignmentCommand) other).dateEdit);
+        }
+        if (descriptionIsNull) {
+            sameDescription = isNull(((EditAssignmentCommand) other).descriptionEdit);
+        } else {
+            sameDescription = descriptionEdit.equals(((EditAssignmentCommand) other).descriptionEdit);
+        }
+
         return other == this
                 || (other instanceof EditAssignmentCommand)
                 && module.equals(((EditAssignmentCommand) other).module)
                 && toEditIndex == ((EditAssignmentCommand) other).toEditIndex
-                && dateEdit.equals(((EditAssignmentCommand) other).dateEdit)
-                && descriptionEdit.equals(((EditAssignmentCommand) other).descriptionEdit);
+                && sameDate
+                && sameDescription;
     }
 }

@@ -1,5 +1,7 @@
 package seedu.address.ui.calendar.schedule;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
@@ -28,6 +30,7 @@ public class TimeScaleCell extends UiPart<Region> {
      */
     public TimeScaleCell(String timeString) {
         super(FXML);
+        requireNonNull(timeString);
         time.setText(timeString);
         //memoize the time, for hiding purpose.
         this.timeStr = timeString;

@@ -87,11 +87,20 @@ public class EditExamCommand extends EditCommand {
 
     @Override
     public boolean equals(Object other) {
+        if (!(other instanceof EditExamCommand)) {
+            return false;
+        }
+        boolean sameEdit;
+        if (isNull(edit)) {
+            sameEdit = isNull(((EditExamCommand) other).edit);
+        } else {
+            sameEdit = edit.equals(((EditExamCommand) other).edit);
+        }
         return other == this
-                || (other instanceof EditAssignmentCommand)
+                || other instanceof EditExamCommand
                 && module.equals(((EditExamCommand) other).module)
                 && toEditIndex == ((EditExamCommand) other).toEditIndex
-                && edit.equals(((EditExamCommand) other).edit);
+                && sameEdit;
     }
 }
 
