@@ -6,8 +6,4 @@ public interface Status {
      */
     Status next();
 
-    /**
-     * @return the amount offered
-     */
-    Offer getAmount();
 }

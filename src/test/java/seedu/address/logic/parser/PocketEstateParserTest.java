@@ -7,6 +7,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,6 +22,8 @@ import seedu.address.logic.commands.ListAllCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.AppointmentContainsKeywordsPredicate;
 import seedu.address.model.property.PropertyNamePredicate;
+import seedu.address.model.appointment.AppointmentPredicateList;
+import seedu.address.model.appointment.AppointmentRemarksPredicate;
 import seedu.address.model.property.PropertyPredicateList;
 
 public class PocketEstateParserTest {
@@ -41,11 +44,13 @@ public class PocketEstateParserTest {
 
     @Test
     public void parseCommand_find_appointment() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        List<String> keywords = Arrays.asList("n/foo", "r/bar");
         FindAppointmentCommand command = (FindAppointmentCommand) parser.parseCommand(
                 FindAppointmentCommand.COMMAND_WORD + " "
                         + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindAppointmentCommand(new AppointmentContainsKeywordsPredicate(keywords)), command);
+        assertEquals(new FindAppointmentCommand(new AppointmentPredicateList(
+                Arrays.asList(new AppointmentContainsKeywordsPredicate(Collections.singletonList("foo")),
+                        new AppointmentRemarksPredicate("bar")))), command);
     }
 
     @Test

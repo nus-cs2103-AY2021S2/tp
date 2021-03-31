@@ -1,0 +1,9 @@
+{
+  "appointments": [
+    {
+      "name": "Meet Bob",
+      "remark": "At Plaza Singapore Starbucks",
+      "date": "Invalid Date",
+      "time": "8:00PM"
+    } ]
+}

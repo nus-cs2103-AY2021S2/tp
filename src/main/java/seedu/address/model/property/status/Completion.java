@@ -15,11 +15,6 @@ public class Completion implements Status {
     }
 
     @Override
-    public Offer getAmount() {
-        return amount;
-    }
-
-    @Override
     public String toString() {
         return TOSTRING_MESSAGE + amount.toString();
     }

@@ -1,21 +1,20 @@
 package seedu.address.model.appointment;
 
-import java.time.LocalTime;
 import java.util.function.Predicate;
 
 /**
  * Tests that an {@code Appointment}'s {@code Time} matches the time given.
  */
 public class AppointmentTimePredicate implements Predicate<Appointment> {
-    private final LocalTime time;
+    private final Time time;
 
-    public AppointmentTimePredicate(LocalTime time) {
+    public AppointmentTimePredicate(Time time) {
         this.time = time;
     }
 
     @Override
     public boolean test(Appointment appointment) {
-        return appointment.getTime().time.equals(time);
+        return appointment.getTime().equals(time);
     }
 
     @Override

@@ -48,7 +48,7 @@ This user guide uses various formatting styles to facilitate reading and to comm
 1. Copy the file to the folder you want to use as the **home folder** for PocketEstate.
 
 1. **Double-click** the file to start the app. A Graphical User Interface (GUI) similar to the below should appear in a few seconds. Note how the app contains some sample data.<br><br>
-   
+
    ![Ui](images/Ui.png)
 
 ### 2.2 Trying out
@@ -103,7 +103,7 @@ For a quick reference of the available commands and their syntax, refer to the [
 
 #### 3.1.1 Viewing help : `help`
 
-Shows a message explaining how to access the help page.
+Shows a message explaining how to access the help page. A link to the user guide will be provided.
 
 ![help message](images/helpMessage.png)
 
@@ -215,16 +215,31 @@ Shows a list of all appointments in the app.
 Updates the status of a property from Option to Purchase, to Sales and Purchase Agreement to Completion
 
 Formats:
-* `update INDEX u/new AMOUNT`
-* `update INDEX u/[proceed][cancel]`
+* `update INDEX OPTION`
 
 Description:
-* Edits the property at the specified `INDEX`. The index refers to the index number shown in the displayed list. The index **must be a positive integer** 1, 2, 3, …​
-* The `new` keyword can only be used on a property without an existing status
-* `proceed` or `cancel` can only be used on a property with an existing status
-* `proceed` would move the status on to the next one. e.g. Option to Sales Agreement or Sales Agreement to Completion
-* `cancel` would remove the status of the property
-* At least one of the optional fields must be provided.
+* Updates the status of the property at the specified `INDEX`. The index refers to the index number shown in the displayed list. The index **must be a positive integer** 1, 2, 3, …​
+
+Options:
+* `u/new AMOUNT`
+
+    The `new` keyword can only be used on a property without an existing status. AMOUNT is the amount of money that is offered in the Option to Purchase
+
+
+* `u/proceed`
+
+    Can only be used on a property with an existing status. `proceed` would move the status on to the next one. e.g. `Option` to `SalesAgreement` or `SalesAgreement` to `Completion`.
+
+
+* `u/cancel`
+
+  Can only be used on a property with an existing status. `cancel` would remove the status of the property
+
+Status Types:
+
+* `Option` represents the state when the Option to Purchase has been exercised for the property
+* `SalesAgreement` represents the state when the Sales and Purchase Agreement has been issued
+* `Completion` represents the state when the sales of the property has completed
 
 Examples:
 *  `update 1 u/new 600000` Creates a new status with amount 600000 for the 1st property.
@@ -258,25 +273,25 @@ Formats:
 * `find property [KEYWORD]... [OPTION]...`
 
 Description:
-* There can be 0 or more keywords and 0 or more options, but keywords and options cannot be both empty. All text are case insensitive. 
+* There can be 0 or more keywords and 0 or more options, but keywords and options cannot be both empty. All text are case insensitive.
 
 Options:
 * `[t/PROPERTY_TYPE]`
 
-    Search for properties whose property type field contain patterns specified in `[t/PROPERTY_TYPE]`. 
-    
-    The following property types are supported: 
+    Search for properties whose property type field contain patterns specified in `[t/PROPERTY_TYPE]`.
+
+    The following property types are supported:
     * hdb
     * condo
     * landed
 
 * `[pm/PRICE_UPPER_LIMIT]`
 
-    Search for properties with prices more than `[PRICE_UPPER_LIMIT]`. 
+    Search for properties with prices more than `[PRICE_UPPER_LIMIT]`.
 
 * `[pl/PRICE_LOWER_LIMIT]`
 
-    Search for properties with prices less than `[PRICE_LOWER_LIMIT]`. 
+    Search for properties with prices less than `[PRICE_LOWER_LIMIT]`.
 
 Examples:
 * `find property jurong west`
@@ -291,7 +306,7 @@ Formats:
 * `find appointment [KEYWORD]...`
 
 Description:
-* There can be 0 or more keywords. Keywords are case insensitive. 
+* There can be 0 or more keywords. Keywords are case insensitive.
 
 Examples:
 * `find appointment bob`
@@ -299,13 +314,13 @@ Examples:
 
 #### 3.8.3 Searching clients: `find client`
 
-Finds appointments that matches the keywords and properties whose clients matches the same keywords. Both are done at the same time. 
+Finds appointments that matches the keywords and properties whose clients matches the same keywords. Both are done at the same time.
 
 Formats:
 * `find client [KEYWORD]...`
 
 Description:
-* There can be 0 or more keywords. Keywords are case insensitive. 
+* There can be 0 or more keywords. Keywords are case insensitive.
 
 ### 3.9 Clearing
 
@@ -329,7 +344,7 @@ PocketEstate data are saved in the hard disk automatically after any command tha
 
 The default storage data file paths used are:
 
-* Property storage data file: `[JAR file location]/data/propertybook.json`. 
+* Property storage data file: `[JAR file location]/data/propertybook.json`.
 * Appointment storage data file: `[JAR file location]/data/appointmentbook.json`.
 
 #### 4.2 Editing the data files
@@ -377,8 +392,7 @@ Action | Format, Examples
 **List all** | `list all`
 **List property** | `list property`
 **List appointment** | `list appointment`
-**Add new status** | `update INDEX new AMOUNT`<br><br> e.g.,`update 1 new 600000`
-**Update status** | `update INDEX u/STATUS`<br><br> e.g. `update 3 u/proceed`
+**Update status** | `update INDEX OPTION`<br><br>  Options: <br>{::nomarkdown}<ul> <li>{:/}`u/new AMOUNT`{::nomarkdown}</li> <li>{:/}`u/proceed`{::nomarkdown}</li> <li>{:/}`u/cancel`{::nomarkdown}</li> </ul>{:/} e.g.,`update 1 u/new 600000`
 **Sort** | `sort appointment o/SORTING_ORDER k/SORTING_KEY `<br> e.g., `sort appointment o/asc k/datetime`<br><br>`sort property o/SORTING_ORDER k/SORTING_KEY `<br> e.g., `sort property o/asc k/price`
 **Find property** | `find property [KEYWORD]... [OPTION]...` <br><br> Options: <br>{::nomarkdown}<ul> <li>{:/}`[t/PROPERTY_TYPE]`{::nomarkdown}</li> <li>{:/}`[pl/PRICE_UPPER_LIMIT]`{::nomarkdown}</li> <li>{:/}`[pm/PRICE_LOWER_LIMIT]`{::nomarkdown}</li> </ul>{:/} e.g. `find property bishan north t/hdb pl/$1,000,000`
 **Find appointment** | `find property [KEYWORD]` <br> e.g., `find appointment bob`
@@ -399,7 +413,7 @@ The default file paths used are:
 <div markdown="span" class="alert alert-info">:information_source: **Note:** However, if the specified configuration file or the preferences file is in an incorrect format, the default file paths will be used.
 </div>
 
-To launch PocketEstate via the command line, 
+To launch PocketEstate via the command line,
 
 1. First, open up your command prompt or terminal.
 1. Then, `cd` into the base directory containing the `pocketestate.jar` file.

@@ -1,0 +1,23 @@
+{
+  "properties" : [ {
+    "name" : "Mayfair",
+    "propertyType" : "Condo",
+    "address" : "1 Jurong East Street 32, #08-111",
+    "remark" : null,
+    "postalCode" : "609477",
+    "deadline" : "Dec 31, 2021",
+    "client" : null,
+    "tagged" : [ "4 bedrooms", "No need for renovation" ],
+    "status" : null
+  }, {
+    "name" : "Compassvale Walk",
+    "propertyType" : "Invalid Type",
+    "address" : "226A Compassvale Walk #10-07",
+    "remark" : "3 bedrooms",
+    "postalCode" : "540236",
+    "deadline" : "Oct 1, 2021",
+    "client" : null,
+    "tagged" : [ "3 bedrooms", "Renovation needed" ],
+    "status" : null
+  } ]
+}

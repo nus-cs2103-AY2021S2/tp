@@ -59,14 +59,14 @@ public class AppointmentCard extends UiPart<Region> {
         remarks.setText(appointment.getRemarks().remark);
         date.setText(appointment.getDate().toString());
         time.setText(appointment.getTime().toString());
+
         Date currentDate = new Date(LocalDate.now());
         Time currentTime = new Time(LocalTime.now());
-
-        if (currentDate.compareTo(appointment.getDate()) > 0) {
+        if (currentDate.compareTo(appointment.getDate()) > 0 || (currentDate.compareTo(appointment.getDate()) == 0
+                && currentTime.compareTo(appointment.getTime()) > 0)) {
             cardPane.setStyle("-fx-background-color: #696969");
-        } else if (currentDate.compareTo(appointment.getDate()) == 0
-                && currentTime.compareTo(appointment.getTime()) > 0) {
-            cardPane.setStyle("-fx-background-color: #696969");
+            date.setStyle("-fx-text-fill: darkred");
+            time.setStyle("-fx-text-fill: darkred");
         }
 
         appointmentTypeIcon.setImage(APPOINTMENT_ICON);

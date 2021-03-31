@@ -22,6 +22,12 @@ public class TypicalClients {
     public static final Client DARREN = new ClientBuilder().withClientName("Darren")
             .withClientContact("81347564").withClientEmail("darren_likes_swe@hotmail.com.sg")
             .withClientAskingPrice("$2,000,000").build();
+    public static final Client FIN = new ClientBuilder().withClientName("Fin")
+            .withClientContact("83864380").withClientEmail("fin@gmail.com")
+            .withClientAskingPrice("$8,000,000").build();
+    public static final Client JOEL = new ClientBuilder().withClientName("Joel")
+            .withClientContact("87262389").withClientEmail("joel@gmail.com")
+            .withClientAskingPrice("$5,000,000").build();
 
     private TypicalClients() {} // prevents instantiation
 

@@ -1,21 +1,20 @@
 package seedu.address.model.appointment;
 
-import java.time.LocalDate;
 import java.util.function.Predicate;
 
 /**
  * Tests that an {@code Appointment}'s {@code Date} matches the date given.
  */
 public class AppointmentDatePredicate implements Predicate<Appointment> {
-    private final LocalDate date;
+    private final Date date;
 
-    public AppointmentDatePredicate(LocalDate date) {
+    public AppointmentDatePredicate(Date date) {
         this.date = date;
     }
 
     @Override
     public boolean test(Appointment appointment) {
-        return appointment.getDate().date.equals(date);
+        return appointment.getDate().equals(date);
     }
 
     @Override

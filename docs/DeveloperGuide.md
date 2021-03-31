@@ -67,7 +67,7 @@ The sections below give more details of each component.
 **API** :
 [`Ui.java`](https://github.com/AY2021S2-CS2103T-T13-4/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PropertyListPanel`, `AppointmentListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PropertyListPanel`, `AppointmentListPanel` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S2-CS2103T-T13-4/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S2-CS2103T-T13-4/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
@@ -129,11 +129,12 @@ The `Model`,
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2021S2-CS2103T-T13-4/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 The `Storage` component,
-* can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+* can save `UserPrefs` objects in json format and read it back.
+* can save the appointment book data in json format and read it back.
+* can save the property book data in json format and read it back.
 
 ### Common classes
 
@@ -165,9 +166,9 @@ A `Property consists of the following mandatory attributes,
   * a `Tag` set: a set of zero or more `Tag` objects
 
 and the following optional attributes,
-  * a `Remark`: a note about the property 
+  * a `Remark`: a note about the property
   * a `Status`: represents the current stage of the selling (Option, Sales Agreement, Completion)
-  * a `Client`: represents the seller of the property 
+  * a `Client`: represents the seller of the property
 
 A `Client` consists of at least one of the following attributes,
   * a `Name`: the name of the client
@@ -267,7 +268,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 * **Alternative 2 (current choice):** Saves the entire appointment/property list in the appointment/property book.
   * Pros: Easy to implement.
   * Cons: May have performance issues in terms of memory usage.
-    
+
 * **Alternative 3:** Saves only changes made by previous commands (Similar to commit and restore in version control).
   * Pros: Will use less memory (e.g. for `delete`, may only save the appointment/property being deleted, and the deleted appointment/property is added back if the command is undone).
   * Cons: Difficult to implement, different implementations are required to restore different changes.
@@ -286,35 +287,37 @@ The `Status` field consists of a `Status` interface with a `next()` method that 
 * `SalesAgreement` — Represents the stage where the buyer is considering the Sales and Purchase Agreement.
 * `Completion` — Represents the stage where the property has been sold.
 
-(insert class diagram of status)
+![StatusClassDiagram](images/StatusClassDiagram.png)
 
-The `UpdateCommand` is assisted by 3 subcommands that extend the abstract class `UpdateCommand` which itself extends `Command`. The subcommands are, `UpdateNewCommand`, `UpdateProceedCommand` and `UpdateCancelCommand`. The subcommands help execute on the model when the user calls `u/new`, `u/proceed` or `u/cancel` respectively. 
+The `UpdateCommand` is assisted by 3 subcommands that extend the abstract class `UpdateCommand` which itself extends `Command`. The subcommands are, `UpdateNewCommand`, `UpdateProceedCommand` and `UpdateCancelCommand`. The subcommands help execute on the model when the user calls `u/new`, `u/proceed` or `u/cancel` respectively.
 
 * `UpdateNewCommand` — Takes in an `Index` and an Amount to create a new `Status` with the given Amount for the property at the given `Index`.
 * `UpdateProceedCommand` — Takes in an `Index` and moves the `Status` of the property at the given `Index` to the next `Status` if applicable.
 * `UpdateNewCommand` — Takes in an `Index` and removes the `Status` of the property at the given `Index` if applicable.
 
-(insert class diagram of UpdateCommand)
+![UpdateCommandClassDiagram](images/UpdateCommandClassDiagram.png)
 
 Given below is an example usage scenario and how the update mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. The `PocketEstate` will be initialized with the initial appointment book state and property book state.
 
+![UpdateStep1Initial](images/UpdateStep1Initial.png)
+
 Step 2. The user executes `update 1 u/new 600,000` command to add a new status with value 600,000 to the first property.
 
-(some object diagram?)
+![UpdateStep2New](images/UpdateStep2New.png)
 
 Step 3. The user executes `update 1 u/proceed` to move the `Status` of the first property to `SalesAgreement`.
 
-(some object diagram?)
+![UpdateStep3Proceed](images/UpdateStep3Proceed.png)
 
 Step 4. The user executes `update 1 u/proceed` to move the `Status` of the first property to `Completion`.
 
-(some object diagram?)
+![UpdateStep4Proceed](images/UpdateStep4Proceed.png)
 
 Step 5. The user then decides that having the `Completion` status on the first property was a mistake and executes the command `update 1 u/cancel`.
 
-(some object diagram?)
+![UpdateStep5Cancel](images/UpdateStep5Cancel.png)
 
 
 #### Design consideration:
@@ -324,13 +327,11 @@ Step 5. The user then decides that having the `Completion` status on the first p
 
 The following activity diagram summarizes what happens when a user executes an `UpdateCommand`:
 
-(insert overall update activity diagram here)
-
-(insert UpdateCommandParser activity diagram here)
+![UpdateActivityDiagram](images/UpdateActivityDiagram.png)
 
 The following sequence diagram shows how the update operation works:
 
-(insert update new activity diagram here)
+![UpdateNewSequenceDiagram](images/UpdateNewSequenceDiagram.png)
 
 ### \[Proposed\] Data archiving
 
