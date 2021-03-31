@@ -212,7 +212,7 @@ If you would like to find financial records which fall within a particular categ
 
 <img src="images/features/find-fr.png" width="600px">
 
-Format: `find-fr d/FR_DESCRIPTION a/FR_AMOUNT c/FR_CATEGORY`
+Format: `find-fr [d/FR_DESCRIPTION] [a/FR_AMOUNT] [c/FR_CATEGORY]`
 
 **:bulb: Tips:**
 
@@ -231,9 +231,18 @@ If you currently have a filter set, such as a particular month or category, and 
 
 Format: `reset-filter`
 
-Examples:
+### Undoing commands : `undo`
 
-- `reset-filter`
+If you made a mistake from executing any commands, `undo` allows you to revert multiple latest changes made.
+
+Format: `undo`
+
+### Redoing commands : `redo`
+
+If you made a mistake from executing any commands, `redo` allows you to advance multiple latest changes made.
+It works in the opposite way from `undo`,
+
+Format: `redo`
 
 ### Exiting the program : `exit`
 
