@@ -6,7 +6,6 @@ import static seedu.booking.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.booking.logic.commands.AddBookingTagCommand;
 import seedu.booking.logic.commands.AddPersonCommand;
 import seedu.booking.logic.commands.AddVenueCommand;
 import seedu.booking.logic.commands.ClearCommand;
@@ -165,9 +164,6 @@ public class BookingSystemParser {
 
         case ListBookingCommand.COMMAND_WORD:
             return new ListBookingCommand();
-
-        case AddBookingTagCommand.COMMAND_WORD:
-            return new AddBookingTagCommandParser().parse(arguments);
 
         case FilterBookingByVenueCommand.COMMAND_WORD:
             return new FilterBookingByVenueCommandParser().parse(arguments);

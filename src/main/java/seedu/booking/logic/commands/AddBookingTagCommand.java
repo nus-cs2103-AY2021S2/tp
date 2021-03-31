@@ -8,6 +8,7 @@ import static seedu.booking.model.Model.PREDICATE_SHOW_ALL_BOOKINGS;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.function.Predicate;
 
 import seedu.booking.commons.core.Messages;
 import seedu.booking.logic.commands.exceptions.CommandException;
@@ -77,7 +78,8 @@ public class AddBookingTagCommand extends Command {
         model.updateFilteredBookingList(PREDICATE_SHOW_ALL_BOOKINGS);
 
         message.append(MESSAGE_SUCCESS);
-        toAddTags.stream().filter(x -> !bookingToEdit.getTags().contains(x)).forEach(message::append);
+        Predicate<Tag> containsPred = bookingToEdit.getTags()::contains;
+        toAddTags.stream().filter(containsPred.negate()).forEach(message::append);
         return new CommandResult(message.toString());
     }
 
