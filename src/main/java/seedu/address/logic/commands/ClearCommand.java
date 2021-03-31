@@ -7,7 +7,7 @@ import seedu.address.model.ColabFolder;
 import seedu.address.model.Model;
 
 /**
- * Clears the contact list.
+ * Clears the project & contact list.
  */
 public class ClearContactCommand extends Command {
 
