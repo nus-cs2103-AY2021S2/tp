@@ -24,6 +24,12 @@ public class TaskCard extends UiPart<Region> {
 
     private static final String STYLE_PRIORITY_TAG_HIGH = "-fx-background-color: red;";
 
+    private static final String STATUS_PREFIX = "Status: ";
+
+    private static final String FINISHED_EMOJI = "finished ☑";
+
+    private static final String UNFINISHED_EMOJI = "not finished ☒";
+
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
      * As a consequence, UI elements' variable names cannot be set to such keywords
@@ -65,6 +71,11 @@ public class TaskCard extends UiPart<Region> {
         this.task = task;
         id.setText(displayedIndex + ". ");
         taskName.setText(task.getTaskName().fullName);
+        if (task.getStatus().hasFinished()) {
+            status.setText(STATUS_PREFIX + FINISHED_EMOJI);
+        } else {
+            status.setText(STATUS_PREFIX + UNFINISHED_EMOJI);
+        }
         priorityTag.setText(task.getPriorityTag().getTagName());
         priorityTag.styleProperty().bind(Bindings.createStringBinding(() -> {
             State priorityTagLevel = task.getPriorityTag().getState();
@@ -82,7 +93,6 @@ public class TaskCard extends UiPart<Region> {
         moduleCode.setText(task.getModuleCode().moduleCode);
         deadlineDate.setText("Submission date : " + task.getDeadlineDate().toString());
         deadlineTime.setText("Submission time : " + task.getDeadlineTime().toString());
-        status.setText(task.getStatus().toString());
         weightage.setText("Weightage : " + task.getWeightage().toString());
         notes.setText(task.getNotes().value);
         task.getTags().stream()
