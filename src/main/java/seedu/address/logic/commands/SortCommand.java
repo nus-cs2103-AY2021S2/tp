@@ -42,10 +42,10 @@ public class SortCommand extends Command {
         String message;
 
 
-        if (option.equals(OPTION_ALPHABETICAL)) {
+        if (option.equals(OPTION_NAME)) {
             model.sortPersonList(new NameComparator());
             message = MESSAGE_SORT_ALPHABETICAL_SUCCESS;
-        } else { // order.equals(OPTION_CHRONOLOGICAL)
+        } else { // order.equals(OPTION_DATE)
             model.sortPersonList(new DateComparator());
             message = MESSAGE_SORT_CHRONOLOGICAL_SUCCESS;
         }
