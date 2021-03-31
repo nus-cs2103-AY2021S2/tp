@@ -8,6 +8,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 /**
@@ -19,32 +23,48 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String EXTERNAL_DETAILS = "For more details, refer to our user guide: \n" + USERGUIDE_URL;
     public static final String CATEGORIES = "2. Food Categories:\nFASTFOOD, WESTERN, INDIAN, CHINESE, FUSION, "
                     + "JAPANESE, KOREAN, MALAY, HALAL, VEGETARIAN, VEGAN, FRUITS, DESSERT, OTHERS, INVALID\n\n\n";
-    public static final String SCHOOL_LOC = "3. School Locations:\nSOC, FASS, BIZ, SCIENCE, FOE, UTOWN, NUSS, "
+    public static final String SCHOOL_LOC = "3. School Locations:\nSOC, FASS, BIZ, SCIENCE, FOE, UTOWN, NUSS, YIH, "
                     + "PGP, USC, CLB, UHALL, SDE, MED, DENT, VENTUS, INVALID\n\n\n";
     public static final String HELP_MESSAGE = "1. List of Commands:\n\n"
                     + "add: Adds an entry to the Food Diary.\n"
-                    + "     add n/Al Amaan ra/5 p/6 re/I like this food a lot! a/3155 Commonwealth Ave W, "
+                    + "     add n/Al Amaan ra/5 p/6 re/I like their food a lot! a/3155 Commonwealth Ave W, "
                     + "Singapore 129588 c/Indian c/Halal s/Ventus\n\n"
-                    + "addon: Adds on details (i.e review, price) of the entry "
-                    + "identified by the index number used in the displayed entry.\n"
-                    + "     addon 1 re/I like this food a lot! "
-                    + "Singapore 129742 c/Indian Muslim\n\n"
+                    + "addon: Adds on details (i.e review, price, category) od the entry "
+                    + "identified by the index number used in the list of displayed entries.\n"
+                    + "     addon 1 p/7 re/I like this food a lot! "
+                    + "Singapore 129742 c/Indian\n"
+                    + "     addon 2 p/18\n\n"
                     + "edit: Edits the details of the entry identified by the index number used in the "
                     + "displayed entry list. Existing values will be overwritten by the input values.\n"
                     + "     edit 1 ra/5 re/I like this food a lot!\n\n"
-                    + "delete: Deletes a food review from the Food Diary.\n"
+                    + "delete: Deletes an entry from the Food Diary.\n"
                     + "     delete 1\n\n"
-                    + "list: Lists all the restaurants with food reviews.\n"
+                    + "list: Lists all the entries currently in The Food Diary.\n"
                     + "     list\n\n"
-                    + "find: Finds for food reviews whose names, ratings, address and categories "
+                    + "find: Finds entries whose names, ratings, reviews, address and categories "
                     + "match any of the provided keywords.\n"
-                    + "     find Amaan Restaurant\n\n"
-                    + "findall: Finds for food reviews whose names, ratings, address and categories match ALL "
+                    + "     find Amaan\n"
+                    + "     find fastfood indian $6\n\n"
+                    + "findall: Finds entries whose names, ratings, address and categories match ALL "
                     + "of the provided keywords.\n"
-                    + "     findall Amaan Restuarant 5/5\n\n"
-                    + "view: Opens up a window, showing the details of a specified food review."
-                    + "in a full expanded view.\n"
-                    + "     view 1\n\n\n" + CATEGORIES + SCHOOL_LOC + EXTERNAL_DETAILS;
+                    + "     findall Amaan 5/5 $5-15 indian\n\n"
+                    + "view: view: Opens up a window, showing the details of a"
+                    + "specified entry in a full expanded view."
+                    + " Allows the user to read through reviews that are too "
+                    + "lengthy to be shown in the main UI window."
+                    + " Use ‘ESC’ key to quickly exit the view window.\n"
+                    + "     view 1\n\n"
+                    + "revise: Opens up a window, showing the existing details of an entry and allowing for "
+                    + "quick corrections and updates without requiring the use of prefixes and command syntax in the"
+                    + " UI. Use ‘TAB’ key to iterate through fields, ‘Ctrl + S’ (Windows),"
+                    + " ‘Command + S’ (Mac) to save,"
+                    + " ‘ESC’ key to quickly exit the revise window.\n"
+                    + "     revise 1\n\n"
+                    + "Clear: Deletes all entries from the food diary\n"
+                    + "     clear\n\n"
+                    + "Exit: Exits the food diary\n"
+                    + "     exit\n\n\n"
+                    + CATEGORIES + SCHOOL_LOC + EXTERNAL_DETAILS;
 
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
@@ -63,6 +83,8 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public HelpWindow(Stage root) {
         super(FXML, root);
+        final KeyCombination esc = new KeyCodeCombination(KeyCode.ESCAPE);
+        setEscShortCut(esc);
         helpMessageField.setText(HELP_MESSAGE);
     }
 
@@ -117,6 +139,20 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public void focus() {
         getRoot().requestFocus();
+    }
+
+    /**
+     * Sets up 'ESC' key to hide window
+     *
+     * @param esc 'ESC' on keyboard
+     */
+    private void setEscShortCut(KeyCombination esc) {
+        getRoot().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (esc.match(event)) {
+                hide();
+                event.consume();
+            }
+        });
     }
 
     /**

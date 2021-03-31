@@ -35,11 +35,11 @@ The Food Diary will **allow students to save time and effort** when finding plac
 ![Architecture Diagram](images/ArchitectureDiagram.png)
 
 ## **Implementation**
-### AddOn Feature 
+### AddOn Feature
 #### Implementation
-The AddOn feature allows the user to add multiple reviews to a single entry of a food place. This will be useful 
+The AddOn feature allows the user to add multiple reviews to a single entry of a food place. This will be useful
 for users who frequently visit a particular place and would like to enter their reviews every visit
-This feature follows the architecture of AB3. 
+This feature follows the architecture of AB3.
 
 The following sequence diagram shows how the AddOn feature works:
 ![AddOn Sequence Diagram](images/AddOn_Sequence_Diagram.png)
@@ -50,13 +50,13 @@ The following activity diagram summaries the flow of event when a user executes 
 ### View Feature
 #### Implementation
 The View feature allows the user to view a specified entry in a new window, allowing the user to carefully look through
-all the details of an entry. 
+all the details of an entry.
 
-The mechanism works in such a way where after the user enters a command in the UI, the command will be passed into 
-`MainWindow#executeCommand()`, in which `Logic#execute()` will be called to parse the user input in 
-`FoodDiaryParser#parseCommand()`. The user input will be parsed as a 'View' command and executed to retrieve all the 
-details related to the specified entry. The result of this execution will be passed back to the UI and shown in a 
-pop up window.
+The mechanism works in such a way where after the user enters a command in the UI, the command will be passed into
+ `MainWindow#executeCommand()`, in which `Logic#execute()` will be called to parse the user input in
+ `FoodDiaryParser#parseCommand()`. The user input will be parsed as a 'View' command and executed to retrieve all the
+ details related to the specified entry. The result of this execution will be passed back to the UI and shown in a
+ pop up window.
 
 The following sequence diagram shows how the View feature works:
 ![View Sequence Diagram](images/ViewSequenceDiagram.png)
@@ -102,7 +102,7 @@ keeping records of food options tasted in the vicinity of NUS.
 * can type fast and prefers typing to mouse interactions
 
 * is reasonably comfortable using CLI apps
-  
+
 * occasionally prefers to use ui for certain tasks
 
 
@@ -269,7 +269,7 @@ Use case ends.
     * 2a1. Food Diary tells user that no entry was found.
 
       Use case ends.
-    
+
 **UC08: Find all specific entries**
 
 **MSS**
@@ -282,7 +282,7 @@ Use case ends.
 * 1a. Food Diary detects invalid command from user
     * 1a1. Food Diary warns user about wrong syntax
     * 1a2. User enters correct syntax
-    
+
     Use case resumes from step 2.
 
 **UC09: Revise an Entry**
@@ -301,7 +301,7 @@ Use case ends.
     * 2a1. Food Diary tells user that no entry was found.
 
       Use case ends.
-    
+
 
 ### Non-Functional Requirements
 

@@ -14,6 +14,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
@@ -59,6 +61,9 @@ public class MainWindow extends UiPart<Stage> {
      */
     public MainWindow(Stage primaryStage, Logic logic) {
         super(FXML, primaryStage);
+
+        final KeyCombination esc = new KeyCodeCombination(KeyCode.ESCAPE);
+        setEscShortCut(esc);
 
         // Set dependencies
         this.primaryStage = primaryStage;
@@ -186,6 +191,20 @@ public class MainWindow extends UiPart<Stage> {
 
     void show() {
         primaryStage.show();
+    }
+
+    /**
+     * Sets up 'ESC' key to exit main window
+     *
+     * @param esc 'ESC' on keyboard
+     */
+    private void setEscShortCut(KeyCombination esc) {
+        getRoot().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (esc.match(event)) {
+                handleExit();
+                event.consume();
+            }
+        });
     }
 
     /**

@@ -127,6 +127,17 @@
     -fx-text: #3D4546;
 }
 
+.help_text_area {
+    -fx-control-inner-background: #E3D0B9;
+    -fx-font-family: "Segoe UI Light";
+    -fx-font-size: 11pt;
+    -fx-text-fill: #11698E;
+    -fx-border-color: transparent;
+    -fx-background-insets: 0;
+    -fx-text-box-border: transparent;
+    -fx-background-color: transparent;
+}
+
 .cell_small_label {
     -fx-font-family: "Segoe UI";
     -fx-font-size: 13px;
@@ -223,22 +234,22 @@
 .button {
     -fx-padding: 5 22 5 22;
     -fx-border-color: #e2e2e2;
-    -fx-border-width: 2;
+    -fx-border-width: 1;
     -fx-background-radius: 0;
-    -fx-background-color: #1d1d1d;
+    -fx-background-color: #E1BC91;
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
     -fx-font-size: 11pt;
-    -fx-text-fill: #d8d8d8;
+    -fx-text-fill: black;
     -fx-background-insets: 0 0 0 0, 0, 1, 2;
 }
 
 .button:hover {
-    -fx-background-color: #3a3a3a;
+    -fx-background-color: derive(#E1BC91, 15%);
 }
 
 .button:pressed, .button:default:hover:pressed {
-  -fx-background-color: white;
-  -fx-text-fill: #1d1d1d;
+  -fx-background-color: derive(#E1BC91, 30%);
+  -fx-text-fill: #11698E;
 }
 
 .button:focused {
@@ -294,7 +305,7 @@
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: derive(#1d1d1d, 50%);
+    -fx-background-color: derive(#1d1d1d, 60%);
     -fx-background-insets: 3;
 }
 

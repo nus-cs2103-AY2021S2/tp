@@ -84,7 +84,7 @@ public class NameContainsKeywordsPredicate implements Predicate<Entry> {
      * @return true if entry contains any of the non-price keywords, false otherwise
      */
     private boolean testNonPrice(Entry entry, List<String> nonPriceKeywords) {
-        //combine name, rating, and address into a single string to test for keywords
+        //combine name, rating, address, categories & schools into a single string to test for keywords
         StringBuilder sb = new StringBuilder(entry.getName().fullName);
         sb.append(" ").append(entry.getRating().value).append(RATING_OUT_OF_FIVE);
         sb.append(" ").append(entry.getAddress().value);
