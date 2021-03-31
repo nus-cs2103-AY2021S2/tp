@@ -52,6 +52,8 @@ public class MailtoLink {
      *     - " " becomes "%20".
      *     - "z" becomes "%7A".
      *
+     * Refer to <a href="https://www.ietf.org/rfc/rfc2396.txt">RFC 2396</a> for details.
+     *
      * @param str The string to be encoded.
      * @return An encoded version of the given string that is compatible with URI links/objects.
      */
