@@ -288,6 +288,16 @@ TutorsPet data are saved as a JSON file `[JAR file location]/data/addressbook.js
 If your changes to the data file makes its format invalid, TutorsPet will discard all data and start with an empty data file at the next run.
 </div>
 
+##Coming soon
+
+### Tag a student with one or more specific subjects`[coming in v1.4]`
+
+_In v1.3, any texts can be parsed through tags, while in v1.4, we will specialise tags to the subjects a student is learning._
+
+### Undo/Redo `[coming in v2.0]`
+
+_Details coming soon ..._
+
 ### Archiving data files `[coming in v2.0]`
 
 _Details coming soon ..._
