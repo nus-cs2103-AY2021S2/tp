@@ -41,8 +41,10 @@ public class MainWindow extends UiPart<Stage> {
     private StudentListPanel studentListPanel;
     private TuitionListPanel tuitionListPanel;
     private UpcomingTuitionListPanel upcomingTuitionListPanel;
+    private MonthlyFeeListPanel monthlyFeeListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private CalendarView calendarView;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -66,7 +68,10 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane upcomingTuitionListPanelPlaceholder;
 
     @FXML
-    private StackPane feePanelPlaceholder;
+    private StackPane monthlyFeePanelPlaceholder;
+
+    @FXML
+    private StackPane calendarViewPlaceholder;
 
     @FXML
     private Tab time;
@@ -137,6 +142,9 @@ public class MainWindow extends UiPart<Stage> {
         upcomingTuitionListPanel = new UpcomingTuitionListPanel(logic.getFullStudentList());
         upcomingTuitionListPanelPlaceholder.getChildren().add(upcomingTuitionListPanel.getRoot());
 
+        monthlyFeeListPanel = new MonthlyFeeListPanel(logic.getFullStudentList());
+        monthlyFeePanelPlaceholder.getChildren().add(monthlyFeeListPanel.getRoot());
+
         studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
         studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
 
@@ -151,6 +159,9 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        calendarView = new CalendarView(logic.getFullStudentList());
+        calendarViewPlaceholder.getChildren().add(calendarView.getRoot());
 
         displayDateAndTime();
     }
@@ -205,7 +216,7 @@ public class MainWindow extends UiPart<Stage> {
                     event -> {
                         time.setText(
                             LocalDateTime.now().toLocalDate()
-                            .format(DateTimeFormatter.ofPattern("dd-MMM-YYYY")) + "     "
+                            .format(DateTimeFormatter.ofPattern("dd MMM YYYY")) + "     "
                             + LocalDateTime.now().toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm")));
 
                     }

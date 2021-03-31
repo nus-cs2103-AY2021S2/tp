@@ -62,6 +62,11 @@ public class CommandTestUtil {
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
+    public static final String INVALID_GUARDIAN_PHONE_DESC = " " + PREFIX_GUARDIAN_PHONE
+        + "911a"; // 'a' not allowed in phones
+    public static final String INVALID_STUDY_LEVEL_DESC = " " + PREFIX_STUDY_LEVEL + "  "; // empty study level
+    public static final String INVALID_RELATIONSHIP_DESC = " " + PREFIX_RELATIONSHIP + "  "; // empty relationship
+
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

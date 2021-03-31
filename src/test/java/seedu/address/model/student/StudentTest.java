@@ -19,6 +19,7 @@ import seedu.address.model.session.Subject;
 import seedu.address.testutil.StudentBuilder;
 
 public class StudentTest {
+    // TODO: add session test
 
     @Test
     public void isSameStudent() {
@@ -83,8 +84,8 @@ public class StudentTest {
 
         // different sessions -> result true
         editedAlice = new StudentBuilder(ALICE)
-                .addSession(new Session(new SessionDate("2020-10-01", "10:45"),
-                        new Duration("10"), new Subject("Math"), new Fee("10"))).build();
+            .addSessions(new Session(new SessionDate("2020-10-01", "10:45"),
+                new Duration("10"), new Subject("Math"), new Fee("10"))).build();
         assertTrue(ALICE.equals(editedAlice));
     }
 }

@@ -1,5 +1,6 @@
 package seedu.address.model.session;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -35,19 +36,33 @@ public class RecurringSession extends Session {
         this.lastSessionDate = lastSessionDate;
     }
 
-    // Checks that lastDate can be on given sessionDate.
-    private static boolean isValidEnd(SessionDate firstSessionDate, SessionDate lastSessionDate, Interval interval) {
+    /**
+     * Returns true if {@code lastSessionDate} is valid, having consistent Time and Date with
+     * {@code firstSessionDate} and {@code interval}.
+     * @param firstSessionDate the SessionDate value for first session
+     * @param lastSessionDate the SessionDate value for last session
+     * @param interval the interval of recurrence
+     * @return true if the first session and last session is consistent, based on interval
+     */
+    public static boolean isValidEnd(SessionDate firstSessionDate, SessionDate lastSessionDate, Interval interval) {
         boolean occursAtTime = firstSessionDate.isSameTime(lastSessionDate);
         boolean occursAtDate = isConsistentDatesAndInterval(firstSessionDate, lastSessionDate, interval);
         return occursAtTime && occursAtDate;
     }
 
-    // Checks that sessionDate1 occurs on the date of sessionDate2, upon recurring 0 or more times at given interval.
-    private static boolean isConsistentDatesAndInterval(
+    /**
+     * Returns true if Date of {@code lastSessionDate} is consistent with
+     * {@code firstSessionDate} and {@code interval}.
+     * @param sessionDate1 the SessionDate value for first session
+     * @param sessionDate2 the SessionDate value for last session
+     * @param interval the interval of recurrence
+     * @return true if the first session and last session is consistent in terms of Date, based on interval
+     */
+    public static boolean isConsistentDatesAndInterval(
             SessionDate sessionDate1, SessionDate sessionDate2, Interval interval) {
         requireAllNonNull(sessionDate1, sessionDate2, interval);
         int daysBetween = sessionDate1.numOfDayTo(sessionDate2);
-        return daysBetween >= 0 && daysBetween % interval.getValue() == 0;
+        return daysBetween > 0 && daysBetween % interval.getValue() == 0;
     }
 
     public Interval getInterval() {
@@ -58,11 +73,17 @@ public class RecurringSession extends Session {
         return lastSessionDate;
     }
 
-    private boolean endBefore(SessionDate sessionDate) {
+    /**
+     * Returns true if recurring session date ends before {@code SessionDate} date.
+     */
+    public boolean endBefore(SessionDate sessionDate) {
         requireAllNonNull(sessionDate);
         return lastSessionDate.getDate().isBefore(sessionDate.getDate());
     }
 
+    /**
+     * Returns true if recurring session date starts after {@code SessionDate} date.
+     */
     private boolean startAfter(SessionDate sessionDate) {
         requireAllNonNull(sessionDate);
         return getSessionDate().getDate().isAfter(sessionDate.getDate());
@@ -76,7 +97,9 @@ public class RecurringSession extends Session {
      */
     public boolean hasSessionOnDate(SessionDate sessionDate) {
         requireAllNonNull(sessionDate);
-        return !endBefore(sessionDate) && isConsistentDatesAndInterval(getSessionDate(), sessionDate, getInterval());
+        return !startAfter(sessionDate)
+                && !endBefore(sessionDate)
+                && isConsistentDatesAndInterval(getSessionDate(), sessionDate, getInterval());
     }
 
     // THIS METHOD IS FOR SCHEDULE REMINDER TO RETRIEVE INFO ABOUT SESSION HAPPENING ON GIVEN DATE.
@@ -85,12 +108,20 @@ public class RecurringSession extends Session {
      * @param sessionDate A valid sessionDate.
      * @return Session of Recurring Session on particular sessionDate.
      */
-    private Session onSessionDate(SessionDate sessionDate) {
+    private Session buildSessionOnDate(SessionDate sessionDate) {
         requireAllNonNull(sessionDate);
         assert(hasSessionOnDate(sessionDate));
         return new Session(sessionDate, getDuration(), getSubject(), getFee());
     }
 
+    /**
+     * Builds a session with the time of the recurring session the specified {@code LocalDate}.
+     */
+    public Session buildSessionOnDate(LocalDate date) {
+        requireNonNull(date);
+        SessionDate sessionDate = new SessionDate(date.toString(), getSessionDate().getTime().toString());
+        return buildSessionOnDate(sessionDate);
+    }
 
     /**
      * Returns a non-recurring, single session that occurred before a given SessionDate.
@@ -106,7 +137,7 @@ public class RecurringSession extends Session {
         SessionDate lastSessionDate = new SessionDate(
                 LocalDateTime.of(lastLocalDate, getSessionDate().getTime())
                         .toString());
-        return this.onSessionDate(lastSessionDate);
+        return this.buildSessionOnDate(lastSessionDate);
     }
 
     // THIS METHOD IS EXPECTED TO BE USED IN FEE CALCULATION.
@@ -166,7 +197,7 @@ public class RecurringSession extends Session {
 
         int intervalMod = getInterval().getValue() % otherSession.getInterval().getValue();
         int startDiffMod = daysBetween % otherSession.getInterval().getValue();
-        int diffMod = intervalMod % startDiffMod;
+        int diffMod = intervalMod + startDiffMod % otherSession.getInterval().getValue();
         if (diffMod != 0) {
             return false;
         }

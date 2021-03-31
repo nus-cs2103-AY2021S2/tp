@@ -193,11 +193,6 @@ public class AddStudentCommandTest {
         public double getFee(LocalDateTime startPeriod, LocalDateTime endPeriod) {
             throw new AssertionError("This method should not be called.");
         }
-
-        @Override
-        public double getFeePerStudent(Student student, LocalDateTime startPeriod, LocalDateTime endPeriod) {
-            throw new AssertionError("This method should not be called.");
-        }
     }
 
     /**
