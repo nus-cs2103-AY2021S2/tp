@@ -23,8 +23,8 @@ public class ScheduleCommandParser implements Parser<ScheduleCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
                 PREFIX_MEETING);
-
         Index index;
+
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
@@ -32,11 +32,15 @@ public class ScheduleCommandParser implements Parser<ScheduleCommand> {
                     ScheduleCommand.MESSAGE_USAGE), pe);
         }
 
-        if (argMultimap.getValue(PREFIX_MEETING).isPresent()) {
+        if (argMultimap.getValue(PREFIX_MEETING).isEmpty()) {
+            throw new ParseException(Meeting.MESSAGE_CONSTRAINTS);
+        }
+
+        try {
             Meeting meeting = ParserUtil.parseMeeting(argMultimap.getValue(PREFIX_MEETING).get());
             return new ScheduleCommand(index, meeting);
-        } else {
-            throw new ParseException(Meeting.MESSAGE_CONSTRAINTS);
+        } catch (IllegalArgumentException ex) {
+            throw new ParseException(ex.getMessage());
         }
     }
 
