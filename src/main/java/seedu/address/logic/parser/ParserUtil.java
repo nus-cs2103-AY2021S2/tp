@@ -20,6 +20,7 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_POSITIVE_INT = "Not a valid positive integer.";
     public static final String MESSAGE_INVALID_POSITIVE_DOUBLE = "Not a valid positive double.";
+    public static final String MESSAGE_NO_KEYWORD = "No keyword specified.";
     public static final String MESSAGE_NO_KEYWORDS = "No keywords specified.";
 
     /**
@@ -44,6 +45,18 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_POSITIVE_DOUBLE);
         }
         return Integer.valueOf(trimmedToParse);
+    }
+
+    /**
+     * Parse single keyword
+     * @throws ParseException if specified string is empty.
+     */
+    public static String parseKeyword(String keyword) throws ParseException {
+        String trimmedKeyword = keyword.trim();
+        if (trimmedKeyword.isEmpty()) {
+            throw new ParseException(MESSAGE_NO_KEYWORD);
+        }
+        return trimmedKeyword;
     }
 
     /**

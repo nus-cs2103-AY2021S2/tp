@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.core.Pair;
+import seedu.address.commons.util.StringUtil;
 import seedu.address.model.Aggregator;
 import seedu.address.model.Item;
 import seedu.address.model.ingredient.Ingredient;
@@ -23,7 +24,7 @@ public class Dish implements Item, Aggregator<Ingredient> {
      */
     @JsonCreator
     public Dish(@JsonProperty("dish") String name, @JsonProperty("price") double price,
-                @JsonProperty("ingredientQuantityList:") List<Pair<Ingredient, Integer>> ingredientQuantityList) {
+                @JsonProperty("ingredientQuantityList") List<Pair<Ingredient, Integer>> ingredientQuantityList) {
         this.name = name;
         this.price = price;
         this.ingredientQuantityList = ingredientQuantityList;
@@ -43,6 +44,18 @@ public class Dish implements Item, Aggregator<Ingredient> {
     public boolean contains(Ingredient ingredient) {
         for (Pair<Ingredient, Integer> pair : getIngredientQuantityList()) {
             if (pair.getKey().equals(ingredient)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Checks if dish has an ingredient with name, case ignored
+     */
+    public boolean containsIngredientNameIgnoreCase(String name) {
+        for (Pair<Ingredient, Integer> pair : getIngredientQuantityList()) {
+            if (StringUtil.containsWordIgnoreCase(pair.getKey().getName(), name)) {
                 return true;
             }
         }
@@ -81,24 +94,8 @@ public class Dish implements Item, Aggregator<Ingredient> {
         Dish otherDish = (Dish) other;
         return otherDish.name.equals(name)
                 && otherDish.price == price
-                && listEquals(otherDish.getIngredientQuantityList());
+                && otherDish.getIngredientQuantityList().equals(ingredientQuantityList);
     }
-
-    private boolean listEquals(List<Pair<Ingredient, Integer>> otherList) {
-        if (otherList.size() != ingredientQuantityList.size()) {
-            return false;
-        }
-
-        boolean result = true;
-        for (int i = 0; i < ingredientQuantityList.size(); i++) {
-            Pair<Ingredient, Integer> current = ingredientQuantityList.get(i);
-            Pair<Ingredient, Integer> other = otherList.get(i);
-            result = current.equals(other);
-        }
-
-        return result;
-    }
-
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
