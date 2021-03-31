@@ -50,11 +50,14 @@ TutorsPet is a **desktop app designed for private tutors to manage students’ i
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/SUBJECT]` can be used as `n/John Doe t/sec3` or as `n/John Doe`.
+  e.g `n/NAME [t/SUBJECT]` can be used as `n/John Doe t/econ` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/SUBJECT]…​` can be used as ` ` (i.e. 0 times), `t/sec1`, `t/physics t/maths` etc.
-
+  e.g. `[t/SUBJECT]…​` can be used as ` ` (i.e. 0 times), `t/chem`, `t/phys t/math` etc.
+  
+* Subjects are represented by abbreviated name. Available names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `math`, `phys`.
+They represent subjects Biology, Chemistry, Chinese, Economics, English, Geography, History, Mathematics and Physics respectively.
+  
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
@@ -115,7 +118,7 @@ Format: `list`
 
 Edits an existing student in TutorsPet.
 
-Format: `edit INDEX [n/NAME] [s/SCHOOL] [p/PHONE] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] [gp/GUARDIAN_PHONE] [t/SUBJECT] [l/LESSON]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] [gp/GUARDIAN_PHONE] [t/SUBJECT] [l/LESSON]…​`
 
 * Edits the student at the specified `INDEX`.
 * The index refers to the index number shown in the displayed student list.
@@ -123,8 +126,8 @@ Format: `edit INDEX [n/NAME] [s/SCHOOL] [p/PHONE] [e/EMAIL] [a/ADDRESS] [gn/GUAR
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing subjects or lessons, the existing subjects or lessons of the student will be removed i.e adding of subjects or lessons are not cumulative.
-* You can remove all the student’s subjects by typing `t/` without
-    specifying any subjects after it.
+* You can remove all the student’s subjects by typing `t/` without specifying any subject names after it.
+* You can remove all the student’s lessons by typing `l/` without specifying any lesson details after it.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `johndoe@example.com` respectively.
@@ -147,7 +150,7 @@ Format: `search [n/KEYWORDS] [s/KEYWORDS] [t/KEYWORDS] [MORE_KEYWORDS]`
   E.g. `Alice Tan` will return `Alice Ng` and `Bob Tan`.
 
 Examples:
-* `search n/eliza s/woodlands t/math` returns student whose name is `Eliza`, students who are studying in `woodlands primary school`, and students with the `math` subject
+* `search n/eliza s/woodlands t/math` returns student whose name is `Eliza`, students who are studying in `woodlands primary school`, and students with `math` subject
 * `search n/Patrick Lim` returns `patrick lim` and `Lim Zi Ying`
 * `search s/woodlands` returns students studying in `woodlands primary school` and `woodlands secondary school`
 * `search s/raffles hwa` returns students studying in `Raffles Institution` and `Hwa chong institution`
@@ -201,7 +204,7 @@ Format: `search t/KEYWORD [MORE_KEYWORDS]`
 * Only full words will be matched e.g. `Math` will not match `Maths`
 
 Examples:
-* `search t/chemistry`, `search t/chemistry`, and `search t/chemistry` can all return students with the subject `chemistry`
+* `search t/CHEM`, `search t/chem`, and `search t/Chem` can all return students with the subject `chem`
 
 ### Sorting contacts: `sort`
 Sorting for student’s contacts by name, school, subjects or lessons.
