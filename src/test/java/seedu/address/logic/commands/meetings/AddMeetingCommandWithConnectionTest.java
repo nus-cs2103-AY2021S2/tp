@@ -17,6 +17,9 @@ import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingBook;
 import seedu.address.model.meeting.ReadOnlyMeetingBook;
 import seedu.address.model.meeting.UniqueMeetingList;
+import seedu.address.model.note.Note;
+import seedu.address.model.note.NoteBook;
+import seedu.address.model.note.ReadOnlyNoteBook;
 import seedu.address.model.person.AddressBook;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.ReadOnlyAddressBook;
@@ -128,6 +131,9 @@ public class AddMeetingCommandWithConnectionTest {
         // TODO: Modify the signature of ModelManager so that we can add connection inside it.
         private final PersonMeetingConnection connection;
 
+        private final NoteBook noteBook;
+        private final FilteredList<Note> filteredNotes;
+
         private final TimetablePrefs timetablePrefs;
 
 
@@ -135,7 +141,7 @@ public class AddMeetingCommandWithConnectionTest {
          * Initializes a ModelManager with the given addressBook, meetingBOok and userPrefs
          */
         public MeetingModelStubAcceptingAdded(ReadOnlyAddressBook addressBook, ReadOnlyMeetingBook meetingBook,
-                            ReadOnlyUserPrefs userPrefs) {
+                                              ReadOnlyNoteBook noteBook, ReadOnlyUserPrefs userPrefs) {
             super();
             requireAllNonNull(addressBook, userPrefs);
 
@@ -144,6 +150,8 @@ public class AddMeetingCommandWithConnectionTest {
             this.addressBook = new AddressBook(addressBook);
             this.userPrefs = new UserPrefs(userPrefs);
             filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+            this.noteBook = new NoteBook(noteBook);
+            this.filteredNotes = new FilteredList<Note>(this.noteBook.getNoteList());
             // TODO: Modify the signature of ModelManager so that we can add connection inside it.
             this.connection = new PersonMeetingConnection();
             this.timetablePrefs = new TimetablePrefs(LocalDate.of(2020,10,10));
@@ -151,7 +159,7 @@ public class AddMeetingCommandWithConnectionTest {
 
 
         public MeetingModelStubAcceptingAdded() {
-            this(new AddressBook(), new MeetingBook(), new UserPrefs());
+            this(new AddressBook(), new MeetingBook(), new NoteBook(), new UserPrefs());
         }
 
         //=========== UserPrefs ==================================================================================
@@ -428,6 +436,58 @@ public class AddMeetingCommandWithConnectionTest {
         @Override
         public void sortFilteredMeetingList(Comparator<Meeting> comparator) {
 
+        }
+
+        //======================= Note methods ================================================
+
+        @Override
+        public void setNoteBook(ReadOnlyNoteBook noteBook) {
+            throw new AssertionError("This method should not be called.");
+        };
+
+        @Override
+        public ReadOnlyNoteBook getNoteBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasNote(Note note) {
+            throw new AssertionError("This method should not be called.");
+        };
+
+        @Override
+        public void deleteNote(Note target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addNote(Note note) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setNote(Note target, Note editedNote) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Note> getFilteredNoteList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredNoteList(Predicate<Note> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Path getNoteBookFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setNoteBookFilePath(Path noteBookFilePath) {
+            throw new AssertionError("This method should not be called.");
         }
 
         //======================= Timetable methods ========================================

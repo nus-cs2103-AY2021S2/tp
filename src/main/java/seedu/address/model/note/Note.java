@@ -5,17 +5,17 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.model.meeting.Priority;
 
 public class Note {
-    private final String note;
+    private final Content content;
     private final Priority priority;
 
-    public Note(String note) {
-        requireNonNull(note);
-        this.note = note;
+    public Note(Content content) {
+        requireNonNull(content);
+        this.content = content;
         this.priority = new Priority("1");
     }
 
-    public Note(String note, Priority priority) {
-        this.note = note;
+    public Note(Content content, Priority priority) {
+        this.content = content;
         this.priority = priority;
     }
 
@@ -29,22 +29,36 @@ public class Note {
         }
 
         return otherNote != null
-                && otherNote.getNote().equals(getNote());
+                && otherNote.getContent().equals(getContent());
     }
 
     @Override
     public int hashCode() {
-        return this.note.hashCode();
+        return this.content.hashCode();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Note // instanceof handles nulls
-                && this.note.equals(((Note) other).note)); // state check
+                && this.content.equals(((Note) other).content)); // state check
     }
 
-    public String getNote() {
-        return this.note;
+    public Content getContent() {
+        return this.content;
+    }
+
+    public Priority getPriority() {
+        return this.priority;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(getContent())
+                .append("; Priority: ")
+                .append(getPriority());
+
+        return builder.toString();
     }
 }

@@ -8,12 +8,13 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.meeting.ReadOnlyMeetingBook;
+import seedu.address.model.note.ReadOnlyNoteBook;
 import seedu.address.model.person.ReadOnlyAddressBook;
 
 /**
  * API of the Storage component
  */
-public interface Storage extends AddressBookStorage, UserPrefsStorage, MeetingBookStorage {
+public interface Storage extends AddressBookStorage, UserPrefsStorage, MeetingBookStorage, NoteBookStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
@@ -39,12 +40,13 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage, MeetingBo
     @Override
     void saveMeetingBook(ReadOnlyMeetingBook meetingBook) throws IOException;
 
+    // ================ NoteBook methods ==============================
+    @Override
+    Path getNoteBookFilePath();
 
+    @Override
+    Optional<ReadOnlyNoteBook> readNoteBook() throws DataConversionException, IOException;
 
-
-
-
-
-
-
+    @Override
+    void saveNoteBook(ReadOnlyNoteBook noteBook) throws IOException;
 }

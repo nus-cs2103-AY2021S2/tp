@@ -497,6 +497,17 @@ public class ModelManager implements Model {
         filteredNotes.setPredicate(predicate);
     }
 
+    @Override
+    public Path getNoteBookFilePath() {
+        return userPrefs.getNoteBookFilePath();
+    }
+
+    @Override
+    public void setNoteBookFilePath(Path noteBookFilePath) {
+        requireNonNull(noteBookFilePath);
+        userPrefs.setAddressBookFilePath(noteBookFilePath);
+    }
+
     //================= Get timetable prefs methods ================================================
 
     @Override

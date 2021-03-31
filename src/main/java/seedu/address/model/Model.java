@@ -1,5 +1,7 @@
 package seedu.address.model;
 
+import static java.util.Objects.requireNonNull;
+
 import java.nio.file.Path;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -241,7 +243,6 @@ public interface Model {
      */
     boolean hasNote(Note note);
 
-
     /**
      * Deletes the given note.
      * The note must exist in the note book.
@@ -270,6 +271,9 @@ public interface Model {
      */
     void updateFilteredNoteList(Predicate<Note> predicate);
 
+    Path getNoteBookFilePath();
+
+    void setNoteBookFilePath(Path noteBookFilePath);
 
     //============================= Timetable settings =====================================
 

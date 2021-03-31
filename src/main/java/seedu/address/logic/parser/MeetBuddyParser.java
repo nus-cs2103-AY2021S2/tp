@@ -109,6 +109,11 @@ public class MeetBuddyParser {
 
         case UnsortMeetingCommand.COMMAND_WORD:
             return new UnsortMeetingCommand();
+
+        //======================= Note =====================================
+        case AddNoteCommand.COMMAND_WORD:
+            return new AddNoteCommandParser().parse(arguments);
+
         //======================= Timetable =====================================
 
         case SetTimetableCommand.COMMAND_WORD:

@@ -1,7 +1,12 @@
 package seedu.address.logic.commands.notes;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -15,7 +20,11 @@ public class AddNoteCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a note to the note book. "
             + "Parameters: "
-            + PREFIX_NAME + "NAME ";
+            + PREFIX_NAME + "NAME "
+            + "[" + PREFIX_PRIORITY + "PRIORITY]...\n"
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_NAME + "Complete CS2103 Tutorial "
+            + PREFIX_PRIORITY + "5 ";
 
     public static final String MESSAGE_SUCCESS = "New note added: %1$s";
     public static final String MESSAGE_DUPLICATE_NOTE = "This note already exists in the note book";

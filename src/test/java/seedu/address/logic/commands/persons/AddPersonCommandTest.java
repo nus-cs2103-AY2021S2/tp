@@ -30,6 +30,8 @@ import seedu.address.model.connection.PersonMeetingConnection;
 import seedu.address.model.group.Group;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.ReadOnlyMeetingBook;
+import seedu.address.model.note.Note;
+import seedu.address.model.note.ReadOnlyNoteBook;
 import seedu.address.model.person.AddressBook;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.ReadOnlyAddressBook;
@@ -264,6 +266,58 @@ public class AddPersonCommandTest {
 
         @Override
         public ObservableList<Meeting> getFilteredMeetingListByPersonConnection(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        //======================= Note methods ================================================
+
+        @Override
+        public void setNoteBook(ReadOnlyNoteBook noteBook) {
+            throw new AssertionError("This method should not be called.");
+        };
+
+        @Override
+        public ReadOnlyNoteBook getNoteBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasNote(Note note) {
+            throw new AssertionError("This method should not be called.");
+        };
+
+        @Override
+        public void deleteNote(Note target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addNote(Note note) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setNote(Note target, Note editedNote) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Note> getFilteredNoteList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredNoteList(Predicate<Note> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Path getNoteBookFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setNoteBookFilePath(Path noteBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 

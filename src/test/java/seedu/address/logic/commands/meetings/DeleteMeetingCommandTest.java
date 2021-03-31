@@ -8,6 +8,7 @@ import static seedu.address.logic.commands.persons.PersonCommandTestUtil.assertC
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
 import static seedu.address.testutil.TypicalMeetings.getTypicalMeetingBook;
+import static seedu.address.testutil.TypicalNotes.getTypicalNoteBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -25,7 +26,8 @@ import seedu.address.model.person.AddressBook;
  */
 
 public class DeleteMeetingCommandTest {
-    private Model model = new ModelManager(new AddressBook(), getTypicalMeetingBook(), new UserPrefs());
+    private Model model = new ModelManager(new AddressBook(), getTypicalMeetingBook(),
+            getTypicalNoteBook(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -34,7 +36,8 @@ public class DeleteMeetingCommandTest {
 
         String expectedMessage = String.format(DeleteMeetingCommand.MESSAGE_DELETE_MEETING_SUCCESS, meetingToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), model.getMeetingBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), model.getMeetingBook(),
+                model.getNoteBook(), new UserPrefs());
         expectedModel.deleteMeeting(meetingToDelete);
 
         assertCommandSuccess(deleteMeetingCommand, model, expectedMessage, expectedModel);
@@ -57,7 +60,8 @@ public class DeleteMeetingCommandTest {
 
         String expectedMessage = String.format(DeleteMeetingCommand.MESSAGE_DELETE_MEETING_SUCCESS, meetingToDelete);
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), model.getMeetingBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getAddressBook(), model.getMeetingBook(),
+                model.getNoteBook(), new UserPrefs());
         expectedModel.deleteMeeting(meetingToDelete);
         showNoMeeting(expectedModel);
 

@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 import seedu.address.model.group.Group;
 import seedu.address.model.meeting.MeetingBook;
 import seedu.address.model.meeting.ReadOnlyMeetingBook;
+import seedu.address.model.note.NoteBook;
+import seedu.address.model.note.ReadOnlyNoteBook;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.AddressBook;
 import seedu.address.model.person.Email;
@@ -63,6 +65,11 @@ public class SampleDataUtil {
     public static ReadOnlyMeetingBook getSampleMeetingBook() {
         MeetingBook sampleMb = new MeetingBook();
         return sampleMb;
+    }
+
+    public static ReadOnlyNoteBook getSampleNoteBook() {
+        NoteBook sampleNb = new NoteBook();
+        return sampleNb;
     }
 
 }
