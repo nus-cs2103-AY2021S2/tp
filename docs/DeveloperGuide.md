@@ -204,16 +204,16 @@ Note that if the user does not have a mail client software set as default in the
 #### Manipulation UI through Command
 #####  Implementation
 Dictionote provides a dynamic user interface that allows the user to open and close any panel. 
-When executing any given command, dictionote will have to be able to change the user interface. 
-While all commands can open or close the UI panel. The user is also given the ability to manipulate UI through user command. 
+When executing any given command, dictionote should be able to change the user interface according to the command. 
+All commands should be able to open or close the UI panel. The user will also be given the ability to manipulate UI through user command. 
 The feature is implemented through the `CommandResult` that all `Command` in the system return.
 
 `CommandResult` store a string `feedbackToUser`, enum `UiAction` and enum `UiActionOption`. `feedbackToUser` will 
-be show on the `ResultDisplay` as the command execution feedback. 
-`UiAction` indicate the action the command the want the `UI` to take. 
+be show on the `ResultDisplay` indicating the command feedback after execution. 
+`UiAction` indicate the action the command want the `UI` to take. 
 e.g `UiAction.OPEN`, `UiAction.CLOSE`, `UiAction.EXIT`, ... etc. `UiActionOption` is only applicable to some `UiAction`. 
 It indicate the specific option available for the `UiAction`. 
-e.g `UiActionOption.Dictionary` for `UiActionOpen` mean open dictionary panel.
+e.g `UiActionOption.Dictionary` for `UiAction.Open` mean open dictionary panel.
 
 The following is the sequence diagram for  `OPENCOMMAND`
 
@@ -223,7 +223,8 @@ The following is the sequence diagram for  `OPENCOMMAND`
 * **Alternative 1 (current choice):** Make use of the existing command `CommandResult` class
     * Pros: make use of the existing system and easy to implement
     * Cons: All command will have to decide on the response. (or use the default setting)
-* Alternative 2: Make use of the Model Component as an intermediary between Command and UI. The command will call a method available on the model to make a change to the UI.
+* Alternative 2: Make use of the Model Component as an intermediary between Command and UI. 
+  The command will call a method available on the model to make a change to the UI.
     * Pros: Only the class that requires to change in UI will be needed to call the method
     * Cons: Increasing coupling.
 
