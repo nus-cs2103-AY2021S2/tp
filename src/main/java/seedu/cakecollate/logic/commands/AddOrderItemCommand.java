@@ -1,14 +1,16 @@
 package seedu.cakecollate.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+
 import java.util.Objects;
+
 import seedu.cakecollate.logic.commands.exceptions.CommandException;
 import seedu.cakecollate.model.Model;
 import seedu.cakecollate.model.orderitem.OrderItem;
 
 
 /**
- * Adds an order to CakeCollate.
+ * Adds an order item to the list of Order Items.
  */
 public class AddOrderItemCommand extends Command {
 
@@ -22,6 +24,11 @@ public class AddOrderItemCommand extends Command {
 
     private final OrderItem orderItem;
 
+
+    /**
+     * Adds an order item to the list of order items when executed.
+     * @param orderItem Order Item to be added.
+     */
     public AddOrderItemCommand(OrderItem orderItem) {
         requireNonNull(orderItem);
         this.orderItem = orderItem;

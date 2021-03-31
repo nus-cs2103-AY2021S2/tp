@@ -193,6 +193,15 @@ public class ParserUtil {
         return new DeliveryDate(trimmedDeliveryDate);
     }
 
+    /**
+     * Parses a {@code String orderItemType} into an {@code OrderItem}.
+     * The {@code Cost} is set to a default value of 10 for now.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param orderItemType Type of the order item as entered by the user.
+     *
+     * @throws ParseException if the given {@code orderItemType} is invalid.
+     */
     public static OrderItem parseOrderItem(String orderItemType) throws ParseException {
         requireNonNull(orderItemType);
         String trimmedOrderItemDescription = orderItemType.trim();

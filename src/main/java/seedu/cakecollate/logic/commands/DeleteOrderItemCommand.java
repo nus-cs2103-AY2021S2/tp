@@ -10,7 +10,6 @@ import seedu.cakecollate.commons.core.index.Index;
 import seedu.cakecollate.commons.core.index.IndexList;
 import seedu.cakecollate.logic.commands.exceptions.CommandException;
 import seedu.cakecollate.model.Model;
-import seedu.cakecollate.model.order.Order;
 import seedu.cakecollate.model.orderitem.OrderItem;
 
 /**
