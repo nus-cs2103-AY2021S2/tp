@@ -227,9 +227,41 @@ The following is the sequence diagram for  `OPENCOMMAND`
     * Pros: Only the class that requires to change in UI will be needed to call the method
     * Cons: Increasing coupling.
 
+### Note Features
 
+#### Converting a note into a .txt file
 
+Dictionote provides a method for its users to convert a note into a text file that are easily editable in other softwares.
 
+This feature is implemented as a command, `ConvertTxtNoteCommand`, that extends `Command`. It is an index-dependent command, meaning that the user must provide an index number when typing the command as a reference to a specific note on the note list.
+
+The `execute()` method will calls a `ConvertTxtNote` function, whics uses Java's `BufferedWriter` and `FileWriter` class to write remotely.
+
+Here is the example of the command usage. Assume initially, the state of the application is shown below:
+
+![ConvertNoteToTxtStart](images/ConvertNoteToTxtStart.png)
+ 
+* After typing in `converttxt 1` and executing it, the result would be:
+
+![ConvertNoteToTxtEnd](images/ConvertNoteToTxtEnd.png)
+
+* The resulting text file can be seen in the `data` folder. 
+
+![ConvertNoteToTxtResult](images/ConvertNoteToTxtResult.png)
+
+* Here is the resulting note.
+
+![ConvertNoteToTxtContent](images/ConvertNoteToTxtContent.png)
+
+#### Design Consideration
+* **Alternative 1 (current choice):** make use of the Java's `FileWriter` class to help us write files.
+	* Pros: Easy to implement; utilizes a pre-existing and standardized system for file writing.
+	* Cons: Need to modify code later for enhancement later.
+
+* **Alternative 2:** make our customized note-to-text converter class.
+	* Pros: Enable us to convert more than text files and have specific usage for our code.
+	* Cons: Very hard to implement, not enough time and knowledge.
+	
 <!--
 ### \[Proposed\] Undo/redo feature
 
