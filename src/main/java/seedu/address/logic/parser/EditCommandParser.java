@@ -48,8 +48,6 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
-            Logger logger = LogsCenter.getLogger(EditCommandParser.class);
-            logger.info("********************************is this index" + index.getOneBased());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }

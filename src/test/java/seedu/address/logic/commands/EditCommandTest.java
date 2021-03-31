@@ -21,6 +21,8 @@ import static seedu.address.testutil.TypicalPersons.getTypicalLessonBook;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.MainApp;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
@@ -33,6 +35,8 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
+
+import java.util.logging.Logger;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
@@ -52,9 +56,11 @@ public class EditCommandTest {
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(),
                 new DatesBook(model.getDatesBook()), new LessonBook(model.getLessonBook()));
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
-        expectedModel.removePersonFromLesson(model.getFilteredPersonList().get(0));
+        expectedModel.setPerson(model.getTransformedPersonList().get(0), editedPerson);
+
+        expectedModel.removePersonFromLesson(model.getTransformedPersonList().get(0));
         expectedModel.addPersonToLesson(editedPerson);
+
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 

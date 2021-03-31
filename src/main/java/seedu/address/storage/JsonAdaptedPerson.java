@@ -188,7 +188,7 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Level.class.getSimpleName()));
         }
         if (!level.equals("") && !Level.isValidLevel(level)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Level.MESSAGE_CONSTRAINTS);
         }
         final Optional<Level> modelLevel = level.equals("") ? Optional.empty()
                 : Optional.of(new Level(level));

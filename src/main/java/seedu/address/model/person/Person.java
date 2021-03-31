@@ -81,8 +81,9 @@ public class Person {
         return guardianPhone;
     }
 
-    public Optional<Level> getLevel() { return level; }
-
+    public Optional<Level> getLevel() {
+        return level;
+    }
 
     /**
      * Returns an immutable subject set, which throws {@code UnsupportedOperationException}

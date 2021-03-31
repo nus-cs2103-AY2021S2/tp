@@ -313,6 +313,7 @@ public class EditCommand extends Command {
                     && getAddress().equals(e.getAddress())
                     && getGuardianName().equals(e.getGuardianName())
                     && getGuardianPhone().equals(e.getGuardianPhone())
+                    && getLevel().equals(e.getLevel())
                     && getSubjects().equals(e.getSubjects())
                     && getLessons().equals(e.getLessons());
         }

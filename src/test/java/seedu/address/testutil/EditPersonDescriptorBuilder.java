@@ -42,6 +42,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setAddress(person.getAddress());
         descriptor.setGuardianName(person.getGuardianName());
         descriptor.setGuardianPhone(person.getGuardianPhone());
+        descriptor.setLevel(person.getLevel());
         descriptor.setSubjects(person.getSubjects());
         descriptor.setLessons(person.getLessons());
     }
