@@ -2,16 +2,15 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COLOUR;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DRESSCODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SIZE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 
+import java.util.List;
+
 import seedu.address.model.Model;
 import seedu.address.model.garment.AttributesContainsKeywordsPredicate;
-
-import java.util.List;
 
 /**
  * Finds and lists all garments in wardrobe whose name contains any of the argument keywords.
