@@ -24,11 +24,13 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.cheese.Cheese;
+import seedu.address.model.cheese.CheeseType;
 import seedu.address.model.cheese.predicates.CheeseCheeseTypePredicate;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.predicates.CustomerNamePredicate;
 import seedu.address.model.order.Order;
 import seedu.address.model.order.predicates.OrderIdPredicate;
+import seedu.address.testutil.EditCheeseDescriptorBuilder;
 import seedu.address.testutil.EditCustomerDescriptorBuilder;
 
 /**
@@ -69,6 +71,8 @@ public class CommandTestUtil {
 
     public static final EditCustomerCommand.EditCustomerDescriptor DESC_AMY;
     public static final EditCustomerCommand.EditCustomerDescriptor DESC_BOB;
+
+    public static final EditCheeseCommand.EditCheeseDescriptor DESC_EDIT_CHEESE;
 
     public static final int VALID_QUANTITY_1 = 1;
     public static final int VALID_QUANTITY_2 = 2;
@@ -119,6 +123,11 @@ public class CommandTestUtil {
     public static final String ORDER_DATE_DESC = " " + PREFIX_ORDER_DATE + VALID_ORDER_DATE_1;
     public static final String ORDER_DATE_DESC_FETA = " " + PREFIX_ORDER_DATE + VALID_ORDER_DATE_2;
 
+    public static final String CHEESE_TYPE_DESC_MOZZARELLA = " " + PREFIX_CHEESE_TYPE + VALID_CHEESE_TYPE_MOZZARELLA;
+    public static final String EXPIRY_DATE_5_DESC = " " + PREFIX_EXPIRY_DATE + VALID_EXPIRY_DATE_5;
+    public static final String MANUFACTURE_DATE_5_DESC = " " + PREFIX_MANUFACTURE_DATE + VALID_MANUFACTURE_DATE_5;
+    public static final String MATURITY_DATE_5_DESC = " " + PREFIX_MATURITY_DATE + VALID_MATURITY_DATE_5;
+
 
     public static final String INVALID_CHEESE_TYPE_DESC = " " + PREFIX_CHEESE_TYPE + ""; // Blanks not allowed
     public static final String INVALID_QUANTITY_DESC = " " + PREFIX_QUANTITY + "911a"; // 'a' not allowed in quantity
@@ -135,6 +144,10 @@ public class CommandTestUtil {
         DESC_BOB = new EditCustomerDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_EDIT_CHEESE = new EditCheeseDescriptorBuilder()
+                .withCheeseType(CheeseType.getCheeseType(VALID_CHEESE_TYPE_MOZZARELLA))
+                .withManufactureDate(VALID_MANUFACTURE_DATE_5).withMaturityDate(VALID_MATURITY_DATE_5)
+                .withExpiryDate(VALID_EXPIRY_DATE_5).build();
     }
 
     /**
