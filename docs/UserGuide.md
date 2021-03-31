@@ -19,23 +19,28 @@ Car@leads is a **desktop app for a car salesperson to manage customer contacts**
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds.
+   <br>Note how the app contains some sample data to provide a example of how app usage.
+   <br>Remember to clear these sample data using the clear command before use. <br>
    ![Ui](images/Ui.png)
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`add`**`n/Bob Ang p/88765432 e/bobhnd@example.com a/John street, block 123, #01-01 c/BMW+Coupe|2030 01 01 c/Porsche+SUV|2030 01 01`
-     : Adds a contact named `Bob Ang`
+    * **`add`**`n/Bob Ang p/88765432 e/bobhnd@example.com a/John street, block 123, #01-01 b/1998 07 10  c/BMW+Coupe|2030 01 01 c/Porsche+SUV|2030 01 01`
+      : Adds a contact named `Bob Ang`
 
-   * **`delete`**`John Doe` : Deletes 'John Doe' contact from contact list .
+    * **`find`**`n/Bob Ang p/88765432 c/BMW+Coupe|2030 01 01 c/Porsche+SUV|2030 01 01`
+      : Finds a contact named `Bob Ang`
 
-   * **`list`** : Lists all contacts.
+    * **`delete`**`John Doe` : Deletes 'John Doe' contact from contact list .
 
-   * **`clear`** : Deletes all contacts.
+    * **`list`** : Lists all contacts.
 
-   * **`exit`** : Exits the app.
+    * **`clear`** : Deletes all contacts.
 
-   * **`help`** : Get a legend of commands.
+    * **`exit`** : Exits the app.
+
+    * **`help`** : Get a legend of commands.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -85,6 +90,23 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 c/Honda City`
 * `add n/Betsy Crowe c/Honda City t/friend e/betsycrowe@example.com x/2011 03 27 a/Newgate Prison p/1234567 t/criminal`
 
+### Finding a customer: `find` {TO BE EDITED}
+
+Find customers from the contact list that matches specified filters.
+
+Format: `find  n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS c/OWNED_CARBRAND+OWNED_CARTYPE|COE_EXPIRY_DATE [t/TAG]…​`
+`n/find [e/bob /AND p/98761234] OR b/1999 10 11`
+
+Note that the `COE_EXPIRY_DATE` input order: YYYY{space}MM{space}DD
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+A customer can have any number of tags (including 0)
+</div>
+
+Examples:
+* `Find c/Honda City`
+
+
 ### Deleting a customer : `delete`
 
 Deletes the specified customer from the contact list.
@@ -117,6 +139,7 @@ Format: `list`
 Action | Format, Examples
 --------|------------------
 **add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS c/OWNED_CAR+COE_EXPIRY_DATE [t/TAG]…​`<br> e.g., `n/add n/Bob Ang p/88765432 e/bobhnd@example.com a/John street, block 123, #01-01 c/BMW Coupe|2030 01 01 c/Porsche|2030 01 01`
+**find TO BE EDITED** | `find [e/bob /AND p/98761234] OR b/1999 10 11`
 **delete** | `delete NAME`<br> e.g., `delete John doe`
 **list** | `list`
 **clear** | `clear`
