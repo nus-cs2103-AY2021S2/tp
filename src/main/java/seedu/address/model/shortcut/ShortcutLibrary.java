@@ -6,8 +6,8 @@ import java.util.HashMap;
 
 public class ShortcutLibrary {
 
+    public static final String NO_SHORTCUT_FEEDBACK = "You have no shortcuts!";
     private static final String TITLE = "Shortcuts";
-    private static final String NO_SHORTCUT_FEEDBACK = "You have no shortcuts!";
 
     private HashMap<String, String> shortcuts;
 

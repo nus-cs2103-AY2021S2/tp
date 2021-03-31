@@ -30,6 +30,7 @@ public class Shortcut {
      */
     public Shortcut(String shortcutName, String shortcutCommand) {
         requireNonNull(shortcutName);
+        requireNonNull(shortcutCommand);
         checkArgument(isValidShortcutName(shortcutName), MESSAGE_NAME_CONSTRAINTS);
         checkArgument(isValidShortcutCommand(shortcutCommand), MESSAGE_COMMAND_CONSTRAINTS);
         this.shortcutName = shortcutName;
@@ -40,6 +41,7 @@ public class Shortcut {
      * Returns true if a given string is a valid shortcut name.
      */
     public static boolean isValidShortcutName(String test) {
+        requireNonNull(test);
         return test.matches(VALIDATION_REGEX) && !CommandWord.contains(test);
     }
 
@@ -47,6 +49,7 @@ public class Shortcut {
      * Returns true if a given string is a valid command.
      */
     public static boolean isValidShortcutCommand(String test) {
+        requireNonNull(test);
         try {
             AddressBookParser addressBookParser = new AddressBookParser();
             addressBookParser.parseCommand(test);
@@ -68,6 +71,18 @@ public class Shortcut {
      */
     public String getShortcutCommand() {
         return this.shortcutCommand;
+    }
+
+    /**
+     * Returns true if both shortcuts have the same name.
+     */
+    public boolean isSameShortcut(Shortcut otherShortcut) {
+        if (otherShortcut == this) {
+            return true;
+        }
+
+        return otherShortcut != null
+                && otherShortcut.getShortcutName().equals(getShortcutName());
     }
 
     @Override
