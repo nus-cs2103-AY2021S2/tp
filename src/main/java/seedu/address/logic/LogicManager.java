@@ -5,6 +5,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -24,6 +25,7 @@ import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.SelectCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -134,6 +136,7 @@ public class LogicManager implements Logic {
         commandList.add(ExitCommand.COMMAND_WORD);
         commandList.add(HelpCommand.COMMAND_WORD);
         commandList.add(AliasCommand.COMMAND_WORD);
+        commandList.add(SelectCommand.COMMAND_WORD);
         Collections.sort(commandList);
 
         if (shouldReturnAlias) {
@@ -152,5 +155,10 @@ public class LogicManager implements Logic {
                 return FXCollections.observableList(filteredCommandList);
             }
         }
+    }
+
+    @Override
+    public Predicate<Person> getSelectedPersonPredicate() {
+        return model.getSelectedPersonPredicate();
     }
 }
