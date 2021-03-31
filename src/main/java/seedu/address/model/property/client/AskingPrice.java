@@ -32,7 +32,7 @@ public class AskingPrice implements Comparable<AskingPrice> {
      */
     private static final String ASKING_PRICE_STRING = "$%,d";
 
-    public final int askingPrice;
+    public final Long askingPrice;
 
     /**
      * Constructs an {@code AskingPrice}.
@@ -62,12 +62,12 @@ public class AskingPrice implements Comparable<AskingPrice> {
      * @return an integer representing the value of the price.
      * @see #isValidAskingPrice
      */
-    public static int parse(String askingPriceString) {
+    public static Long parse(String askingPriceString) {
         final Matcher matcher = PRICE_FORMAT.matcher(askingPriceString);
         checkArgument(matcher.matches(), MESSAGE_CONSTRAINTS);
         String amount = matcher.group("amount");
         String amountWithoutCommas = amount.replace(",", "");
-        return Integer.parseInt(amountWithoutCommas);
+        return Long.parseLong(amountWithoutCommas);
     }
 
     @Override
@@ -84,12 +84,12 @@ public class AskingPrice implements Comparable<AskingPrice> {
             return false;
         }
         AskingPrice otherAskingPrice = (AskingPrice) other;
-        return askingPrice == otherAskingPrice.askingPrice;
+        return askingPrice.equals(otherAskingPrice.askingPrice);
     }
 
     @Override
     public int compareTo(AskingPrice other) {
-        return askingPrice - other.askingPrice;
+        return askingPrice.compareTo(other.askingPrice);
     }
 
 }

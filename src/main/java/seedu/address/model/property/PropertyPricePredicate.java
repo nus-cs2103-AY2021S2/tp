@@ -11,7 +11,7 @@ import seedu.address.model.property.client.AskingPrice;
  * Tests that a {@code Property}'s {@code Client}'s {@code AskingPrice} is within the range given.
  */
 public class PropertyPricePredicate implements Predicate<Property> {
-    private final int price;
+    private final Long price;
     private final boolean isLess;
 
     /**
@@ -46,7 +46,7 @@ public class PropertyPricePredicate implements Predicate<Property> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof PropertyPricePredicate // instanceof handles nulls
-                && price == ((PropertyPricePredicate) other).price
+                && price.equals(((PropertyPricePredicate) other).price)
                 && isLess == ((PropertyPricePredicate) other).isLess); // state check
     }
 
