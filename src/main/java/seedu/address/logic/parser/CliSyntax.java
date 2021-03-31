@@ -18,7 +18,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_SORT_DIRECTION = new Prefix("d/");
     public static final Prefix PREFIX_SORT_BY = new Prefix("by/");
 
-
     /* Prefix specific for meeting */
     public static final Prefix PREFIX_START_TIME = new Prefix("st/");
     public static final Prefix PREFIX_END_TIME = new Prefix("ed/");

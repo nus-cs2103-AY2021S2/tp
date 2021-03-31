@@ -1,18 +1,5 @@
 package seedu.address.logic.commands.meetings;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_END_TIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MEETINGS;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
@@ -21,13 +8,14 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.group.Group;
-import seedu.address.model.meeting.DateTime;
-import seedu.address.model.meeting.Description;
-import seedu.address.model.meeting.Meeting;
-import seedu.address.model.meeting.MeetingName;
-import seedu.address.model.meeting.Priority;
-import seedu.address.model.meeting.exceptions.DuplicateMeetingException;
-import seedu.address.model.meeting.exceptions.MeetingTimeClashException;
+import seedu.address.model.meeting.*;
+import seedu.address.model.person.Person;
+
+import java.util.*;
+
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MEETINGS;
 
 /**
  * Edits the details of an existing meeting in meet buddy.
@@ -37,7 +25,8 @@ public class EditMeetingCommand extends Command {
     public static final String COMMAND_WORD = "editm";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the meeting identified "
-            + "by the index number used in the displayed meeting list. "
+            + "by the index number used in the displayed meeting list(and contact list"
+            + " if you want to modify the contacts related). "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_NAME + "NAME "
@@ -53,15 +42,18 @@ public class EditMeetingCommand extends Command {
             + PREFIX_DESCRIPTION + "Week 7 "
             + PREFIX_PRIORITY + "3 "
             + PREFIX_GROUP + "lectures "
-            + PREFIX_GROUP + "SoC";
+            + PREFIX_GROUP + "SoC "
+            + PREFIX_PERSON_CONNECTION + "1 "
+            + PREFIX_PERSON_CONNECTION + "2";
 
     public static final String MESSAGE_EDIT_MEETING_SUCCESS = "Edited Meeting: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_MEETING = "This meeting already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_MEETING = "This meeting already exists in the meeting book.";
     public static final String MESSAGE_CLASH_MEETING = "This meeting clashes with the following existing meetings \n%s";
 
     private final Index index;
     private final EditMeetingDescriptor editMeetingDescriptor;
+    private final Set<Index> connectionToPerson = new HashSet<>();
 
     /**
      * @param index of the meeting in the filtered meeting list to edit
@@ -73,6 +65,19 @@ public class EditMeetingCommand extends Command {
 
         this.index = index;
         this.editMeetingDescriptor = new EditMeetingDescriptor(editMeetingDescriptor);
+    }
+    /**
+     * Set the connection indices to persons.
+     */
+    public EditMeetingCommand setConnectionToPerson(Set<Index> indices) {
+        this.connectionToPerson.addAll(indices);
+        return this;
+    }
+    /**
+     * Get the connection indices to persons.
+     */
+    public Set<Index> getConnectionToPerson() {
+        return this.connectionToPerson;
     }
 
     @Override
@@ -96,6 +101,26 @@ public class EditMeetingCommand extends Command {
             String formatMeetingListString = CommandDisplayUtil.formatElementsIntoRows(listOfClashingMeetings);
             throw new CommandException(String.format(MESSAGE_CLASH_MEETING, formatMeetingListString));
         }
+
+        // Reconstruct connection.
+        Set<Person> existedPersonsConnection = meetingToEdit.getConnectionToPerson();
+        model.deleteAllPersonMeetingConnectionByMeeting(meetingToEdit);
+        // If the user does not try to modify the persons related, then preserve the old connection.
+        if (getConnectionToPerson().isEmpty() && editMeetingDescriptor.getGroups().isEmpty()) {
+            addConnectionsToPersons(editedMeeting, model, existedPersonsConnection);
+        } else if (getConnectionToPerson().isEmpty() && !editMeetingDescriptor.getGroups().isEmpty()) {
+            Set<Person> oldMeetingPersonsInGroup = new HashSet<>();
+            for (Group group : meetingToEdit.getGroups()) {
+                Set<Person> oldPersonsInGroup = model.findPersonsInGroup(group);
+                oldMeetingPersonsInGroup.addAll(oldPersonsInGroup);
+            }
+            // Extract the persons in the old groups and remove them, preserve persons doesn't belong to any groups.
+            existedPersonsConnection.removeAll(oldMeetingPersonsInGroup);
+            addConnectionsToPersons(editedMeeting, model, existedPersonsConnection);
+        } else {
+            addConnectionsToPersons(editedMeeting, model, new HashSet<Person>());
+        }
+        // End of Reconstruct Connection.
 
         model.updateMeeting(meetingToEdit, editedMeeting);
         model.updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS);
@@ -130,6 +155,44 @@ public class EditMeetingCommand extends Command {
 
         return new Meeting(updatedMeetingName, updatedStart,
                 updatedTerminate, updatedPriority, updatedDescription, updatedGroups);
+    }
+
+    /**
+     * This method will handle the connections that the user wants to add from both the g/ and p/
+     * Duplicate person that the user wants to build connection with this meeting will be automatically removed.
+     */
+    private void addConnectionsToPersons(Meeting toAdd, Model model, Set<Person> existedPersonsConnection) throws CommandException {
+        // Use set to ensure unique element.
+        HashSet<Person> personsConnection = new HashSet<>();
+        personsConnection.addAll(existedPersonsConnection);
+        toAdd.setPersonMeetingConnection(model.getPersonMeetingConnection());
+
+        if (!toAdd.getGroups().isEmpty()) {
+            for (Group group : toAdd.getGroups()) {
+                Set<Person> personsInGroup = model.findPersonsInGroup(group);
+                // Get the union set.
+                personsConnection.addAll(personsInGroup);
+            }
+        }
+
+        if (getConnectionToPerson().size() != 0) {
+            List<Person> lastShownList = model.getFilteredPersonList();
+            // Check whether the index is out of bounds
+            for (Index index : getConnectionToPerson()) {
+                if (index.getZeroBased() >= lastShownList.size()) {
+                    throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+                }
+            }
+            // If we can pass the check, then add connection.
+            for (Index index: getConnectionToPerson()) {
+                Person personToAddConnection = lastShownList.get(index.getZeroBased());
+                personsConnection.add(personToAddConnection);
+            }
+        }
+
+        for (Person allPersonToAddConnection : personsConnection) {
+            model.addPersonMeetingConnection(allPersonToAddConnection, toAdd);
+        }
     }
 
     @Override

@@ -234,7 +234,7 @@ class AddMeetingCommandTest {
 
         @Override
         public PersonMeetingConnection getPersonMeetingConnection() {
-            throw new AssertionError("This method should not be called.");
+            return new PersonMeetingConnection();
         }
 
         @Override
