@@ -93,7 +93,7 @@ public class EditStudentDescriptorBuilder {
      * Sets the {@code Relationship} of the {@code EditStudentDescriptor} that we are building.
      */
     public EditStudentDescriptorBuilder withRelationship(String relationship) {
-        descriptor.setStudyLevel(relationship);
+        descriptor.setRelationship(relationship);
         return this;
     }
 
