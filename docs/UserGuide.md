@@ -14,7 +14,7 @@ iScam is a **desktop app for insurance agents to manage clients and meetings, op
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `iScam.jar` from [here](https://github.com/AY2021S2-CS2103-W17-4/tp/releases/tag/v1.2).
+1. Download the latest `iScam.jar` from [here](https://github.com/AY2021S2-CS2103-W17-4/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your iScam.
 
@@ -26,11 +26,27 @@ iScam is a **desktop app for insurance agents to manage clients and meetings, op
 
    * **`list`** : Lists all clients.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a client named `John Doe` to iScam.
+   * **`add`**`n/John Doe p/98765432 e/johnd@example.com l/John street, block 123, #01-01 ip/MediShield Life i/john_doe.png t/friends` : Adds a client named `John Doe` to iScam.
+    
+   * **`edit`**`1 p/98765432`: Change the phone number of the 1st client shown in the current list to `98765432`
+    
+   * **`find`**`John`: Find a client named `John`
+    
+   * **`findplan`**`MediShield Life`: Find a client with `MediShield Life` insurance plan
 
    * **`delete`**`3` : Deletes the 3rd client shown in the current list.
+     
+   * **`listmeet`** : Lists all meetings.
 
-   * **`clear`** : Deletes all clients.
+   * **`addmeet`**`c/John Doe on/12-10-2021 10:00 l/Starbucks d/Catch up t/friend` : Adds a meeting with a client named `John Doe` to iScam.
+
+   * **`editmeet`**`1 d/Discuss insurance plan`: Change the description of the 1st meeting shown in the current list to `Discuss insurance plan`
+
+   * **`findmeet`**`John`: Find a meeting with the keyword `John`
+    
+   * **`deletemeet`**`3` : Deletes the 3rd meeting shown in the current list.
+
+   * **`clear`** : Deletes all clients and meetings.
 
    * **`exit`** : Exits the app.
 
@@ -59,7 +75,7 @@ iScam is a **desktop app for insurance agents to manage clients and meetings, op
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `listmeet`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
@@ -77,15 +93,22 @@ Format: `help`
 
 Adds a client to iScam.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n/NAME p/PHONE e/EMAIL l/LOCATION [ip/INSURANCE_PLAN] [i/IMAGE_FILE] [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A client can have any number of tags (including 0)
 </div>
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+A client can have only one or no insurance plan
+</div>
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You can add a profile picture for your client by adding the picture file into [JAR file location]/data/[picture file].
+Then, include the file name under the i/ prefix when adding client.
+</div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/John Doe p/98765432 e/johnd@example.com l/01 Singapore Street, #23-45 ip/MediShield Life i/john_doe.png t/friends t/owesMoney`
+* `add n/Betsy Crowe e/betsycrowe@example.com l/Newgate Prison p/1234567 t/criminal i/criminal.jpeg`
 
 ### Listing all clients : `list`
 
@@ -98,7 +121,7 @@ Format: `list`
 
 Edits an existing client in iScam.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [l/LOCATION] [ip/INSURANCE_PLAN] [i/IMAGE_FILE] [t/TAG]…​`
 
 * Edits the client at the specified `INDEX`. The index refers to the index number shown in the displayed client list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -106,10 +129,11 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 * When editing tags, the existing tags of the client will be removed i.e adding of tags is not cumulative.
 * You can remove all the client’s tags by typing `t/` without
     specifying any tags after it.
+* You can also remove the client's exisitng insurance plan by typing `ip/` without specifying any insurance plan after it.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email location of the 1st client to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd client to be `Betsy Crower` and clears all existing tags.
+*  `edit 2 n/Betsy Crower t/ ip/` Edits the name of the 2nd client to be `Betsy Crower` and clears all existing tags and remove insurance plan.
 
 ### Locating clients by name: `find`
 
@@ -128,7 +152,25 @@ Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
+  
+### Locating clients by insurance plan: `findplan`
 
+Finds clients whose insurance plan contains any of the given keywords.
+
+Format: `findplan KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g `medishield` will match `MediShield`
+* The order of the keywords does not matter. e.g. `Life MediShield` will match `MediShield Life`
+* Only the insurance plan is searched.
+* Only full words will be matched e.g. `Medi` will not match `MediShield`
+* Clients matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `MediShield Life` will return `MediShield Pro`, `Life Protection`
+
+Examples:
+* `findplan MediShield Life` returns `medishield` and `MediShield Life`
+* `findplan medishield eldershield` returns `MediShield Life`, `ElderShield`<br>
+  ![result for 'find alex david'](images/findAlexDavidResult.png)
+  
 ### Deleting a client : `delete`
 
 Deletes the specified client from iScam.

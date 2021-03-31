@@ -43,7 +43,7 @@ public class EditMeetingCommand extends Command {
             + "[" + PREFIX_ON + "DATE_TIME] "
             + "[" + PREFIX_LOCATION + "LOCATION] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
-            + "[" + PREFIX_TAG + "TAG] "
+            + "[" + PREFIX_TAG + "TAG(s)] "
             + "[" + PREFIX_DONE + "IS_DONE (yes/no)]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_LOCATION + "Macdonald, Bedok"
