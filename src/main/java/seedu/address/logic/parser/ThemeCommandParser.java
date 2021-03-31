@@ -2,14 +2,14 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.OPTION_DARK;
+import static seedu.address.logic.parser.CliSyntax.OPTION_LIGHT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OPTION;
 
 import java.util.Optional;
 
 import seedu.address.logic.commands.ThemeCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-
-import javax.print.DocFlavor;
 
 public class ThemeCommandParser implements Parser<ThemeCommand> {
     /**
@@ -27,8 +27,8 @@ public class ThemeCommandParser implements Parser<ThemeCommand> {
 
         if (option.isPresent()) {
             String unboxedOption = option.get();
-            if (!unboxedOption.equals(ThemeCommand.OPTION_DARK)
-                    && !unboxedOption.equals(ThemeCommand.OPTION_LIGHT)) {
+            if (!unboxedOption.equals(OPTION_DARK)
+                    && !unboxedOption.equals(OPTION_LIGHT)) {
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, ThemeCommand.MESSAGE_USAGE));
             } else {

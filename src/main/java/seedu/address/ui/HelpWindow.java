@@ -107,6 +107,9 @@ public class HelpWindow extends UiPart<Stage> {
         getRoot().requestFocus();
     }
 
+    /**
+     * Updates theme for helpWindow.
+     */
     public void updateHelpWindowTheme(String theme) {
         scene.getStylesheets().clear();
         if (theme.equals("dark")) {

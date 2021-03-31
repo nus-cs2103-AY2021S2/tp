@@ -1,10 +1,11 @@
 package seedu.address.logic.commands;
 
-import seedu.address.logic.commands.exceptions.CommandException;
-
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.OPTION_DARK;
+import static seedu.address.logic.parser.CliSyntax.OPTION_LIGHT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OPTION;
 
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
@@ -13,8 +14,6 @@ import seedu.address.model.Model;
 public class ThemeCommand extends Command {
 
     public static final String COMMAND_WORD = "theme";
-    public static final String OPTION_DARK = "dark";
-    public static final String OPTION_LIGHT = "light";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Changes the theme of HeliBook.\n"
