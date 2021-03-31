@@ -62,7 +62,9 @@ Example:
 
 Adds an entry to the Food Diary.
 
-Format: `add n/<RESTAURANT NAME> ra/<RATING> p/<PRICE> re/<REVIEW> a/<ADDRESS> c/<CATEGORIES>`
+Format: `add n/<RESTAURANT NAME> ra/RATING p/PRICE re/REVIEW a/ADDRESS [c/CATEGORY]... [s/SCHOOL]...`
+
+- A FoodDiary entry can have any number of categories or schools
 
 Parameters:
 
@@ -71,30 +73,31 @@ Parameters:
 3. `Price`
 3. `Address`
 4. `Review`
-5. `Categories (tag)`
+5. `Category`
+6. `School`
 
 
 Example:
 
-    add  n/Al Amaan Restaurant ra/5 p/8 re/best for Butter Chicken a/12 Clementi Rd, Singapore 129742 c/Indian Muslim
+    add  n/Al Amaan Restaurant ra/5 p/8 re/best for Butter Chicken a/12 Clementi Rd, Singapore 129742 c/Indian Muslim s/FOE
 
 ### Addon a review or a price to an entry: `addon`
 Adds-on a review and/or a price to an entry of the Food Diary.
 
-Format: `addon <INDEX> re/<REVIEW> p/<PRICE>` or `addon <INDEX> p/<PRICE> re/<REVIEW>`
+Format: `addon <INDEX> [re/REVIEW] [p/PRICE]` or `addon <INDEX> [p/PRICE] [re/REVIEW]...`
 
 Parameters: 
 
 1. `Index`
 2. `Review` or `Price` or both.
 
-- Adds on a review and/or a price to an entry at the specified `INDEX`. The index
-refers to the index number shown in the displayed entry list. The index must be a
-  positive integer (e.g. 1, 2, 3, ...).
-- At least one of the optional fields must be provided.
-- Existing reviews in the entry (at the specified `INDEX`) will be added on to the input reviews.
-- Existing price/price range in the entry (at the specified `INDEX`) will be updated with consideration
-to the input price on top of the existing price.
+- Adds on a review and/or a price to an entry at the specified `INDEX`.
+- Index refers to the index number shown in the displayed entry list. The index must be a
+  positive integer (e.g. 1,2,3,...)
+- At least one of the optional fields must be provided
+- Existing reviews in the FoodDiary entry (at the specified `INDEX`) will be added on to the input reviews
+- Existing price/price range in the FoodDiary entry (at the specified `INDEX`) will be updated according the 
+input price
 
 Examples:
 
@@ -138,9 +141,8 @@ Keyword(s) of any number and sequence:
 6. `Categories`
 7. `Schools`
 
-
 Example:
-  
+
     find techno
     find science fass
     find fastfood indian $6
