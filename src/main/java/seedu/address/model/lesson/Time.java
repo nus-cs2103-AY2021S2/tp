@@ -1,5 +1,10 @@
 package seedu.address.model.lesson;
 
+import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.person.comparators.LessonTimeComparator;
+
+import java.util.logging.Logger;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -30,14 +35,18 @@ public class Time implements Comparable<Time> {
     @Override
     public int compareTo(Time other) {
         int thisTime = Integer.parseInt(timeOfTuition);
-        int otherTime = Integer.parseInt(timeOfTuition);
+        int otherTime = Integer.parseInt(other.timeOfTuition);
+
+        int result;
+
         if (thisTime < otherTime) {
-            return -1;
+            result = -1;
         } else if (thisTime > otherTime) {
-            return 1;
+            result = 1;
         } else {
-            return 0;
+            result = 0;
         }
+        return result;
     }
 
     @Override

@@ -12,12 +12,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import seedu.address.MainApp;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.date.ImportantDate;
 import seedu.address.model.lesson.Lesson;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.comparators.ImportantDateDetailsComparator;
+import seedu.address.model.person.comparators.LessonTimeComparator;
 import seedu.address.model.person.predicate.LessonDayPredicate;
 
 /**
@@ -323,59 +325,82 @@ public class ModelManager implements Model {
     //=========== Lesson Day Accessors =============================================================
 
     @Override
+    public ObservableList<Lesson> filterThenSortLessonDayList(FilteredList<Lesson> lessonDayList, Predicate<Lesson> predicate,
+            Comparator<Lesson> comparator) throws NullPointerException {
+
+        Logger logger = LogsCenter.getLogger(ModelManager.class);
+        logger.info("********************** original filtered list: " + lessonDayList);
+
+        requireNonNull(predicate);
+        requireNonNull(comparator);
+        lessonDayList.setPredicate(predicate);
+
+        logger.info("********************** after filtering: " + lessonDayList);
+
+        ObservableList<Lesson> transformedDayList = FXCollections.observableArrayList(lessonDayList);
+        // transformedDayList.setAll(lessonDayList);
+        SortedList<Lesson> sortedDayList = transformedDayList.sorted(comparator);
+        sortedDayList.setComparator(comparator);
+
+        logger.info("********************** after sorting: " + sortedDayList);
+
+
+        transformedDayList.setAll(sortedDayList);
+
+        logger.info("********************** transformed list: " + transformedDayList);
+
+        return transformedDayList;
+
+        /*
+        filteredPersons.setPredicate(predicate);
+        transformedPersons.setAll(filteredPersons);
+        SortedList<Person> newSortedPersons = transformedPersons.sorted(comparator);
+        newSortedPersons.setComparator(comparator);
+        transformedPersons.setAll(newSortedPersons);
+
+        */
+    }
+
+    @Override
     public ObservableList<Lesson> getMondayLesson() {
-        mondayLessons.setPredicate(new LessonDayPredicate("monday"));
-        ObservableList<Lesson> mondayLessonList = FXCollections.observableArrayList();
-        mondayLessonList.setAll(mondayLessons);
-        return mondayLessonList;
+        return filterThenSortLessonDayList(mondayLessons, new LessonDayPredicate("monday"),
+                new LessonTimeComparator());
     }
 
     @Override
     public ObservableList<Lesson> getTuesdayLesson() {
-        tuesdayLessons.setPredicate(new LessonDayPredicate("tuesday"));
-        ObservableList<Lesson> tuesdayLessonList = FXCollections.observableArrayList();
-        tuesdayLessonList.setAll(tuesdayLessons);
-        return tuesdayLessonList;
+        return filterThenSortLessonDayList(tuesdayLessons, new LessonDayPredicate("tuesday"),
+                new LessonTimeComparator());
     }
 
     @Override
     public ObservableList<Lesson> getWednesdayLesson() {
-        wednesdayLessons.setPredicate(new LessonDayPredicate("wednesday"));
-        ObservableList<Lesson> wednesdayLessonList = FXCollections.observableArrayList();
-        wednesdayLessonList.setAll(wednesdayLessons);
-        return wednesdayLessonList;
+        return filterThenSortLessonDayList(wednesdayLessons, new LessonDayPredicate("wednesday"),
+                new LessonTimeComparator());
     }
 
     @Override
     public ObservableList<Lesson> getThursdayLesson() {
-        thursdayLessons.setPredicate(new LessonDayPredicate("thursday"));
-        ObservableList<Lesson> thursdayLessonList = FXCollections.observableArrayList();
-        thursdayLessonList.setAll(thursdayLessons);
-        return thursdayLessonList;
+        return filterThenSortLessonDayList(thursdayLessons, new LessonDayPredicate("thursday"),
+                new LessonTimeComparator());
     }
 
     @Override
     public ObservableList<Lesson> getFridayLesson() {
-        fridayLessons.setPredicate(new LessonDayPredicate("friday"));
-        ObservableList<Lesson> fridayLessonList = FXCollections.observableArrayList();
-        fridayLessonList.setAll(fridayLessons);
-        return fridayLessonList;
+        return filterThenSortLessonDayList(fridayLessons, new LessonDayPredicate("friday"),
+                new LessonTimeComparator());
     }
 
     @Override
     public ObservableList<Lesson> getSaturdayLesson() {
-        saturdayLessons.setPredicate(new LessonDayPredicate("saturday"));
-        ObservableList<Lesson> saturdaydayLessonList = FXCollections.observableArrayList();
-        saturdaydayLessonList.setAll(saturdayLessons);
-        return saturdaydayLessonList;
+        return filterThenSortLessonDayList(saturdayLessons, new LessonDayPredicate("saturday"),
+                new LessonTimeComparator());
     }
 
     @Override
     public ObservableList<Lesson> getSundayLesson() {
-        sundayLessons.setPredicate(new LessonDayPredicate("sunday"));
-        ObservableList<Lesson> sundayLessonList = FXCollections.observableArrayList();
-        sundayLessonList.setAll(sundayLessons);
-        return sundayLessonList;
+        return filterThenSortLessonDayList(sundayLessons, new LessonDayPredicate("sunday"),
+                new LessonTimeComparator());
     }
     //=========== DatesBook ================================================================================
 
