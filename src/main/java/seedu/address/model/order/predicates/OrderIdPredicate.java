@@ -27,4 +27,9 @@ public class OrderIdPredicate extends SingleFieldPredicate<Order> {
         return (other instanceof OrderIdPredicate) && super.equals(other); // state check
     }
 
+    @Override
+    public String toString() {
+        return String.format("order id of %s",
+                super.toString());
+    }
 }

@@ -140,17 +140,16 @@ Example: `deletecustomer p/65555555`
 
 ### Listing orders: `listorders`
 
-Displays all incomplete orders in CHIM.
+Displays all orders in CHIM.
 
 Format: `listorders`
 
 ### Listing cheese: `listcheeses`
 
-Displays the current inventory count. If a cheese type is specified, then display the current inventory count for that particular cheese.
+Displays all cheeses in CHIM.
 
-Format: `listcheeses [t/CHEESE_TYPE]`
+Format: `listcheeses`
 
-Example: `listcheeses t/Mozzarella`
 
 ### Listing customers: `listcustomers`
 
@@ -234,7 +233,7 @@ Action | Format, Examples
 **Delete Cheese** | `deletecheese CHEESE_INDEX` <br> Example: `deletecheese 5`
 **Delete Customer**| `deletecustomer p/PHONE_NUMBER` <br> Example: `deletecustomer p/65555555`
 **List Orders** | `listorder`
-**List Cheese** | `listcheese [t/CHEESE_TYPE]` <br> e.g. `listcheese t/Mozzarella`
+**List Cheese** | `listcheese` <br> e.g. `listcheese`
 **List Customer** | `listcustomer`
 **Mark As Done** | `done INDEX` <br> e.g. `done 2`
 **Find Customer** | `findcustomer [n/NAME_KEYWORDS...] [p/PHONE_KEYWORDS...] [e/EMAIL_KEYWORDS...] [a/ADDRESS_KEYWORDS...]` <br> e.g. `findcustomer n/Betty`

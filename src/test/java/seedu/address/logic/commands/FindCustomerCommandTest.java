@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.commons.core.Messages.MESSAGE_CUSTOMERS_LISTED_OVERVIEW;
+import static seedu.address.commons.core.Messages.MESSAGE_CUSTOMERS_FOUND_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalCustomers.CARL;
 import static seedu.address.testutil.TypicalCustomers.ELLE;
@@ -62,10 +62,9 @@ public class FindCustomerCommandTest {
 
     @Test
     public void execute_multipleKeywords_multipleCustomersFound() {
-        String expectedMessage = String.format(MESSAGE_CUSTOMERS_LISTED_OVERVIEW, 3);
-
         final String keywordsString = "Kurz Elle Kunz";
         CompositeFieldPredicate<Customer> predicate = preparePredicate(keywordsString);
+        String expectedMessage = String.format(MESSAGE_CUSTOMERS_FOUND_OVERVIEW, 3, predicate);
         FindCustomerCommand command = new FindCustomerCommand(predicate);
         expectedModel.updateFilteredCustomerList(predicate);
         expectedModel.setPanelToCustomerList();

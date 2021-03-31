@@ -168,6 +168,17 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public int getFilteredOrderListIncompleteCount() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public int getFilteredCheeseListUnassignedCount() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+
+    @Override
     public void setPanelToCustomerList() {
         throw new AssertionError("This method should not be called.");
     }

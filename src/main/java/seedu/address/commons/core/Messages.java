@@ -14,14 +14,20 @@ public class Messages {
     public static final String MESSAGE_INVALID_ORDER_DISPLAYED_INDEX = "The order index provided is invalid.";
     public static final String MESSAGE_INVALID_ORDER_INDEX = "The order index provided is invalid.";
     public static final String MESSAGE_INVALID_ORDER_COMPLETE = "The order index provided is already completed.";
-    public static final String MESSAGE_CUSTOMERS_LISTED_OVERVIEW = "%1$d customers listed!";
-    public static final String MESSAGE_CHEESES_LISTED_OVERVIEW = "%1$d cheeses listed!";
-    public static final String MESSAGE_ORDERS_LISTED_OVERVIEW = "%1$d orders listed!";
+    public static final String MESSAGE_ORDERS_FOUND_OVERVIEW = "%1$d orders with parameters of %2$s "
+            + "has been found!";
+    public static final String MESSAGE_ORDERS_NOT_FOUND_OVERVIEW = "No orders with parameters of %1$s "
+            + "has been found!";
+    public static final String MESSAGE_CUSTOMERS_FOUND_OVERVIEW = "%1$d customers with parameters of %2$s "
+            + "has been found!";
+    public static final String MESSAGE_CUSTOMERS_NOT_FOUND_OVERVIEW = "No customers with parameters of %1$s "
+            + "has been found!";
+    public static final String MESSAGE_CHEESES_FOUND_OVERVIEW = "%1$d cheeses with parameters of %2$s has been found";
+    public static final String MESSAGE_CHEESES_NOT_FOUND_OVERVIEW = "No cheeses with parameters of %1$s has been found";
     public static final String MESSAGE_INSUFFICIENT_CHEESES_FOR_ORDER = "There is insufficient cheese "
             + "to complete the order.";
     public static final String MESSAGE_INVALID_CHEESE_ASSIGNED_TO_COMPLETED_ORDER = "The cheese is assigned to "
             + "a completed order and cannot be deleted.";
-
     public static final String MESSAGE_INVALID_ORDER_CUSTOMER_ID = "Order %1$d's customer ID does not exist.";
     public static final String MESSAGE_INVALID_ORDER_CHEESE_ID = "Order %1$d's cheese ID does not exist.";
     public static final String MESSAGE_INVALID_CHEESE_MULTIPLE_ORDER = "Order %1$d's Cheese %2$d has been "

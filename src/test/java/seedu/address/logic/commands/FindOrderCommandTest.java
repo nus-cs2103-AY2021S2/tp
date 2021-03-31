@@ -49,7 +49,10 @@ public class FindOrderCommandTest {
         assertCommandSuccess(
                 new FindOrderCommand(PREDICATE_SHOW_ALL_ORDERS),
                 model,
-                String.format(Messages.MESSAGE_ORDERS_LISTED_OVERVIEW, expectedModel.getFilteredOrderList().size()),
+                String.format(
+                        Messages.MESSAGE_ORDERS_FOUND_OVERVIEW,
+                        expectedModel.getFilteredOrderList().size(),
+                        PREDICATE_SHOW_ALL_ORDERS),
                 expectedModel
         );
     }
@@ -62,7 +65,10 @@ public class FindOrderCommandTest {
         assertCommandSuccess(
                 new FindOrderCommand(predicate),
                 model,
-                String.format(Messages.MESSAGE_ORDERS_LISTED_OVERVIEW, expectedModel.getFilteredOrderList().size()),
+                String.format(
+                        Messages.MESSAGE_ORDERS_FOUND_OVERVIEW,
+                        expectedModel.getFilteredOrderList().size(),
+                        predicate),
                 expectedModel
         );
     }
@@ -72,10 +78,23 @@ public class FindOrderCommandTest {
         List<String> nameKeywords = splitToKeywordsList(VALID_NAME_AMY);
         OrderNamePredicate predicate = new OrderNamePredicate(nameKeywords, customerList);
         expectedModel.updateFilteredOrderList(predicate);
+
+        String expectedMessage = String.format(
+                Messages.MESSAGE_ORDERS_FOUND_OVERVIEW,
+                expectedModel.getFilteredOrderList().size(),
+                predicate);
+
+        if (expectedModel.getFilteredOrderList().size() == 0) {
+            expectedMessage = String.format(
+                    Messages.MESSAGE_ORDERS_NOT_FOUND_OVERVIEW,
+                    predicate
+            );
+        }
+
         assertCommandSuccess(
                 new FindOrderCommand(predicate),
                 model,
-                String.format(Messages.MESSAGE_ORDERS_LISTED_OVERVIEW, expectedModel.getFilteredOrderList().size()),
+                expectedMessage,
                 expectedModel
         );
     }
@@ -85,10 +104,23 @@ public class FindOrderCommandTest {
         List<String> phoneKeywords = splitToKeywordsList(VALID_PHONE_AMY);
         OrderPhonePredicate predicate = new OrderPhonePredicate(phoneKeywords, customerList);
         expectedModel.updateFilteredOrderList(predicate);
+
+        String expectedMessage = String.format(
+                Messages.MESSAGE_ORDERS_FOUND_OVERVIEW,
+                expectedModel.getFilteredOrderList().size(),
+                predicate);
+
+        if (expectedModel.getFilteredOrderList().size() == 0) {
+            expectedMessage = String.format(
+                    Messages.MESSAGE_ORDERS_NOT_FOUND_OVERVIEW,
+                    predicate
+            );
+        }
+
         assertCommandSuccess(
                 new FindOrderCommand(predicate),
                 model,
-                String.format(Messages.MESSAGE_ORDERS_LISTED_OVERVIEW, expectedModel.getFilteredOrderList().size()),
+                expectedMessage,
                 expectedModel
         );
     }
@@ -97,10 +129,23 @@ public class FindOrderCommandTest {
     public void execute_listIsFiltered_byCompletionStatusOnly() {
         OrderCompletionStatusPredicate predicate = new OrderCompletionStatusPredicate(VALID_ORDER_COMPLETE_STATUS);
         expectedModel.updateFilteredOrderList(predicate);
+
+        String expectedMessage = String.format(
+                Messages.MESSAGE_ORDERS_FOUND_OVERVIEW,
+                expectedModel.getFilteredOrderList().size(),
+                predicate);
+
+        if (expectedModel.getFilteredOrderList().size() == 0) {
+            expectedMessage = String.format(
+                    Messages.MESSAGE_ORDERS_NOT_FOUND_OVERVIEW,
+                    predicate
+            );
+        }
+
         assertCommandSuccess(
                 new FindOrderCommand(predicate),
                 model,
-                String.format(Messages.MESSAGE_ORDERS_LISTED_OVERVIEW, expectedModel.getFilteredOrderList().size()),
+                expectedMessage,
                 expectedModel
         );
     }
@@ -115,10 +160,23 @@ public class FindOrderCommandTest {
                 .build();
 
         expectedModel.updateFilteredOrderList(predicate);
+
+        String expectedMessage = String.format(
+                Messages.MESSAGE_ORDERS_FOUND_OVERVIEW,
+                expectedModel.getFilteredOrderList().size(),
+                predicate);
+
+        if (expectedModel.getFilteredOrderList().size() == 0) {
+            expectedMessage = String.format(
+                    Messages.MESSAGE_ORDERS_NOT_FOUND_OVERVIEW,
+                    predicate
+            );
+        }
+
         assertCommandSuccess(
                 new FindOrderCommand(predicate),
                 model,
-                String.format(Messages.MESSAGE_ORDERS_LISTED_OVERVIEW, expectedModel.getFilteredOrderList().size()),
+                expectedMessage,
                 expectedModel
         );
     }

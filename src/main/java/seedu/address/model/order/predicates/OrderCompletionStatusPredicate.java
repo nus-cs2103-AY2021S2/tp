@@ -58,4 +58,10 @@ public class OrderCompletionStatusPredicate extends FieldPredicate<Order> {
         return isOrderComplete ? 1 : 0;
     }
 
+    @Override
+    public String toString() {
+        return String.format(
+                "%s order status", (isOrderComplete ? "completed" : "incompleted")
+        );
+    }
 }

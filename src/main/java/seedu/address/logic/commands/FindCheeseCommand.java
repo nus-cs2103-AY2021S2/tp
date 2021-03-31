@@ -43,9 +43,18 @@ public class FindCheeseCommand extends Command {
         requireNonNull(model);
         model.updateFilteredCheeseList(predicate);
         model.setPanelToCheeseList();
-        return new CommandResult(
-                String.format(Messages.MESSAGE_CHEESES_LISTED_OVERVIEW, model.getFilteredCheeseList().size())
+
+        String message = String.format(
+                Messages.MESSAGE_CHEESES_FOUND_OVERVIEW,
+                model.getFilteredCheeseList().size(),
+                predicate
         );
+
+        if (model.getFilteredCheeseList().size() == 0) {
+            message = String.format(Messages.MESSAGE_CHEESES_NOT_FOUND_OVERVIEW, predicate);
+        }
+
+        return new CommandResult(message);
     }
 
     @Override

@@ -20,6 +20,12 @@ public abstract class FieldPredicate<U> implements Predicate<U>, Comparator<U> {
         public boolean useDefaultOrdering() {
             return true;
         }
+
+        @Override
+        public String toString() {
+            return "";
+        }
+
     };
 
     private static final FieldPredicate<?> EMPTY_PREDICATE = new FieldPredicate<>() {
@@ -32,6 +38,12 @@ public abstract class FieldPredicate<U> implements Predicate<U>, Comparator<U> {
         public boolean test(Object o) {
             return false;
         }
+
+        @Override
+        public String toString() {
+            return "";
+        }
+
     };
 
     public static <U> FieldPredicate<U> getDefaultPredicate() {

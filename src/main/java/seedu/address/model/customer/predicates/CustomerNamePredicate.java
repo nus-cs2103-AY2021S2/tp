@@ -32,4 +32,9 @@ public class CustomerNamePredicate extends SingleFieldPredicate<Customer> {
         return (other instanceof CustomerNamePredicate) && super.equals(other); // state check
     }
 
+    @Override
+    public String toString() {
+        return String.format("name containing %s",
+                super.toString());
+    }
 }

@@ -64,4 +64,10 @@ public class OrderPhonePredicate extends SingleFieldPredicate<Order> {
                 .orElse(null);
         return matchingCustomer != null ? matchingCustomer.getPhone().toString() : null;
     }
+
+    @Override
+    public String toString() {
+        return String.format("customer's phone starting with %s",
+                super.toString());
+    }
 }

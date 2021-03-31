@@ -32,4 +32,9 @@ public class OrderCheeseTypePredicate extends SingleFieldPredicate<Order> {
         return (other instanceof OrderCheeseTypePredicate) && super.equals(other); // state check
     }
 
+    @Override
+    public String toString() {
+        return String.format("cheese type starting with %s",
+                super.toString());
+    }
 }

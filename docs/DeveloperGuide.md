@@ -19,6 +19,29 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ### UI component
 
+![Structure of the UI Component](images/UiClassDiagram.png)
+
+**API**: `Ui.java`
+
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StatusBarFooter` etc. All
+these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+
+The `UI` component uses the JavaFX UI framework. The layout of these UI parts are defined in matching `.fxml` files that
+are in the `src/main/resources/view` folder. For example, the layout of the `MainWindow` is specified in
+`MainWindow.fxml`.
+
+The `UI` component:
+
+* Executes users' commands using the `Logic` component.
+* Listens for changes to `Model` data so that the UI can be updated with the modified data.
+* Any changes in `Model` data, i.e. customers, cheeses or orders data, are reflected through the `Panels` and `Cards`
+  sub-components.
+
+The class diagram below shows in more detail the compositions of the `Panels` and `Cards` components as well as their
+relationships with other classes.
+
+![Structure of the Panels & Cards Component](images/UiPanelsCardsClassDiagram.png)
+
 ### Logic component
 
 <img src="images/LogicClassDiagram_CHIM.png">
@@ -47,6 +70,8 @@ for the `execute("deletecheese 1")` API call.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Implementation**
+
+This section describes some noteworthy details on how certain features are implemented.
 
 ### Delete Feature
 
@@ -95,6 +120,38 @@ This is to prevent any extra erroneous deletions.
 * All `execute()` calls by `DeleteCustomerCommand`, `DeleteOrderCommand` and `DeleteCheeseCommand`
 will call on `Model.AddressBook` which will handle the cascading of delete commands in one place.
 
+
+### Automatic Toggling of UI List Panels
+
+#### Implementation
+
+The application's user-interface shows, at any one time, **only one** of the following three lists:
+
+1. Customer List
+2. Cheese List
+3. Order List
+
+The UI automatically toggles between the three lists with respect to the user's latest command. For example:
+
+- After running the `ListCheeseCommand`, the UI switches to showing the cheese list.
+- After running the `AddCustomerCommand`, the UI switches to showing the customer list.
+- After running the `FindOrderCommand`, the UI switches to showing the order list.
+
+To enable the toggling, `GuiSettings` (of the `commons` package) stores an enumerable property to control which list to
+show.
+
+When the user keys in a valid input:
+
+1. The `Command` object corresponding to the input, when executed, updates the enum in `GuiSettings`; the enum records
+   which list is to be shown. This is done through the `ModelManager`.
+2. The `UI` component then checks the `GuiSettings` and renders the desired list.
+
+To better illustrate the idea - take, for instance, when the user inputs `listcheeses` which executes the
+`ListCheesesCommand`:
+
+![ListPanelTogglingSequenceDiagram](images/ListPanelTogglingSequenceDiagram.png)
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops** [In Progress]
 
@@ -382,7 +439,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 1. User enters the index of the order to be marked as complete.
-1. CHIM marks the order as complete.
+1. CHIM assigns avaliable cheeses to the order and marks the order as complete.
 
    Use case ends.
 
@@ -392,6 +449,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 1.
 
+* 1b. User provides an index in which order is already completed.
+  * 1b1. CHIM responds that the order is already completed.
+
+    Use case resumes at step 1.
+
+* 1c. User provides an index of an order that cannot be completed due to lack of cheeses in inventory.
+  * 1c1. CHIM responds that there are insufficient cheeses to complete the order.
+
+    Use case resumes at step 1.
 
 #### Use case: Search for a customer
 
