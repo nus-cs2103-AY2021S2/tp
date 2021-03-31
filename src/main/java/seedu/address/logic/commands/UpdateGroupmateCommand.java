@@ -31,18 +31,18 @@ public class UpdateGroupmateCommand extends Command {
 
     public static final String COMMAND_WORD = "updateG";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Updates the groupmate "
-            + "identified by it's index number within the displayed project.\n"
-            + "Parameters: PROJECT_INDEX (must be a positive integer) "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Updates the groupmate of a project "
+            + "identified by 2 index numbers: project index and groupmates index.\n"
+            + "Parameters: PROJECT_INDEX "
             + PREFIX_INDEX + "GROUPMATE_INDEX "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_ROLE + "ROLE]\n"
-            + "Example:\n" + COMMAND_WORD + " 1 "
+            + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_INDEX + "1 "
             + PREFIX_NAME + "Alice "
             + PREFIX_ROLE + "UI-designer";
 
-    public static final String MESSAGE_UPDATE_GROUPMATE_SUCCESS = "Edited groupmate: %1$s";
+    public static final String MESSAGE_UPDATE_GROUPMATE_SUCCESS = "Updated groupmate: %1$s";
     public static final String MESSAGE_DUPLICATE_GROUPMATE = "This groupmate already exists in this project.";
 
     private final Index projectIndex;

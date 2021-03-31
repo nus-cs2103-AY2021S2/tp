@@ -23,12 +23,12 @@ public class AddDeadlineCommand extends Command {
 
     public static final String COMMAND_WORD = "addD";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds deadline to a specified project.\n"
-            + "Parameters:\nPROJECT_INDEX\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a deadline to a specified project.\n"
+            + "Parameters: PROJECT_INDEX "
             + PREFIX_DESCRIPTION + "DESCRIPTION "
             + PREFIX_DEADLINE_DATE + "DATE\n"
-            + "Example:\n" + COMMAND_WORD + " 1 "
-            + PREFIX_DESCRIPTION + "Project report due "
+            + "Example: " + COMMAND_WORD + " 1 "
+            + PREFIX_DESCRIPTION + "Project report "
             + PREFIX_DEADLINE_DATE + "24-04-2021";
 
     private final Index index;
@@ -66,8 +66,8 @@ public class AddDeadlineCommand extends Command {
         }
 
         model.updateFilteredProjectList(Model.PREDICATE_SHOW_ALL_PROJECTS);
-        return new CommandResult(String.format(Messages.MESSAGE_ADD_DEADLINE_SUCCESS, toAdd),
-                new ViewProjectAndOverviewUiCommand(index));
+        return new CommandResult(String.format(Messages.MESSAGE_ADD_DEADLINE_SUCCESS, toAdd,
+                projectToEdit.getProjectName()), new ViewProjectAndOverviewUiCommand(index));
     }
 
     @Override

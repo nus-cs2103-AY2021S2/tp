@@ -18,9 +18,9 @@ public class AddTodoCommand extends Command {
 
     public static final String COMMAND_WORD = "addT";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a Task to CoLAB. "
-            + "Parameters:\nPROJECT_INDEX\n"
-            + PREFIX_DESCRIPTION + "DESCRIPTION "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a Todo to CoLAB.\n"
+            + "Parameters: PROJECT_INDEX\n"
+            + PREFIX_DESCRIPTION + "DESCRIPTION\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_DESCRIPTION + "Submit project report ";
 
@@ -57,8 +57,8 @@ public class AddTodoCommand extends Command {
         }
 
         model.updateFilteredProjectList(Model.PREDICATE_SHOW_ALL_PROJECTS);
-        return new CommandResult(String.format(Messages.MESSAGE_ADD_TODO_SUCCESS, toAdd),
-                new ViewProjectAndTodosUiCommand(index));
+        return new CommandResult(String.format(Messages.MESSAGE_ADD_TODO_SUCCESS, toAdd,
+                projectToEdit.getProjectName()), new ViewProjectAndTodosUiCommand(index));
     }
 
     @Override

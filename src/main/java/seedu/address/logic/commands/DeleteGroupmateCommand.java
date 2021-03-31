@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_DELETE_GROUPMATE_SUCCESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 
 import java.util.List;
@@ -21,11 +22,10 @@ public class DeleteGroupmateCommand extends Command {
     public static final String COMMAND_WORD = "deleteG";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the groupmate identified by GROUPMATE_INDEX from a project identified by PROJECT_INDEX.\n"
-            + "Parameters: PROJECT_INDEX (must be a positive integer) "
+            + ": Deletes the groupmate identified by the index number used within the displayed project.\n"
+            + "Parameters: PROJECT_INDEX "
             + PREFIX_INDEX + "GROUPMATE_INDEX \n"
-            + "Sample: " + COMMAND_WORD + " 2" + PREFIX_INDEX + " 1";
-    public static final String MESSAGE_DELETE_PROJECT_SUCCESS = "Deleted Groupmate %1$s from Project %2$s";
+            + "Example: " + COMMAND_WORD + " 1" + PREFIX_INDEX + " 1";
 
     private final Index targetProjectIndex;
     private final Index targetGroupmateIndex;
@@ -56,7 +56,7 @@ public class DeleteGroupmateCommand extends Command {
         projectToEdit.deleteGroupmate(targetGroupmateIndex.getZeroBased());
         model.updateFilteredProjectList(Model.PREDICATE_SHOW_ALL_PROJECTS);
 
-        return new CommandResult(String.format(MESSAGE_DELETE_PROJECT_SUCCESS,
+        return new CommandResult(String.format(MESSAGE_DELETE_GROUPMATE_SUCCESS,
                 groupmateToDelete.getName(), projectToEdit.getProjectName()),
                 new ViewProjectAndOverviewUiCommand(targetProjectIndex));
     }

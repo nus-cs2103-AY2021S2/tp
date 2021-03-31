@@ -22,17 +22,20 @@ public class Messages {
 
     public static final String MESSAGE_CONTACTS_LISTED_OVERVIEW = "%1$d contacts listed!";
 
-    public static final String MESSAGE_ADD_EVENT_SUCCESS = "New event added: %1$s";
-    public static final String MESSAGE_ADD_TODO_SUCCESS = "New todo added: %1$s";
-    public static final String MESSAGE_ADD_DEADLINE_SUCCESS = "New deadline added: %1$s";
+    public static final String MESSAGE_ADD_EVENT_SUCCESS = "New event %1$s added to project %2$s";
+    public static final String MESSAGE_ADD_TODO_SUCCESS = "New todo %1$s added to project %2$s";
+    public static final String MESSAGE_ADD_DEADLINE_SUCCESS = "New deadline %1$s added to project %2$s";
+    public static final String MESSAGE_ADD_GROUPMATE_SUCCESS = "New groupmate %1$s added to project %2$s";
 
     public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in this project.";
     public static final String MESSAGE_DUPLICATE_TODO = "This todo already exists in this project.";
     public static final String MESSAGE_DUPLICATE_DEADLINE = "This deadline already exists in this project.";
+    public static final String MESSAGE_DUPLICATE_GROUPMATE = "This groupmate already exists in this project.";
 
-    public static final String MESSAGE_DELETE_DEADLINE_SUCCESS = "Deleted Deadline: %1$s";
-    public static final String MESSAGE_DELETE_EVENT_SUCCESS = "Deleted Event: %1$s";
-    public static final String MESSAGE_DELETE_TODO_SUCCESS = "Deleted Todo: %1$s";
+    public static final String MESSAGE_DELETE_DEADLINE_SUCCESS = "Deleted Deadline %1$s from Project %2$s";
+    public static final String MESSAGE_DELETE_EVENT_SUCCESS = "Deleted Event %1$s from Project %2$s";
+    public static final String MESSAGE_DELETE_TODO_SUCCESS = "Deleted Todo %1$s from Project %2$s";
+    public static final String MESSAGE_DELETE_GROUPMATE_SUCCESS = "Deleted Groupmate %1$s from Project %2$s";
 
     public static final String MESSAGE_MARK_DEADLINE_SUCCESS = "Marked Deadline as done: %1$s";
     public static final String MESSAGE_MARK_TODO_SUCCESS = "Marked Todo as done: %1$s";
@@ -48,15 +51,15 @@ public class Messages {
 
     public static final String MESSAGE_PARSER_DATE_CONSTRAINTS =
                     "Date should be a valid date in one of the following formats:\n"
-                    + "\t- dd-MM-yyyy\t(e.g. 01-01-2021)\n"
-                    + "\t- ddMMyyyy\t(e.g. 01012021)\n"
-                    + "\t- dd/MM/yyyy\t(e.g. 01/01/2021)\n"
-                    + "\t- dd.MM.yyyy\t(e.g. 01.01.2021)";
+                    + "24-11-2021\n"
+                    + "24112021\n"
+                    + "24/11/2021)\n"
+                    + "24.11.2021";
 
     public static final String MESSAGE_PARSER_TIME_CONSTRAINTS =
             "Time should be a valid time in one of the following formats:\n"
-                    + "\t- HH:mm\t(e.g. 17:30)\n"
-                    + "\t- HHmm\t(e.g. 1730)";
+                    + "17:30)\n"
+                    + "1730)";
 
     public static final String MESSAGE_NO_EVENTS_TO_DISPLAY_TODAY = "You have no events today!";
     public static final String MESSAGE_NO_DEADLINES_TO_DISPLAY_TODAY = "You have no deadlines today!";

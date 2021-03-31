@@ -51,7 +51,8 @@ public class DeleteEventCommandTest {
 
         DeleteEventCommand deleteEventCommand = new DeleteEventCommand(INDEX_FIRST, firstEventIndex);
 
-        String expectedMessage = String.format(MESSAGE_DELETE_EVENT_SUCCESS, firstEventIndex.getOneBased());
+        String expectedMessage = String.format(MESSAGE_DELETE_EVENT_SUCCESS, firstEventIndex.getOneBased(),
+                projectToEdit.getProjectName());
 
         ModelManager expectedModel = new ModelManager(getTypicalColabFolder(), new UserPrefs());
 
