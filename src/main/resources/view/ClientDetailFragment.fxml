@@ -14,7 +14,7 @@
                 <ImageView fx:id="profileImage" fitHeight="120" />
                 <Label fx:id="profileImageRef" styleClass="details_small_label" textAlignment="CENTER" />
             </VBox>
-            <VBox alignment="TOP_LEFT" >
+            <VBox alignment="CENTER_LEFT" >
                 <padding>
                     <Insets top="10" right="10" bottom="10" left="10"/>
                 </padding>
