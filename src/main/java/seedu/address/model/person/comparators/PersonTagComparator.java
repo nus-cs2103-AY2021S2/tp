@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.Comparator;
 
 import seedu.address.model.person.Person;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.education.tag.Tag;
 
 /**
  * Compares two {@code Person}s according to the order of their {@code Tag}.

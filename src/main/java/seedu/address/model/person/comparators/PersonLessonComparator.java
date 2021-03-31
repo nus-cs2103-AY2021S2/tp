@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-import seedu.address.model.lesson.Lesson;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.education.lesson.Lesson;
+
 
 /**
  * Compares two {@code Person}s according to the order of their {@code Lesson}.
