@@ -53,7 +53,8 @@ public class EditCommandTest {
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(),
                 new DatesBook(model.getDatesBook()), new LessonBook(model.getLessonBook()));
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
-
+        expectedModel.removePersonFromLesson(model.getFilteredPersonList().get(0));
+        expectedModel.addPersonToLesson(editedPerson);
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
@@ -110,24 +111,9 @@ public class EditCommandTest {
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(),
                 new DatesBook(model.getDatesBook()), new LessonBook(model.getLessonBook()));
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
-    public void execute_filteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
-
-        Person personInFilteredList = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Person editedPerson = new PersonBuilder(personInFilteredList).withName(VALID_NAME_BOB).build();
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
-                new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
-
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
-
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(),
-                new DatesBook(model.getDatesBook()), new LessonBook(model.getLessonBook()));
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
-
+        expectedModel.removePersonFromLesson(editedPerson);
+        expectedModel.addPersonToLesson(editedPerson);
+        expectedModel.setPerson(editedPerson, editedPerson);
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 

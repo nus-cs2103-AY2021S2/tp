@@ -64,6 +64,11 @@ public class LessonBook implements ReadOnlyLessonBook {
         return lessons.contains(lesson);
     }
 
+    public Lesson getLesson(Lesson lesson) {
+        requireNonNull(lesson);
+        return lessons.getLesson(lesson);
+    }
+
     /**
      * Adds a lesson to the lesson book.
      * The lesson must not already exist in the lesson book.
@@ -78,6 +83,14 @@ public class LessonBook implements ReadOnlyLessonBook {
      */
     public void addPersonToLesson(Person person) {
         lessons.addPersonToLesson(person);
+    }
+
+    /**
+     * Removes a person from his/her lessons.
+     * The person must already exist in the lesson.
+     */
+    public void removePersonFromLesson(Person person) {
+        lessons.removePersonFromLesson(person);
     }
 
     /**

@@ -58,6 +58,8 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Student: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_LESSON = "You have a lesson at %1$s with %2$s. \n"
+            + "Do you wish to proceed? y/n";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -90,8 +92,21 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
+        if (!model.isSavedState()) {
+            for (Lesson lesson : editedPerson.getLessons()) {
+                if (model.hasLesson(lesson) && !(model.getLesson(lesson).getNumberOfPerson() == 1
+                        && model.getLesson(lesson).containsPerson(personToEdit))) {
+                    model.setSavedState(true);
+                    throw new CommandException(String.format(MESSAGE_DUPLICATE_LESSON,
+                            lesson.formatString(), model.getLesson(lesson).getPersonInString()));
+                }
+            }
+        }
+        model.removePersonFromLesson(personToEdit);
+        model.addPersonToLesson(editedPerson);
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.setSavedState(false);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }
 

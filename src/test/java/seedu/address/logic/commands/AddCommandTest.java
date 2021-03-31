@@ -149,6 +149,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean isSavedState() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setSavedState(boolean isSavedState) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasPerson(Person person) {
             throw new AssertionError("This method should not be called.");
         }
@@ -270,6 +280,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public Lesson getLesson(Lesson lesson) {
+            return null;
+        }
+
+        @Override
         public void deleteLesson(Lesson target) {
             throw new AssertionError("This method should not be called.");
         }
@@ -281,6 +296,11 @@ public class AddCommandTest {
 
         @Override
         public void addPersonToLesson(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void removePersonFromLesson(Person person) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -325,16 +345,28 @@ public class AddCommandTest {
      */
     private class ModelStubWithPerson extends ModelStub {
         private final Person person;
+        private boolean isSavedState;
 
         ModelStubWithPerson(Person person) {
             requireNonNull(person);
             this.person = person;
+            this.isSavedState = false;
         }
 
         @Override
         public boolean hasPerson(Person person) {
             requireNonNull(person);
             return this.person.isSamePerson(person);
+        }
+
+        @Override
+        public boolean isSavedState() {
+            return this.isSavedState;
+        }
+
+        @Override
+        public void setSavedState(boolean isSavedState) {
+            this.isSavedState = isSavedState;
         }
     }
 
@@ -343,6 +375,7 @@ public class AddCommandTest {
      */
     private class ModelStubAcceptingPersonAdded extends ModelStub {
         final ArrayList<Person> personsAdded = new ArrayList<>();
+        private boolean isSavedState = false;
 
         @Override
         public boolean hasPerson(Person person) {
@@ -358,6 +391,16 @@ public class AddCommandTest {
         public void addPerson(Person person) {
             requireNonNull(person);
             personsAdded.add(person);
+        }
+
+        @Override
+        public boolean isSavedState() {
+            return this.isSavedState;
+        }
+
+        @Override
+        public void setSavedState(boolean isSavedState) {
+            this.isSavedState = isSavedState;
         }
 
         @Override
