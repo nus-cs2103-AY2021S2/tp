@@ -105,7 +105,7 @@ Example:
 
 * `delete 3` will delete the 3rd deadline on the list
 * Using `list` to show all deadlines, the user wants to delete the 2nd deadline. User use command `delete 2` to delete
-  the 2nd deadline from the list
+  the 2nd deadline from the list.
 
 ### Edit a deadline: `edit`
 
@@ -211,6 +211,7 @@ Format: `dueIn [start/START_DATE] [end/END_DATE]`
 * If no parameters given, tasks shown will be deadlines that will be due by **next week**.
 * `NUMBER_OF_DAYS` & `NUMBER_OF_WEEKS` must be a positive integer
 * If both `day/` & `week/` given, the `NUMBER_OF_DAYS` will be used.
+* Tasks shown are tasks with deadline starting from today's date.
 
 Example:
 
