@@ -143,6 +143,9 @@ Format: `ls`
 Adds a date to an existing task in the list.
 
 Format: `edit INDEX [set/DATE]…​`
+Date should only be in the format of DD/MM/YYYY. For example, 1 December 2021
+should be expressed as 01/12/2021, not 1/12/2021. Furthermore, Date should be
+a day that is after the current day.
 
 * Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed list. The index **must be a positive integer** 1, 2, 3, …​
 * Date field must be provided.
