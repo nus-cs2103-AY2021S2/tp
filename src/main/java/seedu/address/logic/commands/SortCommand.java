@@ -4,13 +4,10 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.OPTION_DATE;
 import static seedu.address.logic.parser.CliSyntax.OPTION_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OPTION;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.sql.Timestamp;
 import java.util.Comparator;
 
-import javafx.collections.ObservableList;
-import javafx.collections.transformation.SortedList;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
@@ -42,20 +39,25 @@ public class SortCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        ObservableList<Person> lastShownList = model.getFilteredPersonList();
-        SortedList<Person> sortedPersons;
         String message;
 
-        if (option.equals(OPTION_NAME)) {
-            sortedPersons = lastShownList.sorted();
+
+        if (option.equals(OPTION_ALPHABETICAL)) {
+            model.sortPersonList(new NameComparator());
             message = MESSAGE_SORT_ALPHABETICAL_SUCCESS;
-        } else { // order.equals(OPTION_DATE)
-            sortedPersons = lastShownList.sorted(new DateComparator());
+        } else { // order.equals(OPTION_CHRONOLOGICAL)
+            model.sortPersonList(new DateComparator());
             message = MESSAGE_SORT_CHRONOLOGICAL_SUCCESS;
         }
-        model.setPersons(sortedPersons);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+
         return new CommandResult(message);
+    }
+
+    class NameComparator implements Comparator<Person> {
+        @Override
+        public int compare(Person p1, Person p2) {
+            return p1.compareTo(p2);
+        }
     }
 
     class DateComparator implements Comparator<Person> {
