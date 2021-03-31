@@ -142,12 +142,12 @@ Examples:
 
 ### Filtering bookings by booker : `filter_booking_by_booker`
 
-Shows a list of bookings booked by the booker identified by the booker name given.
+Shows a list of bookings booked by the booker identified by the email address given.
 
-Format: `filter_booking_by_booker [n/NAME]`
+Format: `filter_booking_by_booker [e/EMAIL]`
 
 Examples:
-* `filter_booking_by_booker n/John`
+* `filter_booking_by_booker e/JohnRose@abc.com`
 
 ### Filtering bookings by date : `filter_booking_by_date`
 

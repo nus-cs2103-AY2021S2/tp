@@ -6,6 +6,7 @@ import static seedu.booking.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.booking.logic.commands.AddBookingTagCommand;
 import seedu.booking.logic.commands.AddPersonCommand;
 import seedu.booking.logic.commands.AddVenueCommand;
 import seedu.booking.logic.commands.ClearCommand;
@@ -22,6 +23,7 @@ import seedu.booking.logic.commands.ExitCommand;
 import seedu.booking.logic.commands.ExitPromptCommand;
 import seedu.booking.logic.commands.FilterBookingByBookerCommand;
 import seedu.booking.logic.commands.FilterBookingByDateCommand;
+import seedu.booking.logic.commands.FilterBookingByTagCommand;
 import seedu.booking.logic.commands.FilterBookingByVenueCommand;
 import seedu.booking.logic.commands.FindBookingCommand;
 import seedu.booking.logic.commands.FindCommand;
@@ -164,6 +166,9 @@ public class BookingSystemParser {
         case ListBookingCommand.COMMAND_WORD:
             return new ListBookingCommand();
 
+        case AddBookingTagCommand.COMMAND_WORD:
+            return new AddBookingTagCommandParser().parse(arguments);
+
         case FilterBookingByVenueCommand.COMMAND_WORD:
             return new FilterBookingByVenueCommandParser().parse(arguments);
 
@@ -172,6 +177,9 @@ public class BookingSystemParser {
 
         case FilterBookingByDateCommand.COMMAND_WORD:
             return new FilterBookingByDateCommandParser().parse(arguments);
+
+        case FilterBookingByTagCommand.COMMAND_WORD:
+            return new FilterBookingByTagCommandParser().parse(arguments);
 
         case PromptCreateBookingCommand.COMMAND_WORD:
             return new PromptCreateBookingCommand();
