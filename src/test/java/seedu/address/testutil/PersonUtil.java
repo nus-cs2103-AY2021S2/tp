@@ -52,7 +52,6 @@ public class PersonUtil {
                 tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
             }
         }
-        System.out.println("HELLO LOOK AT ME" + sb.toString());
         return sb.toString();
     }
 }
