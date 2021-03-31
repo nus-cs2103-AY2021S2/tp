@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EDUCATION_LEVEL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUALIFICATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RATE;
@@ -46,7 +47,7 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the tutor identified "
             + "by the index number used in the displayed tutor list. "
-            + "Existing values will be overwritten by the input values.\n"
+            + "Existing values will be overwritten by the input values. The tutor must already have notes to edit it\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_GENDER + "GENDER] "
@@ -58,7 +59,8 @@ public class EditCommand extends Command {
             + " " + PREFIX_RATE + "RATE"
             + " " + PREFIX_YEAR + "YEARS EXPERIENCE"
             + " " + PREFIX_QUALIFICATION + "QUALIFICATION>]... "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "TAG]... "
+            + "[" + PREFIX_NOTES + "NOTES]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com "
@@ -72,7 +74,8 @@ public class EditCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_TUTOR = "This tutor already exists "
             + "in the address book.";
-    public static final String MESSAGE_DOES_NOT_HAVE_NOTES = "Tutor: %s does not have notes, try add_note command";
+    public static final String MESSAGE_DOES_NOT_HAVE_NOTES = "Tutor: %s does not have notes, "
+            + "try add_note command before attempting to edit it";
 
 
     private final Index index;
