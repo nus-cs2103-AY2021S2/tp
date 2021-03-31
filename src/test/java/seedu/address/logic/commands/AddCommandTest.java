@@ -24,7 +24,7 @@ import seedu.address.model.ReadOnlyDatesBook;
 import seedu.address.model.ReadOnlyLessonBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.date.ImportantDate;
-import seedu.address.model.lesson.Lesson;
+import seedu.address.model.person.education.lesson.Lesson;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 

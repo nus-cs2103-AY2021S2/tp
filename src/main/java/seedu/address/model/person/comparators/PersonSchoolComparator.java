@@ -3,7 +3,7 @@ package seedu.address.model.person.comparators;
 import java.util.Comparator;
 
 import seedu.address.model.person.Person;
-import seedu.address.model.person.School;
+import seedu.address.model.person.education.School;
 
 /**
  * Compares two {@code Person}s according to the order of their {@code Tag}.

@@ -8,8 +8,10 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.address.model.lesson.Lesson;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.education.School;
+import seedu.address.model.person.education.lesson.Lesson;
+import seedu.address.model.person.education.level.Level;
+import seedu.address.model.person.education.tag.Tag;
 
 /**
  * Represents a Person in the address book.
@@ -27,6 +29,7 @@ public class Person {
     private final Optional<Name> guardianName;
     private final Optional<Phone> guardianPhone;
     private final Optional<Address> address;
+    private final Optional<Level> level;
     private final Set<Tag> tags = new HashSet<>();
     private final Set<Lesson> lessons = new HashSet<>();
 
@@ -35,7 +38,9 @@ public class Person {
      * Student's name and phone number must be present.
      */
     public Person(Name name, Phone phone, Optional<School> school, Optional<Email> email, Optional<Address> address,
-                  Optional<Name> guardianName, Optional<Phone> guardianPhone, Set<Tag> tags, Set<Lesson> lessons) {
+                  Optional<Name> guardianName, Optional<Phone> guardianPhone, Optional<Level> level, Set<Tag> tags,
+                  Set<Lesson> lessons) {
+
         requireAllNonNull(name, phone, school, email, address, guardianName,
                 guardianPhone, tags, lessons);
         this.name = name;
@@ -45,6 +50,7 @@ public class Person {
         this.address = address;
         this.guardianName = guardianName;
         this.guardianPhone = guardianPhone;
+        this.level = level;
         this.tags.addAll(tags);
         this.lessons.addAll(lessons);
     }
@@ -76,6 +82,9 @@ public class Person {
     public Optional<Phone> getGuardianPhone() {
         return guardianPhone;
     }
+
+    public Optional<Level> getLevel() { return level; }
+
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -170,6 +179,12 @@ public class Person {
         if (guardianPhone.isPresent()) {
             builder.append("; Guardian's Phone: ")
                     .append(guardianPhone.get());
+        }
+
+        Optional<Level> level = getLevel();
+        if (level.isPresent()) {
+            builder.append("; Level: ")
+                    .append(level.get());
         }
 
         Set<Tag> tags = getTags();

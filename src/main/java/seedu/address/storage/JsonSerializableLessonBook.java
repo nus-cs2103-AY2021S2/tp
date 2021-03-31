@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.LessonBook;
 import seedu.address.model.ReadOnlyLessonBook;
-import seedu.address.model.lesson.Lesson;
+import seedu.address.model.person.education.lesson.Lesson;
 
 /**
  * An Immutable LessonBook that is serializable to JSON format.
