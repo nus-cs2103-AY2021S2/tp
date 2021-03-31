@@ -72,7 +72,7 @@ Adds-on a review and/or a price to a FoodDiary entry of the Food Diary.
 
 Format: `addon <INDEX> [re/REVIEW] [p/PRICE]` or `addon <INDEX> [p/PRICE] [re/REVIEW]...`
 
-Parameters: 
+Parameters:
 
 1. `Index`
 2. `Review` or `Price` or both.
@@ -140,7 +140,8 @@ Finds for FoodDiary entries whose names, ratings, price, address, categories and
 
 - More than one keyword per field can be accepted as parameters.
 - Different fields can also be simultaneously accepted as parameters.
-- For the price field, a price range can also be accepted as a parameter, and any FoodDiary entry that contains at least one of the prices within the specified range will be returned as a search result.
+- For the price field, a price range can also be accepted as a parameter, and any FoodDiary entry that contains at least 
+one of the prices within the specified range will be returned as a search result.
 - **Unlike the find feature, the findall feature only returns search results of FoodDiary entries that contain all of
 the provided keywords.**
 
@@ -172,10 +173,10 @@ Parameter:
 
 1. `Index of FoodDiary entry`
 
-Example: 
+Example:
 
     view 1
-    
+
 ![View Window UI](images/ViewWindowUi.png)
 
 ### List all the FoodDiary entries : `list`
@@ -186,7 +187,7 @@ Format: `list`
 
 Parameter: none
 
-Example: 
+Example:
 
     list
 
@@ -199,18 +200,18 @@ Format: `help`
 
 Parameter: none
 
-Example: 
+Example:
 
     help
-    
+
 ![Help Window UI](images/HelpWindowUi.png)
 
 ### Revise a specific FoodDiary entry `revise`
 
-Opens up a window, showing the existing details of an FoodDiary entry and allows for quick corrections and updates without 
-requiring the use of prefixes and command syntax in the UI. 
+Opens up a window, showing the existing details of an FoodDiary entry and allows for quick corrections and updates without
+requiring the use of prefixes and command syntax in the UI.
 
-Use `TAB` key to iterate through fields, `Ctrl + S` (Windows) or `Command + S` (Mac) to save, `ESC` key to quickly 
+Use `TAB` key to iterate through fields, `Ctrl + S` (Windows) or `Command + S` (Mac) to save, `ESC` key to quickly
 exit the revise window.
 
 Note:
@@ -282,11 +283,11 @@ Action | Format, Examples
 Action | Keyboard Shortcut| Windows where Keyboard shortcut is available
 :-------:|:------------------:|:---------------------------------------------:
 **Exit/Close Window** | `ESC` | Main Window, View Window, Revise Window, Help Window
-**Open Help Window** | `F1` | Main Window 
+**Open Help Window** | `F1` | Main Window
 **Skip through text fields in Revise Window** | `TAB` | Revise Window 
 **Save Changes in Revise Window** | `Ctrl + S (Windows OS)` or `Command + S (macOS)` | Revise Window
 
-## Glossary 
+## Glossary
 
 - **Main Window:** The Window that appears when the application starts up
 - **View Window:** The Window that appears when viewing a FoodDiary entry through the `view` command
