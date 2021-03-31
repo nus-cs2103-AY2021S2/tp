@@ -2,11 +2,33 @@
 layout: page
 title: User Guide
 ---
+## User Guide
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+SOChedule is a one-stop solution for managing tasks and events, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
-* Table of Contents
-{:toc}
+## Feature List
+* Adding a task: `add_task`
+* Deleting a task: `delete_task`
+* Marking one or more tasks as done : `done_task`
+* Marking a task as uncompleted : `undone_task`
+* Editing a task: `edit_task`
+* Finding tasks: `find_task`
+* Listing all tasks: `list_task`
+* Getting today's tasks: `today_task`
+* Sorting all tasks: `sort_task`
+* Pinning a task: `pin_task`
+* Unpinning a task: `unpin_task`
+* Clearing completed tasks: `clear_completed_task`
+* Clearing expired tasks: `clear_expired_task`
+* Adding an event: `add_event`
+* Deleting an event: `delete_event`
+* Editing a task: `edit_event`
+* Listing all events: `list_event`
+* Getting today's events: `today_event`
+* Finding events: `find_event`
+* Clearing expired events: `clear_expired_event`
+* Finding tasks and events before or on a given date: `find_schedule`
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -14,9 +36,9 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `SOChedule.jar` from [link coming soon].
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your SOChedule.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -24,13 +46,11 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+   * **`list_task`** : Lists all tasks.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`add_task`**`n/CS2103 assignment d/2021-02-27 p/1 c/school work t/urgent` : Adds a task named `CS2103 assignment` to the SOChedule with its respective attributes.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
-
-   * **`clear`** : Deletes all contacts.
+   * **`delete_task`**`3` : Deletes the 3rd task shown in the current list.
 
    * **`exit`** : Exits the app.
 
@@ -40,131 +60,224 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 ## Features
 
-<div markdown="block" class="alert alert-info">
+### Adding a task: `add_task`
+Adds a task to SOChedule Task List.
 
-**:information_source: Notes about the command format:**<br>
-
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
-
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
-
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
-</div>
-
-### Viewing help : `help`
-
-Shows a message explaning how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
-
-
-### Adding a person: `add`
-
-Adds a person to the address book.
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+Format: `add_task n/TASKNAME d/DEADLINE p/PRIORITY [c/CATEGORY]... [t/TAG]...`
+* `n/` is followed by the task name.
+* `d/` is followed by the date, with the format YYYY-MM-DD, deadline cannot be a past date.
+* `p/` is followed by the priority, with 0 being highest and 9 being lowest. Other inputs are not accepted.
+* `c/` is followed by the category. It is optional.
+* `t/` is followed by the tag. It is optional.
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add_task n/CS2103 assignment d/2022-02-27 p/1 c/schoolwork t/urgent` adds a new task named "CS2103 assignment" with the respective parameters.
+* `add_task n/CCA admin work d/2022-02-28 p/2 c/CCA` adds a new task "CCA admin work" with the respective parameters.
 
-### Listing all persons : `list`
+### Listing all tasks: `list_task`
+Lists all tasks from SOChedule Task List.
 
-Shows a list of all persons in the address book.
+Format: `list_task`
 
-Format: `list`
+### Deleting a task: `delete_task`
+Deletes a task from SOChedule Task List.
 
-### Editing a person : `edit`
+Format: `delete_task INDEX`
+* Deletes the task at the specified INDEX.
+* The index refers to the index number shown in the displayed task list.
+* The index must be a positive and valid integer 1, 2, 3, ...
 
-Edits an existing person in the address book.
+Examples:
+* `delete_task 2` deletes the second task in the task list.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+### Marking a task as done: `done_task`
+Marks one or more task from SOChedule Task List as completed.
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+Format: `done_task INDEX1 [INDEX2] ...`
+* Marks the task(s) at the specified INDEX(es) as complete.
+* When multiple indexes are provided, they should be seperated by a whitespace, e.g. `1 2`.
+* All specified tasks must be uncompleted before calling this command.
+* The index refers to the index number shown in the displayed task list.
+* The index must be a positive and valid integer 1, 2, 3, ...
+
+Examples:
+* `done_task 1` marks the first task in the task list as completed.
+* `done_task 1 2` marks the first and second task in the task list as completed.
+
+### Marking a task as uncompleted: `undone_task`
+Marks a completed task from SOChedule Task List as uncompleted.
+
+Format: `undone_task INDEX`
+* Marks the task at the specified INDEX as uncompleted.
+* The specified task must be completed before calling this command.
+* The index refers to the index number shown in the displayed task list.
+* The index must be a positive and valid integer 1, 2, 3, ...
+
+Examples:
+* `undone_task 1` marks the first task in the task list as uncompleted.
+
+### Editing a task: `edit_task`
+Edits an **existing and uncompleted** task in SOChedule.
+
+Format: `edit_task INDEX [n/TASKNAME] [d/DEADLINE] [p/PRIORITY] [c/CATEGORY]... [t/TAG]...`
+* Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
+* You can only edit the details of an uncompleted task.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+* When editing tags/categories, the existing tags/categories of the task will be removed i.e adding of tags/categories is not cumulative.
+* You can remove all the task’s tags by typing `t/` without specifying any tags after it. 
+  Similarly, you can remove all the task’s categories by typing `c/` without specifying any categories after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+* `edit_task 1 n/editedTaskName` edits the name of the first task (if present in SOChedule) to be `editedTaskName`.
+* `edit_task 2 p/3 t/` edits the priority of the second task (if present in SOChedule) to be `3` and clears all existing tags.
 
-### Locating persons by name: `find`
+### Listing all tasks today: `today_task`
+Lists all tasks that have deadline on today from SOChedule Task List.
 
-Finds persons whose names contain any of the given keywords.
+Format: `today_task`
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+### Finding all matching tasks: `find_task`
+Finds matching tasks from Task List.
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+Format: `find_task KEYWORDS`
+* Finds the tasks whose names contain the given keywords.
+* The keywords are case-insensitive.
+* A list of matching tasks will be displayed with their indexes.
 
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+### Sorting all tasks: `sort_task`
+Sorts SOChedule Task List.
 
-### Deleting a person : `delete`
-
-Deletes the specified person from the address book.
-
-Format: `delete INDEX`
-
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+Format: `sort_task ARGUMENT`
+* Sorts task list and updates UI based on supplied argument.
+* Accepted arguments (case-sensitive):
+   * `name`: Sorts by task name, in increasing order
+   * `deadline`: Sorts by task deadline, in increasing order
+   * `completion`: Sorts by task completion status, with completed tasks at the bottom
+   * `priority`: Sorts by task priority, in decreasing order
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `sort_task completion` sorts the task list by completion status.
+* `sort_task name` sorts the task list by name.
 
-### Clearing all entries : `clear`
+### Pinning a task: `pin_task`
+Pins a task from SOChedule Task List.
 
-Clears all entries from the address book.
+Format: `pin_task INDEX`
+* Pins the task at the specified INDEX.
+* Already pinned tasks will be unable to be pinned a second time.
+* The index refers to the index number shown in the displayed task list.
+* The index must be a positive and valid integer 1, 2, 3, ...
+* After pinning, the Task List will be sorted either according to previously entered `sort_task` command, or name (by default).
+* Pinned tasks are persistent over instances of SOChedule.
 
-Format: `clear`
+Examples:
+* `pin_task 1` pins the first task in Task List
 
-### Exiting the program : `exit`
+### Unpinning a task: `unpin_task`
+Unpins a task from SOChedule Task List.
 
-Exits the program.
+Format: `unpin_task INDEX`
+* Unpins the task at the specified INDEX.
+* Follows similar restrictions to `pin_task`
 
-Format: `exit`
+Examples:
+* `unpin_task 1` unpins the first task in Task List
 
-### Saving the data
+### Clearing completed tasks: `clear_completed_task`
+Clear tasks marked as completed.
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Format: `clear_completed_task`
 
-### Editing the data file
+### Clearing expired tasks: `clear_expired_task`
+Clear tasks with past deadlines.
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+Format: `clear_expired_task`
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
-</div>
+### Adding an event: `add_event`
+Adds an event to the SOChedule Event Scheduler.
+Format: `add_event n/TASKNAME sd/STARTDATE st/STARTTIME ed/ENDDATE et/ENDTIME [c/CATEGORY]... [t/TAG]...`
+* `n/` is followed by the task name, it is case-sensitive.
+* `sd/` is followed by the starting date, it has to be a **valid date** and in the format of **YYYY-MM-DD**. Here, Y is the year, M is the month, D is the day and all has to be integers.
+* `st/` is followed by the time in 24-hour format and in the format of **hh:mm** Here, h is the hour, m is the minute and all has to be integers.
+* `ed/` is followed by the end date, it has to be a **valid date** and in the format of **YYYY-MM-DD**.
+* `et/` is followed by the time in 24-hour format and in the format of **hh:mm**.
+* The STARTDATE and STARTTIME provided should be earlier than ENDDATE and ENDTIME.
+* The ENDDATE and ENDTIME provided cannot be a past date time.
+* `c/` is followed by the category. It is optional.
+* `t/` is followed by the tag. It is optional.
+
+Examples:
+* `add_event n/CS2103 meeting sd/2021-05-27 st/15:00 ed/2022-02-27 et/17:00` adds an event with name `CS2103` and its respective attributes to the SOChedule Event Scheduler.
+
+### Deleting an event: `delete_event`
+Deletes an event from the SOChedule Event Scheduler.
+
+Format: `delete_event INDEX`
+* Deletes the event at the specified INDEX.
+* The index refers to the index number shown in the displayed event list.
+* The index must be a positive and valid integer 1, 2, 3, ...
+
+Examples:
+* `delete_event 3` deletes the third event from the Event Scheduler.
+
+### Editing a event: `edit_event`
+Edits an **existing and uncompleted** event in SOChedule.
+
+Format: `edit_event INDEX [n/EVENTNAME] [sd/STARTDATE] [st/STARTTIME] [ed/ENDDATE] [et/ENDTIME] [c/CATEGORY]... [t/TAG]...`
+* Edits the event at the specified `INDEX`. The index refers to the index number shown in the displayed event list. The index **must be a positive integer** 1, 2, 3, …​
+* You can only edit the details of an unexpired event.
+* At least one of the optional fields must be provided.
+* The STARTDATE and STARTTIME provided should be earlier than ENDDATE and ENDTIME.
+* The ENDDATE and ENDTIME provided cannot be a past date time.
+* Existing values will be updated to the input values.
+* When editing tags/categories, the existing tags/categories of the event will be removed i.e adding of tags/categories is not cumulative.
+* You can remove all the event’s tags by typing `t/` without specifying any tags after it. 
+  Similarly, you can remove all the event’s categories by typing `c/` without specifying any categories after it.
+
+Examples:
+* `edit_event 1 n/editedEventName` edits the name of the first event (if present in SOChedule) to be `editedEventName`.
+* `edit_event 2 sd/2021-03-18 t/` edits the start date of the second event (if present in SOChedule) to be `2021-03-18` and clears all existing tags.
+
+### Listing all events: `list_event`
+Lists all events from SOChedule Event Scheduler.
+Format: `list_event`
+
+### Listing all events today: `today_event`
+Lists all events whose duration have overlap with today from the Event Scheduler.
+
+Format: `today_event`
+
+### Finding all matching events: `find_event`
+Finds matching events from Event Scheduler.
+
+Format: `find_event KEYWORDS`
+* Finds the events whose names contain given keywords.
+* The keywords are case-insensitive.
+* A list of matching events will be displayed with their indexes.
+
+
+### Clearing expired events: `clear_expired_event`
+Clear tasks with past end date time.
+
+Format: `clear_expired_event`
+
+### Finding tasks and events before or on a given date: `find_schedule`
+Finds ongoing tasks and events before or on the specified date in SOChedule.
+
+Format: `find_schedule DATE`
+* **Ongoing tasks** refer to **uncompleted tasks** with deadline before or on the specified date
+* **Ongoing events** refer to events with start date before or on the specified date and end date after or on the specified date, 
+  i.e., `event start date <= given date <= event end date`
+* Date entered must be a valid date and in the format of `YYYY-MM-DD`, e.g. `2021-04-01`
+* Only one single date can be entered. If more than one dates are supplied, program will return an error message
+  indicating invalid date.
+* After running `find_schedule`, if you wish to view all existing tasks and all existing events, 
+  please use the `list_task` and `list_event` respectively.
+
+Examples:
+* `find_schedule 2021-06-01` finds all existing tasks with deadline and all existing events with start date 
+  before or on `1st June 2021`.
 
 ### Archiving data files `[coming in v2.0]`
 
@@ -175,18 +288,46 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous SOChedule home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
+###General commands
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
 **Help** | `help`
+**Exit** | `exit`
+
+###Task-related commands
+Action | Format, Examples
+--------|------------------
+**Add** | `add_task n/TASKNAME d/DEADLINE p/PRIORITY [c/CATEGORY]... [t/TAG]...` <br> e.g., `add_task n/CS2103 assignment d/2021-02-27 p/1 c/school work t/urgent`
+**Delete** | `delete_task INDEX`<br>e.g., `delete_task 1`
+**Done** | `done_task INDEX1 [INDEX2] ...`<br>e.g., `done_task 1 2`
+**Undone** | `undone_task INDEX`<br>e.g., `undone_task 1`
+**Edit** | `edit_task INDEX [n/TASKNAME] [d/DEADLINE] [p/PRIORITY] [c/CATEGORY]... [t/TAG]...` <br> e.g., `edit_task 1 n/editedTaskName`
+**List** | `list_task`
+**Today** | `today_task`
+**Find** | `find_task KEYWORDS`<br>e.g., `find_task homework`
+**Sort** | `sort_task ARGUMENT`<br>e.g., `sort_task name`
+**Pin** | `pin_task INDEX`<br>e.g., `pin_task 1`
+**Unpin** | `unpin_task INDEX`<br>e.g., `unpin_task 1`
+**Clear Completed** | `clear_completed_task`
+**Clear Expired** | `clear_expired_task`
+
+###Event-related commands
+Action | Format, Examples
+--------|------------------
+**Add** | `add_event n/TASKNAME sd/STARTDATE st/STARTTIME ed/ENDDATE et/ENDTIME [c/CATEGORY]... [t/TAG]...`<br> e.g., `add_event n/CS2103 meeting sd/2021-02-27 st/15:00 ed/2021-02-27 et/17:00`
+**Delete** | `delete_event INDEX`<br>e.g., `delete_event 3`
+**List** | `list_event`
+**Today** | `today_event`
+**Find** | `find_event KEYWORDS`<br>e.g., `find_event meeting`
+**Clear Completed** | `clear_expired_event`
+
+### Commands related to both task and event
+Action | Format, Examples
+--------|------------------
+**Find Schedule** | `find_schedule DATE` <br>e.g., `find_schedule 2021-06-01`

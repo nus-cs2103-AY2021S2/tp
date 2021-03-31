@@ -1,0 +1,12 @@
+{
+  "tasks" : [ ],
+  "events" : [ {
+    "name" : "CS2103 Meeting",
+    "startDate" : "2021-02-27",
+    "startTime" : "15:00",
+    "endDate" : "2021-02-27",
+    "endTime" : "11:00",
+    "category" : [ "School" ],
+    "tagged" : [ "TeamProject" ]
+  } ]
+}

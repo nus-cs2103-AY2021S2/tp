@@ -9,51 +9,52 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Cheng Yu Feng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/yufeng0930.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
+[[github](https://github.com/YuFeng0930)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Events Team
 
-### James Doe
+### Ding You Jia, Danelynn
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/icelenaugust.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/icelenaugust)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Tasks Team
+
+### Li Jiahe
+
+<img src="images/ljhgab.png" width="200px">
+
+[[github](https://github.com/ljhgab)]
+[[portfolio](team/johndoe.md)]
+
+* Role: Developer
+* Responsibilities: Tasks Team
+
+### Yap Jing Kang
+
+<img src="images/souluseless.png" width="200px">
+
+[[github](http://github.com/souluseless)]
+[[portfolio](team/johndoe.md)]
+
+* Role: Developer
+* Responsibilities: Tasks Team
+
+### Yu Jiaxiang
+
+<img src="images/litone01.png" width="200px">
+
+[[github](http://github.com/litone01)]
+[[portfolio](team/litone01.md)]
+
+* Role: Developer
+* Responsibilities: Events Team

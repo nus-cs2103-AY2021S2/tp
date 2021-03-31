@@ -2,29 +2,59 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-{:toc}
+Table of Contents
+1. [Preface](#1-preface)<br>
+1. [Setting up, getting started](#2-setting-up-getting-started)<br>
+1. [Design](#3-design)<br>
+   3.1  [Architecture: High Level View](#31-architecture)<br>
+   3.2  [UI Component](#32-ui-component)<br>
+   3.3  [Logic Component](#33-logic-component)<br>
+   3.4  [Model Component](#34-model-component)<br>
+   3.5  [Storage Component](#35-storage-component)<br>
+   3.6  [Common Classes](#36-common-classes)<br>
+1. [Implementation](#4-implementation)<br>
+   4.1 [Sochedule](#41-sochedule)<br>
+   4.2 [Task](#42-task)<br>
+   4.3 [Event](#43-event)<br>
+1. [Planned Features](#5-documentation-logging-testing-configuration-dev-ops)<br>
+1. [Appendix](#appendix)<br>
+   A1. [Product Scope](#a1-product-scope)<br>
+   A2. [User Stories](#a2-user-stories)<br>
+   A3. [Use Cases](#a3-use-cases)<br>
+   A4. [Non-Functional Requirements](#a4-non-functional-requirements)<br>
+   A5. [Glossary](#a5-glossary)<br>
+   A6. [Instructions for Manual Testing](#a6-instructions-for-manual-testing)<br>
+   A7. [Launch and Shutdown](#a7-launch-and-shutdown)<br>
+   A8. [Saving Data](#a8-saving-data)<br>
+   
+--------------------------------------------------------------------------------------------------------------------
+## 1. Preface
+SOChedule is a one-stop solution for managing tasks and events, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).  
+
+The Developer Guide for Sochedule is designed to showcase the high level architecture systems used to design and implement Sochedule.
+
+The link to the repository can be found [here](https://github.com/AY2021S2-CS2103-W16-1/tp).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+## 2. Setting up, getting started
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
+## 3. Design
 
-### Architecture
+### 3.1 Architecture
 
-<img src="images/ArchitectureDiagram.png" width="450" />
+![Architecture Diagram](images/ArchitectureDiagram.png)
 
 The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
 
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
-
+ 
 </div>
 
 **`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
@@ -53,11 +83,11 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+![Architecture Sequence Diagram](images/ArchitectureSequenceDiagram.png)
 
 The sections below give more details of each component.
 
-### UI component
+### 3.2 UI component
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -73,7 +103,7 @@ The `UI` component,
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
-### Logic component
+### 3.3 Logic component
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
@@ -93,7 +123,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-### Model component
+### 3.4 Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
@@ -113,114 +143,348 @@ The `Model`,
 </div>
 
 
-### Storage component
+### 3.5 Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+* can save the Sochedule data in json format and read it back.
 
-### Common classes
+### 3.6 Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+## 4 Implementation
 
-This section describes some noteworthy details on how certain features are implemented.
+This section describes some noteworthy details on how [Sochedule](#41-sochedule), [Task](#42-task) and [Event](#43-event) are implemented.
 
-### \[Proposed\] Undo/redo feature
+### 4.1 Sochedule
 
-#### Proposed Implementation
+#### 4.1.1 Overview
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+#### 4.1.2 Implementation
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+**Implementation of ClearCommand**  
+The following is a detailed explanation on how ClearCommand is implemented.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+**Step 1**: User executes `clear` command to clear task and event lists.
+An `ClearCommandParser` object is created, and the `ClearCommandParser#parse(String args)` method is called.
+A `ClearCommand` object is returned.
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+**Step 2**: On `ClearCommand#execute()`, `Model#setSochedule(new Sochedule())` is called.
+This will replace Sochedule data with a new empty Sochedule.
+For brevity, lower level implementation is omitted.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+**Step 3**: On execution completion a `CommandResult` is created.
+A success message will be appended with `CommandResult#MESSAGE_SUCCESS`.
 
-![UndoRedoState0](images/UndoRedoState0.png)
+The sequence diagram for `ClearCommand` can be found below.
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+![Sequence Diagram of Clear Command](images/ClearCommandSequenceDiagram.png)
 
-![UndoRedoState1](images/UndoRedoState1.png)
+**Implementation of SummaryCommand**  
+The following is a detailed explanation on how SummaryCommand is implemented.
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+**Step 1**: User executes `summary` command to get a summary of the current completion status of tasks and events.
+An `SummaryCommandParser` object is created, and the `SummaryCommandParser#parse(String args)` method is called.
+A `SummaryCommand` object is returned.
 
-![UndoRedoState2](images/UndoRedoState2.png)
+**Step 2**: On `SummaryCommand#execute()`, `Model#getNumCompletedTask()`,
+`Model#getFilteredTaskList()`,
+`Model#getNumOverdueTask()`,
+`Model#getNumIncompleteTask()`,
+`Model#getNumIncomingEvents()` are called.
+This will get different statistics on task and event completion.
+For brevity, lower level implementation is omitted.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+**Step 3**: On execution completion a `CommandResult` is created.
+A success message will be appended with `CommandResult#MESSAGE_SUCCESS`.
 
-</div>
+The sequence diagram for `SummaryCommand` can be found below.
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+![Sequence Diagram of Summary Command](images/SummaryCommandSequenceDiagram.png)
 
-![UndoRedoState3](images/UndoRedoState3.png)
+### 4.2 Task
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+#### 4.2.1 Overview
 
-</div>
+#### 4.2.2 Implementation
 
-The following sequence diagram shows how the undo operation works:
+**Implementation of AddTaskCommand**
+The following is a detailed explanation on how AddTaskCommand is implemented.
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+**Step1**: User executes `add_task n/TASKNAME d/DEADLINE p/PRIORITY [c/CATEGORY]... [t/TAG]...` command to add the 
+specific task with given arguments. An `AddTaskCommandParser` object is created, and the 
+`AddTaskParser#parse(String args)` method is called. The method conducts parses the `args` and conducts validation
+checks to ensure that it compiles with the specification. An `AddTaskCommand` object is returned.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+**Step 2**: On `AddTaskCommand#execute()`, `Model#addTasks(Task taskToAdd)` is called.
+This will add the task specified into the task list.
+For brevity, lower level implementation of `Model#addTasks(Task taskToAdd)` is omitted.
 
-</div>
+**Step 3**: On execution completion a `CommandResult` is created.
+A success message will be appended with `CommandResult#MESSAGE_ADD_TASK_SUCCESS`.
+The UI will also update as the underlying task list has been modified.
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+The sequence diagram for `AddTaskCommand` can be found below.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+![Sequence Diagram of AddTask Command](images/AddTaskCommandSequenceDiagram.png)
 
-</div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
 
-![UndoRedoState4](images/UndoRedoState4.png)
+**Implementation of DeleteTaskCommand**  
+The following is a detailed explanation on how DeleteTaskCommand is implemented.
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+**Step 1**: User executes `delete_task Index` command to delete the task at the given index.
+A `DeleteTaskParser` object is created, and the `DeleteTaskParser#parse(String args)` method is called.
+The method conducts parses the `args` and conducts validation checks to ensure that it complies with the specification.
+A `DeleteTaskCommand` object is returned.
 
-![UndoRedoState5](images/UndoRedoState5.png)
+**Step 2**: On `DeleteTaskCommand#execute()`, `Model#deleteTasks(Task taskToDelete)` is called.
+This will delete the task at the specified index.
+For brevity, lower level implementation of `Model#deleteTasks(Task taskToDelete)` is omitted.
 
-The following activity diagram summarizes what happens when a user executes a new command:
+**Step 3**: On execution completion a `CommandResult` is created.
+A success message will be appended with `CommandResult#MESSAGE_DELETE_TASK_SUCCESS`.
+The UI will also update as the underlying task list has been modified.
 
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
+The sequence diagram for `DeleteTaskCommand` can be found below.
 
-#### Design consideration:
+![Sequence Diagram of DeleteTask Command](images/DeleteTaskCommandSequenceDiagram.png)
 
-##### Aspect: How undo & redo executes
 
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+**Implementation of EditTaskCommand**  
+The following is a detailed explanation on how EditTaskCommand is implemented.
 
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+**Step 1**: User executes `Edit_task Index` command to Edit the task at the given index.
+An `EditTaskParser` object is created, and the `EditTaskParser#parse(String args)` method is called.
+The method conducts parses the `args` and conducts validation checks to ensure that it complies with the specification.
+An `EditTaskDescriptor` object is created, and it contains all the field an Task needed. 
+If the field is edited, then store the edited one; otherwise, store the original value.
+An `EditTaskCommand` object (with the `EditTaskDescriptor` as a parameter) is returned.
 
-_{more aspects and alternatives to be added}_
+**Step 2**: On `EditTaskCommand#execute()`, `Model#getFilteredTaskList()` and 
+`Model#createEditedTask(Task taskToEdit, EditTaskDescriptor editTaskDescriptor)` are called.
+These will create the edited Task. Then, `Model#setTask(Task taskToEdit, Task editedTask)` and 
+`Model#updateFilteredTaskList()` are called. These will update the edited Task into the task list.
 
-### \[Proposed\] Data archiving
+**Step 3**: On execution completion a `CommandResult` is created.
+A success message `EditTaskCommand#MESSAGE_EDIT_TASK_SUCCESS` will be displayed.
 
-_{Explain here how the data archiving feature will be implemented}_
+The UI will also update as the underlying task list has been modified.
+
+The sequence diagram for `EditTaskCommand` can be found below.
+
+![Sequence Diagram of EditTask Command](images/EditTaskCommandSequenceDiagram.png)
+
+
+**Implementation of SortTaskCommand**  
+The following is a detailed explanation on how SortTaskCommand is implemented in the Logic component.
+
+**Step 1**: User executes `sort SORT_VAR` command to sort the tasks based on the `SORT_VAR` provided.
+An `SortTaskParser` object is created, and the `SortTaskParser#parse(String args)` method is called. 
+The method conducts parses the `SORT_VAR` and conducts validation checks to ensure that it complies with the specification.
+A `SortTaskCommand` object is returned.
+
+**Step 2**: On `SortTaskCommand#execute()`, `Model#sortTasks(String comparingVar)` is called.
+This will cause the task list to sort itself, based on the provided `comparingVar`.
+For brevity, lower level implementation of `Model#sortTasks(String comparingVar)` is omitted.
+
+**Step 3**: On execution completion a `CommandResult` is created.
+A success message will be appended with `CommandResult#MESSAGE_SORT_TASK_SUCCESS`.
+The UI will also update as the underlying task list has been modified.
+
+The sequence diagram for `sortTaskCommand` can be found below.
+
+![Sequence Diagram of SortTask Command](images/SortTaskSequenceDiagram.png)
+
+***Lower Level implementation***  
+The following is a brief explanation , as shown in a sequence diagram, of how sorting is implemented inside the Model component.
+![Sequence Diagram of SortTaskCommand in Model Component](images/SortTaskModelSequenceDiagram.png)
+
+**Implementation of PinTaskCommand/UnpinTaskCommand**  
+The following is a detailed explanation on how PinTaskCommand is implemented.
+UnpinTaskCommand is largely similar in implementation to PinTaskCommand and will be omitted for brevity.
+
+**Step 1**: User executes `pin_task INDEX` command to pin the task at the given index.
+An `PinTaskParser` object is created, and the `PinTaskParser#parse(String args)` method is called.
+The method conducts parses the `args` and conducts validation checks to ensure that it complies with the specification.
+A `PinTaskCommand` object is returned.
+
+**Step 2**: On `PinTaskCommand#execute()`, `Model#pinTask(Task task)` is called.
+This will pin the task at the specified index.
+Subsequently, the underlying task list will be sorted by calling `Model#sortTasksDefault()`, with pinned tasks being first in priority, followed by the last sorted variable 
+(if `sort_task` was not called before, task list will be sorted by name).
+For brevity, lower level implementation of `Model#pinTask(Task task)` is omitted.
+
+**Step 3**: On execution completion a `CommandResult` is created.
+A success message will be appended with `CommandResult#MESSAGE_PIN_TASK_SUCCESS`.
+The UI will also update as the underlying task list has been modified.
+
+The sequence diagram for `PinTaskCommand` can be found below.
+It is largely similar to `SortTaskCommand`, with a some minor differences:
+* Instead of `SortTask`-related parsers and commands, `PinTask`-related parsers and commands are created and activated.
+* Additional call to `Model#sortTaskDefault()` after `Model#pinTask(Task)`
+
+![Sequence Diagram of PinTaskCommand](images/PinTaskSequenceDiagram.png)
+
+**Implementation of ClearCompletedTaskCommand**  
+The following is a detailed explanation on how ClearCompletedTaskCommand is implemented.
+
+**Step 1**: User executes `clear_completed_task` command to clear completed tasks in task list.
+A `ClearCompletedTaskCommand` object is created and returned.
+
+**Step 2**: On `ClearCompletedTaskCommand#execute()`, `Model#clearCompletedTasks()` is called.
+This will delete all ticked tasks (all completed tasks).
+For brevity, lower level implementation of `Model#clearCompletedTasks()` is omitted.
+
+**Step 3**: On execution completion a `CommandResult` is created.
+A success message `ClearCompletedTaskCommand#MESSAGE_CLEAR_COMPLETED_TASK_SUCCESS` will be displayed.
+
+The sequence diagram for `ClearCompletedTaskCommand` can be found below.
+
+![Sequence Diagram of Clear Command](images/ClearCompletedTaskCommandSequenceDiagram.png)
+
+
+**Implementation of ClearExpiredTaskCommand**  
+The following is a detailed explanation on how ClearExpiredTaskCommand is implemented.
+
+**Step 1**: User executes `clear_completed_task` command to clear completed tasks in task list.
+A `ClearExpiredTaskCommand` object is created and returned.
+
+**Step 2**: On `ClearExpiredTaskCommand#execute()`, `Model#clearExpiredTasks()` is called.
+This will delete all expired tasks whose deadline have already past.
+For brevity, lower level implementation of `Model#clearExpiredTasks()` is omitted.
+
+**Step 3**: On execution completion a `CommandResult` is created.
+A success message `ClearExpiredTaskCommand#MESSAGE_CLEAR_EXPIRED_TASK_SUCCESS` will be displayed.
+
+The sequence diagram for `ClearExpiredTaskCommand` can be found below.
+
+![Sequence Diagram of Clear Command](images/ClearExpiredTaskCommandSequenceDiagram.png)
+
+
+
+### 4.3 Event
+
+#### 4.3.1 Overview
+
+#### 4.3.2 Implementation
+
+**Implementation of AddEventCommand**
+The following is a detailed explanation on how AddEventCommand is implemented.
+
+**Step1**: User executes `add_event n/TASKNAME sd/STARTDATE st/STARTTIME ed/ENDDATE et/ENDTIME [c/CATEGORY]... [t/TAG]...` 
+command to add the specific event with given arguments. An `AddEventCommandParser` object is created, and the 
+`AddEventParser#parse(String args)` method is called. The method conducts parses the `args` and conducts validation
+checks to ensure that it compiles with the specification. An `AddEventCommand` object is returned.
+
+**Step 2**: On `AddEventCommand#execute()`, `Model#addEvents(Event eventToAdd)` is called.
+This will add the event specified into the event list.
+For brevity, lower level implementation of `Model#addEvents(Event eventToAdd)` is omitted.
+
+**Step 3**: On execution completion a `CommandResult` is created.
+A success message `AddEventCommand#MESSAGE_ADD_EVENT_SUCCES` will be displayed.
+The UI will also update as the underlying event list has been modified.
+
+The sequence diagram for `AddEventCommand` can be found below.
+
+![Sequence Diagram of AddEvent Command](images/AddEventCommandSequenceDiagram.png)
+
+
+**Implementation of DeleteEventCommand**  
+The following is a detailed explanation on how DeleteEventCommand is implemented.
+
+**Step 1**: User executes `delete_event Index` command to delete the event at the given index.
+A `DeleteEventParser` object is created, and the `DeleteEventParser#parse(String args)` method is called.
+The method conducts parses the `args` and conducts validation checks to ensure that it complies with the specification.
+A `DeleteEventCommand` object is returned.
+
+**Step 2**: On `DeleteEventCommand#execute()`, `Model#deleteEvents(Event eventToDelete)` is called.
+This will delete the event at the specified index.
+For brevity, lower level implementation of `Model#deleteEvents(Event eventToDelete)` is omitted.
+
+**Step 3**: On execution completion a `CommandResult` is created.
+A success message `DeleteEventCommand#MESSAGE_DELETE_EVENT_SUCCESS` will be displayed.
+The UI will also update as the underlying event list has been modified.
+
+The sequence diagram for `DeleteEventCommand` can be found below.
+
+![Sequence Diagram of DeleteEvent Command](images/DeleteEventCommandSequenceDiagram.png)
+
+
+**Implementation of EditEventCommand**  
+The following is a detailed explanation on how EditEventCommand is implemented.
+
+**Step 1**: User executes `Edit_event Index` command to Edit the event at the given index.
+An `EditEventParser` object is created, and the `EditEventParser#parse(String args)` method is called.
+The method conducts parses the `args` and conducts validation checks to ensure that it complies with the specification.
+An `EditEventDescriptor` object is created, and it contains all the field an Event needed. 
+If the field is edited, then store the edited one; otherwise, store the original value.
+An `EditEventCommand` object (with the `EditEventDescriptor` as a parameter) is returned.
+
+**Step 2**: On `EditEventCommand#execute()`, `Model#getFilteredEventList()` and 
+`Model#createEditedEvent(Event eventToEdit, EditEventDescriptor editEventDescriptor)` are called.
+These will create the edited Event. Then, `Model#setEvent(Event eventToEdit, Event editedEvent)` and 
+`Model#updateFilteredEventList()` are called. These will update the edited Event into the event list.
+
+**Step 3**: On execution completion a `CommandResult` is created.
+A success message `EditEventCommand#MESSAGE_EDIT_TASK_SUCCESS` will be displayed.
+The UI will also update as the underlying event list has been modified.
+
+The sequence diagram for `EditEventCommand` can be found below.
+
+![Sequence Diagram of EditEvent Command](images/EditEventCommandSequenceDiagram.png)
+
+
+**Implementation of FindFreeTimeCommand**  
+The following is a detailed explanation on how FindFreeTaskCommand is implemented.
+
+**Step 1**: User executes `free_time DATE` command to find free time slots in the given day.
+An `FindFreeTimeCommandParser` object is created, and the `FindFreeTimeCommandParser#parse(String args)` method is called.
+The method conducts parses the `args` and conducts validation checks to ensure that it complies with the specification.
+A `FindFreeTimeCommand` object is returned.
+
+**Step 2**: On `FindFreeTimeCommand#execute()`, `Model#getFreeTimeSlots(Date date)` is called.
+This will get free time slots and store in a string arraylist.
+For brevity, lower level implementation of `Model#getFreeTimeSlots(Date date)` is omitted.
+
+**Step 3**: On execution completion a `CommandResult` is created.
+A success message will be appended with `CommandResult#MESSAGE_FIND_FREE_TIME_SUCCESS`.
+
+The sequence diagram for `FindFreeTimeCommand` can be found below.
+
+![Sequence Diagram of FindFreeTimeCommand](images/FindFreeTimeCommandSequenceDiagram.png)
+
+
+
+**Implementation of ClearExpiredEventCommand**  
+The following is a detailed explanation on how ClearExpiredEventCommand is implemented.
+
+**Step 1**: User executes `clear_completed_event` command to clear completed events in event list.
+A `ClearExpiredEventCommand` object is created and returned.
+
+**Step 2**: On `ClearExpiredEventCommand#execute()`, `Model#clearExpiredEvents()` is called.
+This will delete all expired events whose end date time have already past.
+For brevity, lower level implementation of `Model#clearExpiredEvents()` is omitted.
+
+**Step 3**: On execution completion a `CommandResult` is created.
+A success message `ClearExpiredEventCommand#MESSAGE_CLEAR_COMPLETED_TASK_SUCCESS` will be displayed.
+
+The sequence diagram for `ClearExpiredEventCommand` can be found below.
+
+![Sequence Diagram of Clear Command](images/ClearExpiredEventCommandSequenceDiagram.png)
+
 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## 5. Documentation, logging, testing, configuration, dev-ops
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -230,81 +494,246 @@ _{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+## Appendix
 
-### Product scope
+### A1. Product scope
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* NUS SOC Student
+* Prefer using CLI rather than GUI
+* Struggle to manage their schedule
+* Have a lot commitments (6 modules, TA and RA roles while balancing a part time internship)
+* Can type fast, hate mouse
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**:
 
+* Provide a simple platform for target users to manage their schedule
+* CLI commands to manage meetings or schedule with some contacts
+* CLI commands to add tasks and reminders
+* GUI to display the schedule of user
 
-### User stories
+### A2. User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                            | I want to …​                                                        | So that …​                                                                |
+| -------- | ------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `* * *`  | SOC Student                           | Add a task to my schedule                                              | I can track my task better                                                   |
+| `* *`    | SOC Student                           | Allocate a priority score to a task                                    | I can prioritise my time better                                              |
+| `* *`    | SOC Student                           | Edit a task in my schedule                                             | I can have flexibility in my schedule                                        |
+| `* * *`  | SOC Student                           | Mark a task complete in my schedule                                    | I can track which tasks I have completed                                     |
+| `* * *`  | SOC Student                           | Delete a task from my schedule from my schedule                        | I can have flexibility in my schedule                                        |
+| `* * *`  | SOC Student                           | View tasks in my schedule                                              | I can have a better sense of what will happen in the following days or weeks |
+| `* *`    | SOC Student                           | Sort my tasks in my schedule in various orderings                      | I can prioritise my time better                                              |
+| `*`      | Forgetful SOC Student                 | Get reminders from SOChedule regarding task deadlines                  | I will not lose track of my tasks                                            |
+| `* *`    | SOC student under huge workload       | View my schedule to see my free time slots                             | I can allocate my time better and fill it up with more tasks                 |
+| `*`      | SOC Student                           | View the people that I need to work with for a specific event          | I can keep in touch with the person better                                   |
+| `* * *`  | SOC Student                           | Add an event (with the required information) to my schedule            | I can track my time better                                                   |
+| `* *`    | SOC Student                           | Add recurring events (with the required information) to my schedule    | I can plan ahead for my schedule                                             |
+| `*`      | SOC Student                           | Add a person that I have to work with to an event in my schedule       | I can track who I need to work with for an even                              |
+| `*`      | SOC Student                           | Add a meeting link to an event in my schedule                          | I can quickly join a online meeting                                          |
+| `* *`    | SOC Student                           | Edit event description in my schedule                                  | I can have flexibility in my schedule                                        |
+| `* *`    | SOC Student                           | Edit the event time in my schedule                                     | I can have flexibility in my schedule                                        |
+| `* * *`  | SOC Student                           | Delete an event from my schedule from my schedule                      | I can have flexibility in my schedule                                        |
+| `*`      | SOC Student                           | Remove the person I am working with for an event                       | I can track who I need to work with for an event                             |
+| `* * *`  | SOC Student                           | View events in my schedule                                             | I can have a better sense of what will happen in the following days or weeks |
+| `* *`    | SOC Student                           | View events for today                                                  | I can have a better sense of what will happen in the following hours         |
+| `* *`    | SOC Student                           | Sort the tasks based on the deadline                                   | I can proceed with the task that is closer to the deadline                   |
+| `*`      | SOC Student                           | Get alerts for impending events                                        | I can prepare ahead of time for the event                                    |
+| `*`      | SOC Student                           | Add the schedule of what I want to do and what I really do             | I can reflect which part of the day being not productive                     |
+| `*`      | SOC Student                           | Set alert time frame for events                                        | I can prepare ahead of time                                                  |
+| `* *`    | SOC Student                           | Set colours to events                                                  | I can categorise my events                                                   |
+| `* *`    | SOC Student                           | Set colours to tasks                                                   | I can categorise my tasks                                                    |
+| `* *`    | SOC Student                           | highlight the events that are very important                           | I can differentiate the important tasks from the rest                        |
+| `*`      | SOC Student                           | record the progress of a habit user want to cultivate                  | I can cultivate a lot of good habits                                         |
+| `*`      | SOC Student                           | write a diary each day                                                 | I can record my life                                                         |
+| `*`      | SOC Student with many project modules | know who I am doing the task with                                      | it is easier to schedule meetings or discussions with my group mates         |
+| `*`      | SOC Student                           | keep track of the progress of each module                              | I can finish all tasks well and on time                                      |
+| `* *`    | SOC Student                           | categorise my tasks                                                    | I can group my tasks to have a clearer schedule                              |
+| `* *`    | SOC Student                           | find out the free time between events                                  | fill in other activities to achieve better time management                   |
+| `*`      | SOC Student taking several projects   | have a better sense on the project tasks assigned and the due date     | I can finish the tasks assigned on time                                      |
 
 *{More to be added}*
 
-### Use cases
+### A3. Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `SOChedule` and the **Actor** is the `User`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: UC01 - Add a task**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
-
-    Use case ends.
+1. User wishes to add a new task.
+2. User enters the required parameters.
+3. SOChedule displays a success message for adding the task.
+<br><br>
+Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. Some required information about the event is missing in the command.
+
+    * 1a1. SOChedule displays an error message suggesting that information provided when creating
+      the event is incomplete.
+      Use case ends.
+
+
+* 2b. The date provided for the event is invalid
+
+    * 1b1. SOChedule displays an error message suggesting that date provied for the event
+      is invalid, or not following the `YYYY-MM-DD` format.
+      Use case ends.
+
+**Use case: UC02 - List tasks**
+
+**MSS**
+
+1. User wishes to add a new task.
+2. User enters the corresponding command.
+3. SOChedule displays all tasks.
+<br><br>
+Use case ends.
+
+**Use case: UC03 - Delete a task**
+
+**MSS**
+
+1. User requests to <u> list tasks (UC02)</u>.
+2. SOChedule shows a list of tasks.
+3. User chooses to delete a task.
+4. User enters the index of the task to be deleted.
+5. SOChedule displays a success message for deleting the task.
+<br><br>
+Use case ends.
+
+**Extensions**
+
+* 2a. The task list is empty.
 
   Use case ends.
 
+  <br>
+
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. SOChedule shows an error message.
 
       Use case resumes at step 2.
 
+**Use case: UC04 - Mark a task as completed**
+
+**MSS**
+
+1. User requests to <u> list tasks (UC02)</u>.
+2. SOChedule shows a list of tasks.
+3. User chooses to mark a task as completed.
+4. User enters the index of the task to be marked.
+5. SOChedule displays a success message for marking the task as completed.
+<br><br>
+Use case ends.
+
+**Extensions**
+
+* 2a. The task list is empty.
+
+  Use case ends.
+
+
+* 3a. The given index is invalid.
+
+    * 3a1. SOChedule shows an error message indicating the invalidity of the index.
+
+      Use case resumes at step 2.
+
+**Use case: UC05 - Add an event**
+
+**MSS**
+
+1. User requests to add a new event.
+1. SOChedule displays a success message for adding the event.
+<br><br>
+Use case ends.
+
+**Extensions**
+
+* 1a. Some required information about the event is missing in the command.
+
+    * 1a1. SOChedule displays an error message suggesting that information provided when creating
+      the event is incomplete.
+      Use case ends.
+
+
+* 1b. The date provided for the event is invalid
+
+    * 1b1. SOChedule displays an error message suggesting that date provided for the event
+      is invalid, or not following the `YYYY-MM-DD` format.
+      Use case ends.
+
+**Use case: UC06 - List events**
+
+**MSS**
+
+1. User requests to list all events in the SOChedule.
+1. SOChedule displays a list of all events added.
+<br><br>
+Use case ends.
+
+**Extensions**
+
+* 1a. No events have been added.
+    * 1a1. SOChedule displays an empty list.
+      Use case ends.
+
+**Use case: UC07 - Delete an event**
+
+**MSS**
+
+1. User requests to <u> list events (UC06)</u>.
+2. SOChedule shows a list of events.
+3. User chooses to delete an event.
+4. User enters the index of the event to be deleted.
+5. SOChedule displays a success message for deleting the event.
+<br><br>
+Use case ends.
+
+**Extensions**
+
+* 2a. The event scheduler is empty.
+
+  Use case ends.
+
+
+* 3a. The given index is invalid.
+
+    * 3a1. SOChedule shows an error message.
+
+      Use case resumes at step 2.
+
+      
 *{More to be added}*
 
-### Non-Functional Requirements
+### A4. Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1.  Should be able to hold up to 1000 tasks without a noticeable sluggishness in performance for typical usage.
+1.  Should be able to hold up to 500 events without a noticeable sluggishness in performance for typical usage.
+1.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1.  Should give a response to user's input within 5 seconds.
+1.  The user interface should be intuitive to a SoC freshman with little knowledge about programming.
+1.  The source code should be open source.
 
 *{More to be added}*
 
-### Glossary
+### A5. Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Event**: Activities that start at a specific time and ends at a specific time.
+* **Task**: Activities to be undertaken that can be marked complete/incomplete. Optionally it has a date field to indicate deadlines.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+### A6. Instructions for manual testing
 
 Given below are instructions to test the app manually.
 
@@ -313,7 +742,7 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### Launch and shutdown
+### A7. Launch and shutdown
 
 1. Initial launch
 
@@ -330,24 +759,24 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting a task (Not in use yet)
 
-1. Deleting a person while all persons are being shown
+1. Deleting a task while all tasks are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all tasks using the `list_task` command. Multiple tasks in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   1. Test case: `delete_task 1`<br>
+      Expected: First task is deleted from the list. Details of the deleted task shown in the status message.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+   1. Test case: `delete_task 0`<br>
+      Expected: No task is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `delete_task`, `delete_task x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
 
-### Saving data
+### A8. Saving data
 
 1. Dealing with missing/corrupted data files
 

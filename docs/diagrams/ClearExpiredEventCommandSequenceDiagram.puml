@@ -1,0 +1,54 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":SocheduleParser" as SocheduleParser LOGIC_COLOR
+participant "s:ClearExpiredEventCommand" as ClearExpiredEventCommand LOGIC_COLOR
+participant "CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : parse(clear_expired_event)
+activate LogicManager
+
+LogicManager -> SocheduleParser : parseCommand(clear_expired_event)
+activate SocheduleParser
+
+create ClearExpiredEventCommand
+SocheduleParser -> ClearExpiredEventCommand
+activate ClearExpiredEventCommand
+SocheduleParser <--ClearExpiredEventCommand : s
+deactivate ClearExpiredEventCommand
+
+LogicManager <-- SocheduleParser : s
+deactivate SocheduleParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+SocheduleParser -[hidden]->[
+destroy SocheduleParser
+
+LogicManager -> ClearExpiredEventCommand : execute()
+activate ClearExpiredEventCommand
+
+ClearExpiredEventCommand -> Model : clearExpiredEvents()
+activate Model
+ClearExpiredEventCommand <-- Model
+deactivate Model
+
+create CommandResult
+ClearExpiredEventCommand -> CommandResult
+activate CommandResult
+ClearExpiredEventCommand <-- CommandResult
+deactivate CommandResult
+
+LogicManager <-- ClearExpiredEventCommand
+deactivate ClearExpiredEventCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ClearExpiredEventCommand -[hidden]->[
+destroy ClearExpiredEventCommand
+
+[<-- LogicManager : CommandResult
+@enduml

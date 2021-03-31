@@ -1,22 +1,33 @@
 package seedu.address.model;
-
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EVENTS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalEvents.MEETING;
+import static seedu.address.testutil.TypicalTasks.ASSIGNMENT;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.model.event.Event;
+import seedu.address.model.event.EventComparator;
+import seedu.address.model.event.EventNameContainsKeywordsPredicate;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskComparator;
+import seedu.address.model.task.TaskNameContainsKeywordsPredicate;
+import seedu.address.testutil.SocheduleBuilder;
+import seedu.address.testutil.TaskBuilder;
+import seedu.address.testutil.TypicalEvents;
+import seedu.address.testutil.TypicalTasks;
 
 public class ModelManagerTest {
 
@@ -26,7 +37,7 @@ public class ModelManagerTest {
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
-        assertEquals(new AddressBook(), new AddressBook(modelManager.getAddressBook()));
+        assertEquals(new Sochedule(), new Sochedule(modelManager.getSochedule()));
     }
 
     @Test
@@ -37,14 +48,14 @@ public class ModelManagerTest {
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setAddressBookFilePath(Paths.get("address/book/file/path"));
+        userPrefs.setSocheduleFilePath(Paths.get("sochedule/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
-        userPrefs.setAddressBookFilePath(Paths.get("new/address/book/file/path"));
+        userPrefs.setSocheduleFilePath(Paths.get("new/sochedule/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
@@ -61,47 +72,164 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.setAddressBookFilePath(null));
+    public void setSocheduleFilePath_nullPath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setSocheduleFilePath(null));
     }
 
     @Test
-    public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
-        Path path = Paths.get("address/book/file/path");
-        modelManager.setAddressBookFilePath(path);
-        assertEquals(path, modelManager.getAddressBookFilePath());
+    public void setSocheduleFilePath_validPath_setsSocheduleFilePath() {
+        Path path = Paths.get("sochedule/file/path");
+        modelManager.setSocheduleFilePath(path);
+        assertEquals(path, modelManager.getSocheduleFilePath());
+    }
+
+    // ----- Task ------
+
+    @Test
+    public void hasTask_nullTask_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasTask(null));
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.hasPerson(null));
+    public void hasTask_taskNotInSochedule_returnsFalse() {
+        assertFalse(modelManager.hasTask(ASSIGNMENT));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(modelManager.hasPerson(ALICE));
+    public void hasTask_taskInSochedule_returnsTrue() {
+        modelManager.addTask(ASSIGNMENT);
+        assertTrue(modelManager.hasTask(ASSIGNMENT));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
-        modelManager.addPerson(ALICE);
-        assertTrue(modelManager.hasPerson(ALICE));
+    public void getFilteredTaskList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredTaskList().remove(0));
+    }
+
+    // ----- Event ------
+
+    @Test
+    public void hasEvent_nullEvent_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasEvent(null));
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+    public void hasEvent_eventNotInSochedule_returnsFalse() {
+        assertFalse(modelManager.hasEvent(MEETING));
+    }
+
+    @Test
+    public void hasEvent_eventInSochedule_returnsTrue() {
+        modelManager.addEvent(MEETING);
+        assertTrue(modelManager.hasEvent(MEETING));
+    }
+
+    @Test
+    public void getFilteredEventList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredEventList().remove(0));
+    }
+
+    @Test
+    public void pinTask_returnsTrue() {
+        Task t = new TaskBuilder(ASSIGNMENT).build();
+        modelManager.addTask(t);
+        modelManager.pinTask(t);
+        assertTrue(t.isPinned());
+    }
+
+    @Test
+    public void unpinTask_returnsTrue() {
+        Task t = new TaskBuilder(ASSIGNMENT).build();
+        modelManager.addTask(t);
+        modelManager.pinTask(t);
+        assertTrue(t.isPinned());
+
+        modelManager.unpinTask(t);
+        assertFalse(t.isPinned());
+    }
+
+    @Test
+    public void pinTask_alreadyPinned_nothingHappen() {
+        Task t = new TaskBuilder(ASSIGNMENT).build();
+        modelManager.addTask(t);
+        modelManager.pinTask(t);
+        assertDoesNotThrow(() -> modelManager.pinTask(t));
+    }
+
+    @Test
+    public void unpinTask_alreadyUnpinned_nothingHappen() {
+        Task t = new TaskBuilder(ASSIGNMENT).build();
+        modelManager.addTask(t);
+        assertDoesNotThrow(() -> modelManager.unpinTask(t));
+    }
+
+    @Test
+    public void sortTasks_nullList_nothingThrown() {
+        assertDoesNotThrow(() ->
+                modelManager.sortTasks(TaskComparator.getAcceptedVar().get(0)));
+    }
+
+    @Test
+    public void sortEvents_nullList_nothingThrown() {
+        assertDoesNotThrow(() ->
+                modelManager.sortEvents(EventComparator.getAcceptedVar().get(0)));
+    }
+
+    @Test
+    public void sortTasks_populatedList() {
+        for (String comparingVar : TaskComparator.getAcceptedVar()) {
+            TaskComparator tc = new TaskComparator();
+            tc.setComparingVar(comparingVar);
+
+            //build expected ModelManager
+            List<Task> originalTasks = TypicalTasks.getTypicalTasks();
+            Collections.sort(originalTasks, tc);
+            Sochedule sochedule = new Sochedule();
+            sochedule.setTasks(originalTasks);
+            ModelManager expected = new ModelManager();
+            expected.setSochedule(sochedule);
+
+            //build actual ModelManager
+            ModelManager actual = new ModelManager();
+            actual.setSochedule(TypicalTasks.getTypicalSochedule());
+            actual.sortTasks(comparingVar);
+
+            assertEquals(actual, expected);
+        }
+    }
+
+    @Test
+    public void sortEvents_populatedList() {
+        for (String comparingVar : EventComparator.getAcceptedVar()) {
+            EventComparator ec = new EventComparator();
+            ec.setComparingVar(comparingVar);
+
+            //build expected Sochedule
+            List<Event> originalEvents = TypicalEvents.getTypicalEvents();
+            Collections.sort(originalEvents, ec);
+            Sochedule sochedule = new Sochedule();
+            sochedule.setEvents(originalEvents);
+            ModelManager expected = new ModelManager();
+            expected.setSochedule(sochedule);
+
+            //build actual Sochedule
+            ModelManager actual = new ModelManager();
+            actual.setSochedule(TypicalEvents.getTypicalSochedule());
+            actual.sortEvents(comparingVar);
+
+            assertEquals(actual, expected);
+        }
     }
 
     @Test
     public void equals() {
-        AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
-        AddressBook differentAddressBook = new AddressBook();
+        Sochedule sochedule = new SocheduleBuilder().withTask(ASSIGNMENT).withEvent(MEETING).build();
+        Sochedule differentSochedule = new Sochedule();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(addressBook, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs);
+        modelManager = new ModelManager(sochedule, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(sochedule, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -113,20 +241,23 @@ public class ModelManagerTest {
         // different types -> returns false
         assertFalse(modelManager.equals(5));
 
-        // different addressBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
+        // different sochedule -> returns false
+        assertFalse(modelManager.equals(new ModelManager(differentSochedule, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
+        String[] keywords = ASSIGNMENT.getName().fullName.split("\\s+");
+        modelManager.updateFilteredTaskList(new TaskNameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        modelManager.updateFilteredEventList(new EventNameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        assertFalse(modelManager.equals(new ModelManager(sochedule, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        modelManager.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+        modelManager.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
+
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
-        differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
+        differentUserPrefs.setSocheduleFilePath(Paths.get("differentFilePath"));
+        assertFalse(modelManager.equals(new ModelManager(sochedule, differentUserPrefs)));
     }
 }
