@@ -11,21 +11,6 @@ Donavan Lim, Marcus Lee Eugene, Chong Sidney, Dinesh S/O Magesvaran, Prabhakaran
 * Table of Contents
 {:toc}
 
-    * Description
-    * Features
-        * add
-        * addon
-        * delete
-        * list
-        * find
-        * findall
-        * help
-        * view
-        * revise
-        * edit
-    * Command Summary
-    * UI mock-up
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## Description
@@ -308,6 +293,6 @@ Action | Keyboard Shortcut| Windows where Keyboard shortcut is available
 - **Revise Window** The Window that appears when revising a FoodDairy entry through the `edit` command
 
 
-### UI mock-up
+## UI mock-up
 
 ![Main Window UI](images/Ui.png)
