@@ -12,7 +12,7 @@ import seedu.booking.model.booking.BookingContainsVenuePredicate;
 /**
  * Parses input arguments and creates a new FilterBookingByVenueCommand object.
  */
-public class FilterBookingByVenueCommandParser {
+public class FilterBookingByVenueCommandParser implements Parser<FilterBookingByVenueCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the FilterBookingByVenueCommandParser

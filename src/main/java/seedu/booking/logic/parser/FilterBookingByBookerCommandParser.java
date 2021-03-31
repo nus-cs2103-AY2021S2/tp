@@ -13,7 +13,7 @@ import seedu.booking.model.person.Email;
 /**
  * Parses input arguments and creates a new FilterBookingByBookerCommand object.
  */
-public class FilterBookingByBookerCommandParser {
+public class FilterBookingByBookerCommandParser implements Parser<FilterBookingByBookerCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the FilterBookingByBookerCommand

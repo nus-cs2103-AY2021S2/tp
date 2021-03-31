@@ -120,6 +120,14 @@ public class BookingBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code email} of the {@code Booking} that we are building.
+     */
+    public BookingBuilder withEmail(String bookerEmail) {
+        this.bookerEmail = new Email(bookerEmail);
+        return this;
+    }
+
     public Booking build() {
         return new Booking(bookerEmail, venueName, description, bookingStart, bookingEnd, tags, id);
     }
