@@ -21,6 +21,14 @@ public class GeneralEventBuilder {
     }
 
     /**
+     * Creates a GeneralEventBuilder with the data of {@code eventToCopy}.
+     */
+    public GeneralEventBuilder(GeneralEvent eventToCopy) {
+        this.description = eventToCopy.getDescription();
+        this.date = eventToCopy.getDateTime();
+    }
+
+    /**
      * Sets the {@code Description} of the {@code GeneralEvent} that we are building.
      */
     public GeneralEventBuilder withDescription(String description) {
