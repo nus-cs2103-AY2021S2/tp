@@ -6,14 +6,13 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalRemindMe.MOD_1;
 import static seedu.address.testutil.TypicalRemindMe.MOD_1_WITH_ASSIGNMENTS;
 import static seedu.address.testutil.TypicalRemindMe.MOD_1_WITH_EXAMS;
-import static seedu.address.testutil.TypicalRemindMe.VALID_ASSIGNMENT;
+
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.module.Title;
-import seedu.address.testutil.typicalmodules.ModuleBuilder;
 
 public class JsonAdaptedModuleTest {
 
