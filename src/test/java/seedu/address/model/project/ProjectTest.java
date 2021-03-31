@@ -113,7 +113,7 @@ public class ProjectTest {
         assertEquals(0, project.getGroupmates().size());
         project.addGroupmate(SYLPH);
         assertEquals(1, project.getGroupmates().size());
-        assertEquals(SYLPH, project.getGroupmates().getGroupmates().get(0));
+        assertEquals(SYLPH, project.getGroupmates().getSortedGroupmates().get(0));
     }
 
     @Test
@@ -130,16 +130,16 @@ public class ProjectTest {
     @Test
     public void deleteGroupmate_success() {
         GroupmateList groupmateList = new GroupmateList();
-        groupmateList.addGroupmate(SYLPH);
         groupmateList.addGroupmate(ROXY);
+        groupmateList.addGroupmate(SYLPH);
         Project project = new ProjectBuilder().withName(CS1101S_NAME.toString())
                 .withGroupmateList(groupmateList).build();
         int size = project.getGroupmates().size();
-        assertEquals(project.getGroupmate(size - 1), ROXY);
-        assertEquals(project.getGroupmate(size - 2), SYLPH);
+        assertEquals(project.getGroupmate(size - 1), SYLPH);
+        assertEquals(project.getGroupmate(size - 2), ROXY);
         project.deleteGroupmate(size - 1);
         assertEquals(project.getGroupmates().size(), size - 1);
-        assertEquals(project.getGroupmate(size - 2), SYLPH);
+        assertEquals(project.getGroupmate(size - 2), ROXY);
         project.deleteGroupmate(size - 2);
         assertEquals(project.getGroupmates().size(), size - 2);
     }

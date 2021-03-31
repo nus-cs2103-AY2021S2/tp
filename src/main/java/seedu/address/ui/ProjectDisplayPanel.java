@@ -7,8 +7,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_NO_GROUPMATES_TO_DISPL
 import static seedu.address.commons.core.Messages.MESSAGE_NO_TODOS_TO_DISPLAY;
 
 import javafx.beans.binding.Bindings;
-import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -75,7 +73,7 @@ public class ProjectDisplayPanel extends UiPart<Region> {
         setUpEventList(project.getSortedEvents());
         setUpDeadlinesList(project.getSortedDeadlines());
         setUpTodoList(project.getSortedTodos());
-        setUpGroupmatesList(project.getGroupmates().getGroupmates());
+        setUpGroupmatesList(project.getSortedGroupmates());
     }
 
     private void setUpTodoList(SortedList<CompletableTodo> todos) {
@@ -92,10 +90,10 @@ public class ProjectDisplayPanel extends UiPart<Region> {
         }
     }
 
-    private void setUpGroupmatesList(ObservableList<Groupmate> groupmates) {
+    private void setUpGroupmatesList(SortedList<Groupmate> groupmates) {
         groupmateListView.prefHeightProperty()
                 .bind(Bindings.size(groupmates).multiply(GROUPMATES_CARD_HEIGHT).add(SAFETY_MARGIN));
-        groupmateListView.setItems(new FilteredList<>(groupmates));
+        groupmateListView.setItems(groupmates);
         groupmateListView.setCellFactory(listView -> new GroupmateListViewCell());
 
         groupmateListViewPlaceholder.getChildren().clear();

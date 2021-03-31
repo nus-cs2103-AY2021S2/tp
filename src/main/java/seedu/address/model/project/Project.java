@@ -308,6 +308,15 @@ public class Project {
     }
 
     /**
+     * Returns {@code groupmates} as a {@code SortedList<Groupmate>}
+     *
+     * @return A {@code SortedList<Groupmate>}
+     */
+    public SortedList<Groupmate> getSortedGroupmates() {
+        return groupmates.getSortedGroupmates();
+    }
+
+    /**
      * Returns true if both projects have the same identity and data fields.
      * This defines a stronger notion of equality between two projects.
      */
@@ -357,7 +366,7 @@ public class Project {
             deadlines.forEach(builder::append);
         }
 
-        List<Groupmate> groupmates = getGroupmates().getGroupmates();
+        List<Groupmate> groupmates = getGroupmates().getSortedGroupmates();
         if (!groupmates.isEmpty()) {
             builder.append("; Groupmates: ");
             groupmates.forEach(builder::append);
