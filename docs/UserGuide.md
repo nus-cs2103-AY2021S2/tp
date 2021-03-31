@@ -56,21 +56,15 @@ If you need an overview of StoreMando’s commands, check out the [“Command Su
 ### 2.1. Installation
 
 1. Ensure you have Java `11` or above installed in your Computer.
-
 1. Download the latest `storemando.jar`
    from [here](https://github.com/AY2021S2-CS2103T-W10-2/tp/releases/tag/v1.3.trail)
-
 1. Copy the file to the folder you want to use as the _home folder_ for your StoreMando.
-
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app
    contains some sample data for you to see how the app looks.
    ![Ui](images/Ui.png)
-
 1. Before adding your own items, you may want to [clear](#39-clearing-storemando--clear) the sample data to start
    afresh.
-
 1. Type the command in the [command box](#command-box-) and press Enter on your keyboard to execute it.
-
 1. Refer to the [“Features"](#3-features) below for details of each command.
 
 ### 2.2. StoreMando's layout
@@ -132,7 +126,6 @@ Do you have an item to add to the inventory? This command is the right one for y
 Format: `add n/ITEM_NAME l/LOCATION q/QUANTITY [e/EXPIRY_DATE] [t/TAG]…​`
 
 Examples:
-
 * `add n/Chocolate Milk l/kitchen refrigerator q/2` adds 2 Chocolate Milk to the kitchen refrigerator.
 * `add n/Sunshine Bread l/kitchen cupboard q/10 e/2021-05-11 t/favourite` adds 10 Sunshine Bread with expiry date,
   2021-05-11, and "favourite" tag to the kitchen cupboard.
@@ -156,7 +149,6 @@ If you want to edit any details of an existing item in the inventory, you can do
 Format: `edit INDEX [n/ITEM_NAME] [l/LOCATION] [q/QUANTITY] [e/EXPIRY_DATE] [t/TAG]…​`
 
 Examples:
-
 * `edit 1 q/10 e/2022-10-11` edits the quantity of the 1st item to be `10` and expiry date of the 1st item to
   be `2022-10-11` if the existing quantity and expiry date of the 1st item are both not `10` and `2022-10-11`
   respectively.
@@ -185,20 +177,20 @@ You can use this command in 3 different ways.
 
 * #### 3.4.1. Listing all items in StoreMando
   This command allows you to view all the items in the inventory.
-  
+
   Format: `list`
-  
+
   Example:
     * `list` displays all the items in the inventory.
 
 * #### 3.4.2. Listing all items at a specific location
   This command allows you to view all items at a specific location.
-  
+
   Format: `list l/LOCATION`
 
   Example:
     * `list l/kitchen` displays all the items in the kitchen.
-  
+
   <div markdown="block" class="alert alert-info">
 
   **:information_source: Notes about the command:**
@@ -207,11 +199,12 @@ You can use this command in 3 different ways.
     * Only full words will be matched e.g. 'Room' will not match 'Bedroom'.
     * The order of keywords for location search does not matter. e.g. 'Room Living' will match 'Living Room'.
     * Location matching uses each word in the String to do 'AND' search e.g. 'Room' will match 'Living room' but 'Living
-      room 1' will not match 'Living room'<br>
+      room 1' will not match 'Living room'
+
   </div>
 
 * #### 3.4.3. Listing all items with a specific tag
-  This command allows you to view all items containing a specific tag. 
+  This command allows you to view all items containing a specific tag.
 
   Format: `list t/TAG`
 
@@ -249,11 +242,11 @@ You can use this command in 2 different ways.
 * #### 3.5.1. Find items with complete name match
   Format: `find KEYWORD [MORE_KEYWORDS]`
 
-  <div markdown="block" class="alert alert-info">
-
   Examples:
     * `find Chocolate` returns `chocolate` and `Chocolate Milk`
     * `find potato chip` returns `Potato Biscuit` and `chocolate chip`
+    
+  <div markdown="block" class="alert alert-info">
 
   **:information_source: Notes about the command:**
 
@@ -283,7 +276,6 @@ Are you looking to get rid of an existing item from the inventory? Use this comm
 Format: `delete INDEX`
 
 Examples:
-
 * `list` followed by `delete 2` deletes the second item in the entire inventory.
 * `find Chocolate` followed by `delete 1` deletes the first item in the result of the `find` command.
 * `list Room 2` followed by `delete 3` deletes the third item in the recorded list of items in Room 2.
@@ -361,7 +353,7 @@ You can use this command in 3 different ways.
 
       **:information_source: Note about the sort by descending quantity command:**
 
-        * `quantity` is case-insensitive. Keying in `sort QUANTITY desc` is also a valid command.     
+        * `quantity` is case-insensitive. Keying in `sort QUANTITY desc` is also a valid command.
 
       </div>
 
@@ -395,6 +387,9 @@ You can use this command in 2 different ways.
 * #### 3.9.2. Clear all items in a specific location
   Format 2: `clear l/LOCATION`
 
+  Example:
+    * `clear l/kitchen` clears all the items with location `kitchen`.
+
   <div markdown="block" class="alert alert-info">
 
   **:information_source: Notes about the clear command:**
@@ -404,9 +399,6 @@ You can use this command in 2 different ways.
       'Living room' will not match 'Room living'.
 
   </div>
-
-  Example:
-    * `clear l/kitchen` clears all the items with location `kitchen`.
 
 ### 3.10. Exiting StoreMando : `exit`
 
