@@ -37,6 +37,7 @@ public class MainWindow extends UiPart<Stage> {
     private ItemListPanel itemListPanel;
     private ResultDisplay resultDisplay;
     private final HelpWindow helpWindow;
+    private TablePanel tablePanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -52,6 +53,12 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane resultDisplayPlaceholder;
+
+    @FXML
+    private StackPane tablePanelPlaceholder;
+
+    @FXML
+    private StackPane locationPanelPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -123,6 +130,9 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
         resultDisplay.welcomeMsg();
+
+        tablePanel = new TablePanel(logic.getFilteredItemList());
+        tablePanelPlaceholder.getChildren().add(tablePanel.getRoot());
     }
 
     /**
