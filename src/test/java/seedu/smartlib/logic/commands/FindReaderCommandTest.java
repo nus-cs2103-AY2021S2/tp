@@ -192,6 +192,33 @@ public class FindReaderCommandTest {
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredReaderList());
     }
 
+    @Test
+    public void execute_validAndInvalidKeywords_singleReaderFound() {
+        // EP: one valid keyword and one invalid alphabetical keyword
+        String expectedMessage = String.format(MESSAGE_READERS_LISTED_OVERVIEW, 1);
+        NameContainsKeywordsPredicate predicate = preparePredicate("KuRz Hello");
+        FindReaderCommand command = new FindReaderCommand(predicate);
+        expectedModel.updateFilteredReaderList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.singletonList(CARL), model.getFilteredReaderList());
+
+        // EP: one valid keyword and one invalid numerical keyword
+        String expectedMessage2 = String.format(MESSAGE_READERS_LISTED_OVERVIEW, 1);
+        NameContainsKeywordsPredicate predicate2 = preparePredicate("123 ELLe");
+        FindReaderCommand command2 = new FindReaderCommand(predicate2);
+        expectedModel.updateFilteredReaderList(predicate2);
+        assertCommandSuccess(command2, model, expectedMessage2, expectedModel);
+        assertEquals(Collections.singletonList(ELLE), model.getFilteredReaderList());
+
+        // EP: one valid keyword and one invalid keyword made up of special characters
+        String expectedMessage3 = String.format(MESSAGE_READERS_LISTED_OVERVIEW, 1);
+        NameContainsKeywordsPredicate predicate3 = preparePredicate("+-*/ KuNz");
+        FindReaderCommand command3 = new FindReaderCommand(predicate3);
+        expectedModel.updateFilteredReaderList(predicate3);
+        assertCommandSuccess(command3, model, expectedMessage3, expectedModel);
+        assertEquals(Collections.singletonList(FIONA), model.getFilteredReaderList());
+    }
+
     // tests for reader tags
 
     @Test
@@ -322,6 +349,33 @@ public class FindReaderCommandTest {
         expectedModel.updateFilteredReaderList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(ALICE, BENSON, DANIEL), model.getFilteredReaderList());
+    }
+
+    @Test
+    public void execute_validAndInvalidTags_singleReaderFound() {
+        // EP: one valid tag and one invalid alphabetical tag
+        String expectedMessage = String.format(MESSAGE_READERS_LISTED_OVERVIEW, 2);
+        TagContainsKeywordsPredicate predicate = prepareTagPredicate("t/vip Hello");
+        FindReaderCommand command = new FindReaderCommand(predicate);
+        expectedModel.updateFilteredReaderList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(ALICE, BENSON), model.getFilteredReaderList());
+
+        // EP: one valid tag and one invalid numerical tag
+        String expectedMessage2 = String.format(MESSAGE_READERS_LISTED_OVERVIEW, 1);
+        TagContainsKeywordsPredicate predicate2 = prepareTagPredicate("t/123 topBoRROWER");
+        FindReaderCommand command2 = new FindReaderCommand(predicate2);
+        expectedModel.updateFilteredReaderList(predicate2);
+        assertCommandSuccess(command2, model, expectedMessage2, expectedModel);
+        assertEquals(Collections.singletonList(BENSON), model.getFilteredReaderList());
+
+        // EP: one valid tag and one invalid tag made up of special characters
+        String expectedMessage3 = String.format(MESSAGE_READERS_LISTED_OVERVIEW, 1);
+        TagContainsKeywordsPredicate predicate3 = prepareTagPredicate("t/+-*/ VVIP");
+        FindReaderCommand command3 = new FindReaderCommand(predicate3);
+        expectedModel.updateFilteredReaderList(predicate3);
+        assertCommandSuccess(command3, model, expectedMessage3, expectedModel);
+        assertEquals(Collections.singletonList(DANIEL), model.getFilteredReaderList());
     }
 
     /**
