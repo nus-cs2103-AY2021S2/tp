@@ -33,7 +33,7 @@ public class FindCommandTest {
 
     private Model model = new ModelManager(getTypicalTutorBook(), new UserPrefs(),
             getTypicalAppointmentBook(), getTypicalBudgetBook(), getTypicalGradeBook(),
-            getTypicalScheduleTracker());
+            getTypicalScheduleTracker(), getTypicalReminderTracker());
     private Model expectedModel = new ModelManager(getTypicalTutorBook(), new UserPrefs(),
             getTypicalAppointmentBook(), getTypicalBudgetBook(), model.getGradeBook(),
             getTypicalScheduleTracker(), getTypicalReminderTracker());

@@ -26,6 +26,8 @@ import seedu.address.model.reminder.ReminderTracker;
 import seedu.address.model.schedule.ReadOnlyScheduleTracker;
 import seedu.address.model.schedule.Schedule;
 import seedu.address.model.schedule.ScheduleTracker;
+import seedu.address.model.tutor.Name;
+import seedu.address.model.tutor.Tutor;
 
 /**
  * Represents the in-memory model of the tutor book data.
@@ -61,11 +63,8 @@ public class ModelManager implements Model {
                         ReadOnlyScheduleTracker scheduleTracker,
                         ReadOnlyReminderTracker reminderTracker) {
         super();
-        requireAllNonNull(addressBook, appointmentBook, userPrefs, budgetBook, scheduleTracker, reminderTracker);
-
-        requireAllNonNull(tutorBook, appointmentBook, userPrefs, budgetBook);
-
-        logger.fine("Initializing with tutor book: " + tutorBook + " and user prefs " + userPrefs);
+        requireAllNonNull(tutorBook, appointmentBook, userPrefs, budgetBook, scheduleTracker, reminderTracker);
+        logger.fine("Initializing Tutor Tracker: with tutor book: " + tutorBook + " and user prefs " + userPrefs);
 
         this.tutorBook = new TutorBook(tutorBook);
         this.appointmentBook = new AppointmentBook(appointmentBook);
@@ -76,8 +75,8 @@ public class ModelManager implements Model {
 
         this.eventTracker = new EventTracker(appointmentBook, scheduleTracker);
         this.reminderTracker = new ReminderTracker(reminderTracker);
-        this.personFilter = new PersonFilter();
-        this.filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        this.tutorFilter = new TutorFilter();
+        this.filteredTutors = new FilteredList<>(this.tutorBook.getTutorList());
         this.filteredAppointment = new FilteredList<>(this.appointmentBook.getAppointmentList());
         this.filteredGrades = new FilteredList<>(this.gradeBook.getGradeList());
         this.filteredSchedules = new FilteredList<>(this.scheduleTracker.getScheduleList());
@@ -90,7 +89,7 @@ public class ModelManager implements Model {
      * Default constructor without params. Initializes with empty books.
      */
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs(), new AppointmentBook(),
+        this(new TutorBook(), new UserPrefs(), new AppointmentBook(),
                 new BudgetBook(), new GradeBook(), new ScheduleTracker(), new ReminderTracker());
     }
 
@@ -525,8 +524,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return tutorBook.equals(other.tutorBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons)
-                && personFilter.equals(other.personFilter)
+                && filteredTutors.equals(other.filteredTutors)
+                && tutorFilter.equals(other.tutorFilter)
                 && filteredAppointment.equals(other.filteredAppointment)
                 && appointmentBook.equals(other.appointmentBook)
                 && gradeBook.equals(other.gradeBook)

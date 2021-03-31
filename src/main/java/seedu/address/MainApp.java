@@ -94,7 +94,7 @@ public class MainApp extends Application {
         ReminderTrackerStorage reminderTrackerStorage =
                 new JsonReminderTrackerStorage(userPrefs.getReminderTrackerFilePath());
 
-        storage = new StorageManager(addressBookStorage, userPrefsStorage, appointmentBookStorage,
+        storage = new StorageManager(tutorBookStorage, userPrefsStorage, appointmentBookStorage,
                 gradeBookStorage, scheduleTrackerStorage, reminderTrackerStorage);
 
         initLogging(config);

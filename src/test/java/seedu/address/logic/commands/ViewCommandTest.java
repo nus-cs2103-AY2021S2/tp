@@ -38,9 +38,9 @@ public class ViewCommandTest {
                 getTypicalAppointmentBook(), getTypicalBudgetBook(), getTypicalGradeBook(),
                 getTypicalScheduleTracker(), getTypicalReminderTracker());
 
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(),
+        expectedModel = new ModelManager(model.getTutorBook(), new UserPrefs(),
                 getTypicalAppointmentBook(), getTypicalBudgetBook(), getTypicalGradeBook(),
-                getTypicalScheduleTracker(), getTypicalReminderTracker(), getTypicalReminderTracker());
+                getTypicalScheduleTracker(), getTypicalReminderTracker());
     }
 
     @Test

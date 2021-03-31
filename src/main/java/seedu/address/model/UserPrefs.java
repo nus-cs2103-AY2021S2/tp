@@ -76,11 +76,6 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         return reminderTrackerFilePath;
     }
 
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        this.addressBookFilePath = addressBookFilePath;
-    }
-
     public void setAppointmentBookFilePath(Path appointmentBookFilePath) {
         requireNonNull(appointmentBookFilePath);
         this.appointmentBookFilePath = appointmentBookFilePath;

@@ -5,9 +5,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.common.Description;
-import seedu.address.model.person.Address;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.reminder.ReminderDate;
+import seedu.address.model.tutor.Address;
 
 
 public class JsonAdaptedReminder {

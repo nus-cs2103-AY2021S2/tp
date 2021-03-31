@@ -30,8 +30,8 @@ import seedu.address.model.tutor.Tutor;
  */
 public class DeleteCommandTest {
 
-    private Model model = new ModelManager(getTypicalTutorBook(), new UserPrefs(),
-            getTypicalAppointmentBook(), getTypicalBudgetBook(), getTypicalGradeBook(), getTypicalScheduleTracker(), getTypicalReminderTracker());
+    private Model model = new ModelManager(getTypicalTutorBook(), new UserPrefs(), getTypicalAppointmentBook(),
+            getTypicalBudgetBook(), getTypicalGradeBook(), getTypicalScheduleTracker(), getTypicalReminderTracker());
 
 
     @Test
