@@ -16,6 +16,8 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.commands.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.dish.Dish;
+import seedu.address.model.dish.DishContainsIngredientNamePredicate;
+import seedu.address.model.dish.DishNameContainsWordsPredicate;
 
 public class MenuFindCommandParser implements Parser<MenuFindCommand> {
 
@@ -40,29 +42,29 @@ public class MenuFindCommandParser implements Parser<MenuFindCommand> {
         List<Predicate<Dish>> predicates = new ArrayList<>();
 
         Optional<String> nameArgs = argMultimap.getValue(PREFIX_NAME);
-        Optional<String> dishArgs = argMultimap.getValue(PREFIX_DISH);
+        Optional<String> dishArg = argMultimap.getValue(PREFIX_DISH);
 
-//        if (nameArgs.isPresent()) {
-//            List<String> keywords;
-//            try {
-//                keywords = ParserUtil.parseKeywords(nameArgs.get());
-//            } catch (ParseException pe) {
-//                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-//                        MenuFindCommand.MESSAGE_USAGE), pe);
-//            }
-//            predicates.add(new DishNameContainsWordsPredicate(keywords));
-//        }
-//
-//        if (dishArgs.isPresent()) {
-//            List<String> keywords;
-//            try {
-//                keywords = ParserUtil.parseKeywords(dishArgs.get());
-//            } catch (ParseException pe) {
-//                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-//                        MenuFindCommand.MESSAGE_USAGE), pe);
-//            }
-//            predicates.add(new DishIngredientContainsWordsPredicate(keywords));
-//        }
+        if (nameArgs.isPresent()) {
+            List<String> keywords;
+            try {
+                keywords = ParserUtil.parseKeywords(nameArgs.get());
+            } catch (ParseException pe) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        MenuFindCommand.MESSAGE_USAGE), pe);
+            }
+            predicates.add(new DishNameContainsWordsPredicate(keywords));
+        }
+
+        if (dishArg.isPresent()) {
+            String keyword;
+            try {
+                keyword = ParserUtil.parseKeyword(dishArg.get());
+            } catch (ParseException pe) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        MenuFindCommand.MESSAGE_USAGE), pe);
+            }
+            predicates.add(new DishContainsIngredientNamePredicate(keyword));
+        }
         return predicates;
     }
 }

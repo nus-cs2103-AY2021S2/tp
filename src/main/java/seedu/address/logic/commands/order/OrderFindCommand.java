@@ -1,4 +1,4 @@
-package seedu.address.logic.commands.menu;
+package seedu.address.logic.commands.order;
 
 import static java.util.Objects.requireNonNull;
 
@@ -9,44 +9,40 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.util.PredicateUtil;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.dish.Dish;
+import seedu.address.model.order.Order;
 
-public class MenuFindCommand extends Command {
-
+public class OrderFindCommand extends Command {
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all dishes whose names contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all orders whose customer's names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " tomato fish lemon";
+            + "Example: " + COMMAND_WORD + " n/alex bob";
 
-    private final Predicate<Dish> predicate;
+    private final Predicate<Order> predicate;
 
-    /**
-     * Construct command with a list of predicates to use
-     * @param predicates list of predicates to use
-     */
-    public MenuFindCommand(List<Predicate<Dish>> predicates) {
+    public OrderFindCommand(List<Predicate<Order>> predicates) {
         assert predicates != null && predicates.size() > 0;
         this.predicate = PredicateUtil.composePredicates(predicates);
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        model.updateFilteredDishList(predicate);
+        model.updateFilteredOrderList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_ITEMS_LISTED_OVERVIEW,
-                        model.getFilteredDishList().size(),
-                        Messages.ITEM_DISHES),
-                CommandResult.CRtype.DISH);
+                        model.getFilteredIngredientList().size(),
+                        Messages.ITEM_INGREDIENTS),
+                CommandResult.CRtype.INGREDIENT);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof MenuFindCommand // instanceof handles nulls
-                && predicate.equals(((MenuFindCommand) other).predicate)); // state check
+                || (other instanceof OrderFindCommand // instanceof handles nulls
+                && predicate.equals(((OrderFindCommand) other).predicate)); // state check
     }
 }
