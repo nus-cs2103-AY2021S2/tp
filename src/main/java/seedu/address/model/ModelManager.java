@@ -28,7 +28,7 @@ public class ModelManager implements Model {
 
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given eventBook and userPrefs.
      */
     public ModelManager(ReadOnlyUserPrefs userPrefs, ReadOnlyEventBook eventBook) {
         super();
