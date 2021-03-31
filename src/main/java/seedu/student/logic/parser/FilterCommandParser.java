@@ -32,11 +32,15 @@ public class FilterCommandParser implements Parser<FilterCommand> {
     public FilterCommand parse(String args) throws ParseException {
 
         String condition = args.trim();
-        if (condition.equals("unvaccinated")) {
+        final boolean IS_VACCINATED_STATUS_UPPERCASE = condition.equals(condition.toUpperCase());
+        final boolean INPUT_CONTAINS_UNDERSCORE = condition.contains("_");
+
+        if(condition.equals("not vaccinated")){
             condition = UNVACCINATED_STATUS;
         }
 
-        if (VACCINATED_STATUS.contains((condition.toUpperCase()))) {
+        if (VACCINATED_STATUS.contains((condition.toUpperCase()))
+                && !IS_VACCINATED_STATUS_UPPERCASE && !INPUT_CONTAINS_UNDERSCORE) {
             return new FilterCommand(new VaccinationStatusContainsKeywords(condition));
         } else if (FACULTY.contains(condition)) {
             return new FilterCommand(new FacultyContainsKeywords(condition));
