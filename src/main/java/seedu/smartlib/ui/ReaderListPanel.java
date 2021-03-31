@@ -30,6 +30,7 @@ public class ReaderListPanel extends UiPart<Region> {
         super(FXML);
         readerListView.setItems(readerList);
         readerListView.setCellFactory(listView -> new ReaderListViewCell());
+
     }
 
     /**
