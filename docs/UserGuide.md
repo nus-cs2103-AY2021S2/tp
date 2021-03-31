@@ -189,7 +189,7 @@ Format: `oedit INDEX [r/ROOM_NO] [t/TYPE] [g/TAG]`
 * `oedit` will be blocked if the room is occupied. Run `dealloc` to deallocate the room before making further edits.
 
 Example:
-* `oedit 1 g/SHN g/Blue` Edits the 1st room's tags to be to `SHN` and `Blue`.
+* `oedit 1 g/SHN g/Blue` Edits the 1st room's tags to `SHN` and `Blue`.
 
 
 ### Delete a room : `odel`
