@@ -29,10 +29,6 @@ public class EntryCard extends UiPart<Region> {
     @FXML
     private Label endDate;
     @FXML
-    private Label startTime;
-    @FXML
-    private Label endTime;
-    @FXML
     private FlowPane tags;
 
     /**
