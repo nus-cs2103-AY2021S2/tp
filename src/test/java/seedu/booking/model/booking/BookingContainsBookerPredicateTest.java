@@ -2,6 +2,7 @@ package seedu.booking.model.booking;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.booking.logic.commands.CommandTestUtil.NON_EXISTENT_EMAIL;
 import static seedu.booking.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.booking.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 
@@ -42,20 +43,16 @@ public class BookingContainsBookerPredicateTest {
 
     @Test
     public void test_bookingContainsBooker_returnsTrue() {
-        // One keyword
+        //matching booker
         BookingContainsBookerPredicate predicate = new BookingContainsBookerPredicate(new Email(VALID_EMAIL_AMY));
-        assertTrue(predicate.test(new BookingBuilder().wi;
+        assertTrue(predicate.test(new BookingBuilder().withEmail(VALID_EMAIL_AMY).build()));
     }
 
     @Test
     public void test_bookingDoesNotContainBooker_returnsFalse() {
-        // Zero keywords
-        BookingContainsBookerPredicate predicate = new BookingContainsBookerPredicate(new Email(VALID_EMAIL_AMY));
-        assertFalse(predicate.test(new BookingBuilder().withId(new Id(2)).build()));
-
-        // Non-matching keyword
-        predicate = new BookingContainsBookerPredicate(new Email(VALID_EMAIL_AMY));
-        assertFalse(predicate.test(new BookingBuilder().withId(new Id(2)).build()));
+        // Non-matching booker
+        BookingContainsBookerPredicate predicate = new BookingContainsBookerPredicate(new Email(NON_EXISTENT_EMAIL));
+        assertFalse(predicate.test(new BookingBuilder().withEmail(VALID_EMAIL_AMY).build()));
     }
 }
 

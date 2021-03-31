@@ -7,7 +7,6 @@ import java.time.LocalDate;
 import java.util.stream.Stream;
 
 import seedu.booking.logic.commands.FilterBookingByDateCommand;
-import seedu.booking.logic.commands.FilterBookingByVenueCommand;
 import seedu.booking.logic.parser.exceptions.ParseException;
 import seedu.booking.model.booking.BookingWithinDatePredicate;
 

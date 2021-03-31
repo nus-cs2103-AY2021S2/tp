@@ -6,7 +6,6 @@ import static seedu.booking.logic.parser.CliSyntax.PREFIX_EMAIL;
 import java.util.stream.Stream;
 
 import seedu.booking.logic.commands.FilterBookingByBookerCommand;
-import seedu.booking.logic.commands.FilterBookingByDateCommand;
 import seedu.booking.logic.parser.exceptions.ParseException;
 import seedu.booking.model.booking.BookingContainsBookerPredicate;
 import seedu.booking.model.person.Email;
