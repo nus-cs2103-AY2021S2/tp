@@ -181,9 +181,12 @@ To bulk edit, either do:
 
 ### Locating persons by name: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds persons whose field(s) contain any of the given keywords.
+<div markdown="block" class="alert alert-info">
 
-**Format**: `find KEYWORD [MORE_KEYWORDS]`
+**:information_source: Currently Searchable fields:** Name, Email, Tag, Remark<br>
+
+</div>
 
 <div markdown="block" class="alert alert-info">
 
@@ -191,7 +194,6 @@ Finds persons whose names contain any of the given keywords.
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
 * Words are partially matched. e.g `sam` will match `Samantha`
 * Similar words are matched. e.g `Shawn` with match `Shaun`
 * Partially similar words will also be matched as a result of the above. e.g `Ben` will match `Elizabeth`
@@ -204,13 +206,43 @@ Finds persons whose names contain any of the given keywords.
 
 ![Find Command UI](images/UG_Find%20Command.png)
 
+#### Searching all searchable fields
+
+**Format**: `find KEYWORD [MORE_KEYWORDS]`
+
 **Examples**:
 
 | Example           | Description                          |
 | ----------------- | ------------------------------------ |
-| `find John`       | returns `john` and `John Doe`        |
-| `find alex david` | returns `Alex Yeoh`, `David Li`      |
-| `find sam`        | returns `Samantha Koh`, `Sammy Leow` |
+| `find Jon`       | Returns any person that matches `jon` partially in any of the searchable fields<br> e.g. a person tagged as `Janitor` (`Jon` is similar to `Jan`) |
+| `find alex david` | Returns any person that matches `alex` or`david` partially in any of the searchable fields<br> e.g. people named `Alex Yeoh`, `David Li`      |
+
+#### Searching by specific fields
+
+**Format**: `find FIELD_PREFIX KEYWORD [MORE_KEYWORDS]`
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: Refer to [Field Summary table](#field-summary) for a full list prefixes.<br>
+**Currently Searchable fields:** Name, Email, Tag, Remark
+
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: You can only search 1 field at a time.<br>
+`find -n Alice -t HR` is an invalid command
+
+</div>
+
+**Examples**:
+
+| Example             | Description                                                                                               |
+| ------------------- | --------------------------------------------------------------------------------------------------------- |
+| `find -n Alice Ben` | Returns people named `Alicia Yen` (Similar) and `Benjamin Koh` (Partial)                                  |
+| `find -t Market`    | Returns people tagged with `Marketing` (Partial)                                                          |
+| `find -r Manager`   | Returns people with `Management Intern` (Similar) and `Human Resource Manager` (Partial) in their remarks |
+
 
 ### Deleting a person : `delete`
 
