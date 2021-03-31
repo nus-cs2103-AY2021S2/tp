@@ -82,6 +82,10 @@ public class EditIssueCommand extends Command {
         Issue issueToEdit = lastShownList.get(index.getZeroBased());
         Issue editedIssue = createEditedIssue(issueToEdit, editIssueDescriptor);
 
+        if (!issueToEdit.equals(editedIssue) && model.hasIssue(editedIssue)) {
+            throw new CommandException(MESSAGE_DUPLICATE_ISSUE);
+        }
+
         model.setIssue(issueToEdit, editedIssue);
         model.updateFilteredIssueList(PREDICATE_SHOW_ALL_ISSUES);
         model.commitAddressBook();

@@ -178,6 +178,11 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public boolean hasIssue(Issue issue) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public void deleteIssue(Issue target) {
         throw new AssertionError("This method should not be called.");
     }
@@ -194,6 +199,11 @@ public class ModelStub implements Model {
 
     @Override
     public void setIssue(Issue target, Issue editedIssue) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void closeIssue(Issue target) {
         throw new AssertionError("This method should not be called.");
     }
 

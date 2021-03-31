@@ -301,6 +301,13 @@ public class ModelManager implements Model {
     }
 
     // =========== Issues =====================================================================================
+
+    @Override
+    public boolean hasIssue(Issue issue) {
+        requireNonNull(issue);
+        return statefulAddressBook.hasIssue(issue);
+    }
+
     @Override
     public void deleteIssue(Issue target) {
         statefulAddressBook.removeIssue(target);
@@ -317,6 +324,13 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedIssue);
 
         statefulAddressBook.setIssue(target, editedIssue);
+    }
+
+    @Override
+    public void closeIssue(Issue target) {
+        Issue closedIssue = Issue.closeIssue(target);
+
+        setIssue(target, closedIssue);
     }
 
     // =========== Filtered Issue List Accessors =============================================================
@@ -381,7 +395,7 @@ public class ModelManager implements Model {
         userPrefs.deleteAlias(aliasName);
     }
 
-    //=========== Undo/Redo =============================================================
+    // =========== Undo/Redo =============================================================
     @Override
     public boolean canUndoAddressBook() {
         return statefulAddressBook.canUndo();

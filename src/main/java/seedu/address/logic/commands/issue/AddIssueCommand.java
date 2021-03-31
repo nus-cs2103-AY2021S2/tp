@@ -38,6 +38,7 @@ public class AddIssueCommand extends Command {
             + PREFIX_TAG + "HIGH";
 
     public static final String MESSAGE_SUCCESS = "New issue added: %1$s";
+    public static final String MESSAGE_DUPLICATE_ISSUE = "This isue already exists in SunRez";
 
     private final Issue toAdd;
 
@@ -52,6 +53,10 @@ public class AddIssueCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (model.hasIssue(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_ISSUE);
+        }
 
         model.addIssue(toAdd);
         model.commitAddressBook();

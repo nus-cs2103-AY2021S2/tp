@@ -50,9 +50,7 @@ public class CloseIssueCommand extends Command {
             throw new CommandException(MESSAGE_CLOSE_ISSUE_CLOSED);
         }
 
-        Issue closedIssue = Issue.closeIssue(issueToClose);
-
-        model.setIssue(issueToClose, closedIssue);
+        model.closeIssue(issueToClose);
 
         return new CommandResult(String.format(MESSAGE_CLOSE_ISSUE_SUCCESS, issueToClose));
     }

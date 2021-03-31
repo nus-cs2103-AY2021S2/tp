@@ -190,6 +190,11 @@ public interface Model {
     void appendCommandHistoryEntry(String commandText);
 
     /**
+     * Returns true if a issue with the same identity as {@code issue} exists in the address book.
+     */
+    boolean hasIssue(Issue issue);
+
+    /**
      * Deletes the given issue.
      * The issue must exist in SunRez.
      */
@@ -206,6 +211,12 @@ public interface Model {
      */
     void setIssue(Issue target, Issue editedIssue);
 
+
+    /**
+     * Closes the given issue.
+     * The issue must exist in SunRez.
+     */
+    void closeIssue(Issue target);
 
     /**
      * Returns an unmodifiable view of the filtered issue list.

@@ -18,14 +18,14 @@ public class TypicalIssues {
             .withRoomNumber("20-109")
             .withDescription("Flickering light")
             .withTimestamp("2021/03/20 8:35am")
-            .withStatus("pending")
+            .withStatus("closed")
             .withCategory("Electrical")
             .build();
     public static final Issue ISSUE_15_112 = new IssueBuilder()
             .withRoomNumber("15-112")
             .withDescription("Chair cylinder exploded")
             .withTimestamp("2020/12/11 6:53pm")
-            .withStatus("closed")
+            .withStatus("pending")
             .withCategory("Furniture")
             .build();
     public static final Issue ISSUE_04_119 = new IssueBuilder()
@@ -39,7 +39,7 @@ public class TypicalIssues {
             .withRoomNumber("08-104")
             .withDescription("Cockroach everywhere")
             .withTimestamp("2020/08/10 8:48am")
-            .withStatus("closed")
+            .withStatus("pending")
             .withCategory("Others")
             .build();
 

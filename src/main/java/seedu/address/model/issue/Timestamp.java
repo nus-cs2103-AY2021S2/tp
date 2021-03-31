@@ -7,6 +7,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.logging.Logger;
+
+import seedu.address.commons.core.LogsCenter;
 
 /**
  * Represents an issue's timestamp in SunRez. Guarantees: immutable; is valid as
@@ -20,6 +23,8 @@ public class Timestamp implements Comparable<Timestamp> {
 
     public static final String MESSAGE_CONSTRAINTS = "Timestamps should be in the format "
             + TIMESTAMP_PATTERN + ", and it should not be blank";
+
+    private static final Logger logger = LogsCenter.getLogger(Timestamp.class);
 
     public final LocalDateTime value;
 
@@ -50,6 +55,7 @@ public class Timestamp implements Comparable<Timestamp> {
             LocalDateTime.parse(test.toUpperCase(), FORMATTER);
             return true;
         } catch (DateTimeParseException dtpe) {
+            logger.warning("Invalid timestamp given: " + dtpe.getMessage());
             return false;
         }
     }
