@@ -14,13 +14,18 @@ import java.util.function.Predicate;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.group.Group;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonEvent;
+import seedu.address.model.person.PersonStreak;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -139,13 +144,63 @@ public class AddCommandTest {
         }
 
         @Override
+        public void addGroup(Group group) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasGroup(Group group) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteGroup(Group target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setGroup(Name groupName, Group editedGroup) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Person> getFilteredPersonList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableMap<Name, Group> getGroupMap() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<PersonEvent> getUpcomingDates() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateUpcomingDates() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Person> getDetailedPerson() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateDetailedPerson(Person personToDisplay) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<PersonStreak> getPersonStreaks() {
+            throw new AssertionError("This method should not be called");
         }
     }
 

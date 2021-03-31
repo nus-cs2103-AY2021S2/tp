@@ -1,10 +1,17 @@
 package seedu.address.commons.util;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
+import javafx.application.Application;
 
 /**
  * Writes and reads files
@@ -20,6 +27,7 @@ public class FileUtil {
     /**
      * Returns true if {@code path} can be converted into a {@code Path} via {@link Paths#get(String)},
      * otherwise returns false.
+     *
      * @param path A string representing the file path. Cannot be null.
      */
     public static boolean isValidPath(String path) {
@@ -33,6 +41,7 @@ public class FileUtil {
 
     /**
      * Creates a file if it does not exist along with its missing parent directories.
+     *
      * @throws IOException if the file or directory cannot be created.
      */
     public static void createIfMissing(Path file) throws IOException {
@@ -80,4 +89,62 @@ public class FileUtil {
         Files.write(file, content.getBytes(CHARSET));
     }
 
+    /**
+     * Assumes source file exists
+     */
+    public static void copyFile(Path source, Path destination) throws IOException {
+        createParentDirsOfFile(destination);
+        Files.copy(source, destination);
+    }
+
+    /**
+     * Extracts extension of file
+     */
+    public static String extractExtension(Path filePath) {
+        String fileName = filePath.toString();
+        return extractExtension(fileName);
+    }
+
+    /**
+     * Extracts extension of file
+     */
+    public static String extractExtension(String fileName) {
+        int lastIndexOf = fileName.lastIndexOf('.');
+        return fileName.substring(lastIndexOf);
+    }
+
+    /**
+     * Checks if filePath contains given extension
+     */
+    public static boolean hasExtension(Path filePath, String[] allowedExtensions) {
+        String ext = FileUtil.extractExtension(filePath);
+        return Arrays.stream(allowedExtensions)
+                .map(ext::equals)
+                .reduce(false, (x, y) -> x || y);
+    }
+
+    /**
+     * Checks if the file at the path given is below {@code maxSize}
+     */
+    public static boolean belowSizeLimit(Path path, long maxSize) throws IOException {
+        long bytes = Files.size(path);
+        return bytes <= maxSize;
+    }
+
+    /**
+     * Returns the content of a resource as String. Only works on text based resources.
+     */
+    public static String getResourceAsString(String resourceName) {
+        InputStream inputStream = Application.class.getResourceAsStream(resourceName);
+        return new BufferedReader(new InputStreamReader(inputStream))
+                .lines().collect(Collectors.joining("\n"));
+    }
+
+    public static String joinPath(String ... tokens) {
+        return Arrays.stream(tokens).collect(Collectors.joining(getSeparator()));
+    }
+
+    public static String getSeparator() {
+        return System.getProperty("file.separator");
+    }
 }

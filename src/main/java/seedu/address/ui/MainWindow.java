@@ -1,15 +1,18 @@
 package seedu.address.ui;
 
+import java.io.IOException;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import seedu.address.commons.core.DetailsPanelTab;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
@@ -32,6 +35,8 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+    private GroupListPanel groupListPanel;
+    private DetailsPanel detailsPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -45,10 +50,19 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane personListPanelPlaceholder;
 
     @FXML
+    private StackPane groupListPanelPlaceholder;
+
+    @FXML
+    private StackPane detailsPanelPlaceholder;
+
+    @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private Scene mainScene;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -66,6 +80,12 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
+        applyTheme();
+    }
+
+    public Scene getMainScene() {
+        return this.mainScene;
     }
 
     public Stage getPrimaryStage() {
@@ -78,6 +98,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -110,6 +131,12 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+        groupListPanel = new GroupListPanel(logic.getAddressBook().getGroupMap());
+        groupListPanelPlaceholder.getChildren().add(groupListPanel.getRoot());
+
+        detailsPanel = new DetailsPanel(logic.getUpcomingDates(), logic.getDetailedPerson(), logic.getPersonStreaks());
+        detailsPanelPlaceholder.getChildren().add(detailsPanel.getRoot());
+
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
@@ -156,11 +183,21 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     private void handleExit() {
-        GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
-                (int) primaryStage.getX(), (int) primaryStage.getY());
-        logic.setGuiSettings(guiSettings);
+        updateGuiSettings();
         helpWindow.hide();
         primaryStage.hide();
+    }
+
+    @FXML
+    private void applyTheme() {
+        this.getMainScene().getStylesheets().clear();
+        this.getMainScene().getStylesheets().add("file:///" + ThemeManager.getCssCacheUri());
+    }
+
+    private void updateGuiSettings() {
+        GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
+            (int) primaryStage.getX(), (int) primaryStage.getY(), ThemeManager.getThemePath());
+        logic.setGuiSettings(guiSettings);
     }
 
     public PersonListPanel getPersonListPanel() {
@@ -182,8 +219,24 @@ public class MainWindow extends UiPart<Stage> {
                 handleHelp();
             }
 
+            if (commandResult.isTheme()) {
+                applyTheme();
+                updateGuiSettings();
+                try {
+                    logic.saveFiles();
+                } catch (IOException ioException) {
+                    logger.warning("Unable to save theme");
+                }
+            }
+
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            DetailsPanelTab tab = commandResult.getNewTab();
+
+            if (tab != null) {
+                detailsPanel.toggleTab(tab);
             }
 
             return commandResult;

@@ -1,12 +1,16 @@
 package seedu.address.ui;
 
+import java.time.LocalDate;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
+import seedu.address.commons.util.DateUtil;
 import seedu.address.model.person.Person;
 
 /**
@@ -15,7 +19,6 @@ import seedu.address.model.person.Person;
 public class PersonCard extends UiPart<Region> {
 
     private static final String FXML = "PersonListCard.fxml";
-
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
      * As a consequence, UI elements' variable names cannot be set to such keywords
@@ -39,10 +42,19 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
+    private Label birthday;
+    @FXML
+    private Label debt;
+    @FXML
     private FlowPane tags;
+    @FXML
+    private StackPane picturePlaceholder;
+
+    @FXML
+    private Label goal;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code PersonCard} with the given {@code Person} and index to display.
      */
     public PersonCard(Person person, int displayedIndex) {
         super(FXML);
@@ -52,9 +64,29 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
+        birthday.setText(person.getBirthday().toUi());
+        debt.setText("Debt: " + person.getDebt().toUi());
+        String goalText;
+        if (person.getGoal().isNoneFrequency()) {
+            goalText = "No goal set for this person";
+        } else {
+            LocalDate deadline = person.getGoalDeadline(LocalDate.now());
+            if (deadline.getYear() == DateUtil.ZERO_DAY.getYear()) {
+                goalText = "Yet to meet this person!";
+            } else if (deadline.plusDays(1).isAfter(LocalDate.now())) {
+                goalText = String.format("Deadline for goal: %s", DateUtil.toUi(deadline));
+            } else {
+                goalText = String.format("Missed the deadline on :( %s", DateUtil.toUi(deadline));
+            }
+        }
+        goal.setText(goalText);
+
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+
+        ProfilePicture profilePicture = new ProfilePicture(person, new Insets(5, 5, 5, 5));
+        picturePlaceholder.getChildren().add(profilePicture.getRoot());
     }
 
     @Override

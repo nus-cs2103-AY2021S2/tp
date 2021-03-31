@@ -12,13 +12,19 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
+import seedu.address.model.group.Group;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonEvent;
+import seedu.address.model.person.PersonStreak;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.testutil.PersonBuilder;
 
@@ -56,7 +62,7 @@ public class AddressBookTest {
 
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasPerson(null));
+        assertThrows(NullPointerException.class, () -> addressBook.hasPerson((Person) null));
     }
 
     @Test
@@ -88,6 +94,9 @@ public class AddressBookTest {
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
+        private final ObservableMap<Name, Group> groups = FXCollections.observableMap(new HashMap<>());
+        private final ObservableList<PersonEvent> personEvents = FXCollections.observableArrayList();
+        private final ObservableList<PersonStreak> personStreaks = FXCollections.observableArrayList();
 
         AddressBookStub(Collection<Person> persons) {
             this.persons.setAll(persons);
@@ -96,6 +105,21 @@ public class AddressBookTest {
         @Override
         public ObservableList<Person> getPersonList() {
             return persons;
+        }
+
+        @Override
+        public ObservableMap<Name, Group> getGroupMap() {
+            return groups;
+        }
+
+        @Override
+        public ObservableList<PersonEvent> getUpcomingDates() {
+            return personEvents;
+        }
+
+        @Override
+        public ObservableList<PersonStreak> getPersonStreaks() {
+            return personStreaks;
         }
     }
 
