@@ -168,18 +168,18 @@ Examples:
 
 ### Deleting an order : `delete`
 
-Deletes the specified order from the CakeCollate database.
+Deletes the specified orders from the CakeCollate database.
 
-Format: `delete ID...`
+Format: `delete INDEX...`
 
-* Deletes the orders with the specified ids.
-* The `ID` refers to the order `ID` number shown in the list of orders.
-* One or more ids can be entered.
-* The `ID` **must be valid**.
+* Deletes the orders with the specified indices.
+* The `INDEX` refers to the order `INDEX` number shown in the list of orders.
+* One or more indices can be entered.
+* The `INDEX` **must be valid**.
 
 Examples:
-* `list` followed by `delete 2` deletes the order with `ID` 2 from the CakeCollate database.
-* `delete 2 3` deletes the orders with ids 2 and 3 from the CakeCollate database.
+* `delete 2` deletes the order with `INDEX` 2 from the CakeCollate database.
+* `delete 2 3` deletes the orders with indices 2 and 3 from the CakeCollate database.
 
 ### Receiving reminders for orders : `remind`
 
@@ -265,6 +265,31 @@ Deletes all existing orders in the CakeCollate database.
 Warning: this is an undo-able operation.
 
 Format: `clear`
+
+### Adding order items: `addItem`
+
+Adds an order item to the order items table on the right side of the GUI.
+
+Format: `addItem ORDER_ITEM_DESCRIPTION`
+
+* The `ORDER_ITEM_DESCRIPTION` can only contain alphanumeric characters and ".
+
+Examples:
+* `addItem 2 x Chocolate Cake` adds an order item with the specified description to the order items table.
+
+### Deleting order items: 'deleteItem'
+
+Deletes order items from the order items table based on the specified list of indices.
+
+Format: `deleteItem ORDER_ITEM_INDEX...`
+
+* The `ORDER_ITEM_INDEX` refers to the order `ORDER_ITEM_INDEX` number shown in the order items table.
+* One or more order item indices can be entered.
+* The `ORDER_ITEM_INDEX` **must be valid**.
+
+Examples:
+*  delete 2` deletes the order items with `ORDER_ITEM_INDEX` 2 from the order items table.
+* `delete 2 3` deletes the order items with indices 2 and 3 from the order items table.
 
 ### Exiting the program : `exit`
 
