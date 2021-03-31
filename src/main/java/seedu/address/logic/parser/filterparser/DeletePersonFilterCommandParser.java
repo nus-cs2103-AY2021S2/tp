@@ -26,23 +26,23 @@ import seedu.address.model.filter.AddressFilter;
 import seedu.address.model.filter.EmailFilter;
 import seedu.address.model.filter.GenderFilter;
 import seedu.address.model.filter.NameFilter;
-import seedu.address.model.filter.PersonFilter;
 import seedu.address.model.filter.PhoneFilter;
 import seedu.address.model.filter.SubjectExperienceFilter;
 import seedu.address.model.filter.SubjectLevelFilter;
 import seedu.address.model.filter.SubjectNameFilter;
 import seedu.address.model.filter.SubjectQualificationFilter;
 import seedu.address.model.filter.SubjectRateFilter;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Gender;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.filter.TutorFilter;
 import seedu.address.model.subject.SubjectExperience;
 import seedu.address.model.subject.SubjectLevel;
 import seedu.address.model.subject.SubjectName;
 import seedu.address.model.subject.SubjectQualification;
 import seedu.address.model.subject.SubjectRate;
+import seedu.address.model.tutor.Address;
+import seedu.address.model.tutor.Email;
+import seedu.address.model.tutor.Gender;
+import seedu.address.model.tutor.Name;
+import seedu.address.model.tutor.Phone;
 
 /**
  * Parses input arguments and creates a new DeletePersonFilterCommand object
@@ -116,7 +116,7 @@ public class DeletePersonFilterCommandParser implements Parser<DeletePersonFilte
         // TODO: Throw ParseException
         // TODO: Maybe switch to using ParserUtil
 
-        PersonFilter personFilter = new PersonFilter(nameFilters,
+        TutorFilter tutorFilter = new TutorFilter(nameFilters,
                 genderFilters,
                 phoneFilters,
                 emailFilters,
@@ -127,6 +127,6 @@ public class DeletePersonFilterCommandParser implements Parser<DeletePersonFilte
                 subjectExperienceFilters,
                 subjectQualificationFilters);
 
-        return new DeletePersonFilterCommand(personFilter);
+        return new DeletePersonFilterCommand(tutorFilter);
     }
 }

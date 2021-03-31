@@ -16,9 +16,9 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentDateTime;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Name;
 import seedu.address.model.subject.SubjectName;
+import seedu.address.model.tutor.Address;
+import seedu.address.model.tutor.Name;
 
 /**
  * Parses input arguments and creates a new AddCommand object

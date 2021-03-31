@@ -1,10 +1,10 @@
 package seedu.address.logic.parser.favouriteparser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.tutorcommands.EditCommand.EditPersonDescriptor;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.favouritecommands.FavouriteCommand;
+import seedu.address.logic.commands.tutorcommands.EditCommand;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -26,9 +26,9 @@ public class FavouriteCommandParser implements Parser<FavouriteCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FavouriteCommand.MESSAGE_USAGE));
         }
 
-        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
-        editPersonDescriptor.setIsFavourite(true);
+        EditCommand.EditTutorDescriptor editTutorDescriptor = new EditCommand.EditTutorDescriptor();
+        editTutorDescriptor.setIsFavourite(true);
 
-        return new FavouriteCommand(index, editPersonDescriptor);
+        return new FavouriteCommand(index, editTutorDescriptor);
     }
 }

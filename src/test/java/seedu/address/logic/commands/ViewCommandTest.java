@@ -10,9 +10,9 @@ import static seedu.address.testutil.TypicalBudgets.getTypicalBudgetBook;
 import static seedu.address.testutil.TypicalGrades.getTypicalGradeBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalReminders.getTypicalReminderTracker;
 import static seedu.address.testutil.TypicalSchedules.getTypicalScheduleTracker;
+import static seedu.address.testutil.TypicalTutors.getTypicalTutorBook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -23,8 +23,8 @@ import seedu.address.logic.commands.tutorcommands.ViewCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.ViewTutorPredicate;
+import seedu.address.model.tutor.Tutor;
+import seedu.address.model.tutor.ViewTutorPredicate;
 
 public class ViewCommandTest {
 
@@ -33,46 +33,47 @@ public class ViewCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs(),
+
+        model = new ModelManager(getTypicalTutorBook(), new UserPrefs(),
                 getTypicalAppointmentBook(), getTypicalBudgetBook(), getTypicalGradeBook(),
                 getTypicalScheduleTracker(), getTypicalReminderTracker());
 
         expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(),
                 getTypicalAppointmentBook(), getTypicalBudgetBook(), getTypicalGradeBook(),
-                getTypicalScheduleTracker(), getTypicalReminderTracker());
+                getTypicalScheduleTracker(), getTypicalReminderTracker(), getTypicalReminderTracker());
     }
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Person tutorToView = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Tutor tutorToView = model.getFilteredTutorList().get(INDEX_FIRST_PERSON.getZeroBased());
         ViewTutorPredicate predicate = new ViewTutorPredicate(tutorToView);
         ViewCommand viewCommand = new ViewCommand(INDEX_FIRST_PERSON);
 
         String expectedMessage = String.format(ViewCommand.MESSAGE_VIEW_TUTOR_SUCCESS,
                 tutorToView.getName());
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredTutorList(predicate);
         assertCommandSuccess(viewCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredTutorList().size() + 1);
         ViewCommand viewCommand = new ViewCommand(outOfBoundIndex);
 
-        assertCommandFailure(viewCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(viewCommand, model, Messages.MESSAGE_INVALID_TUTOR_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_validIndexFilteredList_success() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
-        Person tutorToView = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Tutor tutorToView = model.getFilteredTutorList().get(INDEX_FIRST_PERSON.getZeroBased());
         ViewTutorPredicate predicate = new ViewTutorPredicate(tutorToView);
         ViewCommand viewCommand = new ViewCommand(INDEX_FIRST_PERSON);
 
         String expectedMessage = String.format(ViewCommand.MESSAGE_VIEW_TUTOR_SUCCESS,
                 tutorToView.getName());
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredTutorList(predicate);
         assertCommandSuccess(viewCommand, model, expectedMessage, expectedModel);
     }
 
@@ -82,11 +83,11 @@ public class ViewCommandTest {
 
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getTutorBook().getTutorList().size());
 
         ViewCommand viewCommand = new ViewCommand(outOfBoundIndex);
 
-        assertCommandFailure(viewCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(viewCommand, model, Messages.MESSAGE_INVALID_TUTOR_DISPLAYED_INDEX);
     }
 
     @Test

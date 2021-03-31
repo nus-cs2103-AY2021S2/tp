@@ -16,7 +16,7 @@ import seedu.address.model.ReadOnlyAppointmentBook;
 
 public class JsonAppointmentBookStorage implements AppointmentBookStorage {
 
-    private static final Logger logger = LogsCenter.getLogger(JsonAddressBookStorage.class);
+    private static final Logger logger = LogsCenter.getLogger(JsonTutorBookStorage.class);
 
     private Path filePath;
 

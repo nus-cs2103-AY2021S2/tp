@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.tutorcommands.FindCommand;
 import seedu.address.logic.parser.tutorparser.FindCommandParser;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.tutor.NameContainsKeywordsPredicate;
 
 public class FindCommandParserTest {
 

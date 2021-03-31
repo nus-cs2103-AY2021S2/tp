@@ -1,14 +1,15 @@
 package seedu.address.logic.parser.tutorparser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.tutorcommands.EditCommand.EditPersonDescriptor;
+import static seedu.address.logic.commands.tutorcommands.EditCommand.EditTutorDescriptor;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.tutorcommands.DeleteNoteCommand;
+import seedu.address.logic.commands.tutorcommands.EditCommand;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Notes;
+import seedu.address.model.tutor.Notes;
 
 /**
  * Parses input arguments and creates a new DeleteNoteCommand object
@@ -36,9 +37,9 @@ public class DeleteNoteCommandParser implements Parser<DeleteNoteCommand> {
 
         Notes notes = new Notes();
 
-        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
-        editPersonDescriptor.setNotes(notes);
+        EditTutorDescriptor editTutorDescriptor = new EditCommand.EditTutorDescriptor();
+        editTutorDescriptor.setNotes(notes);
 
-        return new DeleteNoteCommand(index, editPersonDescriptor);
+        return new DeleteNoteCommand(index, editTutorDescriptor);
     }
 }

@@ -9,8 +9,8 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.ViewTutorPredicate;
+import seedu.address.model.tutor.Tutor;
+import seedu.address.model.tutor.ViewTutorPredicate;
 
 /**
  * List all Tutors with notes
@@ -27,11 +27,11 @@ public class ListNoteCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        List<Person> tutorWithNotesList = new ArrayList<>();
+        List<Tutor> tutorWithNotesList = new ArrayList<>();
 
-        List<Person> personList = model.getAddressBook().getPersonList();
+        List<Tutor> tutorList = model.getTutorBook().getTutorList();
 
-        for (Person p: personList) {
+        for (Tutor p: tutorList) {
             if (p.hasNotes()) {
                 tutorWithNotesList.add(p);
             }
@@ -39,7 +39,7 @@ public class ListNoteCommand extends Command {
 
         ViewTutorPredicate predicate = new ViewTutorPredicate(tutorWithNotesList);
 
-        model.updateFilteredPersonList(predicate);
+        model.updateFilteredTutorList(predicate);
 
         return new CommandResult(MESSAGE_SUCCESS);
 

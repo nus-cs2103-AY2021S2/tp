@@ -9,7 +9,7 @@ import seedu.address.commons.exportutils.ExportUtils;
 import seedu.address.commons.exportutils.exceptions.ExportException;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.tutor.Tutor;
 
 /**
  * Exports a text file with details of a Tutor in the TutorBook
@@ -40,16 +40,16 @@ public class ExportCommand extends Command {
 
         requireNonNull(model);
 
-        List<Person> tutorList = model.getFilteredPersonList();
+        List<Tutor> tutorList = model.getFilteredTutorList();
 
         if (targetIndex.getZeroBased() >= tutorList.size()) {
             throw new CommandException(String.format(MESSAGE_INVALID_INDEX, targetIndex.getZeroBased()));
         }
 
-        Person person = tutorList.get(targetIndex.getZeroBased());
+        Tutor tutor = tutorList.get(targetIndex.getZeroBased());
 
         try {
-            String feedback = ExportUtils.exportTutor(person);
+            String feedback = ExportUtils.exportTutor(tutor);
 
             return new CommandResult(String.format(MESSAGE_SUCCESS, feedback));
         } catch (ExportException e) {

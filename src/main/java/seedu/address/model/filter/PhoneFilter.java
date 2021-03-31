@@ -5,7 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.util.function.Predicate;
 
-import seedu.address.model.person.Phone;
+import seedu.address.model.tutor.Phone;
 
 public class PhoneFilter implements Predicate<Phone> {
     public static final String MESSAGE_CONSTRAINTS =

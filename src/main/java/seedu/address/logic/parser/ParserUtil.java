@@ -16,12 +16,6 @@ import seedu.address.model.common.Description;
 import seedu.address.model.common.Title;
 import seedu.address.model.grade.GradeEnum;
 import seedu.address.model.grade.GradedItem;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Gender;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Notes;
-import seedu.address.model.person.Phone;
 import seedu.address.model.reminder.ReminderDate;
 import seedu.address.model.subject.SubjectExperience;
 import seedu.address.model.subject.SubjectLevel;
@@ -31,6 +25,12 @@ import seedu.address.model.subject.SubjectQualification;
 import seedu.address.model.subject.SubjectRate;
 import seedu.address.model.subject.TutorSubject;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tutor.Address;
+import seedu.address.model.tutor.Email;
+import seedu.address.model.tutor.Gender;
+import seedu.address.model.tutor.Name;
+import seedu.address.model.tutor.Notes;
+import seedu.address.model.tutor.Phone;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.

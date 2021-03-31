@@ -16,27 +16,27 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.tutorcommands.AddCommand;
-import seedu.address.model.AddressBook;
 import seedu.address.model.BudgetBook;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyAppointmentBook;
 import seedu.address.model.ReadOnlyGradeBook;
+import seedu.address.model.ReadOnlyTutorBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.TutorBook;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.budget.Budget;
 import seedu.address.model.event.Event;
 import seedu.address.model.filter.AppointmentFilter;
-import seedu.address.model.filter.PersonFilter;
+import seedu.address.model.filter.TutorFilter;
 import seedu.address.model.grade.Grade;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
 import seedu.address.model.reminder.ReadOnlyReminderTracker;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.schedule.ReadOnlyScheduleTracker;
 import seedu.address.model.schedule.Schedule;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.model.tutor.Name;
+import seedu.address.model.tutor.Tutor;
+import seedu.address.testutil.TutorBuilder;
 
 public class AddCommandTest {
 
@@ -48,27 +48,27 @@ public class AddCommandTest {
     @Test
     public void execute_personAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().build();
+        Tutor validTutor = new TutorBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
+        CommandResult commandResult = new AddCommand(validTutor).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validTutor), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validTutor), modelStub.personsAdded);
     }
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Person validPerson = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
+        Tutor validTutor = new TutorBuilder().build();
+        AddCommand addCommand = new AddCommand(validTutor);
+        ModelStub modelStub = new ModelStubWithPerson(validTutor);
 
         assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
+        Tutor alice = new TutorBuilder().withName("Alice").build();
+        Tutor bob = new TutorBuilder().withName("Bob").build();
         AddCommand addAliceCommand = new AddCommand(alice);
         AddCommand addBobCommand = new AddCommand(bob);
 
@@ -114,12 +114,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getTutorBookFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setTutorBookFilePath(Path tutorBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -129,17 +129,17 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addPerson(Person person) {
+        public void addTutor(Tutor tutor) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyTutorBook getTutorBook() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setTutorBook(ReadOnlyTutorBook newData) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -189,22 +189,22 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Person person) {
+        public boolean hasTutor(Tutor tutor) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deletePerson(Person target) {
+        public void deleteTutor(Tutor target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(Person target, Person editedPerson) {
+        public void setTutor(Tutor target, Tutor editedTutor) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Person> getFilteredPersonList() {
+        public ObservableList<Tutor> getFilteredTutorList() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -219,7 +219,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
+        public void updateFilteredTutorList(Predicate<Tutor> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -317,22 +317,22 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasPersonFilter(PersonFilter personFilter) {
+        public boolean hasTutorFilter(TutorFilter tutorFilter) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void addPersonFilter(PersonFilter personFilter) {
+        public void addTutorFilter(TutorFilter tutorFilter) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void removePersonFilter(PersonFilter personFilter) {
+        public void removeTutorFilter(TutorFilter tutorFilter) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<String> getPersonFilterStringList() {
+        public ObservableList<String> getTutorFilterStringList() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -450,17 +450,17 @@ public class AddCommandTest {
      * A Model stub that contains a single person.
      */
     private class ModelStubWithPerson extends ModelStub {
-        private final Person person;
+        private final Tutor tutor;
 
-        ModelStubWithPerson(Person person) {
-            requireNonNull(person);
-            this.person = person;
+        ModelStubWithPerson(Tutor tutor) {
+            requireNonNull(tutor);
+            this.tutor = tutor;
         }
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
+        public boolean hasTutor(Tutor tutor) {
+            requireNonNull(tutor);
+            return this.tutor.isSameTutor(tutor);
         }
     }
 
@@ -468,23 +468,23 @@ public class AddCommandTest {
      * A Model stub that always accept the person being added.
      */
     private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
+        final ArrayList<Tutor> personsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+        public boolean hasTutor(Tutor tutor) {
+            requireNonNull(tutor);
+            return personsAdded.stream().anyMatch(tutor::isSameTutor);
         }
 
         @Override
-        public void addPerson(Person person) {
-            requireNonNull(person);
-            personsAdded.add(person);
+        public void addTutor(Tutor tutor) {
+            requireNonNull(tutor);
+            personsAdded.add(tutor);
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyTutorBook getTutorBook() {
+            return new TutorBook();
         }
     }
 

@@ -6,13 +6,14 @@ import static seedu.address.testutil.TypicalGrades.getTypicalGradeBook;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalReminders.getTypicalReminderTracker;
 import static seedu.address.testutil.TypicalSchedules.getTypicalScheduleTracker;
+import static seedu.address.testutil.TypicalTutors.getTypicalTutorBook;
 
 import seedu.address.model.BudgetBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyAppointmentBook;
 import seedu.address.model.ReadOnlyGradeBook;
+import seedu.address.model.ReadOnlyTutorBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.reminder.ReadOnlyReminderTracker;
 import seedu.address.model.schedule.ReadOnlyScheduleTracker;
@@ -26,7 +27,7 @@ public class ModelManagerBuilder {
      * Returns an {@code ModelManager} with all the typical books/trackers.
      */
     public static ModelManager getModelManager() {
-        return new ModelManager(getTypicalAddressBook(), new UserPrefs(),
+        return new ModelManager(getTypicalTutorBook(), new UserPrefs(),
                 getTypicalAppointmentBook(), getTypicalBudgetBook(), getTypicalGradeBook(),
                 getTypicalScheduleTracker(), getTypicalReminderTracker());
     }
@@ -35,7 +36,7 @@ public class ModelManagerBuilder {
      * Returns an {@code ModelManager} with values copied from another Model.
      */
     public static ModelManager getModelManager(Model model, ModelType modelType) {
-        ReadOnlyAddressBook ab = getTypicalAddressBook();
+        ReadOnlyTutorBook ab = getTypicalTutorBook();
         ReadOnlyAppointmentBook apb = getTypicalAppointmentBook();
         BudgetBook bb = getTypicalBudgetBook();
         ReadOnlyGradeBook gb = getTypicalGradeBook();
@@ -44,7 +45,7 @@ public class ModelManagerBuilder {
 
         switch (modelType) {
         case ADDRESSBOOK:
-            ab = model.getAddressBook();
+            ab = model.getTutorBook();
             break;
         case APPOINTMENTBOOK:
             apb = model.getAppointmentBook();

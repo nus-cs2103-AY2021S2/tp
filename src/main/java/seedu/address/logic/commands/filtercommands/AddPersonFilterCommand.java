@@ -17,7 +17,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.filter.PersonFilter;
+import seedu.address.model.filter.TutorFilter;
 
 /**
  * Adds tutor filters.
@@ -46,32 +46,32 @@ public class AddPersonFilterCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New tutor filter added: %1$s";
     public static final String MESSAGE_DUPLICATE = "A filter in the tutor filter already exists";
 
-    private final PersonFilter personFilter;
+    private final TutorFilter tutorFilter;
 
     /**
      * Creates a AddPersonFilterCommand.
      */
-    public AddPersonFilterCommand(PersonFilter personFilter) {
-        requireNonNull(personFilter);
-        this.personFilter = personFilter;
+    public AddPersonFilterCommand(TutorFilter tutorFilter) {
+        requireNonNull(tutorFilter);
+        this.tutorFilter = tutorFilter;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasPersonFilter(personFilter)) {
+        if (model.hasTutorFilter(tutorFilter)) {
             throw new CommandException(MESSAGE_DUPLICATE);
         }
 
-        model.addPersonFilter(personFilter);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, personFilter));
+        model.addTutorFilter(tutorFilter);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, tutorFilter));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddPersonFilterCommand // instanceof handles nulls
-                && personFilter.equals(((AddPersonFilterCommand) other).personFilter));
+                && tutorFilter.equals(((AddPersonFilterCommand) other).tutorFilter));
     }
 }

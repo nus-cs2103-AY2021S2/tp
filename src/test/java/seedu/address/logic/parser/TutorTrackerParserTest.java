@@ -18,15 +18,14 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.tutorcommands.AddCommand;
 import seedu.address.logic.commands.tutorcommands.DeleteCommand;
 import seedu.address.logic.commands.tutorcommands.EditCommand;
-import seedu.address.logic.commands.tutorcommands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.tutorcommands.FindCommand;
 import seedu.address.logic.commands.tutorcommands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.Person;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
-import seedu.address.testutil.PersonBuilder;
-import seedu.address.testutil.PersonUtil;
+import seedu.address.model.tutor.NameContainsKeywordsPredicate;
+import seedu.address.model.tutor.Tutor;
+import seedu.address.testutil.EditTutorDescriptorBuilder;
+import seedu.address.testutil.TutorBuilder;
+import seedu.address.testutil.TutorUtil;
 
 public class TutorTrackerParserTest {
 
@@ -34,9 +33,9 @@ public class TutorTrackerParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Person person = new PersonBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
-        assertEquals(new AddCommand(person), command);
+        Tutor tutor = new TutorBuilder().build();
+        AddCommand command = (AddCommand) parser.parseCommand(TutorUtil.getAddCommand(tutor));
+        assertEquals(new AddCommand(tutor), command);
     }
 
     @Test
@@ -48,10 +47,10 @@ public class TutorTrackerParserTest {
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Person person = new PersonBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
+        Tutor tutor = new TutorBuilder().build();
+        EditCommand.EditTutorDescriptor descriptor = new EditTutorDescriptorBuilder(tutor).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+                + INDEX_FIRST_PERSON.getOneBased() + " " + TutorUtil.getEditTutorDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
 

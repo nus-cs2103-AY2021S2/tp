@@ -7,13 +7,13 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyTutorBook;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.event.Event;
 import seedu.address.model.grade.Grade;
-import seedu.address.model.person.Person;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.schedule.Schedule;
+import seedu.address.model.tutor.Tutor;
 
 /**
  * API of the Logic component
@@ -32,14 +32,14 @@ public interface Logic {
     /**
      * Returns the AddressBook.
      *
-     * @see seedu.address.model.Model#getAddressBook()
+     * @see seedu.address.model.Model#getTutorBook()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyTutorBook getAddressBook();
 
     /**
      * Returns an unmodifiable view of the filtered list of persons
      */
-    ObservableList<Person> getFilteredPersonList();
+    ObservableList<Tutor> getFilteredPersonList();
 
     /**
      * Returns an unmodifiable view of the filtered list of appointments

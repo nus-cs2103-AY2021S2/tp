@@ -10,14 +10,14 @@ import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.budget.Budget;
 import seedu.address.model.event.Event;
 import seedu.address.model.filter.AppointmentFilter;
-import seedu.address.model.filter.PersonFilter;
+import seedu.address.model.filter.TutorFilter;
 import seedu.address.model.grade.Grade;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
 import seedu.address.model.reminder.ReadOnlyReminderTracker;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.schedule.ReadOnlyScheduleTracker;
 import seedu.address.model.schedule.Schedule;
+import seedu.address.model.tutor.Name;
+import seedu.address.model.tutor.Tutor;
 
 /**
  * The API of the Model component.
@@ -26,7 +26,7 @@ public interface Model {
     /**
      * {@code Predicate} that always evaluate to true
      */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Tutor> PREDICATE_SHOW_ALL_TUTORS = unused -> true;
     Predicate<Appointment> PREDICATE_SHOW_ALL_APPOINTMENT = unused -> true;
     Predicate<Grade> PREDICATE_SHOW_ALL_GRADE = unused -> true;
     Predicate<Schedule> PREDICATE_SHOW_ALL_SCHEDULE = unused -> true;
@@ -54,24 +54,24 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' tutor book file path.
      */
-    Path getAddressBookFilePath();
+    Path getTutorBookFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' tutor book file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setTutorBookFilePath(Path tutorBookFilePath);
 
     /**
-     * Returns the AddressBook
+     * Returns the TutorBook
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyTutorBook getTutorBook();
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces tutor book data with the data in {@code tutorBook}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setTutorBook(ReadOnlyTutorBook tutorBook);
 
     /**
      * Returns the Appointment book
@@ -105,14 +105,15 @@ public interface Model {
 
     /**
      * Sets grade book file path.
+     *
      * @param gradeBookFilePath To be supplied by user
      */
     void setGradeBookFilePath(Path gradeBookFilePath);
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a tutor with the same identity as {@code tutor} exists in the tutor book.
      */
-    boolean hasPerson(Person person);
+    boolean hasTutor(Tutor tutor);
 
     /**
      * @param name Name of tutor to search for.
@@ -121,28 +122,28 @@ public interface Model {
     boolean hasTutorByName(Name name);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Deletes the given tutor.
+     * The tutor must exist in the tutor book.
      */
-    void deletePerson(Person target);
+    void deleteTutor(Tutor target);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Adds the given tutor.
+     * {@code tutor} must not already exist in the tutor book.
      */
-    void addPerson(Person person);
+    void addTutor(Tutor tutor);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * Replaces the given tutor {@code target} with {@code editedTutor}.
+     * {@code target} must exist in the tutor book.
+     * The tutor identity of {@code editedTutor} must not be the same as another existing tutor in the tutor book.
      */
-    void setPerson(Person target, Person editedPerson);
+    void setTutor(Tutor target, Tutor editedTutor);
 
     /**
-     * Returns an unmodifiable view of the filtered person list
+     * Returns an unmodifiable view of the filtered tutor list
      */
-    ObservableList<Person> getFilteredPersonList();
+    ObservableList<Tutor> getFilteredTutorList();
 
     /**
      * Returns an unmodifiable view of the filtered appointment list
@@ -155,11 +156,11 @@ public interface Model {
     ObservableList<Grade> getFilteredGradeList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered tutor list to filter by the given {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void updateFilteredTutorList(Predicate<Tutor> predicate);
 
     /**
      * Updates the filter of the filtered appointment list to filter by the given {@code predicate}.
@@ -247,6 +248,7 @@ public interface Model {
 
     /**
      * Edited budget with the given budget.
+     *
      * @param budget Budget to update to.
      */
     void editBudget(Budget budget);
@@ -257,9 +259,10 @@ public interface Model {
     void deleteBudget();
 
 
-    /** Returns true if a grade with the same identity as {@code grade} exists in the
-    * grade book.
-    */
+    /**
+     * Returns true if a grade with the same identity as {@code grade} exists in the
+     * grade book.
+     */
     boolean hasGrade(Grade grade);
 
     /**
@@ -289,31 +292,31 @@ public interface Model {
     void removeGradeIndex(int indexToRemove);
 
     /**
-     * Checks if any of the filters are in person filter.
+     * Checks if any of the filters are in tutor filter.
      *
-     * @param personFilter Filters to check for inside model's person filter.
-     * @return true if model's person filter contains a filter that was passed in.
+     * @param tutorFilter Filters to check for inside model's tutor filter.
+     * @return true if model's tutor filter contains a filter that was passed in.
      */
-    boolean hasPersonFilter(PersonFilter personFilter);
+    boolean hasTutorFilter(TutorFilter tutorFilter);
 
     /**
-     * Adds filters to person filter.
+     * Adds filters to tutor filter.
      *
-     * @param personFilter Filters to add to model's person filter.
+     * @param tutorFilter Filters to add to model's tutor filter.
      */
-    void addPersonFilter(PersonFilter personFilter);
+    void addTutorFilter(TutorFilter tutorFilter);
 
     /**
-     * Removes filters from person filter.
+     * Removes filters from tutor filter.
      *
-     * @param personFilter Filters to remove from model's person filter.
+     * @param tutorFilter Filters to remove from model's tutor filter.
      */
-    void removePersonFilter(PersonFilter personFilter);
+    void removeTutorFilter(TutorFilter tutorFilter);
 
     /**
-     * Returns an unmodifiable view of the person filter string list.
+     * Returns an unmodifiable view of the tutor filter string list.
      */
-    ObservableList<String> getPersonFilterStringList();
+    ObservableList<String> getTutorFilterStringList();
 
     /**
      * Checks if any of the filters are in appointment filter.
@@ -343,12 +346,12 @@ public interface Model {
     ObservableList<String> getAppointmentFilterStringList();
 
     /**
-     * Returns the AddressBook
+     * Returns the TutorBook
      */
     ReadOnlyScheduleTracker getScheduleTracker();
 
     /**
-     * Replaces address book data with the data in {@code scheduleTracker}.
+     * Replaces tutor book data with the data in {@code scheduleTracker}.
      */
     void setScheduleTracker(ReadOnlyScheduleTracker scheduleTracker);
 

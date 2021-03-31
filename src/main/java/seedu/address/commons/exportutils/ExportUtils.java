@@ -5,9 +5,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import seedu.address.commons.exportutils.exceptions.ExportException;
-import seedu.address.model.person.Person;
 import seedu.address.model.subject.TutorSubject;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tutor.Tutor;
 
 /**
  * Export utilities to help export tutor details
@@ -19,7 +19,7 @@ public class ExportUtils {
     /**
      * Generates and exports tutor details into a text file and saves it
      */
-    public static String exportTutor(Person tutor) throws ExportException {
+    public static String exportTutor(Tutor tutor) throws ExportException {
 
         if (!directory.exists()) {
             if (!directory.mkdir()) {
@@ -59,7 +59,7 @@ public class ExportUtils {
      *
      * @param tutor to be converted
      */
-    private static String generateText(Person tutor) {
+    private static String generateText(Tutor tutor) {
 
         StringBuilder text = new StringBuilder();
         text.append("Name:     ").append(tutor.getName().toString()).append("\n");
