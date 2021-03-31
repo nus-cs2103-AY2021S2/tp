@@ -1,8 +1,8 @@
 package seedu.address.logic.commands;
 
-import seedu.address.model.Model;
-
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_LESSONS;
+
+import seedu.address.model.Model;
 
 /**
  * Opens up a schedule window displaying weekly lessons for the user.
