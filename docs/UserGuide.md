@@ -24,7 +24,7 @@ FlashBack is a **desktop application for managing notes, optimized for use via a
         * [Redoing a command](#redoing-a-command--redo): `redo`
         * [Sorting all flashcards](#sorting-all-flashcards-sort): `sort`
         * [Entering review mode](#entering-review-mode-review): `review`
-        * [Viewing statistics of cards](#viewing-statistics-of-cards-stats): `stats`
+        * [Viewing statistics of flashcards](#viewing-statistics-of-flashcards-stats): `stats`
         * [Adding a new alias](#adding-a-new-alias-alias): `alias`
         * [Exiting the program](#exiting-the-program--exit): `exit`
         * [Saving data](#saving-the-data)
@@ -497,7 +497,7 @@ Action | Format, Examples
 **Sort** | `sort OPTION ORDER` <br> e.g. `sort priority -a`
 **Review** | `review`
 **Statistics** | `stats [INDEX]` <br> e.g. `stats 4`, `stats`
-**Alias** | `alias cmd/COMMAND al/ALIAS` <br> e.g. `alias cmd/add al/a`, `alias cmd/delete al/a`
+**Alias** | `alias cmd/COMMAND al/ALIAS` <br> e.g. `alias cmd/add al/a`, `alias cmd/delete al/d`
 **List** | `list`
 **Help** | `help`
 **Exit** | `exit`
