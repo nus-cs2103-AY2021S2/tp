@@ -8,11 +8,11 @@ import seedu.booking.model.ModelManager;
 import seedu.booking.model.booking.Booking;
 import seedu.booking.model.booking.EndTime;
 
-public class BookingEndPromptCommand extends Command {
+public class PromptBookingEndCommand extends Command {
 
     private final EndTime endTime;
 
-    public BookingEndPromptCommand(EndTime endTime) {
+    public PromptBookingEndCommand(EndTime endTime) {
         this.endTime = endTime;
     }
 

@@ -1,15 +1,15 @@
 package seedu.booking.logic.commands.states;
 
-
-import static seedu.booking.commons.core.Messages.PROMPT_DESC_MESSAGE;
+import static seedu.booking.commons.core.Messages.PROMPT_BOOKING_DESC_MESSAGE;
+import static seedu.booking.commons.core.Messages.PROMPT_BOOKING_VENUE_MESSAGE;
 import static seedu.booking.commons.core.Messages.PROMPT_END_MESSAGE;
+import static seedu.booking.commons.core.Messages.PROMPT_GENERAL_ERROR;
 import static seedu.booking.commons.core.Messages.PROMPT_START_MESSAGE;
 import static seedu.booking.commons.core.Messages.PROMPT_TAG_MESSAGE;
-import static seedu.booking.commons.core.Messages.PROMPT_VENUE_MESSAGE;
 
 import java.util.Set;
 
-import seedu.booking.logic.commands.multiprocessing.BookingIntermediate;
+import seedu.booking.logic.commands.multiprocessing.AddBookingIntermediate;
 import seedu.booking.model.Tag;
 import seedu.booking.model.booking.Booking;
 import seedu.booking.model.booking.Description;
@@ -18,23 +18,23 @@ import seedu.booking.model.booking.StartTime;
 import seedu.booking.model.person.Email;
 import seedu.booking.model.venue.VenueName;
 
-public class BookingCommandState extends CommandState {
+public class AddBookingCommandState extends CommandState {
 
-    public static final String STATE_EMAIL = "EMAIL";
-    public static final String STATE_VENUE = "VENUE";
-    public static final String STATE_DESC = "DESC";
-    public static final String STATE_TAG = "TAG";
-    public static final String STATE_START = "START";
-    public static final String STATE_END = "END";
+    public static final String STATE_EMAIL = "BOOKING EMAIL";
+    public static final String STATE_VENUE = "BOOKING VENUE";
+    public static final String STATE_DESC = "BOOKING DESC";
+    public static final String STATE_TAG = "BOOKING TAG";
+    public static final String STATE_START = "BOOKING START";
+    public static final String STATE_END = "BOOKING END";
 
-    private BookingIntermediate bookingIntermediate;
+    private AddBookingIntermediate addBookingIntermediate;
 
     /**
      * Initialises a BookingCommandState
      */
-    public BookingCommandState() {
+    public AddBookingCommandState() {
         super();
-        this.bookingIntermediate = new BookingIntermediate();
+        this.addBookingIntermediate = new AddBookingIntermediate();
     }
 
     @Override
@@ -43,11 +43,11 @@ public class BookingCommandState extends CommandState {
         switch (state) {
         case STATE_EMAIL:
             this.setState(STATE_VENUE);
-            this.setNextPromptMessage(PROMPT_VENUE_MESSAGE);
+            this.setNextPromptMessage(PROMPT_BOOKING_VENUE_MESSAGE);
             break;
         case STATE_VENUE:
             this.setState(STATE_DESC);
-            this.setNextPromptMessage(PROMPT_DESC_MESSAGE);
+            this.setNextPromptMessage(PROMPT_BOOKING_DESC_MESSAGE);
             break;
         case STATE_DESC:
             this.setState(STATE_TAG);
@@ -61,6 +61,8 @@ public class BookingCommandState extends CommandState {
             this.setState(STATE_END);
             this.setNextPromptMessage(PROMPT_END_MESSAGE);
             break;
+        default:
+            this.setNextPromptMessage(PROMPT_GENERAL_ERROR);
         }
     }
 
@@ -69,28 +71,30 @@ public class BookingCommandState extends CommandState {
         String state = this.getState();
         switch (state) {
         case STATE_EMAIL:
-            bookingIntermediate.setEmail((Email) value);
+            addBookingIntermediate.setEmail((Email) value);
             break;
         case STATE_VENUE:
-            bookingIntermediate.setVenueName((VenueName) value);
+            addBookingIntermediate.setVenueName((VenueName) value);
             break;
         case STATE_DESC:
-            bookingIntermediate.setDescription((Description) value);
+            addBookingIntermediate.setDescription((Description) value);
             break;
         case STATE_TAG:
-            bookingIntermediate.setTags((Set<Tag>) value);
+            addBookingIntermediate.setTags((Set<Tag>) value);
             break;
         case STATE_START:
-            bookingIntermediate.setBookingStart((StartTime) value);
+            addBookingIntermediate.setBookingStart((StartTime) value);
             break;
         case STATE_END:
-            bookingIntermediate.setBookingEnd((EndTime) value);
+            addBookingIntermediate.setBookingEnd((EndTime) value);
+            break;
+        default:
             break;
         }
     }
 
     @Override
     public Booking create() {
-        return bookingIntermediate.createBooking();
+        return addBookingIntermediate.createBooking();
     }
 }

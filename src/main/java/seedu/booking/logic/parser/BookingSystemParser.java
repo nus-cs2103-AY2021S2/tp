@@ -19,7 +19,6 @@ import seedu.booking.logic.commands.EditCommand;
 import seedu.booking.logic.commands.EditPersonCommand;
 import seedu.booking.logic.commands.EditVenueCommand;
 import seedu.booking.logic.commands.ExitCommand;
-import seedu.booking.logic.commands.ExitPromptCommand;
 import seedu.booking.logic.commands.FilterBookingByBookerCommand;
 import seedu.booking.logic.commands.FilterBookingByDateCommand;
 import seedu.booking.logic.commands.FilterBookingByTagCommand;
@@ -34,14 +33,18 @@ import seedu.booking.logic.commands.HelpCommand;
 import seedu.booking.logic.commands.ListBookingCommand;
 import seedu.booking.logic.commands.ListPersonCommand;
 import seedu.booking.logic.commands.ListVenueCommand;
-import seedu.booking.logic.commands.PromptCreateBookingCommand;
-import seedu.booking.logic.commands.states.BookingCommandState;
+import seedu.booking.logic.commands.PromptAddBookingCommand;
+import seedu.booking.logic.commands.PromptAddVenueCommand;
+import seedu.booking.logic.commands.PromptExitCommand;
+import seedu.booking.logic.commands.states.AddBookingCommandState;
+import seedu.booking.logic.commands.states.AddVenueCommandState;
 import seedu.booking.logic.parser.exceptions.ParseException;
 import seedu.booking.logic.parser.promptparsers.BookingDescPromptParser;
 import seedu.booking.logic.parser.promptparsers.BookingEndPromptParser;
 import seedu.booking.logic.parser.promptparsers.BookingStartPromptParser;
 import seedu.booking.logic.parser.promptparsers.BookingTagPromptParser;
 import seedu.booking.logic.parser.promptparsers.EmailPromptParser;
+import seedu.booking.logic.parser.promptparsers.PromptAddVenueCommandParser;
 import seedu.booking.logic.parser.promptparsers.VenueNamePromptParser;
 import seedu.booking.model.ModelManager;
 
@@ -67,29 +70,38 @@ public class BookingSystemParser {
 
         if (ModelManager.isStateActive()) {
 
-            if (userInput.equals(ExitPromptCommand.COMMAND_WORD)) {
-                return new ExitPromptCommand();
+            if (userInput.equals(PromptExitCommand.COMMAND_WORD)) {
+                return new PromptExitCommand();
             } else {
                 String currentState = ModelManager.getState();
                 switch (currentState) {
 
-                case BookingCommandState.STATE_EMAIL:
+                case AddBookingCommandState.STATE_EMAIL:
                     return new EmailPromptParser().parse(userInput);
 
-                case BookingCommandState.STATE_VENUE:
+                case AddBookingCommandState.STATE_VENUE:
                     return new VenueNamePromptParser().parse(userInput);
 
-                case BookingCommandState.STATE_DESC:
+                case AddBookingCommandState.STATE_DESC:
                     return new BookingDescPromptParser().parse(userInput);
 
-                case BookingCommandState.STATE_TAG:
+                case AddBookingCommandState.STATE_TAG:
                     return new BookingTagPromptParser().parse(userInput);
 
-                case BookingCommandState.STATE_START:
+                case AddBookingCommandState.STATE_START:
                     return new BookingStartPromptParser().parse(userInput);
 
-                case BookingCommandState.STATE_END:
+                case AddBookingCommandState.STATE_END:
                     return new BookingEndPromptParser().parse(userInput);
+
+                case AddVenueCommandState.STATE_CAPACITY:
+                    return new PromptAddVenueCommandParser().parseCapacity(userInput);
+
+                case AddVenueCommandState.STATE_DESC:
+                    return new PromptAddVenueCommandParser().parseDescription(userInput);
+
+                case AddVenueCommandState.STATE_TAG:
+                    return new PromptAddVenueCommandParser().parseTags(userInput);
 
                 default:
                     throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
@@ -185,8 +197,12 @@ public class BookingSystemParser {
         case FilterBookingByTagCommand.COMMAND_WORD:
             return new FilterBookingByTagCommandParser().parse(arguments);
 
-        case PromptCreateBookingCommand.COMMAND_WORD:
-            return new PromptCreateBookingCommand();
+        case PromptAddBookingCommand.COMMAND_WORD:
+            return new PromptAddBookingCommand();
+
+        case PromptAddVenueCommand.COMMAND_WORD:
+            return new PromptAddVenueCommandParser().parse(arguments);
+
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
