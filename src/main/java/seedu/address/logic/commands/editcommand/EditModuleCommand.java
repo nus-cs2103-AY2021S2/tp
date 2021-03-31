@@ -12,7 +12,7 @@ import seedu.address.model.module.Title;
 public class EditModuleCommand extends EditCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits a module in RemindMe."
-            + "Parameters: "
+            + "\nParameters: "
             + "MODULE INDEX "
             + PREFIX_MODULE + "NEW MODULE TITLE\n"
             + "Example: " + COMMAND_WORD + " "

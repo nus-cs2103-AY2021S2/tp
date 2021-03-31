@@ -33,17 +33,25 @@ public class AddExamCommandParser extends AddCommandParser implements Parser<Add
                     AddExamCommand.MESSAGE_USAGE));
         }
 
-        Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_MODULE).get());
-        assert title != null;
+        try {
 
-        Module module = new Module(title);
+            Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_MODULE)
+                .orElseThrow(() -> new ParseException("")));
+            assert title != null;
 
-        LocalDateTime examDate = ParserUtil.parseExamDate(argMultimap.getValue(PREFIX_EXAM).get());
-        assert examDate != null;
+            Module module = new Module(title);
 
-        Tag tag = new Tag(title.modTitle.replaceAll(" ", ""));
-        Exam exam = new Exam(examDate, tag);
+            LocalDateTime examDate = ParserUtil.parseExamDate(argMultimap.getValue(PREFIX_EXAM)
+                    .orElseThrow(() -> new ParseException("")));
+            assert examDate != null;
 
-        return new AddExamCommand(module, exam);
+            Tag tag = new Tag(title.modTitle.replaceAll(" ", ""));
+            Exam exam = new Exam(examDate, tag);
+
+            return new AddExamCommand(module, exam);
+        } catch (ParseException e) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, e.getMessage()
+            + "\n" + AddExamCommand.MESSAGE_USAGE));
+        }
     }
 }

@@ -14,14 +14,14 @@ import seedu.address.model.event.GeneralEvent;
 import seedu.address.model.module.Description;
 
 public class EditEventCommand extends EditCommand {
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits a event in RemindMe."
-            + "Parameters: "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits an event in RemindMe."
+            + "\nParameters: "
             + "EVENT INDEX "
             + "[" + PREFIX_GENERAL_EVENT + "NEW EVENT DESCRIPTION] "
             + "[" + PREFIX_DATE + "NEW EVENT DATE]\n"
             + "Example: " + COMMAND_WORD + " "
             + "1 "
-            + PREFIX_GENERAL_EVENT + "Different description OR"
+            + PREFIX_GENERAL_EVENT + "Different description OR "
             + PREFIX_DATE + "29/10/2021 1000";
 
     public static final String MESSAGE_SUCCESS = "Event edited: %1$s";

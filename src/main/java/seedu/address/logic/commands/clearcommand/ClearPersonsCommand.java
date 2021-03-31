@@ -13,7 +13,7 @@ public class ClearPersonsCommand extends ClearCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Clears ALL contacts in RemindMe. "
-            + "Parameters: " + PREFIX_NAME
+            + "\nParameters: " + PREFIX_NAME
             + "\nExample: " + COMMAND_WORD + " "
             + PREFIX_NAME;
 
