@@ -1,8 +1,10 @@
 package seedu.address.logic.parser.commands.menu;
 import static java.lang.Double.parseDouble;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INGREDIENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,17 +29,26 @@ public class MenuAddCommandParser implements Parser<MenuAddCommand> {
      */
     public MenuAddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PRICE);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PRICE, PREFIX_INGREDIENT, PREFIX_QUANTITY);
 
-        if (!ParserUtil.arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PRICE)
+        if (!ParserUtil.arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PRICE, PREFIX_INGREDIENT, PREFIX_QUANTITY)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MenuAddCommand.MESSAGE_USAGE));
         }
 
         String name = argMultimap.getValue(PREFIX_NAME).get().trim();
         double price = parseDouble(argMultimap.getValue(PREFIX_PRICE).get().trim());
+        List<String> ingNums = argMultimap.getAllValues(PREFIX_INGREDIENT);
+        List<String> ingQuants = argMultimap.getAllValues(PREFIX_QUANTITY);
 
         List<Pair<Integer, Integer>> ingredientQuantityList = new ArrayList<>();
+
+        for (int idx = 0; idx < ingNums.size(); idx++) {
+            Pair<Integer, Integer> dishComponent =
+                    new Pair<>(Integer.parseInt(ingNums.get(idx)),
+                            Integer.parseInt(ingQuants.get(idx)));
+            ingredientQuantityList.add(dishComponent);
+        }
 
         return new MenuAddCommand(name, price, ingredientQuantityList);
     }
