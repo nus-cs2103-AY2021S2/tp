@@ -1,8 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,28 +42,20 @@ public class DeletePictureCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        // TODO: Perform picture deletion
-        Person p = lastShownList.get(targetIndex.getZeroBased());
-        Name name = p.getName();
+        Person personToEdit = lastShownList.get(targetIndex.getZeroBased());
+        Name name = personToEdit.getName();
 
-        Optional<Picture> pictureOptional = p.getPicture();
+        Optional<Picture> pictureOptional = personToEdit.getPicture();
         if (pictureOptional.isEmpty()) {
             throw new CommandException(String.format(MESSAGE_DELETE_PICTURE_NO_PICTURE_FOUND, name));
         }
 
-        // Try to delete the actual file
-        // try {
-        //     pictureOptional.get().deleteFile();
-        // } catch (IOException e) {
-        //     logger
-        // }
+        Person editedPerson = personToEdit.deletePicture();
 
-        // Remove binding of picture to
+        model.setPerson(personToEdit, editedPerson);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
-
-
-
-        return new CommandResult(String.format(MESSAGE_DELETE_PICTURE_SUCCESS, p.getName()));
+        return new CommandResult(String.format(MESSAGE_DELETE_PICTURE_SUCCESS, name));
     }
 
     @Override

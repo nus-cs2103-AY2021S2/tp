@@ -171,7 +171,7 @@ public class Person {
 
     /**
      * Deletes the picture from person. The person is guaranteed to have {@code Picture} as null after
-     * running this method.
+     * running this method. Physical picture file may still remain if unable to remove from disk.
      */
     public Person deletePicture() {
         if (picture == null) {
@@ -182,7 +182,7 @@ public class Person {
             // It is not that critical for the physical file of picture to get deleted so we just log the error.
             picture.deleteFile();
         } catch (IOException e) {
-            logger.warning("Unable to delete original picture file for " + toString());
+            logger.warning("Unable to delete physical picture file for " + toString());
             logger.warning("IOException caught: " + e.getMessage());
         }
 
