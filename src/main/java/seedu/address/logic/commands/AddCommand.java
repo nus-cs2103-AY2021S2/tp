@@ -28,12 +28,12 @@ public class AddCommand extends Command {
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE \n"
             + "Optional Details: "
-            + PREFIX_SCHOOL + "SCHOOL "
-            + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_ADDRESS + "ADDRESS "
-            + PREFIX_GUARDIAN_NAME + "GUARDIAN_NAME "
-            + PREFIX_GUARDIAN_PHONE + "GUARDIAN_PHONE "
-            + "[" + PREFIX_SUBJECT + "TAG]...\n"
+            + "[" + PREFIX_SCHOOL + "SCHOOL] "
+            + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_GUARDIAN_NAME + "GUARDIAN_NAME] "
+            + "[" + PREFIX_GUARDIAN_PHONE + "GUARDIAN_PHONE] "
+            + "[" + PREFIX_SUBJECT + "SUBJECT]...\n"
             + "[" + PREFIX_LESSON + "LESSON]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
@@ -44,7 +44,7 @@ public class AddCommand extends Command {
             + PREFIX_GUARDIAN_NAME + "Helen Doe "
             + PREFIX_GUARDIAN_PHONE + "98765431 "
             + PREFIX_SUBJECT + "math "
-            + PREFIX_SUBJECT + "sec3 "
+            + PREFIX_SUBJECT + "chem "
             + PREFIX_LESSON + "monday 1300";
 
     public static final String MESSAGE_SUCCESS = "New student added: %1$s";
