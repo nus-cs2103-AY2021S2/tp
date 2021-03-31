@@ -35,7 +35,8 @@ public class RecurringSession extends Session {
     }
 
     /**
-     * Returns true if user input {@code firstSessionDate} and {@code interval} makes a valid {@code lastSessionDate}.
+     * Returns true if {@code lastSessionDate} is valid, having consistent Time and Date with
+     * {@code firstSessionDate} and {@code interval}.
      * @param firstSessionDate the SessionDate value for first session
      * @param lastSessionDate the SessionDate value for last session
      * @param interval the interval of recurrence
@@ -48,8 +49,8 @@ public class RecurringSession extends Session {
     }
 
     /**
-     * Returns true if user input {@code firstSessionDate} and {@code interval} is consistent with Date of
-     * {@code lastSessionDate}.
+     * Returns true if Date of {@code lastSessionDate} is consistent with
+     * {@code firstSessionDate} and {@code interval}.
      * @param sessionDate1 the SessionDate value for first session
      * @param sessionDate2 the SessionDate value for last session
      * @param interval the interval of recurrence

@@ -104,17 +104,16 @@ class RecurringSessionTest extends SessionTest {
         SessionDate lastOfMarch = new SessionDate("2021-03-31", "23:59");
 
 
-        Interval interval1 = new Interval("14");
-        //first and last must match
-        RecurringSession s = new RecurringSession(firstSessionDate, new Duration("100"), new Subject("Math"),
-                new Fee("40"), interval1, lastSessionDate);
-        int ans1 = s.numOfSessionBetween(firstOfMarch, lastOfMarch);
+        Interval interval_2_weeks = new Interval("14");
+        RecurringSession recurringSession1 = new RecurringSession(firstSessionDate, new Duration("100"), new Subject("Math"),
+                new Fee("40"), interval_2_weeks, lastSessionDate);
+        int ans1 = recurringSession1.numOfSessionBetween(firstOfMarch, lastOfMarch);
         assertEquals(2, ans1);
 
-        Interval interval2 = new Interval("1");
-        s = new RecurringSession(firstSessionDate, new Duration("100"), new Subject("Math"),
-                new Fee("40"), interval2, lastSessionDate);
-        int ans2 = s.numOfSessionBetween(firstOfMarch, lastOfMarch);
+        Interval interval_1_day = new Interval("1");
+        RecurringSession recurringSession2 = new RecurringSession(firstSessionDate, new Duration("100"), new Subject("Math"),
+                new Fee("40"), interval_1_day, lastSessionDate);
+        int ans2 = recurringSession2.numOfSessionBetween(firstOfMarch, lastOfMarch);
         assertEquals(31, ans2);
     }
 
