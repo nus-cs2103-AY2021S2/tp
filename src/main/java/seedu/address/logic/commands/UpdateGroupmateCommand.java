@@ -2,9 +2,9 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_UPDATE_INDEX;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -34,11 +34,11 @@ public class UpdateGroupmateCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Updates the groupmate "
             + "identified by it's index number within the displayed project.\n"
             + "Parameters: PROJECT_INDEX (must be a positive integer) "
-            + PREFIX_UPDATE_INDEX + "GROUPMATE_INDEX "
+            + PREFIX_INDEX + "GROUPMATE_INDEX "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_ROLE + "ROLE]\n"
             + "Example:\n" + COMMAND_WORD + " 1 "
-            + PREFIX_UPDATE_INDEX + "1 "
+            + PREFIX_INDEX + "1 "
             + PREFIX_NAME + "Alice "
             + PREFIX_ROLE + "UI-designer";
 

@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_REMOVE_TASK_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 
 import java.util.List;
 
@@ -22,9 +22,9 @@ public class DeleteTodoCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the todo identified by it's index number within the displayed project.\n"
             + "Parameters: PROJECT_INDEX (must be a positive integer)"
-            + PREFIX_REMOVE_TASK_INDEX + "TODO_INDEX \n"
+            + PREFIX_INDEX + "TODO_INDEX \n"
             + "Example: " + COMMAND_WORD + " 1" + " "
-            + PREFIX_REMOVE_TASK_INDEX + " 2";
+            + PREFIX_INDEX + " 2";
 
     private final Index projectIndex;
     private final Index targetTodoIndex;
@@ -49,7 +49,7 @@ public class DeleteTodoCommand extends Command {
         }
 
         if (targetTodoIndex.getZeroBased() >= lastShownList.get(projectIndex.getZeroBased())
-                .getTodos().getTodos().size()) {
+                .getTodos().getSortedTodos().size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TODO_DISPLAYED_INDEX);
         }
 

@@ -19,6 +19,7 @@ import seedu.address.model.task.repeatable.RepeatableComparator;
 /**
  * Represents a list of Events.
  * Event list ensures that there are no duplicates.
+ * Also maintains an internal list of sorted events.
  */
 public class EventList {
 

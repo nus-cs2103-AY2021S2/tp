@@ -101,21 +101,21 @@ public class TypicalProjects {
         return deadlineList;
     }
 
-    private static TodoList getCS2103TTodosList() throws DateConversionException {
-        Todo todoUpdateDocs = new TodoBuilder().withDescription("Update documentation")
-                .withIsDone(DONE).build();
-        Todo todoAddCommand = new TodoBuilder().withDescription("Finish add command")
-                .withIsDone(NOT_DONE).build();
+    private static TodoList getCS2103TTodosList() {
         Todo todoTests = new TodoBuilder().withDescription("Add unit tests")
                 .withIsDone(NOT_DONE).build();
         Todo todoBrainstormNewIdea = new TodoBuilder().withDescription("Brainstorm new feature")
                 .withIsDone(NOT_DONE).build();
+        Todo todoAddCommand = new TodoBuilder().withDescription("Finish add command")
+                .withIsDone(DONE).build();
+        Todo todoUpdateDocs = new TodoBuilder().withDescription("Update documentation")
+                .withIsDone(NOT_DONE).build();
 
         TodoList todoList = new TodoList();
-        todoList.addTodo(todoUpdateDocs);
-        todoList.addTodo(todoAddCommand);
         todoList.addTodo(todoTests);
         todoList.addTodo(todoBrainstormNewIdea);
+        todoList.addTodo(todoAddCommand);
+        todoList.addTodo(todoUpdateDocs);
 
         return todoList;
     }
@@ -167,23 +167,23 @@ public class TypicalProjects {
         return deadlineList;
     }
 
-    private static TodoList getCS2101TodosList() throws DateConversionException {
-        Todo todoSplitWorkload = new TodoBuilder().withDescription("Split Workload")
-                .withIsDone(DONE).build();
+    private static TodoList getCS2101TodosList() {
         Todo todoSlidesForPitch = new TodoBuilder().withDescription("Do up slides for pitch")
                 .withIsDone(NOT_DONE).build();
         Todo todoVideoForDemo = new TodoBuilder().withDescription("Do up video for demo")
                 .withIsDone(NOT_DONE).build();
+        Todo todoSplitWorkload = new TodoBuilder().withDescription("Split Workload")
+                .withIsDone(DONE).build();
 
         TodoList todoList = new TodoList();
-        todoList.addTodo(todoSplitWorkload);
         todoList.addTodo(todoSlidesForPitch);
         todoList.addTodo(todoVideoForDemo);
+        todoList.addTodo(todoSplitWorkload);
 
         return todoList;
     }
 
-    private static GroupmateList getCS2101GroupmateList() throws DateConversionException {
+    private static GroupmateList getCS2101GroupmateList() {
         Groupmate danh = new GroupmateBuilder().withName("Danh").build();
         Groupmate ruochen = new GroupmateBuilder().withName("Ruochen").build();
         Groupmate samuel = new GroupmateBuilder().withName("Samuel").build();

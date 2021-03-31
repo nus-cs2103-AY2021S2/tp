@@ -37,7 +37,7 @@ public class DeleteTodoCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Todo todoToDelete = new TodoBuilder().build();
+        Todo todoToDelete = new TodoBuilder().withDescription("a").build();
         Project projectToEdit = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
         Project editedProject = new ProjectBuilder(projectToEdit).build();
         editedProject.addTodo(todoToDelete);
@@ -47,12 +47,11 @@ public class DeleteTodoCommandTest {
                 editedProject
         );
 
-        Index lastTodoIndex = Index.fromOneBased(
-                model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased()).getTodos().getTodos().size());
+        Index firstTodoIndex = Index.fromOneBased(1); // todo is first in sorted list
 
-        DeleteTodoCommand deleteTodoCommand = new DeleteTodoCommand(INDEX_FIRST, lastTodoIndex);
+        DeleteTodoCommand deleteTodoCommand = new DeleteTodoCommand(INDEX_FIRST, firstTodoIndex);
 
-        String expectedMessage = String.format(MESSAGE_DELETE_TODO_SUCCESS, lastTodoIndex.getOneBased());
+        String expectedMessage = String.format(MESSAGE_DELETE_TODO_SUCCESS, firstTodoIndex.getOneBased());
 
         ModelManager expectedModel = new ModelManager(getTypicalColabFolder(), new UserPrefs());
 
@@ -73,7 +72,7 @@ public class DeleteTodoCommandTest {
         );
 
         Index lastTodoIndex = Index.fromOneBased(
-                model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased()).getTodos().getTodos().size());
+                model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased()).getTodos().getSortedTodos().size());
 
         DeleteTodoCommand deleteTodoCommand = new DeleteTodoCommand(INDEX_THIRD, lastTodoIndex);
 
@@ -96,7 +95,7 @@ public class DeleteTodoCommandTest {
         );
 
         Index invalidTodoIndex = Index.fromOneBased(
-                model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased()).getTodos().getTodos().size() + 1);
+                model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased()).getTodos().getSortedTodos().size() + 1);
 
         DeleteTodoCommand deleteTodoCommand = new DeleteTodoCommand(INDEX_FIRST, invalidTodoIndex);
 
@@ -129,9 +128,9 @@ public class DeleteTodoCommandTest {
         );
 
         Index lastTodoFromProject1 = Index.fromOneBased(
-                model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased()).getTodos().getTodos().size());
+                model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased()).getTodos().getSortedTodos().size());
         Index lastTodoFromProject2 = Index.fromOneBased(
-                model.getFilteredProjectList().get(INDEX_SECOND.getZeroBased()).getTodos().getTodos().size());
+                model.getFilteredProjectList().get(INDEX_SECOND.getZeroBased()).getTodos().getSortedTodos().size());
 
         DeleteTodoCommand deleteTodoFromProject1Command = new DeleteTodoCommand(
                 INDEX_FIRST, lastTodoFromProject1);

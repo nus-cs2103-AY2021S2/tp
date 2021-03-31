@@ -37,7 +37,7 @@ public class DeleteGroupmateCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() throws DateConversionException {
-        Groupmate contactToDelete = new GroupmateBuilder().build();
+        Groupmate contactToDelete = new GroupmateBuilder().withName("a").build();
         Project projectToEdit = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
         Project editedProject = new ProjectBuilder(projectToEdit).build();
         editedProject.addGroupmate(contactToDelete);
@@ -47,10 +47,9 @@ public class DeleteGroupmateCommandTest {
                 editedProject
         );
 
-        Index lastContactIndex = Index.fromOneBased(
-                model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased()).getGroupmates().size());
+        Index firstContactIndex = Index.fromOneBased(1); //groupmate is first in sorted list
 
-        DeleteGroupmateCommand deleteGroupmateCommand = new DeleteGroupmateCommand(INDEX_FIRST, lastContactIndex);
+        DeleteGroupmateCommand deleteGroupmateCommand = new DeleteGroupmateCommand(INDEX_FIRST, firstContactIndex);
 
         String expectedMessage = String.format(MESSAGE_DELETE_PROJECT_SUCCESS,
                 contactToDelete.getName(), projectToEdit.getProjectName());

@@ -6,7 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_WEEKLY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_UPDATE_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 
 import java.util.stream.Stream;
 
@@ -28,15 +28,15 @@ public class UpdateEventCommandParser implements Parser<UpdateEventCommand> {
      */
     public UpdateEventCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_UPDATE_INDEX, PREFIX_DESCRIPTION,
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_INDEX, PREFIX_DESCRIPTION,
                 PREFIX_EVENT_DATE, PREFIX_EVENT_TIME, PREFIX_EVENT_WEEKLY);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_UPDATE_INDEX) || argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_INDEX) || argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdateEventCommand.MESSAGE_USAGE));
         }
 
         Index projectIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
-        Index targetEventIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_UPDATE_INDEX).get());
+        Index targetEventIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
 
         UpdateEventCommand.UpdateEventDescriptor updateEventDescriptor = new UpdateEventCommand.UpdateEventDescriptor();
 
