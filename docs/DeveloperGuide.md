@@ -336,6 +336,63 @@ The following sequence diagram shows how the update operation works:
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Find feature
+
+The find mechanism is facilitated by `PocketEstate`. It implements the search feature that allows the user to specific the fields to search for and use multiple parameters. 
+This feature is implemented separately for both property and appointment, as well as an additional `find client` feature that searches both properties and appointments. 
+
+For properties, it uses the following: 
+* `FindPropertyCommand`
+* `FindPropertyCommandParser`
+* `PropetyPredicateList` 
+    * Takes a `List` of `Predicate<Property>`
+    * Has method `combine()` which returns a single `Predicate<Property>` that is a logical `AND` of all `Predicates` in 
+    the instance of `ProprtyPredicateList`
+* Predicates
+    * `PropertyNamePredicate`
+    * `PropertyPricePredicate` 
+        * Takes 2 parameters, `price` and `isLess`
+        * If `isLess` is `true`, checks if a `Property's` `clientAskingPrice` is less than or equals to the given price
+        * Otherwise, checks if a `Property's` `clientAskingPrice` is more than or equals to the given price
+    * `PropertyTypePredicate`
+    * `PropertyRemarksPredicate`
+    * `PropertyAddressPredicate`
+    * `PropertyPostalCodePredicate`
+    * `PropertyDeadlinePredicate`
+    * `PropertyTagsPredicate`
+    * `PropertyClientNamePredicate`
+    * `PropertyClientContactPredicate`
+    * `PropertyClientEmailPredicate`
+    
+For appointments, it uses the following: 
+* `FindAppointmentCommand`
+* `FindAppointmentCommandParser`
+* `AppointmentPredicateList` 
+    * Takes a `List` of `Predicate<Appointment>`
+    * Has method `combine()` which returns a single `Predicate<Appointment>` that is a logical `AND` of all `Predicates` in 
+    the instance of `AppointmentPredicateList`
+* Predicates
+    * `AppointmentNamePredicate`
+    * `AppointmentRemarksPredicate`
+    * `AppointmentDatePredicate`
+    * `AppointmentTimePredicate`
+
+For both `Appointment` and `Property`, `PocketEstateParser` will check for `find appointment` or `find property` in user input, 
+then invoke their respective `FindCommandParser`, which will then parse user inputs and create `Predicates` according to user input. 
+All `Predicates` are then put in a `List` and used to create a `PredicateList` for the respective types. The `PredicateList` is then 
+used to create `FindPropertyCommand` or `FindAppointmentCommand`, which is returned to `LogicManager`. 
+
+`LogicManager` will call `Command#exceute`, and for all find commands, this will update the list of `Property` or `Appointment` 
+visible to the user in the GUI by calling `Model#updateFilteredAppointmentList` with `PredicateList#combine` as the parameter. 
+
+Given below is an example usage scenario and how the find mechanism behaves at each step. 
+
+Step 1. The user launches the application for the first time. The `PocketEstate` will be initialized with the initial 
+appointment book state and property book state, and the currentAppointmentBookStatePointer currentPropertyBookStatePointer pointing to the two initial book states respectively.
+
+Step 2. The user executes `find appointment n/alex d/25-12-2021` command to find an appointment in the appointment book 
+that contains `alex` in its name and has date set to `25-12-2021`. `findAppointment` executes `previousAppointmentLists.push(new ArrayList<>(appointments.asUnmodifiableObservableList()))`, causing the previous state of the appointment book before the `delete appointment 1` command executes to be saved in the `previousAppointmentLists`, and the currentAppointmentBookStatePointer still points to the current appointment book state.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
