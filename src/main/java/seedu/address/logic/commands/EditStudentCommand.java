@@ -159,7 +159,7 @@ public class EditStudentCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, studyLevel, guardianPhone, relationship);
         }
 
         public void setName(Name name) {
@@ -239,15 +239,15 @@ public class EditStudentCommand extends Command {
             }
 
             // state check
-            EditStudentDescriptor e = (EditStudentDescriptor) other;
+            EditStudentDescriptor otherStudentDescriptor = (EditStudentDescriptor) other;
 
-            return getName().equals(e.getName())
-                    && getPhone().equals(e.getPhone())
-                    && getEmail().equals(e.getEmail())
-                    && getAddress().equals(e.getAddress())
-                    && getStudyLevel().equals(e.getStudyLevel())
-                    && getGuardianPhone().equals(e.getGuardianPhone())
-                    && getRelationship().equals(e.getRelationship());
+            return getName().equals(otherStudentDescriptor.getName())
+                    && getPhone().equals(otherStudentDescriptor.getPhone())
+                    && getEmail().equals(otherStudentDescriptor.getEmail())
+                    && getAddress().equals(otherStudentDescriptor.getAddress())
+                    && getStudyLevel().equals(otherStudentDescriptor.getStudyLevel())
+                    && getGuardianPhone().equals(otherStudentDescriptor.getGuardianPhone())
+                    && getRelationship().equals(otherStudentDescriptor.getRelationship());
         }
     }
 }
