@@ -1,10 +1,11 @@
 package seedu.address.ui;
 
-import java.awt.image.BufferedImage;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -39,13 +40,13 @@ public class GarmentCard extends UiPart<Region> {
     @FXML
     private Label dresscode;
     @FXML
-    private Label colour;
-    @FXML
-    private Label type;
-    @FXML
     private Label lastused;
     @FXML
     private FlowPane descriptions;
+    @FXML
+    private Label sampleColour;
+    @FXML
+    private Label type;
 
     /**
      * Creates a {@code GarmentCode} with the given {@code Garment} and index to display.
@@ -53,19 +54,36 @@ public class GarmentCard extends UiPart<Region> {
     public GarmentCard(Garment garment, int displayedIndex) {
         super(FXML);
         this.garment = garment;
-        BufferedImage sample = Colour.SAMPLES.get(garment.getColour());
+        String sample = Colour.SAMPLES.get(garment.getColour().colour);
 
         id.setText(displayedIndex + ". ");
         name.setText(garment.getName().fullName);
         size.setText("Size: " + garment.getSize().value);
         dresscode.setText("DressCode: " + garment.getDressCode().value);
-        colour.setText("Colour: " + garment.getColour().colour);
-        type.setText("Type: " + garment.getType().value);
         lastused.setText("Last used: " + garment.getLastUse().value);
         garment.getDescriptions().stream()
                 .sorted(Comparator.comparing(description -> description.descriptionName))
                 .forEach(description -> descriptions.getChildren()
                         .add(new Label("<" + description.descriptionName + ">")));
+
+        Image colourImage = new Image(sample);
+        ImageView colourView = new ImageView(colourImage);
+        colourView.setFitHeight(80);
+        colourView.setPreserveRatio(true);
+        sampleColour.setGraphic(colourView);
+
+        Image typeImage;
+        if (garment.getType().value.equals("upper")) {
+            typeImage = new Image("images/upper.jpeg");
+        } else if (garment.getType().value.equals("lower")) {
+            typeImage = new Image("images/lower.jpeg");
+        } else {
+            typeImage = new Image("images/footwear.jpeg");
+        }
+        ImageView typeView = new ImageView(typeImage);
+        typeView.setFitHeight(80);
+        typeView.setPreserveRatio(true);
+        type.setGraphic(typeView);
     }
 
     @Override
