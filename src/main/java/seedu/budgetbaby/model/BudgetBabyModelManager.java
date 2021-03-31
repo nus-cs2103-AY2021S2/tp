@@ -175,7 +175,7 @@ public class BudgetBabyModelManager implements BudgetBabyModel {
                 result = updateFilteredFinancialRecordList(findC);
             } else if (amount != null && categories == null) {
                 result = updateFilteredFinancialRecordList(findA);
-            } else if (amount != null && categories != null){
+            } else if (amount != null && categories != null) {
                 result = updateFilteredFinancialRecordList(findAC);
             } else {
                 result = false;
