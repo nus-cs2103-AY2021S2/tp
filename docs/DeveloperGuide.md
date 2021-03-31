@@ -155,7 +155,7 @@ Creates a `Plan` object using the plan's `description`, its relevant `tags` as w
 ![PlanConstructorSequenceDiagram](images/PlanConstructorSequenceDiagram.png)
 
 ##### Method:`Plan#toString()`
-Builds a formatted string by appending the plan's descriptions as well as all of its tags.
+Builds a formatted string by appending the plan's description as well as all of its tags.
 The `getDescription` method is used to obtain the Description in `String` format.
 Each Tag's `toString()` method is called.
 ![PlanToStringSequenceDiagram](images/PlanToStringSequenceDiagram.png)
