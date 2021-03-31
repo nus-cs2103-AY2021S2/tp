@@ -1,8 +1,27 @@
 package seedu.address.logic.commands.meetings;
 
 
-import javafx.collections.ObservableList;
+import static java.util.Objects.requireNonNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.Assert.assertThrows;
+
+import java.nio.file.Path;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+import java.util.function.Predicate;
+
+import javafx.beans.value.ObservableValue;
 import org.junit.jupiter.api.Test;
+
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -17,15 +36,6 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.ReadOnlyAddressBook;
 import seedu.address.model.reminder.ReadOnlyReminderBook;
 import seedu.address.testutil.MeetingBuilder;
-
-import java.nio.file.Path;
-import java.time.LocalDateTime;
-import java.util.*;
-import java.util.function.Predicate;
-
-import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.testutil.Assert.assertThrows;
 
 class AddMeetingCommandTest {
     @Test
@@ -257,10 +267,26 @@ class AddMeetingCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        //=======================Timetable methods ================================================
+
         @Override
         public ObservableList<Person> getFilteredPersonListByMeetingConnection(Meeting meeting) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void setTimetableStartDate(LocalDate localDate) {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public ObservableValue<LocalDate> getReadOnlyTimetableStartDate() {
+            throw new AssertionError("This method should not be called");
+        }
+
+        //-============================================================================================
+
+
 
         @Override
         public ReadOnlyReminderBook getReminderBook() {

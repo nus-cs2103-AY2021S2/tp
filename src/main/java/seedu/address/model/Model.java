@@ -1,5 +1,15 @@
 package seedu.address.model;
 
+import java.nio.file.Path;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+import java.util.function.Predicate;
+
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.connection.PersonMeetingConnection;
@@ -9,14 +19,6 @@ import seedu.address.model.meeting.ReadOnlyMeetingBook;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.ReadOnlyAddressBook;
 import seedu.address.model.reminder.ReadOnlyReminderBook;
-
-import java.nio.file.Path;
-import java.time.LocalDateTime;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-import java.util.function.Predicate;
 
 /**
  * The API of the Model component.
@@ -221,6 +223,20 @@ public interface Model {
      */
     ObservableList<Person> getFilteredPersonListByMeetingConnection(Meeting meeting);
 
+
+    //============================= Timetable settings =====================================
+
+    /**
+     * sets the timetable start date.
+     * @param localDate
+     */
+    public void setTimetableStartDate(LocalDate localDate);
+
+    /**
+     * Get a read-only observable for the timetable start date.
+     * @return the observable value of the start date.
+     */
+    public ObservableValue<LocalDate> getReadOnlyTimetableStartDate();
 
     // ------ Reminders ------
 

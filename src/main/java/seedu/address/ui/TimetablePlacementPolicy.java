@@ -145,7 +145,7 @@ public class TimetablePlacementPolicy {
      * @return
      */
 
-    public Stream<Schedulable> breakIntoUnits(Schedulable schedulable) {
+    public Stream<Schedulable> breakIntoDayUnits(Schedulable schedulable) {
 
         assert test(schedulable);
         LocalDateTime startDateTime = schedulable.getStartLocalDateTime();
@@ -195,20 +195,28 @@ public class TimetablePlacementPolicy {
     }
 
     /**
-     * apply offset so each day period starts from 00:00 and ends at LocalTime.max the next day.
+     * apply offset start hour and start minutes so each day period starts from 00:00 and ends at LocalTime.max the
+     * next day.
      * @param localDateTime
      * @return
      */
     public LocalDateTime applyOffset(LocalDateTime localDateTime) {
         return localDateTime.minusHours(startHour).minusMinutes(startMinute);
     }
-    public LocalDateTime removeOffset(LocalDateTime localDateTime) {
-        return localDateTime.plusHours(startHour).plusMinutes(startMinute);
+
+    /**
+     * remove the offset on a date Time which has previously been offset by amount startHour and startminute
+     * in @code{applyOffset}
+     *
+     * @param offSetDateTime
+     * @return
+     */
+    public LocalDateTime removeOffset(LocalDateTime offSetDateTime) {
+        return offSetDateTime.plusHours(startHour).plusMinutes(startMinute);
     }
 
     /**
-     * Gets the local date time of the (official) start of the next day, with time at LocalTime.max
-     * given the date today.
+     * Gets the local date time of the end of the day, right before 00:00.
      * @return
      */
     public LocalDateTime getEndOfTheDay(LocalDateTime localDateTime) {

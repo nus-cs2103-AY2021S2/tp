@@ -1,5 +1,20 @@
 package seedu.address.model;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.nio.file.Path;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+import java.util.function.Predicate;
+import java.util.logging.Logger;
+
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -17,18 +32,7 @@ import seedu.address.model.person.ReadOnlyAddressBook;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.reminder.ReadOnlyReminderBook;
 import seedu.address.model.reminder.ReminderBook;
-
-import java.nio.file.Path;
-import java.time.LocalDateTime;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-import java.util.function.Predicate;
-import java.util.logging.Logger;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import seedu.address.model.schedule.TimetablePrefs;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -52,6 +56,9 @@ public class ModelManager implements Model {
 
     private final ReminderBook reminderBook;
 
+    //===============  Timetable ===========================================================
+    private final TimetablePrefs timetablePrefs;
+
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs. MeetingBook will be set to default.
      */
@@ -72,6 +79,10 @@ public class ModelManager implements Model {
         // TODO: Modify the signature of ModelManager so that we can add connection inside it.
         this.connection = new PersonMeetingConnection();
         this.reminderBook = new ReminderBook(this.meetingBook);
+
+        //================== Timetable ==================================================================
+        //default initializes to current localdate
+        timetablePrefs = new TimetablePrefs(LocalDate.now());
     }
 
     /**
@@ -95,6 +106,10 @@ public class ModelManager implements Model {
         // TODO: Modify the signature of ModelManager so that we can add connection inside it.
         this.connection = new PersonMeetingConnection();
         this.reminderBook = new ReminderBook(this.meetingBook);
+
+        //================== Timetable ==================================================================
+        //default initializes to current localdate
+        timetablePrefs = new TimetablePrefs(LocalDate.now());
     }
 
     /**
@@ -118,6 +133,9 @@ public class ModelManager implements Model {
         // TODO: Modify the signature of ModelManager so that we can add connection inside it.
         this.connection = connection;
         this.reminderBook = new ReminderBook(this.meetingBook);
+        //================== Timetable ==================================================================
+        //default initializes to current localdate
+        timetablePrefs = new TimetablePrefs(LocalDate.now());
 
     }
 
@@ -406,6 +424,19 @@ public class ModelManager implements Model {
     public void sortFilteredMeetingList(Comparator<Meeting> comparator) {
         sortedBeforeFilterMeetings.setComparator(comparator);
     }
+
+    //================= Get timetable prefs methods ================================================
+
+    @Override
+    public void setTimetableStartDate(LocalDate localDate) {
+        timetablePrefs.setTimetableStartDate(localDate);
+    }
+
+    @Override
+    public ObservableValue<LocalDate> getReadOnlyTimetableStartDate() {
+        return timetablePrefs.getReadOnlyStartDate();
+    }
+
 
     //=========== Other methods =============================================================
     @Override
