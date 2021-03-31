@@ -295,7 +295,7 @@ Format: `updateT PROJECT_INDEX i/TODO_INDEX d/DESCRIPTION`
 * Updates the description of the todo at the specified `TODO_INDEX` of the project at the specified `PROJECT_INDEX`.
 * The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
 * The `TODO_INDEX` refers to the number shown beside the todo when viewing the project.
-* Both indexes **must be a positive integer** 1, 2, 3, …​
+* Both indexes **must be positive integers** 1, 2, 3, …​
 
 Examples:
 * `updateT 1 i/2 d/Review new PR`
@@ -310,7 +310,7 @@ Format: `markT PROJECT_INDEX i/TODO_INDEX`
 * Marks the todo at the specified `TODO_INDEX` from the project at the specified `PROJECT_INDEX` as done.
 * The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
 * The `TODO_INDEX` refers to the number shown beside the todo when viewing the project.
-* Both indexes **must be a positive integer** 1, 2, 3, …​
+* Both indexes **must be positive integers** 1, 2, 3, …​
 
 Examples:
 * `markT 1 i/1
@@ -325,7 +325,7 @@ Format: `deleteT PROJECT_INDEX i/TODO_INDEX`
 * Deletes the todo at the specified `TODO_INDEX` from the project at the specified `PROJECT_INDEX`.
 * The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
 * The `TODO_INDEX` refers to the number shown beside the todo when viewing the project.
-* Both indexes **must be a positive integer** 1, 2, 3, …​
+* Both indexes **must be positive integers** 1, 2, 3, …​
 
 Examples:
 * `deleteT 1 i/1`
@@ -362,7 +362,7 @@ Format: `updateD PROJECT_INDEX i/DEADLINE_INDEX [d/DESCRIPTION] [by/DATE]`
 * Updates the description or the deadline date of the deadline at the specified `DEADLINE_INDEX` of the project at the specified `PROJECT_INDEX`.
 * The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
 * The `DEADLINE_INDEX` refers to the number shown beside the deadline when viewing the project.
-* Both indexes **must be a positive integer** 1, 2, 3, …​
+* Both indexes **must be positive integers** 1, 2, 3, …​
 * `DATE` must be in `dd-MM-yyyy`, `ddMMyyyy`, `dd/MM/yyyy` or `dd.MM.yyyy` format.
 * `DATE` is limited to the `yyyy` range of 0000 to 9999.
 
@@ -379,7 +379,7 @@ Format: `markD PROJECT_INDEX i/DEADLINE_INDEX`
 * Marks the deadline at the specified `DEADLINE_INDEX` from the project at the specified `PROJECT_INDEX` as done.
 * The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
 * The `DEADLINE_INDEX` refers to the number shown beside the deadline when viewing the project.
-* Both indexes **must be a positive integer** 1, 2, 3, …​
+* Both indexes **must be positive integers** 1, 2, 3, …​
 
 Examples:
 * `markD 1 i/1
@@ -394,7 +394,7 @@ Format: `deleteD PROJECT_INDEX i/DEADLINE_INDEX`
 * Deletes the deadline at the specified `DEADLINE_INDEX` from the project at the specified `PROJECT_INDEX`.
 * The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
 * The `DEADLINE_INDEX` refers to the number shown beside the deadline when viewing the project.
-* Both indexes **must be a positive integer** 1, 2, 3, …​
+* Both indexes **must be positive integers** 1, 2, 3, …​
 
 Examples:
 * `deleteD 1 i/1`
@@ -439,7 +439,7 @@ Format: `updateE PROJECT_INDEX i/EVENT_INDEX [d/DESCRIPTION] [on/DATE] [at/TIME]
 * Updates the detail (description, date, time, weekly recurrence) of the event at the specified `EVENT_INDEX` of the project at the specified `PROJECT_INDEX`.
 * The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
 * The `EVENT_INDEX` refers to the number shown beside the event when viewing the project.
-* Both indexes **must be a positive integer** 1, 2, 3, …​
+* Both indexes **must be positive integers** 1, 2, 3, …​
 * `DATE` must be in `dd-MM-yyyy`, `ddMMyyyy`, `dd/MM/yyyy` or `dd.MM.yyyy` format.
 * `DATE` is limited to the `yyyy` range of 0000 to 9999.
 * `TIME` must be in `HHmm` or `HH:mm` format.
@@ -464,7 +464,7 @@ Format: `deleteE PROJECT_INDEX i/EVENT_INDEX`
 * Deletes the event at the specified `EVENT_INDEX` from the project at the specified `PROJECT_INDEX`.
 * The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
 * The `EVENT_INDEX` refers to the number shown beside the event when viewing the project.
-* Both indexes **must be a positive integer** 1, 2, 3, …​
+* Both indexes **must be positive integers** 1, 2, 3, …​
 
 Examples:
 * `deleteE 1 i/1`
@@ -503,7 +503,7 @@ Format: `updateG PROJECT_INDEX i/GROUPMATE_INDEX [n/NAME] [r/ROLE]…​`
 * Updates the groupmate at the specified `GROUPMATE_INDEX` of the project at the specified `PROJECT_INDEX`.
 * The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
 * The `GROUPMATE_INDEX` refers to the number shown beside the groupmate when viewing the project.
-* Both indexes **must be a positive integer** 1, 2, 3, …​
+* Both indexes **must be positive integers** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When updating roles, the existing roles of the groupmate will be removed i.e. adding of roles is not cumulative.
@@ -524,7 +524,7 @@ Format: `deleteG PROJECT_INDEX i/GROUPMATE_INDEX`
 * Deletes the groupmate at the specified `GROUPMATE_INDEX` from the project at the specified `PROJECT_INDEX`.
 * The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
 * The `GROUPMATE_INDEX` refers to the number shown beside the groupmate when viewing the project.
-* Both indexes **must be a positive integer** 1, 2, 3, …​
+* Both indexes **must be positive integers** 1, 2, 3, …​
 
 Examples:
 * `deleteG 1 i/1`
