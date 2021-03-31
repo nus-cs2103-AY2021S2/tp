@@ -16,6 +16,7 @@ import seedu.booking.model.booking.Booking;
 import seedu.booking.model.booking.Id;
 import seedu.booking.model.person.Email;
 import seedu.booking.model.person.Person;
+import seedu.booking.model.person.Phone;
 import seedu.booking.model.venue.Venue;
 import seedu.booking.model.venue.VenueName;
 
@@ -157,6 +158,12 @@ public class ModelManager implements Model {
     public boolean hasPersonWithEmail(Email email) {
         requireNonNull(email);
         return bookingSystem.hasPersonWithEmail(email);
+    }
+
+    @Override
+    public boolean hasPersonWithPhone(Phone phone) {
+        requireNonNull(phone);
+        return bookingSystem.hasPersonWithPhone(phone);
     }
 
 

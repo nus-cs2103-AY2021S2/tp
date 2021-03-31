@@ -11,6 +11,7 @@ import seedu.booking.model.booking.Id;
 import seedu.booking.model.booking.NonOverlappingBookingList;
 import seedu.booking.model.person.Email;
 import seedu.booking.model.person.Person;
+import seedu.booking.model.person.Phone;
 import seedu.booking.model.person.UniquePersonList;
 import seedu.booking.model.venue.UniqueVenueList;
 import seedu.booking.model.venue.Venue;
@@ -234,6 +235,14 @@ public class BookingSystem implements ReadOnlyBookingSystem {
     public boolean hasPersonWithEmail(Email email) {
         requireNonNull(email);
         return persons.containsEmail(getPersonList(), email);
+    }
+
+    /**
+     * Returns true if a person with the same phone as {@code email} exists in the system.
+     */
+    public boolean hasPersonWithPhone(Phone phone) {
+        requireNonNull(phone);
+        return persons.containsPhone(getPersonList(), phone);
     }
 
 

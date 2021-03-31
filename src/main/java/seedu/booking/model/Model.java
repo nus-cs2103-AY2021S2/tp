@@ -9,6 +9,7 @@ import seedu.booking.model.booking.Booking;
 import seedu.booking.model.booking.Id;
 import seedu.booking.model.person.Email;
 import seedu.booking.model.person.Person;
+import seedu.booking.model.person.Phone;
 import seedu.booking.model.venue.Venue;
 import seedu.booking.model.venue.VenueName;
 
@@ -81,7 +82,10 @@ public interface Model {
      */
     boolean hasPersonWithEmail(Email email);
 
-
+    /**
+     * Returns true if a person with the same phone number as {@code person} exists in the booking system.
+     */
+    boolean hasPersonWithPhone(Phone phone);
 
     /**
      * Deletes the given person.
