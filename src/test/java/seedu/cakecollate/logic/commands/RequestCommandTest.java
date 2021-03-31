@@ -22,6 +22,7 @@ import seedu.cakecollate.model.UserPrefs;
 import seedu.cakecollate.model.order.Order;
 import seedu.cakecollate.model.order.Request;
 import seedu.cakecollate.testutil.OrderBuilder;
+import seedu.cakecollate.testutil.TypicalOrderItems;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for RequestCommand.
@@ -30,7 +31,8 @@ public class RequestCommandTest {
 
     private static final String REQUEST_STUB = "Some request";
 
-    private Model model = new ModelManager(getTypicalCakeCollate(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalCakeCollate(), new UserPrefs(),
+            TypicalOrderItems.getTypicalOrderItemsModel());
 
     @Test
     public void execute_addRequestUnfilteredList_success() {
@@ -42,7 +44,8 @@ public class RequestCommandTest {
 
         String expectedMessage = String.format(RequestCommand.MESSAGE_ADD_REQUEST_SUCCESS, editedOrder);
 
-        Model expectedModel = new ModelManager(new CakeCollate(model.getCakeCollate()), new UserPrefs());
+        Model expectedModel = new ModelManager(new CakeCollate(model.getCakeCollate()), new UserPrefs(),
+                TypicalOrderItems.getTypicalOrderItemsModel());
         expectedModel.setOrder(firstOrder, editedOrder);
 
         assertCommandSuccess(requestCommand, model, expectedMessage, expectedModel);
@@ -61,7 +64,8 @@ public class RequestCommandTest {
 
         String expectedMessage = String.format(RequestCommand.MESSAGE_ADD_REQUEST_SUCCESS, editedOrder);
 
-        Model expectedModel = new ModelManager(new CakeCollate(model.getCakeCollate()), new UserPrefs());
+        Model expectedModel = new ModelManager(new CakeCollate(model.getCakeCollate()), new UserPrefs(),
+                TypicalOrderItems.getTypicalOrderItemsModel());
         expectedModel.setOrder(firstOrder, editedOrder);
 
         assertCommandSuccess(requestCommand, model, expectedMessage, expectedModel);

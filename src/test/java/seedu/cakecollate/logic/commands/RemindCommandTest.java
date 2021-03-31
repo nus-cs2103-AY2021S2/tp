@@ -15,12 +15,16 @@ import seedu.cakecollate.model.Model;
 import seedu.cakecollate.model.ModelManager;
 import seedu.cakecollate.model.UserPrefs;
 import seedu.cakecollate.model.order.ReminderDatePredicate;
+import seedu.cakecollate.testutil.TypicalOrderItems;
+
 /**
  * Contains integration tests (interaction with the Model) for {@code RemindCommand}.
  */
 public class RemindCommandTest {
-    private Model model = new ModelManager(getTypicalCakeCollate(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalCakeCollate(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalCakeCollate(), new UserPrefs(),
+            TypicalOrderItems.getTypicalOrderItemsModel());
+    private Model expectedModel = new ModelManager(getTypicalCakeCollate(), new UserPrefs(),
+            TypicalOrderItems.getTypicalOrderItemsModel());
 
     @Test
     public void equals() {

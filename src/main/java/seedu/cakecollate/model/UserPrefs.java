@@ -15,7 +15,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
     private Path cakeCollateFilePath = Paths.get("data" , "cakecollate.json");
-
+    private Path orderItemsFilePath = Paths.get("data", "OrderItems.json");
     /**
      * Creates a {@code UserPrefs} with default values.
      */
@@ -36,6 +36,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
         setCakeCollateFilePath(newUserPrefs.getCakeCollateFilePath());
+        setOrderItemsFilePath(newUserPrefs.getOrderItemsFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -56,6 +57,15 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.cakeCollateFilePath = cakeCollateFilePath;
     }
 
+    public Path getOrderItemsFilePath() {
+        return orderItemsFilePath;
+    }
+
+    public void setOrderItemsFilePath(Path orderItemsFilePath) {
+        requireNonNull(orderItemsFilePath);
+        this.orderItemsFilePath = orderItemsFilePath;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -68,12 +78,13 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-                && cakeCollateFilePath.equals(o.cakeCollateFilePath);
+                && cakeCollateFilePath.equals(o.cakeCollateFilePath)
+                && orderItemsFilePath.equals(o.orderItemsFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, cakeCollateFilePath);
+        return Objects.hash(guiSettings, cakeCollateFilePath, orderItemsFilePath);
     }
 
     @Override

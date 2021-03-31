@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import seedu.cakecollate.model.Model;
 import seedu.cakecollate.model.ModelManager;
 import seedu.cakecollate.model.UserPrefs;
+import seedu.cakecollate.testutil.TypicalOrderItems;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
@@ -22,8 +23,10 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalCakeCollate(), new UserPrefs());
-        expectedModel = new ModelManager(model.getCakeCollate(), new UserPrefs());
+        model = new ModelManager(getTypicalCakeCollate(), new UserPrefs(),
+                TypicalOrderItems.getTypicalOrderItemsModel());
+        expectedModel = new ModelManager(model.getCakeCollate(), new UserPrefs(),
+                TypicalOrderItems.getTypicalOrderItemsModel());
     }
 
     @Test

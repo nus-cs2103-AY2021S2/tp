@@ -7,7 +7,9 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.cakecollate.model.CakeCollate;
+import seedu.cakecollate.model.OrderItems;
 import seedu.cakecollate.model.ReadOnlyCakeCollate;
+import seedu.cakecollate.model.ReadOnlyOrderItems;
 import seedu.cakecollate.model.order.Address;
 import seedu.cakecollate.model.order.DeliveryDate;
 import seedu.cakecollate.model.order.Email;
@@ -16,10 +18,13 @@ import seedu.cakecollate.model.order.Order;
 import seedu.cakecollate.model.order.OrderDescription;
 import seedu.cakecollate.model.order.Phone;
 import seedu.cakecollate.model.order.Request;
+import seedu.cakecollate.model.orderitem.Cost;
+import seedu.cakecollate.model.orderitem.OrderItem;
+import seedu.cakecollate.model.orderitem.Type;
 import seedu.cakecollate.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code CakeCollate} with sample data.
+ * Contains utility methods for populating {@code CakeCollate} and {@code OrderItems} with sample data.
  */
 public class SampleDataUtil {
     private static LocalDate dateToday = LocalDate.now();
@@ -65,12 +70,34 @@ public class SampleDataUtil {
         };
     }
 
+    // sample order items should include the order descriptions above so it doesn't confuse users
+    // since order descriptions typed by users should always be added to the order items table
+    public static OrderItem[] getSampleOrderItem() {
+        return new OrderItem[] { new OrderItem(new Type("Banana Cake"), new Cost("5.0")),
+            new OrderItem(new Type("GME Banana Cake"), new Cost("42690.0")),
+            new OrderItem(new Type("1 x Strawberry Cake"), new Cost("5.0")),
+            new OrderItem(new Type("2 x Chocolate Cake"), new Cost("5.0")),
+            new OrderItem(new Type("1 x Black Forest Cake"), new Cost("5.0")),
+            new OrderItem(new Type("1 x Vanilla Cake"), new Cost("5.0")),
+            new OrderItem(new Type("1 x Chocolate Vanilla Cake"), new Cost("5.0")),
+            new OrderItem(new Type("1 x Berries Cake"), new Cost("5.0"))
+        };
+    }
+
     public static ReadOnlyCakeCollate getSampleCakeCollate() {
         CakeCollate sampleAb = new CakeCollate();
         for (Order sampleOrder : getSampleOrders()) {
             sampleAb.addOrder(sampleOrder);
         }
         return sampleAb;
+    }
+
+    public static ReadOnlyOrderItems getSampleOrderItems() {
+        OrderItems sampleOi = new OrderItems();
+        for (OrderItem sampleItems : getSampleOrderItem()) {
+            sampleOi.addOrderItem(sampleItems);
+        }
+        return sampleOi;
     }
 
     /**

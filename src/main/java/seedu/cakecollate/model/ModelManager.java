@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.cakecollate.commons.core.GuiSettings;
 import seedu.cakecollate.commons.core.LogsCenter;
 import seedu.cakecollate.model.order.Order;
+import seedu.cakecollate.model.orderitem.OrderItem;
 
 /**
  * Represents the in-memory model of the cakecollate data.
@@ -23,23 +24,29 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Order> filteredOrders;
 
+    private final OrderItems orderItems;
+    private final FilteredList<OrderItem> filteredOrderItems;
+
     /**
      * Initializes a ModelManager with the given cakeCollate and userPrefs.
      */
-    public ModelManager(ReadOnlyCakeCollate cakeCollate, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyCakeCollate cakeCollate, ReadOnlyUserPrefs userPrefs, ReadOnlyOrderItems orderItems) {
         super();
         requireAllNonNull(cakeCollate, userPrefs);
 
-        logger.fine("Initializing with cakecollate: " + cakeCollate + " and user prefs " + userPrefs);
+        logger.fine("Initializing with cakecollate: " + cakeCollate + " and user prefs "
+                + userPrefs + "and orderitems " + orderItems);
 
         this.cakeCollate = new CakeCollate(cakeCollate);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredOrders = new FilteredList<>(this.cakeCollate.getOrderList());
+        this.orderItems = new OrderItems(orderItems);
+        filteredOrderItems = new FilteredList<>(this.orderItems.getOrderItemList());
         sortFilteredOrderList();
     }
 
     public ModelManager() {
-        this(new CakeCollate(), new UserPrefs());
+        this(new CakeCollate(), new UserPrefs(), new OrderItems());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -118,7 +125,7 @@ public class ModelManager implements Model {
     //=========== Filtered Order List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Order} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Orders} backed by the internal list of
      * {@code versionedCakeCollate}
      */
     @Override
@@ -155,7 +162,44 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return cakeCollate.equals(other.cakeCollate)
                 && userPrefs.equals(other.userPrefs)
-                && filteredOrders.equals(other.filteredOrders);
+                && filteredOrders.equals(other.filteredOrders)
+                && orderItems.equals(other.orderItems);
+    }
+
+    //=========== OrderItems ================================================================================
+    @Override
+    public ReadOnlyOrderItems getOrderItems() {
+        return orderItems;
+    }
+
+    @Override
+    public boolean hasOrderItem(OrderItem orderItem) {
+        requireNonNull(orderItem);
+        return orderItems.hasOrderItem(orderItem);
+    }
+
+    @Override
+    public void deleteOrderItem(OrderItem target) {
+        orderItems.removeOrderItem(target);
+    }
+
+
+
+    @Override
+    public void addOrderItem(OrderItem orderItem) {
+        logger.info(String.format("adding order item %s to orderitems %s", orderItem, orderItems));
+        orderItems.addOrderItem(orderItem);
+    }
+
+    //=========== Filtered Order Items List Accessors =============================================================
+    /**
+     * Returns an unmodifiable view of the list of {@code OrderItems} backed by the internal list of
+     * {@code versionedOrderItems}
+     */
+    @Override
+    public ObservableList<OrderItem> getFilteredOrderItemsList() {
+        return filteredOrderItems;
     }
 
 }
+

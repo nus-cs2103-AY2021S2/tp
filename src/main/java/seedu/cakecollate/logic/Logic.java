@@ -9,6 +9,7 @@ import seedu.cakecollate.logic.commands.exceptions.CommandException;
 import seedu.cakecollate.logic.parser.exceptions.ParseException;
 import seedu.cakecollate.model.ReadOnlyCakeCollate;
 import seedu.cakecollate.model.order.Order;
+import seedu.cakecollate.model.orderitem.OrderItem;
 
 /**
  * API of the Logic component
@@ -50,4 +51,6 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    ObservableList<OrderItem> getFilteredOrderItemsList();
 }

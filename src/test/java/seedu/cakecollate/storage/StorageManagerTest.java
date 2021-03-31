@@ -25,8 +25,10 @@ public class StorageManagerTest {
     @BeforeEach
     public void setUp() {
         JsonCakeCollateStorage cakeCollateStorage = new JsonCakeCollateStorage(getTempFilePath("ab"));
+        JsonOrderItemsStorage orderItemsStorage = new JsonOrderItemsStorage(getTempFilePath("item"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(cakeCollateStorage, userPrefsStorage);
+
+        storageManager = new StorageManager(cakeCollateStorage, userPrefsStorage, orderItemsStorage);
     }
 
     private Path getTempFilePath(String fileName) {

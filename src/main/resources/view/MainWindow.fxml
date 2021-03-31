@@ -47,7 +47,7 @@
         </StackPane>
 
         <HBox fx:id="modelBox">
-          <HBox fx:id="unmodifiedModels">
+          <HBox fx:id="unmodifiedModels" minHeight="433">
             <VBox fx:id="list" styleClass="pane-with-border" minWidth="950" prefWidth="950" VBox.vgrow="ALWAYS">
               <padding>
                 <Insets top="10" right="10" bottom="10" left="10" />
