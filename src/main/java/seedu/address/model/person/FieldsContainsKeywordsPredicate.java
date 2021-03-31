@@ -13,10 +13,8 @@ import seedu.address.commons.core.LogsCenter;
  * given.
  */
 public class FieldsContainsKeywordsPredicate implements Predicate<Person>, Comparator<Person> {
-    private static final int MATCH_PERCENTAGE = 60;
     private final List<String> keywords;
     private final ArrayList<Predicate<Person>> predicates;
-    private final Logger logger = LogsCenter.getLogger(getClass());
 
     /**
      * Constructs a predicate for each of the fields using the keywords provided
