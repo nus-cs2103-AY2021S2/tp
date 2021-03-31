@@ -1,0 +1,75 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":ViewDayCommandParser" as ViewDayCommandParser LOGIC_COLOR
+participant ":TaskOnDatePredicate" as TaskOnDatePredicate LOGIC_COLOR
+participant ":TaskDateOnDatePredicate" as TaskDateOnDatePredicate LOGIC_COLOR
+participant ":TaskScheduledOnDatePredicate" as TaskScheduledOnDatePredicate LOGIC_COLOR
+participant ":ViewDayCommand" as ViewDayCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> ViewDayCommandParser : parse(args)
+activate ViewDayCommandParser
+
+create TaskOnDatePredicate
+ViewDayCommandParser -> TaskOnDatePredicate
+activate TaskOnDatePredicate
+
+create TaskDateOnDatePredicate
+TaskOnDatePredicate -> TaskDateOnDatePredicate
+activate TaskDateOnDatePredicate
+
+TaskDateOnDatePredicate --> TaskOnDatePredicate
+deactivate TaskDateOnDatePredicate
+
+create TaskScheduledOnDatePredicate
+TaskOnDatePredicate -> TaskScheduledOnDatePredicate
+activate TaskScheduledOnDatePredicate
+
+TaskScheduledOnDatePredicate --> TaskOnDatePredicate
+deactivate TaskScheduledOnDatePredicate
+
+TaskOnDatePredicate --> ViewDayCommandParser : predicate
+deactivate TaskOnDatePredicate
+
+create ViewDayCommand
+ViewDayCommandParser -> ViewDayCommand : new ViewDayCommand(predicate)
+activate ViewDayCommand
+
+ViewDayCommand --> ViewDayCommandParser : command
+deactivate ViewDayCommand
+
+[<-- ViewDayCommandParser : command
+deactivate ViewDayCommandParser
+
+[-> ViewDayCommand : execute(model)
+activate ViewDayCommand
+
+ViewDayCommand -> Model : updateFilteredTaskList(predicate)
+activate Model
+
+Model -> ViewDayCommand
+deactivate Model
+
+ViewDayCommand -> Model : setCalendarDate(date)
+activate Model
+
+Model -> ViewDayCommand
+deactivate Model
+
+create CommandResult
+ViewDayCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ViewDayCommand : result
+deactivate CommandResult
+
+[<--ViewDayCommand : result
+deactivate ViewDayCommand
+@enduml

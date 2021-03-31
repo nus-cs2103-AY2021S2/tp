@@ -16,6 +16,8 @@ Class TaskCard
 Class TaskCardDetails
 Class StatusBarFooter
 Class CommandBox
+Class TagListPanel
+Class CalendarPanel
 }
 
 package Model <<Rectangle>> {
@@ -31,14 +33,16 @@ HiddenOutside ..> Ui
 
 UiManager .left.|> Ui
 UiManager -down-> MainWindow
-MainWindow --> HelpWindow
+MainWindow -down-> HelpWindow
 MainWindow *-down-> CommandBox
 MainWindow *-down-> ResultDisplay
-MainWindow *-down-> TaskListPanel
+MainWindow *-down-> TagListPanel
+MainWindow *-down-> CalendarPanel
 MainWindow *-down-> StatusBarFooter
+MainWindow *-left-> TaskListPanel
 
-TaskListPanel -down-> TaskCard
-TaskCard -down-> TaskCardDetails
+TaskListPanel --> TaskCard
+TaskCard --> TaskCardDetails
 
 MainWindow -left-|> UiPart
 
@@ -49,6 +53,8 @@ TaskCard --|> UiPart
 TaskCardDetails --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow -down-|> UiPart
+TagListPanel --|> UiPart
+CalendarPanel --|> UiPart
 
 TaskListPanel ..> Model
 UiManager -right-> Logic
