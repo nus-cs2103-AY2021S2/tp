@@ -44,10 +44,8 @@ public class Task {
         this.status = status;
         this.weightage = weightage;
         this.remark = remark;
-        tags = removeOldPriorityTags(tags);
         this.tags.addAll(tags);
         this.priorityTag = priorityTag;
-        this.tags.add(new Tag(this.priorityTag.getTagName()));
 
     }
 
@@ -66,13 +64,7 @@ public class Task {
         this.weightage = weightage;
         this.remark = remark;
         this.tags.addAll(tags);
-
-        if (findPriorityTag(this.tags)) {
-            this.priorityTag = obtainPriorityTag(this.tags);
-        } else {
-            this.priorityTag = new PriorityTag("LOW");
-            this.tags.add(new Tag("LOW"));
-        }
+        this.priorityTag = new PriorityTag("LOW");
 
 
     }
@@ -199,76 +191,6 @@ public class Task {
             tags.forEach(builder::append);
         }
         return builder.toString();
-    }
-
-    /**
-     *
-     * Method that finds if there is a priority tag associated
-     * with the tags
-     *
-     * @param tags data containing all the tags in String
-     * @return boolean whether the pt is found
-     */
-    private boolean findPriorityTag(Set<Tag> tags) {
-
-        Iterator<Tag> it = tags.iterator();
-
-        while (it.hasNext()) {
-            Tag hold = it.next();
-            if (hold.tagName.equals("LOW")
-                    || hold.tagName.equals("MEDIUM")
-                    || hold.tagName.equals("HIGH")) {
-                return true;
-            }
-        }
-
-        return false;
-
-    }
-
-    /**
-     *
-     * Method that returns a priority tag associated
-     * with the task
-     *
-     * @param tags data containing all the tags in String
-     * @return the priority tag to be stored
-     */
-    private PriorityTag obtainPriorityTag(Set<Tag> tags) {
-
-        Iterator<Tag> it = tags.iterator();
-
-        while (it.hasNext()) {
-            Tag hold = it.next();
-            if (hold.tagName.equals("LOW")
-                    || hold.tagName.equals("MEDIUM")
-                    || hold.tagName.equals("HIGH")) {
-                return new PriorityTag(hold.tagName);
-            }
-        }
-
-        return new PriorityTag("LOW");
-
-    }
-
-    /**
-     * method to remove outdated instances of priority tags in set
-     * @param tags data struct that stores the tags
-     * @return a tag set free of old ptag
-     */
-    private Set<Tag> removeOldPriorityTags(Set<Tag> tags) {
-        Iterator<Tag> it = tags.iterator();
-        Set<Tag> hold = new HashSet<>();
-        while (it.hasNext()) {
-            Tag check = it.next();
-            if (check.tagName.equals("LOW")
-                    || check.tagName.equals("MEDIUM")
-                    || check.tagName.equals("HIGH")) {
-            } else {
-                hold.add(check);
-            }
-        }
-        return hold;
     }
 
 }
