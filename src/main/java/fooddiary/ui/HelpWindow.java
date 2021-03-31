@@ -8,6 +8,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 /**
@@ -63,6 +67,8 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public HelpWindow(Stage root) {
         super(FXML, root);
+        final KeyCombination esc = new KeyCodeCombination(KeyCode.ESCAPE);
+        setEscShortCut(esc);
         helpMessageField.setText(HELP_MESSAGE);
     }
 
@@ -117,6 +123,20 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public void focus() {
         getRoot().requestFocus();
+    }
+
+    /**
+     * Sets up 'ESC' key to hide window
+     *
+     * @param esc 'ESC' on keyboard
+     */
+    private void setEscShortCut(KeyCombination esc) {
+        getRoot().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (esc.match(event)) {
+                hide();
+                event.consume();
+            }
+        });
     }
 
     /**

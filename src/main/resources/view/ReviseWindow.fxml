@@ -32,15 +32,18 @@
                     <TextField fx:id="priceText" />
                     <Label fx:id="address" styleClass="view_label" text="Address:" />
                     <TextField fx:id="addressText" />
-                    <Label fx:id="reviews" styleClass="view_label" text="Reviews:" />
+                    <Label fx:id="reviews" styleClass="view_label"
+                           text="Reviews:   * Leave a blank line between each review *" />
                     <TextArea fx:id="reviewsText" minHeight="250.0" wrapText="true">
                       <font>
                          <Font size="15.0" />
                       </font>
                     </TextArea>
-                    <Label fx:id="categoriesLabel" styleClass="view_label" text="Categories:" />
+                    <Label fx:id="categoriesLabel" styleClass="view_label"
+                           text="Categories:    * Leave a white-space between each category *" />
                     <TextField fx:id="categoriesText" />
-                    <Label fx:id="schoolsLabel" styleClass="view_label" text="Schools:" />
+                    <Label fx:id="schoolsLabel" styleClass="view_label"
+                           text="Schools:   * Leave a white-space between each school *" />
                     <TextField fx:id="schoolsText" />
                     <Button fx:id="reviseButton" mnemonicParsing="false" onAction="#revise" text="Revise" >
                         <HBox.margin>
