@@ -60,7 +60,7 @@ public class GetMonthlyFeeCommand extends Command {
         LocalDateTime currMonthYear;
         LocalDateTime nextMonthYear;
 
-        currMonthYear = DateUtil.convertToLocalDate(month, year);
+        currMonthYear = DateUtil.getFirstDayOfMonth(month, year);
         nextMonthYear = currMonthYear.plusMonths(1);
 
         // Get month fee for this month for that particular student

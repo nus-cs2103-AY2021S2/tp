@@ -19,7 +19,12 @@ public class FeeUtil {
      * @return Total fee between the 2 time period.
      */
     public static double getFeePerStudent(Student student, LocalDateTime startPeriod, LocalDateTime endPeriod) {
+
+        assert endPeriod.isEqual(startPeriod) || endPeriod.isAfter(startPeriod) :
+            "End period should be equal or after start period";
+
         double fee = 0;
+
         for (Session session : student.getListOfSessions()) {
             if (session instanceof RecurringSession) {
                 fee += getRecurringSessionFee((RecurringSession) session, startPeriod, endPeriod);
@@ -32,6 +37,10 @@ public class FeeUtil {
 
     private static double getRecurringSessionFee(RecurringSession recurringSession, LocalDateTime startPeriod,
         LocalDateTime endPeriod) {
+
+        assert endPeriod.isEqual(startPeriod) || endPeriod.isAfter(startPeriod) :
+            "End period should be equal or after start period";
+
         SessionDate startDate = new SessionDate(startPeriod);
         // // Minus one day, because the end date for numOfSessionBetween method is inclusive
         SessionDate endDate = new SessionDate(endPeriod.minusDays(1));

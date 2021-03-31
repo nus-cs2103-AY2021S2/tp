@@ -74,13 +74,13 @@ public class MonthlyFeeListPanel extends UiPart<Region> {
         LocalDateTime now = LocalDateTime.now();
         Month month = new Month(now.getMonth().getValue());
         Year year = new Year(now.getYear());
-        currMonthYear = DateUtil.convertToLocalDate(month, year);
+        currMonthYear = DateUtil.getFirstDayOfMonth(month, year);
         nextMonthYear = currMonthYear.plusMonths(1);
 
         // Get fees for the current month + previous 2 months.
         for (int i = 0; i < 3; i++) {
             // Get current month value and add the result to the resulting string
-            double currMonthlyFee = getCurrMonthFee(studentList, currMonthYear, nextMonthYear);
+            double currMonthlyFee = getMonthFeeByPeriod(studentList, currMonthYear, nextMonthYear);
             monthlyFeeList.add(new MonthlyFee(currMonthlyFee, new Month(currMonthYear.getMonth().getValue()),
                 new Year(currMonthYear.getYear())));
             // Update to previous month
@@ -97,7 +97,7 @@ public class MonthlyFeeListPanel extends UiPart<Region> {
      * @param endPeriod End Period of the month.
      * @return Monthly fee for the current month.
      */
-    private double getCurrMonthFee(ObservableList<Student> studentList, LocalDateTime startPeriod,
+    private double getMonthFeeByPeriod(ObservableList<Student> studentList, LocalDateTime startPeriod,
         LocalDateTime endPeriod) {
         double fee = 0;
         for (Student student : studentList) {
