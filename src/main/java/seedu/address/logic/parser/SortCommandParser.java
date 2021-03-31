@@ -4,7 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -24,7 +24,7 @@ public class SortCommandParser implements Parser<SortCommand> {
         Prefix firstPrefix;
         try {
             firstPrefix = ArgumentTokenizer.getFirstPrefix(
-                    args, PREFIX_NAME, PREFIX_SCHOOL, PREFIX_SUBJECT, PREFIX_LESSON);
+                    args, PREFIX_NAME, PREFIX_SCHOOL, PREFIX_TAG, PREFIX_LESSON);
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE), pe);

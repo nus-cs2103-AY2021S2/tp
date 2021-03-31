@@ -24,7 +24,7 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.SearchCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.predicate.NameSchoolAndSubjectContainsKeywordsPredicate;
+import seedu.address.model.person.predicate.NameSchoolAndTagContainsKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
@@ -78,7 +78,7 @@ public class AddressBookParserTest {
                         + " s/" + schoolKeywords.stream().collect(Collectors.joining(" "))
                         + " t/" + tagKeywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new SearchCommand(
-                new NameSchoolAndSubjectContainsKeywordsPredicate(nameKeywords, schoolKeywords, tagKeywords)), command);
+                new NameSchoolAndTagContainsKeywordsPredicate(nameKeywords, schoolKeywords, tagKeywords)), command);
     }
 
     @Test
