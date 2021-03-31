@@ -126,7 +126,7 @@ public class TemplateInitializer {
                 + "bodybuilders maintain their muscle mass whilst burning fat.",
                 new MacroNutrientComposition(60, 35, 5),
                 PlanType.WEIGHTLOSS);
-        DietPlan thirdDietPlan = new DietPlan("Skinny Guy BodyBuilding",
+        DietPlan thirdDietPlan = new DietPlan("High Carb Bulking Diet",
                 "The goal for bodybuilders is to increase muscle mass. Consume high-quality, nutrient-dense "
                         + "carbs when the body needs them most, around workouts. The hyperenergetic diet "
                         + "plan recommends consuming starchy food during and after workouts, and less "

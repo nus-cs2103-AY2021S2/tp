@@ -474,3 +474,48 @@ Health Terms | Meaning
 **Body Mass Index (BMI)** | A value derived from the mass and height of a person, by taking the body mass divided by the square of the body height.
 **Macronutrients** | Nutrients, such as fats, proteins and carbohydrates that provide us with energy.
 --------------------------------------------------------------------------------------------------------------------
+
+## Appendix
+
+### A1. Diet Plans
+
+The following are diet plans options that comes with DietLAH!.
+
+#### A4.1 Standard Ketogenic Diet
+
+The Standard Ketogenic Diet is a high-fat, low-carb weight-loss diet.
+It is designed in such a way that by reducing the intake of carbohydrates,
+the body is forced to burn its fat reserves for fuel thereby resulting in weight-loss.
+
+The Standard Ketogenic Diet is suitable for individuals suffering from Type II Diabetes where
+excess carbohydrates would have been converted into glucose.
+
+**Classification:** `Weight Loss`  
+**Composition:** `70% Fat` `10% Carbohydrates` `20% Proteins`
+
+#### A4.2 High-Protein Ketogenic Diet
+
+The High-Protein Ketogenic Diet is a variation of the Ketogenic Diet (high-fat, low-carb)
+which increases the protein intake. This variation is designed to help athletes and
+bodybuilders maintain their muscle mass whilst burning fat.
+
+**Classification:** `Weight Loss`  
+**Composition:** `60% Fat` `35% Carbohydrates` `5% Proteins`
+
+#### A4.3 High Carb Bulking Diet
+
+The goal for bodybuilders is to increase muscle mass. Consume high-quality, nutrient-dense
+carbs when the body needs them most, around workouts. The hyperenergetic diet
+plan recommends consuming starchy food during and after workouts, and less
+starchy content on off-hours.
+
+**Classification:** `Weight Gain`  
+**Composition:** `15% Fat` `55% Carbohydrates` `30% Proteins`
+
+#### A4.4 Balanced Plan
+
+The perfect ying-yang. Eat healthy food and complete the calorie goal.
+Eat lots of fruits and vegetables, and base meals on higher fiber starchy carbohydrates.
+
+**Classification:** `Maintain Weight`  
+**Composition:** `30% Fat` `40% Carbohydrates` `30% Proteins`
