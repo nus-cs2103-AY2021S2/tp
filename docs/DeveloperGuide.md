@@ -850,7 +850,14 @@ testers are expected to do more *exploratory* testing.
     Expected: The view pane on the bottom left does not display anything, and the text in `CommandBox` turns red to indicate an error. The result display shows a message: `Invalid command format!`.
     1. Test case: `view 2001` <br>
     Expected: The view pane on the bottom left does not display anything, and the text in `CommandBox` turns red to indicate an error. The result display shows a message: `The flashcard index provided is invalid`.
-    
+
+### Sorting flashcards
+1. Sorting all flashcards in FlashBack.
+    1. Prerequisites: There must be at least 1 flashcard currently shown in the list.
+    1. Test case: `sort priority -a`
+    Expected: The display list will be updated to show flashcards sorted in ascending order of priority.
+    1. Test case: `sort`
+    Expected: No flashcards sorted, and the text in `CommandBox` turns red to indicate an error. The result display shows a message: `Invalid command format!`.
 ### Review mode
 1. Entering the review mode
     1. Prerequisites: There must be at least 1 flashcard that is currently shown in the list.
