@@ -4,7 +4,7 @@ title: Developer Guide
 ---
 
 * Table of Contents
-{:toc}
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -189,30 +189,30 @@ Note that if the user does not have a mail client software set as default in the
 ##### Design Considerations
 
 * **Alternative 1 (current choice):** make use of the OS mail client to facilitate email features.
-	* Pros: Easy to implement; utilizes a pre-existing and standardized system for invoking mail xyz.
-	* Cons: Requires the user to have a mail client installed on their OS, which is then set to be the default mail client of the system.
+    * Pros: Easy to implement; utilizes a pre-existing and standardized system for invoking mail xyz.
+    * Cons: Requires the user to have a mail client installed on their OS, which is then set to be the default mail client of the system.
 
 * **Alternative 2:** implement basic email features directly into Dictionote.
-	* Pros: Does not depened on the existence of external software in the OS.
-	* Cons: Much harder to implement, as it requires the implementation of network-related functions to handle the connections to email servers.
-	
-	
+    * Pros: Does not depened on the existence of external software in the OS.
+    * Cons: Much harder to implement, as it requires the implementation of network-related functions to handle the connections to email servers.
+
+
 #### More implementation details to be added...
 
 ### UI features
 
 #### Manipulation UI through Command
 #####  Implementation
-Dictionote provides a dynamic user interface that allows the user to open and close any panel. 
-When executing any given command, dictionote will have to be able to change the user interface. 
-While all commands can open or close the UI panel. The user is also given the ability to manipulate UI through user command. 
+Dictionote provides a dynamic user interface that allows the user to open and close any panel.
+When executing any given command, dictionote will have to be able to change the user interface.
+While all commands can open or close the UI panel. The user is also given the ability to manipulate UI through user command.
 The feature is implemented through the `CommandResult` that all `Command` in the system return.
 
-`CommandResult` store a string `feedbackToUser`, enum `UiAction` and enum `UiActionOption`. `feedbackToUser` will 
-be show on the `ResultDisplay` as the command execution feedback. 
-`UiAction` indicate the action the command the want the `UI` to take. 
-e.g `UiAction.OPEN`, `UiAction.CLOSE`, `UiAction.EXIT`, ... etc. `UiActionOption` is only applicable to some `UiAction`. 
-It indicate the specific option available for the `UiAction`. 
+`CommandResult` store a string `feedbackToUser`, enum `UiAction` and enum `UiActionOption`. `feedbackToUser` will
+be show on the `ResultDisplay` as the command execution feedback.
+`UiAction` indicate the action the command the want the `UI` to take.
+e.g `UiAction.OPEN`, `UiAction.CLOSE`, `UiAction.EXIT`, ... etc. `UiActionOption` is only applicable to some `UiAction`.
+It indicate the specific option available for the `UiAction`.
 e.g `UiActionOption.Dictionary` for `UiActionOpen` mean open dictionary panel.
 
 The following is the sequence diagram for  `OPENCOMMAND`
@@ -235,17 +235,17 @@ Dictionote provides a method for its users to convert a note into a text file th
 
 This feature is implemented as a command, `ConvertTxtNoteCommand`, that extends `Command`. It is an index-dependent command, meaning that the user must provide an index number when typing the command as a reference to a specific note on the note list.
 
-The `execute()` method will calls a `ConvertTxtNote` function, whics uses Java's `BufferedWriter` and `FileWriter` class to write remotely.
+The `execute()` method will calls a `ConvertTxtNote` function, which uses Java's `BufferedWriter` and `FileWriter` class to write remotely.
 
 Here is the example of the command usage. Assume initially, the state of the application is shown below:
 
 ![ConvertNoteToTxtStart](images/ConvertNoteToTxtStart.png)
- 
+
 * After typing in `converttxt 1` and executing it, the result would be:
 
 ![ConvertNoteToTxtEnd](images/ConvertNoteToTxtEnd.png)
 
-* The resulting text file can be seen in the `data` folder. 
+* The resulting text file can be seen in the `data` folder.
 
 ![ConvertNoteToTxtResult](images/ConvertNoteToTxtResult.png)
 
@@ -255,13 +255,38 @@ Here is the example of the command usage. Assume initially, the state of the app
 
 #### Design Consideration
 * **Alternative 1 (current choice):** make use of the Java's `FileWriter` class to help us write files.
-	* Pros: Easy to implement; utilizes a pre-existing and standardized system for file writing.
-	* Cons: Need to modify code later for enhancement later.
+    * Pros: Easy to implement; utilizes a pre-existing and standardized system for file writing.
+    * Cons: Need to modify code later for enhancement later.
 
 * **Alternative 2:** make our customized note-to-text converter class.
-	* Pros: Enable us to convert more than text files and have specific usage for our code.
-	* Cons: Very hard to implement, not enough time and knowledge.
-	
+    * Pros: Enable us to convert more than text files and have specific usage for our code.
+    * Cons: Very hard to implement, not enough time and knowledge.
+
+#### Merge two notes into one
+
+Dictionote provides a method for its users to merge two notes into one combined note.
+
+This feature is implemented as a command, `MergeNoteCommand`, that extends `Command`. It is an index-dependent command, meaning that the user must provide 2 indexes number when typing the command as a reference to the notes that would like to be merged.
+
+The `execute()` method will calls a `mergeNote` function which would delete both notes from NoteBook and add a new combined note into the NoteBook.
+
+Here is the example of the command usage. Assume initially, the state of the application is shown below:
+
+![ConvertNoteToTxtEnd](images/MergeNoteBefore.png)
+
+After typing in `mergenote 1 2` and executing it, the result would be:
+
+![ConvertNoteToTxtEnd](images/MergeNoteAfter.png)
+
+#### Design Consideration
+* **Alternative 1 (current choice):** Implement MergeNoteCommand which extends Command.
+    * Pros: Easy to implement; match the design pattern already inherited from AB3.
+    * Cons: More lines of code.
+
+* **Alternative 2:** Make MergeNoteCommand as a function from the model immediately.
+    * Pros: Less Lines of Code and simpler due to not extending the Command class.
+    * Cons: Might be confusing as some of the commands are already implented and might not be consistent with other commands.
+
 <!--
 ### \[Proposed\] Undo/redo feature
 
