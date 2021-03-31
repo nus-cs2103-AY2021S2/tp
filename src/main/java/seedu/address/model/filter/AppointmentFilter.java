@@ -13,9 +13,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentDateTime;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Name;
 import seedu.address.model.subject.SubjectName;
+import seedu.address.model.tutor.Address;
+import seedu.address.model.tutor.Name;
 
 public class AppointmentFilter implements Predicate<Appointment> {
     private final Set<Predicate<Name>> nameFilters;

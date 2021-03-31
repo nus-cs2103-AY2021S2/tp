@@ -68,7 +68,7 @@
                                     </padding>
                                 </HBox>
 
-                                <VBox fx:id="personList" minWidth="500" prefWidth="150.0" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+                                <VBox fx:id="tutorList" minWidth="500" prefWidth="150.0" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
                                     <padding>
                                         <Insets bottom="10" left="10" right="10" top="10" />
                                     </padding>

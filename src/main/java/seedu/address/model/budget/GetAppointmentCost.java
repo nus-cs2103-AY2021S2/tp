@@ -4,9 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.person.Name;
 import seedu.address.model.subject.SubjectName;
 import seedu.address.model.subject.SubjectRate;
+import seedu.address.model.tutor.Name;
 
 
 /**
