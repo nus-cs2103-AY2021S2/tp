@@ -7,7 +7,12 @@ import static seedu.address.testutil.TypicalPersons.getTypicalLessonBook;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.*;
+import seedu.address.model.AddressBook;
+import seedu.address.model.DatesBook;
+import seedu.address.model.LessonBook;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
 
 public class ClearCommandTest {
 
