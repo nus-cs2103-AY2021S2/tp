@@ -1,10 +1,5 @@
 package seedu.address.model.lesson;
 
-import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.comparators.LessonTimeComparator;
-
-import java.util.logging.Logger;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 

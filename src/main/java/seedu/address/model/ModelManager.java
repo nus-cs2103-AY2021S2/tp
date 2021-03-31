@@ -12,7 +12,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
-import seedu.address.MainApp;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.date.ImportantDate;
@@ -325,40 +324,19 @@ public class ModelManager implements Model {
     //=========== Lesson Day Accessors =============================================================
 
     @Override
-    public ObservableList<Lesson> filterThenSortLessonDayList(FilteredList<Lesson> lessonDayList, Predicate<Lesson> predicate,
-            Comparator<Lesson> comparator) throws NullPointerException {
-
-        Logger logger = LogsCenter.getLogger(ModelManager.class);
-        logger.info("********************** original filtered list: " + lessonDayList);
+    public ObservableList<Lesson> filterThenSortLessonDayList(FilteredList<Lesson> lessonDayList,
+            Predicate<Lesson> predicate, Comparator<Lesson> comparator) throws NullPointerException {
 
         requireNonNull(predicate);
         requireNonNull(comparator);
         lessonDayList.setPredicate(predicate);
-
-        logger.info("********************** after filtering: " + lessonDayList);
-
         ObservableList<Lesson> transformedDayList = FXCollections.observableArrayList(lessonDayList);
-        // transformedDayList.setAll(lessonDayList);
         SortedList<Lesson> sortedDayList = transformedDayList.sorted(comparator);
         sortedDayList.setComparator(comparator);
-
-        logger.info("********************** after sorting: " + sortedDayList);
-
-
         transformedDayList.setAll(sortedDayList);
-
-        logger.info("********************** transformed list: " + transformedDayList);
 
         return transformedDayList;
 
-        /*
-        filteredPersons.setPredicate(predicate);
-        transformedPersons.setAll(filteredPersons);
-        SortedList<Person> newSortedPersons = transformedPersons.sorted(comparator);
-        newSortedPersons.setComparator(comparator);
-        transformedPersons.setAll(newSortedPersons);
-
-        */
     }
 
     @Override
