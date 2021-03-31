@@ -13,8 +13,9 @@ import java.time.format.DateTimeParseException;
  */
 public class Time implements Comparable<Time> {
 
-    public static final DateTimeFormatter TIME_FORMATTER_STRICT = DateTimeFormatter.ISO_LOCAL_TIME;
     public static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm");
+    public static final DateTimeFormatter TIME_FORMATTER_STRICT = DateTimeFormatter.ISO_LOCAL_TIME;
+
     public static final String MESSAGE_CONSTRAINTS =
             "Time should be represented in 24-hour notation, in the format of HH:mm";
 
@@ -41,6 +42,7 @@ public class Time implements Comparable<Time> {
      */
     public static boolean isValidTime(String test) {
         try {
+            LocalTime.parse(test, TIME_FORMATTER);
             LocalTime.parse(test, TIME_FORMATTER_STRICT);
             return true;
         } catch (DateTimeParseException ex) {
