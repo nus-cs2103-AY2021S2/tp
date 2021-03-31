@@ -168,8 +168,7 @@ Format: `findplan KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 * `findplan MediShield Life` returns `medishield` and `MediShield Life`
-* `findplan medishield eldershield` returns `MediShield Life`, `ElderShield`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `findplan medishield eldershield` returns `MediShield Life`, `ElderShield`
   
 ### Deleting a client : `delete`
 
