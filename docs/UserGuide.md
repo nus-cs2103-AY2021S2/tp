@@ -216,14 +216,19 @@ Examples:
 
 Edits an appointment present in Vax@NUS records by referencing the student's matriculation number.
 
-Format: `editAppt i/MATRICULATION_NUMBER d/DATE_YYYY-MM-DD ts/START_TIME_HH:MM`
+Format: `editAppt MATRICULATION_NUMBER d/DATE_YYYY-MM-DD ts/START_TIME_HH:MM`
 
 * The edited appointment must not clash with an existing appointment.
-
+* If two matriculation numbers are provided, the first one will be taken.
+  
+  **i.e.** if `A1234567X A7654321J` is provided, then `A1234567X` will be used. 
+* If two dates or times are provided, the first of each will be taken 
+ 
+  **i.e.** if `d/2021-12-13 d/2021-12-14 ts/14:00 ts/15:00` is provided, `2021-12-13` and `14:00` will be used. 
 
 Examples:
-* `editAppt i/A1234567X d/2021-12-13 ts/14:00`
-* `editAppt i/A7654321J d/2021-12-13 ts/14:00`
+* `editAppt A1234567X d/2021-12-13 ts/14:00`
+* `editAppt A7654321J d/2021-12-13 ts/14:00`
 
 
 ### Viewing statistics for student population: `stats`

@@ -55,7 +55,6 @@ public class HelpWindow extends UiPart<Stage> {
     public HelpWindow(Stage root) {
         super(FXML, root);
         helpMessage.setText(COMMAND_SUMMARY + HELP_MESSAGE);
-        copyButton.setLayoutX(1000);
     }
 
     /**
