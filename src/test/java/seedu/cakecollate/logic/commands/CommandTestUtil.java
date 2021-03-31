@@ -84,7 +84,8 @@ public class CommandTestUtil {
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_ORDER_DESC = " " + PREFIX_ORDER_DESCRIPTION; // empty string not allowed
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
-    public static final String INVALID_DELIVERY_DATE_DESC = " " + PREFIX_DATE + "2021/03/03"; // invalid format
+    public static final String INVALID_DELIVERY_DATE_DESC1 = " " + PREFIX_DATE + "2021/03/03"; // invalid format
+    public static final String INVALID_DELIVERY_DATE_DESC2 = " " + PREFIX_DATE + "01/01/2000"; // invalid value
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

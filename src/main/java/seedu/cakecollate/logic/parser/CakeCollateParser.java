@@ -7,9 +7,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.cakecollate.logic.commands.AddCommand;
+import seedu.cakecollate.logic.commands.AddOrderItemCommand;
 import seedu.cakecollate.logic.commands.ClearCommand;
 import seedu.cakecollate.logic.commands.Command;
 import seedu.cakecollate.logic.commands.DeleteCommand;
+import seedu.cakecollate.logic.commands.DeleteOrderItemCommand;
 import seedu.cakecollate.logic.commands.DeliveryStatusCommand;
 import seedu.cakecollate.logic.commands.EditCommand;
 import seedu.cakecollate.logic.commands.ExitCommand;
@@ -87,6 +89,12 @@ public class CakeCollateParser {
 
         case RequestCommand.COMMAND_WORD:
             return new RequestCommandParser().parse(arguments);
+
+        case AddOrderItemCommand.COMMAND_WORD:
+            return new AddOrderItemCommandParser().parse(arguments);
+
+        case DeleteOrderItemCommand.COMMAND_WORD:
+            return new DeleteOrderItemCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

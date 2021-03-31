@@ -11,19 +11,22 @@ import java.time.format.DateTimeParseException;
 
 /**
  * Represents an Order's delivery date in CakeCollate.
- * Guarantees: immutable; is valid as declared in {@link #isValidDeliveryDate(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidFormat(String)}
  */
 public class DeliveryDate implements Comparable<DeliveryDate> {
 
-    public static final String MESSAGE_CONSTRAINTS = "Deliver date should be of the format dd/mm/yyyy, dd-mm-yyyy, "
+    public static final String MESSAGE_CONSTRAINTS_FORMAT =
+            "Delivery date should be of the format dd/mm/yyyy, dd-mm-yyyy, "
             + "dd.mm.yyyy or dd MMM yyyy and adhere to the following constraints:\n"
             + "1. The delivery date should have a valid day, month and year.\n"
-            + "2. The delivery date should be at least 3 days after the order date.\n"
             + "For example:\n"
             + "01/01/2022, 01-01-2022, 01.01.2022, 01 Jan 2022";
+    public static final String MESSAGE_CONSTRAINTS_VALUE =
+            "Delivery date should be today's date or a future date.\n"
+            + "Today's date is: " + DateTimeFormatter.ofPattern("dd MMM yyyy").format(LocalDate.now()) + "\n"
+            + "You have entered: %1$s";
     private static final DateTimeFormatter ACCEPTABLE_FORMATS =
             DateTimeFormatter.ofPattern("[dd/MM/yyyy][dd-MM-yyyy][dd.MM.yyyy][dd MMM yyyy]");
-    private static final long DELIVERY_DATE_BUFFER = 3L;
 
     public final LocalDate value;
 
@@ -34,32 +37,34 @@ public class DeliveryDate implements Comparable<DeliveryDate> {
      */
     public DeliveryDate(String deliveryDate) {
         requireNonNull(deliveryDate);
-        checkArgument(isValidDeliveryDate(deliveryDate), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidFormat(deliveryDate), MESSAGE_CONSTRAINTS_FORMAT);
         value = LocalDate.parse(deliveryDate, ACCEPTABLE_FORMATS);
     }
 
     /**
-     * Returns true if a given string is a valid date 3 working days after current date.
+     * Returns true if a given {@code String} is a valid date X working days after current date.
+     * X should be positive.
+     * This method should only be called after validating {@code test} using {@link DeliveryDate#isValidFormat(String)}.
      */
-    public static boolean isThreeDaysLater(String test) {
+    public static boolean isXDaysLater(String test, long x) {
+        assert x >= 0;
         LocalDate toTest = LocalDate.parse(test, ACCEPTABLE_FORMATS);
         LocalDate dateToday = LocalDate.now();
-        LocalDate acceptableDate = dateToday.plusDays(DELIVERY_DATE_BUFFER);
+        LocalDate acceptableDate = dateToday.plusDays(x);
         return toTest.isAfter(acceptableDate) || toTest.isEqual(acceptableDate);
     }
 
     /**
-     * Returns true if a given string is a valid delivery date.
+     * Returns true if a given {@code String} is a valid delivery date format.
      */
-    public static boolean isValidDeliveryDate(String test) {
+    public static boolean isValidFormat(String test) {
         // Test if date is valid using LocalDate.parse()
         try {
             LocalDate.parse(test, ACCEPTABLE_FORMATS);
         } catch (DateTimeParseException e) {
             return false;
         }
-        // Test if date is 3 working days after current Date
-        return isThreeDaysLater(test);
+        return true;
     }
 
     public LocalDate getValue() {

@@ -132,8 +132,8 @@ class JsonAdaptedOrder {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     DeliveryDate.class.getSimpleName()));
         }
-        if (!DeliveryDate.isValidDeliveryDate(deliveryDate)) {
-            throw new IllegalValueException(DeliveryDate.MESSAGE_CONSTRAINTS);
+        if (!DeliveryDate.isValidFormat(deliveryDate)) {
+            throw new IllegalValueException(DeliveryDate.MESSAGE_CONSTRAINTS_FORMAT);
         }
         final DeliveryDate modelDeliveryDate = new DeliveryDate(deliveryDate);
 

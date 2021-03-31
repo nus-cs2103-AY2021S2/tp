@@ -17,6 +17,9 @@ import seedu.cakecollate.model.order.Email;
 import seedu.cakecollate.model.order.Name;
 import seedu.cakecollate.model.order.OrderDescription;
 import seedu.cakecollate.model.order.Phone;
+import seedu.cakecollate.model.orderitem.Cost;
+import seedu.cakecollate.model.orderitem.OrderItem;
+import seedu.cakecollate.model.orderitem.Type;
 import seedu.cakecollate.model.tag.Tag;
 
 /**
@@ -184,9 +187,32 @@ public class ParserUtil {
     public static DeliveryDate parseDeliveryDate(String deliveryDate) throws ParseException {
         requireNonNull(deliveryDate);
         String trimmedDeliveryDate = deliveryDate.trim();
-        if (!DeliveryDate.isValidDeliveryDate(trimmedDeliveryDate)) {
-            throw new ParseException(DeliveryDate.MESSAGE_CONSTRAINTS);
+        if (!DeliveryDate.isValidFormat(trimmedDeliveryDate)) {
+            System.out.println("not valid format");
+            throw new ParseException(DeliveryDate.MESSAGE_CONSTRAINTS_FORMAT);
+        }
+        if (!DeliveryDate.isXDaysLater(trimmedDeliveryDate, 0L)) {
+            System.out.println("not future date");
+            throw new ParseException(String.format(DeliveryDate.MESSAGE_CONSTRAINTS_VALUE, trimmedDeliveryDate));
         }
         return new DeliveryDate(trimmedDeliveryDate);
+    }
+
+    /**
+     * Parses a {@code String orderItemType} into an {@code OrderItem}.
+     * The {@code Cost} is set to a default value of 10 for now.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param orderItemType Type of the order item as entered by the user.
+     *
+     * @throws ParseException if the given {@code orderItemType} is invalid.
+     */
+    public static OrderItem parseOrderItem(String orderItemType) throws ParseException {
+        requireNonNull(orderItemType);
+        String trimmedOrderItemDescription = orderItemType.trim();
+        if (!Type.isValidType(trimmedOrderItemDescription)) {
+            throw new ParseException(Type.MESSAGE_CONSTRAINTS);
+        }
+        return new OrderItem(new Type(trimmedOrderItemDescription), new Cost("10"));
     }
 }
