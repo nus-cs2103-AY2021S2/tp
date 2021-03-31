@@ -15,7 +15,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static seedu.budgetbaby.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindFrCommand}.

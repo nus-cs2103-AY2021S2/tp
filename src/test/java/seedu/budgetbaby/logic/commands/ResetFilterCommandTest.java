@@ -1,59 +1,46 @@
 package seedu.budgetbaby.logic.commands;
 
 import org.junit.jupiter.api.Test;
-//import seedu.budgetbaby.ablogic.commands.FindCommand;
-//import seedu.budgetbaby.model.BudgetBabyModel;
-//import seedu.budgetbaby.model.BudgetBabyModelManager;
-//import seedu.budgetbaby.model.ReadOnlyBudgetTracker;
-//import seedu.budgetbaby.model.ReadOnlyUserPrefs;
-//import seedu.budgetbaby.model.UserPrefs;
-//
-//import java.util.Arrays;
-//import java.util.Collections;
-//
-//import static org.junit.jupiter.api.Assertions.assertEquals;
-//import static seedu.budgetbaby.ablogic.commands.CommandTestUtil.assertCommandSuccess;
-//import static seedu.budgetbaby.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
-//import static seedu.budgetbaby.testutil.TypicalPersons.*;
+import seedu.budgetbaby.logic.commands.exceptions.CommandException;
+import seedu.budgetbaby.logic.parser.FindFrCommandParser;
+import seedu.budgetbaby.logic.parser.ResetFilterCommandParser;
+import seedu.budgetbaby.logic.parser.exceptions.ParseException;
+import seedu.budgetbaby.model.*;
+import seedu.budgetbaby.model.record.Amount;
+import seedu.budgetbaby.model.record.Category;
+import seedu.budgetbaby.model.record.Description;
+import seedu.budgetbaby.model.record.FinancialRecord;
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code ResetFilterCommand}.
  */
 public class ResetFilterCommandTest {
-    //    private BudgetBabyModel model = new BudgetBabyModelManager(getTypicalAddressBook(), new UserPrefs());
-    //    private BudgetBabyModel expectedModel = new BudgetBabyModelManager(getTypicalAddressBook(), new UserPrefs());
+    private BudgetBabyModel model = new BudgetBabyModelManager(new BudgetTracker(), new UserPrefs());
+    private FindFrCommandParser find = new FindFrCommandParser();
+    private ResetFilterCommandParser reset = new ResetFilterCommandParser();
+
+    private final Description description = new Description("Breakfast");
+    private final Amount amount = new Amount("5");
+    private final Set<Category> categories = new HashSet<>(Arrays.asList(new Category("Food")));
+
+    private final Description description2 = new Description("Lunch");
+    private final Amount amount2 = new Amount("6");
+    private final Set<Category> categories2 = new HashSet<>(Arrays.asList(new Category("Food")));
 
     @Test
-    public void equals() {
-        ResetFilterCommand rfc = new ResetFilterCommand();
-
-
+    public void execute() throws ParseException, CommandException {
+        model.addFinancialRecord(new FinancialRecord(description, amount, categories));
+        model.addFinancialRecord(new FinancialRecord(description2, amount2, categories2));
+        String expectedOutput = "[01-04-2021 | Breakfast | 5.0; Categories: [Food], 01-04-2021 | Lunch | 6.0; Categories: [Food]]";
+        find.parse(" d/Breakfast").execute(model);
+        reset.parse("").execute(model);
+        assertEquals(expectedOutput, model.getFilteredFinancialRecordList().toString());
     }
 
-    //    @Test
-    //    public void execute_withoutKeyword() {
-    //        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-    //        NameContainsKeywordsPredicate predicate = preparePredicate(" ");
-    //        ResetFilterCommand command = new ResetFilterCommand();
-    //        expectedModel.updateFilteredPersonList(predicate);
-    //        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-    //        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
-    //    }
-    //
-    //    @Test
-    //    public void execute_withKeyword() {
-    //        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-    //        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
-    //        FindCommand command = new FindCommand(predicate);
-    //        expectedModel.updateFilteredPersonList(predicate);
-    //        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-    //        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
-    //    }
-    //
-    //    /**
-    //     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
-    //     */
-    //    private NameContainsKeywordsPredicate preparePredicate(String userInput) {
-    //        return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
-    //    }
 }
