@@ -7,9 +7,15 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.opentest4j.TestAbortedException;
 
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -18,13 +24,39 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Picture;
 
 public class AddPictureCommandTest {
-    private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     private final Path testFilesDir = Path.of("src", "test", "data", "PictureTest");
     private final Path fileNotFoundPath = testFilesDir.resolve("non_existant.jpeg");
     private final Path fileWrongExtPath = testFilesDir.resolve("invalid_format.txt");
     private final Path validPath = testFilesDir.resolve("picture.jpg");
     private final Path validPathWithSpaces = testFilesDir.resolve("picture with space.jpg");
+
+    private static UserPrefs userPrefs;
+    private final Model model = new ModelManager(getTypicalAddressBook(), userPrefs);
+
+    @BeforeAll
+    public static void initPictureDir() {
+        userPrefs = new UserPrefs();
+        Path tempPictureDir;
+        try {
+            tempPictureDir = Files.createTempDirectory("");
+            userPrefs.setPictureStorageDirPath(tempPictureDir);
+            tempPictureDir.toFile().deleteOnExit();
+        } catch (IOException ioe) {
+            throw new TestAbortedException("Unable to create temp directory for AddPictureCommandTest: " + ioe);
+        }
+    }
+
+    @AfterAll
+    public static void deletePictureDir() {
+        File pictureDir = userPrefs.getPictureStorageDirPath().toFile();
+
+        for(File file: pictureDir.listFiles()) {
+            file.delete();
+        }
+
+        pictureDir.delete();
+    }
 
     public void addPictureValidFileHelper(AddPictureCommand cmd) {
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());

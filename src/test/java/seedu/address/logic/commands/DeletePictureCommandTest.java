@@ -76,7 +76,7 @@ public class DeletePictureCommandTest {
             tmpFile = Files.createTempFile("picture", ".jpg");
             Files.copy(testPicPath, tmpFile, REPLACE_EXISTING);
         } catch (IOException ioe) {
-            throw new TestAbortedException("Unable to create test picture for DeletePictureCommand test");
+            throw new TestAbortedException("Unable to create test picture for DeletePictureCommand test: " + ioe);
         }
 
         Picture picture = new Picture(tmpFile);

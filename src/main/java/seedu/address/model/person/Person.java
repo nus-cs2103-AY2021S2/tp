@@ -170,8 +170,9 @@ public class Person {
     }
 
     /**
-     * Deletes the picture from person. The person is guaranteed to have {@code Picture} as null after
-     * running this method. Physical picture file may still remain if unable to remove from disk.
+     * Deletes the picture from person. The person is guaranteed to have a null {@code Picture} after
+     * execution of this method. Physical file may still remain if for some reason, the file cannot be deleted from
+     * disk.
      */
     public Person deletePicture() {
         if (picture == null) {
