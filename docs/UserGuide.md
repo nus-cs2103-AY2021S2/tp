@@ -61,11 +61,20 @@ Different sections of the application window will be referred to by the names de
 
 #### 2.2.2 Special Formats
 
-[TODO]
+Formats discussed in this section may be used in relevant areas of this user guide.
+
+**Tips**
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Example tip!
+</div>
+
+**Emphasis**
+`Example`
+Words or sentences that appear in these boxes are emphasised for relevance.
 
 #### 2.2.3 Command Format
 
-Commands shown in this user guide follow these rules.
+Commands discussed in this user guide follow these rules.
 
 <div markdown="block" class="alert alert-info">
 
