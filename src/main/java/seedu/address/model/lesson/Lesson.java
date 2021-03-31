@@ -10,7 +10,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.model.person.Person;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
 
 public class Lesson implements Comparable<Lesson> {
 
@@ -80,8 +79,6 @@ public class Lesson implements Comparable<Lesson> {
     public void addPerson(Person person) {
         if (!containsPerson(person)) {
             persons.add(person);
-        } else {
-            throw new DuplicatePersonException();
         }
     }
 

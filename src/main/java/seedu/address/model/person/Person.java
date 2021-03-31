@@ -175,7 +175,7 @@ public class Person {
 
         Set<Subject> subjects = getSubjects();
         if (!subjects.isEmpty()) {
-            builder.append("; Tags: ");
+            builder.append("; Subjects: ");
             subjects.forEach(builder::append);
         }
 

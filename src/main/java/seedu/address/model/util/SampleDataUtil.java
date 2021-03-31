@@ -42,7 +42,7 @@ public class SampleDataUtil {
                 Optional.of(new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18")),
                 Optional.of(new Name("Ben Yu")),
                 Optional.of(new Phone("99272758")),
-                getSubjectSet("math", "physics"), getLessonSet(" monday 1800")),
+                getSubjectSet("math", "phys"), getLessonSet(" monday 1800")),
             new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"),
                 Optional.of(new School("Cde Secondary School")),
                 Optional.of(new Email("charlotte@example.com")),
@@ -56,21 +56,21 @@ public class SampleDataUtil {
                 Optional.of(new Address("Blk 436 Serangoon Gardens Street 26, #16-43")),
                 Optional.of(new Name("Li Li")),
                 Optional.of(new Phone("91031288")),
-                getSubjectSet("history"), getLessonSet("tuesday 1000")),
+                getSubjectSet("hist"), getLessonSet("tuesday 1000")),
             new Person(new Name("Irfan Ibrahim"), new Phone("92492021"),
                 Optional.of(new School("Efg Secondary School")),
                 Optional.of(new Email("irfan@example.com")),
                 Optional.of(new Address("Blk 47 Tampines Street 20, #17-35")),
                 Optional.of(new Name("Frank Ibrahim")),
                 Optional.of(new Phone("92492022")),
-                getSubjectSet("chinese"), getLessonSet("wednesday 1400")),
+                getSubjectSet("cn"), getLessonSet("wednesday 1400")),
             new Person(new Name("Roy Balakrishnan"), new Phone("92624417"),
                 Optional.of(new School("Efg Secondary School")),
                 Optional.of(new Email("royb@example.com")),
                 Optional.of(new Address("Blk 45 Aljunied Street 85, #11-31")),
                 Optional.of(new Name("Bob Balakrishnan")),
                 Optional.of(new Phone("92624411")),
-                getSubjectSet("physics"), getLessonSet("wednesday 1200"))
+                getSubjectSet("phys"), getLessonSet("wednesday 1200"))
         };
     }
 
