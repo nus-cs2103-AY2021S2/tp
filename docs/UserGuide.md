@@ -98,23 +98,17 @@ warning messages will be displayed in this box.
 **:information_source: Notes about the command format:**
 
 * Every item is made up of item name, location and quantity. Expiry date and tags are optional.
-
 * Words in `UPPER_CASE` are the inputs to be supplied by the user.<br>
   e.g. in `add n/ITEM_NAME`, `ITEM_NAME` is an input which can be used as `add n/Chocolate Milk`.
-
 * Inputs in square brackets are optional.<br>
   e.g. `n/ITEM_NAME [e/EXPIRY_DATE]` can be used as `n/Olive Oil e/2020-10-10` or as `n/Olive Oil`.
-
 * Inputs with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/favourite`, `t/favourite t/drink` etc.
-
 * Inputs can be specified in any order.<br>
   e.g. `n/ITEM_NAME l/LOCATION` and `l/LOCATION n/ITEM_NAME` are both acceptable.
-
 * Except for tags, if you specified an input field multiple times, only the last occurrence of the input will be
   taken.<br>
   e.g. if you specify `e/2020-10-10 e/2020-08-08`, only `e/2020-08-08` will be taken.
-
 * Additional inputs specified for commands that do not take in any input (such as `help` and `exit`) will be
   ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -257,34 +251,42 @@ You can use this command in 2 different ways.
 
   <div markdown="block" class="alert alert-info">
 
-  **:information_source: Notes about the command:**
-
-    * Only full words will be matched e.g. `Chocolate` will not match `Chocolates`<br>
-  </div>
-
   Examples:
     * `find Chocolate` returns `chocolate` and `Chocolate Milk`
     * `find potato chip` returns `Potato Biscuit` and `chocolate chip`
 
+  **:information_source: Notes about the command:**
+
+    * Only full words will be matched e.g. `Chocolate` will not match `Chocolates`
+
+  </div>
+
 * #### 3.5.2 Find items with partial name match
   Format: `find */KEYWORD [MORE_KEYWORDS]`
+
+  Examples:
+    * `find */Burger` returns `CheeseBurger` and `fishburger`
+    * `find */cheese egg` returns `MacAndCheese` and `eggs`
 
   <div markdown="block" class="alert alert-info">
 
   **:information_source: Notes about the command:**
 
-    * Partial words will be matched e.g. `Choco` will match `Chocolates`<br>
-  </div>
+    * Partial words will be matched e.g. `Choco` will match `Chocolates`
 
-  Examples:
-    * `find */Burger` returns `CheeseBurger` and `fishburger`
-    * `find */cheese egg` returns `MacAndCheese` and `eggs`
+  </div>
 
 ### 3.6. Deleting an item : `delete`
 
 Are you looking to get rid of an existing item from the inventory? Use this command.
 
 Format: `delete INDEX`
+
+Examples:
+
+* `list` followed by `delete 2` deletes the second item in the entire inventory.
+* `find Chocolate` followed by `delete 1` deletes the first item in the result of the `find` command.
+* `list Room 2` followed by `delete 3` deletes the third item in the recorded list of items in Room 2.
 
 <div markdown="block" class="alert alert-info">
 
@@ -296,31 +298,13 @@ Format: `delete INDEX`
 
 </div>
 
-Examples:
-
-* `list` followed by `delete 2` deletes the second item in the entire inventory.
-* `find Chocolate` followed by `delete 1` deletes the first item in the result of the `find` command.
-* `list Room 2` followed by `delete 3` deletes the third item in the recorded list of items in Room 2.
-
 ### 3.7. Viewing expiring items : `reminder`
 
-Want to know which items of yours are expiring soon? Then, this is the right command for you.<br>
+Want to know which items of yours are expiring soon? Then, this is the right command for you.
 
 Format: `reminder NUMBER TIME_UNIT`
 
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Notes about the reminder command:**
-
-* `NUMBER` refers to the number of days/weeks and **can be any integer** …​, -7, -3, 0, 3, 7, …​
-* `TIME_UNIT` is either `days` or `weeks`.
-* `day` or `week` will only be accepted when `NUMBER` is either **-1, 0 or 1**
-* Items without expiry date will not be shown.
-
-</div>
-
 Examples:
-
 * `reminder 7 days` returns a list containing all items that are expiring within the next 7 days.
 * `reminder 2 weeks` returns a list containing all items that are expiring within the next 2 weeks.
 * Given today is 10 March 2021, and the inventory has 2 items: chocolate with expiry date of 13 March 2021 and banana
@@ -334,6 +318,17 @@ Examples:
     * `reminder -5 days` returns both the apple and the banana.
     * `reminder -1 weeks` returns the banana only.
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about the reminder command:**
+
+* `NUMBER` refers to the number of days/weeks and **can be any integer** …​, -7, -3, 0, 3, 7, …​
+* `TIME_UNIT` is either `days` or `weeks`.
+* `day` or `week` will only be accepted when `NUMBER` is either **-1, 0 or 1**
+* Items without expiry date will not be shown.
+
+</div>
+
 ### 3.8. Sorting items : `sort`
 
 Want to see which items you are running out of or which items you have to consume soon? Use this command to find out!
@@ -345,31 +340,36 @@ You can use this command in 3 different ways.
     * ##### 3.8.1.1. Ascending quantity
       Format: `sort quantity asc`
 
+      Example:
+        * `sort quantity asc` sorts the items in the displayed list in ascending order of quantity.
+
       <div markdown="block" class="alert alert-info">
 
       **:information_source: Note about the sort by ascending quantity command:**
 
         * `quantity` is case-insensitive. Keying in `sort QUANTITY asc` is also a valid command.
-      </div>
 
-      Example:
-        * `sort quantity asc` sorts the items in the displayed list in ascending order of quantity.
+      </div>
 
     * ##### 3.8.1.2 Descending quantity
       Format: `sort quantity desc`
+
+      Example:
+        * `sort quantity desc` sorts the items in the displayed list in descending order of quantity.
 
       <div markdown="block" class="alert alert-info">
 
       **:information_source: Note about the sort by descending quantity command:**
 
-        * `quantity` is case-insensitive. Keying in `sort QUANTITY desc` is also a valid command.
-      </div>
+        * `quantity` is case-insensitive. Keying in `sort QUANTITY desc` is also a valid command.     
 
-      Example:
-        * `sort quantity desc` sorts the items in the displayed list in descending order of quantity.
+      </div>
 
 * #### 3.8.2. Sorting items by expiry date
   Format: `sort expirydate`
+
+  Example:
+    * `sort expiryDate` sorts the items in the displayed list from the earliest expiry date to the latest.
 
   <div markdown="block" class="alert alert-info">
 
@@ -377,10 +377,8 @@ You can use this command in 3 different ways.
 
     * Items without expiry date will be pushed to the back of the sorted list.
     * `expirydate` is case-insensitive. Keying in `sort EXPIRYDATE` is also a valid command.
-  </div>
 
-  Example:
-    * `sort expiryDate` sorts the items in the displayed list from the earliest expiry date to the latest.
+  </div>
 
 ### 3.9. Clearing StoreMando : `clear`
 
@@ -392,7 +390,6 @@ You can use this command in 2 different ways.
   Format 1: `clear`
 
   Example:
-
     * `clear` clears all the items in the inventory.
 
 * #### 3.9.2. Clear all items in a specific location
@@ -403,13 +400,12 @@ You can use this command in 2 different ways.
   **:information_source: Notes about the clear command:**
 
     * The search is case-sensitive. e.g 'room' will not match 'Room'.
-
     * The location input will be matched exactly e.g. 'Room' will not match 'Bedroom'. 'Bed' will not match 'Bed room'.
       'Living room' will not match 'Room living'.
+
   </div>
 
   Example:
-
     * `clear l/kitchen` clears all the items with location `kitchen`.
 
 ### 3.10. Exiting StoreMando : `exit`
