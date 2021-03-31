@@ -15,6 +15,7 @@ import seedu.address.logic.commands.alias.ListAliasCommand;
 import seedu.address.logic.commands.alias.UnaliasCommand;
 import seedu.address.logic.commands.commandhistory.ViewHistoryCommand;
 import seedu.address.logic.commands.issue.AddIssueCommand;
+import seedu.address.logic.commands.issue.CloseIssueCommand;
 import seedu.address.logic.commands.issue.DeleteIssueCommand;
 import seedu.address.logic.commands.issue.EditIssueCommand;
 import seedu.address.logic.commands.issue.FindIssueCommand;
@@ -24,11 +25,16 @@ import seedu.address.logic.commands.resident.DeleteResidentCommand;
 import seedu.address.logic.commands.resident.EditResidentCommand;
 import seedu.address.logic.commands.resident.FindResidentCommand;
 import seedu.address.logic.commands.resident.ListResidentCommand;
+import seedu.address.logic.commands.resident.ListUnallocatedResidentsCommand;
+import seedu.address.logic.commands.residentroom.AllocateResidentRoomCommand;
+import seedu.address.logic.commands.residentroom.DeallocateResidentRoomCommand;
 import seedu.address.logic.commands.room.AddRoomCommand;
 import seedu.address.logic.commands.room.DeleteRoomCommand;
 import seedu.address.logic.commands.room.EditRoomCommand;
 import seedu.address.logic.commands.room.FindRoomCommand;
 import seedu.address.logic.commands.room.ListRoomCommand;
+import seedu.address.logic.commands.undoredo.RedoCommand;
+import seedu.address.logic.commands.undoredo.UndoCommand;
 
 /**
  * Represents the current user's {@code Alias} command mapping.
@@ -107,6 +113,8 @@ public class AliasMapping implements Serializable {
         case ExitCommand.COMMAND_WORD:
         case HelpCommand.COMMAND_WORD:
         case ViewHistoryCommand.COMMAND_WORD:
+        case UndoCommand.COMMAND_WORD:
+        case RedoCommand.COMMAND_WORD:
 
         //====== Resident Commands ======
         case AddResidentCommand.COMMAND_WORD:
@@ -114,6 +122,7 @@ public class AliasMapping implements Serializable {
         case DeleteResidentCommand.COMMAND_WORD:
         case FindResidentCommand.COMMAND_WORD:
         case ListResidentCommand.COMMAND_WORD:
+        case ListUnallocatedResidentsCommand.COMMAND_WORD:
 
         //====== Room Commands ======
         case AddRoomCommand.COMMAND_WORD:
@@ -121,6 +130,8 @@ public class AliasMapping implements Serializable {
         case DeleteRoomCommand.COMMAND_WORD:
         case FindRoomCommand.COMMAND_WORD:
         case ListRoomCommand.COMMAND_WORD:
+        case AllocateResidentRoomCommand.COMMAND_WORD:
+        case DeallocateResidentRoomCommand.COMMAND_WORD:
 
         //====== Issue Commands ======
         case AddIssueCommand.COMMAND_WORD:
@@ -128,6 +139,7 @@ public class AliasMapping implements Serializable {
         case FindIssueCommand.COMMAND_WORD:
         case EditIssueCommand.COMMAND_WORD:
         case DeleteIssueCommand.COMMAND_WORD:
+        case CloseIssueCommand.COMMAND_WORD:
 
         //====== Alias Commands ======
         case AliasCommand.COMMAND_WORD:
