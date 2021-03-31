@@ -2,6 +2,11 @@
 layout: page
 title: User Guide
 ---
+
+<p align="center">
+  <img src="images/dietlah-slim.png" alt="DietLAH!">
+</p>
+
 ## Table of Contents
 
 <!--ts-->
