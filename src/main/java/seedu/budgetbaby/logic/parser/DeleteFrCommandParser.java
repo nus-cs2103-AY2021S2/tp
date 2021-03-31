@@ -2,6 +2,10 @@ package seedu.budgetbaby.logic.parser;
 
 import static seedu.budgetbaby.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import seedu.budgetbaby.commons.core.index.Index;
 import seedu.budgetbaby.logic.commands.DeleteFrCommand;
 import seedu.budgetbaby.logic.parser.exceptions.ParseException;
@@ -19,8 +23,14 @@ public class DeleteFrCommandParser implements BudgetBabyCommandParser<DeleteFrCo
      */
     public DeleteFrCommand parse(String args) throws ParseException {
         try {
-            Index index = ParserUtil.parseIndex(args);
-            return new DeleteFrCommand(index);
+            String[] argList = args.trim().split(" ");
+            List<Index> indices = new ArrayList<>();
+            for (String arg : argList) {
+                Index index = ParserUtil.parseIndex(arg);
+                indices.add(index);
+            }
+            Collections.sort(indices);
+            return new DeleteFrCommand(indices);
         } catch (ParseException pe) {
             throw new ParseException(
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteFrCommand.MESSAGE_USAGE), pe);

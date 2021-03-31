@@ -5,7 +5,9 @@ import static java.util.Objects.requireNonNull;
 import java.time.YearMonth;
 import java.util.List;
 
+import javafx.beans.InvalidationListener;
 import javafx.collections.ObservableList;
+import seedu.budgetbaby.commons.util.InvalidationListenerManager;
 import seedu.budgetbaby.model.budget.Budget;
 import seedu.budgetbaby.model.month.Month;
 import seedu.budgetbaby.model.month.UniqueMonthList;
@@ -16,6 +18,7 @@ import seedu.budgetbaby.model.record.FinancialRecord;
  */
 public class BudgetTracker implements ReadOnlyBudgetTracker {
 
+    private final InvalidationListenerManager invalidationListenerManager = new InvalidationListenerManager();
     private final UniqueMonthList monthList;
     private Month currentDisplayMonth;
 
@@ -43,6 +46,7 @@ public class BudgetTracker implements ReadOnlyBudgetTracker {
      */
     public void setMonthList(List<Month> months) {
         this.monthList.setMonths(months);
+        notifyObservers();
     }
 
     /**
@@ -50,13 +54,7 @@ public class BudgetTracker implements ReadOnlyBudgetTracker {
      */
     public void setCurrentDisplayMonth(YearMonth month) {
         this.currentDisplayMonth = monthList.find(month);
-    }
-
-    /**
-     * Returns the Month that is currently being displayed.
-     */
-    public Month getCurrentDisplayMonth() {
-        return this.currentDisplayMonth;
+        notifyObservers();
     }
 
     /**
@@ -66,7 +64,7 @@ public class BudgetTracker implements ReadOnlyBudgetTracker {
         requireNonNull(newData);
 
         setMonthList(newData.getMonthList());
-        setCurrentDisplayMonth(YearMonth.now());
+        setCurrentDisplayMonth(newData.getCurrentDisplayMonth().getMonth());
     }
 
     //// month-level operations
@@ -76,6 +74,7 @@ public class BudgetTracker implements ReadOnlyBudgetTracker {
      */
     public void addMonth(Month month) {
         monthList.add(month);
+        notifyObservers();
     }
 
     /**
@@ -101,6 +100,7 @@ public class BudgetTracker implements ReadOnlyBudgetTracker {
         requireNonNull(editedMonth);
 
         monthList.setMonth(target, editedMonth);
+        notifyObservers();
     }
 
     /**
@@ -109,6 +109,7 @@ public class BudgetTracker implements ReadOnlyBudgetTracker {
      */
     public void removeMonth(Month key) {
         monthList.remove(key);
+        notifyObservers();
     }
 
     //// financial-record-level operations
@@ -119,6 +120,7 @@ public class BudgetTracker implements ReadOnlyBudgetTracker {
      */
     public void addFinancialRecord(FinancialRecord r) {
         monthList.addFinancialRecord(r);
+        notifyObservers();
     }
 
     /**
@@ -128,6 +130,7 @@ public class BudgetTracker implements ReadOnlyBudgetTracker {
     public void setFinancialRecord(FinancialRecord target, FinancialRecord editedRecord) {
         requireNonNull(editedRecord);
         monthList.setFinancialRecord(target, editedRecord);
+        notifyObservers();
     }
 
     /**
@@ -136,6 +139,7 @@ public class BudgetTracker implements ReadOnlyBudgetTracker {
      */
     public void removeFinancialRecord(FinancialRecord key) {
         monthList.removeFinancialRecord(key);
+        notifyObservers();
     }
 
     /**
@@ -155,19 +159,64 @@ public class BudgetTracker implements ReadOnlyBudgetTracker {
      */
     public void setBudget(Budget budget) {
         monthList.setBudget(budget);
+        notifyObservers();
+    }
+
+    //// dependency notification methods
+
+    @Override
+    public void addListener(InvalidationListener listener) {
+        invalidationListenerManager.addListener(listener);
+    }
+
+    @Override
+    public void removeListener(InvalidationListener listener) {
+        invalidationListenerManager.removeListener(listener);
+    }
+
+    /**
+     * Notifies listeners that the budget tracker has been modified.
+     */
+    public void notifyObservers() {
+        invalidationListenerManager.callListeners(this);
     }
 
     //// util methods
 
     @Override
-    public String toString() {
-        return monthList.asUnmodifiableObservableList().size() + " months";
-        // TODO: refine later
+    public ObservableList<Month> getMonthList() {
+        return monthList.asUnmodifiableObservableList();
+    }
+
+
+    @Override
+    public Month getCurrentDisplayMonth() {
+        return this.currentDisplayMonth;
     }
 
     @Override
-    public ObservableList<Month> getMonthList() {
-        return monthList.asUnmodifiableObservableList();
+    public BudgetTracker getDeepClone() {
+        BudgetTracker clone = new BudgetTracker();
+
+        List<Month> cloneMthList = monthList.asUnmodifiableObservableList();
+        clone.setMonthList(cloneMthList);
+
+        boolean foundCurrentMonth = false;
+        for (Month cloneMth : cloneMthList) {
+            Month tmpMth = new Month(cloneMth.getFinancialRecords().getDeepClone(),
+                    cloneMth.getBudget(), cloneMth.getMonth());
+            clone.setMonth(cloneMth, tmpMth);
+            if (!foundCurrentMonth && tmpMth.equals(currentDisplayMonth)) {
+                clone.currentDisplayMonth = tmpMth;
+                foundCurrentMonth = true;
+            }
+        }
+
+        if (!foundCurrentMonth) {
+            clone.currentDisplayMonth = currentDisplayMonth;
+        }
+
+        return clone;
     }
 
     @Override
@@ -180,6 +229,12 @@ public class BudgetTracker implements ReadOnlyBudgetTracker {
     @Override
     public int hashCode() {
         return monthList.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return monthList.asUnmodifiableObservableList().size() + " months";
+        // TODO: refine later
     }
 }
 

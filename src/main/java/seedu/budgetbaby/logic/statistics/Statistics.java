@@ -13,7 +13,6 @@ import seedu.budgetbaby.model.record.Category;
 import seedu.budgetbaby.model.record.FinancialRecord;
 
 public class Statistics {
-
     private final ObservableList<Month> monthList;
     private BudgetBabyModel model;
 
@@ -24,26 +23,16 @@ public class Statistics {
     public Statistics(BudgetBabyModel model) {
         this.model = model;
         monthList = model.getFilteredMonthList();
+        assert monthList.size() == 1;
     }
 
-    //    /**
-    //     * Checks if a {@code Month} falls within the past 6 months of the currently displayed month.
-    //     * @param month {@code Month} that is being checked.
-    //     * @return True if it falls within the past 6 months, and False otherwise.
-    //     */
-    //    private boolean withinSixMonths(Month month) {
-    //        assert month != null;
-    //
-    //        YearMonth curr = month.getMonth();
-    //        YearMonth end = currMonth.getMonth();
-    //        YearMonth start = end.minusMonths(6);
-    //        return (curr.equals(end) || curr.equals(start) || (curr.isBefore(end) && curr.isAfter(start)));
-    //    }
-
     private List<Month> getPastMonths() {
-        List<Month> monthList = model.getFilteredMonthList();
+        List<Month> monthList = new ArrayList<Month>(model.getFullMonthList());
+        monthList = monthList.stream()
+                .filter(month -> month.getMonth().isAfter(this.monthList.get(0).getMonth().minusMonths(6)))
+                .collect(Collectors.toList());
+        Collections.sort(monthList);
         return monthList.stream().limit(6).collect(Collectors.toList());
-        //        return monthList.stream().filter(this::withinSixMonths).collect(Collectors.toList());
     }
 
     /**
@@ -51,7 +40,6 @@ public class Statistics {
      * @return List of MonthStatistics of past 6 months.
      */
     public List<MonthStatistics> getPastMonthStatistics() {
-        assert monthList.size() == 1;
         List<MonthStatistics> list = new ArrayList<>();
         for (Month m : getPastMonths()) {
             list.add(new MonthStatistics(m));

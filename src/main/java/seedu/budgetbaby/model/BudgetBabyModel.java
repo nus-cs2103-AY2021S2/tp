@@ -91,6 +91,12 @@ public interface BudgetBabyModel {
     void setCurrentDisplayMonth(YearMonth month);
 
     /**
+     * Returns the full month list currently stored in the application.
+     * @return full month list.
+     */
+    ObservableList<Month> getFullMonthList();
+
+    /**
      * Returns an unmodifiable view of the filtered month list
      */
     ObservableList<Month> getFilteredMonthList();
@@ -149,4 +155,28 @@ public interface BudgetBabyModel {
      */
     void setBudget(Budget budget);
 
+    /**
+     * Returns true if the model has previous budget tracker states to restore.
+     */
+    boolean canUndoBudgetTracker();
+
+    /**
+     * Returns true if the model has undone budget tracker states to restore.
+     */
+    boolean canRedoBudgetTracker();
+
+    /**
+     * Restores the model's budget tracker to its previous state.
+     */
+    void undoBudgetTracker();
+
+    /**
+     * Restores the model's budget tracker to its previously undone state.
+     */
+    void redoBudgetTracker();
+
+    /**
+     * Saves the current budget tracker state for undo/redo.
+     */
+    void commitBudgetTracker();
 }

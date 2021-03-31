@@ -21,7 +21,7 @@ public class AddFrCommand extends BudgetBabyCommand {
         + "Parameters: "
         + PREFIX_DESCRIPTION + "FR_DESCRIPTION "
         + PREFIX_AMOUNT + "FR_AMOUNT "
-        + "[" + PREFIX_TIME + "DATE]...\n"
+        + "[" + PREFIX_TIME + "DATE] "
         + "[" + PREFIX_CATEGORY + "CATEGORY]...\n"
         + "Example: " + COMMAND_WORD + " "
         + PREFIX_DESCRIPTION + "Lunch "
@@ -46,7 +46,8 @@ public class AddFrCommand extends BudgetBabyCommand {
         requireNonNull(model);
 
         model.addFinancialRecord(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), true, false, false);
+        model.commitBudgetTracker();
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), false, false);
     }
 
     @Override

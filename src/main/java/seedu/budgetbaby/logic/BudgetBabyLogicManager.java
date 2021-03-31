@@ -59,6 +59,8 @@ public class BudgetBabyLogicManager implements BudgetBabyLogic {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
 
+        getBudgetTracker().notifyObservers();
+
         return commandResult;
     }
 
@@ -88,7 +90,7 @@ public class BudgetBabyLogicManager implements BudgetBabyLogic {
     }
 
     @Override
-    public List<CategoryStatistics> getTopCategories() {
+    public List<CategoryStatistics> getTopCategoryStatistics() {
         return statistics.getTopCategories();
     }
 
