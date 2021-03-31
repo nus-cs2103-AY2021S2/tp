@@ -16,42 +16,25 @@ public class DropCommand extends ProgramRegistrationCommand {
 
     public static final String MESSAGE_SUCCESS_FORMAT = "Dog %s has been dropped from program %s!";
 
-    public static final String MESSAGE_FAILURE_FORMAT = "Dog cannot be dropped! Dog %s was not enrolled in program %s.";
-
-    private final Set<Integer> dogIdSet;
-
-    private final Set<Integer> programIdSet;
+    public static final String MESSAGE_NOT_ENROLLED_FORMAT = "One or more dogs was not enrolled in the program(s).";
 
     /**
      * Constructor for Drop command to remove the specified dog from the specified program.
-     * @param dogIdSet Id of the dog.
-     * @param programIdSet Id of the program.
+     * @param dogIdSet Id of the dogs.
+     * @param programIdSet Id of the programs.
      */
     public DropCommand(Set<Integer> dogIdSet, Set<Integer> programIdSet) {
-        this.dogIdSet = dogIdSet;
-        this.programIdSet = programIdSet;
-    }
-
-    protected Set<Integer> retrieveDogIdSet() {
-        return this.dogIdSet;
-    }
-
-    protected Set<Integer> retrieveProgramIdSet() {
-        return this.programIdSet;
+        super(dogIdSet, programIdSet, false);
     }
 
     @Override
-    protected String getSuccessMessage() {
-        return String.format(MESSAGE_SUCCESS_FORMAT, dogIdSet, programIdSet);
+    protected String getSuccessMessageFormat() {
+        return MESSAGE_SUCCESS_FORMAT;
     }
 
     @Override
-    protected String getDuplicateMessage() {
-        return String.format(MESSAGE_FAILURE_FORMAT, dogIdSet, programIdSet);
+    protected String getFailureMessage() {
+        return MESSAGE_NOT_ENROLLED_FORMAT;
     }
 
-    @Override
-    protected String getProgramCommand() {
-        return COMMAND_WORD;
-    }
 }

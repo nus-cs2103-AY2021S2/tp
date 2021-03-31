@@ -1,90 +1,64 @@
 package dog.pawbook.logic.commands;
 
+import static dog.pawbook.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
-import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import dog.pawbook.logic.commands.exceptions.CommandException;
 import dog.pawbook.model.Model;
+import dog.pawbook.model.managedentity.dog.Dog;
 import dog.pawbook.model.managedentity.program.Program;
 
 public abstract class ProgramRegistrationCommand extends Command {
-    protected abstract Set<Integer> retrieveDogIdSet();
-    protected abstract Set<Integer> retrieveProgramIdSet();
+    private final Set<Integer> dogIdSet;
+    private final Set<Integer> programIdSet;
+    private final boolean enrol;
+
+    /**
+     * Construct a program registration command that enrol or drop.
+     */
+    public ProgramRegistrationCommand(Set<Integer> dogIdSet, Set<Integer> programIdSet, boolean enrol) {
+        requireAllNonNull(dogIdSet, programIdSet);
+
+        this.dogIdSet = dogIdSet;
+        this.programIdSet = programIdSet;
+        this.enrol = enrol;
+    }
 
     /**
      * Checks whether the IDs entered by the user are valid.
      * @param model {@code Model} which the command should operate on.
      * @throws CommandException if IDs are not valid.
      */
-//    public void checkIdValidity(Model model) throws CommandException {
-//        boolean isValidDogId = getDogIdSet().stream().allMatch(model::hasEntity);
-//        boolean isValidProgramId = getProgramIdSet().stream().allMatch(model::hasEntity);
-//
-//        boolean isDog = getDogIdSet().stream().map(model::getEntity).allMatch(d->d instanceof Dog);
-//        boolean isProgram = getProgramIdSet().stream().map(model::getEntity).allMatch(p->p instanceof Program);
-//
-//        if (!isValidDogId || !isValidProgramId) {
-//            throw new CommandException(MESSAGE_INVALID_DOG_OR_PROGRAM_ID);
-//        } else if (!isDog || !isProgram) {
-//            throw new CommandException(MESSAGE_INVALID_DOG_OR_PROGRAM_ID);
-//        }
-//
-//    }
-
-    /**
-     * Handles the specifics of enrol command or drop command.
-     * @param model {@code Model} which the command should operate on.
-     * @throws CommandException if dog is already enrolled or dropped from the program.
-     */
-    public void executeProgramCommand(Model model) throws CommandException {
-        String programCommand = getProgramCommand();
-        Set<Program> targetProgramSet = retrieveProgramIdSet()
-                .stream()
-                .map(model::getEntity)
-                .map(x -> (Program) x)
-                .collect(Collectors.toSet());
-
-        Set<Integer> editedDogIdSet = targetProgramSet
-                .stream()
-                .map(Program::getDogIdSet)
-                .flatMap(Collection::stream)
-                .collect(Collectors.toSet());
-
-        if (programCommand.equals("enrol")) {
-            for (Program p: targetProgramSet) {
-                if (p.getDogIdSet().containsAll(retrieveDogIdSet())) {
-                    throw new CommandException(getDuplicateMessage());
-                }
-                editedDogIdSet.addAll(retrieveDogIdSet());
-            }
-        } else {
-            for (Program p: targetProgramSet) {
-                if (!p.getDogIdSet().containsAll(retrieveDogIdSet())) {
-                    throw new CommandException(getDuplicateMessage());
-                }
-                editedDogIdSet.remove(retrieveDogIdSet());
-            }
+    private void checkIdValidity(Model model) throws CommandException {
+        boolean dogIdsValid = dogIdSet.stream()
+                .allMatch(id -> model.hasEntity(id) && model.getEntity(id) instanceof Dog);
+        if (!dogIdsValid) {
+            throw new CommandException("One or more of the dog ID(s) provided are invalid!");
         }
 
-//        Program editedProgram = new Program(targetProgram.getName(), targetProgram.getSessions(),
-//                targetProgram.getTags(), editedDogIdSet);
-//
-//        model.setEntity(getProgramId(), editedProgram);
+        boolean programIdsValid = programIdSet.stream()
+                .allMatch(id -> model.hasEntity(id) && model.getEntity(id) instanceof Program);
+        if (!programIdsValid) {
+            throw new CommandException("One or more of the program ID(s) provided are invalid!");
+        }
+    }
 
-        Set<Program> editedProgramSet = targetProgramSet
-                .stream()
-                .map(p -> new Program(p.getName(),
-                        p.getSessions(),
-                        p.getTags(),
-                        editedDogIdSet))
-                .collect(Collectors.toSet());
-
-        retrieveProgramIdSet().stream()
-                .map(x -> model.setEntity(x, editedProgramSet))
-                .collect(Collectors.toSet());
+    /**
+     * Ensure that dogs are not already enrolled for enrol and dogs are enrolled for drop.
+     */
+    private boolean dogEnrollmentValid(Model model) {
+        return programIdSet.stream()
+                .map(model::getEntity)
+                .map(Program.class::cast)
+                .map(Program::getDogIdSet)
+                .allMatch(enrolledIds -> enrol
+                        ? Collections.disjoint(enrolledIds, dogIdSet) // none of the dogs are already enrolled
+                        : enrolledIds.containsAll(dogIdSet)); // all of the dogs are already enrolled
     }
 
     /**
@@ -95,15 +69,38 @@ public abstract class ProgramRegistrationCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-//        checkIdValidity(model);
-        executeProgramCommand(model);
-        return new CommandResult(getSuccessMessage());
+
+        checkIdValidity(model);
+        if (!dogEnrollmentValid(model)) {
+            throw new CommandException(getFailureMessage());
+        }
+
+        // The parser should have ensured that only either dog or program is specified multiple times.
+        assert dogIdSet.size() == 1 || programIdSet.size() == 1;
+
+        for (int programId : programIdSet) {
+            Program program = (Program) model.getEntity(programId);
+            HashSet<Integer> updatedEnrolledDogs = new HashSet<>(program.getDogIdSet());
+            if (enrol) {
+                updatedEnrolledDogs.addAll(dogIdSet);
+            } else {
+                updatedEnrolledDogs.removeAll(dogIdSet);
+            }
+            model.setEntity(programId,
+                    new Program(program.getName(), program.getSessions(), program.getTags(), updatedEnrolledDogs));
+        }
+        return new CommandResult(
+                String.format(getSuccessMessageFormat(),
+                        dogIdSet.stream().map(String::valueOf).collect(Collectors.joining(", ")),
+                        programIdSet.stream().map(String::valueOf).collect(Collectors.joining(", "))));
     }
 
-    protected abstract String getSuccessMessage();
+    protected abstract String getSuccessMessageFormat();
 
-    protected abstract String getDuplicateMessage();
-
-    protected abstract String getProgramCommand();
+    /**
+     * Retrieves the failure message format, where failure is defined as repeated enrollment of dogs and removal of not
+     * enrolled dogs.
+     */
+    protected abstract String getFailureMessage();
 }
 

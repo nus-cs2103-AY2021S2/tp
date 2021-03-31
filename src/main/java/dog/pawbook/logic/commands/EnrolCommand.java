@@ -16,42 +16,24 @@ public class EnrolCommand extends ProgramRegistrationCommand {
 
     public static final String MESSAGE_SUCCESS_FORMAT = "Dog %s enrolled in program %s!";
 
-    public static final String MESSAGE_ALREADY_ENROLLED_FORMAT = "Dog %s has already been enrolled in program %s!";
-
-    private final Set<Integer> dogIdSet;
-
-    private final Set<Integer> programIdSet;
+    public static final String MESSAGE_REPEATED_ENROLMENT_FORMAT = "One or more dogs has already been enrolled!";
 
     /**
      * Constructor for Enrol command to add the specified dog into the specified program.
-     * @param dogIdSet Id of the dog.
-     * @param programIdSet Id of the program.
+     * @param dogIdSet Id of the dogs.
+     * @param programIdSet Id of the programs.
      */
     public EnrolCommand(Set<Integer> dogIdSet, Set<Integer> programIdSet) {
-        this.dogIdSet = dogIdSet;
-        this.programIdSet = programIdSet;
-    }
-
-    protected Set<Integer> retrieveDogIdSet() {
-        return this.dogIdSet;
-    }
-
-    protected Set<Integer> retrieveProgramIdSet() {
-        return this.programIdSet;
+        super(dogIdSet, programIdSet, true);
     }
 
     @Override
-    protected String getProgramCommand() {
-        return COMMAND_WORD;
+    protected String getSuccessMessageFormat() {
+        return MESSAGE_SUCCESS_FORMAT;
     }
 
     @Override
-    protected String getSuccessMessage() {
-        return String.format(MESSAGE_SUCCESS_FORMAT, dogIdSet, programIdSet);
-    }
-
-    @Override
-    protected String getDuplicateMessage() {
-        return String.format(MESSAGE_ALREADY_ENROLLED_FORMAT, dogIdSet, programIdSet);
+    protected String getFailureMessage() {
+        return MESSAGE_REPEATED_ENROLMENT_FORMAT;
     }
 }
