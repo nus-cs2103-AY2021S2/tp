@@ -5,8 +5,8 @@ import java.util.Objects;
 
 public class Module implements Comparable<Module> {
     private Title title;
-    private AssignmentList assignments;
-    private ExamList exams;
+    private final AssignmentList assignments;
+    private final ExamList exams;
 
     /**
      * Constructs a {@code Module} with {@code Title} as the input representing the module title.

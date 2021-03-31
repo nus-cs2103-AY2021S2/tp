@@ -1,5 +1,6 @@
 package seedu.address.model.module;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -12,17 +13,17 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.tag.Tag;
 
 public class AssignmentTest {
-    private Description description1 = new Description("test 1");
-    private Description description2 = new Description("test 2");
-    private LocalDateTime date1 = LocalDateTime.parse("11/12/2021 1900",
+    private final Description description1 = new Description("test 1");
+    private final Description description2 = new Description("test 2");
+    private final LocalDateTime date1 = LocalDateTime.parse("11/12/2021 1900",
                                                 DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm"));
-    private LocalDateTime date2 = LocalDateTime.parse("12/12/2021 1900",
+    private final LocalDateTime date2 = LocalDateTime.parse("12/12/2021 1900",
                                                 DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm"));
-    private Tag tag = new Tag("CS2103");
-    private Assignment assignment = new Assignment(description1, date1, tag);
-    private Assignment editedAssignmentDiffDate = new Assignment(description1, date2, tag);
-    private Assignment editedAssignmentDiffDescription = new Assignment(description2, date1, tag);
-    private Assignment diffAssignment = new Assignment(description2, date2, tag);
+    private final Tag tag = new Tag("CS2103");
+    private final Assignment assignment = new Assignment(description1, date1, tag);
+    private final Assignment editedAssignmentDiffDate = new Assignment(description1, date2, tag);
+    private final Assignment editedAssignmentDiffDescription = new Assignment(description2, date1, tag);
+    private final Assignment diffAssignment = new Assignment(description2, date2, tag);
 
     @Test
     public void constructor_null_throwsNullPointerException() {
@@ -72,6 +73,43 @@ public class AssignmentTest {
 
         // different date -> return false
         assertFalse(assignment.equals(editedAssignmentDiffDate));
+    }
+
+    @Test
+    public void setDescription() {
+        Assignment assignmentCopy = new Assignment(description1, date1, tag);
+        // description changed to description2
+        assertEquals(assignmentCopy.setDescription(description2), editedAssignmentDiffDescription);
+    }
+
+    @Test
+    public void setDeadline() {
+        Assignment assignmentCopy = new Assignment(description1, date1, tag);
+        // description changed to description2
+        assertEquals(assignmentCopy.setDeadline(date2), editedAssignmentDiffDate);
+    }
+
+    @Test
+    public void isDone() {
+        // assignment is not done
+        Assignment assignment = new Assignment(description1, date1, tag, false);
+        assertEquals(assignment.isDone(), "[ ]");
+
+        // assignment is done
+        assignment = new Assignment(description2, date2, tag, true);
+        assertEquals(assignment.isDone(), "[X]");
+    }
+
+    @Test
+    public void toggleDoneStatus() {
+        Assignment assignment = new Assignment(description2, date1, tag);
+        // assignment is not done, toggled to done
+        assignment.toggleDoneStatus();
+        assertEquals(assignment.isDone(), "[X]");
+
+        // assignment toggle to done
+        assignment.toggleDoneStatus();
+        assertEquals(assignment.isDone(), "[ ]");
     }
 
     @Test

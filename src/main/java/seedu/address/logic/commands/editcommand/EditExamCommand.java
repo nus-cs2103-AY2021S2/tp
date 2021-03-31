@@ -17,17 +17,17 @@ import seedu.address.model.module.Module;
 public class EditExamCommand extends EditCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits an exam in RemindMe."
-            + "Parameters: "
-            + PREFIX_MODULE + " MODULE TITLE "
-            + PREFIX_EXAM + " EXAM INDEX "
-            + PREFIX_DATE + " NEW DATE"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_MODULE + "CS2103T"
-            + PREFIX_EXAM + "1"
+            + "\nParameters: "
+            + PREFIX_MODULE + "MODULE TITLE "
+            + PREFIX_EXAM + "EXAM INDEX "
+            + PREFIX_DATE + "NEW DATE"
+            + "\nExample: " + COMMAND_WORD + " "
+            + PREFIX_MODULE + "CS2103T "
+            + PREFIX_EXAM + "1 "
             + PREFIX_DATE + "22/03/2021 2359";
 
     public static final String MESSAGE_SUCCESS = "Exam edited: %1$s";
-    public static final String MESSAGE_NO_MODULE = "This module does not exists in RemindMe";
+    public static final String MESSAGE_NO_MODULE = "This module does not exist in RemindMe";
     public static final String MESSAGE_NO_EXAM = "This module does not contain any exam at this index.";
     public static final String MESSAGE_NO_CHANGE = "The input given does not change anything!";
     public static final String MESSAGE_NO_VALID_CHANGES = "Please input a valid edit.";

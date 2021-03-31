@@ -16,7 +16,7 @@ public class AddExamCommand extends AddCommand {
     public static final String COMMAND_WORD = "add";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an exam to the module. "
-            + "Parameters: "
+            + "\nParameters: "
             + PREFIX_MODULE + "MODULE NAME "
             + PREFIX_EXAM + "EXAM DATE "
             + "\nExample: " + COMMAND_WORD + " "
