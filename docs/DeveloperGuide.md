@@ -943,7 +943,7 @@ Use case ends.
 * 3a. An alias with the same name exists.
     * 3a1. SunRez overwrites the existing alias. 
 
-        Use case resumes from step 3.
+        Use case ends.
 
 ### UC-023 Delete an alias
 

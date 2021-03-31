@@ -383,7 +383,7 @@ Deletes a previously defined alias.
 
 Format: `unalias a/ALIAS_NAME`
 
-Examples:
+Example:
 * `unalias a/findBob` Deletes the `findBob` alias, provided that the alias was previously added.
 
 ### List all aliases : `aliases`
