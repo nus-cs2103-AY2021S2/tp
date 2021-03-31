@@ -94,7 +94,7 @@ public class Session {
     }
 
     public boolean emptyTutor() {
-        return this.tutor == new PersonId("");
+        return this.tutor.equals(new PersonId(""));
     }
 
     public Set<Tag> getTags() {

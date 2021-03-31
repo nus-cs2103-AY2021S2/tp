@@ -93,7 +93,7 @@ public class EditSessionCommand extends Command {
 
     private static boolean emptySession(Optional<Session> sessionToEdit) {
         if (!sessionToEdit.isPresent()) {
-            return false;
+            return true;
         } else if (sessionToEdit.get().emptyTutor()
                 && sessionToEdit.get().emptyStudentList()) {
             return true;
