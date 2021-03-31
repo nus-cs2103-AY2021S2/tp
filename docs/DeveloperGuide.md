@@ -342,9 +342,9 @@ The progress calculator will first calculate the required calories and macronutr
 
 1. The user's weight maintenance calories are calculated based on the **Mifflin-St Joer Formula**. 
 2. Depending on the type of diet plan (weight gain, weight loss or weight maintenance), the amount of calories required is calculated:
- * For weight gain plans, the daily amount of calories required is **maintenance calories + 400**
- * For weight loss plans, the daily amount of calories required is **maintenance calories - 500**
- * For weight maintenance plans, the daily amount of calories required is the **maintenance calories**
+  * For weight gain plans, the daily amount of calories required is **maintenance calories + 400**
+  * For weight loss plans, the daily amount of calories required is **maintenance calories - 500**
+  * For weight maintenance plans, the daily amount of calories required is the **maintenance calories**
 3. The *macronutrients' percentages* for the diet plan is applied to the calculated calories to determine how much of each macronutrient is required (in grams).
 
 The progress calculator then uses the *macronutrients' percentages* to decide whether the user has fulfiled the diet plan's requirements. This information is displayed via 3 main sections of the report:
@@ -367,7 +367,7 @@ Additionally, this section also shows the daily macronutrients requirements the 
 This section of the progress report details the foods consumed within each day as well as whether the daily total of each macronutrient adheres to the plan's requirements. <br/>
 
 The total of each macronutrient intake is calculated by summing up the macronutrients *(carbohydrates, proteins and fats)* in each food consumed within that particular day. 
-These totals are divided by their respective daily macronutrient requirements to get a percentage of how much the user has adhered to the plan's requirements. This * daily adherence percentage* indicates whether the user has exceeded, is under or is within the diet plan's requirements for that day.
+These totals are divided by their respective daily macronutrient requirements to get a percentage of how much the user has adhered to the plan's requirements. This *daily adherence percentage* indicates whether the user has exceeded, is under or is within the diet plan's requirements for that day.
 
 A leeway value of **5%** is allowed should the user's *daily adherence percentage* fall just above or below the required amount.
 
