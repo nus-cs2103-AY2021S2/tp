@@ -247,7 +247,7 @@ Deletes the specified person(s) from the address book.
 **:bulb: Bulk Delete**
 
 To bulk delete, either do `delete 1 2 3` to delete indexes 1, 2 and 3
-or `delete shown` to delete all the shown person.
+or `delete shown` to delete all the shown persons.
 
 </div>
 
