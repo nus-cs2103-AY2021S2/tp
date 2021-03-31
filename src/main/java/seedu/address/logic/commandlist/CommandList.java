@@ -46,11 +46,11 @@ public class CommandList {
     }
 
     /**
-     * Moves the pointer to previous node in the list and returns the command stored.
-     * If the pointer is at the previous node at the time of calling, command stored
-     * in the first node is returned.
-     * @return Command stored in the previous node, or command stored in the head node
-     * if there is no previous node.
+     * Moves the pointer to next node in the list and returns the command stored.
+     * If the pointer is at the last node at the time of calling, the command
+     * stored in the last node is returned.
+     * @return Command stored in the next node, or command stored in the tail node if the
+     * pointer is at the last node.
      */
     public String moveDown() {
         if (cursor.nextNode != tailPointer && cursor.nextNode != null) {
@@ -60,11 +60,11 @@ public class CommandList {
     }
 
     /**
-     * Moves the pointer to next node in the list and returns the command stored.
-     * If the pointer is at the last node at the time of calling, the command
-     * stored in the last node is returned.
-     * @return Command stored in the next node, or command stored in the tail node if the
-     * pointer is at the last node.
+     * Moves the pointer to previous node in the list and returns the command stored.
+     * If the pointer is at the previous node at the time of calling, command stored
+     * in the first node is returned.
+     * @return Command stored in the previous node, or command stored in the head node
+     * if there is no previous node.
      */
     public String moveUp() {
         if (cursor.prevNode != null) {
