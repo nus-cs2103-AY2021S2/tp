@@ -99,7 +99,8 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-                && flashBackFilePath.equals(o.flashBackFilePath);
+                && flashBackFilePath.equals(o.flashBackFilePath)
+                && aliasMap.equals(o.aliasMap);
     }
 
     @Override

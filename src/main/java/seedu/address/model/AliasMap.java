@@ -11,7 +11,7 @@ import seedu.address.logic.commands.*;
  */
 public class AliasMap {
     private HashMap<String, String> aliasMap;
-    private String[] commandsWord = {
+    private final String[] commandsWord = {
         AddCommand.COMMAND_WORD,
         AliasCommand.COMMAND_WORD,
         ClearCommand.COMMAND_WORD,
@@ -98,6 +98,13 @@ public class AliasMap {
      */
     public boolean isCommand(String input) {
         return Arrays.stream(commandsWord).anyMatch(c -> c.equals(input));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof AliasMap // instanceof handles nulls
+                && aliasMap.equals(((AliasMap) other).aliasMap));
     }
 
     public static class UnableToAddAliasException extends RuntimeException {
