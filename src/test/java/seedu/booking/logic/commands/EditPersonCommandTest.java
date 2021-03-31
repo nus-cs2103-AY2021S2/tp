@@ -35,7 +35,7 @@ public class EditPersonCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Person editedPerson = new PersonBuilder().build();
+        Person editedPerson = new PersonBuilder().withEmail(VALID_EMAIL_AMY_GMAIL).withPhone("33333333").build();
         EditPersonDescriptor descriptor = new EditPersonCommandDescriptorBuilder(editedPerson).build();
         EditPersonCommand editPersonCommand = new EditPersonCommand(new Email(VALID_EMAIL_AMY_GMAIL), descriptor);
 
@@ -96,7 +96,7 @@ public class EditPersonCommandTest {
         EditPersonCommand editPersonCommand = new EditPersonCommand(new Email(VALID_EMAIL_AMY_GMAIL),
                 new EditPersonCommandDescriptorBuilder(personInList).build());
 
-        assertCommandFailure(editPersonCommand, model, EditPersonCommand.MESSAGE_DUPLICATE_PERSON);
+        assertCommandFailure(editPersonCommand, model, EditPersonCommand.MESSAGE_DUPLICATE_EMAIL);
     }
 
     @Test
