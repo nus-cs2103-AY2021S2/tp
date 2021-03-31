@@ -29,7 +29,13 @@
         <Label fx:id="taskName" styleClass="cell_big_label" text="\$first" />
       </HBox>
       <FlowPane fx:id="tags" />
-         <Label text="\$priorityTag" />
+      <Label fx:id="priorityTag" text="\$priorityTag">
+            <padding>
+               <Insets bottom="1.0" left="1.0" right="1.0" />
+            </padding>
+            <VBox.margin>
+               <Insets bottom="2.0" top="2.0" />
+            </VBox.margin></Label>
       <Label fx:id="moduleCode" styleClass="cell_small_label" text="\$moduleCode" />
       <Label fx:id="deadlineDate" styleClass="cell_small_label" text="\$date" />
       <Label fx:id="deadlineTime" styleClass="cell_small_label" text="\$time" />

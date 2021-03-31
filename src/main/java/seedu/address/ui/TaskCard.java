@@ -2,12 +2,14 @@ package seedu.address.ui;
 
 import java.util.Comparator;
 
+import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Task;
+import seedu.address.model.tag.State;
 
 /**
  * An UI component that displays information of a {@code Task}.
@@ -15,6 +17,12 @@ import seedu.address.model.person.Task;
 public class TaskCard extends UiPart<Region> {
 
     private static final String FXML = "TaskCard.fxml";
+
+    private static final String STYLE_PRIORITY_TAG_LOW = "-fx-background-color: green;";
+
+    private static final String STYLE_PRIORITY_TAG_MEDIUM = "-fx-background-color: yellow; -fx-text-fill: black;";
+
+    private static final String STYLE_PRIORITY_TAG_HIGH = "-fx-background-color: red;";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -30,8 +38,8 @@ public class TaskCard extends UiPart<Region> {
     private HBox cardPane;
     @FXML
     private Label taskName;
-    // @FXML
-    // private Label priorityTag;
+    @FXML
+    private Label priorityTag;
     @FXML
     private Label moduleCode;
     @FXML
@@ -57,7 +65,20 @@ public class TaskCard extends UiPart<Region> {
         this.task = task;
         id.setText(displayedIndex + ". ");
         taskName.setText(task.getTaskName().fullName);
-        // priorityTag.setText(task.getPriorityTag().getTagName());
+        priorityTag.setText(task.getPriorityTag().getTagName());
+        priorityTag.styleProperty().bind(Bindings.createStringBinding(() -> {
+            State priorityTagLevel = task.getPriorityTag().getState();
+            switch (priorityTagLevel) {
+            case HIGH:
+                return STYLE_PRIORITY_TAG_HIGH;
+            case MEDIUM:
+                return STYLE_PRIORITY_TAG_MEDIUM;
+            case LOW:
+                return STYLE_PRIORITY_TAG_LOW;
+            default:
+                return "";
+            }
+        }));
         moduleCode.setText(task.getModuleCode().moduleCode);
         deadlineDate.setText("Submission date : " + task.getDeadlineDate().toString());
         deadlineTime.setText("Submission time : " + task.getDeadlineTime().toString());
