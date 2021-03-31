@@ -1,10 +1,10 @@
 ---
 layout: page
-
+title: User Guide
 ---
 
 <p align="center">
-  <img src="images/dietlah.png" alt="DietLAH!">
+  <img src="images/dietlah-slim.png" alt="DietLAH!">
 </p>
 
 # User Guide
