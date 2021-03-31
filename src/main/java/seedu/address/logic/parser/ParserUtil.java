@@ -16,6 +16,7 @@ import seedu.address.model.common.Description;
 import seedu.address.model.common.Title;
 import seedu.address.model.grade.GradeEnum;
 import seedu.address.model.grade.GradedItem;
+import seedu.address.model.reminder.ReminderDate;
 import seedu.address.model.subject.SubjectExperience;
 import seedu.address.model.subject.SubjectLevel;
 import seedu.address.model.subject.SubjectList;
