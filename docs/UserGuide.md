@@ -12,6 +12,16 @@ PlanIt also includes a calendar and a countdown feature to better manage your de
 you who prefer typing, so that bookkeeping can be done faster. Now you can make progress on the things that are
 more important to you.
 
+Objective:
+PlanIT's objective is to improve productivity for students with features and tools to help
+students manage their workload. These features significantly reduces the trouble of having to keep track of tasks,
+especially those that are essential yet repetitive. Features such as recurring schedule and date allows students to
+keep track of weekly task and due dates for tutorial homework, projects and much more. More importantly, the functionalities
+of PlanIt's simple overview allows students to see upcoming deadlines or events.
+
+Let's dive deeper into these features to see how these features can assist students
+in workload management.
+
 * Table of Contents
 {:toc}
 
@@ -65,7 +75,7 @@ more important to you.
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/TITLE set/DEADLINE`, `set/DEADLINE n/TITLE` is also acceptable.
+  e.g. if the command specifies `n/TITLE set/DATE`, `set/DATE n/TITLE` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last
   occurrence of the parameter will be taken.<br>
@@ -132,7 +142,7 @@ Format: `ls`
 
 Adds a date to an existing task in the list.
 
-Format: `mk INDEX [set/DATE]…​`
+Format: `edit INDEX [set/DATE]…​`
 
 * Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed list. The index **must be a positive integer** 1, 2, 3, …​
 * Date field must be provided.
@@ -142,14 +152,28 @@ Format: `mk INDEX [set/DATE]…​`
   specifying any date after it.
 
 Examples:
-*  `mk 1 set/2021-05-13` Adds a date to the 1st task on the list which is to be `13 May 2021`.
-*  `mk 2 set/` Clears the existing date of 2nd task on the list.
+*  `edit 1 set/2021-05-13` Adds a date to the 1st task on the list which is to be `13 May 2021`.
+*  `edit 2 set/` Clears the existing date of 2nd task on the list.
+
+### Sort task by date: `sort by a` or `sort by d`
+
+Sort tasks in the list either in ascending dates or descending dates so that users would
+be able to see the task or event nearest to current date or furthest away from current date.
+
+Format: `sort by a` or `sort by d`
+
+* Shows the list of all task.
+* If `sort by a`, task with no deadlines would appear first, 
+    subsequently task will be ordered in increasing dates. 
+* If `sort by d`, task with no deadlines would appear last, 
+    subsequently task will be ordered in decreasing dates.
+* If two tasks have the same dates, they will be ordered in equal priority.
 
 ### Editing a task : `edit`
 
 Edits an existing task in the planner.
 
-Format: `edit INDEX [n/TITLE] [set/DEADLINE] [s/START TIME] [d/DESCRIPTION]
+Format: `edit INDEX [n/TITLE] [set/DATE] [s/START TIME] [d/DESCRIPTION]
 [r/RECURRING SCHEDULE] [st/STATUS] [t/TAG]…​`
 
 * Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list.
@@ -347,7 +371,7 @@ Action | Format, Examples
 **Clear** | `clear`
 **Delete Task** | `rmt INDEX`<br> e.g., `rmt 3`
 **Delete Field** | `rmf INDEX FIELD`<br> e.g., `rmf 1 d/`
-**Edit** | `edit INDEX [n/TITLE] [set/DEADLINE] [s/START TIME] [d/DESCRIPTION] [r/RECURRING SCHEDULE] [st/STATUS] [t/TAG]…​`<br>e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit** | `edit INDEX [n/TITLE] [set/DATE] [s/START TIME] [d/DESCRIPTION] [r/RECURRING SCHEDULE] [st/STATUS] [t/TAG]…​`<br>e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`e.g., `find CS2103 team project` <br>`find [t/TAG] `e.g., `find t/CS2103` <br> `find [d/DESCRIPTION] `e.g., `find d/CS2103 milestone postmortem`
 **Countdown** | `count INDEX` <br> e.g., `count 2`
 **Statistics** | `stat`
