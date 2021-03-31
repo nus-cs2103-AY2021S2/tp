@@ -4,19 +4,14 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
-import java.util.logging.Logger;
-
-import seedu.address.commons.core.LogsCenter;
 
 /**
  * Tests that a {@code Person}'s {@code Name}, {@code Email}, {@code Tags} or {@code Remark} matches any of the keywords
  * given.
  */
 public class FieldsContainsKeywordsPredicate implements Predicate<Person>, Comparator<Person> {
-    private static final int MATCH_PERCENTAGE = 60;
     private final List<String> keywords;
     private final ArrayList<Predicate<Person>> predicates;
-    private final Logger logger = LogsCenter.getLogger(getClass());
 
     /**
      * Constructs a predicate for each of the fields using the keywords provided
@@ -63,7 +58,8 @@ public class FieldsContainsKeywordsPredicate implements Predicate<Person>, Compa
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof FieldsContainsKeywordsPredicate // instanceof handles nulls
-                && keywords.equals(((FieldsContainsKeywordsPredicate) other).keywords)); // state check
+                && keywords.containsAll(((FieldsContainsKeywordsPredicate) other).keywords)
+                && ((FieldsContainsKeywordsPredicate) other).keywords.containsAll(keywords)); // state check
     }
 
 }

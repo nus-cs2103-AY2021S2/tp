@@ -87,7 +87,8 @@ public class FieldsContainsKeywordsPredicateTest {
         assertFalse(predicate.test(testPerson));
     }
 
-    @Test void test_nameComparatorSort_compare() {
+    @Test
+    public void test_nameComparatorSort_compare() {
         Person testPerson1 = new PersonBuilder().withName("Alice Gordon").withPhone("12345")
                 .withEmail("alice@email.com").withAddress("Main Street").withRemark("User Research Team Manager")
                 .withTags("Marketing", "Research", "Executive").build();

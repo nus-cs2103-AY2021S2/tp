@@ -82,7 +82,8 @@ public class TagContainsKeywordsPredicateTest {
                 .withEmail("alice@email.com").withAddress("Main Street").withName("Alice Gordon").build()));
     }
 
-    @Test void test_tagComparatorSort_compare() {
+    @Test
+    public void test_tagComparatorSort_compare() {
         Comparator<Person> comparator = new TagContainsKeywordsPredicate(Collections.singletonList("Market"));
 
         // Sort by similarity

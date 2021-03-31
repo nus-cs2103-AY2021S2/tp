@@ -57,7 +57,8 @@ public class NameContainsKeywordsPredicate implements Predicate<Person>, Compara
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof NameContainsKeywordsPredicate // instanceof handles nulls
-                && keywords.equals(((NameContainsKeywordsPredicate) other).keywords)); // state check
+                && keywords.containsAll(((NameContainsKeywordsPredicate) other).keywords)
+                && ((NameContainsKeywordsPredicate) other).keywords.containsAll(keywords)); // state check
     }
 
 }
