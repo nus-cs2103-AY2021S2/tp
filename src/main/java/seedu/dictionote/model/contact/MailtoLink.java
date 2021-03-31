@@ -1,8 +1,8 @@
 package seedu.dictionote.model.contact;
 
-import seedu.dictionote.model.note.Note;
-
 import java.util.stream.Collectors;
+
+import seedu.dictionote.model.note.Note;
 
 /**
  * Represents a container for objects that represent some fields of a {@code mailto} link.
