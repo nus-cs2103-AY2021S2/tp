@@ -86,7 +86,8 @@ public class Person implements Comparable<Person> {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+                && otherPerson.getName().equals(getName())
+                && otherPerson.getTags().equals(getTags());
     }
 
     /**
@@ -105,7 +106,11 @@ public class Person implements Comparable<Person> {
 
         Person otherPerson = (Person) other;
         return otherPerson.getName().equals(getName())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getPhone().equals(getPhone())
+                && otherPerson.getEmail().equals(getEmail())
+                && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getTags().equals(getTags())
+                && otherPerson.getFavourite().equals(getFavourite());
     }
 
     @Override
