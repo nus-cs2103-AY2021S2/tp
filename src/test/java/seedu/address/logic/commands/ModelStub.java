@@ -158,11 +158,6 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void setResidentRoom(ResidentRoom target, ResidentRoom editedResidentRoom) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
     public void setRoom(Room target, Room editedRoom) {
         throw new AssertionError("This method should not be called.");
     }
@@ -212,13 +207,8 @@ public class ModelStub implements Model {
         throw new AssertionError("This method should not be called.");
     }
 
-
-    public void updateFilteredResidentRoomList(Predicate<ResidentRoom> predicate) {
-        throw new AssertionError("This method should not be called.");
-    }
-
     @Override
-    public ObservableList<ResidentRoom> getFilteredResidentRoomList() {
+    public void updateFilteredResidentRoomList(Predicate<ResidentRoom> predicate) {
         throw new AssertionError("This method should not be called.");
     }
 

@@ -241,19 +241,6 @@ public interface Model {
     void addResidentRoom(ResidentRoom residentRoom);
 
     /**
-     * Replaces the given resident {@code target} with {@code editedResident}.
-     * {@code target} must exist in the address book.
-     * The resident identity of {@code editedResident} must not be the same
-     * as another existing resident in the address book.
-     */
-    void setResidentRoom(ResidentRoom target, ResidentRoom editedResidentRoom);
-
-    /**
-     * Returns an unmodifiable view of the filtered resident list
-     */
-    ObservableList<ResidentRoom> getFilteredResidentRoomList();
-
-    /**
      * Updates the filter of the filtered resident list to filter by the given {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.

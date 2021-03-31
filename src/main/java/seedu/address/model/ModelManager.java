@@ -280,23 +280,8 @@ public class ModelManager implements Model {
         statefulAddressBook.removeResidentRoom(target);
     }
 
-    @Override
-    public void setResidentRoom(ResidentRoom target, ResidentRoom editedResidentRoom) {
-        requireAllNonNull(target, editedResidentRoom);
-
-        statefulAddressBook.setResidentRoom(target, editedResidentRoom);
-    }
 
     // =========== Filtered ResidentRoom List Accessors =============================================================
-
-    /**
-     * Returns an unmodifiable view of the list of {@code ResidentRoom} backed by the internal list of
-     * {@code versionedAddressBook}
-     */
-    @Override
-    public ObservableList<ResidentRoom> getFilteredResidentRoomList() {
-        return filteredResidentRooms;
-    }
 
     @Override
     public void updateFilteredResidentRoomList(Predicate<ResidentRoom> predicate) {

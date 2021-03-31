@@ -197,17 +197,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Replaces the given residentroom {@code target} in the list with {@code editedResidentRoom}.
-     * {@code target} must exist in SunRez.
-     * The residentRoom identity of {@code editedResidentRoom} must not be the same as
-     * another existing residentroom in SunRez.
-     */
-    public void setResidentRoom(ResidentRoom target, ResidentRoom editedResidentRoom) {
-        requireNonNull(editedResidentRoom);
-        residentRooms.setResidentRoom(target, editedResidentRoom);
-    }
-
-    /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code ResidentRoom} must exist in SunRez.
      */

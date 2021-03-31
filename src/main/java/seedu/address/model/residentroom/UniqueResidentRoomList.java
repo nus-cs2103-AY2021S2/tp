@@ -8,7 +8,6 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.resident.exceptions.ResidentNotFoundException;
 import seedu.address.model.residentroom.exceptions.DuplicateResidentRoomException;
 import seedu.address.model.residentroom.exceptions.ResidentRoomNotFoundException;
 
@@ -59,27 +58,6 @@ public class UniqueResidentRoomList implements Iterable<ResidentRoom> {
     }
 
     /**
-     * Replaces the residentroom {@code target} in the list with {@code editedResidentRoom}.
-     * {@code target} must exist in the list.
-     * The residentroom identity of {@code editedResidentRoom} must not be the same
-     * as another existing residentRoom in the list.
-     */
-    public void setResidentRoom(ResidentRoom target, ResidentRoom editedResidentRoom) {
-        requireAllNonNull(target, editedResidentRoom);
-
-        int index = internalList.indexOf(target);
-        if (index == -1) {
-            throw new ResidentNotFoundException();
-        }
-
-        if (!target.isSameResidentRoom(editedResidentRoom) && containsEitherResidentRoom(editedResidentRoom)) {
-            throw new DuplicateResidentRoomException();
-        }
-
-        internalList.set(index, editedResidentRoom);
-    }
-
-    /**
      * Removes the equivalent residentRoom from the list.
      * The residentRoom must exist in the list.
      */
@@ -88,11 +66,6 @@ public class UniqueResidentRoomList implements Iterable<ResidentRoom> {
         if (!internalList.remove(toRemove)) {
             throw new ResidentRoomNotFoundException();
         }
-    }
-
-    public void setResidentRooms(UniqueResidentRoomList replacement) {
-        requireNonNull(replacement);
-        internalList.setAll(replacement.internalList);
     }
 
     /**
