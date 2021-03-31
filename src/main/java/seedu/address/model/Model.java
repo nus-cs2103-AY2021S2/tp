@@ -68,11 +68,15 @@ public interface Model {
      */
     void deleteTask(Task target);
 
+    void deleteDailyTask(Task target);
+
     /**
      * Finishes the given task.
      * The task must exist in the task tracker.
      */
     void finishTask(Task target);
+
+    void finishDailyTask(Task target);
 
     /**
      * Adds the given task.
@@ -135,6 +139,8 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateDailyTaskList(Predicate<Task> predicate);
+
+    void refreshDailyTasks(Task target, Task editedTask);
 
     /**
      * Commits the taskTracker

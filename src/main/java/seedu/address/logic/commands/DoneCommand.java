@@ -42,6 +42,7 @@ public class DoneCommand extends Command {
         Task taskToFinish = lastShownList.get(targetIndex.getZeroBased());
 
         model.finishTask(taskToFinish);
+        model.finishDailyTask(taskToFinish);
         return new CommandResult(String.format(MESSAGE_DONE_TASK_SUCCESS, taskToFinish));
     }
 
