@@ -215,12 +215,6 @@ Format: `massblist START-END b/BLACKLIST_OR_UNBLACKLIST`
 Example:
 `massblist 15-42 b/blacklist`
 
-### Filter contacts: `filter`
-
-Filters shown contacts based on the given keyword(s).
-
-Format: filter [keyword1, keyword2, …]
-
 ### Clearing all entries : `clear`
 
 Clears all entries from the contacts list.
@@ -276,9 +270,11 @@ Do not update data directly by editing that data file as it may result in uninte
 If you edit the data file and make its format invalid, SpamEZ will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
+### Undo previous operations: `undo`
+Undo the changes done to the list of contacts.
 
-_Details coming soon ..._
+Format: `undo`
+* This command only applies to the commands that make changes to the list of contacts, e.g. `add`, `edit`, `delete`, `undo` etc.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -301,10 +297,10 @@ Action | Format, Examples
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Mass Delete** | `massdelete START-END` <br> e.g., `massdelete 4-12`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Filter** | `filter [keyword1,keyword2,...]`<br> e.g., `filter[Computing, Student]`
-**Find** | `find [n/NAME_KEYWORDS] [t/TAG_KEYWORDS]`<br> e.g., `find n/James Jake t/classmates`
+**Find** | `find [n/NAME_KEYWORDS] [t/TAG_KEYWORDS] [a/ADDRESS_KEYWORDS]`<br> e.g., `find n/James Jake t/classmates a/Singapore`
 **Help** | `help`
 **List** | `list`
 **Remark** | `remark INDEX r/REMARK`<br> e.g., `remark 5 r/Currently on Leave of Absence`
 **Tag** | `tag n/NAME t/TAG`<br> e.g., `tag n/Jane Bo t/Student`
 **Sort** | `sort ASCENDING_OR_DESCENDING`<br> e.g., `sort ascending`
+**Undo** | `undo`
