@@ -16,6 +16,9 @@ StorageManager .left.|> Storage
 StorageManager o-right-> UserPrefsStorage
 StorageManager o--> DatabaseStorage
 
+Storage -|> UserPrefsStorage
+Storage -|> AddressBookStorage
+
 JsonUserPrefsStorage .left.|> UserPrefsStorage
 JsonDatabaseStorage .left.|> DatabaseStorage
 JsonDatabaseStorage .down.> JsonSerializableDatabase
