@@ -8,14 +8,17 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.function.Predicate;
 
+import javafx.beans.value.ObservableValue;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
@@ -25,6 +28,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.connection.PersonMeetingConnection;
+import seedu.address.model.group.Group;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingBook;
 import seedu.address.model.meeting.ReadOnlyMeetingBook;
@@ -149,6 +153,11 @@ class AddMeetingCommandTest {
         }
 
         @Override
+        public Set<Person> findPersonsInGroup(Group group) {
+            throw new AssertionError("This method should not be called.");
+        };
+
+        @Override
         public ObservableList<Person> getFilteredPersonList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -214,6 +223,11 @@ class AddMeetingCommandTest {
         }
 
         @Override
+        public ObservableList<Meeting> getUnmodifiableMeetingList() {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
         public void setPersonMeetingConnection(PersonMeetingConnection connection) {
             throw new AssertionError("This method should not be called.");
         }
@@ -253,10 +267,26 @@ class AddMeetingCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        //=======================Timetable methods ================================================
+
         @Override
         public ObservableList<Person> getFilteredPersonListByMeetingConnection(Meeting meeting) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void setTimetableStartDate(LocalDate localDate) {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public ObservableValue<LocalDate> getReadOnlyTimetableStartDate() {
+            throw new AssertionError("This method should not be called");
+        }
+
+        //-============================================================================================
+
+
 
         @Override
         public ReadOnlyReminderBook getReminderBook() {

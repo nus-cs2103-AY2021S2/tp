@@ -1,8 +1,12 @@
 package seedu.address.ui;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -19,7 +23,9 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.scheduler.Timetable;
+import seedu.address.model.meeting.Meeting;
+
+import static seedu.address.ui.Test.*;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -143,9 +149,8 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        Timetable timetable = new Timetable(LocalDate.now());
-
-        TimetableView timetableView = new TimetableView(timetable.getReadOnlyWeeklySchedule());
+        ObservableList<Meeting> meetingObservableList = logic.getAllMeetingList();
+        TimetableView timetableView = new TimetableView(meetingObservableList, logic.getTimeTableStartDate());
         timetableHolder.getChildren().add(timetableView.getRoot());
 
         // Yuheng To Maurice: I made my modification to the logic so now you can add meetings into the UI.

@@ -1,7 +1,10 @@
 package seedu.address.model.meeting;
 
-import static seedu.address.commons.util.AppUtil.checkArgument;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import seedu.address.model.connection.PersonMeetingConnection;
+import seedu.address.model.group.Group;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.schedule.Schedulable;
 
 import java.time.LocalDateTime;
 import java.util.Collections;
@@ -9,9 +12,9 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.model.group.Group;
-import seedu.address.model.scheduler.Schedulable;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 
 /**
  * Represents a meeting in MeetBuddy.
@@ -20,8 +23,7 @@ import seedu.address.model.scheduler.Schedulable;
 public class Meeting implements Schedulable {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "The start date time of a meeting should be strictly earlier than the terminate date time."
-                    + "The meeting must start and end on the same date";
+            "The start date time of a meeting should be strictly earlier than the terminate date time.";
 
 
     // Identity fields
@@ -33,7 +35,7 @@ public class Meeting implements Schedulable {
     private final Priority priority;
     private final Description description;
     private final Set<Group> groups = new HashSet<>();
-    private Set<Index> connectionToPerson = new HashSet<>();
+    private PersonMeetingConnection connection = null;
 
     /**
      * Every field must be present and not null.
@@ -96,21 +98,31 @@ public class Meeting implements Schedulable {
      * Returns true if a given date time for the meeting is valid.
      */
     public static boolean isValidStartTerminate(DateTime start, DateTime terminate) {
-        boolean isSameDate = start.toLocalDate().equals(terminate.toLocalDate());
-        return start.compareTo(terminate) < 0 && isSameDate;
+        return start.compareTo(terminate) < 0;
     }
     /**
-     * Set the connection indices to meetings.
+     * Sets the person meeting connection so that the meeting can have access to the Person Meeting Connection object.
+     * This method will only be invoked in @code{AddMeetingCommand}.
+     * Note that Meeting Object has no permission to modify connection, this method is used for later read connection.
      */
-    public Meeting setConnectionToPerson(Set<Index> indices) {
-        this.connectionToPerson = indices;
-        return this;
+    public void setPersonMeetingConnection(PersonMeetingConnection connection) {
+        this.connection = connection;
     }
     /**
-     * Get the connection indices to meetings.
+     * Returns an immutable person set.
      */
-    public Set<Index> getConnectionToPerson() {
-        return this.connectionToPerson;
+    public Set<Person> getConnectionToPerson() {
+        // If the user didn't try to add connection, then returns an empty set.
+        if (connection == null) {
+            return new HashSet<Person>();
+        } else {
+            UniquePersonList persons = connection.getPersonsByMeeting(this);
+            HashSet<Person> personsSet = new HashSet<>();
+            for (Person person : persons) {
+                personsSet.add(person);
+            }
+            return personsSet;
+        }
     }
 
     /**
@@ -161,12 +173,11 @@ public class Meeting implements Schedulable {
             groups.forEach(builder::append);
         }
 
-        Set<Index> indices = getConnectionToPerson();
-        if (indices != null) {
+        Set<Person> personSet = getConnectionToPerson();
+        if (!personSet.isEmpty()) {
             builder.append("; Person Related Indices: ");
-            for (Index index : indices) {
-                builder.append(index.getOneBased());
-                builder.append(" ");
+            for (Person person : personSet) {
+                builder.append("[" + person.getName() + "]");
             }
         }
         return builder.toString();
@@ -185,6 +196,17 @@ public class Meeting implements Schedulable {
                 && endLocalDateTime.compareTo(localDateTime) > 0;
     }
 
+    /**
+     * Checks if a meeting is a schedulable object is in conflict with this meeting.
+     * @param schedulable
+     * @return
+     */
+
+    public boolean isConflict(Schedulable schedulable) {
+        return !(this.getTerminateLocalDateTime().compareTo(schedulable.getStartLocalDateTime()) <= 0
+                || this.getStartLocalDateTime().compareTo(schedulable.getTerminateLocalDateTime()) >= 0);
+    }
+
     //==================interface methods =================================================
 
     public LocalDateTime getStartLocalDateTime() {
@@ -195,11 +217,6 @@ public class Meeting implements Schedulable {
         return terminate.toLocalDateTime();
     }
 
-    @Override
-    public boolean isConflict(Schedulable schedulable) {
-        return !(this.getTerminateLocalDateTime().compareTo(schedulable.getStartLocalDateTime()) <= 0
-                || this.getStartLocalDateTime().compareTo(schedulable.getTerminateLocalDateTime()) >= 0);
-    }
 
     @Override
     public String getNameString() {

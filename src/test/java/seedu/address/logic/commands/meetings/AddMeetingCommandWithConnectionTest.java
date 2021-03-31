@@ -1,5 +1,6 @@
 package seedu.address.logic.commands.meetings;
 
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import org.junit.jupiter.api.Test;
@@ -11,6 +12,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.connection.PersonMeetingConnection;
+import seedu.address.model.group.Group;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingBook;
 import seedu.address.model.meeting.ReadOnlyMeetingBook;
@@ -21,15 +23,18 @@ import seedu.address.model.person.ReadOnlyAddressBook;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.reminder.ReadOnlyReminderBook;
 import seedu.address.model.reminder.ReminderBook;
+import seedu.address.model.schedule.TimetablePrefs;
 import seedu.address.testutil.MeetingBuilder;
 import seedu.address.testutil.PersonBuilder;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import static java.util.Objects.requireNonNull;
@@ -47,12 +52,12 @@ public class AddMeetingCommandWithConnectionTest {
 
         MeetingModelStubAcceptingAdded modelStub = new MeetingModelStubAcceptingAdded();
         Person validPerson = new PersonBuilder().build();
-        Meeting validMeeting = new MeetingBuilder().build().setConnectionToPerson(connections);
+        Meeting validMeeting = new MeetingBuilder().build();
         Meeting validMeeting2 = new MeetingBuilder().withName("Important Conference").withStart("2222-01-01 19:00")
-            .withTerminate("2222-01-01 20:00").build().setConnectionToPerson(connections);
+            .withTerminate("2222-01-01 20:00").build();
 
         CommandResult commandResult2 = new AddPersonCommand(validPerson).execute(modelStub);
-        CommandResult commandResult1 = new AddMeetingCommand(validMeeting).execute(modelStub);
+        CommandResult commandResult1 = new AddMeetingCommand(validMeeting).setConnectionToPerson(connections).execute(modelStub);
 
         assertEquals(String.format(AddMeetingCommand.MESSAGE_SUCCESS, validMeeting),
             commandResult1.getFeedbackToUser());
@@ -73,7 +78,7 @@ public class AddMeetingCommandWithConnectionTest {
 
         // Check more complex connections (2 meetings points to the same person)
         expectedMeetings.add(validMeeting2);
-        CommandResult commandResult3 = new AddMeetingCommand(validMeeting2).execute(modelStub);
+        CommandResult commandResult3 = new AddMeetingCommand(validMeeting2).setConnectionToPerson(connections).execute(modelStub);
         assertEquals(expectedMeetings.asUnmodifiableObservableList(),
             modelStub.getFilteredMeetingListByPersonConnection(validPerson));
         assertEquals(expectedPersons.asUnmodifiableObservableList(),
@@ -123,6 +128,8 @@ public class AddMeetingCommandWithConnectionTest {
         // TODO: Modify the signature of ModelManager so that we can add connection inside it.
         private final PersonMeetingConnection connection;
 
+        private final TimetablePrefs timetablePrefs;
+
 
         /**
          * Initializes a ModelManager with the given addressBook, meetingBOok and userPrefs
@@ -139,6 +146,7 @@ public class AddMeetingCommandWithConnectionTest {
             filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
             // TODO: Modify the signature of ModelManager so that we can add connection inside it.
             this.connection = new PersonMeetingConnection();
+            this.timetablePrefs = new TimetablePrefs(LocalDate.of(2020,10,10));
         }
 
 
@@ -217,6 +225,11 @@ public class AddMeetingCommandWithConnectionTest {
             addressBook.setPerson(target, editedPerson);
         }
 
+        @Override
+        public Set<Person> findPersonsInGroup(Group group) {
+            return addressBook.findPersonsInGroup(group);
+        }
+
         //=========== MeetingBook ================================================================================
 
         @Override
@@ -254,8 +267,9 @@ public class AddMeetingCommandWithConnectionTest {
 
         @Override
         public void updateMeeting(Meeting target, Meeting editedMeeting) {
-
         }
+
+
         //TODO: Set MeetingBook file path in userPrefs? low priority feature(nice to have)
 
         //========= Clashing Meetings ================================================================
@@ -415,6 +429,24 @@ public class AddMeetingCommandWithConnectionTest {
         public void sortFilteredMeetingList(Comparator<Meeting> comparator) {
 
         }
+
+        //======================= Timetable methods ========================================
+
+        @Override
+        public void setTimetableStartDate(LocalDate localDate) {
+            timetablePrefs.setTimetableStartDate(localDate);
+        }
+
+        @Override
+        public ObservableValue<LocalDate> getReadOnlyTimetableStartDate() {
+            return timetablePrefs.getReadOnlyStartDate();
+        }
+
+        @Override
+        public ObservableList<Meeting> getUnmodifiableMeetingList() {
+            return meetingBook.getMeetingList();
+        }
+
 
     }
 }

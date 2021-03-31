@@ -1,31 +1,17 @@
 package seedu.address.logic.parser.meetings;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_END_TIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_CONNECTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.meetings.AddMeetingCommand;
+import seedu.address.logic.parser.*;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.group.Group;
+import seedu.address.model.meeting.*;
 
 import java.util.Set;
 import java.util.stream.Stream;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.meetings.AddMeetingCommand;
-import seedu.address.logic.parser.ArgumentMultimap;
-import seedu.address.logic.parser.ArgumentTokenizer;
-import seedu.address.logic.parser.Parser;
-import seedu.address.logic.parser.ParserUtil;
-import seedu.address.logic.parser.Prefix;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.group.Group;
-import seedu.address.model.meeting.DateTime;
-import seedu.address.model.meeting.Description;
-import seedu.address.model.meeting.Meeting;
-import seedu.address.model.meeting.MeetingName;
-import seedu.address.model.meeting.Priority;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 /**
  * Parses input arguments and creates a new AddMeetingCommand object
@@ -77,12 +63,11 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
 
         Meeting meeting;
         try {
-            meeting = new Meeting(meetingName, startTime, endTime, priority, description, tagList)
-                .setConnectionToPerson(personConnectionSet);
+            meeting = new Meeting(meetingName, startTime, endTime, priority, description, tagList);
         } catch (IllegalArgumentException e) {
             throw new ParseException(e.getMessage());
         }
-        return new AddMeetingCommand(meeting);
+        return new AddMeetingCommand(meeting).setConnectionToPerson(personConnectionSet);
     }
 
     /**

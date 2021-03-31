@@ -4,19 +4,24 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.connection.PersonMeetingConnection;
+import seedu.address.model.group.Group;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingBook;
 import seedu.address.model.meeting.ReadOnlyMeetingBook;
@@ -27,6 +32,7 @@ import seedu.address.model.person.ReadOnlyAddressBook;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.reminder.ReadOnlyReminderBook;
 import seedu.address.model.reminder.ReminderBook;
+import seedu.address.model.schedule.TimetablePrefs;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -39,7 +45,8 @@ public class ModelManager implements Model {
     private final SortedList<Person> sortedBeforeFilterPersons;
     private final FilteredList<Person> filteredPersons;
 
-    // TODO: Modify the signature of ModelManager so that we can add meetings inside it.
+    // TODO: Modify the signature of ModelManager so that we c
+    //  an add meetings inside it.
     private final MeetingBook meetingBook;
     private final SortedList<Meeting> sortedBeforeFilterMeetings;
     private final FilteredList<Meeting> filteredMeetings;
@@ -48,6 +55,9 @@ public class ModelManager implements Model {
     private final PersonMeetingConnection connection;
 
     private final ReminderBook reminderBook;
+
+    //===============  Timetable ===========================================================
+    private final TimetablePrefs timetablePrefs;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs. MeetingBook will be set to default.
@@ -69,6 +79,10 @@ public class ModelManager implements Model {
         // TODO: Modify the signature of ModelManager so that we can add connection inside it.
         this.connection = new PersonMeetingConnection();
         this.reminderBook = new ReminderBook(this.meetingBook);
+
+        //================== Timetable ==================================================================
+        //default initializes to current localdate
+        timetablePrefs = new TimetablePrefs(LocalDate.now());
     }
 
     /**
@@ -92,6 +106,10 @@ public class ModelManager implements Model {
         // TODO: Modify the signature of ModelManager so that we can add connection inside it.
         this.connection = new PersonMeetingConnection();
         this.reminderBook = new ReminderBook(this.meetingBook);
+
+        //================== Timetable ==================================================================
+        //default initializes to current localdate
+        timetablePrefs = new TimetablePrefs(LocalDate.now());
     }
 
     /**
@@ -115,6 +133,9 @@ public class ModelManager implements Model {
         // TODO: Modify the signature of ModelManager so that we can add connection inside it.
         this.connection = connection;
         this.reminderBook = new ReminderBook(this.meetingBook);
+        //================== Timetable ==================================================================
+        //default initializes to current localdate
+        timetablePrefs = new TimetablePrefs(LocalDate.now());
 
     }
 
@@ -194,6 +215,11 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    @Override
+    public Set<Person> findPersonsInGroup(Group group) {
+        return addressBook.findPersonsInGroup(group);
+    }
+
     //=========== MeetingBook ================================================================================
 
     @Override
@@ -228,10 +254,17 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedMeeting);
         meetingBook.setMeeting(target, editedMeeting);
     }
-
+    @Override
     public void updateMeeting(Meeting target, Meeting editedMeeting) {
         requireAllNonNull(target, editedMeeting);
         meetingBook.updateMeeting(target, editedMeeting);
+    }
+
+    /**
+     * Returns the unmodifiable list of all meetings
+     */
+    public ObservableList<Meeting> getUnmodifiableMeetingList() {
+        return this.meetingBook.getMeetingList();
     }
 
     //TODO: Set MeetingBook file path in userPrefs? low priority feature(nice to have)
@@ -391,6 +424,19 @@ public class ModelManager implements Model {
     public void sortFilteredMeetingList(Comparator<Meeting> comparator) {
         sortedBeforeFilterMeetings.setComparator(comparator);
     }
+
+    //================= Get timetable prefs methods ================================================
+
+    @Override
+    public void setTimetableStartDate(LocalDate localDate) {
+        timetablePrefs.setTimetableStartDate(localDate);
+    }
+
+    @Override
+    public ObservableValue<LocalDate> getReadOnlyTimetableStartDate() {
+        return timetablePrefs.getReadOnlyStartDate();
+    }
+
 
     //=========== Other methods =============================================================
     @Override

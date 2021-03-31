@@ -10,12 +10,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListAllCommand;
-import seedu.address.logic.commands.meetings.AddMeetingCommand;
-import seedu.address.logic.commands.meetings.DeleteMeetingCommand;
-import seedu.address.logic.commands.meetings.SortMeetingCommand;
-import seedu.address.logic.commands.meetings.UnsortMeetingCommand;
-import seedu.address.logic.commands.meetings.EditMeetingCommand;
-import seedu.address.logic.commands.meetings.ListMeetingCommand;
+import seedu.address.logic.commands.meetings.*;
 import seedu.address.logic.commands.persons.AddPersonCommand;
 import seedu.address.logic.commands.persons.ClearPersonCommand;
 import seedu.address.logic.commands.persons.DeletePersonCommand;
@@ -28,10 +23,7 @@ import seedu.address.logic.commands.persons.UnsortPersonCommand;
 import seedu.address.logic.commands.reminders.RefreshRemindersCommand;
 
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.logic.parser.meetings.AddMeetingCommandParser;
-import seedu.address.logic.parser.meetings.DeleteMeetingCommandParser;
-import seedu.address.logic.parser.meetings.SortMeetingCommandParser;
-import seedu.address.logic.parser.meetings.EditMeetingCommandParser;
+import seedu.address.logic.parser.meetings.*;
 import seedu.address.logic.parser.persons.AddPersonCommandParser;
 import seedu.address.logic.parser.persons.DeletePersonCommandParser;
 import seedu.address.logic.parser.persons.EditPersonCommandParser;
@@ -113,6 +105,10 @@ public class MeetBuddyParser {
 
         case UnsortMeetingCommand.COMMAND_WORD:
             return new UnsortMeetingCommand();
+        //======================= Timetable =====================================
+
+        case SetTimetableCommand.COMMAND_WORD:
+            return new SetTimetableCommandParser().parse(arguments);
 
         //============================= General ==============================
         case ExitCommand.COMMAND_WORD:

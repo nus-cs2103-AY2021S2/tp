@@ -8,7 +8,7 @@ import javafx.collections.ObservableList;
 public interface ReadOnlyMeetingBook {
 
     /**
-     * Returns an unmodifiable view of the persons list.
+     * Returns an unmodifiable view of the meeting's list.
      * This list will not contain any duplicate persons.
      */
     ObservableList<Meeting> getMeetingList();
