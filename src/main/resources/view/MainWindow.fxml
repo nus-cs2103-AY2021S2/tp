@@ -56,7 +56,7 @@
 
                 <VBox>
                   <Label styleClass="tuitionTitle" prefWidth="${screen.visualBounds.width}" minWidth="250" text="Fees" />
-                  <StackPane fx:id="feePanelPlaceholder" prefWidth="${screen.visualBounds.width}" minWidth="250" style="-fx-wrap-text: true" />
+                  <StackPane fx:id="monthlyFeePanelPlaceholder" prefWidth="${screen.visualBounds.width}" minWidth="250" style="-fx-wrap-text: true" />
                   <padding>
                     <Insets top="10" right="10" bottom="10" left="10" />
                   </padding>
@@ -90,7 +90,12 @@
 
           <Tab fx:id="calendar" text="Calendar">
             <content>
-
+              <HBox>
+                <StackPane fx:id="calendarViewPlaceholder" prefWidth="${screen.visualBounds.width}" minWidth="250" style="-fx-wrap-text: true" />
+                <padding>
+                  <Insets top="10" right="10" bottom="10" left="10" />
+                </padding>
+              </HBox>
             </content>
           </Tab>
 

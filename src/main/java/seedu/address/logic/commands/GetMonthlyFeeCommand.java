@@ -9,6 +9,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 import java.time.LocalDateTime;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.commons.util.DateUtil;
+import seedu.address.commons.util.FeeUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.fee.Month;
@@ -47,15 +49,6 @@ public class GetMonthlyFeeCommand extends Command {
         this.year = year;
     }
 
-    /**
-     * Gets the local date time format of the month and year combined
-     * @return LocalDateTime of the month and year combined
-     */
-    public static LocalDateTime getLocalDate(Month month, Year year) {
-        requireAllNonNull(month, year);
-        return LocalDateTime.of(year.getYear(), month.getMonth(), 1, 0, 0);
-    }
-
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -67,11 +60,11 @@ public class GetMonthlyFeeCommand extends Command {
         LocalDateTime currMonthYear;
         LocalDateTime nextMonthYear;
 
-        currMonthYear = getLocalDate(month, year);
+        currMonthYear = DateUtil.getFirstDayOfMonth(month, year);
         nextMonthYear = currMonthYear.plusMonths(1);
 
         // Get month fee for this month for that particular student
-        double monthlyFee = model.getFeePerStudent(student, currMonthYear, nextMonthYear);
+        double monthlyFee = FeeUtil.getFeePerStudent(student, currMonthYear, nextMonthYear);
 
         return new CommandResult(String.format("Monthly fee for %s on %s, %s is $%.2f",
             studentName.toString(), month.getMonthName(), year.toString(), monthlyFee));

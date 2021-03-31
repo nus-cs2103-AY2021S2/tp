@@ -74,4 +74,19 @@ public class SessionBuilder {
         return new Session(sessionDate, duration, subject, fee);
     }
 
+    public void setSessionDate(SessionDate sessionDate) {
+        this.sessionDate = sessionDate;
+    }
+
+    public void setDuration(Duration duration) {
+        this.duration = duration;
+    }
+
+    public void setSubject(Subject subject) {
+        this.subject = subject;
+    }
+
+    public void setFee(Fee fee) {
+        this.fee = fee;
+    }
 }

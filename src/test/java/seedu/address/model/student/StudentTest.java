@@ -19,6 +19,7 @@ import seedu.address.model.session.Subject;
 import seedu.address.testutil.StudentBuilder;
 
 public class StudentTest {
+    // TODO: add session test
 
     @Test
     public void isSameStudent() {
