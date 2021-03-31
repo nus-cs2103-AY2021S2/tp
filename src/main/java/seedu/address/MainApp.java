@@ -22,6 +22,8 @@ import seedu.address.model.ReadOnlyWardrobe;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.Wardrobe;
 import seedu.address.model.garment.Colour;
+import seedu.address.model.garment.DressCode;
+import seedu.address.model.garment.Type;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.JsonWardrobeStorage;
@@ -170,6 +172,8 @@ public class MainApp extends Application {
     public void start(Stage primaryStage) {
         logger.info("Starting nufash " + MainApp.VERSION);
         Colour.initialiseMatches(); //INITIALISE MATCHING HASHMAP
+        Type.initialiseMatches();
+        DressCode.initialiseMatches();
         try {
             Colour.initialiseSamples(); //INITIALISE SAMPLE HASHMAP
         } catch (IOException e) {

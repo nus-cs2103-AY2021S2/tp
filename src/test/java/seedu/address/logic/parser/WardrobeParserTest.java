@@ -4,12 +4,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COLOUR;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DRESSCODE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SIZE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_GARMENT;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
@@ -23,8 +25,8 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.garment.AttributesContainsKeywordsPredicate;
 import seedu.address.model.garment.Garment;
-import seedu.address.model.garment.NameContainsKeywordsPredicate;
 import seedu.address.testutil.EditGarmentDescriptorBuilder;
 import seedu.address.testutil.GarmentBuilder;
 import seedu.address.testutil.GarmentUtil;
@@ -70,34 +72,68 @@ public class WardrobeParserTest {
 
     @Test
     public void parseCommand_findSize() throws Exception {
-        List<String> keywords = Arrays.asList("23", "14", "53");
+        String args = " s/23 14 53";
+        ArgumentMultimap argumentMultimap =
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_SIZE, PREFIX_COLOUR, PREFIX_DRESSCODE,
+                        PREFIX_DESCRIPTION, PREFIX_TYPE);
         FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " s/" + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+                FindCommand.COMMAND_WORD + args);
+        assertEquals(new FindCommand(new AttributesContainsKeywordsPredicate(argumentMultimap)), command);
     }
 
     @Test
     public void parseCommand_findColour() throws Exception {
-        List<String> keywords = Arrays.asList("black", "blue", "red");
+        String args = " c/black blue red";
+        ArgumentMultimap argumentMultimap =
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_SIZE, PREFIX_COLOUR, PREFIX_DRESSCODE,
+                        PREFIX_DESCRIPTION, PREFIX_TYPE);
         FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " c/" + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+                FindCommand.COMMAND_WORD + args);
+        assertEquals(new FindCommand(new AttributesContainsKeywordsPredicate(argumentMultimap)), command);
     }
 
     @Test
     public void parseCommand_findDressCode() throws Exception {
-        List<String> keywords = Arrays.asList("ACTIVE", "CASUAL", "FORMAL");
+        String args = " r/active casual formal";
+        ArgumentMultimap argumentMultimap =
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_SIZE, PREFIX_COLOUR, PREFIX_DRESSCODE,
+                        PREFIX_DESCRIPTION, PREFIX_TYPE);
         FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " r/" + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+                FindCommand.COMMAND_WORD + args);
+        assertEquals(new FindCommand(new AttributesContainsKeywordsPredicate(argumentMultimap)), command);
     }
 
     @Test
     public void parseCommand_findDescription() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        String args = " d/foo bar baz";
+        ArgumentMultimap argumentMultimap =
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_SIZE, PREFIX_COLOUR, PREFIX_DRESSCODE,
+                        PREFIX_DESCRIPTION, PREFIX_TYPE);
         FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " d/" + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+                FindCommand.COMMAND_WORD + args);
+        assertEquals(new FindCommand(new AttributesContainsKeywordsPredicate(argumentMultimap)), command);
+    }
+
+    @Test
+    public void parseCommand_findType() throws Exception {
+        String args = " t/upper lower footwear";
+        ArgumentMultimap argumentMultimap =
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_SIZE, PREFIX_COLOUR, PREFIX_DRESSCODE,
+                        PREFIX_DESCRIPTION, PREFIX_TYPE);
+        FindCommand command = (FindCommand) parser.parseCommand(
+                FindCommand.COMMAND_WORD + args);
+        assertEquals(new FindCommand(new AttributesContainsKeywordsPredicate(argumentMultimap)), command);
+    }
+
+    @Test
+    public void parseCommand_findMultipleAttributes() throws Exception {
+        String args = " s/23 14 c/red blue d/foo t/upper";
+        ArgumentMultimap argumentMultimap =
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_SIZE, PREFIX_COLOUR, PREFIX_DRESSCODE,
+                        PREFIX_DESCRIPTION, PREFIX_TYPE);
+        FindCommand command = (FindCommand) parser.parseCommand(
+                FindCommand.COMMAND_WORD + args);
+        assertEquals(new FindCommand(new AttributesContainsKeywordsPredicate(argumentMultimap)), command);
     }
 
     @Test
