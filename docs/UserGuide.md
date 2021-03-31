@@ -15,17 +15,16 @@ Donavan Lim, Marcus Lee Eugene, Chong Sidney, Dinesh S/O Magesvaran, Prabhakaran
 
 ## Description
 
-The Food Diary is a desktop app for managing food diary entries, optimized with a Command Line Interface (CLI)
-and packaged with a Graphical User Interface (GUI).
+The Food Diary is a desktop app for managing food diary entries, optimized with a Command Line Interface (CLI) and packaged with a Graphical User Interface (GUI).
 
-The Food Diary caters to food-passionate NUS students who would ideally benefit from keeping records of
-food options tasted in the vicinity of NUS.
+The Food Diary caters to food-passionate NUS students who would ideally benefit from keeping records of food options tasted in the vicinity of NUS.
 
-The Food Diary will allow students to save time and effort when finding places to
-eat around the NUS vicinity. The Food Diary especially caters to students chiefly on 3 aspects:
+The Food Diary will allow students to save time and effort when finding places to eat around the NUS vicinity. The Food Diary especially caters to students mainly on 4 aspects:
+
 1. The ability for users to save food diary entries for future reference.
-2. The ability for users to find entries where food are within a certain price range.
-3. The ability to effortlessly reference food options based on relevant filters in a user-friendly GUI
+2. The ability for users to find entries based on specific fields.
+3. The ability for users to have multiple food reviews for a food place.
+4. The option for users to use Commands / UI to perform some tasks quickly.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -59,13 +58,24 @@ Parameters:
 3. `Price`
 3. `Address`
 4. `Review`
-5. `Category`
-6. `School`
+5. `Categories (optional)`
+6. `Schools (optional)`
+
+Schools are limited to the following NUS locations:
+    `BIZ`, `CLB`, `DENT`, `FASS`, `FOE`,`MED`, `NUSS`, `PGP`, `SCIENCE`, `SDE`, `SOC`,
+`USC`, `UTOWN`, `UHALL`, `VENTUS`, `YIH`
+
+Categories are limited to the following:
+    `Chinese`, `Dessert`, `Fastfood`, `Fruits`, `Fusion`, `Halal`, `Indian`, `Japanese`, `Korean`, `Malay`,
+`Vegan`, `Vegetarian` ,`Western`, `Others`
 
 
 Example:
 
-    add  n/Al Amaan Restaurant ra/5 p/8 re/best for Butter Chicken a/12 Clementi Rd, Singapore 129742 c/Indian Muslim s/FOE
+    add  n/Al Amaan Restaurant ra/5 p/8 re/best for Butter Chicken a/12 Clementi Rd, Singapore 129742 c/Indian s/FOE
+or
+
+    add  n/7 Eleven ra/3 p/4 re/Mac and cheese there is amazing a/NUS c/Halal s/YIH s/SOC
 
 ### Addon a review or a price to a FoodDiary entry: `addon`
 Adds-on a review and/or a price to a FoodDiary entry of the Food Diary.
@@ -252,8 +262,19 @@ Example:
 
     edit 1 ra/5 p/7 re/I like this food a lot! a/Science c/Indian c/Halal s/Ventus
     edit 1 re/I like the chicken re/ I like the rice
--------------------------------------------------------------------------------------
 
+### Clear all entries
+Clearing all entries from food diary.
+
+Format: `clear`
+
+
+### Exiting food diary 
+Close and exit the program.
+
+Format: `exit`
+
+------------------------------------------------------------------------------------
 ## FAQ
 
 Q: How do I transfer my data to another Computer?
@@ -278,6 +299,8 @@ Action | Format, Examples
 **View** |`view <INDEX>` <br> e.g `view 1`
 **Revise** |`revise <INDEX>` <br> e.g `revise 1`
 **Edit** |`edit <INDEX> n/<RESTAURANT NAME> ra/<RATING> p/<PRICE> re/<REVIEW> a/<ADDRESS> c/<CATEGORIES> s/<SCHOOLS>` <br> e.g `edit 1 ra/5 p/7 re/I like this food a lot! a/Science c/Indian c/Halal s/Ventus`
+**Clear**| `clear` e.g `clear`
+**Exit** | `exit` e.g `exit`
 
 ## Keyboard Shortcuts Summary
 

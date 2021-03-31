@@ -3,21 +3,22 @@ package fooddiary.model.tag;
 import java.util.ArrayList;
 
 public enum School {
-    SOC,
-    FASS,
     BIZ,
-    SCIENCE,
+    CLB,
+    DENT,
+    FASS,
     FOE,
-    UTOWN,
+    MED,
     NUSS,
     PGP,
-    USC,
-    CLB,
-    UHALL,
+    SCIENCE,
     SDE,
-    MED,
-    DENT,
+    SOC,
+    USC,
+    UTOWN,
+    UHALL,
     VENTUS,
+    YIH,
     INVALID;
 
     private static ArrayList<String> schools = new ArrayList<>();

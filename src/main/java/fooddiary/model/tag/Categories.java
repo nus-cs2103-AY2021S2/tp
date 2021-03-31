@@ -3,19 +3,19 @@ package fooddiary.model.tag;
 import java.util.ArrayList;
 
 public enum Categories {
-    FASTFOOD,
-    WESTERN,
-    INDIAN,
     CHINESE,
+    DESSERT,
+    FASTFOOD,
+    FRUITS,
     FUSION,
+    HALAL,
+    INDIAN,
     JAPANESE,
     KOREAN,
     MALAY,
-    HALAL,
-    VEGETARIAN,
     VEGAN,
-    FRUITS,
-    DESSERT,
+    VEGETARIAN,
+    WESTERN,
     OTHERS,
     INVALID;
 
