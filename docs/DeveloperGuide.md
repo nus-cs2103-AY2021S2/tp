@@ -806,7 +806,7 @@ testers are expected to do more *exploratory* testing.
 
     1. Prerequisites: The application is already launched.
     
-    1. Test case: `exit`<br>
+    1. Test case: `exit` <br>
        Expected: The application exits and window closes.
 
 ### Listing all flashcards
@@ -839,19 +839,19 @@ testers are expected to do more *exploratory* testing.
     
     1. Prerequisites: There must be at least one flashcard in the list.
        
-    1. Test case: `edit`
+    1. Test case: `edit` <br>
        Expected: No flashcard will be edited, and an invalid command format error message will be 
        shown on the result display.
        
-    1. Test case: `edit 1`
+    1. Test case: `edit 1` <br>
        Expected: Flashcard identified by index 1 in the list will not be edited, and an error message will be displayed to prompt
        the user to enter at least one field to edit.
        
-    1. Test case: `edit 1 p/Low`
+    1. Test case: `edit 1 p/Low` <br>
        Expected: The flashcard identified by index 1 in the list will be modified. Its priority is changed to `Low`. If the flashcard already has 
        `Low` priority, an error message will be displayed, and no modifications will be made to the flashcard.
        
-    1. Test case: `edit 1 c/CompSci p/Mid t/sorting t/algorithms`
+    1. Test case: `edit 1 c/CompSci p/Mid t/sorting t/algorithms` <br>
        Expected: The flash card identified by index 1 will be modified. Its category is changed to `CompSci`, the priority is changed to `Mid`.
        and it now has tags `sorting` and `algorithms`. If the flashcard already has category `CompSci`, priority
        `Mid`, as well as tags `sorting` and `algorithms`, an error message will be displayed, and no modifications will be made to the flashcard.
@@ -895,7 +895,7 @@ testers are expected to do more *exploratory* testing.
     
     1. Prerequisites: The application is in Main Window.
     
-    1. Test case: `clear`
+    1. Test case: `clear` <br>
        Expected: All flashcards shown in `FlashcardListPanel` are deleted. The result display shows the message: `FlashBack has been cleared!`.
     
 ### Viewing a flashcard
@@ -977,15 +977,15 @@ testers are expected to do more *exploratory* testing.
 
     1. Prerequisites: There must be at least one reviewed flashcard in the list.
     
-    1. Test case: `stats`
+    1. Test case: `stats` <br>
        Expected: The UI will be updated to display a pie chart representing the overall correct rate of all flashcards in the list.
        The total review count, total correct count and overall correct rate is also displayed below the pie chart.
        
-    1. Test case: `stats 1`
+    1. Test case: `stats 1` <br>
        Expected: The UI  will be updated to display a pie chart representing the correct rate of the flash card represented
        by index 1 in the list. The review count, correct count and correct rate is also displayed below the pie chart. 
        
-    1. Test case: `stats abc`
+    1. Test case: `stats abc` <br>
        Expected: No statistics will be displayed. An invalid command format error message will be shown on the result display. 
         
 ### Undoing a command
@@ -994,8 +994,7 @@ testers are expected to do more *exploratory* testing.
 
     1. Prerequisites: There must be at least one undoable command executed.
     
-    1. Test case: `undo`
-    
+    1. Test case: `undo` <br>
        Expected: FlashBack will be updated to the previous state before the undoable command is executed.
        The UI will be updated to display all flashcards in FlashBack.
        The result display shows a message: `FlashBack has been undo!`.
@@ -1006,7 +1005,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: There must be at least one command that is undone.
    
-   1. Test case: `redo`
+   1. Test case: `redo` <br>
       Expected: FlashBack will be updated to the previous state before `undo` is executed.
       The UI will be updated to display all flashcards in FlashBack.
       The result display shows a message: `FlashBack has been redo!`.
@@ -1017,15 +1016,15 @@ testers are expected to do more *exploratory* testing.
     
     1. Prerequisites: The application is in Main Window.
     
-    1. Test case: `alias c/add n/a`
+    1. Test case: `alias c/add n/a` <br>
        Expected: The alias `a` will be mapped to `add`. Users will now be able to perform add command using `a`
        The result display shows a message: `New alias added for "add" command: a`.
     
-    1. Test case: `alias c/add n/delete`
+    1. Test case: `alias c/add n/delete` <br>
        Expected: No alias is added, and the text in `CommandBox` turns red to indicate an error.
        The result display shows a message: `The alias "delete" should not be a command in FlashBack.`.
     
-    1. Test case: `alias c/cleaaar n/c`
+    1. Test case: `alias c/cleaaar n/c` <br>
        Expected: No alias is added, and the text in `CommandBox` turns red to indicate an error.
        The result display shows a message: `The command "cleaaar" does not exist in FlashBack.`.
 
