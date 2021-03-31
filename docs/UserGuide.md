@@ -237,11 +237,17 @@ Examples:
 ### Email Command
 
 Email command provides the user with the choice to mass email person(s) of their choice.
-Executing the `email` command will open up the operating system's email client.
+Executing the `email` command will open up the **operating system's email client**.
 
-Format: `email [INDEX...] [shown]`
+Format: `email { shown | INDEX… }`
 
-`shown` is a special index that refers to all the person that are in the visible person list.
+<div markdown="span" class="alert alert-info">
+:bulb: **Notes on `email` command:**
+
+* `shown` is a special index that refers to all the person that are in the visible person list.
+
+</div>
+
 
 Examples:
 
