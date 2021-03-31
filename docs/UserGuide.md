@@ -367,15 +367,30 @@ These behave as if you entered `redo` in the command box and hit `ENTER`; a `red
 command history.
 </div>
 
-### Add alias : `alias`
+### Add an alias : `alias`
 
 Adds a user-defined alias, which represents a shortcut to a longer command.
 
 Format: `alias a/ALIAS_NAME cmd/COMMAND`
 
 Examples:
-* `alias a/ol cmd/olist` Adds `ol` alias which is a shortcut for `olist` command.
-* `alias a/fNemo cmd/rfind Nemo` Adds `fNemo` alias which is a shortcut for `rfind Nemo` command.
+* `alias a/ol cmd/olist` Adds the `ol` alias which is a shortcut for `olist` command.
+* `alias a/fNemo cmd/rfind Nemo` Adds the `fNemo` alias which is a shortcut for `rfind Nemo` command.
+
+### Delete an alias : `unalias`
+
+Deletes a previously defined alias.
+
+Format: `unalias a/ALIAS_NAME`
+
+Example:
+* `unalias a/findBob` Deletes the `findBob` alias, provided that the alias was previously added.
+
+### List all aliases : `aliases`
+
+Shows a list of current aliases in the system sorted by their time of creation.
+
+Format: `aliases`
 
 ### Exit the program : `exit`
 
@@ -455,5 +470,7 @@ Action | Format, Examples
 **View command history** | `history [COUNT]` <br> e.g. `history 5`
 **Undo previous command** | `undo` <br> `CTRL+Z`/`CMD+Z` (keyboard shortcuts) 
 **Redo previously undone command** | `redo` <br> `CTRL+SHIFT+Z`/`CMD+SHIFT+Z` (keyboard shortcuts)
-**Add alias** | `alias a/ALIAS_NAME cmd/COMMAND` <br> e.g. `alias a/il cmd/ilist`
+**Add an alias** | `alias a/ALIAS_NAME cmd/COMMAND` <br> e.g. `alias a/il cmd/ilist`
+**Delete an alias** | `unalias a/ALIAS_NAME` <br> e.g. `unalias a/findBob`
+**List all aliases** | `aliases`
 **Exit the app** | `exit`
