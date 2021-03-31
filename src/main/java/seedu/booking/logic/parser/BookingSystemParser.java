@@ -6,7 +6,6 @@ import static seedu.booking.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.booking.logic.commands.AddBookingCommand;
 import seedu.booking.logic.commands.AddPersonCommand;
 import seedu.booking.logic.commands.AddVenueCommand;
 import seedu.booking.logic.commands.ClearCommand;
@@ -30,7 +29,7 @@ import seedu.booking.logic.commands.FindPersonCommand;
 import seedu.booking.logic.commands.FindVenueCommand;
 import seedu.booking.logic.commands.HelpCommand;
 import seedu.booking.logic.commands.ListBookingCommand;
-import seedu.booking.logic.commands.ListCommand;
+import seedu.booking.logic.commands.ListPersonCommand;
 import seedu.booking.logic.commands.ListVenueCommand;
 import seedu.booking.logic.commands.PromptCreateBookingCommand;
 import seedu.booking.logic.commands.states.BookingCommandState;
@@ -38,6 +37,7 @@ import seedu.booking.logic.parser.exceptions.ParseException;
 import seedu.booking.logic.parser.promptparsers.BookingDescPromptParser;
 import seedu.booking.logic.parser.promptparsers.BookingEndPromptParser;
 import seedu.booking.logic.parser.promptparsers.BookingStartPromptParser;
+import seedu.booking.logic.parser.promptparsers.BookingTagPromptParser;
 import seedu.booking.logic.parser.promptparsers.EmailPromptParser;
 import seedu.booking.logic.parser.promptparsers.VenueNamePromptParser;
 import seedu.booking.model.ModelManager;
@@ -78,6 +78,9 @@ public class BookingSystemParser {
 
                 case BookingCommandState.STATE_DESC:
                     return new BookingDescPromptParser().parse(userInput);
+
+                case BookingCommandState.STATE_TAG:
+                    return new BookingTagPromptParser().parse(userInput);
 
                 case BookingCommandState.STATE_START:
                     return new BookingStartPromptParser().parse(userInput);
@@ -140,17 +143,14 @@ public class BookingSystemParser {
         case FindPersonCommand.COMMAND_WORD:
             return new FindPersonCommandParser().parse(arguments);
 
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+        case ListPersonCommand.COMMAND_WORD:
+            return new ListPersonCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
-
-        case AddBookingCommand.COMMAND_WORD:
-            return new AddBookingCommandParser().parse(arguments);
 
         case AddVenueCommand.COMMAND_WORD:
             return new AddVenueCommandParser().parse(arguments);

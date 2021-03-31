@@ -6,7 +6,7 @@ import static seedu.booking.commons.util.AppUtil.checkArgument;
 import seedu.booking.commons.util.StringUtil;
 
 /**
- * Represents a Person's email in the address book.
+ * Represents a Person's email in the booking system.
  * Guarantees: immutable; is valid as declared in {@link #isValidEmail(String)}
  */
 public class Email {

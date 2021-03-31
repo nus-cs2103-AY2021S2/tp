@@ -19,6 +19,7 @@ public class JsonAdaptedTagTest {
         assertEquals(HALL.getTags().iterator().next(), tag.toModelType());
     }
 
+
     @Test
     public void toModelType_invalidTags_throwsIllegalValueException() {
         // tags containing non alpha-numeric characters
@@ -31,5 +32,7 @@ public class JsonAdaptedTagTest {
                 new JsonAdaptedTag(INVALID_TAG2);
         assertThrows(IllegalValueException.class, expectedMessage, tag2::toModelType);
     }
+
+
 
 }

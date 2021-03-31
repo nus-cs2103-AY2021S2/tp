@@ -47,7 +47,8 @@ public class VenueCard extends UiPart<Region> {
         this.venue = venue;
         id.setText(displayedIndex + ". ");
         name.setText(String.valueOf(venue.getVenueName()));
-        capacity.setText(String.valueOf(venue.getCapacity()));
+        capacity.setText("Capacity: " + String.valueOf(venue.getCapacity()));
+        description.setText(String.valueOf(venue.getDescription()));
         venue.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
