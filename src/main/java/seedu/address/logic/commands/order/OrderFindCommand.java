@@ -35,8 +35,8 @@ public class OrderFindCommand extends Command {
         return new CommandResult(
                 String.format(Messages.MESSAGE_ITEMS_LISTED_OVERVIEW,
                         model.getFilteredIngredientList().size(),
-                        Messages.ITEM_INGREDIENTS),
-                CommandResult.CRtype.INGREDIENT);
+                        Messages.ITEM_ORDERS),
+                CommandResult.CRtype.ORDER);
     }
 
     @Override

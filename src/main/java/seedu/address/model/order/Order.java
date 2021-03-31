@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.core.Pair;
+import seedu.address.commons.util.StringUtil;
 import seedu.address.model.Aggregator;
 import seedu.address.model.Item;
 import seedu.address.model.dish.Dish;
@@ -93,6 +94,21 @@ public class Order implements Item, Aggregator<Dish> {
     public void setState(State newState) {
         state = newState;
     }
+
+    // Predicate methods
+    public boolean containsCustomerKeyword(String name) {
+        return StringUtil.containsWordIgnoreCase(customer.getName(), name);
+    }
+
+    public boolean containsDishKeyword(String keyword) {
+        for (Pair<Dish, Integer> pair : getDishQuantityList()) {
+            if (StringUtil.containsWordIgnoreCase(pair.getKey().getName(), keyword)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     /**
      * Checks if a particular object is contained within the current one
