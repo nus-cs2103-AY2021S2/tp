@@ -45,7 +45,7 @@ public class SampleDataUtil {
                 Optional.of(new Name("Ben Yu")),
                 Optional.of(new Phone("99272758")),
                 Optional.of(new Level("sec4")),
-                getSubjectSet("math", "physics"), getLessonSet(" monday 1800")),
+                getSubjectSet("math", "phys"), getLessonSet(" monday 1800")),
             new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"),
                 Optional.of(new School("Cde Secondary School")),
                 Optional.of(new Email("charlotte@example.com")),
