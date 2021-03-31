@@ -23,7 +23,10 @@ public class FavouriteCommand extends Command {
 
     public static final String COMMAND_WORD = "favourite";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " ID";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Favourite a tutor specified by the index number\n"
+            + "Parameters: INDEX (must be a positive integer) \n"
+            + "Example: " + COMMAND_WORD + " 1 ";
 
     public static final String MESSAGE_SUCCESS = "Favourite tutor: %s";
 

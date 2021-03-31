@@ -23,7 +23,10 @@ public class UnfavouriteCommand extends Command {
 
     public static final String COMMAND_WORD = "unfavourite";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " ID";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Unfavourite a tutor specified by the index number\n"
+            + "Parameters: INDEX (must be a positive integer) \n"
+            + "Example: " + COMMAND_WORD + " 1 ";
 
     public static final String MESSAGE_SUCCESS = "Unfavourite tutor: %s";
 

@@ -18,7 +18,11 @@ public class ExportCommand extends Command {
 
     public static final String COMMAND_WORD = "export";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " " + "INDEX";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Converts the details of a tutor into a text file and exports it as [Name_Of_Tutor].txt. "
+            + "If the file already exists, it will override it.\n"
+            + "Parameters: INDEX (must be a positive integer) \n"
+            + "Example: " + COMMAND_WORD + " 1 ";
 
     public static final String MESSAGE_SUCCESS = "Successfully exported file: %s";
 
