@@ -152,7 +152,7 @@ Format: `edit INDEX [set/DATE]…​`
   specifying any date after it.
 
 Examples:
-*  `edit 1 set/2021-05-13` Adds a date to the 1st task on the list which is to be `13 May 2021`.
+*  `edit 1 set/13/05/2021` Adds a date to the 1st task on the list which is to be `13 May 2021`.
 *  `edit 2 set/` Clears the existing date of 2nd task on the list.
 
 ### Sort task by date: `sort by a` or `sort by d`
@@ -185,8 +185,8 @@ Format: `edit INDEX [n/TITLE] [set/DATE] [s/START TIME] [d/DESCRIPTION]
     specifying anything after it.
 
 Examples:
-*  `edit 1 set/10-10-2021 d/Remember to update User Guide` Edits the date and description of the 1st task to be
-   `10-10-2021` and `Remember to update User Guide` respectively.
+*  `edit 1 set/10/10/2021 d/Remember to update User Guide` Edits the date and description of the 1st task to be
+   `10/10/2021` and `Remember to update User Guide` respectively.
 *  `edit 2 n/Buy textbook t/ set/` Edits the title of the 2nd task to be `Buy textbook` and clears all existing tags
    and the date.
 
