@@ -31,23 +31,26 @@ public class TypicalStudents {
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253").withStudyLevel("Sec 2").withGuardianPhone("82813844")
             .withRelationship("Mother")
-            .addSession(
-                    new SessionBuilder().withSessionDate("2020-01-01", "12:00").build()
+            .addSessions(
+                new SessionBuilder().withSessionDate("2021-02-05", "12:00").withFee("39.40").build(),
+                new SessionBuilder().withSessionDate("2021-02-01", "12:00").withFee("81.50").build(),
+                new SessionBuilder().withSessionDate("2021-03-01", "12:00").withFee("29.31").build(),
+                new SessionBuilder().withSessionDate("2020-02-01", "12:00").withFee("50.28").build()
             )
             .build();
     public static final Student BENSON = new StudentBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
             .withStudyLevel("Primary 2").withGuardianPhone("81902144").withRelationship("Father")
-            .addSession(
-                    new SessionBuilder().withSessionDate("2020-01-02", "12:00").build()
+            .addSessions(
+                new SessionBuilder().withSessionDate("2020-01-02", "12:00").build()
             )
             .build();
     public static final Student CARL = new StudentBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street")
             .withStudyLevel("University CS1101S").withGuardianPhone("98621032").withRelationship("Mother")
-            .addSession(
-                    new RecurringSessionBuilder().build()
+            .addSessions(
+                new RecurringSessionBuilder().build()
             )
             .build();
     public static final Student DANIEL = new StudentBuilder().withName("Daniel Meier").withPhone("87652533")

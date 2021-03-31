@@ -69,4 +69,13 @@ public class GetMonthlyFeeCommand extends Command {
         return new CommandResult(String.format("Monthly fee for %s on %s, %s is $%.2f",
             studentName.toString(), month.getMonthName(), year.toString(), monthlyFee));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+            || (other instanceof GetMonthlyFeeCommand // instanceof handles nulls
+            && studentName.equals(((GetMonthlyFeeCommand) other).studentName)
+            && month.equals(((GetMonthlyFeeCommand) other).month)
+            && year.equals(((GetMonthlyFeeCommand) other).year));
+    }
 }

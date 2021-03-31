@@ -2,6 +2,7 @@ package seedu.address.model.fee;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -22,6 +23,13 @@ public class MonthTest {
         assertEquals(firstMonth, new Month(1));
         assertEquals(firstMonth.toString(), String.valueOf(new Month(1).getMonth()));
         assertEquals(firstMonth.getMonthName(), firstMonthName);
+        assertEquals(firstMonth, firstMonth);
+    }
+
+    @Test
+    public void noneEqualsMonth() {
+        Month firstMonth = new Month(1);
+        assertNotEquals(firstMonth, null);
     }
 
     @Test
