@@ -1,0 +1,28 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:User inputs an add command;
+:Command parsed by AddressBookParser;
+
+if () then ([command word is valid])
+    :Argument parsed by AddCommandParser;
+    if () then ([argument is valid])
+        :Creates a new student object;
+        :Returns AddCommand;
+        :Checks if student created is in TutorsPet;
+        if () then ([present])
+            :CommandException is thrown;
+        else ([else])
+            :Adds the student;
+        endif
+    else ([else])
+        :ParseException is thrown;
+    endif
+else ([else])
+    :ParseException is thrown;
+endif
+
+stop
+
+@enduml

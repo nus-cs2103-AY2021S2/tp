@@ -28,7 +28,7 @@ TutorsPet is a **desktop app designed for private tutors to manage students’ i
      
    * **`schedule`** : Opens a window that shows the weekly schedule.
 
-   * **`add`**`n/Alice Tan s/Abc Secondary School p/98765432 e/alicet@example.com a/John street, block 123, #01-01 gn/Mary Tan gp/23456789` : Adds a student's contact named `Alice Tan` to TutorsPet.
+   * **`add`**`n/Alice Tan p/98765432 s/Abc Secondary School e/alicet@example.com a/John street, block 123, #01-01 gn/Mary Tan gp/23456789` : Adds a student's contact named `Alice Tan` to TutorsPet.
 
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
@@ -50,10 +50,10 @@ TutorsPet is a **desktop app designed for private tutors to manage students’ i
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/sec3` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/sec1`, `t/physics t/maths` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -86,15 +86,24 @@ Format: `schedule`
 
 Adds a student’s contact to TutorsPet.
 
-Format: `add n/NAME s/SCHOOL p/PHONE e/EMAIL a/ADDRESS gn/GUARDIAN_NAME gp/GUARDIAN_PHONE [t/TAG]…​ [l/LESSON]…​`
+Format: `add n/NAME p/PHONE [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] [gp/GUARDIAN_PHONE] [t/TAG]…​ [l/LESSON]…​`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A student’s contact can have any number of tags (including 0)
+<div markdown="span" class="alert alert-primary">
+
+:bulb:**Tip:**<br>
+
+* `n/NAME p/PHONE` are compulsory fields that must be provided, while `s/SCHOOL e/EMAIL a/ADDRESS gn/GUARDIAN_NAME gp/GUARDIAN_PHONE [t/TAG]…​ [l/LESSON]…​` are optional.
+  
+* A student’s contact can have any number of tags (including 0)
+  
+* A student’s contact can have any number of lessons (including 0)
+
 </div>
 
 Examples:
-* `add n/Alice Tan s/Abc Secondary School p/98765432 e/alicet@example.com a/John street, block 123, #01-01 gn/Mary Tan gp/23456789`
-* `add n/Bob Lee t/sec3 s/Def Secondary School p/87654321 e/bobl@example.com a/Bob street, block 321, #01-02 gn/John Lee gp/12345678 t/classA l/monday 1300`
+* `add n/John Doe p/98612341`
+* `add n/Alice Tan p/98765432 s/Abc Secondary School e/alicet@example.com a/John street, block 123, #01-01 gn/Mary Tan gp/23456789`
+* `add n/Bob Lee t/sec3 p/87654321 s/Def Secondary School e/bobl@example.com a/Bob street, block 321, #01-02 gn/John Lee gp/12345678 t/maths l/monday 1300`
 
 ### Listing all contacts : `list`
 
@@ -296,7 +305,7 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME s/SCHOOL p/PHONE e/EMAIL a/ADDRESS gn/GUARDIAN_NAME gp/GUARDIAN_PHONE [t/TAG]…​ [l/LESSON]…​` <br> e.g., `add n/Bob Lee t/sec3 s/Def Secondary School p/87654321 a/Bob street, block 321, #01-02 gn/John Lee gp/12345678 t/classA`
+**Add** | `add n/NAME p/PHONE [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] [gp/GUARDIAN_PHONE] [t/TAG]…​ [l/LESSON]…​` <br> e.g., `add n/Bob Lee p/87654321 s/Def Secondary School a/Bob street, block 321, #01-02 gn/John Lee gp/12345678 t/sec3`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [s/SCHOOL] [p/PHONE] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] [gp/GUARDIAN_PHONE] [t/TAG]…​ [l/LESSON]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
