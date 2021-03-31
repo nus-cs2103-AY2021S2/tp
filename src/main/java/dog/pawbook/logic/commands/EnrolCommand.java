@@ -3,7 +3,9 @@ package dog.pawbook.logic.commands;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_DOGID;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_PROGRAMID;
 
-public class EnrolCommand extends ProgramCommand {
+import java.util.Set;
+
+public class EnrolCommand extends ProgramRegistrationCommand {
     public static final String COMMAND_WORD = "enrol";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Enrols a dog into a program."
@@ -14,42 +16,24 @@ public class EnrolCommand extends ProgramCommand {
 
     public static final String MESSAGE_SUCCESS_FORMAT = "Dog %s enrolled in program %s!";
 
-    public static final String MESSAGE_ALREADY_ENROLLED_FORMAT = "Dog %s has already been enrolled in program %s!";
-
-    private final int dogId;
-
-    private final int programId;
+    public static final String MESSAGE_REPEATED_ENROLMENT_FORMAT = "One or more dogs has already been enrolled!";
 
     /**
      * Constructor for Enrol command to add the specified dog into the specified program.
-     * @param dogId Id of the dog.
-     * @param programId Id of the program.
+     * @param dogIdSet Id of the dogs.
+     * @param programIdSet Id of the programs.
      */
-    public EnrolCommand(int dogId, int programId) {
-        this.dogId = dogId;
-        this.programId = programId;
-    }
-
-    protected int getDogId() {
-        return this.dogId;
-    }
-
-    protected int getProgramId() {
-        return this.programId;
+    public EnrolCommand(Set<Integer> dogIdSet, Set<Integer> programIdSet) {
+        super(dogIdSet, programIdSet, true);
     }
 
     @Override
-    protected String getProgramCommand() {
-        return COMMAND_WORD;
+    protected String getSuccessMessageFormat() {
+        return MESSAGE_SUCCESS_FORMAT;
     }
 
     @Override
-    protected String getSuccessMessage() {
-        return String.format(MESSAGE_SUCCESS_FORMAT, dogId, programId);
-    }
-
-    @Override
-    protected String getDuplicateMessage() {
-        return String.format(MESSAGE_ALREADY_ENROLLED_FORMAT, dogId, programId);
+    protected String getFailureMessage() {
+        return MESSAGE_REPEATED_ENROLMENT_FORMAT;
     }
 }

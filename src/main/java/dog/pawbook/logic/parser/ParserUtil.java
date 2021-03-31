@@ -89,21 +89,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Tag}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code tag} is invalid.
-     */
-    public static Tag parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
-        }
-        return new Tag(trimmedTag);
-    }
-
-    /**
      * Parses a {@code String breed} into a {@code Breed}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -168,6 +153,34 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String tag} into a {@code Tag}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code tag} is invalid.
+     */
+    public static Tag parseTag(String tag) throws ParseException {
+        requireNonNull(tag);
+        String trimmedTag = tag.trim();
+        if (!Tag.isValidTagName(trimmedTag)) {
+            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        }
+        return new Tag(trimmedTag);
+    }
+
+
+    /**
+     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     */
+    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
+        requireNonNull(tags);
+        final Set<Tag> tagSet = new HashSet<>();
+        for (String tagName : tags) {
+            tagSet.add(parseTag(tagName));
+        }
+        return tagSet;
+    }
+
+    /**
      * Parses a {@code String id} into a {@code int}.
      * Leading and trailing whitespaces will be trimmed.
      */
@@ -182,17 +195,16 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     * Parses {@code Collection<String> id} into a {@code Set<JsonTypeInfo.Id>}.
      */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
+    public static Set<Integer> parseIds(Collection<String> ids) throws ParseException {
+        requireNonNull(ids);
+        final Set<Integer> idSet = new HashSet<>();
+        for (String id : ids) {
+            idSet.add(parseId(id));
         }
-        return tagSet;
+        return idSet;
     }
-
     /**
      * Parses a {@code String dateTimeString} into a {@code Session}.
      * Leading and trailing whitespaces will be trimmed.
@@ -214,11 +226,11 @@ public class ParserUtil {
      */
     public static Set<Session> parseSessions(Collection<String> sessions) throws ParseException {
         requireNonNull(sessions);
-        final Set<Session> sessionsSet = new HashSet<>();
+        final Set<Session> dateSet = new HashSet<>();
         for (String s : sessions) {
-            sessionsSet.add(parseSession(s));
+            dateSet.add(parseSession(s));
         }
-        return sessionsSet;
+        return dateSet;
     }
 
 }

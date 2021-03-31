@@ -3,7 +3,9 @@ package dog.pawbook.logic.commands;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_DOGID;
 import static dog.pawbook.logic.parser.CliSyntax.PREFIX_PROGRAMID;
 
-public class DropCommand extends ProgramCommand {
+import java.util.Set;
+
+public class DropCommand extends ProgramRegistrationCommand {
     public static final String COMMAND_WORD = "drop";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Drops a dog from a program."
@@ -14,44 +16,25 @@ public class DropCommand extends ProgramCommand {
 
     public static final String MESSAGE_SUCCESS_FORMAT = "Dog %s has been dropped from program %s!";
 
-    public static final String MESSAGE_FAILURE_FORMAT = "Dog cannot be dropped! Dog %s was not enrolled in program %s.";
-
-    private final int dogId;
-
-    private final int programId;
+    public static final String MESSAGE_NOT_ENROLLED_FORMAT = "One or more dogs was not enrolled in the program(s).";
 
     /**
      * Constructor for Drop command to remove the specified dog from the specified program.
-     * @param dogId Id of the dog.
-     * @param programId Id of the program.
+     * @param dogIdSet Id of the dogs.
+     * @param programIdSet Id of the programs.
      */
-    public DropCommand(int dogId, int programId) {
-        this.dogId = dogId;
-        this.programId = programId;
+    public DropCommand(Set<Integer> dogIdSet, Set<Integer> programIdSet) {
+        super(dogIdSet, programIdSet, false);
     }
 
     @Override
-    protected int getDogId() {
-        return this.dogId;
+    protected String getSuccessMessageFormat() {
+        return MESSAGE_SUCCESS_FORMAT;
     }
 
     @Override
-    protected int getProgramId() {
-        return this.programId;
+    protected String getFailureMessage() {
+        return MESSAGE_NOT_ENROLLED_FORMAT;
     }
 
-    @Override
-    protected String getSuccessMessage() {
-        return String.format(MESSAGE_SUCCESS_FORMAT, dogId, programId);
-    }
-
-    @Override
-    protected String getDuplicateMessage() {
-        return String.format(MESSAGE_FAILURE_FORMAT, dogId, programId);
-    }
-
-    @Override
-    protected String getProgramCommand() {
-        return COMMAND_WORD;
-    }
 }
