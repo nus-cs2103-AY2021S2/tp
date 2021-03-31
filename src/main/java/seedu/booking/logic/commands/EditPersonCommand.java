@@ -44,8 +44,10 @@ public class EditPersonCommand extends Command {
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_EMAIL = "The email to be edited to already exists in the booking system.";
-    public static final String MESSAGE_DUPLICATE_PHONE = "The phone number to be edited to already exists in the booking system.";
+    public static final String MESSAGE_DUPLICATE_EMAIL =
+            "The email to be edited to belongs to another person in the booking system.";
+    public static final String MESSAGE_DUPLICATE_PHONE =
+            "The phone number to be edited to belongs to another person in the booking system.";
 
     private final Email email;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -78,7 +80,8 @@ public class EditPersonCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_EMAIL);
         }
 
-        if (!personToEdit.getPhone().equals(editedPerson.getPhone()) && model.hasPersonWithPhone(editedPerson.getPhone())) {
+        if (!personToEdit.getPhone().equals(editedPerson.getPhone())
+                && model.hasPersonWithPhone(editedPerson.getPhone())) {
             throw new CommandException(MESSAGE_DUPLICATE_PHONE);
         }
 
