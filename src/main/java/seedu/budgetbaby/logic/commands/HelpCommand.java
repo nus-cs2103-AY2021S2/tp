@@ -15,6 +15,6 @@ public class HelpCommand extends BudgetBabyCommand {
 
     @Override
     public CommandResult execute(BudgetBabyModel model) {
-        return new CommandResult(SHOWING_HELP_MESSAGE, false, true, false);
+        return new CommandResult(SHOWING_HELP_MESSAGE, true, false);
     }
 }
