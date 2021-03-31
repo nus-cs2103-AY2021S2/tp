@@ -8,7 +8,7 @@ title: Tutor Tracker
 
 ![Ui](images/Ui.png)
 
-**Tutor Tracker** is a desktop app designed to **help students search for tutors and manage tuition appointments**, optimised for use via a Command Line Interface (CLI) for a fast and streamlined experience.
+_**Tutor Tracker**_ is a **desktop app designed to help secondary school students manage tutors and tuition appointments, optimised for use via a Command Line Interface** (CLI) for a fast and streamlined experience while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Tutor Tracker can get your tuition contact management tasks done faster than traditional GUI apps.
 
 * If you are interested in using **Tutor Tracker**, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
 * If you are interested about developing **Tutor Tracker**, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
