@@ -103,7 +103,7 @@ For a quick reference of the available commands and their syntax, refer to the [
 
 #### 3.1.1 Viewing help : `help`
 
-Shows a message explaining how to access the help page.
+Shows a message explaining how to access the help page. A link to the user guide will be provided.
 
 ![help message](images/helpMessage.png)
 
