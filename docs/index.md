@@ -1,6 +1,6 @@
 ---
 layout: page
-title: DietLAH!
+
 ---
 
 <p align="center">
