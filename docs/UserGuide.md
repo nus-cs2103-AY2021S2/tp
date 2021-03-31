@@ -1,9 +1,10 @@
+
 ---
 layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+BookCoinToTheMoon is a **desktop app for managing bookings and presents users a structured and detailed information on facility availability via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, BookCoinToTheMoon can get your facility management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -14,25 +15,21 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `bookcointothemoon.jar` `[coming in v2.0]`
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your BookCoinToTheMoon.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+   ![Ui](images/Ui_Booking.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+   * **`list_venue`** : Lists all venues.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+   * **`add_venue`**`n/Chua Thian Poh Hall max/40` : Adds a venue named `Chua Thian Poh Hall` to the BookCoinToTheMoon.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
-
-   * **`clear`** : Deletes all contacts.
-
-   * **`exit`** : Exits the app.
+   * **`bye`** : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -45,126 +42,151 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `find_venue v/VENUE_NAME`, `VENUE_NAME` is a parameter which can be used as `find_venue v/Victoria Hall`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
+  e.g. `add_venue v/VENUE_NAME [max/MAXIMUM_OCCUPANCY]` can be used as `n/Chua Thian Poh Hall max/40` or as `n/Chua Thian Poh Hall`.
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+* Extraneous parameters for commands that do not take in parameters (such as `bye`) will be ignored.<br>
+  e.g. if the command specifies `bye 123`, it will be interpreted as `bye`.
 
 </div>
 
-### Viewing help : `help`
+### Adding a venue : `create_venue`
 
-Shows a message explaning how to access the help page.
+Adds a new venue for the booking app.
 
-![help message](images/helpMessage.png)
-
-Format: `help`
-
-
-### Adding a person: `add`
-
-Adds a person to the address book.
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+Format: `create_venue v/VENUE_NAME [max/MAXIMUM_OCCUPANCY]`
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `create_venue v/Chua Thian Poh Hall max/40`
 
-### Listing all persons : `list`
+### Adding a booking : `add_booking`
 
-Shows a list of all persons in the address book.
+Adds a new booking into the booking app. The default booking is set to one hour for the first iteration. The system will
+then prompt user to provide details of the booking step by step. During the multi-step prompting, user would only be
+allowed to give input that matches the format allowed by prompting question, command inputs would not be accepted during this process.
 
-Format: `list`
-
-### Editing a person : `edit`
-
-Edits an existing person in the address book.
-
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
-
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+Format: `add_booking`
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+* `add_booking`
 
-### Locating persons by name: `find`
+### Listing all venues : `list_venues`
 
-Finds persons whose names contain any of the given keywords.
+Shows a list of all venues and their corresponding IDs in the booking app.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `list_venues`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+### Listing all bookings : `list_bookings`
 
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+Shows a list of all bookings and their corresponding IDs in the booking app.
 
-### Deleting a person : `delete`
+Format: `list_bookings`
 
-Deletes the specified person from the address book.
+### Finding a venue : `find_venue`
 
-Format: `delete INDEX`
+Shows information about the venue corresponding to the given venue name.
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+Format: `find_venue v/VENUE_NAME`
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `find_venue v/Victoria Hall`
 
-### Clearing all entries : `clear`
+### Finding a booking : `find_booking`
 
-Clears all entries from the address book.
+Shows information about the booking corresponding to the given booking ID.
 
-Format: `clear`
+Format: `find_booking b/BOOKING_ID`
 
-### Exiting the program : `exit`
+Examples:
+* `find_booking b/2321356789`
+
+### Deleting a venue : `delete_venue`
+
+Deletes a venue corresponding to the venue name specified.
+
+Format: `delete_venue v/VENUE_NAME`
+
+Examples:
+* `delete_venue v/Court`
+
+### Deleting a booking : `delete_booking`
+
+Deletes booking corresponding to the booking ID specified.
+
+Format: `delete_booking b/BOOKING_ID`
+
+Examples:
+* `delete_booking b/2`
+
+### Editing a venue : `edit_venue`
+
+Edits an existing venue in the booking system with the specified venue name.
+
+Format: `edit_venue vo/VENUE_NAME [v/VENUE_NAME] [max/MAXIMUM_OCCUPANCY]`
+
+Examples:
+* `edit_venue vo/Lab max/30`
+
+### Editing a person : `edit_person`
+
+Edits an existing person in the booking system with the specified email.
+
+Format: `edit_person eo/EMAIL [e/EMAIL] [p/PHONE_NUMBER] [n/NAME]`
+
+Examples:
+* `edit_person eo/amy@example.com p/83984029`
+
+### Filtering bookings by booker : `filter_booking_by_booker`
+
+Shows a list of bookings booked by the booker identified by the booker name given.
+
+Format: `filter_booking_by_booker [n/NAME]`
+
+Examples:
+* `filter_booking_by_booker n/John`
+
+### Filtering bookings by date : `filter_booking_by_date`
+
+Shows a list of bookings on the specific date.
+
+Format: `filter_booking_by_date [date/DATE]`
+
+Examples:
+* `filter_booking_by_date date/2020-12-12`
+
+### Filtering bookings by venue : `filter_booking_by_venue`
+
+Shows a list of bookings of a specific venue.
+
+Format: `filter_booking_by_venue [v/VENUE]`
+
+Examples:
+* `filter_booking_by_venue v/Sports Hall`
+
+### Exiting the program : `bye`
 
 Exits the program.
 
-Format: `exit`
+Format: `bye`
+
+### Exiting prompting : `exit_prompt`
+
+Exits the multi-step prompting under add_booking or add_venue. After exiting prompting, user would be able to give command 
+inputs again.
+
+Format: `exit_prompt`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+BookCoinToTheMoon data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### Editing the data file
+### Editing the data file `[coming in v2.0]`
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
-</div>
+_Details coming soon ..._
 
 ### Archiving data files `[coming in v2.0]`
 
@@ -175,7 +197,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous BookCoinToTheMoon home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -183,10 +205,8 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+**Add** | `add_venue n/VENUE_NAME [max/MAXIMUM_OCCUPANCY]` <br> e.g., `add_venue n/Chua Thian Poh Hall max/40`<br><br> `add_booking`e.g., `add_booking`
+**Delete** | `delete_venue v/VENUE_ID`<br> e.g., `delete_venue v/1` <br><br> `delete_booking b/BOOKING_ID`<br> e.g., `delete_booking b/2`
+**Find** | `find_venue v/VENUE_ID`<br> e.g., `find_venue v/1`<br><br> `find_booking b/BOOKING_ID`<br> e.g., `find_booking b/2`
+**List** | `list_venues` <br> `list_bookings`
+**Exit** | `bye`
