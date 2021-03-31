@@ -265,6 +265,47 @@ its methods strictly resembled those of its fellow `Command` classes.
   * Pros: More intuitive in terms of user experience.
   * Cons: Harder to implement.
 
+<br>
+
+### Lock and unlock ClientBook feature
+
+#### Motivation
+
+As an insurance agent, our target user is likely to be always on the go which increases the risk of the user's clients' information being exposed to 
+unauthorised accessors. Having a lock function for ClientBook will give the user a peace of mind that all of ClientBook's information is secured by a password.
+
+#### Implemenation
+
+A new class `Authentication` was created as part of the `Storage` component. It is responsible for the locking and unlocking of ClientBook. 
+Two new commands, `LockCommand` and `UnlockCommand` were created to interface the user with `Authentication`.
+
+Below is an example usage scenario involving the locking of ClientBook and how the information and data are passed around at each step.
+
+**During program launch:** An Authentication object is created and attached as an attribute in `ModelManager`.
+
+**Step 1.** 
+The user is locking ClientBook for the first time. The user enters `lock 1234` into the command box and presses enter.
+
+**Step 2.** `MainWindow` receives the `commandText` (`lock 1234`), which is then executed by `LogicManager`.
+
+**Step 3.** `AddressBookParser` then parses the full `commandText`, returning a `Command`. In this case, it would return a
+`LockCommand`, which would contain the password that the user wants to use to lock ClientBook (in this case, 1234).
+
+**Step 4.** `LogicManager` then excecutes `LockCommand` which makes use of `Authentication` to lock ClientBook. A `CommandResult` is returned.
+The `CommandResult` describes whether the locking process was successful.
+
+**Step 5.** This `CommandResult` is passed back to MainWindow to reflect the result of the lock command to the user.
+
+Below is a sequence diagram illustrating the flow of this entire process.
+
+<p align="center"><img src="images/LockSequenceDiagram.png"></p>
+
+#### Design Considerations
+
+The lock and unlock feature was designed such that the existing system is totally unaware of any locking and unlocking 
+of the existing data file `clientbook.json`. Hence, there is minimal dependency between existing components, the newly added commands and `Authentication`.
+
+<br>
 
 ### \[Proposed\] Undo/redo feature
 
