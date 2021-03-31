@@ -27,11 +27,21 @@ title: Developer Guide
     * [Glossary](#glossary)
 * [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
     * [Launch and shutdown](#launch-and-shutdown)
+    * [Listing all flashcards](#listing-all-flashcards)
+    * [Deleting a flashcard](#deleting-a-flashcard)
+    * [Editing a flashcard](#editing-a-flashcard)
     * [Finding flashcards](#finding-flashcards)
     * [Filtering flashcards](#filtering-flashcards)
+    * [Clearing all flashcards](#clearing-all-flashcards)
+    * [Viewing a flashcard](#viewing-a-flashcard)
+    * [Review mode](#review-mode)
+    * [Displaying statistics](#displaying-statistics)
 * [Appendix: Effort](#appendix-effort)
     * [Find feature](#find-feature)
     * [Filter feature](#filter-feature)
+    * [View feature](#view-feature)
+    * [Review Mode](#review-mode)
+    * [UI improvement](#ui-improvement)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -741,15 +751,6 @@ testers are expected to do more *exploratory* testing.
     
     1. Test case: `exit`<br>
        Expected: The application exits and window closes.
-       
-### Listing flashcards
-
-1. Listing all flashcards stored in FlashBack.
-   
-    1. Prerequisites: There must be at least one flashcard in the list.
-    
-    1. Test case: `list`<br>
-       Expected: FlashBack will display all flashcards stored in FlashBack. The result display will output "Listed all flashcards".
 
 ### Listing all flashcards
 1. Listing all flashcards in FlashBack.
@@ -767,9 +768,9 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `delete 2001` <br>
     Expected: No flashcard is deleted, and the text in `CommandBox` turns red to indicate an error. The result display shows a message: `The flashcard index provided is invalid`
 
-### Editing flashcards
+### Editing a flashcard
 
-1. Editing flashcards in FlashBack
+1. Editing a flashcard in FlashBack
     1. Prerequisites: There must be at least one flashcard in the list.
        
     1. Test case: `edit`
@@ -876,7 +877,7 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `q` <br>
     Expected: The application goes back to the main window. The result display shows the message: `Exit review mode`. 
     
-### Display statistics
+### Displaying statistics
 
 1. Displaying statistics of flash card(s) in FlashBack
 
