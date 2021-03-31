@@ -75,12 +75,12 @@ public class EditStudentCommandParserTest {
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_STUDENT;
-        String userInput = targetIndex.getOneBased() + PHONE_DESC_AMY
+        String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB
             + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + STUDY_LEVEL_DESC_AMY
             + GUARDIAN_PHONE_DESC_AMY + RELATIONSHIP_DESC_AMY;
 
         EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY)
-            .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
+            .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
             .withStudyLevel(VALID_STUDY_LEVEL_AMY).withGuardianPhone(VALID_GUARDIAN_PHONE_AMY)
             .withRelationship(VALID_RELATIONSHIP_AMY).build();
         EditStudentCommand expectedCommand = new EditStudentCommand(targetIndex, descriptor);
