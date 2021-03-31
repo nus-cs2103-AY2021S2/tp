@@ -1,0 +1,13 @@
+@startuml
+start
+:User inputs 'listbook';
+
+if () then ([valid input])
+    :SmartLib shows list of books;
+else ([else])
+    :Print "Unknown Command";
+endif
+
+stop
+
+@enduml

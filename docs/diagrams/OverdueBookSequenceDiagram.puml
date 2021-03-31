@@ -1,0 +1,32 @@
+@startuml
+!include style.puml
+
+autoactivate on
+
+box Logic LOGIC_COLOR_T1
+participant ":ReturnCommand" as ReturnCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "c:Cost" as Cost MODEL_COLOR
+end box
+
+activate ReturnCommand
+
+ReturnCommand -> ReturnCommand: isOverdue()
+return
+
+opt isOverdue
+    create Cost
+    ReturnCommand -> Cost: new Cost(10)
+    activate Cost
+
+    Cost --> ReturnCommand: c
+    deactivate Cost
+
+    ReturnCommand -> Cost: getCost()
+
+    Cost --> ReturnCommand
+end
+
+@enduml

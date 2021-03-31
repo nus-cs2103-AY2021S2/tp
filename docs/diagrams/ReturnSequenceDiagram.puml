@@ -1,0 +1,117 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":SmartLibParser" as SmartLibParser LOGIC_COLOR
+participant ":ReturnCommandParser" as ReturnCommandParser LOGIC_COLOR
+participant "rc:ReturnCommand" as ReturnCommand LOGIC_COLOR
+participant "cr:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":record:Record" as Record MODEL_COLOR
+participant ":Model" as Model MODEL_COLOR
+participant ":SmartLib" as SmartLib MODEL_COLOR
+end box
+
+box Storage STORAGE_COLOR_T1
+participant ":FilteredList" as FilteredList STORAGE_COLOR
+end box
+
+
+[-> LogicManager : execute("return r/Tom b/Cloud Atlas")
+activate LogicManager
+
+LogicManager -> SmartLibParser : parseCommand("return r/Tom b/Cloud Atlas")
+activate SmartLibParser
+
+create ReturnCommandParser
+SmartLibParser -> ReturnCommandParser
+activate ReturnCommandParser
+
+ReturnCommandParser --> SmartLibParser
+deactivate ReturnCommandParser
+
+SmartLibParser -> ReturnCommandParser : parse("r/Tom b/Cloud Atlas")
+activate ReturnCommandParser
+
+create Record
+ReturnCommandParser -> Record : new Record("Tom", "Cloud Atlas", new DateReturned(now()))
+activate Record
+
+Record -> ReturnCommandParser : record
+deactivate Record
+
+create ReturnCommand
+ReturnCommandParser -> ReturnCommand : new ReturnCommand(record)
+activate ReturnCommand
+
+ReturnCommand --> ReturnCommandParser : rc
+deactivate ReturnCommand
+
+ReturnCommandParser --> SmartLibParser : rc
+deactivate ReturnCommandParser
+
+ReturnCommandParser -[hidden]-> SmartLibParser
+destroy ReturnCommandParser
+
+SmartLibParser --> LogicManager : rc
+deactivate SmartLibParser
+
+LogicManager -> ReturnCommand : execute(model)
+activate ReturnCommand
+
+
+ReturnCommand -> Model : markRecordAsReturend(record)
+activate Model
+
+Model -> FilteredList: updateFilteredRecordList()
+activate FilteredList
+
+FilteredList -> Model:
+deactivate FilteredList
+
+Model -> ReturnCommand :
+deactivate Model
+
+ReturnCommand -> Model : returnBook("Tom", "Cloud Atlas")
+activate Model
+
+Model -> SmartLib : returnBook("Tom", "Cloud Atlas")
+activate SmartLib
+
+SmartLib -> Model :
+deactivate SmartLib
+
+Model -> FilteredList : updateFilteredReaderList()
+activate FilteredList
+
+FilteredList --> Model :
+deactivate FilteredList
+
+Model -> FilteredList : updateFilteredBookList()
+activate FilteredList
+
+FilteredList --> Model :
+deactivate FilteredList
+
+Model --> ReturnCommand
+deactivate Model
+
+create CommandResult
+ReturnCommand -> CommandResult :
+activate CommandResult
+
+CommandResult --> ReturnCommand : cr
+deactivate CommandResult
+
+ReturnCommand --> LogicManager : cr
+deactivate ReturnCommand
+
+ReturnCommand -[hidden]-> LogicManager
+destroy ReturnCommand
+
+[<--LogicManager : cr
+deactivate LogicManager
+@enduml

@@ -1,0 +1,62 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":SmartLibParser" as SmartLibParser LOGIC_COLOR
+participant "listBookCommand:ListBookCommand" as ListBookCommand LOGIC_COLOR
+participant "commandResult:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":FilteredList" as FilteredList MODEL_COLOR
+end box
+
+[-> LogicManager : execute("listbook")
+activate LogicManager
+
+LogicManager -> SmartLibParser : parseCommand("listbook")
+activate SmartLibParser
+
+create ListBookCommand
+SmartLibParser -> ListBookCommand
+activate ListBookCommand
+
+ListBookCommand --> SmartLibParser
+deactivate ListBookCommand
+
+SmartLibParser --> LogicManager : listBookCommand
+deactivate SmartLibParser
+
+LogicManager -> ListBookCommand : execute(model)
+activate ListBookCommand
+
+ListBookCommand -> Model : updateFilteredBookList(p)
+activate Model
+
+Model -> FilteredList : setPredicate(p)
+activate FilteredList
+
+FilteredList --> Model :
+deactivate FilteredList
+
+Model --> ListBookCommand
+deactivate Model
+
+create CommandResult
+ListBookCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ListBookCommand
+deactivate CommandResult
+
+ListBookCommand --> LogicManager : commandResult
+deactivate ListBookCommand
+
+ListBookCommand -[hidden]-> LogicManager
+destroy ListBookCommand
+
+[<--LogicManager : cr
+deactivate LogicManager
+@enduml

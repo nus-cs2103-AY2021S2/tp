@@ -5,55 +5,66 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the email `zhengyong@u.nus.edu`
 
 ## Project team
 
-### John Doe
+### Ang Zheng Yong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/arsatis.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/arsatis)]
+[[portfolio](team/arsatis.md)]
 
-* Role: Project Advisor
+* Role: Team Lead, Scheduling and Tracking
+* Responsibilities:
+    * Responsible for overall project coordination.
+    * In charge of defining, assigning, and tracking project tasks.
 
-### Jane Doe
+### Guo Yichao
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/gycc7253.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/gycc7253)]
+[[portfolio](team/gycc7253.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Documentation
+* Responsibilities:
+    * Responsible for the quality of various project documents.
+    * Responsible for distributing of Documentation related jobs.
 
-### Johnny Doe
+### Huang Nanxi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/nanxi-huang.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/nanxi-huang)]
+[[portfolio](team/nanxi-huang.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Code quality, Deliverables and Deadlines
+* Responsibilities:
+    * Looks after code quality, ensures adherence to coding standards, etc.
+    * Ensure project deliverables are done on time and in the right format.
 
-### Jean Doe
+### Loh Guo Jun
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/gj0407790.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/gj0407790)]
+[[portfolio](team/gj0407790.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Testing
+* Responsibilities:
+    * Ensures the testing of the project is done properly and on time.
+    * Ensures the number of test case is sufficient.
 
-### James Doe
+### Zhang Guangzesheng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/andrewzhang217.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/Andrewzhang217)]
+[[portfolio](team/Andrewzhang217.md)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Integration, UI
+* Responsibilities:
+    * In charge of versioning of the code, maintaining the code repository, integrating various parts of the software to create a whole.
+    * In charge of ensuring the GUI is up to standard.

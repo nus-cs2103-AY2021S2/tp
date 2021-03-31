@@ -1,0 +1,79 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":SmartLibParser" as SmartLibParser LOGIC_COLOR
+participant ":FindReaderCommandParser" as FindReaderCommandParser LOGIC_COLOR
+participant "frc:FindReaderCommand" as FindReaderCommand LOGIC_COLOR
+participant "cr:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":FilteredList" as FilteredList MODEL_COLOR
+end box
+
+[-> LogicManager : execute("findreader Tom")
+activate LogicManager
+
+LogicManager -> SmartLibParser : parseCommand("findreader Tom")
+activate SmartLibParser
+
+create FindReaderCommandParser
+SmartLibParser -> FindReaderCommandParser
+activate FindReaderCommandParser
+
+FindReaderCommandParser --> SmartLibParser
+deactivate FindReaderCommandParser
+
+SmartLibParser -> FindReaderCommandParser : parse("Tom")
+activate FindReaderCommandParser
+
+create FindReaderCommand
+FindReaderCommandParser -> FindReaderCommand
+activate FindReaderCommand
+
+FindReaderCommand --> FindReaderCommandParser
+deactivate FindReaderCommand
+
+FindReaderCommandParser --> SmartLibParser : frc
+deactivate FindReaderCommandParser
+
+FindReaderCommandParser -[hidden]-> SmartLibParser
+destroy FindReaderCommandParser
+
+SmartLibParser --> LogicManager : frc
+deactivate SmartLibParser
+
+LogicManager -> FindReaderCommand : execute(model)
+activate FindReaderCommand
+
+FindReaderCommand -> Model : updateFilteredReaderList(p)
+activate Model
+
+Model -> FilteredList : setPredicate(p)
+activate FilteredList
+
+FilteredList --> Model :
+deactivate FilteredList
+
+Model --> FindReaderCommand
+deactivate Model
+
+create CommandResult
+FindReaderCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FindReaderCommand
+deactivate CommandResult
+
+FindReaderCommand --> LogicManager : cr
+deactivate FindReaderCommand
+
+FindReaderCommand -[hidden]-> LogicManager
+destroy FindReaderCommand
+
+[<--LogicManager : cr
+deactivate LogicManager
+@enduml
