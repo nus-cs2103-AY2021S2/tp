@@ -24,7 +24,7 @@ public class ModelManager implements Model {
     private final FilteredList<Residence> filteredResidences;
 
     /**
-     * Initializes a ModelManager with the given residenceTracker and userPrefs.
+     * Initializes a ModelManager with the given {@code residenceTracker} and {@code userPrefs}.
      */
     public ModelManager(ReadOnlyResidenceTracker residenceTracker, ReadOnlyUserPrefs userPrefs) {
         super();
@@ -82,6 +82,7 @@ public class ModelManager implements Model {
     @Override
     public void setResidenceTracker(ReadOnlyResidenceTracker residenceTracker) {
         this.residenceTracker.resetData(residenceTracker);
+        this.residenceTracker.sortResidenceList();
     }
 
     @Override
@@ -115,7 +116,7 @@ public class ModelManager implements Model {
     //=========== Filtered Residence and Residence List Accessors ===============================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Residence} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Residence}s backed by the internal list of
      * {@code versionedResidenceTracker}
      */
     @Override
@@ -128,6 +129,7 @@ public class ModelManager implements Model {
     public void updateFilteredResidenceList(Predicate<Residence> predicate) {
         requireNonNull(predicate);
         filteredResidences.setPredicate(predicate);
+        residenceTracker.sortResidenceList();
     }
 
     @Override

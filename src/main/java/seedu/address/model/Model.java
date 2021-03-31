@@ -5,16 +5,14 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.booking.Booking;
 import seedu.address.model.residence.Residence;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that always evaluate to true */
+    /** {@code Predicate} that always evaluates to true */
     Predicate<Residence> PREDICATE_SHOW_ALL_RESIDENCES = unused -> true;
-    Predicate<Booking> PREDICATE_SHOW_ALL_BOOKINGS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -47,7 +45,7 @@ public interface Model {
     void setResidenceTrackerFilePath(Path residenceTrackerFilePath);
 
     /**
-     * Replaces address book data with the data in {@code residenceTracker}.
+     * Replaces residence tracker data with the data in {@code residenceTracker}.
      */
     void setResidenceTracker(ReadOnlyResidenceTracker residenceTracker);
 
@@ -55,7 +53,7 @@ public interface Model {
     ReadOnlyResidenceTracker getResidenceTracker();
 
     /**
-     * Returns true if a residence with the same identity as {@code residence} exists in the address book.
+     * Returns true if a residence with the same identity as {@code residence} exists in the residence tracker.
      */
     boolean hasResidence(Residence residence);
 
@@ -84,6 +82,7 @@ public interface Model {
 
     /**
      * Updates the filter of the filtered residence list to filter by the given {@code predicate}.
+     * The result of this method always sorts the Residences.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredResidenceList(Predicate<Residence> predicate);

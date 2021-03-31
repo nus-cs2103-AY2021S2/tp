@@ -23,7 +23,7 @@ import seedu.address.model.booking.exceptions.OverlappingBookingException;
  * @see Booking#doesOverlap(Booking)
  */
 public class BookingList implements Iterable<Booking> {
-
+    //@@author Li Gang
     private final ObservableList<Booking> internalList = FXCollections.observableArrayList();
     private final ObservableList<Booking> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
@@ -131,12 +131,15 @@ public class BookingList implements Iterable<Booking> {
     }
 
     /**
-     * Returns the backing list as an unmodifiable {@code ObservableList}.
+     * Returns the backing list as an unmodifiable {@code ObservableList}
+     * sorted as described in Booking's {@code compareTo} method.
      */
+    //@@author Soorya
     public ObservableList<Booking> getValue() {
         return internalUnmodifiableList.sorted();
     }
 
+    //@@author Li Gang
     @Override
     public Iterator<Booking> iterator() {
         return internalList.iterator();

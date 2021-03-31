@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showResidenceAtIndex;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_RESIDENCES;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_RESIDENCE;
 import static seedu.address.testutil.TypicalResidences.getTypicalResidenceTracker;
 
@@ -24,6 +25,7 @@ public class ListCommandTest {
     public void setUp() {
         model = new ModelManager(getTypicalResidenceTracker(), new UserPrefs());
         expectedModel = new ModelManager(getTypicalResidenceTracker(), new UserPrefs());
+        expectedModel.updateFilteredResidenceList(PREDICATE_SHOW_ALL_RESIDENCES);
     }
 
     @Test

@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 /**
- * Represents a Booking in the address book.
+ * Represents a Booking in residence tracker.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Booking implements Comparable<Booking> {
@@ -61,19 +61,6 @@ public class Booking implements Comparable<Booking> {
     }
 
     /**
-     * Returns true if both bookings have the same name.
-     * This defines a weaker notion of equality between two bookings.
-     */
-    public boolean isSameBooking(Booking otherBooking) {
-        if (otherBooking == this) {
-            return true;
-        }
-
-        return otherBooking != null
-                && otherBooking.getName().equals(getName());
-    }
-
-    /**
      * Returns true if both bookings have the same name, phone, start and end dates.
      * This defines a stronger notion of equality between two bookings.
      */
@@ -101,8 +88,8 @@ public class Booking implements Comparable<Booking> {
     }
 
     /**
-     * Comparator of {@code Booking}s by cronological order.
-     * Earlier bookings come before later bookings.
+     * Comparator of bookings to reflect chronological order.
+     * Bookings on earlier dates come before booking on later dates.
      */
     @Override
     public int compareTo(Booking otherBooking) {
@@ -129,8 +116,9 @@ public class Booking implements Comparable<Booking> {
     }
 
     /**
-     * Returns true if booking overlaps with another booking.
-     * This happens if the start and end dates of the booking are neither before the start date of the other booking
+     * Returns true if booking time overlaps with another booking time.
+     * This happens if the start and end dates of the booking are not
+     * before the start date of the other booking
      * or after the end date of the other booking.
      */
     public boolean doesOverlap(Booking otherBooking) {

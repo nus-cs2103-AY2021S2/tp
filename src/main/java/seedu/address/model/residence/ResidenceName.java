@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Residence's name in the ResidenceTracker.
+ * Represents a Residence's name in ResidenceTracker.
  * Guarantees: immutable; is valid as declared in {@link #isValidResidenceName(String)}
  */
 public class ResidenceName {
@@ -23,7 +23,7 @@ public class ResidenceName {
     /**
      * Constructs a {@code ResidenceName}.
      *
-     * @param name A valid name.
+     * @param name A valid residence name.
      */
     public ResidenceName(String name) {
         requireNonNull(name);
@@ -32,14 +32,14 @@ public class ResidenceName {
     }
 
     /**
-     * Returns true if a given string is a valid name.
+     * Returns true if a given string is a valid residence name.
      */
     public static boolean isValidResidenceName(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
     /**
-     * Returns value of this {@code ResidenceName}.
+     * Returns {@code String} value of this {@code ResidenceName}.
      */
     public String getValue() {
         return fullName;

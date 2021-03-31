@@ -123,7 +123,7 @@ public class AddCommandParserTest {
 
         // invalid clean status tag
         assertParseFailure(parser, NAME_DESC_RESIDENCE2 + ADDRESS_DESC_RESIDENCE2
-                + INVALID_CLEAN_TAG_DESC, CleanStatusTag.getMessageConstraints());
+                + INVALID_CLEAN_TAG_DESC, CleanStatusTag.MESSAGE_CONSTRAINTS);
 
         // invalid tag
         assertParseFailure(parser, NAME_DESC_RESIDENCE2 + ADDRESS_DESC_RESIDENCE2
