@@ -54,14 +54,23 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
+        checkForPlaceholder(person.getPhone().value, phone);
+        checkForPlaceholder(person.getAddress().value, address);
+        checkForPlaceholder(person.getEmail().value, email);
         streamTags(person.getTags()).forEach(tag -> tags.getChildren().add(generateTagLabel(tag)));
         if (person.getFavourite().isFav()) {
             favIcon.setImage(new Image("/images/star_icon_filled.png"));
         } else {
             favIcon.setImage(new Image("/images/star_icon_empty.png"));
+        }
+    }
+
+    private void checkForPlaceholder(String value, Label label) {
+        if (value.equals("NIL")) {
+            label.setManaged(false);
+        } else {
+            label.setManaged(true);
+            label.setText(value);
         }
     }
 

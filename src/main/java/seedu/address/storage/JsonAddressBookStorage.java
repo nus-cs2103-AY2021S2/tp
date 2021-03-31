@@ -90,7 +90,7 @@ public class JsonAddressBookStorage implements HeliBookStorage {
     }
 
     /**
-     * Returns AddressBook data as a {@link ReadOnlyAddressBook}.
+     * Returns AppointmentBook data as a {@link ReadOnlyAppointmentBook}.
      * Returns {@code Optional.empty()} if storage file is not found.
      *
      * @throws DataConversionException if the data in storage is not in the expected format.
