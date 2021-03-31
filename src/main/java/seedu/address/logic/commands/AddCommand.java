@@ -9,7 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -33,7 +33,7 @@ public class AddCommand extends Command {
             + PREFIX_ADDRESS + "ADDRESS "
             + PREFIX_GUARDIAN_NAME + "GUARDIAN_NAME "
             + PREFIX_GUARDIAN_PHONE + "GUARDIAN_PHONE "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_SUBJECT + "TAG]...\n"
             + "[" + PREFIX_LESSON + "LESSON]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
@@ -43,8 +43,8 @@ public class AddCommand extends Command {
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_GUARDIAN_NAME + "Helen Doe "
             + PREFIX_GUARDIAN_PHONE + "98765431 "
-            + PREFIX_TAG + "math "
-            + PREFIX_TAG + "sec3 "
+            + PREFIX_SUBJECT + "math "
+            + PREFIX_SUBJECT + "sec3 "
             + PREFIX_LESSON + "monday 1300";
 
     public static final String MESSAGE_SUCCESS = "New student added: %1$s";

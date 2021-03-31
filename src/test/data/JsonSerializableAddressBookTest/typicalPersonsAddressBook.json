@@ -8,7 +8,7 @@
     "address" : "123, Jurong West Ave 6, #08-111",
     "guardianName" : "Amanda Pauline",
     "guardianPhone" : "94351254",
-    "tagged" : [ "sec1" ],
+    "subjects" : [ "physics" ],
     "lessons" : [ "Sunday 1000"]
   }, {
     "name" : "Benson Meier",
@@ -18,7 +18,7 @@
     "address" : "311, Clementi Ave 2, #02-25",
     "guardianName" : "Jay Maier",
     "guardianPhone" : "98765433",
-    "tagged" : [ "sec2", "math" ],
+    "subjects" : [ "chinese", "math" ],
     "lessons" : [ "Monday 1800" ]
   }, {
     "name" : "Carl Kurz",
@@ -28,7 +28,7 @@
     "address" : "wall street",
     "guardianName" : "Louis Kurz",
     "guardianPhone" : "95352564",
-    "tagged" : [ ],
+    "subjects" : [ ],
     "lessons" : [ "Friday 1000" ]
   }, {
     "name" : "Daniel Meier",
@@ -38,7 +38,7 @@
     "address" : "10th street",
     "guardianName" : "Jay Maier",
     "guardianPhone" : "98765433",
-    "tagged" : [ "sec3" ]
+    "subjects" : [ "chinese" ]
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
@@ -47,7 +47,8 @@
     "address" : "michegan ave",
     "guardianName" : "John Meyer",
     "guardianPhone" : "9482225",
-    "tagged" : [ ]
+    "subjects" : [ ],
+    "lessons" : [ ]
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
@@ -56,7 +57,8 @@
     "address" : "little tokyo",
     "guardianName" : "Fay Kunz",
     "guardianPhone" : "9482425",
-    "tagged" : [ ]
+    "subjects" : [ ],
+    "lessons" : [ ]
   }, {
     "name" : "George Best",
     "phone" : "9482442",
@@ -65,6 +67,7 @@
     "address" : "4th street",
     "guardianName" : "Barbara Best",
     "guardianPhone" : "9482444",
-    "tagged" : [ ]
+    "subjects" : [ ],
+    "lessons" : [ ]
   } ]
 }

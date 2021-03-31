@@ -9,7 +9,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
 /**
- * Finds and lists all students in TutorsPet whose name, school or tag contains any of the argument keywords.
+ * Finds and lists all students in TutorsPet whose name, school or subject contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
 public class SearchCommand extends Command {

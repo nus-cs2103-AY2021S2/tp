@@ -9,7 +9,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.lesson.Lesson;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.subject.Subject;
 
 /**
  * Represents a Person in the address book.
@@ -27,7 +27,7 @@ public class Person {
     private final Optional<Name> guardianName;
     private final Optional<Phone> guardianPhone;
     private final Optional<Address> address;
-    private final Set<Tag> tags = new HashSet<>();
+    private final Set<Subject> subjects = new HashSet<>();
     private final Set<Lesson> lessons = new HashSet<>();
 
 
@@ -35,9 +35,10 @@ public class Person {
      * Student's name and phone number must be present.
      */
     public Person(Name name, Phone phone, Optional<School> school, Optional<Email> email, Optional<Address> address,
-                  Optional<Name> guardianName, Optional<Phone> guardianPhone, Set<Tag> tags, Set<Lesson> lessons) {
+                  Optional<Name> guardianName, Optional<Phone> guardianPhone, Set<Subject> subjects,
+                  Set<Lesson> lessons) {
         requireAllNonNull(name, phone, school, email, address, guardianName,
-                guardianPhone, tags, lessons);
+                guardianPhone, subjects, lessons);
         this.name = name;
         this.phone = phone;
         this.school = school;
@@ -45,7 +46,7 @@ public class Person {
         this.address = address;
         this.guardianName = guardianName;
         this.guardianPhone = guardianPhone;
-        this.tags.addAll(tags);
+        this.subjects.addAll(subjects);
         this.lessons.addAll(lessons);
     }
 
@@ -78,11 +79,11 @@ public class Person {
     }
 
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable subject set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public Set<Subject> getSubjects() {
+        return Collections.unmodifiableSet(subjects);
     }
 
     public Set<Lesson> getLessons() {
@@ -124,14 +125,14 @@ public class Person {
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getGuardianName().equals(getGuardianName())
                 && otherPerson.getGuardianPhone().equals(getGuardianPhone())
-                && otherPerson.getTags().equals(getTags())
+                && otherPerson.getSubjects().equals(getSubjects())
                 && otherPerson.getLessons().equals(getLessons());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, school, email, address, guardianName, guardianPhone, tags, lessons);
+        return Objects.hash(name, phone, school, email, address, guardianName, guardianPhone, subjects, lessons);
     }
 
     @Override
@@ -172,10 +173,10 @@ public class Person {
                     .append(guardianPhone.get());
         }
 
-        Set<Tag> tags = getTags();
-        if (!tags.isEmpty()) {
+        Set<Subject> subjects = getSubjects();
+        if (!subjects.isEmpty()) {
             builder.append("; Tags: ");
-            tags.forEach(builder::append);
+            subjects.forEach(builder::append);
         }
 
         Set<Lesson> lessonDetailsSet = getLessons();

@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.function.Predicate;
 
 import seedu.address.model.person.Person;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.subject.Subject;
 
-public class HasTagPredicate implements Predicate<Person> {
+public class HasSubjectPredicate implements Predicate<Person> {
 
-    public HasTagPredicate() {
+    public HasSubjectPredicate() {
     }
 
     @Override
     public boolean test(Person person) {
-        ArrayList<Tag> tagList = new ArrayList<>(person.getTags());
-        return tagList.isEmpty() ? false : true;
+        ArrayList<Subject> subjectList = new ArrayList<>(person.getSubjects());
+        return subjectList.isEmpty() ? false : true;
     }
 
     @Override
