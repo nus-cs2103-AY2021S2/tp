@@ -100,6 +100,13 @@ public interface Model {
     void setTask(Task target, Task editedTask);
 
     /**
+     * Replaces the given task {@code target} with {@code editedTask} in the daily task tracker.
+     * {@code target} must exist in the task tracker.
+     * The task identity of {@code editedTask} must not be the same as another existing task in the task tracker.
+     */
+    void setDailyTask(Task target, Task editedTask);
+
+    /**
      * Sorts the TaskTracker according to the given {@code comparator}.
      */
     void sortTasks(Comparator<Task> comparator);

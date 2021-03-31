@@ -117,7 +117,7 @@ public class MainWindow extends UiPart<Stage> {
         taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
         taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
 
-        dailyTaskListPanel = new TaskListPanel(logic.getFilteredTaskList());
+        dailyTaskListPanel = new TaskListPanel(logic.getDailyTaskList());
         dailyTaskListPanelPlaceholder.getChildren().add(dailyTaskListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();

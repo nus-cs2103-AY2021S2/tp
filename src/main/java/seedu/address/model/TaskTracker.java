@@ -111,6 +111,18 @@ public class TaskTracker implements ReadOnlyTaskTracker {
     }
 
     /**
+     * Replaces the given task {@code target} in the list with {@code editedTask} in the daily task list.
+     * {@code target} must exist in the address book.
+     * The task identity of {@code editedTask} must not be the same as another existing task in the address book.
+     */
+    public void setDailyTask(Task target, Task editedTask) {
+        requireNonNull(editedTask);
+
+        dailyTasks.setTask(target, editedTask);
+    }
+
+
+    /**
      * Removes {@code key} from this {@code TaskTracker}.
      * {@code key} must exist in the address book.
      */

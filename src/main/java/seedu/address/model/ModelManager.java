@@ -137,6 +137,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setDailyTask(Task target, Task editedTask) {
+        requireAllNonNull(target, editedTask);
+        taskTracker.setDailyTask(target, editedTask);
+    }
+
+    @Override
     public void sortTasks(Comparator<Task> comparator) {
         requireNonNull(comparator);
         taskTracker.sortTasks(comparator);
