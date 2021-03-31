@@ -35,8 +35,8 @@ PartyPlanet can get the planning of your birthday celebrations done faster than 
 * Items in square brackets are optional.<br>
   e.g. `-n NAME [-t TAG]` can be used as `-n John Doe -t friend` or as `-n John Doe`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[-t TAG]…​` can be used as ` ` (i.e. 0 times), `-t friend`, `-t friend -t family` etc.
+* Items with `...` after them can be used any number of times.<br>
+  e.g. `[-t TAG]...` can be used as ` `, `-t friend`, `-t friend -t family` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `-n NAME -p PHONE`, the alternative `-p PHONE -n NAME` is also acceptable.
@@ -51,63 +51,33 @@ PartyPlanet can get the planning of your birthday celebrations done faster than 
 
 ## Glossary of parameters
 
-`ADDRESS`
-* Addresses can take any values (excluding specific syntax that denote a prefix).
+| Parameter | Description |
+|---|---|
+| `ADDRESS` | Any value |
+| `BIRTHDAY` | Valid date, with or without a year:{::nomarkdown}<ul><li>Year must be non-negative if specified, and birthday must be in the past</li><li>If the year is incompatible with the date, the closest valid date will be matched<br>e.g. <code>29 Feb 2021</code> is mapped to <code>28 Feb 2021</code></li><li>Accepted date formats are listed below, case-insensitive:<ul><li>ISO format: <code>--01-09</code> / <code>1997-01-09</code></li><li>Dot delimited: <code>9.1</code> / <code>9.1.1997</code></li><li>Slash delimited: <code>9/1</code> / <code>9/1/1997</code></li><li>Long DMY format: <code>9 Jan</code> / <code>9 Jan 1997</code></li><li>Full DMY format: <code>9 January</code> / <code>9 January 1997</code></li><li>Long YMD format: <code>Jan 9</code> / <code>Jan 9 1997</code></li><li>Full YMD format: <code>January 9</code> / <code>January 9 1997</code></li></ul></li></ul>{:/} |
+| `COMMAND` | Any valid command listed [below](#party-planet-commands) |
+| `DATE` | Valid date with a year:{::nomarkdown}<ul><li>Year must be present and non-negative</li><li>See <code>BIRTHDAY</code> parameter above for available date formats</li></ul>{:/} |
+| `DETAIL` | Any value |
+| `EMAIL` | In the format `USER@DOMAIN`:{::nomarkdown}<ul><li><code>USER</code> can only contain alphanumerics and any of <code>!#$%&'*+/=?`{&#124;}~^.-</code></li><li><code>DOMAIN</code> must be at least two characters long, start and end with two alphanumerics, and consist only of alphanumerics, periods or hyphens</li></ul>{:/} |
+| `INDEX` | Positive integer representing the ID present in the filtered list |
+| `NAME` | Any value containing only alphanumerics and spaces |
+| `PHONE` | Any number at least three digits long |
+| `REMARK` | Any value |
+| `SORT_FIELD` | Any valid option, specified below in `list` and `elist` commands |
+| `SORT_ORDER` | Any of the following:{::nomarkdown}<ul><li><code>a</code>, <code>asc</code>, <code>ascending</code> (ascending order)</li><li><code>d</code>, <code>desc</code>, <code>descending</code> (descending order)</li></ul>{:/} |
+| `TAG` | Any value containing only alphanumeric characters |
 
-`BIRTHDAY`
-* Birthdays must be in a valid date format, with or without a year.
-* If the year is specified, the birthday must be in the past, and the year must be non-negative.
-* If the date is incompatible with the year, e.g. `29 Feb 2021`, the closest date will be matched.
-* Accepted date formats are listed below, case-insensitive:
-  * ISO format: `--01-09` / `1997-01-09` (number of digits must match)
-  * Dot delimited: `9.1` / `9.1.1997`
-  * Slash delimited: `9/1` / `9/1/1997`
-  * Long DMY format: `9 Jan` / `9 Jan 1997`
-  * Full DMY format: `9 January` / `9 January 1997`
-  * Long YMD format: `Jan 9` / `Jan 9 1997`
-  * Full YMD format: `January 9` / `January 9 1997`
+<div markdown="block" class="alert alert-info">
 
-`COMMAND`
-* Can be any valid command [below](#Party-Planet-Commands)
+**:information_source: Additional notes on parameter parsing:**<br>
 
-`DATE`
-* Dates must be in a valid date format with a year.
-* No additional date constraints beyond requiring the year be non-negative.
-* See `BIRTHDAY` parameter above for available date formats.
+* Parameters cannot accept specific syntax that denote a valid prefix within the command.<br>
+  e.g. `ADDRESS` fields containing `-a` with leading and trailing spaces (such as in `Blk 123 Yishun -a Singapore 760123`)
+  will not parse fully since the `-a` is marked as a separate prefix.
 
-`DETAIL`
-* Details can take any values (excluding specific syntax that denote a prefix).
+* All parameters will have leading and trailing spaces removed before processing.
 
-`EMAIL`
-* Emails should be of the format `local-part@domain` and adhere to the following constraints:
-  1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, `(!#$%&'*+/=?\`{|}~^.-)` .
-  2. This is followed by a '@' and then a domain name. The domain name must:
-    * be at least 2 characters long
-    * start and end with alphanumeric characters
-    * consist of alphanumeric characters, a period or a hyphen for the characters in between, if any.
-
-`INDEX`
-* Index must be a positive integer that is a valid number in the filtered list.
-
-`NAME`
-* Names can only contain alphanumeric characters and spaces.
-
-`PHONE`
-* Phone numbers should only contain numbers, and be at least 3 digits long.
-
-`REMARK`
-* Details can take any values (excluding specific syntax that denote a prefix).
-
-`SORT_FIELD`
-* Can be any valid character, specified by `list`/ `elist`.
-
-`SORT_ORDER`
-* Can only be any of the following
-  * `a`, `asc`, `ascending` represents ascending order
-  * `d`, `desc`, `descending` represents descending order
-
-`TAG`
-* Tags can only contain alphanumeric characters (without spaces).
+</div>
 
 ## Party Planet Commands
 
