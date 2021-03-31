@@ -20,11 +20,11 @@ public class FindCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "the Option " + PREFIX_OPTION + OPTION_TAG + " can be used to find all persons that match at least"
+            + "the option " + PREFIX_OPTION + OPTION_TAG + " can be used to find all persons that match at least"
             + " one of the tags.\n"
             + "Parameters: [" + PREFIX_OPTION + "OPTION]"
             + " KEYWORD [MORE_KEYWORDS]...\n"
-            + "Option: " + OPTION_TAG + " (to find by tags)\n"
+            + "option: " + OPTION_TAG + " (to find by tags)\n"
             + "Examples:\n"
             + COMMAND_WORD + " alice bob charlie\n"
             + COMMAND_WORD + " " + PREFIX_OPTION + OPTION_TAG + " " + PREFIX_TAG + "math "

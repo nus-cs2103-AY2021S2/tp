@@ -26,7 +26,7 @@
         <URL value="@Extensions.css" />
       </stylesheets>
 
-      <VBox>
+      <VBox minWidth="-Infinity">
         <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="File">
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
@@ -48,7 +48,7 @@
           </padding>
         </StackPane>
 
-        <GridPane>
+        <GridPane VBox.vgrow="ALWAYS">
           <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -58,25 +58,24 @@
           </rowConstraints>
             <children>
 
-              <VBox fx:id="personList" styleClass="pane-with-border">
+              <VBox fx:id="personList" minWidth="340.0" prefWidth="340.0" styleClass="pane-with-border">
                 <padding>
                   <Insets bottom="10" left="10" right="10" top="10" />
                 </padding>
                 <Label styleClass="cell_title_label" text="Contacts">
                   <padding>
-                     <Insets bottom="5.0" top="5.0" left = "5.0"/>
+                     <Insets bottom="5.0" left="5.0" top="5.0" />
                   </padding>
                 </Label>
                 <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
               </VBox>
-
               <VBox fx:id="appointmentList" styleClass="pane-with-border" GridPane.columnIndex="1">
                 <padding>
                   <Insets bottom="10" left="10" right="10" top="10" />
                 </padding>
-                <Label styleClass="cell_title_label" text="Appointments">
+                <Label minWidth="340.0" prefWidth="340.0" styleClass="cell_title_label" text="Appointments">
                   <padding>
-                     <Insets bottom="5.0" top="5.0" left = "5.0" />
+                     <Insets bottom="5.0" left="5.0" top="5.0" />
                   </padding>
                 </Label>
                 <StackPane fx:id="appointmentListPanelPlaceholder" VBox.vgrow="ALWAYS" />

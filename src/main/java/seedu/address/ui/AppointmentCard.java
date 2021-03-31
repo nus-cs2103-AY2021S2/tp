@@ -41,6 +41,8 @@ public class AppointmentCard extends UiPart<Region> {
     @FXML
     private Label dateTime;
     @FXML
+    private Label relevantContactLabel;
+    @FXML
     private FlowPane contacts;
     @FXML
     private FlowPane tags;
@@ -53,14 +55,34 @@ public class AppointmentCard extends UiPart<Region> {
         this.appointment = appointment;
         id.setText(displayedIndex + ". ");
         name.setText(appointment.getName().fullName);
-        address.setText(appointment.getAddress().value);
-        dateTime.setText(appointment.getDateTime().dateTime);
+        checkForPlaceholder(appointment.getAddress().value, address);
+        checkForPlaceholder(appointment.getDateTime().dateTime, dateTime);
+        setRelevantContactLabel();
         appointment.getContacts().stream()
                 .sorted(Comparator.comparing(contact -> contact.getName().toString()))
                 .forEach(contact -> contacts.getChildren().add(new Label(contact.getName().toString())));
         streamTags(appointment.getTags()).forEach(tag -> tags.getChildren().add(generateTagLabel(tag)));
     }
 
+    /**
+     * If have contacts then "Relevant Contacts:" will be displayed above contacts, otherwise it will not be displayed.
+     */
+    private void setRelevantContactLabel() {
+        if (appointment.getContacts().isEmpty()) {
+            relevantContactLabel.setManaged(false);
+        } else {
+            relevantContactLabel.setManaged(true);
+        }
+    }
+
+    private void checkForPlaceholder(String value, Label label) {
+        if (value.equals("NIL")) {
+            label.setVisible(false);
+        } else {
+            label.setVisible(true);
+            label.setText(value);
+        }
+    }
 
     @Override
     public boolean equals(Object other) {

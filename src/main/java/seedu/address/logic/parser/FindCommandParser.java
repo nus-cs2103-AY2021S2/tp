@@ -37,7 +37,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         Optional<String> option = argMultimap.getValue(PREFIX_OPTION);
         if (option.isPresent()) {
             String unboxedOption = option.get();
-            return parseOptions(new Option(unboxedOption), argMultimap);
+            return parseOptions(unboxedOption, argMultimap);
         } else { // find by name, email
             String[] nameKeywords = trimmedArgs.split("\\s+");
             assert nameKeywords.length > 0 : "FindCommand keywords are empty";
@@ -47,11 +47,11 @@ public class FindCommandParser implements Parser<FindCommand> {
 
     /**
      * Parse other fields
-     * @param option {@code Option} to determine the option selected
+     * @param option option to determine the option selected
      * @param argMultimap {@code argMultimap} for the rest of the args
      * @return {@code FindCommand}
      */
-    public FindCommand parseOptions(Option option, ArgumentMultimap argMultimap) throws ParseException {
+    public FindCommand parseOptions(String option, ArgumentMultimap argMultimap) throws ParseException {
         if (option.equals(OPTION_TAG)) { // find by tag
             Set<Tag> tagSet = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
             return new FindCommand(new TagsMatchKeywordPredicate(tagSet));
