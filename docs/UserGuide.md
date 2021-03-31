@@ -12,6 +12,16 @@ PlanIt also includes a calendar and a countdown feature to better manage your de
 you who prefer typing, so that bookkeeping can be done faster. Now you can make progress on the things that are
 more important to you.
 
+Objective:
+PlanIT's objective is to improve productivity for students with features and tools to help
+students manage their workload. These features significantly reduces the trouble of having to keep track of tasks,
+especially those that are essential yet repetitive. Features such as recurring schedule and date allows students to
+keep track of weekly task and due dates for tutorial homework, projects and much more. More importantly, the functionalities
+of PlanIt's simple overview allows students to see upcoming deadlines or events.
+
+Let's dive deeper into these features to see how these features can assist students
+in workload management.
+
 * Table of Contents
 {:toc}
 
@@ -65,7 +75,7 @@ more important to you.
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/TITLE set/DEADLINE`, `set/DEADLINE n/TITLE` is also acceptable.
+  e.g. if the command specifies `n/TITLE set/DATE`, `set/DATE n/TITLE` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last
   occurrence of the parameter will be taken.<br>
@@ -96,9 +106,11 @@ Format: `mk n/TITLE [set/DATE] [s/DURATION] [d/DESCRIPTION]
 [r/RECURRING SCHEDULE] [st/STATUS] [t/TAG]…`
 
 * Only title is compulsory.
-* Date should be in the format dd/mm/yyyy like `12/05/2021`.
-* Duration should be numeric, contain 2 timings, and should be in 24 hours format with a colon, like `22:30-22:45`. 
-  Duration can only exists when there is date or recurring schedule.
+* Date should be in the format dd/mm/yyyy. For example, 1 December 2021
+  should be expressed as `01/12/2021`, not 1/12/2021. Furthermore, Date should be
+  a day that is after the current day.
+* Duration should be numeric, contain 2 timings, and should be in 24 hours format with a colon, like `22:30-22:45`.
+  Duration can only exists when there is date or recurring schedule. 
 * Description can have multiple lines by adding a line break using <kbd>shift</kbd>+<kbd>enter</kbd>.
 * Recurring schedule (can be optional) should have 3 conditions which consist of:
     * An end date when the task stops recurring.
@@ -123,15 +135,68 @@ mk n/take a break d/
 - do 2 t/trying
 ```
 
+### Editing a task : `edit`
+
+Edits an existing task in the planner
+so that you can have the flexibility to make changes to a certain task
+if there is an input error when adding the task to the planner or there is a change in task requirements.
+
+Format: `edit INDEX [n/TITLE] [set/DATE] [s/DURATION] [d/DESCRIPTION]
+[r/RECURRING SCHEDULE] [st/STATUS] [t/TAG]…​`
+
+* Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list.
+  The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing tags, the existing tags of the task will be removed i.e adding of tags is not cumulative.
+* You can remove the task’s field by typing its prefix (e.g. `t/`) without
+  specifying anything after it.
+
+Examples:
+*  `edit 1 set/10/10/2021 d/Remember to update User Guide` Edits the date and description of the 1st task to be
+   `10/10/2021` and `Remember to update User Guide` respectively.
+*  `edit 2 n/Buy textbook t/ set/` Edits the title of the 2nd task to be `Buy textbook` and clears all existing tags
+   and the date.
+
+
+### Adding / Editing recurring schedule in a task : `mk n/TITLE r/RECURRING SCHEDULE` or `edit INDEX r/RECURRING SCHEDULE`
+
+Adds / Edits a recurring schedule to a new or existing task in the planner
+so that you can schedule the task in a weekly/biweekly basis
+on a particular day of week for the future all at once.
+<br>**Note: Existing recurring dates that has passed the current system date will be removed
+automatically from the existing task upon application startup.**
+
+Format: `mk n/TITLE r/[END DATE][DAY OF WEEK][WEEK FREQUENCY]` or `edit INDEX r/[END DATE][DAY OF WEEK][WEEK FREQUENCY]`
+
+* The `RECURRING SCHEDULE` is an **optional field** by default when adding a task so it can be excluded
+  and will be blank if it is just `r/` too.
+* Similarly, the recurring schedule can be set to blank in editing field for task by typing `r/` only.
+* All three fields `END DATE`, `DAY OF WEEK` and `WEEK FREQUENCY` must be present when there is input after `r/`.
+* You can add/edit recurring schedule with duration but not with a deadline date.
+* `END DATE` format is in `dd/mm/yyyy` and it cannot come before the current system date. <br>
+  **Any number greater than 31 is invalid for day and any number greater than 12 is invalid for month.**
+* `DAY OF WEEK` is **case-insensitive** and can be represented in the
+  form of the first 3 letters of the day from Monday to Sunday.
+* `WEEK FREQUENCY` is **case-insensitive** and can be **weekly or biweekly**.
+* Recurring dates up till the `END DATE` will be generated for the task.
+* An example of `RECURRING SCHEDULE`: `[23/10/2021][Mon][weekly]`
+
+Examples:
+*  `mk n/CS21o3 team meeting r/[31/05/2021][mon][weekly]` Adds the task with the title `CS2103 team meeting` to the
+   planner and generate recurring dates that is on `mon` `weekly` up to `31/05/2021`.
+*  `edit 1 r/[23/12/2021][mon][biweekly]` modifies the first task in the planner and generate recurring dates that
+   is on `mon` `biweekly` up to `23/12/2021`.
+
 ### Adding date to a task : `mk`
 
 Adds a date to an existing task in the planner
 so that you can have the option to set a deadline to the task or use it for a single day event task.
 
-Format: `mk INDEX [set/DATE]…​`
+Format: `edit INDEX [set/DATE]…​`
+Date should only be in the format of DD/MM/YYYY as specified above. 
 
-* Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed planner. 
-  The index **must be a positive integer** 1, 2, 3, …​
+* Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed list. The index **must be a positive integer** 1, 2, 3, …​
 * Date field must be provided.
 * Existing values will be updated to the input values.
 * When editing dateline, the existing dates of the task will be removed i.e adding of dateline is not cumulative.
@@ -139,39 +204,8 @@ Format: `mk INDEX [set/DATE]…​`
   specifying any date after it.
 
 Examples:
-*  `mk 1 set/2021-05-13` Adds a date to the 1st task on the planner which is to be `13 May 2021`.
-*  `mk 2 set/` Clears the existing date of 2nd task on the planner.
-
-
-### Adding / Editing recurring schedule in a task : `mk n/TITLE r/RECURRING SCHEDULE` or `edit INDEX r/RECURRING SCHEDULE`
-
-Adds / Edits a recurring schedule to a new or existing task in the planner
-so that you can schedule the task in a weekly/biweekly basis 
-on a particular day of week for the future all at once.
-<br>**Note: Existing recurring dates that has passed the current system date will be removed 
-automatically from the existing task upon application startup.**
-
-Format: `mk n/TITLE r/[END DATE][DAY OF WEEK][WEEK FREQUENCY]` or `edit INDEX r/[END DATE][DAY OF WEEK][WEEK FREQUENCY]`
-
-* The recurring schedule is an optional field by default when adding a task so it can be excluded 
-  and will be blank if it is just `r/` too.
-* The recurring schedule can be set to blank in editing field for task by typing `r/` only.
-* All three fields `END DATE`, `DAY OF WEEK` and `WEEK FREQUENCY` must be present when there is input after `r/`.
-* You can add/edit recurring schedule with duration but not with a deadline date.
-* `END DATE` format is in `dd/mm/yyyy` and it cannot come before the current system date. <br>
-  **Any number greater than 31 is invalid for day and any number greater than 12 is invalid for month.**
-* `DAY OF WEEK` is **case-insensitive** and can be represented in the 
-  form of the first 3 letters of the day from Monday to Sunday.
-* `WEEK FREQUENCY` is **case-insensitive** and can be **weekly or biweekly**.
-* Recurring dates up till the `END DATE` will be generated for the task.
-* A complete example of recurring schedule: `[23/10/2021][Mon][weekly]`
-
-Examples:
-*  `mk n/CS21o3 team meeting r/[31/05/2021][mon][weekly]` Adds the task with the title `CS2103 team meeting` to the 
-   planner and generate recurring dates that is on `mon` `weekly` up to `31/05/2021`.
-*  `edit 1 r/[23/12/2021][mon][biweekly]` modifies the first task in the planner and generate recurring dates that 
-   is on `mon` `biweekly` up to `23/12/2021`.
-
+*  `edit 1 set/13/05/2021` Adds a date to the 1st task on the list which is to be `13 May 2021`.
+*  `edit 2 set/` Clears the existing date of 2nd task on the list.
 
 ### Listing all tasks : `ls`
 
@@ -190,28 +224,20 @@ Format: `ls not done`
 
 **Note: The keyword `not done` is case-insensitive.**
 
-### Editing a task : `edit`
+### Sort task by date: `sort by a` or `sort by d`
 
-Edits an existing task in the planner 
-so that you can have the flexibility to make changes to a certain task 
-if there is an input error when adding the task to the planner or there is a change in task requirements.
+Sort tasks in the list either in ascending dates or descending dates so that users would
+be able to see the task or event nearest to current date or furthest away from current date.
 
-Format: `edit INDEX [n/TITLE] [set/DATE] [s/DURATION] [d/DESCRIPTION]
-[r/RECURRING SCHEDULE] [st/STATUS] [t/TAG]…​`
+Format: `sort by a` or `sort by d`
 
-* Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed planner.
-  The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the task will be removed i.e adding of tags is not cumulative.
-* You can remove the task’s field by typing its prefix (e.g. `t/`) without
-    specifying anything after it.
+* Shows the list of all task.
+* If `sort by a`, task with no deadlines would appear first, 
+    subsequently task will be ordered in increasing dates. 
+* If `sort by d`, task with no deadlines would appear last, 
+    subsequently task will be ordered in decreasing dates.
+* If two tasks have the same dates, they will be ordered in equal priority.
 
-Examples:
-*  `edit 1 set/10-10-2021 d/Remember to update User Guide` Edits the date and description of the 1st task to be
-   `10-10-2021` and `Remember to update User Guide` respectively.
-*  `edit 2 n/Buy textbook t/ set/` Edits the title of the 2nd task to be `Buy textbook` and clears all existing tags
-   and the date.
 
 ### Searching a task by title: `find`
 
@@ -406,7 +432,7 @@ Action | Format, Examples
 **Clear** | `clear`
 **Delete Task** | `rmt INDEX`<br> e.g., `rmt 3`
 **Delete Field** | `rmf INDEX FIELD`<br> e.g., `rmf 1 d/`
-**Edit** | `edit INDEX [n/TITLE] [set/DEADLINE] [s/START TIME] [d/DESCRIPTION] [r/RECURRING SCHEDULE] [st/STATUS] [t/TAG]…​`<br>e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit** | `edit INDEX [n/TITLE] [set/DATE] [s/DURATION] [d/DESCRIPTION] [r/RECURRING SCHEDULE] [st/STATUS] [t/TAG]…​`<br>e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br>e.g., `find CS2103 team project` <br><br>`find [t/TAG] `<br>  e.g., `find t/CS2103` <br><br> `find [d/DESCRIPTION] ` <br> e.g., `find d/CS2103 milestone postmortem`
 **Countdown** | `count INDEX` <br> e.g., `count 2`
 **Statistics** | `stat`
