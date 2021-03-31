@@ -6,6 +6,8 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.ViewContactsCommand;
+import seedu.address.logic.commands.ViewTodayCommand;
 import seedu.address.model.project.Project;
 
 /**
@@ -51,6 +53,7 @@ public class SidePanel extends UiPart<Region> {
      */
     @FXML
     public void openContactsPanel() {
+        mainWindow.setFeedbackToUser(ViewContactsCommand.MESSAGE_SUCCESS);
         clearButtonStyles();
         addContactButtonStyle();
         mainWindow.displayContacts();
@@ -61,6 +64,7 @@ public class SidePanel extends UiPart<Region> {
      */
     @FXML
     public void openTodayPanel() {
+        mainWindow.setFeedbackToUser(ViewTodayCommand.MESSAGE_SUCCESS);
         clearButtonStyles();
         addTodayButtonStyle();
         mainWindow.displayToday();

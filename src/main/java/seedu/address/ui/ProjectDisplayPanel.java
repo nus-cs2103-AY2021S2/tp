@@ -19,6 +19,8 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+import seedu.address.logic.commands.ViewOverviewCommand;
+import seedu.address.logic.commands.ViewTodosCommand;
 import seedu.address.model.groupmate.Groupmate;
 import seedu.address.model.project.Project;
 import seedu.address.model.task.CompletableDeadline;
@@ -61,8 +63,16 @@ public class ProjectDisplayPanel extends UiPart<Region> {
     /**
      * Creates a {@code ProjectDisplayPanel}.
      */
-    public ProjectDisplayPanel() {
+    public ProjectDisplayPanel(MainWindow mainWindow) {
         super(FXML);
+
+        tabPane.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.equals(OVERVIEW_TAB)) {
+                mainWindow.setFeedbackToUser(ViewOverviewCommand.MESSAGE_SUCCESS);
+            } else if (newValue.equals(TODOS_TAB)) {
+                mainWindow.setFeedbackToUser(ViewTodosCommand.MESSAGE_SUCCESS);
+            }
+        });
     }
 
     /**

@@ -21,7 +21,7 @@ public class AddTodoCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a Task to CoLAB. "
             + "Parameters:\nPROJECT_INDEX\n"
             + PREFIX_DESCRIPTION + "DESCRIPTION "
-            + "Example: " + COMMAND_WORD + " "
+            + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_DESCRIPTION + "Submit project report ";
 
     private final Index index;

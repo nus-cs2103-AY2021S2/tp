@@ -22,7 +22,7 @@ public class HelpPanel extends UiPart<Region> {
     public static final String URL_COPIED = "URL has been copied.";
 
     private static final int ROW_HEIGHT = 30;
-    private static final int SAFETY_MARGIN = 5;
+    private static final int SAFETY_MARGIN = 35;
 
     private static final String FXML = "HelpPanel.fxml";
 
@@ -44,6 +44,8 @@ public class HelpPanel extends UiPart<Region> {
     private TableView<CommandSyntax> groupmatesTableView;
     @FXML
     private TableView<CommandSyntax> contactsTableView;
+    @FXML
+    private TableView<CommandSyntax> othersTableView;
 
     /**
      * Creates a new HelpPanel.
@@ -59,11 +61,11 @@ public class HelpPanel extends UiPart<Region> {
         setUpTable(eventsTableView, getEventCommands());
         setUpTable(groupmatesTableView, getGroupmateCommands());
         setUpTable(contactsTableView, getContactCommands());
+        setUpTable(othersTableView, getOtherCommands());
     }
 
     private void setUpTable(TableView<CommandSyntax> table, ObservableList<CommandSyntax> commands) {
         table.setItems(commands);
-        table.setFixedCellSize(ROW_HEIGHT);
         table.setSelectionModel(null);
         table.prefHeightProperty()
                 .bind(Bindings.size(table.getItems()).multiply(ROW_HEIGHT).add(SAFETY_MARGIN));
@@ -76,8 +78,8 @@ public class HelpPanel extends UiPart<Region> {
         usageCol.setSortable(false);
         usageCol.setCellValueFactory(new PropertyValueFactory<>("usage"));
 
-        commandCol.prefWidthProperty().bind(table.widthProperty().multiply(0.16));
-        usageCol.prefWidthProperty().bind(table.widthProperty().multiply(0.82));
+        commandCol.prefWidthProperty().bind(table.widthProperty().multiply(0.12));
+        usageCol.prefWidthProperty().bind(table.widthProperty().multiply(0.86));
 
         commandCol.setResizable(false);
         usageCol.setResizable(false);
@@ -103,15 +105,18 @@ public class HelpPanel extends UiPart<Region> {
 
     private static ObservableList<CommandSyntax> getProjectCommands() {
         return FXCollections.observableArrayList(
+                new CommandSyntax("project", "project PROJECT_INDEX"),
                 new CommandSyntax("addP", "addP n/PROJECT_NAME"),
-                new CommandSyntax("updateP", "updateP 1 n/PROJECT_NAME"),
+                new CommandSyntax("updateP", "updateP PROJECT_INDEX n/PROJECT_NAME"),
                 new CommandSyntax("deleteP", "deleteP PROJECT_INDEX")
         );
     }
 
     private static ObservableList<CommandSyntax> getTodoCommands() {
         return FXCollections.observableArrayList(
+                new CommandSyntax("todo", "todos"),
                 new CommandSyntax("addT", "addT PROJECT_INDEX d/DESCRIPTION"),
+                new CommandSyntax("updateT", "updateT PROJECT_INDEX u/TODO_INDEX d/DESCRIPTION"),
                 new CommandSyntax("deleteT", "deleteT PROJECT_INDEX r/TODO_INDEX")
         );
     }
@@ -119,6 +124,8 @@ public class HelpPanel extends UiPart<Region> {
     private static ObservableList<CommandSyntax> getDeadlineCommands() {
         return FXCollections.observableArrayList(
                 new CommandSyntax("addD", "addD PROJECT_INDEX d/DESCRIPTION by/DATE"),
+                new CommandSyntax("updateD",
+                        "updateD PROJECT_INDEX u/DEADLINE_INDEX [d/DESCRIPTION] [by/DATE]"),
                 new CommandSyntax("deleteD", "deleteD PROJECT_INDEX r/DEADLINE_INDEX")
         );
     }
@@ -127,6 +134,9 @@ public class HelpPanel extends UiPart<Region> {
         return FXCollections.observableArrayList(
                 new CommandSyntax("addE",
                         "addE PROJECT_INDEX d/DESCRIPTION on/DATE at/TIME w/REPEAT_WEEKLY"),
+                new CommandSyntax("updateE",
+                        "updateE PROJECT_INDEX u/EVENT_INDEX [d/DESCRIPTION] [on/DATE] [at/TIME] "
+                                + "[w/REPEATS_WEEKLY]"),
                 new CommandSyntax("deleteE", "deleteE PROJECT_INDEX r/EVENT_INDEX")
         );
     }
@@ -134,6 +144,8 @@ public class HelpPanel extends UiPart<Region> {
     private static ObservableList<CommandSyntax> getGroupmateCommands() {
         return FXCollections.observableArrayList(
                 new CommandSyntax("addG", "addG PROJECT_INDEX n/NAME [r/ROLE]..."),
+                new CommandSyntax("updateG",
+                        "updateG PROJECT_INDEX u/GROUPMATE_INDEX [n/NAME] [r/ROLE]..."),
                 new CommandSyntax("deleteC", "deleteC PROJECT_INDEX r/GROUPMATE_INDEX")
         );
     }
@@ -145,6 +157,14 @@ public class HelpPanel extends UiPart<Region> {
                 new CommandSyntax("updateC",
                         "updateC INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]..."),
                 new CommandSyntax("deleteC", "deleteC INDEX")
+        );
+    }
+
+    private static ObservableList<CommandSyntax> getOtherCommands() {
+        return FXCollections.observableArrayList(
+                new CommandSyntax("overview", "overview"),
+                new CommandSyntax("help", "help"),
+                new CommandSyntax("exit", "exit")
         );
     }
 }

@@ -66,6 +66,12 @@
           <Insets top="10.0"/>
         </VBox.margin>
       </TableView>
+      <Label styleClass="label-header" text="Others"/>
+      <TableView fx:id="othersTableView">
+        <VBox.margin>
+          <Insets top="10.0"/>
+        </VBox.margin>
+      </TableView>
     </VBox>
   </ScrollPane>
 </VBox>
