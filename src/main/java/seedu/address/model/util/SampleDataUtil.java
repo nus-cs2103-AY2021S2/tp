@@ -61,7 +61,7 @@ public class SampleDataUtil {
                 Optional.of(new Name("Li Li")),
                 Optional.of(new Phone("91031288")),
                 Optional.of(new Level("sec3")),
-                getSubjectSet("history"), getLessonSet("tuesday 1000")),
+                getSubjectSet("hist"), getLessonSet("tuesday 1000")),
             new Person(new Name("Irfan Ibrahim"), new Phone("92492021"),
                 Optional.of(new School("Efg Secondary School")),
                 Optional.of(new Email("irfan@example.com")),
@@ -69,7 +69,7 @@ public class SampleDataUtil {
                 Optional.of(new Name("Frank Ibrahim")),
                 Optional.of(new Phone("92492022")),
                 Optional.of(new Level("pri5")),
-                getSubjectSet("chinese"), getLessonSet("wednesday 1400")),
+                getSubjectSet("cn"), getLessonSet("wednesday 1400")),
             new Person(new Name("Roy Balakrishnan"), new Phone("92624417"),
                 Optional.of(new School("Efg Secondary School")),
                 Optional.of(new Email("royb@example.com")),
@@ -77,7 +77,7 @@ public class SampleDataUtil {
                 Optional.of(new Name("Bob Balakrishnan")),
                 Optional.of(new Phone("92624411")),
                 Optional.of(new Level("sec4")),
-                getSubjectSet("physics"), getLessonSet("wednesday 1200"))
+                getSubjectSet("phys"), getLessonSet("wednesday 1200"))
         };
     }
 

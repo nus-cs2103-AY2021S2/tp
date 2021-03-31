@@ -8,7 +8,7 @@
     "guardianName" : "Amanda Pauline",
     "guardianPhone" : "94351254",
     "level" : "sec1",
-    "subjects": [ "physics" ],
+    "subjects": [ "phys" ],
     "lessons" : [ ]
   }, {
     "name": "Alice Pauline",

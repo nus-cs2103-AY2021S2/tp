@@ -9,7 +9,7 @@
     "guardianName" : "Amanda Pauline",
     "guardianPhone" : "94351254",
     "level" : "sec1",
-    "subjects" : [ "physics" ],
+    "subjects" : [ "phys" ],
     "lessons" : [ "Sunday 1000"]
   }, {
     "name" : "Benson Meier",
@@ -21,6 +21,7 @@
     "guardianPhone" : "98765433",
     "level" : "sec3",
     "subjects" : [ "chinese", "math" ],
+    "subjects" : [ "cn", "math" ],
     "lessons" : [ "Monday 1800" ]
   }, {
     "name" : "Carl Kurz",
@@ -42,7 +43,7 @@
     "guardianName" : "Jay Maier",
     "guardianPhone" : "98765433",
     "level" : "sec1",
-    "subjects" : [ "chinese" ],
+    "subjects" : [ "cn" ],
     "lessons" : [ ]
   }, {
     "name" : "Elle Meyer",
