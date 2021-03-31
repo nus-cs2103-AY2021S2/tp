@@ -757,6 +757,15 @@ testers are expected to do more *exploratory* testing.
     1. Test cases: `list` <br>
     Expected: `FlashcardListPanel` displays all flashcards stored in `flashback.json` file. The result display shows a message: `Listed all flashcards`.
     
+### Adding a flashcard
+1. Adding a flashcard with a specific question, answer, category, priority and tags(if possible).
+    1. Prerequisites: Application is in main mode and running
+    1. Test case: `add q/Who invented the alternating current? a/Nikola Tesla c/Physics p/Mid`
+    Expected: A new card is added to the list. Result display shows the details of the added flashcards.
+    1. Test case: `add q/Who initiated the Arab Spring operation? a/Barack Obama c/Political Studies p/High t/war`
+    Expected: A new card is added to the list. Result display shows the details of the added flashcards with tags.
+    1. Test case: `add`
+    Expected: No flashcard is deleted, and the text in `CommandBox` turns red to indicate an error. The result display shows a message: `Invalid command format!`.
 ### Deleting a flashcard
 1. Deleting a flashcard at a specific index.
     1. Prerequisites: There must be at least 1 and at most 2000 flashcards that is currently shown in the list.
