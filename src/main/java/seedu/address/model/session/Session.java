@@ -89,6 +89,14 @@ public class Session {
         return students;
     }
 
+    public boolean emptyStudentList() {
+        return this.students.size() == 0;
+    }
+
+    public boolean emptyTutor() {
+        return this.tutor == new PersonId("");
+    }
+
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
     }
@@ -138,6 +146,12 @@ public class Session {
 
     public void setTutor(PersonId tutor) {
         this.tutor = tutor;
+    }
+
+    public void setStudents(List<PersonId> students) {
+        for (PersonId student :students) {
+            this.students.add(student);
+        }
     }
 
     private boolean isTutor(PersonId person) {
