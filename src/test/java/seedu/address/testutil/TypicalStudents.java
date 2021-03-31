@@ -46,6 +46,9 @@ public class TypicalStudents {
     public static final Student CARL = new StudentBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street")
             .withStudyLevel("University CS1101S").withGuardianPhone("98621032").withRelationship("Mother")
+            .addSession(
+                    new RecurringSessionBuilder().build()
+            )
             .build();
     public static final Student DANIEL = new StudentBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street")

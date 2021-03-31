@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVAL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
+import static seedu.address.model.session.RecurringSession.isValidEnd;
 
 import java.util.stream.Stream;
 
@@ -46,6 +47,11 @@ public class AddRecurringSessionCommandParser implements Parser<AddRecurringSess
         Interval interval = ParserUtil.parseInterval(argMultimap.getValue(PREFIX_INTERVAL).get());
         SessionDate lastDateTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_END_DATE).get(),
                 argMultimap.getValue(PREFIX_TIME).get());
+
+        if (!isValidEnd(sessionDate, lastDateTime, interval)) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, RecurringSession.MESSAGE_CONSTRAINTS));
+        }
 
         RecurringSession recurringSession =
                 new RecurringSession(sessionDate, duration, subject, fee, interval, lastDateTime);
