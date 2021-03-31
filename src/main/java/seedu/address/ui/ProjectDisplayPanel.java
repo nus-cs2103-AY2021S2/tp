@@ -74,12 +74,12 @@ public class ProjectDisplayPanel extends UiPart<Region> {
 
         setUpEventList(project.getSortedEvents());
         setUpDeadlinesList(project.getSortedDeadlines());
-        setUpTodoList(project.getTodos().getTodos());
+        setUpTodoList(project.getSortedTodos());
         setUpGroupmatesList(project.getGroupmates().getGroupmates());
     }
 
-    private void setUpTodoList(ObservableList<CompletableTodo> todos) {
-        completableTodoListView.setItems(new FilteredList<>(todos));
+    private void setUpTodoList(SortedList<CompletableTodo> todos) {
+        completableTodoListView.setItems(todos);
         completableTodoListView.setCellFactory(listView -> new CompletableTodoListViewCell());
 
         todoListViewPlaceholder.getChildren().clear();

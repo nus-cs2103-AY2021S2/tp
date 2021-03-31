@@ -2,20 +2,26 @@ package seedu.address.model.project;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Stream;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.model.project.exceptions.DuplicateTodoException;
 import seedu.address.model.task.CompletableTodo;
 
 /**
  * Represents a list of Todos.
+ * Todo list ensures that there are no duplicates.
+ * Also maintains an internal list of sorted todos.
  */
 public class TodoList {
 
     private final ObservableList<CompletableTodo> todos = FXCollections.observableArrayList();
+    private final SortedList<CompletableTodo> sortedTodos = new SortedList<>(todos,
+            Comparator.comparing(CompletableTodo::getDescription, String::compareToIgnoreCase));
 
     /**
      * Constructs a empty {@code TodoList}.
@@ -49,60 +55,64 @@ public class TodoList {
     }
 
     /**
-     * Set the {@code Todo} specified by index with a new {@code Todo}.
+     * Set the {@code Todo} specified by index in the sorted todo list with a new {@code Todo}.
      *
-     * @param i index specifies the target {@code Todo}.
+     * @param i index specifies the target {@code Todo} in the sorted todo list.
      * @param todo new {@code Todo} for this index.
      */
     public void setTodo(Integer i, CompletableTodo todo) {
         requireNonNull(todo);
 
-        this.todos.set(i, todo);
+        int todoIndex = sortedTodos.getSourceIndex(i);
+        this.todos.set(todoIndex, todo);
     }
 
     /**
-     * Get the {@code Todo} specified by index.
+     * Get the {@code Todo} specified by index in the sorted list.
      *
-     * @param i index specifies the target {@code Todo}.
+     * @param i index specifies the target {@code Todo} in the sorted list.
      * @return {@code Todo} at this index.
      */
     public CompletableTodo getTodo(Integer i) {
         requireNonNull(i);
 
-        return this.todos.get(i);
+        return this.sortedTodos.get(i);
     }
 
     /**
-     * Returns {@code TodoList} as an {@code ObservableList<CompletableTodo>}.
+     * Returns {@code TodoList} as an {@code SortedList<CompletableTodo>}.
      *
-     * @return An {@code ObservableList<CompletableTodo>}.
+     * @return A {@code SortedList<CompletableTodo>}.
      */
-    public ObservableList<CompletableTodo> getTodos() {
-        return this.todos;
+    public SortedList<CompletableTodo> getSortedTodos() {
+        return this.sortedTodos;
     }
 
     /**
-     * Deletes an todo from this {@code TodoList}.
+     * Deletes a todo from this {@code TodoList}.
      *
-     * @param i Index of {@code Todo} to be deleted.
+     * @param i Index of {@code Todo} to be deleted in the sorted list.
      */
     public void deleteTodo(Integer i) {
         requireNonNull(i);
-        this.todos.remove((int) i);
+
+        int todoIndex = sortedTodos.getSourceIndex(i);
+        this.todos.remove(todoIndex);
     }
 
     /**
      * Marks a todo from this {@code TodoList} as done.
      *
-     * @param i Index of {@code Todo} to be marked as done.
+     * @param i Index of {@code Todo} in the sorted list to be marked as done.
      */
     public void markAsDone(Integer i) {
         requireNonNull(i);
-        CompletableTodo todo = todos.get(i);
+        CompletableTodo todo = sortedTodos.get(i);
         todo.markAsDone();
 
+        int todoIndex = sortedTodos.getSourceIndex(i);
         // Force observable list to update
-        this.todos.set(i, todo);
+        this.todos.set(todoIndex, todo);
     }
 
     /**
@@ -111,7 +121,7 @@ public class TodoList {
      * @return A copy of this {@code TodoList}.
      */
     public TodoList getCopy() {
-        return new TodoList(getTodos());
+        return new TodoList(getSortedTodos());
     }
 
     /**

@@ -299,6 +299,15 @@ public class Project {
     }
 
     /**
+     * Returns {@code todos} as a {@code SortedList<CompletableTodo>}
+     *
+     * @return A {@code SortedList<CompletableTodo>}
+     */
+    public SortedList<CompletableTodo> getSortedTodos() {
+        return todos.getSortedTodos();
+    }
+
+    /**
      * Returns true if both projects have the same identity and data fields.
      * This defines a stronger notion of equality between two projects.
      */
@@ -336,7 +345,7 @@ public class Project {
             events.forEach(builder::append);
         }
 
-        List<CompletableTodo> todos = getTodos().getTodos();
+        List<CompletableTodo> todos = getTodos().getSortedTodos();
         if (!todos.isEmpty()) {
             builder.append("; Todos: ");
             todos.forEach(builder::append);

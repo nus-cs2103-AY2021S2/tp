@@ -49,7 +49,7 @@ public class DeleteTodoCommand extends Command {
         }
 
         if (targetTodoIndex.getZeroBased() >= lastShownList.get(projectIndex.getZeroBased())
-                .getTodos().getTodos().size()) {
+                .getTodos().getSortedTodos().size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TODO_DISPLAYED_INDEX);
         }
 

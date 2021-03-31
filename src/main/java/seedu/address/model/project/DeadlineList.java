@@ -19,6 +19,7 @@ import seedu.address.model.task.deadline.Deadline;
 /**
  * Represents a list of Deadlines.
  * Deadline list ensures that there are no duplicates.
+ * Also maintains an internal list of sorted deadlines.
  */
 public class DeadlineList {
 

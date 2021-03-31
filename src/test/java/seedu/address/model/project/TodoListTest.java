@@ -18,7 +18,7 @@ public class TodoListTest {
     @Test
     public void constructor_empty_createEmptyTodoList() {
         TodoList emptyTodoList = new TodoList();
-        assertTrue(emptyTodoList.getTodos().isEmpty());
+        assertTrue(emptyTodoList.getSortedTodos().isEmpty());
     }
 
     @Test
@@ -40,7 +40,7 @@ public class TodoListTest {
         ArrayList<CompletableTodo> todos = new ArrayList<>();
         todos.add(todo);
         TodoList todoList = new TodoList(todos);
-        assertEquals(todos, todoList.getTodos());
+        assertEquals(todos, todoList.getSortedTodos());
     }
 
     @Test
@@ -57,9 +57,9 @@ public class TodoListTest {
         ArrayList<CompletableTodo> todos = new ArrayList<>();
         todos.add(todo);
         TodoList todoList = new TodoList(todos);
-        assertEquals(todoList.getTodos().size(), 1);
+        assertEquals(todoList.getSortedTodos().size(), 1);
         todoList.deleteTodo(0);
-        assertEquals(todoList.getTodos().size(), 0);
+        assertEquals(todoList.getSortedTodos().size(), 0);
     }
 
     @Test void markAsDone_success() {
@@ -67,10 +67,10 @@ public class TodoListTest {
         ArrayList<CompletableTodo> todos = new ArrayList<>();
         todos.add(todo);
         TodoList todoList = new TodoList(todos);
-        assertEquals(todoList.getTodos().size(), 1);
-        assertEquals(todoList.getTodos().get(0).getIsDone(), false);
+        assertEquals(todoList.getSortedTodos().size(), 1);
+        assertEquals(todoList.getSortedTodos().get(0).getIsDone(), false);
         todoList.markAsDone(0);
-        assertEquals(todoList.getTodos().get(0).getIsDone(), true);
+        assertEquals(todoList.getSortedTodos().get(0).getIsDone(), true);
     }
 
 }
