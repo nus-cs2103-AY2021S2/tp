@@ -37,7 +37,7 @@ public class AddPersonToMeetingConnectionCommand extends Command {
 
     private static String MESSAGE_SUCCESS = "Successfully add persons related to the meeting! "
             + "The possible duplication of persons related is automatically removed.";
-    private static String MESSAGE_GROUP_NOT_EXIST = "The groups doesn't exist!";
+    private static String MESSAGE_GROUP_NOT_EXIST = "The group doesn't exist!";
     private final Index meetingIndex;
     private final Set<Group> groupsToAdd = new HashSet<>();
     private final Set<Index> personsIndexToAdd = new HashSet<>();

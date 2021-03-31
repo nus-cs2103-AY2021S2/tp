@@ -5,10 +5,12 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListAllCommand;
 import seedu.address.logic.commands.connections.AddPersonToMeetingConnectionCommand;
+import seedu.address.logic.commands.connections.DeletePersonToMeetingConnectionCommand;
 import seedu.address.logic.commands.meetings.*;
 import seedu.address.logic.commands.persons.*;
 import seedu.address.logic.commands.reminders.RefreshRemindersCommand;
 import seedu.address.logic.parser.connections.AddPersonToMeetingConnectionParser;
+import seedu.address.logic.parser.connections.DeletePersonToMeetingConnectionParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.meetings.AddMeetingCommandParser;
 import seedu.address.logic.parser.meetings.DeleteMeetingCommandParser;
@@ -100,6 +102,9 @@ public class MeetBuddyParser {
         //============================= Meeting ==============================
         case AddPersonToMeetingConnectionCommand.COMMAND_WORD:
             return new AddPersonToMeetingConnectionParser().parse(arguments);
+
+        case DeletePersonToMeetingConnectionCommand.COMMAND_WORD:
+            return new DeletePersonToMeetingConnectionParser().parse(arguments);
 
         //============================= General ==============================
         case ExitCommand.COMMAND_WORD:
