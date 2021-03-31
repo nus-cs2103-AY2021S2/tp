@@ -23,6 +23,7 @@ public class CommandBox extends UiPart<Region> {
     private ArrayList<String> userInputs = new ArrayList<>();
     private int userInputsIndex = 0;
     private boolean firstDecrementAfterUserInput = true;
+    private boolean isShiftEntered = false;
 
     @FXML
     private TextField commandTextField;
@@ -87,40 +88,64 @@ public class CommandBox extends UiPart<Region> {
         positionCaretInTheEnd();
     }
 
-    private void incrementUserInputsIndex() {
-        if (userInputsIndex + 1 < userInputs.size() && userInputsIndex < userInputs.size()) {
-            userInputsIndex++;
-        }
-    }
-
-    private void decrementUserInputsIndex() {
-        if (!firstDecrementAfterUserInput && userInputsIndex > 0) {
-            userInputsIndex--;
-        }
-        firstDecrementAfterUserInput = false;
-    }
-
+    /**
+     * Sets the input string as the text in the command box if it exists.
+     * @param input The Optional of the string to be set in the command box if it exists.
+     */
     public void setCommandTextField(Optional<String> input) {
         input.ifPresent(string -> getCommandTextField().setText(string));
         positionCaretInTheEnd();
     }
 
-    private void positionCaretInTheEnd() {
-        getCommandTextField().positionCaret(getTextInCommandTextField().length());
+    /**
+     * Gets the command text field.
+     * @return The command text field.
+     */
+    public TextField getCommandTextField() {
+        return commandTextField;
     }
 
+    /**
+     * If shift is entered right before the backspace, all the text is removed from the command box.
+     */
+    public void handleBackSpace() {
+        if (isShiftEntered) {
+            getCommandTextField().setText("");
+        }
+    }
+
+    /**
+     * Updates the boolean value of isShiftEntered depending on the user input.
+     * @param isShiftEntered True if shift is entered, and false otherwise.
+     */
+    public void updateShiftEntered(boolean isShiftEntered) {
+        this.isShiftEntered = isShiftEntered;
+    }
+
+    /**
+     * Navigates to the previous string in the userInputs array list if it exists.
+     * @return Optional of the previous string if it exists.
+     */
     public Optional<String> getPreviousInput() {
         decrementUserInputsIndex();
         Optional<String> previous = Optional.ofNullable(input());
         return previous;
     }
 
+    /**
+     * Navigates to the next string in the userInputs array list if it exists.
+     * @return Optional of the next string if it exists.
+     */
     public Optional<String> getNextInput() {
         incrementUserInputsIndex();
         Optional<String> next = Optional.ofNullable(input());
         return next;
     }
 
+    /**
+     * Returns the user input in the position userInputsIndex from the array list if it exists, and null otherwise.
+     * @return
+     */
     private String input() {
         String output = null;
         if (userInputsIndex > -1 && userInputsIndex < userInputs.size()) {
@@ -129,12 +154,38 @@ public class CommandBox extends UiPart<Region> {
         return output;
     }
 
-    public TextField getCommandTextField() {
-        return commandTextField;
+    /**
+     * Increments the index that the user input history points to if a future user input exists.
+     */
+    private void incrementUserInputsIndex() {
+        if (userInputsIndex + 1 < userInputs.size() && userInputsIndex < userInputs.size()) {
+            userInputsIndex++;
+        }
     }
 
-    public String getTextInCommandTextField() {
+    /**
+     * Decrements the index that the user input history points to if a previous user input exists.
+     */
+    private void decrementUserInputsIndex() {
+        if (!firstDecrementAfterUserInput && userInputsIndex > 0) {
+            userInputsIndex--;
+        }
+        firstDecrementAfterUserInput = false;
+    }
+
+    /**
+     * Gets the text in the command text field.
+     * @return The texts in the command text field.
+     */
+    private String getTextInCommandTextField() {
         return commandTextField.getText();
+    }
+
+    /**
+     * Moves the caret position to the end of the text.
+     */
+    private void positionCaretInTheEnd() {
+        getCommandTextField().positionCaret(getTextInCommandTextField().length());
     }
 
     /**

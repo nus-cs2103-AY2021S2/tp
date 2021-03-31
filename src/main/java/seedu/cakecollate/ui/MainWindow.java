@@ -150,11 +150,18 @@ public class MainWindow extends UiPart<Stage> {
 
     void commandBoxArrowShortcut() {
         commandBox.getCommandTextField().setOnKeyPressed(event -> {
-
             if (event.getCode().equals(KeyCode.UP)) {
                 commandBox.setCommandTextField(commandBox.getPreviousInput());
             } else if (event.getCode().equals(KeyCode.DOWN)) {
                 commandBox.setCommandTextField(commandBox.getNextInput());
+            } else if (event.getCode().equals(KeyCode.SHIFT)) {
+                commandBox.updateShiftEntered(true);
+            } else if (event.getCode().equals(KeyCode.BACK_SPACE)) {
+                commandBox.handleBackSpace();
+            }
+
+            if (!event.getCode().equals(KeyCode.SHIFT)) {
+                commandBox.updateShiftEntered(false);
             }
         });
     }
