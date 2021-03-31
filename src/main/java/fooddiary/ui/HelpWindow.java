@@ -32,7 +32,7 @@ public class HelpWindow extends UiPart<Stage> {
                     + "addon: Adds on details (i.e review, price, category) od the entry "
                     + "identified by the index number used in the list of displayed entries.\n"
                     + "     addon 1 p/7 re/I like this food a lot! "
-                    + "Singapore 129742 c/Indian Muslim\n"
+                    + "Singapore 129742 c/Indian\n"
                     + "     addon 2 p/18\n\n"
                     + "edit: Edits the details of the entry identified by the index number used in the "
                     + "displayed entry list. Existing values will be overwritten by the input values.\n"
