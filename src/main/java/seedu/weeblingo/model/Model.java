@@ -146,6 +146,8 @@ public interface Model {
 
     void switchModeHistory();
 
+    void switchModeQuizSessionEnded();
+
     /** Gets the statistics information as a string for display purposes */
     String getQuizStatisticString();
 
