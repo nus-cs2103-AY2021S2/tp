@@ -258,36 +258,48 @@ public class EditCommandTest {
     public void equals() {
         final EditCommand standardCommand = EditCommand.buildEditIndexCommand(
                 Collections.singletonList(INDEX_FIRST_PERSON), DESC_AMY);
-        final EditCommand commandWithIndexes = EditCommand.buildEditIndexCommand(VALID_INDEXES, DESC_AMY);
 
-        // same values -> returns true
+        // same values and index -> equals
         EditPersonDescriptor copyDescriptor = new EditPersonDescriptor(DESC_AMY);
         EditCommand commandWithSameValues = EditCommand.buildEditIndexCommand(
                 Collections.singletonList(INDEX_FIRST_PERSON), copyDescriptor);
         assertEquals(commandWithSameValues, standardCommand);
 
+        // variant: index
         assertEquals(EditCommand.buildEditIndexCommand(VALID_INDEXES, DESC_AMY),
                 EditCommand.buildEditIndexCommand(VALID_INDEXES, DESC_AMY));
+
+        // variant: shown
         assertEquals(EditCommand.buildEditShownCommand(DESC_AMY),
                 EditCommand.buildEditShownCommand(DESC_AMY));
 
-        // same object -> returns true
+        // variant: selected
+        assertEquals(EditCommand.buildEditSelectedCommand(DESC_AMY),
+                EditCommand.buildEditSelectedCommand(DESC_AMY));
+
+        // same object -> equals
         assertEquals(standardCommand, standardCommand);
-        assertEquals(commandWithIndexes, commandWithIndexes);
+        assertEquals(EditCommand.buildEditShownCommand(DESC_AMY),
+                EditCommand.buildEditShownCommand(DESC_AMY));
+        assertEquals(EditCommand.buildEditSelectedCommand(DESC_AMY),
+                EditCommand.buildEditSelectedCommand(DESC_AMY));
 
-        // null -> returns false
+        // different indexes, same descriptor -> not equals
+        assertNotEquals(EditCommand.buildEditIndexCommand(VALID_INDEXES, DESC_AMY),
+                EditCommand.buildEditIndexCommand(Collections.singletonList(INDEX_FIRST_PERSON),
+                        DESC_AMY));
+
+        // null -> not equals
         assertNotEquals(standardCommand, null);
-        assertNotEquals(commandWithIndexes, null);
 
-        // different types -> returns false
+        // different types -> not equals
         assertNotEquals(new ClearCommand(), standardCommand);
 
-        // different index -> returns false
+        // different index -> not equals
         assertNotEquals(EditCommand.buildEditIndexCommand(Collections.singletonList(INDEX_SECOND_PERSON), DESC_AMY),
                 standardCommand);
-        assertEquals(commandWithIndexes, standardCommand);
 
-        // different descriptor -> returns false
+        // different descriptor -> not equals
         assertNotEquals(EditCommand.buildEditIndexCommand(Collections.singletonList(INDEX_FIRST_PERSON), DESC_BOB),
                 standardCommand);
         assertNotEquals(EditCommand.buildEditIndexCommand(VALID_INDEXES, DESC_BOB),

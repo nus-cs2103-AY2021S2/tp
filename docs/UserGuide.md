@@ -449,6 +449,29 @@ Deletes tags from person in address book.
 | `tag delete selected -t Illustrator`           | Deletes `Illustrator` tag from the people selected.                               |
 | `tag delete 1 2 3 -t Photoshop -t Illustrator` | Deletes `Photoshop` and `Illustrator` tags from people at index `1`, `2` and `3`. |
 
+### Email Command
+
+Email command provides the user with the choice to mass email person(s) of their choice.
+Executing the `email` command will open up the **operating system's email client**.
+
+Format: `email { shown | selected | INDEX… }`
+
+<div markdown="span" class="alert alert-info">
+:bulb: **Notes on `email` command:**
+
+* `shown` is a special index that refers to all the person that are in the visible person list.
+
+</div>
+
+Examples:
+
+| Example          | Description                                     |
+| ---------------- | ----------------------------------------------- |
+| `email 1`        | Email person with index 1                       |
+| `email 1 2`      | Email person with index 1 and 2                 |
+| `email shown`    | Email all the person in the visible person list |
+| `email selected` | Email all the selected persons                  |
+
 ### Saving the data
 
 A-Bash Book data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.

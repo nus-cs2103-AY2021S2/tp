@@ -28,6 +28,7 @@ import javafx.collections.ObservableList;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EmailCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -128,6 +129,7 @@ public class LogicManagerTest {
         List<String> commandList = new ArrayList<>();
         commandList.add(EditCommand.COMMAND_WORD);
         commandList.add(ExitCommand.COMMAND_WORD);
+        commandList.add(EmailCommand.COMMAND_WORD);
         Collections.sort(commandList);
 
         List<String> testList = logic.getAutocompleteCommands("e");

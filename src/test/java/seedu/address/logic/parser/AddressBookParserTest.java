@@ -15,6 +15,7 @@ import static seedu.address.testutil.TypicalAliases.getTypicalAlias;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.VALID_INDEXES;
 import static seedu.address.testutil.TypicalIndexes.VALID_INDEXES_STRING;
+import static seedu.address.testutil.TypicalIndexes.VALID_INDEX_STRING;
 
 import java.text.MessageFormat;
 import java.util.Arrays;
@@ -31,6 +32,7 @@ import seedu.address.logic.commands.DeleteAliasCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EmailCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.commands.FindCommand;
@@ -192,6 +194,20 @@ public class AddressBookParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD, emptyAliases) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3", emptyAliases) instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_email() throws Exception {
+        assertTrue(parser.parseCommand(
+                EmailCommand.COMMAND_WORD + " " + EmailCommandParser.SPECIAL_INDEX,
+                emptyAliases) instanceof EmailCommand);
+        assertTrue(parser.parseCommand(
+                EmailCommand.COMMAND_WORD + " " + EmailCommandParser.SELECTED,
+                emptyAliases) instanceof EmailCommand);
+        assertTrue(parser.parseCommand(EmailCommand.COMMAND_WORD + " " + VALID_INDEXES_STRING,
+                emptyAliases) instanceof EmailCommand);
+        assertTrue(parser.parseCommand(EmailCommand.COMMAND_WORD + " " + VALID_INDEX_STRING,
+                emptyAliases) instanceof EmailCommand);
     }
 
     @Test

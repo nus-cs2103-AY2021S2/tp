@@ -147,6 +147,7 @@ public class DeleteCommand extends Command {
                 || (other instanceof DeleteCommand // instanceof handles nulls
                 && isSpecialIndex == ((DeleteCommand) other).isSpecialIndex
                 && isDeleteSelected == ((DeleteCommand) other).isDeleteSelected
-                && targetIndexes.containsAll(((DeleteCommand) other).targetIndexes)); // state check
+                && targetIndexes.containsAll(((DeleteCommand) other).targetIndexes))
+                && ((DeleteCommand) other).targetIndexes.containsAll(targetIndexes); // state check
     }
 }

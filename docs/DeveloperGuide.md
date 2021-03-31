@@ -352,6 +352,9 @@ When `SelectShowCommand` is called, a predicate will be applied onto the `filter
 only the selected list of `Person` objects. The application of predicate follows the same method as
 `FindCommand` and `ListCommand`.
 
+### Email Person(s)
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
