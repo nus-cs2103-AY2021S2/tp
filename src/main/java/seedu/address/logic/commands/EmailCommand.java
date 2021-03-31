@@ -1,6 +1,9 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.EmailCommandParser.SELECTED;
+import static seedu.address.logic.parser.EmailCommandParser.SPECIAL_INDEX;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -24,40 +27,68 @@ public class EmailCommand extends Command {
     public static final String COMMAND_WORD = "email";
     public static final String MESSAGE_SUCCESS = "Opened email client";
     public static final String MESSAGE_FAILURE = "URL Exception occurred";
+    public static final String MESSAGE_NO_SELECTED = "No selected person to email.";
     public static final String MESSAGE_USAGE =
             COMMAND_WORD + ": Open email client, with email subjects.\n"
-                    + "Parameters: { shown | INDEX… }\n"
+                    + "Parameters: { shown | selected | INDEX… }\n"
                     + "Examples:\n"
-                    + COMMAND_WORD + " shown\n"
+                    + COMMAND_WORD + " " + SPECIAL_INDEX + "\n"
+                    + COMMAND_WORD + " " + SELECTED + "\n"
                     + COMMAND_WORD + " 1\n"
                     + COMMAND_WORD + " 1 2 5";
 
     private final boolean isSpecialIndex;
+    private final boolean isEmailSelected;
     private final List<Index> selectedIndexes;
 
     /**
-     * Initializes EmailCommand that selects all the shown items in list.
+     * Private constructor. Should only be called via builder.
+     *
+     * @param isSpecialIndex
+     * @param isEmailSelected
+     * @param selectedIndexes
      */
-    public EmailCommand() {
-        isSpecialIndex = true;
-        selectedIndexes = new ArrayList<>();
+    private EmailCommand(boolean isSpecialIndex, boolean isEmailSelected,
+            List<Index> selectedIndexes) {
+        this.isSpecialIndex = isSpecialIndex;
+        this.isEmailSelected = isEmailSelected;
+        this.selectedIndexes = requireNonNull(selectedIndexes);
     }
 
-    /**
-     * Initializes EmailCommand with a list of parsed user input indexes.
-     *
-     * @param indexes parsed user input indexes
-     * @throws NullPointerException if {@code indexes} is null.
-     */
-    public EmailCommand(List<Index> indexes) {
-        isSpecialIndex = false;
-        selectedIndexes = requireNonNull(indexes);
+    public static EmailCommand buildEmailSelectedCommand() {
+        return new EmailCommand(false, true, new ArrayList<>());
+    }
+
+    public static EmailCommand buildEmailShownCommand() {
+        return new EmailCommand(true, false, new ArrayList<>());
+    }
+
+    public static EmailCommand buildEmailIndexCommand(List<Index> indexes) {
+        return new EmailCommand(false, false, indexes);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
+        if (isSpecialIndex) {
+            return emailAll(model);
+        }
+        if (isEmailSelected) {
+            return emailSelected(model);
+        }
+        return emailOneOrMultiple(model);
+
+    }
+
+    /**
+     * Emails one or multiple person from model.
+     *
+     * @param model {@code Model} which the command should operate on.
+     * @return feedback message of the operation result for display
+     * @throws CommandException if index is invalid
+     */
+    private CommandResult emailOneOrMultiple(Model model) throws CommandException {
         List<Person> lastShownList = model.getFilteredPersonList();
 
         // Validate indexes
@@ -78,16 +109,52 @@ public class EmailCommand extends Command {
         }
     }
 
+    /**
+     * Emails all the person in the shown person list.
+     *
+     * @param model {@code Model} which the command should operate on.
+     * @return feedback message of the operation result for display
+     */
+    private CommandResult emailAll(Model model) {
+        try {
+            List<Person> personList = model.getFilteredPersonList();
+            String emailValues = getEmailString(personList);
+            URI uri = new URI("mailto:" + emailValues);
+            MainApp.getInstance().getHostServices().showDocument(uri.toASCIIString());
+            return new CommandResult(MESSAGE_SUCCESS);
+        } catch (URISyntaxException e) {
+            return new CommandResult(MESSAGE_FAILURE);
+        } finally {
+            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        }
+    }
+
+    /**
+     * Emails all the selected person.
+     *
+     * @param model {@code Model} which the command should operate on.
+     * @return feedback message of the operation result for display
+     */
+    private CommandResult emailSelected(Model model) throws CommandException {
+        model.applySelectedPredicate();
+        if (model.getFilteredPersonList().size() == 0) {
+            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+            throw new CommandException(MESSAGE_NO_SELECTED);
+        }
+        return emailAll(model);
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof EmailCommand) // instanceof handles nulls
                 && isSpecialIndex == ((EmailCommand) other).isSpecialIndex
+                && isEmailSelected == ((EmailCommand) other).isEmailSelected
                 && ((EmailCommand) other).selectedIndexes.containsAll(selectedIndexes);
     }
 
     private String getEmailString(List<Person> personList) {
-        if (isSpecialIndex) {
+        if (isSpecialIndex || isEmailSelected) {
             return personList.stream()
                     .map(Person::getEmail)
                     .map(Email::toString)

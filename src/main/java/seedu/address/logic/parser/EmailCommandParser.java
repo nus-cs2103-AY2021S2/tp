@@ -9,17 +9,22 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class EmailCommandParser implements Parser<EmailCommand> {
 
     public static final String SPECIAL_INDEX = "shown";
+    public static final String SELECTED = "selected";
 
     @Override
     public EmailCommand parse(String args) throws ParseException {
         requireNonNull(args.trim());
 
         if (args.trim().equals(SPECIAL_INDEX)) {
-            return new EmailCommand();
+            return EmailCommand.buildEmailShownCommand();
+        }
+
+        if (args.trim().equals(SELECTED)) {
+            return EmailCommand.buildEmailSelectedCommand();
         }
 
         try {
-            return new EmailCommand(ParserUtil.parseIndexes(args));
+            return EmailCommand.buildEmailIndexCommand(ParserUtil.parseIndexes(args));
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, EmailCommand.MESSAGE_USAGE), pe);
@@ -33,6 +38,10 @@ public class EmailCommandParser implements Parser<EmailCommand> {
         }
 
         if (args.trim().equals(SPECIAL_INDEX)) {
+            return true;
+        }
+
+        if (args.trim().equals(SELECTED)) {
             return true;
         }
 
