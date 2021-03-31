@@ -79,10 +79,17 @@ public class Entry {
         LocalDateTime secondStart = otherEntry.getStartDate();
         LocalDateTime secondEnd = otherEntry.getEndDate();
 
-        return (firstStart.isBefore(secondStart) && secondStart.isBefore(firstEnd))
-                || (secondStart.isBefore(firstStart) && firstStart.isBefore(secondEnd));
+
+        return (firstStart.isBefore(secondEnd) && secondStart.isBefore(firstEnd));
     }
 
+    /**
+     * Returns true if the end date is after current date.
+     */
+    public boolean isOverdue() {
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        return currentDateTime.isAfter(getEndDate());
+    }
     /**
      * Returns true if start date is different from end date.
      */
@@ -121,4 +128,5 @@ public class Entry {
         }
         return builder.toString();
     }
+
 }
