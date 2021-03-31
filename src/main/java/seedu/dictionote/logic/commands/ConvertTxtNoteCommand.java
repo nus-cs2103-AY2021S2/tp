@@ -47,6 +47,10 @@ public class ConvertTxtNoteCommand extends Command {
             throw new CommandException(MESSAGE_COMMAND_DISABLE_ON_EDIT_MODE);
         }
 
+        if (model.onEditModeNote()) {
+            throw new CommandException(MESSAGE_COMMAND_DISABLE_ON_EDIT_MODE);
+        }
+
         List<Note> lastShownList = model.getFilteredNoteList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
