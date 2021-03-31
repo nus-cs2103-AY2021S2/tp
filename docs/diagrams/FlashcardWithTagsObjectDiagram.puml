@@ -1,0 +1,20 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+WeeblingoBook *-right-> "1" UniqueFlashcardList
+WeeblingoBook *-right-> "1" UniqueTagList
+UniqueTagList -[hidden]down- UniqueFlashcardList
+UniqueTagList -[hidden]down- UniqueFlashcardList
+
+UniqueTagList *-right-> "*" Tag
+UniqueFlashcardList o-right-> Flashcard
+
+Flashcard -up-> "*" Tag
+
+Flashcard *--> Question
+Flashcard *--> Answer
+
+@enduml

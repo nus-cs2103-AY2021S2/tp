@@ -1,0 +1,15 @@
+@startuml
+start
+:User enters tag;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([Duplicate tag already exists on specified flashcard])
+    :show error message;
+else ([else])
+    :New tag is added to UniqueTagList;
+    :Changes are reflected in the UI;
+endif
+stop
+@enduml

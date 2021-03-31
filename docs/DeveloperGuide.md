@@ -2,6 +2,7 @@
 layout: page
 title: Developer Guide
 ---
+Weeblingo is a desktop app for managing flashcards, **optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). With a nice and friendly interface, users can learn Japanese at a comfortable pace with this application.
 * Table of Contents
 {:toc}
 
@@ -43,7 +44,7 @@ The rest of the App consists of four components.
 Each of the four components,
 
 * defines its *API* in an `interface` with the same name as the Component.
-* exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
+* exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point).
 
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
@@ -62,11 +63,16 @@ The sections below give more details of each component.
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 **API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2021S2-CS2103T-T13-1/tp/blob/master/src/main/java/seedu/weeblingo/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`,
+`FlashcardListPanel`, `ScoreHistoryListPanel`, `StatusBarFooter` etc.
+All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files
+that are in the `src/main/resources/view` folder.
+For example, the layout of the [`MainWindow`](https://github.com/AY2021S2-CS2103T-T13-1/tp/blob/master/src/main/java/seedu/weeblingo/ui/MainWindow.java)
+is specified in [`MainWindow.fxml`](https://github.com/AY2021S2-CS2103T-T13-1/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -80,18 +86,15 @@ The `UI` component,
 **API** :
 [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
-1. `Logic` uses the `AddressBookParser` class to parse the user command.
+1. `Logic` uses the `WeeblingoParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a person).
+1. The command execution can affect the `Model` (e.g. adding a flashcard).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("learn")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
+![Interactions Inside the Logic Component for the `learn` Command](images/LearnSequenceDiagram.png)
 
 ### Model component
 
@@ -102,12 +105,14 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+
+* stores the Weeblingo data.
+
+* exposes an unmodifiable `ObservableList<Flashcard>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `FlashcardBook`, which `Flashcard` references. This allows `FlashcardBook` to only require one `Tag` object per unique `Tag`, instead of each `Flashcard` needing their own `Tag` object.<br>
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
 </div>
@@ -117,15 +122,15 @@ The `Model`,
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2021S2-CS2103T-T13-1/tp/blob/master/src/main/java/seedu/weeblingo/storage/Storage.java)
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+* can save the flashcard book data (flashcards and scores) in json format and read it back.
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.weeblingo.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -133,90 +138,70 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
 The following activity diagram summarizes what happens when a user executes a new command:
 
 ![CommitActivityDiagram](images/CommitActivityDiagram.png)
 
+### Tagging Flashcards
+
+The tagging mechanism allows users to add tags to flashcards of their choice while in the _Learn Mode_
+of the WeebLingo application. Each flashcard has a set of default tags which cannot be edited, followed by
+any unique user added tags. 
+
+![Structure of the Flashcard with tags](images/FlashcardWithTagsObjectDiagram.png)
+
+The following activity diagram summarizes what happens when a user adds a new command:
+
+![NewTagActivityDiagram](images/NewTagActivityDiagram.png)
+
+The tags function ties together with the Start function of the application, as users can choose to start a quiz
+containing flashcards that have the same tag only (to be implemented...)
+
+### Quiz Command
+
+The quiz command is used to enter Quiz mode, allowing the user to start various quizzes from there.
+The following activity diagram summarizes what happens when a user enters the Quiz command:
+
+![QuizActivityDiagram](images/QuizActivityDiagram.png)
+
+The following sequence diagram shows how the Quiz command works:
+
+![QuizSequenceDiagram](images/QuizSequenceDiagram.png)
+
+### \[Proposed\] Quiz Scoring
+*{To be updated}*
+
+### View Past Quiz Attempts
+
+The view quiz history mechanism allows users to view their past attempts of quizzes. Each entry of quiz history is
+represented in a way similar how the flashcards are represented in the Weeblingo application. 
+
+Below is the class diagram
+for how `Score` is represented in *Model* component.
+
+![HistoryModelDiagram](images/HistoryModelDiagram.png)
+
+The *UI* component, which originally only handles the display of flashcards,
+now needs to handle the display for scoring history as well.
+
+The following sequence diagram shows how the UI switches display from flashcards to score history and vice versa.
+
+![HistoryUiSequenceDiagram](images/HistoryUiSequenceDiagram.png)
+
 #### Design consideration:
 
-##### Aspect: How undo & redo executes
+##### Aspect: How to represent `Score` in the application
 
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
+* **Alternative 1 (current choice):** Make `Score` and `Flashcard` two separate classes.
+    * Pros: Easy to implement.
+    * Cons: 
+      * May have the overhead of writing similar code. For instance, `JsonAdaptedFlashcard` and `JsonAdaptedScore`.
+      * Changing the UI display from flashcards to score history may be cumbersome. 
+* **Alternative 2:** Let `Score` have inheritance relationship with `Flashcard`.
+    * Pros: Changing UI display is easy.
+    * Cons:
+      * The design choice is not intuitive (`Score` does not seem to be a `Flashcard` and vice versa).
+      * The overhead of maintaining the inheritance is non-trivial.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -236,42 +221,92 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
+* Young aspiring J-Culture enthusiast who wants to learn basic Japanese
+* goes to a Japanese Culture Club so is low on time after school
+* interested in learning the Japanese language
+* prefers using flashcards to learn
+* prefers desktop apps over other types
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: Ability to learn the Japanese language through flashcards in a fun and interactive manner
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​         | I want to …​                            | So that I can…​                              |
+| -------- | ------------------ | ------------------------------------------ | ----------------------------------------------- |
+| `* * *`  | new user           | view valid commands                        | remember how to use the Weeblingo               |
+| `* * *`  | user               | view a flashcard                           |                                                 |
+| `* * *`  | user               | see the answer to a flashcard              | check if I answered correctly                   |
+| `* * *`  | user               | start a practice run of all flashcards     | practice all flashcards in a single session     |
+| `* * *`  | user               | view all flashcards                        | study the flashcards before a session           |
+| `* *`    | user               | quiz myself on a specific set of flashcards| practice a specific group of words that I may be bad at |
+| `* *`    | user               | quiz myself on a specific number of random flashcards| spot test myself with a group of random words |
+| `* *`    | user               | add tags to certain flashcards             | group flashcards to test myself (e.g. specific coverage for an exam) |
+| `* *`    | user               | know how well I scored on a Quiz           | see how many mistakes I made in this Quiz       |
+| `* *`    | user               | see how I did on past Quizzes              | see how my scores have changed over time        |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Weeblingo` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: See flashcards one by one**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to view flashcards
+2.  WeebLingo shows a new flashcard on the screen
+3.  User clicks next
+4.  Go to step 2 again
+
+**Extensions**
+
+* 2a. All flashcards have been shown.
+
+  Use case ends.
+
+**Use case: Take a quiz**
+
+**MSS**
+
+1.  User clicks quiz
+2.  WeebLingo shows a new question on the screen
+3.  User enters his answer
+4.  WeebLingo shows whether user's answer is correct/wrong
+5.  WeebLingo displays correct answer if user's answer is wrong
+6.  WeebLingo removes this question from the list of questions for this session
+7.  Go to step 2 again
+
+**Extensions**
+
+* 2a. All questions have been shown.
+
+  Use case ends.
+
+**Use case: Save and see all my study data**
+
+**MSS**
+
+1.  User looks at a flashcard
+2.  User can save a flashcard if he is confident he has learnt the japanese word
+3.  WeebLingo saves the learnt flashcard to a storage file
+4.  User can request to see all learnt flashcards
+
+    Use case ends.
+
+**Use case: Delete a flashcard**
+
+**MSS**
+
+1.  User requests to list flashcards
+2.  AddressBook shows a list of flashcards
+3.  User requests to delete a specific flashcard in the list
+4.  AddressBook deletes the flashcard
 
     Use case ends.
 
@@ -290,18 +325,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 *{More to be added}*
 
 ### Non-Functional Requirements
-
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+<!-- Updated and maintained by [Yucheng](https://github.com/cheng20010201) -->
+1.  The product should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2.  The product should be available for download and usage after each release.
+3.  The product's size of the final Jar released should not exceed 100MB.
+4.  The product should be an offline application, which should work either with or without presence of internet
+    connection.
+5.  The product should allow one user to have different instances of the application running at the same time.
+6.  The product should be able to hold up to 2000 Japanese words without causing a delay in commands longer than 0.5 seconds.
+7.  The project should be open-sourced.
+8.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) and
+    beginner typing speed for simple Japanese text (i.e. simple words and sentences) should be able to accomplish most
+    of the learning faster using commands than using the mouse.
+10. A user should find interacting with the user interface easy, even if he/she is relatively new to the application.
+11. Each command should be processed within 3 seconds.
+12. More to be added.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
-
+* **Question**: A Japanese character/word
+* **Answer**: The reading/definition of the Japanese given in the corresponding question
+* **Flashcard**: An object that can display a question and its answer
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
@@ -330,19 +375,19 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Using the  `end` command
 
-1. Deleting a person while all persons are being shown
+1. Ending a quiz before it is started
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: No quiz has been started
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   1. Test case: `end` _while in the quiz_<br> 
+      Expected: The current quiz is ended and displayed flashcard disappears. 
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+   1. Test case: `end` _while in the start menu_<br>
+      Expected: Nothing happens. An error message is displayed to the user telling them that no Quiz has started yet.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect end commands locations to try: _while in learn mode_, _right after ending a Quiz, …​ <br>
       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
@@ -354,3 +399,5 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+

@@ -1,0 +1,52 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":WeeblingoParser" as WeeblingoParser LOGIC_COLOR
+participant ":LearnCommand" as LearnCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("learn")
+activate LogicManager
+
+LogicManager -> WeeblingoParser : parseCommand("learn")
+activate WeeblingoParser
+
+create LearnCommand
+WeeblingoParser -> LearnCommand :
+activate LearnCommand
+
+LearnCommand --> WeeblingoParser :
+deactivate LearnCommand
+
+WeeblingoParser --> LogicManager :
+deactivate WeeblingoParser
+
+LogicManager -> LearnCommand : execute()
+activate LearnCommand
+
+LearnCommand -> Model : updateFilteredFlashcardList
+activate Model
+
+Model --> LearnCommand
+deactivate Model
+
+create CommandResult
+LearnCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> LearnCommand
+deactivate CommandResult
+
+LearnCommand --> LogicManager : result
+deactivate LearnCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

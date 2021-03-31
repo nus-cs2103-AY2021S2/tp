@@ -3,57 +3,54 @@ layout: page
 title: About Us
 ---
 
-We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
-
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+We are team T13-1 from [CS2103T](https://github.com/nus-cs2103-ay2021s2).
 
 ## Project team
 
-### John Doe
+### Lan Yu Xuan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jellybeano.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[ [github](http://github.com/Jellybeano) ] [ [portfolio](team/lanyuxuan.md) ]
 
 * Role: Team Lead
-* Responsibilities: UI
+* Responsibilities: Documentation
 
-### Johnny Doe
+### Joel Wong Xue Rong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/yanneko.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[ [github](http://github.com/Yanneko) ]
+[[portfolio](team/JWong.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Testing
 
-### James Doe
+### Sun Yucheng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/cheng20010201.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/cheng20010201)]
+[[portfolio](team/cheng20010201.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Integration, Scheduling and Tracking
+
+### Teng Xin Wei
+
+<img src="images/xinweit.png" width = "200px">
+
+[[github](http://github.com/xinweit)]
+[[portfolio](team/tengxinwei.md)]
+
+* Role: Developer
+* Responsibilities: Documentation + Code quality
+
+### Zhang Xinyi
+
+<img src="images/xyzhang00.png" width="200px">
+
+[[github](https://github.com/xyzhang00)] [[portfolio](team/zhangxinyi.md)]
+
+* Role: Developer
+* Responsibilities: Code quality
