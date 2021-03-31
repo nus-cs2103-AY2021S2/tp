@@ -168,8 +168,8 @@ public class LogicManagerTest {
         String emptyString = "";
         String whiteSpace = " ";
 
-        List<String> addFlags = logic.getAutocompleteCommands(AddCommand.COMMAND_WORD);
-        List<String> editFlags = logic.getAutocompleteCommands(AddCommand.COMMAND_WORD);
+        List<String> addFlags = logic.getAutocompleteFlags(AddCommand.COMMAND_WORD);
+        List<String> editFlags = logic.getAutocompleteFlags(AddCommand.COMMAND_WORD);
 
         assertEquals(addFlags, logic.processAutocompleteFlags(emptyString, AddCommand.COMMAND_WORD));
         assertEquals(editFlags, logic.processAutocompleteFlags(emptyString, EditCommand.COMMAND_WORD));
@@ -179,7 +179,7 @@ public class LogicManagerTest {
 
     @Test
     public void processAutoCompleteFlags_validCommand() {
-        List<String> editFlags = logic.getAutocompleteFlags(AddCommand.COMMAND_WORD);
+        List<String> editFlags = logic.getAutocompleteFlags(EditCommand.COMMAND_WORD);
         List<String> addFlags = logic.getAutocompleteFlags(AddCommand.COMMAND_WORD);
 
         String editString = "edit 3 -n John Doe -e john@doe.com";
