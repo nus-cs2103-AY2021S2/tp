@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Objects;
 import java.util.Set;
+import java.util.Vector;
 
 import dog.pawbook.model.managedentity.Entity;
 import dog.pawbook.model.managedentity.Name;
@@ -127,7 +128,12 @@ public class Dog extends Entity {
     }
 
     @Override
-    public String[] getOtherPropertiesAsString() {
-        return new String[] {breed.value, dob.value, sex.value, "Owner ID: " + ownerID};
+    public Collection<String> getOtherPropertiesAsString() {
+        Collection<String> properties = new Vector<>();
+        properties.add("Breed: " + breed.value);
+        properties.add("Date of Birth: " + dob.value);
+        properties.add("Sex: " + sex.value);
+        properties.add("Owner's ID: " + ownerID);
+        return properties;
     }
 }
