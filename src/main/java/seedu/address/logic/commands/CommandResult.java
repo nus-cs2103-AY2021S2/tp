@@ -17,7 +17,6 @@ public class CommandResult {
     /** Schedule information should be shown to the user. */
     private final boolean showSchedule;
 
-
     /** Help information should be shown to the user. */
     private final boolean showHelp;
 

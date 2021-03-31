@@ -149,6 +149,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean isSavedState() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setSavedState(boolean isSavedState) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasPerson(Person person) {
             throw new AssertionError("This method should not be called.");
         }
@@ -270,6 +280,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public Lesson getLesson(Lesson lesson) {
+            return null;
+        }
+
+        @Override
         public void deleteLesson(Lesson target) {
             throw new AssertionError("This method should not be called.");
         }
@@ -281,6 +296,11 @@ public class AddCommandTest {
 
         @Override
         public void addPersonToLesson(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void removePersonFromLesson(Person person) {
             throw new AssertionError("This method should not be called.");
         }
 

@@ -61,6 +61,21 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public boolean isProceed(String commandText) throws ParseException {
+        logger.info("----------------[USER COMMAND][" + commandText + "]");
+        String command = commandText.trim().toLowerCase();
+        switch (command) {
+        case "y":
+            return true;
+        case "n":
+            return false;
+        default:
+            throw new ParseException("Please key in either 'y' or 'n'.");
+        }
+
+    }
+
+    @Override
     public ObservableList<Lesson> getSortedLessonsForDay(String keyword) {
         this.model.filterThenSortLessonList(new LessonDayPredicate(keyword), Lesson::compareTo);
         return getTransformedLessonList();

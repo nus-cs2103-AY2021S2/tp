@@ -13,6 +13,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.lesson.Lesson;
 import seedu.address.model.person.Person;
 
 /**
@@ -48,8 +49,10 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New student added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in TutorsPet";
+    public static final String MESSAGE_DUPLICATE_LESSON = "You have a lesson at %1$s with %2$s. \n"
+            + "Do you wish to proceed? y/n";
 
-    private final Person toAdd;
+    private Person toAdd;
 
     /**
      * Creates an AddCommand to add the specified {@code Person}
@@ -62,14 +65,23 @@ public class AddCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        if (!model.isSavedState()) {
 
-        if (model.hasPerson(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            if (model.hasPerson(toAdd)) {
+                throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            }
+
+            for (Lesson lesson : toAdd.getLessons()) {
+                if (model.hasLesson(lesson)) {
+                    model.setSavedState(true);
+                    throw new CommandException(String.format(MESSAGE_DUPLICATE_LESSON,
+                            lesson.formatString(), model.getLesson(lesson).getPersonInString()));
+                }
+            }
         }
-
         model.addPersonToLesson(toAdd);
         model.addPerson(toAdd);
-
+        model.setSavedState(false);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

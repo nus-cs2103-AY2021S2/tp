@@ -68,6 +68,15 @@ public class UniqueLessonList implements Iterable<Lesson> {
         internalList.set(index, editedLesson);
     }
 
+    public Lesson getLesson(Lesson lesson) throws LessonNotFoundException {
+        requireNonNull(lesson);
+        if (contains(lesson)) {
+            int index = internalList.indexOf(lesson);
+            return internalList.get(index);
+        }
+        throw new LessonNotFoundException();
+    }
+
     /**
      * Add a person {@code person} to the lesson in the list.
      * The person {@code person} must not be the same as another existing person in the lesson's set of persons.

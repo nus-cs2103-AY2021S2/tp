@@ -71,6 +71,16 @@ public interface Model {
     Person getSelectedPerson();
 
     /**
+     * Returns true if the state is saved.
+     */
+    boolean isSavedState();
+
+    /**
+     * Set the boolean of the saved state.
+     */
+    void setSavedState(boolean isSavedState);
+
+    /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
     boolean hasPerson(Person person);
@@ -157,6 +167,8 @@ public interface Model {
      * Returns true if a lesson with the same day and time as {@code lesson} exists in the lesson book.
      */
     boolean hasLesson(Lesson lesson);
+
+    Lesson getLesson(Lesson lesson);
 
     /**
      * Deletes the given lesson.
