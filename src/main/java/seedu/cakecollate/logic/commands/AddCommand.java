@@ -9,7 +9,6 @@ import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_ORDER_DESCRIPTION;
 import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.cakecollate.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -30,7 +29,6 @@ import seedu.cakecollate.model.order.Order;
 import seedu.cakecollate.model.order.OrderDescription;
 import seedu.cakecollate.model.order.Phone;
 import seedu.cakecollate.model.order.Request;
-import seedu.cakecollate.model.orderitem.Cost;
 import seedu.cakecollate.model.orderitem.OrderItem;
 import seedu.cakecollate.model.orderitem.Type;
 import seedu.cakecollate.model.tag.Tag;
@@ -65,21 +63,22 @@ public class AddCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New order added: %1$s";
     public static final String MESSAGE_DUPLICATE_ORDER = "This order already exists in CakeCollate";
 
-//    private final Order toAdd;
     private final IndexList orderItemIndexList;
     private final AddOrderDescriptor addOrderDescriptor;
 
-//    /**
-//     * Creates an AddCommand to add the specified {@code Order}
-//     */
-//    public AddCommand(Order order) {
-//        requireNonNull(order);
-////        toAdd = order;
-////        orderIndexList = indexList;
-//    }
 
+    /**
+     * Creates an add command object with indexlist containing the indexes passed in by user,
+     * and a descriptor that contains other fields needed for the Order to be built
+     *
+     * @param orderItemIndexList null if no index was given by user
+     *                           (todo not sure if should change to empty indexlist instead)
+     *
+     * @param addOrderDescriptor contains all other fields needed for Order to be built and added into model
+     */
     public AddCommand(IndexList orderItemIndexList, AddOrderDescriptor addOrderDescriptor) {
         // requireNonNull(orderItemIndexList);
+        
         requireNonNull(addOrderDescriptor);
         this.orderItemIndexList = orderItemIndexList;
         this.addOrderDescriptor = new AddOrderDescriptor(addOrderDescriptor); // defensive copy like in edit command
@@ -101,7 +100,7 @@ public class AddCommand extends Command {
             mapIndexToOrderItems(model);
         }
 
-        Order toAdd = addOrderDescriptor.create(); // slightly diff from editorderdescriptor
+        Order toAdd = addOrderDescriptor.build(); // slightly diff from editOrderDescriptor
 
         if (model.hasOrder(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_ORDER);
@@ -124,6 +123,12 @@ public class AddCommand extends Command {
 
     }
 
+    /**
+     * Adds order items from the order model that correspond to order item indexes given by the user
+     *
+     * @param model
+     * @throws CommandException thrown when invalid indexes are given
+     */
     private void mapIndexToOrderItems(Model model) throws CommandException {
         List<OrderItem> lastShownOrderItems = model.getFilteredOrderItemsList();
 
@@ -141,9 +146,8 @@ public class AddCommand extends Command {
 
         /*
         for each index specified
-        use stream? not sure what happens when there isn't any
-        OrderItem o = lastShownList.get(index.getZeroBased());
-        add o to addItemDescriptor
+        get corresponding order item
+        create an order description from the order item
          */
         list.forEach(i -> addOrderDescriptor.setOrderDescription(
                 new OrderDescription(
@@ -189,42 +193,6 @@ public class AddCommand extends Command {
         AddCommand a = (AddCommand) other;
         return (Objects.equals(orderItemIndexList, a.orderItemIndexList))
                 && addOrderDescriptor.equals(a.addOrderDescriptor);
-    }
-
-
-    public List<OrderItem> temporary() {
-        final OrderItem BLACK_FOREST = new OrderItem(
-                new Type("Black Forest")
-                , new Cost("25.75")
-        );
-
-        final OrderItem RED_VELVET = new OrderItem(
-                new Type("Red Velvet Cake")
-                , new Cost("34.99")
-        );
-
-        final OrderItem CHOCOLATE_MUD = new OrderItem(
-                new Type("Chocolate Mud Cake")
-                , new Cost("40.95")
-        );
-
-        final OrderItem OREO_CHEESE = new OrderItem(
-                new Type("Oreo Cheesecake")
-                , new Cost("25.75")
-        );
-
-        final OrderItem BUTTERSCOTCH = new OrderItem(
-                new Type("Butterscotch Cake")
-                , new Cost("19.99")
-        );
-
-        List<OrderItem> o = new ArrayList<>();
-        o.add(BUTTERSCOTCH);
-        o.add(RED_VELVET);
-        o.add(CHOCOLATE_MUD);
-        o.add(OREO_CHEESE);
-
-        return o;
     }
     
     
@@ -373,7 +341,7 @@ public class AddCommand extends Command {
                     && getDeliveryDate().equals(e.getDeliveryDate());
         }
 
-        public Order create() {
+        public Order build() {
             return new Order(this.name, this.phone, this.email, this.address, this.orderDescriptions, this.tags,
                     this.deliveryDate, this.request);
         }

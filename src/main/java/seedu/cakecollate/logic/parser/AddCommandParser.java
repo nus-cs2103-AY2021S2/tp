@@ -53,11 +53,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        Set<OrderDescription> orderDescriptionSet =
-                ParserUtil.parseOrderDescriptions(argMultimap.getAllValues(PREFIX_ORDER_DESCRIPTION));
-//                isAnyPresent(argMultimap, PREFIX_ORDER_DESCRIPTION)
-//                ? ParserUtil.parseOrderDescriptions(argMultimap.getAllValues(PREFIX_ORDER_DESCRIPTION))
-//                : null;
+        Set<OrderDescription> orderDescriptionSet = ParserUtil.parseOrderDescriptions(argMultimap.getAllValues(PREFIX_ORDER_DESCRIPTION));
 
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         DeliveryDate deliveryDate = ParserUtil.parseDeliveryDate(argMultimap.getValue(PREFIX_DATE).get());

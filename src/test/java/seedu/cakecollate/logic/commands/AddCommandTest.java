@@ -29,20 +29,20 @@ import seedu.cakecollate.model.order.Order;
 import seedu.cakecollate.model.orderitem.OrderItem;
 import seedu.cakecollate.testutil.AddOrderDescriptorBuilder;
 import seedu.cakecollate.testutil.OrderBuilder;
-//<<<<<<< HEAD
 
 
 /**
  * todo: Tests
- * - order desc that already exists in order item model
+ * - order desc that already exists in order item model stub
  * - new order desc + existing order desc + order index
+ *
+ * basically stub equivalent of addCommandIntegrationTest
  *
  * check if equivalent tests exist in parser
  */
 
 public class AddCommandTest {
     private IndexList nonNullIndexList = new IndexList(new ArrayList<>());
-    // todo should i pass in empty index list instead of null? is there a good practice
 
     @BeforeEach
     public void setUp() {
@@ -54,14 +54,6 @@ public class AddCommandTest {
     public void constructor_nullAddOrderDescriptor_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddCommand(null, null));
         assertThrows(NullPointerException.class, () -> new AddCommand(nonNullIndexList, null));
-//=======
-//
-//public class AddCommandTest {
-//
-//    @Test
-//    public void constructor_nullOrder_throwsNullPointerException() {
-//        assertThrows(NullPointerException.class, () -> new AddCommand(null));
-//>>>>>>> master
     }
 
     @Test

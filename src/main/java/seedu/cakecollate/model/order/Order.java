@@ -24,7 +24,6 @@ public class Order {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
     private final Set<OrderDescription> orderDescriptions = new HashSet<>();
-    // assuming that for current implementation, we don't need to store order item ID
     private final DeliveryDate deliveryDate;
     private final DeliveryStatus deliveryStatus;
     private final Request request;

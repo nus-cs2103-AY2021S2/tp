@@ -66,12 +66,6 @@ public class AddCommandIntegrationTest {
 //        AddCommand.AddOrderDescriptor descriptor = new AddOrderDescriptorBuilder(orderInList).build();
 //        assertCommandFailure(new AddCommand(null, descriptor), model, AddCommand.MESSAGE_DUPLICATE_ORDER);
     }
-    // todo index list related
-
-    // todo with order index
-
-    // todo with both
-
 
 
     // ======== TESTS ADDED AFTER ORDER ITEM FEATURE ========
@@ -80,7 +74,7 @@ public class AddCommandIntegrationTest {
     // === INDEX LIST RELATED ===
 
     @Test
-    public void invalidListIndex_uhh() throws CommandException {
+    public void execute_invalidListIndex_uhh() throws CommandException {
         Model emptyModel = new ModelManager();
         AddCommand.AddOrderDescriptor descriptor = new AddOrderDescriptorBuilder(new OrderBuilder().withOrderDescriptions().build()).build();
 
@@ -114,7 +108,7 @@ public class AddCommandIntegrationTest {
     }
 
     @Test
-    public void execute_multipleIndexList_AllAddedToOrder() {
+    public void execute_multipleIndexList_allAddedToOrder() {
 
     }
 
@@ -123,17 +117,16 @@ public class AddCommandIntegrationTest {
 
 
 
-    // === ===
+    // === TESTS RELATED TO ORDER DESC/ORDER ITEM INDEXES ===
 
 
     @Test
     public void execute_inputExistingOrderDesc_doesNotAddToModelAgain() {
         String value = "cake that already exists in model";
-        Order order = new OrderBuilder().withOrderDescriptions(value).build(); // cry names don't make sense
+        Order order = new OrderBuilder().withOrderDescriptions(value).build();
         AddCommand.AddOrderDescriptor descriptor = new AddOrderDescriptorBuilder(order).build();
 
         OrderItem existingOrderItem = new OrderItemBuilder().withType(value).build();
-        // does this stuff go into dg, e.g. how to test - use builders
 
         model.addOrderItem(existingOrderItem);
 
@@ -142,14 +135,11 @@ public class AddCommandIntegrationTest {
         Command addCommand = new AddCommand(null, descriptor);
 
         Model expectedModel = new ModelManager(model.getCakeCollate(), new UserPrefs(), model.getOrderItems());
-
         expectedModel.addOrder(order);
         String expectedMessage = String.format(AddCommand.MESSAGE_SUCCESS, order);
 
         assertCommandSuccess(addCommand, model, expectedMessage, expectedModel);
         assertTrue(model.getFilteredOrderItemsList().size() == initialSize);
-        // assertTrue()
-        // assertEquals size has remained the same
 
         // as long as model doesn't accept duplicate items, it should be okay
         // todo don't duplicate stuff in the model that's same content, but in a different case
