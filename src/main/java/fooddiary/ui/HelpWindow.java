@@ -22,9 +22,9 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String USERGUIDE_URL = "https://ay2021s2-cs2103-t14-2.github.io/tp/UserGuide.html#quick-start";
     public static final String EXTERNAL_DETAILS = "For more details, refer to our user guide: \n" + USERGUIDE_URL;
     public static final String CATEGORIES = "2. Food Categories:\nFASTFOOD, WESTERN, INDIAN, CHINESE, FUSION, "
-                    + "JAPANESE, KOREAN, MALAY, HALAL, VEGETARIAN, VEGAN, FRUITS, DESSERT, OTHERS, INVALID\n\n\n";
+                    + "JAPANESE, KOREAN, MALAY, HALAL, VEGETARIAN, VEGAN, FRUITS, DESSERT, OTHERS\n\n\n";
     public static final String SCHOOL_LOC = "3. School Locations:\nSOC, FASS, BIZ, SCIENCE, FOE, UTOWN, NUSS, YIH, "
-                    + "PGP, USC, CLB, UHALL, SDE, MED, DENT, VENTUS, INVALID\n\n\n";
+                    + "PGP, USC, CLB, UHALL, SDE, MED, DENT, VENTUS\n\n\n";
     public static final String HELP_MESSAGE = "1. List of Commands:\n\n"
                     + "add: Adds an entry to the Food Diary.\n"
                     + "     add n/Al Amaan ra/5 p/6 re/I like their food a lot! a/3155 Commonwealth Ave W, "
