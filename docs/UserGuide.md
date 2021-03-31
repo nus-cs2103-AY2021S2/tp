@@ -469,7 +469,8 @@ Listed all grades
 ### Add a Tutor Filter: `add_tutor_filter`
 
 Adds Tutor Filter(s) to the Tutor Filter list, filtering the tutors that are shown in the
-tutor list. The following tutor attributes and subject attributes in each tutor are filterable:
+tutor list. Note that tutor filters **are not persistent (are not saved)**. The following tutor
+attributes and subject attributes in each tutor are filterable:
 
 Inclusive Filters:
 * Name
@@ -512,7 +513,9 @@ Example_Output: `Tutor filters deleted: Subject Level: secondary, Subject Rate: 
 
 ### Add an Appointment Filter: `add_appointment_filter`
 
-Adds Appointment Filter(s) to the Appointment Filter list, filtering the appointments that are shown in the appointment list. The following appointment attributes are filterable:
+Adds Appointment Filter(s) to the Appointment Filter list, filtering the appointments that are shown
+in the appointment list. Note that appointment filters **are not persistent (are not saved)**. The
+following appointment attributes are filterable:
 
 Inclusive Filters:
 * Name
