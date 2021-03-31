@@ -40,7 +40,7 @@ public class Messages {
     public static final String MESSAGE_INVALID_EMAIL_FORMAT = "Invalid email address format, please try again.\n";
     public static final String PROMPT_MESSAGE_TRY_AGAIN = "Please try again or enter exit_prompt to quit prompting.\n";
 
-    public static final String PROMPT_EMAIL_MESSAGE = "Please provide the email address of the booker. "
+    public static final String PROMPT_EMAIL_MESSAGE = "Please provide the email address of the booker.\n"
             + "Ensure that the booker is already recorded in the system.\n";
     public static final String PROMPT_BOOKING_VENUE_MESSAGE = "Please provide the venue "
             + "name intended for the booking.\n";

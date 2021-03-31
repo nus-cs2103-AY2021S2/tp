@@ -17,10 +17,10 @@ public class BookingTagPromptParser {
 
         String[] tags = args.split(",");
         for (String tag : tags) {
-            if (!Tag.isValidTagName(tag)) {
+            if (!Tag.isValidTagName(tag.trim())) {
                 throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
             }
-            tagSet.add(new Tag(tag));
+            tagSet.add(new Tag(tag.trim()));
         }
 
         return new PromptBookingTagsCommand(tagSet);
