@@ -28,8 +28,7 @@ public class DeleteRecurringSessionCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes a session in a recurring session identified by an index number used in the student's"
             + " list of sessions and the date of the session\n"
-            + "Parameters: n/FULLNAME i/INDEX (must be a positive integer belonging to a recurring session)"
-            + " d/DATE t/TIME (must be a valid date and time of the recurring session)\n"
+            + "Parameters: n/FULLNAME i/INDEX d/DATE t/TIME \n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "John Doe " + PREFIX_INDEX + "1 "
             + PREFIX_DATE + "2021-03-30 " + PREFIX_TIME + "12:00";
 
