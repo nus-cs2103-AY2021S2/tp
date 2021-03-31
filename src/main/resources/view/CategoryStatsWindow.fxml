@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Scene?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.stage.Stage?>
+
+<fx:root title="Statistics (Category)" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+  <icons>
+    <Image url="@/images/help_icon.png" />
+  </icons>
+  <scene>
+    <Scene>
+         <HBox alignment="CENTER">
+            <opaqueInsets>
+               <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
+            </opaqueInsets>
+            <padding>
+               <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
+            </padding>
+            <children>
+               <BarChart fx:id="statsBarChart" animated="false" legendVisible="false" title="Top Categories">
+                 <xAxis>
+                   <CategoryAxis side="BOTTOM" />
+                 </xAxis>
+                 <yAxis>
+                   <NumberAxis side="LEFT" />
+                 </yAxis>
+               </BarChart>
+            </children>
+         </HBox>
+    </Scene>
+  </scene>
+</fx:root>
