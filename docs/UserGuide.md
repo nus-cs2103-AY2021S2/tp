@@ -73,8 +73,6 @@ Categories are limited to the following:
 Example:
 
     add  n/Al Amaan Restaurant ra/5 p/8 re/best for Butter Chicken a/12 Clementi Rd, Singapore 129742 c/Indian s/FOE
-or
-
     add  n/7 Eleven ra/3 p/4 re/Mac and cheese there is amazing a/NUS c/Halal s/YIH s/SOC
 
 ### Addon a review or a price to a FoodDiary entry: `addon`
@@ -263,13 +261,13 @@ Example:
     edit 1 ra/5 p/7 re/I like this food a lot! a/Science c/Indian c/Halal s/Ventus
     edit 1 re/I like the chicken re/ I like the rice
 
-### Clear all entries
+### Clear all entries `clear`
 Clearing all entries from food diary.
 
 Format: `clear`
 
 
-### Exiting food diary 
+### Exiting food diary `exit`
 Close and exit the program.
 
 Format: `exit`
