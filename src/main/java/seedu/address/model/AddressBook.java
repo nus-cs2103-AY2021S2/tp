@@ -158,6 +158,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// issue-level operations
 
     /**
+     * Returns true if a issue with the same identity as {@code issue} exists SunRez.
+     */
+    public boolean hasIssue(Issue issue) {
+        requireNonNull(issue);
+        return issues.contains(issue);
+    }
+
+    /**
      * Adds a issue to the address book.
      * The issue must not already exist in the address book.
      */

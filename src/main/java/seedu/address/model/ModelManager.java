@@ -206,6 +206,13 @@ public class ModelManager implements Model {
     }
 
     // =========== Issues =====================================================================================
+
+    @Override
+    public boolean hasIssue(Issue issue) {
+        requireNonNull(issue);
+        return addressBook.hasIssue(issue);
+    }
+
     @Override
     public void deleteIssue(Issue target) {
         addressBook.removeIssue(target);

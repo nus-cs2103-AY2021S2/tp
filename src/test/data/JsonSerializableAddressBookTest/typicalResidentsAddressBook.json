@@ -101,5 +101,41 @@
       "tagged": []
     }
   ],
-  "issues": []
+  "issues": [
+    {
+      "roomNumber": "10-100",
+      "description": "Broken table",
+      "timestamp": "2021/01/01 12:00pm",
+      "status": "pending",
+      "category": "Furniture"
+    },
+    {
+      "roomNumber": "20-109",
+      "description": "Flickering light",
+      "timestamp": "2021/03/20 8:35am",
+      "status": "closed",
+      "category": "Electrical"
+    },
+    {
+      "roomNumber": "15-112",
+      "description": "Chair cylinder exploded",
+      "timestamp": "2020/12/11 6:53pm",
+      "status": "pending",
+      "category": "Furniture"
+    },
+    {
+      "roomNumber": "04-119",
+      "description": "Bed soaked from rain due to open window",
+      "timestamp": "2020/11/29 11:23pm",
+      "status": "closed",
+      "category": "Furniture"
+    },
+    {
+      "roomNumber": "08-104",
+      "description": "Cockroach everywhere",
+      "timestamp": "2020/08/10 8:48am",
+      "status": "closed",
+      "category": "Others"
+    }
+  ]
 }
