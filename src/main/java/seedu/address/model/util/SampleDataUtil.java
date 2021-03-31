@@ -49,7 +49,7 @@ public class SampleDataUtil {
                 Optional.of(new Address("Blk 11 Ang Mo Kio Street 74, #11-04")),
                 Optional.of(new Name("Claire Oliveiro")),
                 Optional.of(new Phone("93210288")),
-                getTagSet("classA"), getLessonSet("monday 1500")),
+                getTagSet("math"), getLessonSet("monday 1500")),
             new Person(new Name("David Li"), new Phone("91031282"),
                 Optional.of(new School("Li Secondary School")),
                 Optional.of(new Email("lidavid@example.com")),
