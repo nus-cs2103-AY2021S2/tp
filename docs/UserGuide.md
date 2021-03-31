@@ -82,7 +82,18 @@ The command box is where you will be entering commands to be executed by StoreMa
 
 The result display box is where StoreMando’s server replies to every command that you key in. Any success, error or
 warning messages will be displayed in this box.
-   
+
+### 2.3. Prefixes and Keywords
+
+Prefix | Keyword and Format |
+:-----:|--------------------|
+n/ | |
+l/ | |
+q/ | |
+e/ | |
+t/ | |
+*/ | |
+
 ----
 
 ## 3. Features
@@ -126,6 +137,7 @@ Do you have an item to add to the inventory? This command is the right one for y
 Format: `add n/ITEM_NAME l/LOCATION q/QUANTITY [e/EXPIRY_DATE] [t/TAG]…​`
 
 Examples:
+
 * `add n/Chocolate Milk l/kitchen refrigerator q/2` adds 2 Chocolate Milk to the kitchen refrigerator.
 * `add n/Sunshine Bread l/kitchen cupboard q/10 e/2021-05-11 t/favourite` adds 10 Sunshine Bread with expiry date,
   2021-05-11, and "favourite" tag to the kitchen cupboard.
@@ -149,6 +161,7 @@ If you want to edit any details of an existing item in the inventory, you can do
 Format: `edit INDEX [n/ITEM_NAME] [l/LOCATION] [q/QUANTITY] [e/EXPIRY_DATE] [t/TAG]…​`
 
 Examples:
+
 * `edit 1 q/10 e/2022-10-11` edits the quantity of the 1st item to be `10` and expiry date of the 1st item to
   be `2022-10-11` if the existing quantity and expiry date of the 1st item are both not `10` and `2022-10-11`
   respectively.
@@ -176,6 +189,7 @@ you to do just that.
 You can use this command in 3 different ways.
 
 * #### 3.4.1. Listing all items in StoreMando
+  
   This command allows you to view all the items in the inventory.
 
   Format: `list`
@@ -184,6 +198,7 @@ You can use this command in 3 different ways.
     * `list` displays all the items in the inventory.
 
 * #### 3.4.2. Listing all items at a specific location
+  
   This command allows you to view all items at a specific location.
 
   Format: `list l/LOCATION`
@@ -204,11 +219,13 @@ You can use this command in 3 different ways.
   </div>
 
 * #### 3.4.3. Listing all items with a specific tag
+  
   This command allows you to view all items containing a specific tag.
 
   Format: `list t/TAG`
 
   Example:
+  
     * `list t/favourite` displays all the items with the "favourite" tag.
 
   <div markdown="block" class="alert alert-info">
@@ -240,12 +257,14 @@ You can use this command in 2 different ways.
 </div>
 
 * #### 3.5.1. Find items with complete name match
+  
   Format: `find KEYWORD [MORE_KEYWORDS]`
 
   Examples:
+  
     * `find Chocolate` returns `chocolate` and `Chocolate Milk`
     * `find potato chip` returns `Potato Biscuit` and `chocolate chip`
-    
+
   <div markdown="block" class="alert alert-info">
 
   **:information_source: Notes about the command:**
@@ -255,9 +274,11 @@ You can use this command in 2 different ways.
   </div>
 
 * #### 3.5.2 Find items with partial name match
+  
   Format: `find */KEYWORD [MORE_KEYWORDS]`
 
   Examples:
+  
     * `find */Burger` returns `CheeseBurger` and `fishburger`
     * `find */cheese egg` returns `MacAndCheese` and `eggs`
 
@@ -276,6 +297,7 @@ Are you looking to get rid of an existing item from the inventory? Use this comm
 Format: `delete INDEX`
 
 Examples:
+
 * `list` followed by `delete 2` deletes the second item in the entire inventory.
 * `find Chocolate` followed by `delete 1` deletes the first item in the result of the `find` command.
 * `list Room 2` followed by `delete 3` deletes the third item in the recorded list of items in Room 2.
@@ -297,6 +319,7 @@ Want to know which items of yours are expiring soon? Then, this is the right com
 Format: `reminder NUMBER TIME_UNIT`
 
 Examples:
+
 * `reminder 7 days` returns a list containing all items that are expiring within the next 7 days.
 * `reminder 2 weeks` returns a list containing all items that are expiring within the next 2 weeks.
 * Given today is 10 March 2021, and the inventory has 2 items: chocolate with expiry date of 13 March 2021 and banana
@@ -330,9 +353,11 @@ You can use this command in 3 different ways.
 * #### 3.8.1. Sorting items by quantity
 
     * ##### 3.8.1.1. Ascending quantity
+      
       Format: `sort quantity asc`
 
       Example:
+      
         * `sort quantity asc` sorts the items in the displayed list in ascending order of quantity.
 
       <div markdown="block" class="alert alert-info">
@@ -344,9 +369,11 @@ You can use this command in 3 different ways.
       </div>
 
     * ##### 3.8.1.2 Descending quantity
+      
       Format: `sort quantity desc`
 
       Example:
+      
         * `sort quantity desc` sorts the items in the displayed list in descending order of quantity.
 
       <div markdown="block" class="alert alert-info">
@@ -358,9 +385,11 @@ You can use this command in 3 different ways.
       </div>
 
 * #### 3.8.2. Sorting items by expiry date
+  
   Format: `sort expirydate`
 
   Example:
+  
     * `sort expiryDate` sorts the items in the displayed list from the earliest expiry date to the latest.
 
   <div markdown="block" class="alert alert-info">
@@ -379,15 +408,19 @@ Do you want to clear your entire inventory? Key in this command to clear all ite
 You can use this command in 2 different ways.
 
 * #### 3.9.1. Clear all items in entire inventory
+  
   Format 1: `clear`
 
   Example:
+  
     * `clear` clears all the items in the inventory.
 
 * #### 3.9.2. Clear all items in a specific location
+  
   Format 2: `clear l/LOCATION`
 
   Example:
+  
     * `clear l/kitchen` clears all the items with location `kitchen`.
 
   <div markdown="block" class="alert alert-info">
@@ -448,8 +481,8 @@ to this user guide to provide you with the help you need.
 
 ## 5. Command summary
 
-Action | Format, Examples |
-:-----:|------------------|
+Action | Format, Examples 
+:-----:|------------------
 **[“Help"](#31-viewing-help--help)** |  `help`
 **[“Add"](#32-adding-an-item--add)** | `add n/ITEM_NAME l/LOCATION q/QUANTITY [e/EXPIRY_DATE] [t/TAG]…​` <br> e.g. `add n/koko krunch l/fridge q/1 e/2021-05-27 t/favourite`
 **[“Edit"](#33-editing-an-item--edit)** | `edit INDEX [n/ITEM_NAME] [e/EXPIRY_DATE] [l/LOCATION] [q/QUANTITY] [t/TAG]…​`<br> e.g.`update 1 l/freezer q/2 `
