@@ -267,23 +267,23 @@ Examples:
 
 #### 3.8.1 Searching properties: `find property`
 
-Finds properties that match the criterion provided.
+Finds all properties containing any of the specified keywords (case-insensitive) and/or with the given options. 
 
 Formats:
-* `find property [KEYWORD]... [OPTION]...`
+* `find property [n/NAME] [pl/UPPER_PRICE_LIMIT] [pm/LOWER_PRICE_LIMIT] [t/PROPERTY_TYPE] [a/ADDRESS]* 
+[p/POSTAL_CODE]* [d/DEADLINE]* [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT]* 
+[ce/CLIENT_EMAIL]* [tags/TAGS_SEPARATED_BY_COMMA]`
+* Note that all options marked with `*` are limited to one per query. 
 
 Description:
-* There can be 0 or more keywords and 0 or more options, but keywords and options cannot be both empty. All text are case insensitive.
+* There can be 1 or more parameters. Other than options marked with `*`, there can be multiple of 
+each option. 
+* All text are case insensitive.
 
 Options:
-* `[t/PROPERTY_TYPE]`
+* `[n/NAME]`
 
-    Search for properties whose property type field contain patterns specified in `[t/PROPERTY_TYPE]`.
-
-    The following property types are supported:
-    * hdb
-    * condo
-    * landed
+    Searches for properties with names matching `NAME`. 
 
 * `[pm/PRICE_UPPER_LIMIT]`
 
@@ -292,25 +292,100 @@ Options:
 * `[pl/PRICE_LOWER_LIMIT]`
 
     Search for properties with prices less than `[PRICE_LOWER_LIMIT]`.
+    
+* `[t/PROPERTY_TYPE]`
+
+    Search for properties whose property type field contain patterns specified in `[t/PROPERTY_TYPE]`.
+
+    The following property types are supported:
+    * hdb
+    * condo
+    * landed
+    
+* `[a/ADDRESS]`
+    
+    Searches for properties with `[ADDRESS]` as address. 
+    
+    Limited to one per query. 
+    
+* `[p/POSTAL_CODE]`
+    
+    Searches for properties with `[POSTAL_CODE]` as postal code. 
+    
+    Limited to one per query. 
+    
+* `[d/DEADLINE]`
+    
+    Searches for properties with `[DEADLINE]` as deadline. 
+    
+    Limited to one per query. 
+    
+* `[r/REMARKS]` 
+
+    Searches for properties containing `[REMARKS]` in their remarks. 
+
+* `[cn/CLIENT_NAME]` 
+
+    Searches for properties whose clients contain `[CLIENT_NAME]` in their names. 
+     
+* `[cc/CLIENT_CONTACT]`
+
+    Searches for properties whose clients' contact numbers match `[CLIENT_CONTACT]`. 
+
+* `[ce/CLIENT_EMAIL]` 
+
+    Searches for properties whose clients' emails match `[CLIENT_EMAIL]`. 
+
+* `[tags/TAGS_SEPARATED_BY_COMMA]`
+
+    Searches for properties whose tags match `[TAGS_SEPARATED_BY_COMMA]`. `TAGS_SEPARATED_BY_COMMA` consists of 
+    all tags you wish to search for, all separated with comma. 
+
 
 Examples:
-* `find property jurong west`
-* `find property pm/500000`
+* `find property n/jurong west`
 * `find property bishan north t/hdb pl/$1,000,000`
+* `find property pl/1000000 t/hdb a/1 Jurong East Street 32, #08-111 tags/3 bedrooms, need renovation cc/91234567`
 
 #### 3.8.2 Searching appointments: `find appointment`
 
-Finds appointments that match the criterion provided.
+Finds all appointments containing any of the specified keywords (case-insensitive) and/or with the given parameters. 
 
 Formats:
-* `find appointment [KEYWORD]...`
+* `find appointment [n/NAME] [r/REMARKS] [d/DATE]* [t/TIME]*`
+* Note that all options marked with `*` are limited to one per query. 
 
 Description:
-* There can be 0 or more keywords. Keywords are case insensitive.
+* There can be 1 or more options. Other than options marked with `*`, there can be multiple of 
+each option. 
+* All text are case insensitive.
+
+Options: 
+* `[n/NAME]`
+    
+    Searches for appointments with `[NAME]` in their names. 
+    
+* `[r/REMARKS]` 
+
+    Searches for appointments containing `[REMARKS]` in their remarks. 
+    
+* `[d/DATE]`
+    
+    Searches for properties with `[DATE]` as date. 
+    
+    Limited to one per query. 
+    
+* `[t/TIME]`
+    
+    Searches for properties with `[TIME]` as time. 
+    
+    Limited to one per query. 
+
+
 
 Examples:
-* `find appointment bob`
-* `find appointment sunday`
+* `find appointment n/bob`
+* `find appointment n/alex d/25-12-2021`
 
 #### 3.8.3 Searching clients: `find client`
 
@@ -394,8 +469,8 @@ Action | Format, Examples
 **List appointment** | `list appointment`
 **Update status** | `update INDEX OPTION`<br><br>  Options: <br>{::nomarkdown}<ul> <li>{:/}`u/new AMOUNT`{::nomarkdown}</li> <li>{:/}`u/proceed`{::nomarkdown}</li> <li>{:/}`u/cancel`{::nomarkdown}</li> </ul>{:/} e.g.,`update 1 u/new 600000`
 **Sort** | `sort appointment o/SORTING_ORDER k/SORTING_KEY `<br> e.g., `sort appointment o/asc k/datetime`<br><br>`sort property o/SORTING_ORDER k/SORTING_KEY `<br> e.g., `sort property o/asc k/price`
-**Find property** | `find property [KEYWORD]... [OPTION]...` <br><br> Options: <br>{::nomarkdown}<ul> <li>{:/}`[t/PROPERTY_TYPE]`{::nomarkdown}</li> <li>{:/}`[pl/PRICE_UPPER_LIMIT]`{::nomarkdown}</li> <li>{:/}`[pm/PRICE_LOWER_LIMIT]`{::nomarkdown}</li> </ul>{:/} e.g. `find property bishan north t/hdb pl/$1,000,000`
-**Find appointment** | `find property [KEYWORD]` <br> e.g., `find appointment bob`
+**Find property** | `find property [n/NAME] [pl/UPPER_PRICE_LIMIT] [pm/LOWER_PRICE_LIMIT] [t/PROPERTY_TYPE] [a/ADDRESS]* [p/POSTAL_CODE]* [d/DEADLINE]* [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT]* [ce/CLIENT_EMAIL]* [tags/TAGS_SEPARATED_BY_COMMA]` <br><br> e.g. `find property n/bishan north t/hdb pl/$1,000,000`
+**Find appointment** | `find appointment [n/NAME] [r/REMARKS] [d/DATE]* [t/TIME]* [KEYWORD]` <br> e.g., `find appointment n/bob d/23-12-2021`
 **Find client** | `find client [KEYWORD]` <br> e.g., `find client alice`
 **Clear** | `clear property` <br> `clear appointment` <br> `clear all`
 

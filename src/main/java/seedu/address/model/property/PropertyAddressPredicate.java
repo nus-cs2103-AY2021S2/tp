@@ -6,15 +6,15 @@ import java.util.function.Predicate;
  * Tests that a {@code Property}'s {@code Address} matches the address given.
  */
 public class PropertyAddressPredicate implements Predicate<Property> {
-    private final String address;
+    private final Address address;
 
-    public PropertyAddressPredicate(String address) {
+    public PropertyAddressPredicate(Address address) {
         this.address = address;
     }
 
     @Override
     public boolean test(Property property) {
-        return property.getAddress().propertyAddress.equals(address);
+        return property.getAddress().equals(address);
     }
 
     @Override
