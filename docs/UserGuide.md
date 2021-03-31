@@ -4,7 +4,7 @@ title: User Guide
 ---
 
 Car@leads is a **desktop app for managing customer contacts, optimized for use via a Command Line Interface** (CLI) <br>
-while still having the benefits of a Graphical User Interface (GUI). 
+while still having the benefits of a Graphical User Interface (GUI).
 <br> If you can type fast, Car@leads can get your contact management tasks done faster than traditional GUI apps.
 <br> Allows car salesperson user to create customer contacts which includes customer's car brand and type preferences.
 <br> Car salesperson user can filter through the customer data having specific preferences and follow up with them.
@@ -22,9 +22,9 @@ while still having the benefits of a Graphical User Interface (GUI).
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`add`**`n/Bob Ang p/88765432 e/bobhnd@example.com a/John street, block 123, #01-01 c/BMW+Coupe|2030 01 01 c/Porsche+SUV|2030 01 01` 
+   * **`add`**`n/Bob Ang p/88765432 e/bobhnd@example.com a/John street, block 123, #01-01 c/BMW+Coupe|2030 01 01 c/Porsche+SUV|2030 01 01`
      : Adds a contact named `Bob Ang`
-     
+
    * **`delete`**`John Doe` : Deletes 'John Doe' contact from contact list .
 
    * **`list`** : Lists all contacts.
@@ -32,8 +32,8 @@ while still having the benefits of a Graphical User Interface (GUI).
    * **`clear`** : Deletes all contacts.
 
    * **`exit`** : Exits the app.
-   
-   * **`help`** : Get a legend of commands.    
+
+   * **`help`** : Get a legend of commands.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -73,7 +73,7 @@ Adds a customer to the contact list.
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS c/OWNED_CARBRAND+OWNED_CARTYPE|COE_EXPIRY_DATE [t/TAG]…​`
 `n/add n/Bob Ang p/88765432 e/bobhnd@example.com a/John street, block 123, #01-01 c/BMW+Coupe|2030 01 01 c/Porsche+SUV|2030 01 01`
 
-Note that the `COE_EXPIRY_DATE` input order: YYYY{space}MM{space}DD 
+Note that the `COE_EXPIRY_DATE` input order: YYYY{space}MM{space}DD
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A customer can have any number of tags (including 0)
@@ -120,4 +120,3 @@ Action | Format, Examples
 **clear** | `clear`
 **exit** | `exit`
 **help** | `help`
-

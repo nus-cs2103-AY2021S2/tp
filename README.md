@@ -11,5 +11,3 @@
   * It comes with a **reasonable level of user and developer documentation**.
 * It is named `Car@leads` because we want car salesperson users to match their cars with the right customers.
 * For the detailed documentation of this project, see the **[Car@leads Product Website](https://ay2021s2-cs2103t-w12-2.github.io/tp/)**.
-
-* This is a
