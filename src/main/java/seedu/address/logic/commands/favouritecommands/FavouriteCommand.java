@@ -70,4 +70,14 @@ public class FavouriteCommand extends Command {
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, tutor.getName()));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof FavouriteCommand // instanceof handles nulls
+                && targetIndex.equals(((FavouriteCommand) other).targetIndex)
+                && editTutorDescriptor.equals(((FavouriteCommand) other).editTutorDescriptor));
+
+    }
+
 }

@@ -69,4 +69,14 @@ public class DeleteNoteCommand extends Command {
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, tutor.getName().toString()));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof DeleteNoteCommand // instanceof handles nulls
+                && targetIndex.equals(((DeleteNoteCommand) other).targetIndex)
+                && editTutorDescriptor.equals(((DeleteNoteCommand) other).editTutorDescriptor));
+
+    }
 }
+

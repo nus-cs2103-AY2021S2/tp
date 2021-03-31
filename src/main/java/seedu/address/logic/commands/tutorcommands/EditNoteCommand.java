@@ -71,4 +71,13 @@ public class EditNoteCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUCCESS, tutor.getName().toString()));
 
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof EditNoteCommand // instanceof handles nulls
+                && targetIndex.equals(((EditNoteCommand) other).targetIndex)
+                && editTutorDescriptor.equals(((EditNoteCommand) other).editTutorDescriptor));
+
+    }
 }
