@@ -70,6 +70,10 @@ public class EditEntryCommand extends Command {
         Set<Tag> updatedTags = tempEntry.getTags().orElse(target.getTags());
         Entry updatedEntry = new Entry(updatedEntryName, updatedEntryStartDate, updatedEntryEndDate, updatedTags);
 
+        if (updatedEntryStartDate.isAfter(updatedEntryEndDate)) {
+            throw new CommandException(Messages.MESSAGE_INVALID_DATE_RANGE);
+        }
+
         model.deleteEntry(target);
         if (model.isOverlappingEntry(updatedEntry)) {
             model.addEntry(target);
