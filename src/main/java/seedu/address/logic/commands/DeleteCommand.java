@@ -19,7 +19,7 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the residence identified by the index number used in the displayed residence list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Parameters: RESIDENCE_INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_RESIDENCE_SUCCESS = "Deleted Residence: %1$s";
