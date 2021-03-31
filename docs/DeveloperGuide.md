@@ -311,27 +311,28 @@ add a new `Order` instance in the worst case.
 
 Marking an order as completed are implemented in [`DoneCommand.java`](https://github.com/AY2021S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/address/comamnds/DoneCommand.java)
 
-`DoneCommand` extends from `command` and overwrites the opertations `execute()` and `equals()`
+`DoneCommand` extends from `command` and overwrites the operations `execute()` and `equals()`
 
-Given below is an example usage scenario and how the marking an order as completed feature behaves at each step. 
+Given below is an example usage scenario and how the marking an order as completed feature behaves at each step.
 
-Step 1. The user launches CHIM which will restored archived customers , orders and cheeses. 
+Step 1. The user launches CHIM which will restored archived customers , orders and cheeses.
 
-Step 2. The user issues the command `done 1` to mark the first order shown in the `listorders` as completed. 
+Step 2. The user issues the command `done 1` to mark the first order shown in the `listorders` as completed.
 The `done` command calls `DoneCommand.execute()` which will check the index given is valid and order selected is not completed yet.
 
-Step 3. After initial checks are completed, `DoneCommand.execute()` will call on `ModelManager.getUnassignedCheeses()` 
-to retrieve unAssigned Cheese(s) required for the order. 
+Step 3. After initial checks are completed, `DoneCommand.execute()` will call on `ModelManager.getUnassignedCheeses()`
+to retrieve unAssigned Cheese(s) required for the order.
 
 Step 4. `DoneCommand.execute()` will call `DoneCommand.createDoneOrder()` to create a new `order`
 if there is enough unassigned Cheese(s) from `ModelManager.getUnassignedCheeses()`
 
-Step 5. `DoneCommand.execute()` will call `ModelManager.setOrder()` 
-to replace the original order with the new order created from `DoneCommand.createDoneOrder()` 
+Step 5. `DoneCommand.execute()` will call `ModelManager.setOrder()`
+to replace the original order with the new order created from `DoneCommand.createDoneOrder()`
 and calls `ModelManager.updateCheesesStatus()` to update all cheese(s)'s assign status used for this order.
 
 The following sequence diagram shows hwo the operation `done 1` is carried out as detailed above.
 
+![Sequence Diagram of the Done Command](images/DoneCommandSeqDiagram.png)
 
 #### Design consideration 
 * Aspect : Searching for available cheese(s) for the order
@@ -628,7 +629,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 1. User enters the index of the order to be marked as complete.
-1. CHIM assigns avaliable cheeses to the order and marks the order as complete.
+1. CHIM assigns available cheeses to the order and marks the order as complete.
 
    Use case ends.
 
