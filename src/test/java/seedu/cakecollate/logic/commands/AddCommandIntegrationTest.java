@@ -134,7 +134,7 @@ public class AddCommandIntegrationTest {
         OrderItem existingOrderItem = new OrderItemBuilder().withType(value).build();
         // does this stuff go into dg, e.g. how to test - use builders
 
-        model.hasOrderItem(existingOrderItem);
+        model.addOrderItem(existingOrderItem);
 
         int initialSize = model.getFilteredOrderItemsList().size();
 
@@ -143,11 +143,10 @@ public class AddCommandIntegrationTest {
         Model expectedModel = new ModelManager(model.getCakeCollate(), new UserPrefs(), model.getOrderItems());
 
         expectedModel.addOrder(order);
-        expectedModel.addOrderItem(existingOrderItem);
         String expectedMessage = String.format(AddCommand.MESSAGE_SUCCESS, order);
 
         assertCommandSuccess(addCommand, model, expectedMessage, expectedModel);
-        assertTrue(model.getFilteredOrderItemsList().size() == initialSize + 1);
+        assertTrue(model.getFilteredOrderItemsList().size() == initialSize);
         // assertTrue()
         // assertEquals size has remained the same
 
@@ -167,7 +166,7 @@ public class AddCommandIntegrationTest {
         assert !model.hasOrderItem(newOrderItemToAdd)
                 : "corresponding order description shouldn't be in the order item model";
 
-        // int initialSize = model.getOrderItemLists.size();
+        int initialSize = model.getFilteredOrderItemsList().size();
 
         Command addCommand = new AddCommand(null, descriptor);
 
@@ -179,8 +178,7 @@ public class AddCommandIntegrationTest {
 
         assertCommandSuccess(addCommand, model, expectedMessage, expectedModel);
         assertTrue(model.hasOrderItem(newOrderItemToAdd));
-        // assertTrue()
-        // assertEquals size has increased by one
+        assertTrue(model.getFilteredOrderItemsList().size() == initialSize + 1);
     }
 
 

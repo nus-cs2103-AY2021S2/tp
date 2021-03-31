@@ -72,8 +72,9 @@ public class CommandTestUtil {
     public static final String DELIVERY_DATE_DESC_AMY = " " + PREFIX_DATE + VALID_DELIVERY_DATE_AMY;
     public static final String DELIVERY_DATE_DESC_BOB = " " + PREFIX_DATE + VALID_DELIVERY_DATE_BOB;
 
-    // corresponding order item to add into order items model for testing
+    // corresponding order item to add into order items model, needed for building expected models during testing
     public static final OrderItem ORDER_ITEM_AMY = new OrderItem(new Type(VALID_CHOCOLATE_ORDER));
+    public static final OrderItem ORDER_ITEM_BOB = new OrderItem(new Type(VALID_BERRY_ORDER));
 
     // these are some user input fields with prefixes, invalid according to validation specified in model classes
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
