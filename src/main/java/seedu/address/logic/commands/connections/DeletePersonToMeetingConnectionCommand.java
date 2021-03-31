@@ -62,9 +62,7 @@ public class DeletePersonToMeetingConnectionCommand extends Command {
         }
         Meeting meetingToEdit = lastShownList.get(meetingIndex.getZeroBased());
         Meeting meetingEdited = createEditedMeeting(meetingToEdit, new EditMeetingCommand.EditMeetingDescriptor());
-        Set<Person> prevPersonsConnection = meetingToEdit.getConnectionToPerson();
-        model.deleteAllPersonMeetingConnectionByMeeting(meetingToEdit);
-        deleteConnectionsToPersons(meetingToEdit, meetingEdited, model, prevPersonsConnection);
+        deleteConnectionsToPersons(meetingToEdit, meetingEdited, model);
         model.updateMeeting(meetingToEdit, meetingEdited);
         model.updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS);
         return new CommandResult(MESSAGE_SUCCESS);
@@ -73,7 +71,8 @@ public class DeletePersonToMeetingConnectionCommand extends Command {
      * This method will handle the connections that the user wants to add from both the g/ and p/
      * Duplicate person that the user wants to build connection with this meeting will be automatically removed.
      */
-    private void deleteConnectionsToPersons(Meeting toDelete, Meeting toAdd, Model model, Set<Person> prevPersonsConnection) throws CommandException {
+    private void deleteConnectionsToPersons(Meeting toDelete, Meeting toAdd, Model model) throws CommandException {
+        Set<Person> prevPersonsConnection = toDelete.getConnectionToPerson();
         toAdd.setPersonMeetingConnection(model.getPersonMeetingConnection());
         Set<Person> totalPersonsToRemove = new HashSet<>();
         if (!groupsToDelete.isEmpty()) {
@@ -113,6 +112,8 @@ public class DeletePersonToMeetingConnectionCommand extends Command {
 
         prevPersonsConnection.removeAll(totalPersonsToRemove);
         Set<Person> updatedPersonsConnection = prevPersonsConnection;
+
+        model.deleteAllPersonMeetingConnectionByMeeting(toDelete);
 
         for (Person allPersonToAddConnection : updatedPersonsConnection) {
             model.addPersonMeetingConnection(allPersonToAddConnection, toAdd);
