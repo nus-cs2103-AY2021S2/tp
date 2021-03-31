@@ -45,6 +45,7 @@ public class PocketEstateParser {
     private static final String INVALID_COMMAND_ADD = "add";
     private static final String INVALID_COMMAND_EDIT = "edit";
     private static final String INVALID_COMMAND_SORT = "sort";
+    private static final String INVALID_COMMAND_FIND = "find";
     private static final String INVALID_COMMAND_LIST = "list";
     private static final String INVALID_COMMAND_CLEAR = "clear";
 
@@ -170,6 +171,7 @@ public class PocketEstateParser {
         case INVALID_COMMAND_ADD:
         case INVALID_COMMAND_EDIT:
         case INVALID_COMMAND_SORT:
+        case INVALID_COMMAND_FIND:
             throw new ParseException(Messages.missingPropertyAppointmentError(commandWord));
 
         case INVALID_COMMAND_CLEAR:
