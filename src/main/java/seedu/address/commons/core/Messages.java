@@ -53,13 +53,13 @@ public class Messages {
                     "Date should be a valid date in one of the following formats:\n"
                     + "24-11-2021\n"
                     + "24112021\n"
-                    + "24/11/2021)\n"
+                    + "24/11/2021\n"
                     + "24.11.2021";
 
     public static final String MESSAGE_PARSER_TIME_CONSTRAINTS =
             "Time should be a valid time in one of the following formats:\n"
-                    + "17:30)\n"
-                    + "1730)";
+                    + "17:30\n"
+                    + "1730";
 
     public static final String MESSAGE_NO_EVENTS_TO_DISPLAY_TODAY = "You have no events today!";
     public static final String MESSAGE_NO_DEADLINES_TO_DISPLAY_TODAY = "You have no deadlines today!";
