@@ -131,7 +131,13 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.address.commons` package.
+
+Some examples of common classes:
+
+* [`Messages.java`](https://github.com/AY2021S2-CS2103T-T13-4/tp/blob/master/src/main/java/seedu/address/commons/core/Messages.java): Container for user visible messages
+* [`FileUtil.java`](https://github.com/AY2021S2-CS2103T-T13-4/tp/blob/master/src/main/java/seedu/address/commons/util/FileUtil.java): Writes and reads files
+* [`JsonUtil.java`](https://github.com/AY2021S2-CS2103T-T13-4/tp/blob/master/src/main/java/seedu/address/commons/util/JsonUtil.java): Converts a Java object instance to JSON and vice versa
 
 --------------------------------------------------------------------------------------------------------------------
 
