@@ -24,30 +24,49 @@ public class DeleteFrCommand extends BudgetBabyCommand {
 
     public static final String MESSAGE_DELETE_FINANCIAL_RECORD_SUCCESS = "Deleted Financial Record: %1$s";
 
-    private final Index targetIndex;
+    private final List<Index> targetIndices;
 
-    public DeleteFrCommand(Index targetIndex) {
-        this.targetIndex = targetIndex;
+    public DeleteFrCommand(List<Index> targetIndices) {
+        this.targetIndices = targetIndices;
+    }
+
+    private FinancialRecord delete(List<FinancialRecord> financialRecords, Index index) throws CommandException {
+        requireNonNull(financialRecords);
+        int zeroBasedIndex = index.getZeroBased();
+
+        if (zeroBasedIndex >= financialRecords.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_FINANCIAL_RECORD_DISPLAYED_INDEX);
+        }
+
+        return financialRecords.get(zeroBasedIndex);
+    }
+
+    private CommandResult deleteAll(BudgetBabyModel model) throws CommandException {
+        requireNonNull(model);
+        List<FinancialRecord> lastShownList = model.getFilteredFinancialRecordList();
+
+        StringBuilder deleteMessage = new StringBuilder();
+        for (Index index : targetIndices) {
+            FinancialRecord toDelete = delete(lastShownList, index);
+            model.deleteFinancialRecord(toDelete);
+            deleteMessage.append(String.format(MESSAGE_DELETE_FINANCIAL_RECORD_SUCCESS, toDelete))
+                    .append("\n");
+        }
+
+        model.commitBudgetTracker();
+
+        return new CommandResult(deleteMessage.toString());
     }
 
     @Override
     public CommandResult execute(BudgetBabyModel model) throws CommandException {
-        requireNonNull(model);
-        List<FinancialRecord> lastShownList = model.getFilteredFinancialRecordList();
-
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_FINANCIAL_RECORD_DISPLAYED_INDEX);
-        }
-
-        FinancialRecord toDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deleteFinancialRecord(toDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_FINANCIAL_RECORD_SUCCESS, toDelete), true, false, false);
+        return deleteAll(model);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
             || (other instanceof DeleteFrCommand // instanceof handles nulls
-            && targetIndex.equals(((DeleteFrCommand) other).targetIndex)); // state check
+            && targetIndices.equals(((DeleteFrCommand) other).targetIndices)); // state check
     }
 }

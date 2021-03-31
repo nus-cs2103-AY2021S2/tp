@@ -45,6 +45,7 @@ public class UiManager implements Ui {
             mainWindow = new MainWindow(primaryStage, logic);
             mainWindow.show(); //This should be called before creating other UI parts
             mainWindow.fillInnerParts();
+            mainWindow.setUpWindows();
             mainWindow.initEventHandlers();
         } catch (Throwable e) {
             logger.severe(StringUtil.getDetails(e));

@@ -26,7 +26,7 @@
          <children>
             <HBox>
                <children>
-                  <Label fx:id="budgetMonth" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" text="Statistics: " textAlignment="CENTER" HBox.hgrow="ALWAYS" />
+                  <Label fx:id="budgetMonth" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" textAlignment="CENTER" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
             <Label fx:id="budgetAmount" styleClass="label" text="Budget: " GridPane.rowIndex="1" />

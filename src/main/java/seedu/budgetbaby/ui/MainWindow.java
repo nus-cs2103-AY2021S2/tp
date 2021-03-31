@@ -2,7 +2,6 @@ package seedu.budgetbaby.ui;
 
 import java.util.logging.Logger;
 
-import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckMenuItem;
@@ -18,7 +17,6 @@ import seedu.budgetbaby.logic.BudgetBabyLogic;
 import seedu.budgetbaby.logic.commands.CommandResult;
 import seedu.budgetbaby.logic.commands.exceptions.CommandException;
 import seedu.budgetbaby.logic.parser.exceptions.ParseException;
-import seedu.budgetbaby.model.record.FinancialRecord;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -38,6 +36,8 @@ public class MainWindow extends UiPart<Stage> {
     private FinancialRecordListPanel financialRecordListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private CategoryStatsWindow categoryStatsWindow;
+    private MonthStatsWindow monthStatsWindow;
 
     @FXML
     private StackPane budgetDisplayPlaceHolder;
@@ -75,8 +75,6 @@ public class MainWindow extends UiPart<Stage> {
         setCliDefaultVisibility(logic.getGuiSettings());
 
         setAccelerators();
-
-        helpWindow = new HelpWindow();
     }
 
     public Stage getPrimaryStage() {
@@ -122,7 +120,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        budgetDisplay = new BudgetDisplay(logic.getFilteredMonthList(), logic.getTopCategories());
+        budgetDisplay = new BudgetDisplay(logic.getFilteredMonthList(), logic.getTopCategoryStatistics());
         budgetDisplayPlaceHolder.getChildren().add(budgetDisplay.getRoot());
 
         financialRecordListPanel = new FinancialRecordListPanel(logic.getFilteredFinancialRecordList());
@@ -141,18 +139,25 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Initialise listeners to handle UI behaviour
+     * Sets up other windows that might be used by the GUI
+     */
+    void setUpWindows() {
+        helpWindow = new HelpWindow();
+        categoryStatsWindow = new CategoryStatsWindow(logic.getTopCategoryStatistics());
+        monthStatsWindow = new MonthStatsWindow(logic.getPastMonthStatistics());
+    }
+
+    /**
+     * Initialise listener to handle UI behaviour
      */
     void initEventHandlers() {
-        // Automatically updates UI when changes is detected in FilteredFinancialRecordList
-        logic.getFilteredFinancialRecordList().addListener((ListChangeListener.Change<? extends FinancialRecord> c) -> {
-            while (c.next()) {
-                if (c.wasAdded() || c.wasRemoved() || c.wasUpdated()) {
-                    budgetDisplay.updateBudgetUi(logic.getFilteredMonthList());
-                    budgetDisplay.updateTopCategoriesUi(logic.getTopCategories());
-                    financialRecordListPanel.updateObservableList(logic.getFilteredFinancialRecordList());
-                }
-            }
+        // Automatically updates UI when changes are made to BudgetTracker
+        logic.getBudgetTracker().addListener(observable -> {
+            budgetDisplay.updateBudgetUi(logic.getFilteredMonthList());
+            budgetDisplay.updateTopCategoriesUi(logic.getTopCategoryStatistics());
+            financialRecordListPanel.updateObservableList(logic.getFilteredFinancialRecordList());
+            categoryStatsWindow.updateStatistics(logic.getTopCategoryStatistics());
+            monthStatsWindow.updateStatistics(logic.getPastMonthStatistics());
         });
     }
 
@@ -197,6 +202,29 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplayPlaceholder.setVisible(cliVisibilityCheckMenuItem.isSelected());
     }
 
+    /**
+     * Opens the Category Statistics window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleCategoryStatsWindow() {
+        if (!categoryStatsWindow.isShowing()) {
+            categoryStatsWindow.show();
+        } else {
+            categoryStatsWindow.focus();
+        }
+    }
+    /**
+     * Opens the Category Statistics window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleMonthStatsWindow() {
+        if (!monthStatsWindow.isShowing()) {
+            monthStatsWindow.show();
+        } else {
+            monthStatsWindow.focus();
+        }
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -224,12 +252,6 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            if (commandResult.isRefreshUi()) {
-                budgetDisplay.updateBudgetUi(logic.getFilteredMonthList());
-                budgetDisplay.updateTopCategoriesUi(logic.getTopCategories());
-                financialRecordListPanel.updateObservableList(logic.getFilteredFinancialRecordList());
-            }
-
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
@@ -240,7 +262,7 @@ public class MainWindow extends UiPart<Stage> {
 
             return commandResult;
         } catch (CommandException | ParseException e) {
-            logger.info("Invalid command: " + commandText);
+            logger.info("Invalid command: " + commandText + ". Reason: " + e.getMessage());
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }

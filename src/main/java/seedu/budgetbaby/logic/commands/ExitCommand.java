@@ -13,7 +13,7 @@ public class ExitCommand extends BudgetBabyCommand {
 
     @Override
     public CommandResult execute(BudgetBabyModel model) {
-        return new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, false, true);
+        return new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true);
     }
 
 }

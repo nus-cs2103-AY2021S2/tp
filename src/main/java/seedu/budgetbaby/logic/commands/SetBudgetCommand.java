@@ -31,7 +31,7 @@ public class SetBudgetCommand extends BudgetBabyCommand {
     public CommandResult execute(BudgetBabyModel model) throws CommandException {
         requireNonNull(model);
         model.setBudget(toSet);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toSet), true, false, false);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toSet), false, false);
     }
 
     @Override

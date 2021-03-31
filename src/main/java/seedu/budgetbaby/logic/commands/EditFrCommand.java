@@ -73,7 +73,7 @@ public class EditFrCommand extends BudgetBabyCommand {
         FinancialRecord editedFr = createEditedFr(frToEdit, editFrDescriptor);
 
         model.setFinancialRecord(frToEdit, editedFr);
-        return new CommandResult(String.format(MESSAGE_EDIT_FR_SUCCESS, editedFr), true, false, false);
+        return new CommandResult(String.format(MESSAGE_EDIT_FR_SUCCESS, editedFr), false, false);
     }
 
     /**
