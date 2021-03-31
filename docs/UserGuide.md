@@ -70,6 +70,36 @@ your contact management tasks done faster than traditional GUI apps.
 
 </div>
 
+|      |      |
+| ---- | ---- |
+|      |      |
+|      |      |
+|      |      |
+
+2. ### Priority tag: *ptag/PriorityLevel*
+
+  * Format: `edit 3 ptag/HIGH`
+    1. Will assign a priority of `HIGH` to the 3rd task on the list.
+    2. Ranking of priority levels: HIGH > MEDIUM > LOW
+    3. Index inserted must be positive, and
+    4. Index must be available on the list, else an error will be thrown.
+    5. Priority tag must be either HIGH, MEDIUM or LOW, else an error will be thrown.
+    6. Example: `list` to show all tasks on the list followed by `edit 2 ptag/LOW`  to assign a priority tag of `LOW` to the 2nd task on the list.
+
+3. ### Task name: name *n/*
+
+  * Format: n/ {name}
+    1. Sets the name of a task
+    2. Example: `n/Software Engineering Finals`. Sets the name of the task to “Software Engineering Finals”
+
+
+4. ### Module code: *mc/*
+
+  * Format: mc/ {module code}
+    1. Sets the module code of a task
+    2. Module code must be a CS module code
+    3. Example: `mc/CS2103`. Sets the module code of the task to "CS2103"
+
 ### See the list of instructions: `instructions`
 
 List down all possible commands in semester.config.
