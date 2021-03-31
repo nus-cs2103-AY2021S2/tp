@@ -175,6 +175,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(entry);
         return entries.overlapsWith(entry);
     }
+
+    public void clearOverdueEntries() {
+        entries.clearOverdueEntries();
+    }
     //// schedule methods
 
     /**

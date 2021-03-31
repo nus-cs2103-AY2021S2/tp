@@ -84,6 +84,13 @@ public class Entry {
     }
 
     /**
+     * Returns true if the end date is after current date.
+     */
+    public boolean isOverdue() {
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        return currentDateTime.isAfter(getEndDate());
+    }
+    /**
      * Returns true if start date is different from end date.
      */
     public boolean haveDifferentDates() {
@@ -121,4 +128,5 @@ public class Entry {
         }
         return builder.toString();
     }
+
 }
