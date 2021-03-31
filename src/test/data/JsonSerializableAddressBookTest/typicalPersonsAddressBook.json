@@ -38,7 +38,8 @@
     "address" : "10th street",
     "guardianName" : "Jay Maier",
     "guardianPhone" : "98765433",
-    "subjects" : [ "chinese" ]
+    "subjects" : [ "chinese" ],
+    "lessons" : [ ]
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",

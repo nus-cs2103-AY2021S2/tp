@@ -6,6 +6,8 @@
     "email": "hans@example.com",
     "address": "4th street",
     "guardianName" : "Aileen Muster",
-    "guardianPhone" : "9482422"
+    "guardianPhone" : "9482422",
+    "subjects" : [ ],
+    "lessons" : [ ]
   } ]
 }
