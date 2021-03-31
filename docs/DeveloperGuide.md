@@ -810,43 +810,48 @@ testers are expected to do more *exploratory* testing.
        Expected: The application exits and window closes.
 
 ### Listing all flashcards
+
 1. Listing all flashcards in FlashBack.
+
     1. Prerequisites: There must be at least 1 flashcard that is currently shown in the list.
+    
     1. Test cases: `list` <br>
     Expected: `FlashcardListPanel` displays all flashcards stored in `flashback.json` file. The result display shows a message: `Listed all flashcards`.
     
 ### Deleting a flashcard
+
 1. Deleting a flashcard at a specific index.
+
     1. Prerequisites: There must be at least 1 and at most 2000 flashcards that is currently shown in the list.
+    
     1. Test case: `delete 1` <br>
     Expected: First flashcard shown in the list is deleted. Result display shows the detail of the deleted flashcard.
+    
     1. Test case: `delete -1` <br>
     Expected: No flashcard is deleted, and the text in `CommandBox` turns red to indicate an error. The result display shows a message: `Invalid command format!`.
+    
     1. Test case: `delete 2001` <br>
     Expected: No flashcard is deleted, and the text in `CommandBox` turns red to indicate an error. The result display shows a message: `The flashcard index provided is invalid`
 
 ### Editing a flashcard
 
 1. Editing a flashcard in FlashBack
+    
     1. Prerequisites: There must be at least one flashcard in the list.
        
     1. Test case: `edit`
-       
        Expected: No flashcard will be edited, and an invalid command format error message will be 
        shown on the result display.
        
     1. Test case: `edit 1`
-       
        Expected: Flashcard identified by index 1 in the list will not be edited, and an error message will be displayed to prompt
        the user to enter at least one field to edit.
        
     1. Test case: `edit 1 p/Low`
-    
        Expected: The flashcard identified by index 1 in the list will be modified. Its priority is changed to `Low`. If the flashcard already has 
        `Low` priority, an error message will be displayed, and no modifications will be made to the flashcard.
        
     1. Test case: `edit 1 c/CompSci p/Mid t/sorting t/algorithms`
-    
        Expected: The flash card identified by index 1 will be modified. Its category is changed to `CompSci`, the priority is changed to `Mid`.
        and it now has tags `sorting` and `algorithms`. If the flashcard already has category `CompSci`, priority
        `Mid`, as well as tags `sorting` and `algorithms`, an error message will be displayed, and no modifications will be made to the flashcard.
@@ -885,54 +890,86 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `filter c/math physics p/mid`<br>
 
 ### Clearing all flashcards
+
 1. Clearing all flashcards in FlashBack.
+    
     1. Prerequisites: The application is in Main Window.
+    
     1. Test case: `clear`
-    Expected: All flashcards shown in `FlashcardListPanel` are deleted. The result display shows the message: `FlashBack has been cleared!`.
+       Expected: All flashcards shown in `FlashcardListPanel` are deleted. The result display shows the message: `FlashBack has been cleared!`.
     
 ### Viewing a flashcard
+
 1. Viewing a flashcard at a specific index.
+    
     1. Prerequisites: There must be at least 1 and at most 2000 flashcards that is currently shown in the list.
+    
     1. Test case: `view 1` <br>
-    Expected: The view pane on the bottom left displays the details of the flashcard at index 1 including the full question and the answer of the flashcard. The result display states the details of the shown flashcard. 
+       Expected: The view pane on the bottom left displays the details of the flashcard at index 1 including the full question and the answer of the flashcard. The result display states the details of the shown flashcard. 
+    
     1. Test case: `view -1` <br>
-    Expected: The view pane on the bottom left does not display anything, and the text in `CommandBox` turns red to indicate an error. The result display shows a message: `Invalid command format!`.
+       Expected: The view pane on the bottom left does not display anything, and the text in `CommandBox` turns red to indicate an error. The result display shows a message: `Invalid command format!`.
+    
     1. Test case: `view 2001` <br>
-    Expected: The view pane on the bottom left does not display anything, and the text in `CommandBox` turns red to indicate an error. The result display shows a message: `The flashcard index provided is invalid`.
+       Expected: The view pane on the bottom left does not display anything, and the text in `CommandBox` turns red to indicate an error. The result display shows a message: `The flashcard index provided is invalid`.
     
 ### Review mode
+
 1. Entering the review mode
+    
     1. Prerequisites: There must be at least 1 flashcard that is currently shown in the list.
+    
     1. Test case: `review` <br>
-    Expected: The main window switches to review mode, a random flashcard in the list is displayed with its answer hidden. The result display shows the message: `Enter review mode`, followed by the instruction.
+       Expected: The main window switches to review mode, a random flashcard in the list is displayed with its answer hidden. The result display shows the message: `Enter review mode`, followed by the instruction.
+
 1. Showing next flashcard
+    
     1. Prerequisites: The application is currently in the review mode and there is at least 1 flashcard after the current one to show.
+    
     1. Test case: `n` <br>
-    Expected: A flashcard that is different from the current one is displayed with its answer hidden. The result display shows the message: `Show next flashcard`, followed by the instruction.
+       Expected: A flashcard that is different from the current one is displayed with its answer hidden. The result display shows the message: `Show next flashcard`, followed by the instruction.
+
 1. Showing previous flashcard
+    
     1. Prerequisites: The application is currently in the review mode and there is at least 1 flashcard before the current one to show.
+    
     1. Test case: `p` <br>
-    Expected: A flashcard that is different from the current one is displayed with its answer hidden. The result display shows the message: `Show previous flashcard`, followed by the instruction.
+       Expected: A flashcard that is different from the current one is displayed with its answer hidden. The result display shows the message: `Show previous flashcard`, followed by the instruction.
+
 1. Showing answer
+    
     1. Prerequisites: The application is currently in the review mode, and the answer of the current flashcard is hidden.
+    
     1. Test case: `a` <br>
-    Expected: The answer of the current flashcard is displayed to the user. The result display shows the message: `The answer is shown, did you get it correct? (t/f)`, followed by the instruction.
+       Expected: The answer of the current flashcard is displayed to the user. The result display shows the message: `The answer is shown, did you get it correct? (t/f)`, followed by the instruction.
+
 1. Hiding answer
+    
     1. Prerequisites: The application is currently in the review mode, and the answer of the current flashcard is shown.
+    
     1. Test case: `h` <br>
-    Expected: The answer of the current flashcard is hidden from the user. The result display shows the message: `Hide answer`, followed by the instruction.
+       Expected: The answer of the current flashcard is hidden from the user. The result display shows the message: `Hide answer`, followed by the instruction.
+
 1. Reviewing a flashcard as correct
+    
     1. Prerequisites: The application is currently in the review mode, and the answer of the current flashcard is shown.
+    
     1. Test case: `t` <br>
-    Expected: The statistics of the current flashcard is updated accordingly (reflected in the `stats` command). The result display shows the message: `The correct answer is provided. Good Job!`, followed by the instruction.
+       Expected: The statistics of the current flashcard is updated accordingly (reflected in the `stats` command). The result display shows the message: `The correct answer is provided. Good Job!`, followed by the instruction.
+
 1. Reviewing a flashcard as wrong
+    
     1. Prerequisites: The application is currently in the review mode, and the answer of the current flashcard is shown.
+    
     1. Test case: `t` <br>
-    Expected: The statistics of the current flashcard is updated accordingly (reflected in the `stats` command). The result display shows the message: `An incorrect answer is provided. Try harder next time!`, followed by the instruction.
+       Expected: The statistics of the current flashcard is updated accordingly (reflected in the `stats` command). The result display shows the message: `An incorrect answer is provided. Try harder next time!`, followed by the instruction.
+
 1. Exiting the review mode
+    
     1. Prerequisites: The application is currently in the review mode.
+    
     1. Test case: `q` <br>
-    Expected: The application goes back to the main window. The result display shows the message: `Exit review mode`. 
+       Expected: The application goes back to the main window. The result display shows the message: `Exit review mode`. 
     
 ### Displaying statistics
 
@@ -986,18 +1023,18 @@ testers are expected to do more *exploratory* testing.
     
     1. Test case: `alias c/add n/a`
     
-        Expected: The alias `a` will be mapped to `add`. Users will now be able to perform add command using `a`
-        The result display shows a message: `New alias added for "add" command: a`.
+       Expected: The alias `a` will be mapped to `add`. Users will now be able to perform add command using `a`
+       The result display shows a message: `New alias added for "add" command: a`.
     
     1. Test case: `alias c/add n/delete`
     
-        Expected: No alias is added, and the text in `CommandBox` turns red to indicate an error.
-        The result display shows a message: `The alias "delete" should not be a command in FlashBack.`.
+       Expected: No alias is added, and the text in `CommandBox` turns red to indicate an error.
+       The result display shows a message: `The alias "delete" should not be a command in FlashBack.`.
     
     1. Test case: `alias c/cleaaar n/c`
     
-        Expected: No alias is added, and the text in `CommandBox` turns red to indicate an error.
-        The result display shows a message: `The command "cleaaar" does not exist in FlashBack.`.
+       Expected: No alias is added, and the text in `CommandBox` turns red to indicate an error.
+       The result display shows a message: `The command "cleaaar" does not exist in FlashBack.`.
 
 ------------------------------------------------------------------------------------------------------------------------
 
