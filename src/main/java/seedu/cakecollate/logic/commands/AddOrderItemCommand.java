@@ -27,7 +27,7 @@ public class AddOrderItemCommand extends Command {
 
 
     /**
-     * Adds an order item to the list of order items when executed.
+     * Adds an order item to the list of order items upon execution.
      * @param orderItem Order Item to be added.
      */
     public AddOrderItemCommand(OrderItem orderItem) {
