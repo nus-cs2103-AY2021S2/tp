@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_NAME_MAZE;
-import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_TAG_VIP;
 import static seedu.smartlib.testutil.Assert.assertThrows;
 import static seedu.smartlib.testutil.TypicalModels.ALICE;
 import static seedu.smartlib.testutil.TypicalModels.getTypicalSmartLib;
@@ -54,7 +54,7 @@ public class SmartLibTest {
         // Two readers with the same identity fields
         Reader editedAlice = new ReaderBuilder(ALICE)
                 .withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_HUSBAND)
+                .withTags(VALID_TAG_VIP)
                 .build();
         List<Reader> newReaders = Arrays.asList(ALICE, editedAlice);
 
@@ -87,7 +87,7 @@ public class SmartLibTest {
     @Test
     public void hasReader_readerWithSameIdentityFieldsInSmartLib_returnsTrue() {
         smartLib.addReader(ALICE);
-        Reader editedAlice = new ReaderBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Reader editedAlice = new ReaderBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_VIP)
                 .build();
         assertTrue(smartLib.hasReader(editedAlice));
     }

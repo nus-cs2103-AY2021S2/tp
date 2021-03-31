@@ -33,9 +33,11 @@ public class TagContainsKeywordsPredicate implements Predicate<Reader> {
         return keywords
                 .stream()
                 .anyMatch(keyword -> {
-                    for (Tag tag : reader.getTags()) {
-                        if (StringUtil.containsWordIgnoreCase(tag.getTagName(), keyword)) {
-                            return true;
+                    if (!keyword.equals("")) {
+                        for (Tag tag : reader.getTags()) {
+                            if (StringUtil.containsWordIgnoreCase(tag.getTagName(), keyword)) {
+                                return true;
+                            }
                         }
                     }
                     return false;
