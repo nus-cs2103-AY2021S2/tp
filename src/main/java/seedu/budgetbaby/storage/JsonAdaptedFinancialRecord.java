@@ -53,7 +53,7 @@ class JsonAdaptedFinancialRecord {
         description = source.getDescription().description;
         amount = source.getAmount().value.toString();
         timestamp = source.getTimestamp();
-        tagged.addAll(source.getTags().stream()
+        tagged.addAll(source.getCategories().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList()));
     }

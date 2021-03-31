@@ -173,7 +173,6 @@ public class UniqueMonthList implements Iterable<Month> {
 
     /**
      * Adds a financial record to the budget tracker.
-     * Adds a month to the budget tracker.
      */
     public void addFinancialRecord(FinancialRecord r) {
         requireNonNull(r);
@@ -189,7 +188,7 @@ public class UniqueMonthList implements Iterable<Month> {
         requireNonNull(editedRecord);
         Month targetMonth = findFinancialRecordMonth(target);
         Month editedMonth = findFinancialRecordMonth(editedRecord);
-        targetMonth.deleteFinancialRecord(editedRecord);
+        targetMonth.deleteFinancialRecord(target);
         editedMonth.addFinancialRecord(editedRecord);
     }
 

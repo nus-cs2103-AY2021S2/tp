@@ -21,18 +21,18 @@ import seedu.budgetbaby.model.record.Description;
 import seedu.budgetbaby.model.record.FinancialRecord;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the budget tracker data.
  */
 public class BudgetBabyModelManager implements BudgetBabyModel {
     private static final Logger logger = LogsCenter.getLogger(BudgetBabyModelManager.class);
 
-    private final BudgetTracker budgetTracker;
+    private final VersionedBudgetTracker versionedBudgetTracker;
     private final UserPrefs userPrefs;
     private final FilteredList<Month> filteredMonths;
     private FilteredList<FinancialRecord> filteredFinancialRecords;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given budgetTracker and userPrefs.
      */
     public BudgetBabyModelManager(ReadOnlyBudgetTracker budgetTracker, ReadOnlyUserPrefs userPrefs) {
         super();
@@ -40,12 +40,12 @@ public class BudgetBabyModelManager implements BudgetBabyModel {
 
         logger.fine("Initializing with budget tracker: " + budgetTracker + " and user prefs " + userPrefs);
 
-        this.budgetTracker = new BudgetTracker(budgetTracker);
+        this.versionedBudgetTracker = new VersionedBudgetTracker(budgetTracker);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredMonths = new FilteredList<>(this.budgetTracker.getMonthList());
+        filteredMonths = new FilteredList<>(this.versionedBudgetTracker.getMonthList());
         updateFilteredMonthList(month -> month.isSameMonth(YearMonth.now()));
         filteredFinancialRecords = new FilteredList<>(
-            this.budgetTracker.getFinancialRecordListOfMonth(YearMonth.now()));
+            this.versionedBudgetTracker.getFinancialRecordListOfMonth(YearMonth.now()));
     }
 
     public BudgetBabyModelManager() {
@@ -91,53 +91,60 @@ public class BudgetBabyModelManager implements BudgetBabyModel {
 
     @Override
     public void setBudgetTracker(ReadOnlyBudgetTracker budgetTracker) {
-        this.budgetTracker.resetData(budgetTracker);
+        this.versionedBudgetTracker.resetData(budgetTracker);
     }
 
     @Override
     public ReadOnlyBudgetTracker getBudgetTracker() {
-        return budgetTracker;
+        return versionedBudgetTracker;
     }
 
     @Override
     public void deleteMonth(Month target) {
-        budgetTracker.removeMonth(target);
+        versionedBudgetTracker.removeMonth(target);
     }
 
     @Override
     public void addMonth(Month month) {
-        budgetTracker.addMonth(month);
+        versionedBudgetTracker.addMonth(month);
         updateFilteredMonthList(PREDICATE_SHOW_ALL_RECORDS);
     }
 
     @Override
     public void setMonth(Month target, Month editedMonth) {
         requireAllNonNull(target, editedMonth);
-        budgetTracker.setMonth(target, editedMonth);
+        versionedBudgetTracker.setMonth(target, editedMonth);
     }
 
     @Override
     public void setCurrentDisplayMonth(YearMonth month) {
-        budgetTracker.setCurrentDisplayMonth(month);
+        versionedBudgetTracker.setCurrentDisplayMonth(month);
         updateFilteredMonthList(m -> m.isSameMonth(month));
         filteredFinancialRecords = new FilteredList<>(
-            this.budgetTracker.getFinancialRecordListOfMonth(month));
+            this.versionedBudgetTracker.getFinancialRecordListOfMonth(month));
     }
 
     @Override
     public void deleteFinancialRecord(FinancialRecord target) {
-        budgetTracker.removeFinancialRecord(target);
+        versionedBudgetTracker.removeFinancialRecord(target);
     }
 
     @Override
     public void addFinancialRecord(FinancialRecord record) {
-        budgetTracker.addFinancialRecord(record);
+        FinancialRecord toAdd = record;
+        versionedBudgetTracker.addFinancialRecord(record);
+        if (!record.getMonth().equals(filteredMonths.get(0))) {
+            setCurrentDisplayMonth(record.getMonth());
+        }
     }
 
     @Override
     public void setFinancialRecord(FinancialRecord target, FinancialRecord editedRecord) {
         requireAllNonNull(target, editedRecord);
-        budgetTracker.setFinancialRecord(target, editedRecord);
+        versionedBudgetTracker.setFinancialRecord(target, editedRecord);
+        if (!editedRecord.getMonth().equals(filteredMonths.get(0))) {
+            setCurrentDisplayMonth(editedRecord.getMonth());
+        }
     }
 
     @Override
@@ -150,20 +157,20 @@ public class BudgetBabyModelManager implements BudgetBabyModel {
 
         Predicate<FinancialRecord> findA = fr -> fr.getAmount().getValue().equals(amount.getValue());
 
-        Predicate<FinancialRecord> findC = fr -> fr.getTags().containsAll(categories);
+        Predicate<FinancialRecord> findC = fr -> fr.getCategories().containsAll(categories);
 
         Predicate<FinancialRecord> findDA = fr -> fr.getDescription().description.equals(description.description)
-                && fr.getAmount().getValue().equals(amount.getValue());
+            && fr.getAmount().getValue().equals(amount.getValue());
 
         Predicate<FinancialRecord> findDC = fr -> fr.getDescription().description.equals(description.description)
-                && fr.getTags().containsAll(categories);
+            && fr.getCategories().containsAll(categories);
 
         Predicate<FinancialRecord> findAC = fr -> fr.getAmount().getValue().equals(amount.getValue())
-                && fr.getTags().containsAll(categories);
+            && fr.getCategories().containsAll(categories);
 
         Predicate<FinancialRecord> findAll = fr -> fr.getDescription().description.equals(description.description)
-                && fr.getAmount().getValue().equals(amount.getValue())
-                && fr.getTags().containsAll(categories);
+            && fr.getAmount().getValue().equals(amount.getValue())
+            && fr.getCategories().containsAll(categories);
 
         if (description == null) {
             if (amount == null && categories != null) {
@@ -196,7 +203,14 @@ public class BudgetBabyModelManager implements BudgetBabyModel {
 
     @Override
     public void setBudget(Budget budget) {
-        budgetTracker.setBudget(budget);
+        versionedBudgetTracker.setBudget(budget);
+    }
+
+    //===========  Full List Accessors =============================================================
+
+    @Override
+    public ObservableList<Month> getFullMonthList() {
+        return versionedBudgetTracker.getMonthList();
     }
 
     //=========== Filtered List Accessors =============================================================
@@ -230,6 +244,37 @@ public class BudgetBabyModelManager implements BudgetBabyModel {
         }
     }
 
+    //=========== Undo/Redo ==========================================================================
+
+    @Override
+    public boolean canUndoBudgetTracker() {
+        return versionedBudgetTracker.canUndo();
+    }
+
+    @Override
+    public boolean canRedoBudgetTracker() {
+        return versionedBudgetTracker.canRedo();
+    }
+
+    @Override
+    public void undoBudgetTracker() {
+        versionedBudgetTracker.undo();
+        setCurrentDisplayMonth(getBudgetTracker().getCurrentDisplayMonth().getMonth());
+    }
+
+    @Override
+    public void redoBudgetTracker() {
+        versionedBudgetTracker.redo();
+        setCurrentDisplayMonth(getBudgetTracker().getCurrentDisplayMonth().getMonth());
+    }
+
+    @Override
+    public void commitBudgetTracker() {
+        versionedBudgetTracker.commit();
+    }
+
+    //=========== Util methods =======================================================================
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
@@ -244,7 +289,7 @@ public class BudgetBabyModelManager implements BudgetBabyModel {
 
         // state check
         BudgetBabyModelManager other = (BudgetBabyModelManager) obj;
-        return budgetTracker.equals(other.budgetTracker)
+        return versionedBudgetTracker.equals(other.versionedBudgetTracker)
             && userPrefs.equals(other.userPrefs)
             && filteredMonths.equals(other.filteredMonths);
     }

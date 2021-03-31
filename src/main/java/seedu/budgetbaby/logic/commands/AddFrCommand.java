@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_AMOUNT;
 import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_TIME;
 
 import seedu.budgetbaby.logic.commands.exceptions.CommandException;
 import seedu.budgetbaby.model.BudgetBabyModel;
@@ -20,10 +21,12 @@ public class AddFrCommand extends BudgetBabyCommand {
         + "Parameters: "
         + PREFIX_DESCRIPTION + "FR_DESCRIPTION "
         + PREFIX_AMOUNT + "FR_AMOUNT "
+        + "[" + PREFIX_TIME + "DATE] "
         + "[" + PREFIX_CATEGORY + "CATEGORY]...\n"
         + "Example: " + COMMAND_WORD + " "
         + PREFIX_DESCRIPTION + "Lunch "
         + PREFIX_AMOUNT + "10 "
+        + PREFIX_TIME + "31-12-2020 "
         + PREFIX_CATEGORY + "Food";
 
     public static final String MESSAGE_SUCCESS = "New financial record added: %1$s";
@@ -43,7 +46,8 @@ public class AddFrCommand extends BudgetBabyCommand {
         requireNonNull(model);
 
         model.addFinancialRecord(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        model.commitBudgetTracker();
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), false, false);
     }
 
     @Override

@@ -11,6 +11,14 @@ public class MonthStatistics {
         this.month = month;
     }
 
+    public Month getMonth() {
+        return month;
+    }
+
+    public double getAmount() {
+        return this.month.getTotalExpenses();
+    }
+
     @Override
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM");

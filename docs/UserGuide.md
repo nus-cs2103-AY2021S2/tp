@@ -1,5 +1,5 @@
 ---
-layout: page 
+layout: page
 title: User Guide
 ---
 
@@ -12,19 +12,21 @@ Graphical User Interface (GUI).
 
 - [Quick Start](#quick-start)
 - [Features](#features)
-    - [Viewing help : `help`](#viewing-help--help)
-    - [Adding a financial record : `add-fr`](#adding-a-financial-record--add-fr)
-    - [Deleting a financial record : `delete-fr`](#deleting-a-financial-record--delete-fr)
-    - [Setting monthly budget : `set-bg`](#setting-monthly-budget--set-bg)
-    - [Viewing a specific month : `view-month`](#viewing-a-specific-month--view-month)
-    - [Finding financial records : `find-fr`](#finding-financial-records--find-fr)
-    - [Resetting filters on financial records : `reset-filter`](#resetting-filters-on-financial-records--reset-filter)
-    - [Exiting the program : `exit`](#exiting-the-program--exit)
-    - [Viewing budget for the current month](#viewing-budget-for-the-current-month)
-    - [Checking remaining budget for the current month](#checking-remaining-budget-for-the-current-month)
-    - [Saving the data](#saving-the-data)
-    - [Editing the data file](#editing-the-data-file)
-    - [Archiving data files](#archiving-data-files)
+  - [Viewing help : `help`](#viewing-help--help)
+  - [Adding a financial record : `add-fr`](#adding-a-financial-record--add-fr)
+  - [Deleting a financial record : `delete-fr`](#deleting-a-financial-record--delete-fr)
+  - [Editing a financial record : `edit-fr`](#editing-a-financial-record--edit-fr)
+  - [Setting monthly budget : `set-bg`](#setting-monthly-budget--set-bg)
+  - [Viewing a specific month : `view-month`](#viewing-a-specific-month--view-month)
+  - [Finding financial records : `find-fr`](#finding-financial-records--find-fr)
+  - [Resetting filters on financial records : `reset-filter`](#resetting-filters-on-financial-records--reset-filter)
+  - [Exiting the program : `exit`](#exiting-the-program--exit)
+  - [Viewing top 5 categories spent for the current month](#viewing-top-5-categories-spent-for-the-current-month)
+  - [Viewing budget for the current month](#viewing-budget-for-the-current-month)
+  - [Checking remaining budget for the current month](#checking-remaining-budget-for-the-current-month)
+  - [Saving the data](#saving-the-data)
+  - [Editing the data file](#editing-the-data-file)
+  - [Archiving data files](#archiving-data-files)
 - [FAQ](#faq)
 - [Command Summary](#command-summary)
 - [Credits](#credits)
@@ -46,15 +48,15 @@ Graphical User Interface (GUI).
    the **`help`** command and pressing the enter key will open the help window.<br>
    Some example commands you can try:
 
-    - **`add-fr`** `d/Lunch a/10` : Add a financial record for `lunch` which cost `10` dollars.
+   - **`add-fr`** `d/Lunch a/10` : Add a financial record for `lunch` which cost `10` dollars.
 
-    - **`delete-fr`** `3` : Deletes the 3rd financial record shown in the current list.
+   - **`delete-fr`** `3` : Deletes the 3rd financial record shown in the current list.
 
-    - **`set-bg`** `500` : Sets the current month's budget at `500` dollars.
+   - **`set-bg`** `500` : Sets the current month's budget at `500` dollars.
 
-    - **`view-month`** `01-2021` : Displays the financial records and budget of the month `January 2021`.
+   - **`view-month`** `01-2021` : Displays the financial records and budget of the month `January 2021`.
 
-    - **`exit`** : Exits the app.
+   - **`exit`** : Exits the app.
 
 6. You may refer to the [features](#features) below for details of each command.
 
@@ -71,17 +73,17 @@ Graphical User Interface (GUI).
   which must be supplied by you. An example of supplied arguments look like this `add-fr n/Lunch a/10`.
 
 - You may choose to omit items in square brackets as they are optional.<br>
-  For example, with the command `add-fr d/FR_DESCRIPTION a/FR_AMOUNT [t/TAG]…`, you may omit the tag and
-  use `add-fr n/Lunch a/10 t/food` or `add-fr n/Lunch a/10`.
+  For example, with the command `add-fr d/FR_DESCRIPTION a/FR_AMOUNT [t/DATE] [c/CATEGORY]…`, you may omit the category and
+  use `add-fr n/Lunch a/10 t/01-01-2021 c/food` or `add-fr n/Lunch a/10`.
 
 - For items suffixed with `…`​ you may repeat it multiple times within the command.<br>
-  For example, with the command `add-fr d/FR_DESCRIPTION a/FR_AMOUNT [t/TAG]…`, you may repeat `[t/TAG]…​` multiple
-  times with `t/food`, `t/transportation`, `t/shopping` etc.
+  For example, with the command `add-fr d/FR_DESCRIPTION a/FR_AMOUNT [t/DATE] [c/CATEGORY]…`, you may repeat `[c/FR_CATEGORY]…​` multiple
+  times with `c/food`, `c/transportation`, `c/shopping` etc.
 
 - You may key in arguments in any order.<br>
   For example, you can use `d/FR_DESCRIPTION a/FR_AMOUNT` or `a/FR_AMOUNT d/FR_DESCRIPTION` as both are acceptable.
 
-- If an argument is expected only once in the command but you specify multiple arguments, only the last occurrence of
+- If an argument is expected only once in the command, but you specify multiple arguments, only the last occurrence of
   the argument is used.<br>
   For example, if you specify `d/Lunch d/Dinner`, only `d/Dinner` will be used.
 
@@ -95,7 +97,8 @@ Graphical User Interface (GUI).
 
 [coming in v1.3]
 
-You can use this command to access the help page for detailed information on using the UG.
+If this is your first time opening BudgetBaby, or if you have forgotten what commands you can use, you may utilise the `help`
+command to access the help page for a detailed guide on using the application.
 
 <img src="images/helpMessage.png" width="600px">
 
@@ -103,11 +106,11 @@ Format: `help`
 
 ### Adding a financial record : `add-fr`
 
-You can use this command to add a financial record to the budget tracker.
+If you just spent some money and want to record it, you may use the `add-fr` command to add this expenditure as a financial record in BudgetBaby.
 
-<img src="images/features/add-fr.png" width="600px">
+<img src="images/features/add-fr.png" width="1000px">
 
-Format: `add-fr d/FR_DESCRIPTION a/FR_AMOUNT`
+Format: `add-fr d/FR_DESCRIPTION a/FR_AMOUNT [t/DATE] [c/CATEGORY]…`
 
 <div markdown="block" class="alert alert-primary">
 
@@ -115,17 +118,20 @@ Format: `add-fr d/FR_DESCRIPTION a/FR_AMOUNT`
 
 - You must replace `FR_DESCRIPTION` with the description of your financial record.
 - You must replace `FR_AMOUNT` with a **positive number** containing up to **two decimal places**.
+- The date you input must follow the format `DD-MM-YYYY` (e.g. 31-12-2020)
+- `DD` is the numeric value of the date, `MM` is the numeric value of the month and `YYYY` is the numeric value of the year
+- You must use a date number with 2 digits, a month number with 2 digits, and a year number with 4 digits
 
 </div>
 
 Examples:
 
 - `add-fr d/Lunch a/10`
-- `add-fr d/Dinner a/13.50`
+- `add-fr d/Movie a/13.50 t/01-03-2021 c/Entertainment c/Friends`
 
 ### Deleting a financial record : `delete-fr`
 
-You can use this command to delete a financial record from the budget tracker.
+If you mistyped a financial record or added a financial record incorrectly, you may use the `delete-fr` command to delete a financial record from BudgetBaby.
 
 <img src="images/features/delete-fr.png" width="600px">
 
@@ -134,20 +140,43 @@ Format: `delete-fr FR_INDEX`
 <div markdown="block" class="alert alert-primary">
 
 **:bulb: Tips:**<br>
+
 - You must replace `FR_INDEX` with the index of the finacial record you want to delete.
 - `FR_INDEX` refers to the index number shown in the displayed financial record list.
 - `FR_INDEX` must be a **positive integer** (e.g. 1, 2, 3, …​)
-
 
 </div>
 
 Examples:
 
-- `list 02-2021` followed by `delete-fr 10` deletes the 10th financial record of Feb 2021
+- `delete-fr 10` deletes the 10th financial record displaying on the screen
+
+### Editing a financial record : `edit-fr`
+
+If you mistyped the details of a financial record, instead of deleting it completely, you may use the `edit-fr` command to edit an existing financial record in BudgetBaby.
+
+<img src="images/features/edit-fr.png" width="600px">
+
+Format: `edit-fr FR_INDEX [d/FR_DESCRIPTION] [a/FR_AMOUNT] [t/DATE] [c/CATEGORY]...`
+
+<div markdown="block" class="alert alert-primary">
+
+**:bulb: Tips:**<br>
+
+- You must replace `FR_INDEX` with the index of the finacial record you want to delete.
+- `FR_INDEX` refers to the index number shown in the displayed financial record list.
+- `FR_INDEX` must be a **positive integer** (e.g. 1, 2, 3, …​)
+- For the specifications on `FR_DESCRIPTION`, `FR_AMOUNT`, `DATE` and `CATEGORY`, please refer to `add-fr` command.
+
+</div>
+
+Examples:
+
+- `edit-fr 1 d/new description` changes the description of the first financial record displaying on the screen to `new description`.
 
 ### Setting monthly budget : `set-bg`
 
-You can use this command to set the budget for the current month and the following twelve months.
+If you would like to change your budget to something different from what it currently is in BudgetBaby, you may use the `set-bg` command to set the budget for the current month and the following twelve months.
 
 <img src="images/features/set-bg.png" width="600px">
 
@@ -156,6 +185,7 @@ Format: `set-bg BG_AMOUNT`
 <div markdown="block" class="alert alert-primary">
 
 **:bulb: Tips:**<br>
+
 - You must replace `BG_AMOUNT` with a **positive number** containing up to **two decimal places**.
 </div>
 
@@ -168,13 +198,13 @@ Examples:
 
 [coming in v1.3 subject to changes]
 
-You can use this command to display the data associated with a specific month.
+If you would like to take a look at how you managed your budget for a pericular month, you may use the `view-month` command to display the data associated with a specific month.
 
-Data associated with a month include:
+Data associated with a month includes:
 
-- The budget set by you for the month
-- Your remaining budget for the month
-- Your list of financial records for the month
+- The budget set by you for that month
+- Your remaining budget for that month
+- Your list of financial records for that month
 
 <img src="images/features/view-month.png" width="600px">
 
@@ -183,9 +213,10 @@ Format: `view-month MM-YYYY`
 <div markdown="block" class="alert alert-primary">
 
 **:bulb: Tips:**<br>
+
 - The month you input must follow the format `MM-YYYY` (e.g. 09-2020)
-- `MM` is the month number and `YYYY` is the year number
-- You must use a month number with 2 digits and the year number with 4 digits
+- `MM` is the numeric value of the month and `YYYY` is the numeric value of the year
+- You must use a month number with 2 digits, and a year number with 4 digits
 </div>
 
 Examples:
@@ -194,12 +225,7 @@ Examples:
 
 ### Finding financial records : `find-fr`
 
-You can use this command to filter the list of financial records based on a specified category.
-
-Data associated include:
-
-- Description, Amount and Category to filter
-- Financial records
+If you would like to find financial records which fall within a particular category, you may use the `find-fr` command to filter the list of financial records based on that specified category.
 
 <img src="images/features/find-fr.png" width="600px">
 
@@ -216,11 +242,7 @@ Examples:
 
 ### Resetting filters on financial records : `reset-filter`
 
-You can use this command to reset all filters on financial records.
-
-Data associated include:
-
-- Financial records
+If you currently have a filter set, such as a particular month or category, and you would like to go back to the original view of the application, you may use the `reset-filter` command to reset all filters on financial records.
 
 <img src="images/features/reset-filter.png" width="600px">
 
@@ -232,17 +254,19 @@ Examples:
 
 ### Exiting the program : `exit`
 
-[coming in v1.3]
-
-You can use this command to exit the program.
+After you are done with editing details in BudgetBaby, you may use the `exit` command to exit the program.
 
 Format: `exit`
 
-### Viewing budget for the current month :
+### Viewing top 5 categories spent for the current month
+
+The UI displays the top 5 categories that were spent on a particular month.
+
+### Viewing budget for the current month
 
 The UI displays the current monthly budget that has been set automatically.
 
-### Checking remaining budget for the current month :
+### Checking remaining budget for the current month
 
 The UI displays and updates the remaining budget for the current month automatically.
 
@@ -282,16 +306,17 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action                              | Format, Examples                                                            |
-| ----------------------------------- | -----------------------------------------------------------------------     |
-| **Add a Financial Record**          | `add-fr d/FR_DESCRIPTION a/FR_AMOUNT​` <br> e.g., `add-fr d/Lunch a/10`  |
-| **Delete a Financial Record**       | `delete-fr FR_INDEX` <br> e.g., `delete-fr 10`                              |
-| **Find a Financial Record**         | `find-fr c/FR_CATEGORY` <br> e.g., `find-fr c/Food`                         |
-| **Set Monthly Budget**              | `set-bg BG_AMOUNT​` <br> e.g., `set-bg 100`                              |
-| **View a Particular Month**         | `view MM-YYYY` <br> e.g., `view 01-2021`                                    |
-| **Reset Filter**                    | `reset-filter`                                                              |
-| **Help**                            | `help`                                                                      |
-| **Exit**                            | `exit`                                                                      |
+| Action                        | Format, Examples                                                                                                    |
+| ----------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| **Add a Financial Record**    | `add-fr d/FR_DESCRIPTION a/FR_AMOUNT [t/DATE] [c/CATEGORY]…` <br> e.g., `add-fr d/Lunch a/10`                       |
+| **Delete a Financial Record** | `delete-fr FR_INDEX` <br> e.g., `delete-fr 10`                                                                      |
+| **Edit a Financial Record**   | `edit-fr FR_INDEX [d/FR_DESCRIPTION] [a/FR_AMOUNT] [t/DATE] [c/CATEGORY]…` <br> e.g., `edit-fr 1 d/new description` |
+| **Find a Financial Record**   | `find-fr c/FR_CATEGORY` <br> e.g., `find-fr c/Food`                                                                 |
+| **Set Monthly Budget**        | `set-bg BG_AMOUNT​` <br> e.g., `set-bg 100`                                                                         |
+| **View a Particular Month**   | `view MM-YYYY` <br> e.g., `view 01-2021`                                                                            |
+| **Reset Filter**              | `reset-filter`                                                                                                      |
+| **Help**                      | `help`                                                                                                              |
+| **Exit**                      | `exit`                                                                                                              |
 
 ## Credits
 

@@ -10,10 +10,13 @@ import seedu.budgetbaby.ablogic.commands.HelpCommand;
 import seedu.budgetbaby.logic.commands.AddFrCommand;
 import seedu.budgetbaby.logic.commands.BudgetBabyCommand;
 import seedu.budgetbaby.logic.commands.DeleteFrCommand;
+import seedu.budgetbaby.logic.commands.EditFrCommand;
 import seedu.budgetbaby.logic.commands.ExitCommand;
 import seedu.budgetbaby.logic.commands.FindFrCommand;
+import seedu.budgetbaby.logic.commands.RedoCommand;
 import seedu.budgetbaby.logic.commands.ResetFilterCommand;
 import seedu.budgetbaby.logic.commands.SetBudgetCommand;
+import seedu.budgetbaby.logic.commands.UndoCommand;
 import seedu.budgetbaby.logic.commands.ViewMonthCommand;
 import seedu.budgetbaby.logic.parser.exceptions.ParseException;
 
@@ -42,6 +45,7 @@ public class BudgetBabyParser {
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
+
         switch (commandWord) {
 
         case AddFrCommand.COMMAND_WORD:
@@ -49,6 +53,9 @@ public class BudgetBabyParser {
 
         case DeleteFrCommand.COMMAND_WORD:
             return new DeleteFrCommandParser().parse(arguments);
+
+        case EditFrCommand.COMMAND_WORD:
+            return new EditFrCommandParser().parse(arguments);
 
         case SetBudgetCommand.COMMAND_WORD:
             return new SetBudgetCommandParser().parse(arguments);
@@ -61,6 +68,12 @@ public class BudgetBabyParser {
 
         case ViewMonthCommand.COMMAND_WORD:
             return new ViewMonthCommandParser().parse(arguments);
+
+        case UndoCommand.COMMAND_WORD:
+            return new UndoCommandParser().parse(arguments);
+
+        case RedoCommand.COMMAND_WORD:
+            return new RedoCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

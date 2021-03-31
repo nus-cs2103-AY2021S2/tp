@@ -19,11 +19,11 @@ import seedu.budgetbaby.model.record.FinancialRecordList;
 /**
  * Represents a Month in the budget tracker.
  */
-public class Month {
+public class Month implements Comparable<Month> {
 
     // Data fields
     public static final String MESSAGE_CONSTRAINTS =
-        "Month should follow the format of M-yyyy. Example: 01-2021.";
+        "Month should follow the format of mm-yyyy. Example: 01-2021.";
 
     private static final DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("MM-uuuu");
     private static final DateTimeFormatter displayFormatter = DateTimeFormatter.ofPattern("MMMM yyyy");
@@ -114,6 +114,7 @@ public class Month {
 
     /**
      * Returns total expenses of the month.
+     *
      * @return total expenses
      */
     public Double getTotalExpenses() {
@@ -189,4 +190,8 @@ public class Month {
         return month.format(displayFormatter);
     }
 
+    @Override
+    public int compareTo(Month m) {
+        return this.getMonth().isBefore(m.getMonth()) ? -1 : 1;
+    }
 }

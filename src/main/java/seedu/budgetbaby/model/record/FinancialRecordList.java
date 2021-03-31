@@ -3,6 +3,7 @@ package seedu.budgetbaby.model.record;
 import static java.util.Objects.requireNonNull;
 import static seedu.budgetbaby.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -17,9 +18,24 @@ import seedu.budgetbaby.model.record.exception.FinancialRecordNotFoundException;
  */
 public class FinancialRecordList implements Iterable<FinancialRecord> {
 
-    private final ObservableList<FinancialRecord> internalList = FXCollections.observableArrayList();
-    private final ObservableList<FinancialRecord> internalUnmodifiableList =
-        FXCollections.unmodifiableObservableList(internalList);
+    private final ObservableList<FinancialRecord> internalList;
+    private final ObservableList<FinancialRecord> internalUnmodifiableList;
+
+    /**
+     * Initializes a FinancialRecordList.
+     */
+    public FinancialRecordList() {
+        this.internalList = FXCollections.observableArrayList();
+        this.internalUnmodifiableList = FXCollections.unmodifiableObservableList(internalList);
+    }
+
+    /**
+     * Initializes a FinancialRecordList with the given {@code frList}.
+     */
+    public FinancialRecordList(List<FinancialRecord> frList) {
+        this.internalList = FXCollections.observableArrayList(frList);
+        this.internalUnmodifiableList = FXCollections.unmodifiableObservableList(internalList);
+    }
 
     /**
      * Adds a financial record to the list.
@@ -27,6 +43,7 @@ public class FinancialRecordList implements Iterable<FinancialRecord> {
     public void add(FinancialRecord toAdd) {
         requireNonNull(toAdd);
         internalList.add(toAdd);
+        sort();
     }
 
     /**
@@ -43,6 +60,7 @@ public class FinancialRecordList implements Iterable<FinancialRecord> {
         }
 
         internalList.set(index, editedFinancialRecord);
+        sort();
     }
 
     /**
@@ -56,9 +74,17 @@ public class FinancialRecordList implements Iterable<FinancialRecord> {
         }
     }
 
+    /**
+     * Sorts the financial record list.
+     */
+    public void sort() {
+        FXCollections.sort(internalList, Comparator.comparing(FinancialRecord::getTimestamp));
+    }
+
     public void setFinancialRecords(FinancialRecordList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
+        sort();
     }
 
     /**
@@ -68,6 +94,7 @@ public class FinancialRecordList implements Iterable<FinancialRecord> {
         requireAllNonNull(records);
 
         internalList.setAll(records);
+        sort();
     }
 
     /**
@@ -75,7 +102,7 @@ public class FinancialRecordList implements Iterable<FinancialRecord> {
      */
     public void filterByCategory(Category category) {
         requireAllNonNull(category);
-        internalList.removeIf(fr -> !fr.getTags().isEmpty());
+        internalList.removeIf(fr -> !fr.getCategories().isEmpty());
     }
 
     /**
@@ -83,8 +110,8 @@ public class FinancialRecordList implements Iterable<FinancialRecord> {
      */
     public Double getTotalExpenses() {
         return internalList.stream()
-                .mapToDouble(fr -> fr.getAmount().getValue())
-                .reduce(0.0, Double::sum);
+            .mapToDouble(fr -> fr.getAmount().getValue())
+            .reduce(0.0, Double::sum);
     }
 
     /**
@@ -92,6 +119,13 @@ public class FinancialRecordList implements Iterable<FinancialRecord> {
      */
     public ObservableList<FinancialRecord> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
+    }
+
+    /**
+     * Returns a deep copy of the FinancialRecordList object
+     */
+    public FinancialRecordList getDeepClone() {
+        return new FinancialRecordList(this.internalUnmodifiableList);
     }
 
     @Override
