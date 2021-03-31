@@ -20,6 +20,6 @@ public class ViewContactsCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredContactList(PREDICATE_SHOW_ALL_CONTACTS);
-        return new CommandResult(MESSAGE_SUCCESS, new ShowContactsUiCommand());
+        return new CommandResult(MESSAGE_SUCCESS, new ShowContactsUiCommand()).setIgnoreHistory(true);
     }
 }
