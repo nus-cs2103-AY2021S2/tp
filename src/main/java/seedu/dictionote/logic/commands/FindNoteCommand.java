@@ -36,13 +36,8 @@ public class FindNoteCommand extends Command {
     /**
      * Creates a new {@code FindContactCommand} with two predicates (i.e., conditions):
      * one applies to the contacts' names, and the other applies to their tags.
-<<<<<<< HEAD
      * @param notePredicate The predicate to be evaluated against the note's content.
      * @param tagsPredicate The predicate to be evaluated against the note's tags.
-=======
-     * @param notePredicate The predicate to be evaluated against the notes' names.
-     * @param tagsPredicate The predicate to be evaluated against the notes' tags.
->>>>>>> 9706ccb739fd7e5bcc25e1b090780fd374f34edf
      */
     public FindNoteCommand(NoteContainsKeywordsPredicate notePredicate,
                               TagNoteContainKeywordsPredicate tagsPredicate) {
@@ -58,7 +53,7 @@ public class FindNoteCommand extends Command {
         model.updateFilteredNoteList(notePredicate.and(tagsPredicate));
         return new CommandResult(
                 String.format(Messages.MESSAGE_NOTES_LISTED_OVERVIEW, model.getFilteredNoteList().size()),
-                UiAction.OPEN, UiActionOption.NOTE);
+                UiAction.OPEN, UiActionOption.NOTE_LIST);
     }
 
     @Override

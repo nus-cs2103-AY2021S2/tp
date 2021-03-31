@@ -7,6 +7,8 @@ import java.util.List;
 
 import seedu.dictionote.commons.core.Messages;
 import seedu.dictionote.commons.core.index.Index;
+import seedu.dictionote.logic.commands.enums.UiAction;
+import seedu.dictionote.logic.commands.enums.UiActionOption;
 import seedu.dictionote.logic.commands.exceptions.CommandException;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.note.Note;
@@ -46,7 +48,8 @@ public class MarkAsDoneNoteCommand extends Command {
                 noteToMarkAsDone.getTags(), noteToMarkAsDone.getCreateTime());
 
         model.setNote(noteToMarkAsDone, markAsDoneNote);
-        return new CommandResult(String.format(MESSAGE_MARK_AS_DONE_NOTE_SUCCESS, markAsDoneNote));
+        return new CommandResult(String.format(MESSAGE_MARK_AS_DONE_NOTE_SUCCESS, markAsDoneNote,
+            UiAction.OPEN, UiActionOption.NOTE_LIST));
     }
 
     @Override
