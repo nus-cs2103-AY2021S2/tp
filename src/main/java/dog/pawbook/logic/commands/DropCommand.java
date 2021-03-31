@@ -5,7 +5,7 @@ import static dog.pawbook.logic.parser.CliSyntax.PREFIX_PROGRAMID;
 
 import java.util.Set;
 
-public class DropCommand extends ProgramCommand {
+public class DropCommand extends ProgramRegistrationCommand {
     public static final String COMMAND_WORD = "drop";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Drops a dog from a program."

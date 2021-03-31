@@ -5,7 +5,7 @@ import static dog.pawbook.logic.parser.CliSyntax.PREFIX_PROGRAMID;
 
 import java.util.Set;
 
-public class EnrolCommand extends ProgramCommand {
+public class EnrolCommand extends ProgramRegistrationCommand {
     public static final String COMMAND_WORD = "enrol";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Enrols a dog into a program."

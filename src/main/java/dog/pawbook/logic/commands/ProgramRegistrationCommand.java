@@ -3,7 +3,6 @@ package dog.pawbook.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -11,7 +10,7 @@ import dog.pawbook.logic.commands.exceptions.CommandException;
 import dog.pawbook.model.Model;
 import dog.pawbook.model.managedentity.program.Program;
 
-public abstract class ProgramCommand extends Command {
+public abstract class ProgramRegistrationCommand extends Command {
     protected abstract Set<Integer> retrieveDogIdSet();
     protected abstract Set<Integer> retrieveProgramIdSet();
 
