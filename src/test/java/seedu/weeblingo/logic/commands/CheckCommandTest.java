@@ -116,7 +116,7 @@ public class CheckCommandTest {
         }
 
         @Override
-        public void startQuiz() {
+        public void startQuiz(int numberOfQuestions, Set<Tag> tags) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -152,16 +152,6 @@ public class CheckCommandTest {
 
         @Override
         public int getCurrentMode() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setNumOfQnsForQuizSession(int numberOfQuestions) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setTagsForQuizSession(Set<Tag> tags) {
             throw new AssertionError("This method should not be called.");
         }
 
