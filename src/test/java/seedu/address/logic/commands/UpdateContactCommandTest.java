@@ -29,7 +29,7 @@ import seedu.address.testutil.ContactBuilder;
 import seedu.address.testutil.UpdateContactDescriptorBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for UpdateContactCommand.
  */
 public class UpdateContactCommandTest {
 
@@ -164,7 +164,7 @@ public class UpdateContactCommandTest {
         assertFalse(standardCommand.equals(null));
 
         // different types -> returns false
-        assertFalse(standardCommand.equals(new ClearContactCommand()));
+        assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
         assertFalse(standardCommand.equals(new UpdateContactCommand(INDEX_SECOND, DESC_AMY)));
