@@ -42,7 +42,7 @@ import seedu.cakecollate.testutil.OrderBuilder;
  */
 
 public class AddCommandTest {
-    private IndexList nonNullIndexList = new IndexList(new ArrayList<>());
+    private final IndexList nonNullIndexList = new IndexList(new ArrayList<>());
 
     @BeforeEach
     public void setUp() {
@@ -100,15 +100,16 @@ public class AddCommandTest {
         // null -> returns false
         assertFalse(addAliceCommand.equals(null));
 
-        // different order -> returns false
+        // same null index list, different order -> returns false
         assertFalse(addAliceCommand.equals(addBobCommand));
 
         // same order, different index list -> return false
-        // todo
+        assertFalse(addAliceCommand.equals(new AddCommand(nonNullIndexList, descriptorAlice)));
 
-        // same order, null index list -> return false
-        // todo
-
+        // same non-null index list, different order -> returns false
+        addAliceCommand = new AddCommand(nonNullIndexList, descriptorAlice);
+        addBobCommand = new AddCommand(nonNullIndexList, descriptorBob);
+        assertFalse(addAliceCommand.equals(addBobCommand));
     }
 
 

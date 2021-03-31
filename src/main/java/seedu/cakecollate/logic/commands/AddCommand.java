@@ -71,14 +71,13 @@ public class AddCommand extends Command {
      * Creates an add command object with indexlist containing the indexes passed in by user,
      * and a descriptor that contains other fields needed for the Order to be built
      *
-     * @param orderItemIndexList null if no index was given by user
-     *                           (todo not sure if should change to empty indexlist instead)
+     * @param orderItemIndexList null if no index was given by user, a non-empty indexlist if index was given by user
      * @param addOrderDescriptor contains all other fields needed for Order to be built and added into model
      */
     public AddCommand(IndexList orderItemIndexList, AddOrderDescriptor addOrderDescriptor) {
-        // requireNonNull(orderItemIndexList);
-
         requireNonNull(addOrderDescriptor);
+        assert orderItemIndexList == null || !orderItemIndexList.getIndexList().isEmpty();
+
         this.orderItemIndexList = orderItemIndexList;
         this.addOrderDescriptor = new AddOrderDescriptor(addOrderDescriptor); // defensive copy like in edit command
     }
