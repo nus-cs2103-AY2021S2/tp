@@ -90,13 +90,7 @@ public class EditCommand extends Command {
         model.setTask(taskToEdit, editedTask);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
         model.refreshDailyTasks(taskToEdit, editedTask);
-        // update daily task list
 
-        // if taskToEdit exists in the daily task list, then update the daily task list as well
-//        if (dailyTaskIndex != -1 && dailyTaskIndex < lastShownDailyTaskList.size()) {
-//            model.setDailyTask(taskToEdit, editedTask);
-//            model.updateDailyTaskList(PREDICATE_SHOW_ALL_TASKS);
-//        }
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
     }
 
