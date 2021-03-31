@@ -10,24 +10,24 @@ import me.xdrop.fuzzywuzzy.FuzzySearch;
 import seedu.address.commons.core.LogsCenter;
 
 /**
- * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Person}'s {@code Remark} matches any of the keywords given.
  */
-public class NameContainsKeywordsPredicate implements Predicate<Person>, Comparator<Person> {
+public class RemarkContainsKeywordsPredicate implements Predicate<Person>, Comparator<Person> {
     private static final int MATCH_PERCENTAGE = 60;
     private final List<String> keywords;
     private final Logger logger = LogsCenter.getLogger(getClass());
 
-    public NameContainsKeywordsPredicate(List<String> keywords) {
+    public RemarkContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
 
     @Override
     public boolean test(Person person) {
         return keywords.stream().anyMatch(keyword -> {
-            int matchPercentage = match(person.getName().fullName, keyword);
+            int matchPercentage = match(person.getRemark().value, keyword);
 
-            logger.fine(String.format("Name: %s, Word: %s, Match: %d",
-                    person.getName().fullName, keyword, matchPercentage));
+            logger.fine(String.format("Remark: %s, Word: %s, Match: %d",
+                    person.getRemark().value, keyword, matchPercentage));
             return matchPercentage > MATCH_PERCENTAGE;
         });
     }
@@ -40,25 +40,25 @@ public class NameContainsKeywordsPredicate implements Predicate<Person>, Compara
     public int compare(Person o1, Person o2) {
         int o1Similarity = keywords
                 .stream()
-                .map(keyword -> match(o1.getName().fullName, keyword))
+                .map(keyword -> match(o1.getRemark().value, keyword))
                 .max(Integer::compare)
                 .orElse(0);
         int o2Similarity = keywords
                 .stream()
-                .map(keyword -> match(o2.getName().fullName, keyword))
+                .map(keyword -> match(o2.getRemark().value, keyword))
                 .max(Integer::compare)
                 .orElse(0);
         return o2Similarity - o1Similarity == 0
-                ? o1.getName().fullName.compareTo(o2.getName().fullName)
+                ? o1.getRemark().value.compareTo(o2.getRemark().value)
                 : o2Similarity - o1Similarity;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof NameContainsKeywordsPredicate // instanceof handles nulls
-                && keywords.containsAll(((NameContainsKeywordsPredicate) other).keywords)
-                && ((NameContainsKeywordsPredicate) other).keywords.containsAll(keywords)); // state check
+                || (other instanceof RemarkContainsKeywordsPredicate // instanceof handles nulls
+                && keywords.containsAll(((RemarkContainsKeywordsPredicate) other).keywords)
+                && ((RemarkContainsKeywordsPredicate) other).keywords.containsAll(keywords)); // state check
     }
 
 }
