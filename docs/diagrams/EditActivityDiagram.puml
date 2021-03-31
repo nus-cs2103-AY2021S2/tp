@@ -1,0 +1,15 @@
+@startuml
+
+start
+:User executes edit command;
+if () then ([owner])
+:EditOwnerCommandParser processes;
+elseif () then ([dog])
+:EditDogCommandParser processes;
+else ([program])
+:EditProgramCommandParser processes;
+endif
+:Return EditCommand;
+stop
+
+@enduml

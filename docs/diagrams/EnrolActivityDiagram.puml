@@ -1,0 +1,14 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+repeat
+  :User executes enrol command;
+  backward:throws CommandException;
+repeat while () is ([else])
+->[dogId valid && programId valid];
+:EnrolCommandParser processes;
+:returns EnrolCommand;
+stop
+
+@enduml

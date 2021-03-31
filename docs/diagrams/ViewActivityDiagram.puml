@@ -1,0 +1,17 @@
+@startuml
+
+start
+:User executes view command;
+
+if () then ([dog])
+:ViewCommandParser processes to show owner;
+elseif () then ([owner])
+:ViewCommandParser processes to show all his dogs;
+else ([program])
+:ViewCommandParser processes to show all enrolled dogs;
+endif
+:Return View Command;
+
+stop
+
+@enduml

@@ -14,18 +14,34 @@ Class Model
 Class ModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
+Class UniqueEntityList
 
-Package Person {
-Class Person
+Package "Managed Entity" {
+abstract Class Entity
+Class Name
+
+Package Owner {
+Class Owner
 Class Address
 Class Email
-Class Name
 Class Phone
-Class UniquePersonList
+}
+
+Package Dog {
+Class Dog
+Class Breed
+Class DateOfBirth
+Class Sex
+}
+
+Package Program {
+Class Program
+Class Time
 }
 
 Package Tag {
 Class Tag
+}
 }
 }
 
@@ -40,17 +56,30 @@ ModelManager o--> "1" AddressBook
 ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList o--> "*" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+AddressBook *--> "1" UniqueEntityList
+UniqueEntityList o--> "*" Entity
+Entity ^-- Owner
+Entity ^-- Dog
+Entity ^-- Program
 
-Name -[hidden]right-> Phone
+Entity *-left-> Name
+Entity *-> "*" Tag
+
+Owner *--> Phone
+Owner *--> Email
+Owner *--> Address
+
+Dog *--> Breed
+Dog *--> DateOfBirth
+Dog *--> Sex
+
+Program *--> Time
+
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
 
-ModelManager ----->" ~* filtered list" Person
+Sex -[hidden]right-> Breed
+Breed -[hidden]right-> DateOfBirth
+
+ModelManager --->" ~* filtered list" Entity
 @enduml
