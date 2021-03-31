@@ -60,7 +60,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         DeadlineTime deadlineTime = ParserUtil.parseDeadlineTime(argMultimap
             .getValue(PREFIX_DEADLINE_TIME).get());
         Status status = new Status();
-        Notes notes = new Notes(""); // add command does not allow adding remarks straightaway
+        Notes notes = new Notes(""); // add command does not allow adding notes straightaway
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         // if ptag is present

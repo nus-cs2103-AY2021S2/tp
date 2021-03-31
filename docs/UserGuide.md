@@ -85,7 +85,8 @@ Format: `add mc/MODULE_CODE n/TASK_NAME d/DATE t/TIME w/WEIGHTAGE [r/REMARK] [pt
 Example:
 
 * `add mc/CS3243 n/Project 1 d/15-04-2021 t/10:00 w/10%` will add this deadline to the list
-* Priority tag of a task will be set to `LOW` by default if there are not inputs 
+* Priority tag of a task will be set to `LOW` by default if there are not inputs
+* Note that the order of inputs does not matter, for e.g. there is no difference between entering `add mc/CS3243 n/Project 1` and `add n/Project 1 mc/CS3243` .
 
 ### Clear Application : `clear`
 
@@ -120,6 +121,7 @@ Format: `edit INDEX [n/TASK NAME] [mc/MODULE CODE] [d/DEADLINE DATE]
 * The index must be on the list else an error will be thrown
 * At least one of the optional fields must be provided
 * Existing values will be updated to the input values
+* Note that the order of inputs does not matter, for e.g. there is no difference between entering `edit 1 mc/CS3243 n/Project 1` and `edit 1 n/Project 1 mc/CS3243` .
 
 Examples:
 
@@ -220,6 +222,16 @@ Example:
 * Task 1's deadline is 10 March 2020. Task 2's deadline is 11 March 2020. Today is 3 March 2020. `dueIn`, `dueIn day/7`,
   and `dueIn week/1` will lists task 1 on the list.
 
+### Add a task to the daily task list: `doToday`
+
+Adds the specified task from the regular task list to the daily task list.
+
+Format: `doToday [-a OR -r] INDEX`
+
+- Flag to add or remove must be specified: `-a` to add a daily task, `-r` to remove a daily task.
+- For add flag `-a`: Index must be available on the task list else an error will be thrown.
+- For remove flag `-r`: Index must be available on the daily task list else an error will be thrown.
+
 ### Undo last command: `undo`
 
 Undoes the last command that modified the application state
@@ -266,17 +278,18 @@ the data of your previous `semester.config` home folder.
 Action | Format, Examples
 --------|------------------
 **instructions** | `instructions`
-**add** | `add mc/MODULE_CODE n/TASK_NAME d/DATE t/TIME w/WEIGHTAGE [r/notes]` <br> e.g, `add mc/CS1010 n/Practical Exam d/12-12-2020 t/10:10 w/10`
+**add** | `add mc/MODULE_CODE n/TASK_NAME d/DATE t/TIME w/WEIGHTAGE [pt/TAGS]` <br> e.g, `add mc/CS1010 n/Practical Exam d/12-12-2020 t/10:10 w/10` 
 **delete** | `delete INDEX` <br> e.g, `delete 3` `delete 1`
 **find** | `find KEYWORD ...` <br> e.g, `find Database` `find Software`
 **list** | `list`
 **done** | `done INDEX` <br> e.g, `done 1`
 **sort** | `sort [dateTime] [taskName] [moduleCode] [priorityTag] [weightage]` <br> e.g, `sort dateTime` `sort moduleCode`
 **notes** | `notes INDEX n/NOTES` <br> e.g, `notes 4 n/Assignment must be handwritten`
-**edit** | `edit INDEX [tn/TASK NAME] [mn/MODULE NAME] [mc/MODULE CODE] [d/ DEADLINE DATE] [t/DEADLINE TIME] [n/NOTES] [pt/PRIORITY]` <br> e.g, `edit 2 tn/Assignment 7`
+**edit** | `edit INDEX [n/TASK NAME] [mn/MODULE NAME] [mc/MODULE CODE] [d/ DEADLINE DATE] [t/DEADLINE TIME] [n/NOTES] [ptag/PRIORITY]` <br> e.g, `edit 2 tn/Assignment 7` 
 **clear** |`clear`
 **ptag** | `edit INDEX ptag[/LOW] [/MEDIUM] [/HIGH]` <br> e.g, `edit 3 ptag/MEDIUM`
 **dueIn** | `dueIn [day/NUMBER_OF_DAYS] [week/NUMBER_OF_WEEKS]` <br> e.g, `dueIn`  `dueIn day/10` `dueIn week/2`
+**doToday** | `doToday [-a OR -r] INDEX` <br>e.g, `doToday -a 2` `doToday -r 2` 
 **undo** | `undo`
 **redo** | `redo`
 
