@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
-import java.util.logging.Logger;
-
-import seedu.address.commons.core.LogsCenter;
 
 /**
  * Tests that a {@code Person}'s {@code Name}, {@code Email}, {@code Tags} or {@code Remark} matches any of the keywords

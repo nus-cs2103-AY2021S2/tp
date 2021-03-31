@@ -45,10 +45,12 @@ public class FindCommandParserTest {
                 new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"));
 
         FindCommand expectedNameFindCommand = new FindCommand(predicateComparator, predicateComparator);
-        assertParseSuccess(parser, PREFIX_NAME + PREAMBLE_WHITESPACE + "Alice Bob", expectedNameFindCommand);
+        assertParseSuccess(parser,
+                PREFIX_NAME + PREAMBLE_WHITESPACE + "Alice Bob", expectedNameFindCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, PREFIX_NAME + PREAMBLE_WHITESPACE + " \n Alice \n \t Bob  \t", expectedNameFindCommand);
+        assertParseSuccess(parser,
+                PREFIX_NAME + PREAMBLE_WHITESPACE + " \n Alice \n \t Bob  \t", expectedNameFindCommand);
     }
 
     @Test
@@ -58,10 +60,12 @@ public class FindCommandParserTest {
                 new TagContainsKeywordsPredicate(Arrays.asList("Hotline", "Service"));
 
         FindCommand expectedTagFindCommand = new FindCommand(predicateComparator, predicateComparator);
-        assertParseSuccess(parser, PREFIX_TAG + PREAMBLE_WHITESPACE + "Hotline Service", expectedTagFindCommand);
+        assertParseSuccess(parser,
+                PREFIX_TAG + PREAMBLE_WHITESPACE + "Hotline Service", expectedTagFindCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, PREFIX_TAG + PREAMBLE_WHITESPACE + " \n Hotline \n \t Service  \t", expectedTagFindCommand);
+        assertParseSuccess(parser,
+                PREFIX_TAG + PREAMBLE_WHITESPACE + " \n Hotline \n \t Service  \t", expectedTagFindCommand);
     }
 
     @Test
@@ -71,10 +75,12 @@ public class FindCommandParserTest {
                 new RemarkContainsKeywordsPredicate(Arrays.asList("HR", "Network"));
 
         FindCommand expectedRemarkFindCommand = new FindCommand(predicateComparator, predicateComparator);
-        assertParseSuccess(parser, PREFIX_REMARK + PREAMBLE_WHITESPACE + "HR Network", expectedRemarkFindCommand);
+        assertParseSuccess(parser,
+                PREFIX_REMARK + PREAMBLE_WHITESPACE + "HR Network", expectedRemarkFindCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, PREFIX_REMARK + PREAMBLE_WHITESPACE + " \n HR \n \t Network  \t", expectedRemarkFindCommand);
+        assertParseSuccess(parser,
+                PREFIX_REMARK + PREAMBLE_WHITESPACE + " \n HR \n \t Network  \t", expectedRemarkFindCommand);
     }
 
     @Test
@@ -84,10 +90,14 @@ public class FindCommandParserTest {
                 new EmailContainsKeywordsPredicate(Arrays.asList("test@mail.com", "bob@box.net"));
 
         FindCommand expectedEmailFindCommand = new FindCommand(predicateComparator, predicateComparator);
-        assertParseSuccess(parser, PREFIX_EMAIL + PREAMBLE_WHITESPACE + "test@mail.com bob@box.net", expectedEmailFindCommand);
+        assertParseSuccess(parser,
+                PREFIX_EMAIL + PREAMBLE_WHITESPACE
+                        + "test@mail.com bob@box.net", expectedEmailFindCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, PREFIX_EMAIL + PREAMBLE_WHITESPACE + " \n test@mail.com \n \t bob@box.net  \t", expectedEmailFindCommand);
+        assertParseSuccess(parser,
+                PREFIX_EMAIL + PREAMBLE_WHITESPACE
+                        + " \n test@mail.com \n \t bob@box.net  \t", expectedEmailFindCommand);
     }
 
     @Test
