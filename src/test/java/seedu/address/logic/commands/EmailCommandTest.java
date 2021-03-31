@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -31,13 +32,14 @@ public class EmailCommandTest {
 
     @Test
     public void initialize_nullIndexes_throwsException() {
-        assertThrows(NullPointerException.class, () -> new EmailCommand(null));
+        assertThrows(NullPointerException.class, () -> EmailCommand.buildEmailIndexCommand(null));
     }
 
     @Test
     public void execute_outOfBoundsIndex_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        EmailCommand emailCommand = new EmailCommand(Collections.singletonList(outOfBoundIndex));
+        EmailCommand emailCommand = EmailCommand
+                .buildEmailIndexCommand(Collections.singletonList(outOfBoundIndex));
         assertCommandFailure(emailCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
@@ -48,34 +50,40 @@ public class EmailCommandTest {
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
-        EmailCommand emailCommand = new EmailCommand(Collections.singletonList(outOfBoundIndex));
+        EmailCommand emailCommand = EmailCommand
+                .buildEmailIndexCommand(Collections.singletonList(outOfBoundIndex));
         assertCommandFailure(emailCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        List<Index> validIndexes = new ArrayList<>(VALID_INDEXES);
         List<Index> validIndexesReversed = new ArrayList<>(VALID_INDEXES);
         Collections.reverse(validIndexesReversed);
 
         // same indexes -> equals
-        assertEquals(new EmailCommand(validIndexes), new EmailCommand(validIndexes));
+        assertEquals(EmailCommand.buildEmailIndexCommand(VALID_INDEXES),
+                EmailCommand.buildEmailIndexCommand(VALID_INDEXES));
 
         // same indexes, different order -> equals
-        assertEquals(new EmailCommand(validIndexes), new EmailCommand(validIndexesReversed));
+        assertEquals(EmailCommand.buildEmailIndexCommand(VALID_INDEXES),
+                EmailCommand.buildEmailIndexCommand(validIndexesReversed));
 
         // different instance, same values -> equals
-        assertEquals(new EmailCommand(), new EmailCommand());
+        assertEquals(EmailCommand.buildEmailShownCommand(), EmailCommand.buildEmailShownCommand());
+        assertEquals(EmailCommand.buildEmailSelectedCommand(),
+                EmailCommand.buildEmailSelectedCommand());
 
         // different command -> not equals
-        assertNotEquals(new EmailCommand(), new ListCommand());
+        assertNotEquals(EmailCommand.buildEmailShownCommand(), new ListCommand());
 
         // different indexes -> not equals
-        assertNotEquals(new EmailCommand(), new EmailCommand(validIndexes));
+        assertNotEquals(EmailCommand.buildEmailIndexCommand(VALID_INDEXES),
+                EmailCommand
+                        .buildEmailIndexCommand(Collections.singletonList(INDEX_SECOND_PERSON)));
 
         // different types -> not equals
-        assertNotEquals(null, new EmailCommand());
-        assertNotEquals(1, new EmailCommand());
+        assertNotEquals(null, EmailCommand.buildEmailShownCommand());
+        assertNotEquals(1, EmailCommand.buildEmailShownCommand());
     }
 
 }

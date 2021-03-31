@@ -6,11 +6,13 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertValidCommandToAliasFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertValidCommandToAliasSuccess;
+import static seedu.address.logic.parser.DeleteCommandParser.SELECTED;
 import static seedu.address.logic.parser.EmailCommandParser.SPECIAL_INDEX;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INVALID_INDEX_STRING;
 import static seedu.address.testutil.TypicalIndexes.NEGATIVE_INDEX_STRING;
 import static seedu.address.testutil.TypicalIndexes.VALID_INDEXES;
+import static seedu.address.testutil.TypicalIndexes.VALID_INDEXES_STRING;
 import static seedu.address.testutil.TypicalIndexes.VALID_INDEX_STRING;
 import static seedu.address.testutil.TypicalIndexes.ZERO_INDEX_STRING;
 
@@ -27,27 +29,45 @@ public class EmailCommandParserTest {
     private final EmailCommandParser parser = new EmailCommandParser();
 
     @Test
-    public void parse_emailShown_success() {
-        EmailCommand emailCommand = new EmailCommand();
-        assertParseSuccess(parser, SPECIAL_INDEX, emailCommand);
+    public void parse_validArgsSingleIndex_returnsEmailCommand() {
+        assertParseSuccess(parser, VALID_INDEX_STRING, EmailCommand
+                .buildEmailIndexCommand((Collections.singletonList(INDEX_FIRST_PERSON))));
+    }
+
+    @Test
+    public void parse_validArgsMultipleIndex_returnsEmailCommand() {
+        assertParseSuccess(parser, VALID_INDEXES_STRING,
+                EmailCommand.buildEmailIndexCommand(VALID_INDEXES));
+    }
+
+    @Test
+    public void parse_shown_returnsEmailCommand() {
+        assertParseSuccess(parser, SPECIAL_INDEX, EmailCommand.buildEmailShownCommand());
+    }
+
+    @Test
+    public void parse_selected_returnsEmailCommand() {
+        assertParseSuccess(parser, SELECTED, EmailCommand.buildEmailSelectedCommand());
     }
 
     @Test
     public void parse_validIndex_success() {
-        EmailCommand emailCommand = new EmailCommand(Collections.singletonList(INDEX_FIRST_PERSON));
+        EmailCommand emailCommand = EmailCommand
+                .buildEmailIndexCommand(Collections.singletonList(INDEX_FIRST_PERSON));
         assertParseSuccess(parser, VALID_INDEX_STRING, emailCommand);
     }
 
     @Test
     public void parse_validIndexWithWhitepace_success() {
-        EmailCommand emailCommand = new EmailCommand(Collections.singletonList(INDEX_FIRST_PERSON));
+        EmailCommand emailCommand = EmailCommand
+                .buildEmailIndexCommand(Collections.singletonList(INDEX_FIRST_PERSON));
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + VALID_INDEX_STRING + PREAMBLE_WHITESPACE,
                 emailCommand);
     }
 
     @Test
     public void parse_validIndexes_success() {
-        EmailCommand emailCommand = new EmailCommand(VALID_INDEXES);
+        EmailCommand emailCommand = EmailCommand.buildEmailIndexCommand(VALID_INDEXES);
         String inputIndexes = VALID_INDEXES.stream()
                 .map(Index::getOneBased).map(String::valueOf)
                 .collect(Collectors.joining(" "));
@@ -56,7 +76,7 @@ public class EmailCommandParserTest {
 
     @Test
     public void parse_validIndexesWithWhitespace_success() {
-        EmailCommand emailCommand = new EmailCommand(VALID_INDEXES);
+        EmailCommand emailCommand = EmailCommand.buildEmailIndexCommand(VALID_INDEXES);
         String inputIndexes = VALID_INDEXES.stream()
                 .map(Index::getOneBased).map(String::valueOf)
                 .collect(Collectors.joining(PREAMBLE_WHITESPACE));
