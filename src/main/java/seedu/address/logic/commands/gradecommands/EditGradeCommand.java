@@ -68,7 +68,7 @@ public class EditGradeCommand extends Command {
         Grade gradeToEdit = lastShownList.get(index.getZeroBased());
         Grade editedGrade = createEditedGrade(gradeToEdit, editGradeDescriptor);
 
-        if (!gradeToEdit.equals(editedGrade) && model.hasGrade(editedGrade)) {
+        if (!gradeToEdit.isSameGrade(editedGrade) && model.hasGrade(editedGrade)) {
             throw new CommandException(MESSAGE_DUPLICATE_GRADE);
         }
 
