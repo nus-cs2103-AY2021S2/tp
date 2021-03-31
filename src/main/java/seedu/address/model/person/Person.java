@@ -30,6 +30,7 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final List<Note> notes = new ArrayList<>();
 
     //Functional fields
     private final Optional<Meeting> meeting;
@@ -42,16 +43,16 @@ public class Person {
      */
     public Person(Name name, Phone phone, Email email, Address address,
                   Gender gender, Birthdate birthdate, Set<Tag> tags) {
-        this(name, phone, email, address, gender, birthdate, tags, Optional.empty(), new ArrayList<>());
-
+        this(name, phone, email, address, gender, birthdate, tags, Optional.empty(),
+                new ArrayList<>(), new ArrayList<>());
     }
 
     /**
      * Full Constructor that is only called internally for testing.
      */
     public Person(Name name, Phone phone, Email email, Address address, Gender gender, Birthdate birthdate,
-                  Set<Tag> tags, Optional<Meeting> meeting, List<InsurancePlan> plans) {
-        requireAllNonNull(name, phone, email, address, gender, birthdate, tags);
+                  Set<Tag> tags, Optional<Meeting> meeting, List<InsurancePlan> plans, List<Note> notes) {
+        requireAllNonNull(name, phone, email, address, gender, birthdate, tags, notes);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -60,6 +61,7 @@ public class Person {
         this.birthdate = birthdate;
         this.tags.addAll(tags);
         this.meeting = meeting;
+        this.notes.addAll(notes);
         this.plans.addAll(plans);
     }
 
@@ -87,6 +89,21 @@ public class Person {
         return birthdate;
     }
 
+    public List<Note> getNotes() {
+        return Collections.unmodifiableList(notes);
+    }
+
+    public String getNotesString() {
+        String noteString = "";
+        for (Note n : notes) {
+            noteString += "\u2022 " + n.toString() + "\n";
+        }
+        if (noteString.equals("")) {
+            noteString = "No notes taken yet";
+        }
+        return noteString;
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -106,7 +123,7 @@ public class Person {
      * Creates a Person object that is identical to the original, but contains a new Meeting.
      */
     public Person setMeeting(Optional<Meeting> meeting) {
-        return new Person(name, phone, email, address, gender, birthdate, tags, meeting, plans);
+        return new Person(name, phone, email, address, gender, birthdate, tags, meeting, plans, notes);
     }
 
     /**
@@ -122,7 +139,7 @@ public class Person {
      * the Set.
      */
     public Person setPlans(List<InsurancePlan> plans) {
-        return new Person(name, phone, email, address, gender, birthdate, tags, meeting, plans);
+        return new Person(name, phone, email, address, gender, birthdate, tags, meeting, plans, notes);
     }
 
     /**
@@ -131,7 +148,7 @@ public class Person {
     public Person addPlan(InsurancePlan plan) {
         List<InsurancePlan> plansCopy = new ArrayList<>(plans);
         plansCopy.add(plan);
-        return new Person(name, phone, email, address, gender, birthdate, tags, meeting, plansCopy);
+        return new Person(name, phone, email, address, gender, birthdate, tags, meeting, plansCopy, notes);
     }
 
     /**
@@ -140,7 +157,7 @@ public class Person {
     public Person removePlan(int zeroBasedIndex) {
         List<InsurancePlan> plansCopy = new ArrayList<>(plans);
         plansCopy.remove(zeroBasedIndex);
-        return new Person(name, phone, email, address, gender, birthdate, tags, meeting, plansCopy);
+        return new Person(name, phone, email, address, gender, birthdate, tags, meeting, plansCopy, notes);
     }
 
     /**
@@ -159,6 +176,19 @@ public class Person {
             planStrings.add((i + 1) + ". " + plans.get(i).toString() + " ");
         }
         return planStrings;
+    }
+    /**
+     * Adds a new Note to the back of notes.
+     */
+    public void addNote(Note note) {
+        notes.add(note);
+    }
+
+    /**
+     * Clears all notes.
+     */
+    public void clearNotes() {
+        notes.clear();
     }
 
     /**
@@ -195,13 +225,14 @@ public class Person {
                 && otherPerson.getGender().equals(getGender())
                 && otherPerson.getBirthdate().equals(getBirthdate())
                 && otherPerson.getTags().equals(getTags())
-                && otherPerson.getPlans().equals(getPlans());
+                && otherPerson.getPlans().equals(getPlans())
+                && otherPerson.getNotes().equals(getNotes());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, gender, birthdate, tags, meeting, plans);
+        return Objects.hash(name, phone, email, address, gender, birthdate, tags, meeting, plans, notes);
     }
 
     @Override

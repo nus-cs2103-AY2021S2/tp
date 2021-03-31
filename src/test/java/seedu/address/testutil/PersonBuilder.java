@@ -13,6 +13,7 @@ import seedu.address.model.person.Birthdate;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Note;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -39,6 +40,7 @@ public class PersonBuilder {
     private Set<Tag> tags;
     private Optional<Meeting> meeting;
     private List<InsurancePlan> plans;
+    private List<Note> notes;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -53,6 +55,7 @@ public class PersonBuilder {
         tags = new HashSet<>();
         meeting = Optional.empty();
         plans = new ArrayList<>();
+        notes = new ArrayList<>();
     }
 
     /**
@@ -68,6 +71,7 @@ public class PersonBuilder {
         tags = new HashSet<>(personToCopy.getTags());
         meeting = personToCopy.getMeeting();
         plans = new ArrayList<>(personToCopy.getPlans());
+        notes = new ArrayList<>(personToCopy.getNotes());
     }
 
     /**
@@ -143,8 +147,17 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Parses the {@code notes} into a {@code List<Note>} and set it to the {@code Person} that we
+     * are building.
+     */
+    public PersonBuilder withNotes(String ... notes) {
+        this.notes = SampleDataUtil.getNoteList(notes);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, address, gender, birthdate, tags, meeting, plans);
+        return new Person(name, phone, email, address, gender, birthdate, tags, meeting, plans, notes);
     }
 
 }

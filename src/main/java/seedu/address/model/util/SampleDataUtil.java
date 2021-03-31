@@ -13,6 +13,7 @@ import seedu.address.model.person.Birthdate;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Note;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -67,6 +68,15 @@ public class SampleDataUtil {
     public static List<InsurancePlan> getPlanList(String... strings) {
         return Arrays.stream(strings)
                 .map(InsurancePlan::new)
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * Returns a list of notes.
+     */
+    public static List<Note> getNoteList(String... strings) {
+        return Arrays.stream(strings)
+                .map(Note::new)
                 .collect(Collectors.toList());
     }
 
