@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 public class BookingTest {
 
-    private Name validName = new Name("John");
+    private TenantName validName = new TenantName("John");
     private Phone validPhone = new Phone("91234567");
     private LocalDate validStart = LocalDate.of(2021, 3, 22);
     private LocalDate validEnd = LocalDate.of(2021, 3, 25);
@@ -36,7 +36,8 @@ public class BookingTest {
 
     @Test
     public void constructor_invalidBooking_throwsIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class, () -> new Booking(new Name(""), validPhone, validStart, validEnd));
+        assertThrows(IllegalArgumentException.class, () -> new Booking(new TenantName(""),
+                validPhone, validStart, validEnd));
         assertThrows(
                 IllegalArgumentException.class, () -> new Booking(validName, new Phone("12"), validStart, validEnd));
     }

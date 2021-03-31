@@ -14,8 +14,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddBookingCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.booking.Booking;
-import seedu.address.model.booking.Name;
 import seedu.address.model.booking.Phone;
+import seedu.address.model.booking.TenantName;
 
 /**
  * Parses input arguments and creates a new AddBookingCommand object
@@ -49,9 +49,9 @@ public class AddBookingCommandParser implements Parser<AddBookingCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddBookingCommand.MESSAGE_USAGE));
         }
 
-        Name name = ParserUtil.parseVisitorName(argMultimap.getValue(PREFIX_NAME).get());
+        TenantName tenantName = ParserUtil.parseTenantName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        Booking booking = ParserUtil.parseBooking(name, phone,
+        Booking booking = ParserUtil.parseBooking(tenantName, phone,
                 argMultimap.getValue(PREFIX_BOOKING_START_DATE).get(),
                 argMultimap.getValue(PREFIX_BOOKING_END_DATE).get());
 

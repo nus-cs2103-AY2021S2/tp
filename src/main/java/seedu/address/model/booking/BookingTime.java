@@ -4,6 +4,10 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
+/**
+ * Represents a BookingTime of a Booking in residence tracker.
+ * Guarantees: details are present and not null, field values are validated, immutable.
+ */
 public class BookingTime {
     private final LocalDate start;
     private final LocalDate end;
@@ -45,7 +49,7 @@ public class BookingTime {
     }
 
     /**
-     * Comparator of {@code BookingTime}s by cronological order.
+     * Comparator of {@code BookingTime}s by chronological order.
      */
     public int compareTo(BookingTime otherBookingTime) {
         if (this.getStart().isBefore(otherBookingTime.getStart())) {
@@ -64,8 +68,9 @@ public class BookingTime {
 
     /**
      * Returns true if bookingTime overlaps with another bookingTime.
-     * This happens if the start and end dates of the bookingTime are neither before the start date of the other booking
-     * or after the end date of the other bookingTime.
+     * This happens if the start and end dates are not
+     * before the start date of the other booking time
+     * or after the end date of the other booking time.
      */
     public boolean doesOverlap(BookingTime otherBookingTime) {
         boolean isBeforeOtherBooking = this.getEnd().isBefore(otherBookingTime.getStart());

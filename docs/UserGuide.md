@@ -25,15 +25,10 @@ ResidenceTracker (RT) is a **desktop app for managing contacts, optimized for us
    Some example commands you can try:
 
    * **`list`** : Lists all residences in the app.
-
    * **`add`**`n/Clementi HDB a/459A Clementi Ave 3, #04-257, S121459 c/n` : Adds a residence named `Clementi HDB` to the ResidenceTracker.
-   * 
-   * * **`edit`**`1 c/y` : edit the first residence clean status as Clean.
-
+   * **`edit`**`1 c/y` : edit the first residence clean status as Clean.
    * **`delete`**`3` : Deletes the 3rd residence shown in the current list.
-
    * **`clear`** : Deletes all residences.
-
    * **`exit`** : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.

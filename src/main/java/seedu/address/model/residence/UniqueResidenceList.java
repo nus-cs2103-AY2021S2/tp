@@ -3,7 +3,6 @@ package seedu.address.model.residence;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -16,8 +15,8 @@ import seedu.address.model.residence.exceptions.ResidenceNotFoundException;
 /**
  * A list of residences that enforces uniqueness between its elements and does not allow nulls.
  * A residence is considered unique by comparing using {@code Residence#isSameResidence(Residence)}.
- * As such, adding and updating of residences uses Residence#isSameResidence(Residence) for equality
- * so as to ensure that the residence being added or updated is unique in terms of identity in the UniqueResidenceList.
+ * As such, adding and updating of residences uses Residence#isSameResidence(Residence) for equality so as to
+ * ensure that the residence being added or updated is unique in terms of identity in the UniqueResidenceList.
  * However, the removal of a Residence uses Residence#equals(Object) so as to ensure that the Residence
  * with exactly the same fields will be removed.
  *
@@ -30,7 +29,6 @@ public class UniqueResidenceList implements Iterable<Residence> {
     private final ObservableList<Residence> internalList = FXCollections.observableArrayList();
     private final ObservableList<Residence> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
-    private final Comparator<Residence> comparator = new ResidenceComparator();
 
     /**
      * Returns true if the list contains an equivalent residence as the given argument.
@@ -41,7 +39,7 @@ public class UniqueResidenceList implements Iterable<Residence> {
     }
 
     /**
-     * Adds a Residence to the list.
+     * Adds the given residence to the list.
      * The residence must not already exist in the list.
      */
     public void add(Residence toAdd) {
@@ -50,7 +48,6 @@ public class UniqueResidenceList implements Iterable<Residence> {
             throw new DuplicateResidenceException();
         }
         internalList.add(toAdd);
-        FXCollections.sort(internalList, comparator);
     }
     /**
      * Replaces the residence {@code target} in the list with {@code editedResidence}.
@@ -70,7 +67,6 @@ public class UniqueResidenceList implements Iterable<Residence> {
         }
 
         internalList.set(index, editedResidence);
-        FXCollections.sort(internalList, comparator);
     }
 
     /**
@@ -84,6 +80,10 @@ public class UniqueResidenceList implements Iterable<Residence> {
         }
     }
 
+    /**
+     * Replaces the contents of this list with {@code replacement}.
+     * {@code replacement} must not be null.
+     */
     public void setResidences(UniqueResidenceList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
@@ -99,9 +99,7 @@ public class UniqueResidenceList implements Iterable<Residence> {
         if (!residencesAreUnique(residences)) {
             throw new DuplicateResidenceException();
         }
-
         internalList.setAll(residences);
-
     }
 
     /**
@@ -109,6 +107,13 @@ public class UniqueResidenceList implements Iterable<Residence> {
      */
     public ObservableList<Residence> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
+    }
+
+    /**
+     * Sorts the backing list as described in Residence's {@code compareTo} method.
+     */
+    public void sortUnmodifiableObservableList() {
+        FXCollections.sort(internalList);
     }
 
     @Override

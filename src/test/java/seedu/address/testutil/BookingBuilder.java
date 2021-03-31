@@ -3,8 +3,8 @@ package seedu.address.testutil;
 import java.time.LocalDate;
 
 import seedu.address.model.booking.Booking;
-import seedu.address.model.booking.Name;
 import seedu.address.model.booking.Phone;
+import seedu.address.model.booking.TenantName;
 
 /**
  * A utility class to help with building Booking objects.
@@ -16,7 +16,7 @@ public class BookingBuilder {
     public static final LocalDate DEFAULT_START = LocalDate.of(2021, 3, 22);
     public static final LocalDate DEFAULT_END = LocalDate.of(2021, 3, 25);
 
-    private Name name;
+    private TenantName tenantName;
     private Phone phone;
     private LocalDate start;
     private LocalDate end;
@@ -25,7 +25,7 @@ public class BookingBuilder {
      * Creates a {@code BookingBuilder} with the default details.
      */
     public BookingBuilder() {
-        name = new Name(DEFAULT_NAME);
+        tenantName = new TenantName(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         start = DEFAULT_START;
         end = DEFAULT_END;
@@ -35,17 +35,17 @@ public class BookingBuilder {
      * Initializes the BookingBuilder with the data of {@code bookingToCopy}.
      */
     public BookingBuilder(Booking bookingToCopy) {
-        name = bookingToCopy.getName();
+        tenantName = bookingToCopy.getTenantName();
         phone = bookingToCopy.getPhone();
         start = bookingToCopy.getStart();
         end = bookingToCopy.getEnd();
     }
 
     /**
-     * Sets the {@code Name} of the {@code Booking} that we are building.
+     * Sets the {@code TenantName} of the {@code Booking} that we are building.
      */
     public BookingBuilder withName(String name) {
-        this.name = new Name(name);
+        this.tenantName = new TenantName(name);
         return this;
     }
 
@@ -74,7 +74,7 @@ public class BookingBuilder {
     }
 
     public Booking build() {
-        return new Booking(name, phone, start, end);
+        return new Booking(tenantName, phone, start, end);
     }
 
 }

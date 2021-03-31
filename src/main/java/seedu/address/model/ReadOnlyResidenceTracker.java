@@ -9,9 +9,8 @@ import seedu.address.model.residence.Residence;
 public interface ReadOnlyResidenceTracker {
 
     /**
-     * Returns an unmodifiable view of the persons list.
+     * Returns an unmodifiable view of the residence list.
      * This list will not contain any duplicate residences.
-     * @return
      */
     ObservableList<Residence> getResidenceList();
 

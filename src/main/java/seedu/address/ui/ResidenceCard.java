@@ -54,7 +54,7 @@ public class ResidenceCard extends UiPart<Region> {
     private AnchorPane anchorPane;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code ResidenceCode} with the given {@code residence} and index to display.
      */
     public ResidenceCard(Residence residence, int displayedIndex) {
         super(FXML);

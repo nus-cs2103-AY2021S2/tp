@@ -47,7 +47,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         EditResidenceDescriptor editResidenceDescriptor = new EditResidenceDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editResidenceDescriptor.setResidenceName(
-                    ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
+                    ParserUtil.parseResidenceName(argMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_RESIDENCE_ADDRESS).isPresent()) {
             editResidenceDescriptor.setResidenceAddress(

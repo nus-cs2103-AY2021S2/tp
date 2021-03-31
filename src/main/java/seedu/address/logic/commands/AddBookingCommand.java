@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_BOOKING_END_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BOOKING_START_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_RESIDENCES;
 
 import java.util.List;
 
@@ -19,6 +20,7 @@ import seedu.address.model.residence.Residence;
 /**
  * Adds a {@code Booking} to a {@code Residence} tracker.
  */
+//@@author Soorya
 public class AddBookingCommand extends Command {
 
     public static final String COMMAND_WORD = "addb";
@@ -65,6 +67,7 @@ public class AddBookingCommand extends Command {
         }
 
         model.setResidence(residenceToAddBooking, residenceToAddBooking.addBooking(toAdd));
+        model.updateFilteredResidenceList(PREDICATE_SHOW_ALL_RESIDENCES);
         return new CommandResult(String.format(MESSAGE_SUCCESS,
                 residenceToAddBooking.getResidenceName().toString(), toAdd));
     }

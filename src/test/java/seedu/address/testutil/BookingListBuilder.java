@@ -3,7 +3,7 @@
 //import java.time.LocalDate;
 //
 //import seedu.address.model.booking.Booking;
-//import seedu.address.model.booking.Name;
+//import seedu.address.model.booking.TenantName;
 //import seedu.address.model.booking.Phone;
 //
 ///**
@@ -16,16 +16,16 @@
 //    public static final LocalDate DEFAULT_START = LocalDate.of(2021, 3, 22);
 //    public static final LocalDate DEFAULT_END = LocalDate.of(2021, 3, 25);
 //
-//    private Name name;
+//    private TenantName name;
 //    private Phone phone;
 //    private LocalDate start;
-//    private uniqueBookingList end;
+//    private LocalDate end;
 //
 //    /**
 //     * Creates a {@code BookingBuilder} with the default details.
 //     */
 //    public BookingListBuilder() {
-//        name = new Name(DEFAULT_NAME);
+//        name = new TenantName(DEFAULT_NAME);
 //        phone = new Phone(DEFAULT_PHONE);
 //        start = DEFAULT_START;
 //        end = DEFAULT_END;
@@ -42,10 +42,10 @@
 //    }
 //
 //    /**
-//     * Sets the {@code Name} of the {@code Booking} that we are building.
+//     * Sets the {@code TenantName} of the {@code Booking} that we are building.
 //     */
 //    public BookingListBuilder withName(String name) {
-//        this.name = new Name(name);
+//        this.name = new TenantName(name);
 //        return this;
 //    }
 //

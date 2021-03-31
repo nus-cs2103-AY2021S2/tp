@@ -10,7 +10,7 @@ import seedu.address.model.residence.UniqueResidenceList;
 
 /**
  * Wraps all data at the residence-tracker level
- * Duplicates are not allowed (by .isSameBooking comparison)
+ * Duplicates are not allowed (by .isSameResidence comparison)
  */
 public class ResidenceTracker implements ReadOnlyResidenceTracker {
 
@@ -68,7 +68,7 @@ public class ResidenceTracker implements ReadOnlyResidenceTracker {
     }
 
     /**
-     * Adds a residence to the residence tracker.
+     * Adds the given residence to the residence tracker.
      * The residence must not already exist in the residence tracker.
      */
     public void addResidence(Residence r) {
@@ -80,7 +80,6 @@ public class ResidenceTracker implements ReadOnlyResidenceTracker {
      * {@code target} must exist in the residence tracker.
      * The residence identity of {@code editedResidence} must not be the same as another existing residence
      * in the residence tracker.
-     *
      */
     public void setResidence(Residence target, Residence editedResidence) {
         requireNonNull(editedResidence);
@@ -89,11 +88,19 @@ public class ResidenceTracker implements ReadOnlyResidenceTracker {
     }
 
     /**
-     * Removes {@code key} from this {@code ResidenceTracker}.
+     * Removes the Residence {@code key} from this {@code ResidenceTracker}.
      * {@code key} must exist in the residence tracker.
      */
     public void removeResidence(Residence key) {
         residences.remove(key);
+    }
+
+    /**
+     * Sorts the Residences in this {@code ResidenceTracker}
+     * as described in the Residence's {@code compareTo} method.
+     */
+    public void sortResidenceList() {
+        residences.sortUnmodifiableObservableList();
     }
 
     //// util methods
@@ -101,7 +108,6 @@ public class ResidenceTracker implements ReadOnlyResidenceTracker {
     @Override
     public String toString() {
         return residences.asUnmodifiableObservableList().size() + " residences";
-        // TODO: refine later
     }
 
     @Override

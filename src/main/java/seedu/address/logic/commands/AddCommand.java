@@ -21,7 +21,7 @@ public class AddCommand extends Command {
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_RESIDENCE_ADDRESS + "ADDRESS "
-            + "[" + PREFIX_CLEAN_STATUS_TAG + "y or n] "
+            + "[" + PREFIX_CLEAN_STATUS_TAG + "VALID_CLEAN_STATUS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Seaside Villa "

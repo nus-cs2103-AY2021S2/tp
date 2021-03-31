@@ -65,7 +65,7 @@ public class ResidenceBuilder {
     }
 
     /**
-     * Sets the {@code Booking} of the {@code Residence} that we are building.
+     * Sets the {@code BookingList} of the {@code Residence} that we are building.
      */
     public ResidenceBuilder withBookingList(List<Booking> bookings) {
         this.bookingList = new BookingList(bookings);
@@ -73,11 +73,19 @@ public class ResidenceBuilder {
     }
 
     /**
-     * Parses the {@code String cleanStatusTag} into a {@code cleanStatusTag} and set it to the {@code Residence}
+     * Sets the {@code BookingList} of the {@code Residence} that we are building with an empty BookingList.
+     */
+    public ResidenceBuilder withBookingList() {
+        this.bookingList = new BookingList();
+        return this;
+    }
+
+    /**
+     * Parses the {@code String cleanStatusTag} into a {@code CleanStatusTag} and set it to the {@code Residence}
      * that we are building.
      */
-    public ResidenceBuilder withCleanStatusTags(String cleanStatusTag) {
-        this.cleanStatusTag = SampleDataUtil.getCleanStatusTag(cleanStatusTag);
+    public ResidenceBuilder withCleanStatusTag(String cleanStatusTag) {
+        this.cleanStatusTag = new CleanStatusTag(cleanStatusTag);
         return this;
     }
 

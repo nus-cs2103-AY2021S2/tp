@@ -12,9 +12,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.booking.Booking;
-import seedu.address.model.booking.Name;
 import seedu.address.model.booking.Phone;
-import seedu.address.model.person.Address;
+import seedu.address.model.booking.TenantName;
 import seedu.address.model.residence.ResidenceAddress;
 import seedu.address.model.residence.ResidenceName;
 import seedu.address.model.tag.CleanStatusTag;
@@ -47,7 +46,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
-    public static ResidenceName parseName(String name) throws ParseException {
+    public static ResidenceName parseResidenceName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
         if (!ResidenceName.isValidResidenceName(trimmedName)) {
@@ -57,18 +56,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String name} into a {@code Name} (VisitorName).
+     * Parses a {@code String name} into a {@code TenantName}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
-    public static Name parseVisitorName(String name) throws ParseException {
+    public static TenantName parseTenantName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
         if (!ResidenceName.isValidResidenceName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            throw new ParseException(TenantName.MESSAGE_CONSTRAINTS);
         }
-        return new Name(trimmedName);
+        return new TenantName(trimmedName);
     }
 
     /**
@@ -96,7 +95,7 @@ public class ParserUtil {
         requireNonNull(address);
         String trimmedAddress = address.trim();
         if (!ResidenceAddress.isValidResidenceAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+            throw new ParseException(ResidenceAddress.MESSAGE_CONSTRAINTS);
         }
         return new ResidenceAddress(trimmedAddress);
     }
@@ -107,7 +106,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code booking} is invalid.
      */
-    public static Booking parseBooking(Name visitorName, Phone phone,
+    public static Booking parseBooking(TenantName tenantName, Phone phone,
                                        String start, String end) throws ParseException {
         requireNonNull(start);
         requireNonNull(end);
@@ -117,7 +116,7 @@ public class ParserUtil {
             if (!Booking.isValidBookingTime(startTime, endTime)) {
                 throw new ParseException(Booking.MESSAGE_CONSTRAINTS);
             }
-            return new Booking(visitorName, phone, startTime, endTime);
+            return new Booking(tenantName, phone, startTime, endTime);
         } catch (Exception exception) {
             throw new ParseException("Date is not in the expected format: DD-MM-YYYY");
         }
@@ -142,7 +141,7 @@ public class ParserUtil {
         requireNonNull(cleanStatus);
         String trimmedTag = cleanStatus.trim();
         if (!CleanStatusTag.isValidCleanStatusTag(trimmedTag)) {
-            throw new ParseException(CleanStatusTag.getMessageConstraints());
+            throw new ParseException(CleanStatusTag.MESSAGE_CONSTRAINTS);
         }
         return new CleanStatusTag(trimmedTag);
     }

@@ -24,7 +24,7 @@ public class TypicalResidences {
             .withAddress("123, Jurong West Ave 6, #08-111").withTags("valuable").build();
     public static final Residence RESIDENCE_B = new ResidenceBuilder().withName("Beverly Hills")
             .withAddress("311, Clementi Ave 2, #02-25").withTags("repair", "popular")
-            .withCleanStatusTags("n").build();
+            .withCleanStatusTag("n").build();
     public static final Residence RESIDENCE_C = new ResidenceBuilder().withName("Casuarina Apartment")
             .withAddress("wall street").build();
     public static final Residence RESIDENCE_D = new ResidenceBuilder().withName("Dover Condominium")
@@ -32,7 +32,7 @@ public class TypicalResidences {
     public static final Residence RESIDENCE_E = new ResidenceBuilder().withName("Emerald Hills")
             .withAddress("michegan ave").build();
     public static final Residence RESIDENCE_F = new ResidenceBuilder().withName("Floravale")
-            .withAddress("little tokyo").withCleanStatusTags("n").build();
+            .withAddress("little tokyo").withCleanStatusTag("n").build();
     public static final Residence RESIDENCE_G = new ResidenceBuilder().withName("Gem Residences")
             .withAddress("4th street").build();
 
@@ -44,11 +44,11 @@ public class TypicalResidences {
 
     // Manually added - Residence's details found in {@code CommandTestUtil}
     public static final Residence RESIDENCE1 = new ResidenceBuilder().withName(VALID_NAME_RESIDENCE1)
-            .withAddress(VALID_ADDRESS_RESIDENCE1)
-            .withCleanStatusTags(VALID_CLEAN_TAG).withTags(VALID_TAG_RESERVED).build();
+            .withAddress(VALID_ADDRESS_RESIDENCE1).withBookingList()
+            .withCleanStatusTag(VALID_CLEAN_TAG).withTags(VALID_TAG_RESERVED).build();
     public static final Residence RESIDENCE2 = new ResidenceBuilder().withName(VALID_NAME_RESIDENCE2)
-            .withAddress(VALID_ADDRESS_RESIDENCE2)
-            .withCleanStatusTags(VALID_CLEAN_TAG).withTags(VALID_TAG_REPAIR, VALID_TAG_RESERVED).build();
+            .withAddress(VALID_ADDRESS_RESIDENCE2).withBookingList()
+            .withCleanStatusTag(VALID_CLEAN_TAG).withTags(VALID_TAG_REPAIR, VALID_TAG_RESERVED).build();
 
     public static final String KEYWORD_MATCHING_HILLS = "Hills"; // A keyword that matches MEIER
 

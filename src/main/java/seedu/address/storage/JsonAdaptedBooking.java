@@ -7,8 +7,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.booking.Booking;
-import seedu.address.model.booking.Name;
 import seedu.address.model.booking.Phone;
+import seedu.address.model.booking.TenantName;
 
 /**
  * Jackson-friendly version of {@link Booking}.
@@ -17,7 +17,7 @@ class JsonAdaptedBooking {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Booking's %s field is missing!";
 
-    private final String name;
+    private final String tenantName;
     private final String phone;
     private final LocalDate start;
     private final LocalDate end;
@@ -26,9 +26,9 @@ class JsonAdaptedBooking {
      * Constructs a {@code JsonAdaptedBooking} with the given booking details.
      */
     @JsonCreator
-    public JsonAdaptedBooking(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
+    public JsonAdaptedBooking(@JsonProperty("name") String tenantName, @JsonProperty("phone") String phone,
                              @JsonProperty("start") LocalDate start, @JsonProperty("end") LocalDate end) {
-        this.name = name;
+        this.tenantName = tenantName;
         this.phone = phone;
         this.start = start;
         this.end = end;
@@ -38,7 +38,7 @@ class JsonAdaptedBooking {
      * Converts a given {@code Booking} into this class for Jackson use.
      */
     public JsonAdaptedBooking(Booking source) {
-        name = source.getName().toString();
+        tenantName = source.getTenantName().toString();
         phone = source.getPhone().value;
         start = source.getStart();
         end = source.getEnd();
@@ -51,13 +51,14 @@ class JsonAdaptedBooking {
      */
     public Booking toModelType() throws IllegalValueException {
 
-        if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+        if (tenantName == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    TenantName.class.getSimpleName()));
         }
-        if (!Name.isValidName(name)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        if (!TenantName.isValidName(tenantName)) {
+            throw new IllegalValueException(TenantName.MESSAGE_CONSTRAINTS);
         }
-        final Name modelName = new Name(name);
+        final TenantName modelTenantName = new TenantName(tenantName);
 
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
@@ -73,7 +74,7 @@ class JsonAdaptedBooking {
         if (start.isAfter(end)) {
             throw new IllegalValueException(Booking.MESSAGE_CONSTRAINTS);
         }
-        return new Booking(modelName, modelPhone, start, end);
+        return new Booking(modelTenantName, modelPhone, start, end);
     }
 
 }

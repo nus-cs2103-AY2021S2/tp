@@ -13,7 +13,7 @@ import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Residence in ResidenceTracker.
- * Guarantees: details are present and not null, field values are validated, immutable.
+ * Guarantees: details are present and not null, field values are validated, immutable except {@code CleanStatusTag}.
  */
 public class Residence implements Comparable<Residence> {
 
@@ -27,7 +27,7 @@ public class Residence implements Comparable<Residence> {
     private CleanStatusTag cleanStatusTag;
 
     /**
-     * Every field must be present and not null except for {@code BookingList}.
+     * Every field must be present and not null except {@code BookingList}.
      */
     public Residence(ResidenceName residenceName, ResidenceAddress residenceAddress,
                      CleanStatusTag cleanStatusTag, Set<Tag> tags) {
@@ -85,7 +85,7 @@ public class Residence implements Comparable<Residence> {
     }
 
     /**
-     * Returns a modified {@code Residence} with new booking.
+     * Returns a modified {@code Residence} with new {@code booking} added to it's BookingList.
      */
     public Residence addBooking(Booking booking) {
         assert !this.hasBooking(booking);
@@ -151,6 +151,7 @@ public class Residence implements Comparable<Residence> {
         return builder.toString();
     }
 
+    //@@author Zhen Yi
     @Override
     public int compareTo(Residence o) {
         if (this.getCleanStatusTag().getValue().equals("Unclean")
@@ -159,7 +160,7 @@ public class Residence implements Comparable<Residence> {
         } else if (this.getCleanStatusTag().getValue().equals("Clean")
                 && (o.getCleanStatusTag().getValue().equals("Unclean"))) {
             return 1;
-        } else { //same then we sort by booking date
+        } else {
             return 0;
         }
     }

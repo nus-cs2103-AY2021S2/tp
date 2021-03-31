@@ -9,8 +9,8 @@ import java.util.stream.Collectors;
 import seedu.address.model.ReadOnlyResidenceTracker;
 import seedu.address.model.ResidenceTracker;
 import seedu.address.model.booking.Booking;
-import seedu.address.model.booking.Name;
 import seedu.address.model.booking.Phone;
+import seedu.address.model.booking.TenantName;
 import seedu.address.model.residence.BookingList;
 import seedu.address.model.residence.Residence;
 import seedu.address.model.residence.ResidenceAddress;
@@ -35,9 +35,9 @@ public class SampleDataUtil {
         LocalDate endC = LocalDate.parse("31-05-2021", dateFormat);
 
 
-        Booking bookingA = new Booking(new Name("Alice Carol"), new Phone("90098118"), startA, endA);
-        Booking bookingB = new Booking(new Name("David Michael"), new Phone("82316788"), startB, endB);
-        Booking bookingC = new Booking(new Name("Cara Delevingne"), new Phone("96221200"), startC, endC);
+        Booking bookingA = new Booking(new TenantName("Alice Carol"), new Phone("90098118"), startA, endA);
+        Booking bookingB = new Booking(new TenantName("David Michael"), new Phone("82316788"), startB, endB);
+        Booking bookingC = new Booking(new TenantName("Cara Delevingne"), new Phone("96221200"), startC, endC);
 
         bookingListA.add(bookingA);
         bookingListA.add(bookingB);
@@ -45,27 +45,23 @@ public class SampleDataUtil {
 
         return new Residence[]{
             new Residence(new ResidenceName("HDB"), new ResidenceAddress("Blk 30 Geylang Street 29, #06-40"),
-                    new BookingList(bookingListA), getCleanStatusTag("y"), getTagSet("Booked")),
+                    new BookingList(bookingListA), new CleanStatusTag("y"), getTagSet("Booked")),
             new Residence(new ResidenceName("Condo"), new ResidenceAddress("Blk 45 Tampines Street 29, #08-01"),
-                    new BookingList(bookingListB), getCleanStatusTag("n"), getTagSet("Reserved")),
+                    new BookingList(bookingListB), new CleanStatusTag("n"), getTagSet("Reserved")),
             new Residence(new ResidenceName("Melville Park"), new ResidenceAddress("22 Simei Street 1, #10-02"),
-                    new BookingList(), getCleanStatusTag("n"), getTagSet("Available"))
+                    new BookingList(), new CleanStatusTag("n"), getTagSet("Available"))
         };
     }
 
+    /**
+     * Returns an unmodifiable view of the residence tracker with the sample data.
+     */
     public static ReadOnlyResidenceTracker getSampleResidenceTracker() {
         ResidenceTracker sampleRt = new ResidenceTracker();
         for (Residence sampleResidence : getSampleResidence()) {
             sampleRt.addResidence(sampleResidence);
         }
         return sampleRt;
-    }
-
-    /**
-     * Returns a CleanStatusTag containing the list of strings given.
-     */
-    public static CleanStatusTag getCleanStatusTag(String status) {
-        return new CleanStatusTag(status);
     }
 
     /**

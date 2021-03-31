@@ -3,11 +3,15 @@ package seedu.address.model.tag;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+/**
+ * Represents a CleanStatusTag in the residence tracker.
+ * Guarantees: name is valid as declared in {@link #isValidCleanStatusTag(String)}
+ */
 public class CleanStatusTag {
-
+    //@@author Soorya
     public static final String CLEAN = "Clean";
     public static final String UNCLEAN = "Unclean";
-    private static final String MESSAGE_CONSTRAINTS = "Please use 'c/y', 'c/n', 'c/clean' or 'c/unclean'";
+    public static final String MESSAGE_CONSTRAINTS = "Please use 'c/y', 'c/n', 'c/clean' or 'c/unclean'";
 
     private String cleanStatus;
 
@@ -18,6 +22,7 @@ public class CleanStatusTag {
         this.cleanStatus = CLEAN;
     }
 
+    //@@author Wang Tao
     /**
      * Constructs a {@code CleanStatusTag}.
      *
@@ -41,6 +46,7 @@ public class CleanStatusTag {
                 || test.equalsIgnoreCase("clean") || test.equalsIgnoreCase("unclean");
     }
 
+    //@@author Soorya
     /**
      * Returns value of this {@code CleanStatusTag}.
      */
@@ -48,6 +54,7 @@ public class CleanStatusTag {
         return cleanStatus;
     }
 
+    //@@author Wang Tao
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
@@ -61,13 +68,10 @@ public class CleanStatusTag {
     }
 
     /**
-     * Format state as text for viewing.
+     * Formats this CleanStatusTag as text for viewing.
      */
+    @Override
     public String toString() {
         return '[' + cleanStatus + ']';
-    }
-
-    public static String getMessageConstraints() {
-        return MESSAGE_CONSTRAINTS;
     }
 }

@@ -6,10 +6,10 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import seedu.address.model.name.CommonName;
 
 /**
- * Represents a Person's name in the address book.
+ * Represents the TenantName of a tenant who made a booking.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
-public class Name extends CommonName {
+public class TenantName extends CommonName {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Names should only contain alphanumeric characters and spaces, and it should not be blank";
@@ -21,11 +21,11 @@ public class Name extends CommonName {
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
     /**
-     * Constructs a {@code ResidenceName}.
+     * Constructs a {@code TenantName}.
      *
-     * @param name A valid name.
+     * @param name A valid tenant name.
      */
-    public Name(String name) {
+    public TenantName(String name) {
         requireNonNull(name);
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
         fullName = name;
@@ -41,8 +41,8 @@ public class Name extends CommonName {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Name // instanceof handles nulls
-                && fullName.equals(((Name) other).fullName)); // state check
+                || (other instanceof TenantName // instanceof handles nulls
+                && fullName.equals(((TenantName) other).fullName)); // state check
     }
 
 

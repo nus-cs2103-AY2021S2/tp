@@ -6,7 +6,8 @@ import java.util.function.Predicate;
 import seedu.address.commons.util.StringUtil;
 
 /**
- * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
+ * Tests that a Booking's {@code TenantName} matches any of the keywords given.
+ * Search is not case sensitive.
  */
 public class NameContainsKeywordsPredicate implements Predicate<Booking> {
     private final List<String> keywords;
@@ -18,7 +19,7 @@ public class NameContainsKeywordsPredicate implements Predicate<Booking> {
     @Override
     public boolean test(Booking person) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getName().toString(), keyword));
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getTenantName().toString(), keyword));
     }
 
     @Override

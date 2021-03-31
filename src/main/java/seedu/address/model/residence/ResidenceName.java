@@ -6,7 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import seedu.address.model.name.CommonName;
 
 /**
- * Represents a Residence's name in the ResidenceTracker.
+ * Represents a Residence's name in ResidenceTracker.
  * Guarantees: immutable; is valid as declared in {@link #isValidResidenceName(String)}
  */
 public class ResidenceName extends CommonName {
@@ -23,7 +23,7 @@ public class ResidenceName extends CommonName {
     /**
      * Constructs a {@code ResidenceName}.
      *
-     * @param name A valid name.
+     * @param name A valid residence name.
      */
     public ResidenceName(String name) {
         requireNonNull(name);
@@ -32,7 +32,7 @@ public class ResidenceName extends CommonName {
     }
 
     /**
-     * Returns true if a given string is a valid name.
+     * Returns true if a given string is a valid residence name.
      */
     public static boolean isValidResidenceName(String test) {
         return test.matches(VALIDATION_REGEX);
