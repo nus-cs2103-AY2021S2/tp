@@ -70,7 +70,7 @@ Commands shown in this user guide follow these rules.
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `addC n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `addC n/NAME`, `NAME` is a parameter which can be used as `addC n/John Doe`.
 
 * Items in square brackets are optional.<br>
   e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -550,7 +550,7 @@ Format: `findC KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `findC John` returns `john` and `John Doe`
 * `findC alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+  ![result for 'findC alex david'](images/findAlexDavidResult.png)
 
 #### Deleting a contact : `deleteC`
 
@@ -563,8 +563,8 @@ Format: `deleteC CONTACT_INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd contact in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st contact in the results of the `find` command.
+* `list` followed by `deleteC 2` deletes the 2nd contact in the address book.
+* `findC Betsy` followed by `deleteC 1` deletes the 1st contact in the results of the `findC` command.
 
 ### **4.3 Navigating the UI**
 
@@ -702,10 +702,10 @@ Action | Format, Examples
 
 Action | Format, Examples
 --------|------------------
-**Add Contact** | `addC n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Delete Contact** | `deleteC CONTACT_INDEX`<br> e.g., `delete 3`
-**Update Contact** | `updateC CONTACT_INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find Contact** | `findC KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Add Contact** | `addC n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `addC n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Delete Contact** | `deleteC CONTACT_INDEX`<br> e.g., `deleteC 3`
+**Update Contact** | `updateC CONTACT_INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`updateC 2 n/James Lee e/jameslee@example.com`
+**Find Contact** | `findC KEYWORD [MORE_KEYWORDS]`<br> e.g., `findC James Jake`
 
 ### Navigating the UI
 
