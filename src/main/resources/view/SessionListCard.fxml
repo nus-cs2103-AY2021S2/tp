@@ -21,7 +21,7 @@
         </VBox>
         <VBox>
             <padding>
-                <Insets bottom="5" left="5" right="5" top="5" />
+                <Insets bottom="5" left="15" right="5" top="5" />
             </padding>
             <Label fx:id="endDate" styleClass="cell_small_label" text="\$endDate" wrapText="true"/>
             <Label fx:id="interval" styleClass="cell_small_label" text="\$interval" wrapText="true"/>
