@@ -18,7 +18,9 @@ import seedu.address.model.residence.ResidenceName;
 import seedu.address.model.tag.CleanStatusTag;
 import seedu.address.model.tag.Tag;
 
-
+/**
+ * Jackson-friendly version of {@link Residence}.
+ */
 public class JsonAdaptedResidence {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Residence's %s field is missing!";
@@ -30,7 +32,7 @@ public class JsonAdaptedResidence {
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonAdaptedResidence} with the given person details.
+     * Constructs a {@code JsonAdaptedResidence} with the given residence details.
      */
     @JsonCreator
     public JsonAdaptedResidence(@JsonProperty("name") String residenceName,
@@ -50,7 +52,7 @@ public class JsonAdaptedResidence {
     }
 
     /**
-     * Converts a given {@code Residence} into this class for Json use.
+     * Converts a given {@code Residence} into this class for Jackson use.
      */
     public JsonAdaptedResidence(Residence source) {
         residenceName = source.getResidenceName().getValue();
@@ -65,7 +67,7 @@ public class JsonAdaptedResidence {
     }
 
     /**
-     * Converts this Json-friendly adapted person object into the model's {@code Residence} object.
+     * Converts this Jackson-friendly adapted residence object into the model's {@code Residence} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
