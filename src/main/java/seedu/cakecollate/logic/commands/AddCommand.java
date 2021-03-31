@@ -68,7 +68,7 @@ public class AddCommand extends Command {
 
 
     /**
-     * Creates an add command object with indexlist containing the indexes passed in by user,
+     * Creates an AddCommand object with an indexlist containing the indexes passed in by user,
      * and a descriptor that contains other fields needed for the Order to be built
      *
      * @param orderItemIndexList null if no index was given by user, a non-empty indexlist if index was given by user
