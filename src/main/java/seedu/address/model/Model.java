@@ -250,6 +250,12 @@ public interface Model {
     /** Sorts and filters and then returns an unmodifiable view of the filtered order list */
     ObservableList<Order> getFilteredOrderList(Comparator<Order> comparator, Order.State state);
 
+    //@@ author kangtinglee
+    /** Returns a list of orders that have not been fulfilled and contain a given dish */
+    List<Order> getIncompleteOrdersContainingDish(Dish target);
+
+    /** Returns a list of orders that have not been fulfilled */
+    List<Order> getIncompleteOrders();
 
     /**
      * Updates the filter of the filtered ingredient list to filter by the given {@code predicate}.

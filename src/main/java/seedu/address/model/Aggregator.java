@@ -1,4 +1,4 @@
-package seedu.address.model.dish;
+package seedu.address.model;
 
 //@@ author kangtinglee
 public interface Aggregator<T> {
