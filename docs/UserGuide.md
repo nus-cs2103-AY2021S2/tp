@@ -96,6 +96,23 @@ SmartLib is aware that managing the contacts of your readers is a must for your 
 The features provided in this section will enable you to keep track of any relevant information which you might require
 to keep track of your readers.
 
+#### Readers' Command Parameters
+
+Before you head into the usage of each feature, you may want to take a look at the table of command parameters
+given below, and familiarize yourself with them.
+
+| Parameter       | Description                                                                                                                                                                                                                                              | Valid examples                                                                   |
+| --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `NAME`          | The name of the reader.<br><br>It must be alphanumeric (may contain spaces).                                                                                                                                                                             | `Bob Tan`, `noobmaster69`, `X AE A12`                                            |
+| `PHONE_NUMBER`  | The contact number of the reader.<br><br>It must consist only of numbers, and be at least 3 digits long.                                                                                                                                                 | `98765432`, `012`                                                                |
+| `EMAIL`         | The email of the client.<br><br>Emails should be in `name@domain` format, where the `name` part should only contain alphanumeric and special characters, whereas the `domain` part should only contain alphanumeric characters with a period in between. | `bob@bmail.com`, `bob-123@bobby.sg`                                              |
+| `ADDRESS`       | Ths address of the reader.<br><br>There are no restrictions for this field.                                                                                                                                                                              | `#01-23, Blk 13, Bukit Timah Road`                                               |
+| `TAGS`          | The tag that you would like to attach to or search for your reader.<br><br>It must be a single alphanumeric word.                                                                                                                                        | `VIP`, `MostBorrows`                                                             |
+| `INDEX`         | The index of the reader in the displayed list.<br><br>It must be a valid index number (i.e. in the range [`1`,`2`, ..., `length of list`]).                                                                                                              | `1`                                                                              |
+| `KEYWORD`       | The keyword that you would like to use to search for your target reader(s).<br><br>It must be a single alphanumeric word.                                                                                                                                | `Bob`, `Tan`, `noobmaster69`, `AE`                                               |
+| `MORE_KEYWORDS` | Other keywords that you may want to use to search for your target reader(s).<br><br>Each additional keyword must be a single alphanumeric word, separated from each other by a space.<br><br>This field is optional.                                     |                                                                                  |
+| `MORE_TAGS`     | Other tags that you may want to use to search for your target reader(s).<br><br>Each additional tag must be a single alphanumeric word, separated from each other by a space.<br><br>This field is optional.                                             |                                                                                  |
+
 #### Adding a reader : `addreader`
 
 Adds a reader to SmartLib's registered reader base.
@@ -130,7 +147,7 @@ You can use this command to find readers whose names contain any of the given ke
 Format: `findreader KEYWORD [MORE_KEYWORDS]`
 
 **:information_source: Notes:**
-* Refer to [Readers' Command Parameters]() for more details about each parameter.
+* Refer to [Readers' Command Parameters](#readers-command-parameters) for more details about each parameter.
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
