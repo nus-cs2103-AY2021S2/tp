@@ -108,6 +108,8 @@ Example: `addcustomer 4 n/Jane Lim p/65558888`
 
 Deletes a specific order from CHIM, identified by its index.
 
+If the order is complete and has cheeses assigned to it, those cheeses will be deleted by CHIM.
+
 Format: `deleteorder ORDER_INDEX`
 * Deletes the order at the specified `ORDER_INDEX`. The index must be a positive integer.
 
@@ -116,7 +118,9 @@ Example: `deleteorder 2`
 
 ### Delete cheese from inventory: `deletecheese`
 
-Deletes some specified quantity of a specified cheese type from the inventory.
+Deletes a specified cheese from the inventory.
+
+The cheese must be unassigned.
 
 Format: `deletecheese CHEESE_INDEX`
 * Deletes the cheese at the specified `CHEESE_INDEX`. The index must be a positive integer.
@@ -126,6 +130,8 @@ Example: `deletecheese 2`
 ### Delete customer: `deletecustomer`
 
 Deletes a customer from the list of customers, using their phone number as identifier.
+
+If the customer has orders, their orders will be deleted by CHIM.
 
 Format: `deletecustomer p/PHONE_NUMBER`
 

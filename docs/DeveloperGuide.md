@@ -44,6 +44,23 @@ relationships with other classes.
 
 ### Logic component
 
+<img src="images/LogicClassDiagram_CHIM.png">
+
+**API**: `Logic.java`
+
+1. `Logic` uses the `AddressBookParser` class to parse the user command.
+2. This results in a `Command` object which is executed by the `LogicManager`.
+3. The command execution can affect the `Model` (e.g. by adding customers, orders or cheeses).
+4. The result of the command execution is encapsulated as a `CommandResult`
+object which is passed back to the `Ui`.
+5. In addition, the `CommandResult` object can also instruct the `Ui` to perform
+certain actions, such as displaying help to the user.
+
+Given below is the Sequence Diagram for interactions within the `Logic` component
+for the `execute("deletecheese 1")` API call.
+
+<img src="images/DeleteCheeseSeqDiagram_CHIM.png">
+
 ### Model component
 
 ### Storage component
@@ -55,6 +72,54 @@ relationships with other classes.
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Delete Feature
+
+#### Implementation
+
+Deleting customers, orders and cheeses are implemented in `DeleteCustomerCommand`,
+`DeleteOrderCommand` and `DeleteCheeseCommand` respectively. These commands extend
+abstract class `DeleteCommand`, and they all implement the operations `execute()` and `equals()`.
+
+Cascading of Delete commands has been implemented such that if a customer is deleted,
+any orders they have placed are also deleted. Similarly, when an order is deleted,
+any cheeses assigned to it are deleted.
+
+An example usage scenario representing the cascading of delete commands is given below.
+
+Step 1. The user launches CHIM which has been initialised with customers,
+orders (both complete and incomplete), and cheeses.
+
+Step 2. The user executes `deletecustomer p/87438807` to delete the customer with the
+phone number `87438807`. The command calls `DeleteCustomerCommand.execute()`
+which calls on `ModelManager.deleteCustomer()`.
+
+Step 3. The `ModelManager` calls `AddressBook.deleteCustomer()` where CHIM will delete
+the customer and iterate through the orders list to find any orders placed by this customer.
+These orders are deleted by calling `AddressBook.deleteOrder()`.
+
+Step 4. `AddressBook.deleteOrder()` will delete the order. If the order was completed,
+it will iterate through the cheeses list to find any cheeses assigned to this order.
+These cheeses are deleted by calling `AddressBook.deleteCheese()`.
+
+Step 5. `AddressBook.deleteCheese()` will delete the cheese.
+
+The following sequence diagram shows how the operation `deletecustomer p/87438807`
+is carried out as detailed above.
+
+<img src="images/DeleteCustomerSeqDiagram_CHIM.png">
+
+#### Design consideration
+
+* Cascading of Delete commands has been implemented with the assumption that when a customer
+or order is deleted, all information related to that customer or order must also be removed from CHIM.
+* The cascading of Delete commands is implemented only in one direction (Customer to Order to Cheese).
+Deleting an order will not delete the customer who placed the order.
+Furthermore, deleting a cheese which has been assigned to an order is not allowed.
+This is to prevent any extra erroneous deletions.
+* All `execute()` calls by `DeleteCustomerCommand`, `DeleteOrderCommand` and `DeleteCheeseCommand`
+will call on `Model.AddressBook` which will handle the cascading of delete commands in one place.
+
 
 ### Automatic Toggling of UI List Panels
 
@@ -441,7 +506,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-***Extensions**
+**Extensions**
 * 1a. No orders match the input given by the user.
     * 1a1. CHIM shows an empty list.
 
