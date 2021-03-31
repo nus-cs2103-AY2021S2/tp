@@ -56,8 +56,8 @@ public class Timeslot {
      * @return true if clashing, false otherwise
      */
     public boolean isClashingWith(Timeslot other) {
-        boolean isBefore = this.end.isBefore(other.start);
-        boolean isAfter = this.start.isAfter(other.end);
+        boolean isBefore = this.end.isBefore(other.start) || this.end.isSame(other.start);
+        boolean isAfter = this.start.isAfter(other.end) || this.start.isSame(other.end);
         return !isBefore && !isAfter;
     }
 
