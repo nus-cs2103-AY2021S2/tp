@@ -300,8 +300,8 @@ If your changes to the data file makes its format invalid, TutorsPet will discar
 
 ### Add a subject to teach`[coming in v2.0]`
 
-_Format: `add-subject SUBJECT_NAME` <br> In v1.3, there is a fixed list of subjects that is available to teach and can be tagged in TutorsPet, 
-while in v1.4, more personalised subjects can be added in._
+_Format: `add-subject SUBJECT_NAME` <br> Currently, there is a fixed list of subjects that is available to teach and can be tagged in TutorsPet, 
+while in v2.0, more personalised subjects can be added in._
 
 ### Undo/Redo `[coming in v2.0]`
 
