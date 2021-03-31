@@ -386,6 +386,7 @@ Frankenfield (2005) studied 4 equations that were commonly used in calculating B
 The study found that the Mifflin-St Joer formula was most accurate in calculating the BMR, being within 10% of the actual value measured. 
 As such, the DietLAH! team has decided to use the Mifflin-St Joer formula as the basis for calculating BMR of users.
 <br/>
+
 Secondly, there are leeways given for the *daily adherence percentage* and the *total adherence percentage* to provide more flexibility to the application. This is made in consideration of human errors, such as inaccurate estimation of macronutrients, as well as inaccuracies in nutrition labels.
 
 
@@ -394,6 +395,7 @@ Secondly, there are leeways given for the *daily adherence percentage* and the *
 The Mifflin-St Joer Formula is used to calculate the Basal Metabolic Rate (BMR), which is the rate at which calories are burned daily when the individual is not performing any activity. 
 The formula takes into account the individual's weight, height, age and sex.
 <br/>
+
 For men, the formula is as follows: **(10 * weight(kg)) + (6.25 x height(cm)) – (5 x age(years)) + 5**
 <br/>
 For women, the formula is as follows: **(10 * weight(kg)) + (6.25 x height(cm)) – (5 x age(years)) - 161**
