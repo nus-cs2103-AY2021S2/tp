@@ -98,6 +98,23 @@ Exits the program.
 
 Format: `exit`
 
+#### Changing HeliBook's theme : `theme`
+
+Changes the theme of HeliBook.
+
+Format: `theme o/OPTION`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+HeliBook's theme is set to dark by default.
+</div>
+
+Currently available options for the [OPTION] field include: 
+* `light` Light theme
+* `dark` Dark theme
+
+Examples: 
+* `light` changes theme to a light theme.
+
 ### Address Book Commands
 
 #### Adding a contact: `add`
