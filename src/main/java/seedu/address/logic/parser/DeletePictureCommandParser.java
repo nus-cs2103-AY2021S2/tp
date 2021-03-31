@@ -7,7 +7,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeletePictureCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-public class DeletePictureCommandParser {
+public class DeletePictureCommandParser implements Parser{
 
     /**
      * Parses the given {@code String} of arguments in the context of the DeletePictureCommand

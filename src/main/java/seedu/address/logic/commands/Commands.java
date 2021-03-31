@@ -7,7 +7,7 @@ public class Commands {
 
     public static String[] getAutoCompleteStrings() {
 
-        // In alphabetical order
+        // In alphabetical order for neatness
         return new String[]{
                 AddCommand.COMMAND_WORD,
                 AddDateCommand.COMMAND_WORD,
