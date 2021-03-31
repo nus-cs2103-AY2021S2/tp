@@ -237,6 +237,20 @@ Examples:
 * `addP n/CS2103T Team Project`
 * `addP n/CS2101 OP2`
 
+#### Updating a project: `updateP`
+
+Updates a specified project in CoLAB.
+
+Format `updateP PROJECT_INDEX n/PROJECT_NAME`
+
+* Updates name of the project at the specified `PROJECT_INDEX` to new name `PROJECT_NAME`.
+* The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `updateP 1 n/2103 TP`
+* `updateP 2 n/2103 IP` 
+
 #### Deleting a project: `deleteP`
 
 Deletes a specified project from CoLAB.
@@ -270,6 +284,21 @@ Format: `addTto PROJECT_INDEX d/DESCRIPTION`
 Examples:
 * `addTto 1 d/Add unit tests`
 * `addTto 2 d/Finish slides for presentation`
+
+#### Updating a todo of a project: `updateT`
+
+Updates a specified todo of a specified project.
+
+Format: `updateT PROJECT_INDEX i/TODO_INDEX d/DESCRIPTION`
+
+* Updates the description of the todo at the specified `TODO_INDEX` of the project at the specified `PROJECT_INDEX`.
+* The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
+* The `TODO_INDEX` refers to the number shown beside the todo when viewing the project.
+* Both indexes **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `updateT 1 i/2 d/Review new PR`
+* `updateT 2 i/1 d/Merge new PR`
 
 #### Deleting a todo from a project: `deleteT`
 
@@ -307,6 +336,23 @@ Format: `addDto PROJECT_INDEX d/DESCRIPTION by/DATE`
 Examples:
 * `addDto 1 d/Milestone v1.2 by/01-03-2021`
 * `addDto 2 d/CS2101 Project Submission by/15-03-2021`
+
+#### Updating a deadline of a project: `updateD`
+
+Updates a specified deadline of a specified project.
+
+Format: `updateD PROJECT_INDEX i/DEADLINE_INDEX [d/DESCRIPTION] [by/DATE]`
+
+* Updates the description or the deadline date of the deadline at the specified `DEADLINE_INDEX` of the project at the specified `PROJECT_INDEX`.
+* The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
+* The `DEADLINE_INDEX` refers to the number shown beside the deadline when viewing the project.
+* Both indexes **must be a positive integer** 1, 2, 3, …​
+* `DATE` must be in `dd-MM-yyyy`, `ddMMyyyy`, `dd/MM/yyyy` or `dd.MM.yyyy` format.
+* `DATE` is limited to the `yyyy` range of 0000 to 9999.
+
+Examples:
+* `updateD 1 i/2 d/Finish v1.3`
+* `updateD 2 i/1 by/31-03-2021`
 
 #### Deleting a deadline from a project: `deleteD`
 
@@ -349,10 +395,34 @@ Format: `addEto PROJECT_INDEX d/DESCRIPTION on/DATE at/TIME w/REPEAT_WEEKLY`
     * `n`
 * `Y` being Yes & `N` being No w.r.t to the Repeat Weekly status.
 
-
 Examples:
 * `addEto 1 d/Project Meeting on/24-04-2021 at/2000 w/Y`
 * `addEto 2 d/CS2101 Presentation on/14-04-2021 at/1015 w/n`
+
+#### Updating an event of a project `updateE`
+
+Updates a specified event of a specified project.
+
+Format: `updateE PROJECT_INDEX i/EVENT_INDEX [d/DESCRIPTION] [on/DATE] [at/TIME] [w/REPEAT_WEEKLY]`
+
+* Updates the detail (description, date, time, weekly recurrence) of the event at the specified `EVENT_INDEX` of the project at the specified `PROJECT_INDEX`.
+* The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
+* The `EVENT_INDEX` refers to the number shown beside the event when viewing the project.
+* Both indexes **must be a positive integer** 1, 2, 3, …​
+* `DATE` must be in `dd-MM-yyyy`, `ddMMyyyy`, `dd/MM/yyyy` or `dd.MM.yyyy` format.
+* `DATE` is limited to the `yyyy` range of 0000 to 9999.
+* `TIME` must be in `HHmm` or `HH:mm` format.
+* `TIME` is limited to the `yyyy` range of 0000 to 9999.
+* `REPEAT_WEEKLY` must be one of the following values:
+    * `Y`
+    * `N`
+    * `y`
+    * `n`
+* `Y` being Yes & `N` being No w.r.t to the Repeat Weekly status.
+
+Examples:
+* `updateE 1 i/1 d/Project Meeting on/24-04-2021 w/Y`
+* `updateE 2 i/2 on/14-04-2021 at/1015 w/n`
 
 #### Deleting an event from a project: `deleteE`
 
@@ -595,6 +665,10 @@ Action | Format, Examples
 **Add Event to Project** | `addEto PROJECT_INDEX d/DESCRIPTION on/DATE at/TIME w/REPEAT_WEEKLY`
 **Add Participant to Project** | `addCto PROJECT_INDEX n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 **Add Todo to Project** | `addTto PROJECT_INDEX d/DESCRIPTION`
+**Update Project** | `updateP PROJECT_INDEX n/PROJECT_NAME`
+**Update Deadline** | `updateD PROJECT_INDEX i/DEADLINE_INDEX [d/DESCRIPTION] [by/DATE]`
+**Update Event** | `updateE PROJECT_INDEX i/EVENT_INDEX [d/DESCRIPTION] [on/DATE] [at/TIME] [w/REPEAT_WEEKLY]`
+**Update Todo** | `updateT PROJECT_INDEX i/TODO_INDEX d/DESCRIPTION`
 **Delete Project** | `deleteP PROJECT_INDEX`
 **Delete Deadline from Project** | `deleteD PROJECT_INDEX i/DEADLINE_INDEX`
 **Delete Event from Project** | `deleteE PROJECT_INDEX i/EVENT_INDEX`
