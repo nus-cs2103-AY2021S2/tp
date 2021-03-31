@@ -52,19 +52,19 @@ public class AddOnCommandTest {
     public void equals() {
         final AddOnCommand standardCommand = new AddOnCommand(INDEX_FIRST_ENTRY, CommandTestUtil.DESC_C);
 
-//        // same object -> returns true
+        // same object -> returns true
         assertTrue(standardCommand.equals(standardCommand));
-//
-//        // null -> returns false
+
+        // null -> returns false
         assertFalse(standardCommand.equals(null));
-//
-//        // different types -> returns false
+
+        // different types -> returns false
         assertFalse(standardCommand.equals(new ClearCommand()));
-//
-//        // different index -> returns false
+
+        // different index -> returns false
         assertFalse(standardCommand.equals(new AddOnCommand(INDEX_SECOND_ENTRY, CommandTestUtil.DESC_C)));
-//
-//        // different descriptor -> returns false
+
+        // different descriptor -> returns false
         assertFalse(standardCommand.equals(new AddOnCommand(INDEX_FIRST_ENTRY, CommandTestUtil.DESC_D)));
     }
 
