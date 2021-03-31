@@ -7,7 +7,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
- * Adds a person to the address book.
+ * Adds an alias to FlashBack.
  */
 public class AliasCommand extends Command {
 
