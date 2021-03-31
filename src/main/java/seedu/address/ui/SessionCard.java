@@ -32,6 +32,10 @@ public class SessionCard extends UiPart<Region> {
     private Label id;
     @FXML
     private Label sessionType;
+    @FXML
+    private Label endDate;
+    @FXML
+    private Label interval;
 
 
     /**
@@ -48,11 +52,17 @@ public class SessionCard extends UiPart<Region> {
         fee.setText("Fee: $" + String.format("%.2f", session.getFee().getFee()));
         id.setText(displayedIndex + "");
         if (session instanceof RecurringSession) {
+            RecurringSession recurringSession = (RecurringSession) session;
             sessionType.setText("R");
             sessionType.setStyle("-fx-text-fill: orange");
+            date.setText("Start Date: " + session.getSessionDate().getDate().toString());
+            endDate.setText("End Date: " + recurringSession.getLastSessionDate().getDate().toString());
+            interval.setText("Interval: " + recurringSession.getInterval().toString());
         } else {
             sessionType.setText("I");
             sessionType.setStyle("-fx-text-fill: #ADD8E6");
+            endDate.setVisible(false);
+            interval.setVisible(false);
         }
     }
 
