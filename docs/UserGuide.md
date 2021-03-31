@@ -51,8 +51,6 @@ PartyPlanet can get the planning of your birthday celebrations done faster than 
 
 ## Glossary of parameters
 
-
-
 | Parameter | Description |
 |---|---|
 | `ADDRESS` | Any value |
@@ -60,7 +58,7 @@ PartyPlanet can get the planning of your birthday celebrations done faster than 
 | `COMMAND` | Any valid command listed [below](#party-planet-commands) |
 | `DATE` | Valid date with a year:{::nomarkdown}<ul><li>Year must be present and non-negative</li><li>See <code>BIRTHDAY</code> parameter above for available date formats</li></ul>{:/} |
 | `DETAIL` | Any value |
-| `EMAIL` | In the format `USER@DOMAIN`:{::nomarkdown}<ul><li><code>USER</code> can only contain alphanumerics and any of <code>!#$%&'*+/=?`&#124;~^.-</code></li><li><code>DOMAIN</code> must be at least two characters long, start and end with two alphanumerics, and consist only of alphanumerics, periods or hyphens</li></ul>{:/} |
+| `EMAIL` | In the format `USER@DOMAIN`:{::nomarkdown}<ul><li><code>USER</code> can only contain alphanumerics and any of <code>!#$%&'*+/=?`{&#124;}~^.-</code></li><li><code>DOMAIN</code> must be at least two characters long, start and end with two alphanumerics, and consist only of alphanumerics, periods or hyphens</li></ul>{:/} |
 | `INDEX` | Positive integer representing the ID present in the filtered list |
 | `NAME` | Any value containing only alphanumerics and spaces |
 | `PHONE` | Any number at least three digits long |
