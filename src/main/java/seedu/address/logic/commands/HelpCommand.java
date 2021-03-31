@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import java.util.Optional;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 
 /**

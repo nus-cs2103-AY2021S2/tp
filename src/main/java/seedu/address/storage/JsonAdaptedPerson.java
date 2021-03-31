@@ -39,7 +39,7 @@ class JsonAdaptedPerson {
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final String meeting;
     private final List<JsonAdaptedPlan> plans = new ArrayList<>();
-    private final List<String> notes = new ArrayList<>();
+    private final List<JsonAdaptedNote> notes = new ArrayList<>();
 
 
     /**
@@ -52,7 +52,7 @@ class JsonAdaptedPerson {
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                              @JsonProperty("meeting") String meeting,
                              @JsonProperty("plans") List<JsonAdaptedPlan> plans,
-                             @JsonProperty("notes") List<String> notes) {
+                             @JsonProperty("notes") List<JsonAdaptedNote> notes) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -88,6 +88,9 @@ class JsonAdaptedPerson {
         plans.addAll(source.getPlans().stream()
                 .map(JsonAdaptedPlan::new)
                 .collect(Collectors.toList()));
+        notes.addAll(source.getNotes().stream()
+                .map(JsonAdaptedNote::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -102,8 +105,8 @@ class JsonAdaptedPerson {
         }
 
         final List<Note> personNotes = new ArrayList<>();
-        for (String note : notes) {
-            personNotes.add(new Note(note));
+        for (JsonAdaptedNote note : notes) {
+            personNotes.add(note.toModelType());
         }
 
         final List<InsurancePlan> personPlans = new ArrayList<>();

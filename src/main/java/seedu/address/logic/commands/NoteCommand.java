@@ -14,8 +14,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Note;
+import seedu.address.model.person.Person;
 
 /**
  * Allows user to record, clear and view notes.
@@ -71,7 +71,9 @@ public class NoteCommand extends Command {
             model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
             return new CommandResult(String.format(MESSAGE_RECORD_SUCCESS, personToNote.getName(), note));
         } else if (action.equals(PREFIX_NOTE_VIEW)) {
-            return new CommandResult(String.format(MESSAGE_VIEW_SUCCESS, personToNote.getName()), false, false, Optional.of(index), false);
+            String noteString = personToNote.getNotesString();
+            return new CommandResult(String.format(MESSAGE_VIEW_SUCCESS, personToNote.getName()),
+                    false, false, Optional.of(noteString), false);
         } else if (action.equals(PREFIX_NOTE_CLEAR)) {
             personToNote.clearNotes();
             model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);

@@ -93,6 +93,17 @@ public class Person {
         return Collections.unmodifiableList(notes);
     }
 
+    public String getNotesString() {
+        String noteString = "";
+        for (Note n : notes) {
+            noteString += "\u2022 " + n.toString() + "\n";
+        }
+        if (noteString.equals("")) {
+            noteString = "No notes taken yet";
+        }
+        return noteString;
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -178,7 +189,6 @@ public class Person {
      */
     public void clearNotes() {
         notes.clear();
-
     }
 
     /**
