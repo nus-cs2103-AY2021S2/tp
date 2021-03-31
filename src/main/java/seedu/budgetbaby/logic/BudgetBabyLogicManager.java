@@ -90,7 +90,7 @@ public class BudgetBabyLogicManager implements BudgetBabyLogic {
     }
 
     @Override
-    public List<CategoryStatistics> getTopCategories() {
+    public List<CategoryStatistics> getTopCategoryStatistics() {
         return statistics.getTopCategories();
     }
 

@@ -19,7 +19,7 @@ import seedu.budgetbaby.model.record.FinancialRecordList;
 /**
  * Represents a Month in the budget tracker.
  */
-public class Month {
+public class Month implements Comparable<Month> {
 
     // Data fields
     public static final String MESSAGE_CONSTRAINTS =
@@ -190,4 +190,8 @@ public class Month {
         return month.format(displayFormatter);
     }
 
+    @Override
+    public int compareTo(Month m) {
+        return this.getMonth().isBefore(m.getMonth()) ? -1 : 1;
+    }
 }
