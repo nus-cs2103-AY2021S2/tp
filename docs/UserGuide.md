@@ -35,7 +35,8 @@ The Food Diary will allow students to save time and effort when finding places t
 eat around the NUS vicinity. The Food Diary especially caters to students chiefly on 3 aspects:
 1. The ability for users to save food diary entries for future reference.
 2. The ability for users to find entries where food are within a certain price range.
-3. The ability to effortlessly reference food options based on relevant filters in a user-friendly GUI 
+3. The ability to effortlessly reference food options based on relevant filters in a user-friendly GUI
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
@@ -107,8 +108,9 @@ Example:
 
 Finds for entries whose names, ratings, price, address and categories match any of the provided keywords.
 
-More than one keyword per field can be accepted as parameters. Different fields can also be simultaneously
-accepted as parameters. For the price field, a price range can also be accepted as a parameter, and any entry that contains at least one of the prices within the specified range will be returned as a search result.
+- More than one keyword per field can be accepted as parameters.
+- Different fields can also be simultaneously accepted as parameters.
+- For the price field, a price range can also be accepted as a parameter, and any entry that contains at least one of the prices within the specified range will be returned as a search result.
 
 Format: `find KEYWORDS`
 
@@ -129,9 +131,10 @@ Example:
 
 Finds for entries whose names, ratings, price, address and categories match all of the provided keywords.
 
-More than one keyword per field can be accepted as parameters. Different fields can also be simultaneously
-accepted as parameters. For the price field, a price range can also be accepted as a parameter, and any entry that contains at least one of the prices within the specified range will be returned as a search result.
-**Unlike the find feature, the findall feature only returns search results of entries that contain all of
+- More than one keyword per field can be accepted as parameters.
+- Different fields can also be simultaneously accepted as parameters.
+- For the price field, a price range can also be accepted as a parameter, and any entry that contains at least one of the prices within the specified range will be returned as a search result.
+- **Unlike the find feature, the findall feature only returns search results of entries that contain all of
 the provided keywords.**
 
 Format: `findall KEYWORDS`
@@ -167,6 +170,16 @@ Parameter: `Index of entry`
 Example:
 
     revise 1
+
+-------------------------------------------------------------------------------------
+
+## FAQ
+
+Q: How do I transfer my data to another Computer?
+
+A: Install the app in the other computer and overwrite the empty data file it creates with the file that
+contains the data of your previous AddressBook home folder.
+
 
 -------------------------------------------------------------------------------------
 
