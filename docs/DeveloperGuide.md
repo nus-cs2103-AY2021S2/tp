@@ -287,7 +287,6 @@ After typing in `mergenote 1 2` and executing it, the result would be:
     * Pros: Less Lines of Code and simpler due to not extending the Command class.
     * Cons: Might be confusing as some of the commands are already implented and might not be consistent with other commands.
 
-
 <!--
 ### \[Proposed\] Undo/redo feature
 
