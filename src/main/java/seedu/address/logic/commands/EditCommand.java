@@ -8,7 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_GUARDIAN_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -29,7 +29,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.School;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.subject.Subject;
 
 /**
  * Edits the details of an existing student in TutorsPet.
@@ -49,7 +49,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_GUARDIAN_NAME + "GUARDIAN_NAME] "
             + "[" + PREFIX_GUARDIAN_PHONE + "GUARDIAN_PHONE] "
-            + "[" + PREFIX_TAG + "TAG]... "
+            + "[" + PREFIX_SUBJECT + "SUBJECT]... "
             + "[" + PREFIX_LESSON + "LESSON]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -129,11 +129,11 @@ public class EditCommand extends Command {
                 ? editPersonDescriptor.getGuardianName() : personToEdit.getGuardianName();
         Optional<Phone> updatedGuardianPhone = editPersonDescriptor.getGuardianPhone().isPresent()
                 ? editPersonDescriptor.getGuardianPhone() : personToEdit.getGuardianPhone();
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Set<Subject> updatedSubjects = editPersonDescriptor.getSubjects().orElse(personToEdit.getSubjects());
         Set<Lesson> updatedLessons = editPersonDescriptor.getLessons().orElse(personToEdit.getLessons());
 
         return new Person(updatedName, updatedPhone, updatedSchool, updatedEmail, updatedAddress,
-                updatedGuardianName, updatedGuardianPhone, updatedTags, updatedLessons);
+                updatedGuardianName, updatedGuardianPhone, updatedSubjects, updatedLessons);
     }
 
     @Override
@@ -166,14 +166,14 @@ public class EditCommand extends Command {
         private Optional<Address> address = Optional.empty();
         private Optional<Name> guardianName = Optional.empty();
         private Optional<Phone> guardianPhone = Optional.empty();
-        private Set<Tag> tags;
+        private Set<Subject> subjects;
         private Set<Lesson> lessons;
 
         public EditPersonDescriptor() {}
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
+         * A defensive copy of {@code subjects} is used internally.
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
@@ -183,7 +183,7 @@ public class EditCommand extends Command {
             setAddress(toCopy.address);
             setGuardianName(toCopy.guardianName);
             setGuardianPhone(toCopy.guardianPhone);
-            setTags(toCopy.tags);
+            setSubjects(toCopy.subjects);
             setLessons(toCopy.lessons);
         }
 
@@ -191,7 +191,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, tags, lessons)
+            return CollectionUtil.isAnyNonNull(name, phone, subjects, lessons)
                     || school.isPresent() || email.isPresent() || address.isPresent()
                     || guardianName.isPresent() || guardianPhone.isPresent();
         }
@@ -253,20 +253,20 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
+         * Sets {@code subjects} to this object's {@code subjects}.
+         * A defensive copy of {@code subjects} is used internally.
          */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        public void setSubjects(Set<Subject> subjects) {
+            this.subjects = (subjects != null) ? new HashSet<>(subjects) : null;
         }
 
         /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * Returns an unmodifiable subject set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
+         * Returns {@code Optional#empty()} if {@code subjects} is null.
          */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        public Optional<Set<Subject>> getSubjects() {
+            return (subjects != null) ? Optional.of(Collections.unmodifiableSet(subjects)) : Optional.empty();
         }
 
         public void setLessons(Set<Lesson> lessons) {
@@ -299,7 +299,7 @@ public class EditCommand extends Command {
                     && getAddress().equals(e.getAddress())
                     && getGuardianName().equals(e.getGuardianName())
                     && getGuardianPhone().equals(e.getGuardianPhone())
-                    && getTags().equals(e.getTags())
+                    && getSubjects().equals(e.getSubjects())
                     && getLessons().equals(e.getLessons());
         }
     }

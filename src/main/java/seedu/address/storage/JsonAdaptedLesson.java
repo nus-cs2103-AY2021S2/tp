@@ -36,7 +36,7 @@ public class JsonAdaptedLesson {
     /**
      * Converts this Jackson-friendly adapted Lesson object into the model's {@code Lesson} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted subject.
      */
     public Lesson toModelType() throws IllegalValueException {
         if (!Lesson.isValidLesson(Lesson.getDetails(lessonDetails))) {
