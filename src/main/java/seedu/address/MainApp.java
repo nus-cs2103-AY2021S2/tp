@@ -174,6 +174,11 @@ public class MainApp extends Application {
         Colour.initialiseMatches(); //INITIALISE MATCHING HASHMAP
         Type.initialiseMatches();
         DressCode.initialiseMatches();
+        try {
+            Colour.initialiseSamples(); //INITIALISE SAMPLE HASHMAP
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         ui.start(primaryStage);
     }
 
