@@ -36,6 +36,7 @@ public class MainWindow extends UiPart<Stage> {
     private FinancialRecordListPanel financialRecordListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private CategoryStatsWindow categoryStatsWindow;
 
     @FXML
     private StackPane budgetDisplayPlaceHolder;
@@ -73,8 +74,6 @@ public class MainWindow extends UiPart<Stage> {
         setCliDefaultVisibility(logic.getGuiSettings());
 
         setAccelerators();
-
-        helpWindow = new HelpWindow();
     }
 
     public Stage getPrimaryStage() {
@@ -139,6 +138,14 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Sets up other windows that might be used by the GUI
+     */
+    void setUpWindows() {
+        helpWindow = new HelpWindow();
+        categoryStatsWindow = new CategoryStatsWindow(logic.getTopCategories());
+    }
+
+    /**
      * Initialise listener to handle UI behaviour
      */
     void initEventHandlers() {
@@ -147,6 +154,7 @@ public class MainWindow extends UiPart<Stage> {
             budgetDisplay.updateBudgetUi(logic.getFilteredMonthList());
             budgetDisplay.updateTopCategoriesUi(logic.getTopCategories());
             financialRecordListPanel.updateObservableList(logic.getFilteredFinancialRecordList());
+            categoryStatsWindow.updateStatistics(logic.getTopCategories());
         });
     }
 
@@ -189,6 +197,18 @@ public class MainWindow extends UiPart<Stage> {
     public void handleCliVisibility() {
         commandBoxPlaceholder.setVisible(cliVisibilityCheckMenuItem.isSelected());
         resultDisplayPlaceholder.setVisible(cliVisibilityCheckMenuItem.isSelected());
+    }
+
+    /**
+     * Opens the Category Statistics window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleStatsWindow() {
+        if (!categoryStatsWindow.isShowing()) {
+            categoryStatsWindow.show();
+        } else {
+            categoryStatsWindow.focus();
+        }
     }
 
     void show() {
