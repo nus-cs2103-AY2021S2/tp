@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.Scene?>
@@ -16,16 +17,16 @@
   </icons>
   <scene>
     <Scene fill="BLACK">
-         <VBox prefHeight="380.0" prefWidth="548.0" style="-fx-background-color: #383838;">
+         <VBox prefHeight="380.0" prefWidth="548.0" styleClass="background">
             <children>
-               <TextArea fx:id="helpMessageField" editable="false" scaleShape="false" style="-fx-control-inner-background: derive(#1d1d1d, 30%); -fx-text-fill: white; -fx-border-color: transparent; -fx-background-insets: 0; -fx-text-box-border: transparent; -fx-focus-color: #383838; -fx-background-color: transparent; " wrapText="true" VBox.vgrow="ALWAYS" />
+               <TextArea fx:id="helpMessageField" editable="false" scaleShape="false" styleClass="help_text_area" wrapText="true" VBox.vgrow="ALWAYS" />
                <VBox prefHeight="42.0" prefWidth="538.0">
                   <children>
                      <HBox alignment="BOTTOM_RIGHT" prefHeight="0.0" VBox.vgrow="ALWAYS">
                         <children>
-                           <Button fx:id="copyButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" mouseTransparent="true" onAction="#copyUrl" onMousePressed="#copyUrl" pickOnBounds="false" style="-fx-background-color: #555555; -fx-text-fill: white;" text="Copy URL">
+                           <Button fx:id="copyButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#copyUrl" onMousePressed="#copyUrl" pickOnBounds="false" text="Copy URL">
                               <cursor>
-                                 <Cursor fx:constant="NONE" />
+                                 <Cursor fx:constant="HAND" />
                               </cursor>
                               <opaqueInsets>
                                  <Insets />
@@ -43,6 +44,10 @@
                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
             </padding>
          </VBox>
+         <stylesheets>
+            <URL value="@DarkTheme.css" />
+            <URL value="@Extensions.css" />
+         </stylesheets>
     </Scene>
   </scene>
 </fx:root>
