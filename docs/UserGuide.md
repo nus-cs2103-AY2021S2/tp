@@ -28,6 +28,9 @@ SOChedule is a one-stop solution for managing tasks and events, optimized for us
 * Finding events: `find_event`
 * Clearing expired events: `clear_expired_event`
 * Finding tasks and events before or on a given date: `find_schedule`
+* Clearing Sochedule: `clear`
+* Finding free time slots: `free_time`
+* Summarising tasks and events completion status: `summary`
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -258,7 +261,7 @@ Format: `find_event KEYWORDS`
 
 
 ### Clearing expired events: `clear_expired_event`
-Clear tasks with past end date time.
+Clears tasks with past end date time.
 
 Format: `clear_expired_event`
 
@@ -278,6 +281,34 @@ Format: `find_schedule DATE`
 Examples:
 * `find_schedule 2021-06-01` finds all existing tasks with deadline and all existing events with start date 
   before or on `1st June 2021`.
+
+### Finding free time slots: `free_time`
+Finds all free time slots in the given date.
+
+Format: `free_time DATE`
+* **Free time slots** refer to all times in the given date without any event happening
+* Date entered must be a valid date and in the format of `YYYY-MM-DD`, e.g. `2021-04-01`
+* Only one single date can be entered. If more than one dates are supplied, program will return an error message
+  indicating invalid date.
+
+Examples:
+* `free_time 2021-06-01` finds all free time slots on the given date `1st June 2021`.
+
+### Summarising tasks and events completion status: `summary`
+Displays a summary of tasks and events completion status.
+
+Format: `summary`
+* **Completed tasks** refer to tasks that are done regardless of when the deadline is
+* **Overdue tasks** refer to tasks that are incomplete and the current date now has passed the deadline
+  i.e., `completionStatus == INCOMPLETE` && `deadline < current date`
+* **Tasks to be completed before deadline** refer to tasks that are incomplete and the current date now has not passed the deadline
+  i.e., `completionStatus == INCOMPLETE` && `deadline > current date`
+
+
+### Clearing Sochedule: `clear`
+Clears all tasks and events in the SOChedule.
+
+Format: `clear`
 
 ### Archiving data files `[coming in v2.0]`
 
@@ -326,8 +357,10 @@ Action | Format, Examples
 **Today** | `today_event`
 **Find** | `find_event KEYWORDS`<br>e.g., `find_event meeting`
 **Clear Completed** | `clear_expired_event`
+**Find Free Time** | `free_time DATE` <br>e.g., `free_time 2021-01-01`
 
 ### Commands related to both task and event
 Action | Format, Examples
 --------|------------------
 **Find Schedule** | `find_schedule DATE` <br>e.g., `find_schedule 2021-06-01`
+**Clear Schedule** | `clear`
