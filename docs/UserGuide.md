@@ -45,19 +45,29 @@ title: User Guide
      * [5.2 Populate application with sample template data](#52-populate-application-with-sample-template-data)
 * [Command summary](#command-summary)
 * [Glossary](#glossary)
+* [Appendix](#appendix)
+  * [A1. Diet plans](#a1-diet-plans)
+      * [A1.1 Standard Ketogenic Diet](#a11-standard-ketogenic-diet)
+      * [A1.2 High Protein Ketogenic Diet](#a12-high-protein-ketogenic-diet)
+      * [A1.3 Balanced Plan For Weight Gain](#a13-balanced-plan-for-weight-gain)
+      * [A1.4 Clean Bulk](#a14-clean-bulk)
+      * [A1.5 High Carbohydrates Bulk](#a15-high-carbohydrates-bulk)
+      * [A1.6 Balanced Plan](#a16-balanced-plan)
 <!--te-->
 
---------------------------------------------------------------------------------------------------------------------
+---
+
 ## Introduction
 
 DietLAH! is a **desktop app with a Command-Line Interface (CLI) that allows users to easily track and maintain their meals so that they are able to maintain their ideal body weight.** If you can type fast, you’ll be able to record your meals and track your weight in this app much faster than other traditional GUI-based diet tracking apps!
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## Understanding the User Guide
 To make the User Guide more comprehensible, certain formatting is used in the guide. Familiarising yourself with these formattings may help you get the most out of the User Guide.
+
 Legend | Description
---------|------------------
+-------|-------------
 `Inline code` | Commands and user input
 [Tip - to be updated] | Extra information that may be useful
 [Important - to be updated] | Important information to take note of
@@ -93,12 +103,11 @@ Legend | Description
 
 [TODO add screenshot of application screen]
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## Features
 
-
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## 1. Body Mass Index (BMI) Tracker
 
@@ -211,6 +220,7 @@ Interested in trying out a diet plan? Find out more about its daily nutritional 
 </p>
 
 ## 3. Macronutrients Tracker
+
 ### 3.1 Add food item
 
 Save food items you frequently consume so you don't have to re-enter them every time! Your food list acts as a shortcut to help speed up your food intake recording.
@@ -392,6 +402,7 @@ View the list of food intakes over a period of days (both inclusive).
 </p>
 
 ## 4. Progress report
+
 ### 4.1 Generate progress report
 
 Generates a progress report based on your current active diet plan. Your food intake will be calculated against the daily requirements to generate a report detailing how much you have adhered to the plan's requirements.
@@ -432,12 +443,12 @@ Get rid of all existing records and populate it with the sample template data.
   TODO: IMAGE
 </p>
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## Command summary
 
 Action | Format, Examples
---------|------------------
+-------|------------------
 **Input weight, height and ideal weight** | `bmi h/height(cm) w/weight(kg) i/ideal_weight(kg)​` <br> e.g., `bmi h/170 w/70 i/80`
 **Query weight, height and BMI** | `bmi query`
 **Update weight, height and ideal weight** | `bmi update h/height(cm) w/weight(kg) i/ideal_weight(kg)`<br> e.g., `bmi update h/170 w/70 i/80`
@@ -458,32 +469,36 @@ Action | Format, Examples
 **Query food intake on a day** | `food_intake_query d/DATE(in d MMM yyyy format)` <br> e.g., `food_intake_query d/31 Mar 2021`
 **Query food intake over a period of days** | `food_intake_query df/DATE_FROM(in d MMM yyyy format) dt/DATE_TO(in d MMM yyyy format)` <br> e.g., `food_intake_query df/1 Mar 2021 dt/31 Mar 2021`
 **Generate progress report** | `progress`
---------------------------------------------------------------------------------------------------------------------
+
+---
 
 ## Glossary
 
 In this glossary, you can find a list of terms that is used throughout this guide and reference their corresponding meaning.
 
 Technical Terms | Meaning
---------|------------------
+----------------|---------
 **Alias** | A term used to represent something. For instance the alias `df/` represents the date from a period.
 **Command-Line Interface (CLI)** | An interface that users send commands to a computer program through the form of lines of text.
 **Graphic User Interface (GUI)** | An interface that displays interactive visual components for a computer program.
 **Java** | A programming language that is used to build this application.
 
 Health Terms | Meaning
--------------|------------------
+-------------|---------
 **Body Mass Index (BMI)** | A value derived from the mass and height of a person, by taking the body mass divided by the square of the body height.
 **Macronutrients** | Nutrients, such as fats, proteins and carbohydrates that provide us with energy.
---------------------------------------------------------------------------------------------------------------------
+
+---
 
 ## Appendix
 
-### A1. Diet Plans
+---
+
+## A1. Diet Plans
 
 The following are diet plans options that comes with DietLAH!.
 
-#### A1.1 Standard Ketogenic Diet
+### A1.1 Standard Ketogenic Diet
 
 The Standard Ketogenic Diet is a high-fat, low-carb weight-loss diet.
 It is designed in such a way that by reducing the intake of carbohydrates,
@@ -495,7 +510,7 @@ excess carbohydrates would have been converted into glucose.
 **Classification:** `Weight Loss`  
 **Composition:** `70% Fat` `10% Carbohydrates` `20% Proteins`
 
-#### A1.2 High-Protein Ketogenic Diet
+### A1.2 High-Protein Ketogenic Diet
 
 The High-Protein Ketogenic Diet is a variation of the Ketogenic Diet (high-fat, low-carb)
 which increases the protein intake. This variation is designed to help athletes and
@@ -504,7 +519,7 @@ bodybuilders maintain their muscle mass whilst burning fat.
 **Classification:** `Weight Loss`  
 **Composition:** `60% Fat` `5% Carbohydrates` `35% Proteins`
 
-#### A1.3 Balanced Plan For Weight Gain
+### A1.3 Balanced Plan For Weight Gain
 
 This plan is aimed at individuals who are intending to gain healthy weight in a balanced manner.
 Some exercise coupled with this diet plan will allow individuals to gain some muscle steadily.
@@ -512,7 +527,7 @@ Some exercise coupled with this diet plan will allow individuals to gain some mu
 **Classification:** `Weight Gain`  
 **Composition:** `30% Fat` `35% Carbohydrates` `35% Proteins`
 
-#### A1.4 Clean Bulk
+### A1.4 Clean Bulk
 
 The clean bulk is a process which bodybuilders use to gain lean muscle mass.
 The clean bulk emphasizes consuming healthy whole foods as compared to eating sugary and 
@@ -521,7 +536,7 @@ processed foods to hit the calorie intake.
 **Classification:** `Weight Gain`  
 **Composition:** `30% Fat` `30% Carbohydrates` `40% Proteins`
 
-#### A1.5 High Carbohydrates Bulk
+### A1.5 High Carbohydrates Bulk
 
 This plan is intended for athletes who are involved in high intensity sports which require high energy consumption.
 As such, this plan prescribes a higher amount of carbohydrates to offset this need whilst ensuring the protein 
@@ -530,7 +545,7 @@ intake is enough to promote muscle growth and in turn, healthy weight gain.
 **Classification:** `Weight Gain`  
 **Composition:** `15% Fat` `55% Carbohydrates` `30% Proteins`
 
-#### A1.6 Balanced Plan
+### A1.6 Balanced Plan
 
 The perfect ying-yang. Eat healthy food and complete the calorie goal.
 Eat lots of fruits and vegetables, and base meals on higher fiber starchy carbohydrates.
