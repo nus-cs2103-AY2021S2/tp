@@ -185,7 +185,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredPersonList(Predicate<? super Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
@@ -254,7 +254,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredDishList(Predicate<Dish> predicate) {
+    public void updateFilteredDishList(Predicate<? super Dish> predicate) {
         requireNonNull(predicate);
         filteredDishes.setPredicate(predicate);
     }
@@ -323,7 +323,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredIngredientList(Predicate<Ingredient> predicate) {
+    public void updateFilteredIngredientList(Predicate<? super Ingredient> predicate) {
         requireNonNull(predicate);
         filteredIngredients.setPredicate(predicate);
     }
@@ -450,7 +450,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredOrderList(Predicate<Order> predicate) {
+    public void updateFilteredOrderList(Predicate<? super Order> predicate) {
         requireNonNull(predicate);
         filteredOrders.setPredicate(predicate);
     }

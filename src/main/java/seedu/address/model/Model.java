@@ -21,7 +21,7 @@ import seedu.address.model.person.ReadOnlyPersonBook;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Item> PREDICATE_SHOW_ALL_ITEMS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -98,8 +98,9 @@ public interface Model {
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
+     * @param predicate
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void updateFilteredPersonList(Predicate<? super Person> predicate);
 
     //=========== DishBook ================================================================================
 
@@ -146,8 +147,9 @@ public interface Model {
     /**
      * Updates the filter of the filtered dish list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
+     * @param predicate
      */
-    void updateFilteredDishList(Predicate<Dish> predicate);
+    void updateFilteredDishList(Predicate<? super Dish> predicate);
 
     /** Returns a list of dishes that use a particular ingredient */
     List<Dish> getDishesByIngredients(Ingredient ingredient);
@@ -196,8 +198,9 @@ public interface Model {
     /**
      * Updates the filter of the filtered ingredient list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
+     * @param predicate
      */
-    void updateFilteredIngredientList(Predicate<Ingredient> predicate);
+    void updateFilteredIngredientList(Predicate<? super Ingredient> predicate);
 
     //=========== OrderBook ================================================================================
     /**
@@ -251,8 +254,9 @@ public interface Model {
     /**
      * Updates the filter of the filtered ingredient list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
+     * @param predicate
      */
-    void updateFilteredOrderList(Predicate<Order> predicate);
+    void updateFilteredOrderList(Predicate<? super Order> predicate);
 
     /** Returns an list of the orders belonging to a particular customer */
     List<Order> getOrdersFromPerson(Person target);

@@ -160,7 +160,7 @@ public class CustomerAddCommandTest {
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
+        public void updateFilteredPersonList(Predicate<? super Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -205,7 +205,7 @@ public class CustomerAddCommandTest {
         }
 
         @Override
-        public void updateFilteredDishList(Predicate<Dish> predicate) {
+        public void updateFilteredDishList(Predicate<? super Dish> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -255,7 +255,7 @@ public class CustomerAddCommandTest {
         }
 
         @Override
-        public void updateFilteredIngredientList(Predicate<Ingredient> predicate) {
+        public void updateFilteredIngredientList(Predicate<? super Ingredient> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -316,7 +316,7 @@ public class CustomerAddCommandTest {
         }
 
         @Override
-        public void updateFilteredOrderList(Predicate<Order> predicate) {
+        public void updateFilteredOrderList(Predicate<? super Order> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
