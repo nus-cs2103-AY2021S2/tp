@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,34 +27,46 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted person: %1$s";
     public static final String MESSAGE_DELETE_PERSONS_SUCCESS = "Deleted multiple person:\n%1$s";
+    public static final String MESSAGE_NO_SELECTED = "No selected person to delete.";
 
     private final List<Index> targetIndexes;
     private final boolean isSpecialIndex;
+    private final boolean isDeleteSelected;
 
     /**
-     * Initializes DeleteCommand that deletes all the shown items in list.
-     */
-    public DeleteCommand() {
-        targetIndexes = new ArrayList<>();
-        isSpecialIndex = true;
-    }
-
-    /**
-     * Initializes DeleteCommand with a list of parsed user input indexes.
+     * Private constructor. Should only be called via builder.
      *
-     * @param indexes parsed user input indexes
-     * @throws NullPointerException if {@code indexes} is null.
+     * @param isSpecialIndex
+     * @param isDeleteSelected
+     * @param indexes
      */
-    public DeleteCommand(List<Index> indexes) {
+    private DeleteCommand(boolean isSpecialIndex, boolean isDeleteSelected, List<Index> indexes) {
         targetIndexes = requireNonNull(indexes);
-        isSpecialIndex = false;
+        this.isSpecialIndex = isSpecialIndex;
+        this.isDeleteSelected = isDeleteSelected;
     }
+
+    public static DeleteCommand buildDeleteSelectedCommand() {
+        return new DeleteCommand(false, true, new ArrayList<>());
+    }
+
+    public static DeleteCommand buildDeleteShownCommand() {
+        return new DeleteCommand(true, false, new ArrayList<>());
+    }
+
+    public static DeleteCommand buildDeleteIndexCommand(List<Index> indexes) {
+        return new DeleteCommand(false, false, indexes);
+    }
+
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         if (isSpecialIndex) {
             return deleteAll(model);
+        }
+        if (isDeleteSelected) {
+            return deleteSelected(model);
         }
         return deleteOneOrMultiple(model);
     }
@@ -110,7 +123,17 @@ public class DeleteCommand extends Command {
             stringBuilder.append(personToDelete);
             stringBuilder.append("\n");
         }
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSONS_SUCCESS, stringBuilder));
+    }
+
+    private CommandResult deleteSelected(Model model) throws CommandException {
+        model.applySelectedPredicate();
+        if (model.getFilteredPersonList().size() == 0) {
+            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+            throw new CommandException(MESSAGE_NO_SELECTED);
+        }
+        return deleteAll(model);
     }
 
     @Override
@@ -118,6 +141,7 @@ public class DeleteCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof DeleteCommand // instanceof handles nulls
                 && isSpecialIndex == ((DeleteCommand) other).isSpecialIndex
+                && isDeleteSelected == ((DeleteCommand) other).isDeleteSelected
                 && targetIndexes.containsAll(((DeleteCommand) other).targetIndexes)); // state check
     }
 }

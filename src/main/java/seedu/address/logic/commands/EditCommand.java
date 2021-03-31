@@ -55,41 +55,62 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_EDIT_PERSONS_SUCCESS = "Edited %1$d person";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_NO_SELECTED = "No selected person to edit.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
     public static final String MESSAGE_DUPLICATE_PERSON_BULK =
             "Bulk editing will result in duplicate person in the address book.";
 
     private final boolean isSpecialIndex;
+    private final boolean isEditSelected;
     private final List<Index> targetIndexes;
     private final EditPersonDescriptor editPersonDescriptor;
 
+    /**
+     * Private constructor. Should only be called via builder.
+     *
+     * @param isSpecialIndex
+     * @param isEditSelected
+     * @param editPersonDescriptor
+     * @param targetIndexes
+     */
+    private EditCommand(boolean isSpecialIndex, boolean isEditSelected,
+            EditPersonDescriptor editPersonDescriptor, List<Index> targetIndexes) {
+        this.targetIndexes = requireNonNull(targetIndexes);
+        this.isSpecialIndex = isSpecialIndex;
+        this.isEditSelected = isEditSelected;
+        this.editPersonDescriptor = requireNonNull(editPersonDescriptor);
+    }
+
+    /**
+     * Initializes EditCommand that edits all the selected items.
+     *
+     * @param descriptor details to edit the person with
+     * @return built {@code EditCommand}
+     */
+    public static EditCommand buildEditSelectedCommand(EditPersonDescriptor descriptor) {
+        return new EditCommand(false, true, descriptor, new ArrayList<>());
+    }
 
     /**
      * Initializes EditCommand that edits all the shown items in list.
      *
-     * @param editPersonDescriptor details to edit the person with
+     * @param descriptor details to edit the person with
+     * @return built {@code EditCommand}
      */
-    public EditCommand(EditPersonDescriptor editPersonDescriptor) {
-        requireNonNull(editPersonDescriptor);
-
-        this.targetIndexes = new ArrayList<>();
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
-        this.isSpecialIndex = true;
+    public static EditCommand buildEditShownCommand(EditPersonDescriptor descriptor) {
+        return new EditCommand(true, false, descriptor, new ArrayList<>());
     }
 
     /**
      * Initializes EditCommand that edits the items from a parsed user input indexes.
      *
-     * @param targetIndexes        of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * @param descriptor details to edit the person with
+     * @param indexes of the person in the filtered person list to edit
+     * @return
      */
-    public EditCommand(List<Index> targetIndexes, EditPersonDescriptor editPersonDescriptor) {
-        requireNonNull(targetIndexes);
-        requireNonNull(editPersonDescriptor);
-
-        this.targetIndexes = targetIndexes;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
-        this.isSpecialIndex = false;
+    public static EditCommand buildEditIndexCommand(List<Index> indexes,
+            EditPersonDescriptor descriptor) {
+        return new EditCommand(false, false, descriptor, indexes);
     }
 
     @Override
@@ -98,6 +119,9 @@ public class EditCommand extends Command {
 
         if (isSpecialIndex) {
             return editAll(model);
+        }
+        if (isEditSelected) {
+            return editSelected(model);
         }
         return editOneOrMultiple(model);
     }
@@ -178,6 +202,23 @@ public class EditCommand extends Command {
     }
 
     /**
+     * Edits all the person in the selected person list.
+     *
+     * @param model {@code Model} which the command should operate on.
+     * @return feedback message of the operation result for display
+     * @throws CommandException if index is invalid or duplicates are found or there is no selected
+     *                          person
+     */
+    private CommandResult editSelected(Model model) throws CommandException {
+        model.applySelectedPredicate();
+        if (model.getFilteredPersonList().size() == 0) {
+            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+            throw new CommandException(MESSAGE_NO_SELECTED);
+        }
+        return editAll(model);
+    }
+
+    /**
      * Checks if editing a person will introduce duplicate and adds into the {@code
      * UniquePersonList}
      *
@@ -234,6 +275,7 @@ public class EditCommand extends Command {
         EditCommand e = (EditCommand) other;
         return targetIndexes.containsAll(e.targetIndexes)
                 && isSpecialIndex == ((EditCommand) other).isSpecialIndex
+                && isEditSelected == ((EditCommand) other).isEditSelected
                 && targetIndexes.containsAll(((EditCommand) other).targetIndexes)
                 && editPersonDescriptor.equals(e.editPersonDescriptor);
     }

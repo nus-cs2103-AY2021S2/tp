@@ -12,6 +12,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class DeleteCommandParser implements Parser<DeleteCommand> {
 
     public static final String SPECIAL_INDEX = "shown";
+    public static final String SELECTED = "selected";
 
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteCommand and returns
@@ -23,11 +24,14 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
         requireNonNull(args);
 
         if (args.trim().equals(SPECIAL_INDEX)) {
-            return new DeleteCommand();
+            return DeleteCommand.buildDeleteShownCommand();
+        }
+        if (args.trim().equals(SELECTED)) {
+            return DeleteCommand.buildDeleteSelectedCommand();
         }
 
         try {
-            return new DeleteCommand(ParserUtil.parseIndexes(args));
+            return DeleteCommand.buildDeleteIndexCommand(ParserUtil.parseIndexes(args));
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
@@ -41,6 +45,14 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
     @Override
     public boolean isValidCommandToAlias(String userInput) {
         if (userInput.trim().isEmpty()) {
+            return true;
+        }
+
+        if (userInput.trim().equals(SPECIAL_INDEX)) {
+            return true;
+        }
+
+        if (userInput.trim().equals(SELECTED)) {
             return true;
         }
 

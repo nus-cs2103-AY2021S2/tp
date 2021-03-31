@@ -27,6 +27,7 @@ import seedu.address.model.tag.Tag;
 public class EditCommandParser implements Parser<EditCommand> {
 
     public static final String SPECIAL_INDEX = "shown";
+    public static final String SELECTED = "selected";
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
@@ -48,7 +49,15 @@ public class EditCommandParser implements Parser<EditCommand> {
             if (!editPersonDescriptor.isAnyFieldEdited()) {
                 throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
             }
-            return new EditCommand(editPersonDescriptor);
+            return EditCommand.buildEditShownCommand(editPersonDescriptor);
+        }
+
+        if (argMultimap.getPreamble().trim().equals(SELECTED)) {
+            editPersonDescriptor = parseEditPersonDescriptor(argMultimap);
+            if (!editPersonDescriptor.isAnyFieldEdited()) {
+                throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
+            }
+            return EditCommand.buildEditSelectedCommand(editPersonDescriptor);
         }
 
         try {
@@ -63,7 +72,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
-        return new EditCommand(targetIndexes, editPersonDescriptor);
+        return EditCommand.buildEditIndexCommand(targetIndexes, editPersonDescriptor);
     }
 
     private EditPersonDescriptor parseEditPersonDescriptor(ArgumentMultimap argMultimap)
@@ -113,6 +122,14 @@ public class EditCommandParser implements Parser<EditCommand> {
     @Override
     public boolean isValidCommandToAlias(String userInput) {
         if (userInput.trim().isEmpty()) {
+            return true;
+        }
+
+        if (userInput.trim().equals(SPECIAL_INDEX)) {
+            return true;
+        }
+
+        if (userInput.trim().equals(SELECTED)) {
             return true;
         }
 
