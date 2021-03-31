@@ -87,9 +87,27 @@ View a list of all tutors known.
 
 Example Output:
 ```
-1) John Doe
-2) Jane Doe
-3) Peter Ng
+1. John Doe
+   98765432
+   John street, block 123, #01-01
+   johnd@example.com
+   Subjects:
+   1. English
+      Level: Sec 3
+      Rate: SGD60/hr
+      Experience: 6 years
+      Qualification: Bachelor of English Literature
+    
+2. Jane Doe 
+   98765433
+   Jane street, block 123, #01-01
+   janed@example.com
+   Subjects:
+   1. Maths
+      Level: Sec 4
+      Rate: SGD30/hr
+      Experience: 5 years
+      Qualification: Bachelor of Mechanical Engineering
 ```
 
 ### Delete a tutor: `delete_tutor`
@@ -127,7 +145,7 @@ Subjects:
     Level: Sec 3
     Rate: SGD60/hr
     Experience: 6 years
-    Qualification: Bacholar of English Literature
+    Qualification: Bachelor of English Literature
 ```
 ### Add note to a tutor: `add_note`
 
@@ -149,7 +167,7 @@ Subjects:
     Level: Sec 3                     
     Rate: SGD60/hr
     Experience: 6 years
-    Qualification: Bacholar of English Literature
+    Qualification: Bachelor of English Literature
 ```
 ```
 Notes:
@@ -175,7 +193,7 @@ Subjects:
     Level: Sec 3                     
     Rate: SGD60/hr
     Experience: 6 years
-    Qualification: Bacholar of English Literature
+    Qualification: Bachelor of English Literature
 ```
 
 ```
@@ -224,7 +242,7 @@ Subjects:
     Level: Sec 3
     Rate: SGD60/hr
     Experience: 6 years
-    Qualification: Bacholar of English Literature
+    Qualification: Bachelor of English Literature
 ```
 
 ### Unfavourite a tutor: `unfavourite`
@@ -347,6 +365,94 @@ Format: `edit_appointment INDEX [n/NAME] [s/SUBJECT_NAME] [d/DATE] [fr/TIME_FROM
 * The time format `HH:MM AM/PM` must be strictly followed. e.g. `9:01 AM` and `10:30 PM`.
 
 Examples: `edit_appointment 1 s/English l/Clementi`
+
+### Adding a schedule : `add_schedule`
+
+Adds a schedule that are related to tuition appointments.<br>
+
+Format: `add_schedule t/TITLE d/DATE fr/TIME_FROM to/TIME_TO ds/DESCRIPTION`
+
+* The date format `yyyy-mm-dd` must be strictly followed. e.g. `2021-3-1`and `2021-03-01`.
+* The time format `hh:mm a` must be strictly followed. e.g. `9:01 am` and `10:30 pm`.
+
+Examples:<br>
+* `add_schedule n/Science Tuition Homework d/2021-3-31 fr/6:00pm to/7:00pm ds/Chapter 5 to 6`
+* `add_schedule n/Maths Tuition Homework d/2021-4-2 fr/5:00pm to/7:00pm ds/Calculus Topic`
+
+### Listing all schedules : `list_schedules`
+
+Shows a list of all upcoming events in the personal schedule list.
+
+Format: `list_schedules`
+
+Example outputs:
+```
+1.  Math Tuition Homework
+    Mar 24 2021
+    2:00 PM - 4:00 PM
+    Chapter 5 to 6
+2.  Science Tuition Homework
+    Mar 30 2021
+    2:00 PM - 4:00 PM
+    Calculus Topic
+```
+
+### View schedule details: `view_schedule`
+
+View details of a schedule.
+
+Format:
+`view_schedule DATE`
+
+Example:
+`view_schedule 2021-4-20`
+
+Example Output:
+```
+1.  Math Tuition Homework
+    Mar 24 2021
+    2:00 PM - 4:00 PM
+    Chapter 5 to 6
+```
+
+### Delete a schedule: `delete_schedule`
+
+Deletes the specific schedule at the specified INDEX.
+
+Format: `delete_schedule INDEX`
+
+The index refers to the index number shown in the displayed schedule list. <br>
+The index must be a positive integer e.g. `1, 2, 3, …​`
+
+Referencing to the example output from `list_schedules`,
+
+Example:
+`delete_schedule 1`
+
+Example Output:
+```
+1.  Science Tuition Homework
+    Mar 30 2021
+    2:00 PM - 4:00 PM
+    Calculus Topic
+```
+
+### Editing a schedule : `edit_schedule`
+
+Edits a schedule with a specific index. Only the attributes present are changed in the schedule.
+
+Format: `edit_schedule INDEX [t/TITLE] [d/DATE] [fr/TIME_FROM] [to/TIME_TO] [ds/DESCRIPTION]`
+
+* The date format `yyyy-mm-dd` must be strictly followed. e.g. `2021-3-1`and `2021-03-01`.
+* The time format `hh:mm a` must be strictly followed. e.g. `9:01 am` and `10:30 pm`.
+
+Examples: `edit_schedule 1 t/Science Tuition Homework`
+
+### Opening timetable window : `timetable`
+
+Launch a graphical representation of the tutee's appointment and schedule in a timetable format.
+
+Format: `timetable`
 
 ### Add a budget: `add_budget`
 
@@ -479,6 +585,59 @@ Listed all grades
      C
 ```
 
+### Adding a reminder : `add_reminder`
+
+Adds a reminder with description and reminder date specified by the user.<br>
+
+Format: `add_reminder ds/DESCRIPTION d/REMINDER_DATE`
+* The date format `yyyy-mm-dd` must be strictly followed. e.g. `2021-3-1`and `2021-03-01`.
+
+Examples:<br>
+* `add_reminder ds/Science Tuition Payment Due d/2021-4-2`
+* `add_reminder ds/Maths Tuition Payment Due d/2021-4-21`
+
+### Listing all reminders : `list_reminders`
+
+Shows a list of all reminders in the personal reminder list.
+
+Format: `list_reminders`
+
+Example outputs:
+```
+1.  Science Tuition Payment
+    Date: Apr 2 2021
+2.  Maths Tuition Payment Due
+    Date: Apr 21 2021
+```
+
+### Delete a reminder: `delete_reminder`
+
+Deletes the specific reminder at the specified INDEX.
+
+Format: `delete_reminder INDEX`
+
+The index refers to the index number shown in the displayed reminder list. <br>
+The index must be a positive integer e.g. `1, 2, 3, …​`
+
+Referencing to the example output from `list_reminders`,
+
+Example: `delete_reminder 1`
+
+Example Output:
+```
+1.  Maths Tuition Payment Due
+    Date: Apr 21 2021
+```
+
+### Editing a reminder : `edit_reminder`
+
+Edits a reminder with a specific index. Only the attributes present are changed in the reminder.
+
+Format: `edit_reminder INDEX [ds/DESCRIPTION] [d/REMINDER_DATE]`
+* The date format `yyyy-mm-dd` must be strictly followed. e.g. `2021-3-1`and `2021-03-01`.
+
+Examples: `edit_reminder 1 ds/Science Tuition Payment Due`
+
 ### Add a Tutor Filter: `add_tutor_filter`
 
 Adds Tutor Filter(s) to the Tutor Filter list, filtering the tutors that are shown in the
@@ -600,6 +759,11 @@ Action | Format, Examples
 **Find tuition appointments** | `find_appointment NAME...` <br> e.g. `find_appointment Alex Yeoh`
 **Delete a tuition appointment** | `delete_appointment INDEX` <br> e.g. `delete_appointment 1`
 **Edit a tuition appointment** | `edit_appointment INDEX [n/NAME] [s/SUBJECT_NAME] [d/DATE] [fr/TIME_FROM] [to/TIME_TO] [l/LOCATION]` <br> e.g. `edit_appointment 1 s/English l/Clementi`
+**Add a new schedule** | `add_schedule t/TITLE d/DATE fr/TIME_FROM to/TIME_TO ds/DESCRIPTION` <br> e.g., `add_schedule n/Science Tuition Homework d/2021-3-31 fr/6:00pm to/7:00pm ds/Chapter 5 to 6`
+**List schedules** | `list_schedules`
+**View schedule details** | `view_schedule DATE` <br> e.g. `view_schedule 2020-03-24`
+**Delete a schedule** | `delete_schedule INDEX` <br> e.g. `delete_schedule 1`
+**Edit a schedule** | `edit_schedule INDEX [t/TITLE] [d/DATE] [fr/TIME_FROM] [to/TIME_TO] [ds/DESCRIPTION]` <br> e.g. `edit_schedule 1 t/Science Tuition Homework`
 **Add a budget** | `add_budget b/BUDGET` <br> e.g.`add_budget b/500`
 **Edit a budget** | `edit_budget b/BUDGET` <br> e.g. `edit_budget b/600`
 **Delete a budget** | `delete_budget` <br> e.g. `delete_budget`
@@ -608,6 +772,10 @@ Action | Format, Examples
 **Edit a grade** | `edit_grade INDEX [s/SUBJECT_NAME] [gi/GRADED_ITEM] [gr/GRADE_ALPHABET]`, <br> e.g. `edit_grade 1 gr/B`
 **Delete a grade** | `delete_grade INDEX`, <br> e.g. `delete_grade 1`
 **List grades** | `list_grades`
+**Add a new reminder** | `add_reminder ds/DESCRIPTION d/REMINDER_DATE` <br> e.g., `add_reminder ds/Science Tuition Payment Due d/2021-4-2`
+**List reminders** | `list_reminders`
+**Delete a reminder** | `delete_reminder INDEX` <br> e.g. `delete_reminder 1`
+**Edit a reminder** | `edit_reminder INDEX [ds/DESCRIPTION] [d/REMINDER_DATE]` <br> e.g. `edit_reminder 1 ds/Science Tuition Payment Due`
 **Add a Tutor Filter** | `add_tutor_filter [n/NAME]... [g/GENDER]... [p/PHONE_NUMBER]... [e/EMAIL]... [a/ADDRESS]... [s/SUBJECT_NAME]... [r/SUBJECT_RATE]... [l/SUBJECT_EDUCATION_LEVEL]... [y/SUBJECT_YEARS_EXPERIENCE]... [q/SUBJECT_QUALIFICATIONS]...` <br> e.g. `add_tutor_filter r/>=40 r/<60 l/Secondary`
 **Delete a Tutor Filter** | `delete_tutor_filter [n/NAME]... [g/GENDER]... [p/PHONE_NUMBER]... [e/EMAIL]... [a/ADDRESS]... [s/SUBJECT_NAME]... [r/SUBJECT_RATE]... [l/SUBJECT_EDUCATION_LEVEL]... [y/SUBJECT_YEARS_EXPERIENCE]... [q/SUBJECT_QUALIFICATIONS]...` <br> e.g. `delete_tutor_filter r/<60 l/Secondary`
 **Add an Appointment Filter** | `add_appointment_filter [n/NAME]... [s/SUBJECT_NAME]... [fr/FROM_DATE_TIME]... [to/TO_DATE_TIME]... [l/LOCATION]...` <br> e.g. `add_appointment_filter to/>2021-03-25 10:00 AM`
