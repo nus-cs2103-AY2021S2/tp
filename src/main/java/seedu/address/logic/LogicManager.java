@@ -181,6 +181,10 @@ public class LogicManager implements Logic {
 
     @Override
     public boolean isAutocompleteFlag(String commandStrings) {
+        if (commandStrings.length() == 0 || commandStrings == null) {
+            return false;
+        }
+
         String command = commandStrings.split("-")[0];
         if (command.startsWith(AddCommand.COMMAND_WORD + " ") || command.startsWith(EditCommand.COMMAND_WORD + " ")) {
             return true;

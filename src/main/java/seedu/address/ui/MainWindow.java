@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.awt.*;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -15,9 +16,7 @@ import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -79,16 +78,24 @@ public class MainWindow extends UiPart<Stage> {
         getRoot().addEventFilter(KeyEvent.KEY_RELEASED, (KeyEvent event) -> {
             if (event.getCode() == KeyCode.TAB) {
                 String currentlyInBox = commandBox.getTextFieldText();
-                boolean isAutocompleteFlag = logic.isAutocompleteFlag(currentlyInBox);
+                System.out.println(currentlyInBox);
+                if (currentlyInBox != null) {
+                    boolean isAutocompleteFlag = logic.isAutocompleteFlag(currentlyInBox);
 
-                if (isAutocompleteFlag) {
-                    List<String> availFlags = logic.getAvailableFlags(currentlyInBox);
-                    commandBox.setAndAppendFlag(availFlags.get(0));
-                } else {
-                    autocompleteListPanel.processTabKey((value) -> {
-                                        commandBox.setTextValue(value);
-                                    });
-                    event.consume();
+                    if (isAutocompleteFlag) {
+                        List<String> availFlags = logic.getAvailableFlags(currentlyInBox);
+                        commandBox.setAndAppendFlag(availFlags.get(0));
+                    } else {
+                        System.out.println(currentlyInBox);
+                        autocompleteListPanel.processTabKey((value) -> {
+                            if (value == null) {
+                                commandBox.setTextValue(commandBox.getTextFieldText());
+                            } else {
+                                commandBox.setTextValue(value);
+                            }
+                        });
+                        event.consume();
+                    }
                 }
             }
 
