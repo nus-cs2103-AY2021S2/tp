@@ -46,8 +46,6 @@ jobs:
 
       - name: Build ShadowJar
         run: ./gradlew shadowJar
-        with:
-          fail_ci_if_error: true
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v2
