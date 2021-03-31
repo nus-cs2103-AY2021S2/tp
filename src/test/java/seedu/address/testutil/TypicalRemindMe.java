@@ -4,8 +4,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_DESC
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_DESCRIPTION_2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EXAM_DATETIME_1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EXAM_DATETIME_2;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_GENERAL_EVENT_DATE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_GENERAL_EVENT_DESCRIPTION;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GENERAL_EVENT_DATE_1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GENERAL_EVENT_DESCRIPTION_1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
@@ -42,8 +42,8 @@ public class TypicalRemindMe {
             new Assignment(new Description(VALID_ASSIGNMENT_DESCRIPTION_1),
                 DATE_1, new Tag(VALID_TITLE_CS2103));
     public static final GeneralEvent VALID_GENERAL_EVENT =
-            new GeneralEvent(new Description(VALID_GENERAL_EVENT_DESCRIPTION),
-                LocalDateTime.parse(VALID_GENERAL_EVENT_DATE, LocalDateTimeUtil.DATETIME_FORMATTER));
+            new GeneralEvent(new Description(VALID_GENERAL_EVENT_DESCRIPTION_1),
+                LocalDateTime.parse(VALID_GENERAL_EVENT_DATE_1, LocalDateTimeUtil.DATETIME_FORMATTER));
     public static final Exam VALID_EXAM =
         new Exam(DATE_1, new Tag(VALID_TITLE_CS2103));
     public static final Module MOD_1 = new ModuleBuilder().withTitle("MOD 1").build();

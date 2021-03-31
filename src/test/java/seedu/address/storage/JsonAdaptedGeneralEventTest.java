@@ -1,8 +1,8 @@
 package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_GENERAL_EVENT_DATE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_GENERAL_EVENT_DESCRIPTION;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GENERAL_EVENT_DATE_1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GENERAL_EVENT_DESCRIPTION_1;
 import static seedu.address.storage.JsonAdaptedGeneralEvent.MESSAGE_CONSTRAINTS;
 import static seedu.address.storage.JsonAdaptedGeneralEvent.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -22,8 +22,8 @@ class JsonAdaptedGeneralEventTest {
     @Test
     void toModelType_validGeneralEventDetails_returnGeneralEvent() throws Exception {
         JsonAdaptedGeneralEvent generalEvent =
-            new JsonAdaptedGeneralEvent(VALID_GENERAL_EVENT_DESCRIPTION,
-                VALID_GENERAL_EVENT_DATE);
+            new JsonAdaptedGeneralEvent(VALID_GENERAL_EVENT_DESCRIPTION_1,
+                    VALID_GENERAL_EVENT_DATE_1);
 
         assertEquals(VALID_GENERAL_EVENT, generalEvent.toModelType());
     }
@@ -31,7 +31,7 @@ class JsonAdaptedGeneralEventTest {
     @Test
     void toModelType_invalidGeneralEventDetails_throwsIllegalValueException() {
         JsonAdaptedGeneralEvent generalEvent =
-            new JsonAdaptedGeneralEvent(INVALID_DESCRIPTION, VALID_GENERAL_EVENT_DATE);
+            new JsonAdaptedGeneralEvent(INVALID_DESCRIPTION, VALID_GENERAL_EVENT_DATE_1);
         String expectedMessage = String.format(Description.MESSAGE_CONSTRAINTS, Description.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, generalEvent::toModelType);
     }
@@ -39,7 +39,7 @@ class JsonAdaptedGeneralEventTest {
     @Test
     public void toModelType_nullDescription_throwsIllegalValueException() {
         JsonAdaptedGeneralEvent generalEvent =
-            new JsonAdaptedGeneralEvent(null, VALID_GENERAL_EVENT_DATE);
+            new JsonAdaptedGeneralEvent(null, VALID_GENERAL_EVENT_DATE_1);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, generalEvent::toModelType);
     }
@@ -47,7 +47,7 @@ class JsonAdaptedGeneralEventTest {
     @Test
     public void toModelType_invalidLocalDateTime_throwsIllegalValueException() {
         JsonAdaptedGeneralEvent generalEvent =
-            new JsonAdaptedGeneralEvent(VALID_GENERAL_EVENT_DESCRIPTION, INVALID_DATE);
+            new JsonAdaptedGeneralEvent(VALID_GENERAL_EVENT_DESCRIPTION_1, INVALID_DATE);
 
         String expectedMessage = String.format(MESSAGE_CONSTRAINTS, LocalDateTime.class.getSimpleName());
 

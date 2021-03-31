@@ -47,8 +47,10 @@ public class CommandTestUtil {
     public static final String VALID_BIRTHDAY_BOB = "12/12/1999";
     public static final String VALID_BIRTHDAY_AMY = "12/12/1999";
 
-    public static final String VALID_GENERAL_EVENT_DESCRIPTION = "Party";
-    public static final String VALID_GENERAL_EVENT_DATE = "01/01/2021 2359";
+    public static final String VALID_GENERAL_EVENT_DESCRIPTION_1 = "Party";
+    public static final String VALID_GENERAL_EVENT_DESCRIPTION_2 = "Eat food";
+    public static final String VALID_GENERAL_EVENT_DATE_1 = "01/01/2021 2359";
+    public static final String VALID_GENERAL_EVENT_DATE_2 = "02/02/2021 2359";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
