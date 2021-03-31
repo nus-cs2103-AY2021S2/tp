@@ -240,6 +240,7 @@ public class AddCommandTest {
      */
     private class ModelStubWithOrder extends ModelStub {
         private final Order order;
+        final ArrayList<OrderItem> orderItemsStub = new ArrayList<>();
 
         ModelStubWithOrder(Order order) {
             requireNonNull(order);
@@ -250,6 +251,17 @@ public class AddCommandTest {
         public boolean hasOrder(Order order) {
             requireNonNull(order);
             return this.order.isSameOrder(order);
+        }
+
+        @Override
+        public boolean hasOrderItem(OrderItem orderItem) {
+            requireNonNull(orderItem);
+            return orderItemsStub.contains(orderItem);
+        }
+
+        @Override
+        public void addOrderItem(OrderItem orderItem) {
+            orderItemsStub.add(orderItem);
         }
     }
 
