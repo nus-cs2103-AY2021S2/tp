@@ -19,6 +19,7 @@ import seedu.address.model.customer.Customer;
 public class CustomerCard extends UiPart<Region> {
 
     private static final String FXML = "CustomerListCard.fxml";
+    private static final String DATE_OF_BIRTH = "DOB: ";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX. As a consequence, UI
@@ -61,7 +62,7 @@ public class CustomerCard extends UiPart<Region> {
         phone.setText(customer.getPhone().value);
         email.setText(customer.getEmail().value);
         address.setText(customer.getAddress().value);
-        dateOfBirth.setText(customer.getDateOfBirth().birthDate);
+        dateOfBirth.setText(DATE_OF_BIRTH + customer.getDateOfBirth().birthDate);
         customer.getTags().stream()
             .sorted(Comparator.comparing(tag -> tag.tagName))
             .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
