@@ -29,6 +29,7 @@ title: Developer Guide
   * [Display current food intake for the day](#use-case-display-current-food-intake-for-the-day)
 * [Non-Functional Requirements](#non-functional-requirements)
 * [Glossary](#glossary) 
+* [References](#references)
 <!--te-->
 
 ## **Introduction**
@@ -342,9 +343,9 @@ The progress calculator will first calculate the required calories and macronutr
 
 1. The user's weight maintenance calories are calculated based on the **Mifflin-St Joer Formula**. 
 2. Depending on the type of diet plan (weight gain, weight loss or weight maintenance), the amount of calories required is calculated:
-  * For weight gain plans, the daily amount of calories required is **maintenance calories + 400**
-  * For weight loss plans, the daily amount of calories required is **maintenance calories - 500**
-  * For weight maintenance plans, the daily amount of calories required is the **maintenance calories**
+   * For weight gain plans, the daily amount of calories required is **maintenance calories + 400**
+   * For weight loss plans, the daily amount of calories required is **maintenance calories - 500**
+   * For weight maintenance plans, the daily amount of calories required is the **maintenance calories**
 3. The *macronutrients' percentages* for the diet plan is applied to the calculated calories to determine how much of each macronutrient is required (in grams).
 
 The progress calculator then uses the *macronutrients' percentages* to decide whether the user has fulfiled the diet plan's requirements. This information is displayed via 3 main sections of the report:
