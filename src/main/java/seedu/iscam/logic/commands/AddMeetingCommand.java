@@ -20,7 +20,7 @@ public class AddMeetingCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Add a meeting with a client to the iScam Book. \n"
             + "Parameters: "
-            + PREFIX_CLIENT + "CLIENT NAME "
+            + PREFIX_CLIENT + "CLIENT_NAME "
             + PREFIX_ON + "DATE TIME "
             + PREFIX_LOCATION + "LOCATION "
             + PREFIX_DESCRIPTION + "DESCRIPTION "

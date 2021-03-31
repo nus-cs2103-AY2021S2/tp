@@ -14,7 +14,7 @@ iScam is a **desktop app for insurance agents to manage clients and meetings, op
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `iScam.jar` from [here](https://github.com/se-edu/iScam-level3/releases).
+1. Download the latest `iScam.jar` from [here](https://github.com/AY2021S2-CS2103-W17-4/tp/releases/tag/v1.2).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your iScam.
 
@@ -273,9 +273,10 @@ Format: `exit`
 
 iScam data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### Editing the data file
+### Editing the data files
 
-iScam data are saved as a JSON file `[JAR file location]/data/iScam.json`. Advanced users are welcome to update data directly by editing that data file.
+iScam data are saved as JSON files. Client data are saved in `[JAR file location]/data/clientbook.json`. 
+Meeting data are saved in `[JAR file location]/data/meetingbook.json`. Advanced users are welcome to update data directly by editing those data files.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, iScam will discard all data and start with an empty data file at the next run.
@@ -301,13 +302,13 @@ Action | Format, Examples
 **Help** | `help`
 **Add Client** | `add n/NAME p/PHONE e/EMAIL l/LOCATION [ip/INSURANCE_PLAN] [i/IMAGE_FILE] [t/TAG]…​` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com l/01 Singapore Street, #23-45 ip/MediShield Life i/john_doe.png t/friends t/owesMoney`
 **List Clients** | `list`
-**Edit Client** | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [l/LOCATION] [ip/INSURANCE_PLAN] [i/IMAGE FILE] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit Client** | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [l/LOCATION] [ip/INSURANCE_PLAN] [i/IMAGE_FILE] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find Client by Name** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **Find Client by Insurance Plan** | `findplan KEYWORD [MORE_KEYWORDS]` <br> e.g., `findplan MediShield`
 **Delete Client** | `delete INDEX`<br> e.g., `delete 3`
 **Add Meeting** | `addmeet c/CLIENT_NAME on/DATE_TIME l/LOCATION d/DESCRIPTION [t/TAG]…​` <br> e.g., `addmeet c/John Doe on/12-10-2021 10:00 l/Starbucks, Tampines Hub d/Discuss insurance policy t/Urgent t/Premium`
 **List Meetings** | `listmeet`
-**Edit Meeting** | `editmeet INDEX [c/CLIENT NAME] [on/DATE_TIME] [l/LOCATION] [d/DESCRIPTION] [t/TAG] [done/IS_DONE]…​`<br> e.g.,`editmeet 2 c/James Lee done/yes`
+**Edit Meeting** | `editmeet INDEX [c/CLIENT_NAME] [on/DATE_TIME] [l/LOCATION] [d/DESCRIPTION] [t/TAG] [done/IS_DONE]…​`<br> e.g.,`editmeet 2 c/James Lee done/yes`
 **Relocate Meeting** | `relocate INDEX l/LOCATION` <br> e.g., `relocate 1 l/KFC, Blk 556 Bugis`
 **Reschedule Meeting** | `reschedule INDEX on/DATE_TIME` <br> e.g., `reschedule 2 on/20-10-2021 10:00`
 **Find Meeting** | `findmeet KEYWORD [MORE_KEYWORDS]`<br> e.g., `findmeet 05-2022 Sam`
