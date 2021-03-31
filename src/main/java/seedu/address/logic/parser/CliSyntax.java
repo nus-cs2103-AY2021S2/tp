@@ -22,5 +22,8 @@ public class CliSyntax {
     public static final String OPTION_DATE = "date";
     public static final String OPTION_ADDRESS = "address";
     public static final String OPTION_CONTACT = "contact";
+    public static final String OPTION_PHONE = "phone";
+    public static final String OPTION_EMAIL = "email";
+    public static final String OPTION_FAVORITE = "fav";
     public static final String OPTION_REMOVE = "remove";
 }
