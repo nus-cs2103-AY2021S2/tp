@@ -60,7 +60,7 @@ _**Tutor Tracker**_ is a **desktop app designed to help secondary school student
 
 ### Add a new tutor: `add_tutor`
 
-Add a new tutor and enter their basic details.
+Add a new tutor and enter their basic details as well as an optional Note.
 
 Details:
 * Name
@@ -83,7 +83,7 @@ Example Input:
 
 ### List tutors: `list_tutors`
 
-View a list of all tutors known.
+View a list of all tutors known. Will ignore all input after `list_tutors`.
 
 Example Output:
 ```
@@ -120,7 +120,7 @@ Example: `delete_tutor 1`
 
 ### Edit a tutor: `edit_tutor`
 
-Edit a tutor's information by index. Only the attributes present are changed in the tutor.
+Edit a tutor's information by index. Only the attributes present can be changed in the tutor, including notes.
 
 Format: `edit_tutor INDEX [n/NAME] [g/GENDER] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [<s/SUBJECT_NAME r/SUBJECT_RATE l/SUBJECT_EDUCATION_LEVEL y/SUBJECT_YEARS_EXPERIENCE q/SUBJECT_QUALIFICATIONS>]... notes/NOTES`
 
@@ -136,12 +136,12 @@ Example: `view_tutor 1`
 
 Example Output:<br>
 ```
-John Doe
+1. John Doe
 98765432
 John street, block 123, #01-01
 johnd@example.com
 Subjects:
-1. English
+English
     Level: Sec 3
     Rate: SGD60/hr
     Experience: 6 years
@@ -158,12 +158,12 @@ Example: `add_note 1 patient tutor`
 Example Output:
 on the right of ,<br>
 ```
-John Doe 
+1. John Doe 
 98765432
 John street, block 123, #01-01
 johnd@example.com
 Subjects:
-1. English
+English
     Level: Sec 3                     
     Rate: SGD60/hr
     Experience: 6 years
@@ -184,12 +184,12 @@ Example: `edit_note 1 not patient`
 Example Output:
 on the right of ,<br>
 ```
-John Doe 
+1. John Doe 
 98765432
 John street, block 123, #01-01
 johnd@example.com
 Subjects:
-1. English
+English
     Level: Sec 3                     
     Rate: SGD60/hr
     Experience: 6 years
@@ -208,8 +208,8 @@ Format: `delete_note INDEX NOTE`
 
 Example: `delete_note 1`
 
-### List tutors with note: `list_note`
-Lists all the tutor with note
+### List tutors with note `list_note`
+Lists all the tutor with note. Will ignore all input after `list_mote`.
 
 Format:`list_note`
 
@@ -233,12 +233,12 @@ Example: `favourite 1`
 
 Example Output:<br>
 ```
-John Doe *
+1. John Doe *
 98765432
 John street, block 123, #01-01
 johnd@example.com
 Subjects:
-1. English
+English
     Level: Sec 3
     Rate: SGD60/hr
     Experience: 6 years
