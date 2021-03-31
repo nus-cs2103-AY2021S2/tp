@@ -13,7 +13,9 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.session.RecurringSession;
 import seedu.address.model.session.Session;
+import seedu.address.model.session.SessionDate;
 import seedu.address.model.student.Student;
 import seedu.address.model.tuition.Tuition;
 
@@ -33,24 +35,20 @@ public class UpcomingTuitionListPanel extends UiPart<Region> {
     public UpcomingTuitionListPanel(ObservableList<Student> studentList) {
         super(FXML);
         ObservableList<Tuition> tuitionList = FXCollections.observableArrayList();
-        ObservableList<Tuition> finalTuitionList = FXCollections.observableArrayList();
-
         populateTuitionList(studentList, tuitionList);
-        filterOneWeekTuitionSessions(tuitionList, finalTuitionList);
-        sortByDate(finalTuitionList);
+        sortByDate(tuitionList);
+        addListener(studentList, tuitionList);
+        populateUpcomingTuitionListView(tuitionList);
+    }
 
+    private void addListener(ObservableList<Student> studentList, ObservableList<Tuition> tuitionList) {
         studentList.addListener((ListChangeListener<Student>) change -> {
             while (change.next()) {
                 tuitionList.clear();
-                finalTuitionList.clear();
                 populateTuitionList(studentList, tuitionList);
-                filterOneWeekTuitionSessions(tuitionList, finalTuitionList);
-                sortByDate(finalTuitionList);
-                populateUpcomingTuitionListView(finalTuitionList);
+                sortByDate(tuitionList);
             }
         });
-
-        populateUpcomingTuitionListView(finalTuitionList);
     }
 
     /**
@@ -77,31 +75,55 @@ public class UpcomingTuitionListPanel extends UiPart<Region> {
     }
 
     /**
-     * Filters all tuition 1 week from today.
+     * Populates the tuitionList with {@code Tuition} for all sessions in the studentList between today and
+     * the day after tomorrow.
      */
-    private void filterOneWeekTuitionSessions(ObservableList<Tuition> tuitionList,
-                                              ObservableList<Tuition> finalTuitionList) {
-        LocalDate today = LocalDateTime.now().toLocalDate();
-        LocalDate weekToday = today.plusWeeks(1);
-        for (Tuition tuition : tuitionList) {
-            LocalDate sessionDate = tuition.getSession().getSessionDate().getDate();
-            if (today.compareTo(sessionDate) <= 0 && sessionDate.compareTo(weekToday) < 0) {
-                finalTuitionList.add(tuition);
+    private void populateTuitionList(ObservableList<Student> studentList, ObservableList<Tuition> tuitionList) {
+
+        SessionDate today = new SessionDate(LocalDateTime.now());
+        SessionDate tomorrow = new SessionDate(LocalDateTime.now().plusDays(1));
+        SessionDate dayAfterTomorrow = new SessionDate(LocalDateTime.now().plusDays(2));
+
+        for (int i = 0; i < studentList.size(); i++) {
+            Student currStudent = studentList.get(i);
+            for (int j = 0; j < studentList.get(i).getListOfSessions().size(); j++) {
+                Session currSession = currStudent.getListOfSessions().get(j);
+                if (currSession instanceof RecurringSession) {
+                    RecurringSession recurringSession = (RecurringSession) currSession;
+
+                    if (!recurringSession.endBefore(today)) {
+                        if (recurringSession.hasSessionOnDate(today)) {
+                            tuitionList.add(new Tuition(currStudent,
+                                    recurringSession.buildSessionOnDate(today.getDate()), i, j));
+                        }
+                        if (recurringSession.hasSessionOnDate(tomorrow)) {
+                            tuitionList.add(new Tuition(currStudent,
+                                    recurringSession.buildSessionOnDate(tomorrow.getDate()), i, j));
+                        }
+                        if (recurringSession.hasSessionOnDate(dayAfterTomorrow)) {
+                            tuitionList.add(new Tuition(currStudent,
+                                    recurringSession.buildSessionOnDate(dayAfterTomorrow.getDate()), i, j));
+                        }
+                    }
+                } else {
+                    LocalDate dateOfSingleSession = currSession.getSessionDate().getDate();
+                    if (isWithinThreeDaysRange(today, dayAfterTomorrow, dateOfSingleSession)) {
+                        tuitionList.add(new Tuition(currStudent, currSession, i, j));
+                    }
+                }
             }
         }
     }
 
     /**
-     * Populates the tuitionList with {@code Tuition} for all sessions in the studentList.
+     * Returns true if dateOfSingleSession is between today and the day after tomorrow.
      */
-    private void populateTuitionList(ObservableList<Student> studentList, ObservableList<Tuition> tuitionList) {
-        for (int i = 0; i < studentList.size(); i++) {
-            Student currStudent = studentList.get(i);
-            for (int j = 0; j < studentList.get(i).getListOfSessions().size(); j++) {
-                Session currSession = currStudent.getListOfSessions().get(j);
-                tuitionList.add(new Tuition(currStudent, currSession, i, j));
-            }
-        }
+    private boolean isWithinThreeDaysRange(SessionDate today, SessionDate dayAfterTomorrow,
+                                           LocalDate dateOfSingleSession) {
+        assert today.getDateTime().toLocalDate().plusDays(2).equals(dayAfterTomorrow.getDateTime().toLocalDate())
+                : "dayAfterTomorrow should be 2 days after today!";
+        return today.getDate().compareTo(dateOfSingleSession) <= 0
+                && dateOfSingleSession.compareTo(dayAfterTomorrow.getDate()) < 0;
     }
 
     /**

@@ -1,5 +1,6 @@
 package seedu.address.model.session;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -71,11 +72,17 @@ public class RecurringSession extends Session {
         return lastSessionDate;
     }
 
-    private boolean endBefore(SessionDate sessionDate) {
+    /**
+     * Returns true if recurring session date ends before {@code SessionDate} date.
+     */
+    public boolean endBefore(SessionDate sessionDate) {
         requireAllNonNull(sessionDate);
         return lastSessionDate.getDate().isBefore(sessionDate.getDate());
     }
 
+    /**
+     * Returns true if recurring session date starts after {@code SessionDate} date.
+     */
     private boolean startAfter(SessionDate sessionDate) {
         requireAllNonNull(sessionDate);
         return getSessionDate().getDate().isAfter(sessionDate.getDate());
@@ -100,12 +107,20 @@ public class RecurringSession extends Session {
      * @param sessionDate A valid sessionDate.
      * @return Session of Recurring Session on particular sessionDate.
      */
-    private Session onSessionDate(SessionDate sessionDate) {
+    private Session buildSessionOnDate(SessionDate sessionDate) {
         requireAllNonNull(sessionDate);
         assert(hasSessionOnDate(sessionDate));
         return new Session(sessionDate, getDuration(), getSubject(), getFee());
     }
 
+    /**
+     * Builds a session with the time of the recurring session the specified {@code LocalDate}.
+     */
+    public Session buildSessionOnDate(LocalDate date) {
+        requireNonNull(date);
+        SessionDate sessionDate = new SessionDate(date.toString(), getSessionDate().getTime().toString());
+        return buildSessionOnDate(sessionDate);
+    }
 
     /**
      * Returns a non-recurring, single session that occurred before a given SessionDate.
@@ -121,7 +136,7 @@ public class RecurringSession extends Session {
         SessionDate lastSessionDate = new SessionDate(
                 LocalDateTime.of(lastLocalDate, getSessionDate().getTime())
                         .toString());
-        return this.onSessionDate(lastSessionDate);
+        return this.buildSessionOnDate(lastSessionDate);
     }
 
     // THIS METHOD IS EXPECTED TO BE USED IN FEE CALCULATION.
