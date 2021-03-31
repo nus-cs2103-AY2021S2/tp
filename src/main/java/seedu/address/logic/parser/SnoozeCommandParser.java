@@ -11,10 +11,10 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class SnoozeCommandParser implements Parser<SnoozeCommand> {
 
-    private static final String SNOOZE_COMMAND_REGEX = "[0-9]+\\s?[0-9]*";
-
     public static final String MESSAGE_INVALID_ARGUMENT = "Snooze Command must have a compulsory INDEX"
             + " and an optional NUMBER argument, both of which are positive integers.";
+
+    private static final String SNOOZE_COMMAND_REGEX = "[0-9]+\\s?[0-9]*";
 
     /**
      * Parses the given {@code String} of arguments in the context of the SnoozeCommand
