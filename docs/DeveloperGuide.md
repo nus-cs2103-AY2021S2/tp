@@ -462,7 +462,7 @@ the UI is updated to display the retrieved message.
 
 ![AliasSequenceDiagram](images/AliasSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AliasCommandParser` and `AliasCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for <code>AliasCommandParser</code> and <code>AliasCommand</code> should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
 
