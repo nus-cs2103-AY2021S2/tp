@@ -267,23 +267,22 @@ Examples:
 
 #### 3.8.1 Searching properties: `find property`
 
-Finds properties that match the criterion provided.
+Finds all properties containing any of the specified keywords (case-insensitive) and/or with the given parameters. 
 
 Formats:
-* `find property [KEYWORD]... [OPTION]...`
+* `find property [n/NAME] [pl/UPPER_PRICE_LIMIT] [pm/LOWER_PRICE_LIMIT] [t/PROPERTY_TYPE] [a/ADDRESS]* 
+[p/POSTAL_CODE]* [d/DEADLINE]* [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT]* 
+[ce/CLIENT_EMAIL]* [tags/TAGS_SEPARATED_BY_COMMA]`
+* Note that all parameters marked with `*` are limited to one per query. 
 
 Description:
-* There can be 0 or more keywords and 0 or more options, but keywords and options cannot be both empty. All text are case insensitive.
+* There can be 1 or more parameters. Other than parameters marked with `*`, there can be multiple of 
+each parameter. All text are case insensitive.
 
 Options:
-* `[t/PROPERTY_TYPE]`
+* `[n/NAME]`
 
-    Search for properties whose property type field contain patterns specified in `[t/PROPERTY_TYPE]`.
-
-    The following property types are supported:
-    * hdb
-    * condo
-    * landed
+    Searches for properties with names matching `NAME`. 
 
 * `[pm/PRICE_UPPER_LIMIT]`
 
@@ -292,11 +291,60 @@ Options:
 * `[pl/PRICE_LOWER_LIMIT]`
 
     Search for properties with prices less than `[PRICE_LOWER_LIMIT]`.
+    
+* `[t/PROPERTY_TYPE]`
+
+    Search for properties whose property type field contain patterns specified in `[t/PROPERTY_TYPE]`.
+
+    The following property types are supported:
+    * hdb
+    * condo
+    * landed
+    
+* `[a/ADDRESS]`
+    
+    Searches for properties with `[ADDRESS]` as address. 
+    
+    Limited to one per query. 
+    
+* `[p/POSTAL_CODE]`
+    
+    Searches for properties with `[POSTAL_CODE]` as postal code. 
+    
+    Limited to one per query. 
+    
+* `[d/DEADLINE]`
+    
+    Searches for properties with `[DEADLINE]` as deadline. 
+    
+    Limited to one per query. 
+    
+* `[r/REMARKS]` 
+
+    Searches for properties containing `[REMARKS]` in their remarks. 
+
+* `[cn/CLIENT_NAME]` 
+
+    Searches for properties whose clients contain `[CLIENT_NAME]` in their names. 
+     
+* `[cc/CLIENT_CONTACT]`
+
+    Searches for properties whose clients' contact numbers match `[CLIENT_CONTACT]`. 
+
+* `[ce/CLIENT_EMAIL]` 
+
+    Searches for properties whose clients' emails match `[CLIENT_EMAIL]`. 
+
+* `[tags/TAGS_SEPARATED_BY_COMMA]`
+
+    Searches for properties whose tags match `[TAGS_SEPARATED_BY_COMMA]`. `TAGS_SEPARATED_BY_COMMA` consists of 
+    all tags you wish to search for, all separated with comma. 
+
 
 Examples:
-* `find property jurong west`
-* `find property pm/500000`
+* `find property n/jurong west`
 * `find property bishan north t/hdb pl/$1,000,000`
+* `find property pl/1000000 t/hdb a/1 Jurong East Street 32, #08-111 tags/3 bedrooms, need renovation cc/91234567`
 
 #### 3.8.2 Searching appointments: `find appointment`
 
