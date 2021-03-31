@@ -93,11 +93,6 @@
     -fx-background-color: derive(#1d1d1d, 20%);
 }
 
-.list-cell:empty {
-    /* Empty cells will not have alternating colours */
-    -fx-background: #383838;
-}
-
 .list-cell {
     -fx-label-padding: 0 0 0 0;
     -fx-graphic-text-gap : 0;
