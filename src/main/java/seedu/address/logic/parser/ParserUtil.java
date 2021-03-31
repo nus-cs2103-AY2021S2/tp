@@ -2,9 +2,12 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_JOB_TITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collection;
@@ -18,7 +21,9 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.alias.Alias;
 import seedu.address.model.alias.Command;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Company;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.JobTitle;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
@@ -208,6 +213,12 @@ public class ParserUtil {
             if (argMultimap.getValue(PREFIX_EMAIL).isPresent() && lastPrefix != PREFIX_EMAIL) {
                 ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
             }
+            if (argMultimap.getValue(PREFIX_COMPANY).isPresent() && lastPrefix != PREFIX_COMPANY) {
+                ParserUtil.parseCompany(argMultimap.getValue(PREFIX_COMPANY).get());
+            }
+            if (argMultimap.getValue(PREFIX_JOB_TITLE).isPresent() && lastPrefix != PREFIX_JOB_TITLE) {
+                ParserUtil.parseJobTitle(argMultimap.getValue(PREFIX_JOB_TITLE).get());
+            }
             if (argMultimap.getValue(PREFIX_ADDRESS).isPresent() && lastPrefix != PREFIX_ADDRESS) {
                 ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
             }
@@ -216,10 +227,43 @@ public class ParserUtil {
             } else {
                 ParserUtil.validateAllButLastTag(argMultimap.getAllValues(PREFIX_TAG));
             }
+            if (argMultimap.getValue(PREFIX_REMARK).isPresent() && lastPrefix != PREFIX_REMARK) {
+                ParserUtil.parseRemark(argMultimap.getValue(PREFIX_REMARK).get());
+            }
             return true;
         } catch (ParseException pe) {
             return false;
         }
+    }
+
+    /**
+     * Parses a {@code String company} into an {@code Company}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code company} is invalid.
+     */
+    public static Company parseCompany(String company) throws ParseException {
+        requireNonNull(company);
+        String trimmedCompany = company.trim();
+        if (!Company.isValidCompany(trimmedCompany)) {
+            throw new ParseException(Company.MESSAGE_CONSTRAINTS);
+        }
+        return new Company(trimmedCompany);
+    }
+
+    /**
+     * Parses a {@code String jobTitle} into an {@code JobTitle}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code jobTitle} is invalid.
+     */
+    public static JobTitle parseJobTitle(String jobTitle) throws ParseException {
+        requireNonNull(jobTitle);
+        String trimmedJobTitle = jobTitle.trim();
+        if (!JobTitle.isValidJobTitle(trimmedJobTitle)) {
+            throw new ParseException(JobTitle.MESSAGE_CONSTRAINTS);
+        }
+        return new JobTitle(trimmedJobTitle);
     }
 
 }
