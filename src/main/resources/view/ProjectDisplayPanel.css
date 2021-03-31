@@ -83,7 +83,7 @@
 
 /* list view */
 .list-view {
-    -fx-background-insets: 0;
+    -fx-background-insets: 0 0 10 0;
     -fx-padding: 0;
     -fx-background-color: -DP_1_ELEVATION;
 }

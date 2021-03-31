@@ -54,6 +54,11 @@
     -fx-background-color: -DP_1_ELEVATION;
 }
 
+.list-view .scroll-bar:horizontal {
+    -fx-scale-y: 0;
+    -fx-padding: -7;
+}
+
 .list-cell {
     -fx-label-padding: 0 0 0 0;
     -fx-graphic-text-gap: 0;
@@ -255,6 +260,10 @@
 
 .scroll-bar:horizontal .increment-arrow, .scroll-bar:horizontal .decrement-arrow {
     -fx-padding: 8 1 8 1;
+}
+
+.virtual-flow > .corner {
+    -fx-background-color: transparent;
 }
 
 #cardPane {

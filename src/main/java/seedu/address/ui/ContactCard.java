@@ -4,7 +4,6 @@ import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.contact.Contact;
@@ -39,7 +38,7 @@ public class ContactCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
-    private FlowPane tags;
+    private HBox tags;
 
     /**
      * Creates a {@code ContactCard} with the given {@code Contact} and index to display.

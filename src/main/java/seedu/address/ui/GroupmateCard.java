@@ -4,7 +4,6 @@ import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.groupmate.Groupmate;
@@ -25,7 +24,7 @@ public class GroupmateCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private FlowPane roles;
+    private HBox roles;
 
     /**
      * Creates a {@code GroupmateCard} with the given {@code Groupmate} and index to display.
