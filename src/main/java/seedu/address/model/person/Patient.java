@@ -221,6 +221,7 @@ public class Patient implements Comparable<Patient> {
             }
         }
         this.records.add(newRecord);
+        this.records.sort(Comparator.comparing(mrec->mrec.getDate()));
     }
 
     @Override

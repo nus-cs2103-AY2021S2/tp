@@ -36,7 +36,7 @@ public class SectionCard extends UiPart<Region> {
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public SectionCard(Section newSection) {
+    public SectionCard(Section newSection, boolean editable) {
         super(FXML);
         this.section = newSection;
         sectionTitle.textProperty().addListener(new ChangeListener<String>() {
@@ -57,6 +57,10 @@ public class SectionCard extends UiPart<Region> {
         });
         sectionTitle.setText(newSection.getTitle());
         sectionBody.setText(newSection.getBody());
+        if (!editable) {
+            sectionTitle.setEditable(false);
+            sectionBody.setEditable(false);
+        }
     }
 
     @Override

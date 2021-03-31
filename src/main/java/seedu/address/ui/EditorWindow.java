@@ -42,6 +42,9 @@ public class EditorWindow extends UiPart<Stage> {
     private Button returnButton;
 
     @FXML
+    private Button newSectionButton;
+
+    @FXML
     private ListView<Section> sectionListView;
 
     /**
@@ -63,6 +66,12 @@ public class EditorWindow extends UiPart<Stage> {
         this.sections = FXCollections.observableArrayList(this.mrec.getSections());
         this.sectionListView.setItems(this.sections);
         this.sectionListView.setCellFactory(listView -> new SectionListViewCell());
+
+        if (this.mrec.getDate().isBefore(LocalDateTime.now().minusDays(1))){
+            newSectionButton.setDisable(true);
+            returnButton.setDisable(true);
+            this.sectionListView.setCellFactory(listView -> new SectionListDisabledViewCell());
+        }
     }
 
 
@@ -77,7 +86,23 @@ public class EditorWindow extends UiPart<Stage> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new SectionCard(section).getRoot());
+                setGraphic(new SectionCard(section, true).getRoot());
+            }
+        }
+    }
+
+    /**
+     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     */
+    class SectionListDisabledViewCell extends ListCell<Section> {
+        @Override
+        protected void updateItem(Section section, boolean empty) {
+            super.updateItem(section, empty);
+            if (empty || section == null) {
+                setGraphic(null);
+                setText(null);
+            } else {
+                setGraphic(new SectionCard(section, false).getRoot());
             }
         }
     }
