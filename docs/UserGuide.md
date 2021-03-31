@@ -255,7 +255,7 @@ or `delete shown` to delete all the shown persons.
 
 Enables user to select person objects to apply actions on.
 
-Format: `select { clear | shown | selected | INDEX… }`
+Format: `select { clear | shown | show | INDEX… }`
 
 Sub Command Format:
 * `select show`
@@ -265,7 +265,7 @@ Sub Command Format:
 
 The selected person will have a highlighted index number to indicate selection status.
 
-![Select UI Example](images/select_ui_example.png)
+![Select UI Example](images/UG_Select%20Indicator.png)
 
 Examples:
 

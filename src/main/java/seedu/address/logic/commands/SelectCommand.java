@@ -11,7 +11,7 @@ public abstract class SelectCommand extends Command {
     public static final String SHOW_SUB_COMMAND_WORD = "show";
     public static final String CLEAR_SUB_COMMAND_WORD = "clear";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Select or show selected persons.\n"
-            + "Parameters: { shown | clear | selected | INDEX… }\n"
+            + "Parameters: { clear | show | shown | INDEX… }\n"
             + "Sub Commands: " + SHOW_SUB_COMMAND_WORD + " " + CLEAR_SUB_COMMAND_WORD + "\n"
             + "Examples:\n"
             + COMMAND_WORD + " " + SHOW_SUB_COMMAND_WORD + "\n"
