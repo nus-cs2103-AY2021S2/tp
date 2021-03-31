@@ -20,7 +20,7 @@ import seedu.booking.model.UserPrefs;
 import seedu.booking.model.booking.BookingWithinDatePredicate;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code FilterBookingByBookerCommand}.
+ * Contains integration tests (interaction with the Model) for {@code FilterBookingByDateCommand}.
  */
 public class FilterBookingByDateCommandTest {
     private Model model = new ModelManager(getTypicalBookingSystem(), new UserPrefs());

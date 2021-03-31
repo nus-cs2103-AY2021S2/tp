@@ -3,8 +3,9 @@ package seedu.booking.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.booking.logic.commands.CommandTestUtil.NON_EXISTENT_EMAIL;
+import static seedu.booking.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.booking.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.booking.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.booking.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.booking.testutil.TypicalPersons.getTypicalBookingSystem;
 
@@ -17,6 +18,7 @@ import seedu.booking.model.Model;
 import seedu.booking.model.ModelManager;
 import seedu.booking.model.UserPrefs;
 import seedu.booking.model.booking.BookingContainsBookerPredicate;
+import seedu.booking.model.person.Email;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FilterBookingByBookerCommand}.
@@ -28,9 +30,9 @@ public class FilterBookingByBookerCommandTest {
     @Test
     public void equals() {
         BookingContainsBookerPredicate firstPredicate =
-                new BookingContainsBookerPredicate(VALID_NAME_AMY);
+                new BookingContainsBookerPredicate(new Email(VALID_EMAIL_AMY));
         BookingContainsBookerPredicate secondPredicate =
-                new BookingContainsBookerPredicate(VALID_EMAIL_BOB);
+                new BookingContainsBookerPredicate(new Email(VALID_EMAIL_BOB));
 
         FilterBookingByBookerCommand findFirstCommand = new FilterBookingByBookerCommand(firstPredicate);
         FilterBookingByBookerCommand findSecondCommand = new FilterBookingByBookerCommand(secondPredicate);
@@ -53,9 +55,9 @@ public class FilterBookingByBookerCommandTest {
     }
 
     @Test
-    public void execute_zeroKeywords_noBookingFound() {
-        String expectedMessage = Messages.MESSAGE_BOOKING_FILTER_FAILED + " by ";
-        BookingContainsBookerPredicate predicate = preparePredicate("");
+    public void execute_keywordNotInBookingSystem_noBookingFound() {
+        String expectedMessage = Messages.MESSAGE_BOOKING_FILTER_FAILED + " by " + NON_EXISTENT_EMAIL;
+        BookingContainsBookerPredicate predicate = preparePredicate(new Email(NON_EXISTENT_EMAIL));
         FilterBookingByBookerCommand command = new FilterBookingByBookerCommand(predicate);
         expectedModel.updateFilteredBookingList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -65,7 +67,7 @@ public class FilterBookingByBookerCommandTest {
     /**
      * Parses {@code userInput} into a {@code BookingContainsBookerPredicate}.
      */
-    private BookingContainsBookerPredicate preparePredicate(String userInput) {
+    private BookingContainsBookerPredicate preparePredicate(Email userInput) {
         return new BookingContainsBookerPredicate(userInput);
     }
 }

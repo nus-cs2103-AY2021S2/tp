@@ -19,7 +19,7 @@ import seedu.booking.model.UserPrefs;
 import seedu.booking.model.booking.BookingContainsVenuePredicate;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code FilterBookingByBookerCommand}.
+ * Contains integration tests (interaction with the Model) for {@code FilterBookingByVenueCommand}.
  */
 public class FilterBookingByVenueCommandTest {
     private Model model = new ModelManager(getTypicalBookingSystem(), new UserPrefs());

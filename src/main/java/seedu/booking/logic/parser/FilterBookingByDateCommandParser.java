@@ -11,7 +11,7 @@ import seedu.booking.logic.commands.FilterBookingByVenueCommand;
 import seedu.booking.logic.parser.exceptions.ParseException;
 import seedu.booking.model.booking.BookingWithinDatePredicate;
 
-public class FilterBookingByDateCommandParser implements Parser<FilterBookingByDateCommand>{
+public class FilterBookingByDateCommandParser implements Parser<FilterBookingByDateCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the FilterBookingByDateCommand

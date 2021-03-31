@@ -10,9 +10,9 @@ import seedu.booking.logic.parser.exceptions.ParseException;
 import seedu.booking.model.booking.BookingContainsTagPredicate;
 
 /**
- * Parses input arguments and creates a new FilterBookingByVenueCommand object.
+ * Parses input arguments and creates a new FilterBookingByTagCommand object.
  */
-public class FilterBookingByTagCommandParser {
+public class FilterBookingByTagCommandParser implements Parser<FilterBookingByTagCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the FilterBookingByVenueCommandParser
