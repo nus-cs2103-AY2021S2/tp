@@ -1,6 +1,8 @@
 package seedu.address.commons.core;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.alias.AliasUtil.ALIAS_1_TO_2;
 import static seedu.address.testutil.alias.AliasUtil.ALIAS_3_TO_1;
@@ -97,5 +99,23 @@ public class AliasMappingTest {
         AliasMapping aliasMapping = new AliasMapping();
         aliasMapping.addAlias(ALIAS_1_TO_2);
         assertTrue(aliasMapping.isRecursiveKeyword(ALIAS_3_TO_1.getCommand()));
+    }
+
+    @Test
+    void equals() {
+        AliasMapping map1 = new AliasMapping();
+        AliasMapping map2 = new AliasMapping();
+        // both are empty
+        assertEquals(map1, map2);
+
+        map1.addAlias(VALID_ALIAS_1);
+        map2.addAlias(VALID_ALIAS_1);
+        // both add the same alias
+        assertEquals(map1, map2);
+
+        map1.addAlias(VALID_ALIAS_2);
+        map2.addAlias(VALID_ALIAS_3);
+        // both contain different aliases
+        assertNotEquals(map1, map2);
     }
 }
