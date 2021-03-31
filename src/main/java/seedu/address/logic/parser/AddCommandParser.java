@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GUARDIAN_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GUARDIAN_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSON;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LEVEL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
@@ -24,6 +25,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.School;
+import seedu.address.model.person.level.Level;
 import seedu.address.model.subject.Subject;
 
 /**
@@ -39,7 +41,8 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_SCHOOL, PREFIX_EMAIL,
-                        PREFIX_ADDRESS, PREFIX_GUARDIAN_NAME, PREFIX_GUARDIAN_PHONE, PREFIX_SUBJECT, PREFIX_LESSON);
+                        PREFIX_ADDRESS, PREFIX_GUARDIAN_NAME, PREFIX_GUARDIAN_PHONE, PREFIX_LEVEL,
+                        PREFIX_SUBJECT, PREFIX_LESSON);
 
         //name and phone must be present when adding in a new student
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE) || !argMultimap.getPreamble().isEmpty()) {
@@ -86,11 +89,18 @@ public class AddCommandParser implements Parser<AddCommand> {
             guardianPhone = Optional.empty();
         }
 
+        Optional<Level> level;
+        if (argMultimap.getValue(PREFIX_LEVEL).isPresent()) {
+            level = ParserUtil.parseLevel(argMultimap.getValue(PREFIX_LEVEL).get());
+        } else {
+            level = Optional.empty();
+        }
+
         Set<Subject> subjectList = ParserUtil.parseSubjects(argMultimap.getAllValues(PREFIX_SUBJECT));
         Set<Lesson> lessonsList = ParserUtil.parseLessons(argMultimap.getAllValues(PREFIX_LESSON));
 
-        Person person = new Person(name, phone, school, email, address, guardianName, guardianPhone, subjectList,
-                lessonsList);
+        Person person = new Person(name, phone, school, email, address, guardianName, guardianPhone,
+                level, subjectList, lessonsList);
 
         return new AddCommand(person);
     }
