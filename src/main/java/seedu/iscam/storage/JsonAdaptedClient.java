@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.iscam.commons.exceptions.IllegalValueException;
 import seedu.iscam.model.client.Client;
 import seedu.iscam.model.client.Email;
+import seedu.iscam.model.client.Image;
 import seedu.iscam.model.client.InsurancePlan;
 import seedu.iscam.model.client.Phone;
 import seedu.iscam.model.commons.Location;
@@ -31,6 +32,7 @@ class JsonAdaptedClient {
     private final String insurancePlan;
     private final String location;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final String imageRes;
 
     /**
      * Constructs a {@code JsonAdaptedClient} with the given client details.
@@ -38,7 +40,8 @@ class JsonAdaptedClient {
     @JsonCreator
     public JsonAdaptedClient(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("location") String location,
-            @JsonProperty("plan") String insurancePlan, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("plan") String insurancePlan, @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+            @JsonProperty("image") String imageRes) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -48,6 +51,8 @@ class JsonAdaptedClient {
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
+
+        this.imageRes = imageRes;
     }
 
     /**
@@ -62,6 +67,7 @@ class JsonAdaptedClient {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        imageRes = source.getImageRes().value;
     }
 
     /**
@@ -120,7 +126,17 @@ class JsonAdaptedClient {
 
         final Set<Tag> modelTags = new HashSet<>(clientTags);
 
-        return new Client(modelName, modelPhone, modelEmail, modelLocation, modelPlan, modelTags);
+        if (imageRes == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Image.class.getSimpleName()));
+        }
+        if (!Image.isValidImageRes(imageRes)) {
+            throw new IllegalValueException(String.format(Image.MESSAGE_CONSTRAINTS,
+                    Image.class.getSimpleName()));
+        }
+        final Image modelImage = new Image(imageRes);
+
+        return new Client(modelName, modelPhone, modelEmail, modelLocation, modelPlan, modelTags, modelImage);
     }
 
 }

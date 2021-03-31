@@ -1,6 +1,7 @@
 package seedu.iscam.testutil;
 
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.iscam.logic.parser.CliSyntax.PREFIX_IMAGE;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -39,6 +40,7 @@ public class ClientUtil {
         client.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
+        sb.append(PREFIX_IMAGE).append(client.getImageRes().value).append(" ");
         return sb.toString();
     }
 
@@ -53,6 +55,8 @@ public class ClientUtil {
         descriptor.getLocation().ifPresent(location -> sb.append(PREFIX_LOCATION).append(location.value).append(" "));
         descriptor.getPlan().ifPresent(insurancePlan ->
                 sb.append(PREFIX_PLAN).append(insurancePlan.planName).append(" "));
+        descriptor.getImageRes().ifPresent(image ->
+                sb.append(PREFIX_IMAGE).append(image.value).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

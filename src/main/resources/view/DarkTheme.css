@@ -112,7 +112,7 @@
 
 .list-cell .label {
     -fx-text-fill: white;
-    -fx-padding: 1 0 1 0;
+    -fx-padding: 2 0 2 0;
 }
 
 .cell_small_label {
@@ -218,6 +218,10 @@
     -fx-font-family: "Segoe UI";
     -fx-font-size: 13px;
     -fx-text-fill: #FFFFFF;
+}
+
+.insurance-pane {
+    -fx-background-color: #515658;
 }
 
 /*
