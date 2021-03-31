@@ -17,6 +17,7 @@ import seedu.address.model.ReadOnlyTutorBook;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.event.Event;
 import seedu.address.model.grade.Grade;
+import seedu.address.model.reminder.Reminder;
 import seedu.address.model.schedule.Schedule;
 import seedu.address.model.tutor.Tutor;
 import seedu.address.storage.Storage;
@@ -78,6 +79,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ObservableList<Event> getFilteredEventList() {
+        return model.getFilteredEventList();
+    }
+
+    @Override
     public ObservableList<Grade> getFilteredGradeList() {
         return model.getFilteredGradeList();
     }
@@ -98,8 +104,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Event> getFilteredEventList() {
-        return model.getFilteredEventList();
+    public ObservableList<Reminder> getFilteredReminderList() {
+        return model.getFilteredReminderList();
     }
 
     @Override

@@ -17,6 +17,10 @@ import seedu.address.model.common.Title;
 import seedu.address.model.grade.Grade;
 import seedu.address.model.grade.GradeEnum;
 import seedu.address.model.grade.GradedItem;
+import seedu.address.model.reminder.ReadOnlyReminderTracker;
+import seedu.address.model.reminder.Reminder;
+import seedu.address.model.reminder.ReminderDate;
+import seedu.address.model.reminder.ReminderTracker;
 import seedu.address.model.schedule.ReadOnlyScheduleTracker;
 import seedu.address.model.schedule.Schedule;
 import seedu.address.model.schedule.ScheduleTracker;
@@ -37,7 +41,7 @@ import seedu.address.model.tutor.Phone;
 import seedu.address.model.tutor.Tutor;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code TutorTracker} with sample data.
  */
 public class SampleDataUtil {
     public static Tutor[] getSamplePersons() {
@@ -119,6 +123,23 @@ public class SampleDataUtil {
                     new AppointmentDateTime("2021-03-25 5:00PM"),
                     new Description("Chapter 6"))
         };
+    }
+
+    public static Reminder[] getSampleReminder() {
+        return new Reminder[] {
+            new Reminder(new Description("Bring Math Textbook for Tuition"),
+                    new ReminderDate("2021-03-31")),
+            new Reminder(new Description("Science Tuition Fee Due"),
+                    new ReminderDate("2021-03-31"))
+        };
+    }
+
+    public static ReadOnlyReminderTracker getSampleReminderTracker() {
+        ReminderTracker sampleRt = new ReminderTracker();
+        for (Reminder sampleReminder : getSampleReminder()) {
+            sampleRt.addReminder(sampleReminder);
+        }
+        return sampleRt;
     }
 
     public static ReadOnlyScheduleTracker getSampleScheduleTracker() {

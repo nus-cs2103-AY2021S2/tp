@@ -14,7 +14,7 @@ import seedu.address.model.schedule.ScheduleTracker;
 
 /**
  * Wraps all data at the event tracker level
- * Duplicates are not allowed (by .isSameEvent comparison)
+ * Duplicates are not allowed (by .isSameAppointment and .isSameSchedule comparison)
  */
 public class EventTracker {
     private final ScheduleTracker scheduleTracker;
@@ -26,7 +26,7 @@ public class EventTracker {
     }
 
     /**
-     * Creates an AppointmentBook using the Appointments in the {@code toBeCopied}
+     * Creates an EventTracker using both {@code AppointmentBook} and {@code ScheduleTracker}.
      */
     public EventTracker(ReadOnlyAppointmentBook appointmentBook, ReadOnlyScheduleTracker scheduleTracker) {
         this.appointmentBook = new AppointmentBook(appointmentBook);
@@ -35,7 +35,7 @@ public class EventTracker {
     }
 
     /**
-     * Resets the existing data of this {@code AppointmentBook} with {@code newData}.
+     * Resets the existing data of this {@code EventTracker} with {@code appointmentBook} and {@code scheduleTracker}.
      */
     public void resetData(ReadOnlyAppointmentBook appointmentBook, ReadOnlyScheduleTracker scheduleTracker) {
         requireNonNull(appointmentBook);
@@ -43,18 +43,27 @@ public class EventTracker {
         setEvents(appointmentBook.getAppointmentList(), scheduleTracker.getScheduleList());
     }
 
+    /**
+     * Replaces the contents of the event lists with {@code appointments} and {@code schedules}.
+     * {@code persons} must not contain duplicate events.
+     */
     public void setEvents(List<Appointment> appointments, List<Schedule> schedules) {
         this.events.setEvents(appointments, schedules);
     }
 
     /**
-     * Returns true if a person with the same identity as {@code appointment} exists in the appointment book.
+     * Returns true if an event have datetime clashes with existing records
+     * in {@code AppointmentBook} or {@code ScheduleTracker}.
      */
     public boolean hasClashingDateTime(Event event) {
         requireNonNull(event);
         return events.containsDate(event);
     }
 
+    /**
+     * Returns an unmodifiable view of the event list.
+     * This list will not contain any duplicate events.
+     */
     public ObservableList<Event> getEventList() {
         return events.asUnmodifiableObservableList();
     }

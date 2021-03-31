@@ -12,6 +12,8 @@ import seedu.address.model.event.Event;
 import seedu.address.model.filter.AppointmentFilter;
 import seedu.address.model.filter.TutorFilter;
 import seedu.address.model.grade.Grade;
+import seedu.address.model.reminder.ReadOnlyReminderTracker;
+import seedu.address.model.reminder.Reminder;
 import seedu.address.model.schedule.ReadOnlyScheduleTracker;
 import seedu.address.model.schedule.Schedule;
 import seedu.address.model.tutor.Name;
@@ -29,6 +31,7 @@ public interface Model {
     Predicate<Grade> PREDICATE_SHOW_ALL_GRADE = unused -> true;
     Predicate<Schedule> PREDICATE_SHOW_ALL_SCHEDULE = unused -> true;
     Predicate<Event> PREDICATE_SHOW_ALL_EVENT = unused -> true;
+    Predicate<Reminder> PREDICATE_SHOW_ALL_REMINDER = unused -> true;
 
     /**
      * Returns the user prefs.
@@ -102,6 +105,7 @@ public interface Model {
 
     /**
      * Sets grade book file path.
+     *
      * @param gradeBookFilePath To be supplied by user
      */
     void setGradeBookFilePath(Path gradeBookFilePath);
@@ -244,6 +248,7 @@ public interface Model {
 
     /**
      * Edited budget with the given budget.
+     *
      * @param budget Budget to update to.
      */
     void editBudget(Budget budget);
@@ -254,9 +259,10 @@ public interface Model {
     void deleteBudget();
 
 
-    /** Returns true if a grade with the same identity as {@code grade} exists in the
-    * grade book.
-    */
+    /**
+     * Returns true if a grade with the same identity as {@code grade} exists in the
+     * grade book.
+     */
     boolean hasGrade(Grade grade);
 
     /**
@@ -397,7 +403,56 @@ public interface Model {
     boolean hasClashingDateTime(Event event);
 
     /**
-     * Returns an unmodifiable view of the filtered event list
+     * Returns the ReminderTracker
+     */
+    ReadOnlyReminderTracker getReminderTracker();
+
+    /**
+     * Replaces reminder tracker data with the data in {@code reminderTracker}.
+     */
+    void setReminderTracker(ReadOnlyReminderTracker reminderTracker);
+
+    /**
+     * Returns an unmodifiable view of the filtered reminder list
+     */
+    ObservableList<Reminder> getFilteredReminderList();
+
+    /**
+     * Updates the filter of the filtered reminder list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredReminderList(Predicate<Reminder> predicate);
+
+    /**
+     * Checks if Reminder exists in reminder list.
+     *
+     * @param reminder Reminder to check
+     * @return True if reminder is already in reminder list
+     */
+    boolean hasReminder(Reminder reminder);
+
+    /**
+     * @param reminder Reminder to add (reminder must not already exist)
+     */
+    void addReminder(Reminder reminder);
+
+    /**
+     * Removes schedule from schedule list.
+     *
+     * @param reminder Schedule to be removed must be present
+     */
+    void deleteReminder(Reminder reminder);
+
+    /**
+     * Replaces the given schedule {@code target} with {@code editedReminder}.
+     * {@code target} must exist in the schedule tracker.
+     * The {@code editedReminder} must not be the same as another existing reminder in the reminder tracker.
+     */
+    void setReminder(Reminder target, Reminder editedReminder);
+
+    /**
+     * Returns an unmodifiable view of the filtered appointment list
      */
     ObservableList<Event> getFilteredEventList();
 }

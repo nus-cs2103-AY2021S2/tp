@@ -1,5 +1,6 @@
 ---
-User Guide
+layout: page
+title: User Guide
 ---
 _**Tutor Tracker**_ is a **desktop app designed to help secondary school students manage tutors and tuition appointments, optimised for use via a Command Line Interface** (CLI) for a fast and streamlined experience while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Tutor Tracker can get your tuition contact management tasks done faster than traditional GUI apps.
 
@@ -75,10 +76,10 @@ Details:
     * Qualifications
 
 Format:
-`add_tutor n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS... <s/SUBJECT_NAME r/RATE l/EDUCATION_LEVEL y/YEARS q/QUALIFICATIONS> notes/NOTES`
+`add_tutor n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS... <s/SUBJECT_NAME r/RATE l/EDUCATION_LEVEL y/YEARS q/QUALIFICATIONS> note/NOTE`
 
 Example Input:
-`add_tutor n/John Doe p/98765432 e/johnd@example.com g/Male a/John street, block 123, #01-01 s/English r/50 l/Sec 3 y/5 q/A-Level s/Mathematics r/60 l/Sec 4 y/6 q/A-Level notes/cool tutor`
+`add_tutor n/John Doe p/98765432 e/johnd@example.com g/Male a/John street, block 123, #01-01 s/English r/50 l/Sec 3 y/5 q/A-Level s/Mathematics r/60 l/Sec 4 y/6 q/A-Level note/Patient`
 
 ### List all tutors: `list_tutors`
 
@@ -105,7 +106,7 @@ Edit a tutor's information by index. Only the attributes present are changed in 
 
 Format: `edit_tutor INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GENDER] [a/ADDRESS] [<s/SUBJECT_NAME r/RATE l/EDUCATION_LEVEL y/YEARS q/QUALIFICATIONS>] note/NOTES`
 
-Example: `edit_tutor 1 p/99824314 s/English r/50 l/Secondary 5 y/9 q/A-Level note/efficient`
+Example: `edit_tutor 1 p/99824314 s/English r/50 l/Secondary 5 y/9 q/A-Level note/Impatient`
 
 ### Viewing a tutor: `view_tutor`
 
@@ -194,10 +195,13 @@ Lists all the tutor with note
 
 Format:`list_note`
 
-### List tutors with note `list_note`
-Export the tutor details together with the notes into a text file
+### Export tutor details with note `export`
+Export the tutor details of that index together with the notes and subject list into a text file 
+exit
+in the directory you saved
+TutorTracker in /export/TUTORNAME
 
-Format:`list_note`
+Format:`export INDEX`
 
 Example: `export 1`
 
@@ -466,9 +470,95 @@ Listed all grades
      C
 ```
 
+### Add a Tutor Filter: `add_tutor_filter`
+
+Adds Tutor Filter(s) to the Tutor Filter list, filtering the tutors that are shown in the
+tutor list. Note that tutor filters **are not persistent (are not saved)**. The following tutor
+attributes and subject attributes in each tutor are filterable:
+
+Inclusive Filters:
+* Name
+* Gender
+* Phone Number
+* Email
+* Address
+* Subject Name
+* Subject Education Level
+* Subject Qualifications
+
+Exclusive Filters:
+* Subject Hourly Rate
+* Subject Years of Experience
+
+Multiples of each attribute are allowed, with the composed filter following these rules:
+
+1) Filters are case-insensitive.
+2) An inclusive filter means that a tutor can match any of the filters within that attribute filter.
+3) An exclusive filter means that a tutor must match all of the filters within that attribute filter.
+4) Inclusive filters match as long as the tutor attirbute contains the filter. eg. The tutor `Peter` matches the filter `pete`.
+5) Exclusive filters support the following inequalities: `>, <, >=, <=, =`.
+6) Only tutors that match all the attribute filters are displayed.
+
+Format: `add_tutor_filter [n/NAME]... [g/GENDER]... [p/PHONE_NUMBER]... [e/EMAIL]... [a/ADDRESS]... [s/SUBJECT_NAME]... [r/SUBJECT_RATE]... [l/SUBJECT_EDUCATION_LEVEL]... [y/SUBJECT_YEARS_EXPERIENCE]... [q/SUBJECT_QUALIFICATIONS]...`
+
+Example: `add_tutor_filter r/>=40 r/<60 l/Secondary`
+
+Example_Output: `New tutor filter added: Subject Level: secondary, Subject Rate: >= 40, Subject Rate: < 60`
+
+### Delete a Tutor Filter: `delete_tutor_filter`
+
+Deletes Tutor Filter(s) from the Tutor Filter list, supporting the same attributes as `add_tutor_filter`.
+
+Format: `delete_tutor_filter [n/NAME]... [g/GENDER]... [p/PHONE_NUMBER]... [e/EMAIL]... [a/ADDRESS]... [s/SUBJECT_NAME]... [r/SUBJECT_RATE]... [l/SUBJECT_EDUCATION_LEVEL]... [y/SUBJECT_YEARS_EXPERIENCE]... [q/SUBJECT_QUALIFICATIONS]...`
+
+Example: `delete_tutor_filter r/<60 l/Secondary`
+
+Example_Output: `Tutor filters deleted: Subject Level: secondary, Subject Rate: < 60`
+
+### Add an Appointment Filter: `add_appointment_filter`
+
+Adds Appointment Filter(s) to the Appointment Filter list, filtering the appointments that are shown
+in the appointment list. Note that appointment filters **are not persistent (are not saved)**. The
+following appointment attributes are filterable:
+
+Inclusive Filters:
+* Name
+* Subject Name
+* Location
+
+Exclusive Filters:
+* From Date Time
+* To Date Time
+
+Multiples of each attribute are allowed, with the composed filter following these rules:
+
+1) Filters are case-insensitive.
+2) An inclusive filter means that an appointment can match any of the filters within that attribute filter.
+3) An exclusive filter means that an appointment must match all of the filters within that attribute filter.
+4) Inclusive filters match as long as the appointment attirbute contains the filter. eg. The appointment with tutor name `Peter` matches the filter `pete`.
+5) Exclusive filters support the following inequalities: `>, <, >=, <=, =`.
+6) The date time format `YYYY-MM-DD HH:MM AM/PM` must be strictly followed. e.g. `2021-03-25 10:00 AM`.
+7) Only appointments that match all the attribute filters are displayed.
+
+Format: `add_appointment_filter [n/NAME]... [s/SUBJECT_NAME]... [fr/FROM_DATE_TIME]... [to/TO_DATE_TIME]... [l/LOCATION]...`
+
+Example: `add_appointment_filter to/>2021-03-25 10:00 AM`
+
+Example_Output: `New appointment filter added: Date Time: > Mar 25 2021 10:00AM`
+
+### Delete an Appointment Filter: `delete_appointment_filter`
+
+Deletes Appointment Filter(s) from the Appointment Filter list, supporting the same attributes as `add_appointment_filter`.
+
+Format: `delete_appointment_filter [n/NAME]... [s/SUBJECT_NAME]... [fr/FROM_DATE_TIME]... [to/TO_DATE_TIME]... [l/LOCATION]...`
+
+Example: `delete_appointment_filter to/>2021-03-25 10:00 AM`
+
+Example_Output: `Appointment filters deleted: Date Time: > Mar 25 2021 10:00AM`
+
 ### Exiting `exit`
 
-Closes the app with `bye` message
+Closes the app.
 
 Q & A
 --------------------------------------------------------------------------------------------------------------------
@@ -478,25 +568,25 @@ Q & A
 
 Action | Format, Examples
 --------|------------------
-**Add a new tutor** | `add_tutor n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS... <s/SUBJECT_NAME r/RATE l/EDUCATION_LEVEL y/YEARS q/QUALIFICATIONS>...` <br> e.g., `add_tutor n/John Doe p/98765432 e/johnd@example.com g/Male a/John street, block 123, #01-01 s/English r/50 l/Sec 3 y/5 q/A-Level s/Mathematics r/60 l/Sec 4 y/6 q/A-Level`
+**Add a new tutor** | `add_tutor n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS... <s/SUBJECT_NAME r/RATE l/EDUCATION_LEVEL y/YEARS q/QUALIFICATIONS> note/NOTE` <br> e.g., `add_tutor n/John Doe p/98765432 e/johnd@example.com g/Male a/John street, block 123, #01-01 s/English r/50 l/Sec 3 y/5 q/A-Level s/Mathematics r/60 l/Sec 4 y/6 q/A-Level note/Patient`
 **List tutors** | `list_tutors`
 **Delete a tutor** | `delete_tutor INDEX`, <br> e.g. `delete_tutor 1`
-**Edit a tutor** | `edit_tutor INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GENDER] [a/ADDRESS] [<s/SUBJECT_NAME r/RATE l/EDUCATION_LEVEL y/YEARS q/QUALIFICATIONS>]...`, <br> e.g. `edit_tutor 1 p/99824314 s/English r/50 l/Secondary 5 y/9 q/A-Level`
+**Edit a tutor** | `edit_tutor INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GENDER] [a/ADDRESS] [<s/SUBJECT_NAME r/RATE l/EDUCATION_LEVEL y/YEARS q/QUALIFICATIONS> note/NOTE`, <br> e.g. `edit_tutor 1 p/99824314 s/English r/50 l/Secondary 5 y/9 q/A-Level note/Impatient`
 **View a tutor details** | `view_tutor INDEX`, <br> e.g. `view_tutor 1`
 **Add note to a tutor** | `add_note INDEX NOTE`, <br> e.g. `add_note 1 patient`
-**Edit note of a tutor** | `edit_note INDEX NOTE`, <br> e.g. `edit_note not patient`
+**Edit note of a tutor** | `edit_note INDEX NOTE`, <br> e.g. `edit_note impatient`
 **Delete note of a tutor** | `delete_note INDEX`, <br> e.g. `delete_note 1`
 **List tutors with note** | `list_note`, <br> e.g. `list_note`
 **Export the tutor details**| `export INDEX`, <br> e.g. `export 1`
 **Favourite a tutor** | `favourite INDEX`, <br> e.g. `favourite 1`
 **Unfavourite a tutor** | `unfavourite INDEX`, <br> e.g. `Unfavourite 1`
 **List favourites** | `list_favourites`, <br> e.g. `list_favourites`
-**Add a new appointment** | `add_appointment e/EMAIL s/SUBJECT d/DATE fr/TIME_FROM l/LOCATION` <br> e.g., `appointment e/chloe.lim@example.com s/English d/2021-4-20 fr/2:00pm l/Bedok`
+**Add a new appointment** | `add_appointment e/EMAIL s/SUBJECT d/DATE fr/TIME_FROM l/LOCATION` <br> e.g., `add_appointment e/chloe.lim@example.com s/English d/2021-4-20 fr/2:00pm l/Bedok`
 **List tuition appointments** | `list_appointments`
 **View a tuition appointment details** | `view_appointment` <br> e.g. `view_appointment 2020-03-24`
 **Find tuition appointments** | `find_appointment` <br> e.g. `find_appointment John`
 **Delete a tuition appointment** | `delete_appointment` <br> e.g. `delete_appointment 1`
-**Edit a tuition appointment** | `edit_appointment [e/EMAIL] [s/SUBJECT_NAME] [d/DATE] [fr/TIME_FROM] [l/LOCATION]` <br> e.g. `edit_appointment e/andrewng@example.com l/Clementi`
+**Edit a tuition appointment** | `n/NAME s/SUBJECT d/DATE fr/TIME FROM to/TIME TO l/LOCATION` <br> e.g. `add_appointment n/Chloe Lim s/English d/2021-3-1 fr/10:00am to/12:00pm l/Bedok`
 **Add a budget** | `add_budget` <br> e.g.`add_budget b/500`
 **Edit a budget** | `edit_budget` <br> e.g. `edit_budget b/600`
 **Deleting a budget** | `delete_budget` <br> e.g. `delete_budget`
@@ -505,4 +595,8 @@ Action | Format, Examples
 **Edit a grade** | `edit_grade INDEX [s/SUBJECT_NAME] [gi/GRADED_ITEM] [gr/GRADE_ALPHABET]`, <br> e.g. `edit_grade 1 gr/B`
 **Delete a grade** | `delete_grade INDEX`, <br> e.g. `delete_grade 1`
 **List grades** | `list_grades`
+**Add a Tutor Filter** | `add_tutor_filter [n/NAME]... [g/GENDER]... [p/PHONE_NUMBER]... [e/EMAIL]... [a/ADDRESS]... [s/SUBJECT_NAME]... [r/SUBJECT_RATE]... [l/SUBJECT_EDUCATION_LEVEL]... [y/SUBJECT_YEARS_EXPERIENCE]... [q/SUBJECT_QUALIFICATIONS]...` <br> e.g. `add_tutor_filter r/>=40 r/<60 l/Secondary`
+**Delete a Tutor Filter** | `delete_tutor_filter [n/NAME]... [g/GENDER]... [p/PHONE_NUMBER]... [e/EMAIL]... [a/ADDRESS]... [s/SUBJECT_NAME]... [r/SUBJECT_RATE]... [l/SUBJECT_EDUCATION_LEVEL]... [y/SUBJECT_YEARS_EXPERIENCE]... [q/SUBJECT_QUALIFICATIONS]...` <br> e.g. `delete_tutor_filter r/<60 l/Secondary`
+**Add an Appointment Filter** | `add_appointment_filter [n/NAME]... [s/SUBJECT_NAME]... [fr/FROM_DATE_TIME]... [to/TO_DATE_TIME]... [l/LOCATION]...` <br> e.g. `add_appointment_filter to/>2021-03-25 10:00 AM`
+**Delete an Appointment Filter** | `delete_appointment_filter [n/NAME]... [s/SUBJECT_NAME]... [fr/FROM_DATE_TIME]... [to/TO_DATE_TIME]... [l/LOCATION]...` <br> e.g. `delete_appointment_filter to/>2021-03-25 10:00 AM`
 **exit** | `bye`

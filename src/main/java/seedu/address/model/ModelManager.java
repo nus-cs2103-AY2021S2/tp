@@ -20,11 +20,15 @@ import seedu.address.model.event.EventTracker;
 import seedu.address.model.filter.AppointmentFilter;
 import seedu.address.model.filter.TutorFilter;
 import seedu.address.model.grade.Grade;
+import seedu.address.model.reminder.ReadOnlyReminderTracker;
+import seedu.address.model.reminder.Reminder;
+import seedu.address.model.reminder.ReminderTracker;
 import seedu.address.model.schedule.ReadOnlyScheduleTracker;
 import seedu.address.model.schedule.Schedule;
 import seedu.address.model.schedule.ScheduleTracker;
 import seedu.address.model.tutor.Name;
 import seedu.address.model.tutor.Tutor;
+import seedu.address.model.util.SampleDataUtil;
 
 /**
  * Represents the in-memory model of the tutor book data.
@@ -37,7 +41,9 @@ public class ModelManager implements Model {
     private final GradeBook gradeBook;
     private final ScheduleTracker scheduleTracker;
     private final EventTracker eventTracker;
+    private final ReminderTracker reminderTracker;
     private final UserPrefs userPrefs;
+    private final BudgetBook budgetBook;
 
     private final TutorFilter tutorFilter;
     private final AppointmentFilter appointmentFilter;
@@ -45,9 +51,8 @@ public class ModelManager implements Model {
     private final FilteredList<Appointment> filteredAppointment;
     private final FilteredList<Grade> filteredGrades;
     private final FilteredList<Schedule> filteredSchedules;
+    private final FilteredList<Reminder> filteredReminders;
     private FilteredList<Event> filteredEvents;
-
-    private final BudgetBook budgetBook;
 
     /**
      * Initializes a ModelManager with the given TutorBook, AppointmentBook, BudgetBook, GradeBook and userPrefs.
@@ -74,11 +79,13 @@ public class ModelManager implements Model {
         this.eventTracker = new EventTracker(appointmentBook, scheduleTracker);
         this.tutorFilter = new TutorFilter();
         this.filteredTutors = new FilteredList<>(this.tutorBook.getTutorList());
+        this.reminderTracker = new ReminderTracker(SampleDataUtil.getSampleReminderTracker());
         this.filteredAppointment = new FilteredList<>(this.appointmentBook.getAppointmentList());
         this.filteredGrades = new FilteredList<>(this.gradeBook.getGradeList());
         this.filteredSchedules = new FilteredList<>(this.scheduleTracker.getScheduleList());
         this.filteredEvents = new FilteredList<>(this.eventTracker.getEventList());
         this.appointmentFilter = new AppointmentFilter();
+        this.filteredReminders = new FilteredList<>(this.reminderTracker.getReminderList());
     }
 
     /**
@@ -239,8 +246,6 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredAppointment.setPredicate(predicate);
     }
-
-
 
     /**
      * Checks if Appointment exists in appointment list.
@@ -582,6 +587,47 @@ public class ModelManager implements Model {
     @Override
     public boolean hasClashingDateTime(Event event) {
         return eventTracker.hasClashingDateTime(event);
+    }
+
+    @Override
+    public ReadOnlyReminderTracker getReminderTracker() {
+        return reminderTracker;
+    }
+
+    @Override
+    public void setReminderTracker(ReadOnlyReminderTracker reminderTracker) {
+        this.reminderTracker.resetData(reminderTracker);
+    }
+
+    @Override
+    public ObservableList<Reminder> getFilteredReminderList() {
+        return filteredReminders;
+    }
+
+    @Override
+    public void updateFilteredReminderList(Predicate<Reminder> predicate) {
+        requireNonNull(predicate);
+        filteredReminders.setPredicate(predicate);
+    }
+
+    @Override
+    public boolean hasReminder(Reminder reminder) {
+        return reminderTracker.hasReminder(reminder);
+    }
+
+    @Override
+    public void addReminder(Reminder reminder) {
+        reminderTracker.addReminder(reminder);
+    }
+
+    @Override
+    public void deleteReminder(Reminder reminder) {
+        reminderTracker.removeReminder(reminder);
+    }
+
+    @Override
+    public void setReminder(Reminder target, Reminder editedReminder) {
+        reminderTracker.setReminder(target, editedReminder);
     }
 
     @Override
