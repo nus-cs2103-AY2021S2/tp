@@ -13,11 +13,11 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.module.Description;
 
 public class DescriptionContainsKeywordsPredicateTest {
-    private final List<String> keywords1 = Collections.singletonList("MOD1");
-    private final List<String> keywords2 = Arrays.asList("MOD1", "MOD2");
-    private final Description description1 = new Description("MOD1");
-    private final Description description2 = new Description("MOD2");
-    private final Description description3 = new Description("MOD3 MOD4");
+    private final List<String> keywords1 = Collections.singletonList("EVENT1");
+    private final List<String> keywords2 = Arrays.asList("EVENT1", "EVENT2");
+    private final Description description1 = new Description("EVENT1");
+    private final Description description2 = new Description("EVENT2");
+    private final Description description3 = new Description("EVENT3 EVENT4");
     private final LocalDateTime date = LocalDateTime.of(2021, 3, 4, 23, 59);
 
     @Test
@@ -54,7 +54,7 @@ public class DescriptionContainsKeywordsPredicateTest {
 
         // Non-matching keywords
         predicate =
-                new DescriptionContainsKeywordsPredicate(Collections.singletonList("MOD3"));
+                new DescriptionContainsKeywordsPredicate(Collections.singletonList("EVENT3"));
         assertFalse(predicate.test(new GeneralEvent(description1, date)));
     }
 
@@ -62,19 +62,19 @@ public class DescriptionContainsKeywordsPredicateTest {
     public void test_descriptionContainsKeywords_returnsTrue() {
         // One keyword
         DescriptionContainsKeywordsPredicate predicate =
-                new DescriptionContainsKeywordsPredicate(Arrays.asList("MOD2"));
+                new DescriptionContainsKeywordsPredicate(Arrays.asList("EVENT2"));
         assertTrue(predicate.test(new GeneralEvent(description2, date)));
 
         // Multiple keywords
-        predicate = new DescriptionContainsKeywordsPredicate(Arrays.asList("MOD3", "MOD4"));
+        predicate = new DescriptionContainsKeywordsPredicate(Arrays.asList("EVENT3", "EVENT3"));
         assertTrue(predicate.test(new GeneralEvent(description3, date)));
 
         // Only one matching keyword
-        predicate = new DescriptionContainsKeywordsPredicate(Arrays.asList("MOD3"));
+        predicate = new DescriptionContainsKeywordsPredicate(Arrays.asList("EVENT3"));
         assertTrue(predicate.test(new GeneralEvent(description3, date)));
 
         // Mixed-case keywords
-        predicate = new DescriptionContainsKeywordsPredicate(Arrays.asList("mOd3", "Mod4"));
+        predicate = new DescriptionContainsKeywordsPredicate(Arrays.asList("eVenT3", "EvenT3"));
         assertTrue(predicate.test(new GeneralEvent(description3, date)));
     }
 }

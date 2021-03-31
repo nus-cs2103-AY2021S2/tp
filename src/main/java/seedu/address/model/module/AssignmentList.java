@@ -5,7 +5,7 @@ import java.util.List;
 
 public class AssignmentList {
     public static final String NO_ASSIGNMENTS_OUTPUT = "You have no assignments~";
-    private List<Assignment> assignments;
+    private final List<Assignment> assignments;
 
     /**
      * Constructs an {@code AssignmentList} to store {@code Assignments}
@@ -84,7 +84,6 @@ public class AssignmentList {
 
     /**
      * Toggles the done status of the assignment at the input index
-     * @param index
      */
     public void toggleDoneStatus(int index) {
         Assignment toggledAssignment = assignments.get(index);
@@ -99,9 +98,9 @@ public class AssignmentList {
      */
     public boolean contains(Assignment assignment) {
         boolean hasAssignment = false;
-        for (int i = 0; i < assignments.size() && !hasAssignment; i++) {
-            if (assignments.get(i).equals(assignment)) {
-                hasAssignment = true;
+        for (Assignment value : assignments) {
+            if (value.equals(assignment)) {
+                return true;
             }
         }
         return hasAssignment;

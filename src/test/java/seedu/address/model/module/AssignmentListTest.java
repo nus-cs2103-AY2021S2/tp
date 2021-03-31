@@ -15,16 +15,16 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.tag.Tag;
 
 public class AssignmentListTest {
-    private Description description1 = new Description("test 1");
-    private Description description2 = new Description("test 2");
-    private LocalDateTime date1 = LocalDateTime.parse("11/12/2021 1900",
+    private final Description description1 = new Description("test 1");
+    private final Description description2 = new Description("test 2");
+    private final LocalDateTime date1 = LocalDateTime.parse("11/12/2021 1900",
             DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm"));
-    private LocalDateTime date2 = LocalDateTime.parse("12/12/2021 1900",
+    private final LocalDateTime date2 = LocalDateTime.parse("12/12/2021 1900",
             DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm"));
-    private Tag tag = new Tag("CS2103");
-    private Assignment assignment1 = new Assignment(description1, date1, tag);
-    private Assignment assignment2 = new Assignment(description2, date2, tag);
-    private List<Assignment> assignments = new ArrayList<>();
+    private final Tag tag = new Tag("CS2103");
+    private final Assignment assignment1 = new Assignment(description1, date1, tag);
+    private final Assignment assignment2 = new Assignment(description2, date2, tag);
+    private final List<Assignment> assignments = new ArrayList<>();
 
     @Test
     public void add() {
@@ -191,5 +191,52 @@ public class AssignmentListTest {
         assignments.add(assignment1);
         assignments.add(assignment2);
         assertTrue(list.getAssignments().equals(assignments));
+    }
+
+    @Test
+    public void set() {
+        AssignmentList assignments1 = new AssignmentList();
+        assignments1.add(assignment1);
+        AssignmentList assignments2 = new AssignmentList();
+        assignments2.add(assignment2);
+
+        // set assignment1 to assignment2 at index 0
+        assignments1.set(0, assignment2);
+        assertEquals(assignments1, assignments2);
+    }
+
+    @Test
+    public void toggleDoneStatus() {
+        Assignment assignment1 = new Assignment(description1, date1, tag);
+        Assignment assignment2 = new Assignment(description2, date2, tag);
+        AssignmentList assignments1 = new AssignmentList(List.of(assignment1, assignment2));
+
+        // toggle done at index 0
+        Assignment assignment1Copy = new Assignment(description1, date1, tag, true);
+        Assignment assignment2Copy = new Assignment(description2, date2, tag);
+        AssignmentList assignments2 = new AssignmentList(List.of(assignment1Copy, assignment2Copy));
+        assignments1.toggleDoneStatus(0);
+        assertEquals(assignments1, assignments2);
+
+        // toggle done at index 1
+        assignment2Copy = new Assignment(description2, date2, tag, true);
+        assignments1.toggleDoneStatus(1);
+        assignments2 = new AssignmentList(List.of(assignment1Copy, assignment2Copy));
+        assertEquals(assignments1, assignments2);
+    }
+
+    @Test
+    public void testToString() {
+        AssignmentList assignments1 = new AssignmentList();
+        // empty list -> returns true
+        assertTrue(assignments1.toString().equals(AssignmentList.NO_ASSIGNMENTS_OUTPUT));
+
+        // non-empty list -> returns true
+        assignments1.add(assignment1);
+        assignments1.add(assignment2);
+        String output = "Assignment: \n"
+                + "1. " + assignment1.toString() + "\n"
+                + "2. " + assignment2.toString() + "\n";
+        assertTrue(assignments1.toString().equals(output));
     }
 }
