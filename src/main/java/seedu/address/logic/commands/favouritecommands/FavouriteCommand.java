@@ -29,7 +29,7 @@ public class FavouriteCommand extends Command {
 
     public static final String MESSAGE_INVALID_INDEX = "Invalid index %d";
 
-    private static final String MESSAGE_AlREADY_FAVOURITE = "Tutor is already a favourite";
+    public static final String MESSAGE_ALREADY_FAVOURITE = "Tutor: %s is already a favourite";
 
     private final Index targetIndex;
 
@@ -40,6 +40,9 @@ public class FavouriteCommand extends Command {
      * @param editTutorDescriptor with a favourite descriptor
      */
     public FavouriteCommand(Index targetIndex, EditTutorDescriptor editTutorDescriptor) {
+        requireNonNull(targetIndex);
+        requireNonNull(editTutorDescriptor);
+
         this.targetIndex = targetIndex;
         this.editTutorDescriptor = editTutorDescriptor;
     }
@@ -52,12 +55,12 @@ public class FavouriteCommand extends Command {
         ArrayList<Tutor> tutorPredicateList = new ArrayList<>(tutorList);
 
         if (targetIndex.getZeroBased() >= tutorList.size()) {
-            throw new CommandException(String.format(MESSAGE_INVALID_INDEX, targetIndex.getZeroBased()));
+            throw new CommandException(String.format(MESSAGE_INVALID_INDEX, targetIndex.getOneBased()));
         }
 
         Tutor tutor = tutorList.get(targetIndex.getZeroBased());
         if (tutor.isFavourite()) {
-            throw new CommandException(MESSAGE_AlREADY_FAVOURITE);
+            throw new CommandException(String.format(MESSAGE_ALREADY_FAVOURITE, tutor.getName().toString()));
         }
 
         Tutor editedTutor = createEditedTutor(tutor, editTutorDescriptor);

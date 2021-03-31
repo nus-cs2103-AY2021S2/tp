@@ -38,6 +38,9 @@ public class DeleteNoteCommand extends Command {
      * @param editTutorDescriptor with a descriptor of an empty note
      */
     public DeleteNoteCommand (Index targetIndex, EditCommand.EditTutorDescriptor editTutorDescriptor) {
+        requireNonNull(targetIndex);
+        requireNonNull(editTutorDescriptor);
+
         this.targetIndex = targetIndex;
         this.editTutorDescriptor = editTutorDescriptor;
     }
@@ -51,7 +54,7 @@ public class DeleteNoteCommand extends Command {
         ArrayList<Tutor> tutorPredicateList = new ArrayList<>(tutorList);
 
         if (targetIndex.getZeroBased() >= tutorList.size()) {
-            throw new CommandException(String.format(MESSAGE_INVALID_INDEX, targetIndex.getZeroBased()));
+            throw new CommandException(String.format(MESSAGE_INVALID_INDEX, targetIndex.getOneBased()));
         }
 
         Tutor tutor = tutorList.get(targetIndex.getZeroBased());
