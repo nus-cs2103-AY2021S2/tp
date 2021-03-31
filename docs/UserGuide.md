@@ -119,7 +119,7 @@ Example:
 
 ### Find entries generally: `find`
 
-Finds entries whose names, ratings, price, address and categories match any of the provided keywords.
+Finds entries whose names, ratings, price, address, categories and schools match any of the provided keywords.
 
 - More than one keyword per field can be accepted as parameters.
 - Different fields can also be simultaneously accepted as parameters.
@@ -136,6 +136,7 @@ Keyword(s) of any number and sequence:
 4. `$Price-Price`
 5. `Address`
 6. `Categories`
+7. `Schools`
 
 
 Example:
@@ -147,7 +148,7 @@ Example:
 
 ### Find specific entries: `findall`
 
-Finds for entries whose names, ratings, price, address and categories match all of the provided keywords.
+Finds for entries whose names, ratings, price, address, categories and schools match all of the provided keywords.
 
 - More than one keyword per field can be accepted as parameters.
 - Different fields can also be simultaneously accepted as parameters.
@@ -166,6 +167,7 @@ Keyword(s) of any number and sequence:
 4. `$Price-Price`
 5. `Address`
 6. `Categories`
+7. `Schools`
 
 Example:
 
