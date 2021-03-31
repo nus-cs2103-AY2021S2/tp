@@ -16,10 +16,6 @@ repositories {
     maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
 }
 
-run {
-    enableAssertions = true
-}
-
 checkstyle {
     toolVersion = '8.29'
 }
