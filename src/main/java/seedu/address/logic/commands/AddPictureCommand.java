@@ -65,7 +65,7 @@ public class AddPictureCommand extends Command {
         UUID uuid = UUID.randomUUID();
         String ext = FileUtil.extractExtension(filePath);
         String newFileName = uuid.toString() + ext;
-        Path newFilePath = pictureDir.toAbsolutePath().resolve(newFileName);
+        Path newFilePath = pictureDir.resolve(newFileName);
 
         try {
             FileUtil.copyFile(filePath, newFilePath);
