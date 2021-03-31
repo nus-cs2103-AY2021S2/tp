@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.iscam.model.Model;
 import seedu.iscam.model.util.clientbook.ClientBook;
+import seedu.iscam.model.util.meetingbook.MeetingBook;
 
 
 /**
@@ -19,6 +20,7 @@ public class ClearCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.setClientBook(new ClientBook());
+        model.setMeetingBook(new MeetingBook());
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
