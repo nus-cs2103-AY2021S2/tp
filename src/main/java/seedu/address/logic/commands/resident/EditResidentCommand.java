@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_RESIDENTS;
 
@@ -24,6 +23,7 @@ import seedu.address.model.resident.Phone;
 import seedu.address.model.resident.Resident;
 import seedu.address.model.resident.Room;
 import seedu.address.model.resident.Year;
+import seedu.address.model.residentroom.ResidentRoom;
 
 /**
  * Edits the details of an existing resident in the address book.
@@ -39,17 +39,17 @@ public class EditResidentCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_YEAR + "YEAR] "
-            + "[" + PREFIX_ROOM + "ROOM]\n"
+            + "[" + PREFIX_YEAR + "YEAR]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "e0123456@u.nus.edu "
-            + PREFIX_ROOM + "01-234";
+            + PREFIX_EMAIL + "e0123456@u.nus.edu ";
 
 
     public static final String MESSAGE_EDIT_RESIDENT_SUCCESS = "Edited Resident: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_RESIDENT = "This resident already exists in the address book.";
+    public static final String MESSAGE_RESIDENT_ALLOCATED_FAILURE =
+            "The resident has been allocated to a room. Please deallocate the resident before editing.";
 
     private final Index index;
     private final EditResidentDescriptor editResidentDescriptor;
@@ -82,9 +82,14 @@ public class EditResidentCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_RESIDENT);
         }
 
+        if (model.hasEitherResidentRoom(new ResidentRoom(residentToEdit.getName(), null))) {
+            throw new CommandException(MESSAGE_RESIDENT_ALLOCATED_FAILURE);
+        }
+
         model.setResident(residentToEdit, editedResident);
         model.updateFilteredResidentList(PREDICATE_SHOW_ALL_RESIDENTS);
         model.commitAddressBook();
+
         return new CommandResult(String.format(MESSAGE_EDIT_RESIDENT_SUCCESS, editedResident));
     }
 
@@ -92,7 +97,7 @@ public class EditResidentCommand extends Command {
      * Creates and returns a {@code Resident} with the details of {@code residentToEdit}
      * edited with {@code editResidentDescriptor}.
      */
-    private static Resident createEditedResident(Resident residentToEdit,
+    public static Resident createEditedResident(Resident residentToEdit,
             EditResidentDescriptor editResidentDescriptor) {
         assert residentToEdit != null;
 
@@ -101,7 +106,6 @@ public class EditResidentCommand extends Command {
         Email updatedEmail = editResidentDescriptor.getEmail().orElse(residentToEdit.getEmail());
         Year updatedYear = editResidentDescriptor.getYear().orElse(residentToEdit.getYear());
         Room updatedRoom = editResidentDescriptor.getRoom().orElse(residentToEdit.getRoom());
-
 
         return new Resident(updatedName, updatedPhone, updatedEmail, updatedYear, updatedRoom);
     }

@@ -7,15 +7,15 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 
+
 /**
- * Lists all persons in the address book to the user.
+ * Lists all residents in the address book to the user.
  */
 public class ListResidentCommand extends Command {
 
     public static final String COMMAND_WORD = "rlist";
 
-    public static final String MESSAGE_SUCCESS = "Listed all persons";
-
+    public static final String MESSAGE_SUCCESS = "Listed all residents";
 
     @Override
     public CommandResult execute(Model model) {

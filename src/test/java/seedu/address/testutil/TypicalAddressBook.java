@@ -1,7 +1,7 @@
 package seedu.address.testutil;
 
-import static seedu.address.testutil.TypicalResidents.getTypicalResidents;
 import static seedu.address.testutil.issue.TypicalIssues.getTypicalIssues;
+import static seedu.address.testutil.resident.TypicalResidents.getTypicalResidents;
 import static seedu.address.testutil.room.TypicalRooms.getTypicalRooms;
 
 import seedu.address.model.AddressBook;

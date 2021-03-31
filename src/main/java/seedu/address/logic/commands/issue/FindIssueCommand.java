@@ -6,7 +6,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
-import seedu.address.model.issue.RoomNumberContainsKeywordsPredicate;
+import seedu.address.model.issue.RoomNumberOrTagContainsKeywordsPredicate;
 
 /**
  * Finds and lists all issues in address book whose name contains any of the argument keywords.
@@ -21,9 +21,9 @@ public class FindIssueCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " 10-100 12-120";
 
-    private final RoomNumberContainsKeywordsPredicate predicate;
+    private final RoomNumberOrTagContainsKeywordsPredicate predicate;
 
-    public FindIssueCommand(RoomNumberContainsKeywordsPredicate predicate) {
+    public FindIssueCommand(RoomNumberOrTagContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 

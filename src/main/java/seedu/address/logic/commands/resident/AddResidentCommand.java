@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 
 import seedu.address.logic.commands.Command;
@@ -25,14 +24,12 @@ public class AddResidentCommand extends Command {
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_YEAR + "YEAR "
-            + PREFIX_ROOM + "ROOM\n"
+            + PREFIX_YEAR + "YEAR\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_YEAR + "1 "
-            + PREFIX_ROOM + "01-234";
+            + PREFIX_YEAR + "1";
 
     public static final String MESSAGE_SUCCESS = "New resident added: %1$s";
     public static final String MESSAGE_DUPLICATE_RESIDENT = "This resident already exists in the address book";
