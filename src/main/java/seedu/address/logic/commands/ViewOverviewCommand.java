@@ -19,6 +19,6 @@ public class ViewOverviewCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        return new CommandResult(MESSAGE_SUCCESS, new ShowOverviewTabUiCommand());
+        return new CommandResult(MESSAGE_SUCCESS, new ShowOverviewTabUiCommand()).setIgnoreHistory(true);
     }
 }

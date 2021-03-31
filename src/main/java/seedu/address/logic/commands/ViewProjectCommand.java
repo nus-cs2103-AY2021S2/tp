@@ -41,6 +41,7 @@ public class ViewProjectCommand extends Command {
         }
 
         return new CommandResult(String.format(MESSAGE_SUCCESS,
-                lastShownList.get(index.getZeroBased()).getProjectName()), new ViewProjectAndOverviewUiCommand(index));
+                lastShownList.get(index.getZeroBased()).getProjectName()), new ViewProjectAndOverviewUiCommand(index))
+                    .setIgnoreHistory(true);
     }
 }
