@@ -33,8 +33,6 @@ public class Colour {
 
     public static final HashSet<String> COLOURS = new HashSet<>(Arrays.asList(COLOURARRAY));
 
-    public static final HashMap<String, String> SAMPLES = new HashMap<>();
-
     public static final HashMap<String, List<String>> MATCHES = new HashMap<>();
 
     public static final List<String> RED_MATCHES = Arrays.asList(
@@ -207,24 +205,6 @@ public class Colour {
         MATCHES.put("white", WHITE_MATCHES);
         MATCHES.put("grey", GREY_MATCHES);
         MATCHES.put("beige", BEIGE_MATCHES);
-    }
-
-    /**
-     * Initialises the HashMap of colours and their respective sample images.
-     */
-    public static void initialiseSamples() {
-        SAMPLES.put("red", "images/redSamples");
-        SAMPLES.put("orange", "images/orangeSamples");
-        SAMPLES.put("yellow", "images/yellowSamples");
-        SAMPLES.put("green", "images/greenSamples");
-        SAMPLES.put("blue", "images/blueSamples");
-        SAMPLES.put("pink", "images/pinkSamples");
-        SAMPLES.put("purple", "images/purpleSamples");
-        SAMPLES.put("brown", "images/brownSamples");
-        SAMPLES.put("black", "images/blackSamples");
-        SAMPLES.put("white", "images/whiteSamples");
-        SAMPLES.put("grey", "images/greySamples");
-        SAMPLES.put("beige", "images/beigeSamples");
     }
 
     public List<String> getMatches() {

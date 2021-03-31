@@ -15,6 +15,7 @@ import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
+import seedu.address.model.garment.Garment;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyUserPrefs;
@@ -174,7 +175,7 @@ public class MainApp extends Application {
         Colour.initialiseMatches(); //INITIALISE MATCHING HASHMAP
         Type.initialiseMatches();
         DressCode.initialiseMatches();
-        Colour.initialiseSamples(); //INITIALISE SAMPLE HASHMAP
+        Garment.initialiseSamples(); //INITIALISE SAMPLE HASHMAP
         ui.start(primaryStage);
     }
 
