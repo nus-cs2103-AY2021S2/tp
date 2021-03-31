@@ -1,0 +1,29 @@
+@startuml
+start
+:User executes view command;
+
+if () then ([valid view command])
+
+    :Filter task list by dates
+     and recurring schedule dates
+     with the given date;
+     :Update model using the filtered task list;
+     :Update calendar to given date;
+     :Display view command success message;
+
+else ([invalid command])
+
+    if () then ([view command but with
+    invalid date parameter])
+        :Display invalid
+        command format
+        message;
+
+    else ([else])
+        :Display unknown
+        command message;
+    endif
+
+endif
+stop
+@enduml
