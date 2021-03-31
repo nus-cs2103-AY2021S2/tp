@@ -33,7 +33,7 @@
             <Label fx:id="isbn" styleClass="cell_small_label" text="\$isbn" />
             <Label fx:id="barcode" styleClass="cell_small_label" text="\$barcode" />
             <Label fx:id="genre" styleClass="cell_small_label" text="\$genre" />
-            <Label fx:id="borrowerName" styleClass="cell_small_label" text="\$borrowerName" />
+            <Label fx:id="borrowerName"  />
         </VBox>
     </GridPane>
 </HBox>
