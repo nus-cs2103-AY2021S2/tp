@@ -68,4 +68,18 @@ public interface Logic {
      * Returns the command history selector.
      */
     CommandHistorySelector getCommandHistorySelector();
+
+    /**
+     * Returns true if the previous undo can be redone. False otherwise.
+     *
+     * @return True if the previous undo can be redone. False otherwise.
+     */
+    boolean canRedoAddressBook();
+
+    /**
+     * Returns true if the previous command can be undone. False otherwise.
+     *
+     * @return True if the previous command can be undone. False otherwise.
+     */
+    boolean canUndoAddressBook();
 }

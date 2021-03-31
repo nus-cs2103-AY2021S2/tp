@@ -191,16 +191,58 @@ public interface Model {
 
     /**
      * Returns the current user's alias mapping.
+     *
+     * @return The alias mapping.
      */
     AliasMapping getAliasMapping();
 
     /**
-     * Set the user's alias mapping.
+     * Sets the user's alias mapping.
+     *
+     * @param aliasMapping The specified mapping.
      */
     void setAliasMapping(AliasMapping aliasMapping);
 
     /**
-     * Add an user-defined alias to the current mapping.
+     * Adds a user-defined alias to the current mapping.
+     *
+     * @param alias The Alias to be added.
      */
     void addAlias(Alias alias);
+
+    /**
+     * Returns true if the model has any previous states to restore. False otherwise.
+     *
+     * @return True if the model has any previous states to restore. False otherwise.
+     */
+    boolean canUndoAddressBook();
+
+    /**
+     * Restores the model's state to its previous state, if any.
+     */
+    void undoAddressBook();
+
+    /**
+     * Saves the model's state for undo.
+     */
+    void commitAddressBook();
+
+    /**
+     * Returns true if the model has any future states to restore. False otherwise.
+     *
+     * @return True if the model has any future states to restore. False otherwise.
+     */
+    boolean canRedoAddressBook();
+
+    /**
+     * Restores the model's state to its next state, if any.
+     */
+    void redoAddressBook();
+
+    /**
+     * Deletes a user-defined alias from the current mapping.
+     *
+     * @param aliasName The name of the alias to be deleted.
+     */
+    void deleteAlias(String aliasName);
 }

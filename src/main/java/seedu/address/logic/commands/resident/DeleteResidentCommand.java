@@ -43,6 +43,7 @@ public class DeleteResidentCommand extends Command {
 
         Resident residentToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteResident(residentToDelete);
+        model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_DELETE_RESIDENT_SUCCESS, residentToDelete));
     }
 

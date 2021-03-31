@@ -88,6 +88,7 @@ public class EditIssueCommand extends Command {
 
         model.setIssue(issueToEdit, editedIssue);
         model.updateFilteredIssueList(PREDICATE_SHOW_ALL_ISSUES);
+        model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_EDIT_ISSUE_SUCCESS, editedIssue));
     }
 

@@ -1,5 +1,9 @@
 package seedu.address.ui;
 
+import static seedu.address.ui.KeyboardShortcuts.HELP_SHORTCUT;
+import static seedu.address.ui.KeyboardShortcuts.REDO_SHORTCUT;
+import static seedu.address.ui.KeyboardShortcuts.UNDO_SHORTCUT;
+
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -15,6 +19,8 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.undoredo.RedoCommand;
+import seedu.address.logic.commands.undoredo.UndoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -58,6 +64,12 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane statusbarPlaceholder;
 
+    @FXML
+    private MenuItem undoMenuItem;
+
+    @FXML
+    private MenuItem redoMenuItem;
+
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -74,6 +86,8 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
+        updateUndoRedoMenus();
     }
 
     public Stage getPrimaryStage() {
@@ -81,7 +95,9 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     private void setAccelerators() {
-        setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
+        setAccelerator(helpMenuItem, HELP_SHORTCUT);
+        setAccelerator(undoMenuItem, UNDO_SHORTCUT);
+        setAccelerator(redoMenuItem, REDO_SHORTCUT);
     }
 
     /**
@@ -167,6 +183,30 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Executes an undo command.
+     */
+    @FXML
+    private void handleUndo() {
+        try {
+            executeCommand(UndoCommand.COMMAND_WORD);
+        } catch (ParseException | CommandException e) {
+            // Handled by {@code executeCommand}
+        }
+    }
+
+    /**
+     * Executes a redo command.
+     */
+    @FXML
+    private void handleRedo() {
+        try {
+            executeCommand(RedoCommand.COMMAND_WORD);
+        } catch (ParseException | CommandException e) {
+            // Handled by {@code executeCommand}
+        }
+    }
+
+    /**
      * Closes the application.
      */
     @FXML
@@ -201,11 +241,21 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
+            updateUndoRedoMenus();
+
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
+    }
+
+    /**
+     * Enables or disables the undo and redo menu items based on the logic's state.
+     */
+    private void updateUndoRedoMenus() {
+        undoMenuItem.setDisable(!logic.canUndoAddressBook());
+        redoMenuItem.setDisable(!logic.canRedoAddressBook());
     }
 }

@@ -11,6 +11,8 @@ import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.alias.AliasCommand;
+import seedu.address.logic.commands.alias.ListAliasCommand;
+import seedu.address.logic.commands.alias.UnaliasCommand;
 import seedu.address.logic.commands.commandhistory.ViewHistoryCommand;
 import seedu.address.logic.commands.issue.AddIssueCommand;
 import seedu.address.logic.commands.issue.DeleteIssueCommand;
@@ -35,10 +37,20 @@ import seedu.address.logic.commands.room.ListRoomCommand;
 public class AliasMapping implements Serializable {
     private Map<String, Alias> mapping;
 
+    /**
+     * Creates an empty AliasMapping.
+     */
     public AliasMapping() {
         this.mapping = new HashMap<>();
     }
 
+    /**
+     * Creates an AliasMapping with a specified mapping.
+     * The mapping must not be null.
+     *
+     * @param aliasMapping The specified mapping.
+     * @throws NullPointerException If the input is null.
+     */
     private AliasMapping(AliasMapping aliasMapping) {
         requireNonNull(aliasMapping);
         this.mapping = new HashMap<>(aliasMapping.mapping);
@@ -46,6 +58,9 @@ public class AliasMapping implements Serializable {
 
     /**
      * Returns an Alias object from alias name.
+     *
+     * @param aliasName Name of the alias.
+     * @return The alias with the specified name.
      */
     public Alias getAlias(String aliasName) {
         return mapping.get(aliasName);
@@ -53,25 +68,41 @@ public class AliasMapping implements Serializable {
 
     /**
      * Adds a new Alias object to the current mapping.
+     *
+     * @param alias The alias object to be added.
      */
     public void addAlias(Alias alias) {
         mapping.put(alias.getAliasName(), alias);
     }
 
     /**
+     * Deletes a user-defined alias from the current mapping.
+     *
+     * @param aliasName The name of the alias to be deleted.
+     */
+    public void deleteAlias(String aliasName) {
+        mapping.remove(aliasName);
+    }
+
+    /**
      * Checks if the current mapping contains an Alias based on alias name.
+     *
+     * @param aliasName Name of the alias.
+     * @return Whether the mapping contains the alias.
      */
     public boolean containsAlias(String aliasName) {
         return mapping.containsKey(aliasName);
     }
 
     /**
-     * Check if alias name is a reserved keyword.
+     * Checks if alias name is a reserved keyword.
+     *
+     * @param aliasName Name of the alias.
+     * @return Whether the alias name is reserved.
      */
     public boolean isReservedKeyword(String aliasName) {
         switch (aliasName) {
         //====== System Commands ======
-        case AliasCommand.COMMAND_WORD:
         case ClearCommand.COMMAND_WORD:
         case ExitCommand.COMMAND_WORD:
         case HelpCommand.COMMAND_WORD:
@@ -97,6 +128,11 @@ public class AliasMapping implements Serializable {
         case FindIssueCommand.COMMAND_WORD:
         case EditIssueCommand.COMMAND_WORD:
         case DeleteIssueCommand.COMMAND_WORD:
+
+        //====== Alias Commands ======
+        case AliasCommand.COMMAND_WORD:
+        case UnaliasCommand.COMMAND_WORD:
+        case ListAliasCommand.COMMAND_WORD:
             return true;
         default:
             return false;
@@ -104,10 +140,22 @@ public class AliasMapping implements Serializable {
     }
 
     /**
-     * Check if the command used is an existing alias.
+     * Checks if the command used is an existing alias.
+     *
+     * @param commandWord The command word.
+     * @return Whether the command word is recursive.
      */
     public boolean isRecursiveKeyword(String commandWord) {
         return mapping.containsKey(commandWord);
+    }
+
+    /**
+     * Returns the current number of user-defined aliases.
+     *
+     * @return Size of the current mapping.
+     */
+    public int size() {
+        return mapping.size();
     }
 
     @Override
@@ -127,5 +175,18 @@ public class AliasMapping implements Serializable {
         AliasMapping am = (AliasMapping) o;
 
         return mapping.keySet().stream().allMatch(key -> mapping.get(key).equals(am.mapping.get(key)));
+    }
+
+    @Override
+    public String toString() {
+        final String format = "%d:\t%s = %s\n";
+        StringBuilder msg = new StringBuilder();
+        int count = 0;
+
+        for (String key : mapping.keySet()) {
+            count++;
+            msg.append(String.format(format, count, key, mapping.get(key).getCommand()));
+        }
+        return msg.toString();
     }
 }

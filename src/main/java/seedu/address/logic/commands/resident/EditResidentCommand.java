@@ -84,6 +84,7 @@ public class EditResidentCommand extends Command {
 
         model.setResident(residentToEdit, editedResident);
         model.updateFilteredResidentList(PREDICATE_SHOW_ALL_RESIDENTS);
+        model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_EDIT_RESIDENT_SUCCESS, editedResident));
     }
 
@@ -151,7 +152,7 @@ public class EditResidentCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, room);
+            return CollectionUtil.isAnyNonNull(name, phone, email, year, room);
         }
 
         public void setName(Name name) {

@@ -56,6 +56,7 @@ public class AddResidentCommand extends Command {
         }
 
         model.addResident(toAdd);
+        model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
