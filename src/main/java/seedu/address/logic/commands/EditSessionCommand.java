@@ -72,7 +72,7 @@ public class EditSessionCommand extends Command {
         boolean hasDayOrTime = this.editSessionDescriptor.hasDay() || this.editSessionDescriptor.hasTimeslot();
         boolean emptySession = emptySession(optSessionToEdit);
 
-        if((!emptySession) && hasDayOrTime) {
+        if ((!emptySession) && hasDayOrTime) {
             throw new CommandException(Messages.MESSAGE_CANNOT_EDIT);
         } else if (optSessionToEdit.isPresent()) {
             Session sessionToEdit = optSessionToEdit.get();
