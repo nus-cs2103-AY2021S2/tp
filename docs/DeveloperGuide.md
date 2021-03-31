@@ -7,7 +7,7 @@ layout: page
   <img src="images/dietlah.png" alt="DietLAH!">
 </p>
 
-## Developer Guide
+# Developer Guide
 
 ## Table of Contents
 <!--ts-->

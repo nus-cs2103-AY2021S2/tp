@@ -7,7 +7,7 @@ layout: page
   <img src="images/dietlah.png" alt="DietLAH!">
 </p>
 
-## User Guide
+# User Guide
 
 ## Table of Contents
 
