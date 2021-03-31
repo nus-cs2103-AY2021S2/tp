@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.core.Pair;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.model.Aggregator;
 import seedu.address.model.Item;
 import seedu.address.model.ingredient.Ingredient;
 

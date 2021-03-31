@@ -1,23 +1,40 @@
 package seedu.address.ui;
 
+import java.awt.Desktop;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.Comparator;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.inventory.InventoryListCommand;
+import seedu.address.logic.commands.menu.MenuListCommand;
+import seedu.address.logic.commands.order.OrderListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.order.Order;
 
@@ -28,6 +45,17 @@ import seedu.address.model.order.Order;
 public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
+    private static final int MENU_TAB_INDEX = 0;
+    private static final int ORDER_TAB_INDEX = 1;
+    private static final int INVENTORY_TAB_INDEX = 2;
+
+    private static double xOffset = 0;
+    private static double yOffset = 0;
+
+    private static final int DRAGGABLE_MARGIN = 30;
+    private Boolean isResizing = false;
+    private double resizeX;
+    private double resizeY;
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -43,10 +71,22 @@ public class MainWindow extends UiPart<Stage> {
     private OrderListPanel orderListPanel;
 
     @FXML
+    private ToggleGroup componentTabGroup;
+
+    @FXML
     private StackPane commandBoxPlaceholder;
 
     @FXML
+    private MenuBar menuBar;
+
+    @FXML
+    private Menu menuSettings;
+
+    @FXML
     private MenuItem helpMenuItem;
+
+    @FXML
+    private MenuItem exitMenuItem;
 
     @FXML
     private VBox personList;
@@ -70,7 +110,49 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane resultDisplayPlaceholder;
 
     @FXML
+    private HBox componentTabs;
+
+    @FXML
+    private ToggleButton menuTab;
+
+    @FXML
+    private ToggleButton orderTab;
+
+    @FXML
+    private ToggleButton inventoryTab;
+
+    @FXML
     private StackPane statusbarPlaceholder;
+
+    private final EventHandler<ActionEvent> handleTabSelection = event -> {
+        int selectedIndex = componentTabGroup.getToggles().indexOf(componentTabGroup.getSelectedToggle());
+        componentTabGroup.selectToggle(null);
+        Object object = event.getSource();
+
+        if (object instanceof ToggleButton) {
+            ToggleButton tab = (ToggleButton) object;
+            tab.setSelected(true);
+            switch(selectedIndex) {
+            case MENU_TAB_INDEX:
+                updateCompList(componentList, menuListPanel,
+                        new MenuListPanel(logic.getFilteredDishList()), menuListPanelPlaceholder, menuTab);
+                resultDisplay.setFeedbackToUser(MenuListCommand.MESSAGE_SUCCESS);
+                break;
+            case ORDER_TAB_INDEX:
+                updateCompList(componentList, orderListPanel,
+                        getSortedFilteredOrderListPanel(), orderListPanelPlaceholder, orderTab);
+                resultDisplay.setFeedbackToUser(OrderListCommand.MESSAGE_SUCCESS);
+                break;
+            case INVENTORY_TAB_INDEX:
+                updateCompList(componentList, inventoryListPanel,
+                        new InventoryListPanel(logic.getFilteredInventoryList()),
+                        inventoryListPanelPlaceholder, inventoryTab);
+                resultDisplay.setFeedbackToUser(InventoryListCommand.MESSAGE_SUCCESS);
+                break;
+            default:
+            }
+        }
+    };
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -84,8 +166,11 @@ public class MainWindow extends UiPart<Stage> {
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
-
+        setTransparentWindow();
         setAccelerators();
+        setComponentTabsAction();
+
+        menuSettings.setGraphic(new ImageView("images/settings.png"));
 
         helpWindow = new HelpWindow();
     }
@@ -94,8 +179,81 @@ public class MainWindow extends UiPart<Stage> {
         return primaryStage;
     }
 
+    /**
+     * Removes windows border.
+     */
+    private void setTransparentWindow() {
+        primaryStage.initStyle(StageStyle.TRANSPARENT);
+        setDraggableWindow();
+        setResizableWindow();
+    }
+
+    /**
+     * Configures Menu Bar to be draggable to drag the window.
+     */
+    private void setDraggableWindow() {
+        menuBar.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                xOffset = primaryStage.getX() - event.getScreenX();
+                yOffset = primaryStage.getY() - event.getScreenY();
+            }
+        });
+
+        menuBar.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                primaryStage.setX(event.getScreenX() + xOffset);
+                primaryStage.setY(event.getScreenY() + yOffset);
+            }
+        });
+    }
+
+    /**
+     * Configures the right corner of status bar to resize the window.
+     */
+    private void setResizableWindow() {
+        statusbarPlaceholder.setOnMousePressed(new EventHandler<MouseEvent>() {
+            public void handle(MouseEvent event) {
+                if (isDraggable(event)) {
+                    isResizing = true;
+                    resizeX = primaryStage.getWidth() - event.getSceneX();
+                    resizeY = primaryStage.getHeight() - event.getSceneY();
+                } else {
+                    isResizing = false;
+                }
+            }
+        });
+
+        statusbarPlaceholder.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            public void handle(MouseEvent event) {
+                if (isResizing) {
+                    primaryStage.setWidth(event.getSceneX() + resizeX);
+                    primaryStage.setHeight(event.getSceneY() + resizeY);
+                }
+            }
+        });
+    }
+
+    /**
+     * Checks if the coordinates of the mouse position is within draggable margin
+     * @param  event OnMouseClick Event
+     * @return true if coordinates is within draggable margin
+     */
+    private boolean isDraggable(MouseEvent event) {
+        return event.getSceneX() > primaryStage.getWidth() - DRAGGABLE_MARGIN
+                && event.getSceneY() > primaryStage.getHeight() - DRAGGABLE_MARGIN;
+    }
+
+    private void setComponentTabsAction() {
+        menuTab.setOnAction(handleTabSelection);
+        orderTab.setOnAction(handleTabSelection);
+        inventoryTab.setOnAction(handleTabSelection);
+    }
+
     private void setAccelerators() {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
+        setAccelerator(exitMenuItem, KeyCombination.valueOf("F2"));
     }
 
     /**
@@ -141,9 +299,12 @@ public class MainWindow extends UiPart<Stage> {
         menuListPanelPlaceholder.getChildren().add(menuListPanel.getRoot());
         componentList.getChildren().clear();
         componentList.getChildren().add(menuListPanelPlaceholder);
+        componentList.getChildren().add(componentTabs);
+        menuTab.setSelected(true);
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+        resultDisplay.setFeedbackToUser(Messages.MESSAGE_WELCOME);
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
@@ -169,10 +330,10 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleHelp() {
-        if (!helpWindow.isShowing()) {
-            helpWindow.show();
-        } else {
-            helpWindow.focus();
+        try {
+            Desktop.getDesktop().browse(new URL(HelpWindow.USERGUIDE_URL).toURI());
+        } catch (IOException | URISyntaxException e) {
+            e.printStackTrace();
         }
     }
 
@@ -206,24 +367,30 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
             switch (commandResult.type()) {
-            case PERSON : updateCompList(personList, personListPanel,
-                        new PersonListPanel(logic.getFilteredPersonList()), personListPanelPlaceholder);
+            case PERSON:
+                updateCompList(personList, personListPanel,
+                        new PersonListPanel(logic.getFilteredPersonList()), personListPanelPlaceholder, null);
                 break;
 
-            case DISH : updateCompList(componentList, menuListPanel,
-                        new MenuListPanel(logic.getFilteredDishList()), menuListPanelPlaceholder);
+            case DISH:
+                updateCompList(componentList, menuListPanel,
+                        new MenuListPanel(logic.getFilteredDishList()), menuListPanelPlaceholder, menuTab);
                 break;
 
-            case INGREDIENT : updateCompList(componentList, inventoryListPanel,
-                        new InventoryListPanel(logic.getFilteredInventoryList()), inventoryListPanelPlaceholder);
+            case INGREDIENT:
+                updateCompList(componentList, inventoryListPanel,
+                        new InventoryListPanel(logic.getFilteredInventoryList()),
+                        inventoryListPanelPlaceholder, inventoryTab);
                 break;
 
-            case ORDER : updateCompList(componentList, orderListPanel,
-                        getSortedFilteredOrderListPanel(), orderListPanelPlaceholder);
+            case ORDER:
+                updateCompList(componentList, orderListPanel,
+                        getSortedFilteredOrderListPanel(), orderListPanelPlaceholder, orderTab);
                 break;
 
-            case ORDERHISTORY : updateCompList(componentList, orderListPanel,
-                    getSortedFilteredOrderHistoryPanel(), orderListPanelPlaceholder);
+            case ORDERHISTORY:
+                updateCompList(componentList, orderListPanel,
+                    getSortedFilteredOrderHistoryPanel(), orderListPanelPlaceholder, orderTab);
                 break;
 
             default:
@@ -246,12 +413,15 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-    private void updateCompList(VBox list, UiPart<Region> panel, UiPart<Region> newPanel, StackPane panelPlaceholder) {
+    private void updateCompList(VBox list, UiPart<Region> panel, UiPart<Region> newPanel,
+                                StackPane panelPlaceholder, ToggleButton tab) {
         list.getChildren().clear();
         panelPlaceholder.getChildren().clear();
         panel = newPanel;
         panelPlaceholder.getChildren().add(panel.getRoot());
         list.getChildren().add(panelPlaceholder);
+        list.getChildren().add(componentTabs);
+        tab.setSelected(true);
     }
 
     private OrderListPanel getSortedFilteredOrderListPanel() {

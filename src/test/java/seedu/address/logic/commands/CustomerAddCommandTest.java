@@ -316,6 +316,16 @@ public class CustomerAddCommandTest {
         }
 
         @Override
+        public List<Order> getIncompleteOrdersContainingDish(Dish target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public List<Order> getIncompleteOrders() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredOrderList(Predicate<? super Order> predicate) {
             throw new AssertionError("This method should not be called.");
         }
@@ -327,6 +337,16 @@ public class CustomerAddCommandTest {
 
         @Override
         public void completeOrder(Order orderToComplete) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void cancelOrder(Order target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void cancelOrders(List<Order> targets) {
             throw new AssertionError("This method should not be called.");
         }
     }

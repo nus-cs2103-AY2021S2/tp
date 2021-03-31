@@ -183,6 +183,30 @@ public class ModelManager implements Model {
         return filteredPersons;
     }
 
+    public List<Order> getIncompleteOrders() {
+        ObservableList<Order> orders = getOrderBook().getOrderList();
+        List<Order> incompleteOrders = new ArrayList<>();
+        for (Order o : orders) {
+            if (o.getState() == Order.State.UNCOMPLETED) {
+                incompleteOrders.add(o);
+            }
+        }
+        return incompleteOrders;
+    }
+
+    //@@ author kangtinglee
+    @Override
+    public List<Order> getIncompleteOrdersContainingDish(Dish target) {
+        List<Order> incompleteOrders = getIncompleteOrders();
+        List<Order> incompleteAndContainsDishOrders = new ArrayList<>();
+        for (Order o : incompleteOrders) {
+            if (o.contains(target)) {
+                incompleteAndContainsDishOrders.add(o);
+            }
+        }
+        return incompleteAndContainsDishOrders;
+    }
+
     @Override
     public void updateFilteredPersonList(Predicate<? super Person> predicate) {
         requireNonNull(predicate);
@@ -413,9 +437,20 @@ public class ModelManager implements Model {
     /**
      * Sets the state of the order to cancelled
      */
+    @Override
     public void cancelOrder(Order target) {
         orderBook.completeOrder(target);
     }
+
+    /**
+     * Sets the state of the orders to cancelled
+     */
+    @Override
+    public void cancelOrders(List<Order> targets) {
+        for (Order o : targets) {
+            cancelOrder(o);
+        }
+    };
 
     /**
      * Returns an unmodifiable view of the filtered order list with one predicate

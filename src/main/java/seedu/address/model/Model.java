@@ -97,8 +97,8 @@ public interface Model {
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
-     * @throws NullPointerException if {@code predicate} is null.
      * @param predicate
+     * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<? super Person> predicate);
 
@@ -146,8 +146,8 @@ public interface Model {
 
     /**
      * Updates the filter of the filtered dish list to filter by the given {@code predicate}.
-     * @throws NullPointerException if {@code predicate} is null.
      * @param predicate
+     * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredDishList(Predicate<? super Dish> predicate);
 
@@ -197,8 +197,8 @@ public interface Model {
 
     /**
      * Updates the filter of the filtered ingredient list to filter by the given {@code predicate}.
-     * @throws NullPointerException if {@code predicate} is null.
      * @param predicate
+     * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredIngredientList(Predicate<? super Ingredient> predicate);
 
@@ -250,11 +250,17 @@ public interface Model {
     /** Sorts and filters and then returns an unmodifiable view of the filtered order list */
     ObservableList<Order> getFilteredOrderList(Comparator<Order> comparator, Order.State state);
 
+    //@@ author kangtinglee
+    /** Returns a list of orders that have not been fulfilled and contain a given dish */
+    List<Order> getIncompleteOrdersContainingDish(Dish target);
+
+    /** Returns a list of orders that have not been fulfilled */
+    List<Order> getIncompleteOrders();
 
     /**
      * Updates the filter of the filtered ingredient list to filter by the given {@code predicate}.
-     * @throws NullPointerException if {@code predicate} is null.
      * @param predicate
+     * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredOrderList(Predicate<? super Order> predicate);
 
@@ -262,4 +268,14 @@ public interface Model {
     List<Order> getOrdersFromPerson(Person target);
 
     void completeOrder(Order orderToComplete);
+
+    /**
+     * Sets the state of the order to cancelled
+     */
+    void cancelOrder(Order target);
+
+    /**
+     * Sets the state of the orders to cancelled
+     */
+    void cancelOrders(List<Order> targets);
 }
