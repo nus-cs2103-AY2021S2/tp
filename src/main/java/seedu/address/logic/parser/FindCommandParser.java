@@ -43,62 +43,6 @@ public class FindCommandParser implements Parser<FindCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_SIZE, PREFIX_COLOUR, PREFIX_DRESSCODE,
                         PREFIX_DESCRIPTION, PREFIX_TYPE);
 
-        //ContainsKeywordsPredicate containsKeywordsPredicate;
-        //String[] keywords = {""};//just init 1st see if works when check the keywords in last if block
-        //List<ContainsKeywordsPredicate> predicateList = new ArrayList<>();
-        //boolean isValidInput = false;
-        /*
-        //potential issue if finding by more than 1 attribute, looks at 1st thing in here, if multiple of the same
-        // attribute will look at last one, eg find n/x n/y will find n/y, not both
-        //another issue when finding a description with >1 word causes bug
-        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            isValidInput = true;
-            keywords = argMultimap.getValue(PREFIX_NAME).get().split("\\s+");
-            //containsKeywordsPredicate =
-            //        new NameContainsKeywordsPredicate(Arrays.asList(keywords));
-            predicateList.add(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        }
-        if (argMultimap.getValue(PREFIX_DRESSCODE).isPresent()) {
-            isValidInput = true;
-            keywords = argMultimap.getValue(PREFIX_DRESSCODE).get().split("\\s+");
-            //containsKeywordsPredicate =
-            //        new DressCodeContainsKeywordsPredicate(Arrays.asList(keywords));
-            predicateList.add(new DressCodeContainsKeywordsPredicate(Arrays.asList(keywords)));
-
-        }
-        if (argMultimap.getValue(PREFIX_COLOUR).isPresent()) {
-            isValidInput = true;
-            keywords = argMultimap.getValue(PREFIX_COLOUR).get().split("\\s+");
-            //containsKeywordsPredicate =
-            //        new ColourContainsKeywordsPredicate(Arrays.asList(keywords));
-            predicateList.add(new ColourContainsKeywordsPredicate(Arrays.asList(keywords)));
-
-        }
-        if (argMultimap.getValue(PREFIX_SIZE).isPresent()) {
-            isValidInput = true;
-            keywords = argMultimap.getValue(PREFIX_SIZE).get().split("\\s+");
-            //containsKeywordsPredicate =
-            //        new SizeContainsKeywordsPredicate(Arrays.asList(keywords));
-            predicateList.add(new SizeContainsKeywordsPredicate(Arrays.asList(keywords)));
-
-        }
-        if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
-            isValidInput = true;
-            keywords = argMultimap.getValue(PREFIX_DESCRIPTION).get().split("\\s+");
-            //containsKeywordsPredicate =
-            //        new DescriptionContainsKeywordsPredicate(Arrays.asList(keywords));
-            predicateList.add(new DescriptionContainsKeywordsPredicate(Arrays.asList(keywords)));
-        }
-        */
-
-        /*if (!isValidSyntax(argMultimap)) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-        }
-        if (keywords[0].equals("")) { //Empty arguments
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-        }*/
         if (!(isValidInput(argMultimap))) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
@@ -109,15 +53,6 @@ public class FindCommandParser implements Parser<FindCommand> {
         //can instead give a list of predicates
         return new FindCommand(predicates);
     }
-
-    /**
-     * Returns true if there are any valid prefixed input.
-     */
-    /*public boolean isValidSyntax(ArgumentMultimap argMultimap) {
-        return !(argMultimap.getValue(PREFIX_DESCRIPTION).isPresent() || argMultimap.getValue(PREFIX_COLOUR).isPresent()
-                || argMultimap.getValue(PREFIX_SIZE).isPresent() || argMultimap.getValue(PREFIX_DRESSCODE).isPresent()
-                || argMultimap.getValue(PREFIX_NAME).isPresent());
-    }*/
 
     //maybe can separate to each prefix, but that sorta forces each prefic to be present
     public boolean isValidInput(ArgumentMultimap argMultimap) {

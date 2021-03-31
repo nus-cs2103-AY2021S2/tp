@@ -86,13 +86,4 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredGarmentList(Predicate<Garment> predicate);
-
-    /**
-     * Updates the filter of the filtered garment list to filter by the given {@code predicateList}.
-     * @throws NullPointerException if {@code predicateList} is null.
-     */
-    //above meth works fine, but when i put into a list, ListList<Predicate<Garment>>, goes haywire?
-    void updateFilteredGarmentList(List<ContainsKeywordsPredicate> predicateList);
-    //hacking
-
 }

@@ -66,4 +66,8 @@ public class FindCommand extends Command {
                 || (other instanceof FindCommand // instanceof handles nulls
                 && predicates.equals(((FindCommand) other).predicates)); // state check
     }
+    //create a tostring
+    /*public String toString() {
+        return ;
+    }*/
 }

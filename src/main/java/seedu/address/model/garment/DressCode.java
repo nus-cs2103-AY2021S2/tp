@@ -19,20 +19,23 @@ public class DressCode {
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "formal|active|casual";
+    public static final String VALIDATION_REGEX = "FORMAL|ACTIVE|CASUAL|formal|active|casual";
 
     public static final HashMap<String, List<String>> MATCHES = new HashMap<>();
 
     public static final List<String> FORMAL_MATCHES = Arrays.asList(
-            "formal"
+            "formal",
+            "FORMAL"
     );
 
     public static final List<String> ACTIVE_MATCHES = Arrays.asList(
-            "active"
+            "active",
+            "ACTIVE"
     );
 
     public static final List<String> CASUAL_MATCHES = Arrays.asList(
-            "casual"
+            "casual",
+            "CASUAL"
     );
 
 
@@ -60,6 +63,10 @@ public class DressCode {
         MATCHES.put("formal", FORMAL_MATCHES);
         MATCHES.put("active", ACTIVE_MATCHES);
         MATCHES.put("casual", CASUAL_MATCHES);
+        MATCHES.put("FORMAL", FORMAL_MATCHES);
+        MATCHES.put("ACTIVE", ACTIVE_MATCHES);
+        MATCHES.put("CASUAL", CASUAL_MATCHES);
+
     }
 
     public List<String> getMatches() {

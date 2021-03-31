@@ -11,6 +11,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 import java.util.ArrayList;
 import java.util.List;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.ArgumentMultimap;
@@ -54,17 +55,21 @@ public class MatchCommand extends Command {
     }
 
     @Override
-    //update again after looking at type
+    //update match command when out of range of list
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
         //could have issues when the matching clothes only in last shown list, but not the entire list?? nope match
         // from original list
         List<Garment> lastShownList = model.getFilteredGarmentList();
-        Garment garmentToMatch = lastShownList.get(index.getZeroBased());
 
+        if (index.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_GARMENT_DISPLAYED_INDEX);
+        }
+
+        Garment garmentToMatch = lastShownList.get(index.getZeroBased());
         List<String> keywords = new ArrayList<>();
-        //keywords.add("c/"); not how it works, no need this
+
 
         String keywordArgs = " c/";
         keywords.addAll(garmentToMatch.getColour().getMatches());
