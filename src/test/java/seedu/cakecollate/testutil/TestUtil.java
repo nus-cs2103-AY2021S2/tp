@@ -8,6 +8,9 @@ import java.nio.file.Paths;
 import seedu.cakecollate.commons.core.index.Index;
 import seedu.cakecollate.model.Model;
 import seedu.cakecollate.model.order.Order;
+import seedu.cakecollate.model.order.OrderDescription;
+import seedu.cakecollate.model.orderitem.OrderItem;
+import seedu.cakecollate.model.orderitem.Type;
 
 /**
  * A utility class for test cases.
@@ -51,5 +54,21 @@ public class TestUtil {
      */
     public static Order getOrder(Model model, Index index) {
         return model.getFilteredOrderList().get(index.getZeroBased());
+    }
+
+    public static OrderItem convertToOrderItem(OrderDescription o) {
+        return new OrderItem(new Type(stringify(o)));
+    }
+
+    public static OrderDescription convertToOrderDescription(OrderItem o) {
+        return new OrderDescription(stringify(o));
+    }
+
+    public static String stringify(OrderItem o) {
+        return o.getType().getValue();
+    }
+
+    public static String stringify(OrderDescription o) {
+        return o.getValue();
     }
 }
