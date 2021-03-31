@@ -14,6 +14,8 @@ public class Messages {
             + "recurring session";
     public static final String MESSAGE_INVALID_DATE_OF_RECURRING_SESSION = "The session date provided does not "
             + "belong to this recurring session";
+    public static final String MESSAGE_INVALID_TIME_OF_RECURRING_SESSION = "The session time provided does not "
+            + "belong to this recurring session";
     public static final String MESSAGE_STUDENTS_LISTED_OVERVIEW = "%1$d students listed!";
     public static final String MESSAGE_NO_STUDENT = "Students are required to execute the command!";
 

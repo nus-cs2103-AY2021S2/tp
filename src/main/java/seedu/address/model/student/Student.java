@@ -150,13 +150,12 @@ public class Student {
                     recurringSession.withLastSessionDate(sessionDate.minusDays(recurringInterval.getValue()));
             getListOfSessions().set(sessionIndex.getZeroBased(), recurringSession);
             SessionDate secondSessionStartDate = sessionDate.addDays(recurringInterval.getValue());
-            if (!secondSessionStartDate.equals(sessionEndDate)) {
-                RecurringSession secondRecurringSession =
-                        new RecurringSession(secondSessionStartDate, recurringSession.getDuration(),
-                                recurringSession.getSubject(), recurringSession.getFee(),
-                                recurringSession.getInterval(), sessionEndDate);
-                getListOfSessions().add(secondRecurringSession);
-            }
+
+            RecurringSession secondRecurringSession =
+                    new RecurringSession(secondSessionStartDate, recurringSession.getDuration(),
+                            recurringSession.getSubject(), recurringSession.getFee(),
+                            recurringSession.getInterval(), sessionEndDate);
+            getListOfSessions().add(secondRecurringSession);
         }
     }
 
