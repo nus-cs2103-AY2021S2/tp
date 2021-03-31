@@ -15,6 +15,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
     private Path flashBackFilePath = Paths.get("data" , "flashback.json");
+    private AliasMap aliasMap = new AliasMap();
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -36,6 +37,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
         setFlashBackFilePath(newUserPrefs.getFlashBackFilePath());
+        setAliasMap(newUserPrefs.getAliasMap());
     }
 
     public GuiSettings getGuiSettings() {
@@ -56,6 +58,35 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.flashBackFilePath = flashBackFilePath;
     }
 
+    public AliasMap getAliasMap() {
+        return aliasMap;
+    }
+
+    public void setAliasMap(AliasMap aliasMap) {
+        requireNonNull(aliasMap);
+        this.aliasMap = aliasMap;
+    }
+
+    public void addAlias(String command, String name) {
+        aliasMap.addAlias(command, name);
+    }
+
+    public boolean canAddAlias(String command, String name) {
+        return aliasMap.canAddAlias(command, name);
+    }
+
+    public String parseAlias(String input) {
+        return aliasMap.parseAlias(input);
+    }
+
+    public boolean isAlias(String input) {
+        return aliasMap.isAlias(input);
+    }
+
+    public boolean isCommand(String input) {
+        return aliasMap.isCommand(input);
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -68,7 +99,8 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-                && flashBackFilePath.equals(o.flashBackFilePath);
+                && flashBackFilePath.equals(o.flashBackFilePath)
+                && aliasMap.equals(o.aliasMap);
     }
 
     @Override

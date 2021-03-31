@@ -7,6 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AliasCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
@@ -23,6 +24,8 @@ import seedu.address.logic.commands.StatsCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
 
 /**
  * Parses user input.
@@ -33,7 +36,7 @@ public class FlashBackParser {
      * Used for initial separation of command word and args.
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
-
+    private Model model = new ModelManager();
     /**
      * Parses user input into command for execution.
      *
@@ -47,7 +50,10 @@ public class FlashBackParser {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
 
-        final String commandWord = matcher.group("commandWord");
+        String commandWord = matcher.group("commandWord");
+        if (model.isAlias(commandWord)) {
+            commandWord = model.parseAlias(commandWord);
+        }
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
         //case RemarkCommand.COMMAND_WORD: return new RemarkCommandParser().parse(arguments);
@@ -96,9 +102,16 @@ public class FlashBackParser {
         case RedoCommand.COMMAND_WORD:
             return new RedoCommand();
 
+        case AliasCommand.COMMAND_WORD:
+            return new AliasCommandParser().parse(arguments);
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
+    }
+
+    public void setModel(Model model) {
+        this.model = model;
     }
 
 }

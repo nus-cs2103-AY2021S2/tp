@@ -183,4 +183,29 @@ public class ModelManager implements Model {
         sortedFlashcards.setComparator(comparator);
         versionedFlashBack.setFlashcards(sortedFlashcards);
     }
+
+    @Override
+    public void addAlias(String command, String alias) {
+        userPrefs.addAlias(command, alias);
+    }
+
+    @Override
+    public boolean canAddAlias(String command, String alias) {
+        return userPrefs.canAddAlias(command, alias);
+    }
+
+    @Override
+    public String parseAlias(String input) {
+        return userPrefs.parseAlias(input);
+    }
+
+    @Override
+    public boolean isAlias(String input) {
+        return userPrefs.isAlias(input);
+    }
+
+    @Override
+    public boolean isCommand(String input) {
+        return userPrefs.isCommand(input);
+    }
 }

@@ -179,6 +179,31 @@ public class AddCommandTest {
         public void sortFilteredFlashcardList(Comparator<Flashcard> comparator) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public boolean isCommand(String input) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean isAlias(String input) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addAlias(String command, String alias) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean canAddAlias(String command, String alias) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public String parseAlias(String alias) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
