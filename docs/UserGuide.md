@@ -70,7 +70,7 @@ Commands shown in this user guide follow these rules.
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `addC n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
   e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -151,7 +151,7 @@ This subsection serves to list out the parameters used in this document. We have
 
 ##### `NAME`
 
-* The name of a contact.
+* The name of a contact/groupmate/project.
 * Names should only contain alphanumeric characters, and it should not be blank.
 
 ##### `PHONE_NUMBER`
@@ -159,9 +159,10 @@ This subsection serves to list out the parameters used in this document. We have
 * The phone number of a contact.
 * Phone numbers should only contain numbers, and it should be at least 3 digits long.
 
-##### `PROJECT_NAME`
+##### `ROLE`
 
-* The name of the project.
+* The role associated with a groupmate in a project.
+* Roles should consist of alphanumeric characters, hyphens and underscores.
 
 ##### `TAG`
 
@@ -257,25 +258,25 @@ Examples:
 
 Each `Project` may have `Todos`. Hence, each of the commands related to `Todos` are done w.r.t the `Project` identified by `PROJECT_INDEX`.
 
-#### Adding a todo to a project: `addTto`
+#### Adding a todo to a project: `addT`
 
 Adds a todo to a specified project.
 
-Format: `addTto PROJECT_INDEX d/DESCRIPTION`
+Format: `addT PROJECT_INDEX d/DESCRIPTION`
 
 * Adds a todo to the project at the specified `PROJECT_INDEX`.
 * The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `addTto 1 d/Add unit tests`
-* `addTto 2 d/Finish slides for presentation`
+* `addT 1 d/Add unit tests`
+* `addT 2 d/Finish slides for presentation`
 
 #### Deleting a todo from a project: `deleteT`
 
 Deletes a specified todo from a specified project.
 
-Format: `deleteT PROJECT_INDEX r/TODO_INDEX`
+Format: `deleteT PROJECT_INDEX i/TODO_INDEX`
 
 * Deletes the todo at the specified `TODO_INDEX` from the project at the specified `PROJECT_INDEX`.
 * The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
@@ -283,8 +284,8 @@ Format: `deleteT PROJECT_INDEX r/TODO_INDEX`
 * Both indexes **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `deleteT 1 r/1`
-* `deleteT 2 r/2`
+* `deleteT 1 i/1`
+* `deleteT 2 i/2`
 
 ### _**4.1.2 Deadlines**_
 
@@ -292,11 +293,11 @@ Examples:
 
 Each `Project` may have `Deadlines`. Hence, each of the commands related to `Deadlines` are done w.r.t the `Project` identified by `PROJECT_INDEX`.
 
-#### Adding a deadline to a project: `addDto`
+#### Adding a deadline to a project: `addD`
 
 Adds a deadline to a specified project.
 
-Format: `addDto PROJECT_INDEX d/DESCRIPTION by/DATE`
+Format: `addD PROJECT_INDEX d/DESCRIPTION by/DATE`
 
 * Adds a deadline to the project at the specified `PROJECT_INDEX`.
 * The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
@@ -305,14 +306,14 @@ Format: `addDto PROJECT_INDEX d/DESCRIPTION by/DATE`
 * `DATE` is limited to the `yyyy` range of 0000 to 9999.
 
 Examples:
-* `addDto 1 d/Milestone v1.2 by/01-03-2021`
-* `addDto 2 d/CS2101 Project Submission by/15-03-2021`
+* `addD 1 d/Milestone v1.2 by/01-03-2021`
+* `addD 2 d/CS2101 Project Submission by/15-03-2021`
 
 #### Deleting a deadline from a project: `deleteD`
 
 Deletes a specified deadline from a specified project.
 
-Format: `deleteD PROJECT_INDEX r/DEADLINE_INDEX`
+Format: `deleteD PROJECT_INDEX i/DEADLINE_INDEX`
 
 * Deletes the deadline at the specified `DEADLINE_INDEX` from the project at the specified `PROJECT_INDEX`.
 * The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
@@ -320,8 +321,8 @@ Format: `deleteD PROJECT_INDEX r/DEADLINE_INDEX`
 * Both indexes **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `deleteD 1 r/1`
-* `deleteD 2 r/2`
+* `deleteD 1 i/1`
+* `deleteD 2 i/2`
 
 ### _**4.1.3 Events**_
 
@@ -329,11 +330,11 @@ Examples:
 
 Each `Project` may have `Events`. Hence, each of the commands related to `Events` are done w.r.t the `Project` identified by `PROJECT_INDEX`.
 
-#### Adding an event to a project: `addEto`
+#### Adding an event to a project: `addE`
 
 Adds an event to a specified project.
 
-Format: `addEto PROJECT_INDEX d/DESCRIPTION on/DATE at/TIME w/REPEAT_WEEKLY`
+Format: `addE PROJECT_INDEX d/DESCRIPTION on/DATE at/TIME w/REPEAT_WEEKLY`
 
 * Adds an event to the project at the specified `PROJECT_INDEX`.
 * The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
@@ -351,14 +352,14 @@ Format: `addEto PROJECT_INDEX d/DESCRIPTION on/DATE at/TIME w/REPEAT_WEEKLY`
 
 
 Examples:
-* `addEto 1 d/Project Meeting on/24-04-2021 at/2000 w/Y`
-* `addEto 2 d/CS2101 Presentation on/14-04-2021 at/1015 w/n`
+* `addE 1 d/Project Meeting on/24-04-2021 at/2000 w/Y`
+* `addE 2 d/CS2101 Presentation on/14-04-2021 at/1015 w/n`
 
 #### Deleting an event from a project: `deleteE`
 
 Deletes a specified event from a specified project.
 
-Format: `deleteE PROJECT_INDEX r/EVENT_INDEX`
+Format: `deleteE PROJECT_INDEX i/EVENT_INDEX`
 
 * Deletes the event at the specified `EVENT_INDEX` from the project at the specified `PROJECT_INDEX`.
 * The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
@@ -366,8 +367,8 @@ Format: `deleteE PROJECT_INDEX r/EVENT_INDEX`
 * Both indexes **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `deleteE 1 r/1`
-* `deleteE 2 r/2`
+* `deleteE 1 i/1`
+* `deleteE 2 i/2`
 
 ### _**4.1.4 Groupmates**_
 
@@ -375,13 +376,13 @@ Examples:
 
 Each `Project` may have `Groupmates`. Hence, each of the commands related to `Groupmates` are done w.r.t the `Project` identified by `PROJECT_INDEX`.
 
-#### Add a groupmate to a project: `addCto`
+#### Add a groupmate to a project: `addG`
 
-Adds a contact to a specified project.
+Adds a groupmate to a specified project.
 
-Format: `addCto PROJECT_INDEX n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `addG PROJECT_INDEX n/NAME [r/ROLE]…​`
 
-* Adds a contact to the project at the specified `PROJECT_INDEX`.
+* Adds a groupmate to the project at the specified `PROJECT_INDEX`.
 * The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
 * The index **must be a positive integer** 1, 2, 3, …​
 
@@ -390,78 +391,84 @@ A contact can have any number of tags (including 0)
 </div>
 
 Examples:
-* `addCto 1 n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `addCto 2 n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `addG 1 n/John Doe`
+* `addG 2 n/Betsy Crowe r/member`
 
-#### Deleting a groupmate from a project: `deleteCfrom`
+#### Updating a groupmate : `updateG`
 
-Deletes a specified contact from a specified project.
+Updates an existing groupmate in a specifiedd project.
 
-Format: `deleteCfrom PROJECT_INDEX r/GROUPMATE_INDEX`
+Format: `updateG PROJECT_INDEX i/GROUPMATE_INDEX [n/NAME] [r/ROLE]…​`
 
-* Deletes the contact at the specified `GROUPMATE_INDEX` from the project at the specified `PROJECT_INDEX`.
+* Updates the groupmate at the specified `GROUPMATE_INDEX` of the project at the specified `PROJECT_INDEX`.
 * The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
-* The `GROUPMATE_INDEX` refers to the number shown beside the contact when viewing the project.
+* The `GROUPMATE_INDEX` refers to the number shown beside the groupmate when viewing the project.
+* Both indexes **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When updating roles, the existing roles of the groupmate will be removed i.e. adding of roles is not cumulative.
+* You can remove all the roles of the groupmate by typing `r/` without
+  specifying any roles after it.
+
+Examples:
+*  `updateG 1 i/1 p/91234567 n/Leslie Knope` Updates the name of the 1st groupmate of the 1st project to be `Leslie Knope`.
+*  `updateG 2 i/2 n/Betsy Crower r/` Updates the name of the 2nd groupmate of the 2nd project to be `Betsy Crower` and clears all existing roles.
+*  `updateG 2 i/3 n/Betsy Crower r/group-leader r/tester` Updates the name of the 3rd groupmate of the 1st project to be `Betsy Crower` and changes her roles to `group-leader` and `tester`.
+
+#### Deleting a groupmate from a project: `deleteG`
+
+Deletes a specified groupmate from a specified project.
+
+Format: `deleteG PROJECT_INDEX i/GROUPMATE_INDEX`
+
+* Deletes the groupmate at the specified `GROUPMATE_INDEX` from the project at the specified `PROJECT_INDEX`.
+* The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
+* The `GROUPMATE_INDEX` refers to the number shown beside the groupmate when viewing the project.
 * Both indexes **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `deleteCfrom 1 r/1`
-* `deleteCfrom 2 r/2`
+* `deleteG 1 i/1`
+* `deleteG 2 i/2`
 
 ### **4.2 Contacts**
 
 Each Contact may have a `NAME`, `PHONE_NUMBER`, `EMAIL`, `ADDRESS` & multiple `TAGS`. 
 
-#### Adding a contact: `add`
+#### Adding a contact: `addC`
 
 Adds a contact to CoLAB.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `addC n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A contact can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `addC n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+* `addC n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-#### Deleting a contact : `delete`
+#### Updating a contact : `updateC`
 
-Deletes the specified contact from the address book.
+Updates an existing contact in CoLAB.
 
-Format: `delete CONTACT_INDEX`
+Format: `updateC CONTACT_INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
-* Deletes the contact at the specified `CONTACT_INDEX`.
-* The index refers to the index number shown in the displayed contact list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd contact in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st contact in the results of the `find` command.
-
-#### Editing a contact : `edit`
-
-Edits an existing contact in CoLAB.
-
-Format: `edit CONTACT_INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
-
-* Edits the contact at the specified `CONTACT_INDEX`. The index refers to the index number shown in the displayed contact list. The index **must be a positive integer** 1, 2, 3, …​
+* Updates the contact at the specified `CONTACT_INDEX`. The index refers to the index number shown in the displayed contact list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the contact will be removed i.e. adding of tags is not cumulative.
-* You can remove all the contact’s tags by typing `t/` without
-  specifying any tags after it.
+* When updating tags, the existing tags of the contact will be removed i.e. adding of tags is not cumulative.
+* You can remove all the contact’s tags by typing `t/` without specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st contact to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd contact to be `Betsy Crower` and clears all existing tags.
+*  `updateC 1 p/91234567 e/johndoe@example.com` Updates the phone number and email address of the 1st contact to be `91234567` and `johndoe@example.com` respectively.
+*  `updateC 2 n/Betsy Crower t/` Updates the name of the 2nd contact to be `Betsy Crower` and clears all existing tags.
 
-#### Locating contacts by name: `find`
+#### Locating contacts by name: `findC`
 
 Finds contacts whose names contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `findC KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
@@ -471,13 +478,27 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
+* `findC John` returns `john` and `John Doe`
+* `findC alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
+
+#### Deleting a contact : `deleteC`
+
+Deletes the specified contact from the address book.
+
+Format: `deleteC CONTACT_INDEX`
+
+* Deletes the contact at the specified `CONTACT_INDEX`.
+* The index refers to the index number shown in the displayed contact list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list` followed by `delete 2` deletes the 2nd contact in the address book.
+* `find Betsy` followed by `delete 1` deletes the 1st contact in the results of the `find` command.
 
 #### Clearing all entries : `clear`
 
-Clears all entries from CoLAB.
+Clears all entries from CoLAB. Both contacts and projects will be cleared.
 
 Format: `clear`
 
@@ -593,19 +614,19 @@ Action | Format, Examples
 **Add Project** | `addP n/PROJECT_NAME`
 **Add Deadline to Project** | `addDto PROJECT_INDEX d/DESCRIPTION by/DATE`
 **Add Event to Project** | `addEto PROJECT_INDEX d/DESCRIPTION on/DATE at/TIME w/REPEAT_WEEKLY`
-**Add Participant to Project** | `addCto PROJECT_INDEX n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+**Add Participant to Project** | `addG PROJECT_INDEX n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 **Add Todo to Project** | `addTto PROJECT_INDEX d/DESCRIPTION`
 **Delete Project** | `deleteP PROJECT_INDEX`
 **Delete Deadline from Project** | `deleteD PROJECT_INDEX r/DEADLINE_INDEX`
 **Delete Event from Project** | `deleteE PROJECT_INDEX r/EVENT_INDEX`
-**Delete Participant from Project** | `deleteCfrom PROJECT_INDEX r/GROUPMATE_INDEX`
+**Delete Participant from Project** | `deleteG PROJECT_INDEX r/GROUPMATE_INDEX`
 **Delete Todo from Project** | `deleteT PROJECT_INDEX r/TODO_INDEX`
 
 ### Contacts
 
 Action | Format, Examples
 --------|------------------
-**Add Contact** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add Contact** | `addC n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Delete Contact** | `delete CONTACT_INDEX`<br> e.g., `delete 3`
 **Clear Contacts** | `clear`
 **Edit Contact** | `edit CONTACT_INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
