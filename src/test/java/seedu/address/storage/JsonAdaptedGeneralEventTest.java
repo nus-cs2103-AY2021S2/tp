@@ -22,8 +22,7 @@ class JsonAdaptedGeneralEventTest {
     @Test
     void toModelType_validGeneralEventDetails_returnGeneralEvent() throws Exception {
         JsonAdaptedGeneralEvent generalEvent =
-            new JsonAdaptedGeneralEvent(VALID_GENERAL_EVENT_DESCRIPTION,
-                VALID_GENERAL_EVENT_DATE);
+            new JsonAdaptedGeneralEvent(VALID_GENERAL_EVENT);
 
         assertEquals(VALID_GENERAL_EVENT, generalEvent.toModelType());
     }
