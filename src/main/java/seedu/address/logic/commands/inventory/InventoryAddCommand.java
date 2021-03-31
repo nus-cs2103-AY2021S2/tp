@@ -47,7 +47,6 @@ public class InventoryAddCommand extends Command {
             model.addIngredient(toAdd);
         }
 
-        model.addIngredient(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd),
                 CommandResult.CRtype.INGREDIENT);
     }
