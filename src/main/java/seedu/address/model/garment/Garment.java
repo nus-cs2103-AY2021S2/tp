@@ -3,7 +3,11 @@ package seedu.address.model.garment;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
-import java.util.*;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
 import seedu.address.model.description.Description;
 
@@ -12,7 +16,7 @@ import seedu.address.model.description.Description;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Garment {
-    public static final HashMap<String, HashMap<String,String>> SAMPLES = new HashMap<>();
+    public static final HashMap<String, HashMap<String, String>> SAMPLES = new HashMap<>();
 
     // Identity fields
     private final Name name;
