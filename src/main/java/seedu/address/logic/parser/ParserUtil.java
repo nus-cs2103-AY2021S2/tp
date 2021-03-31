@@ -193,13 +193,12 @@ public class ParserUtil {
     public static Car parseCarPreferred(String car) throws ParseException {
         String trimmedCar = car.trim();
         String[] carDetails = trimmedCar.split("\\+");
+        if (carDetails.length != 2) {
+            throw new ParseException(Car.MESSAGE_CONSTRAINTS);
+        }
         String carBrand = carDetails[0].trim();
         String carType = carDetails[1].trim();
         if (!Car.isValidCar(carBrand, carType)) {
-            throw new ParseException(Car.MESSAGE_CONSTRAINTS);
-        }
-
-        if (carDetails.length != 2) {
             throw new ParseException(Car.MESSAGE_CONSTRAINTS);
         }
 

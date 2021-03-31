@@ -12,7 +12,7 @@ import seedu.address.model.customer.CoeExpiry;
 import seedu.address.model.customer.Customer;
 import seedu.address.testutil.CustomerBuilder;
 
-public class CoeExpiryFilterTest { //TODO: Add test cases for filterAllCustomers
+public class CoeExpiryFilterTest {
     private LocalDate now = LocalDate.now();
 
     @Test

@@ -4,8 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import seedu.address.model.customer.CoeExpiry;
 import seedu.address.model.customer.Customer;
@@ -63,13 +61,6 @@ public class CoeExpiryFilter extends AbstractFilter {
                        .values()
                        .parallelStream()
                        .anyMatch(this::isCoeExpiryExpiringSoon);
-    }
-
-    @Override
-    public List<Customer> filterAllCustomers(List<Customer> customer) {
-        return customer.stream()
-                .filter(this::test)
-                .collect(Collectors.toUnmodifiableList()); //defensive coding
     }
 
     @Override
