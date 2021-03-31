@@ -69,8 +69,7 @@ public class UniqueLessonList implements Iterable<Lesson> {
     }
 
     /**
-     * Add a person {@code person} to the lesson {@code target} in the list.
-     * {@code target} must exist in the list.
+     * Add a person {@code person} to the lesson in the list.
      * The person {@code person} must not be the same as another existing person in the lesson's set of persons.
      */
     public void addPersonToLesson(Person person) {
@@ -87,6 +86,19 @@ public class UniqueLessonList implements Iterable<Lesson> {
             }
         }
 
+    }
+
+    /**
+     * Removes a person {@code person} to the lesson in the list.
+     */
+    public void removePersonFromLesson(Person person) {
+        requireNonNull(person);
+        for (Lesson lesson : person.getLessons()) {
+            if (contains(lesson)) {
+                int index = internalList.indexOf(lesson);
+                internalList.get(index).removePerson(person);
+            }
+        }
     }
 
     /**

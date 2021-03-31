@@ -205,6 +205,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void removePersonFromLesson(Person person) {
+        lessonBook.removePersonFromLesson(person);
+    }
+
+    @Override
     public void filterLesson(Predicate<Lesson> predicate) {
         updateFilteredLessonList(predicate);
     }

@@ -176,6 +176,8 @@ public interface Model {
      */
     void addPersonToLesson(Person person);
 
+    public void removePersonFromLesson(Person person);
+
     void filterLesson(Predicate<Lesson> predicate);
 
     /** Returns an unmodifiable view of the filtered lesson list */

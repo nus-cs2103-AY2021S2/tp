@@ -81,6 +81,14 @@ public class LessonBook implements ReadOnlyLessonBook {
     }
 
     /**
+     * Removes a person from his/her lessons.
+     * The person must already exist in the lesson.
+     */
+    public void removePersonFromLesson(Person person) {
+        lessons.removePersonFromLesson(person);
+    }
+
+    /**
      * Removes {@code key} from this {@code LessonBook}.
      * {@code key} must exist in the lesson book.
      */

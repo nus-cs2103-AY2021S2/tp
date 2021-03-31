@@ -77,6 +77,16 @@ public class Lesson implements Comparable<Lesson> {
         }
     }
 
+    /**
+     * Removes a person from the lesson.
+     * @param person person to be removed.
+     */
+    public void removePerson(Person person) {
+        if (containsPerson(person)) {
+            persons.remove(person);
+        }
+    }
+
     public Set<Person> getPerson() {
         return Collections.unmodifiableSet(persons);
     }
