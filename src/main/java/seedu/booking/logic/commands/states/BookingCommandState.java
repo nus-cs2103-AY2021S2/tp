@@ -30,7 +30,7 @@ public class BookingCommandState extends CommandState {
     private BookingIntermediate bookingIntermediate;
 
     /**
-     * Initalises a BookingCommandState
+     * Initialises a BookingCommandState
      */
     public BookingCommandState() {
         super();
@@ -40,39 +40,52 @@ public class BookingCommandState extends CommandState {
     @Override
     public void setNextState() {
         String state = this.getState();
-        if (state.equals(STATE_EMAIL)) {
+        switch (state) {
+        case STATE_EMAIL:
             this.setState(STATE_VENUE);
             this.setNextPromptMessage(PROMPT_VENUE_MESSAGE);
-        } else if (state.equals(STATE_VENUE)) {
+            break;
+        case STATE_VENUE:
             this.setState(STATE_DESC);
             this.setNextPromptMessage(PROMPT_DESC_MESSAGE);
-        } else if (state.equals(STATE_DESC)) {
+            break;
+        case STATE_DESC:
             this.setState(STATE_TAG);
             this.setNextPromptMessage(PROMPT_TAG_MESSAGE);
-        } else if (state.equals(STATE_TAG)) {
+            break;
+        case STATE_TAG:
             this.setState(STATE_START);
             this.setNextPromptMessage(PROMPT_START_MESSAGE);
-        } else if (state.equals(STATE_START)) {
+            break;
+        case STATE_START:
             this.setState(STATE_END);
             this.setNextPromptMessage(PROMPT_END_MESSAGE);
+            break;
         }
     }
 
     @Override
     public void processInput(Object value) {
         String state = this.getState();
-        if (state.equals(STATE_EMAIL)) {
+        switch (state) {
+        case STATE_EMAIL:
             bookingIntermediate.setEmail((Email) value);
-        } else if (state.equals(STATE_VENUE)) {
+            break;
+        case STATE_VENUE:
             bookingIntermediate.setVenueName((VenueName) value);
-        } else if (state.equals(STATE_DESC)) {
+            break;
+        case STATE_DESC:
             bookingIntermediate.setDescription((Description) value);
-        } else if (state.equals(STATE_TAG)) {
+            break;
+        case STATE_TAG:
             bookingIntermediate.setTags((Set<Tag>) value);
-        } else if (state.equals(STATE_START)) {
+            break;
+        case STATE_START:
             bookingIntermediate.setBookingStart((StartTime) value);
-        } else if (state.equals(STATE_END)) {
+            break;
+        case STATE_END:
             bookingIntermediate.setBookingEnd((EndTime) value);
+            break;
         }
     }
 

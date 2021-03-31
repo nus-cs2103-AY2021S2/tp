@@ -4,9 +4,9 @@ import seedu.booking.model.BookingSystem;
 import seedu.booking.model.person.Person;
 
 /**
- * A utility class to help with building Addressbook objects.
+ * A utility class to help with building BookingSystem objects.
  * Example usage: <br>
- *     {@code AddressBook ab = new AddressBookBuilder().withPerson("John", "Doe").build();}
+ *     {@code BookingSystem ab = new BookingSystemBuilder().withPerson("John", "Doe").build();}
  */
 public class BookingSystemBuilder {
 
@@ -21,7 +21,7 @@ public class BookingSystemBuilder {
     }
 
     /**
-     * Adds a new {@code Person} to the {@code AddressBook} that we are building.
+     * Adds a new {@code Person} to the {@code BookingSystem} that we are building.
      */
     public BookingSystemBuilder withPerson(Person person) {
         bookingSystem.addPerson(person);

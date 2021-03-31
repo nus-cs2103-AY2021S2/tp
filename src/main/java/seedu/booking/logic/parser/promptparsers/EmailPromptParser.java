@@ -1,7 +1,7 @@
 package seedu.booking.logic.parser.promptparsers;
 
 import static seedu.booking.commons.core.Messages.MESSAGE_INVALID_EMAIL_FORMAT;
-import static seedu.booking.commons.core.Messages.MESSAGE_PROMPT_TRYAGAIN;
+import static seedu.booking.commons.core.Messages.MESSAGE_PROMPT_TRY_AGAIN;
 
 import seedu.booking.logic.commands.EmailPromptCommand;
 import seedu.booking.logic.parser.Parser;
@@ -17,7 +17,7 @@ public class EmailPromptParser implements Parser<EmailPromptCommand> {
      */
     public EmailPromptCommand parse(String args) throws ParseException {
         if (!Email.isValidEmail(args)) {
-            throw new ParseException(MESSAGE_INVALID_EMAIL_FORMAT + MESSAGE_PROMPT_TRYAGAIN);
+            throw new ParseException(MESSAGE_INVALID_EMAIL_FORMAT + MESSAGE_PROMPT_TRY_AGAIN);
         }
 
         return new EmailPromptCommand(new Email(args));

@@ -2,7 +2,7 @@ package seedu.booking.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.booking.commons.core.Messages.MESSAGE_INVALID_VENUE_NAME;
-import static seedu.booking.commons.core.Messages.MESSAGE_PROMPT_TRYAGAIN;
+import static seedu.booking.commons.core.Messages.MESSAGE_PROMPT_TRY_AGAIN;
 
 import seedu.booking.logic.commands.exceptions.CommandException;
 import seedu.booking.model.Model;
@@ -22,7 +22,7 @@ public class VenueNamePromptCommand extends Command {
         requireNonNull(model);
 
         if (!model.hasVenueWithVenueName(venueName)) {
-            throw new CommandException(MESSAGE_INVALID_VENUE_NAME + MESSAGE_PROMPT_TRYAGAIN);
+            throw new CommandException(MESSAGE_INVALID_VENUE_NAME + MESSAGE_PROMPT_TRY_AGAIN);
         }
 
         ModelManager.processStateInput(venueName);
