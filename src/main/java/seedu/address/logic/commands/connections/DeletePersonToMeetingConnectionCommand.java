@@ -36,8 +36,8 @@ public class DeletePersonToMeetingConnectionCommand extends Command {
             + PREFIX_PERSON_CONNECTION + "2";
 
     private static String MESSAGE_SUCCESS = "Successfully delete persons related to the meeting! ";
-    private static String MESSAGE_GROUP_NOT_EXIST = "The group doesn't exist!";
-    private static String MESSAGE_PERSON_NOT_EXIST = "The person doesn't exist!";
+    private static String MESSAGE_GROUP_NOT_EXIST = "The group related to this meeting doesn't exist!";
+    private static String MESSAGE_PERSON_NOT_EXIST = "The person related to this meeting doesn't exist!";
     private final Index meetingIndex;
     private final Set<Group> groupsToDelete = new HashSet<>();
     private final Set<Index> personsIndexToDelete = new HashSet<>();
