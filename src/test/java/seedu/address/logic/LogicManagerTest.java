@@ -26,6 +26,7 @@ import javafx.collections.ObservableList;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EmailCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -35,6 +36,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUniqueAliasMap;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonAliasesStorage;
@@ -126,6 +128,7 @@ public class LogicManagerTest {
         List<String> commandList = new ArrayList<>();
         commandList.add(EditCommand.COMMAND_WORD);
         commandList.add(ExitCommand.COMMAND_WORD);
+        commandList.add(EmailCommand.COMMAND_WORD);
         Collections.sort(commandList);
 
         List<String> testList = logic.getAutocompleteCommands("e");
