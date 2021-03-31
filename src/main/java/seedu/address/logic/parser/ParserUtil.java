@@ -30,7 +30,7 @@ public class ParserUtil {
 
 
     public static final String MESSAGE_INVALID_ARGS_LENGTH = "Invalid number of arguments provided.";
-  
+
     public static final String MESSAGE_INVALID_NUMBER_OF_DAYS = "Number of days is not a positive integer.";
 
     public static final String MESSAGE_INVALID_NUMBER_OF_WEEKS = "Number of weeks is not a positive integer.";
