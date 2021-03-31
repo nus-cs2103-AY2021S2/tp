@@ -255,17 +255,21 @@ Format: `ilist`
 
 ### Find issues : `ifind`
 
-Finds all issues that contain any of the given keywords.
+Finds all issues that contain any of the given keywords in the description, room number or tags.
 
 Format: `ifind KEYWORD [MORE_KEYWORDS]`
 * The search is case-insensitive. e.g. `broken` will match `Broken`.
 * The order of the keywords does not matter. e.g. `Broken light` will match `light broken`.
-* Only the description is searched.
+* The search for tags and description matches any part of the tag and is NOT case-sensitive. e.g `high`, `HIGH` or `h` all work to match `High`. `H` will match both `Hot` and `High`.
+* The search matches any part of the room number. e.g. `10` will match `10-111` and `14-101`.
+* Only the description, room number, and tags are searched.
 * Issues matching at least one keyword will be returned (i.e. OR search). e.g. `Broken window` will return `Broken light`, `Dirty window`, and `Broken window`.
 
 Examples:
 * `ifind chair` returns `Broken chair` and `Chair missing wheel`.
 * `ifind wardrobe table` returns `Wardrobe door broke`, `Table unstable`, and `Table stuck in wardrobe`.
+* `ifind 1 s` returns room number `10-100`, description `Table unstable` and tag `Insect` as they all either contain `1` or the string `s`.
+
 
 ### Edit an issue record : `iedit`
 

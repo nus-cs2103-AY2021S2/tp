@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 /**
- * Tests that a {@code Room}'s {@code RoomNumber} matches any of the keywords given.
+ * Tests that a {@code Room}'s {@code RoomNumber} or {@Tag} matches any of the keywords given.
  */
 
 public class RoomNumberOrTagsContainsKeywordsPredicate implements Predicate<Room> {
