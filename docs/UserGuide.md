@@ -241,6 +241,22 @@ Action | Format, Examples
 **View** |`view <INDEX>` <br> e.g `view 1`
 **Revise** |`revise <INDEX>` <br> e.g `revise 1`
 
+## Keyboard Shortcuts Summary
+
+Action | Keyboard Shortcut| Windows where Keyboard shortcut is available
+:-------:|:------------------:|:---------------------------------------------:
+**Exit/Close Window** | `ESC` | Main Window, View Window, Revise Window, Help Window
+**Open Help Window** | `F1` | Main Window 
+**Skip through text fields in Revise Window** | `TAB` | Revise Window 
+**Save Changes in Revise Window** | `Ctrl + S (Windows OS)` or `Command + S (macOS)` | Revise Window
+
+## Glossary 
+
+- **Main Window:** The Window that appears when the application starts up
+- **View Window:** The Window that appears when viewing a FoodDiary entry through the `view` command
+- **Revise Window** The Window that appears when revising a FoodDairy entry through the `edit` command
+
+
 ## <center> Appendix </center>
 
 ### Main Window UI
