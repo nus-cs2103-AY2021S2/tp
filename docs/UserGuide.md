@@ -21,7 +21,7 @@ title: User Guide
   * [3.1. Add food item](#31-add-food-item)
   * [3.2. Update food item](#32-update-food-item)
   * [3.3. List food item](#33-list-food-item)
-  * [3.4. Delete food item](#34-delete-food-item) 
+  * [3.4. Delete food item](#34-delete-food-item)
   * [3.5. Input food intake](#35-input-food-intake)
      * [3.5.1. Input food intake (For new food items that are not created before)](#351-input-food-intake-for-new-food-items-that-are-not-created-before)
      * [3.5.2. Input food intake (For existing food items)](#352-input-food-intake-for-existing-food-items)
@@ -113,7 +113,7 @@ On the application's first launch, you will be prompted to enter your height, we
 
 ### 1.2 Query weight, height and BMI
 
-You can view your height, weight, calculated BMI and associated health risks (if any), at any time by using the BMI query command. 
+You can view your height, weight, calculated BMI and associated health risks (if any), at any time by using the BMI query command.
 
 **Command Format:** `bmi_query`
 
@@ -443,7 +443,7 @@ Action | Format, Examples
 **Update food item** | `food_update n/FOOD_NAME c/CARBOS(G) f/FATS(G) p/PROTEINS(G)` <br> e.g., `food_update n/tomato c/20 f/30 p/40`
 **List food item** | `food_list`
 **Delete food item** | `food_delete n/FOOD_NAME` <br> e.g., `food_delete n/tomato`
-**Input food intake (For new food items that are not created before)** | `food_intake_add d/DATE(in d MMM yyyy format) n/FOOD_NAME c/CARBOHYDRATES(G) f/FATS(G) p/PROTEINS(G)` <br> e.g.,`food_intake_add d/31 Mar 2021 n/tomato c/10 f/10 p/10` 
+**Input food intake (For new food items that are not created before)** | `food_intake_add d/DATE(in d MMM yyyy format) n/FOOD_NAME c/CARBOHYDRATES(G) f/FATS(G) p/PROTEINS(G)` <br> e.g.,`food_intake_add d/31 Mar 2021 n/tomato c/10 f/10 p/10`
 **Input food intake (For existing food items)** | `food_intake_add d/DATE(in d MMM yyyy format) n/FOOD_NAME` <br> e.g., `food_intake_add d/31 Mar 2021 n/tomato`
 **Input food intake (For existing food items, using different nutrient value(s))** | `food_intake_add d/DATE(in d MMM yyyy format) n/FOOD_NAME c/CARBOHYDRATES(G) f/FATS(G) p/PROTEINS(G)` <br> e.g., `food_intake_add d/31 Mar 2021 n/tomato c/20 f/35 p/50`
 **Update food intake** | `food_intake_update d/DATE(in d MMM yyyy format) n/FOOD_NAME c/CARBOS f/FATS p/PROTEINS` <br> e.g., `food_intake_update d/31 Mar 2021 n/tomato c/20 f/40 p/50`
@@ -461,11 +461,11 @@ Technical Terms | Meaning
 --------|------------------
 **Alias** | A term used to represent something. For instance the alias `df/` represents the date from a period.
 **Command-Line Interface (CLI)** | An interface that users send commands to a computer program through the form of lines of text.
-**Graphic User Interface (GUI)** | An interface that displays interactive visual components for a computer program. 
+**Graphic User Interface (GUI)** | An interface that displays interactive visual components for a computer program.
 **Java** | A programming language that is used to build this application.
 
 Health Terms | Meaning
 -------------|------------------
-**Body Mass Index (BMI)** | A value derived from the mass and height of a person, by taking the body mass divided by the square of the body height. 
+**Body Mass Index (BMI)** | A value derived from the mass and height of a person, by taking the body mass divided by the square of the body height.
 **Macronutrients** | Nutrients, such as fats, proteins and carbohydrates that provide us with energy.
 --------------------------------------------------------------------------------------------------------------------

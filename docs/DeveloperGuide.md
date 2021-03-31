@@ -28,7 +28,7 @@ title: Developer Guide
   * [Add food item as an intake](#use-case-add-food-item-as-an-intake)
   * [Display current food intake for the day](#use-case-display-current-food-intake-for-the-day)
 * [Non-Functional Requirements](#non-functional-requirements)
-* [Glossary](#glossary) 
+* [Glossary](#glossary)
 * [References](#references)
 <!--te-->
 
@@ -163,7 +163,7 @@ This section describes some noteworthy details on how certain features are imple
 
 ### User Object
 
-The User object is where the majority of the user's information and parameters are stored. 
+The User object is where the majority of the user's information and parameters are stored.
 
 The 'User' object contains the following components:
 1. `age`: Represents the Integer value holding the age of the user
@@ -187,17 +187,17 @@ The 'Food' contains the following components:
 4. `proteins`: Represents the proteins values that is associated with the food item stored in the food component
 5. `kilocalories`: Represents the kilocalories values that is associated with the food item stored in the food component
 
-There are some actions that can be performed with the Food component. 
+There are some actions that can be performed with the Food component.
 1. Update respective nutrients' values.
-2. Calculate total kilocalories' values. 
+2. Calculate total kilocalories' values.
 
 Below is the Sequence Flow Diagram when a Food gets added to the UniqueFoodList through the Add-Command: to-do
 
 #### Design consideration:
 
 ##### Aspect: How the components within `Food` are added or changed
-* Current Choice: 
-  * The food components are not immutable and its nutrients value will update each time an update command is passed. 
+* Current Choice:
+  * The food components are not immutable and its nutrients value will update each time an update command is passed.
 * Pros:
   * Faster as food objects do not have to be created everytime when a change is done
   * Flexible to changes since only an update command is called to change the value
@@ -216,12 +216,12 @@ This command adds a valid food item into the unique food list. Users are able to
 
 Example: `food_add n/FOOD_NAME c/CARBOS f/FATS p/PROTEINS`
 
-#### Implementation: 
+#### Implementation:
 Once the user types in the command to add food, the parser will check for all the required prefixes. If all required prefixes are present and the input values are valid, `AddFoodItemCommand` object is created. `AddFoodItemCommand` is a class that extends `Command` abstract class. `AddFoodItemCommand` implements the `execute()` method from the `Command` abstract class. Upon execution, the command will check with the food list whether it has a food item that has a similar name. If there is, it will prompt an error that the food item exist and suggest updating the food item value instead. Otherwise, a new food item object will be created and added into the food list.
 
 Below is an example of a usage scenario:
 
-Step 1: The user launches the application and executes `food_add n/chocolate c/100 f/100 p/100` to create the food item. 
+Step 1: The user launches the application and executes `food_add n/chocolate c/100 f/100 p/100` to create the food item.
 
 Step 2: The food item is added to the food list.
 
@@ -231,16 +231,16 @@ Diagram flow to be inserted here
 ### Update food item feature
 
 #### Description:
-This command updates a valid food item with the new value(s) specified in the unique food list. Food item has to exist in the food list and nutrient values specified has to be different from original before an update is permitted. 
+This command updates a valid food item with the new value(s) specified in the unique food list. Food item has to exist in the food list and nutrient values specified has to be different from original before an update is permitted.
 
 Example: `food_update n/FOOD_NAME c/CARBOS f/FATS p/PROTEINS`
 
-#### Implementation: 
-Once the user types in the command to update food, the parser will check for the presence of the name prefix and the presence of at least one of the nutrient prefix. If the required prefixes and valid value(s) are present, the `UpdateFoodItemCommand` object is created and a temporary food item object is created with the new values. `UpdateFoodItemCommand` is a class that extends `Command` abstract class. `UpdateFoodItemCommand` implements the `execute()` method from the `Command` abstract class. Upon execution, the command will check with the food list whether it has a food item that has a similar name. If there is, it will check for any difference of the original values with the new value(s). If there is at least 1 difference, the food item in the food list will be updated to the new value(s). Otherwise, it will prompt for the user to modify at least 1 of the food item's value to be different from original.    
+#### Implementation:
+Once the user types in the command to update food, the parser will check for the presence of the name prefix and the presence of at least one of the nutrient prefix. If the required prefixes and valid value(s) are present, the `UpdateFoodItemCommand` object is created and a temporary food item object is created with the new values. `UpdateFoodItemCommand` is a class that extends `Command` abstract class. `UpdateFoodItemCommand` implements the `execute()` method from the `Command` abstract class. Upon execution, the command will check with the food list whether it has a food item that has a similar name. If there is, it will check for any difference of the original values with the new value(s). If there is at least 1 difference, the food item in the food list will be updated to the new value(s). Otherwise, it will prompt for the user to modify at least 1 of the food item's value to be different from original.
 
 Below is an example of a usage scenario:
 
-Step 1: The user launches the application and executes `food_update n/chocolate c/200 f/200 p/200` to update the specified food item. 
+Step 1: The user launches the application and executes `food_update n/chocolate c/200 f/200 p/200` to update the specified food item.
 
 Step 2: The food item specified will have its value(s) updated to the new value(s) in the food list.
 
@@ -253,17 +253,17 @@ This command lists all the food item(s) in the food list.
 
 Example: `food_list`
 
-#### Implementation: 
+#### Implementation:
 Once the user types in the command, the list of food items in the food list will be displayed.`ListFoodItemCommand` is a class that extends `Command` abstract class. `ListFoodItemCommand` implements the `execute()` method from the `Command` abstract class. Upon execution, the command will list all the food items stored in the food list.
 
 Below is an example of a usage scenario:
 
-Step 1: The user launches the application and executes `food_list`. 
+Step 1: The user launches the application and executes `food_list`.
 
 Step 2: The food item(s) in the food list will be displayed.
 
 The following sequence diagram shows how the delete operation works:
- 
+
 ### Delete food item feature
 
 #### Description:
@@ -271,12 +271,12 @@ This command deletes a valid food item from the unique food list. Food item has 
 
 Example: `food_delete n/FOOD_NAME`
 
-#### Implementation: 
+#### Implementation:
 Once the user types in the command to delete food, the parser will check for the required name prefix. If the name prefix is present, the `DeleteFoodItemCommand` object is created with the food name captured from the parser. `DeleteFoodItemCommand` is a class that extends `Command` abstract class. `DeleteFoodItemCommand` implements the `execute()` method from the `Command` abstract class. Upon execution, the command will check with the food list whether it has a food item that has a similar name. If there is, it will delete the food item from the list. Otherwise, it will prompt an error that the food item is not found.
 
 Below is an example of a usage scenario:
 
-Step 1: The user launches the application and executes `food_delete n/chocolate`. 
+Step 1: The user launches the application and executes `food_delete n/chocolate`.
 
 Step 2: The food item specified will be deleted from the food list.
 
@@ -293,7 +293,7 @@ The `Food` object associated with each `FoodIntake` object is independent of the
 
 There are two constructors for the creation of a FoodIntake object.
 
-1. `public FoodIntake(LocalDate date, Food temporaryFood)` : Creates a `FoodIntake` object given the `LocalDate` and `Food` object - used in the general FoodIntakeCommand when there is no need to alter the `Food` name e.g. appending the numerical duplicate count. 
+1. `public FoodIntake(LocalDate date, Food temporaryFood)` : Creates a `FoodIntake` object given the `LocalDate` and `Food` object - used in the general FoodIntakeCommand when there is no need to alter the `Food` name e.g. appending the numerical duplicate count.
 2. `public FoodIntake(LocalDate date, String name, double carbos, double fats, double proteins)` : Creates a FoodIntake object given the `LocalDate` and individual food name and nutrient values - used when loading to file and saving duplicate `FoodIntake` Food names.
 
 #### Design consideration
@@ -333,7 +333,7 @@ Step 3: The user executes `progress` to view a progress report based on the acti
 
 #### ProgressCalculator class
 
-The `ProgressCalulator` class is a static class containing the `calculateProgress` method which accepts a `user` input parameter in the form of a `User` class object. 
+The `ProgressCalulator` class is a static class containing the `calculateProgress` method which accepts a `user` input parameter in the form of a `User` class object.
 This `user` object will contain the necessary information required to calculate the precentage of adherence to the diet plan. These information are:
 
 1. The `DietPlan` class object which contains the macronutrients requirements for the plan
@@ -341,7 +341,7 @@ This `user` object will contain the necessary information required to calculate 
 
 The progress calculator will first calculate the required calories and macronutrients to fit the goal of the user's active diet plan. Documented below are the steps involved in deciding the daily amount of calories and macronutrients needed for the user to adhere to the diet plan:
 
-1. The user's weight maintenance calories are calculated based on the **Mifflin-St Joer Formula**. 
+1. The user's weight maintenance calories are calculated based on the **Mifflin-St Joer Formula**.
 2. Depending on the type of diet plan (weight gain, weight loss or weight maintenance), the amount of calories required is calculated:
    * For weight gain plans, the daily amount of calories required is **maintenance calories + 400**
    * For weight loss plans, the daily amount of calories required is **maintenance calories - 500**
@@ -367,7 +367,7 @@ Additionally, this section also shows the daily macronutrients requirements the 
 
 This section of the progress report details the foods consumed within each day as well as whether the daily total of each macronutrient adheres to the plan's requirements. <br/>
 
-The total of each macronutrient intake is calculated by summing up the macronutrients *(carbohydrates, proteins and fats)* in each food consumed within that particular day. 
+The total of each macronutrient intake is calculated by summing up the macronutrients *(carbohydrates, proteins and fats)* in each food consumed within that particular day.
 These totals are divided by their respective daily macronutrient requirements to get a percentage of how much the user has adhered to the plan's requirements. This *daily adherence percentage* indicates whether the user has exceeded, is under or is within the diet plan's requirements for that day.
 
 A leeway value of **5%** is allowed should the user's *daily adherence percentage* fall just above or below the required amount.
@@ -383,7 +383,7 @@ Similar to the *daily adherence percentage*, the *total adherence percentage* ha
 
 The are certain design considerations made when adding the progress calculator feature. The first of which is the use of the Mifflin-St Joer Formula to calculate the BMR as opposed to other formulas.
 Frankenfield (2005) studied 4 equations that were commonly used in calculating BMR. These equations were the Mifflin-St Joer equation, the Harris-Benedict equation, the Owen equation and the WHO/FAO/UNU equation.
-The study found that the Mifflin-St Joer formula was most accurate in calculating the BMR, being within 10% of the actual value measured. 
+The study found that the Mifflin-St Joer formula was most accurate in calculating the BMR, being within 10% of the actual value measured.
 As such, the DietLAH! team has decided to use the Mifflin-St Joer formula as the basis for calculating BMR of users.
 <br/>
 
@@ -392,7 +392,7 @@ Secondly, there are leeways given for the *daily adherence percentage* and the *
 
 ### Mifflin-St Joer Formula
 
-The Mifflin-St Joer Formula is used to calculate the Basal Metabolic Rate (BMR), which is the rate at which calories are burned daily when the individual is not performing any activity. 
+The Mifflin-St Joer Formula is used to calculate the Basal Metabolic Rate (BMR), which is the rate at which calories are burned daily when the individual is not performing any activity.
 The formula takes into account the individual's weight, height, age and sex.
 <br/>
 
