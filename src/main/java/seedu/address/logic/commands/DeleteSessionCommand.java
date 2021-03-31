@@ -14,7 +14,7 @@ import seedu.address.model.student.Name;
 import seedu.address.model.student.Student;
 
 /**
- * Deletes a student identified using it's displayed index from the address book.
+ * Deletes a session identified using it's displayed index from the address book.
  */
 public class DeleteSessionCommand extends Command {
 

@@ -24,6 +24,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.session.RecurringSession;
 import seedu.address.model.session.Session;
+import seedu.address.model.session.SessionDate;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Student;
 import seedu.address.testutil.StudentBuilder;
@@ -156,6 +157,11 @@ public class AddStudentCommandTest {
 
         @Override
         public void deleteSession(Name name, Index sessionIndex) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteRecurringSession(Name name, Index sessionIndex, SessionDate sessionDate) {
             throw new AssertionError("This method should not be called.");
         }
 

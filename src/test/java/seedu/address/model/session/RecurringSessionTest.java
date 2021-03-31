@@ -44,7 +44,7 @@ class RecurringSessionTest extends SessionTest {
 
 
         assertTrue(RecurringSession.isConsistentDatesAndInterval(SESSION_DATE, consistentDateAndInterval, INTERVAL));
-        assertFalse(RecurringSession.isConsistentDatesAndInterval(SESSION_DATE, same, nextDay));
+        assertTrue(RecurringSession.isConsistentDatesAndInterval(SESSION_DATE, same, nextDay));
         assertFalse(RecurringSession.isConsistentDatesAndInterval(SESSION_DATE, inconsistentDate, INTERVAL));
         assertFalse(RecurringSession.isConsistentDatesAndInterval(
                 SESSION_DATE, consistentDateAndInterval, inconsistentInterval));

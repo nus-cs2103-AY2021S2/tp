@@ -9,6 +9,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.session.RecurringSession;
 import seedu.address.model.session.Session;
+import seedu.address.model.session.SessionDate;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.UniqueStudentList;
@@ -118,6 +119,17 @@ public class AddressBook implements ReadOnlyAddressBook {
         Student student = students.getStudentWithName(name);
         students.deleteSession(student, sessionIndex);
 
+    }
+
+    /**
+     * Removes a single {@code Session} with {@code sessionDate} from sessions of {@code name}
+     * {@code name} and {@sessionIndex} must exist in the address book.
+     * {@code sessionIndex} should belong to a {@code RecurringSession}.
+     */
+    public void removeRecurringSession(Name name, Index sessionIndex, SessionDate sessionDate) {
+        requireAllNonNull(name, sessionIndex, sessionDate);
+        Student student = students.getStudentWithName(name);
+        students.deleteRecurringSession(student, sessionIndex, sessionDate);
     }
 
     /**

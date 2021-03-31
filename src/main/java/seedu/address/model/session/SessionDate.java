@@ -93,6 +93,22 @@ public class SessionDate {
     }
 
     /**
+     * Returns a new {@code SessionDate} that adds a defined {@code days} days to current {@code localDate}.
+     * @param days number of days to add.
+     */
+    public SessionDate addDays(int days) {
+        return new SessionDate(dateTime.plusDays((long) days));
+    }
+
+    /**
+     * Returns a new {@code SessionDate} that deducts a defined {@code days} days from current {@code localDate}.
+     * @param days number of days to deduct.
+     */
+    public SessionDate minusDays(int days) {
+        return new SessionDate(dateTime.minusDays((long) days));
+    }
+
+    /**
      * Returns true if LocalTime and LocalDate of both objects are the same
      */
     public boolean equals(Object other) {
