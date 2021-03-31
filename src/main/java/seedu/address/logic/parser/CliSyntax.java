@@ -16,5 +16,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_DATETIME = new Prefix("dt/");
     public static final Prefix PREFIX_DISH = new Prefix("d/");
     public static final Prefix PREFIX_INGREDIENT = new Prefix("i/");
-
+    public static final Prefix PREFIX_FORCE_DELETE = new Prefix("-f");
 }
