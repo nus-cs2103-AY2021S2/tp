@@ -208,7 +208,7 @@ public class AddCommandParserTest {
 
         // invalid delivery date
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + ORDER_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + INVALID_DELIVERY_DATE_DESC1,
+                + ORDER_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + INVALID_DELIVERY_DATE_DESC1,
                 DeliveryDate.MESSAGE_CONSTRAINTS_FORMAT);
 
 
