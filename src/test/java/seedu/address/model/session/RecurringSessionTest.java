@@ -23,7 +23,7 @@ class RecurringSessionTest extends SessionTest {
     }
 
     @Test
-    public void isValidEnd() {
+    public void isValidEndTest() {
         SessionDate consistent = new SessionDate("2021-01-15", "10:00");
         SessionDate inconsistentDate = new SessionDate("2021-01-14", "10:00");
         SessionDate inconsistentTime = new SessionDate("2021-01-15", "12:00");
@@ -35,8 +35,8 @@ class RecurringSessionTest extends SessionTest {
     }
 
     @Test
-    public void isConsistentDatesAndInterval() {
-        SessionDate consistent1 = new SessionDate("2021-01-15", "12:00");
+    public void isConsistentDatesAndIntervalTest() {
+        SessionDate consistentDateAndInterval = new SessionDate("2021-01-15", "12:00");
         SessionDate same = new SessionDate("2021-01-01", "10:00");
         SessionDate inconsistentDate = new SessionDate("2021-01-14", "10:00");
         Interval inconsistentInterval = new Interval("3");
@@ -50,7 +50,7 @@ class RecurringSessionTest extends SessionTest {
     }
 
     @Test
-    void getInterval() {
+    void getIntervalTest() {
         if (CARL.getListOfSessions().get(0) instanceof RecurringSession) {
             assertEquals(INTERVAL, (
                     (RecurringSession) CARL.getListOfSessions().get(0)).getInterval());
@@ -58,7 +58,7 @@ class RecurringSessionTest extends SessionTest {
     }
 
     @Test
-    void getLastSessionDate() {
+    void getLastSessionDateTest() {
         if (CARL.getListOfSessions().get(0) instanceof RecurringSession) {
             assertEquals(new SessionDate("2021-01-15", DEFAULT_TIME), ((
                     (RecurringSession) CARL.getListOfSessions().get(0)).getLastSessionDate()));
@@ -66,7 +66,7 @@ class RecurringSessionTest extends SessionTest {
     }
 
     @Test
-    void hasSessionOnDate() {
+    void hasSessionOnDateTest() {
         RecurringSession startAfter =  new RecurringSession(new SessionDate("2021-03-01", "10:00"),
                 DURATION, SUBJECT, FEE, INTERVAL, new SessionDate("2021-03-15", "10:00"));
         RecurringSession endBefore =  new RecurringSession(new SessionDate("2020-03-01", "10:00"),
@@ -83,7 +83,7 @@ class RecurringSessionTest extends SessionTest {
     }
 
     @Test
-    void lastSessionOnOrBefore() {
+    void lastSessionOnOrBeforeTest() {
         RecurringSession recurringSession = new RecurringSession(new SessionDate("2020-12-11", "10:00"),
                 DURATION, SUBJECT, FEE, INTERVAL, new SessionDate("2021-01-15", "10:00"));
         Session session = new Session(new SessionDate("2021-01-01", "10:00"), DURATION, SUBJECT, FEE);
@@ -96,7 +96,7 @@ class RecurringSessionTest extends SessionTest {
 
 
     @Test
-    void numOfSessionBetween() {
+    void numOfSessionBetweenTest() {
         SessionDate firstSessionDate = new SessionDate("2021-02-28", "10:00");
         SessionDate lastSessionDate = new SessionDate("2021-04-11", "10:00");
         SessionDate firstOfMarch = new SessionDate("2021-03-01", "00:00");

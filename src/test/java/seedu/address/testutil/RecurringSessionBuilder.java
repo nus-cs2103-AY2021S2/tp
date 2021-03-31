@@ -86,7 +86,6 @@ public class RecurringSessionBuilder extends SessionBuilder {
 
     /**
      * Builds the recurring session object.
-     * @return
      */
     public RecurringSession build() {
         Session parent = super.build();
