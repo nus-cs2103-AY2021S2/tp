@@ -64,17 +64,31 @@ Different sections of the application window will be referred to by the names de
 Formats discussed in this section may be used in relevant areas of this user guide.
 
 **Tips**
+
+Messages that appear in a tip box are useful for improving your experience with CoLAB.
+
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Example tip!
 </div>
 
-**Emphasis**
-`Example`
-Words or sentences that appear in these boxes are emphasised for relevance.
+**Warnings**
+
+Messages that appear in a warning box are important to follow as unintended consequences may follow otherwise.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Example warning!
+</div>
+
+**Highlights**
+
+Words or sentences that appear in these highlighted boxes are being emphasised for their relevance in that section.
+
+`Example highlight!`
+
 
 #### 2.2.3 Command Format
 
-Commands discussed in this user guide follow these rules.
+Commands discussed in this user guide follow these rules. Parameters that are discussed in this UG, such as `p/PHONE_NUMBER` or `n/NAME` refer to information that is to be included as an input of a command.
 
 <div markdown="block" class="alert alert-info">
 
@@ -95,14 +109,14 @@ Commands discussed in this user guide follow these rules.
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help` and `exit`) will be ignored.<br>
+* Commands that do not take in extra parameters (such as `help` and `exit`) will ignore the additional parameters that are appended to it.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
 
 #### 2.2.4 Command Parameters
 
-This subsection serves to list out the parameters used in this document. We have set reasonable constraints on the parameters to ensure that the UI displays your information correctly.
+This subsection serves to list out the parameters used in this document. To achieve the best possible experience, we have recommended limits for some parameters. This includes recommendation on limits for long text that may result in horizontal scrolling for some areas of the UI.
 
 ##### `ADDRESS`
 
@@ -122,6 +136,7 @@ This subsection serves to list out the parameters used in this document. We have
 ##### `DESCRIPTION`
 
 * The description of a deadline, event or todo.
+* The `DESCRIPTION` parameter is not used elsewhere.
 
 ##### `EMAIL`
 
@@ -178,6 +193,7 @@ This subsection serves to list out the parameters used in this document. We have
 ##### `TAG`
 
 * The tag associated with a contact.
+* The `TAG` parameter can only be used for contacts. It cannot be used for projects.
 * Tags should consist of alphanumeric characters.
 
 ##### `TIME`
@@ -199,7 +215,7 @@ This subsection serves to list out the parameters used in this document. We have
 
 1. Copy the file to the folder you want to use as the _home folder_ for CoLAB.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data. When the sample data is no longer required, you may use the `clear` command to clear sample projects and contacts from CoLAB.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`contacts`** and pressing Enter will list all contacts.<br>
@@ -279,7 +295,11 @@ Examples:
 
 ### _**4.1.1 Todos**_
 
-`Todos` contain a `DESCRIPTION` field and are useful for tasks that have no due date.
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Todos can be thought of as Tasks (without a due date) to be done. For the entire User Guide, we will be referring to tasks as a todo. 
+</div>
+
+`Todos` contain a `DESCRIPTION` field and are useful for tasks that have no due date. 
 
 Each `Project` may have `Todos`. Hence, each of the commands related to `Todos` are done w.r.t the `Project` identified by `PROJECT_INDEX`.
 
@@ -543,6 +563,8 @@ Examples:
 
 ### **4.2 Contacts**
 
+Contacts are kept separate from Groupmates. Their information is not kept in sync. 
+
 Each Contact may have a `NAME`, `PHONE_NUMBER`, `EMAIL`, `ADDRESS` & multiple `TAGS`. 
 
 #### Adding a contact: `addC`
@@ -553,6 +575,10 @@ Format: `addC n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A contact can have any number of tags (including 0)
+</div>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+If you do not have information required for a compulsory parameter, consider leaving it as a dummy character such as "-". For example, if you do not have the address of a contact, you can enter the parameter as "a/-".
 </div>
 
 Examples:
@@ -577,10 +603,11 @@ Examples:
 
 #### Locating contacts by name: `findC`
 
-Finds contacts whose names contain any of the given keywords.
+Find contacts whose names contain any of the given keywords. Only contact names are searched.
 
 Format: `findC KEYWORD [MORE_KEYWORDS]`
 
+* `findC KEYWORD [MORE_KEYWORDS]`
 * The search is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
@@ -613,7 +640,7 @@ Although most of the buttons you see on the screen are clickable, the UI has bee
 
 #### Viewing Today Panel : `today`
 
-Displays a panel containing information (Events & Deadlines) relevant to today.
+Displays a panel containing information on Events & Deadlines that are relevant today.
 
 Format: `today`
 
