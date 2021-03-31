@@ -1,5 +1,7 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_LESSONS;
+
 import seedu.address.model.Model;
 
 /**
@@ -16,6 +18,7 @@ public class ScheduleCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
+        model.updateFilteredLessonList(PREDICATE_SHOW_ALL_LESSONS);
         return new CommandResult(SHOWING_HELP_MESSAGE, true, false, false, false);
     }
 }
