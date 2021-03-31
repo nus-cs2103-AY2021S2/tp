@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GUARDIAN_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GUARDIAN_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSON;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LEVEL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
@@ -21,8 +22,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.lesson.Lesson;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.education.lesson.Lesson;
+import seedu.address.model.person.education.tag.Tag;
 
 /**
  * Parses input arguments and creates a new EditCommand object
@@ -38,7 +39,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_SCHOOL, PREFIX_EMAIL,
-                        PREFIX_ADDRESS, PREFIX_GUARDIAN_NAME, PREFIX_GUARDIAN_PHONE, PREFIX_TAG, PREFIX_LESSON);
+                        PREFIX_ADDRESS, PREFIX_GUARDIAN_NAME, PREFIX_GUARDIAN_PHONE, PREFIX_LESSON,
+                        PREFIX_TAG, PREFIX_LESSON);
 
         Index index;
 
@@ -71,6 +73,10 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_GUARDIAN_PHONE).isPresent()) {
             editPersonDescriptor.setGuardianPhone(ParserUtil.parseGuardianPhone(argMultimap
                     .getValue(PREFIX_GUARDIAN_PHONE).get()));
+        }
+        if (argMultimap.getValue(PREFIX_LEVEL).isPresent()) {
+            editPersonDescriptor.setLevel(ParserUtil.parseLevel(argMultimap
+                    .getValue(PREFIX_LEVEL).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
         parseLessonsForEdit(argMultimap.getAllValues(PREFIX_LESSON)).ifPresent(editPersonDescriptor::setLessons);
