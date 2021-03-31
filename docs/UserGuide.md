@@ -60,7 +60,7 @@ _**Tutor Tracker**_ is a **desktop app designed to help secondary school student
 
 ### Add new tutor details: `add_tutor`
 
-Add a new tutor and enter their basic details.
+Add a new tutor and enter their basic details as well as an optional Note.
 
 Details:
 * Name
@@ -76,25 +76,41 @@ Details:
     * Qualifications
 
 Format:
-`add_tutor n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS... <s/SUBJECT_NAME r/RATE l/EDUCATION_LEVEL y/YEARS q/QUALIFICATIONS> note/NOTE`
+`add_tutor n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS... <s/SUBJECT_NAME r/RATE l/EDUCATION_LEVEL y/YEARS q/QUALIFICATIONS> notes/NOTE`
 
 Example Input:
-`add_tutor n/John Doe p/98765432 e/johnd@example.com g/Male a/John street, block 123, #01-01 s/English r/50 l/Sec 3 y/5 q/A-Level s/Mathematics r/60 l/Sec 4 y/6 q/A-Level note/Patient`
+`add_tutor n/John Doe p/98765432 e/johnd@example.com g/Male a/John street, block 123, #01-01 s/English r/50 l/Sec 3 y/5 q/A-Level s/Mathematics r/60 l/Sec 4 y/6 q/A-Level notes/Patient`
 
 ### List all tutors: `list_tutors`
 
-View a list of all tutors known.
+View a list of all tutors known. Will ignore all input after `list_tutors`.
 
 Example Output:
 ```
-1) John Doe
-2) Jane Doe
-3) Peter Ng
+1. Alex Yeoh
+87438807
+Blk 30 Geyland Street 29, #06-40
+alexyeoh@example.com
+Mathematics
+    Level:Secondary 4
+    Rate:SGD60/hr
+    Experience:5 years
+    Qualification:A-Level
+
+2.John Doe
+98765432
+John street, block 123, #01-01
+johnd@example.com
+English
+    Level: Sec 3
+    Rate: SGD60/hr
+    Experience: 6 years
+    Qualification: Bacholar of English Literature
 ```
 
 ### Deleting a tutor: `delete_tutor`
 
-Delete a tutor by index.
+Delete a tutor by index. 
 
 Format: `delete_tutor INDEX`
 
@@ -104,9 +120,9 @@ Example: `delete_tutor 1`
 
 Edit a tutor's information by index. Only the attributes present are changed in the tutor.
 
-Format: `edit_tutor INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GENDER] [a/ADDRESS] [<s/SUBJECT_NAME r/RATE l/EDUCATION_LEVEL y/YEARS q/QUALIFICATIONS>] note/NOTES`
+Format: `edit_tutor INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [g/GENDER] [a/ADDRESS] [<s/SUBJECT_NAME r/RATE l/EDUCATION_LEVEL y/YEARS q/QUALIFICATIONS>] notes/NOTES`
 
-Example: `edit_tutor 1 p/99824314 s/English r/50 l/Secondary 5 y/9 q/A-Level note/Impatient`
+Example: `edit_tutor 1 p/99824314 s/English r/50 l/Secondary 5 y/9 q/A-Level notes/Impatient`
 
 ### Viewing a tutor: `view_tutor`
 
@@ -123,7 +139,7 @@ John Doe
 John street, block 123, #01-01
 johnd@example.com
 Subjects:
-1. English
+English
     Level: Sec 3
     Rate: SGD60/hr
     Experience: 6 years
@@ -145,7 +161,7 @@ John Doe
 John street, block 123, #01-01
 johnd@example.com
 Subjects:
-1. English
+English
     Level: Sec 3                     
     Rate: SGD60/hr
     Experience: 6 years
@@ -171,7 +187,7 @@ John Doe
 John street, block 123, #01-01
 johnd@example.com
 Subjects:
-1. English
+English
     Level: Sec 3                     
     Rate: SGD60/hr
     Experience: 6 years
@@ -191,7 +207,7 @@ Format: `delete_note INDEX NOTE`
 Example: `delete_note 1`
 
 ### List tutors with note `list_note`
-Lists all the tutor with note
+Lists all the tutor with note. Will ignore all input after `list_mote`.
 
 Format:`list_note`
 
@@ -220,7 +236,7 @@ John Doe *
 John street, block 123, #01-01
 johnd@example.com
 Subjects:
-1. English
+English
     Level: Sec 3
     Rate: SGD60/hr
     Experience: 6 years
