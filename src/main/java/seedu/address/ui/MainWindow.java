@@ -36,6 +36,7 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private NotifWindow notifWindow;
+    private NotesWindow notesWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -73,6 +74,8 @@ public class MainWindow extends UiPart<Stage> {
         helpWindow = new HelpWindow();
 
         notifWindow = new NotifWindow(getPrimaryStage());
+
+        notesWindow = new NotesWindow(getPrimaryStage());
 
     }
 
@@ -169,6 +172,16 @@ public class MainWindow extends UiPart<Stage> {
         logger.info("Displaying notif window...");
     }
 
+    /**
+     * Displays notes to the user.
+     */
+    @FXML
+    public void handleNotes(String notes) {
+        notesWindow.setContentText(notes);
+        notesWindow.showAndWait();
+        logger.info("Displaying notes window...");
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -183,21 +196,6 @@ public class MainWindow extends UiPart<Stage> {
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
-    }
-
-    /**
-     * Displays notes to the user.
-     */
-    @FXML
-    public void handleNotes(String notes) {
-        notifWindow = new Alert(Alert.AlertType.INFORMATION);
-        notifWindow.getDialogPane().getStylesheets().add("view/DarkTheme.css");
-        notifWindow.initOwner(getPrimaryStage());
-        notifWindow.setTitle("Notes");
-        notifWindow.setHeaderText("Here are your notes:");
-        notifWindow.setContentText(notes);
-        notifWindow.showAndWait();
-        logger.info("Displaying notes window...");
     }
 
     public PersonListPanel getPersonListPanel() {
