@@ -9,51 +9,53 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Wang Yuchen
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/w-yuchen.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/w-yuchen)]
+[[portfolio](team/w-yuchen.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Documentation, Testing
 
-### Jean Doe
+### Yeoh Hsin Ying Candice
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/candyhy.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/candyhy)]
+[[portfolio](team/candyhy.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Scheduling and tracking
+
+### Tan Jun Wei
+
+<img src="images/w2vgd.png" width="200px">
+
+[[github](http://github.com/w2vgd)]
+[[portfolio](team/w2vgd.md)]
+
+* Role: Team Lead, Developer
+* Responsibilities: Deliverables and deadlines
+
+
+### David Au Wei En
+
+<img src="images/dvdweien.png" width="200px">
+
+[[github](http://github.com/dvdweien)]
+[[portfolio](team/dvdweien.md)]
+
+* Role: Developer
+* Responsibilities: Integration
+
+### Cao Peng
+
+<img src="images/cp-john.png" width="200px">
+
+[[github](http://github.com/cp-john)]
+[[portfolio](team/cp-john.md)]
+
+* Role: Developer
+* Responsibilities: Code Quality

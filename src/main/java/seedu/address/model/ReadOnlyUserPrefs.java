@@ -10,7 +10,7 @@ import seedu.address.commons.core.GuiSettings;
 public interface ReadOnlyUserPrefs {
 
     GuiSettings getGuiSettings();
-
-    Path getAddressBookFilePath();
+    Path getAppointmentBookFilePath();
+    Path getPropertyBookFilePath();
 
 }
