@@ -134,7 +134,8 @@ public class MainWindow extends UiPart<Stage> {
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
         contactListPanel = new ContactListPanel(logic.getFilteredContactList());
-        projectDisplayPanel = new ProjectDisplayPanel(this);
+        projectDisplayPanel = new ProjectDisplayPanel();
+        projectDisplayPanel.setMainWindow(this);
     }
 
     /**

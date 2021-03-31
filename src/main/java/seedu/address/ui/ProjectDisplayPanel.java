@@ -47,6 +47,8 @@ public class ProjectDisplayPanel extends UiPart<Region> {
     private final ListView<Event> eventListView = new ListView<>();
     private final ListView<CompletableDeadline> completableDeadlineListView = new ListView<>();
 
+    private MainWindow mainWindow = null;
+
     @FXML
     private Label projectName;
     @FXML
@@ -63,14 +65,14 @@ public class ProjectDisplayPanel extends UiPart<Region> {
     /**
      * Creates a {@code ProjectDisplayPanel}.
      */
-    public ProjectDisplayPanel(MainWindow mainWindow) {
+    public ProjectDisplayPanel() {
         super(FXML);
 
         tabPane.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue.equals(OVERVIEW_TAB)) {
-                mainWindow.setFeedbackToUser(ViewOverviewCommand.MESSAGE_SUCCESS);
+                setFeedbackToUser(ViewOverviewCommand.MESSAGE_SUCCESS);
             } else if (newValue.equals(TODOS_TAB)) {
-                mainWindow.setFeedbackToUser(ViewTodosCommand.MESSAGE_SUCCESS);
+                setFeedbackToUser(ViewTodosCommand.MESSAGE_SUCCESS);
             }
         });
     }
@@ -155,6 +157,12 @@ public class ProjectDisplayPanel extends UiPart<Region> {
         }
     }
 
+    private void setFeedbackToUser(String feedbackToUser) {
+        if (mainWindow != null) {
+            mainWindow.setFeedbackToUser(feedbackToUser);
+        }
+    }
+
     /**
      * Displays the overview tab.
      */
@@ -167,6 +175,10 @@ public class ProjectDisplayPanel extends UiPart<Region> {
      */
     public void showTodosTab() {
         tabPane.getSelectionModel().select(TODOS_TAB);
+    }
+
+    public void setMainWindow(MainWindow mainWindow) {
+        this.mainWindow = mainWindow;
     }
 
     /**
