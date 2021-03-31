@@ -43,6 +43,14 @@ DietLAH! is a **desktop app with a Command-Line Interface (CLI) that allows user
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Understanding the User Guide
+To make the User Guide more comprehensible, certain formatting is used in the guide. Familiarising yourself with these formattings may help you get the most out of the User Guide.
+Legend | Description
+--------|------------------
+`Inline code` | Commands and user input
+[Tip - to be updated] | Extra information that may be useful
+[Important - to be updated] | Important information to take note of
+
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -56,7 +64,7 @@ DietLAH! is a **desktop app with a Command-Line Interface (CLI) that allows user
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Here are some quick commands to get you started:
 
-   * **`bmi`**`h/150 w/70 i/75`: Initializes the current user BMI with height of 150cm, weight of 70kg and ideal weight of 75kg.
+   * **`bmi`**`h/150 w/70 i/75`: Initialises the current user BMI with height of 150cm, weight of 70kg and ideal weight of 75kg.
 
    * **`bmi`**`query`: Queries the current user's BMI with its height and weight information.
 
