@@ -13,6 +13,9 @@ public class Messages {
     public static final String MESSAGE_APPOINTMENT_IS_LISTED = " along with an appointment!";
     public static final String MESSAGE_ALL_STUDENTS_AND_APPOINTMENT_ARE_LISTED =
             " All students and appointments are listed!";
+    public static final String MESSAGE_STUDENTS_AND_APPOINTMENT_FOUND =
+            "Found student with matriculation number %s \n"
+            + "Their appointment is also listed if they have one";
     public static final String MESSAGE_NONEXISTENT_APPOINTMENT = "No appointment is found!";
     public static final String MESSAGE_OUT_OF_INDEX = "The index requested does not exist!";
 }

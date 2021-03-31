@@ -1,6 +1,7 @@
 package seedu.student.model.appointment;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.student.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
 import java.util.Iterator;
@@ -88,12 +89,23 @@ public class SameDateAppointmentList implements Iterable<Appointment>, Comparabl
     }
 
     /**
-     * Replaces the student {@code target} in the list with {@code editedStudent}.
+     * Replaces the appointment {@code target} in the list with {@code editedAppointment}.
      * {@code target} must exist in the list.
-     * The student identity of {@code editedStudent} must not be the same as another existing student in the list.
+     * The appointment identity of {@code editedAppointment} must not be the same as another existing appointment
+     * in the list.
      */
     public void setAppointment(Appointment target, Appointment editedAppointment) {
-        // TODO
+        requireAllNonNull(target, editedAppointment);
+        int index = internalList.indexOf(target);
+        assert index != -1;
+        if (!target.isSameAppointment(editedAppointment) && contains(editedAppointment)) {
+            //if the original appointment is not the same as the edited appointment, AND the list already contains
+            //the duplicate appointment
+            throw new DuplicateAppointmentException();
+        }
+
+        internalList.set(index, editedAppointment);
+        FXCollections.sort(internalList);
     }
 
     /**
@@ -165,5 +177,14 @@ public class SameDateAppointmentList implements Iterable<Appointment>, Comparabl
     @Override
     public int compareTo(SameDateAppointmentList o) {
         return date.compareTo(o.date);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (Appointment a : internalList) {
+            sb.append(a);
+        }
+        return sb.toString();
     }
 }

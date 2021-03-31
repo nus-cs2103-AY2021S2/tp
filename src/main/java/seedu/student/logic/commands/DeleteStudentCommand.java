@@ -15,7 +15,7 @@ import seedu.student.model.student.Student;
  */
 public class DeleteStudentCommand extends Command {
 
-    public static final String COMMAND_WORD = "deleteStud";
+    public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the student identified by their unique matriculation number assigned by NUS.\n"
