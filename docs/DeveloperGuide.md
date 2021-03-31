@@ -165,7 +165,7 @@ The `UI` component,
 **API** :
 [`Logic.java`](https://github.com/AY2021S2-CS2103T-W15-2/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
-1. `Logic` uses the `AddressBookParser` class to parse the user command.
+1. `Logic` uses the `ClientBookParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
 1. The command execution can affect the `Model` (e.g. adding a client contact).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
@@ -233,7 +233,7 @@ Below is an example usage scenario and how the information and data are passed a
 
 **Step 2.** `MainWindow` receives the `commandText` (`policy 1`), which is then executed by `LogicManager`.
 
-**Step 3.** `AddressBookParser` then parses the full `commandText`, returning a `Command`. In this case, it would return a 
+**Step 3.** `ClientBookParser` then parses the full `commandText`, returning a `Command`. In this case, it would return a 
 `PolicyCommand`, which would contain the index of the selected client in the displayed list (which in this case is 1).
 
 **Step 4.** `PolicyCommand`then executes, returning a `CommandResult`. This `CommandResult` contains the concatenated string 
