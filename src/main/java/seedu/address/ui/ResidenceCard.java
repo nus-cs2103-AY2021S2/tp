@@ -93,7 +93,9 @@ public class ResidenceCard extends UiPart<Region> {
                         new CornerRadii(0.0),
                         new Insets(0.0))));
             }
-            bookingListPane.getChildren().add(label);
+            HBox holder = new HBox();
+            holder.getChildren().add(label);
+            bookingListVBox.getChildren().add(holder);
         }
     }
 
