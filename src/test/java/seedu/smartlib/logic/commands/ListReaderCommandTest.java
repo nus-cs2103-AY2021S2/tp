@@ -36,4 +36,5 @@ public class ListReaderCommandTest {
         showReaderAtIndex(model, INDEX_FIRST_READER);
         assertCommandSuccess(new ListReaderCommand(), model, ListReaderCommand.MESSAGE_SUCCESS, expectedModel);
     }
+
 }
