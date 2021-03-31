@@ -1,0 +1,18 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor #grey
+skinparam classBackgroundColor #grey
+
+interface Observable <<Interface>> #grey
+interface Observer <<Interface>> #grey
+class CalendarPanel UI_COLOR
+class ObservableCalendarDate MODEL_COLOR
+class Planner MODEL_COLOR
+
+Planner *-[MODEL_COLOR]> "1" ObservableCalendarDate
+ObservableCalendarDate .[MODEL_COLOR].|> Observable
+CalendarPanel .[UI_COLOR].|> Observer
+Observable -> "*" Observer
+
+@enduml
