@@ -278,6 +278,7 @@ public class ModelManager implements Model {
         boolean status = smartLib.returnBook(readerName, barcode);
         updateFilteredReaderList(PREDICATE_SHOW_ALL_READERS);
         updateFilteredBookList(PREDICATE_SHOW_ALL_BOOKS);
+        updateFilteredRecordList(PREDICATE_SHOW_ALL_RECORDS);
         return status;
     }
 
@@ -384,24 +385,29 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Returns the barcode of the first copy of the specified book borrowed by the reader in SmartLib.
+     * Returns the book name of the book with the corresponding barcode borrowed by the reader in SmartLib.
      *
-     * @param bookName   name of the book to be borrowed
-     * @param readerName name of the reader who borrowed the book
-     * @return the barcode of the first such book in SmartLib
+     * @param barcode barcode of the book to be returned
+     * @return the book name of the book with the corresponding barcode in SmartLib
      */
     @Override
-    public Barcode getBookBarcodeForReturn(Name bookName, Name readerName) {
-        ArrayList<Book> books = smartLib.getBooksByName(bookName);
-        requireNonNull(books);
+    public Name getBookNameForReturn(Barcode barcode) {
+        Book book = smartLib.getBookByBarcode(barcode);
+        requireNonNull(book);
+        return book.getName();
+    }
 
-        for (Book b : books) {
-            if (b.getBorrowerName() != null && b.getBorrowerName().equals(readerName)) {
-                return b.getBarcode();
-            }
-        }
-
-        return null;
+    /**
+     * Returns the reader name of the reader who has borrowed the book with the corresponding barcode in SmartLib.
+     *
+     * @param barcode barcode of the book to be returned
+     * @return the reader name of the reader who has borrowed the book with the corresponding barcode in SmartLib
+     */
+    @Override
+    public Name getReaderNameForReturn(Barcode barcode) {
+        Reader reader = smartLib.getReaderByBarcode(barcode);
+        requireNonNull(reader);
+        return reader.getName();
     }
 
     /**
@@ -506,7 +512,9 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return smartLib.equals(other.smartLib)
                 && userPrefs.equals(other.userPrefs)
-                && filteredReaders.equals(other.filteredReaders);
+                && filteredReaders.equals(other.filteredReaders)
+                && filteredBooks.equals(other.filteredBooks)
+                && filteredRecords.equals(other.filteredRecords);
     }
 
 }

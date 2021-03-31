@@ -20,6 +20,8 @@ import seedu.smartlib.model.tag.Tag;
  */
 public class Reader {
 
+    public static final Name TEMP_READERNAME = new Name("reader");
+
     // Identity fields
     private final Name name;
     private final Phone phone;

@@ -2,15 +2,14 @@ package seedu.smartlib.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.smartlib.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_BOOK;
-import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_READER;
+import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_BARCODE;
 
 import java.time.LocalDateTime;
 import java.util.stream.Stream;
 
-import seedu.smartlib.commons.core.name.Name;
 import seedu.smartlib.logic.commands.ReturnCommand;
 import seedu.smartlib.logic.parser.exceptions.ParseException;
+import seedu.smartlib.model.book.Barcode;
 import seedu.smartlib.model.record.DateReturned;
 import seedu.smartlib.model.record.IncompleteRecord;
 
@@ -29,18 +28,17 @@ public class ReturnCommandParser implements Parser<ReturnCommand> {
      */
     public ReturnCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_BOOK, PREFIX_READER);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_BARCODE);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_BOOK, PREFIX_READER)
+        if (!arePrefixesPresent(argMultimap, PREFIX_BARCODE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReturnCommand.MESSAGE_USAGE));
         }
 
-        Name bookName = ParserUtil.parseName(argMultimap.getValue(PREFIX_BOOK).get());
-        Name readerName = ParserUtil.parseName(argMultimap.getValue(PREFIX_READER).get());
+        Barcode bookBarcode = ParserUtil.parseBarcode(argMultimap.getValue(PREFIX_BARCODE).get());
 
         DateReturned dateReturned = new DateReturned(LocalDateTime.now());
-        IncompleteRecord record = new IncompleteRecord(bookName, readerName, dateReturned);
+        IncompleteRecord record = new IncompleteRecord(bookBarcode, dateReturned);
 
         return new ReturnCommand(record);
     }

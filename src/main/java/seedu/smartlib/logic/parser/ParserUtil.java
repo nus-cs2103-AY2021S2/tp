@@ -11,6 +11,7 @@ import seedu.smartlib.commons.core.name.Name;
 import seedu.smartlib.commons.util.StringUtil;
 import seedu.smartlib.logic.parser.exceptions.ParseException;
 import seedu.smartlib.model.book.Author;
+import seedu.smartlib.model.book.Barcode;
 import seedu.smartlib.model.book.Genre;
 import seedu.smartlib.model.book.Isbn;
 import seedu.smartlib.model.book.Publisher;
@@ -150,7 +151,7 @@ public class ParserUtil {
      *
      * @param author the given author to be parsed.
      * @return an Author object made up of the given author.
-     * @throws ParseException if the given {@code name} is invalid.
+     * @throws ParseException if the given {@code author} is invalid.
      */
     public static Author parseAuthor(String author) throws ParseException {
         requireNonNull(author);
@@ -167,7 +168,7 @@ public class ParserUtil {
      *
      * @param isbn the given ISBN to be parsed.
      * @return an Isbn object made up of the given ISBN.
-     * @throws ParseException if the given {@code name} is invalid.
+     * @throws ParseException if the given {@code isbn} is invalid.
      */
     public static Isbn parseIsbn(String isbn) throws ParseException {
         requireNonNull(isbn);
@@ -184,7 +185,7 @@ public class ParserUtil {
      *
      * @param publisher the given publisher to be parsed.
      * @return a Publisher object made up of the given publisher.
-     * @throws ParseException if the given {@code name} is invalid.
+     * @throws ParseException if the given {@code publisher} is invalid.
      */
     public static Publisher parsePublisher(String publisher) throws ParseException {
         requireNonNull(publisher);
@@ -201,7 +202,7 @@ public class ParserUtil {
      *
      * @param genre the given genre to be parsed.
      * @return a Genre object made up of the given genre.
-     * @throws ParseException if the given {@code name} is invalid.
+     * @throws ParseException if the given {@code genre} is invalid.
      */
     public static Genre parseGenre(String genre) throws ParseException {
         requireNonNull(genre);
@@ -210,6 +211,23 @@ public class ParserUtil {
             throw new ParseException(Genre.MESSAGE_CONSTRAINTS);
         }
         return new Genre(new Name(trimmedGenre));
+    }
+
+    /**
+     * Parses a {@code String Barcode} into a {@code Barcode}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param barcode the given BARCODE to be parsed.
+     * @return an Barcode object made up of the given BARCODE.
+     * @throws ParseException if the given {@code barcode} is invalid.
+     */
+    public static Barcode parseBarcode(String barcode) throws ParseException {
+        requireNonNull(barcode);
+        String trimmedBarcode = barcode.trim();
+        if (!Barcode.isValidBarcode(Integer.parseInt(trimmedBarcode))) {
+            throw new ParseException(Barcode.MESSAGE_CONSTRAINTS);
+        }
+        return new Barcode(Integer.parseInt(trimmedBarcode));
     }
 
 }

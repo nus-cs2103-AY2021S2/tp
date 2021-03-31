@@ -301,12 +301,29 @@ public class SmartLib implements ReadOnlySmartLib {
      * @param barcode Book's barcode.
      * @return Book Object, null if does not exist.
      */
-    private Book getBookByBarcode(Barcode barcode) {
+    public Book getBookByBarcode(Barcode barcode) {
         requireNonNull(barcode);
         assert(Barcode.isValidBarcode(barcode.getValue()));
         for (Book book: books) {
             if (book.getBarcode().equals(barcode)) {
                 return book;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Retrieves the Reader object whose name is paired with the given barcode in the record.
+     *
+     * @param barcode Book's barcode borrowed by the reader.
+     * @return Reader Object, null if does not exist.
+     */
+    public Reader getReaderByBarcode(Barcode barcode) {
+        requireNonNull(barcode);
+        assert(Barcode.isValidBarcode(barcode.getValue()));
+        for (Reader reader : readers) {
+            if (reader.getBorrows().containsKey(getBookByBarcode(barcode))) {
+                return reader;
             }
         }
         return null;
