@@ -203,6 +203,11 @@ Format: `search t/KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `search t/science` returns students with the tag `SCIENCE` and `science`
 
+### Sorting contacts: `sort`
+Sorting for student’s contacts by name, school, tags or lessons.
+
+Format: `search n/`, `search s/`, `search t/` or `search l/`
+
 ### Viewing a contact details: `detail`
 
 View the full details of the specified student's contact from TutorsPet.
