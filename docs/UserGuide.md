@@ -22,6 +22,7 @@ Donavan Lim, Marcus Lee Eugene, Chong Sidney, Dinesh S/O Magesvaran, Prabhakaran
         * help
         * view
         * revise
+        * edit
     * Command Summary
     * UI mock-up
 
@@ -62,7 +63,9 @@ Example:
 
 Adds an entry to the Food Diary.
 
-Format: `add n/<RESTAURANT NAME> ra/<RATING> p/<PRICE> re/<REVIEW> a/<ADDRESS> c/<CATEGORIES>`
+Format: `add n/<RESTAURANT NAME> ra/RATING p/PRICE re/REVIEW a/ADDRESS [c/CATEGORY]... [s/SCHOOL]...`
+
+- A FoodDiary entry can have any number of categories or schools
 
 Parameters:
 
@@ -71,30 +74,31 @@ Parameters:
 3. `Price`
 3. `Address`
 4. `Review`
-5. `Categories (tag)`
+5. `Category`
+6. `School`
 
 
 Example:
 
-    add  n/Al Amaan Restaurant ra/5 p/8 re/best for Butter Chicken a/12 Clementi Rd, Singapore 129742 c/Indian Muslim
+    add  n/Al Amaan Restaurant ra/5 p/8 re/best for Butter Chicken a/12 Clementi Rd, Singapore 129742 c/Indian Muslim s/FOE
 
 ### Addon a review or a price to an entry: `addon`
 Adds-on a review and/or a price to an entry of the Food Diary.
 
-Format: `addon <INDEX> re/<REVIEW> p/<PRICE>` or `addon <INDEX> p/<PRICE> re/<REVIEW>`
+Format: `addon <INDEX> [re/REVIEW] [p/PRICE]` or `addon <INDEX> [p/PRICE] [re/REVIEW]...`
 
 Parameters: 
 
 1. `Index`
 2. `Review` or `Price` or both.
 
-- Adds on a review and/or a price to an entry at the specified `INDEX`. The index
-refers to the index number shown in the displayed entry list. The index must be a
-  positive integer (e.g. 1, 2, 3, ...).
-- At least one of the optional fields must be provided.
-- Existing reviews in the entry (at the specified `INDEX`) will be added on to the input reviews.
-- Existing price/price range in the entry (at the specified `INDEX`) will be updated with consideration
-to the input price on top of the existing price.
+- Adds on a review and/or a price to an entry at the specified `INDEX`.
+- Index refers to the index number shown in the displayed entry list. The index must be a
+  positive integer (e.g. 1,2,3,...)
+- At least one of the optional fields must be provided
+- Existing reviews in the FoodDiary entry (at the specified `INDEX`) will be added on to the input reviews
+- Existing price/price range in the FoodDiary entry (at the specified `INDEX`) will be updated according the 
+input price
 
 Examples:
 
@@ -119,7 +123,7 @@ Example:
 
 ### Find entries generally: `find`
 
-Finds entries whose names, ratings, price, address and categories match any of the provided keywords.
+Finds entries whose names, ratings, price, address, categories and schools match any of the provided keywords.
 
 - More than one keyword per field can be accepted as parameters.
 - Different fields can also be simultaneously accepted as parameters.
@@ -136,10 +140,10 @@ Keyword(s) of any number and sequence:
 4. `$Price-Price`
 5. `Address`
 6. `Categories`
-
+7. `Schools`
 
 Example:
-  
+
     find techno
     find science fass
     find fastfood indian $6
@@ -147,7 +151,7 @@ Example:
 
 ### Find specific entries: `findall`
 
-Finds for entries whose names, ratings, price, address and categories match all of the provided keywords.
+Finds for entries whose names, ratings, price, address, categories and schools match all of the provided keywords.
 
 - More than one keyword per field can be accepted as parameters.
 - Different fields can also be simultaneously accepted as parameters.
@@ -166,12 +170,13 @@ Keyword(s) of any number and sequence:
 4. `$Price-Price`
 5. `Address`
 6. `Categories`
+7. `Schools`
 
 Example:
 
     findall clementi fastfood 5/5 $9
 
-### View a specific entry
+### View a specific entry: `view`
 
 Opens up a window, showing the details of a specified entry in a full expanded view. Allows the user to read through
  reviews that are too lengthy to be shown in the main UI window.
@@ -182,11 +187,12 @@ Parameter:
 
 1. `Index of entry`
 
-Example: (Refer to View Window Ui in Appendix)
+Example: 
 
     view 1
+![View Window UI](images/ViewWindowUi.png)
 
-### View all the food reviews : `list`
+### List all the food reviews : `list`
 
 Opens up a window to show a condensed form of all the different commands,
  and parameters of the commands,
@@ -199,11 +205,22 @@ Parameter: none
 Example: (Refer to Help Window in Appendix)
 
     help
+    
+### Help Window UI
+![Help Window UI](images/HelpWindowUi.png)
 
-### Revise a specific entry
+### Revise a specific entry `revise`
 
-Opens up a window, showing the existing details of an entry and allowing for quick corrections and updates without
- requiring the use of prefixes and command syntax in the UI.
+Opens up a window, showing the existing details of an entry and allows for quick corrections and updates without 
+requiring the use of prefixes and command syntax in the UI. 
+
+Use `TAB` key to iterate through fields, `Ctrl + S` (Windows) or `Command + S` (Mac) to save, `ESC` key to quickly 
+exit the revise window.
+
+Note:
+- Leave a white-space between categories to separate them
+- Leave a white-space between schools to separate them
+- Leave a blank line to differentiate between each reviews
 
 Format: `revise <INDEX>`
 
@@ -215,6 +232,27 @@ Example:
 
     revise 1
 
+![Revise Window UI](images/ReviseWindowUi.png)
+
+### Editing a specific entry `edit`
+
+Edits the details of the entry specified. Existing values will be overwritten by the new values.
+
+Format: `edit <INDEX> n/<RESTAURANT NAME> ra/<RATING> p/<PRICE> re/<REVIEW> a/<ADDRESS> c/<CATEGORIES> s/<SCHOOLS>`
+
+Parameters:
+
+1. `Restaurant Name`
+2. `Rating`
+3. `Price`
+3. `Address`
+4. `Review`
+5. `Categories (tag)`
+6. `Schools (tag)`
+
+Example:
+
+    edit 1 ra/5 p/7 re/I like this food a lot! a/Science c/Indian c/Halal s/Ventus
 -------------------------------------------------------------------------------------
 
 ## FAQ
@@ -240,17 +278,24 @@ Action | Format, Examples
 **Help** | `help`
 **View** |`view <INDEX>` <br> e.g `view 1`
 **Revise** |`revise <INDEX>` <br> e.g `revise 1`
+**Edit** |`edit <INDEX> n/<RESTAURANT NAME> ra/<RATING> p/<PRICE> re/<REVIEW> a/<ADDRESS> c/<CATEGORIES> s/<SCHOOLS>` <br> e.g `edit 1 ra/5 p/7 re/I like this food a lot! a/Science c/Indian c/Halal s/Ventus`
 
-## <center> Appendix </center>
+## Keyboard Shortcuts Summary
 
-### Main Window UI
+Action | Keyboard Shortcut| Windows where Keyboard shortcut is available
+:-------:|:------------------:|:---------------------------------------------:
+**Exit/Close Window** | `ESC` | Main Window, View Window, Revise Window, Help Window
+**Open Help Window** | `F1` | Main Window 
+**Skip through text fields in Revise Window** | `TAB` | Revise Window 
+**Save Changes in Revise Window** | `Ctrl + S (Windows OS)` or `Command + S (macOS)` | Revise Window
+
+## Glossary 
+
+- **Main Window:** The Window that appears when the application starts up
+- **View Window:** The Window that appears when viewing a FoodDiary entry through the `view` command
+- **Revise Window** The Window that appears when revising a FoodDairy entry through the `edit` command
+
+
+### UI mock-up
 
 ![Main Window UI](images/Ui.png)
-
-### Help Window UI
-
-![Help Window UI](images/HelpWindowUi.png)
-
-### View Window UI
-
-![View Window UI](images/ViewWindowUi.png)
