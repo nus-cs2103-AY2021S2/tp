@@ -695,7 +695,6 @@ Action | Format, Examples
 **Delete Deadline from Project** | `deleteD PROJECT_INDEX i/DEADLINE_INDEX`
 **Delete Event from Project** | `deleteE PROJECT_INDEX i/EVENT_INDEX`
 **Delete Groupmate from Project** | `deleteG PROJECT_INDEX i/GROUPMATE_INDEX`
-**Delete Participant from Project** | `deleteG PROJECT_INDEX i/GROUPMATE_INDEX`
 **Delete Todo from Project** | `deleteT PROJECT_INDEX i/TODO_INDEX`
 
 ### Contacts
