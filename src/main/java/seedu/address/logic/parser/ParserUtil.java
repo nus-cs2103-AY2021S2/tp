@@ -16,6 +16,7 @@ import seedu.address.model.common.Description;
 import seedu.address.model.common.Title;
 import seedu.address.model.grade.GradeEnum;
 import seedu.address.model.grade.GradedItem;
+import seedu.address.model.reminder.ReminderDate;
 import seedu.address.model.subject.SubjectExperience;
 import seedu.address.model.subject.SubjectLevel;
 import seedu.address.model.subject.SubjectList;
@@ -389,5 +390,20 @@ public class ParserUtil {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
         return new Description(trimmedDescription);
+    }
+
+    /**
+     * Parses a {@code String date} into a {@code ReminderDate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code date} is invalid.
+     */
+    public static ReminderDate parseDate(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDate = date.trim().toUpperCase();
+        if (!ReminderDate.isValidDate(trimmedDate)) {
+            throw new ParseException(ReminderDate.MESSAGE_CONSTRAINTS);
+        }
+        return new ReminderDate(trimmedDate);
     }
 }

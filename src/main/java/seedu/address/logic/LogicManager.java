@@ -78,6 +78,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ObservableList<Event> getFilteredEventList() {
+        return model.getFilteredEventList();
+    }
+
+    @Override
     public ObservableList<Grade> getFilteredGradeList() {
         return model.getFilteredGradeList();
     }
@@ -95,11 +100,6 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<String> getAppointmentFilterStringList() {
         return model.getAppointmentFilterStringList();
-    }
-
-    @Override
-    public ObservableList<Event> getFilteredEventList() {
-        return model.getFilteredEventList();
     }
 
     @Override
