@@ -146,6 +146,25 @@ public class RecurringSession extends Session {
         return (firstInSpan.numOfDayTo(lastInSpan) / interval.getValue()) + 1;
     }
 
+    /**
+     * Creates a new {@RecurringSession} with the new {@code newSessionDate}.
+     * @param newSessionDate the new session date.
+     */
+    public RecurringSession changeStartDate(SessionDate newSessionDate) {
+        return new RecurringSession(newSessionDate, getDuration(), getSubject(),
+                getFee(), getInterval(), getLastSessionDate());
+    }
+
+    /**
+     * Creates a new {@RecurringSession} with the new {@code newLastSessionDate}.
+     * @param newLastSessionDate the new last session date.
+     */
+    public RecurringSession changeLastSessionDate(SessionDate newLastSessionDate) {
+        return new RecurringSession(getSessionDate(), getDuration(), getSubject(),
+                getFee(), getInterval(), newLastSessionDate);
+    }
+
+
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();

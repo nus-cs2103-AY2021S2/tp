@@ -6,8 +6,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.session.Interval;
+import seedu.address.model.session.RecurringSession;
 import seedu.address.model.session.Session;
+import seedu.address.model.session.SessionDate;
 
 /**
  * Represents a Student in the address book.
@@ -119,6 +124,37 @@ public class Student {
     public void removeSession(Index sessionIndex) {
         requireAllNonNull(sessionIndex);
         this.sessions.remove(sessionIndex.getZeroBased());
+    }
+
+    /**
+     * Deletes a tuition session from a recurring session of the student.
+     * @param sessionIndex (one-based) to be removed.
+     */
+    public void removeRecurringSession(Index sessionIndex, SessionDate sessionDate) {
+        requireAllNonNull(sessionIndex, sessionDate);
+        RecurringSession recurringSession = (RecurringSession) getListOfSessions().get(sessionIndex.getZeroBased());
+        Interval recurringInterval = recurringSession.getInterval();
+        SessionDate sessionStartDate = recurringSession.getSessionDate();
+        SessionDate sessionEndDate = recurringSession.getLastSessionDate();
+        if (sessionStartDate.equals(sessionDate)) {
+            getListOfSessions().set(sessionIndex.getZeroBased(),
+                    recurringSession.changeStartDate(sessionStartDate.addDays(recurringInterval.getValue())));
+        } else if (sessionEndDate.equals(sessionDate)) {
+            getListOfSessions().set(sessionIndex.getZeroBased(),
+                    recurringSession.changeLastSessionDate(sessionStartDate.minusDays(recurringInterval.getValue())));
+        } else {
+            recurringSession =
+                    recurringSession.changeLastSessionDate(sessionDate.minusDays(recurringInterval.getValue()));
+            getListOfSessions().set(sessionIndex.getZeroBased(), recurringSession);
+            SessionDate secondSessionStartDate = sessionDate.addDays(recurringInterval.getValue());
+            if (!secondSessionStartDate.equals(sessionEndDate)) {
+                RecurringSession secondRecurringSession =
+                        new RecurringSession(secondSessionStartDate, recurringSession.getDuration(),
+                                recurringSession.getSubject(), recurringSession.getFee(),
+                                recurringSession.getInterval(), sessionEndDate);
+                getListOfSessions().add(secondRecurringSession);
+            }
+        }
     }
 
     /**

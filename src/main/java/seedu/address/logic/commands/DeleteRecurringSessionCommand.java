@@ -29,7 +29,7 @@ public class DeleteRecurringSessionCommand extends Command {
             + " list of sessions and the date of the session\n"
             + "Parameters: n/FULLNAME i/INDEX (must be a positive integer belonging to a recurring session)"
             + " d/DATE t/TIME (must be a valid date and time of the recurring session)\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "John Doe " + PREFIX_INDEX + "1"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "John Doe " + PREFIX_INDEX + "1 "
             + PREFIX_DATE + "2021-03-30 " + PREFIX_TIME + "12:00";
 
     public static final String MESSAGE_DELETE_SESSION_OF_RECURRING_SESSION_SUCCESS =
@@ -69,8 +69,12 @@ public class DeleteRecurringSessionCommand extends Command {
         if (!(sessionToDelete instanceof RecurringSession)) {
             throw new CommandException(Messages.MESSAGE_INVALID_RECURRING_SESSION_INDEX);
         }
+        RecurringSession recurringSessionToDelete = (RecurringSession) sessionToDelete;
+        if (!recurringSessionToDelete.hasSessionOnDate(sessionDate)) {
+            throw new CommandException(Messages.MESSAGE_INVALID_DATE_OF_RECURRING_SESSION);
+        }
 
-        model.deleteSession(studentName, targetIndex);
+        model.deleteRecurringSession(studentName, targetIndex, sessionDate);
         return new CommandResult(String.format(MESSAGE_DELETE_SESSION_OF_RECURRING_SESSION_SUCCESS,
                 sessionToDelete.toString()));
     }
