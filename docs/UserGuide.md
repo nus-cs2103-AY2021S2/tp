@@ -73,7 +73,7 @@ Here are some important syntax to take note of to facilitate your reading before
 | **Bold** | Note-worthy keywords |
 | [Repeated Parameters] | Indicates the parameters/prefixes that may be repeated multiple times |
 | :bulb: | Indicates there is something important to take note of
-| :heave_exclamation_mark: | Indicates something that the user should take caution of. |
+| :heavy_exclamation_mark: | Indicates something that the user should take caution of. |
 
 ## Syntax Format
 
@@ -130,7 +130,7 @@ If this is your first time using Pawbook, follow these simple steps to jump stra
    the database.
 
 :bulb: Please refer to the features below for details of each command.
-:heave_exclamation_mark: Ensure that the pawbook.json file is not corrupted. If corrupted, Pawbook 
+:heavy_exclamation_mark: Ensure that the pawbook.json file is not corrupted. If corrupted, Pawbook 
 will not be able to use the data from JSON to build the list for usage. 
 
 ----
@@ -334,7 +334,9 @@ Examples:
 
 ### Find Command 
 
-Function: Shows the list of search results based on one/many keywords. 
+**Function**: Shows the list of search results based on one/many keywords. 
+**Usage**: When you want to find a particular entity (dog/owner/program), you can simply find them by their name. You
+can also find multiple entities by providing multiple keywords. This may be helpful when you want to see just one specific entity profile. 
 
 Format: 
 
