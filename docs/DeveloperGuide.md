@@ -65,7 +65,17 @@ for the `execute("deletecheese 1")` API call.
 
 ### Storage component
 
+![Structure of the Storage Component](images/StorageClassDiagram.png)
+
+**API** : [`Storage.java`](https://github.com/AY2021S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
+
+The `Storage` component,
+* can save `UserPref` objects in json format and read it back.
+* can save the address book data in json format and read it back.
+
 ### Common classes
+
+Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -151,9 +161,44 @@ To better illustrate the idea - take, for instance, when the user inputs `listch
 
 ![ListPanelTogglingSequenceDiagram](images/ListPanelTogglingSequenceDiagram.png)
 
---------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops** [In Progress]
+### Find Command
+
+#### Implementation
+
+The find command is used by the users to search for a `Cheese`, `Order` or `Customer`
+based on the given parameters. For example, a user can search for a `Customer` with
+the surname `Lee` in their database using the command. The command is facilitated
+by the `FindXCommandParser`, where `X` depends on the model that is concerned.
+
+Each `FindXCommandParser` creates a `FindXCommand` object which contains details on
+how the data should be filtered, sorted and displayed to the user.
+
+The `FindXCommand` contains a `FieldPredicate`, which defines how the model should be
+filtered and sorted. In the case of `Customer`s, which can be filtered by `Name`,
+`Phone` or `Email`, a `FieldPredicate` was defined for each of the specified field.
+Each `FieldPredicate` outlines how the filtering should be handled, for example,
+`Name`s should be filtered by partial keyword match (using prefix).
+
+The second part of the `FieldPredicate` is the `Comparator` that it implements.
+The comparator outlines the order of the results, to ensure that the most relevant
+results are displayed to the users at a higher priority. In the case of `Name`, the
+keyword "David" should rank the name "David" above the name "Davida", as a complete
+match is more relevant for users compared to a partial match.
+
+To facilitate filtering of the models by multiple fields, `CompositeFieldPredicate`
+takes in multiple `FieldPredicate`s and composes them. Each object in the list will
+be compared using all the predicates defined, and the results will be ranked by the
+sum of the relevance of each predicate.
+
+The following shows the structure of the `FieldPredicate` classes which will be used to
+filter and sort the different lists.
+
+![Architecture of the Find Command](images/find/FindPredicateClassDiagram.png)
+
+The diagram below shows how the `FindCommand`, specifically the `FindCheeseCommand` works:
+
+![Sequence of Find Command](images/find/FindCheeseCommandSequenceDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
 

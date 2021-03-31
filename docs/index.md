@@ -10,8 +10,8 @@ title: Cheese Inventory Management (CHIM)
 
 **Cheese Inventory Management (CHIM)** is a desktop CLI app for managing the inventory of a cheese making business.
 
-* If you are interested in using AddressBook, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
-* If you are interested about developing AddressBook, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
+* If you are interested in using CHIM, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
+* If you are interested about developing CHIM, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
 
 
 **Acknowledgements**
