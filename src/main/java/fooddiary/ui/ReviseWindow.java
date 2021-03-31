@@ -75,7 +75,6 @@ public class ReviseWindow extends UiPart<Stage> {
      */
     public ReviseWindow(Stage root) {
         super(FXML, root);
-        nameText.requestFocus();
         final KeyCombination activateRevise = new KeyCodeCombination(KeyCode.S, KeyCombination.SHORTCUT_DOWN);
         setReviseShortCut(activateRevise, reviseButton);
         final KeyCombination tabOverReviews = new KeyCodeCombination(KeyCode.TAB);
@@ -117,6 +116,7 @@ public class ReviseWindow extends UiPart<Stage> {
         logger.fine("Showing revise window of the specified entry.");
         getRoot().show();
         getRoot().centerOnScreen();
+        nameText.requestFocus();
     }
 
     /**
