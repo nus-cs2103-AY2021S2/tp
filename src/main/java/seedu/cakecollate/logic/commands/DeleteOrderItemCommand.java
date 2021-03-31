@@ -13,7 +13,7 @@ import seedu.cakecollate.model.Model;
 import seedu.cakecollate.model.orderitem.OrderItem;
 
 /**
- * Deletes a order identified using it's displayed index from the cakecollate.
+ * Deletes a order item identified using it's displayed index from the list of order items.
  */
 public class DeleteOrderItemCommand extends Command {
 
@@ -21,7 +21,7 @@ public class DeleteOrderItemCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the order items identified by the index number used in the displayed order item list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Parameters: ORDER_ITEM_INDEXES (must be positive integers)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_ORDER_SUCCESS = "Deleted Order Item: %1$s";

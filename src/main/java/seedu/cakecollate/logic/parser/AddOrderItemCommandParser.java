@@ -7,7 +7,7 @@ import seedu.cakecollate.logic.parser.exceptions.ParseException;
 import seedu.cakecollate.model.orderitem.OrderItem;
 
 /**
- * Parses input arguments and creates a new DeleteCommand object
+ * Parses input arguments and creates a new AddOrderItemCommand object
  */
 public class AddOrderItemCommandParser implements Parser<AddOrderItemCommand> {
 
