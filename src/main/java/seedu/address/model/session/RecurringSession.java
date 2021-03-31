@@ -150,7 +150,7 @@ public class RecurringSession extends Session {
      * Creates a new {@RecurringSession} with the new {@code newSessionDate}.
      * @param newSessionDate the new session date.
      */
-    public RecurringSession changeStartDate(SessionDate newSessionDate) {
+    public RecurringSession withStartDate(SessionDate newSessionDate) {
         return new RecurringSession(newSessionDate, getDuration(), getSubject(),
                 getFee(), getInterval(), getLastSessionDate());
     }
@@ -159,7 +159,7 @@ public class RecurringSession extends Session {
      * Creates a new {@RecurringSession} with the new {@code newLastSessionDate}.
      * @param newLastSessionDate the new last session date.
      */
-    public RecurringSession changeLastSessionDate(SessionDate newLastSessionDate) {
+    public RecurringSession withLastSessionDate(SessionDate newLastSessionDate) {
         return new RecurringSession(getSessionDate(), getDuration(), getSubject(),
                 getFee(), getInterval(), newLastSessionDate);
     }

@@ -121,8 +121,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes a {@code Session} with {@code sessionDate} from {@code sessionIndex} of {@code name}
-     * from this {@code AddressBook}.
+     * Removes a single {@code Session} with {@code sessionDate} from sessions of {@code name}
      * {@code name} and {@sessionIndex} must exist in the address book.
      * {@code sessionIndex} should belong to a {@code RecurringSession}.
      */

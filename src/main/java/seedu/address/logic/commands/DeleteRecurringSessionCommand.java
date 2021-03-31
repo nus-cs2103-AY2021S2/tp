@@ -18,7 +18,8 @@ import seedu.address.model.student.Student;
 
 /**
  * Deletes a session from a recurring session identified using it's displayed index from the address book, date, and
- * time of the session to be deleted.
+ * time of the session to be deleted. This command splits a recurring session into two recurring sessions into an
+ * earlier recurring session (if any) and a later recurring session (if any).
  */
 public class DeleteRecurringSessionCommand extends Command {
 

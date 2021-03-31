@@ -125,7 +125,8 @@ public class Student {
     }
 
     /**
-     * Deletes a tuition session from a recurring session of the student.
+     * Removes a single {@code Session} with {@code sessionDate}.
+     * Splits the remaining {@code RecurringSession} into two {@code RecurringSession}.
      * @param sessionIndex (one-based) to be removed.
      */
     public void removeRecurringSession(Index sessionIndex, SessionDate sessionDate) {
@@ -135,14 +136,18 @@ public class Student {
         SessionDate sessionStartDate = recurringSession.getSessionDate();
         SessionDate sessionEndDate = recurringSession.getLastSessionDate();
         if (sessionStartDate.equals(sessionDate)) {
-            getListOfSessions().set(sessionIndex.getZeroBased(),
-                    recurringSession.changeStartDate(sessionStartDate.addDays(recurringInterval.getValue())));
+            if (sessionEndDate.equals(sessionStartDate)) {
+                getListOfSessions().remove(sessionIndex.getZeroBased());
+            } else {
+                getListOfSessions().set(sessionIndex.getZeroBased(),
+                        recurringSession.withStartDate(sessionStartDate.addDays(recurringInterval.getValue())));
+            }
         } else if (sessionEndDate.equals(sessionDate)) {
             getListOfSessions().set(sessionIndex.getZeroBased(),
-                    recurringSession.changeLastSessionDate(sessionStartDate.minusDays(recurringInterval.getValue())));
+                    recurringSession.withLastSessionDate(sessionStartDate.minusDays(recurringInterval.getValue())));
         } else {
             recurringSession =
-                    recurringSession.changeLastSessionDate(sessionDate.minusDays(recurringInterval.getValue()));
+                    recurringSession.withLastSessionDate(sessionDate.minusDays(recurringInterval.getValue()));
             getListOfSessions().set(sessionIndex.getZeroBased(), recurringSession);
             SessionDate secondSessionStartDate = sessionDate.addDays(recurringInterval.getValue());
             if (!secondSessionStartDate.equals(sessionEndDate)) {
