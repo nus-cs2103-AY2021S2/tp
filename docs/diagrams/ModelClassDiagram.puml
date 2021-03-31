@@ -5,15 +5,12 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Interface ReadOnlyPropertyBook <<Interface>>
-Interface ReadOnlyAppointmentBook <<Interface>>
-Interface Model <<Interface>>
-Interface ObservableList <<Interface>>
+Class "<<Interface>>\nReadOnlyPropertyBook" as ReadOnlyPropertyBook
+Class "<<Interface>>\nReadOnlyAppointmentBook" as ReadOnlyAppointmentBook
+Class "<<Interface>>\nModel" as Model
+Class "<<Interface>>\nObservableList" as ObservableList
 Class PropertyBook
 Class AppointmentBook
-Class ReadOnlyPropertyBook
-Class ReadOnlyAppointmentBook
-Class Model
 Class ModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
