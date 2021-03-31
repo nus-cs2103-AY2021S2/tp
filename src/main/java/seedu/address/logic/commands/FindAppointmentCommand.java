@@ -14,7 +14,7 @@ import seedu.address.model.appointment.Appointment;
 public class FindAppointmentCommand extends Command {
     public static final String COMMAND_WORD = "findAppt";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all Appointment with names containing any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all Appointments with fields containing any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " lunch meeting ptm";

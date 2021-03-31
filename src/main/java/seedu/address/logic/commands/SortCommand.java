@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.OPTION_DATE;
+import static seedu.address.logic.parser.CliSyntax.OPTION_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OPTION;
 
 import java.sql.Timestamp;
@@ -15,15 +17,15 @@ import seedu.address.model.person.Person;
 public class SortCommand extends Command {
 
     public static final String COMMAND_WORD = "sort";
-    public static final String OPTION_ALPHABETICAL = "name";
-    public static final String OPTION_CHRONOLOGICAL = "date";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Sorts the list of persons in the address book.\n"
             + "Parameters: " + PREFIX_OPTION + "OPTION\n"
-            + "Options: name (for alphabetical order), date (for chronological order)\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION + OPTION_ALPHABETICAL + "\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION + OPTION_CHRONOLOGICAL;
+            + "Options: "
+            + OPTION_NAME + " (for alphabetical order),\n"
+            + OPTION_DATE + " (for chronological order)\n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION + OPTION_NAME + "\n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION + OPTION_DATE;
     public static final String MESSAGE_SORT_ALPHABETICAL_SUCCESS = "List has been sorted in alphabetical order.";
     public static final String MESSAGE_SORT_CHRONOLOGICAL_SUCCESS = "List has been sorted in chronological order.";
 
@@ -38,6 +40,7 @@ public class SortCommand extends Command {
         requireNonNull(model);
 
         String message;
+
 
         if (option.equals(OPTION_ALPHABETICAL)) {
             model.sortPersonList(new NameComparator());
