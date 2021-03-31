@@ -15,6 +15,8 @@ import seedu.address.model.entry.Entry;
  */
 public class EntryCard extends UiPart<Region> {
     private static final String FXML = "EntryListCard.fxml";
+    private static final DateTimeFormatter DEFAULT_FORMATTER =
+            DateTimeFormatter.ofPattern("E, dd MMM yyyy h:mm a");
 
     public final Entry entry;
 
@@ -27,10 +29,6 @@ public class EntryCard extends UiPart<Region> {
     @FXML
     private Label endDate;
     @FXML
-    private Label startTime;
-    @FXML
-    private Label endTime;
-    @FXML
     private FlowPane tags;
 
     /**
@@ -40,10 +38,17 @@ public class EntryCard extends UiPart<Region> {
         super(FXML);
         this.entry = entry;
         entryName.setText(entry.getEntryName().name);
-        startDate.setText("From: "
-                + entry.getStartDate().format(DateTimeFormatter.ofPattern("E, dd MMM yyyy h:mm a")));
-        endDate.setText("To: "
-                + entry.getEndDate().format(DateTimeFormatter.ofPattern("E, dd MMM yyyy h:mm a")));
+
+        if (entry.haveDifferentDates()) {
+            startDate.setText("From: "
+                    + entry.getStartDate().format(DEFAULT_FORMATTER));
+            endDate.setText("To: "
+                    + entry.getEndDate().format(DEFAULT_FORMATTER));
+        } else {
+            startDate.setText("");
+            endDate.setText("Date: " + entry.getEndDate().format(DEFAULT_FORMATTER));
+        }
+
         entry.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
