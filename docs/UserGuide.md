@@ -64,12 +64,24 @@ Parameters:
 3. `Price`
 3. `Address`
 4. `Review`
-5. `Categories (tag)`
+5. `Categories (optional)`
+6. `Schools (optional)`
+
+Schools are limited to the following NUS locations:
+    `BIZ`, `CLB`, `DENT`, `FASS`, `FOE`,`MED`, `NUSS`, `PGP`, `SCIENCE`, `SDE`, `SOC`,
+`USC`, `UTOWN`, `UHALL`, `VENTUS`, `YIH`
+
+Categories are limited to the following:
+    `Chinese`, `Dessert`, `Fastfood`, `Fruits`, `Fusion`, `Halal`, `Indian`, `Japanese`, `Korean`, `Malay`,
+`Vegan`, `Vegetarian` ,`Western`, `Others`
 
 
 Example:
 
     add  n/Al Amaan Restaurant ra/5 p/8 re/best for Butter Chicken a/12 Clementi Rd, Singapore 129742 c/Indian Muslim
+or
+
+    add  n/7 Eleven ra/3 p/4 re/Mac and cheese there is amazing a/NUS c/Halal s/YIH s/SOC
 
 ### Addon a review or a price to an entry: `addon`
 Adds-on a review and/or a price to an entry of the Food Diary.
