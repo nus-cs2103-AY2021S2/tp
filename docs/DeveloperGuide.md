@@ -37,6 +37,9 @@ title: Developer Guide
     * [Viewing a flashcard](#viewing-a-flashcard)
     * [Review mode](#review-mode)
     * [Displaying statistics](#displaying-statistics)
+    * [Undoing a command](#undoing-a-command)
+    * [Redoing a command](#redoing-a-command)
+    * [Adding an alias](#adding-an-alias)
 * [Appendix: Effort](#appendix-effort)
     * [Find feature](#find-feature)
     * [Filter feature](#filter-feature)
@@ -951,7 +954,7 @@ testers are expected to do more *exploratory* testing.
     
        Expected: No statistics will be displayed. An invalid command format error message will be shown on the result display. 
         
-### Undo a command
+### Undoing a command
 
 1. Undoing an undoable command in FlashBack
 
@@ -963,7 +966,7 @@ testers are expected to do more *exploratory* testing.
        The UI will be updated to display all flashcards in FlashBack.
        The result display shows a message: `FlashBack has been undo!`.
        
-### Redo a command
+### Redoing a command
 
 1. Redoing an undone command in FlashBack
 
@@ -975,7 +978,7 @@ testers are expected to do more *exploratory* testing.
       The UI will be updated to display all flashcards in FlashBack.
       The result display shows a message: `FlashBack has been redo!`.
       
-### Define an alias
+### Adding an alias
 
 1. Defining an alias for a command in FlashBack
     

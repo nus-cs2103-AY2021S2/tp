@@ -25,7 +25,7 @@ FlashBack is a **desktop application for managing notes, optimized for use via a
         * [Sorting all flashcards](#sorting-all-flashcards-sort): `sort`
         * [Entering review mode](#entering-review-mode-review): `review`
         * [Viewing statistics of flashcards](#viewing-statistics-of-flashcards-stats): `stats`
-        * [Adding a new alias](#adding-a-new-alias-alias): `alias`
+        * [Adding an alias](#adding-an-alias-alias): `alias`
         * [Exiting the program](#exiting-the-program--exit): `exit`
         * [Saving data](#saving-the-data)
         * [Editing the data file](#editing-the-data-file)
@@ -366,7 +366,7 @@ Examples:
 
 ![UiStats](./images/UiStatsNoIndex.png) <br><br>
 
-### Adding a new alias: `alias`
+### Adding an alias: `alias`
 Define an alias for a command in FlashBack.
 <div markdown="span" class="alert alert-primary">
 
