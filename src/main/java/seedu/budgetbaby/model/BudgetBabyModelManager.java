@@ -149,8 +149,6 @@ public class BudgetBabyModelManager implements BudgetBabyModel {
 
     @Override
     public boolean findFinancialRecord(Description description, Amount amount, Set<Category> categories) {
-        assert true;
-
         boolean result;
 
         Predicate<FinancialRecord> findD = fr -> fr.getDescription().description.equals(description.description);
@@ -177,8 +175,10 @@ public class BudgetBabyModelManager implements BudgetBabyModel {
                 result = updateFilteredFinancialRecordList(findC);
             } else if (amount != null && categories == null) {
                 result = updateFilteredFinancialRecordList(findA);
-            } else {
+            } else if (amount != null && categories != null){
                 result = updateFilteredFinancialRecordList(findAC);
+            } else {
+                result = false;
             }
         } else if (amount == null) {
             if (categories == null) {

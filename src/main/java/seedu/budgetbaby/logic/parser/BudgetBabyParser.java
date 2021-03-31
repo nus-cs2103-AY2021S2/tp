@@ -3,10 +3,12 @@ package seedu.budgetbaby.logic.parser;
 import static seedu.budgetbaby.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.budgetbaby.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.budgetbaby.ablogic.commands.HelpCommand;
+import seedu.budgetbaby.commons.core.LogsCenter;
 import seedu.budgetbaby.logic.commands.AddFrCommand;
 import seedu.budgetbaby.logic.commands.BudgetBabyCommand;
 import seedu.budgetbaby.logic.commands.DeleteFrCommand;
@@ -39,6 +41,7 @@ public class BudgetBabyParser {
      */
     public BudgetBabyCommand parseCommand(String userInput) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
+        Logger logger = LogsCenter.getLogger(LogsCenter.class);
         if (!matcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
