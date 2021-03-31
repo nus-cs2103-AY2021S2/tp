@@ -218,4 +218,13 @@ public interface Model {
      * @throws NullPointerException if {@code comparator} is null.
      */
     void filterThenSortLessonList(Predicate<Lesson> predicate, Comparator<Lesson> comparator);
+
+    ObservableList<Lesson> getMondayLesson();
+    ObservableList<Lesson> getTuesdayLesson();
+    ObservableList<Lesson> getWednesdayLesson();
+    ObservableList<Lesson> getThursdayLesson();
+    ObservableList<Lesson> getFridayLesson();
+    ObservableList<Lesson> getSaturdayLesson();
+    ObservableList<Lesson> getSundayLesson();
+
 }
