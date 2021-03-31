@@ -47,12 +47,11 @@ public class DeleteDeadlineCommandTest {
                 editedProject
         );
 
-        Index lastDeadlineIndex = Index.fromOneBased(
-                model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased()).getDeadlines().getDeadlines().size());
+        Index firstDeadlineIndex = Index.fromOneBased(1); // deadline is added to front since list is sorted
 
-        DeleteDeadlineCommand deleteDeadlineCommand = new DeleteDeadlineCommand(INDEX_FIRST, lastDeadlineIndex);
+        DeleteDeadlineCommand deleteDeadlineCommand = new DeleteDeadlineCommand(INDEX_FIRST, firstDeadlineIndex);
 
-        String expectedMessage = String.format(MESSAGE_DELETE_DEADLINE_SUCCESS, lastDeadlineIndex.getOneBased());
+        String expectedMessage = String.format(MESSAGE_DELETE_DEADLINE_SUCCESS, firstDeadlineIndex.getOneBased());
 
         ModelManager expectedModel = new ModelManager(getTypicalColabFolder(), new UserPrefs());
 
@@ -73,7 +72,7 @@ public class DeleteDeadlineCommandTest {
         );
 
         Index lastDeadlineIndex = Index.fromOneBased(
-                model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased()).getDeadlines().getDeadlines().size());
+                model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased()).getDeadlines().size());
 
         DeleteDeadlineCommand deleteDeadlineCommand = new DeleteDeadlineCommand(INDEX_THIRD, lastDeadlineIndex);
 
@@ -97,7 +96,7 @@ public class DeleteDeadlineCommandTest {
 
         Index invalidDeadlineIndex = Index.fromOneBased(
                 model.getFilteredProjectList().get(
-                        INDEX_FIRST.getZeroBased()).getDeadlines().getDeadlines().size() + 1);
+                        INDEX_FIRST.getZeroBased()).getDeadlines().getSortedDeadlineList().size() + 1);
 
         DeleteDeadlineCommand deleteDeadlineCommand = new DeleteDeadlineCommand(INDEX_FIRST, invalidDeadlineIndex);
 
@@ -130,9 +129,9 @@ public class DeleteDeadlineCommandTest {
         );
 
         Index lastDeadlineFromProject1 = Index.fromOneBased(
-                model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased()).getDeadlines().getDeadlines().size());
+                model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased()).getDeadlines().size());
         Index lastDeadlineFromProject2 = Index.fromOneBased(
-                model.getFilteredProjectList().get(INDEX_SECOND.getZeroBased()).getDeadlines().getDeadlines().size());
+                model.getFilteredProjectList().get(INDEX_SECOND.getZeroBased()).getDeadlines().size());
 
         DeleteDeadlineCommand deleteDeadlineFromProject1Command = new DeleteDeadlineCommand(
                 INDEX_FIRST, lastDeadlineFromProject1);

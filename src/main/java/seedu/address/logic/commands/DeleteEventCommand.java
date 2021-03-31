@@ -54,7 +54,7 @@ public class DeleteEventCommand extends Command {
         }
 
         if (targetEventIndex.getZeroBased() >= lastShownList.get(projectIndex.getZeroBased())
-                .getEvents().getEvents().size()) {
+                .getEvents().getSortedEventList().size()) {
             logger.info("----------------[DeleteEventCommand][Invalid Event Index]");
             throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
         }

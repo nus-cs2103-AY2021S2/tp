@@ -6,8 +6,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_NO_EVENTS_TO_DISPLAY;
 import static seedu.address.commons.core.Messages.MESSAGE_NO_GROUPMATES_TO_DISPLAY;
 import static seedu.address.commons.core.Messages.MESSAGE_NO_TODOS_TO_DISPLAY;
 
-import java.util.Comparator;
-
 import javafx.beans.binding.Bindings;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -24,7 +22,6 @@ import seedu.address.model.project.Project;
 import seedu.address.model.task.CompletableDeadline;
 import seedu.address.model.task.CompletableTodo;
 import seedu.address.model.task.repeatable.Event;
-import seedu.address.model.task.repeatable.RepeatableComparator;
 
 /**
  * Panel containing a project.
@@ -75,8 +72,8 @@ public class ProjectDisplayPanel extends UiPart<Region> {
 
         this.projectName.setText(project.getProjectName().toString());
 
-        setUpEventList(project.getEvents().getEvents());
-        setUpDeadlinesList(project.getDeadlines().getDeadlines());
+        setUpEventList(project.getSortedEvents());
+        setUpDeadlinesList(project.getSortedDeadlines());
         setUpTodoList(project.getTodos().getTodos());
         setUpGroupmatesList(project.getGroupmates().getGroupmates());
     }
@@ -111,11 +108,10 @@ public class ProjectDisplayPanel extends UiPart<Region> {
         }
     }
 
-    private void setUpDeadlinesList(ObservableList<CompletableDeadline> deadlines) {
+    private void setUpDeadlinesList(SortedList<CompletableDeadline> deadlines) {
         completableDeadlineListView.prefHeightProperty()
                 .bind(Bindings.size(deadlines).multiply(DEADLINES_CARD_HEIGHT).add(SAFETY_MARGIN));
-        completableDeadlineListView.setItems(new SortedList<>(deadlines,
-                Comparator.comparing(CompletableDeadline::getBy).thenComparing(CompletableDeadline::getDescription)));
+        completableDeadlineListView.setItems(deadlines);
         completableDeadlineListView.setCellFactory(listView ->
                 new CompletableDeadlineListViewCell());
 
@@ -129,10 +125,10 @@ public class ProjectDisplayPanel extends UiPart<Region> {
         }
     }
 
-    private void setUpEventList(ObservableList<Event> events) {
+    private void setUpEventList(SortedList<Event> events) {
         eventListView.prefHeightProperty()
                 .bind(Bindings.size(events).multiply(EVENTS_CARD_HEIGHT).add(SAFETY_MARGIN));
-        eventListView.setItems(new SortedList<>(events, new RepeatableComparator()));
+        eventListView.setItems(events);
         eventListView.setCellFactory(listView -> new EventListViewCell());
 
         eventListViewPlaceholder.getChildren().clear();

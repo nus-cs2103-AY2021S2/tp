@@ -54,7 +54,7 @@ public class DeleteDeadlineCommand extends Command {
         }
 
         if (targetDeadlineIndex.getZeroBased() >= lastShownList.get(projectIndex.getZeroBased())
-                .getDeadlines().getDeadlines().size()) {
+                .getDeadlines().getSortedDeadlineList().size()) {
             logger.info("----------------[DeleteDeadlineCommand][Invalid Deadline Index]");
             throw new CommandException(Messages.MESSAGE_INVALID_DEADLINE_DISPLAYED_INDEX);
         }

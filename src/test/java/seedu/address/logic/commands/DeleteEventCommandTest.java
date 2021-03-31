@@ -47,12 +47,11 @@ public class DeleteEventCommandTest {
                 editedProject
         );
 
-        Index lastEventIndex = Index.fromOneBased(
-                model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased()).getEvents().getEvents().size());
+        Index firstEventIndex = Index.fromOneBased(1); // Event is first in the sorted list
 
-        DeleteEventCommand deleteEventCommand = new DeleteEventCommand(INDEX_FIRST, lastEventIndex);
+        DeleteEventCommand deleteEventCommand = new DeleteEventCommand(INDEX_FIRST, firstEventIndex);
 
-        String expectedMessage = String.format(MESSAGE_DELETE_EVENT_SUCCESS, lastEventIndex.getOneBased());
+        String expectedMessage = String.format(MESSAGE_DELETE_EVENT_SUCCESS, firstEventIndex.getOneBased());
 
         ModelManager expectedModel = new ModelManager(getTypicalColabFolder(), new UserPrefs());
 
@@ -73,7 +72,7 @@ public class DeleteEventCommandTest {
         );
 
         Index lastEventIndex = Index.fromOneBased(
-                model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased()).getEvents().getEvents().size());
+                model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased()).getEvents().getSortedEventList().size());
 
         DeleteEventCommand deleteEventCommand = new DeleteEventCommand(INDEX_THIRD, lastEventIndex);
 
@@ -96,7 +95,7 @@ public class DeleteEventCommandTest {
         );
 
         Index invalidEventIndex = Index.fromOneBased(
-                model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased()).getEvents().getEvents().size() + 1);
+                model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased()).getEvents().size() + 1);
 
         DeleteEventCommand deleteEventCommand = new DeleteEventCommand(INDEX_FIRST, invalidEventIndex);
 
@@ -129,9 +128,9 @@ public class DeleteEventCommandTest {
         );
 
         Index lastEventFromProject1 = Index.fromOneBased(
-                model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased()).getEvents().getEvents().size());
+                model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased()).getEvents().size());
         Index lastEventFromProject2 = Index.fromOneBased(
-                model.getFilteredProjectList().get(INDEX_SECOND.getZeroBased()).getEvents().getEvents().size());
+                model.getFilteredProjectList().get(INDEX_SECOND.getZeroBased()).getEvents().size());
 
         DeleteEventCommand deleteEventFromProject1Command = new DeleteEventCommand(
                 INDEX_FIRST, lastEventFromProject1);
