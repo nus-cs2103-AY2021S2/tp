@@ -13,7 +13,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 /**
- * Sorts the list of persons in the address book in alphabetical order.
+ * Sorts the list of persons in the address book.
  */
 public class SortCommand extends Command {
 

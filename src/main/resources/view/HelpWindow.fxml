@@ -15,13 +15,10 @@
     <Image url="@/images/help_icon.png" />
   </icons>
   <scene>
-    <Scene>
-        <stylesheets>
-            <URL value="@DarkThemeHelpWindow.css" />
-        </stylesheets>
+    <Scene fx:id="scene">
 
         <VBox styleClass="pane-with-border">
-              <Label fx:id="helpTitle" alignment="BOTTOM_LEFT" styleClass="label-bright" text="Label">
+              <Label fx:id="helpTitle" alignment="BOTTOM_LEFT" styleClass="label-help-title" text="Label">
                <padding>
                   <Insets bottom="5.0" />
                </padding>

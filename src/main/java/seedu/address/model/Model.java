@@ -44,6 +44,16 @@ public interface Model {
      */
     void setGuiSettings(GuiSettings guiSettings);
 
+    /**
+     * Returns the theme in user pref's GUI settings.
+     */
+    String getTheme();
+
+    /**
+     * Sets the theme in user pref's GUI settings.
+     */
+    void setTheme(String theme);
+
     //=========== AddressBook ================================================================================
 
     /**

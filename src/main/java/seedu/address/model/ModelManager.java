@@ -77,6 +77,18 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public String getTheme() {
+        return userPrefs.getTheme();
+    }
+
+    @Override
+    public void setTheme(String theme) {
+        requireNonNull(theme);
+        assert(theme != "");
+        userPrefs.setTheme(theme);
+    }
+
+    @Override
     public Path getAddressBookFilePath() {
         return userPrefs.getAddressBookFilePath();
     }
