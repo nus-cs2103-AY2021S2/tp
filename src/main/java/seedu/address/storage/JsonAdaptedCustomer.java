@@ -16,6 +16,7 @@ import seedu.address.model.customer.Address;
 import seedu.address.model.customer.Car;
 import seedu.address.model.customer.CoeExpiry;
 import seedu.address.model.customer.Customer;
+import seedu.address.model.customer.DateOfBirth;
 import seedu.address.model.customer.Email;
 import seedu.address.model.customer.Name;
 import seedu.address.model.customer.Phone;
@@ -30,15 +31,17 @@ import seedu.address.model.tag.Tag;
 class JsonAdaptedCustomer {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Customer's %s field is missing!";
-    public static final String CAR_COE_EXPIRY_LENGTH_MISMATCH = "The number of cars and coeexpiries are not same";
+    public static final String CAR_COE_EXPIRY_LENGTH_MISMATCH = "The number of carsOwned and coeexpiries are not same";
 
     private final String name;
     private final String phone;
     private final String email;
     private final String address;
+    private final String dateOfBirth;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
-    private final List<JsonAdaptedCar> cars = new ArrayList<>();
+    private final List<JsonAdaptedCar> carsOwned = new ArrayList<>();
     private final List<JsonAdaptedCoeExpiry> coeExpiries = new ArrayList<>();
+    private final List<JsonAdaptedCar> carsPreferred = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedCustomer} with the given person details.
@@ -46,21 +49,27 @@ class JsonAdaptedCustomer {
     @JsonCreator
     public JsonAdaptedCustomer(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                                @JsonProperty("email") String email, @JsonProperty("address") String address,
+                               @JsonProperty("dateOfBirth") String dateOfBirth,
                                @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                               @JsonProperty("cars") List<JsonAdaptedCar> cars,
-                               @JsonProperty("coeExpiries") List<JsonAdaptedCoeExpiry> coeExpiries) {
+                               @JsonProperty("carsOwned") List<JsonAdaptedCar> carsOwned,
+                               @JsonProperty("coeExpiries") List<JsonAdaptedCoeExpiry> coeExpiries,
+                               @JsonProperty("carsPreferred") List<JsonAdaptedCar> carsPreferred) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.dateOfBirth = dateOfBirth;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
-        if (cars != null) {
-            this.cars.addAll(cars);
+        if (carsOwned != null) {
+            this.carsOwned.addAll(carsOwned);
         }
         if (coeExpiries != null) {
             this.coeExpiries.addAll(coeExpiries);
+        }
+        if (carsPreferred != null) {
+            this.carsPreferred.addAll(carsPreferred);
         }
     }
 
@@ -72,38 +81,46 @@ class JsonAdaptedCustomer {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        dateOfBirth = source.getDateOfBirth().birthDate;
         tagged.addAll(source.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList()));
-        cars.addAll(source.getCarsOwned().keySet().stream().map(JsonAdaptedCar::new).collect(Collectors.toList()));
+        carsOwned.addAll(source.getCarsOwned().keySet().stream().map(JsonAdaptedCar::new).collect(Collectors.toList()));
         coeExpiries.addAll(
             source.getCarsOwned().values().stream().map(JsonAdaptedCoeExpiry::new).collect(Collectors.toList()));
+        carsPreferred.addAll(source.getCarsPreferred().stream()
+                .map(JsonAdaptedCar::new)
+                .collect(Collectors.toList()));
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Customer} object.
+     * Converts this Jackson-friendly adapted customer object into the model's {@code Customer} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted customer.
      */
     public Customer toModelType() throws IllegalValueException {
         final List<Tag> customerTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             customerTags.add(tag.toModelType());
         }
-
-        final Map<Car, CoeExpiry> allCars = new HashMap<>();
-        if (cars.size() != coeExpiries.size()) {
+        final List<Car> customerCarsPreferred = new ArrayList<>();
+        for (JsonAdaptedCar car: carsPreferred) {
+            customerCarsPreferred.add(car.toModelType());
+        }
+        final Map<Car, CoeExpiry> modelCarsOwned = new HashMap<>();
+        if (carsOwned.size() != coeExpiries.size()) {
             throw new IllegalValueException(CAR_COE_EXPIRY_LENGTH_MISMATCH);
         }
 
-        var iter1 = cars.iterator();
+        var iter1 = carsOwned.iterator();
         var iter2 = coeExpiries.iterator();
 
         for (; iter1.hasNext() && iter2.hasNext(); ) {
             var car = iter1.next().toModelType();
             var coeExpiry = iter2.next().toModelType();
-            allCars.put(car, coeExpiry);
+            modelCarsOwned.put(car, coeExpiry);
         }
+
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
@@ -137,8 +154,19 @@ class JsonAdaptedCustomer {
         }
         final Address modelAddress = new Address(address);
 
+        if (dateOfBirth == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    DateOfBirth.class.getSimpleName()));
+        }
+        if (!DateOfBirth.isValidDateOfBirth(dateOfBirth)) {
+            throw new IllegalValueException(DateOfBirth.MESSAGE_CONSTRAINTS);
+        }
+        final DateOfBirth modelDateOfBirth = new DateOfBirth(dateOfBirth);
+
         final Set<Tag> modelTags = new HashSet<>(customerTags);
-        return new Customer(modelName, modelPhone, modelEmail, modelAddress, modelTags, allCars);
+        final Set<Car> modelCarsPreferred = new HashSet<>(customerCarsPreferred);
+        return new Customer(modelName, modelPhone, modelEmail, modelAddress, modelDateOfBirth, modelTags,
+                modelCarsOwned, modelCarsPreferred);
     }
 
 }

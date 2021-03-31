@@ -22,24 +22,28 @@ public class Customer {
     private final Phone phone;
     private final Email email;
     private final Address address;
+    private final DateOfBirth dateOfBirth;
     private final Set<Tag> tags = new HashSet<>();
     private final Map<Car, CoeExpiry> carsOwned;
+    private final Set<Car> carsPreferred = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Customer(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
-                    Map<Car, CoeExpiry> carsOwned) {
+    public Customer(Name name, Phone phone, Email email, Address address, DateOfBirth dateOfBirth,
+                    Set<Tag> tags, Map<Car, CoeExpiry> carsOwned, Set<Car> carsPreferred) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.dateOfBirth = dateOfBirth;
         this.tags.addAll(tags);
         if (carsOwned == null) {
             carsOwned = new HashMap<>();
         }
         this.carsOwned = carsOwned;
+        this.carsPreferred.addAll(carsPreferred);
     }
 
     public Name getName() {
@@ -58,6 +62,10 @@ public class Customer {
         return address;
     }
 
+    public DateOfBirth getDateOfBirth() {
+        return dateOfBirth;
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException} if modification is attempted.
      */
@@ -74,6 +82,12 @@ public class Customer {
         return Collections.unmodifiableMap(carsOwned);
     }
 
+    /**
+     * Returns an mutable car set.
+     */
+    public Set<Car> getCarsPreferred() {
+        return carsPreferred;
+    }
 
     /**
      * Returns true if both customer have the same name. This defines a weaker notion of equality between two
@@ -107,6 +121,7 @@ public class Customer {
             && otherCustomer.getPhone().equals(getPhone())
             && otherCustomer.getEmail().equals(getEmail())
             && otherCustomer.getAddress().equals(getAddress())
+            && otherCustomer.getDateOfBirth().equals(getDateOfBirth())
             && otherCustomer.getTags().equals(getTags());
     }
 
@@ -125,7 +140,9 @@ public class Customer {
             .append("; Email: ")
             .append(getEmail())
             .append("; Address: ")
-            .append(getAddress());
+            .append(getAddress())
+            .append("; Date Of Birth: ")
+            .append(getDateOfBirth());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
@@ -136,6 +153,12 @@ public class Customer {
         if (!carsOwned.isEmpty()) {
             builder.append("; CarsOwned: ");
             carsOwned.forEach((a, b) -> builder.append(a + " "));
+        }
+
+        Set<Car> cars = getCarsPreferred();
+        if (!cars.isEmpty()) {
+            builder.append("; CarsPreferred:");
+            cars.forEach(builder::append);
         }
 
         return builder.toString();

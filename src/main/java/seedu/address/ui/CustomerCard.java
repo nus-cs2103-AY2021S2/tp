@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import java.util.Comparator;
 import java.util.Map;
+import java.util.Set;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -41,7 +42,11 @@ public class CustomerCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
-    private Label cars;
+    private Label dateOfBirth;
+    @FXML
+    private Label carsOwned;
+    @FXML
+    private Label carsPreferred;
     @FXML
     private FlowPane tags;
 
@@ -56,19 +61,43 @@ public class CustomerCard extends UiPart<Region> {
         phone.setText(customer.getPhone().value);
         email.setText(customer.getEmail().value);
         address.setText(customer.getAddress().value);
+        dateOfBirth.setText(customer.getDateOfBirth().birthDate);
         customer.getTags().stream()
             .sorted(Comparator.comparing(tag -> tag.tagName))
             .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        cars.setText(getCarsAsTextRepresentation(customer.getCarsOwned()));
+        carsOwned.setText(getCarsAsTextRepresentation(customer.getCarsOwned()));
+        carsPreferred.setText(getCarsPreferredAsTextRepresentation(customer.getCarsPreferred()));
     }
 
+    /**
+     * Returns carsOwned attribute as a String.
+     *
+     * @param cars
+     * @return String
+     */
     private String getCarsAsTextRepresentation(Map<Car, CoeExpiry> cars) {
-        StringBuilder sb = new StringBuilder("Cars: ");
+        StringBuilder sb = new StringBuilder("CarsOwned: ");
         if (cars == null || cars.isEmpty()) {
             sb.append("None");
         } else {
         }
         cars.keySet().forEach(x -> sb.append(x + " "));
+        return sb.toString();
+    }
+
+    /**
+     * Returns carsPreferred attribute as a String.
+     *
+     * @param cars
+     * @return String
+     */
+    private String getCarsPreferredAsTextRepresentation(Set<Car> cars) {
+        StringBuilder sb = new StringBuilder("CarsPreferred: ");
+        if (cars == null || cars.isEmpty()) {
+            sb.append("None");
+        } else {
+            cars.forEach(x -> sb.append(x + " "));
+        }
         return sb.toString();
     }
 

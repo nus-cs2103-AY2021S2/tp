@@ -2,6 +2,9 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CARSOWNED;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CARSPREFERRED;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DOB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -25,6 +28,7 @@ import seedu.address.model.customer.Address;
 import seedu.address.model.customer.Car;
 import seedu.address.model.customer.CoeExpiry;
 import seedu.address.model.customer.Customer;
+import seedu.address.model.customer.DateOfBirth;
 import seedu.address.model.customer.Email;
 import seedu.address.model.customer.Name;
 import seedu.address.model.customer.Phone;
@@ -45,8 +49,10 @@ public class EditCommand extends Command {
         + "[" + PREFIX_PHONE + "PHONE] "
         + "[" + PREFIX_EMAIL + "EMAIL] "
         + "[" + PREFIX_ADDRESS + "ADDRESS] "
+        + "[" + PREFIX_DOB + "DATE_OF_BIRTH] "
         + "[" + PREFIX_TAG + "TAG]...\n"
-        // TODO
+        + "[" + PREFIX_CARSOWNED + "TAG]...\n"
+        + "[" + PREFIX_CARSPREFERRED + "TAG]...\n"
         + "Example: " + COMMAND_WORD + " 1 "
         + PREFIX_PHONE + "91234567 "
         + PREFIX_EMAIL + "johndoe@example.com";
@@ -82,11 +88,16 @@ public class EditCommand extends Command {
         Phone updatedPhone = editCustomerDescriptor.getPhone().orElse(customerToEdit.getPhone());
         Email updatedEmail = editCustomerDescriptor.getEmail().orElse(customerToEdit.getEmail());
         Address updatedAddress = editCustomerDescriptor.getAddress().orElse(customerToEdit.getAddress());
+        DateOfBirth updatedDateOfBirth =
+                editCustomerDescriptor.getDateOfBirth().orElse(customerToEdit.getDateOfBirth());
         Set<Tag> updatedTags = editCustomerDescriptor.getTags().orElse(customerToEdit.getTags());
         Map<Car, CoeExpiry> updatedCarsOwned =
             editCustomerDescriptor.getCarsOwned().orElse(customerToEdit.getCarsOwned());
+        Set<Car> updatedCarsPreferred = editCustomerDescriptor.getCarsPreferred()
+                .orElse(customerToEdit.getCarsPreferred());
 
-        return new Customer(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedCarsOwned);
+        return new Customer(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedDateOfBirth,
+                updatedTags, updatedCarsOwned, updatedCarsPreferred);
     }
 
     @Override
@@ -137,8 +148,10 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
+        private DateOfBirth dateOfBirth;
         private Set<Tag> tags;
         private Map<Car, CoeExpiry> carsOwned;
+        private Set<Car> carsPreferred;
 
         public EditCustomerDescriptor() {
         }
@@ -151,15 +164,17 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setDateOfBirth(toCopy.dateOfBirth);
             setTags(toCopy.tags);
             setCarsOwned(toCopy.carsOwned);
+            setCarsPreferred(toCopy.carsPreferred);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, dateOfBirth, tags, carsPreferred);
         }
 
         public Optional<Name> getName() {
@@ -194,6 +209,13 @@ public class EditCommand extends Command {
             this.address = address;
         }
 
+        public Optional<DateOfBirth> getDateOfBirth() {
+            return Optional.ofNullable(dateOfBirth);
+        }
+
+        public void setDateOfBirth(DateOfBirth dateOfBirth) {
+            this.dateOfBirth = dateOfBirth;
+        }
         /**
          * Returns an unmodifiable carsOwned map, which throws {@code UnsupportedOperationException} if modification is
          * attempted. Returns {@code Optional#empty()} if {@code carsOwned} is null.
@@ -225,6 +247,20 @@ public class EditCommand extends Command {
             this.tags = (tags != null) ? new HashSet<>(tags) : null;
         }
 
+        /**
+         * Returns {@code Optional#empty()} if {@code carsPreferred} is null.
+         */
+        public Optional<Set<Car>> getCarsPreferred() {
+            return Optional.ofNullable(carsPreferred);
+        }
+        /**
+         * Sets {@code carsPreferred} to this object's {@code carsPreferred}.
+         * A defensive copy of {@code carsPreferred} is used internally.
+         */
+        public void setCarsPreferred(Set<Car> carsPreferred) {
+            this.carsPreferred = (carsPreferred != null) ? new HashSet<>(carsPreferred) : null;
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -244,6 +280,7 @@ public class EditCommand extends Command {
                 && getPhone().equals(e.getPhone())
                 && getEmail().equals(e.getEmail())
                 && getAddress().equals(e.getAddress())
+                && getDateOfBirth().equals(e.getDateOfBirth())
                 && getTags().equals(e.getTags());
         }
     }

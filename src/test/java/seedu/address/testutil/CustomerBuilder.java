@@ -9,6 +9,7 @@ import seedu.address.model.customer.Address;
 import seedu.address.model.customer.Car;
 import seedu.address.model.customer.CoeExpiry;
 import seedu.address.model.customer.Customer;
+import seedu.address.model.customer.DateOfBirth;
 import seedu.address.model.customer.Email;
 import seedu.address.model.customer.Name;
 import seedu.address.model.customer.Phone;
@@ -24,14 +25,16 @@ public class CustomerBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_DATE_OF_BIRTH = "2020 01 31";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
+    private DateOfBirth dateOfBirth;
     private Set<Tag> tags;
     private Map<Car, CoeExpiry> carsOwned;
-
+    private Set<Car> carsPreferred;
 
     /**
      * Creates a {@code CustomerBuilder} with the default details.
@@ -41,8 +44,10 @@ public class CustomerBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        dateOfBirth = new DateOfBirth(DEFAULT_DATE_OF_BIRTH);
         tags = new HashSet<>();
         carsOwned = new HashMap<>();
+        carsPreferred = new HashSet<>();
     }
 
     /**
@@ -53,8 +58,10 @@ public class CustomerBuilder {
         phone = customerToCopy.getPhone();
         email = customerToCopy.getEmail();
         address = customerToCopy.getAddress();
+        dateOfBirth = customerToCopy.getDateOfBirth();
         tags = new HashSet<>(customerToCopy.getTags());
         carsOwned = new HashMap<>(customerToCopy.getCarsOwned());
+        carsPreferred = new HashSet<>(customerToCopy.getCarsPreferred());
     }
 
     /**
@@ -98,19 +105,31 @@ public class CustomerBuilder {
     }
 
     /**
-     * Parses the {@code carsOwned} into a {@code Map<Car, CoeExpiry>} and set it to the {@code Customer} that we are
-     * building.
-     *
-     * @param carsOwned
-     * @return
+     * Sets the {@code DateOfBirth} of the {@code Customer} that we are building.
      */
-    public CustomerBuilder withCarsOwned(Map<Car, CoeExpiry> carsOwned) {
-        this.carsOwned = new HashMap<>(carsOwned);
+    public CustomerBuilder withDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = new DateOfBirth(dateOfBirth);
+        return this;
+    }
+    /**
+     * Adds a new pairing of {@code Car} and {@code CoeExpiry} to the
+     * {@code Customer} that we are building.
+     */
+    public CustomerBuilder withAdditionalCar(String carBrand, String carType, String coeExpiry) {
+        this.carsOwned.put(new Car(carBrand, carType), new CoeExpiry(coeExpiry));
+        return this;
+    }
+
+    /**
+     * Parses the {@code cars} into a {@code Set<Car>} and set it to the {@code Customer} that we are building.
+     */
+    public CustomerBuilder withCarsPreferred(String... cars) {
+        this.carsPreferred = SampleDataUtil.getCarSet(cars);
         return this;
     }
 
     public Customer build() {
-        return new Customer(name, phone, email, address, tags, carsOwned);
+        return new Customer(name, phone, email, address, dateOfBirth, tags, carsOwned, carsPreferred);
     }
 
 }
