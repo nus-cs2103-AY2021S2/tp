@@ -37,7 +37,7 @@ _**Tutor Tracker**_ is a **desktop app designed to help secondary school student
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `appointment n/NAME`, `NAME` is a parameter which can be used as `appointment n/John Doe`.
+  e.g. in `add_tutor n/NAME`, `NAME` is a parameter which can be used as `add_tutor n/John Doe`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [l/LOCATION]` can be used as `n/John Doe l/Clementi` or as `n/John Doe`.
@@ -51,10 +51,10 @@ _**Tutor Tracker**_ is a **desktop app designed to help secondary school student
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `l/Bedok l/Clementi`, only `l/Clementi` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help` and `exit`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-* Parameters in angle brackets (`<`, `>`) must be supplied together in order as a group. eg. with `<s/SUBJECT_NAME r/RATE>`, both subject name and rate must be supplied in order.
+* Parameters in angle brackets (`<`, `>`) must be supplied together as a group. eg. with `<s/SUBJECT_NAME r/RATE>`, both subject name and rate must be supplied.
 
 </div>
 
