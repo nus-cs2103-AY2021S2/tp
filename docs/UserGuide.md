@@ -138,7 +138,7 @@ Lists all persons in the address book.
 
 Edits an existing person in the address book.
 
-**Format**: `edit INDEX [INDEX…] [-n NAME] [-p PHONE] [-e EMAIL] [-a ADDRESS] [-r REMARK] [-t TAG]…`
+**Format**: `edit { shown | selected | INDEX… } [-n NAME] [-p PHONE] [-e EMAIL] [-a ADDRESS] [-r REMARK] [-t TAG]…`
 
 <div markdown="block" class="alert alert-info">
 
@@ -151,6 +151,8 @@ Edits an existing person in the address book.
 * When editing tags, the existing tags of the person will be removed, i.e adding of tags is not cumulative.
 * To remove the person’s remark, type `-r ` without specifying any remark after it.
 * To remove all the person’s tags, type `-t ` without specifying any tags after it.
+* To edit all the shown person, type `edit shown`
+* To edit all the selected person, type `edit selected` followed by the arguments
 
 </div>
 
@@ -161,15 +163,19 @@ Edits an existing person in the address book.
 | Example                                     | Description                                                                                                         |
 | ------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
 | `edit 1 -p 91234567 -e johndoe@example.com` | Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively. |
-| `edit 2 -n Betsy Crower -t `                | Edits the name of the 2nd person to be `Betsy Crower` and clears all of her existing tags.                                 |
-| `edit 3 -r `                                | Clears any existing remark of the 3rd person.                                                                      |
+| `edit 2 -n Betsy Crower -t `                | Edits the name of the 2nd person to be `Betsy Crower` and clears all of her existing tags.                          |
+| `edit 3 -r `                                | Clears any existing remark of the 3rd person.                                                                       |
+| `edit shown -r `                            | Clears any existing remark of all the displayed persons in person list.                                                  |
+| `edit selected -r `                         | Clears any existing remark of all the selected persons.                                                             |
 
 <div markdown="block" class="alert alert-info">
 
 **:bulb: Bulk Edit**
 
-To bulk edit, either do `edit 1 2 3` to edit indexes 1, 2 and 3
-or `edit shown` to edit all the shown person.
+To bulk edit, either do:
+* `edit 1 2 3` to edit persons at indexes 1, 2 and 3 or,
+* `edit shown` to edit all the shown persons or,
+* `edit selected` to edit all the selected persons
 
 </div>
 
@@ -210,16 +216,18 @@ Finds persons whose names contain any of the given keywords.
 
 Deletes the specified person(s) from the address book.
 
-**Format**: `delete INDEX [INDEX…]`
+**Format**: `delete { shown | selected | INDEX… }`
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes on `delete` command:**<br>
 
-* Deletes the person at the specified `INDEX` or `[INDEX…]`.
+* Deletes the person at the specified `INDEX`/`INDEX…` or shown person list or selected list.
 * The command **operates on the shown list** that may be modified by an earlier command.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer**, i.e 1, 2, 3, …
+* To delete all the shown person, type `delete shown`
+* To delete all the selected person, type `delete selected`
 
 </div>
 
@@ -227,10 +235,12 @@ Deletes the specified person(s) from the address book.
 
 **Examples**:
 
-| Example                    | Description                                                                                                         |
-| -------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| `list`<br>`delete 2`       | `list` displays all entries.<br>`delete 2` deletes the second entry in the list shown.                               |
-| `find Betsy`<br>`delete 1` | `find Betsy` filters entries to the find result.<br> `delete 1` deletes the first entry in the filtered results list.|
+| Example                                      | Description                                                                                                           |
+| -------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| `list`<br>`delete 2`                         | `list` displays all entries.<br>`delete 2` deletes the second entry in the list shown.                                |
+| `find Betsy`<br>`delete 1`                   | `find Betsy` filters entries to the find result.<br> `delete 1` deletes the first entry in the filtered results list. |
+| `select 1 2 3`   <br>      `delete selected` | Deletes selected entries 1, 2 and 3                                                                                   |
+| `delete shown`                               | Deletes all the displayed persons in the person list                                                                   |
 
 <div markdown="block" class="alert alert-info">
 
@@ -245,13 +255,13 @@ or `delete shown` to delete all the shown person.
 
 Enables user to select person objects to apply actions on.
 
-Format: `select [SUB_COMMAND]`
+Format: `select { clear | shown | selected | INDEX… }`
 
 Sub Command Format:
 * `select show`
 * `select clear`
 * `select shown`
-* `select INDEX [INDEX…]`
+* `select INDEX…`
 
 The selected person will have a highlighted index number to indicate selection status.
 
