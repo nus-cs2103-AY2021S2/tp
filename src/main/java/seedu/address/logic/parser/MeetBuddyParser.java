@@ -7,6 +7,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.connections.AddPersonToMeetingConnectionCommand;
+import seedu.address.logic.commands.connections.DeletePersonToMeetingConnectionCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListAllCommand;
@@ -21,7 +23,8 @@ import seedu.address.logic.commands.persons.ListPersonCommand;
 import seedu.address.logic.commands.persons.SortPersonCommand;
 import seedu.address.logic.commands.persons.UnsortPersonCommand;
 import seedu.address.logic.commands.reminders.RefreshRemindersCommand;
-
+import seedu.address.logic.parser.connections.AddPersonToMeetingConnectionParser;
+import seedu.address.logic.parser.connections.DeletePersonToMeetingConnectionParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.meetings.*;
 import seedu.address.logic.parser.persons.AddPersonCommandParser;
@@ -30,7 +33,6 @@ import seedu.address.logic.parser.persons.EditPersonCommandParser;
 import seedu.address.logic.parser.persons.FindGroupCommandParser;
 import seedu.address.logic.parser.persons.FindPersonCommandParser;
 import seedu.address.logic.parser.persons.SortPersonCommandParser;
-
 
 /**
  * Parses user input.
@@ -109,6 +111,13 @@ public class MeetBuddyParser {
 
         case SetTimetableCommand.COMMAND_WORD:
             return new SetTimetableCommandParser().parse(arguments);
+
+        //============================= Meeting ==============================
+        case AddPersonToMeetingConnectionCommand.COMMAND_WORD:
+            return new AddPersonToMeetingConnectionParser().parse(arguments);
+
+        case DeletePersonToMeetingConnectionCommand.COMMAND_WORD:
+            return new DeletePersonToMeetingConnectionParser().parse(arguments);
 
         //============================= General ==============================
         case ExitCommand.COMMAND_WORD:
