@@ -100,6 +100,23 @@ for the `execute("deletecheese 1")` API call.
 
 ### Model component
 
+![Structure of the Model Component](images/ModelClassDiagram.png)
+
+![Structure of the Customer Component](images/CustomerClassDiagram.png)
+
+![Structure of the Cheese Component](images/CheeseClassDiagram.png)
+
+![Structure of the Order Component](images/OrderClassDiagram.png)
+
+**API** : [`Model.java`](https://github.com/AY2021S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/address/model/Model.java)
+
+The `Model`,
+* stores a `UserPref` object that represents the user`s preferences.
+* stores the address book data.
+* exposes an unmodifiable `ObservableList<Customer>`, `ObservableList<Order>`,`ObservableList<Cheese>` that can be 'observed'
+e.g. the Ui can be bound to this list so that the UI automatically updates when the data in the list change.
+* does not depend on any of the other three components.
+
 ### Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
@@ -287,6 +304,43 @@ mark the `Order` instance as incomplete and unassign the corresponding `Cheese`
 instances to accommodate the changes. We do not choose this design as it is very
 unlikely a user would want to modify a completed `Order`, and the user can always
 add a new `Order` instance in the worst case.
+
+### Mark an order as completed feature
+
+#### implementation
+
+Marking an order as completed are implemented in [`DoneCommand.java`](https://github.com/AY2021S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/address/comamnds/DoneCommand.java)
+
+`DoneCommand` extends from `command` and overwrites the opertations `execute()` and `equals()`
+
+Given below is an example usage scenario and how the marking an order as completed feature behaves at each step. 
+
+Step 1. The user launches CHIM which will restored archived customers , orders and cheeses. 
+
+Step 2. The user issues the command `done 1` to mark the first order shown in the `listorders` as completed. 
+The `done` command calls `DoneCommand.execute()` which will check the index given is valid and order selected is not completed yet.
+
+Step 3. After initial checks are completed, `DoneCommand.execute()` will call on `ModelManager.getUnassignedCheeses()` 
+to retrieve unAssigned Cheese(s) required for the order. 
+
+Step 4. `DoneCommand.execute()` will call `DoneCommand.createDoneOrder()` to create a new `order`
+if there is enough unassigned Cheese(s) from `ModelManager.getUnassignedCheeses()`
+
+Step 5. `DoneCommand.execute()` will call `ModelManager.setOrder()` 
+to replace the original order with the new order created from `DoneCommand.createDoneOrder()` 
+and calls `ModelManager.updateCheesesStatus()` to update all cheese(s)'s assign status used for this order.
+
+The following sequence diagram shows hwo the operation `done 1` is carried out as detailed above.
+
+
+#### Design consideration 
+* Aspect : Searching for available cheese(s) for the order
+    * Current choice : Searching for unassigned cheeses for the order is implemented in the `Model.AddressBook`.
+        * Pros: no dependency between `Done` command and `Cheese`,
+        * Cons: performance issues due to multiple functions calls.
+    * Alternative 1 : `Done` command will search for unassigned cheeses.
+        * Pros: better in terms of performance as there are lesser functions to be called .
+        * Cons: This introduces another reason for 'DoneCommand.execute()' to change in the future.
 
 ## **Documentation, logging, testing, configuration, dev-ops** [In Progress]
 
