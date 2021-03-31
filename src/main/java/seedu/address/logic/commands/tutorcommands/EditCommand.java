@@ -72,6 +72,8 @@ public class EditCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_TUTOR = "This tutor already exists "
             + "in the address book.";
+    public static final String MESSAGE_DOES_NOT_HAVE_NOTES = "Tutor: %s does not have notes, try add_note command";
+
 
     private final Index index;
     private final EditTutorDescriptor editTutorDescriptor;
@@ -98,6 +100,11 @@ public class EditCommand extends Command {
         }
 
         Tutor tutorToEdit = lastShownList.get(index.getZeroBased());
+
+        if (!tutorToEdit.hasNotes() && editTutorDescriptor.getNotes().isPresent()) {
+            throw new CommandException(String.format(MESSAGE_DOES_NOT_HAVE_NOTES, tutorToEdit.getName().toString()));
+        }
+
         Tutor editedTutor = createEditedTutor(tutorToEdit, editTutorDescriptor);
 
         if (!tutorToEdit.isSameTutor(editedTutor) && model.hasTutor(editedTutor)) {
