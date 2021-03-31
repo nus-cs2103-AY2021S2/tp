@@ -118,13 +118,6 @@ The `Model`,
 * exposes an unmodifiable `ObservableList<Property>` and an unmodifiable `ObservableList<Appointment>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change
 * does not depend on any of the other three components
 
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
-![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
-
-</div>
-
-
 ### Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
@@ -138,7 +131,13 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.address.commons` package.
+
+Some examples of common classes:
+
+* [`Messages.java`](https://github.com/AY2021S2-CS2103T-T13-4/tp/blob/master/src/main/java/seedu/address/commons/core/Messages.java): Container for user visible messages
+* [`FileUtil.java`](https://github.com/AY2021S2-CS2103T-T13-4/tp/blob/master/src/main/java/seedu/address/commons/util/FileUtil.java): Writes and reads files
+* [`JsonUtil.java`](https://github.com/AY2021S2-CS2103T-T13-4/tp/blob/master/src/main/java/seedu/address/commons/util/JsonUtil.java): Converts a Java object instance to JSON and vice versa
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -187,6 +186,15 @@ A `Client` consists of at least one of the following attributes,
 * **Alternative:** Allow mutable `Property` objects (provide setter methods to update the attributes of a `Property`)
     * Pros: Easy to implement
     * Cons: More prone to bugs
+
+#### Aspect: How each tag is stored
+
+* An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `PropertyBook`, which `Property` references. This allows `PropertyBook` to only require one `Tag` object per unique `Tag`, instead of each `Property` needing their own `Tag` object.
+    * Pros: Prevents creating the same tag multiple times when each `Property` needs to refer to the tag
+    * Cons: Harder to implement
+
+![BetterModelPropertyClassDiagram](images/BetterModelPropertyClassDiagram.png)
+
 
 ### Appointment component
 
@@ -534,9 +542,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Property**: A property listing with mandatory attributes: Name, Property type, Address, Postal code and Deadline,
-    optional attributes: Client name, Client contact, Client email, Client asking price, Remarks
-* **Appointment**: An appointment listing with mandatory attributes: Name, Remarks, Date,  optional attribute: Time
+* **Property**: A property listing with mandatory attributes: Name, Property type, Address, Postal code, Deadline, and with optional attributes: Remarks, Status, Tags, Client name, Client contact, Client email, Client asking price
+* **Appointment**: An appointment listing with mandatory attributes: Name, Remarks, Date, Time
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -555,7 +562,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file Expected: Shows the GUI with a set of sample properties and appointments. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -563,30 +570,20 @@ testers are expected to do more *exploratory* testing.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
+      
 
-1. _{ more test cases …​ }_
+### Deleting a property
 
-### Deleting a person
+1. Deleting a property while all properties are being shown
 
-1. Deleting a person while all persons are being shown
+   1. Prerequisites: List all properties using the `list property` command. Multiple properties in the list.
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Test case: `delete property 1`<br>
+      Expected: First property is deleted from the list. Details of the deleted property shown in the status message.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   1. Test case: `delete property 0`<br>
+      Expected: No property is deleted. Error details shown in the status message.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `delete`, `delete property x` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
-
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
