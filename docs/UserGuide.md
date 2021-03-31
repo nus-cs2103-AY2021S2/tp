@@ -568,11 +568,11 @@ Examples:
 
 ### **4.3 Navigating the UI**
 
-Although most of the buttons you see on the screen are clickable, the UI has been designed primarily to be navigated using the command line interface.
+Although most of the buttons you see on the screen are clickable, the UI has been designed primarily to be navigated using the command line interface. The commands listed in this section will help you navigate the UI without leaving keyboard.
 
-#### Listing all contacts : `contacts`
+#### Viewing all contacts : `contacts`
 
-Shows a list of all contacts in CoLAB.
+Displays a panel with a list of all contacts in CoLAB.
 
 Format: `contacts`
 
@@ -592,7 +592,7 @@ Examples:
 
 #### Viewing the overview of a project: `overview`
 
-Views the overview of the project that is currently displayed.
+Displays a panel containing an overview of the project that is currently displayed.
 
 Format: `overview`
 
@@ -600,7 +600,7 @@ Format: `overview`
 
 #### Viewing the todos of a project: `todos`
 
-Views the todos of the project that is currently displayed.
+Displays a panel containing the todos of the project that is currently displayed.
 
 Format: `todos`
 
@@ -608,15 +608,13 @@ Format: `todos`
 
 #### Viewing Today Panel : `today`
 
-Shows the today panel.
+Displays a panel containing information relevant to today.
 
 Format: `today`
 
 #### Viewing help : `help`
 
-Shows a message explaining how to access the help page.
-
-![help message](images/helpMessage.png)
+Displays a panel containing a summary of commands as well as a link to this user guide. The link can be copied to the system clipboard by clicking on the `Copy` button.
 
 Format: `help`
 
@@ -652,7 +650,7 @@ Restores CoLAB to the state before the previous undoable command was executed.
 
 Format: `undo'
 
-* Undoable commands are start with `add`, `update` or `delete`.
+* Undoable commands are start with `add`, `update`, `delete` or `clear`.
 * All other commands are not undoable.
 
 Example:
@@ -665,6 +663,8 @@ Example:
 Reverses the most recent undo command.
 
 Format: `redo'
+
+* Requires an undo command to have been performed prior to a redo command.  
 
 --------------------------------------------------------------------------------------------------------------------
 
