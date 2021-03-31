@@ -129,9 +129,9 @@ public class PlanInfoCalculator {
         double maintenanceCalories = calculateMaintenance(user);
 
         switch (planType) {
-        case WEIGHTGAIN:
+        case WEIGHT_GAIN:
             return calculateWeightGain(maintenanceCalories);
-        case WEIGHTLOSS:
+        case WEIGHT_LOSS:
             return calculateWeightLoss(maintenanceCalories);
         default:
             return maintenanceCalories;

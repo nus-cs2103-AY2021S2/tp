@@ -42,10 +42,10 @@ public class ViewPlanCommand extends Command {
         String result = "Here's more information about the ";
         PlanType planType = dietPlan.getPlanType();
         switch (planType) {
-        case WEIGHTGAIN:
+        case WEIGHT_GAIN:
             result += "Weight Gain plan:\n";
             break;
-        case WEIGHTLOSS:
+        case WEIGHT_LOSS:
             result += "Weight Loss plan:\n";
             break;
         default:

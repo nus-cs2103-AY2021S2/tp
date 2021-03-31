@@ -41,10 +41,10 @@ public class RecommendPlanCommand extends Command {
 
         StringBuilder recommendations = new StringBuilder("Here are the recommended ");
         switch (userGoal) {
-        case WEIGHTGAIN:
+        case WEIGHT_GAIN:
             recommendations.append("weight gain ");
             break;
-        case WEIGHTLOSS:
+        case WEIGHT_LOSS:
             recommendations.append("weight loss ");
             break;
         default:

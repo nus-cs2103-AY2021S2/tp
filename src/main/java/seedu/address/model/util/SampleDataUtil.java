@@ -6,10 +6,6 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.diet.DietPlan;
-import seedu.address.model.diet.DietPlanList;
-import seedu.address.model.diet.MacroNutrientComposition;
-import seedu.address.model.diet.PlanType;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
