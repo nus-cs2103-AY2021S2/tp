@@ -338,6 +338,41 @@ public class AddCommandTest {
         public void filterThenSortLessonList(Predicate<Lesson> predicate, Comparator<Lesson> comparator) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public ObservableList<Lesson> getMondayLesson() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Lesson> getTuesdayLesson() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Lesson> getWednesdayLesson() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Lesson> getThursdayLesson() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Lesson> getFridayLesson() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Lesson> getSaturdayLesson() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Lesson> getSundayLesson() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
