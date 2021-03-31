@@ -145,7 +145,7 @@ public class CommandTestUtil {
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
         DESC_EDIT_CHEESE = new EditCheeseDescriptorBuilder()
-                .withCheeseType(new CheeseType(VALID_CHEESE_TYPE_MOZZARELLA))
+                .withCheeseType(CheeseType.getCheeseType(VALID_CHEESE_TYPE_MOZZARELLA))
                 .withManufactureDate(VALID_MANUFACTURE_DATE_5).withMaturityDate(VALID_MATURITY_DATE_5)
                 .withExpiryDate(VALID_EXPIRY_DATE_5).build();
     }

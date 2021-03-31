@@ -32,7 +32,7 @@ public class EditCheeseDescriptorTest {
 
         // different cheese type -> returns false
         EditCheeseCommand.EditCheeseDescriptor editedCheese = new EditCheeseDescriptorBuilder(DESC_EDIT_CHEESE)
-                        .withCheeseType(new CheeseType(VALID_CHEESE_TYPE_CAMEMBERT)).build();
+                        .withCheeseType(CheeseType.getCheeseType(VALID_CHEESE_TYPE_CAMEMBERT)).build();
         assertFalse(DESC_EDIT_CHEESE.equals(editedCheese));
 
         // different manufacture date -> returns false

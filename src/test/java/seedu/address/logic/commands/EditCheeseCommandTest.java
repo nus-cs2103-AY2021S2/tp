@@ -57,7 +57,7 @@ public class EditCheeseCommandTest {
                 .withCheeseType(VALID_CHEESE_TYPE_MOZZARELLA)
                 .withExpiryDate(VALID_EXPIRY_DATE_4).build();
         EditCheeseCommand.EditCheeseDescriptor descriptor = new EditCheeseDescriptorBuilder()
-                .withCheeseType(new CheeseType(VALID_CHEESE_TYPE_MOZZARELLA))
+                .withCheeseType(CheeseType.getCheeseType(VALID_CHEESE_TYPE_MOZZARELLA))
                 .withExpiryDate(VALID_EXPIRY_DATE_4).build();
         EditCheeseCommand editCheeseCommand = new EditCheeseCommand(INDEX_THIRD_CHEESE, descriptor);
 
@@ -92,7 +92,7 @@ public class EditCheeseCommandTest {
         Cheese editedCheese = new CheeseBuilder(cheeseInFilteredList)
                 .withCheeseType(VALID_CHEESE_TYPE_MOZZARELLA).build();
         EditCheeseCommand.EditCheeseDescriptor descriptor = new EditCheeseDescriptorBuilder()
-                .withCheeseType(new CheeseType(VALID_CHEESE_TYPE_MOZZARELLA)).build();
+                .withCheeseType(CheeseType.getCheeseType(VALID_CHEESE_TYPE_MOZZARELLA)).build();
         EditCheeseCommand editCheeseCommand = new EditCheeseCommand(INDEX_FILTERED_CHEESE, descriptor);
 
         String expectedMessage = String.format(EditCheeseCommand.MESSAGE_EDIT_CHEESE_SUCCESS, editedCheese);
@@ -131,7 +131,7 @@ public class EditCheeseCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredCheeseList().size() + 1);
 
         EditCheeseCommand.EditCheeseDescriptor descriptor = new EditCheeseDescriptorBuilder()
-                .withCheeseType(new CheeseType(VALID_CHEESE_TYPE_MOZZARELLA)).build();
+                .withCheeseType(CheeseType.getCheeseType(VALID_CHEESE_TYPE_MOZZARELLA)).build();
         EditCheeseCommand editCheeseCommand = new EditCheeseCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(editCheeseCommand, model, Messages.MESSAGE_INVALID_CHEESE_DISPLAYED_INDEX);
@@ -150,7 +150,7 @@ public class EditCheeseCommandTest {
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getCheeseList().size());
 
         EditCheeseCommand.EditCheeseDescriptor descriptor = new EditCheeseDescriptorBuilder()
-                .withCheeseType(new CheeseType(VALID_CHEESE_TYPE_MOZZARELLA)).build();
+                .withCheeseType(CheeseType.getCheeseType(VALID_CHEESE_TYPE_MOZZARELLA)).build();
         EditCheeseCommand editCheeseCommand = new EditCheeseCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(editCheeseCommand, model, Messages.MESSAGE_INVALID_CHEESE_DISPLAYED_INDEX);
@@ -159,7 +159,7 @@ public class EditCheeseCommandTest {
     @Test
     public void equals() {
         EditCheeseCommand.EditCheeseDescriptor descriptor = new EditCheeseDescriptorBuilder()
-                .withCheeseType(new CheeseType(VALID_CHEESE_TYPE_MOZZARELLA)).build();
+                .withCheeseType(CheeseType.getCheeseType(VALID_CHEESE_TYPE_MOZZARELLA)).build();
         final EditCheeseCommand standardCommand = new EditCheeseCommand(INDEX_THIRD_CHEESE, descriptor);
 
         // same values -> returns true
@@ -182,7 +182,7 @@ public class EditCheeseCommandTest {
 
         // different descriptor -> returns false
         EditCheeseCommand.EditCheeseDescriptor newDescriptor = new EditCheeseDescriptorBuilder()
-                .withCheeseType(new CheeseType(VALID_CHEESE_TYPE_FETA)).build();
+                .withCheeseType(CheeseType.getCheeseType(VALID_CHEESE_TYPE_FETA)).build();
         assertFalse(standardCommand.equals(new EditCheeseCommand(INDEX_THIRD_CHEESE, newDescriptor)));
     }
 }

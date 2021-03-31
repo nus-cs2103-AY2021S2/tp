@@ -38,7 +38,7 @@ public class EditCheeseDescriptorBuilder {
      * Sets the {@code CheeseType} of the {@code EditCheeseDescriptor} that we are building.
      */
     public EditCheeseDescriptorBuilder withCheeseType(CheeseType cheeseType) {
-        descriptor.setCheeseType(new CheeseType(cheeseType.toString()));
+        descriptor.setCheeseType(CheeseType.getCheeseType(cheeseType.toString()));
         return this;
     }
 

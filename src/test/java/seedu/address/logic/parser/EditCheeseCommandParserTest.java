@@ -96,7 +96,7 @@ public class EditCheeseCommandParserTest {
                 + EXPIRY_DATE_5_DESC;
 
         EditCheeseCommand.EditCheeseDescriptor descriptor =
-                new EditCheeseDescriptorBuilder().withCheeseType(new CheeseType(VALID_CHEESE_TYPE_MOZZARELLA))
+                new EditCheeseDescriptorBuilder().withCheeseType(CheeseType.getCheeseType(VALID_CHEESE_TYPE_MOZZARELLA))
                         .withManufactureDate(VALID_MANUFACTURE_DATE_5)
                         .withMaturityDate(VALID_MATURITY_DATE_5)
                         .withExpiryDate(VALID_EXPIRY_DATE_5)
@@ -113,7 +113,7 @@ public class EditCheeseCommandParserTest {
                 + MANUFACTURE_DATE_5_DESC;
 
         EditCheeseCommand.EditCheeseDescriptor descriptor =
-                new EditCheeseDescriptorBuilder().withCheeseType(new CheeseType(VALID_CHEESE_TYPE_MOZZARELLA))
+                new EditCheeseDescriptorBuilder().withCheeseType(CheeseType.getCheeseType(VALID_CHEESE_TYPE_MOZZARELLA))
                         .withManufactureDate(VALID_MANUFACTURE_DATE_5).build();
         EditCheeseCommand expectedCommand = new EditCheeseCommand(targetIndex, descriptor);
 
@@ -126,7 +126,8 @@ public class EditCheeseCommandParserTest {
         Index targetIndex = INDEX_THIRD_CHEESE;
         String userInput = targetIndex.getOneBased() + CHEESE_TYPE_DESC_MOZZARELLA;
         EditCheeseCommand.EditCheeseDescriptor descriptor =
-                new EditCheeseDescriptorBuilder().withCheeseType(new CheeseType(VALID_CHEESE_TYPE_MOZZARELLA)).build();
+                new EditCheeseDescriptorBuilder()
+                        .withCheeseType(CheeseType.getCheeseType(VALID_CHEESE_TYPE_MOZZARELLA)).build();
         EditCheeseCommand expectedCommand = new EditCheeseCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -158,7 +159,7 @@ public class EditCheeseCommandParserTest {
                 + EXPIRY_DATE_5_DESC;
 
         EditCheeseCommand.EditCheeseDescriptor descriptor =
-                new EditCheeseDescriptorBuilder().withCheeseType(new CheeseType(VALID_CHEESE_TYPE_MOZZARELLA))
+                new EditCheeseDescriptorBuilder().withCheeseType(CheeseType.getCheeseType(VALID_CHEESE_TYPE_MOZZARELLA))
                         .withManufactureDate(VALID_MANUFACTURE_DATE_5)
                         .withMaturityDate(VALID_MATURITY_DATE_5)
                         .withExpiryDate(VALID_EXPIRY_DATE_5)
@@ -176,7 +177,8 @@ public class EditCheeseCommandParserTest {
                 + CHEESE_TYPE_DESC_MOZZARELLA;
 
         EditCheeseCommand.EditCheeseDescriptor descriptor =
-                new EditCheeseDescriptorBuilder().withCheeseType(new CheeseType(VALID_CHEESE_TYPE_MOZZARELLA)).build();
+                new EditCheeseDescriptorBuilder()
+                        .withCheeseType(CheeseType.getCheeseType(VALID_CHEESE_TYPE_MOZZARELLA)).build();
         EditCheeseCommand expectedCommand = new EditCheeseCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
