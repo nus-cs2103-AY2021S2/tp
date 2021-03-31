@@ -11,7 +11,9 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class SnoozeCommandParser implements Parser<SnoozeCommand> {
 
-    private static final String MESSAGE_INVALID_ARGUMENT = "Snooze Command can only have a compulsory INDEX"
+    private static final String SNOOZE_COMMAND_REGEX = "[0-9]+\\s?[0-9]*";
+
+    public static final String MESSAGE_INVALID_ARGUMENT = "Snooze Command must have a compulsory INDEX"
             + " and an optional NUMBER argument, both of which are positive integers.";
 
     /**
@@ -33,7 +35,7 @@ public class SnoozeCommandParser implements Parser<SnoozeCommand> {
     private void validateParameter(String parameter) throws ParseException {
         String trimmedArgs = parameter.trim();
 
-        if (!(Pattern.matches("[0-9]+\\s?[0-9]*", trimmedArgs))) {
+        if (trimmedArgs == "" || !(Pattern.matches(SNOOZE_COMMAND_REGEX, trimmedArgs))) {
             throw new ParseException(MESSAGE_INVALID_ARGUMENT);
         }
     }
@@ -44,14 +46,20 @@ public class SnoozeCommandParser implements Parser<SnoozeCommand> {
 
         assert(argValues.length == 1 || argValues.length == 2);
 
+        if (Integer.valueOf(argValues[0]) < 1) {
+            throw new ParseException(MESSAGE_INVALID_ARGUMENT);
+        }
         return ParserUtil.parseIndex(argValues[0]);
     }
 
-    private int getDays(String args) {
+    private int getDays(String args) throws ParseException {
         String trimmedArgs = args.trim();
         String[] argValues = trimmedArgs.split(" ");
 
         if (argValues.length == 2) {
+            if (Integer.valueOf(argValues[1]) < 1) {
+                throw new ParseException(MESSAGE_INVALID_ARGUMENT);
+            }
             return Integer.parseInt(argValues[1]);
         } else {
             return 1;
