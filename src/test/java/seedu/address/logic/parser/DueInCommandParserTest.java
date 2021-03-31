@@ -1,5 +1,7 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import org.junit.jupiter.api.Test;
@@ -33,6 +35,18 @@ public class DueInCommandParserTest {
     }
 
     @Test
+    public void parse_invalidArgs_throwsError() {
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, DueInCommand.MESSAGE_USAGE);
+
+        assertParseFailure(parser, " day/7 week/20", expectedMessage); // both params given
+        assertParseFailure(parser, "  day/ashiap", expectedMessage); // invalid input for a param
+        assertParseFailure(parser, "  week/ashiap", expectedMessage); // invalid input for a param
+        assertParseFailure(parser, "  day/10 week/ashiap", expectedMessage); // invalid input for a param
+        assertParseFailure(parser, "  day/ashiap week/10", expectedMessage); // invalid input for a param
+        assertParseFailure(parser, "  day/ashiap week/ashiap", expectedMessage); // invalid input for all params
+    }
+
+    @Test
     public void parse_validArgs_returnsDueInCommand() {
         DueInCommand expectedDueInCommand =
                 new DueInCommand(new DeadlineDateInRangePredicate(DEFAULT_NUMBER_OF_DAYS));
@@ -42,6 +56,7 @@ public class DueInCommandParserTest {
         assertParseSuccess(parser, " day/7              ", expectedDueInCommand); //whitespaces behind
         assertParseSuccess(parser, "         day/7", expectedDueInCommand); //whitespaces in front
         assertParseSuccess(parser, "      day/7    ", expectedDueInCommand); //whitespaces in both side
+        assertParseSuccess(parser, "  day/10   day/7    ", expectedDueInCommand); //multiple day params
 
 
         // week given
@@ -49,17 +64,7 @@ public class DueInCommandParserTest {
         assertParseSuccess(parser, " week/1              ", expectedDueInCommand); //whitespaces behind
         assertParseSuccess(parser, "         week/1", expectedDueInCommand); //whitespaces in front
         assertParseSuccess(parser, "      week/1    ", expectedDueInCommand); //whitespaces in both side
-
-        // both given
-        assertParseSuccess(parser, " day/7 week/20", expectedDueInCommand);
-        //whitespaces behind
-        assertParseSuccess(parser, " day/7 week/20              ", expectedDueInCommand);
-        //whitespaces in front
-        assertParseSuccess(parser, "         day/7 week/20", expectedDueInCommand);
-        //whitespaces in both side
-        assertParseSuccess(parser, "      day/7 week/20    ", expectedDueInCommand);
-        //whitespaces between
-        assertParseSuccess(parser, "    start/10-11-2022    end/10-11-2023", expectedDueInCommand);
+        assertParseSuccess(parser, "   week/10   week/1    ", expectedDueInCommand); //multiple week params
     }
 
 }
