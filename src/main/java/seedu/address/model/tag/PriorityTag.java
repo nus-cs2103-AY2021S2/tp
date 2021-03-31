@@ -6,63 +6,88 @@ package seedu.address.model.tag;
  */
 
 public class PriorityTag {
-    public final String label;
-    private PriorityTagStatus status;
+
+    public static final String MESSAGE_CONSTRAINTS = "PriorityTag should be a LOW/MEDIUM/HGIH";
+    public static final String MESSAGE_INVALID_INPUT = "Invalid Input, setting priority tag to default LOW";
+
+    private State state;
+    private String tagName;
 
     /**
-     * Enum class for the 3 priority types
-     * LOW, MEDIUM AND HIGH
+     * Constructs a {@code Tag}.
      *
+     * @param tagName A valid tag name.
      */
-    public enum PriorityTagStatus {
-        LOW,
-        MEDIUM,
-        HIGH
+    public PriorityTag(String tagName) {
+
+        boolean isValidTag = validateTag(tagName);
+
+        if (isValidTag) {
+            setState(tagName);
+        } else {
+            this.state = state.LOW;
+            this.tagName = "LOW";
+        }
+
     }
 
     /**
-     * Constructs a priority tag
-     *
-     * @param label A valid priority type
+     * method to return state of ptag
+     * @return state of the ptag
      */
 
-    public PriorityTag(String label) {
-        this.label = label;
-        if (label == "low") {
-            this.status = PriorityTagStatus.LOW;
-        } else if (label == "medium") {
-            this.status = PriorityTagStatus.MEDIUM;
-        } else if (label == "high") {
-            this.status = PriorityTagStatus.HIGH;
+    public State getState() {
+        return this.state;
+    }
+
+    /**
+     * method to return the state of the ptag in String value
+     * @return String value of the ptag
+     */
+
+    public String getTagName() {
+        return this.tagName;
+    }
+
+    /**
+     * method to return the priority value of the priority tag
+     * @return int value of priority tag
+     */
+
+    public int getPriority() {
+        return this.state.getPriorityValue();
+    }
+
+    /**
+     * method to validate if is valid tagName
+     * @param tagName String value of tagName to validate
+     * @return boolean value to validated
+     */
+
+    public boolean validateTag(String tagName) {
+        if (tagName.equals("LOW") || tagName.equals("MEDIUM") || tagName.equals("HIGH")) {
+            return true;
         } else {
-            this.status = PriorityTagStatus.LOW; // by default
+            return false;
         }
     }
 
     /**
-     * Method to return enum class as string
-     * @return a priority tag string
+     * method to init state for priorityTag
+     * @param tagName String value of priorityTag
      */
 
-    private String getEnum() {
-
-        if (status == PriorityTagStatus.LOW) {
-            return "LOW";
-        } else if (status == PriorityTagStatus.MEDIUM) {
-            return "MEDIUM";
-        } else if (status == PriorityTagStatus.HIGH) {
-            return "HIGH";
+    private void setState(String tagName) {
+        if (tagName.equals("LOW")) {
+            this.state = state.LOW;
+            this.tagName = tagName;
+        } else if (tagName.equals("MEDIUM")) {
+            this.state = state.MEDIUM;
+            this.tagName = tagName;
         } else {
-            return "NA";
+            this.state = state.HIGH;
+            this.tagName = tagName;
         }
-    }
-
-    /**
-     * Method to return priority tag as string
-     * @return correct format of enum class
-     */
-    public String toString() {
-        return "[" + getEnum() + "]";
     }
 
 }

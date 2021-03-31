@@ -22,7 +22,7 @@ public class DoneCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DONE_TASK_SUCCESS = "Finished Task: %1$s";
+    public static final String MESSAGE_DONE_TASK_SUCCESS = "Successfully toggle the status of the task: %1$s";
 
     private final Index targetIndex;
 
@@ -34,12 +34,15 @@ public class DoneCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Task> lastShownList = model.getFilteredTaskList();
+
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
         Task taskToFinish = lastShownList.get(targetIndex.getZeroBased());
+
         model.finishTask(taskToFinish);
+        model.finishDailyTask(taskToFinish);
         return new CommandResult(String.format(MESSAGE_DONE_TASK_SUCCESS, taskToFinish));
     }
 

@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTES;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.List;
@@ -10,39 +10,39 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Remark;
+import seedu.address.model.person.Notes;
 import seedu.address.model.person.Task;
 
-public class RemarkCommand extends Command {
+public class NotesCommand extends Command {
 
-    public static final String COMMAND_WORD = "remark";
+    public static final String COMMAND_WORD = "notes";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the remark of the person identified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the notes of the person identified "
         + "by the index number used in the last person listing. "
-        + "Existing remark will be overwritten by the input.\n"
+        + "Existing notes will be overwritten by the input.\n"
         + "Parameters: INDEX (must be a positive integer) "
-        + PREFIX_REMARK + "[REMARK]\n"
+        + PREFIX_NOTES + "[REMARK]\n"
         + "Example: " + COMMAND_WORD + " 1 "
-        + PREFIX_REMARK + "Likes to swim.";
+        + PREFIX_NOTES + "Likes to swim.";
 
-    public static final String MESSAGE_ARGUMENTS = "Index: %1$d, Remark: %2$s";
+    public static final String MESSAGE_ARGUMENTS = "Index: %1$d, Notes: %2$s";
 
-    public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to Person: %1$s";
+    public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added notes to Person: %1$s";
 
-    public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Removed remark from Person: %1$s";
+    public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Removed notes from Person: %1$s";
 
     private final Index index;
-    private final Remark remark;
+    private final Notes notes;
 
     /**
-     * @param index  of the person in the filtered person list to edit the remark
-     * @param remark of the person to be updated to
+     * @param index  of the person in the filtered person list to edit the notes
+     * @param notes of the person to be updated to
      */
-    public RemarkCommand(Index index, Remark remark) {
-        requireAllNonNull(index, remark);
+    public NotesCommand(Index index, Notes notes) {
+        requireAllNonNull(index, notes);
 
         this.index = index;
-        this.remark = remark;
+        this.notes = notes;
     }
 
     @Override
@@ -57,20 +57,21 @@ public class RemarkCommand extends Command {
         Task editedTask = new Task(taskToEdit.getTaskName(), taskToEdit.getModuleCode(),
                 taskToEdit.getDeadlineDate(), taskToEdit.getDeadlineTime(),
                 taskToEdit.getStatus(), taskToEdit.getWeightage(),
-                remark, taskToEdit.getTags());
+                notes, taskToEdit.getTags());
 
         model.setTask(taskToEdit, editedTask);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+        model.refreshDailyTasks(taskToEdit, editedTask);
 
         return new CommandResult(generateSuccessMessage(editedTask));
     }
 
     /**
-     * Generates a command execution success message based on whether the remark is added to or removed from
+     * Generates a command execution success message based on whether the notes is added to or removed from
      * {@code personToEdit}.
      */
     private String generateSuccessMessage(Task taskToEdit) {
-        String message = !remark.value.isEmpty() ? MESSAGE_ADD_REMARK_SUCCESS : MESSAGE_DELETE_REMARK_SUCCESS;
+        String message = !notes.value.isEmpty() ? MESSAGE_ADD_REMARK_SUCCESS : MESSAGE_DELETE_REMARK_SUCCESS;
         return String.format(message, taskToEdit);
     }
 
@@ -82,12 +83,12 @@ public class RemarkCommand extends Command {
         }
 
         // instanceof handles null
-        if (!(other instanceof RemarkCommand)) {
+        if (!(other instanceof NotesCommand)) {
             return false;
         }
 
         // state check
-        RemarkCommand e = (RemarkCommand) other;
-        return index.equals(e.index) && remark.equals(e.remark);
+        NotesCommand e = (NotesCommand) other;
+        return index.equals(e.index) && notes.equals(e.notes);
     }
 }

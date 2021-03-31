@@ -12,10 +12,12 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.TaskTrackerParser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.util.NonModifyingCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyTaskTracker;
 import seedu.address.model.person.Task;
 import seedu.address.storage.Storage;
+
 
 /**
  * The main LogicManager of the app.
@@ -35,6 +37,7 @@ public class LogicManager implements Logic {
         this.model = model;
         this.storage = storage;
         taskTrackerParser = new TaskTrackerParser();
+        model.commitTaskTracker(model.getTaskTracker());
     }
 
     @Override
@@ -45,6 +48,8 @@ public class LogicManager implements Logic {
         Command command = taskTrackerParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
+        commitTaskTracker(command);
+
         try {
             storage.saveTaskTracker(model.getTaskTracker());
         } catch (IOException ioe) {
@@ -52,6 +57,21 @@ public class LogicManager implements Logic {
         }
 
         return commandResult;
+    }
+
+    private void commitTaskTracker(Command command) {
+        if (!isNonModifyingCommand(command)) {
+            model.commitTaskTracker((model.getTaskTracker()));
+        }
+    }
+
+    private boolean isNonModifyingCommand(Command command) {
+        for (NonModifyingCommand c : NonModifyingCommand.values()) {
+            if (command.toString().equals(c.toString())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
@@ -65,9 +85,10 @@ public class LogicManager implements Logic {
         return model.getFilteredTaskList();
     }
 
+
     @Override
-    public ObservableList<Task> getFinishedTaskList() {
-        return model.getFinishedTaskList();
+    public ObservableList<Task> getDailyTaskList() {
+        return model.getDailyTaskList();
     }
 
     @Override

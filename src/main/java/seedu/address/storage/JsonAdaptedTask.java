@@ -13,11 +13,12 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.DeadlineDate;
 import seedu.address.model.person.DeadlineTime;
 import seedu.address.model.person.ModuleCode;
-import seedu.address.model.person.Remark;
+import seedu.address.model.person.Notes;
 import seedu.address.model.person.Status;
 import seedu.address.model.person.Task;
 import seedu.address.model.person.TaskName;
 import seedu.address.model.person.Weightage;
+import seedu.address.model.tag.PriorityTag;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -33,8 +34,9 @@ class JsonAdaptedTask {
     private final String deadlineTime;
     private final String status;
     private final Integer weightage;
-    private final String remark;
+    private final String notes;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final String priorityTag;
 
     /**
      * Constructs a {@code JsonAdaptedTask} with the given person details.
@@ -46,7 +48,7 @@ class JsonAdaptedTask {
                            @JsonProperty("deadlineTime") String deadlineTime,
                            @JsonProperty("status") String status,
                            @JsonProperty("weightage") Integer weightage,
-                           @JsonProperty("remark") String remark,
+                           @JsonProperty("notes") String notes,
                            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.taskName = taskName;
         this.moduleCode = moduleCode;
@@ -54,7 +56,8 @@ class JsonAdaptedTask {
         this.deadlineTime = deadlineTime;
         this.status = status;
         this.weightage = weightage;
-        this.remark = remark;
+        this.notes = notes;
+        this.priorityTag = "LOW";
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -70,10 +73,11 @@ class JsonAdaptedTask {
         deadlineTime = source.getDeadlineTime().toString();
         status = source.getStatus().toString();
         weightage = source.getWeightage().weightage;
-        remark = source.getRemark().value;
+        notes = source.getNotes().value;
         tagged.addAll(source.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList()));
+        priorityTag = source.getPriorityTag().getTagName();
     }
 
     /**
@@ -138,14 +142,20 @@ class JsonAdaptedTask {
         }
         final Weightage modelWeightage = new Weightage(weightage);
 
-        if (remark == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName()));
+        if (notes == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Notes.class.getSimpleName()));
         }
-        final Remark modelRemark = new Remark(remark);
+        final Notes modelNotes = new Notes(notes);
+
+        if (priorityTag == null) {
+            throw new IllegalValueException(PriorityTag.MESSAGE_CONSTRAINTS);
+        }
+
+        final PriorityTag modelPriorityTag = new PriorityTag(priorityTag);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         return new Task(modelTaskName, modelModuleCode, modelDeadlineDate,
-            modelDeadlineTime, modelStatus, modelWeightage, modelRemark, modelTags);
+            modelDeadlineTime, modelStatus, modelWeightage, modelNotes, modelTags, modelPriorityTag);
     }
 
 }

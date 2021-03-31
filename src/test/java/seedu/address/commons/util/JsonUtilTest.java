@@ -1,12 +1,15 @@
 package seedu.address.commons.util;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.testutil.SerializableTestClass;
 import seedu.address.testutil.TestUtil;
 
@@ -39,7 +42,35 @@ public class JsonUtilTest {
         assertEquals(serializableTestClass.getMapOfIntegerToString(), SerializableTestClass.getHashMapTestValues());
     }
 
-    //TODO: @Test jsonUtil_readJsonStringToObjectInstance_correctObject()
+    @Test
+    public void jsonUtil_readJsonStringToObjectInstance_correctObject() throws DataConversionException {
+        Optional<SerializableTestClass> readJsonFile = JsonUtil.readJsonFile(
+                SERIALIZATION_FILE, SerializableTestClass.class);
+        assertFalse(readJsonFile.isEmpty());
 
-    //TODO: @Test jsonUtil_writeThenReadObjectToJson_correctObject()
+        SerializableTestClass serializableTestClass = readJsonFile.get();
+
+        assertEquals(serializableTestClass.getName(), SerializableTestClass.getNameTestValue());
+        assertEquals(serializableTestClass.getListOfLocalDateTimes(), SerializableTestClass.getListTestValues());
+        assertEquals(serializableTestClass.getMapOfIntegerToString(), SerializableTestClass.getHashMapTestValues());
+    }
+
+    @Test
+    public void jsonUtil_writeThenReadObjectToJson_correctObject() throws IOException, DataConversionException {
+        SerializableTestClass serializableTestClass = new SerializableTestClass();
+        serializableTestClass.setTestValues();
+
+        //Write
+        JsonUtil.saveJsonFile(serializableTestClass, SERIALIZATION_FILE);
+
+        //Read
+        SerializableTestClass readSerializableTestClass = JsonUtil.readJsonFile(
+                SERIALIZATION_FILE, SerializableTestClass.class).get();
+
+        assertEquals(serializableTestClass.getName(), readSerializableTestClass.getName());
+        assertEquals(serializableTestClass.getListOfLocalDateTimes(),
+                readSerializableTestClass.getListOfLocalDateTimes());
+        assertEquals(serializableTestClass.getMapOfIntegerToString(),
+                readSerializableTestClass.getMapOfIntegerToString());
+    }
 }

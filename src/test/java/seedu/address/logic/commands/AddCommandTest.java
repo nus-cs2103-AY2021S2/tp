@@ -9,6 +9,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -109,13 +110,42 @@ public class AddCommandTest {
         }
 
         @Override
+        public void refreshDailyTasks(Task target, Task editTask) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void finishDailyTask(Task task) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteDailyTask(Task task) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addTask(Task task) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setTaskTracker(ReadOnlyTaskTracker newData) {
+        public void addToDailyToDoList(Task task) {
+            throw new AssertionError("This method should not be called.");
+        }
 
+        @Override
+        public void removeFromDailyToDoList(Task task) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setTaskTracker(ReadOnlyTaskTracker newData) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void sortTasks(Comparator<Task> comparator) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -146,17 +176,53 @@ public class AddCommandTest {
         }
 
         @Override
+        public void setDailyTask(Task target, Task editedTask) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Task> getFilteredTaskList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Task> getFinishedTaskList() {
+        public ObservableList<Task> getDailyTaskList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void updateFilteredTaskList(Predicate<Task> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateDailyTaskList(Predicate<Task> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void commitTaskTracker(ReadOnlyTaskTracker currentState) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+
+        public TaskTracker undoTaskTracker() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public TaskTracker redoTaskTracker() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean canUndoTaskTracker() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean canRedoTaskTracker() {
             throw new AssertionError("This method should not be called.");
         }
     }

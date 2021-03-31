@@ -68,7 +68,7 @@ public class DeleteCommandTest {
         showTaskAtIndex(model, INDEX_FIRST_TASK);
 
         Index outOfBoundIndex = INDEX_SECOND_TASK;
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of task list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getTaskTracker().getTaskList().size());
 
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
@@ -83,13 +83,23 @@ public class DeleteCommandTest {
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
+        assertTrue(deleteSecondCommand.equals(deleteSecondCommand));
 
         // same values -> returns true
         DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST_TASK);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
+        DeleteCommand deleteSecondCommandCopy = new DeleteCommand(INDEX_SECOND_TASK);
+        assertTrue(deleteSecondCommand.equals(deleteSecondCommandCopy));
 
         // different types -> returns false
-        assertFalse(deleteFirstCommand.equals(1));
+        assertFalse(deleteFirstCommand.equals(1)); // integer
+        assertFalse(deleteSecondCommand.equals(1));
+        assertFalse(deleteFirstCommand.equals("1")); // string
+        assertFalse(deleteSecondCommand.equals("1"));
+        assertFalse(deleteFirstCommand.equals(new Object())); // object
+        assertFalse(deleteSecondCommand.equals(new Object()));
+        assertFalse(deleteFirstCommand.equals(new DoneCommand(INDEX_FIRST_TASK))); // other command
+        assertFalse(deleteSecondCommand.equals(new DoneCommand(INDEX_FIRST_TASK)));
 
         // null -> returns false
         assertFalse(deleteFirstCommand.equals(null));

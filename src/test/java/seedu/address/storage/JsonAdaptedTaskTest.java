@@ -19,7 +19,6 @@ import seedu.address.model.person.TaskName;
 
 public class JsonAdaptedTaskTest {
     private static final String INVALID_NAME = "R@chel";
-    private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_DATE = "2020-10-03";
     private static final String INVALID_TIME = "25:61";
     private static final String INVALID_TAG = "#friend";
@@ -32,7 +31,7 @@ public class JsonAdaptedTaskTest {
     private static final String VALID_TIME = CS2040.getDeadlineTime().toString();
     private static final String VALID_STATUS = CS2040.getStatus().toString();
     private static final Integer VALID_WEIGHTAGE = CS2040.getWeightage().weightage;
-    private static final String VALID_REMARK = CS2040.getRemark().toString();
+    private static final String VALID_REMARK = CS2040.getNotes().toString();
     private static final List<JsonAdaptedTag> VALID_TAGS = CS2040.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
