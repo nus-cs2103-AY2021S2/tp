@@ -6,6 +6,7 @@ title: User Guide
 
 <!--ts-->
 * [Introduction](#introduction)
+* [Understanding the User Guide](#understanding-the-user-guide)
 * [Quick start](#quick-start)
 * [Features](#features)
 * [1. Body Mass Index (BMI) Tracker](#1-body-mass-index-bmi-tracker)
@@ -32,6 +33,9 @@ title: User Guide
      * [3.8.2. Query food intake over a period of days](#382-query-food-intake-over-a-period-of-days)
   * [4. Progress report](#4-progress-report)
      * [4.1 Generate progress report](#41-generate-progress-report)
+  * [5. Miscellaneous](#5-miscellaneous)
+     * [5.1 Reset application to blank](#51-reset-application-to-blank)
+     * [5.2 Populate application with sample template data](#52-populate-application-with-sample-template-data)
 * [Command summary](#command-summary)
 * [Glossary](#glossary)
 <!--te-->
@@ -59,7 +63,7 @@ Legend | Description
 
 3. Copy the `DietLAH.jar` file to the folder you will be launching DietLAH!
 
-4. Double-click the file to start the app. The application will be pre-loaded with some sample data. To start afresh, use the `reset t/blank` command
+4. Double-click the file to start the application. The application will be pre-loaded with some sample data. To start afresh, use the `reset t/blank` command
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Here are some quick commands to get you started:
@@ -80,6 +84,8 @@ Legend | Description
 
 6. Refer to the [Features](#features) section below for details of each command
 
+[TODO add screenshot of application screen]
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
@@ -91,8 +97,7 @@ Legend | Description
 
 ### 1.1 Input weight, height and ideal weight
 
-On the application's first launch, the user is prompted to enter his/her height, weight and ideal weight.
-Other commands will be unavailable until this command is first input.
+On the application's first launch, you will be prompted to enter your height, weight and ideal weight. Other commands will be unavailable until you complete the bmi setting step.
 
 **Command Format:** `bmi g/GENDER a/AGE h/HEIGHT(CM) w/WEIGHT(KG) i/IDEAL_WEIGHT(KG)`
 
@@ -106,7 +111,7 @@ Other commands will be unavailable until this command is first input.
 
 ### 1.2 Query weight, height and BMI
 
-The user can query their weight and height everyday to see their progress.
+You can view your height, weight, calculated BMI and associated health risks (if any), at any time by using the BMI query command. 
 
 **Command Format:** `bmi_query`
 
@@ -118,8 +123,7 @@ The user can query their weight and height everyday to see their progress.
 
 ### 1.3 Update weight, height and ideal weight
 
-The user can update their weight and height everyday to track their progress. 
-This is recommended, so the user will have a more accurate view of their BMI status.
+We recommend updating your height and weight whenever you can. This aids your personal progress tracking and ensures that your information and BMI is always up-to-date.
 
 **Command Format:** `bmi_update g/GENDER a/AGE h/HEIGHT(CM) w/WEIGHT(KG) i/IDEAL_WEIGHT(KG)`
 
@@ -135,7 +139,7 @@ This is recommended, so the user will have a more accurate view of their BMI sta
 
 ### 2.1 Get diet recommendation based on current BMI
 
-The user can get a recommended diet plan based on the their current BMI stored in the system.
+Get a recommended diet plan based on your current BMI stored in the application.
 
 **Command Format:** `plan_recommend`
 
@@ -147,7 +151,7 @@ The user can get a recommended diet plan based on the their current BMI stored i
 
 ### 2.2 View active diet plan
 
-Shows the current active diet plan previously selected by the user.
+Shows you the current active diet plan you have selected.
 
 **Command Format:** `plan_current`
 
@@ -159,7 +163,7 @@ Shows the current active diet plan previously selected by the user.
 
 ### 2.3 Select active diet plan
 
-Changes the current active diet plan to the newly specified plan.
+Change your current active diet plan to another one. It's okay to change your mind!
 
 **Command Format:** `plan_set p/ID`
 
@@ -173,7 +177,7 @@ Changes the current active diet plan to the newly specified plan.
 
 ### 2.4 List all available diet plans
 
-Displays a list of available diet plans.
+Shows you a list of currently available diet plans.
 
 **Command Format:** `plan_list`
 
@@ -185,7 +189,7 @@ Displays a list of available diet plans.
 
 ### 2.5 View information about a particular diet plan
 
-Displays information about a particular diet plan.
+Interested in trying out a diet plan? Find out more about its daily nutritional requirements.
 
 **Command Format:** `plan p/ID`
 
@@ -200,13 +204,13 @@ Displays information about a particular diet plan.
 ## 3. Macronutrients Tracker
 ### 3.1 Add food item
 
-Adds a new food item with their nutrients value and stores them in the food list. Food items are used as shortcuts to add food intake items without having to type out the values.
+Save food items you frequently consume so you don't have to re-enter them every time! Your food list acts as a shortcut to help speed up your food intake recording.
 
 **Command Format:** `food_add n/FOOD_NAME c/CARBOS(G) f/FATS(G) p/PROTEINS(G)`
 
 **Example:** `food_add n/tomato c/10 f/10 p/10`
 
-**Note:** Food item with similar names to existing food item cannot be added. 
+**Note:** Food names must be unique.
 
 **Expected output:**
 
@@ -216,13 +220,15 @@ Adds a new food item with their nutrients value and stores them in the food list
 
 ### 3.2 Update food item
 
-Updates existing food items with their new nutrients value(s).
+Update food items in your food list with new nutritent values.
 
 **Command Format:** `food_update n/FOOD_NAME c/CARBOS(G) f/FATS(G) p/PROTEINS(G)`
 
 **Example:** `food_update n/tomato c/20 f/30 p/40`
 
-**Note:** Particular food item has to exist in the list to update. Not all nutrient fields are compulsory. Only the nutrient field(s) specified will have its/their value(s) updated to the latest value. 
+**Note:** Ensure that the food item exists in the application.
+
+**Tip:** Not all nutrient fields are compulsory. Save time from having to re-enter data and only include fields you wish to update!
 
 **Expected output:**
 
@@ -232,7 +238,7 @@ Updates existing food items with their new nutrients value(s).
 
 ### 3.3 List food item
 
-Lists all food items that are stored in the application.
+Shows you all the food items stored in your food list.
 
 **Command Format:** `food_list`
 
@@ -246,13 +252,13 @@ Lists all food items that are stored in the application.
 
 ### 3.4 Delete food item
 
-Deletes the particular food item stored in the application.
+Deletes the specified food item stored in the application.
 
 **Command Format:** `food_delete n/name`
 
 **Example:** `food_delete n/tomato`
 
-**Note:** Particular food item has to exist in order to be deleted. Deletion of a food item will not affect older food intake item record with similar name. 
+**Note:** Deletion of a food item will not affect older food intake item records with similar name.
 
 **Expected output:**
 
@@ -262,14 +268,14 @@ Deletes the particular food item stored in the application.
 
 ### 3.5 Input food intake
 
-For tracking the user's diet plan progress, the user is encouraged to track their daily food intake by entering the food name and associated macronutrients (carbohydrates, fats and proteins) in grams. There are a few ways to input a food intake such as using the pre-stored food values, or adding a brand new food intake. For Date input, the user can use the alias `d/today` as a shortcut to input today's date. The actions for Food Intake Item can only be performed based on past and current date. The different scenarios are outlined below.
+For tracking your diet plan progress, you are encouraged to record your daily food intake. For your convenience, there are a few ways to input a food intake. Check out the different scenarios outlined below!
 
 **Note:** If there are multiple food intakes with the same date and name, the food name will be automatically renamed to include a duplicate count for easy identification. E.g. Chicken rice, Chicken rice 2
 
 
 ### 3.5.1 Input food intake (For new food items that are not created before)
 
-Records a food intake for the given date and stores the food in the food list for easy future reuse.
+Record your food intake for the specified date with a new food item not currently in your food list. The food will also be added to your food list for your convenience!
 
 **Command Format:** `food_intake_add d/DATE(in d MMM yyyy format) n/FOOD_NAME c/CARBOS(G) f/FATS(G) p/PROTEINS(G)`
 
@@ -286,7 +292,7 @@ Records a food intake for the given date and stores the food in the food list fo
 
 ### 3.5.2 Input food intake (For existing food items)
 
-Records a food intake for the given date using an existing food item. The nutrient values will be retrieved from the corresponding food item stored in the application.
+Record your food intake for the specified date using an existing food from your food list. Now you can save time having to re-enter your favourite food!
 
 **Command Format:** `food_intake_add d/DATE(in d MMM yyyy format) n/FOOD_NAME`
 
@@ -300,7 +306,7 @@ Records a food intake for the given date using an existing food item. The nutrie
 
 ### 3.5.3 Input food intake (For existing food items, using different nutrient value(s))
 
-Records a food intake for the given date and updates the existing food item with the new nutrient value(s).
+Record your food intake for the specified date using an existing food from your food list, but with different nutrient value(s). The value(s) will also be updated in your food list.
 
 **Command Format:** `food_intake_add d/DATE(in d MMM yyyy format) n/FOOD_NAME c/CARBOS(G) f/FATS(G) p/PROTEINS(G)`
 
@@ -316,13 +322,13 @@ Records a food intake for the given date and updates the existing food item with
 
 ### 3.6 Update food intake
 
-Updates the nutrient value(s) of an existing food intake matching the given date and food name.
+Update the nutrient value(s) of a previously entered food intake given the date and food name.
 
 **Command Format:** `food_intake_update d/DATE(in d MMM yyyy format) n/FOOD_NAME c/CARBOS(G) f/FATS(G) p/PROTEINS(G)`
 
 **Example:** `food_intake_update d/31 Mar 2021 n/tomato c/20 f/40 p/50`
 
-**Note**: The given food intake item must exist in order for update to work. Not all nutrient fields are required and only the specified nutrient fields will be updated with the new value while the other values remain unchanged. For instance, the original fat value of tomato is 35g and you want to change to 40g, you can run `food_intake_update d/31 Mar 2021 n/tomato f/40`.
+**Tip:** Not all nutrient fields are required and only the specified nutrient fields will be updated with the new value while the other values remain unchanged.
 
 **Expected output:**
 
@@ -332,13 +338,11 @@ Updates the nutrient value(s) of an existing food intake matching the given date
 
 ### 3.7 Delete food intake
 
-Deletes a food intake item for the specified day.
+Delete a food intake record from the application.
 
 **Command Format:** `food_intake_delete d/DATE(in d MMM yyyy format) n/FOOD_NAME`
 
 **Example:** `food_intake_delete d/31 Mar 2021 n/tomato`
-
-**Note:** The food intake item has to exist before it can be deleted.
 
 **Expected output:**
 
@@ -348,11 +352,11 @@ Deletes a food intake item for the specified day.
 
 ### 3.8 Query food intake
 
-Queries food intake items on either a day or over a period of days. Refer to sub-category for more information. 
+View the list of food intakes on a given day or over a period of days. Check out the different scenarios outlined below!
 
 ### 3.8.1 Query food intake on a day
 
-Queries all the food intake(s) on a certain day.
+View the list of food intakes on a specific day.
 
 **Command Format:** `food_intake_query d/DATE(in d MMM yyyy format)`
 
@@ -366,7 +370,7 @@ Queries all the food intake(s) on a certain day.
 
 ### 3.8.2 Query food intake over a period of days
 
-Queries all the existing food intake(s) over a period of days (both inclusive).
+View the list of food intakes over a period of days (both inclusive).
 
 **Command Format:** `food_intake_query df/DATE_FROM(in d MMM yyyy format) dt/DATE_TO(in d MMM yyyy format)`
 
@@ -381,7 +385,7 @@ Queries all the existing food intake(s) over a period of days (both inclusive).
 ## 4. Progress report
 ### 4.1 Generate progress report
 
-Generates a progress report based on the active diet plan. This command will calculate the user's food intakes against the daily requirements and report how much the user has adhered to the plan's requirements.
+Generates a progress report based on your current active diet plan. Your food intake will be calculated against the daily requirements to generate a report detailing how much you have adhered to the plan's requirements.
 
 **Command Format:** `progress`
 
@@ -391,7 +395,33 @@ Generates a progress report based on the active diet plan. This command will cal
 
 <p align="center">
   <img src="images/user-guide/progress-report.png">
-</p> 
+</p>
+
+##5. Miscellaneous
+
+### 5.1 Reset application to blank
+
+Get rid of all existing records and start afresh.
+
+**Command Format:** `reset t/blank`
+
+**Expected output:**
+
+<p align="center">
+  TODO: IMAGE
+</p>
+
+### 5.1 Populate application with sample template data
+
+Get rid of all existing records and populate it with the sample template data.
+
+**Command Format:** `reset t/template`
+
+**Expected output:**
+
+<p align="center">
+  TODO: IMAGE
+</p>
 
 --------------------------------------------------------------------------------------------------------------------
 
