@@ -282,6 +282,9 @@ public class MainWindow extends UiPart<Stage> {
         sidePanel.selectProject(index);
     }
 
+    /**
+     * Clears side panel button styles.
+     */
     public void clearButtonStyles() {
         sidePanel.clearButtonStyles();
     }
