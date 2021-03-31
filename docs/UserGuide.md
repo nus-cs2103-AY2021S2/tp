@@ -360,6 +360,23 @@ the data of your previous SmartLib home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Glossary
+
+* **Alphanumeric**: Alphanumeric characters include uppercase letters from 'A' to 'Z',
+    lowercase letters from 'a' to 'z', and
+    numbers from '0` to '9'.
+    
+* **Command Box**: The _Command Box_ is the component of the GUI where you will be entering your user input.
+
+* **Result Display**: The _Result Display_ is the component of the GUI where you will be notified whether your command
+    was successfully executed by SmartLib.
+    
+* **Special characters**: Special characters refer to any characters that are not alphanumeric.
+
+![annotated Ui](images/Ui-annotated.png)
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## Command summary
 
 Action | Format, Examples
