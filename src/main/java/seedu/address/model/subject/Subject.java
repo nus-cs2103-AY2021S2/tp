@@ -31,7 +31,7 @@ public class Subject implements Comparable<Subject> {
      * Returns true if a given string is a valid subject name.
      */
     public static boolean isValidSubjectName(String test) {
-        if(test.matches(VALIDATION_REGEX)){
+        if (test.matches(VALIDATION_REGEX)) {
             for (AvailableSubject subject : AvailableSubject.values()) {
                 if (subject.name().equals(test)) {
                     return true;

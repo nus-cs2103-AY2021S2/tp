@@ -94,7 +94,7 @@ public class SearchCommandTest {
     @Test
     public void execute_multipleSubjectKeywords_multipleStudentsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
-        NameSchoolAndSubjectContainsKeywordsPredicate predicate = preparePredicate(" t/chinese math");
+        NameSchoolAndSubjectContainsKeywordsPredicate predicate = preparePredicate(" t/cn math");
         SearchCommand command = new SearchCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
