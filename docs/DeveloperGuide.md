@@ -453,7 +453,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to edit information about a specific venue.
 2.  BookCoin To The Moon edits the venue information.
-
+3.  BookCoin To The Moon edits the corresponding booking information.
+    
     Use case ends.
 
 **Extensions**
@@ -476,6 +477,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The booking requested cannot be found.
     * 1a1. BookCoin To The Moon shows an error message.
+* 1b. The booker email does not exist in the system.
+    * 1b1. BookCoin To The Moon shows an error message.
+* 1c. The venue name does not exist in the system.
+    * 1c1. BookCoin To The Moon shows an error message.
+* 1d. The ending time is not later than the starting time.
+    * 1d1. BookCoin To The Moon shows an error message.
+* 1e. The time slot required has been booked already.
+    * 1e1. BookCoin To The Moon shows an error message.
 
   Use case ends.
 
@@ -486,6 +495,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to edit information about a specific booker.
 2.  BookCoin To The Moon edits the booker information.
+3.  BookCoin To The Moon edits the corresponding booking information.
 
     Use case ends.
 

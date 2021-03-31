@@ -3,7 +3,10 @@ package seedu.booking.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKER;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_END;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_ID;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_START;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_CAPACITY;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -95,7 +98,6 @@ public class CommandTestUtil {
     public static final String VENUE_NAME_DESC_FIELD = " " + PREFIX_VENUE + VALID_VENUE_NAME_FIELD;
     public static final String VENUE_NAME_DESC_VENUE1 = " " + PREFIX_VENUE + VALID_VENUE_NAME_VENUE1;
     public static final String VENUE_NAME_DESC_VENUE2 = " " + PREFIX_VENUE + VALID_VENUE_NAME_VENUE2;
-
     public static final String VENUE_CAPACITY_DESC_HALL = " " + PREFIX_CAPACITY + VALID_VENUE_CAPACITY_HALL;
     public static final String VENUE_CAPACITY_DESC_FIELD = " " + PREFIX_CAPACITY + VALID_VENUE_CAPACITY_FIELD;
 
@@ -130,6 +132,41 @@ public class CommandTestUtil {
 
     public static final EditVenueCommand.EditVenueDescriptor DESC_COURT;
     public static final EditVenueCommand.EditVenueDescriptor DESC_HALL;
+
+
+    public static final String VALID_BOOKING_VENUE_NAME_HALL = "Victoria Hall";
+    public static final String VALID_BOOKING_VENUE_NAME_FIELD = "Town Green";
+    public static final String VALID_BOOKING_BOOKER_EMAIL_AMY = "amy@example.com";
+    public static final String VALID_BOOKING_BOOKER_EMAIL_BOB = "bob@example.com";
+    public static final String VALID_BOOKING_DESCRIPTION_HALL = "For FYP meeting";
+    public static final String VALID_BOOKING_DESCRIPTION_FIELD = "For sports meeting";
+    public static final String VALID_BOOKING_START_HALL = "2021-02-02 07:00:00";
+    public static final String VALID_BOOKING_START_FIELD = "2021-02-02 07:00:00";
+    public static final String VALID_BOOKING_END_HALL = "2021-02-02 08:00:00";
+    public static final String VALID_BOOKING_END_FIELD = "2021-02-02 08:00:00";
+    public static final String VALID_BOOKING_TAGS_HALL = "Indoors";
+    public static final String VALID_BOOKING_ID_HALL = "111111111";
+    public static final String VALID_BOOKING_ID_FIELD = "222222222";
+
+
+    public static final String BOOKING_VENUE_NAME_DESC_HALL = " " + PREFIX_VENUE + VALID_VENUE_NAME_HALL;
+    public static final String BOOKING_VENUE_NAME_DESC_FIELD = " " + PREFIX_VENUE + VALID_VENUE_NAME_FIELD;
+    public static final String BOOKING_BOOKER_EMAIL_AMY_DESC_HALL =
+            " " + PREFIX_BOOKER + VALID_BOOKING_BOOKER_EMAIL_AMY;
+    public static final String BOOKING_BOOKER_EMAIL_BOB_DESC_FIELD =
+            " " + PREFIX_BOOKER + VALID_BOOKING_BOOKER_EMAIL_BOB;
+    public static final String BOOKING_DESCRIPTION_DESC_HALL =
+            " " + PREFIX_DESCRIPTION + VALID_BOOKING_DESCRIPTION_HALL;
+    public static final String BOOKING_DESCRIPTION_DESC_FIELD =
+            " " + PREFIX_DESCRIPTION + VALID_BOOKING_DESCRIPTION_FIELD;
+    public static final String BOOKING_START_DESC_HALL = " " + PREFIX_BOOKING_START + VALID_BOOKING_START_HALL;
+    public static final String BOOKING_START_DESC_FIELD = " " + PREFIX_BOOKING_START + VALID_BOOKING_START_FIELD;
+    public static final String BOOKING_END_DESC_HALL = " " + PREFIX_BOOKING_END + VALID_BOOKING_END_HALL;
+    public static final String BOOKING_END_DESC_FIELD = " " + PREFIX_BOOKING_END + VALID_BOOKING_END_FIELD;
+    public static final String BOOKING_TAGS_DESC_HALL = " " + PREFIX_TAG + VALID_BOOKING_TAGS_HALL;
+    public static final String BOOKING_ID_DESC_HALL = " " + PREFIX_BOOKING_ID + VALID_BOOKING_ID_HALL;
+    public static final String BOOKING_ID_DESC_FIELD = " " + PREFIX_BOOKING_ID + VALID_BOOKING_ID_FIELD;
+    public static final String INVALID_BOOKER_EMAIL = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
 
 
     static {

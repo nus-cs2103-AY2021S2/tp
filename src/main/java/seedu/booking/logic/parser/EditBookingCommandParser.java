@@ -5,7 +5,6 @@ import static seedu.booking.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKER;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_END;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_ID;
-import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_ORIGINAL;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_START;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_TAG;
@@ -29,18 +28,19 @@ public class EditBookingCommandParser implements Parser<EditBookingCommand> {
     public EditBookingCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_BOOKING_ORIGINAL, PREFIX_BOOKER, PREFIX_VENUE,
-                        PREFIX_DESCRIPTION, PREFIX_BOOKING_START, PREFIX_BOOKING_END, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_BOOKING_ID, PREFIX_BOOKER, PREFIX_VENUE,
+                        PREFIX_DESCRIPTION, PREFIX_BOOKING_START, PREFIX_BOOKING_END);
+
 
         Id id;
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_BOOKING_ORIGINAL)
-                || argMultimap.getValue(PREFIX_BOOKING_ORIGINAL).isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_BOOKING_ID)
+                || argMultimap.getValue(PREFIX_BOOKING_ID).isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditBookingCommand.MESSAGE_USAGE));
         }
 
-        id = ParserUtil.parseBookingId(argMultimap.getValue(PREFIX_BOOKING_ORIGINAL).get());
+        id = ParserUtil.parseBookingId(argMultimap.getValue(PREFIX_BOOKING_ID).get());
 
         EditBookingDescriptor editBookingDescriptor = new EditBookingDescriptor();
         if (argMultimap.getValue(PREFIX_BOOKING_ID).isPresent()) {

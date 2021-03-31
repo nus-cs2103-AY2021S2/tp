@@ -16,7 +16,7 @@ public class ListBookingCommand extends Command {
 
     public static final String COMMAND_WORD = "list_booking";
 
-    public static final String MESSAGE_BOOKING_LISTED_SUCCESS = "Here are all venues currently in the system:\n";
+    public static final String MESSAGE_BOOKING_LISTED_SUCCESS = "Here are all bookings currently in the system:\n";
 
 
     @Override
