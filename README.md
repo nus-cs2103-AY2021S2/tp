@@ -4,15 +4,15 @@
 
 * ## **Instructions**
   1. Ensure that you have Java 11 or above installed in your computer
-  2. Download the latest [App moduleName] from [hyperlink]
-  3. Copy the file download location to the folder that you want to use as the home folder for your [App moduleName]
-  4. Double click on the file to start the app
+  2. Download the latest [semester.config] from [https://github.com/AY2021S2-CS2103-T14-4/tp/releases]
+  3. Copy the file download location to the folder that you want to use as the home folder for your [semester.config]
+  4. Double-click on the file to start the app
   5. Once the app is started, you can begin by typing certain commands in the command box to execute certain actions. E.g: typing help and pressing enter will open the help windows for guidance on some command executions.
-      * add module : `add mc/CS2103 n/iP Level 10 d/15-11-2020 t/18:00 w/10%` will add this module to the list
-      * delete module : `delete 3` will delete 3rd task from the list
-      * see all task : `list` will shown all module tasks
-      * mark as done : `done 3` will mark 3rd task from the list as done
-      * sort : `sort dateTime` will sort based on deadline date and time and show all of the tasks in list.
+      * add a task : `add mc/CS2103 n/iP Level 10 d/15-11-2020 t/18:00 w/10%` will add this module to the list
+      * delete a task : `delete 3` will delete 3rd task from the list
+      * see all tasks : `list` will show all module tasks
+      * mark as done : `done 3` will mark the 3rd task from the list as done
+      * sort : `sort dateTime` will sort based on deadline date and time and show all the tasks in list.
       * edit task : `edit 3 n/PE` will allow user to edit the 3rd module task and change the task name to be "PE"
       * add notes : `remark 3` will add notes to the 3rd module task from the list
       * Time-based alert : `dueIn` will show a list of immediate tasks that will be due by next week
@@ -69,7 +69,7 @@
 7. ### Locating tasks by moduleName: *find*
   * Find tasks whose task moduleName contains any of the given words
   * Format: find KEYWORD[MORE_KEYWORDS]
-    1. The search is case-insensitive. e.g Assignment will match assignment
+    1. The search is case-insensitive. e.g. Assignment will match assignment
     2. The order of the keywords does not matter. e.g. programming modular will match modular programming
     3. Only the task moduleName is searched.
     4. Only full words will be matched e.g. Java will not match Javascript
@@ -87,7 +87,7 @@
 
 
 9. ### Add notes to tasks: *notes*
-  * Adds any additional notes or remarks to an exisiting task
+  * Adds any additional notes or remarks to an existing task
   * Format: notes INDEX [n/NOTES]
     1. Adds user input NOTES to the task at the specified INDEX. The index refers to the index number shown in the displayed task list. The index must be a positive integer 1, 2, 3, …
     2. Adding notes to a task that already has existing notes will overwrite the previous notes.
@@ -110,5 +110,17 @@
     2. Exists on the task list
   * Example: Task 3 has finished. `done 3` will mark task 3 to be unfinished. If the user type `done 3` again, it will mark task 3 to be finished again.
 
+12. ### Undo the previous command *undo*
+  * Undo the previous command
+  * Format: `undo`
+    1. Only commands which modify the state of the TaskTracker will be undone
+    2. There must be previous states to undo to
+
+13. ### Redo the previously undone command *redo*
+  * Redo the previously undone command
+  * Format: `redo`
+    1. Only commands which modify the state of the TaskTracker will be redone
+    2. There must be an available state to redo to
+    
 ## Acknowledgements
 1. This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org)
