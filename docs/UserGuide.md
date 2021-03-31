@@ -143,10 +143,12 @@ Example:
 
 Adds a room to the housing management system.
 
-Format: `oadd r/ROOM_NO t/TYPE o/OCCUPATION_STATUS [g/TAG]`
+Format: `oadd r/ROOM_NO t/TYPE [g/TAG]`
+* Room is initialised with default occupancy status of "No".
+* Room occupancy status can only be changed through the `alloc` or `dealloc` command when a resident is allocated or deallocated. The occupancy status cannot be defaulted to "Yes" during room addition.
 
 Example:
-* `oadd r/10-112 t/corridor_ac o/Y g/SHN` Adds a room numbered `10-112` of type `corridor_ac` with the tag `SHN` and occupation status `Y(es)`.
+* `oadd r/10-112 t/corridor_ac g/SHN` Adds a room numbered `10-112` of type `corridor_ac` with the tag `SHN`.
 
 
 ### List all rooms : `olist`
@@ -179,13 +181,15 @@ Examples:
 
 Edits the existing room record at a specified index.
 
-Format: `oedit INDEX [r/ROOM_NO] [t/TYPE] [o/OCCUPATION_STATUS] [g/TAG]`
+Format: `oedit INDEX [r/ROOM_NO] [t/TYPE] [g/TAG]`
 * `INDEX` refers to the index number shown in the displayed room list. `INDEX` **must be a positive integer 1, 2, 3, …**.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+* Room occupancy status can only be changed through the `alloc` or `dealloc` command when a resident is allocated or deallocated. The occupancy status is not controllable through the `oedit` command. 
+* `oedit` will be blocked if the room is occupied. Run `dealloc` to deallocate the room before making further edits.
 
 Example:
-* `oedit 1 o/Y g/SHN` Edits the status of the 1st room and tag to be `Occupied` and `Y` respectively.
+* `oedit 1 g/SHN g/Blue` Edits the 1st room's tags to `SHN` and `Blue`.
 
 
 ### Delete a room : `odel`
@@ -194,6 +198,7 @@ Deletes the room at a specified index.
 
 Format: `odel INDEX`
 * `INDEX` refers to the index number shown in the displayed resident list. `INDEX` **must be a positive integer 1,2,3, ...**.
+* `odel` will be blocked if the room is occupied. Run `dealloc` to deallocate the room before attempting to delete the room.
 
 Example:
 * `odel 1` Deletes the 1st room in the room list.
@@ -454,10 +459,10 @@ Action | Format, Examples
 **Find residents** | `rfind KEYWORD [MORE_KEYWORDS]` <br> e.g. `rfind bob bobby`
 **Edit a resident record** | `redit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/ROOM]` <br> e.g. `redit 1 p/91234567 e/e0123456@u.nus.edu`
 **Delete a resident** |  `rdel INDEX` <br> e.g. `rdel 1`
-**Add a room** |  `oadd r/ROOM_NO t/TYPE o/OCCUPATION_STATUS [g/TAG]` <br> e.g. `oadd n/17-101 t/corridor_ac o/Y g/SHN`
+**Add a room** |  `oadd r/ROOM_NO t/TYPE [g/TAG]` <br> e.g. `oadd n/17-101 t/corridor_ac g/SHN`
 **List all rooms** |  `olist`
 **Find rooms** |  `ofind KEYWORD [MORE_KEYWORDS]` <br> e.g. `ofind 10- 15-`
-**Edit a room record** |  `oedit INDEX [r/ROOM_NO] [t/TYPE] [g/TAG] [o/OCCUPATION_STATUS]` <br> e.g. `oedit 1 o/Y`
+**Edit a room record** |  `oedit INDEX [r/ROOM_NO] [t/TYPE] [g/TAG]` <br> e.g. `oedit 1 g/SHN`
 **Delete a room** | `odel INDEX` <br> e.g. `odel 1`
 **Allocate a Resident to Room** | `alloc n/NAME r/ROOM_NO` <br> e.g. `alloc n/John Tan r/03-100`
 **Deallocate a Resident from Room** | `dealloc n/NAME r/ROOM_NO` <br> e.g. `dealloc n/John Tan r/03-100`
