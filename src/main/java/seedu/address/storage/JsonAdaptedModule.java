@@ -13,7 +13,6 @@ import seedu.address.model.module.Exam;
 import seedu.address.model.module.ExamList;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.Title;
-import seedu.address.model.person.Name;
 
 
 /**
