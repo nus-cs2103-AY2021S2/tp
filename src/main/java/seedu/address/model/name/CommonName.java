@@ -4,7 +4,7 @@ public class CommonName {
     protected String fullName;
 
     /**
-     * Returns value of this {@code CommonName}.
+     * Returns {@code String} representation of this {@code CommonName}.
      */
     @Override
     public String toString() {

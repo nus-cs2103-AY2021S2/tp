@@ -87,7 +87,7 @@ public class JsonAdaptedResidence {
         if (!ResidenceName.isValidResidenceName(residenceName)) {
             throw new IllegalValueException(ResidenceName.MESSAGE_CONSTRAINTS);
         }
-        final ResidenceName modelName = new ResidenceName(residenceName);
+        final ResidenceName modelResidenceName = new ResidenceName(residenceName);
 
         if (residenceAddress == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -104,6 +104,6 @@ public class JsonAdaptedResidence {
         final CleanStatusTag modelCleanStatusTag = new CleanStatusTag(cleanStatusTag);
 
         final Set<Tag> modelTags = new HashSet<>(residenceTags);
-        return new Residence(modelName, modelAddress, modelBookingList, modelCleanStatusTag, modelTags);
+        return new Residence(modelResidenceName, modelAddress, modelBookingList, modelCleanStatusTag, modelTags);
     }
 }

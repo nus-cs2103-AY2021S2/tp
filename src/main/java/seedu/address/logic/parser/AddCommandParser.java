@@ -39,7 +39,7 @@ public class AddCommandParser implements Parser<AddCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        ResidenceName name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+        ResidenceName name = ParserUtil.parseResidenceName(argMultimap.getValue(PREFIX_NAME).get());
         ResidenceAddress address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_RESIDENCE_ADDRESS).get());
 
         BookingList bookingList = new BookingList();

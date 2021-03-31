@@ -104,7 +104,7 @@ Examples:
 *  `edit 1 c/y` Edits the clean status of the 1st residence on the list from `Unclean` to `Clean`.
 *  `edit 2 clean/n`  Edits the clean status of the 2nd residence on the list from `Clean` to `Unclean`.
 
-### Locating residences by name: `find`
+### Locating residences by tenantName: `find`
 
 Finds residences whose names contain any of the given keywords.
 
@@ -112,7 +112,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `duxton` will match `Duxton`
 * The order of the keywords does not matter. e.g. `Gardens Bay` will match `Bay Gardens`
-* Only the name is searched.
+* Only the tenantName is searched.
 * Only full words will be matched e.g. `Dux` will not match `Duxton`
 * Apartments matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Gardens Bay` will return `Botanic Gardens`, `Bay Area`

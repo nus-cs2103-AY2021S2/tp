@@ -40,7 +40,7 @@
 //        //    sb.append(PREFIX_CLEAN_STATUS_TAG + residence.getCleanStatusTag().getValue() + " ");
 //        //}
 //        residence.getBookingList().getValue().stream().forEach(
-//                s -> sb.append(PREFIX_BOOKING + s.visitorName + " " + ... )
+//                s -> sb.append(PREFIX_BOOKING + s.tenantName + " " + ... )
 //        );
 //        residence.getTags().stream().forEach(
 //            s -> sb.append(PREFIX_TAG + s.tagName + " ")

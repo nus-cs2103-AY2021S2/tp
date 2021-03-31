@@ -20,7 +20,7 @@ public class Booking implements Comparable<Booking> {
             + "    - be of the format DD-MM-YYYY\n"
             + "    - end date must be after start date";
 
-    private final Name name;
+    private final TenantName tenantName;
     private final Phone phone;
     private final BookingTime bookingTime;
     private final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
@@ -28,15 +28,15 @@ public class Booking implements Comparable<Booking> {
     /**
      * Every field must be present and not null.
      */
-    public Booking(Name name, Phone phone, LocalDate start, LocalDate end) {
-        requireAllNonNull(name, phone, start, end);
-        this.name = name;
+    public Booking(TenantName tenantName, Phone phone, LocalDate start, LocalDate end) {
+        requireAllNonNull(tenantName, phone, start, end);
+        this.tenantName = tenantName;
         this.phone = phone;
         this.bookingTime = new BookingTime(start, end);
     }
 
-    public Name getName() {
-        return name;
+    public TenantName getTenantName() {
+        return tenantName;
     }
 
     public Phone getPhone() {
@@ -77,7 +77,7 @@ public class Booking implements Comparable<Booking> {
         }
 
         Booking otherBooking = (Booking) other;
-        return otherBooking.getName().equals(getName())
+        return otherBooking.getTenantName().equals(getTenantName())
                 && otherBooking.getPhone().equals(getPhone())
                 && otherBooking.getBookingTime().equals(getBookingTime());
     }
@@ -85,7 +85,7 @@ public class Booking implements Comparable<Booking> {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, bookingTime);
+        return Objects.hash(tenantName, phone, bookingTime);
     }
 
     /**
@@ -100,7 +100,7 @@ public class Booking implements Comparable<Booking> {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
+        builder.append(getTenantName())
                 .append("; Phone: ")
                 .append(getPhone())
                 .append("; Start: ")
@@ -112,10 +112,7 @@ public class Booking implements Comparable<Booking> {
     }
 
     /**
-     * Returns true if booking time overlaps with another booking time.
-     * This happens if the start and end dates of the booking are not
-     * before the start date of the other booking
-     * or after the end date of the other booking.
+     * Returns true if booking time of this Booking overlaps with another Booking's booking time.
      */
     public boolean doesOverlap(Booking otherBooking) {
         return this.getBookingTime().doesOverlap(otherBooking.getBookingTime());

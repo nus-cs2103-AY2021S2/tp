@@ -42,7 +42,7 @@ public class EditBookingCommandParser implements Parser<EditBookingCommand> {
         EditBookingDescriptor editBookingDescriptor = new EditBookingDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editBookingDescriptor.setName(
-                    ParserUtil.parseVisitorName(argMultimap.getValue(PREFIX_NAME).get()));
+                    ParserUtil.parseTenantName(argMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
             editBookingDescriptor.setPhone(

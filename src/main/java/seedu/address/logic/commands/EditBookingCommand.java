@@ -19,7 +19,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.booking.Booking;
-import seedu.address.model.booking.Name;
+import seedu.address.model.booking.TenantName;
 import seedu.address.model.booking.Phone;
 import seedu.address.model.residence.BookingList;
 import seedu.address.model.residence.Residence;
@@ -34,7 +34,7 @@ public class EditBookingCommand extends Command {
             + "Parameters: "
             + PREFIX_RESIDENCE + " INDEX of residence "
             + PREFIX_BOOKING + "INDEX of booking "
-            + "[" + PREFIX_NAME + "Name] "
+            + "[" + PREFIX_NAME + "TenantName] "
             + "[" + PREFIX_PHONE + "Phone] "
             + "[" + PREFIX_BOOKING_START_DATE + "Start Date] "
             + "[" + PREFIX_BOOKING_END_DATE + "End Date]\n"
@@ -103,8 +103,8 @@ public class EditBookingCommand extends Command {
                                                EditBookingDescriptor editBookingDescriptor) {
         assert bookingToEdit != null;
 
-        Name updatedName = editBookingDescriptor.getName()
-                .orElse(bookingToEdit.getName());
+        TenantName updatedTenantName = editBookingDescriptor.getName()
+                .orElse(bookingToEdit.getTenantName());
         Phone updatedPhone = editBookingDescriptor.getPhone()
                 .orElse(bookingToEdit.getPhone());
         LocalDate updatedStartTime = editBookingDescriptor.getStartDate()
@@ -112,7 +112,7 @@ public class EditBookingCommand extends Command {
         LocalDate updatedEndTime = editBookingDescriptor.getEndDate()
                 .orElse(bookingToEdit.getEnd());
 
-        return new Booking(updatedName, updatedPhone, updatedStartTime, updatedEndTime);
+        return new Booking(updatedTenantName, updatedPhone, updatedStartTime, updatedEndTime);
     }
 
     @Override
@@ -139,7 +139,7 @@ public class EditBookingCommand extends Command {
      * corresponding field value of the booking.
      */
     public static class EditBookingDescriptor {
-        private Name name;
+        private TenantName tenantName;
         private Phone phone;
         private LocalDate startDate;
         private LocalDate endDate;
@@ -152,7 +152,7 @@ public class EditBookingCommand extends Command {
          * A defensive copy of {@code tags} is used internally.
          */
         public EditBookingDescriptor(EditBookingDescriptor toCopy) {
-            setName(toCopy.name);
+            setName(toCopy.tenantName);
             setPhone(toCopy.phone);
             setStartDate(toCopy.startDate);
             setEndDate(toCopy.endDate);
@@ -161,15 +161,15 @@ public class EditBookingCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, startDate, endDate);
+            return CollectionUtil.isAnyNonNull(tenantName, phone, startDate, endDate);
         }
 
-        public void setName(Name name) {
-            this.name = name;
+        public void setName(TenantName tenantName) {
+            this.tenantName = tenantName;
         }
 
-        public Optional<Name> getName() {
-            return Optional.ofNullable(name);
+        public Optional<TenantName> getName() {
+            return Optional.ofNullable(tenantName);
         }
 
         public void setPhone(Phone phone) {

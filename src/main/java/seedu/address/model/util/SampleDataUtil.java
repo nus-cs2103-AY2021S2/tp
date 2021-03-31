@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 import seedu.address.model.ReadOnlyResidenceTracker;
 import seedu.address.model.ResidenceTracker;
 import seedu.address.model.booking.Booking;
-import seedu.address.model.booking.Name;
+import seedu.address.model.booking.TenantName;
 import seedu.address.model.booking.Phone;
 import seedu.address.model.residence.BookingList;
 import seedu.address.model.residence.Residence;
@@ -35,9 +35,9 @@ public class SampleDataUtil {
         LocalDate endC = LocalDate.parse("31-05-2021", dateFormat);
 
 
-        Booking bookingA = new Booking(new Name("Alice Carol"), new Phone("90098118"), startA, endA);
-        Booking bookingB = new Booking(new Name("David Michael"), new Phone("82316788"), startB, endB);
-        Booking bookingC = new Booking(new Name("Cara Delevingne"), new Phone("96221200"), startC, endC);
+        Booking bookingA = new Booking(new TenantName("Alice Carol"), new Phone("90098118"), startA, endA);
+        Booking bookingB = new Booking(new TenantName("David Michael"), new Phone("82316788"), startB, endB);
+        Booking bookingC = new Booking(new TenantName("Cara Delevingne"), new Phone("96221200"), startC, endC);
 
         bookingListA.add(bookingA);
         bookingListA.add(bookingB);
@@ -54,7 +54,7 @@ public class SampleDataUtil {
     }
 
     /**
-     * Returns an unmodifiable view of the residence tracker with the sample date.
+     * Returns an unmodifiable view of the residence tracker with the sample data.
      */
     public static ReadOnlyResidenceTracker getSampleResidenceTracker() {
         ResidenceTracker sampleRt = new ResidenceTracker();
