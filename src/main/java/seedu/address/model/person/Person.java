@@ -154,9 +154,10 @@ public class Person {
             return DateUtil.ZERO_DAY;
         }
 
+        // If a meeting falls on the current day then the goal for the current duration will be satisfied
         LocalDate latestMeetingDate = meetings.stream()
                 .map(Event::getDate)
-                .filter(x -> x.isBefore(beforeDate))
+                .filter(x -> x.isBefore(beforeDate.plusDays(1)))
                 .max(LocalDate::compareTo)
                 .orElse(DateUtil.ZERO_DAY);
         return goal.getGoalDeadline(latestMeetingDate);
