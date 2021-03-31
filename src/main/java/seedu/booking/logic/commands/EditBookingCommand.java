@@ -1,6 +1,7 @@
 package seedu.booking.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.booking.logic.commands.CommandUtil.getBookingById;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKER;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_END;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_START;
@@ -110,11 +111,6 @@ public class EditBookingCommand extends Command {
         model.setBooking(bookingToEdit, editedBooking);
         model.updateFilteredBookingList(PREDICATE_SHOW_ALL_BOOKINGS);
         return new CommandResult(String.format(MESSAGE_EDIT_BOOKING_SUCCESS, editedBooking));
-    }
-
-    private static Booking getBookingById(Id id, List<Booking> bookingList) {
-        return bookingList.stream()
-                .filter(booking -> booking.getId().equals(id)).findFirst().orElse(null);
     }
 
     /**

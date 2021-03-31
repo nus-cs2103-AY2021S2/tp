@@ -120,8 +120,8 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
 
-        upcomingBookingListPanel = new BookingListPanel(logic.getUpcomingBookingList());
-        upcomingBookingListPanelPlaceholder.getChildren().add(upcomingBookingListPanel.getRoot());
+        /*upcomingBookingListPanel = new BookingListPanel(logic.getUpcomingBookingList());
+        upcomingBookingListPanelPlaceholder.getChildren().add(upcomingBookingListPanel.getRoot());*/
 
         venueListPanel = new VenueListPanel(logic.getFilteredVenueList());
         bookingListPanel = new BookingListPanel(logic.getFilteredBookingList());
@@ -138,6 +138,7 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
     }
 
     /**

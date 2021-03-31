@@ -24,6 +24,7 @@ import seedu.booking.model.booking.Booking;
 import seedu.booking.model.booking.Id;
 import seedu.booking.model.person.Email;
 import seedu.booking.model.person.Person;
+import seedu.booking.model.person.Phone;
 import seedu.booking.model.venue.Venue;
 import seedu.booking.model.venue.VenueName;
 import seedu.booking.testutil.BookingBuilder;
@@ -171,6 +172,11 @@ class AddBookingCommandTest {
         @Override
         public boolean hasPersonWithEmail(Email email) {
             return true;
+        }
+
+        @Override
+        public boolean hasPersonWithPhone(Phone phone) {
+            return false;
         }
 
         @Override

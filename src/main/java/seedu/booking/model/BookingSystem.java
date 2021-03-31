@@ -11,6 +11,7 @@ import seedu.booking.model.booking.Id;
 import seedu.booking.model.booking.NonOverlappingBookingList;
 import seedu.booking.model.person.Email;
 import seedu.booking.model.person.Person;
+import seedu.booking.model.person.Phone;
 import seedu.booking.model.person.UniquePersonList;
 import seedu.booking.model.venue.UniqueVenueList;
 import seedu.booking.model.venue.Venue;
@@ -77,7 +78,7 @@ public class BookingSystem implements ReadOnlyBookingSystem {
     //// person-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same identity as {@code person} exists in the booking system.
      */
     public boolean hasPerson(Person person) {
         requireNonNull(person);
@@ -85,8 +86,8 @@ public class BookingSystem implements ReadOnlyBookingSystem {
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds a person to the booking system.
+     * The person must not already exist in the booking system.
      */
     public void addPerson(Person p) {
         persons.add(p);
@@ -95,8 +96,9 @@ public class BookingSystem implements ReadOnlyBookingSystem {
 
     /**
      * Replaces the given person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * {@code target} must exist in the booking system.
+     * The person identity of {@code editedPerson} must not be the same as another
+     * existing person in the booking system.
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
@@ -106,7 +108,7 @@ public class BookingSystem implements ReadOnlyBookingSystem {
 
     /**
      * Removes {@code key} from this {@code BookingSystem}.
-     * {@code key} must exist in the address book.
+     * {@code key} must exist in the booking system.
      */
     public void removePerson(Person key) {
         persons.remove(key);
@@ -119,7 +121,7 @@ public class BookingSystem implements ReadOnlyBookingSystem {
 
 
     /**
-     * Returns true if a booking with the same identity as {@code booking} exists in the address book.
+     * Returns true if a booking with the same identity as {@code booking} exists in the booking system.
      */
     public boolean hasBooking(Booking booking) {
         requireNonNull(booking);
@@ -127,8 +129,8 @@ public class BookingSystem implements ReadOnlyBookingSystem {
     }
 
     /**
-     * Adds a booking to the address book.
-     * The booking must not already exist in the address book.
+     * Adds a booking to the booking system.
+     * The booking must not already exist in the booking system.
      */
     public void addBooking(Booking b) {
         bookings.add(b);
@@ -137,7 +139,7 @@ public class BookingSystem implements ReadOnlyBookingSystem {
     //// booking-level operations
     /**
      * Removes {@code bookingId} from this {@code BookingSystem}.
-     * {@code bookingId} must exist in the address book.
+     * {@code bookingId} must exist in the booking system.
      */
     public void removeBooking(Id bookingId) {
         bookings.removeById(bookingId);
@@ -220,7 +222,7 @@ public class BookingSystem implements ReadOnlyBookingSystem {
 
     /**
      * Removes {@code key} from this {@code BookingSystem}.
-     * {@code key} must exist in the address book.
+     * {@code key} must exist in the booking system.
      */
     public void removeVenue(Venue key) {
         venues.remove(key);
@@ -233,6 +235,14 @@ public class BookingSystem implements ReadOnlyBookingSystem {
     public boolean hasPersonWithEmail(Email email) {
         requireNonNull(email);
         return persons.containsEmail(getPersonList(), email);
+    }
+
+    /**
+     * Returns true if a person with the same phone as {@code email} exists in the system.
+     */
+    public boolean hasPersonWithPhone(Phone phone) {
+        requireNonNull(phone);
+        return persons.containsPhone(getPersonList(), phone);
     }
 
 

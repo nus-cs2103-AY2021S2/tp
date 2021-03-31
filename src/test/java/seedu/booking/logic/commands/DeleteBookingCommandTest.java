@@ -6,7 +6,7 @@ import static seedu.booking.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.booking.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.booking.testutil.TypicalBookings.BOOKING1;
 import static seedu.booking.testutil.TypicalBookings.BOOKING2;
-import static seedu.booking.testutil.TypicalIndexes.INDEX_FIRST_BOOKING;
+import static seedu.booking.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.booking.testutil.TypicalPersons.getTypicalBookingSystem;
 
 import org.junit.jupiter.api.Test;
@@ -28,7 +28,7 @@ public class DeleteBookingCommandTest {
     @Test
     public void execute_validIndexUnfilteredList_success() {
         model.addBooking(BOOKING1);
-        Booking bookingToDelete = model.getFilteredBookingList().get(INDEX_FIRST_BOOKING.getZeroBased());
+        Booking bookingToDelete = model.getFilteredBookingList().get(INDEX_FIRST.getZeroBased());
         DeleteBookingCommand deleteBookingCommand = new DeleteBookingCommand(BOOKING1.getId());
 
         String expectedMessage = String.format(DeleteBookingCommand.MESSAGE_DELETE_BOOKING_SUCCESS,
