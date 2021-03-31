@@ -4,8 +4,12 @@ import static seedu.booking.testutil.TypicalVenues.VENUE1;
 import static seedu.booking.testutil.TypicalVenues.VENUE2;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 
+import seedu.booking.model.BookingSystem;
 import seedu.booking.model.booking.Booking;
 import seedu.booking.model.booking.Description;
 import seedu.booking.model.booking.EndTime;
@@ -53,4 +57,19 @@ public class TypicalBookings {
     );
 
     private TypicalBookings() {} // prevents instantiation
+
+    /**
+     * Returns an {@code BookingSystem} with all the typical persons.
+     */
+    public static BookingSystem getTypicalBookingSystem() {
+        BookingSystem ab = new BookingSystem();
+        for (Booking booking : getTypicalBookings()) {
+            ab.addBooking(booking);
+        }
+        return ab;
+    }
+
+    public static List<Booking> getTypicalBookings() {
+        return new ArrayList<>(Arrays.asList(BOOKING1, BOOKING4));
+    }
 }
