@@ -1,7 +1,6 @@
 package seedu.address.logic;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
@@ -133,6 +132,12 @@ public class LogicManagerTest {
 
         List<String> testList = logic.getAutocompleteCommands("e");
         assertEquals(commandList, testList);
+        List<String> testList1 = logic.getAutocompleteCommands("ad");
+
+        List<String> commandList1 = new ArrayList<>();
+        commandList1.add(AddCommand.COMMAND_WORD);
+        assertEquals(commandList1, testList1);
+
     }
 
     @Test
@@ -164,21 +169,21 @@ public class LogicManagerTest {
     }
 
     @Test
-    public void processAutoCompleteFlags_emptyAndWhiteSpace() {
+    public void filterExistingFlags_emptyAndWhiteSpace() {
         String emptyString = "";
         String whiteSpace = " ";
 
         List<String> addFlags = logic.getAutocompleteFlags(AddCommand.COMMAND_WORD);
         List<String> editFlags = logic.getAutocompleteFlags(AddCommand.COMMAND_WORD);
 
-        assertEquals(addFlags, logic.processAutocompleteFlags(emptyString, AddCommand.COMMAND_WORD));
-        assertEquals(editFlags, logic.processAutocompleteFlags(emptyString, EditCommand.COMMAND_WORD));
-        assertEquals(addFlags, logic.processAutocompleteFlags(whiteSpace, AddCommand.COMMAND_WORD));
-        assertEquals(editFlags, logic.processAutocompleteFlags(whiteSpace, EditCommand.COMMAND_WORD));
+        assertEquals(addFlags, logic.filterExistingFlags(emptyString, AddCommand.COMMAND_WORD));
+        assertEquals(editFlags, logic.filterExistingFlags(emptyString, EditCommand.COMMAND_WORD));
+        assertEquals(addFlags, logic.filterExistingFlags(whiteSpace, AddCommand.COMMAND_WORD));
+        assertEquals(editFlags, logic.filterExistingFlags(whiteSpace, EditCommand.COMMAND_WORD));
     }
 
     @Test
-    public void processAutoCompleteFlags_validCommand() {
+    public void filterExistingFlags_validCommand() {
         List<String> editFlags = logic.getAutocompleteFlags(EditCommand.COMMAND_WORD);
         List<String> addFlags = logic.getAutocompleteFlags(AddCommand.COMMAND_WORD);
 
@@ -187,25 +192,65 @@ public class LogicManagerTest {
 
         editFlags.remove(CliSyntax.PREFIX_NAME.getPrefix());
         editFlags.remove(CliSyntax.PREFIX_EMAIL.getPrefix());
-        assertEquals(editFlags, logic.processAutocompleteFlags(editString, EditCommand.COMMAND_WORD));
+        assertEquals(editFlags, logic.filterExistingFlags(editString, EditCommand.COMMAND_WORD));
 
         addFlags.remove(CliSyntax.PREFIX_NAME.getPrefix());
         addFlags.remove(CliSyntax.PREFIX_PHONE.getPrefix());
         addFlags.remove(CliSyntax.PREFIX_EMAIL.getPrefix());
         addFlags.remove(CliSyntax.PREFIX_ADDRESS.getPrefix());
-        assertEquals(addFlags, logic.processAutocompleteFlags(addString, AddCommand.COMMAND_WORD));
+        assertEquals(addFlags, logic.filterExistingFlags(addString, AddCommand.COMMAND_WORD));
     }
 
     @Test
-    public void processAutoCompleteFlags_invalidCommand() {
+    public void filterExistingFlags_invalidCommand() {
         String validString = "edit 3 -n John Doe -e john@doe.com";
         String invalidString = "delete 3";
         String invalidCommand = DeleteCommand.COMMAND_WORD;
 
         List<String> emptyFlags = new ArrayList<>();
 
-        assertEquals(emptyFlags, logic.processAutocompleteFlags(validString, invalidCommand));
-        assertEquals(emptyFlags, logic.processAutocompleteFlags(invalidString, invalidCommand));
+        assertEquals(emptyFlags, logic.filterExistingFlags(validString, invalidCommand));
+        assertEquals(emptyFlags, logic.filterExistingFlags(invalidString, invalidCommand));
+    }
+
+    @Test
+    public void isAutocompleteFlag_validStrings() {
+        String addString = "add ";
+        String editString = "edit ";
+
+        assertTrue(logic.isAutocompleteFlag(addString));
+        assertTrue(logic.isAutocompleteFlag(editString));
+    }
+
+    @Test
+    public void isAutocompleteFlag_invalidStrings() {
+        String addString = "add";
+        String editString = "edit";
+        String unrecognizedCommand = "delete";
+        String typo = "edi";
+
+        assertFalse(logic.isAutocompleteFlag(addString));
+        assertFalse(logic.isAutocompleteFlag(editString));
+        assertFalse(logic.isAutocompleteFlag(unrecognizedCommand));
+        assertFalse(logic.isAutocompleteFlag(typo));
+    }
+
+    @Test
+    public void isAutocompleteFlag_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> logic.isAutocompleteFlag(null));
+    }
+
+    @Test
+    public void getAvailableFlags_validCommandStrings() {
+        String expectedAdd = "add ";
+        String expectedEdit = "edit 3";
+
+        List<String> addFlags = logic.getAutocompleteFlags(AddCommand.COMMAND_WORD);
+        List<String> editFlags = logic.getAutocompleteFlags(EditCommand.COMMAND_WORD);
+
+
+        assertEquals(addFlags, logic.getAvailableFlags(expectedAdd));
+        assertEquals(editFlags, logic.getAvailableFlags(expectedEdit));
     }
 
     /**
