@@ -8,6 +8,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 /**
@@ -42,9 +46,23 @@ public class HelpWindow extends UiPart<Stage> {
                     + "findall: Finds for food reviews whose names, ratings, address and categories match ALL "
                     + "of the provided keywords.\n"
                     + "     findall Amaan Restuarant 5/5\n\n"
-                    + "view: Opens up a window, showing the details of a specified food review."
-                    + "in a full expanded view.\n"
-                    + "     view 1\n\n\n" + CATEGORIES + SCHOOL_LOC + EXTERNAL_DETAILS;
+                    + "view: view: Opens up a window, showing the details of a"
+                    + "specified entry in a full expanded view."
+                    + " Allows the user to read through reviews that are too "
+                    + "lengthy to be shown in the main UI window."
+                    + " Use ‘ESC’ key to quickly exit the view window.\n"
+                    + "     view 1\n\n"
+                    + "revise: Opens up a window, showing the existing details of an entry and allowing for "
+                    + "quick corrections and updates without requiring the use of prefixes and command syntax in the"
+                    + " UI. Use ‘TAB’ key to iterate through fields, ‘Ctrl + S’ (Windows),"
+                    + " ‘Command + S’ (Mac) to save,"
+                    + " ‘ESC’ key to quickly exit the revise window.\n"
+                    + "     revise 1\n\n"
+                    + "Clear: Deletes all entries from the food diary\n"
+                    + "     clear\n\n"
+                    + "Exit: Exits the food diary\n"
+                    + "     exit\n\n\n"
+                    + CATEGORIES + SCHOOL_LOC + EXTERNAL_DETAILS;
 
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
@@ -63,6 +81,8 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public HelpWindow(Stage root) {
         super(FXML, root);
+        final KeyCombination esc = new KeyCodeCombination(KeyCode.ESCAPE);
+        setEscShortCut(esc);
         helpMessageField.setText(HELP_MESSAGE);
     }
 
@@ -117,6 +137,20 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public void focus() {
         getRoot().requestFocus();
+    }
+
+    /**
+     * Sets up 'ESC' key to hide window
+     *
+     * @param esc 'ESC' on keyboard
+     */
+    private void setEscShortCut(KeyCombination esc) {
+        getRoot().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (esc.match(event)) {
+                hide();
+                event.consume();
+            }
+        });
     }
 
     /**
