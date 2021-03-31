@@ -85,14 +85,14 @@ warning messages will be displayed in this box.
 
 ### 2.3. Prefixes and Keywords
 
-Prefix | Keyword and Format |
-:-----:|--------------------|
-n/ | |
-l/ | |
-q/ | |
-e/ | |
-t/ | |
-*/ | |
+Prefix | Keyword and Format | Remarks
+:-----:|--------------------| -------
+n/ | ITEM_NAME `n/ITEM_NAME` | ITEM_NAME can take in multiple words
+l/ | LOCATION  `l/LOCATION` | LOCATION can take in multiple words
+q/ | QUANTITY `q/QUANTITY` | QUANTITY only takes in 1 positive integer
+e/ | EXPIRY_DATE `e/EXPIRY_DATE` | EXPIRY_DATE takes in date in the format of YYYY-MM-DD
+t/ | TAG `t/TAG` | TAG only takes in one word
+*/ | PARTIAL_WORD `*/PARTIAL_WORD` | PARTIAL_WORD can take in multiple partial words.
 
 ----
 
@@ -491,7 +491,7 @@ Action | Format, Examples
 **[“Reminder"](#36-viewing-expiring-items--reminder)** | `reminder NUMBER TIME_UNIT_KEYWORD`<br> e.g. `reminder -7 days` `reminder 2 weeks`
 **[“Sort"](#37-sorting-items--sort)** | `sort quantity asc` `sort quantity desc` `sort expiryDate`
 **[“Clear"](#38-clearing-storemando--clear)** | `clear` `clear l/LOCATION` <br> e.g. `clear l/bedroom`
-**[“Help"](#39-viewing-help--help)** |  `help`
+**[“Help"](#39-viewing-help--help)** | `help`
 **[“Exit"](#310-exiting-storemando--exit)** | `exit`
 
 ----
