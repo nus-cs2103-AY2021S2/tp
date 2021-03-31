@@ -42,7 +42,7 @@ public class DeleteRecurringSessionCommand extends Command {
     private final SessionDate sessionDate;
 
     /**
-     * Creates an DeleteSessionCommand
+     * Creates an DeleteRecurringSessionCommand
      */
     public DeleteRecurringSessionCommand(Name studentName, Index targetIndex, SessionDate sessionDate) {
         this.studentName = studentName;
