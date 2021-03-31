@@ -51,7 +51,7 @@ public class FindAppointmentCommandParser implements Parser<FindAppointmentComma
     }
 
     /**
-     * Parses other fields in find by options context
+     * Parses args in find by options context
      * @param option option to determine the option selected
      * @param optionArgs {@code optionArgs} for the rest of the args
      * @return {@code FindCommand}
@@ -73,14 +73,14 @@ public class FindAppointmentCommandParser implements Parser<FindAppointmentComma
     }
 
     /**
-     * Parses others in find by all context
+     * Parses args in find by all context
      * @param trimmedArgs
      * @return
      */
     public FindAppointmentCommand parseFindAll(String trimmedArgs) throws ParseException {
-        String[] nameKeywords = trimmedArgs.split("\\s+");
-        assert nameKeywords.length > 0 : "FindCommand keywords are empty";
-        return new FindAppointmentCommand(new ApptAnyContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        String[] keywords = trimmedArgs.split("\\s+");
+        assert keywords.length > 0 : "FindCommand keywords are empty";
+        return new FindAppointmentCommand(new ApptAnyContainsKeywordsPredicate(Arrays.asList(keywords)));
     }
 
 }

@@ -4,12 +4,13 @@ import java.util.List;
 
 import seedu.address.commons.util.StringUtil;
 
+
 /**
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
  */
-public class NameContainsKeywordsPredicate extends FieldContainsKeywordsPredicate {
+public class AddressContainsKeywordsPredicate extends FieldContainsKeywordsPredicate {
 
-    public NameContainsKeywordsPredicate(List<String> keywords) {
+    public AddressContainsKeywordsPredicate(List<String> keywords) {
         super(keywords);
     }
 
@@ -17,6 +18,7 @@ public class NameContainsKeywordsPredicate extends FieldContainsKeywordsPredicat
     public boolean test(Person person) {
         return super.getKeywords().stream()
                 .anyMatch(keyword ->
-                        StringUtil.containsWordIgnoreCase(person.getName().fullName, keyword));
+                        StringUtil.containsWordIgnoreCase(person.getAddress().toString(), keyword));
     }
+
 }
