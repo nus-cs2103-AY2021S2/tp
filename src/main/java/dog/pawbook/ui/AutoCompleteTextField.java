@@ -32,6 +32,9 @@ public class AutoCompleteTextField extends TextField {
     private final SortedSet<String> entries;
     private ContextMenu entriesPopup;
 
+    /**
+     * Constructor for AutoCompleteTextField
+     */
     public AutoCompleteTextField() {
         super();
         this.entries = new TreeSet<>();
