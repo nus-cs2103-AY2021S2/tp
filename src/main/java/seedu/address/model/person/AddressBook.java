@@ -1,13 +1,13 @@
 package seedu.address.model.person;
 
-import static java.util.Objects.requireNonNull;
+import javafx.collections.ObservableList;
+import seedu.address.model.group.Group;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import javafx.collections.ObservableList;
-import seedu.address.model.group.Group;
+import static java.util.Objects.requireNonNull;
 
 /**
  * Wraps all data at the address-book level

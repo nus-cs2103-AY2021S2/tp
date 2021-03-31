@@ -7,8 +7,9 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.group.Group;
-import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.*;
 import seedu.address.model.person.Person;
+import seedu.address.logic.commands.meetings.EditMeetingCommand.EditMeetingDescriptor;
 
 import java.util.HashSet;
 import java.util.List;
@@ -17,6 +18,7 @@ import java.util.Set;
 import static seedu.address.logic.parser.CliSyntax.*;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MEETINGS;
 
 public class AddPersonToMeetingConnectionCommand extends Command {
     public static final String COMMAND_WORD = "addptm";
@@ -35,7 +37,7 @@ public class AddPersonToMeetingConnectionCommand extends Command {
 
     private static String MESSAGE_SUCCESS = "Successfully add persons related to the meeting! "
             + "The possible duplication of persons related is automatically removed.";
-
+    private static String MESSAGE_GROUP_NOT_EXIST = "The groups doesn't exist!";
     private final Index meetingIndex;
     private final Set<Group> groupsToAdd = new HashSet<>();
     private final Set<Index> personsIndexToAdd = new HashSet<>();
@@ -59,9 +61,12 @@ public class AddPersonToMeetingConnectionCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);
         }
         Meeting meetingToEdit = lastShownList.get(meetingIndex.getZeroBased());
+        Meeting meetingEdited = createEditedMeeting(meetingToEdit, new EditMeetingDescriptor());
         Set<Person> existedPersonsConnection = meetingToEdit.getConnectionToPerson();
         model.deleteAllPersonMeetingConnectionByMeeting(meetingToEdit);
-        addConnectionsToPersons(meetingToEdit, model, existedPersonsConnection);
+        addConnectionsToPersons(meetingEdited, model, existedPersonsConnection);
+        model.updateMeeting(meetingToEdit, meetingEdited);
+        model.updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 
@@ -75,6 +80,11 @@ public class AddPersonToMeetingConnectionCommand extends Command {
         personsConnection.addAll(existedPersonsConnection);
         toAdd.setPersonMeetingConnection(model.getPersonMeetingConnection());
         if (!groupsToAdd.isEmpty()) {
+            for (Group group : groupsToAdd) {
+                if (model.findPersonsInGroup(group).isEmpty()) {
+                    throw new CommandException(MESSAGE_GROUP_NOT_EXIST);
+                }
+            }
             toAdd.addGroups(groupsToAdd);
             for (Group group : groupsToAdd) {
                 Set<Person> personsInGroup = model.findPersonsInGroup(group);
@@ -101,5 +111,35 @@ public class AddPersonToMeetingConnectionCommand extends Command {
         for (Person allPersonToAddConnection : personsConnection) {
             model.addPersonMeetingConnection(allPersonToAddConnection, toAdd);
         }
+    }
+
+    /**
+     * Creates and returns a {@code Meeting} with the details of {@code meetingToEdit}
+     * edited with {@code editMeetingDescriptor}.
+     */
+    private static Meeting createEditedMeeting(Meeting meetingToEdit, EditMeetingDescriptor editMeetingDescriptor) {
+        assert meetingToEdit != null;
+
+        MeetingName updatedMeetingName = editMeetingDescriptor
+                .getName()
+                .orElse(meetingToEdit.getName());
+        DateTime updatedStart = editMeetingDescriptor
+                .getStart()
+                .orElse(meetingToEdit.getStart());
+        DateTime updatedTerminate = editMeetingDescriptor
+                .getTerminate()
+                .orElse(meetingToEdit.getTerminate());
+        Priority updatedPriority = editMeetingDescriptor
+                .getPriority()
+                .orElse(meetingToEdit.getPriority());
+        Description updatedDescription = editMeetingDescriptor
+                .getDescription()
+                .orElse(meetingToEdit.getDescription());
+        Set<Group> updatedGroups = editMeetingDescriptor
+                .getGroups()
+                .orElse(meetingToEdit.getGroups());
+
+        return new Meeting(updatedMeetingName, updatedStart,
+                updatedTerminate, updatedPriority, updatedDescription, updatedGroups);
     }
 }
