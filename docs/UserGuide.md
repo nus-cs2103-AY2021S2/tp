@@ -104,7 +104,9 @@ Format: `mk n/TITLE [set/DATE] [s/DURATION] [d/DESCRIPTION]
 [r/RECURRING SCHEDULE] [st/STATUS] [t/TAG]…`
 
 * Only title is compulsory.
-* Date should be in the format dd/mm/yyyy like `12/05/2021`.
+* Date should be in the format dd/mm/yyyy. For example, 1 December 2021
+  should be expressed as `01/12/2021`, not 1/12/2021. Furthermore, Date should be
+  a day that is after the current day.
 * Duration should be numeric, contain 2 timings, and should be in 24 hours format with a colon, like `22:30-22:45`.
 * Description can have multiple lines by adding a line break using <kbd>shift</kbd>+<kbd>enter</kbd>.
 * Recurring schedule should have 3 conditions which consist of:
@@ -143,9 +145,7 @@ Format: `ls`
 Adds a date to an existing task in the list.
 
 Format: `edit INDEX [set/DATE]…​`
-Date should only be in the format of DD/MM/YYYY. For example, 1 December 2021
-should be expressed as 01/12/2021, not 1/12/2021. Furthermore, Date should be
-a day that is after the current day.
+Date should only be in the format of DD/MM/YYYY as specified above. 
 
 * Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed list. The index **must be a positive integer** 1, 2, 3, …​
 * Date field must be provided.
