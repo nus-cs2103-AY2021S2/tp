@@ -1,7 +1,9 @@
 package seedu.address.logic.parser;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ALIAS_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ALIAS_NAME;
 
 import java.util.stream.Stream;
 
@@ -9,7 +11,7 @@ import seedu.address.logic.commands.AliasCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new AliasCommand object
  */
 public class AliasCommandParser implements Parser<AliasCommand> {
 
@@ -19,6 +21,8 @@ public class AliasCommandParser implements Parser<AliasCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AliasCommand parse(String args) throws ParseException {
+        requireNonNull(args);
+
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_ALIAS_COMMAND,
                 PREFIX_ALIAS_NAME);
 

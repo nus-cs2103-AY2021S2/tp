@@ -12,7 +12,7 @@ import seedu.address.model.Model;
 import seedu.address.model.flashcard.Flashcard;
 
 /**
- * Adds a person to the address book.
+ * Adds a flashcard to FlashBack.
  */
 public class AddCommand extends Command {
 

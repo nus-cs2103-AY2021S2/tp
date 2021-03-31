@@ -1,13 +1,14 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ALIAS_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ALIAS_NAME;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
- * Adds a person to the address book.
+ * Adds an alias to FlashBack.
  */
 public class AliasCommand extends Command {
 
