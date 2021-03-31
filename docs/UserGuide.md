@@ -53,32 +53,32 @@ Legend | Description
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure that you have [Java 11](https://www.oracle.com/sg/java/technologies/javase-jdk11-downloads.html) or above installed in your computer
 
-1. Download the latest `DietLAH.jar`.
+2. Download the [latest DietLAH.jar](https://github.com/AY2021S2-CS2103T-T12-2/tp/releases)
 
-1. Copy the file to the folder you will be launching DietLAH! from on a daily basis.
+3. Copy the `DietLAH.jar` file to the folder you will be launching DietLAH!
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.
+4. Double-click the file to start the app. The application will be pre-loaded with some sample data. To start afresh, use the `reset t/blank` command
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Here are some quick commands to get you started:
 
-   * **`bmi`**`h/150 w/70 i/75`: Initialises the current user BMI with height of 150cm, weight of 70kg and ideal weight of 75kg.
+   * **`bmi`**`h/150 w/70 i/75`: Initialises the current user BMI with height of 150cm, weight of 70kg and ideal weight of 75kg
 
-   * **`bmi`**`query`: Queries the current user's BMI with its height and weight information.
+   * **`bmi`**`query`: Queries the current user's BMI with its height and weight information
 
-   * **`bmi`**`update h/170 w/70 i/80`: Updates the current user BMI to height of 170cm, weight of 70kg and ideal weight of 80kg.
+   * **`bmi`**`update h/170 w/70 i/80`: Updates the current user BMI to height of 170cm, weight of 70kg and ideal weight of 80kg
 
-   * **`plan`**`recommended`: Queries the recommended diet plan based on user's BMI.
+   * **`plan`**`recommended`: Queries the recommended diet plan based on user's BMI
 
-   * **`plan`**`t/1`: Queries more information of the weight loss diet plan.
+   * **`plan`**`t/1`: Queries more information of the weight loss diet plan
 
-   * **`food_intake_add`**`d/31 Mar 2021 n/tomatoes p/10 c/10 f/10`: Adds tomato consumption with protein of 10g, carbohydrates of 10g and fats of 10g to the food intake for 31 Mar 2021.
+   * **`food_intake_add`**`d/31 Mar 2021 n/tomatoes p/10 c/10 f/10`: Adds tomato consumption with protein of 10g, carbohydrates of 10g and fats of 10g to the food intake for 31 Mar 2021
 
-   * **`food_intake_query`**`d/31 Mar 2021`: Queries the food intake for 31 Mar 2021.
+   * **`food_intake_query`**`d/31 Mar 2021`: Queries the food intake for 31 Mar 2021
 
-1. Refer to the [Features](#features) section below for details of each command.
+6. Refer to the [Features](#features) section below for details of each command
 
 --------------------------------------------------------------------------------------------------------------------
 
