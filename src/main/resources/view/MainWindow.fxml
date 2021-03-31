@@ -32,7 +32,8 @@
                   <Menu mnemonicParsing="false" text="View">
                     <items>
                         <CheckMenuItem fx:id="cliVisibilityCheckMenuItem" mnemonicParsing="false" onAction="#handleCliVisibility" selected="true" text="Show CLI" />
-                        <MenuItem mnemonicParsing="false" onAction="#handleStatsWindow" text="Category Statistics" />
+                        <MenuItem mnemonicParsing="false" onAction="#handleCategoryStatsWindow" text="Category Statistics" />
+                        <MenuItem mnemonicParsing="false" onAction="#handleMonthStatsWindow" text="Month Statistics" />
                     </items>
                   </Menu>
              <Menu mnemonicParsing="false" text="Help">

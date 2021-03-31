@@ -91,6 +91,12 @@ public interface BudgetBabyModel {
     void setCurrentDisplayMonth(YearMonth month);
 
     /**
+     * Returns the full month list currently stored in the application.
+     * @return full month list.
+     */
+    ObservableList<Month> getFullMonthList();
+
+    /**
      * Returns an unmodifiable view of the filtered month list
      */
     ObservableList<Month> getFilteredMonthList();
