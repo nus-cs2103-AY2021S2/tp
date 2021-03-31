@@ -10,6 +10,7 @@ import seedu.iscam.model.Model;
 import seedu.iscam.model.ModelManager;
 import seedu.iscam.model.UserPrefs;
 import seedu.iscam.model.util.clientbook.ClientBook;
+import seedu.iscam.model.util.meetingbook.MeetingBook;
 
 public class ClearCommandTest {
 
@@ -26,6 +27,7 @@ public class ClearCommandTest {
         Model model = new ModelManager(getTypicalLocationBook(), getTypicalMeetingBook(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalLocationBook(), getTypicalMeetingBook(), new UserPrefs());
         expectedModel.setClientBook(new ClientBook());
+        expectedModel.setMeetingBook(new MeetingBook());
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }

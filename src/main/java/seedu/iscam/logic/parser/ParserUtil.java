@@ -12,6 +12,7 @@ import seedu.iscam.logic.commands.EditMeetingCommand;
 import seedu.iscam.logic.parser.exceptions.ParseException;
 import seedu.iscam.logic.parser.exceptions.ParseFormatException;
 import seedu.iscam.model.client.Email;
+import seedu.iscam.model.client.Image;
 import seedu.iscam.model.client.InsurancePlan;
 import seedu.iscam.model.client.Phone;
 import seedu.iscam.model.commons.Location;
@@ -182,5 +183,16 @@ public class ParserUtil {
             throw new ParseFormatException(EditMeetingCommand.MESSAGE_USAGE);
         }
         return isDone.equals(EditMeetingCommand.PARAMETER_DONE);
+    }
+
+    /**
+     * Parses {@code String imageRes} into a boolean.
+     */
+    public static Image parseImageRes(String imageRes) throws ParseException {
+        requireNonNull(imageRes);
+        if (!Image.isValidImageRes(imageRes)) {
+            throw new ParseException(Image.MESSAGE_CONSTRAINTS);
+        }
+        return new Image(imageRes);
     }
 }

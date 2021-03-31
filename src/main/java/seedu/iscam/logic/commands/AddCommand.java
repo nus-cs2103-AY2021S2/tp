@@ -2,6 +2,7 @@ package seedu.iscam.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.iscam.logic.parser.CliSyntax.PREFIX_IMAGE;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -26,6 +27,7 @@ public class AddCommand extends Command {
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_LOCATION + "LOCATION "
             + "(optional) " + PREFIX_PLAN + "INSURANCE PLAN "
+            + "(optional) " + PREFIX_IMAGE + "IMAGE FIlE "
             + "(optional) " + PREFIX_TAG + "TAG(s) \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
@@ -33,6 +35,7 @@ public class AddCommand extends Command {
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_LOCATION + "01 Singapore Street, #23-45 "
             + PREFIX_PLAN + "MediShield Life "
+            + PREFIX_IMAGE + "john_doe.png"
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 

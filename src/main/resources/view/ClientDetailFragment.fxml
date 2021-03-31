@@ -9,13 +9,16 @@
 <?import javafx.scene.control.ListView?>
 
 <VBox xmlns:fx="http://javafx.com/fxml/1" id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8">
-        <HBox alignment="TOP_LEFT" minHeight="140" VBox.vgrow="NEVER">
-            <ImageView fx:id="profileImage" fitHeight="120"/>
-            <VBox alignment="TOP_LEFT" >
+        <HBox alignment="TOP_LEFT" minHeight="160">
+            <VBox alignment="CENTER" maxWidth="120">
+                <ImageView fx:id="profileImage" fitHeight="120" />
+                <Label fx:id="profileImageRef" styleClass="details_small_label" textAlignment="CENTER" />
+            </VBox>
+            <VBox alignment="CENTER_LEFT" >
                 <padding>
                     <Insets top="10" right="10" bottom="10" left="10"/>
                 </padding>
-                <Label fx:id="name" text="Use show command to display a user here" styleClass="details_large_label"/>
+                <Label fx:id="name" text="Use 'show' command to display a client here" styleClass="details_large_label"/>
                 <FlowPane fx:id="tags"/>
                 <Label fx:id="phone" styleClass="details_small_label" />
                 <Label fx:id="clientLocation" styleClass="details_small_label" />

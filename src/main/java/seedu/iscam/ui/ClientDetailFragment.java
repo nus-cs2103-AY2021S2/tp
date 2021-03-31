@@ -1,5 +1,9 @@
 package seedu.iscam.ui;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.nio.file.Path;
 import java.util.Comparator;
 
 import javafx.beans.value.ChangeListener;
@@ -30,6 +34,8 @@ public class ClientDetailFragment extends UiPart<Region> {
 
     @FXML
     private ImageView profileImage;
+    @FXML
+    private Label profileImageRef;
     @FXML
     private Label name;
     @FXML
@@ -63,8 +69,7 @@ public class ClientDetailFragment extends UiPart<Region> {
         this.client = client;
         Circle imageMask = new Circle(60, 60, 60);
         profileImage.setClip(imageMask);
-        // TODO: Modify this to accommodate client profile images
-        profileImage.setImage(placeholderImage);
+        profileImage.setImage(getImageFromData(client.getImageRes().value));
         name.setText(client.getName().fullName);
         phone.setText(client.getPhone().value);
         clientLocation.setText(client.getLocation().value);
@@ -79,6 +84,18 @@ public class ClientDetailFragment extends UiPart<Region> {
 
         insurancePlanBox.setVisible(true);
         insurancePlanName.setText(client.getPlan().planName);
+    }
+
+    // TODO: Migrate image access to the model and storage and not hardcode the "data" path
+    private Image getImageFromData(String imageRes) {
+        try {
+            InputStream is = new FileInputStream(String.valueOf(Path.of("data", imageRes)));
+            profileImageRef.setText(imageRes);
+            return new Image(is, 120, 120, false, true);
+        } catch (FileNotFoundException e) {
+            profileImageRef.setText(imageRes + "\n(image not found)");
+            return placeholderImage;
+        }
     }
 
     @Override

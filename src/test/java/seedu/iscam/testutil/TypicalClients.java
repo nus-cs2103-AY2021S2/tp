@@ -28,28 +28,33 @@ public class TypicalClients {
     public static final Client ALICE = new ClientBuilder().withName("Alice Pauline")
             .withLocation("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253").withPlan("Plan A")
-            .withTags("friends").build();
+            .withTags("friends").withImage("default.png").build();
     public static final Client BENSON = new ClientBuilder().withName("Benson Meier")
             .withLocation("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432").withPlan("Plan B")
-            .withTags("owesMoney", "friends").build();
+            .withTags("owesMoney", "friends").withImage("default.png").build();
     public static final Client CARL = new ClientBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withLocation("wall street").withPlan("Plan C").build();
     public static final Client DANIEL = new ClientBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withLocation("10th street")
-            .withPlan("Plan A").withTags("friends").build();
+            .withPlan("Plan A").withTags("friends").withImage("default.png").build();
     public static final Client ELLE = new ClientBuilder().withName("Elle Meyer").withPhone("9482224")
-            .withEmail("werner@example.com").withLocation("michegan ave").withPlan("Plan C").build();
+            .withEmail("werner@example.com").withLocation("michegan ave").withPlan("Plan C").withImage("default.png")
+            .build();
     public static final Client FIONA = new ClientBuilder().withName("Fiona Kunz").withPhone("9482427")
-            .withEmail("lydia@example.com").withLocation("little tokyo").withPlan("Plan B").build();
+            .withEmail("lydia@example.com").withLocation("little tokyo").withPlan("Plan B").withImage("default.png")
+            .build();
     public static final Client GEORGE = new ClientBuilder().withName("George Best").withPhone("9482442")
-            .withEmail("anna@example.com").withLocation("4th street").withPlan("Plan A").build();
+            .withEmail("anna@example.com").withLocation("4th street").withPlan("Plan A").withImage("default.png")
+            .build();
 
     // Manually added
     public static final Client HOON = new ClientBuilder().withName("Hoon Meier").withPhone("8482424")
-            .withEmail("stefan@example.com").withLocation("little india").withPlan("Plan B").build();
+            .withEmail("stefan@example.com").withLocation("little india").withPlan("Plan B").withImage("default.png")
+            .build();
     public static final Client IDA = new ClientBuilder().withName("Ida Mueller").withPhone("8482131")
-            .withEmail("hans@example.com").withLocation("chicago ave").withPlan("Plan C").build();
+            .withEmail("hans@example.com").withLocation("chicago ave").withPlan("Plan C").withImage("default.png")
+            .build();
 
     // Manually added - Client's details found in {@code CommandTestUtil}
     public static final Client AMY = new ClientBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
