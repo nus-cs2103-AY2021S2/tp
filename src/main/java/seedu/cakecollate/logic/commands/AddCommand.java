@@ -110,7 +110,9 @@ public class AddCommand extends Command {
     }
 
     /**
-     * Adds new order descriptions to order items model if they aren't already in the model
+     * Adds order descriptions in the descriptor to order items model if they aren't already in the model.
+     * These order descriptions are inputted by the user and already added into the descriptor before
+     * this add command object is created.
      *
      * @param model
      */
@@ -124,7 +126,7 @@ public class AddCommand extends Command {
     }
 
     /**
-     * Adds order items from the order model that correspond to order item indexes given by the user
+     * Adds order items from the order model that correspond to order item indexes given by the user to the descriptor
      *
      * @param model
      * @throws CommandException thrown when invalid indexes are given
@@ -175,10 +177,6 @@ public class AddCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        //        return other == this // short circuit if same object
-        //                || (other instanceof AddCommand // instanceof handles nulls
-        //                && toAdd.equals(((AddCommand) other).toAdd));
-
         // short circuit if same object
         if (other == this) {
             return true;
@@ -260,19 +258,15 @@ public class AddCommand extends Command {
             return Optional.ofNullable(address);
         }
 
-        // modified this to allow multiple sets, check
-        // may not need this version
         public void setOrderDescriptions(Set<OrderDescription> orderDescriptions) {
-            //            this.orderDescriptions = (orderDescriptions != null) ? new HashSet<>(orderDescriptions) :
-            //            null;
+            if (orderDescriptions == null) {
+                return;
+            }
+
             if (this.orderDescriptions == null) {
-                if (orderDescriptions != null) {
-                    this.orderDescriptions = new HashSet<>(orderDescriptions);
-                }
+                this.orderDescriptions = new HashSet<>(orderDescriptions);
             } else {
-                if (orderDescriptions != null) {
-                    this.orderDescriptions.addAll(orderDescriptions);
-                }
+                this.orderDescriptions.addAll(orderDescriptions);
             }
         }
 
