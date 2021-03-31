@@ -17,6 +17,9 @@ import seedu.cakecollate.model.order.Email;
 import seedu.cakecollate.model.order.Name;
 import seedu.cakecollate.model.order.OrderDescription;
 import seedu.cakecollate.model.order.Phone;
+import seedu.cakecollate.model.orderitem.Cost;
+import seedu.cakecollate.model.orderitem.OrderItem;
+import seedu.cakecollate.model.orderitem.Type;
 import seedu.cakecollate.model.tag.Tag;
 
 /**
@@ -188,5 +191,14 @@ public class ParserUtil {
             throw new ParseException(DeliveryDate.MESSAGE_CONSTRAINTS);
         }
         return new DeliveryDate(trimmedDeliveryDate);
+    }
+
+    public static OrderItem parseOrderItem(String orderItemType) throws ParseException {
+        requireNonNull(orderItemType);
+        String trimmedOrderItemDescription = orderItemType.trim();
+        if (!Type.isValidType(trimmedOrderItemDescription)) {
+            throw new ParseException(Type.MESSAGE_CONSTRAINTS);
+        }
+        return new OrderItem(new Type(trimmedOrderItemDescription), new Cost("10"));
     }
 }
