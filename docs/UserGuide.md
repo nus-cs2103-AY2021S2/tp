@@ -137,7 +137,6 @@ Format: `deletecustomer p/PHONE_NUMBER`
 
 Example: `deletecustomer p/65555555`
 
-
 ### Listing orders: `listorders`
 
 Displays all orders in CHIM.
@@ -149,7 +148,6 @@ Format: `listorders`
 Displays all cheeses in CHIM.
 
 Format: `listcheeses`
-
 
 ### Listing customers: `listcustomers`
 
@@ -206,6 +204,12 @@ Examples:
 * `findorder n/Alice s/incomplete`
 * `findorder p/92280919`
 
+### Clearing all data in CHIM: `clear`
+
+Clears all data in CHIM and save files 
+
+Format: `clear`
+
 ### Exiting the program: `exit`
 
 Exits the program.
@@ -242,4 +246,5 @@ Action | Format, Examples
 **Find Customer** | `findcustomer [n/NAME_KEYWORDS...] [p/PHONE_KEYWORDS...] [e/EMAIL_KEYWORDS...] [a/ADDRESS_KEYWORDS...]` <br> e.g. `findcustomer n/Betty`
 **Find Cheese** | `findcheese [t/CHEESE_TYPE_KEYWORDS...] [s/ASSIGNMENT_STATUS]` <br> e.g. `findcheese t/Brie Feta s/unassigned`
 **Find Order** | `findorder [t/CHEESE_TYPE_KEYWORDS...] [n/CUSTOMER_NAME_KEYWORDS] [p/CUSTOMER_PHONE_KEYWORDS] [s/COMPLETION_STATUS]`  <br> e.g. `findorder t/gouda s/complete`
+**Clear** | `clear`
 **Exit** | `exit`

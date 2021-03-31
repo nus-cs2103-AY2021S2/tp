@@ -113,7 +113,7 @@ for the `execute("deletecheese 1")` API call.
 The `Model`,
 * stores a `UserPref` object that represents the user`s preferences.
 * stores the address book data.
-* exposes an unmodifiable `ObservableList<Customer>`, `ObservableList<Order>`,`ObservableList<Cheese>` that can be 'observed'
+* exposes an unmodifiable `ObservableList<Customer>`, `ObservableList<Order>`,`ObservableList<Cheese>` that can be 'observed'.
 e.g. the Ui can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
@@ -305,17 +305,17 @@ instances to accommodate the changes. We do not choose this design as it is very
 unlikely a user would want to modify a completed `Order`, and the user can always
 add a new `Order` instance in the worst case.
 
-### Mark an order as completed feature
+### Mark an order as complete feature
 
 #### implementation
 
-Marking an order as completed are implemented in [`DoneCommand.java`](https://github.com/AY2021S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/address/comamnds/DoneCommand.java)
+Marking an order as completed is implemented in [`DoneCommand.java`](https://github.com/AY2021S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/address/comamnds/DoneCommand.java).
 
-`DoneCommand` extends from `command` and overwrites the operations `execute()` and `equals()`
+`DoneCommand` extends from `command` and overwrites the operations `execute()` and `equals()`.
 
-Given below is an example usage scenario and how the marking an order as completed feature behaves at each step.
+Given below is an example usage scenario and how the feature of marking an order as complete feature behaves at each step.
 
-Step 1. The user launches CHIM which will restored archived customers , orders and cheeses.
+Step 1. The user launches CHIM which will restore archived customers , orders and cheeses.
 
 Step 2. The user issues the command `done 1` to mark the first order shown in the `listorders` as completed.
 The `done` command calls `DoneCommand.execute()` which will check the index given is valid and order selected is not completed yet.
@@ -324,23 +324,23 @@ Step 3. After initial checks are completed, `DoneCommand.execute()` will call on
 to retrieve unAssigned Cheese(s) required for the order.
 
 Step 4. `DoneCommand.execute()` will call `DoneCommand.createDoneOrder()` to create a new `order`
-if there is enough unassigned Cheese(s) from `ModelManager.getUnassignedCheeses()`
+if there is enough unassigned Cheese(s) from `ModelManager.getUnassignedCheeses()`.
 
 Step 5. `DoneCommand.execute()` will call `ModelManager.setOrder()`
 to replace the original order with the new order created from `DoneCommand.createDoneOrder()`
 and calls `ModelManager.updateCheesesStatus()` to update all cheese(s)'s assign status used for this order.
 
-The following sequence diagram shows hwo the operation `done 1` is carried out as detailed above.
+The following sequence diagram shows how the operation `done 1` is carried out as detailed above.
 
 ![Sequence Diagram of the Done Command](images/DoneCommandSeqDiagram.png)
 
 #### Design consideration 
-* Aspect : Searching for available cheese(s) for the order
+* Aspect : Searching for available cheese(s) for the order.
     * Current choice : Searching for unassigned cheeses for the order is implemented in the `Model.AddressBook`.
-        * Pros: no dependency between `Done` command and `Cheese`,
+        * Pros: no dependency between `Done` command and `Cheese`.
         * Cons: performance issues due to multiple functions calls.
     * Alternative 1 : `Done` command will search for unassigned cheeses.
-        * Pros: better in terms of performance as there are lesser functions to be called .
+        * Pros: better in terms of performance as there are lesser functions to be called.
         * Cons: This introduces another reason for 'DoneCommand.execute()' to change in the future.
 
 ## **Documentation, logging, testing, configuration, dev-ops** [In Progress]
@@ -707,6 +707,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
+
+#### Use case: Clear all data 
+
+**MSS**
+1. User enters the command to clear all data.
+2. CHIM clears customer , orders and cheese data and informs the user. 
+    
+    Use case ends.
 
 #### Use case: Exit the application
 
