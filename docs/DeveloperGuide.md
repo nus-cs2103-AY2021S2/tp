@@ -118,13 +118,6 @@ The `Model`,
 * exposes an unmodifiable `ObservableList<Property>` and an unmodifiable `ObservableList<Appointment>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change
 * does not depend on any of the other three components
 
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
-![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
-
-</div>
-
-
 ### Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
@@ -187,6 +180,15 @@ A `Client` consists of at least one of the following attributes,
 * **Alternative:** Allow mutable `Property` objects (provide setter methods to update the attributes of a `Property`)
     * Pros: Easy to implement
     * Cons: More prone to bugs
+
+#### Aspect: How each tag is stored
+
+* An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `PropertyBook`, which `Property` references. This allows `PropertyBook` to only require one `Tag` object per unique `Tag`, instead of each `Property` needing their own `Tag` object.
+    * Pros: Prevents creating the same tag multiple times when each `Property` needs to refer to the tag
+    * Cons: Harder to implement
+
+![BetterModelPropertyClassDiagram](images/BetterModelPropertyClassDiagram.png)
+
 
 ### Appointment component
 
