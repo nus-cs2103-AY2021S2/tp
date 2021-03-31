@@ -17,7 +17,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.filter.PersonFilter;
+import seedu.address.model.filter.TutorFilter;
 
 /**
  * Deletes tutor filters.
@@ -46,14 +46,14 @@ public class DeletePersonFilterCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Tutor filters deleted: %1$s";
     public static final String MESSAGE_DUPLICATE = "A filter in the tutor filter already exists";
 
-    private final PersonFilter personFilter;
+    private final TutorFilter tutorFilter;
 
     /**
      * Creates a DeletePersonFilterCommand.
      */
-    public DeletePersonFilterCommand(PersonFilter personFilter) {
-        requireNonNull(personFilter);
-        this.personFilter = personFilter;
+    public DeletePersonFilterCommand(TutorFilter tutorFilter) {
+        requireNonNull(tutorFilter);
+        this.tutorFilter = tutorFilter;
     }
 
     @Override
@@ -65,14 +65,14 @@ public class DeletePersonFilterCommand extends Command {
         //     throw new CommandException(MESSAGE_DUPLICATE);
         // }
 
-        model.removePersonFilter(personFilter);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, personFilter));
+        model.removeTutorFilter(tutorFilter);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, tutorFilter));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DeletePersonFilterCommand // instanceof handles nulls
-                && personFilter.equals(((DeletePersonFilterCommand) other).personFilter));
+                && tutorFilter.equals(((DeletePersonFilterCommand) other).tutorFilter));
     }
 }

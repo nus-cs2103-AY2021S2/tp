@@ -1,7 +1,7 @@
 package seedu.address.logic.parser.favouriteparser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.tutorcommands.EditCommand.EditPersonDescriptor;
+import static seedu.address.logic.commands.tutorcommands.EditCommand.EditTutorDescriptor;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.favouritecommands.UnfavouriteCommand;
@@ -26,10 +26,10 @@ public class UnfavouriteCommandParser implements Parser<UnfavouriteCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnfavouriteCommand.MESSAGE_USAGE));
         }
 
-        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
-        editPersonDescriptor.setIsFavourite(false);
+        EditTutorDescriptor editTutorDescriptor = new EditTutorDescriptor();
+        editTutorDescriptor.setIsFavourite(false);
 
-        return new UnfavouriteCommand(index, editPersonDescriptor);
+        return new UnfavouriteCommand(index, editTutorDescriptor);
 
     }
 }

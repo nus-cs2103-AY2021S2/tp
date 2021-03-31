@@ -9,8 +9,8 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
-import seedu.address.model.person.Person;
 import seedu.address.model.subject.TutorSubject;
+import seedu.address.model.tutor.Tutor;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -27,7 +27,7 @@ public class TutorCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Person person;
+    public final Tutor tutor;
 
     private TutorNotesField tutorNotesField;
 
@@ -53,30 +53,30 @@ public class TutorCard extends UiPart<Region> {
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
-    public TutorCard(Person person, int displayedIndex) {
+    public TutorCard(Tutor tutor, int displayedIndex) {
         super(FXML);
-        this.person = person;
+        this.tutor = tutor;
         id.setText(displayedIndex + ". ");
 
-        boolean isFavourite = person.isFavourite();
+        boolean isFavourite = tutor.isFavourite();
         if (isFavourite) {
-            name.setText(person.getName().fullName + "  " + new String(Character.toChars(127775)));
+            name.setText(tutor.getName().fullName + "  " + new String(Character.toChars(127775)));
         } else {
-            name.setText(person.getName().fullName);
+            name.setText(tutor.getName().fullName);
         }
 
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
-        person.getSubjectList().asUnmodifiableObservableList().stream()
+        phone.setText(tutor.getPhone().value);
+        address.setText(tutor.getAddress().value);
+        email.setText(tutor.getEmail().value);
+        tutor.getSubjectList().asUnmodifiableObservableList().stream()
                 .filter(subject -> Objects.nonNull(subject))
                 .forEach(subject -> displaySubjectDetails(subject));
-        person.getTags().stream()
+        tutor.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
 
-        if (person.hasNotes()) {
-            tutorNotesField = new TutorNotesField(person.getNotes());
+        if (tutor.hasNotes()) {
+            tutorNotesField = new TutorNotesField(tutor.getNotes());
             notesPane.getChildren().add(tutorNotesField.getRoot());
         }
     }
@@ -105,6 +105,6 @@ public class TutorCard extends UiPart<Region> {
         // state check
         TutorCard card = (TutorCard) other;
         return id.getText().equals(card.id.getText())
-                && person.equals(card.person);
+                && tutor.equals(card.tutor);
     }
 }

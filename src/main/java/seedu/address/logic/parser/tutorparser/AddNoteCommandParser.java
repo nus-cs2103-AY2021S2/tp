@@ -1,14 +1,15 @@
 package seedu.address.logic.parser.tutorparser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.tutorcommands.EditCommand.EditPersonDescriptor;
+import static seedu.address.logic.commands.tutorcommands.EditCommand.EditTutorDescriptor;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.tutorcommands.AddNoteCommand;
+import seedu.address.logic.commands.tutorcommands.EditCommand;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Notes;
+import seedu.address.model.tutor.Notes;
 
 /**
  * Parses input arguments and creates a new AddNoteCommand object
@@ -49,9 +50,9 @@ public class AddNoteCommandParser implements Parser<AddNoteCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddNoteCommand.MESSAGE_USAGE), pe);
         }
 
-        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
-        editPersonDescriptor.setNotes(notes);
+        EditCommand.EditTutorDescriptor editTutorDescriptor = new EditTutorDescriptor();
+        editTutorDescriptor.setNotes(notes);
 
-        return new AddNoteCommand(index, editPersonDescriptor);
+        return new AddNoteCommand(index, editTutorDescriptor);
     }
 }

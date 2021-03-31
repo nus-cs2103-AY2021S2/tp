@@ -11,7 +11,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.tutor.Tutor;
 
 /**
  * Adds a tutor to the address book.
@@ -40,25 +40,25 @@ public class AddCommand extends Command {
     public static final String MESSAGE_DUPLICATE_PERSON = "This tutor already exists "
             + "in the address book";
 
-    private final Person toAdd;
+    private final Tutor toAdd;
 
     /**
      * Creates an AddCommand to add the specified {@code Person}
      */
-    public AddCommand(Person person) {
-        requireNonNull(person);
-        toAdd = person;
+    public AddCommand(Tutor tutor) {
+        requireNonNull(tutor);
+        toAdd = tutor;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasPerson(toAdd)) {
+        if (model.hasTutor(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.addPerson(toAdd);
+        model.addTutor(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

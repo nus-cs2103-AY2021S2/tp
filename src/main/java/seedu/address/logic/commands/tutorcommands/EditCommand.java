@@ -12,7 +12,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_RATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TUTORS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -27,15 +27,15 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Gender;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Notes;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
 import seedu.address.model.subject.SubjectList;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tutor.Address;
+import seedu.address.model.tutor.Email;
+import seedu.address.model.tutor.Gender;
+import seedu.address.model.tutor.Name;
+import seedu.address.model.tutor.Notes;
+import seedu.address.model.tutor.Phone;
+import seedu.address.model.tutor.Tutor;
 
 /**
  * Edits the details of an existing tutor in the address book.
@@ -68,65 +68,65 @@ public class EditCommand extends Command {
             + PREFIX_YEAR + "5 "
             + PREFIX_QUALIFICATION + "A-Level>]...";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Tutor: %1$s";
+    public static final String MESSAGE_EDIT_TUTOR_SUCCESS = "Edited Tutor: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This tutor already exists "
+    public static final String MESSAGE_DUPLICATE_TUTOR = "This tutor already exists "
             + "in the address book.";
 
     private final Index index;
-    private final EditPersonDescriptor editPersonDescriptor;
+    private final EditTutorDescriptor editTutorDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * @param index of the tutor in the filtered tutor list to edit
+     * @param editTutorDescriptor details to edit the tutor with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public EditCommand(Index index, EditTutorDescriptor editTutorDescriptor) {
         requireNonNull(index);
-        requireNonNull(editPersonDescriptor);
+        requireNonNull(editTutorDescriptor);
 
         this.index = index;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.editTutorDescriptor = new EditTutorDescriptor(editTutorDescriptor);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Tutor> lastShownList = model.getFilteredTutorList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_TUTOR_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        Tutor tutorToEdit = lastShownList.get(index.getZeroBased());
+        Tutor editedTutor = createEditedTutor(tutorToEdit, editTutorDescriptor);
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (!tutorToEdit.isSameTutor(editedTutor) && model.hasTutor(editedTutor)) {
+            throw new CommandException(MESSAGE_DUPLICATE_TUTOR);
         }
 
-        model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+        model.setTutor(tutorToEdit, editedTutor);
+        model.updateFilteredTutorList(PREDICATE_SHOW_ALL_TUTORS);
+        return new CommandResult(String.format(MESSAGE_EDIT_TUTOR_SUCCESS, editedTutor));
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * Creates and returns a {@code Tutor} with the details of {@code tutorToEdit}
+     * edited with {@code editTutorDescriptor}.
      */
-    public static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
-        assert personToEdit != null;
+    public static Tutor createEditedTutor(Tutor tutorToEdit, EditTutorDescriptor editTutorDescriptor) {
+        assert tutorToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Gender updatedGender = editPersonDescriptor.getGender().orElse(personToEdit.getGender());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Notes updatedNotes = editPersonDescriptor.getNotes().orElse(personToEdit.getNotes());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-        SubjectList updatedSubjectList = editPersonDescriptor.getSubjectList().orElse(personToEdit.getSubjectList());
-        boolean isFavourite = editPersonDescriptor.getIsFavourite().orElse(personToEdit.isFavourite());
+        Name updatedName = editTutorDescriptor.getName().orElse(tutorToEdit.getName());
+        Gender updatedGender = editTutorDescriptor.getGender().orElse(tutorToEdit.getGender());
+        Phone updatedPhone = editTutorDescriptor.getPhone().orElse(tutorToEdit.getPhone());
+        Email updatedEmail = editTutorDescriptor.getEmail().orElse(tutorToEdit.getEmail());
+        Address updatedAddress = editTutorDescriptor.getAddress().orElse(tutorToEdit.getAddress());
+        Notes updatedNotes = editTutorDescriptor.getNotes().orElse(tutorToEdit.getNotes());
+        Set<Tag> updatedTags = editTutorDescriptor.getTags().orElse(tutorToEdit.getTags());
+        SubjectList updatedSubjectList = editTutorDescriptor.getSubjectList().orElse(tutorToEdit.getSubjectList());
+        boolean isFavourite = editTutorDescriptor.getIsFavourite().orElse(tutorToEdit.isFavourite());
 
-        return new Person(updatedName, updatedGender, updatedPhone, updatedEmail, updatedAddress,
+        return new Tutor(updatedName, updatedGender, updatedPhone, updatedEmail, updatedAddress,
                 updatedNotes, updatedSubjectList, updatedTags, isFavourite);
     }
 
@@ -145,14 +145,14 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+                && editTutorDescriptor.equals(e.editTutorDescriptor);
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the tutor with. Each non-empty field value will replace the
+     * corresponding field value of the tutor.
      */
-    public static class EditPersonDescriptor {
+    public static class EditTutorDescriptor {
         private Name name;
         private Gender gender;
         private Phone phone;
@@ -164,13 +164,13 @@ public class EditCommand extends Command {
 
         private Boolean isFavourite;
 
-        public EditPersonDescriptor() {}
+        public EditTutorDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
+        public EditTutorDescriptor(EditTutorDescriptor toCopy) {
             setName(toCopy.name);
             setGender(toCopy.gender);
             setPhone(toCopy.phone);
@@ -278,15 +278,15 @@ public class EditCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPersonDescriptor)) {
+            if (!(other instanceof EditTutorDescriptor)) {
                 return false;
             }
 
             // state check
-            EditPersonDescriptor e = (EditPersonDescriptor) other;
+            EditTutorDescriptor e = (EditTutorDescriptor) other;
 
             // Convert empty lists to none optionals
-            // Required to pass unit tests involving EditPersonDescriptor
+            // Required to pass unit tests involving EditTutorDescriptor
             Optional<SubjectList> subjectList = getSubjectList();
             Optional<SubjectList> otherSubjectList = e.getSubjectList();
             if (subjectList.isPresent()

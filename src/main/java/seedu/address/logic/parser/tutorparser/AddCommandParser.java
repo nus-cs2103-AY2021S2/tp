@@ -24,15 +24,15 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Gender;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Notes;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
 import seedu.address.model.subject.SubjectList;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tutor.Address;
+import seedu.address.model.tutor.Email;
+import seedu.address.model.tutor.Gender;
+import seedu.address.model.tutor.Name;
+import seedu.address.model.tutor.Notes;
+import seedu.address.model.tutor.Phone;
+import seedu.address.model.tutor.Tutor;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -77,9 +77,9 @@ public class AddCommandParser implements Parser<AddCommand> {
                 argMultimap.getAllValues(PREFIX_QUALIFICATION)
         );
 
-        Person person = new Person(name, gender, phone, email, address, notes, subjectList, tagList);
+        Tutor tutor = new Tutor(name, gender, phone, email, address, notes, subjectList, tagList);
 
-        return new AddCommand(person);
+        return new AddCommand(tutor);
     }
 
     /**

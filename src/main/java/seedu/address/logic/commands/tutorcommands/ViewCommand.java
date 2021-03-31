@@ -10,8 +10,8 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.ViewTutorPredicate;
+import seedu.address.model.tutor.Tutor;
+import seedu.address.model.tutor.ViewTutorPredicate;
 
 /**
  * View a tutor by its index in tutor list.
@@ -35,13 +35,13 @@ public class ViewCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> updatedTutorList = model.getFilteredPersonList();
+        List<Tutor> updatedTutorList = model.getFilteredTutorList();
 
         if (targetIndex.getZeroBased() >= updatedTutorList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_TUTOR_DISPLAYED_INDEX);
         }
-        Person tutorToView = updatedTutorList.get(targetIndex.getZeroBased());
-        model.updateFilteredPersonList(new ViewTutorPredicate(tutorToView));
+        Tutor tutorToView = updatedTutorList.get(targetIndex.getZeroBased());
+        model.updateFilteredTutorList(new ViewTutorPredicate(tutorToView));
         return new CommandResult(String.format(MESSAGE_VIEW_TUTOR_SUCCESS, tutorToView.getName()));
     }
 

@@ -1,8 +1,8 @@
 package seedu.address.logic.commands.tutorcommands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.commands.tutorcommands.EditCommand.EditPersonDescriptor;
-import static seedu.address.logic.commands.tutorcommands.EditCommand.createEditedPerson;
+import static seedu.address.logic.commands.tutorcommands.EditCommand.EditTutorDescriptor;
+import static seedu.address.logic.commands.tutorcommands.EditCommand.createEditedTutor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,8 +12,8 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.ViewTutorPredicate;
+import seedu.address.model.tutor.Tutor;
+import seedu.address.model.tutor.ViewTutorPredicate;
 
 /**
  * Adds a note to a Tutor in the TutorBook
@@ -32,40 +32,40 @@ public class AddNoteCommand extends Command {
 
     private final Index targetIndex;
 
-    private final EditPersonDescriptor editPersonDescriptor;
+    private final EditTutorDescriptor editTutorDescriptor;
 
     /**
      * @param targetIndex of the Tutor
-     * @param editPersonDescriptor with descriptor of the note to be added
+     * @param editTutorDescriptor with descriptor of the note to be added
      */
-    public AddNoteCommand (Index targetIndex, EditPersonDescriptor editPersonDescriptor) {
+    public AddNoteCommand (Index targetIndex, EditCommand.EditTutorDescriptor editTutorDescriptor) {
         this.targetIndex = targetIndex;
-        this.editPersonDescriptor = editPersonDescriptor;
+        this.editTutorDescriptor = editTutorDescriptor;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        List<Person> tutorList = model.getFilteredPersonList();
+        List<Tutor> tutorList = model.getFilteredTutorList();
 
-        ArrayList<Person> tutorPredicateList = new ArrayList<>(tutorList);
+        ArrayList<Tutor> tutorPredicateList = new ArrayList<>(tutorList);
 
         if (targetIndex.getZeroBased() >= tutorList.size()) {
             throw new CommandException(String.format(MESSAGE_INVALID_INDEX, targetIndex.getZeroBased()));
         }
 
-        Person person = tutorList.get(targetIndex.getZeroBased());
-        if (person.hasNotes()) {
-            throw new CommandException(String.format(MESSAGE_ALREADY_HAVE_NOTES, person.getName().toString()));
+        Tutor tutor = tutorList.get(targetIndex.getZeroBased());
+        if (tutor.hasNotes()) {
+            throw new CommandException(String.format(MESSAGE_ALREADY_HAVE_NOTES, tutor.getName().toString()));
         }
 
-        Person editedPerson = createEditedPerson(person, editPersonDescriptor);
+        Tutor editedTutor = createEditedTutor(tutor, editTutorDescriptor);
 
-        model.setPerson(person, editedPerson);
-        model.updateFilteredPersonList(new ViewTutorPredicate(tutorPredicateList));
+        model.setTutor(tutor, editedTutor);
+        model.updateFilteredTutorList(new ViewTutorPredicate(tutorPredicateList));
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, person.getName().toString()));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, tutor.getName().toString()));
 
     }
 }
