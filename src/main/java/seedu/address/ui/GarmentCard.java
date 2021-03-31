@@ -1,10 +1,11 @@
 package seedu.address.ui;
 
-import java.awt.image.BufferedImage;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -46,6 +47,8 @@ public class GarmentCard extends UiPart<Region> {
     private Label lastused;
     @FXML
     private FlowPane descriptions;
+    @FXML
+    private Label sampleColour;
 
     /**
      * Creates a {@code GarmentCode} with the given {@code Garment} and index to display.
@@ -53,7 +56,7 @@ public class GarmentCard extends UiPart<Region> {
     public GarmentCard(Garment garment, int displayedIndex) {
         super(FXML);
         this.garment = garment;
-        BufferedImage sample = Colour.SAMPLES.get(garment.getColour());
+        String sample = Colour.SAMPLES.get(garment.getColour().colour);
 
         id.setText(displayedIndex + ". ");
         name.setText(garment.getName().fullName);
@@ -66,6 +69,12 @@ public class GarmentCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(description -> description.descriptionName))
                 .forEach(description -> descriptions.getChildren()
                         .add(new Label("<" + description.descriptionName + ">")));
+
+        Image image = new Image(sample);
+        ImageView view = new ImageView(image);
+        view.setFitHeight(80);
+        view.setPreserveRatio(true);
+        sampleColour.setGraphic(view);
     }
 
     @Override
