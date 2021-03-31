@@ -6,6 +6,7 @@ import java.util.Comparator;
 
 import seedu.address.logic.comparators.DateTimeComparator;
 import seedu.address.logic.comparators.ModuleCodeComparator;
+import seedu.address.logic.comparators.PriorityTagComparator;
 import seedu.address.logic.comparators.TaskNameComparator;
 import seedu.address.logic.comparators.WeightageComparator;
 import seedu.address.logic.util.SortingFlag;
@@ -41,7 +42,9 @@ public class SortCommand extends Command {
         case MODULE_CODE:
             sortingComparator = new ModuleCodeComparator();
             break;
-        // need to add case for priority tag; waiting on weikiat's implementation
+        case PRIORITY_TAG:
+            sortingComparator = new PriorityTagComparator();
+            break;
         case WEIGHTAGE:
             sortingComparator = new WeightageComparator();
             break;
