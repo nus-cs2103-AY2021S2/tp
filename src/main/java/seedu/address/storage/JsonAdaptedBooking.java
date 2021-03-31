@@ -11,7 +11,7 @@ import seedu.address.model.booking.Phone;
 import seedu.address.model.booking.TenantName;
 
 /**
- * Json-friendly version of {@link Booking}.
+ * Jackson-friendly version of {@link Booking}.
  */
 class JsonAdaptedBooking {
 
@@ -35,7 +35,7 @@ class JsonAdaptedBooking {
     }
 
     /**
-     * Converts a given {@code Booking} into this class for Json use.
+     * Converts a given {@code Booking} into this class for Jackson use.
      */
     public JsonAdaptedBooking(Booking source) {
         tenantName = source.getTenantName().toString();
@@ -45,7 +45,7 @@ class JsonAdaptedBooking {
     }
 
     /**
-     * Converts this Json-friendly adapted booking object into the model's {@code Booking} object.
+     * Converts this Jackson-friendly adapted booking object into the model's {@code Booking} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted booking.
      */

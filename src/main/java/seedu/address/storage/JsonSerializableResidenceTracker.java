@@ -32,7 +32,7 @@ class JsonSerializableResidenceTracker {
     }
 
     /**
-     * Converts a given {@code ReadOnlyResidenceTracker} into this class for Json use.
+     * Converts a given {@code ReadOnlyResidenceTracker} into this class for Jackson use.
      *
      * @param source future changes to this will not affect the created {@code JsonSerializableResidenceTracker}.
      */
@@ -42,7 +42,7 @@ class JsonSerializableResidenceTracker {
     }
 
     /**
-     * Converts this address book into the model's {@code ResidenceTracker} object.
+     * Converts residences into the model's {@code ResidenceTracker} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */

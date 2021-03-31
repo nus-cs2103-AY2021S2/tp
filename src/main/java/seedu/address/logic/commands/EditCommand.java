@@ -32,7 +32,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the residence identified "
             + "by the index number used in the displayed residence list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: RESIDENCE_INDEX (must be a positive integer) "
             + "[" + PREFIX_CLEAN_STATUS_TAG + "n]\n"
             + "Example: " + COMMAND_WORD + "1 "
             + PREFIX_CLEAN_STATUS_TAG + "y";
@@ -75,6 +75,10 @@ public class EditCommand extends Command {
         model.setResidence(residenceToEdit, editedResidence);
         model.updateFilteredResidenceList(PREDICATE_SHOW_ALL_RESIDENCES);
         return new CommandResult(String.format(MESSAGE_EDIT_RESIDENCE_SUCCESS, editedResidence));
+    }
+
+    public static String getCommandWord() {
+        return COMMAND_WORD;
     }
 
     /**

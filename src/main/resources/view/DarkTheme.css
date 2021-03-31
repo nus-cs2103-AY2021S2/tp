@@ -391,12 +391,9 @@
     -fx-font-size: 13;
 }
 
-#bookingListPane {
+#bookingListPane .label {
     -fx-background-color: #ffdde6 ;
     -fx-border-radius: 3;
-}
-
-#bookingListPane .label {
     -fx-font-size: 13;
     -fx-text-fill: #333333;
 }
@@ -406,17 +403,16 @@
     -fx-background-color: #3e7b91;
 }
 
-#bookingListVBox {
+#bookingListScrollPane {
+    -fx-border-color: #7772b6;
+    -fx-border-radius: 2px;
+}
+
+#bookingListScrollPane .viewport {
     -fx-background-image:url(/images/background.png);
     -fx-background-repeat:no-repeat ;
     -fx-background-size:100% 100%;
     -fx-background-attachment: fixed;
-}
-
-#bookingListScrollPane {
-    /*-fx-border-style: dotted;*/
-    -fx-border-color: #7772b6;
-    -fx-border-radius: 2px;
 }
 
 #bookingListScrollPane .scroll-bar:vertical .thumb {

@@ -17,7 +17,7 @@ import seedu.address.model.residence.Residence;
 
 
 /**
- * Deletes a booking of residence identified using a booking index and residence index as displayed in ResidenceTracker
+ * Deletes a booking of residence identified using a booking index and residence index as displayed in ResidenceTracker.
  */
 public class DeleteBookingCommand extends Command {
 
@@ -26,7 +26,8 @@ public class DeleteBookingCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the booking identified by the booking index of the "
             + "residence identified by residence index used in the displayed residence list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Parameters: " + PREFIX_RESIDENCE + "RESIDENCE_INDEX (must be a positive integer) "
+            + PREFIX_BOOKING + "BOOKING_INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_RESIDENCE + "1 " + PREFIX_BOOKING + "1";
 
     public static final String MESSAGE_DELETE_BOOKING_SUCCESS = "Deleted Residence %1$d's Booking: %2$s";
@@ -64,6 +65,10 @@ public class DeleteBookingCommand extends Command {
                 residenceIndex.getOneBased(), bookingToDelete));
     }
 
+    public static String getCommandWord() {
+        return COMMAND_WORD;
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
@@ -71,7 +76,5 @@ public class DeleteBookingCommand extends Command {
                 && residenceIndex.equals(((DeleteBookingCommand) other).residenceIndex)
                 && bookingIndex.equals(((DeleteBookingCommand) other).bookingIndex)); // state check
     }
-
-
 }
 

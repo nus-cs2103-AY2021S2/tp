@@ -20,4 +20,8 @@ public class ClearCommand extends Command {
         model.setResidenceTracker(new ResidenceTracker());
         return new CommandResult(MESSAGE_SUCCESS);
     }
+
+    public static String getCommandWord() {
+        return COMMAND_WORD;
+    }
 }

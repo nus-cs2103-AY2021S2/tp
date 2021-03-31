@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_BOOKING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLEAN_STATUS_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -31,31 +30,27 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_RESIDENCE1 = "14 Amber Gardens, 439960";
     public static final String VALID_ADDRESS_RESIDENCE2 = "Block 50, Cantonment Rd";
 
-    public static final String VALID_BOOKING_DETAILS = "4 Adults";
-    //public static final List<Booking> VALID_BOOKING_LIST1 = new BookingList()
-    //        .add(new Booking(VALID_NAME_AMY, VALID_PHONE_AMY, VALID_BOOKING_START1, VALID_BOOKING_END1));
-    //public static final List<Booking> VALID_BOOKING_LIST2 = "2 Teenagers";
     public static final String VALID_CLEAN_TAG = "y";
     public static final String VALID_UNCLEAN_TAG = "n";
     public static final String VALID_BOOKED_TAG = "y";
     public static final String VALID_UNBOOKED_TAG = "n";
+    //public static final List<Booking> VALID_BOOKING_LIST1 = new BookingList()
+    //        .add(new Booking(VALID_NAME_AMY, VALID_PHONE_AMY, VALID_BOOKING_START1, VALID_BOOKING_END1));
+    //public static final List<Booking> VALID_BOOKING_LIST2 = "2 Teenagers";
     public static final String VALID_TAG_RESERVED = "reserved";
     public static final String VALID_TAG_REPAIR = "plumbing";
 
-    public static final String VALID_PHONE_AMY = "11111111";
-    public static final String VALID_PHONE_BOB = "22222222";
-    public static final String VALID_NAME_AMY = "Amy";
-    public static final String VALID_BOOKING_START1 = "030321";
-    public static final String VALID_BOOKING_START2 = "300321";
-    public static final String VALID_BOOKING_END1 = "050521";
-    public static final String VALID_BOOKING_END2 = "300521";
+    public static final String VALID_PHONE_BOOKING1 = "11111111";
+    public static final String VALID_PHONE_BOOKING2 = "22222222";
+    public static final String VALID_NAME_BOOKING1 = "Amy";
+    public static final String VALID_NAME_BOOKING2 = "John";
+    public static final String VALID_BOOKING_START1 = "03-03-2021";
+    public static final String VALID_BOOKING_START2 = "30-03-2021";
+    public static final String VALID_BOOKING_END1 = "05-05-2021";
+    public static final String VALID_BOOKING_END2 = "30-05-2021";
 
-    public static final String BOOKING_DETAILS_DESC_RESIDENCE1 = " " + PREFIX_BOOKING + VALID_BOOKING_DETAILS;
-    public static final String BOOKING_DETAILS_DESC_RESIDENCE2 = " " + PREFIX_BOOKING + VALID_BOOKING_DETAILS;
     public static final String NAME_DESC_RESIDENCE1 = " " + PREFIX_NAME + VALID_NAME_RESIDENCE1;
     public static final String NAME_DESC_RESIDENCE2 = " " + PREFIX_NAME + VALID_NAME_RESIDENCE2;
-    public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
-    public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
     public static final String ADDRESS_DESC_RESIDENCE1 = " " + PREFIX_RESIDENCE_ADDRESS + VALID_ADDRESS_RESIDENCE1;
     public static final String ADDRESS_DESC_RESIDENCE2 = " " + PREFIX_RESIDENCE_ADDRESS + VALID_ADDRESS_RESIDENCE2;
     public static final String TAG_DESC_BOOKED = " " + PREFIX_TAG + VALID_BOOKED_TAG;
@@ -64,6 +59,8 @@ public class CommandTestUtil {
     public static final String TAG_DESC_REPAIR = " " + PREFIX_TAG + VALID_TAG_REPAIR;
     public static final String CLEAN_STATUS_DESC = " " + PREFIX_CLEAN_STATUS_TAG + VALID_CLEAN_TAG;
     public static final String UNCLEAN_STATUS_DESC = " " + PREFIX_CLEAN_STATUS_TAG + VALID_UNCLEAN_TAG;
+    public static final String PHONE_DESC_BOOKING1 = " " + PREFIX_PHONE + VALID_PHONE_BOOKING1;
+    public static final String PHONE_DESC_BOOKING2 = " " + PREFIX_PHONE + VALID_PHONE_BOOKING2;
 
     // '&' not allowed in names
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&";
@@ -76,7 +73,7 @@ public class CommandTestUtil {
     // must be 'n' or 'unclean'
     public static final String INVALID_UNCLEAN_TAG_DESC = " " + PREFIX_CLEAN_STATUS_TAG + "CLEAN IT!!";
     // '*' not allowed in tags
-    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*";
+    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "renovate*";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -88,11 +85,9 @@ public class CommandTestUtil {
         DESC_RESIDENCE1 = new EditResidenceDescriptorBuilder().withName(VALID_NAME_RESIDENCE1)
                 .withAddress(VALID_ADDRESS_RESIDENCE1)
                 .withCleanStatusTag(VALID_CLEAN_TAG).withTags(VALID_TAG_RESERVED).build();
-        //.withBookingDetails(VALID_BOOKING_LIST1)
         DESC_RESIDENCE2 = new EditResidenceDescriptorBuilder().withName(VALID_NAME_RESIDENCE1)
                 .withAddress(VALID_ADDRESS_RESIDENCE2)
                 .withCleanStatusTag(VALID_CLEAN_TAG).withTags(VALID_TAG_RESERVED, VALID_TAG_REPAIR).build();
-        //withBookingDetails(VALID_BOOKING_LIST2)
     }
 
     /**

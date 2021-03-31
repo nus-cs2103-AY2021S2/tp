@@ -17,7 +17,7 @@ public class FindCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all residences whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+            + "Example: " + COMMAND_WORD + " amber beverly casuarina";
 
     private final NameContainsKeywordsPredicate predicate;
 
@@ -31,6 +31,10 @@ public class FindCommand extends Command {
         model.updateFilteredResidenceList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_RESIDENCE_LISTED_OVERVIEW, model.getFilteredResidenceList().size()));
+    }
+
+    public static String getCommandWord() {
+        return COMMAND_WORD;
     }
 
     @Override

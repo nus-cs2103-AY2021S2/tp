@@ -24,28 +24,31 @@ import seedu.address.model.booking.TenantName;
 import seedu.address.model.residence.BookingList;
 import seedu.address.model.residence.Residence;
 
+/**
+ * Edits the details of an existing booking in the specified residence.
+ */
 public class EditBookingCommand extends Command {
 
     public static final String COMMAND_WORD = "editb";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the booking identified by "
-            + "booking index of the residence identified by the residence index provided"
+            + "booking index of the residence identified based on the residence index provided"
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: "
-            + PREFIX_RESIDENCE + " INDEX of residence "
-            + PREFIX_BOOKING + "INDEX of booking "
-            + "[" + PREFIX_NAME + "TenantName] "
-            + "[" + PREFIX_PHONE + "Phone] "
-            + "[" + PREFIX_BOOKING_START_DATE + "Start Date] "
-            + "[" + PREFIX_BOOKING_END_DATE + "End Date]\n"
+            + PREFIX_RESIDENCE + "RESIDENCE_INDEX "
+            + PREFIX_BOOKING + "BOOKING_INDEX "
+            + "[" + PREFIX_NAME + "TENANT_NAME] "
+            + "[" + PREFIX_PHONE + "PHONE] "
+            + "[" + PREFIX_BOOKING_START_DATE + "START_DATE] "
+            + "[" + PREFIX_BOOKING_END_DATE + "END_DATE]\n"
             + "Example: " + COMMAND_WORD + PREFIX_RESIDENCE + " 1 "
             + PREFIX_BOOKING + " 1"
-            + PREFIX_BOOKING_START_DATE + "01-01-2020 ";
+            + PREFIX_BOOKING_START_DATE + "01-01-2020";
 
     public static final String MESSAGE_EDIT_BOOKING_SUCCESS = "Edited Booking: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_OVERLAP_BOOKING = "The edited booking overlaps with other existing bookings.";
-    public static final String MESSAGE_NOT_VALID_START_DATE = "Invalid start date, should not be later than end date";
+    public static final String MESSAGE_NOT_VALID_START_DATE = "Invalid start date, should not be later than end date.";
 
     private final Index residenceIndex;
     private final Index bookingIndex;
@@ -134,6 +137,10 @@ public class EditBookingCommand extends Command {
                 && editBookingDescriptor.equals(e.editBookingDescriptor);
     }
 
+    public static String getCommandWord() {
+        return COMMAND_WORD;
+    }
+
     /**
      * Stores the details to edit the booking with. Each non-empty field value will replace the
      * corresponding field value of the booking.
@@ -195,7 +202,6 @@ public class EditBookingCommand extends Command {
         public Optional<LocalDate> getEndDate() {
             return Optional.ofNullable(endDate);
         }
-
 
         @Override
         public boolean equals(Object other) {

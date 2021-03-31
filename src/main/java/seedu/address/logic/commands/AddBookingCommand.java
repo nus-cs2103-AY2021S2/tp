@@ -29,22 +29,22 @@ public class AddBookingCommand extends Command {
             + "Parameters: RESIDENCE_INDEX (must be a positive integer)"
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
-            + PREFIX_BOOKING_START_DATE + "START_TIME "
-            + PREFIX_BOOKING_END_DATE + "END_TIME \n"
+            + PREFIX_BOOKING_START_DATE + "START_DATE "
+            + PREFIX_BOOKING_END_DATE + "END_DATE \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Sandy "
             + PREFIX_PHONE + "87654321 "
             + PREFIX_BOOKING_START_DATE + "09-08-2021 "
             + PREFIX_BOOKING_END_DATE + "11-08-2021 ";
     public static final String MESSAGE_SUCCESS = "New booking added to Residence %1$s : %2$s";
-    public static final String MESSAGE_INVALID_BOOKING = "The specified time overlaps "
+    public static final String MESSAGE_INVALID_BOOKING = "The specified date overlaps "
             + "with another booking for this residence";
 
     private final Index targetIndex;
     private final Booking toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Residence}
+     * Creates an AddBookingCommand to add the specified {@code Residence}
      */
     public AddBookingCommand(Index targetIndex, Booking booking) {
         requireNonNull(booking);
@@ -70,6 +70,10 @@ public class AddBookingCommand extends Command {
         model.updateFilteredResidenceList(PREDICATE_SHOW_ALL_RESIDENCES);
         return new CommandResult(String.format(MESSAGE_SUCCESS,
                 residenceToAddBooking.getResidenceName().toString(), toAdd));
+    }
+
+    public static String getCommandWord() {
+        return COMMAND_WORD;
     }
 
     @Override
