@@ -176,8 +176,8 @@ Steps:
 
 Outcome:
 * The _Result Display_ will show a message indicating success.
-* SmartLib will list out all the clients with "Bob" in their name.<br><br>
-  ![result for 'findreader alex david'](images/findBobResult.png)
+* SmartLib will list out all the readers with "Bob" in their name.<br><br>
+    ![result for 'findreader Bob'](images/findBobResult.png)
   
 ##### By tag:
 
@@ -187,6 +187,7 @@ Format: `findreader t/TAG [MORE_TAGS]`
 
 **:information_source: Notes:**
 * Refer to [Readers' Command Parameters](#readers-command-parameters) for more details about each parameter.
+* Currently, SmartLib does not support finding readers by name and tag concurrently.
 * The search is case-insensitive. e.g `vip` will match `VIP`.
 * The order of the tags do not matter. e.g. `VIP TopBorrower` will match `TopBorrower VIP`.
 * Only the tags are searched.
@@ -207,15 +208,33 @@ Steps:
 
 Outcome:
 * The _Result Display_ will show a message indicating success.
-* SmartLib will list out all the clients with `VIP` in their list of tags.<br><br>
-  ![result for 'findreader alex david'](images/findVIPResult.png)
+* SmartLib will list out all the readers with `VIP` in their list of tags.<br><br>
+    ![result for 'findreader t/VIP'](images/findVIPResult.png)
 
 #### Listing all readers : `listreader`
 
-Shows a list of all readers in SmartLib.
+You can use this command to display a list of all readers in SmartLib.
 
-Example:
-* `listreader`
+Format: `listreader`
+
+**:information_source: Note:**
+* Any parameters stated after `listreader` will be ignored by SmartLib.
+
+Example use:
+
+Let's say you have just performed `findreader Bob`,
+and you would like to head back to view the full list of readers.
+You can follow the steps below to get SmartLib to display the entire list of readers.
+
+Steps:
+
+1. Type `listreader` in the _Command Box_.
+1. Press `Enter` to execute your input.
+
+Outcome:
+* The _Result Display_ will show a message indicating success.
+* SmartLib will list out all the readers.<br><br>
+    ![result for 'listreader'](images/listreaderResult.png)
 
 ### Managing your books
 
@@ -381,9 +400,9 @@ the data of your previous SmartLib home folder.
 
 Action | Format, Examples
 --------|------------------
-**Add reader** | `addreader r/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS` <br> e.g., `addreader r/James Ho p/22224444e/jamesho@example.com a/123, Clementi Rd, 1234665`
+**Add reader** | `addreader r/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG, t/TAG, ..., t/TAG]` <br> e.g., `addreader r/James Ho p/22224444e/jamesho@example.com a/123, Clementi Rd, 1234665`
 **Delete reader** | `deletereader INDEX`<br> e.g., `deletereader 3`
-**Find reader** | `findreader KEYWORD [MORE_KEYWORDS]`<br> e.g., `findreader James Jake`
+**Find reader** | `findreader KEYWORD [MORE_KEYWORDS]` or `findreader t/TAG [MORE_TAGS]`<br> e.g., `findreader James Jake`
 **List readers** | `listreader`
 **Add book** | `addbook b/NAME a/AUTHOR p/PUBLISHER i/ISBN g/Genre` <br> e.g., `addbook b/Harry Porter a/JK Rowling p/Bloomsbury i/9783161484100 g/Fantasy`
 **Borrow book** | `borrow b/BOOKNAME r/READERNAME`<br> e.g., `borrow b/The Old Man and the Sea r/Alex Yeoh`
