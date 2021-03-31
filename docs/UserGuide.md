@@ -470,6 +470,92 @@ Listed all grades
      C
 ```
 
+### Add a Tutor Filter: `add_tutor_filter`
+
+Adds Tutor Filter(s) to the Tutor Filter list, filtering the tutors that are shown in the
+tutor list. Note that tutor filters **are not persistent (are not saved)**. The following tutor
+attributes and subject attributes in each tutor are filterable:
+
+Inclusive Filters:
+* Name
+* Gender
+* Phone Number
+* Email
+* Address
+* Subject Name
+* Subject Education Level
+* Subject Qualifications
+
+Exclusive Filters:
+* Subject Hourly Rate
+* Subject Years of Experience
+
+Multiples of each attribute are allowed, with the composed filter following these rules:
+
+1) Filters are case-insensitive.
+2) An inclusive filter means that a tutor can match any of the filters within that attribute filter.
+3) An exclusive filter means that a tutor must match all of the filters within that attribute filter.
+4) Inclusive filters match as long as the tutor attirbute contains the filter. eg. The tutor `Peter` matches the filter `pete`.
+5) Exclusive filters support the following inequalities: `>, <, >=, <=, =`.
+6) Only tutors that match all the attribute filters are displayed.
+
+Format: `add_tutor_filter [n/NAME]... [g/GENDER]... [p/PHONE_NUMBER]... [e/EMAIL]... [a/ADDRESS]... [s/SUBJECT_NAME]... [r/SUBJECT_RATE]... [l/SUBJECT_EDUCATION_LEVEL]... [y/SUBJECT_YEARS_EXPERIENCE]... [q/SUBJECT_QUALIFICATIONS]...`
+
+Example: `add_tutor_filter r/>=40 r/<60 l/Secondary`
+
+Example_Output: `New tutor filter added: Subject Level: secondary, Subject Rate: >= 40, Subject Rate: < 60`
+
+### Delete a Tutor Filter: `delete_tutor_filter`
+
+Deletes Tutor Filter(s) from the Tutor Filter list, supporting the same attributes as `add_tutor_filter`.
+
+Format: `delete_tutor_filter [n/NAME]... [g/GENDER]... [p/PHONE_NUMBER]... [e/EMAIL]... [a/ADDRESS]... [s/SUBJECT_NAME]... [r/SUBJECT_RATE]... [l/SUBJECT_EDUCATION_LEVEL]... [y/SUBJECT_YEARS_EXPERIENCE]... [q/SUBJECT_QUALIFICATIONS]...`
+
+Example: `delete_tutor_filter r/<60 l/Secondary`
+
+Example_Output: `Tutor filters deleted: Subject Level: secondary, Subject Rate: < 60`
+
+### Add an Appointment Filter: `add_appointment_filter`
+
+Adds Appointment Filter(s) to the Appointment Filter list, filtering the appointments that are shown
+in the appointment list. Note that appointment filters **are not persistent (are not saved)**. The
+following appointment attributes are filterable:
+
+Inclusive Filters:
+* Name
+* Subject Name
+* Location
+
+Exclusive Filters:
+* From Date Time
+* To Date Time
+
+Multiples of each attribute are allowed, with the composed filter following these rules:
+
+1) Filters are case-insensitive.
+2) An inclusive filter means that an appointment can match any of the filters within that attribute filter.
+3) An exclusive filter means that an appointment must match all of the filters within that attribute filter.
+4) Inclusive filters match as long as the appointment attirbute contains the filter. eg. The appointment with tutor name `Peter` matches the filter `pete`.
+5) Exclusive filters support the following inequalities: `>, <, >=, <=, =`.
+6) The date time format `YYYY-MM-DD HH:MM AM/PM` must be strictly followed. e.g. `2021-03-25 10:00 AM`.
+7) Only appointments that match all the attribute filters are displayed.
+
+Format: `add_appointment_filter [n/NAME]... [s/SUBJECT_NAME]... [fr/FROM_DATE_TIME]... [to/TO_DATE_TIME]... [l/LOCATION]...`
+
+Example: `add_appointment_filter to/>2021-03-25 10:00 AM`
+
+Example_Output: `New appointment filter added: Date Time: > Mar 25 2021 10:00AM`
+
+### Delete an Appointment Filter: `delete_appointment_filter`
+
+Deletes Appointment Filter(s) from the Appointment Filter list, supporting the same attributes as `add_appointment_filter`.
+
+Format: `delete_appointment_filter [n/NAME]... [s/SUBJECT_NAME]... [fr/FROM_DATE_TIME]... [to/TO_DATE_TIME]... [l/LOCATION]...`
+
+Example: `delete_appointment_filter to/>2021-03-25 10:00 AM`
+
+Example_Output: `Appointment filters deleted: Date Time: > Mar 25 2021 10:00AM`
+
 ### Exiting `exit`
 
 Closes the app.
@@ -509,4 +595,8 @@ Action | Format, Examples
 **Edit a grade** | `edit_grade INDEX [s/SUBJECT_NAME] [gi/GRADED_ITEM] [gr/GRADE_ALPHABET]`, <br> e.g. `edit_grade 1 gr/B`
 **Delete a grade** | `delete_grade INDEX`, <br> e.g. `delete_grade 1`
 **List grades** | `list_grades`
+**Add a Tutor Filter** | `add_tutor_filter [n/NAME]... [g/GENDER]... [p/PHONE_NUMBER]... [e/EMAIL]... [a/ADDRESS]... [s/SUBJECT_NAME]... [r/SUBJECT_RATE]... [l/SUBJECT_EDUCATION_LEVEL]... [y/SUBJECT_YEARS_EXPERIENCE]... [q/SUBJECT_QUALIFICATIONS]...` <br> e.g. `add_tutor_filter r/>=40 r/<60 l/Secondary`
+**Delete a Tutor Filter** | `delete_tutor_filter [n/NAME]... [g/GENDER]... [p/PHONE_NUMBER]... [e/EMAIL]... [a/ADDRESS]... [s/SUBJECT_NAME]... [r/SUBJECT_RATE]... [l/SUBJECT_EDUCATION_LEVEL]... [y/SUBJECT_YEARS_EXPERIENCE]... [q/SUBJECT_QUALIFICATIONS]...` <br> e.g. `delete_tutor_filter r/<60 l/Secondary`
+**Add an Appointment Filter** | `add_appointment_filter [n/NAME]... [s/SUBJECT_NAME]... [fr/FROM_DATE_TIME]... [to/TO_DATE_TIME]... [l/LOCATION]...` <br> e.g. `add_appointment_filter to/>2021-03-25 10:00 AM`
+**Delete an Appointment Filter** | `delete_appointment_filter [n/NAME]... [s/SUBJECT_NAME]... [fr/FROM_DATE_TIME]... [to/TO_DATE_TIME]... [l/LOCATION]...` <br> e.g. `delete_appointment_filter to/>2021-03-25 10:00 AM`
 **exit** | `bye`
