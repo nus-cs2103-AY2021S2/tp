@@ -107,7 +107,7 @@ given below, and familiarize yourself with them.
 | `PHONE_NUMBER`  | The contact number of the reader.<br><br>It must consist only of numbers, and be at least 3 digits long.                                                                                                                                                 | `98765432`, `012`                                                                |
 | `EMAIL`         | The email of the client.<br><br>Emails should be in `name@domain` format, where the `name` part should only contain alphanumeric and special characters, whereas the `domain` part should only contain alphanumeric characters with a period in between. | `bob@bmail.com`, `bob-123@bobby.sg`                                              |
 | `ADDRESS`       | Ths address of the reader.<br><br>There are no restrictions for this field.                                                                                                                                                                              | `#01-23, Blk 13, Bukit Timah Road`                                               |
-| `TAGS`          | The tag that you would like to attach to or search for your reader.<br><br>It must be a single alphanumeric word.                                                                                                                                        | `VIP`, `MostBorrows`                                                             |
+| `TAG`           | The tag that you would like to attach to or search for your reader.<br><br>It must be a single alphanumeric word.                                                                                                                                        | `VIP`, `MostBorrows`                                                             |
 | `INDEX`         | The index of the reader in the displayed list.<br><br>It must be a valid index number (i.e. in the range [`1`,`2`, ..., `length of list`]).                                                                                                              | `1`                                                                              |
 | `KEYWORD`       | The keyword that you would like to use to search for your target reader(s).<br><br>It must be a single alphanumeric word.                                                                                                                                | `Bob`, `Tan`, `noobmaster69`, `AE`                                               |
 | `MORE_KEYWORDS` | Other keywords that you may want to use to search for your target reader(s).<br><br>Each additional keyword must be a single alphanumeric word, separated from each other by a space.<br><br>This field is optional.                                     |                                                                                  |
@@ -117,7 +117,11 @@ given below, and familiarize yourself with them.
 
 Adds a reader to SmartLib's registered reader base.
 
-Format: `addreader r/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAGS]`
+Format: `addreader r/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG, t/TAG, ..., t/TAG]`
+
+**:information_source: Notes:**
+* Refer to [Readers' Command Parameters](#readers-command-parameters) for more details about each parameter.
+* The `t/TAG` parameters are optional.
 
 Examples:
 * `addreader r/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
@@ -129,6 +133,8 @@ Deletes the specified reader from SmartLib's registered reader base.
 
 Format: `deletereader INDEX`
 
+**:information_source: Notes:**
+* Refer to [Readers' Command Parameters](#readers-command-parameters) for more details about each parameter.
 * Deletes the reader at the specified `INDEX`.
 * The index refers to the index number shown in the displayed reader list.
 * The index **must be a positive integer** 1, 2, 3, …​
@@ -140,7 +146,9 @@ Examples:
 Tip:
 * `listreader` followed by `deletereader 2` deletes the 2nd reader in the displayed reader list.
 
-#### Finding readers by name : `findreader`
+#### Finding readers : `findreader`
+
+##### By name:
 
 You can use this command to find readers whose names contain any of the given keywords.
 
@@ -148,12 +156,12 @@ Format: `findreader KEYWORD [MORE_KEYWORDS]`
 
 **:information_source: Notes:**
 * Refer to [Readers' Command Parameters](#readers-command-parameters) for more details about each parameter.
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* The search is case-insensitive. e.g `hans` will match `Hans`.
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`.
 * Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
+* Only full words will be matched e.g. `Han` will not match `Hans`.
 * Readers matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
 
 Example use:
 
@@ -170,6 +178,37 @@ Outcome:
 * The _Result Display_ will show a message indicating success.
 * SmartLib will list out all the clients with "Bob" in their name.<br><br>
   ![result for 'findreader alex david'](images/findBobResult.png)
+  
+##### By tag:
+
+You can also use this command to find readers whose tags contain any of the specified tags.
+
+Format: `findreader t/TAG [MORE_TAGS]`
+
+**:information_source: Notes:**
+* Refer to [Readers' Command Parameters](#readers-command-parameters) for more details about each parameter.
+* The search is case-insensitive. e.g `vip` will match `VIP`.
+* The order of the tags do not matter. e.g. `VIP TopBorrower` will match `TopBorrower VIP`.
+* Only the tags are searched.
+* Only full words will be matched e.g. `VI` will not match `VIP`.
+* Readers matching at least one tag will be returned (i.e. `OR` search).
+  e.g. `VIP VVIP` will return readers with either the tag `VIP` or with the tag `VVIP`.
+
+Example use:
+
+Let's say you have many readers in your reader list,
+and you are trying to find more information about a particular type of reader(s) (e.g. VIPs).
+You can follow the steps below to obtain a list of readers with the `VIP` tag.
+
+Steps:
+
+1. Type `findreader t/VIP` in the _Command Box_.
+1. Press `Enter` to execute your input.
+
+Outcome:
+* The _Result Display_ will show a message indicating success.
+* SmartLib will list out all the clients with `VIP` in their list of tags.<br><br>
+  ![result for 'findreader alex david'](images/findVIPResult.png)
 
 #### Listing all readers : `listreader`
 
