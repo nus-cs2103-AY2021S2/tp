@@ -32,6 +32,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonDatesBookStorage;
+import seedu.address.storage.JsonLessonBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
 import seedu.address.testutil.PersonBuilder;
@@ -51,7 +52,9 @@ public class LogicManagerTest {
                 new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         JsonDatesBookStorage datesBookStorage = new JsonDatesBookStorage(temporaryFolder.resolve("datesBook.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage, datesBookStorage);
+        JsonLessonBookStorage lessonBookStorage = new JsonLessonBookStorage(temporaryFolder.resolve("lessonBook.json"));
+        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage, datesBookStorage,
+                lessonBookStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -82,7 +85,11 @@ public class LogicManagerTest {
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         JsonDatesBookStorage datesBookStorage = new JsonDatesBookStorage(temporaryFolder.resolve(
                 "ioExceptionDatesBook.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage, datesBookStorage);
+        JsonLessonBookStorage lessonBookStorage = new JsonLessonBookStorage(temporaryFolder.resolve(
+                "ioExceptionDatesBook.json"));
+
+        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage, datesBookStorage,
+                lessonBookStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
@@ -136,7 +143,8 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getDatesBook());
+        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getDatesBook(),
+                model.getLessonBook());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 

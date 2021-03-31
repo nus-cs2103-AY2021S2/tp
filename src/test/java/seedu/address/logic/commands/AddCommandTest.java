@@ -21,8 +21,10 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyDatesBook;
+import seedu.address.model.ReadOnlyLessonBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.date.ImportantDate;
+import seedu.address.model.lesson.Lesson;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -251,6 +253,71 @@ public class AddCommandTest {
         public ObservableList<ImportantDate> getTransformedImportantDatesList() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void setLessonBook(ReadOnlyLessonBook lessonBook) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyLessonBook getLessonBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasLesson(Lesson lesson) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteLesson(Lesson target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addLesson(Lesson lesson) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addPersonToLesson(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void filterLesson(Predicate<Lesson> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Lesson> getFilteredLessonList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredLessonList(Predicate<Lesson> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Lesson> getSortedLessonList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateSortedLessonList(Comparator<Lesson> comparator) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Lesson> getTransformedLessonList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void filterThenSortLessonList(Predicate<Lesson> predicate, Comparator<Lesson> comparator) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
@@ -281,6 +348,10 @@ public class AddCommandTest {
         public boolean hasPerson(Person person) {
             requireNonNull(person);
             return personsAdded.stream().anyMatch(person::isSamePerson);
+        }
+
+        @Override
+        public void addPersonToLesson(Person person) {
         }
 
         @Override

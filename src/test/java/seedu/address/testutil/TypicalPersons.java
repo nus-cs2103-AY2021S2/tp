@@ -24,6 +24,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.LessonBook;
 import seedu.address.model.person.Person;
 
 /**
@@ -44,7 +45,7 @@ public class TypicalPersons {
             .withLessons("Monday 1800").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street").withSchool("Wall Street Secondary School")
-            .withGuardianName("Louis Kurz").withGuardianPhone("95352564").build();
+            .withGuardianName("Louis Kurz").withGuardianPhone("95352564").withLessons("Friday 1000").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street").withSchool("Clementi Town Secondary School")
             .withGuardianName("Jay Maier").withGuardianPhone("98765433").withTags("sec3").build();
@@ -90,6 +91,17 @@ public class TypicalPersons {
             ab.addPerson(person);
         }
         return ab;
+    }
+
+    /**
+     * Returns a {@code LessonBook} with all the typical lessons.
+     */
+    public static LessonBook getTypicalLessonBook() {
+        LessonBook lb = new LessonBook();
+        for (Person person : getTypicalPersons()) {
+            lb.addPersonToLesson(person);
+        }
+        return lb;
     }
 
     public static List<Person> getTypicalPersons() {

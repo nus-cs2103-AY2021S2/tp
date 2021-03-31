@@ -17,6 +17,7 @@ import static seedu.address.testutil.TypicalPersons.DANIEL;
 import static seedu.address.testutil.TypicalPersons.ELLE;
 import static seedu.address.testutil.TypicalPersons.FIONA;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalLessonBook;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -36,8 +37,10 @@ import seedu.address.model.person.predicate.NameSchoolAndTagContainsKeywordsPred
  * Contains integration tests (interaction with the Model) for {@code SearchCommand}.
  */
 public class SearchCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalDatesBook());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalDatesBook());
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalDatesBook(),
+            getTypicalLessonBook());
+    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalDatesBook(),
+            getTypicalLessonBook());
 
     @Test
     public void equals() {

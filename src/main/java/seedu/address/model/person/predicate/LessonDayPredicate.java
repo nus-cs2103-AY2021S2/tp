@@ -2,13 +2,12 @@ package seedu.address.model.person.predicate;
 
 import java.util.function.Predicate;
 
-import seedu.address.commons.util.StringUtil;
-import seedu.address.model.person.Person;
+import seedu.address.model.lesson.Lesson;
 
 /**
  * Tests that a {@code Person}'s {@code Lesson} matches the keyword given.
  */
-public class LessonDayPredicate implements Predicate<Person> {
+public class LessonDayPredicate implements Predicate<Lesson> {
     private final String keyword;
 
     public LessonDayPredicate(String keyword) {
@@ -16,10 +15,9 @@ public class LessonDayPredicate implements Predicate<Person> {
     }
 
     @Override
-    public boolean test(Person person) {
+    public boolean test(Lesson lesson) {
         assert this.keyword != null;
-        return person.getLessons().stream()
-                .anyMatch(lesson -> StringUtil.containsWordIgnoreCase(this.keyword, lesson.getDayInString()));
+        return lesson.getDayInString().compareToIgnoreCase(keyword) == 0;
     }
 
     @Override

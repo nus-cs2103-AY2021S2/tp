@@ -15,6 +15,7 @@ import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.date.ImportantDate;
+import seedu.address.model.lesson.Lesson;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.comparators.ImportantDateDetailsComparator;
 
@@ -26,38 +27,50 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final DatesBook datesBook;
+    private final LessonBook lessonBook;
     private final UserPrefs userPrefs;
     private final FilteredList<ImportantDate> filteredImportantDates;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Lesson> filteredLessons;
     private final SortedList<ImportantDate> sortedImportantDates;
     private final SortedList<Person> sortedPersons;
+    private final SortedList<Lesson> sortedLessons;
     private final ObservableList<ImportantDate> transformedImportantDates;
     private final ObservableList<Person> transformedPersons;
+    private final ObservableList<Lesson> transformedLessons;
     private Person selectedPerson;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, ReadOnlyDatesBook datesBook) {
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, ReadOnlyDatesBook datesBook,
+                        ReadOnlyLessonBook lessonBook) {
         super();
-        requireAllNonNull(addressBook, userPrefs, datesBook);
+        requireAllNonNull(addressBook, userPrefs, datesBook, lessonBook);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         this.datesBook = new DatesBook(datesBook);
+        this.lessonBook = new LessonBook(lessonBook);
+
         filteredImportantDates = new FilteredList<>(this.datesBook.getImportantDatesList());
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredLessons = new FilteredList<>(this.lessonBook.getLessonList());
+
         sortedImportantDates = new SortedList<>(this.datesBook.getImportantDatesList());
         sortedPersons = new SortedList<>(this.addressBook.getPersonList());
+        sortedLessons = new SortedList<>(this.lessonBook.getLessonList());
+
         transformedImportantDates = FXCollections.observableArrayList(this.datesBook.getImportantDatesList());
         transformedPersons = FXCollections.observableArrayList(this.addressBook.getPersonList());
+        transformedLessons = FXCollections.observableArrayList(this.lessonBook.getLessonList());
         selectedPerson = null;
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs(), new DatesBook());
+        this(new AddressBook(), new UserPrefs(), new DatesBook(), new LessonBook());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -157,7 +170,44 @@ public class ModelManager implements Model {
         updateFilteredPersonList(predicate);
     }
 
+    //=========== LessonBook ================================================================================
 
+    @Override
+    public void setLessonBook(ReadOnlyLessonBook lessonBook) {
+        this.lessonBook.resetData(lessonBook);
+    }
+
+    @Override
+    public ReadOnlyLessonBook getLessonBook() {
+        return lessonBook;
+    }
+
+    @Override
+    public boolean hasLesson(Lesson lesson) {
+        requireNonNull(lesson);
+        return lessonBook.hasLesson(lesson);
+    }
+
+    @Override
+    public void deleteLesson(Lesson target) {
+        lessonBook.removeLesson(target);
+    }
+
+    @Override
+    public void addLesson(Lesson lesson) {
+        lessonBook.addLesson(lesson);
+        updateFilteredLessonList(PREDICATE_SHOW_ALL_LESSONS);
+    }
+
+    @Override
+    public void addPersonToLesson(Person person) {
+        lessonBook.addPersonToLesson(person);
+    }
+
+    @Override
+    public void filterLesson(Predicate<Lesson> predicate) {
+        updateFilteredLessonList(predicate);
+    }
 
     //=========== Filtered Person List Accessors =============================================================
 
@@ -320,7 +370,59 @@ public class ModelManager implements Model {
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons)
-                && datesBook.equals(other.datesBook);
+                && datesBook.equals(other.datesBook)
+                && lessonBook.equals(other.lessonBook);
     }
 
+    //=========== Filtered Lesson List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Lesson} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Lesson> getFilteredLessonList() {
+        return filteredLessons;
+    }
+
+    @Override
+    public void updateFilteredLessonList(Predicate<Lesson> predicate) {
+        requireNonNull(predicate);
+        filteredLessons.setPredicate(predicate);
+        transformedLessons.setAll(filteredLessons);
+    }
+
+    //=========== Sorted Lesson List Accessors =============================================================
+    /**
+     * Returns an unmodifiable view of the sorted list of {@code Lesson}
+     */
+    @Override
+    public ObservableList<Lesson> getSortedLessonList() {
+        return sortedLessons;
+    }
+
+    @Override
+    public void updateSortedLessonList(Comparator<Lesson> comparator) throws NullPointerException {
+        requireNonNull(comparator);
+        sortedLessons.setComparator(comparator);
+        transformedLessons.setAll(sortedLessons);
+    }
+
+    //=========== Transformed Lesson List Accessors ========================================================
+
+    @Override
+    public ObservableList<Lesson> getTransformedLessonList() {
+        return transformedLessons;
+    }
+
+    @Override
+    public void filterThenSortLessonList(Predicate<Lesson> predicate, Comparator<Lesson> comparator)
+            throws NullPointerException {
+        requireNonNull(comparator);
+        filteredLessons.setPredicate(predicate);
+        transformedLessons.setAll(filteredLessons);
+        SortedList<Lesson> newSortedLessons = transformedLessons.sorted(comparator);
+        newSortedLessons.setComparator(comparator);
+        transformedLessons.setAll(newSortedLessons);
+    }
 }

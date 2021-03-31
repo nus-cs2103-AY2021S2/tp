@@ -3,7 +3,14 @@ package seedu.address.model.lesson;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import seedu.address.model.person.Person;
+import seedu.address.model.person.exceptions.DuplicatePersonException;
 
 public class Lesson implements Comparable<Lesson> {
 
@@ -15,6 +22,8 @@ public class Lesson implements Comparable<Lesson> {
 
     public final Day day;
     public final Time time;
+
+    private final Set<Person> persons = new HashSet<>();
 
     /**
      * Constructs a {@code Lesson}.
@@ -29,6 +38,17 @@ public class Lesson implements Comparable<Lesson> {
         this.time = new Time(details[INDEX_OF_TIME]);
     }
 
+    /**
+     * Constructs a {@code Lesson}.
+     *
+     * @param lesson Lesson details consisting of day and time.
+     */
+    public Lesson(String lesson, Set<Person> persons) {
+        this(lesson);
+        requireAllNonNull(persons);
+        this.persons.addAll(persons);
+    }
+
     public Day getDay() {
         return day;
     }
@@ -39,6 +59,45 @@ public class Lesson implements Comparable<Lesson> {
 
     public Time getTime() {
         return time;
+    }
+
+    public String getTimeInString() {
+        return time.timeOfTuition;
+    }
+
+    /**
+     * Adds a person to the lesson.
+     * @param person person to be added.
+     */
+    public void addPerson(Person person) {
+        if (!containsPerson(person)) {
+            persons.add(person);
+        } else {
+            throw new DuplicatePersonException();
+        }
+    }
+
+    public Set<Person> getPerson() {
+        return Collections.unmodifiableSet(persons);
+    }
+
+    public String getPersonInString() {
+        return persons.stream().map(person -> person.getName().fullName)
+                .collect(Collectors.joining(", "));
+    }
+
+    /**
+     * Returns true if the lesson already stores the given person.
+     * @param person Person to be checked if it already exists.
+     * @return a boolean value indicating if the lesson already stores the given person.
+     */
+    public boolean containsPerson(Person person) {
+        for (Person p : persons) {
+            if (p.isSamePerson(person)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -62,6 +121,20 @@ public class Lesson implements Comparable<Lesson> {
         } else {
             return true;
         }
+    }
+
+    /**
+     * Returns true if both lessons have the same day and time.
+     * This defines a weaker notion of equality between two lessons.
+     */
+    public boolean isSameLesson(Lesson otherLesson) {
+        if (otherLesson == this) {
+            return true;
+        }
+
+        return otherLesson != null
+                && otherLesson.getDay().equals(getDay())
+                && otherLesson.getTime().equals(getTime());
     }
 
     @Override

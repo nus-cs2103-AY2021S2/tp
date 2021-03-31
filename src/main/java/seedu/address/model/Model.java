@@ -7,6 +7,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.date.ImportantDate;
+import seedu.address.model.lesson.Lesson;
 import seedu.address.model.person.Person;
 
 /**
@@ -15,8 +16,8 @@ import seedu.address.model.person.Person;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
-
     Predicate<ImportantDate> PREDICATE_SHOW_ALL_IMPORTANT_DATES = unused -> true;
+    Predicate<Lesson> PREDICATE_SHOW_ALL_LESSONS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -144,7 +145,63 @@ public interface Model {
 
     ObservableList<ImportantDate> getTransformedImportantDatesList();
 
+    /**
+     * Replaces lesson book data with the data in {@code lessonBook}.
+     */
+    void setLessonBook(ReadOnlyLessonBook lessonBook);
 
+    /** Returns the LessonBook */
+    ReadOnlyLessonBook getLessonBook();
 
+    /**
+     * Returns true if a lesson with the same day and time as {@code lesson} exists in the lesson book.
+     */
+    boolean hasLesson(Lesson lesson);
 
+    /**
+     * Deletes the given lesson.
+     * The lesson must exist in the lesson book.
+     */
+    void deleteLesson(Lesson target);
+
+    /**
+     * Adds the given lesson.
+     * {@code lesson} must not already exist in the lesson book.
+     */
+    void addLesson(Lesson lesson);
+
+    /**
+     * Adds the given person to his/her lessons.
+     * {@code person} must not already exist in the lesson.
+     */
+    void addPersonToLesson(Person person);
+
+    void filterLesson(Predicate<Lesson> predicate);
+
+    /** Returns an unmodifiable view of the filtered lesson list */
+    ObservableList<Lesson> getFilteredLessonList();
+
+    /**
+     * Updates the filter of the filtered lesson list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredLessonList(Predicate<Lesson> predicate);
+
+    /** Returns an unmodifiable view of the sorted lesson list */
+    ObservableList<Lesson> getSortedLessonList();
+
+    /**
+     * Updates the comparator of the sorted lesson list to sort by the given {@code comparator}.
+     * @throws NullPointerException if {@code comparator} is null.
+     */
+    void updateSortedLessonList(Comparator<Lesson> comparator);
+
+    /** Returns an unmodifiable view of the transformed lesson list */
+    ObservableList<Lesson> getTransformedLessonList();
+
+    /** Filters the transformed lesson list by the given {@code predicate} then sorts the
+     * transformed lesson list by the given {@code comparator}.
+     * @throws NullPointerException if {@code comparator} is null.
+     */
+    void filterThenSortLessonList(Predicate<Lesson> predicate, Comparator<Lesson> comparator);
 }

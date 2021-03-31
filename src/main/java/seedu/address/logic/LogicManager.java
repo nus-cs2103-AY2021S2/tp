@@ -3,7 +3,6 @@ package seedu.address.logic;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,6 +17,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyDatesBook;
 import seedu.address.model.date.ImportantDate;
+import seedu.address.model.lesson.Lesson;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.predicate.LessonDayPredicate;
 import seedu.address.storage.Storage;
@@ -53,25 +53,44 @@ public class LogicManager implements Logic {
         try {
             storage.saveAddressBook(model.getAddressBook());
             storage.saveDatesBook(model.getDatesBook());
+            storage.saveLessonBook(model.getLessonBook());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
-
         return commandResult;
     }
 
     @Override
-    public ObservableList<String> getLessonsForDay(String keyword) {
-        ObservableList<String> lessonsForDay = FXCollections.observableArrayList();
-        this.model.updateFilteredPersonList(new LessonDayPredicate(keyword));
-        ObservableList<Person> peopleWithLesson = this.model.getFilteredPersonList();
-        for (Person p : peopleWithLesson) {
-            p.getLessons().stream().filter(lesson -> lesson.getDayInString()
-                    .compareToIgnoreCase(keyword) == 0).map(lesson -> lessonsForDay
-                    .add(lesson.getTime().timeOfTuition + " " + p.getName().fullName))
-                    .collect(Collectors.toList());
+    public ObservableList<Lesson> getSortedLessonsForDay(String keyword) {
+        this.model.filterThenSortLessonList(new LessonDayPredicate(keyword), Lesson::compareTo);
+        return getTransformedLessonList();
+        //this.model.filterLesson(new LessonDayPredicate(keyword));
+        //return getFilteredLessonList();
+    }
+
+    @Override
+    public ObservableList<String> getLessonsForDayInString(String keyword) {
+        ObservableList<Lesson> lessons = getSortedLessonsForDay(keyword);
+        ObservableList<String> lessonsForDayInString = FXCollections.observableArrayList();
+        for (Lesson l : lessons) {
+            lessonsForDayInString.add(l.getTimeInString() + " " + l.getPersonInString());
         }
-        return lessonsForDay;
+        return lessonsForDayInString;
+    }
+
+    @Override
+    public ObservableList<Lesson> getFilteredLessonList() {
+        return model.getFilteredLessonList();
+    }
+
+    @Override
+    public ObservableList<Lesson> getSortedLessonList() {
+        return model.getSortedLessonList();
+    }
+
+    @Override
+    public ObservableList<Lesson> getTransformedLessonList() {
+        return model.getTransformedLessonList();
     }
 
     @Override
