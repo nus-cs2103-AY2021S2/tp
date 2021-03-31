@@ -15,6 +15,7 @@ import seedu.address.logic.commands.EditBookingCommand.EditBookingDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 public class EditBookingCommandParser implements Parser<EditBookingCommand> {
+
     /**
      * Parses the given {@code String} of arguments in the context of the EditBookingCommand
      * and returns an EditBookingCommand object for execution.

@@ -54,13 +54,6 @@ public class EditCommandParser implements Parser<EditCommand> {
                     ParserUtil.parseAddress(argMultimap.getValue(PREFIX_RESIDENCE_ADDRESS).get()));
         }
 
-        // Removed since bookingList is default placeholder for all residences and
-        // booking details no longer seems necessary
-        //if (argMultimap.getValue(PREFIX_BOOKING).isPresent()) {
-        //    editResidenceDescriptor.setBookingDetails(
-        //            ParserUtil.parseBookingTime(argMultimap.getValue(PREFIX_BOOKING).get()));
-        //}
-
         if (argMultimap.getValue(PREFIX_CLEAN_STATUS_TAG).isPresent()) {
             editResidenceDescriptor.setCleanStatusTag(
                     ParserUtil.parseCleanStatusTag(argMultimap.getValue(PREFIX_CLEAN_STATUS_TAG).get()));

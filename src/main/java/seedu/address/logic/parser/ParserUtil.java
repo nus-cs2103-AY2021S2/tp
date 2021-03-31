@@ -15,7 +15,6 @@ import seedu.address.model.booking.Booking;
 import seedu.address.model.booking.Name;
 import seedu.address.model.booking.Phone;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
 import seedu.address.model.residence.ResidenceAddress;
 import seedu.address.model.residence.ResidenceName;
 import seedu.address.model.tag.CleanStatusTag;
@@ -43,7 +42,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String name} into a {@code Name}.
+     * Parses a {@code String name} into a {@code ResidenceName}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code name} is invalid.
@@ -52,13 +51,13 @@ public class ParserUtil {
         requireNonNull(name);
         String trimmedName = name.trim();
         if (!ResidenceName.isValidResidenceName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            throw new ParseException(ResidenceName.MESSAGE_CONSTRAINTS);
         }
         return new ResidenceName(trimmedName);
     }
 
     /**
-     * Parses a {@code String name} into a {@code Name}.
+     * Parses a {@code String name} into a {@code Name} (VisitorName).
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code name} is invalid.
@@ -88,7 +87,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
+     * Parses a {@code String address} into an {@code ResidenceAddress}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code address} is invalid.
@@ -100,21 +99,6 @@ public class ParserUtil {
             throw new ParseException(Address.MESSAGE_CONSTRAINTS);
         }
         return new ResidenceAddress(trimmedAddress);
-    }
-
-    /**
-     * Parses a {@code String email} into an {@code Email}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code email} is invalid.
-     */
-    public static Email parseEmail(String email) throws ParseException {
-        requireNonNull(email);
-        String trimmedEmail = email.trim();
-        if (!Email.isValidEmail(trimmedEmail)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
-        }
-        return new Email(trimmedEmail);
     }
 
     /**
