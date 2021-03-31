@@ -53,7 +53,7 @@ public class FindNoteCommand extends Command {
         model.updateFilteredNoteList(notePredicate.and(tagsPredicate));
         return new CommandResult(
                 String.format(Messages.MESSAGE_NOTES_LISTED_OVERVIEW, model.getFilteredNoteList().size()),
-                UiAction.OPEN, UiActionOption.NOTE);
+                UiAction.OPEN, UiActionOption.NOTE_LIST);
     }
 
     @Override
