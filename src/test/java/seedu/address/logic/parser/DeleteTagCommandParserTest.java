@@ -10,8 +10,6 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertValidCommandToAliasFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertValidCommandToAliasSuccess;
-import static seedu.address.testutil.TypicalAliases.ADD_ALIAS_STRING;
-import static seedu.address.testutil.TypicalAliases.INVALID_ALIAS_STRING;
 import static seedu.address.testutil.TypicalTags.getTypicalTags;
 
 import org.junit.jupiter.api.Test;
@@ -34,9 +32,10 @@ public class DeleteTagCommandParserTest {
 
     @Test
     public void parse_validDeleteFromTargetIndexesArgs_returnsDeleteTagCommand() {
-        String commandString = IndexesUtil.getIndexesDetails(TypicalIndexes.VALID_INDEXES) + " " +
-                TagsUtil.getTagsDetails(getTypicalTags());
-        assertParseSuccess(parser, commandString, DeleteTagCommand.createWithTargetIndexes(TypicalIndexes.VALID_INDEXES, getTypicalTags()));
+        String commandString = IndexesUtil.getIndexesDetails(TypicalIndexes.VALID_INDEXES) + " "
+                + TagsUtil.getTagsDetails(getTypicalTags());
+        assertParseSuccess(parser, commandString,
+                DeleteTagCommand.createWithTargetIndexes(TypicalIndexes.VALID_INDEXES, getTypicalTags()));
     }
 
     @Test

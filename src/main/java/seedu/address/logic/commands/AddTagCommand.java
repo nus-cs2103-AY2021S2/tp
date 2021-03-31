@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -39,6 +40,17 @@ public class AddTagCommand extends TagCommand {
     private final boolean isSelectedIndex;
 
     /**
+     * Creates an AddTagCommand.
+     */
+    private AddTagCommand(List<Index> targetIndexes, Set<Tag> tags, boolean isShownIndex, boolean isSelectedIndex) {
+        requireAllNonNull(targetIndexes, tags, isShownIndex, isSelectedIndex);
+        this.targetIndexes = targetIndexes;
+        this.tags = tags;
+        this.isShownIndex = isShownIndex;
+        this.isSelectedIndex = isSelectedIndex;
+    }
+
+    /**
      * Creates an AddTagCommand that adds the specified {@code tags} to all the shown items in the list.
      */
     public static AddTagCommand createWithShownIndex(Set<Tag> tags) {
@@ -57,17 +69,6 @@ public class AddTagCommand extends TagCommand {
      */
     public static AddTagCommand createWithTargetIndexes(List<Index> targetIndexes, Set<Tag> tags) {
         return new AddTagCommand(targetIndexes, tags, false, false);
-    }
-
-    /**
-     * Creates an AddTagCommand.
-     */
-    private AddTagCommand(List<Index> targetIndexes, Set<Tag> tags, boolean isShownIndex, boolean isSelectedIndex) {
-        assert(targetIndexes != null && tags != null);
-        this.targetIndexes = targetIndexes;
-        this.tags = tags;
-        this.isShownIndex = isShownIndex;
-        this.isSelectedIndex = isSelectedIndex;
     }
 
     @Override
@@ -92,7 +93,7 @@ public class AddTagCommand extends TagCommand {
      */
     private CommandResult addToShownIndex(Model model) throws CommandException {
         List<Person> personList = model.getFilteredPersonList();
-        if (model.getFilteredPersonList().size() == 0) {
+        if (personList.size() == 0) {
             throw new CommandException(MESSAGE_NO_SHOWN_PERSON);
         }
 
@@ -127,7 +128,7 @@ public class AddTagCommand extends TagCommand {
      * @throws CommandException if index is invalid
      */
     private CommandResult addToTargetIndexes(Model model) throws CommandException {
-        List<Person> shownList = new ArrayList<>(model.getFilteredPersonList());
+        List<Person> shownList = model.getFilteredPersonList();
 
         // Validate indexes
         for (Index targetIndex : targetIndexes) {
@@ -159,7 +160,7 @@ public class AddTagCommand extends TagCommand {
         JobTitle updatedJobTitle = personToEdit.getJobTitle();
         Address updatedAddress = personToEdit.getAddress();
         Remark updatedRemark = personToEdit.getRemark();
-        Set<Tag> updatedTags = personToEdit.getTags();
+        Set<Tag> updatedTags = new HashSet<>(personToEdit.getTags());
         updatedTags.addAll(tags);
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedCompany, updatedJobTitle,

@@ -71,7 +71,8 @@ public class AddTagCommandTest {
 
         AddTagCommand addTagCommand = AddTagCommand.createWithSelectedIndex(tags);
 
-        String expectedMessage = String.format(AddTagCommand.MESSAGE_SUCCESS, selectedPersonList.size(), tags.toString());
+        String expectedMessage = String.format(AddTagCommand.MESSAGE_SUCCESS, selectedPersonList.size(),
+                tags.toString());
         assertCommandSuccess(addTagCommand, model, expectedMessage, expectedModel);
     }
 

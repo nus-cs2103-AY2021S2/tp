@@ -1,10 +1,10 @@
 package seedu.address.testutil;
 
-import seedu.address.model.tag.Tag;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import seedu.address.model.tag.Tag;
 
 /**
  * A utility class for Tags.

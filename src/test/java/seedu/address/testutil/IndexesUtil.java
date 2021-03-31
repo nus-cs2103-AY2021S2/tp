@@ -3,7 +3,6 @@ package seedu.address.testutil;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.model.tag.Tag;
 
 /**
  * A utility class for Indexes.

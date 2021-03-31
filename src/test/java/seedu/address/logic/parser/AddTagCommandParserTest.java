@@ -6,13 +6,10 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertValidCommandToAliasFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertValidCommandToAliasSuccess;
-import static seedu.address.testutil.TypicalAliases.ADD_ALIAS_STRING;
-import static seedu.address.testutil.TypicalAliases.INVALID_ALIAS_STRING;
 import static seedu.address.testutil.TypicalTags.getTypicalTags;
 
 import org.junit.jupiter.api.Test;
@@ -28,9 +25,10 @@ public class AddTagCommandParserTest {
 
     @Test
     public void parse_validAddToTargetIndexesArgs_returnsAddTagCommand() {
-        String commandString = IndexesUtil.getIndexesDetails(TypicalIndexes.VALID_INDEXES) + " " +
-                TagsUtil.getTagsDetails(getTypicalTags());
-        assertParseSuccess(parser, commandString, AddTagCommand.createWithTargetIndexes(TypicalIndexes.VALID_INDEXES, getTypicalTags()));
+        String commandString = IndexesUtil.getIndexesDetails(TypicalIndexes.VALID_INDEXES) + " "
+                + TagsUtil.getTagsDetails(getTypicalTags());
+        assertParseSuccess(parser, commandString,
+                AddTagCommand.createWithTargetIndexes(TypicalIndexes.VALID_INDEXES, getTypicalTags()));
     }
 
     @Test

@@ -46,12 +46,14 @@ public class DeleteTagCommandTest {
 
     @Test
     public void createWithIndexes_nullTags_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> DeleteTagCommand.createWithTargetIndexes(new ArrayList<>(), null));
+        assertThrows(NullPointerException.class, () -> DeleteTagCommand.createWithTargetIndexes(
+                new ArrayList<>(), null));
     }
 
     @Test
     public void createWithIndexes_nullTargetIndexes_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> DeleteTagCommand.createWithTargetIndexes(null, new HashSet<>()));
+        assertThrows(NullPointerException.class, () -> DeleteTagCommand.createWithTargetIndexes(
+                null, new HashSet<>()));
     }
 
     @Test
@@ -72,7 +74,8 @@ public class DeleteTagCommandTest {
 
         DeleteTagCommand deleteTagCommand = DeleteTagCommand.createWithSelectedIndex(tags);
 
-        String expectedMessage = String.format(DeleteTagCommand.MESSAGE_SUCCESS, selectedPersonList.size(), tags.toString());
+        String expectedMessage = String.format(DeleteTagCommand.MESSAGE_SUCCESS,
+                selectedPersonList.size(), tags.toString());
         assertCommandSuccess(deleteTagCommand, model, expectedMessage, expectedModel);
     }
 

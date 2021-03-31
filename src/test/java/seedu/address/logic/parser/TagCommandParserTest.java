@@ -10,6 +10,9 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertValidComman
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalTags.getTypicalTags;
 
+import java.util.List;
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
@@ -21,9 +24,6 @@ import seedu.address.model.tag.Tag;
 import seedu.address.testutil.IndexesUtil;
 import seedu.address.testutil.TagsUtil;
 import seedu.address.testutil.TypicalIndexes;
-
-import java.util.List;
-import java.util.Set;
 
 public class TagCommandParserTest {
 
@@ -49,14 +49,14 @@ public class TagCommandParserTest {
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
-        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagCommand.MESSAGE_USAGE), ()
-                -> parser.parse(""));
+        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                TagCommand.MESSAGE_USAGE), () -> parser.parse(""));
     }
 
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
-        assertThrows(ParseException.class, String.format(MESSAGE_UNKNOWN_COMMAND), ()
-                -> parser.parse(TagCommand.COMMAND_WORD + " unknownSubCommand"));
+        assertThrows(ParseException.class, String.format(MESSAGE_UNKNOWN_COMMAND), () -> parser.parse(
+                TagCommand.COMMAND_WORD + " unknownSubCommand"));
     }
 
     @Test

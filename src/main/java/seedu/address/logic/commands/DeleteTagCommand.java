@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -39,6 +40,17 @@ public class DeleteTagCommand extends TagCommand {
     private final boolean isSelectedIndex;
 
     /**
+     * Creates an DeleteTagCommand.
+     */
+    private DeleteTagCommand(List<Index> targetIndexes, Set<Tag> tags, boolean isShownIndex, boolean isSelectedIndex) {
+        requireAllNonNull(targetIndexes, tags, isShownIndex, isSelectedIndex);
+        this.targetIndexes = targetIndexes;
+        this.tags = tags;
+        this.isShownIndex = isShownIndex;
+        this.isSelectedIndex = isSelectedIndex;
+    }
+
+    /**
      * Creates an DeleteTagCommand that deletes the specified {@code tags} to all the shown items in the list.
      */
     public static DeleteTagCommand createWithShownIndex(Set<Tag> tags) {
@@ -58,17 +70,6 @@ public class DeleteTagCommand extends TagCommand {
      */
     public static DeleteTagCommand createWithTargetIndexes(List<Index> targetIndexes, Set<Tag> tags) {
         return new DeleteTagCommand(targetIndexes, tags, false, false);
-    }
-
-    /**
-     * Creates an DeleteTagCommand.
-     */
-    private DeleteTagCommand(List<Index> targetIndexes, Set<Tag> tags, boolean isShownIndex, boolean isSelectedIndex) {
-        assert(targetIndexes != null && tags != null);
-        this.targetIndexes = targetIndexes;
-        this.tags = tags;
-        this.isShownIndex = isShownIndex;
-        this.isSelectedIndex = isSelectedIndex;
     }
 
     @Override
@@ -129,7 +130,7 @@ public class DeleteTagCommand extends TagCommand {
      * @throws CommandException if index is invalid
      */
     private CommandResult deleteFromTargetIndexes(Model model) throws CommandException {
-        List<Person> shownList = new ArrayList<>(model.getFilteredPersonList());
+        List<Person> shownList = model.getFilteredPersonList();
 
         // Validate indexes
         for (Index targetIndex : targetIndexes) {
@@ -161,7 +162,7 @@ public class DeleteTagCommand extends TagCommand {
         JobTitle updatedJobTitle = personToEdit.getJobTitle();
         Address updatedAddress = personToEdit.getAddress();
         Remark updatedRemark = personToEdit.getRemark();
-        Set<Tag> updatedTags = personToEdit.getTags();
+        Set<Tag> updatedTags = new HashSet<>(personToEdit.getTags());
         updatedTags.removeAll(tags);
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedCompany, updatedJobTitle,
