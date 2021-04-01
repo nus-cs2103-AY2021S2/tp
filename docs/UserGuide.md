@@ -59,49 +59,57 @@ title: User Guide
 
 ## Introduction
 
-DietLAH! is a **desktop app with a Command-Line Interface (CLI) that allows users to easily track and maintain their meals so that they are able to maintain their ideal body weight.** If you can type fast, you’ll be able to record your meals and track your weight in this app much faster than other traditional GUI-based diet tracking apps!
+DietLAH! is a **desktop app that allows you to easily set up a diet plan and track your meals so that you will be able to maintain their ideal body weight.**
+
+With many people facing weight-loss challenges from months of working at home due to the ongoing pandemic, DietLAH! aims to make it as easy as possible for you to lose weight with just a few simple steps!
+
+Compared to traditional diet tracking apps such as MyFitnessPal, you interact with DietLAH! by putting in text inputs into the app, which allows you to record your meals and track your weight much faster!
 
 ---
 
 ## Understanding the User Guide
-To make the User Guide more comprehensible, certain formatting is used in the guide. Familiarising yourself with these formattings may help you get the most out of the User Guide.
+To make browsing the user guide more pleasant for you, here are some of the symbols and formats used throughout the guide:
 
 Legend | Description
 -------|-------------
 `Inline code` | Commands and user input
 [Tip - to be updated] | Extra information that may be useful
 [Important - to be updated] | Important information to take note of
+[⚠️] | Warning message
+[❌] | Problems that may cause issues
 
 ## Quick start
 
-1. Ensure that you have [Java 11](https://www.oracle.com/sg/java/technologies/javase-jdk11-downloads.html) or above installed in your computer
+1. Ensure that you have [Java 11](https://www.oracle.com/sg/java/technologies/javase-jdk11-downloads.html) or above installed in your computer.
 
-2. Download the [latest DietLAH.jar](https://github.com/AY2021S2-CS2103T-T12-2/tp/releases)
+2. Download the [latest DietLAH.jar](https://github.com/AY2021S2-CS2103T-T12-2/tp/releases) from our website.
 
-3. Copy the `DietLAH.jar` file to the folder you will be launching DietLAH!
+3. Double-click the file to start DietLAH!
+   
+4. When you first launch DietLAH!, this is what it looks like:
+   <p align="center"><img src="images/user-guide/dietlah-app.png"></p>
+   
+   It will show some basic information on how to use it, and some sample data will already be present. 
 
-4. Double-click the file to start the application. The application will be pre-loaded with some sample data. To start afresh, use the `reset t/blank` command
-
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box at the top and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Here are some quick commands to get you started:
+   * **`reset t/blank`**: Resets sample data in the application.
 
-   * **`bmi`**`h/150 w/70 i/75`: Initialises the current user BMI with height of 150cm, weight of 70kg and ideal weight of 75kg
+   * **`bmi g/M a/43 h/170 w/70 i/50`**: Sets up your user profile with the gender (male), age (43), height (170cm), weight (70kg) and ideal weight (50kg).
 
-   * **`bmi`**`query`: Queries the current user's BMI with its height and weight information
+   * **`bmi_query`**: Returns information on your current BMI profile.
 
-   * **`bmi`**`update h/170 w/70 i/80`: Updates the current user BMI to height of 170cm, weight of 70kg and ideal weight of 80kg
+   * **`plan_recommend`**: Get a recommended diet plan based on your current BMI.
 
-   * **`plan`**`recommended`: Queries the recommended diet plan based on user's BMI
+   * **`plan_set`**`p/1`: Sets your current diet plan to the first in the list.
 
-   * **`plan`**`t/1`: Queries more information of the weight loss diet plan
+   * **`food_intake_add`**`d/31 Mar 2021 n/tomatoes p/10 c/10 f/10`: Adds tomato consumption with protein of 10g, carbohydrates of 10g and fats of 10g to the food intake for 31 Mar 2021.
 
-   * **`food_intake_add`**`d/31 Mar 2021 n/tomatoes p/10 c/10 f/10`: Adds tomato consumption with protein of 10g, carbohydrates of 10g and fats of 10g to the food intake for 31 Mar 2021
+   * **`food_intake_query`**`d/31 Mar 2021`: Shows the food intake for 31 Mar 2021.
 
-   * **`food_intake_query`**`d/31 Mar 2021`: Queries the food intake for 31 Mar 2021
+   * **`progress`**: Shows your progress towards your ideal weight.
 
 6. Refer to the [Features](#features) section below for details of each command
-
-[TODO add screenshot of application screen]
 
 ---
 
@@ -111,11 +119,13 @@ Legend | Description
 
 ## 1. Body Mass Index (BMI) Tracker
 
-### 1.1 Input weight, height and ideal weight
+### 1.1 Input user information
 
-On the application's first launch, you will be prompted to enter your height, weight and ideal weight.
+When you first launch DietLAH!, you will be prompted to enter your particulars.
 
-**Note:** Other commands will be unavailable until you complete the BMI setup.
+DietLAH! uses this information to provide personalized recommendations based on your personal goals and current characteristics.
+
+**Note:** ⚠️ You need to enter this command before all other commands will work!
 
 **Command Format:** `bmi g/GENDER a/AGE h/HEIGHT(CM) w/WEIGHT(KG) i/IDEAL_WEIGHT(KG)`
 
@@ -127,9 +137,9 @@ On the application's first launch, you will be prompted to enter your height, we
   <img src="images/user-guide/bmi-result.png">
 </p>
 
-### 1.2 Query weight, height and BMI
+### 1.2 View user information
 
-You can view your height, weight, calculated BMI and associated health risks (if any), at any time by using the BMI query command.
+You can view your information and associated health risks (if any), at any time by using the command given below.
 
 **Command Format:** `bmi_query`
 
@@ -139,9 +149,9 @@ You can view your height, weight, calculated BMI and associated health risks (if
   <img src="images/user-guide/bmi-query-result.png">
 </p>
 
-### 1.3 Update weight, height and ideal weight
+### 1.3 Update user information
 
-We recommend updating your height and weight whenever you can. This aids your personal progress tracking and ensures that your information and BMI is always up-to-date.
+From time to time, we may have lost or gained weight following our diet plan. This allows you to update your information to reflect those changes.
 
 **Command Format:** `bmi_update g/GENDER a/AGE h/HEIGHT(CM) w/WEIGHT(KG) i/IDEAL_WEIGHT(KG)`
 
@@ -157,7 +167,7 @@ We recommend updating your height and weight whenever you can. This aids your pe
 
 ### 2.1 Get diet recommendation based on current BMI
 
-Get a recommended diet plan based on your current BMI stored in the application.
+Get a personalized diet plan based on your current BMI and characteristics.
 
 **Command Format:** `plan_recommend`
 
@@ -223,7 +233,7 @@ Interested in trying out a diet plan? Find out more about its daily nutritional 
 
 ### 3.1 Add food item
 
-Save food items you frequently consume so you don't have to re-enter them every time! Your food list acts as a shortcut to help speed up your food intake recording.
+Save food items you frequently consume, so you don't have to re-enter them every time! Your food list acts as a shortcut to help speed up your food intake recording.
 
 **Command Format:** `food_add n/FOOD_NAME c/CARBOS(G) f/FATS(G) p/PROTEINS(G)`
 
@@ -239,7 +249,7 @@ Save food items you frequently consume so you don't have to re-enter them every 
 
 ### 3.2 Update food item
 
-Update food items in your food list with new nutritent values.
+Update food items in your food list with new nutrition values.
 
 **Command Format:** `food_update n/FOOD_NAME c/CARBOS(G) f/FATS(G) p/PROTEINS(G)`
 
@@ -271,7 +281,7 @@ Shows you all the food items stored in your food list.
 
 ### 3.4 Delete food item
 
-Deletes the specified food item stored in the application.
+Deletes the specified food item.
 
 **Command Format:** `food_delete n/name`
 
@@ -449,19 +459,19 @@ Get rid of all existing records and populate it with the sample template data.
 
 Action | Format, Examples
 -------|------------------
-**Input weight, height and ideal weight** | `bmi h/height(cm) w/weight(kg) i/ideal_weight(kg)​` <br> e.g. `bmi h/170 w/70 i/80`
-**Query weight, height and BMI** | `bmi query`
-**Update weight, height and ideal weight** | `bmi update h/height(cm) w/weight(kg) i/ideal_weight(kg)`<br> e.g. `bmi update h/170 w/70 i/80`
-**Get diet recommendation based on current BMI** | `plan recommended`
-**View active diet plan** | `plan current`
-**Select active diet plan** | `plan active p/plan`<br> e.g. `plan active p/1`
-**List all available diet plans** | `plan list`
-**View information about a particular diet plan** | `plan t/ID​`<br> e.g. `plan t/1`
+**Input user information** | `bmi g/GENDER a/AGE h/HEIGHT(CM) w/WEIGHT(KG) i/IDEAL_WEIGHT(KG)​` <br> e.g. `bmi g/M a/43 h/170 w/70 i/80`
+**View user information** | `bmi_query`
+**Update user information** | `bmi_update g/GENDER a/AGE h/HEIGHT(CM) w/WEIGHT(KG) i/IDEAL_WEIGHT(KG)`<br> e.g. `bmi_update g/M a/43 h/170 w/70 i/80`
+**Get diet plan recommendation based on current BMI** | `plan_recommend`
+**View active diet plan** | `plan_current`
+**Select active diet plan** | `plan_set p/plan`<br> e.g. `plan active p/1`
+**List all available diet plans** | `plan_list`
+**View information about a particular diet plan** | `plan p/ID​`<br> e.g. `plan p/1`
 **Add food item** | `food_add n/FOOD_NAME c/CARBOS(G) f/FATS(G) p/PROTEINS(G)` <br> e.g. `food_add n/tomato c/10 f/10 p/10`
 **Update food item** | `food_update n/FOOD_NAME c/CARBOS(G) f/FATS(G) p/PROTEINS(G)` <br> e.g. `food_update n/tomato c/20 f/30 p/40`
-**List food item** | `food_list`
+**List food items** | `food_list`
 **Delete food item** | `food_delete n/FOOD_NAME` <br> e.g. `food_delete n/tomato`
-**Input food intake (For new food items that are not created before)** | `food_intake_add d/DATE(in d MMM yyyy format) n/FOOD_NAME c/CARBOHYDRATES(G) f/FATS(G) p/PROTEINS(G)` <br> e.g.`food_intake_add d/31 Mar 2021 n/tomato c/10 f/10 p/10`
+**Input food intake (For newly created food items)** | `food_intake_add d/DATE(in d MMM yyyy format) n/FOOD_NAME c/CARBOHYDRATES(G) f/FATS(G) p/PROTEINS(G)` <br> e.g.`food_intake_add d/31 Mar 2021 n/tomato c/10 f/10 p/10`
 **Input food intake (For existing food items)** | `food_intake_add d/DATE(in d MMM yyyy format) n/FOOD_NAME` <br> e.g. `food_intake_add d/31 Mar 2021 n/tomato`
 **Input food intake (For existing food items, using different nutrient value(s))** | `food_intake_add d/DATE(in d MMM yyyy format) n/FOOD_NAME c/CARBOHYDRATES(G) f/FATS(G) p/PROTEINS(G)` <br> e.g. `food_intake_add d/31 Mar 2021 n/tomato c/20 f/35 p/50`
 **Update food intake** | `food_intake_update d/DATE(in d MMM yyyy format) n/FOOD_NAME c/CARBOS f/FATS p/PROTEINS` <br> e.g. `food_intake_update d/31 Mar 2021 n/tomato c/20 f/40 p/50`
@@ -469,6 +479,8 @@ Action | Format, Examples
 **Query food intake on a day** | `food_intake_query d/DATE(in d MMM yyyy format)` <br> e.g. `food_intake_query d/31 Mar 2021`
 **Query food intake over a period of days** | `food_intake_query df/DATE_FROM(in d MMM yyyy format) dt/DATE_TO(in d MMM yyyy format)` <br> e.g. `food_intake_query df/1 Mar 2021 dt/31 Mar 2021`
 **Generate progress report** | `progress`
+**Reset application data** | `reset t/blank`
+**Populate application with sample template data** | `reset t/template`
 
 ---
 
