@@ -24,7 +24,7 @@ class JsonSerializableFoodDiary {
     private final List<JsonAdaptedEntry> entries = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given entries.
+     * Constructs a {@code JsonSerializableFoodDiary} with the given entries.
      */
     @JsonCreator
     public JsonSerializableFoodDiary(@JsonProperty("entries") List<JsonAdaptedEntry> entries) {
@@ -32,9 +32,9 @@ class JsonSerializableFoodDiary {
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyFoodDiary} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created {@code JsonSerializableFoodDiary}.
      */
     public JsonSerializableFoodDiary(ReadOnlyFoodDiary source) {
         entries.addAll(source.getEntryList().stream().map(JsonAdaptedEntry::new).collect(Collectors.toList()));

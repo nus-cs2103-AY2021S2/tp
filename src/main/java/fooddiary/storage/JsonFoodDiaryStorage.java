@@ -45,14 +45,14 @@ public class JsonFoodDiaryStorage implements FoodDiaryStorage {
     public Optional<ReadOnlyFoodDiary> readFoodDiary(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableFoodDiary> jsonAddressBook = JsonUtil.readJsonFile(
+        Optional<JsonSerializableFoodDiary> jsonFoodDiary = JsonUtil.readJsonFile(
                 filePath, JsonSerializableFoodDiary.class);
-        if (!jsonAddressBook.isPresent()) {
+        if (!jsonFoodDiary.isPresent()) {
             return Optional.empty();
         }
 
         try {
-            return Optional.of(jsonAddressBook.get().toModelType());
+            return Optional.of(jsonFoodDiary.get().toModelType());
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);

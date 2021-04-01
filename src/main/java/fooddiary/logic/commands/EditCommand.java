@@ -27,7 +27,7 @@ import fooddiary.model.tag.TagSchool;
 
 
 /**
- * Edits the details of an existing edit in the address book.
+ * Edits the details of an existing entry in the food diary.
  */
 public class EditCommand extends Command {
 

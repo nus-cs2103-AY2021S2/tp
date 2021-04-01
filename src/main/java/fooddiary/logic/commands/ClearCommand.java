@@ -6,7 +6,7 @@ import fooddiary.model.FoodDiary;
 import fooddiary.model.Model;
 
 /**
- * Clears the address book.
+ * Clears the food diary.
  */
 public class ClearCommand extends Command {
 
