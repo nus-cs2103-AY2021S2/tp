@@ -4,24 +4,25 @@ import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
 /**
- * Window that shows notes.
+ * Window that shows notifications.
  */
-public class NotesWindow extends Alert {
+public class NotifWindow extends Alert {
     /**
-     * Creates a new NotesWindow.
-     * @param owner Stage to use as the root of the NotesWindow.
+     * Creates a new NotifWindow.
+     * @param owner Stage to use as the root of the NotifWindow.
      */
-    public NotesWindow(Stage owner) {
+    public NotifWindow(Stage owner) {
         super(AlertType.INFORMATION);
         getDialogPane().getStylesheets().add("view/DarkTheme.css");
-        setTitle("Notes");
-        setHeaderText("Here are your notes:");
+        setTitle("Notification");
+        setHeaderText("Welcome to Link.me!");
         setResizable(true);
+        getDialogPane().setMinWidth(400);
         initOwner(owner);
     }
 
     /**
-     * Sets the displayed message to the notes.
+     * Sets the displayed message to the notifications.
      */
     public void setMessage(String message) {
         setContentText(message);
