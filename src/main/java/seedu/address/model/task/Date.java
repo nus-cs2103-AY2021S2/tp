@@ -4,8 +4,6 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-import java.time.format.ResolverStyle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
@@ -76,17 +74,9 @@ public class Date {
     public static boolean isValidDate(String test) {
         Pattern p = Pattern.compile(VALIDATION_REGEX);
         Matcher m = p.matcher(test);
-        boolean isValidDate = false;
+        boolean isValidDate;
         if (test.length() != 0) {
-            try {
-                // ResolverStyle.STRICT is used for checking of leap year, months with 30 and 31 days
-                LocalDate.parse(test, DateTimeFormatter.ofPattern("dd/MM/uuuu").withResolverStyle(ResolverStyle.STRICT)
-                );
-                isValidDate = true;
-            } catch (DateTimeParseException e) {
-                e.printStackTrace();
-                isValidDate = false;
-            }
+            isValidDate = ValidDateFormatter.isValid(test);
         } else {
             isValidDate = false;
         }
