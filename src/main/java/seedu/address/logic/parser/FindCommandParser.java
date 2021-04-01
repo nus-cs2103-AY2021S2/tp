@@ -76,7 +76,7 @@ public class FindCommandParser implements Parser<FindCommand> {
             return new FindCommand(new EmailContainsKeywordsPredicate(keywords));
         case OPTION_TAG: // find by tag
             // get tags
-            ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(optionArgs, PREFIX_OPTION);
+            ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(optionArgs, PREFIX_OPTION, PREFIX_TAG);
             Set<Tag> tagSet = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
             return new FindCommand(new TagsMatchKeywordPredicate(tagSet));
         default:
