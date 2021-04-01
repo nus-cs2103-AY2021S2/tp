@@ -16,7 +16,7 @@ public class CommandParserTestUtil {
      *
      * @param parser parser to be utilized.
      * @param userInput user input to be parsed.
-     * @param expectedMessage expected return message from the parser.
+     * @param expectedCommand expected command returned by the parser.
      */
     public static void assertParseSuccess(Parser parser, String userInput, Command expectedCommand) {
         try {
