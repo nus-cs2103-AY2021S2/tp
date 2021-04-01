@@ -26,7 +26,7 @@ Vax@NUS is a **one stop management app to efficiently track and schedule COVID-1
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list students`** : Lists all students.
+   * **`list`** : Lists all data.
    * **`exit`** : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
@@ -259,6 +259,11 @@ Displays the number of upcoming and previous appointments within 6 days from the
 Format: <br>
 `statsAppt`
 
+### Clearing all data : `clear`
+
+Clearing all the data from VAX@NUS.
+
+Format: `clear`
 
 ### Exiting the program : `exit`
 
@@ -297,12 +302,14 @@ Action | Format, Examples
 --------|------------------
 **Add Student** | `add n/NAME i/MATRICULATION_NUMBER f/FACULTY p/PHONE_NUMBER e/EMAIL a/ADDRESS s/VACCINATION_STATUS r/SCHOOL_RESIDENCE[optional] m/MEDICAL_DETAILS` <br> e.g., `add n/John Doe i/A1234567X f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated r/RVRC m/peanut allergy`
 **Edit Student** | `edit INDEX [n/NAME] [i/MATRICULATION_NUMBER] [f/FACULTY] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/VACCINATION_STATUS] [m/MEDICAL_DETAILS] [r/SCHOOL_RESIDENCE]` <br> e.g., `edit 1 p/91234567 f/MED`
-**List Students and Appointments** | `list`
-**Find** | `find MATRICULATION_NUMBER` e.g., `find A1234567X`
-**Filter Students** | `filter VACCINATION_STATUS`  e.g., `filter VACCINATED` <br> `filter FACULTY ` e.g., `filter COM` <br> `filter SCHOOL_RESIDENCE` e.g., `filter RVRC` 
-**Delete Student** | `delete MATRICULATION_NUMBER` e.g., `deleteStud A1234567X`
+**Delete Student** | `delete MATRICULATION_NUMBER` e.g., `delete A1234567X`
+**Find Student And Appointment** |`find MATRICULATION_NUMBER` e.g., `find A1234567X`
+**Filter Students** | `filter VACCINATION_STATUS`  e.g., `filter vaccinated`,`filter not vaccinated` <br> `filter FACULTY ` e.g., `filter COM` <br> `filter SCHOOL_RESIDENCE` e.g., `filter RVRC` 
 **Add Appointment** | `addAppt i/MATRICULATION_NUMBER d/DATE ts/START_TIME` e.g., `addAppt i/A1234567X d/2021-12-13 ts/13:00`
 **Delete Appointment** | `deleteAppt MATRICULATION_NUMBER` e.g., `deleteAppt A1234567X`
 **View Student Statistics** | `stats FACULTY` e.g., `stats COM` <br> `stats SCHOOL_RESIDENCE` e.g., `stats RC4` <br> `stats NUS` <br> `stats all` 
 **View Appointment Statistics** | `statsAppt`
-
+**List All Data** | `list`
+**View Help** | `help` 
+**Clear All Data** | `clear` 
+**Exit Program** | `exit`
