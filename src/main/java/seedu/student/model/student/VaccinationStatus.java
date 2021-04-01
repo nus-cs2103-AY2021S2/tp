@@ -3,7 +3,7 @@ package seedu.student.model.student;
 import static java.util.Objects.requireNonNull;
 import static seedu.student.commons.util.AppUtil.checkArgument;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -54,9 +54,15 @@ public class VaccinationStatus {
     }
 
     public static List<String> getVaccinationStatusAbbreviation() {
+        ArrayList<String> vaccinationStatus = new ArrayList<>();
+
         String[] statusArray = Stream.of(VaccinationStatus.VaccinationStatusAbbreviation.values())
                 .map(VaccinationStatus.VaccinationStatusAbbreviation::name).toArray(String[]::new);
-        return Arrays.asList(statusArray);
+
+        for (int i = 0; i < statusArray.length; i++) {
+            vaccinationStatus.add(statusArray[i].toLowerCase());
+        }
+        return vaccinationStatus;
     }
 
     @Override

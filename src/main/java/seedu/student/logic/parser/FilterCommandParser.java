@@ -22,7 +22,7 @@ public class FilterCommandParser implements Parser<FilterCommand> {
     private static final List<String> VACCINATED_STATUS = VaccinationStatus.getVaccinationStatusAbbreviation();
     private static final List<String> FACULTY = Faculty.getFacultyAbbreviation();
     private static final List<String> SCHOOL_RESIDENCE = SchoolResidence.getResidenceAbbreviation();
-    private static final String UNVACCINATED_STATUS = "NOT_VACCINATED";
+    private static final String UNVACCINATED_STATUS = "not_vaccinated";
 
     /**
      * Parses the given {@code String} of arguments in the context of the FilterCommand
@@ -33,19 +33,16 @@ public class FilterCommandParser implements Parser<FilterCommand> {
     public FilterCommand parse(String args) throws ParseException {
 
         String condition = args.trim();
-        boolean isValidVaccinationStatus = true;
 
-        //Ensure that "not_vaccinated" or "NOT_VACCINATED" is an invalid input
-        if (condition.contains("_") || condition.equals(condition.toUpperCase())) {
-            isValidVaccinationStatus = false;
+        if (condition.equals("not_vaccinated")) {
+            condition = "";
         }
 
-        //Change input string to match "NOT_VACCINATED" in VACCINATED_STATUS
         if (condition.equals("not vaccinated")) {
             condition = UNVACCINATED_STATUS;
         }
 
-        if (VACCINATED_STATUS.contains((condition.toUpperCase())) && isValidVaccinationStatus) {
+        if (VACCINATED_STATUS.contains(condition)) {
             return new FilterCommand(new VaccinationStatusContainsKeywords(condition));
         } else if (FACULTY.contains(condition)) {
             return new FilterCommand(new FacultyContainsKeywords(condition));
