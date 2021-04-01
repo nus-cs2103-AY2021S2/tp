@@ -271,21 +271,22 @@ Format: `editmodenote`
 
 * A note have to be show on the note content panel using `shownote` command.
 * In edit note mode, all others note related command will be disable.
-* To exit edit note mode, use `exitnote` to discard all changes or `savenote` to save all changes
+* To exit edit note mode, use `quit` to discard all changes or `save` to save all changes
 
 
 Examples:
 * `editmodenote`
   * note content will be editable
 
-#### Save and quit edit mode: `save`
+#### Save and exit edit mode: `save`
 
-Save edited content and quit edits mode and.
+Save edited content and exit edits mode.
 
 Format: `save`
 
 * The program have to be in edit mode.
 * All changes will be saved.
+* The program will exit edit mode after saving.
 
 Examples:
 * `save`
@@ -293,12 +294,13 @@ Examples:
 
 #### Quit edit mode : `quit`
 
-Quit edits mode.
+Quit edits mode and discard all changes.
 
 Format: `quit`
 
 * The program have to be in edit mode.
 * All changes will be discarded.
+* The program will exit edit mode.
 
 Examples:
 * `quit`
@@ -415,14 +417,6 @@ The following are the 5 region where the user can manipulate
 
 ![Ui Panel ](images/UiPanel.png)
 
-The region name is as follow :
-1. Contact Panel
-1. Dictionary List Panel
-1. Dictionary Content Panel
-1. Note List Panel
-1. Dictionary Content Panel
-
-
 #### Opening and Closing UI Panel
 
 ##### Opening UI Panel: `open`
@@ -478,13 +472,8 @@ The following are the 4 divider where the user can manipulate
 
 ![Ui Panel ](images/UiDivider.png)
 
-The divider name is as follow :
-1. Contact Divider
-1. Dictionary Divider
-1. Note Divider 
-1. Main Divider
-
-The following images show the position the divider will be set when user enter a value from 1 to 9 horizontally and vertically
+The following images show the position the divider will be set when user enter a value from 1 to 9 
+in either horizontally or vertically mode.
 
 ![Ui Panel ](images/UiDividerConfig.png)
 
@@ -545,10 +534,6 @@ Dictionote allows the user to change the orientation of the divider between the 
 The following are the 2 divider where the user can manipulate
 
 ![Ui Panel ](images/UiOrientation.png)
-
-The divider name is as follow :
-1. Dictionary Divider
-1. Note Divider
 
 ##### Toggle dictionary divider orientation: `toggledividerd`
 
