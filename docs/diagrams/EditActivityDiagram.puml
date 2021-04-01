@@ -6,12 +6,12 @@ start
 if () then ([Index > number of items in StoreMando])
     : An error message is displayed to user;
 else ([else])
-endif
-if () then ([Input matches the edit command format)
-    :Item's attributes update accordingly;
-    :A success message is displayed to the user;
-else ([else])
-    : An error message is displayed to user;
+    if () then ([Input matches the edit command format)
+        :Item's attributes update accordingly;
+        :A success message is displayed to the user;
+    else ([else])
+        : An error message is displayed to user;
+    endif
 endif
 stop
 
