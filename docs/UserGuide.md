@@ -98,6 +98,7 @@ Shows a list of all residences with bookings starting in the next 7 days.
 
 Format: `remind`
 
+* Next 7 days: If today is 1st April, residences with bookings starting on 2nd April to 8th April (inclusive) will be listed.
 * The displayed list of residences is always sorted.
 * Unclean residences come before clean residences.
 
@@ -262,7 +263,7 @@ Action | Format, Examples
 **Update Multiple Clean Status** | `status clean/unclean INDEX1 INDEX2..`<br> e.g., `status clean 1 3`
 **Find Residence** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Heights`
 **Remind Residences with Upcoming Bookings** | `remind`
-**List Residences** | `list`
+**List All Residences** | `list`
 **Help** | `help`
 **Exit** | `exit`
 **Clear** | `clear`
