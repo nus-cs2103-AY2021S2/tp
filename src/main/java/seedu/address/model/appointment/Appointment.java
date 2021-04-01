@@ -113,18 +113,18 @@ public class Appointment implements Comparable<Appointment> {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append("; Address: ")
+                .append("\nAddress: ")
                 .append(getAddress())
-                .append("; DateTime: ")
+                .append("\nDateTime: ")
                 .append(getDateTime());
 
         Set<Contact> contacts = getContacts();
         if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
-            contacts.forEach(builder::append);
+            builder.append("\nTags: ");
+            tags.forEach(builder::append);
         }
         if (!contacts.isEmpty()) {
-            builder.append("; Contacts: ");
+            builder.append("\nContacts: ");
             contacts.forEach(builder::append);
         }
         return builder.toString();
