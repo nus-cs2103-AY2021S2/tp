@@ -309,7 +309,7 @@ add a new `Order` instance in the worst case.
 
 #### implementation
 
-Marking an order as completed is implemented in [`DoneCommand.java`](https://github.com/AY2021S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/address/comamnds/DoneCommand.java).
+Marking an order as completed is implemented in [`DoneCommand.java`](https://github.com/AY2021S2-CS2103-W16-2/tp/blob/master/src/main/java/seedu/address/logic/commands/DoneCommand.java).
 
 `DoneCommand` extends from `command` and overwrites the operations `execute()` and `equals()`.
 
