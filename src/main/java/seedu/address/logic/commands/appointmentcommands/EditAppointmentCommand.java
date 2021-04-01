@@ -80,7 +80,6 @@ public class EditAppointmentCommand extends Command {
         Appointment appointmentToEdit = lastShownList.get(index.getZeroBased());
         Appointment editedAppointment = createEditedAppointment(appointmentToEdit, editAppointmentDescriptor);
 
-        System.out.println(editedAppointment.getName());
         if (appointmentToEdit.equals(editedAppointment) || model.hasAppointment(editedAppointment)) {
             throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
         } else if (!model.hasTutorByName(editedAppointment.getName())) {
