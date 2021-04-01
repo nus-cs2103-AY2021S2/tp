@@ -19,6 +19,10 @@ import seedu.address.model.customer.Customer;
 public class FilterCombinator implements Predicate<Customer> {
     private final Node rootNode;
 
+    /**
+     * Constructor for filter combinator to create a expression tree from the given argument.
+     * @param argument - the filter expression
+     */
     public FilterCombinator(String argument) {
         Node temp = null;
         try {
