@@ -12,7 +12,7 @@ import seedu.student.model.appointment.SameDateAppointmentList;
 import seedu.student.model.student.Student;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of appointments grouped by date.
  */
 public class AppointmentListPanel extends UiPart<Region> {
     private static final String FXML = "AppointmentListPanel.fxml";
@@ -22,7 +22,7 @@ public class AppointmentListPanel extends UiPart<Region> {
     private ListView<SameDateAppointmentList> appointmentsGroupListView;
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates an {@code AppointmentListPanel} with the given {@code ObservableList}.
      */
 
     public AppointmentListPanel(ObservableList<SameDateAppointmentList> appointmentLists,

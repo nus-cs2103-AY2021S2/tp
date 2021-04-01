@@ -70,6 +70,7 @@ public class SchoolResidence {
         return Arrays.asList(residenceArray);
     }
 
+
     @Override
     public String toString() {
         return this.residenceAbbreviation.toString(); // "DOES NOT LIVE ON CAMPUS"

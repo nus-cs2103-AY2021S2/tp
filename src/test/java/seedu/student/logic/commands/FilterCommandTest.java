@@ -3,7 +3,7 @@ package seedu.student.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.student.commons.core.Messages.MESSAGE_STUDENTS_LISTED_OVERVIEW;
+import static seedu.student.commons.core.Messages.MESSAGE_NO_STUDENTS_ARE_LISTED;
 import static seedu.student.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.student.testutil.TypicalStudents.getTypicalStudentBook;
 
@@ -91,7 +91,7 @@ public class FilterCommandTest {
 
     @Test
     public void execute_zeroKeywords_noStudentFoundFilterByVaccinationStatus() {
-        String expectedMessage = String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW, 0);
+        String expectedMessage = String.format(MESSAGE_NO_STUDENTS_ARE_LISTED, 0);
         VaccinationStatusContainsKeywords vaccinationPredicate = new VaccinationStatusContainsKeywords("");
         FilterCommand command = new FilterCommand(vaccinationPredicate);
         expectedModel.updateFilteredStudentList(vaccinationPredicate);
@@ -101,7 +101,7 @@ public class FilterCommandTest {
 
     @Test
     public void execute_zeroKeywords_noStudentFoundFilterByFaculty() {
-        String expectedMessage = String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW, 0);
+        String expectedMessage = String.format(MESSAGE_NO_STUDENTS_ARE_LISTED, 0);
         FacultyContainsKeywords facultyPredicate = new FacultyContainsKeywords("");
         FilterCommand command = new FilterCommand(facultyPredicate);
         expectedModel.updateFilteredStudentList(facultyPredicate);
@@ -111,7 +111,7 @@ public class FilterCommandTest {
 
     @Test
     public void execute_zeroKeywords_noStudentFoundFilterBySchoolResidence() {
-        String expectedMessage = String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW, 0);
+        String expectedMessage = String.format(MESSAGE_NO_STUDENTS_ARE_LISTED, 0);
         SchoolResidenceContainsKeywords schoolResidencePredicate = new SchoolResidenceContainsKeywords("");
         FilterCommand command = new FilterCommand(schoolResidencePredicate);
         expectedModel.updateFilteredStudentList(schoolResidencePredicate);

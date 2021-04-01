@@ -24,4 +24,7 @@ public class StudentContainsMatriculationNumberPredicate implements Predicate<St
                 && keyword.equals(((StudentContainsMatriculationNumberPredicate) other).keyword)); // state check
     }
 
+    public MatriculationNumber getKeyword() {
+        return keyword;
+    }
 }

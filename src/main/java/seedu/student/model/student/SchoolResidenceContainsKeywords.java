@@ -3,7 +3,7 @@ package seedu.student.model.student;
 import java.util.function.Predicate;
 
 /**
- * Tests that a {@code Person}'s {@code Residence} matches the keyword given.
+ * Tests that a {@code Student}'s {@code School Residence} matches the keyword given.
  */
 public class SchoolResidenceContainsKeywords implements Predicate<Student> {
     private final String keyword;

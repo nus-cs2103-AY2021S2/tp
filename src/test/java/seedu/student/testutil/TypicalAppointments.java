@@ -27,7 +27,7 @@ public class TypicalAppointments {
             .withMatric(TypicalStudents.BENSON.getMatriculationNumber().toString())
             .withStartTime("10:30").build();
     public static final Appointment CARL_APPOINTMENT = new AppointmentBuilder()
-            .withMatric(TypicalStudents.BENSON.getMatriculationNumber().toString())
+            .withMatric(TypicalStudents.CARL.getMatriculationNumber().toString())
             .withStartTime("11:00").build();
 
 
@@ -40,7 +40,7 @@ public class TypicalAppointments {
     private TypicalAppointments() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical appointments.
+     * Returns an {@code studentBook} with all the typical appointments.
      */
     public static StudentBook getTypicalStudentBook() {
         StudentBook ab = new StudentBook();
