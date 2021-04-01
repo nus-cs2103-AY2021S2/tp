@@ -11,10 +11,3 @@
 * For the detailed documentation of this project, see our **[Developer Guide](https://ay2021s2-cs2103t-w15-2.github.io/tp/DeveloperGuide.html)**.
 
 
-**Acknowledgements**
-
-**1. zip4j**
-
-Used to implement the password protection of ClientBook.
-
-

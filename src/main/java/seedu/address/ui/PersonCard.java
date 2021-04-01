@@ -67,8 +67,7 @@ public class PersonCard extends UiPart<Region> {
                 insurancePolicies.setText(InsurancePolicy.MESSAGE_NO_POLICY);
             }
         } else {
-            gridPane.getChildren().remove(insurancePolicies);
-            gridPane.setMinHeight(gridPane.getMinHeight() - 20);
+            insurancePolicies.setText(InsurancePolicy.MESSAGE_NO_POLICY);
         }
 
         if (!person.getTags().isEmpty()) {

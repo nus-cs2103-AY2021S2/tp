@@ -29,9 +29,9 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
 
-public class AddressBookParserTest {
+public class ClientBookParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final ClientBookParser parser = new ClientBookParser();
 
     @Test
     public void parseCommand_add() throws Exception {
@@ -84,6 +84,7 @@ public class AddressBookParserTest {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " -p") instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " -a") instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " -e") instanceof ListCommand);
+        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " -e -a -p -i") instanceof ListCommand);
     }
 
     @Test
