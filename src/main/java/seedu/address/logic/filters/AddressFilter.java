@@ -9,6 +9,6 @@ public class AddressFilter extends AbstractFilter {
 
     @Override
     public boolean test(Customer customer) {
-        return customer.getAddress().value.trim().startsWith(filterString);
+        return customer.getAddress().value.trim().contains(filterString.trim());
     }
 }
