@@ -60,6 +60,7 @@ public class MailtoLink {
      * @return An encoded version of the given string that is compatible with URI links/objects.
      */
     static String encodeUriCompatible(String str) {
+        assert str != null : "Given string cannot be null.";
         return str
                 .chars()
                 .mapToObj(Integer::toHexString)
