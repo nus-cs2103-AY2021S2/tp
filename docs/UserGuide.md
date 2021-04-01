@@ -177,20 +177,32 @@ Examples:
 
 ### 3.4 Deleting
 
-#### 3.4.1 Removing an entry : `delete`
+#### 3.4.1 Removing an appointment : `delete appointment`
 
-Deletes the specified property or appointment from the app.
+Deletes the appointment at the specified index from the app.
 
 Formats:
 * `delete appointment INDEX`
-* `delete property INDEX`
 
 Description:
-* Deletes the appointment or property at the specified `INDEX`. The index refers to the index number shown in the displayed list. The index **must be a positive integer** 1, 2, 3, …
+* Deletes the appointment at the specified `INDEX`. The index refers to the index number shown in the displayed list. The index **must be a positive integer** 1, 2, 3, …
 * The field INDEX must be provided.
 
 Examples:
 *  `delete appointment 7` Deletes the `appointment` at index `7`.
+
+#### 3.4.2 Removing a property : `delete property`
+
+Deletes the property at the specified index from the app.
+
+Formats:
+* `delete property INDEX`
+
+Description:
+* Deletes the property at the specified `INDEX`. The index refers to the index number shown in the displayed list. The index **must be a positive integer** 1, 2, 3, …
+* The field INDEX must be provided.
+
+Examples:
 *  `delete property 7` Deletes the `property` at index `7`.
 
 ### 3.5 Listing
@@ -247,25 +259,56 @@ Examples:
 
 ### 3.7 Sorting
 
-#### 3.7.1 Sorting : `sort`
+#### 3.7.1 Sorting appointments: `sort appointment`
 
-Sorts and shows a list of properties or appointments that is sorted according to the comparator provided.
+Sorts and shows a list of appointments that are sorted by the specified sorting key in the specified sorting order.
 
 Formats:
 * `sort appointment o/SORTING_ORDER k/SORTING_KEY`
-* `sort property o/SORTING_ORDER k/SORTING_KEY`
 
 Description:
-* Sorts appointment or property by the specified sorting key in ascending or descending order.
+* Sorts appointments by the specified sorting key in ascending or descending order.
 * The sorting key and sorting order fields must be specified.
+* The sorting key can take value of either `datetime` or `name`, and it should not be any other values.
+* The sorting order can only take value of `asc` and `desc`.
 
 Examples:
 *  `sort appointment o/asc k/datetime` Sorts `appointment` by `datetime` in ascending order.
-*  `sort property o/desc k/price` Sorts `property` by `price` in descending order.
 
-### 3.8 Searching
+#### 3.7.2 Sorting properties: `sort property`
 
-#### 3.8.1 Searching properties: `find property`
+Sorts and shows a list of properties that are sorted by the specified sorting key in the specified sorting order.
+
+Formats:
+* `sort property o/SORTING_ORDER k/SORTING_KEY`
+
+Description:
+* Sorts properties by the specified sorting key in ascending or descending order.
+* The sorting key and sorting order fields must be specified.
+* The sorting key can take value of `name`, `price`, `postalcode`, `address`, or `deadline`, and it should not be any other values.
+* The sorting order can only take value of `asc` and `desc`.
+
+Examples:
+*  `sort appointment o/asc k/datetime` Sorts `appointment` by `datetime` in ascending order.
+
+### 3.8 Undoing
+
+#### 3.8.1 Undoing : `undo`
+
+Undoes the last add, delete or edit commands in the command history.
+
+Formats:
+* `undo`
+
+Description:
+* Undoes the last add, delete or edit commands in the command history.
+
+Examples:
+*  `undo` after command `delete appointment 1` adds the deleted appointment back to the app.
+
+### 3.9 Searching
+
+#### 3.9.1 Searching properties: `find property`
 
 Finds all properties containing any of the specified keywords (case-insensitive) and/or with the given options. 
 
@@ -347,7 +390,7 @@ Examples:
 * `find property n/bishan north t/hdb pl/$1,000,000`
 * `find property pl/1000000 t/hdb a/1 Jurong East Street 32, #08-111 tags/3 bedrooms, need renovation cc/91234567`
 
-#### 3.8.2 Searching appointments: `find appointment`
+#### 3.9.2 Searching appointments: `find appointment`
 
 Finds all appointments containing any of the specified keywords (case-insensitive) and/or with the given parameters. 
 
@@ -387,7 +430,7 @@ Examples:
 * `find appointment n/bob`
 * `find appointment n/alex d/25-12-2021`
 
-#### 3.8.3 Searching clients: `find client`
+#### 3.9.3 Searching clients: `find client`
 
 Finds appointments that matches the keywords and properties whose clients matches the same keywords. Both are done at the same time.
 
@@ -397,17 +440,17 @@ Formats:
 Description:
 * There can be 0 or more keywords. Keywords are case insensitive.
 
-### 3.9 Clearing
+### 3.10 Clearing
 
-#### 3.9.1 Clearing all entries : `clear all`
+#### 3.10.1 Clearing all entries : `clear all`
 
 Clears all properties and appointments from the app.
 
-#### 3.9.2 Clearing all properties : `clear property`
+#### 3.10.2 Clearing all properties : `clear property`
 
 Clears all properties from the app.
 
-#### 3.9.3 Clearing all appointments : `clear appointment`
+#### 3.10.3 Clearing all appointments : `clear appointment`
 
 Clears all appointments from the app.
 
@@ -473,6 +516,7 @@ Action | Format, Examples
 **Find appointment** | `find appointment [n/NAME] [r/REMARKS] [d/DATE]* [t/TIME]* [KEYWORD]` <br> e.g., `find appointment n/bob d/23-12-2021`
 **Find client** | `find client [KEYWORD]` <br> e.g., `find client alice`
 **Clear** | `clear property` <br> `clear appointment` <br> `clear all`
+**Undo** | `undo`
 
 ## 7. Appendix
 
