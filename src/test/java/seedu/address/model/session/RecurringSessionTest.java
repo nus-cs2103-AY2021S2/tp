@@ -108,6 +108,12 @@ class RecurringSessionTest extends SessionTest {
                 DURATION, SUBJECT, FEE, new Interval("3"), new SessionDate("2021-01-26", "12:00"));
         assertFalse(recurringSession1Test3.isOverlapping(recurringSession2Test3));
 
+        // Days Between: 1, Interval1: 2, Interval2: 1, EndDate1: 14, EndDate2: 15
+        RecurringSession recurringSession1Test4 = new RecurringSession(new SessionDate("2021-01-01", "12:00"),
+                DURATION, SUBJECT, FEE, new Interval("2"), new SessionDate("2021-01-15", "12:00"));
+        RecurringSession recurringSession2Test4 = new RecurringSession(new SessionDate("2021-01-02", "12:00"),
+                DURATION, SUBJECT, FEE, new Interval("1"), new SessionDate("2021-01-14", "12:00"));
+        assertTrue(recurringSession1Test4.isOverlapping(recurringSession2Test4));
 
     }
 

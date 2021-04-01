@@ -202,25 +202,25 @@ public class RecurringSession extends Session {
                 (int) ChronoUnit.DAYS.between(otherSession.getSessionDate().getDate(),
                         otherSession.getLastSessionDate().getDate()) + daysBetween;
         // Days from when the earlier session starts
-        int daysFromFirstSessionStart = 0;
-        int daysFromSecondSessionStart = daysBetween;
-        while (daysFromFirstSessionStart < firstSessionRecurrenceLength
-                || daysFromSecondSessionStart < secondSessionRecurrenceLength) {
-            if (daysFromFirstSessionStart == daysFromSecondSessionStart) {
+        int daysFromThisSessionStart = 0;
+        int daysFromOtherSessionStart = daysBetween;
+        while (daysFromThisSessionStart < firstSessionRecurrenceLength
+                || daysFromOtherSessionStart < secondSessionRecurrenceLength) {
+            if (daysFromThisSessionStart == daysFromOtherSessionStart) {
                 break;
-            } else if (daysFromFirstSessionStart > daysFromSecondSessionStart) {
-                if (daysFromSecondSessionStart >= secondSessionRecurrenceLength) {
+            } else if (daysFromThisSessionStart > daysFromOtherSessionStart) {
+                if (daysFromOtherSessionStart >= secondSessionRecurrenceLength) {
                     break;
                 }
-                daysFromSecondSessionStart += otherSession.getInterval().getValue();
+                daysFromOtherSessionStart += otherSession.getInterval().getValue();
             } else {
-                if (daysFromFirstSessionStart >= firstSessionRecurrenceLength) {
+                if (daysFromThisSessionStart >= firstSessionRecurrenceLength) {
                     break;
                 }
-                daysFromFirstSessionStart += getInterval().getValue();
+                daysFromThisSessionStart += getInterval().getValue();
             }
         }
-        if (daysFromFirstSessionStart != daysFromSecondSessionStart) {
+        if (daysFromThisSessionStart != daysFromOtherSessionStart) {
             return false;
         }
         SessionDate otherSessionStartDate = otherSession.getSessionDate();
