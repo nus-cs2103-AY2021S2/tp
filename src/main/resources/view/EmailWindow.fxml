@@ -30,7 +30,7 @@
                     <Button fx:id="sendEmailButton" layoutX="492.0" layoutY="259.0" mnemonicParsing="false" onAction="#sendEmail" text="Send" textFill="#121212" />
                     <Label fx:id="sentBoolValue" layoutX="474.0" layoutY="338.0" text="Message Sent!" visible="false" />
                   <Label layoutX="434.0" layoutY="62.0" prefHeight="118.0" prefWidth="143.0" text="If unable to send, please turn on &quot;allow less secured apps access feature on google" textFill="#0062ff" textOverrun="CLIP" wrapText="true" />
-                  <Button fx:id="enableAccessButton" layoutX="428.0" layoutY="161.0" mnemonicParsing="false" onAction="#enableAccess" prefHeight="26.0" prefWidth="149.0" text="Enable less secured access" textFill="#121212">
+                  <Button fx:id="enableAccessButton" layoutX="428.0" layoutY="161.0" mnemonicParsing="false" onAction="#enableAccess" prefHeight="26.0" prefWidth="149.0" text="URL to google security" textFill="#121212">
                      <font>
                         <Font size="11.0" />
                      </font>
