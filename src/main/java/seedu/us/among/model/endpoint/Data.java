@@ -12,7 +12,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * Guarantees: immutable; is valid as declared in {@link #isValidData(String)}
  */
 public class Data {
-    //to-do Jun Xiong Tan Jin force data to take in only json files
     public static final String MESSAGE_CONSTRAINTS = "Data must be in a JSON format. E.g. {\"key\": \"value\"}";
 
     /*

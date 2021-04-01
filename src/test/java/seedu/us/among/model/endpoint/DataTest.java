@@ -34,8 +34,7 @@ public class DataTest {
         assertFalse(Data.isValidData("{'':''}"));
         assertFalse(Data.isValidData("{'':\"\"}"));
         assertFalse(Data.isValidData("{\"\":''}"));
-        //to-do update this after data parsing fix
-        //assertFalse(Data.isValidData("\"{\"key\": \"value\"}\""));
+        assertFalse(Data.isValidData("\"{\"key\": \"value\"}\""));
 
         // valid data
         assertTrue(Data.isValidData("{}"));

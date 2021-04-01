@@ -168,7 +168,6 @@ Check out the screenshot of each command for an idea of the expected output in t
 
 **Example & Output:** <span class="main-command">add</span> <span class="compulsory-param">-x POST</span> <span class="compulsory-param">-u https://reqres.in/api/users</span> <span class="optional-param">-d {"name": "tarzan", "job": "the jungle man"}</span> <span class="optional-param">-h "Content-Type: application/json"</span> <span class="optional-param">-t nature</span>
 
-//to-do tanjin update picture
 <p align="center">
   <img width="450px" src="images/commands/add.png" >
 </p>

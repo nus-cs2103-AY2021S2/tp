@@ -70,7 +70,6 @@ public class CommandBox extends UiPart<Region> {
             commandExecutor.execute(commandText);
             commandTextField.setText("");
             lastCommand = commandText;
-            //to-do remove illegal arg exception Jun Xiong and Tan Jin
         } catch (CommandException | ParseException | RequestException | IllegalArgumentException
                 | AbortRequestException e) {
             setStyleToIndicateCommandFailure();
