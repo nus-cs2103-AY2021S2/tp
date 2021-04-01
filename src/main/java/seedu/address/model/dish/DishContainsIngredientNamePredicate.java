@@ -1,9 +1,6 @@
 package seedu.address.model.dish;
 
-import java.util.List;
 import java.util.function.Predicate;
-
-import seedu.address.commons.util.StringUtil;
 
 public class DishContainsIngredientNamePredicate implements Predicate<Dish> {
     private final String ingredientName;

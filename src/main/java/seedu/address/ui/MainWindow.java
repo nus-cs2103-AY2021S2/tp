@@ -4,7 +4,6 @@ import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.Comparator;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -36,7 +35,6 @@ import seedu.address.logic.commands.inventory.InventoryListCommand;
 import seedu.address.logic.commands.menu.MenuListCommand;
 import seedu.address.logic.commands.order.OrderListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.order.Order;
 
 /**
  * The Main Window. Provides the basic application layout containing

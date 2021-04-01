@@ -466,7 +466,7 @@ public class ModelManager implements Model {
      * @return
      */
     public void sortOrder(Comparator<Order> comparator) {
-            orderBook.sortItemsByDateTime(comparator);
+        orderBook.sortItemsByDateTime(comparator);
     }
 
     @Override
