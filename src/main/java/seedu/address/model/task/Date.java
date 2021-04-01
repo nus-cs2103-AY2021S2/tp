@@ -4,6 +4,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
@@ -29,6 +31,7 @@ public class Date {
             Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     public final LocalDate value;
+    public final boolean isOverdued;
 
     /**
      * Constructs a {@code Date}.
@@ -38,6 +41,18 @@ public class Date {
     public Date(String date) {
         checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
         value = parseDate(date);
+        if (date.length() != 0) {
+            LocalDate today = LocalDate.now();
+            LocalDate parsedDate = LocalDate.parse(date,
+                    DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+            if (parsedDate.isAfter(today)) {
+                isOverdued = false;
+            } else {
+                isOverdued = true;
+            }
+        } else {
+            isOverdued = false;
+        }
     }
 
     /**
@@ -47,6 +62,12 @@ public class Date {
      */
     public Date(LocalDate date) {
         value = date;
+        LocalDate today = LocalDate.now();
+        if (date.isAfter(today)) {
+            isOverdued = false;
+        } else {
+            isOverdued = true;
+        }
     }
 
     /**
@@ -55,14 +76,21 @@ public class Date {
     public static boolean isValidDate(String test) {
         Pattern p = Pattern.compile(VALIDATION_REGEX);
         Matcher m = p.matcher(test);
-        boolean validDate = false;
-        if (!test.isEmpty() && m.matches()) {
-            LocalDate today = LocalDate.now();
-            LocalDate parsedDate = LocalDate.parse(test,
-                DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-            validDate = parsedDate.isAfter(today);
+        boolean isValidDate = false;
+        if (test.length() != 0) {
+            try {
+                // ResolverStyle.STRICT is used for checking of leap year, months with 30 and 31 days
+                LocalDate.parse(test, DateTimeFormatter.ofPattern("dd/MM/uuuu").withResolverStyle(ResolverStyle.STRICT)
+                );
+                isValidDate = true;
+            } catch (DateTimeParseException e) {
+                e.printStackTrace();
+                isValidDate = false;
+            }
+        } else {
+            isValidDate = false;
         }
-        return (m.matches() && validDate) || test.isEmpty();
+        return m.matches() && isValidDate || test.isEmpty();
 
     }
 

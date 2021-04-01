@@ -15,7 +15,7 @@ public class DateTest {
 
     @Test
     public void constructor_invalidDate_throwsIllegalArgumentException() {
-        String invalidDate = "21/03/2019";
+        String invalidDate = "21/03/20199";
         assertThrows(IllegalArgumentException.class, () -> new Date(invalidDate));
     }
 
@@ -25,7 +25,7 @@ public class DateTest {
         assertThrows(NullPointerException.class, () -> Date.isValidDate(null));
 
         // invalid date numbers
-        assertFalse(Date.isValidDate("21/03/2019")); // empty string
+        assertFalse(Date.isValidDate("21/03/20193")); // empty string
 
 
         // valid date numbers

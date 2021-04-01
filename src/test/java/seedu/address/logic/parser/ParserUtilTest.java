@@ -22,7 +22,7 @@ import seedu.address.model.task.Title;
 
 public class ParserUtilTest {
     private static final String INVALID_TITLE = "R@chel";
-    private static final String INVALID_DATE = "12/03/2019";
+    private static final String INVALID_DATE = "12/03/20199";
     private static final String INVALID_DESCRIPTION = " ";
     private static final String INVALID_RECURRINGSCHEDULE = "[10/01/2020][tues][weekly]";
     private static final String INVALID_TAG = "#friend";
