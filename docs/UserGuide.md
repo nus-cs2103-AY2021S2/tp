@@ -83,12 +83,12 @@ panel will display the corresponding items.
 
 #### Command Box
 
-The command box is where you will be entering commands to be executed by StoreMando.
+The command box is the long box at the top where you will be entering commands to be executed by StoreMando.
 
 #### Result Display Box
 
-The result display box is where StoreMando’s server replies to every command that you key in. Any success, error or
-warning messages will be displayed in this box.
+The result display box, located directly below the command box, is where StoreMando’s server replies to every command 
+that you key in. Any success, error or warning messages will be displayed in this box.
 
 ### 2.3. Prefixes and Keywords
 
@@ -97,8 +97,8 @@ Prefix | Keyword and Format | Remarks
 n/ | ITEM_NAME `n/ITEM_NAME` | ITEM_NAME can take in multiple words
 l/ | LOCATION  `l/LOCATION` | LOCATION can take in multiple words
 q/ | QUANTITY `q/QUANTITY` | QUANTITY only takes in 1 positive integer
-e/ | EXPIRY_DATE `e/EXPIRY_DATE` | EXPIRY_DATE takes in date in the format of YYYY-MM-DD
-t/ | TAG `t/TAG` | TAG only takes in one word
+e/ | EXPIRY_DATE `e/EXPIRY_DATE` | EXPIRY_DATE takes in a date in the format of YYYY-MM-DD
+t/ | TAG `t/TAG` | Each TAG can only be one word long
 */ | PARTIAL_WORD `*/PARTIAL_WORD` | PARTIAL_WORD can take in multiple partial words.
 
 ----
@@ -164,6 +164,7 @@ Examples:
   respectively.
 * `edit 2 n/Chocolate Bread t/` edits the name of the 2nd item to be `Chocolate Bread` and clears all existing tags if
   there are existing tags and/or existing name of the 2nd item is not `Chocolate Bread`.
+  
 
 <div markdown="block" class="alert alert-info">
 
@@ -227,7 +228,7 @@ You can use this command in 2 different ways.
   Examples:
   
     * `find Chocolate` returns `chocolate` and `Chocolate Milk`
-    * `find potato chip` returns `Potato Biscuit` and `chocolate chip`<br>
+    * `find potato chip` returns `Potato Biscuit` and `chocolate chip`<br></br>
     
   <div markdown="block" class="alert alert-info">
 
