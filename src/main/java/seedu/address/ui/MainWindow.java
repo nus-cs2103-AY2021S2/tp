@@ -290,7 +290,8 @@ public class MainWindow extends UiPart<Stage> {
                 clearPanels();
             }
 
-            if (commandResult.getFeedbackToUser().equals(String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, logic.getFilteredPersonList().size()))) {
+            if (commandResult.getFeedbackToUser().equals(String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW,
+                    logic.getFilteredPersonList().size()))) {
                 fillInnerParts();
             }
 
