@@ -58,13 +58,19 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
-        if (!person.getPolicies().isEmpty()) {
-            insurancePolicies.setText(person.getPolicies().stream()
-                .map(Object::toString)
-                .collect(Collectors.joining("\n")));
+        if (person.isShowPolicyList()) {
+            if (!person.getPolicies().isEmpty()) {
+                insurancePolicies.setText(person.getPolicies().stream()
+                        .map(Object::toString)
+                        .collect(Collectors.joining("\n")));
+            } else {
+                insurancePolicies.setText(InsurancePolicy.MESSAGE_NO_POLICY);
+            }
         } else {
-            insurancePolicies.setText(InsurancePolicy.MESSAGE_NO_POLICY);
+            gridPane.getChildren().remove(insurancePolicies);
+            gridPane.setMinHeight(gridPane.getMinHeight() - 20);
         }
+
         if (!person.getTags().isEmpty()) {
             person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
