@@ -52,8 +52,7 @@ Action | Format, Examples
 **Edit** | For Student: <br> `edit_person s/ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tag/TAG]…​` <br> e.g., `edit_person s/2 n/Betsy Crower tag/` <br><br> For Tutor: <br> `edit_person t/ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tag/TAG]…​` <br> e.g., `edit_person t/1 p/88888888 e/sarahwong@example.com` <br><br> For Session: <br> `edit_session c/ID [d/DAY] [ts/TIMESLOT] [s/SUBJECT] [tag/TAG]…​`<br> e.g.,`edit_session c/1 d/Monday s/Biology` <br> e.g. `edit_session c/2 d/Saturday ts/13:00 to 15:00 tag/Hard` 
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | For All Persons: <br>`list persons` <br> For All Students: <br>`list students` <br> For All Tutors: <br>`list tutors` <br> For All Sessions: <br>`list sessions`
-**View** | For Person: <br> For Session: <br> `view_session c/ID` <br> e.g., `view_session c/5`
-**Assign** | 3 different ways : <br> Student Only : `assign s/3 c/1` <br> - This assigns student with ID 3 to class of ID 1 <br> Tutor Only : `assign t/1 c/1` <br> - This assigns tutor with ID 1 to class of ID 1 <br> Both Student and Tutor : `assign s/3 t/2 c/1` <br> - This assigns student with ID 3 and tutor with ID 2 to class with ID 1
+**View** | For Person: <br> `view_person s/ID` or `view_person t/ID` <br> e.g., `view_person s/1` <br> For Session: <br> `view_session c/ID` <br> e.g., `view_session c/5`
 **Help** | `help`
 
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org)
