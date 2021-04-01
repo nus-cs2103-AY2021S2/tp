@@ -31,7 +31,7 @@ by starting a quiz session. In addition, users can view their history of past qu
 
 ### Additional information 
 These are symbols used throughout the User Guide you might want to take note of.
-* :information_source: Indicates information that is likely to be helpful
+* :information_source: : Indicates information that is likely to be helpful
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
