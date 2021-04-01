@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLEAR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INSURANCE;
 
 import seedu.address.commons.core.index.Index;
@@ -22,8 +23,8 @@ public abstract class PlanCommand extends Command {
             + "Example: " + COMMAND_WORD + " 3 " + PREFIX_INSURANCE + "Protecc $4000\n\n"
             + "Remove plan:\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_INSURANCE + "remove PLAN_INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 2 " + PREFIX_INSURANCE + "remove 3";
+            + PREFIX_CLEAR + "PLAN_INDEX (must be a positive integer)\n"
+            + "Example: " + COMMAND_WORD + " 2 " + PREFIX_CLEAR + "3";
 
     private final Index targetIndex;
 
