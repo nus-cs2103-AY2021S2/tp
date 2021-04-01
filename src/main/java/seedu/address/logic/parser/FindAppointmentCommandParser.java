@@ -21,6 +21,7 @@ import seedu.address.model.appointment.predicate.ApptAnyContainsKeywordsPredicat
 import seedu.address.model.appointment.predicate.ApptContactsContainKeywordsPredicate;
 import seedu.address.model.appointment.predicate.ApptDateContainsKeywordsPredicate;
 import seedu.address.model.appointment.predicate.ApptNameContainsKeywordsPredicate;
+import seedu.address.model.appointment.predicate.ApptTagsContainKeywordsPredicate;
 
 public class FindAppointmentCommandParser implements Parser<FindAppointmentCommand> {
     /**
@@ -62,7 +63,8 @@ public class FindAppointmentCommandParser implements Parser<FindAppointmentComma
         switch (option) {
         case OPTION_NAME:  // find by name
             return new FindAppointmentCommand(new ApptNameContainsKeywordsPredicate(keywords));
-
+        case OPTION_CHILD:
+            return new FindAppointmentCommand(new ApptTagsContainKeywordsPredicate(keywords));
         case OPTION_ADDRESS:  // find by address
             return new FindAppointmentCommand(new ApptAddressContainsKeywordsPredicate(keywords));
         case OPTION_DATE:  // find by date
