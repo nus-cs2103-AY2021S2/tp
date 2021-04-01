@@ -34,6 +34,7 @@
                     <Label fx:id="email" styleClass="cell_small_label" text="\$email"/>
                     <Label fx:id="gender" styleClass="cell_small_label" text="\$gender"/>
                     <Label fx:id="birthdate" styleClass="cell_small_label" text="\$birthdate"/>
+                    <Label fx:id="numNotes" styleClass="cell_small_label" text="\$numNotes"/>
                 </VBox>
                 <VBox HBox.hgrow="NEVER" prefWidth="150">
                     <FlowPane fx:id="plans"/>

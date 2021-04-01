@@ -44,7 +44,7 @@ public class NoteCommandParser implements Parser<NoteCommand> {
 
     /**
      * Returns the singular prefix contained in the given {@code ArgumentMultimap}.
-     * @Throws ParseException if more or less than 1 prefix is provided by user.
+     * @throws ParseException if more or less than 1 prefix is provided by user.
      */
     private static Prefix getSinglePrefix(ArgumentMultimap argumentMultimap, Prefix... prefixes) throws ParseException {
         Prefix singlePrefix = null;
