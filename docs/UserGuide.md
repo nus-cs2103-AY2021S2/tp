@@ -136,6 +136,11 @@ Format: `list`
 
 ### Quick help: `help`
 * **`help`** : Overview of commands and input syntax.
+
+### Email Contact person: `email`
+* **`email`** : Opens a simplified mailbox interface enabling user to email to the desired contact persons with a prefilled text field. Currently only supports sending through Gmail accounts and requires enabling less secure app access on google security.
+  ![Ui](images/helps/googlehelp1.png)
+  Url: https://myaccount.google.com/security
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
@@ -145,7 +150,8 @@ Action | Format, Examples
 **add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS c/OWNED_CAR+COE_EXPIRY_DATE [t/TAG]…​`<br> e.g., `n/add n/Bob Ang p/88765432 e/bobhnd@example.com a/John street, block 123, #01-01 c/BMW Coupe|2030 01 01 c/Porsche|2030 01 01`
 **find** | `find [e/bob /AND p/98761234] OR b/1999 10 11`
 **delete** | `delete NAME`<br> e.g., `delete John doe`
-**list** | `list`
-**clear** | `clear`
-**exit** | `exit`
-**help** | `help`
+**list** | `list` Generates a default list of unfiltered contacts saved in the contact book.
+**clear** | `clear` Clears the contact list, erasing all saved data.
+**exit** | `exit` The GUI Button at the top of the status bar. Clicking on it closes the application safely.
+**help** | `help` The GUI Button at the top of the status bar. Clicking on it opens a help window.
+**email** | `email`The GUI Button at the top of the status bar. Clicking on it opens a simplified MailBox interface allowing user to send email.
