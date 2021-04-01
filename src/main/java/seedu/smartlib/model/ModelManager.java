@@ -432,6 +432,16 @@ public class ModelManager implements Model {
      * @return an unmodifiable view of the filtered reader list.
      */
     @Override
+    public ObservableList<Reader> getFilteredReaderList() {
+        return filteredReaders;
+    }
+
+    /**
+     * Returns an unmodifiable view of the filtered book list.
+     *
+     * @return an unmodifiable view of the filtered book list.
+     */
+    @Override
     public ObservableList<Book> getFilteredBookList() {
         return filteredBooks;
     }
@@ -444,16 +454,6 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Record> getFilteredRecordList() {
         return filteredRecords;
-    }
-
-    /**
-     * Returns an unmodifiable view of the filtered book list.
-     *
-     * @return an unmodifiable view of the filtered book list.
-     */
-    @Override
-    public ObservableList<Reader> getFilteredReaderList() {
-        return filteredReaders;
     }
 
     /**

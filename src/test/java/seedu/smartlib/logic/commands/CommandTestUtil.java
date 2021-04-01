@@ -114,7 +114,12 @@ public class CommandTestUtil {
     /**
      * Executes the given {@code command}, confirms that <br>
      * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
-     * - the {@code actualModel} matches {@code expectedModel}
+     * - the {@code actualModel} matches {@code expectedModel}.
+     *
+     * @param command command to be executed.
+     * @param actualModel model obtained from executing the command.
+     * @param expectedCommandResult expected result from the command.
+     * @param expectedModel model which we expect the executed command to produce.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
             Model expectedModel) {
@@ -130,6 +135,11 @@ public class CommandTestUtil {
     /**
      * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
      * that takes a string {@code expectedMessage}.
+     *
+     * @param command command to be executed.
+     * @param actualModel model obtained from executing the command.
+     * @param expectedMessage expected message arising from the command.
+     * @param expectedModel model which we expect the executed command to produce.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
             Model expectedModel) {
@@ -141,7 +151,11 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the smartlib, filtered reader list and selected reader in {@code actualModel} remain unchanged
+     * - the smartlib, filtered reader list and selected reader in {@code actualModel} remain unchanged.
+     *
+     * @param command command to be executed.
+     * @param actualModel model obtained from executing the command.
+     * @param expectedMessage expected message arising from the command.
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
@@ -157,6 +171,9 @@ public class CommandTestUtil {
     /**
      * Updates {@code model}'s filtered list to show only the reader at the given {@code targetIndex} in the
      * {@code model}'s smartlib.
+     *
+     * @param model model to be examined.
+     * @param targetIndex index of the reader to be shown in the filtered list.
      */
     public static void showReaderAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredReaderList().size());
@@ -171,6 +188,9 @@ public class CommandTestUtil {
     /**
      * Updates {@code model}'s filtered list to show only the book at the given {@code targetIndex} in the
      * {@code model}'s smartlib.
+     *
+     * @param model model to be examined.
+     * @param targetIndex index of the book to be shown in the filtered list.
      */
     public static void showBookAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredBookList().size());
@@ -185,6 +205,9 @@ public class CommandTestUtil {
     /**
      * Updates {@code model}'s filtered list to show only the record at the given {@code targetIndex} in the
      * {@code model}'s smartlib.
+     *
+     * @param model model to be examined.
+     * @param targetIndex index of the record to be shown in the filtered list.
      */
     public static void showRecordAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredRecordList().size());

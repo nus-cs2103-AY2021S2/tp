@@ -18,6 +18,7 @@ import seedu.smartlib.model.reader.Email;
 import seedu.smartlib.model.reader.Phone;
 
 public class JsonAdaptedReaderTest {
+
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";

@@ -132,4 +132,5 @@ public class VersionTest {
             int major, int minor, int patch, boolean isEarlyAccess) {
         assertEquals(new Version(major, minor, patch, isEarlyAccess), Version.fromString(versionString));
     }
+
 }

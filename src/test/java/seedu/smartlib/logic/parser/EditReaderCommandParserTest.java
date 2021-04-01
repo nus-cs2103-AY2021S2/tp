@@ -42,7 +42,7 @@ import seedu.smartlib.model.reader.Phone;
 import seedu.smartlib.model.tag.Tag;
 import seedu.smartlib.testutil.EditReaderDescriptorBuilder;
 
-public class EditCommandParserTest {
+public class EditReaderCommandParserTest {
 
     private static final String TAG_EMPTY = " " + PREFIX_TAG;
 
@@ -209,4 +209,5 @@ public class EditCommandParserTest {
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
+
 }

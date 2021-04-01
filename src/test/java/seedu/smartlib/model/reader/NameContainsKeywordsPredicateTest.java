@@ -72,4 +72,5 @@ public class NameContainsKeywordsPredicateTest {
         assertFalse(predicate.test(new ReaderBuilder().withName("Alice").withPhone("12345")
                 .withEmail("alice@email.com").withAddress("Main Street").build()));
     }
+
 }

@@ -250,4 +250,5 @@ public class TypicalModels {
     public static List<Book> getTypicalBooks() {
         return new ArrayList<>(Arrays.asList(HARRY_PORTER, PROMISE_LAND, LEGACY, HABIT, POWER, LIFE, SECRET));
     }
+
 }

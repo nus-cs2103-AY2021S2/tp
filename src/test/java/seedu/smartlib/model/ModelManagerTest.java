@@ -128,4 +128,5 @@ public class ModelManagerTest {
         differentUserPrefs.setSmartLibFilePath(Paths.get("differentFilePath"));
         assertFalse(modelManager.equals(new ModelManager(smartLib, differentUserPrefs)));
     }
+
 }

@@ -9,6 +9,7 @@ import seedu.smartlib.model.Model;
 import seedu.smartlib.model.ModelManager;
 
 public class ExitCommandTest {
+
     private Model model = new ModelManager();
     private Model expectedModel = new ModelManager();
 
@@ -17,4 +18,5 @@ public class ExitCommandTest {
         CommandResult expectedCommandResult = new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true);
         assertCommandSuccess(new ExitCommand(), model, expectedCommandResult, expectedModel);
     }
+
 }

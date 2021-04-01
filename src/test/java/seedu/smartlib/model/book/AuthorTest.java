@@ -38,6 +38,6 @@ public class AuthorTest {
         assertTrue(Author.isValidAuthor("Stephen King ")); // author name with trailing spaces
         assertTrue(Author.isValidAuthor("Aleksey Nikolayevich Tolstoy")); // very long author name
         assertTrue(Author.isValidAuthor("A")); // one character author name
-
     }
+
 }

@@ -55,4 +55,5 @@ public class EditReaderDescriptorTest {
         editedAmy = new EditReaderDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_VIP).build();
         assertFalse(DESC_AMY.equals(editedAmy));
     }
+
 }

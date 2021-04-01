@@ -101,6 +101,7 @@ public class SmartLibTest {
      * A stub ReadOnlySmartLib whose reader list can violate interface constraints.
      */
     private static class SmartLibStub implements ReadOnlySmartLib {
+
         private final ObservableList<Book> books = FXCollections.observableArrayList();
         private final ObservableList<Reader> readers = FXCollections.observableArrayList();
         private final ObservableList<Record> records = FXCollections.observableArrayList();
@@ -124,6 +125,7 @@ public class SmartLibTest {
         public ObservableList<Record> getRecordList() {
             return records;
         }
+
     }
 
 }
