@@ -117,6 +117,7 @@ TutorBuddy allows the user to take full control of managing their students and t
 
 #### 4.1.1 Home
 The Home page is split into two views: **Reminder** and **Monthly Fees**.
+![home page](images/HomePage.png)
 ##### Reminder
 The Reminder section displays tuition sessions within 3 days of the current date. Namely today, tomorrow and the day after tomorrow.
 
@@ -125,7 +126,7 @@ The Monthly Fees section displays tuition fees for the current and the past two 
 
 #### 4.1.2 Tuition
 The Tuition page is split into two views: **Student** and **Session**.
-
+![tuition page](images/TuitionPage.png)
 ##### Student
 The Student section displays students in TutorBuddy.
 
@@ -134,9 +135,9 @@ The Session section displays sessions corresponding to each student.
 
 #### 4.1.3 Calendar
 The Calendar section provides a weekly view of all tuition sessions in TutorBuddy.
-
+![calendar](images/CalendarPage.png)
 The left and right arrow allows you to view past and future tuition sessions. 
-Click the 'Today' button and to be brought back to this week's view.
+Click the 'Today' button to be brought back to this week's view.
 
 ### 4.2 Commands
 
