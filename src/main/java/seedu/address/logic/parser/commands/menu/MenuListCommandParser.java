@@ -1,13 +1,13 @@
 package seedu.address.logic.parser.commands.menu;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ALL;
+
 import seedu.address.logic.commands.menu.MenuListAvailableCommand;
 import seedu.address.logic.commands.menu.MenuListCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.commands.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
-
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ALL;
 
 public class MenuListCommandParser implements Parser<MenuListCommand> {
 

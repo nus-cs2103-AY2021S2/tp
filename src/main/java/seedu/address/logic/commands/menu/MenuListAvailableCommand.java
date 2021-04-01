@@ -1,10 +1,9 @@
 package seedu.address.logic.commands.menu;
 
-import seedu.address.logic.commands.Command;
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Lists all dishes in the menu book that have sufficient ingredients to produce to the user.
