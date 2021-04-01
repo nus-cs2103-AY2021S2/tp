@@ -210,6 +210,11 @@ Examples:
 * `addAppt i/A1234567X d/2021-12-13 ts/13:00`
 * `addAppt i/A7654321J d/2021-12-13 ts/14:00`
 
+
+| Before        | After         |
+| ------------- |:-------------:|
+|![AddApptBefore](images/AddApptBefore.png)|![AddApptAfter](images/AddApptAfter.png)|
+
 ### Editing an appointment: `editAppt`
 
 Edits an appointment present in Vax@NUS records by referencing the student's matriculation number.
