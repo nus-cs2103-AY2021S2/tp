@@ -9,7 +9,7 @@ ClientBook is an application for insurance agents to manage client contacts, opt
 but still offering a graphical interface for ease of viewing of client contacts. The purpose of ClientBook is to help 
 insurance agents who can type fast to accomplish their client management tasks faster than traditional applications.
 If this is the first time that you are using an application like ClientBook, you do not have to worry. We have included
-a section [here](#how-to-use-this-guide) to guide you through this user guide.
+a section [here](#how-to-use-this-user-guide) to guide you through this user guide.
 
 ## Why ClientBook?
 
@@ -61,8 +61,8 @@ Please use the table of contents to navigate through the user guide quickly. Cli
   * [**4.11** `addshortcut`: Add shortcut](#addshortcut-add-shortcut)
   * [**4.12** `editshortcut`: Edit shortcut](#editshortcut-edit-shortcut)
   * [**4.13** `deleteshortcut`: Delete shortcut](#deleteshortcut-delete-shortcut)
-  * [**4.14** `listshortcut`: List all shortcuts](#list-list-all-shortcuts)
-  * [**4.15** `clearshortcut`: Clear all shortcuts](#clear-clear-all-shortcuts)
+  * [**4.14** `listshortcut`: List all shortcuts](#listshortcut-list-all-shortcuts)
+  * [**4.15** `clearshortcut`: Clear all shortcuts](#clearshortcut-clear-all-shortcuts)
   * [**4.16** `lock`: Lock ClientBook with a user-selected password](#lock-lock-clientbook-with-a-user-selected-password)
   * [**4.17** `unlock`: Unlock ClientBook](#unlock-unlock-clientbook)
   * [**4.18** `exit`: Exiting the program](#exit-exiting-the-program)
@@ -110,7 +110,7 @@ The quick start section provides a tutorial which will guide you through the ste
    | `delete 3` | Deletes the 3rd contact in the list (i.e. deletes `Charlotte Oliveiro`) |
    | `exit` | Exits the application |
 
-1. Refer to the [Features](#features) section below for the full list of commands and their descriptions.
+1. Refer to the [Feature-Description](#feature-description) section below for the full list of commands and their descriptions.
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -789,28 +789,28 @@ CTRL + S | `sort` |
 --------------------------------------------------------------------------------------------------------------------
 ## Glossary
 
-1. **CLI** (Command Line Interface) A text box like interface which allows a user to enter commands.
+1. **CLI** (Command Line Interface) A text box like interface which allows a user to enter and execute commands.
 
 
 2. **GUI** (Graphical user interface) A form of user interface with graphical features such as icons that allows a user to interact with our program.
 
 
-3. **UI** (User Interface) An interface for a user to interact with the program.
+3. **UI** (User Interface) An interface for a user to interact with a program.
 
 
-4. **Java** A programming language and computing platform to use our ClientBook.
+4. **Java** A programming language and computing platform that is used to run ClientBook.
 
 
-5. **Command Prompt** A command line interpreter application on Windows.
+5. **Command Prompt** A command line interpreter application on the Windows operating system.
 
 
-6. **Terminal** A command line interpreter application on Mac.
+6. **Terminal** A command line interpreter application on MacOS/Linux operating systems.
 
 
-7. **Attribute** The types of information you can store in our ClientBook.
+7. **Attribute** The types of information you can store in ClientBook. E.g. phone number, address, name of your clients.
 
 
-8. **Identifier** The alphabetical letter associated with the attribute.
+8. **Identifier** The alphabetical letter associated with an attribute.
 
 
 9. **JSON** (JavaScript Object Notation) A format for storing and transporting data.
