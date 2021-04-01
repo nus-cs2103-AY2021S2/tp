@@ -33,6 +33,8 @@ iScam is a **desktop app for insurance agents to manage clients and meetings, op
    * **`find`**`John`: Find a client named `John`
     
    * **`findplan`**`MediShield Life`: Find a client with `MediShield Life` insurance plan
+    
+   * **`show`**`2` : Shows the 2nd client shown in the list in the bottom right detail panel
 
    * **`delete`**`3` : Deletes the 3rd client shown in the current list.
      
@@ -123,7 +125,6 @@ Display client details on the right panel of the Ui.
 
 Format: `show INDEX`
 
-* Only displays when iScam is in **Client Mode**
 * Shows the client at the specified `INDEX`. The index refers to the index number shown in the displayed client list. The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
@@ -144,7 +145,8 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [l/LOCATION] [ip/INSURANCE_PLAN
 * When editing tags, the existing tags of the client will be removed i.e adding of tags is not cumulative.
 * You can remove all the client’s tags by typing `t/` without
     specifying any tags after it.
-* You can also remove the client's exisitng insurance plan by typing `ip/` without specifying any insurance plan after it.
+* You can also remove the client's existing insurance plan by typing `ip/` without specifying any insurance plan after it.
+* When specifying which image file to use, the file extension must be included in the IMAGE_FILE name.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email location of the 1st client to be `91234567` and `johndoe@example.com` respectively.
@@ -341,6 +343,12 @@ Meeting data are saved in `[JAR file location]/data/meetingbook.json`. Advanced 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, iScam will discard all data and start with an empty data file at the next run.
 </div>
+
+### Adding images for clients
+
+Images for clients can be added by placing an image in the `/data` folder, with the
+`clientbook.json` and `meetingbook.json` files. Any image file used must be of file
+type `.jpg`, `.jpeg` or `.png`.
 
 ### Archiving data files `[coming in v2.0]`
 
