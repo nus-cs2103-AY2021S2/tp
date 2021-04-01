@@ -11,7 +11,7 @@ import seedu.booking.model.ModelManager;
 
 public class PromptAddPersonCommand extends Command {
 
-    public static final String COMMAND_WORD = "add_person_n";
+    public static final String COMMAND_WORD = "add_person";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Starts the multi-step process to add person.\n"
             + "Example: " + COMMAND_WORD;

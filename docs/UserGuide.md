@@ -269,6 +269,6 @@ Action | Format, Examples
 --------|------------------
 **Add** | `add_person` <br> `add_venue v/VENUE_NAME` <br> `add_booking` <br> (Note: add_person, add_venue and add_booking are multi-step commands)
 **Delete** | `delete_person` <br><br> `delete_venue v/VENUE_NAME`<br> e.g., `delete_venue v/Chua Thian Poh Hall` <br><br> `delete_booking b/BOOKING_ID`<br> e.g., `delete_booking b/2`
-**Find** | `find_venue v/VENUE_ID`<br> e.g., `find_venue v/1`<br><br> `find_booking b/BOOKING_ID`<br> e.g., `find_booking b/2`
+**Find** | `find_person` <br> e.g., `find_person e/PERSON_EMAIL` <br><br> `find_venue v/VENUE_ID`<br> e.g., `find_venue v/1`<br><br> `find_booking b/BOOKING_ID`<br> e.g., `find_booking b/2`
 **List** | `list_person`<br>`list_venue` <br> `list_booking`
 **Exit** | `exit`
