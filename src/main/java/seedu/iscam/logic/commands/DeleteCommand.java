@@ -82,7 +82,9 @@ public class DeleteCommand extends UndoableCommand {
         try {
             Event undoableEvent = EventFactory.parse(this, model);
             CommandHistory.addToUndoStack(undoableEvent);
-        } catch (EventException e) { }
+        } catch (EventException e) {
+            throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
+        }
 
         model.deleteClient(clientToBeDeleted);
         return new CommandResult(String.format(MESSAGE_DELETE_CLIENT_SUCCESS, clientToDelete));
