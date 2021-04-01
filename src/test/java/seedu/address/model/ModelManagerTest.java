@@ -101,6 +101,8 @@ public class ModelManagerTest {
         assertTrue(modelManager.findPersonsInGroup(tableTennis).contains(BENSON));
         Group cs2106 = new Group("CS2106");
         assertTrue(modelManager.findPersonsInGroup(cs2106).contains(BENSON));
+        Group random = new Group("sdddfs");
+        assertTrue(modelManager.findPersonsInGroup(random).isEmpty());
     }
 
     @Test

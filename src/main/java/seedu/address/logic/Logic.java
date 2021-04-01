@@ -12,6 +12,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.ReadOnlyMeetingBook;
+import seedu.address.model.note.Note;
+import seedu.address.model.note.ReadOnlyNoteBook;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.ReadOnlyAddressBook;
 
@@ -52,6 +54,12 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of meetings */
     ObservableList<Meeting> getFilteredMeetingList();
+
+    ReadOnlyNoteBook getNoteBook();
+
+    ObservableList<Note> getFilteredNoteList();
+
+    Path getNoteBookFilePath();
 
     /**
      * Returns the user prefs' GUI settings.
