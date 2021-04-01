@@ -4,20 +4,20 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.issue.IssueCommandTestUtil.CATEGORY_DESC_10_100;
-import static seedu.address.logic.commands.issue.IssueCommandTestUtil.CATEGORY_DESC_20_109;
+import static seedu.address.logic.commands.issue.IssueCommandTestUtil.CATEGORY_DESC_11_110;
 import static seedu.address.logic.commands.issue.IssueCommandTestUtil.DESCRIPTION_DESC_10_100;
-import static seedu.address.logic.commands.issue.IssueCommandTestUtil.DESCRIPTION_DESC_20_109;
+import static seedu.address.logic.commands.issue.IssueCommandTestUtil.DESCRIPTION_DESC_11_110;
 import static seedu.address.logic.commands.issue.IssueCommandTestUtil.INVALID_CATEGORY_DESC;
 import static seedu.address.logic.commands.issue.IssueCommandTestUtil.INVALID_DESCRIPTION_DESC;
 import static seedu.address.logic.commands.issue.IssueCommandTestUtil.INVALID_ROOM_NUMBER_DESC;
 import static seedu.address.logic.commands.issue.IssueCommandTestUtil.INVALID_STATUS_DESC;
 import static seedu.address.logic.commands.issue.IssueCommandTestUtil.INVALID_TIMESTAMP_DESC;
 import static seedu.address.logic.commands.issue.IssueCommandTestUtil.ROOM_NUMBER_DESC_10_100;
-import static seedu.address.logic.commands.issue.IssueCommandTestUtil.ROOM_NUMBER_DESC_20_109;
+import static seedu.address.logic.commands.issue.IssueCommandTestUtil.ROOM_NUMBER_DESC_11_110;
 import static seedu.address.logic.commands.issue.IssueCommandTestUtil.STATUS_DESC_10_100;
-import static seedu.address.logic.commands.issue.IssueCommandTestUtil.STATUS_DESC_20_109;
+import static seedu.address.logic.commands.issue.IssueCommandTestUtil.STATUS_DESC_11_110;
 import static seedu.address.logic.commands.issue.IssueCommandTestUtil.TIMESTAMP_DESC_10_100;
-import static seedu.address.logic.commands.issue.IssueCommandTestUtil.TIMESTAMP_DESC_20_109;
+import static seedu.address.logic.commands.issue.IssueCommandTestUtil.TIMESTAMP_DESC_11_110;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.issue.TypicalIssues.ISSUE_10_100;
@@ -50,7 +50,7 @@ public class AddIssueCommandParserTest {
                 new AddIssueCommand(expectedIssue));
 
         // multiple room number - last room number accepted
-        assertParseSuccess(parser, ROOM_NUMBER_DESC_20_109
+        assertParseSuccess(parser, ROOM_NUMBER_DESC_11_110
                 + ROOM_NUMBER_DESC_10_100
                 + DESCRIPTION_DESC_10_100
                 + TIMESTAMP_DESC_10_100
@@ -61,7 +61,7 @@ public class AddIssueCommandParserTest {
         // multiple description - last description accepted
         assertParseSuccess(parser, PREAMBLE_WHITESPACE
                 + ROOM_NUMBER_DESC_10_100
-                + DESCRIPTION_DESC_20_109
+                + DESCRIPTION_DESC_11_110
                 + DESCRIPTION_DESC_10_100
                 + TIMESTAMP_DESC_10_100
                 + STATUS_DESC_10_100
@@ -72,7 +72,7 @@ public class AddIssueCommandParserTest {
         assertParseSuccess(parser, PREAMBLE_WHITESPACE
                 + ROOM_NUMBER_DESC_10_100
                 + DESCRIPTION_DESC_10_100
-                + TIMESTAMP_DESC_20_109
+                + TIMESTAMP_DESC_11_110
                 + TIMESTAMP_DESC_10_100
                 + STATUS_DESC_10_100
                 + CATEGORY_DESC_10_100,
@@ -83,7 +83,7 @@ public class AddIssueCommandParserTest {
                 + ROOM_NUMBER_DESC_10_100
                 + DESCRIPTION_DESC_10_100
                 + TIMESTAMP_DESC_10_100
-                + STATUS_DESC_20_109
+                + STATUS_DESC_11_110
                 + STATUS_DESC_10_100
                 + CATEGORY_DESC_10_100,
                 new AddIssueCommand(expectedIssue));
@@ -94,7 +94,7 @@ public class AddIssueCommandParserTest {
                 + DESCRIPTION_DESC_10_100
                 + TIMESTAMP_DESC_10_100
                 + STATUS_DESC_10_100
-                + CATEGORY_DESC_20_109
+                + CATEGORY_DESC_11_110
                 + CATEGORY_DESC_10_100,
                 new AddIssueCommand(expectedIssue));
     }

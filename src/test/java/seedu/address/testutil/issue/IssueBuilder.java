@@ -15,7 +15,7 @@ import seedu.address.model.tag.Tag;
  * A utility class to help with building Issue objects.
  */
 public class IssueBuilder {
-    public static final String DEFAULT_ROOM_NUMBER = "01-001";
+    public static final String DEFAULT_ROOM_NUMBER = "10-100";
     public static final String DEFAULT_DESCRIPTION = "Table shaky";
     public static final String DEFAULT_TIMESTAMP = "2021/01/01 12:30pm";
     public static final String DEFAULT_STATUS = "pending";

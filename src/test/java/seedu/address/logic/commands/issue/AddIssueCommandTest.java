@@ -44,7 +44,7 @@ public class AddIssueCommandTest {
     }
 
     @Test
-    public void execute_duplicateRooom_throwsCommandException() {
+    public void execute_duplicateIssue_throwsCommandException() {
         // First we create a issue and add that to the command. The command will eventually try to execute
         // by adding this issue to the model
         Issue validIssue = new IssueBuilder().build();
@@ -64,7 +64,7 @@ public class AddIssueCommandTest {
                 .withRoomNumber("10-011")
                 .build();
         Issue issue2 = new IssueBuilder()
-                .withRoomNumber("20-109")
+                .withRoomNumber("11-110")
                 .build();
 
         AddIssueCommand addIssue1Command = new AddIssueCommand(issue1);
@@ -103,6 +103,11 @@ public class AddIssueCommandTest {
             requireNonNull(issue);
             return this.issue.equals(issue);
         }
+
+        @Override
+        public boolean hasRoom(seedu.address.model.room.RoomNumber roomNumber) {
+            return true;
+        }
     }
 
     /**
@@ -131,6 +136,11 @@ public class AddIssueCommandTest {
         @Override
         public void commitAddressBook() {
 
+        }
+
+        @Override
+        public boolean hasRoom(seedu.address.model.room.RoomNumber roomNumber) {
+            return true;
         }
     }
 }
