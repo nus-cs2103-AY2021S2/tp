@@ -8,13 +8,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
+import org.w3c.dom.events.EventException;
+
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import seedu.iscam.commons.core.GuiSettings;
 import seedu.iscam.commons.core.LogsCenter;
 import seedu.iscam.logic.commands.Command;
 import seedu.iscam.logic.commands.CommandResult;
+import seedu.iscam.logic.commands.RedoCommand;
+import seedu.iscam.logic.commands.UndoCommand;
+import seedu.iscam.logic.commands.UndoableCommand;
 import seedu.iscam.logic.commands.exceptions.CommandException;
+import seedu.iscam.logic.events.Event;
+import seedu.iscam.logic.events.EventFactory;
+import seedu.iscam.logic.events.exceptions.EventException;
 import seedu.iscam.logic.parser.BookParser;
 import seedu.iscam.logic.parser.MeetingBookParser;
 import seedu.iscam.logic.parser.clientcommands.ClientBookParser;
@@ -55,7 +63,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public CommandResult execute(String commandText) throws CommandException, ParseException {
+    public CommandResult execute(String commandText) throws CommandException, ParseException, EventException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         Command command = null;
@@ -76,6 +84,16 @@ public class LogicManager implements Logic {
 
         if (command == null) {
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+        }
+
+        if (command instanceof UndoableCommand) {
+            Event undoableEvent = EventFactory.parse((UndoableCommand) command, model);
+            CommandHistory.addToUndoStack(undoableEvent);
+        }
+
+        if (!(command instanceof UndoCommand) && !(command instanceof RedoCommand)) {
+            // We clear the redo stack here as the command is a new command, so can't "redo" commands anymore
+            CommandHistory.clearRedoStack();
         }
 
         try {

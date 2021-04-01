@@ -33,7 +33,7 @@ import seedu.iscam.model.commons.Tag;
 /**
  * Edits the details of an existing client in the iscam book.
  */
-public class EditCommand extends Command {
+public class EditCommand extends UndoableCommand {
 
     public static final String COMMAND_WORD = "edit";
 
@@ -58,6 +58,15 @@ public class EditCommand extends Command {
 
     private final Index index;
     private final EditClientDescriptor editClientDescriptor;
+
+    public Index getIndex() {
+        return index;
+    }
+
+    @Override
+    public String getCommandWord() {
+        return COMMAND_WORD;
+    }
 
     /**
      * @param index                of the client in the filtered client list to edit
