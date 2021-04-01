@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.Optional;
 
 import seedu.address.logic.commands.FindAppointmentCommand;
-import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.predicate.ApptAddressContainsKeywordsPredicate;
 import seedu.address.model.appointment.predicate.ApptAnyContainsKeywordsPredicate;
@@ -34,7 +33,7 @@ public class FindAppointmentCommandParser implements Parser<FindAppointmentComma
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindAppointmentCommand.MESSAGE_USAGE));
         }
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_OPTION);
         Optional<String> argsString = argMultimap.getValue(PREFIX_OPTION);
@@ -56,7 +55,7 @@ public class FindAppointmentCommandParser implements Parser<FindAppointmentComma
      * Parses args in find by options context
      * @param option option to determine the option selected
      * @param optionArgs {@code optionArgs} for the rest of the args
-     * @return {@code FindCommand}
+     * @return {@code FindAppointmentCommand}
      */
     public FindAppointmentCommand parseFindOptions(String option, String optionArgs) throws ParseException {
         List<String> keywords = Arrays.asList(optionArgs.split("\\s+"));
@@ -73,7 +72,7 @@ public class FindAppointmentCommandParser implements Parser<FindAppointmentComma
             return new FindAppointmentCommand(new ApptContactsContainKeywordsPredicate(keywords));
         default:
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindAppointmentCommand.MESSAGE_USAGE));
         }
     }
 
@@ -84,7 +83,7 @@ public class FindAppointmentCommandParser implements Parser<FindAppointmentComma
      */
     public FindAppointmentCommand parseFindAll(String trimmedArgs) throws ParseException {
         String[] keywords = trimmedArgs.split("\\s+");
-        assert keywords.length > 0 : "FindCommand keywords are empty";
+        assert keywords.length > 0 : "FindAppointmentCommand keywords are empty";
         return new FindAppointmentCommand(new ApptAnyContainsKeywordsPredicate(Arrays.asList(keywords)));
     }
 
