@@ -261,6 +261,9 @@ You can record a note for a specific client.
 Format: `note INDEX r/NOTE`
 
 * Adds the provided `NOTE` to the client specified at `INDEX`.
+* `INDEX` refers to the index number shown in the displayed client list.
+* `INDEX` **must be a positive integer** 1, 2, 3, …​
+* `NOTE` should not be empty.
 
 Example:
 
@@ -273,6 +276,8 @@ You can clear all existing notes from a specific client.
 Format: `note INDEX c/`
 
 * Clears all notes from the client specified at `INDEX`.
+* `INDEX` refers to the index number shown in the displayed client list.
+* `INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Example:
 
@@ -285,6 +290,8 @@ You can view all existing notes from a specific client. Notes will be displayed 
 Format: `note INDEX v/`
 
 * View notes from the client specified at `INDEX`.
+* `INDEX` refers to the index number shown in the displayed client list.
+* `INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Example:
 
@@ -327,7 +334,7 @@ Format: `unschedule CHOICE`
 
 Example:
 
-* `schedule 2 m/remove` removes the second meeting on the meeting list.
+* `unschedule 2` removes the second meeting on the meeting list.
 
 
 ### Searching for clients
