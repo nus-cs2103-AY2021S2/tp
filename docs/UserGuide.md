@@ -265,7 +265,7 @@ Examples:
 
 #### Edit a note in edit mode : `editmode`
 
-Edits a note in edits mode.
+Edits a note in edit mode.
 
 Format: `editmodenote`
 
@@ -280,7 +280,7 @@ Examples:
 
 #### Save and exit edit mode: `save`
 
-Save edited content and exit edits mode.
+Save edited content and exit edit mode.
 
 Format: `save`
 
@@ -294,7 +294,7 @@ Examples:
 
 #### Quit edit mode : `quit`
 
-Quit edits mode and discard all changes.
+Quit edit mode and discard all changes.
 
 Format: `quit`
 
