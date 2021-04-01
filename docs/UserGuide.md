@@ -35,7 +35,10 @@ If you are an experienced user, we have provided a convenient [Summary of Comman
 
 ## Table of Contents 
 
-* [**2.** Quick Start](#quick-start)
+```diff
+- bro
+```
+* [**1.** Quick Start](#quick-start)
   [**2.** Example Usage](#example-usage)
 * [**3.** Overview](#overview)
   * [**3.1** Feature Summary](#feature-summary)
