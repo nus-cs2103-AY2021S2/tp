@@ -6,8 +6,11 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Locale;
+import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.function.UnaryOperator;
 import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
@@ -16,6 +19,7 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.date.ImportantDate;
 import seedu.address.model.lesson.Day;
 import seedu.address.model.lesson.Lesson;
@@ -396,6 +400,35 @@ public class ModelManager implements Model {
         SortedList<Person> newSortedPersons = transformedPersons.sorted(comparator);
         newSortedPersons.setComparator(comparator);
         transformedPersons.setAll(newSortedPersons);
+    }
+
+    @Override
+    public void updateTransformedPersonList(Function<Person, Person> function) {
+        filteredPersons.setPredicate(PREDICATE_SHOW_ALL_PERSONS);
+        transformedPersons.setAll(transform(filteredPersons, function));
+    }
+
+    private ObservableList<Person> transform(ObservableList<Person> observableList,
+            Function<Person, Person> function) {
+        ArrayList<Person> oldList = new ArrayList<>(observableList);
+        ArrayList<Person> newList = new ArrayList<>(oldList.size());
+        for (Person p : oldList) {
+            newList.add(function.apply(p));
+        }
+        ObservableList<Person> newObservableList = FXCollections.observableArrayList(newList);
+        return newObservableList;
+    }
+
+    @Override
+    public void filterIndicesThenTransformPersonList(List<Index> indices, Function<Person, Person> function) {
+        UnaryOperator<Person> newOperator = x -> {
+            if (!indices.contains(Index.fromZeroBased(transformedPersons.indexOf(x)))) {
+                return function.apply(x);
+            } else {
+                return x;
+            }
+        };
+        transformedPersons.replaceAll(newOperator);
     }
 
     //=========== Lesson Day Accessors =============================================================

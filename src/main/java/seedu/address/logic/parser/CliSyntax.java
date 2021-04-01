@@ -18,5 +18,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_LESSON = new Prefix("le/");
     public static final Prefix PREFIX_DESCRIPTION = new Prefix("d/");
     public static final Prefix PREFIX_DETAILS = new Prefix("dt/");
+    public static final Prefix PREFIX_EXCLUDE = new Prefix("ex/");
 
 }

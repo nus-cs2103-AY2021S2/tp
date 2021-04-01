@@ -99,7 +99,7 @@ class JsonAdaptedPerson {
             guardianPhone = "";
         }
         if (source.getLevel().isPresent()) {
-            level = source.getLevel().get().level;
+            level = source.getLevel().get().getLevel();
         } else {
             level = "";
         }
