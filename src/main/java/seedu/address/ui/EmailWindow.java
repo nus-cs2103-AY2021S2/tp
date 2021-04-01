@@ -95,8 +95,11 @@ public class EmailWindow extends UiPart<Stage> {
     }
 
     /**
-     * Sends an email to the desired address.
+     *
+     *  Sends an email to the desired address.
      */
+    //@@author TheCodingByte
+    //Reused from https://github.com/TheCodingByte/SendEmailJFX
     public void sendEmail() {
         String to = emailToField.getText();
         String from = emailFromField.getText();
@@ -138,6 +141,7 @@ public class EmailWindow extends UiPart<Stage> {
         }
 
     }
+    //@@author TheCodingByte
 
     /**
      * Copies the URL to the Google Security page to the clipboard for user to enable login access from the app.
