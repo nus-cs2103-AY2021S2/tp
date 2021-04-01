@@ -12,7 +12,7 @@ import seedu.address.model.module.Title;
 public class EditModuleCommand extends EditCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits a module in RemindMe."
-            + "Parameters: "
+            + "\nParameters: "
             + "MODULE INDEX "
             + PREFIX_MODULE + "NEW MODULE TITLE\n"
             + "Example: " + COMMAND_WORD + " "
@@ -20,7 +20,7 @@ public class EditModuleCommand extends EditCommand {
             + PREFIX_MODULE + "CS2103T";
 
     public static final String MESSAGE_SUCCESS = "Module edited: %1$s";
-    public static final String MESSAGE_NO_MODULE = "This module does not exists in RemindMe";
+    public static final String MESSAGE_NO_MODULE = "This module does not exist in RemindMe";
     public static final String MESSAGE_DUPLICATE_MODULE = "This module already exists in RemindMe";
 
     private final int toEdit;

@@ -13,8 +13,7 @@ import seedu.address.model.tag.Tag;
  */
 public class Birthday extends Event {
 
-    public static final String MESSAGE_CONSTRAINTS =
-            "Birthdays should be in the form of DD/MM/YYYY";
+    public static final String MESSAGE_CONSTRAINTS = "Birthdays should be in the form of DD/MM/YYYY";
 
     private final LocalDate birthday;
 

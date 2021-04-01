@@ -1,10 +1,13 @@
 package seedu.address.ui.calendar;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.time.LocalDate;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.commons.core.LogsCenter;
@@ -15,14 +18,19 @@ import seedu.address.model.module.Assignment;
 import seedu.address.model.module.Exam;
 import seedu.address.model.person.Birthday;
 import seedu.address.ui.UiPart;
+import seedu.address.ui.calendar.schedule.UpcomingSchedule;
 
+/**
+ * Represents a box for a date in the calendar.
+ */
 public class CalendarBox extends UiPart<Region> {
     private static final String FXML = "CalendarBox.fxml";
-    private final Logger logger = LogsCenter.getLogger(CalendarBox.class);
+    private static Logger logger = LogsCenter.getLogger(CalendarBox.class);
 
     private LocalDate dateTime;
     private EventList events;
 
+    @FXML
     private VBox dateHolder;
     @FXML
     private Label date;
@@ -36,23 +44,37 @@ public class CalendarBox extends UiPart<Region> {
     private Label meeting;
 
     /**
-     * Create a CalendarBox object to display the entries on that day.
-     * @param dateTime the date time of the day cell in the calendar view
+     * Constructs a CalendarBox object to display the entries on that day.
+     *
+     * @param dateTime the date time of the day cell in the calendar view.
      */
     public CalendarBox(LocalDate dateTime, EventList events) {
         super(FXML);
+        requireAllNonNull(dateTime, events);
         this.dateTime = dateTime;
         this.events = events;
         initializeCalenderBoxInfo(dateTime);
+        logger.info("calendar box successfully initialised");
     }
 
     private void initializeCalenderBoxInfo(LocalDate dateTime) {
         loadDate();
+        logger.info("load date into calendar box successful");
         loadEventsCount();
+        logger.info("load event counts into calendar box successful");
+    }
+
+    public void addClickEventHandler(UpcomingSchedule upcomingSchedule) {
+        dateHolder.addEventHandler(MouseEvent.MOUSE_CLICKED, upcomingSchedule);
+    }
+
+    public LocalDate getDate() {
+        return dateTime;
     }
 
     private void loadDate() {
-        date.setText(dateTime.getMonth().toString().substring(0, 3) + " " + dateTime.getDayOfMonth());
+        date.setText(dateTime.getMonth().toString().substring(0, 3)
+                + " " + dateTime.getDayOfMonth() + " " + dateTime.getYear());
     }
 
     private void loadEventsCount() {

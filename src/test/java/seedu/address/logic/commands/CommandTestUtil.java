@@ -17,7 +17,11 @@ import seedu.address.logic.commands.editcommand.EditPersonCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.RemindMe;
+import seedu.address.model.event.DescriptionContainsKeywordsPredicate;
+import seedu.address.model.event.GeneralEvent;
 import seedu.address.model.module.Exam;
+import seedu.address.model.module.Module;
+import seedu.address.model.module.TitleContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
@@ -45,8 +49,10 @@ public class CommandTestUtil {
     public static final String VALID_BIRTHDAY_BOB = "12/12/1999";
     public static final String VALID_BIRTHDAY_AMY = "12/12/1999";
 
-    public static final String VALID_GENERAL_EVENT_DESCRIPTION = "Party";
-    public static final String VALID_GENERAL_EVENT_DATE = "01/01/2021 2359";
+    public static final String VALID_GENERAL_EVENT_DESCRIPTION_1 = "Party";
+    public static final String VALID_GENERAL_EVENT_DESCRIPTION_2 = "Eat food";
+    public static final String VALID_GENERAL_EVENT_DATE_1 = "01/01/2021 2359";
+    public static final String VALID_GENERAL_EVENT_DATE_2 = "02/02/2021 2359";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -130,4 +136,31 @@ public class CommandTestUtil {
         assertEquals(1, model.getFilteredPersonList().size());
     }
 
+    /**
+     * Updates {@code model}'s filtered list to show only the module at the given {@code targetIndex} in the
+     * {@code model}'s remindMe module list.
+     */
+    public static void showModuleAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredModuleList().size());
+
+        Module module = model.getFilteredModuleList().get(targetIndex.getZeroBased());
+        final String[] splitTitle = module.getTitle().modTitle.split("\\s+");
+        model.updateFilteredModuleList(new TitleContainsKeywordsPredicate(Arrays.asList(splitTitle[0])));
+
+        assertEquals(2, model.getFilteredModuleList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the general event at the given {@code targetIndex} in the
+     * {@code model}'s remindMe event list.
+     */
+    public static void showEventAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredModuleList().size());
+
+        GeneralEvent event = model.getFilteredEventList().get(targetIndex.getZeroBased());
+        final String[] splitTitle = event.getDescription().description.split("\\s+");
+        model.updateFilteredEventList(new DescriptionContainsKeywordsPredicate(Arrays.asList(splitTitle[0])));
+
+        assertEquals(2, model.getFilteredModuleList().size());
+    }
 }

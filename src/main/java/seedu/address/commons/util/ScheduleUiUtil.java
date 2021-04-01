@@ -1,6 +1,10 @@
 package seedu.address.commons.util;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
+import java.util.Locale;
 import java.util.function.BiPredicate;
 
 import javafx.scene.Node;
@@ -61,6 +65,17 @@ public class ScheduleUiUtil {
         } else {
             return String.format("%d:%s AM", hour, minute);
         }
+    }
+
+    /**
+     * Convert string formmatted time from calendar box to local date.
+     * @param formattedTime string format of time from calendar box.
+     * @return
+     */
+    public static LocalDate calendarTextToDate(String formattedTime) {
+        DateTimeFormatter df = new DateTimeFormatterBuilder()
+                .parseCaseInsensitive().appendPattern("MMM d yyyy").toFormatter(Locale.ENGLISH);
+        return LocalDate.parse(formattedTime, df);
     }
 
     /**

@@ -4,8 +4,10 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_DESC
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ASSIGNMENT_DESCRIPTION_2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EXAM_DATETIME_1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EXAM_DATETIME_2;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_GENERAL_EVENT_DATE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_GENERAL_EVENT_DESCRIPTION;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GENERAL_EVENT_DATE_1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GENERAL_EVENT_DATE_2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GENERAL_EVENT_DESCRIPTION_1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GENERAL_EVENT_DESCRIPTION_2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
@@ -41,9 +43,15 @@ public class TypicalRemindMe {
     public static final Assignment VALID_ASSIGNMENT =
             new Assignment(new Description(VALID_ASSIGNMENT_DESCRIPTION_1),
                 DATE_1, new Tag(VALID_TITLE_CS2103));
-    public static final GeneralEvent VALID_GENERAL_EVENT =
-            new GeneralEvent(new Description(VALID_GENERAL_EVENT_DESCRIPTION),
-                LocalDateTime.parse(VALID_GENERAL_EVENT_DATE, LocalDateTimeUtil.DATETIME_FORMATTER));
+    public static final GeneralEvent VALID_GENERAL_EVENT_1 =
+            new GeneralEvent(new Description(VALID_GENERAL_EVENT_DESCRIPTION_1),
+                LocalDateTime.parse(VALID_GENERAL_EVENT_DATE_1, LocalDateTimeUtil.DATETIME_FORMATTER));
+    public static final GeneralEvent VALID_GENERAL_EVENT_2 =
+            new GeneralEvent(new Description(VALID_GENERAL_EVENT_DESCRIPTION_2),
+                    LocalDateTime.parse(VALID_GENERAL_EVENT_DATE_2, LocalDateTimeUtil.DATETIME_FORMATTER));
+    public static final GeneralEvent VALID_GENERAL_EVENT_3 =
+            new GeneralEvent(new Description(VALID_GENERAL_EVENT_DESCRIPTION_1),
+                    LocalDateTime.parse(VALID_GENERAL_EVENT_DATE_2, LocalDateTimeUtil.DATETIME_FORMATTER));
     public static final Exam VALID_EXAM =
         new Exam(DATE_1, new Tag(VALID_TITLE_CS2103));
     public static final Module MOD_1 = new ModuleBuilder().withTitle("MOD 1").build();
@@ -96,11 +104,42 @@ public class TypicalRemindMe {
      */
     public static RemindMe getTypicalRemindMe() {
         RemindMe mp = new RemindMe();
-        mp.addModule(MOD_1);
 
+        // Modules
+        mp.addModule(new ModuleBuilder(MOD_1).build());
+        mp.addModule(new ModuleBuilder(MOD_2).build());
+
+        // People
         for (Person person : getTypicalPersons()) {
             mp.addPerson(person);
         }
+
+        // Events
+        mp.addEvent(new GeneralEventBuilder(VALID_GENERAL_EVENT_1).build());
+        mp.addEvent(new GeneralEventBuilder(VALID_GENERAL_EVENT_2).build());
+        mp.addEvent(new GeneralEventBuilder(VALID_GENERAL_EVENT_3).build());
+
+        return mp;
+    }
+
+    /**
+     * Returns an {@code RemindMe} with all the typical persons.
+     */
+    public static RemindMe getTypicalRemindMeWithFilledModules() {
+        RemindMe mp = new RemindMe();
+
+        // Modules
+        mp.addModule(new ModuleBuilder(MOD_1_WITH_ASSIGNMENTS).build());
+        mp.addModule(new ModuleBuilder(MOD_2).withExams(VALID_EXAM_DATETIME_1, VALID_EXAM_DATETIME_2).build());
+
+        // People
+        for (Person person : getTypicalPersons()) {
+            mp.addPerson(person);
+        }
+
+        // Events
+        mp.addEvent(new GeneralEventBuilder(VALID_GENERAL_EVENT_1).build());
+        mp.addEvent(new GeneralEventBuilder(VALID_GENERAL_EVENT_2).build());
 
         return mp;
     }

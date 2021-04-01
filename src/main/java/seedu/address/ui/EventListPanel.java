@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import static java.util.Objects.requireNonNull;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
@@ -21,6 +23,7 @@ public class EventListPanel extends UiPart<Region> {
      */
     public EventListPanel(ObservableList<GeneralEvent> eventList) {
         super(FXML);
+        requireNonNull(eventList);
         eventListView.setItems(eventList);
         eventListView.setCellFactory(listView -> new EventListPanel.EventListViewCell());
     }

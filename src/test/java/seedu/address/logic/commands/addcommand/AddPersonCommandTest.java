@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.addcommand;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -16,20 +16,18 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.logic.commands.addcommand.AddPersonCommand;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyRemindMe;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.RemindMe;
-import seedu.address.model.event.DescriptionContainsKeywordsPredicate;
 import seedu.address.model.event.GeneralEvent;
 import seedu.address.model.module.Assignment;
 import seedu.address.model.module.Description;
 import seedu.address.model.module.Exam;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.Title;
-import seedu.address.model.module.TitleContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -181,6 +179,11 @@ public class AddPersonCommandTest {
         }
 
         @Override
+        public void setModule(Module target, Module editedMod) {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
         public boolean hasAssignment(Module module, Assignment assignment) {
             throw new AssertionError("This method should not be called.");
         }
@@ -291,7 +294,12 @@ public class AddPersonCommandTest {
         }
 
         @Override
-        public void updateFilteredModuleList(TitleContainsKeywordsPredicate predicate) {
+        public void setEvent(GeneralEvent target, GeneralEvent editedEvent) {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public void updateFilteredModuleList(Predicate<Module> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -301,7 +309,7 @@ public class AddPersonCommandTest {
         }
 
         @Override
-        public void updateFilteredEventList(DescriptionContainsKeywordsPredicate predicate) {
+        public void updateFilteredEventList(Predicate<GeneralEvent> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 

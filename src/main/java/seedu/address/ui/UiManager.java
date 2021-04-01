@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import static java.util.Objects.requireNonNull;
+
 import java.net.URISyntaxException;
 import java.util.logging.Logger;
 
@@ -36,6 +38,7 @@ public class UiManager implements Ui {
      */
     public UiManager(Logic logic) {
         super();
+        requireNonNull(logic);
         this.logic = logic;
     }
 
@@ -50,7 +53,7 @@ public class UiManager implements Ui {
             //start a thread to run background music
             Runnable music = playMusic();
             Thread thread = new Thread(music);
-            thread.start();
+            //thread.start();
 
             mainWindow = new MainWindow(primaryStage, logic);
             CalendarStorage calendarStorage = new CalendarStorage(logic);

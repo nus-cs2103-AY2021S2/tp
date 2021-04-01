@@ -1,27 +1,29 @@
 package seedu.address.ui.calendar.schedule;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.Event;
+import seedu.address.model.EventList;
 import seedu.address.ui.UiPart;
 
 
-
-/*
-Code adapted from https://github.com/AY2021S1-CS2103T-T12-3/tp
+/**
+ * Represents the backbone of the time scale of the {@Code UpcomingSchedule}.
  */
 public class TimeScale extends UiPart<Region> {
+    //Code adapted from https://github.com/AY2021S1-CS2103T-T12-3/tp
     private static final String FXML = "schedule/TimeScale.fxml";
+    private static Logger logger = LogsCenter.getLogger(TimeScale.class);
 
     // Solution adapted from Stack Overflow
     // https://stackoverflow.com/questions/25498747/javafx-gridpane-observablelist-and-listchangelistener
@@ -47,36 +49,79 @@ public class TimeScale extends UiPart<Region> {
         }
     };
 
-    private List<TimeScaleCell> timeScaleCells = new ArrayList<>();
+    private List<TimeScaleCell> timeScaleCells;
     private CurrentTimePointer currentTimePointer;
-    private ObservableList<Event> events;
-    private HashMap<Event, EventCell> taskMapper;
+    private EventList events;
 
     @FXML
     private StackPane timeScale;
-
     @FXML
     private ScrollPane scrollPane;
 
     /**
-     * Constructor of the TimeScale.
-     * @param events the task list that TimeScale listens to.
+     * Constructs a new TimeScale.
      */
-    public TimeScale(ObservableList<Event> events) {
+    public TimeScale() {
         super(FXML);
-        this.events = events;
-        taskMapper = new HashMap<>();
+        this.events = new EventList();
+        this.timeScaleCells = new ArrayList<>();
 
         //ui set-up
         init();
-        setMargin();
-
-        //listener set-up
-        handleListener();
-
+        logger.info("time scale successfully initialised");
     }
 
     private void init() {
+        setUpTimeScale();
+        logger.info("successfully initialised all time scale cells");
+        //style, temporary, move to css/fxml
+        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        scrollPane.setFitToWidth(true);
+
+        loadTimeScale();
+    }
+
+    private void loadTimeScale() {
+        setMargin();
+        logger.info("successfully loaded all time scale cells");
+        addEventsToTimeScale();
+        logger.info("successfully loaded all event cells");
+    }
+
+    private void clearTimeScale() {
+        timeScale.getChildren().clear();
+        logger.info("successfully cleared time scale children nodes");
+    }
+
+    /**
+     * Updates time scale for schedule.
+     *
+     * @param events events to be loaded as event cells in schedule.
+     */
+    public void updateTimeScale(EventList events) {
+        this.events = events;
+        logger.info("sucessfully updated events list");
+        clearTimeScale();
+        loadTimeScale();
+    }
+
+    private void addEventsToTimeScale() {
+        //add taskCell
+        for (Event event : events.getEvents()) {
+            addEventToTimeScale(event);
+        }
+    }
+
+    private void addEventToTimeScale(Event event) {
+        EventCell eventCell = new EventCell(event);
+
+        //taskMapper.put(event, eventCell);
+
+        timeScale.getChildren().add(eventCell.getRoot());
+        timeScale.setMargin(eventCell.getRoot(), new Insets(eventCell.marginTop(), 0, 0, 60));
+    }
+
+    private void setUpTimeScale() {
         //set morning
         timeScaleCells.add(new TimeScaleCell("12 AM"));
         for (int i = 1; i < 12; i++) {
@@ -93,43 +138,20 @@ public class TimeScale extends UiPart<Region> {
 
         //repeat 12 AM
         timeScaleCells.add(new TimeScaleCell("12 AM"));
-
-        //style, temporary, move to css/fxml
-        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        scrollPane.setFitToWidth(true);
-
-        addEventsToTimeScale();
     }
 
-    /**
-     * Add tasks to time scale.
-     */
-    public void addEventsToTimeScale() {
-        //add taskCell
-        for (Event event : events) {
-            addEventToTimeScale(event);
-        }
-    }
-
-    private void addEventToTimeScale(Event event) {
-        EventCell eventCell = new EventCell(event);
-
-        taskMapper.put(event, eventCell);
-
-        timeScale.getChildren().add(eventCell.getRoot());
-        timeScale.setMargin(eventCell.getRoot(), new Insets(eventCell.marginTop(), 0, 0, 60));
-    }
-
+    /*
     private void addEventToTimeScale(int eventId) {
-        addEventToTimeScale(events.get(eventId));
+        //addEventToTimeScale(events.get(eventId));
     }
 
     private void removeTaskFromTimeScale(Event event) {
-        timeScale.getChildren().remove(taskMapper.get(event).getRoot());
+        //timeScale.getChildren().remove(taskMapper.get(event).getRoot());
     }
+    */
 
     /**
-     * Stackpane would squeeze everything in the same place, time function is used to list the timeScaleCells.
+     * Inserts the {@Code TimeScaleCells} into the time scale.
      */
     private void setMargin() {
         for (int i = 0; i < timeScaleCells.size(); i++) {
@@ -140,6 +162,7 @@ public class TimeScale extends UiPart<Region> {
 
     /**
      * Places a {@Code Node} in the TimeScale with marginTop being {@Code marginTop}.
+     *
      * @param node node to place
      * @param marginTop marginTop of the node
      */
@@ -150,6 +173,7 @@ public class TimeScale extends UiPart<Region> {
 
     /**
      * Removes the {@Code Node} in the TimeScale.
+     *
      * @param node node to remove
      */
     public void removeItem(Node node) {
@@ -160,6 +184,7 @@ public class TimeScale extends UiPart<Region> {
 
     /**
      * Places the {@Code CurrentTimePointer} with the initial {@Code marginTop}.
+     *
      * @param marginTop initial marginTop
      */
     public void placeCurrentTime(CurrentTimePointer currentTimePointer, double marginTop) {
@@ -169,6 +194,7 @@ public class TimeScale extends UiPart<Region> {
 
     /**
      * Updates the position of {@CurrentTimePosition}.
+     *
      * @param newMarginTop
      */
     public void updateCurrentTimePosition(double newMarginTop) {
@@ -177,7 +203,8 @@ public class TimeScale extends UiPart<Region> {
     }
 
     /**
-     * Handles the overlap of timeScale and the currentTimePointer
+     * Handles the overlap of timeScale and the currentTimePointer.
+     *
      * @param time time has to be in the format of HH:mm.
      */
     public void handleOverlap(String time) {
@@ -202,7 +229,7 @@ public class TimeScale extends UiPart<Region> {
 
     }
 
-    private void handleListener() {
+    /*private void handleListener() {
         events.addListener(eventListener);
-    }
+    }*/
 }

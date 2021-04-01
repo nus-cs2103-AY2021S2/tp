@@ -6,14 +6,12 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.event.DescriptionContainsKeywordsPredicate;
 import seedu.address.model.event.GeneralEvent;
 import seedu.address.model.module.Assignment;
 import seedu.address.model.module.Description;
 import seedu.address.model.module.Exam;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.Title;
-import seedu.address.model.module.TitleContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 
 /**
@@ -22,6 +20,8 @@ import seedu.address.model.person.Person;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Module> PREDICATE_SHOW_ALL_MODULES = unused -> true;
+    Predicate<GeneralEvent> PREDICATE_SHOW_ALL_EVENTS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -120,6 +120,13 @@ public interface Model {
     Module getModule(int index);
 
     /**
+     * Replaces the given person {@code target} with {@code editedMod}.
+     * {@code target} must exist in the RemindMe.
+     * The person identity of {@code editedMod} must not be the same as another existing person in the RemindMe.
+     */
+    void setModule(Module target, Module editedMod);
+
+    /**
      * Returns true if an assignment that has the same description and deadline
      * as {@code assignment} exists in the same module.
      */
@@ -133,8 +140,6 @@ public interface Model {
 
     /**
      * Edits the given module at index
-     * @param index
-     * @param target
      */
     void editModule(int index, Title target);
 
@@ -242,15 +247,24 @@ public interface Model {
     GeneralEvent getEvent(int index);
 
     /**
+     * Replaces the given general event {@code target} with {@code editedEvent}.
+     * {@code target} must exist in the RemindMe.
+     * The description and date of {@code editedEvent} must not be the same as
+     * another existing general event in the RemindMe.
+     */
+    void setEvent(GeneralEvent target, GeneralEvent editedEvent);
+
+
+    /**
      * Updates the filter of the filtered module list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredModuleList(TitleContainsKeywordsPredicate predicate);
+    void updateFilteredModuleList(Predicate<Module> predicate);
 
     /** Returns an unmodifiable view of the filtered module list */
     ObservableList<Module> getFilteredModuleList();
 
-    void updateFilteredEventList(DescriptionContainsKeywordsPredicate predicate);
+    void updateFilteredEventList(Predicate<GeneralEvent> predicate);
 
     ObservableList<GeneralEvent> getFilteredEventList();
 }
