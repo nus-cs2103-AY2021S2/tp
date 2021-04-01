@@ -53,7 +53,7 @@ public class ParserUtil {
         requireNonNull(name);
         String trimmedName = name.trim();
         if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            throw new ParseFormatException(Name.MESSAGE_CONSTRAINTS);
         }
         return new Name(trimmedName);
     }
@@ -68,7 +68,7 @@ public class ParserUtil {
         requireNonNull(phone);
         String trimmedPhone = phone.trim();
         if (!Phone.isValidPhone(trimmedPhone)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+            throw new ParseFormatException(Phone.MESSAGE_CONSTRAINTS);
         }
         return new Phone(trimmedPhone);
     }
@@ -83,7 +83,7 @@ public class ParserUtil {
         requireNonNull(location);
         String trimmedLocation = location.trim();
         if (!Location.isValidLocation(trimmedLocation)) {
-            throw new ParseException(Location.MESSAGE_CONSTRAINTS);
+            throw new ParseFormatException(Location.MESSAGE_CONSTRAINTS);
         }
         return new Location(trimmedLocation);
     }
@@ -98,7 +98,7 @@ public class ParserUtil {
         requireNonNull(email);
         String trimmedEmail = email.trim();
         if (!Email.isValidEmail(trimmedEmail)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+            throw new ParseFormatException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
     }
@@ -113,7 +113,7 @@ public class ParserUtil {
         requireNonNull(plan);
         String trimmedPlan = plan.trim();
         if (!InsurancePlan.isValidPlan(trimmedPlan)) {
-            throw new ParseException(InsurancePlan.MESSAGE_CONSTRAINTS);
+            throw new ParseFormatException(InsurancePlan.MESSAGE_CONSTRAINTS);
         }
         return new InsurancePlan(trimmedPlan);
     }
@@ -128,7 +128,7 @@ public class ParserUtil {
         requireNonNull(tag);
         String trimmedTag = tag.trim();
         if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+            throw new ParseFormatException(Tag.MESSAGE_CONSTRAINTS);
         }
         return new Tag(trimmedTag);
     }
@@ -153,7 +153,7 @@ public class ParserUtil {
     public static Description parseDescription(String desc) throws ParseException {
         requireNonNull(desc);
         if (!Description.isValidDescription(desc)) {
-            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+            throw new ParseFormatException(Description.MESSAGE_CONSTRAINTS);
         }
         return new Description(desc);
     }
@@ -166,7 +166,7 @@ public class ParserUtil {
     public static DateTime parseDateTime(String dateTimeStr) throws ParseException {
         requireNonNull(dateTimeStr);
         if (!DateTime.isValidDateTimeStr(dateTimeStr)) {
-            throw new ParseException(DateTime.MESSAGE_CONSTRAINTS);
+            throw new ParseFormatException(DateTime.MESSAGE_CONSTRAINTS);
         }
         return new DateTime(dateTimeStr);
     }
@@ -191,7 +191,7 @@ public class ParserUtil {
     public static Image parseImageRes(String imageRes) throws ParseException {
         requireNonNull(imageRes);
         if (!Image.isValidImageRes(imageRes)) {
-            throw new ParseException(Image.MESSAGE_CONSTRAINTS);
+            throw new ParseFormatException(Image.MESSAGE_CONSTRAINTS);
         }
         return new Image(imageRes);
     }
