@@ -4,6 +4,8 @@ import static seedu.address.commons.core.Messages.MESSAGE_BAD_AGE_RANGE_NOTATION
 import static seedu.address.commons.core.Messages.MESSAGE_EMPTY_ARGUMENT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_AGE_INPUT;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_GENDER_INPUT;
+import static seedu.address.commons.core.Messages.MESSAGE_MULTIPLE_WORD_PER_ATTRIBUTE;
 
 import java.util.Arrays;
 
@@ -54,9 +56,22 @@ public class FilterCommandParser implements Parser<FilterCommand> {
                     throw new ParseException(
                             String.format(MESSAGE_BAD_AGE_RANGE_NOTATION, FilterCommand.MESSAGE_USAGE));
                 }
+            } else if (input.getAttributeType().equals("gender")) {
+                if (!input.value().equalsIgnoreCase("m")
+                        && !input.value().equalsIgnoreCase("n")
+                        && !input.value().equalsIgnoreCase("f")) {
+                    throw new ParseException(
+                            String.format(MESSAGE_INVALID_GENDER_INPUT, FilterCommand.MESSAGE_USAGE));
+                }
             } else if (input.isInvalid()) {
-                throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
+                if (!nameKeywords[0].equalsIgnoreCase(keyword) && !keyword.contains("/")) {
+                    throw new ParseException(
+                            String.format(MESSAGE_MULTIPLE_WORD_PER_ATTRIBUTE, FilterCommand.MESSAGE_USAGE));
+                } else {
+                    throw new ParseException(
+                            String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
+                }
+
             } else if (input.value().equals("")) {
                 throw new ParseException(
                         String.format(MESSAGE_EMPTY_ARGUMENT, FilterCommand.MESSAGE_USAGE));

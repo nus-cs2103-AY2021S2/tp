@@ -39,6 +39,9 @@ public class RemovePlanCommand extends PlanCommand {
         }
 
         Person personToSchedule = lastShownList.get(targetIndex.getZeroBased());
+        if (planIndex.getZeroBased() >= personToSchedule.getPlans().size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PLAN_INDEX);
+        }
         String planString = personToSchedule.getPlanString(planIndex.getZeroBased());
         Person updatedPerson = personToSchedule.removePlan(planIndex.getZeroBased());
         model.setPerson(personToSchedule, updatedPerson);

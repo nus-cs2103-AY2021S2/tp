@@ -93,6 +93,10 @@ public class Person {
         return Collections.unmodifiableList(notes);
     }
 
+    public int getNumNotes() {
+        return this.notes.size();
+    }
+
     public String getNotesString() {
         String noteString = "";
         for (Note n : notes) {
@@ -178,17 +182,27 @@ public class Person {
         return planStrings;
     }
     /**
-     * Adds a new Note to the back of notes.
+     * Creates a Person object that is identical to the original, but with new note added.
      */
-    public void addNote(Note note) {
-        notes.add(note);
+    public Person addNote(Note note) {
+        List<Note> notesCopy = new ArrayList<>(notes);
+        notesCopy.add(note);
+        return new Person(name, phone, email, address, gender, birthdate, tags, meeting, plans, notesCopy);
     }
 
     /**
-     * Clears all notes.
+     * Creates a Person object that is identical to the original, but with no notes.
      */
-    public void clearNotes() {
-        notes.clear();
+    public Person clearNotes() {
+        List<Note> notesEmpty = new ArrayList<>();
+        return new Person(name, phone, email, address, gender, birthdate, tags, meeting, plans, notesEmpty);
+    }
+
+    /**
+     * Creates a Person object that is identical to the original, but with notes as provided.
+     */
+    public Person setNotes(List<Note> notesNew) {
+        return new Person(name, phone, email, address, gender, birthdate, tags, meeting, plans, notesNew);
     }
 
     /**

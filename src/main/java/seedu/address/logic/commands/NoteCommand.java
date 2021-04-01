@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLEAR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE_RECORD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE_VIEW;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 import java.util.Optional;
@@ -67,16 +66,16 @@ public class NoteCommand extends Command {
 
         Person personToNote = lastShownList.get(index.getZeroBased());
         if (action.equals(PREFIX_NOTE_RECORD)) {
-            personToNote.addNote(note);
-            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+            Person updatedPerson = personToNote.addNote(note);
+            model.setPerson(personToNote, updatedPerson);
             return new CommandResult(String.format(MESSAGE_RECORD_SUCCESS, personToNote.getName(), note));
         } else if (action.equals(PREFIX_NOTE_VIEW)) {
             String noteString = personToNote.getNotesString();
             return new CommandResult(String.format(MESSAGE_VIEW_SUCCESS, personToNote.getName()),
                     false, false, Optional.of(noteString), false);
         } else if (action.equals(PREFIX_CLEAR)) {
-            personToNote.clearNotes();
-            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+            Person updatedPerson = personToNote.clearNotes();
+            model.setPerson(personToNote, updatedPerson);
             return new CommandResult(String.format(MESSAGE_CLEAR_SUCCESS, personToNote.getName()));
         } else {
             assert false : "Unexpected execution";
