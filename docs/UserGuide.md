@@ -334,7 +334,7 @@ Format: `unschedule CHOICE`
 
 Example:
 
-* `schedule 2 m/remove` removes the second meeting on the meeting list.
+* `unschedule 2` removes the second meeting on the meeting list.
 
 
 ### Searching for clients
