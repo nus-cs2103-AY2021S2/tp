@@ -126,6 +126,10 @@ public class Task {
         return recurringSchedule.isExpired();
     }
 
+    public boolean hasInvalidDateRange() {
+        return recurringSchedule.isInvalidDateRange();
+    }
+
     /**
      * Checks if the provided date has the same date as this task's date.
      *
