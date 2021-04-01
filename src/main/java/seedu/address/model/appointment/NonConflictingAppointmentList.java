@@ -5,11 +5,14 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.UUID;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.appointment.exceptions.AppointmentConflictException;
 import seedu.address.model.appointment.exceptions.AppointmentNotFoundException;
+import seedu.address.model.person.Doctor;
 import seedu.address.model.person.Patient;
 
 /**
@@ -44,7 +47,15 @@ public class NonConflictingAppointmentList implements Iterable<Appointment> {
      * Returns true if the list contains appointments that corresponds to the input patient.
      */
     public boolean hasPatientInSchedule(Patient patient) {
-        return internalList.stream().map(appointment -> appointment.getPatient()).anyMatch(patient::equals);
+        return internalList.stream().anyMatch(appt -> appt.getPatientUuid().equals(patient.getUuid()));
+    }
+
+
+    /**
+     * Returns true if the list contains appointments that corresponds to the input doctor.
+     */
+    public boolean hasDoctorInSchedule(Doctor doctor) {
+        return internalList.stream().anyMatch(appt -> appt.getDoctorUuid().equals(doctor.getUuid()));
     }
 
     /**
@@ -137,6 +148,24 @@ public class NonConflictingAppointmentList implements Iterable<Appointment> {
         FXCollections.sort(internalList);
     }
 
+    /**
+     * Deletes all appointments associated with the input {@code patient} from the appointment schedule.
+     */
+    public void deletePatientAppointments(UUID patientUuid) {
+        List<Appointment> patientAppointmentList = internalList.stream().filter(appointment ->
+                appointment.getPatientUuid().equals(patientUuid)).collect(Collectors.toList());
+        patientAppointmentList.forEach(appointment -> internalList.remove(appointment));
+    }
+
+    /**
+     * Deletes all appointments associated with the input {@code doctor} from the appointment schedule.
+     */
+    public void deleteDoctorAppointments(UUID doctorUuid) {
+        List<Appointment> doctorAppointmentList = internalList.stream().filter(appointment ->
+                appointment.getDoctorUuid().equals(doctorUuid)).collect(Collectors.toList());
+        doctorAppointmentList.forEach(appointment -> internalList.remove(appointment));
+    }
+
     public void setAppointments(NonConflictingAppointmentList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
@@ -174,5 +203,4 @@ public class NonConflictingAppointmentList implements Iterable<Appointment> {
     public Iterator<Appointment> iterator() {
         return internalList.iterator();
     }
-
 }

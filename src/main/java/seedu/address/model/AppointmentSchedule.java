@@ -3,10 +3,12 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.UUID;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.NonConflictingAppointmentList;
+import seedu.address.model.person.Doctor;
 import seedu.address.model.person.Patient;
 
 /**
@@ -76,6 +78,13 @@ public class AppointmentSchedule implements ReadOnlyAppointmentSchedule {
     }
 
     /**
+     * Returns true if a doctor has existing appointments in the appointment schedule.
+     */
+    public boolean hasDoctorInSchedule(Doctor doctor) {
+        return appointments.hasDoctorInSchedule(doctor);
+    }
+
+    /**
      * Returns true if an appointment has a conflict with {@code appointment} exists
      * in the appointment schedule.
      */
@@ -91,6 +100,28 @@ public class AppointmentSchedule implements ReadOnlyAppointmentSchedule {
     public boolean hasConflictExcludingTarget(Appointment target, Appointment appointment) {
         requireNonNull(appointment);
         return appointments.hasConflictExcludingTarget(target, appointment);
+    }
+
+    /**
+     * Removes {@code toRemove} from this {@code AppointmentSchedule}.
+     * {@code toRemove} must exist in the appointment schedule.
+     */
+    public void removeAppointment(Appointment toRemove) {
+        appointments.remove(toRemove);
+    }
+
+    /**
+     * Deletes all appointments associated with the input {@code patientUuid} from the appointment schedule.
+     */
+    public void deletePatientAppointments(UUID patientUuid) {
+        appointments.deletePatientAppointments(patientUuid);
+    }
+
+    /**
+     * Deletes all appointments associated with the input {@code doctor} from the appointment schedule.
+     */
+    public void deleteDoctorAppointments(UUID doctorUuid) {
+        appointments.deleteDoctorAppointments(doctorUuid);
     }
 
     /**
@@ -114,16 +145,7 @@ public class AppointmentSchedule implements ReadOnlyAppointmentSchedule {
         appointments.setAppointment(target, editedAppointment);
     }
 
-    /**
-     * Removes {@code toRemove} from this {@code AppointmentSchedule}.
-     * {@code toRemove} must exist in the appointment schedule.
-     */
-    public void removeAppointment(Appointment toRemove) {
-        appointments.remove(toRemove);
-    }
-
     //// util methods
-
     @Override
     public String toString() {
         return appointments.asUnmodifiableObservableList().size() + " appointments";

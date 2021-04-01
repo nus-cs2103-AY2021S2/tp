@@ -1,11 +1,13 @@
 {
   "patients": [ {
+    "uuid": "64ed5bc0-42bb-4e20-ac70-7d1e6683685b",
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
     "tagged": [ "friends" ]
   }, {
+    "uuid": "64ed5bc0-42bb-4e20-ac70-7d1e6683685b",
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",

@@ -9,8 +9,9 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.address.logic.commands.CommandTestUtil.showPatientAtIndex;
 import static seedu.address.testutil.TypicalAppObjects.getTypicalAppointmentSchedule;
+import static seedu.address.testutil.TypicalAppObjects.getTypicalDoctorRecords;
 import static seedu.address.testutil.TypicalAppObjects.getTypicalPatientRecords;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_IN_LIST;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_IN_LIST;
@@ -21,6 +22,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.patient.EditPatientCommand.EditPatientDescriptor;
 import seedu.address.model.AddressBook;
+import seedu.address.model.AppointmentSchedule;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -33,9 +35,8 @@ import seedu.address.testutil.PatientBuilder;
  */
 public class EditPatientCommandTest {
 
-    private Model model = new ModelManager(getTypicalAppointmentSchedule(), getTypicalPatientRecords(),
-            new UserPrefs());
-
+    private Model model = new ModelManager(getTypicalPatientRecords(), getTypicalDoctorRecords(),
+            getTypicalAppointmentSchedule(), new UserPrefs());
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Patient editedPatient = new PatientBuilder().build();
@@ -44,8 +45,12 @@ public class EditPatientCommandTest {
 
         String expectedMessage = String.format(EditPatientCommand.MESSAGE_EDIT_PATIENT_SUCCESS, editedPatient);
 
-        Model expectedModel = new ModelManager(getTypicalAppointmentSchedule(),
-                new AddressBook<>(model.getPatientRecords()), new UserPrefs());
+        Model expectedModel = new ModelManager(
+                new AddressBook<>(model.getPatientRecords()),
+                new AddressBook<>(model.getDoctorRecords()),
+                new AppointmentSchedule(model.getAppointmentSchedule()),
+                new UserPrefs(model.getUserPrefs())
+        );
 
         expectedModel.setPatient(model.getFilteredPatientList().get(0), editedPatient);
 
@@ -67,8 +72,12 @@ public class EditPatientCommandTest {
 
         String expectedMessage = String.format(EditPatientCommand.MESSAGE_EDIT_PATIENT_SUCCESS, editedPatient);
 
-        Model expectedModel = new ModelManager(getTypicalAppointmentSchedule(),
-                new AddressBook<>(model.getPatientRecords()), new UserPrefs());
+        Model expectedModel = new ModelManager(
+                new AddressBook<>(model.getPatientRecords()),
+                new AddressBook<>(model.getDoctorRecords()),
+                new AppointmentSchedule(model.getAppointmentSchedule()),
+                new UserPrefs(model.getUserPrefs())
+        );
 
         expectedModel.setPatient(lastPatient, editedPatient);
 
@@ -83,15 +92,19 @@ public class EditPatientCommandTest {
 
         String expectedMessage = String.format(EditPatientCommand.MESSAGE_EDIT_PATIENT_SUCCESS, editedPatient);
 
-        Model expectedModel = new ModelManager(getTypicalAppointmentSchedule(),
-                new AddressBook<>(model.getPatientRecords()), new UserPrefs());
+        Model expectedModel = new ModelManager(
+                new AddressBook<>(model.getPatientRecords()),
+                new AddressBook<>(model.getDoctorRecords()),
+                new AppointmentSchedule(model.getAppointmentSchedule()),
+                new UserPrefs(model.getUserPrefs())
+        );
 
         assertCommandSuccess(editPatientCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_filteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_IN_LIST);
+        showPatientAtIndex(model, INDEX_FIRST_IN_LIST);
 
         Patient patientInFilteredList = model.getFilteredPatientList().get(INDEX_FIRST_IN_LIST.getZeroBased());
         Patient editedPatient = new PatientBuilder(patientInFilteredList).withName(VALID_NAME_BOB).build();
@@ -100,8 +113,12 @@ public class EditPatientCommandTest {
 
         String expectedMessage = String.format(EditPatientCommand.MESSAGE_EDIT_PATIENT_SUCCESS, editedPatient);
 
-        Model expectedModel = new ModelManager(getTypicalAppointmentSchedule(),
-                new AddressBook<>(model.getPatientRecords()), new UserPrefs());
+        Model expectedModel = new ModelManager(
+                new AddressBook<>(model.getPatientRecords()),
+                new AddressBook<>(model.getDoctorRecords()),
+                new AppointmentSchedule(model.getAppointmentSchedule()),
+                new UserPrefs(model.getUserPrefs())
+        );
 
         expectedModel.setPatient(model.getFilteredPatientList().get(0), editedPatient);
 
@@ -119,7 +136,7 @@ public class EditPatientCommandTest {
 
     @Test
     public void execute_duplicatePersonFilteredList_failure() {
-        showPersonAtIndex(model, INDEX_FIRST_IN_LIST);
+        showPatientAtIndex(model, INDEX_FIRST_IN_LIST);
 
         // edit person in filtered list into a duplicate in address book
         Patient patientInList = model.getPatientRecords().getPersonList().get(INDEX_SECOND_IN_LIST.getZeroBased());
@@ -144,7 +161,7 @@ public class EditPatientCommandTest {
      */
     @Test
     public void execute_invalidPersonIndexFilteredList_failure() {
-        showPersonAtIndex(model, INDEX_FIRST_IN_LIST);
+        showPatientAtIndex(model, INDEX_FIRST_IN_LIST);
         Index outOfBoundIndex = INDEX_SECOND_IN_LIST;
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getPatientRecords().getPersonList().size());

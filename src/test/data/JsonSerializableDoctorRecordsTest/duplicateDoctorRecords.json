@@ -1,0 +1,11 @@
+{
+  "doctors": [ {
+    "uuid" : "97f83c85-67ba-44e6-8161-b3e82e13ec6e",
+    "name" : "Dr Alice",
+    "tagged" : [ "friends" ]
+  }, {
+    "uuid" : "97f83c85-67ba-44e6-8161-b3e82e13ec6e",
+    "name" : "Dr Alice",
+    "address" : "4th street"
+  } ]
+}

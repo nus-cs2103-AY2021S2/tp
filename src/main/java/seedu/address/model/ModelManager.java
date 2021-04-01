@@ -4,50 +4,58 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.UUID;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.person.Doctor;
 import seedu.address.model.person.Patient;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the app data.
  */
 public class ModelManager implements Model {
     private static final Logger LOGGER = LogsCenter.getLogger(ModelManager.class);
 
-    private final AppointmentSchedule appointmentSchedule;
-    private final AddressBook<Patient> patientRecords;
     private final UserPrefs userPrefs;
+    private final AddressBook<Patient> patientRecords;
+    private final AddressBook<Doctor> doctorRecords;
+    private final AppointmentSchedule appointmentSchedule;
     private final FilteredList<Patient> filteredPatients;
+    private final FilteredList<Doctor> filteredDoctors;
     private final FilteredList<Appointment> filteredAppointments;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given patientRecords, doctorRecords, appointmentSchedule and userPrefs.
      */
-    public ModelManager(ReadOnlyAppointmentSchedule appointmentSchedule, ReadOnlyAddressBook<Patient> patientRecords,
-                        ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyAddressBook<Patient> patientRecords, ReadOnlyAddressBook<Doctor> doctorRecords,
+                        ReadOnlyAppointmentSchedule appointmentSchedule, ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(appointmentSchedule, patientRecords, userPrefs);
 
-        LOGGER.fine("Initializing with appointment schedule: " + appointmentSchedule
-                + ", address book: " + patientRecords + " and user prefs " + userPrefs);
+        LOGGER.fine("Initializing with patientRecords: " + patientRecords
+                + " and doctorRecords: " + doctorRecords
+                + " and appointment schedule: " + appointmentSchedule
+                + " and user prefs " + userPrefs);
 
-        this.patientRecords = new AddressBook<>(patientRecords);
-        this.appointmentSchedule = new AppointmentSchedule(appointmentSchedule);
         this.userPrefs = new UserPrefs(userPrefs);
+        this.patientRecords = new AddressBook<>(patientRecords);
+        this.doctorRecords = new AddressBook<>(doctorRecords);
+        this.appointmentSchedule = new AppointmentSchedule(appointmentSchedule);
+
 
         filteredPatients = new FilteredList<>(this.patientRecords.getPersonList());
+        filteredDoctors = new FilteredList<>(this.doctorRecords.getPersonList());
         filteredAppointments = new FilteredList<>(this.appointmentSchedule.getAppointmentList());
     }
 
     public ModelManager() {
-        this(new AppointmentSchedule(), new AddressBook<>(), new UserPrefs());
+        this(new AddressBook<>(), new AddressBook<>(), new AppointmentSchedule(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -98,6 +106,13 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasConflictingUuid(UUID uuid) {
+        requireNonNull(uuid);
+        return patientRecords.hasConflictingUuid(uuid)
+                || doctorRecords.hasConflictingUuid(uuid);
+    }
+
+    @Override
     public boolean hasPatient(Patient patient) {
         requireNonNull(patient);
         return patientRecords.hasPerson(patient);
@@ -121,8 +136,6 @@ public class ModelManager implements Model {
         patientRecords.setPerson(target, editedPatient);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
-
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
      * {@code versionedAddressBook}
@@ -133,24 +146,70 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ObservableList<String> getFilteredDoctorList() {
-        // TODO: update to Person or Doctor Class
-        final ObservableList<String> internalList = FXCollections.observableArrayList();
-        internalList.add("Coming Soon!");
-        internalList.add("More Coming Soon!");
-        internalList.add("Even More Coming Soon!");
-        internalList.add("Much More Coming Soon!");
-        final ObservableList<String> internalUnmodifiableList =
-            FXCollections.unmodifiableObservableList(internalList);
-        final ObservableList<String> filteredDoctors = new FilteredList<>(internalUnmodifiableList);
-        return filteredDoctors;
-
-    }
-
-    @Override
     public void updateFilteredPatientList(Predicate<? super Patient> predicate) {
         requireNonNull(predicate);
         filteredPatients.setPredicate(predicate);
+    }
+
+    //=========== DoctorRecords ================================================================================
+
+    @Override
+    public Path getDoctorRecordsFilePath() {
+        return userPrefs.getDoctorRecordsFilePath();
+    }
+
+    @Override
+    public void setDoctorRecordsFilePath(Path addressBookFilePath) {
+        requireNonNull(addressBookFilePath);
+        userPrefs.setPatientRecordsFilePath(addressBookFilePath);
+    }
+
+    @Override
+    public void setDoctorRecords(ReadOnlyAddressBook<Doctor> doctorRecords) {
+        this.doctorRecords.resetData(doctorRecords);
+    }
+
+    @Override
+    public ReadOnlyAddressBook<Doctor> getDoctorRecords() {
+        return doctorRecords;
+    }
+
+    @Override
+    public boolean hasDoctor(Doctor doctor) {
+        requireNonNull(doctor);
+        return doctorRecords.hasPerson(doctor);
+    }
+
+    @Override
+    public void deleteDoctor(Doctor target) {
+        doctorRecords.removePerson(target);
+    }
+
+    @Override
+    public void addDoctor(Doctor doctor) {
+        doctorRecords.addPerson(doctor);
+        updateFilteredDoctorList(PREDICATE_SHOW_ALL_DOCTORS);
+    }
+
+    @Override
+    public void setDoctor(Doctor target, Doctor editedDoctor) {
+        requireAllNonNull(target, editedDoctor);
+        doctorRecords.setPerson(target, editedDoctor);
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Doctor> getFilteredDoctorList() {
+        return filteredDoctors;
+    }
+
+    @Override
+    public void updateFilteredDoctorList(Predicate<? super Doctor> predicate) {
+        requireNonNull(predicate);
+        filteredDoctors.setPredicate(predicate);
     }
 
     //=========== AppointmentSchedule ========================================================================
@@ -182,6 +241,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasDoctorInAppointmentSchedule(Doctor doctor) {
+        requireNonNull(doctor);
+        return appointmentSchedule.hasDoctorInSchedule(doctor);
+    }
+
+    @Override
     public boolean hasConflictingAppointment(Appointment appointment) {
         requireNonNull(appointment);
         return appointmentSchedule.hasConflict(appointment);
@@ -199,6 +264,18 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deletePatientAppointments(UUID patientUuid) {
+        requireNonNull(patientUuid);
+        appointmentSchedule.deletePatientAppointments(patientUuid);
+    }
+
+    @Override
+    public void deleteDoctorAppointments(UUID doctorUuid) {
+        requireNonNull(doctorUuid);
+        appointmentSchedule.deleteDoctorAppointments(doctorUuid);
+    }
+
+    @Override
     public void addAppointment(Appointment appointment) {
         appointmentSchedule.addAppointment(appointment);
         updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
@@ -210,8 +287,6 @@ public class ModelManager implements Model {
 
         appointmentSchedule.setAppointment(target, editedAppointment);
     }
-
-    //=========== Filtered Appointment List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Appointment} backed by the internal list of
@@ -242,9 +317,12 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return appointmentSchedule.equals(other.appointmentSchedule)
+        return userPrefs.equals(other.userPrefs)
                 && patientRecords.equals(other.patientRecords)
-                && userPrefs.equals(other.userPrefs)
-                && filteredPatients.equals(other.filteredPatients);
+                && doctorRecords.equals(other.doctorRecords)
+                && appointmentSchedule.equals(other.appointmentSchedule)
+                && filteredPatients.equals(other.filteredPatients)
+                && filteredDoctors.equals(other.filteredDoctors)
+                && filteredAppointments.equals(other.filteredAppointments);
     }
 }

@@ -20,20 +20,27 @@ public class DeletePatientCommand extends Command {
     public static final String COMMAND_WORD = "delete-patient";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the person identified by the index number used in the displayed person list.\n"
+            + ": Deletes the patient identified by the index number used in the displayed patient records.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String FORCE_DELETE_MESSAGE_USAGE = COMMAND_WORD + " --force"
-            + ": Deletes the person identified by the index number used in the displayed person list,\n"
-            + "along with all the existing appointments associated with the person in the appointment schedule.\n"
+            + ": Deletes the patient identified by the index number used in the displayed patient records,\n"
+            + "along with all the existing appointments associated with the patient in the appointment schedule.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " --force " + " 1";
 
     private final Index targetIndex;
+    private final boolean isForceDelete;
 
-    public DeletePatientCommand(Index targetIndex) {
+    /**
+     * Constructor: creates a DeletePatientCommand
+     * @param targetIndex index of patient to be deleted
+     * @param isForceDelete true if force delete is required
+     */
+    public DeletePatientCommand(Index targetIndex, boolean isForceDelete) {
         this.targetIndex = targetIndex;
+        this.isForceDelete = isForceDelete;
     }
 
     @Override
@@ -47,10 +54,14 @@ public class DeletePatientCommand extends Command {
 
         Patient patientToDelete = lastShownList.get(targetIndex.getZeroBased());
 
+        if (isForceDelete) {
+            model.deletePatientAppointments(patientToDelete.getUuid());
+        }
+
         // checks if patient has any existing appointments
         if (model.hasPatientInAppointmentSchedule(patientToDelete)) {
             throw new CommandException(String.format(
-                    Messages.MESSAGE_FORCE_DELETE_REQUIRED, FORCE_DELETE_MESSAGE_USAGE));
+                    Messages.MESSAGE_FORCE_DELETE_PATIENT_REQUIRED, FORCE_DELETE_MESSAGE_USAGE));
         }
 
         model.deletePatient(patientToDelete);

@@ -16,33 +16,17 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Patient;
 
 /**
- * A class to access AddressBook data stored as a json file on the hard disk.
+ * A class to access PatientRecords data stored as a json file on the hard disk.
  */
-public class JsonPatientRecordsStorage implements AddressBookStorage<Patient> {
+public class JsonPatientRecordsStorage extends AddressBookStorage<Patient> {
 
     private static final Logger LOGGER = LogsCenter.getLogger(JsonPatientRecordsStorage.class);
 
-    private Path filePath;
-
     public JsonPatientRecordsStorage(Path filePath) {
-        this.filePath = filePath;
-    }
-
-    public Path getAddressBookFilePath() {
-        return filePath;
+        super(filePath);
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook<Patient>> readAddressBook() throws DataConversionException {
-        return readAddressBook(filePath);
-    }
-
-    /**
-     * Similar to {@link #readAddressBook()}.
-     *
-     * @param filePath location of the data. Cannot be null.
-     * @throws DataConversionException if the file is not in the correct format.
-     */
     public Optional<ReadOnlyAddressBook<Patient>> readAddressBook(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
@@ -62,15 +46,6 @@ public class JsonPatientRecordsStorage implements AddressBookStorage<Patient> {
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook<Patient> addressBook) throws IOException {
-        saveAddressBook(addressBook, filePath);
-    }
-
-    /**
-     * Similar to {@link #saveAddressBook(ReadOnlyAddressBook)}.
-     *
-     * @param filePath location of the data. Cannot be null.
-     */
     public void saveAddressBook(ReadOnlyAddressBook<Patient> addressBook, Path filePath) throws IOException {
         requireNonNull(addressBook);
         requireNonNull(filePath);
@@ -78,5 +53,4 @@ public class JsonPatientRecordsStorage implements AddressBookStorage<Patient> {
         FileUtil.createIfMissing(filePath);
         JsonUtil.saveJsonFile(new JsonSerializablePatientRecords(addressBook), filePath);
     }
-
 }

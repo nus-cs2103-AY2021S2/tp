@@ -1,4 +1,4 @@
-package seedu.address.logic.parser.patient;
+package seedu.address.logic.commands.patient;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -9,6 +9,7 @@ import static seedu.address.testutil.TypicalAppObjects.CARL;
 import static seedu.address.testutil.TypicalAppObjects.ELLE;
 import static seedu.address.testutil.TypicalAppObjects.FIONA;
 import static seedu.address.testutil.TypicalAppObjects.getTypicalAppointmentSchedule;
+import static seedu.address.testutil.TypicalAppObjects.getTypicalDoctorRecords;
 import static seedu.address.testutil.TypicalAppObjects.getTypicalPatientRecords;
 
 import java.util.Arrays;
@@ -16,6 +17,9 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.parser.patient.FindPatientCommand;
+import seedu.address.model.AddressBook;
+import seedu.address.model.AppointmentSchedule;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -25,10 +29,15 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindPatientCommand}.
  */
 public class FindPatientCommandTest {
-    private Model model = new ModelManager(getTypicalAppointmentSchedule(), getTypicalPatientRecords(),
-            new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAppointmentSchedule(), getTypicalPatientRecords(),
-            new UserPrefs());
+    private Model model = new ModelManager(getTypicalPatientRecords(), getTypicalDoctorRecords(),
+            getTypicalAppointmentSchedule(), new UserPrefs());
+
+    private Model expectedModel = new ModelManager(
+        new AddressBook<>(getTypicalPatientRecords()),
+        new AddressBook<>(getTypicalDoctorRecords()),
+        new AppointmentSchedule(getTypicalAppointmentSchedule()),
+        new UserPrefs()
+    );
 
     @Test
     public void equals() {

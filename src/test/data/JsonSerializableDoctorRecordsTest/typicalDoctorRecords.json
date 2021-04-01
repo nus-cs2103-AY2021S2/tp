@@ -1,0 +1,28 @@
+{
+  "_comment": "AddressBook save file which contains the same Doctor values as in TypicalDoctors#getTypicalDoctorRecords()",
+  "doctors" : [ {
+    "uuid" : "e238301a-934c-4730-91f5-da2f55af44ff",
+    "name" : "Dr Meredith Grey",
+    "tagged" : [ "GreysAnatomy" ]
+  }, {
+    "uuid" : "4e4163f3-82ca-4811-aaf0-31e896229672",
+    "name" : "Dr Who",
+    "tagged" : [ "DoctorWho", "TimeLord" ]
+  }, {
+    "uuid" : "e90635ae-2c07-40fc-96be-4f5019095936",
+    "name" : "Dr Strange",
+    "tagged" : [ ]
+  }, {
+    "uuid" : "0b56a520-f0db-4a3a-b560-3aab72a9e10c",
+    "name" : "Dr Jekyll",
+    "tagged" : [ "AndMrHyde" ]
+  }, {
+    "uuid" : "e6b1f1d6-c85d-4baf-b07f-f5a2876e4d75",
+    "name" : "Dr Murphy",
+    "tagged" : [ ]
+  }, {
+    "uuid" : "40c9902a-110a-44c1-a064-a5ef5e8c0117",
+    "name" : "Dr Drake Ramoray",
+    "tagged" : [ ]
+  } ]
+}

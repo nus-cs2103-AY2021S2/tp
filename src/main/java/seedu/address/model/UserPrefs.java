@@ -14,7 +14,8 @@ import seedu.address.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    private Path patientRecordsFilePath = Paths.get("data" , "PatientRecords.json");
+    private Path patientRecordsFilePath = Paths.get("data", "PatientRecords.json");
+    private Path doctorRecordsFilePath = Paths.get("data", "DoctorRecords.json");
     private Path appointmentScheduleFilePath = Paths.get("data", "AppointmentSchedule.json");
 
     /**
@@ -37,8 +38,11 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
         setPatientRecordsFilePath(newUserPrefs.getPatientRecordsFilePath());
+        setDoctorRecordsFilePath(newUserPrefs.getDoctorRecordsFilePath());
+        setAppointmentScheduleFilePath(newUserPrefs.getAppointmentScheduleFilePath());
     }
 
+    @Override
     public GuiSettings getGuiSettings() {
         return guiSettings;
     }
@@ -48,17 +52,30 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.guiSettings = guiSettings;
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== PatientRecords =============================================================================
+    @Override
     public Path getPatientRecordsFilePath() {
         return patientRecordsFilePath;
     }
 
-    public void setPatientRecordsFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        this.patientRecordsFilePath = addressBookFilePath;
+    public void setPatientRecordsFilePath(Path patientRecordsFilePath) {
+        requireNonNull(patientRecordsFilePath);
+        this.patientRecordsFilePath = patientRecordsFilePath;
+    }
+
+    //=========== DoctorRecords ==============================================================================
+    @Override
+    public Path getDoctorRecordsFilePath() {
+        return doctorRecordsFilePath;
+    }
+
+    public void setDoctorRecordsFilePath(Path doctorRecordsFilePath) {
+        requireNonNull(doctorRecordsFilePath);
+        this.doctorRecordsFilePath = doctorRecordsFilePath;
     }
 
     //=========== AppointmentSchedule ========================================================================
+    @Override
     public Path getAppointmentScheduleFilePath() {
         return appointmentScheduleFilePath;
     }
