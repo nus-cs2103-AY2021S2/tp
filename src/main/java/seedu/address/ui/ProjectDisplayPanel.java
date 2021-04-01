@@ -65,17 +65,11 @@ public class ProjectDisplayPanel extends UiPart<Region> {
     public ProjectDisplayPanel() {
         super(FXML);
 
-        tabPane.setOnMouseClicked(event -> {
-            if (event.getButton() == MouseButton.PRIMARY) {
-                Node selected = event.getPickResult().getIntersectedNode();
-                if (selected.toString().contains("Text") || selected.toString().contains("TabPaneSkin")) {
-                    int index = tabPane.getSelectionModel().getSelectedIndex();
-                    if (index == OVERVIEW_TAB) {
-                        setFeedbackToUser(ViewOverviewCommand.MESSAGE_SUCCESS);
-                    } else if (index == TODOS_TAB) {
-                        setFeedbackToUser(ViewTodosCommand.MESSAGE_SUCCESS);
-                    }
-                }
+        tabPane.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.equals(OVERVIEW_TAB)) {
+                setFeedbackToUser(ViewOverviewCommand.MESSAGE_SUCCESS);
+            } else if (newValue.equals(TODOS_TAB)) {
+                setFeedbackToUser(ViewTodosCommand.MESSAGE_SUCCESS);
             }
         });
     }
