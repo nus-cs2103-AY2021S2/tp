@@ -35,11 +35,15 @@ If you are an experienced user, we have provided a convenient [Summary of Comman
 
 ## Table of Contents 
 
-```diff
-- bro
-```
+Please use the table of contents to navigate through the user guide quickly. ClientBook's commands are grouped into 
+<span style="color:#fabed4">**contact management**</span>, 
+<span style="color:#ffd8b1">**contact viewing**</span>, and 
+<span style="color:#fffac8">**general**</span> commands.
+
+
+
 * [**1.** Quick Start](#quick-start)
-  [**2.** Example Usage](#example-usage)
+* [**2.** Example Usage](#example-usage)
 * [**3.** Overview](#overview)
   * [**3.1** Feature Summary](#feature-summary)
   * [**3.2** What information can we store for each client contact?](#what-information-can-we-store-for-each-client-contact)
@@ -52,7 +56,7 @@ If you are an experienced user, we have provided a convenient [Summary of Comman
   * [**4.6** `policy`: Display policies associated with a client](#policy-display-policies-associated-with-a-client)
   * [**4.7** `delete`Delete client contact](#delete-delete-client-contact)
   * [**4.8** `sort`: Sort list of clients](#sort-sort-list-of-clients)
-  * [**4.9** ` lock`: Lock ClientBook with a user-selected password](#lock-lock-clientbook-with-a-user-selected-password)
+  * [**4.9** `lock`: Lock ClientBook with a user-selected password](#lock-lock-clientbook-with-a-user-selected-password)
   * [**4.10** `unlock`: Unlock ClientBook](#unlock-unlock-clientbook)
   * [**4.11** `exit`: Exiting the program](#exit-exiting-the-program)
   * [**4.12** Saving data](#saving-data)
