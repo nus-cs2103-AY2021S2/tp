@@ -16,9 +16,6 @@ public class Messages {
     public static final String MESSAGE_APPOINTMENT_LISTED_OVERVIEW = "%1$d appointments listed!";
     public static final String MESSAGE_INVALID_GRADE_DISPLAYED_INDEX =
             "The grade index provided is invalid";
-    public static final String MESSAGE_TIME_FROM_GREATER_THAN = "Time from has to be "
-            + "smaller than time to. Please check your input for time from and time to "
-            + "again.";
     public static final String MESSAGE_TUTOR_DOES_NOT_EXIST = "Tutor of this "
             + "appointment does not exist in the user system. Please ensure tutor "
             + "exists or use the add_tutor function to add a tutor.";
@@ -32,4 +29,8 @@ public class Messages {
     public static final String MESSAGE_TUTOR_DOES_NOT_TEACH_SUBJECT = "Tutor in the "
             + "appointment to be added does not teach this subject. Please ensure "
             + "that tutor teaches this subject: %s";
+    public static final String MESSAGE_TIME_FROM_GREATER_THAN = "TIME_FROM must be before TIME_TO. "
+            + "Please check your input for TIME_FROM and TIME_TO again.";
+    public static final String MESSAGE_INVALID_DATE = "The new date must not be in the past. "
+            + "Please check your input again.";
 }

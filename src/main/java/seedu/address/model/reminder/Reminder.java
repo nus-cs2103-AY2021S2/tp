@@ -12,7 +12,6 @@ import seedu.address.model.common.Description;
  */
 public class Reminder {
 
-    // Identity fields
     private final Description description;
     private final ReminderDate reminderDate;
 
@@ -34,21 +33,8 @@ public class Reminder {
     }
 
     /**
-     * Returns true if both reminder have the same description.
-     * This defines a weaker notion of equality between two persons.
-     */
-    public boolean isSameReminder(Reminder otherReminder) {
-        if (otherReminder == this) {
-            return true;
-        }
-
-        return otherReminder != null
-                && otherReminder.getDescription().equals(getDescription());
-    }
-
-    /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both reminders have the same identity and data fields.
+     * This defines a stronger notion of equality between two reminders.
      */
     @Override
     public boolean equals(Object other) {
@@ -67,7 +53,6 @@ public class Reminder {
 
     @Override
     public int hashCode() {
-        // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(description, reminderDate);
     }
 
