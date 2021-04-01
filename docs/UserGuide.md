@@ -228,8 +228,8 @@ You can use this command in 2 different ways.
   Examples:
   
     * `find Chocolate` returns `chocolate` and `Chocolate Milk`
-    * `find potato chip` returns `Potato Biscuit` and `chocolate chip`<br></br>
-    
+    * `find potato chip` returns `Potato Biscuit` and `chocolate chip`
+    <p>&nbsp;</p>
   <div markdown="block" class="alert alert-info">
 
   **:information_source: Notes about the command:**
@@ -245,7 +245,7 @@ You can use this command in 2 different ways.
   Examples:
   
     * `find */Burger` returns `CheeseBurger` and `fishburger`
-    * `find */cheese egg` returns `MacAndCheese` and `eggs`<br>
+    * `find */cheese egg` returns `MacAndCheese` and `eggs`<br></br>
 
   <div markdown="block" class="alert alert-info">
 
