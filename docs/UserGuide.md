@@ -74,7 +74,7 @@ The quick start section provides a tutorial which will guide you through the ste
    * Note how the app contains some sample data.
     
 <div align="center">
-    <img src="images/Ui.png">
+    <p align="center"><img src="images/Ui.png"></p>
     <p>Graphical user interface of ClientBook.</p>
 </div>
 
@@ -103,7 +103,7 @@ If you have followed the [Quick Start](#quick-start) guide correctly, you should
 For each of the commands, type them into the command box and press enter to execute the command.
 
 <div align="center">
-    <img src="images/Ui.png">
+    <p align="center"><img src="images/Ui.png"></p>
     <p>Graphical user interface of ClientBook.</p>
 </div>
 
