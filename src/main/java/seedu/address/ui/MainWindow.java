@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
+import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -40,6 +41,7 @@ public class MainWindow extends UiPart<Stage> {
     private HelpWindow helpWindow;
     private CommandBox commandBox;
 
+    private String lastFlag = "";
     private List<String> currentList = new ArrayList<>();
 
     @FXML
@@ -77,10 +79,13 @@ public class MainWindow extends UiPart<Stage> {
 
         helpWindow = new HelpWindow();
 
-        getRoot().addEventFilter(KeyEvent.KEY_RELEASED, (KeyEvent event) -> {
+        getRoot().addEventFilter(KeyEvent.KEY_PRESSED, (KeyEvent event) -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                currentList.clear();
+            }
+
             if (event.getCode() == KeyCode.TAB) {
                 String currentlyInBox = commandBox.getTextFieldText();
-
                 if (currentlyInBox != null) {
                     boolean isAutocompleteFlag = logic.isAutocompleteFlag(currentlyInBox);
                     if (isAutocompleteFlag) {
@@ -88,24 +93,28 @@ public class MainWindow extends UiPart<Stage> {
 
                         // if flag has content -> get next flag
                         // if flag has no content -> toggle
-                        String lastFlag = currentlyInBox.split("-")[currentlyInBox.split("-").length - 1];
+                        lastFlag = currentlyInBox.split("-")[currentlyInBox.split("-").length - 1];
 
                         // Check if lastFlag has content
                         if (lastFlag.split(" ").length > 1 || lastFlag.equals("add ") || lastFlag.equals("edit ")) {
                             if (!availFlags.isEmpty()) {
                                 commandBox.setAndAppendFlag(availFlags.get(0) + " ");
+                                lastFlag = lastFlag.split(" ")[0];
                                 if (!currentList.isEmpty()) {
+                                    currentList = availFlags;
                                     currentList.remove(availFlags.get(0));
                                 }
                             }
                         } else {
-
-                            String addBack = "-" + lastFlag;
-
+                            if (!logic.getAutocompleteFlags(AddCommand.COMMAND_WORD)
+                                    .contains(("-" + lastFlag).trim())) {
+                                return;
+                            }
                             // Populate currentList
                             if (currentList.isEmpty()) {
                                 currentList = availFlags;
                             }
+                            String addBack = "-" + lastFlag;
 
                             // String without current flag
                             String rollBackString = currentlyInBox.split(addBack)[0];
@@ -114,6 +123,7 @@ public class MainWindow extends UiPart<Stage> {
                             if (!availFlags.isEmpty()) {
                                 commandBox.setTextValue(rollBackString + currentList.get(0) + " ");
                             }
+
                             currentList.remove(0);
 
                             if (!currentList.contains(addBack + " ")) {
@@ -121,7 +131,6 @@ public class MainWindow extends UiPart<Stage> {
                             }
                         }
                     } else {
-                        System.out.println(currentlyInBox);
                         autocompleteListPanel.processTabKey((value) -> {
                             if (value == null) {
                                 commandBox.setTextValue(commandBox.getTextFieldText());
