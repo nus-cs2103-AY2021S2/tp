@@ -19,6 +19,9 @@ StorageManager o-right-> UserPrefsStorage
 StorageManager o--> AddressBookStorage
 StorageManager o--> EventBookStorage
 
+Storage -|> UserPrefsStorage
+Storage -|> AddressBookStorage
+
 JsonUserPrefsStorage .left.|> UserPrefsStorage
 JsonAddressBookStorage .up.|> AddressBookStorage
 JsonAddressBookStorage .down.> JsonSerializableAddressBookStorage
