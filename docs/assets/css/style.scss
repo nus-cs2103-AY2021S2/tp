@@ -36,8 +36,20 @@ $md-btn-color: #2196f3;
   background: $md-btn-color;
   color: #fff;
   outline: 0;
-  &:focus {
+  &:hover {
     background: darken($md-btn-color, 12%);
+  }
+}
+
+.md-btn-outline {
+  border: 2px solid $md-btn-color;
+  padding: 10px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 20px;
+  background-color: white;
+  &:hover {
+    background: $md-btn-color;
   }
 }
 

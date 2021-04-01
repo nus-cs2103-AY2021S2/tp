@@ -35,18 +35,20 @@ Focuris is a **desktop application** for **managing events** with a KanBan board
 
 # 1. Quick start
 
+This section will explain how you can get Focuris up and running in the shortest way possible.
+
+Start improving your productivity by following these simple steps:
+
 1. Ensure you have Java `11` or above installed on your Computer.
 
-1. Download the latest `focuris.jar` from [here](https://github.com/AY2021S2-CS2103T-W15-4/tp/releases/tag/v1.3).
+1. You can download the latest `focuris.jar` from [here](https://github.com/AY2021S2-CS2103T-W15-4/tp/releases/tag/v1.3).
 
-1. Copy the `focuris.jar` file to the folder you want to use as the _home folder_ for your Focuris.
+1. Copy the `focuris.jar` file to the folder you want to use as the _home folder_ for your installation of Focuris.
 
-1. Double-click the `focuris.jar` file to start the application. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-
-   ![Ui](images/Ui.png)
+1. Double-click the `focuris.jar` file to start your Focuris. You should be able to see the graphical user interface within a few seconds. Note that the application contains some sample data since you are new to the application.<br> ![Ui](images/UiWithReference.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
+   Here are some commands you can get started with:
 
    - **`todo`**`n/CS2030 Lab 1 d/Lab 1 to complete` : Adds an event named `CS2030 Lab 1` to the application with status `TODO`.
 
@@ -58,7 +60,7 @@ Focuris is a **desktop application** for **managing events** with a KanBan board
 
    - **`exit`** : Exits the application.
 
-1. Refer to the [Features](#features) below for details of each command.
+1. Refer to the [Features](#2-features) below for how you can utilise each command.
 
 <a class="md-btn md-btn-raised" href="#table-of-contents">Return to Table of Contents</a>
 
@@ -66,24 +68,28 @@ Focuris is a **desktop application** for **managing events** with a KanBan board
 
 # 2. Features
 
+You will find out more about the various commands we have in Focuris after reading this chapter.
+
+Continue reading for more ways to improve your productivity with Focuris!
+
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
+**:information_source: Please take note about the following when you enter commands into Focuris**<br>
 
-- Words in `UPPER_CASE` are the [parameters](#parameters) to be supplied by the user.<br>
+- Words in `UPPER_CASE` are the [parameters](#parameters) you can provide to Focuris.<br>
   e.g. in `todo n/NAME d/DESCRIPTION`, `NAME` is a [parameter](#parameters) which can be used as `todo n/CS2030`.
 
 - Items in square brackets are optional.<br>
   e.g `n/NAME d/DESCRIPTION [p/PRIORITY]` can be used as `n/CS2030 d/Assignement p/HIGH` or as `n/CS2030 d/Assignment`.
 
-- [Parameters](#parameters) can be in any order.<br>
-  e.g. if the command specifies `n/NAME d/DESCRIPTION`, `d/DESCRIPTION n/NAME` is also acceptable.
+- You can type in the [parameters](#parameters) in any order.<br>
+  e.g. if the command specifies `n/NAME d/DESCRIPTION`, you can type it as `d/DESCRIPTION n/NAME` as well.
 
 - If a [parameter](#parameters) is expected only once in the command but you specified it multiple times, only the last occurrence of the [parameter](#parameters) will be taken.<br>
   e.g. if you specify `d/walk d/run`, only `d/run` will be taken.
 
 - Extraneous [parameters](#parameters) for commands that do not take in [parameters](#parameters) (such as `help` and `exit`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+  e.g. if you type `help 123`, Focuris will only read it as `help`.
 
 </div>
 
@@ -93,41 +99,55 @@ Focuris is a **desktop application** for **managing events** with a KanBan board
 
 ## 2.1 Summary
 
-### 2.1.1 Command Summary
-
-If you are an experienced user who has used Focuris before, then here is a summary of the commands for easier navigability!
-
-For our new users, don't be too intimidated! You can use this summary to better familiarize yourself with
-the different commands available. We will delve deeper into the specifics at chapters [2.2](#22-general)
-and [2.3](#23-event-commands).
-
-| Command                           | Description                                      | Format, Examples                                                                                           |
-| --------------------------------- | ------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- |
-| [**Clear**](#236-clear-command)   | **Clears** all events in Focuris                 | `clear`                                                                                                    |
-| [**Delete**](#235-delete-command) | **Deletes** an existing event                    | `delete IDENTIFIER`<br> e.g., `delete 3`                                                                   |
-| [**Edit**](#234-edit-command)     | **Edits** an existing event's attributes         | `edit IDENTIFIER [n/NAME] [s/STATUS] [d/DESCRIPTION] [p/PRIORITY]`<br> e.g.,`edit 2 n/CS2030 d/Assignment` |
-| [**Find**](#237-find-command)     | **Finds** an existing event by specific keywords | `find KEYWORD [KEYWORD]...`<br> e.g., `find James Jake`                                                    |
-| [**Exit**](#222-exit-command)     | **Exits** the application                        | `exit`                                                                                                     |
-| [**Help**](#221-help-command)     | Displays **help menu** pop-up                    | `help`                                                                                                     |
-| [**List**](#232-list-command)     | Clears previous filters and lists all events     | `list`                                                                                                     |
-| [**Log**](#232-log-command)       | Creates a new event with status **Backlog**      | `log n/NAME d/DESCRIPTION [p/PRIORITY]` <br> e.g., `log n/CS2030 d/Lab`                                    |
-| [**Prog**](#233-prog-command)     | Creates a new event with status **In-Progress**  | `prog n/NAME d/DESCRIPTION [p/PRIORITY]` <br> e.g., `prog n/CS2100 d/Tutorial`                             |
-| [**Todo**](#231-todo-command)     | Creates a new event with status **Todo**         | `todo n/NAME d/DESCRIPTION [p/PRIORITY]` <br> e.g., `todo n/CS2040 d/Assignment`                           |
+The summary chapter gives you an overview of what the available commands are and what the parameters you should type into the Command Box of Focuris are.
 
 <a class="md-btn md-btn-raised" href="#table-of-contents">Return to Table of Contents</a>
 
 <div class="page-break-before"></div>
 
-### 2.1.2 Attribute Summary
+### 2.1.1 Command Summary
 
-| [Attribute](#attributes) | Prefix    | Description                              | Constraints                                                                                                                                                                                                                                                      |
-| ------------------------ | --------- | ---------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| NAME                     | `n/`      | Name of your Event                       | Event names should not contain any [special characters](#special-characters) or be blank                                                                                                                                                                         |
-| DESCRIPTION              | `d/`      | Description of your Event                | Event descriptions should not contain any [special characters](#special-characters) or be blank                                                                                                                                                                  |
-| PRIORITY                 | `p/`      | Priority of your Event                   | Event priorities should be either `high`, `medium` or `low`. <br/> Priorities can be shorthanded to be `h` , `m` or `l` respectively. <br/>Priorities are case insensitive, meaning `high` or `HiGH` would be understood the same way.                           |
-| STATUS                   | `s/`      | Status of your Event                     | Event statuses should be either `backlog`, `todo`, `in_progress` or `done`. <br/> Statuses can be shorthanded to be `bl` , `td`, `ip` or `d` respectively. <br/> Statuses are case insensitive, meaning `backlog` or `BackLog` would be understood the same way. |
-| IDENTIFIER               | No Prefix | Identifier of your Event in Focuris      | Event identifier should exist in the KanBan board.                                                                                                                                                                                                               |
-| KEYWORD                  | No Prefix | Keywords for searching Events in Focuris | No Constraints                                                                                                                                                                                                                                                   |
+If you are an experienced user who has used Focuris before, here is a summary of the commands you can navigate between easily!
+
+For our new users, don't be too intimidated! You can use this summary to better familiarize yourself with
+the different commands available. We will delve deeper into the specifics at chapters [2.2](#22-general)
+and [2.3](#23-event-commands).
+
+| Command                           | Description                                           | Format, Examples                                                                                           |
+| --------------------------------- | ----------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| [**Clear**](#236-clear-command)   | **Clears** all of your events in Focuris              | `clear`                                                                                                    |
+| [**Delete**](#235-delete-command) | **Deletes** your existing event in Focuris            | `delete IDENTIFIER`<br> e.g., `delete 3`                                                                   |
+| [**Edit**](#234-edit-command)     | **Edits** your existing event's attributes in Focuris | `edit IDENTIFIER [n/NAME] [s/STATUS] [d/DESCRIPTION] [p/PRIORITY]`<br> e.g.,`edit 2 n/CS2030 d/Assignment` |
+| [**Find**](#237-find-command)     | **Finds** your existing event by specific keywords    | `find KEYWORD [KEYWORD]...`<br> e.g., `find James Jake`                                                    |
+| [**Exit**](#222-exit-command)     | **Exits** the application                             | `exit`                                                                                                     |
+| [**Help**](#221-help-command)     | Displays **help menu** pop-up                         | `help`                                                                                                     |
+| [**List**](#232-list-command)     | Clears your previous filters and lists all events     | `list`                                                                                                     |
+| [**Log**](#232-log-command)       | Creates your new event with status **Backlog**        | `log n/NAME d/DESCRIPTION [p/PRIORITY]` <br> e.g., `log n/CS2030 d/Lab`                                    |
+| [**Prog**](#233-prog-command)     | Creates your new event with status **In-Progress**    | `prog n/NAME d/DESCRIPTION [p/PRIORITY]` <br> e.g., `prog n/CS2100 d/Tutorial`                             |
+| [**Todo**](#231-todo-command)     | Creates your new event with status **Todo**           | `todo n/NAME d/DESCRIPTION [p/PRIORITY]` <br> e.g., `todo n/CS2040 d/Assignment`                           |
+
+<a class="md-btn md-btn-raised" href="#table-of-contents">Return to Table of Contents</a>
+
+<div class="page-break-before"></div>
+
+### 2.1.2 Parameter Summary
+
+You may encounter several different [parameters](#parameters) while using Focuris. This section goes through the different [parameters](#parameters) you will encounter while using Focuris.
+
+| Parameter   | Prefix    | Description                              | Constraints                                                                                                                                                                                                                                                                                |
+| ----------- | --------- | ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| NAME        | `n/`      | Name of your Event                       | Your Event names should not contain any [special characters](#special-characters) or be blank                                                                                                                                                                                              |
+| DESCRIPTION | `d/`      | Description of your Event                | Your Event descriptions should not contain any [special characters](#special-characters) or be blank                                                                                                                                                                                       |
+| PRIORITY    | `p/`      | Priority of your Event                   | Your Event priorities should be either `high`, `medium` or `low`. <br/> Priorities can be shorthanded to be `h` , `m` or `l` respectively. <br/>Priorities are [case insensitive](#case-insensitive), meaning `high` or `HiGH` would be understood the same way.<br/>                      |
+| STATUS      | `s/`      | Status of your Event                     | Your Event statuses should be either `backlog`, `todo`, `in_progress` or `done`. <br/> Statuses can be shorthanded to be `bl` , `td`, `ip` or `d` respectively. <br/> Statuses are [case insensitive](#case-insensitive), meaning `backlog` or `BackLog` would be understood the same way. |
+| IDENTIFIER  | No Prefix | Identifier of your Event in Focuris      | Your Event identifier should exist in the KanBan board.                                                                                                                                                                                                                                    |
+| KEYWORD     | No Prefix | Keywords for searching Events in Focuris | No Constraints                                                                                                                                                                                                                                                                             |
+
+<div markdown="block" class="alert alert-info">
+:information_source: **Note:**
+- The default priority value, you do not specify one, is `low`
+- Identifiers are automatically generated for you, you would not need to specify an identifier for your Events
+</div>
 
 <a class="md-btn md-btn-raised" href="#table-of-contents">Return to Table of Contents</a>
 
@@ -135,7 +155,7 @@ and [2.3](#23-event-commands).
 
 ## 2.2 General
 
-You can refer to the follow diagram as reference for names of fields in the event card.
+As a new user, the image below should give you a better understanding of what each part of our graphical user interface means!
 
 ![Ui](images/UiWithReference.png)
 
@@ -147,15 +167,15 @@ You can refer to the follow diagram as reference for names of fields in the even
 
 Shows you a pop-up with a link to the Focuris user guide.
 
-#### Format
+**What you should type into the Command Box:**
 
 ```bash
 help
 ```
 
-#### Expected Outcome
+**What you should expect to happen:**
 
-- Pop-up displays link to the user guide.
+- Pop-up shows you the link to Focuris' user guide.
 
 ![help message](images/helpMessageNew.png)
 
@@ -167,13 +187,13 @@ help
 
 Exits out of Focuris.
 
-#### Format
+**What you should type into the Command Box:**
 
 ```
 exit
 ```
 
-#### Expected Outcome
+**What you should expect to happen:**
 
 - Your Focuris application window closes.
 
@@ -183,13 +203,17 @@ exit
 
 ### 2.2.3 Saving of your data
 
-Event data in Focuris is saved **automatically** whenever you execute any command that makes changes to events. As such, there is no need for you to trigger manually saving of data.
+Your Event data in Focuris is saved **automatically** whenever you execute any command that makes changes to events.
+
+You can be assured that **your data is safe** and there is no need for you to save your data manually through executing a command.
 
 <a class="md-btn md-btn-raised" href="#table-of-contents">Return to Table of Contents</a>
 
 ### 2.2.4 Editing your data file
 
-Focuris' data is saved as a JSON file `[JAR_FILE_LOCATION]/data/eventbook.json`.
+Your data in Focuris is saved as a JSON file in this location: `[JAR_FILE_LOCATION]/data/eventbook.json`
+
+- Where `JAR_FILE_LOCATION` refers to the folder in which you store your `focuris.jar` application.
 
 <div markdown="block" class="alert alert-info">
 :information_source: **Advanced Users:**
@@ -212,21 +236,35 @@ For the majority of event commands, you can simply execute them via these simple
 2. Hit `enter` on your keyboard!
 3. The results and outcome of your command should be visible on the application.
 
+Start discovering our Commands now by going to the Command Summary!
+
+<a class="md-btn-outline" href="#211-command-summary">Bring me to the Command Summary</a>
+
+<a class="md-btn md-btn-raised" href="#table-of-contents">Return to Table of Contents</a>
+
+<div class="page-break-before"></div>
+
 ### 2.3.1 `todo` Command
 
 Adds an event with status `TODO` to Focuris.
 
-#### Format
+**What you should type into the Command Box:**
 
 ```
 todo n/NAME d/DESCRIPTION [p/PRIORITY]
 ```
 
-#### Examples
+**What you should expect to happen:**
+
+- After typing
+  `todo n/Household Chores d/Cleaning the kitchen p/high`
+  and pressing enter:
 
 ![Todo Sample Screenshot](./images/user-guide/todo-example-1.png)
 
-**Figure 1. Shows the result after execution of Example Command 1 in the table below.**
+_Figure 1. Shows the result **after** execution of Example Command 1 in the table below._
+
+**More Sample Commands:**
 
 | No  | Example Command                                                               | Expected Command Result                                                                                                        |
 | --- | ----------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
@@ -244,17 +282,21 @@ todo n/NAME d/DESCRIPTION [p/PRIORITY]
 
 Adds an event with status `BACKLOG` to Focuris.
 
-#### Format
+**What you should type into the Command Box:**
 
 ```
 log n/NAME d/DESCRIPTION [p/PRIORITY]
 ```
 
-#### Examples
+**What you should expect to happen:**
+
+- After typing `log n/Complete Homework d/Complete weekly quiz and group tasks for CS2103T` and pressing enter:
 
 ![Backlog sample screenshot](./images/user-guide/log-example-1.png)
 
-**Figure 2. Shows the result after execution of Example Command 1 in the table below.**
+_Figure 2. Shows the result after execution of Example Command 1 in the table below._
+
+**More Sample Commands:**
 
 | No  | Example Command                                                              | Expected Command Result                                                                                                              |
 | --- | ---------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
@@ -272,17 +314,21 @@ log n/NAME d/DESCRIPTION [p/PRIORITY]
 
 Adds an event with status `IN PROGRESS` to Focuris.
 
-#### Format
+**What you should type into the Command Box:**
 
 ```
 prog n/NAME d/DESCRIPTION [p/PRIORITY]
 ```
 
-#### Examples
+**What you should expect to happen:**
+
+- After typing `prog n/CS2030 Assignment d/Due on 23 May 2021 p/medium` and pressing enter:
 
 ![Prog sample screenshot](./images/user-guide/prog-example-1.png)
 
-**Figure 3. Shows the result after execution of Example Command 1 below.**
+_Figure 3. Shows the result **after** execution of Example Command 1 below._
+
+**More Sample Commands:**
 
 | No  | Example Command                                                               | Expected Command Result                                                                                                                      |
 | --- | ----------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -300,13 +346,14 @@ prog n/NAME d/DESCRIPTION [p/PRIORITY]
 
 Edits an existing event in Focuris.
 
-#### Format
+**What you should type into the Command Box:**
 
 ```
 edit IDENTIFIER [n/NAME] [d/DESCRIPTION] [s/STATUS] [p/PRIORITY]
 ```
 
-- Edits the event at the specified `IDENTIFIER`.
+**Things you should take note about the `edit` command:**
+
 - The identifier refers to the index number shown in the respective displayed event list.
 - The identifier **must be a positive integer** 1, 2, 3, …​
 - At least one of the optional fields must be provided.
@@ -318,20 +365,26 @@ Existing event will have its data overwritten by the new values taken in by the 
 
 </div>
 
-#### Examples
+**What you should expect to happen:**
+
+- Before you execute the command:
+
+![Edit command screenshot before](./images/user-guide/edit-example-1.png)
+
+_Figure 4. Shows Focuris **before** execution of the edit command in the command box._
+
+- After typing in `edit 5 n/CS2105 Assignment 2 p/high` and pressing enter:
+
+![Edit command screenshot after](./images/user-guide/edit-example-2.png)
+
+_Figure 5. Shows Focuris **after** execution of the edit command in the command box._
+
+**More Sample Commands:**
 
 - `edit 1 n/CS2030 d/Assignment` Edits the event name and event description of the event with identifier `#1` to be `CS2030` and `Assignment` respectively.
 - `edit 2 s/backlog` Edits the status of the event with identifier `#2` to be `BACKLOG`
 - `edit 3 n/CS1101S d/Streams assignment s/in_progress p/high` Edits event the event name, description, status and priority of the event with identifier `#3` to be `CS1101S`, `Streams assignment`, `IN_PROGRESS`, `HIGH` respectively.
 - `edit 4 s/d p/l` Edits the status and the priority of the event with identifier `#4` to be `DONE` and `LOW` respectively.
-
-![Edit command screenshot before](./images/user-guide/edit-example-1.png)
-
-**Figure 4. Shows Focuris before execution of the edit command in the command box.**
-
-![Edit command screenshot after](./images/user-guide/edit-example-2.png)
-
-**Figure 5. Shows Focuris after execution of the edit command in the command box.**
 
 <a class="md-btn md-btn-raised" href="#table-of-contents">Return to Table of Contents</a>
 
@@ -341,25 +394,30 @@ Existing event will have its data overwritten by the new values taken in by the 
 
 Deletes the specified event from Focuris.
 
-#### Format
+**What you should type into the Command Box:**
 
 ```
 delete IDENTIFIER
 ```
 
-- Deletes the event at the specified `IDENTIFIER`
 - The identifier refers to the number beside the hex symbol, e.g. `#10` has an identifier of 10.
 - The identifier **must be a positive integer** 1, 2, 3, …​
 
-#### Examples
+**What you should expect to happen:**
+
+- Before executing the command:
 
 ![delete command screenshot](./images/user-guide/delete-example-1.png)
 
-**Figure 6. Shows Focuris _before_ the execution of the delete command in the command box.**
+_Figure 6. Shows Focuris **before** the execution of the delete command in the command box._
+
+- After typing `delete 2` and pressing enter:
 
 ![deleted command screenshot](./images/user-guide/delete-example-2.png)
 
-**Figure 7. Shows Focuris _after_ the execution of the delete command in the command box.**
+_Figure 7. Shows Focuris **after** the execution of the delete command in the command box._
+
+**More Sample Commands:**
 
 | No  | Example Command | Expected Command Result                                                                  |
 | --- | --------------- | ---------------------------------------------------------------------------------------- |
@@ -381,26 +439,25 @@ The commands in the table above make reference to the events in Focuris as seen 
 
 Clears all events in Focuris.
 
-#### Format
+**What you should type into the Command Box:**
 
 ```
 clear
 ```
 
-<div markdown="span" class="alert alert-warning">
-
+<div markdown="block" class="alert alert-info">
 :exclamation: **Caution:**
 All events will be cleared from Focuris and this is **irreversible**. Please use this command with care.
 
 </div>
 
-#### Expected Outcome
+**What you should expect to happen:**
 
-- All events are cleared from Focuris.
+- After typing the command and executing the `clear` command, all events in Focuris are cleared.
 
 ![clear command screenshot](./images/user-guide/clear-example-1.png)
 
-**Figure 8. Shows Focuris after a clear command has been executed.**
+_Figure 8. Shows Focuris after a clear command has been executed._
 
 <a class="md-btn md-btn-raised" href="#table-of-contents">Return to Table of Contents</a>
 
@@ -410,30 +467,37 @@ All events will be cleared from Focuris and this is **irreversible**. Please use
 
 Finds events whose names contain any of the given keywords.
 
-#### Format
+**What you should type into the Command Box:**
 
 ```
 find KEYWORD [MORE_KEYWORDS]...
 ```
 
-- The search is case-insensitive. e.g `cs2040` will match `CS2040`
+**Things you should take note about the `find` command:**
+
 - The order of the keywords does not matter. e.g. `Household Chores` will match `Chores Household`
 - Only the name and description is searched.
 - Only full words will be matched e.g. `Chor` will not match `Chore`
 - Events matching at least one keyword will be returned (i.e. OR search). e.g. `Household` will return `Household Tidy`, `Household Clean`
 
-#### Examples
+**What you should expect to happen:**
 
-- `find CS2103` returns `CS2103` and `CS2103T`
-- `find assignment` returns `CS2101 assignment`, `CS2103 assignment`
+- Before executing the `find` command:
 
 ![before find screenshot](./images/user-guide/find-before-execute.png)
 
-**Figure 9. Before execution of find command**
+_Figure 9. **Before** execution of find command_
+
+- After typing `find cs2101 op1` and executing the command:
 
 ![after find screenshot](./images/user-guide/find-after-execute.png)
 
-**Figure 10. After execution of sample find command**
+_Figure 10. **After** execution of sample find command_
+
+**More Example Commands:**
+
+- `find CS2103` returns `CS2103` and `CS2103T`
+- `find assignment` returns `CS2101 assignment`, `CS2103 assignment`
 
 <a class="md-btn md-btn-raised" href="#table-of-contents">Return to Table of Contents</a>
 
@@ -443,17 +507,19 @@ find KEYWORD [MORE_KEYWORDS]...
 
 Lists all of your events in Focuris. Typically used after using [`find`](#237-find-command).
 
-#### Format
+**What you should type into the Command Box:**
 
 ```
 list
 ```
 
-#### Example
+**What you should expect to happen:**
+
+- After execution of the `list` command:
 
 ![list example](./images/user-guide/list-example-1.png)
 
-**Figure 11. Execution of list command after find command in Figure 10**
+_Figure 11. Execution of list command after find command in Figure 10_
 
 <a class="md-btn md-btn-raised" href="#table-of-contents">Return to Table of Contents</a>
 
@@ -482,10 +548,10 @@ sent to any online servers.
 
 ## 4. Glossary
 
-<a name="special-characters"><bold>Special Characters</bold>: Characters that are neither alphabets, from A to Z, nor digits, from 0 to 9.</a>
-
-<a name="attributes"><bold>Attributes</bold>: Attributes are names of different inputs that a command takes in.</a>
+<a name="case-insensitive"><bold>Case Insensitive</bold>: Case Insensitive means that a word input in upper case and lower case will be taken the same way.</a>
 
 <a name="parameters"><bold>Parameters</bold>: Parameters are the input given to commands behind prefixes such as `n/`.</a>
+
+<a name="special-characters"><bold>Special Characters</bold>: Characters that are neither alphabets, from A to Z, nor digits, from 0 to 9.</a>
 
 <a class="md-btn md-btn-raised" href="#table-of-contents">Return to Table of Contents</a>
