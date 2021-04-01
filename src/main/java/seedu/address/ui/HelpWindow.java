@@ -7,6 +7,7 @@ import java.net.URISyntaxException;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.Clipboard;
@@ -37,6 +38,9 @@ public class HelpWindow extends UiPart<Stage> {
     @FXML
     private Label helpLink;
 
+    @FXML
+    private Scene scene;
+
     /**
      * Creates a new HelpWindow.
      *
@@ -53,8 +57,9 @@ public class HelpWindow extends UiPart<Stage> {
     /**
      * Creates a new HelpWindow.
      */
-    public HelpWindow() {
+    public HelpWindow(String theme) {
         this(new Stage());
+        updateHelpWindowTheme(theme);
     }
 
     /**
@@ -100,6 +105,18 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public void focus() {
         getRoot().requestFocus();
+    }
+
+    /**
+     * Updates theme for helpWindow.
+     */
+    public void updateHelpWindowTheme(String theme) {
+        scene.getStylesheets().clear();
+        if (theme.equals("dark")) {
+            scene.getStylesheets().add("view/DarkThemeHelpWindow.css");
+        } else {
+            scene.getStylesheets().add("view/HeliBookThemeHelpWindow.css");
+        }
     }
 
     /**
