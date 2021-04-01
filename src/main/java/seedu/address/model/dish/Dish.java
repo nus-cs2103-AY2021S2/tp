@@ -51,11 +51,11 @@ public class Dish implements Item, Aggregator<Ingredient> {
     }
 
     /**
-     * Checks if dish has an ingredient with name, case ignored
+     * Checks if dish has an ingredient with keyword, case ignored
      */
-    public boolean containsIngredientNameIgnoreCase(String name) {
+    public boolean containsIngredientKeyword(String keyword) {
         for (Pair<Ingredient, Integer> pair : getIngredientQuantityList()) {
-            if (StringUtil.containsWordIgnoreCase(pair.getKey().getName(), name)) {
+            if (StringUtil.containsWordIgnoreCase(pair.getKey().getName(), keyword)) {
                 return true;
             }
         }
