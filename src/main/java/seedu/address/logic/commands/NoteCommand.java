@@ -70,9 +70,8 @@ public class NoteCommand extends Command {
             model.setPerson(personToNote, updatedPerson);
             return new CommandResult(String.format(MESSAGE_RECORD_SUCCESS, personToNote.getName(), note));
         } else if (action.equals(PREFIX_NOTE_VIEW)) {
-            String noteString = personToNote.getNotesString();
             return new CommandResult(String.format(MESSAGE_VIEW_SUCCESS, personToNote.getName()),
-                    false, false, Optional.of(noteString), false);
+                    false, false, Optional.of(personToNote), false);
         } else if (action.equals(PREFIX_CLEAR)) {
             Person updatedPerson = personToNote.clearNotes();
             model.setPerson(personToNote, updatedPerson);
