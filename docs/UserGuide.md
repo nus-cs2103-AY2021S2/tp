@@ -270,7 +270,7 @@ Format: `find MATRICULATION_NUMBER`
 Examples:
 * `find A0175678U` shows Bernice Yu's personal information, and her appointment details if it is present.
 
-|![Find](images/find.png)
+![Find](images/find.png)
 ### Viewing help : `help`
 
 Display a pop-up window showing a list of important commands and a link to our User Guide. 
