@@ -65,7 +65,7 @@ class JsonAdaptedMeeting {
     }
 
     /**
-     * Converts this Jackson-friendly adapted client object into the model's {@code Meeting} object.
+     * Converts this Jackson-friendly adapted meeting object into the model's {@code Meeting} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted meeting.
      */
@@ -114,7 +114,9 @@ class JsonAdaptedMeeting {
 
         final Set<Tag> modelTags = new HashSet<>(meetingTags);
 
-        return new Meeting(modelClient, modelDateTime, modelLocation, modelDescription, modelTags);
+        final boolean isDone = this.isDone.equals("true");
+
+        return new Meeting(modelClient, modelDateTime, modelLocation, modelDescription, modelTags, isDone);
     }
 
 }
