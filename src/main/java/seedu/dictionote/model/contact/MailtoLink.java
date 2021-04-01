@@ -27,6 +27,7 @@ public class MailtoLink {
     }
 
     public MailtoLink setTo(Contact to) {
+        assert to != null : "Receiving contact cannot be null.";
         this.to = to;
         return this; // returns itself to allow chaining.
     }
