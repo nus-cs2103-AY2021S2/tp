@@ -38,8 +38,7 @@ public class GetMonthlyFeeCommandTest {
             commandResult.getFeedbackToUser());
     }
 
-    // CARL has 2 recurring session and has only 2 session that is on 1 Jan 2021
-    // The other 2 session, one has a different month, one has a different year
+    // CARL has 3 recurring session and has only 2 of them happens on March.
     @Test
     public void execute_correctMonthlyFee_success2() throws CommandException {
         GetMonthlyFeeCommand getMonthlyFeeCommand = new GetMonthlyFeeCommand(CARL.getName(),
