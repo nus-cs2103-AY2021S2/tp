@@ -37,7 +37,7 @@ If you are an experienced user, we have provided a convenient [Summary of Comman
 
 * [**2.** Quick Start](#quick-start)
   [**2.** Example Usage](#example-usage)
-* [**3.** Overview](#Overview)
+* [**3.** Overview](#overview)
   * [**3.1** Feature Summary](#feature-summary)
   * [**3.2** What information can we store for each client contact?](#what-information-can-we-store-for-each-client-contact)
 * [**4.** Feature Description](#feature-description)
@@ -61,9 +61,10 @@ If you are an experienced user, we have provided a convenient [Summary of Comman
 * [**7.** Contact Us](#contact-us)
 
 ## Quick Start
+The quick start section provides a tutorial which will guide you through the steps needed to get ClientBook running.
 
 1. Ensure you have Java `11` or above installed in your Computer.
-   * To check if you have this installed or for instructions on how to install, refer to our FAQ [here](#FAQ).
+   * To check if you have this installed or for instructions on how to install, refer to our FAQ [here](#frequently-asked-questions).
 
 1. Download the latest `clientbook.jar` [here](https://github.com/AY2021S2-CS2103T-W15-2/tp/releases/tag/v1.2).
 1. Copy the file to the folder (we will be referring to this folder as the _home folder_) where you want to store the ClientBook application and your client information.
