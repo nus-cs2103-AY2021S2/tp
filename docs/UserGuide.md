@@ -24,7 +24,7 @@ MeetBuddy is a **desktop app for managing contacts and daily tasks, optimized fo
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+   * **`listp`** : Lists all contacts.
 
    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
@@ -77,30 +77,21 @@ Format: `help`
 
 Adds a person to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [g/GROUP]…​`
+Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GROUP]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of groups (including 0)
 </div>
 
-* Assigning Priorities:
-
-  Format:
-
-  `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS pr/PRIORITY [no/NOTES] d/DATE`
-
-  PRIORITY can be {1,2,3,4,5}
-
-
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe g/CS2103 e/betsycrowe@example.com a/Newgate Prison p/1234567 g/badminton`
 
-### Listing all persons : `list`
+### Listing all persons : `listp`
 
 Shows a list of all persons in the address book.
 
-Format: `list`
+Format: `listp`
 
 ### Editing a person : `edit`
 
@@ -109,7 +100,6 @@ Edits an existing person in the address book.
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GROUP]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing groups, the existing groups of the person will be removed i.e adding of groups is not cumulative.
 * You can remove all the person’s groups by typing `g/` without
@@ -121,22 +111,35 @@ Examples:
 
 ### Locating persons by personName: `find`
 
-Finds persons whose names or whose groups contain any of the given keywords.
+Finds persons whose names contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Both the personName and group are searched.
+* Only the personName are searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons whose personName or group matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* Persons matching at least one keyword will be returned (i.e. OR search). e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
 * `find John` returns `john` and `John Doe`
-* `find badminton` returns the list of contacts that are in the badminton group
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
+
+### Locating persons by group: `findg`
+
+Finds persons whose groups contain any of the given keywords.
+
+Format: `findg KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g `badminton` will match `Badminton`
+* The order of the keywords does not matter. e.g. `findg tennis table` will list every person in the table tennis group
+* Only the groups are searched.
+* Only full words will be matched e.g. `badminton` will not match `badmintons`
+* Persons whose group match at least one keyword will be returned (i.e. `OR` search).
+  
+Examples:
+* `findg badminton` returns the list of contacts that are in the badminton group
 
 ### Deleting a person : `delete`
 
@@ -152,17 +155,21 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Sorting of contacts : `sort`
+### Sorting of contacts : `sortp`
 
 Sorts the contacts displayed according to a specified field.
 
-FormatL `sort FIELDNAME`
+Format: `sortp by/FIELD d/DIRECTION`
 
-* Sorts according to the field specified by `FIELDNAME`
-* `FIELDNAME` is only restricted to the following cases:
-    * Sort by personName : `personName`
-    * Sort by priority (Coming in v1.3) : `priority`
-    * Sort by last seen date (Coming in v1.3) : `lastSeenDate`
+* Sorts according to the field specified by `FIELD`
+* `FIELD` is only restricted to the following cases:
+    * Sort by name : `NAME`
+    * Sort by email : `EMAIL`
+    * Sort by phone number : `PHONE`
+    * Sort by address : `NAME`
+* `DIRECTION` is only restricted to the following cases:
+    * Sort by ascending alphabetical order : `ASC`
+    * Sort by descending alphabetical order : `DESC`
 
 Examples
 
@@ -173,7 +180,7 @@ Deletes a meeting displayed at a specific index in the meeting list.
 Format 'deletem INDEX'
 
 * Deletes the meeting at the specified 'INDEX'.
-* The index refers the the index number shown in the displayed meeting list
+* The index refers the index number shown in the displayed meeting list
 * The index **must be a positive integer** corresponding to a numbered entry in the meeting list.
 
 
@@ -243,8 +250,74 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 
 ### Archiving data files `[coming in v2.0]`
 
-_Details coming soon ..._
+### Adding a meeting: `addm`
 
+Adds a meeting to MeetBuddy.
+
+Format: `addm n/NAME st/TIME ed/TIME des/DESCRIPTIONS pr/PRIORITY [p/PERSON RELATED]… [g/GROUP]…​`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+A meeting can have any number of groups that are already existed in the contacts (including 0). 
+It will add all the persons belong to that group into the person related field.
+</div>
+
+### Listing all meetings : `listm`
+
+Shows a list of all meetings in the meeting book.
+
+Format: `listm`
+
+### Editing a meeting : `editm`
+
+Edits an existing meeting in the meeting book.
+
+Format: `editm INDEX n/NAME st/START TIME ed/END TIME desc/DESCRIPTION pr/PRIORITY [g/GROUP]...​`
+
+* Edits the meeting at the specified `INDEX`. The index refers to the index number shown in the displayed meeting list. The index **must be a positive integer** 1, 2, 3, …​
+* Existing values will be updated to the input values.
+* When editing groups, the existing groups in the meeting will be removed i.e adding of groups is not cumulative.
+* You can remove all the meeting’s groups by typing `g/` without specifying any groups after it.
+
+Examples:
+*  `editm 1 n/CS2103 Lecture g/SOC g/friends` Edits the name of the 1st meeting to be `CS2103 Lecture`, and its groups to be `SOC` and `friends`.
+*  `editm 2 n/CS2106 Lab g/` Edits the name of the 2nd meeting to be `CS2106 Lab` and clears all existing groups in the meeting.
+
+### Deleting a meeting: `deletem`
+
+Deletes a meeting in the meeting book.
+
+Format: `deletem INDEX`
+
+* Deletes the meeting at the specified `INDEX`.
+* The index refers to the index number shown in the displayed meeting list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `listm` followed by `delete 2` deletes the 2nd meeting in the meeting book.
+
+### Sorting of meetings : `sortm`
+
+Sorts the meetings displayed according to a specified field.
+
+Format: `sortm by/FIELD d/DIRECTION`
+
+* Sorts according to the field specified by `FIELD`
+* `FIELD` is only restricted to the following cases:
+    * Sort by name : `NAME`
+    * Sort by start time : `START`
+    * Sort by end time : `END`
+    * Sort by priority : `PRIORITY`
+    * Sort by description : `DESCRIPTION`
+* `DIRECTION` is only restricted to the following cases:
+    * Sort by ascending order : `ASC`
+    * Sort by descending order : `DESC`
+    
+
+### Listing all persons and meetings : `list`
+
+Shows a list of all persons and meetings in MeetBuddy.
+
+Format: `list`
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -258,10 +331,11 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [g/GROUP]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 g/CS2106 g/badminton`
+**Add** | `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GROUP]…` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 g/CS2106 g/badminton` <br> <br> `addm n/NAME st/START TIME ed/END TIME desc/DESCRIPTION pr/PRIORITY [g/GROUP]...[p/INDEX OF PERSON RELATED]...​` <br> e.g., `addm n/CS2103 Lecture st/2021-03-12 14:00 ed/2021-03-12 16:00 desc/Week 7 pr/3 g/lectures g/SoC p/1 p/2`
 **Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GROUP]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
+**Delete** | `delete INDEX`<br> e.g., `delete 3` <br> <br> `deletem INDEX`<br> e.g., `delete 3`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GROUP]…`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com` <br> <br> `editm n/NAME st/START TIME ed/END TIME desc/DESCRIPTION pr/PRIORITY [g/GROUP]...[p/INDEX OF PERSON RELATED]...​`<br> e.g.,`edit 2 n/CS2103 Lecture`
+**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake` <br> <br> `findg KEYWORD [MORE_KEYWORDS]`<br> e.g., `findg badminton` <br>
+**List** | `list`, `listm`, `listp`
+**Sort** | `sortp by/FIELD d/DIRECTION` <br>  `sortm by/FIELD d/DIRECTION`
 **Help** | `help`
