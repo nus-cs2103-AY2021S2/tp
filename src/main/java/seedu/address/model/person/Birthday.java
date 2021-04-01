@@ -38,7 +38,7 @@ public class Birthday extends Event {
     public Birthday(String birthday, String name) {
         super(new Description(name + "'s birthday"),
             LocalDate.parse(birthday, LocalDateTimeUtil.DATE_FORMATTER).atStartOfDay(),
-            new Tag("birthday"));
+            new Tag(name));
         this.birthday = LocalDate.parse(birthday, LocalDateTimeUtil.DATE_FORMATTER);
     }
 
