@@ -85,6 +85,12 @@ Before diving into the rest of the contents in our user guide, the following are
 imPoster will start with an empty file if a modification to the data file causes the data to be invalid.
 </div>
 
+<div markdown="span" class="alert alert-warning">:bulb: **Tip:**
+Do not worry if you input any commands wrongly when using our app! Our app gives helpful error messages depending on the command you entered, 
+and you can always enter the [help command](#5-view-help) if you need to refer back to the various commands avaliable! 
+</div>
+<div style="page-break-after: always;"></div>
+
 <div style="page-break-after: always;"></div>
 
 ## 4. Commands
@@ -117,13 +123,6 @@ In the example above, <span class="main-command">add</span> is the command word 
 
 <div markdown="span" class="alert alert-warning">:bulb: **Tip:**
 Check out the screenshot of each command for an idea of the expected output in the application's **Result Display**!
-</div>
-
-<div style="page-break-after: always;"></div>
-
-<div markdown="span" class="alert alert-warning">:bulb: **Tip:**
-Do not worry if you input any commands wrongly when using our app! Our app gives helpful error messages depending on the command you entered, 
-and you can always enter the [help command](#5-view-help) if you need to refer back to the various commands avaliable! 
 </div>
 
 <div style="page-break-after: always;"></div>
