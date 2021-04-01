@@ -46,9 +46,30 @@ ever-increasing clients.
 1. Refer to the [Features](#features) section below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
-## Overview of Features
+## Overview 
+
+### Layout
+The structure of the Link.me interface is split into five main parts:
+![Layout](images/Layout.png)
+The Input Command Line is where the user inputs the commands for execution.
+
+The Result Display displays the result of the user input.
+
+The Client List displays a list of client stored in Link.me, and changes according to the use input.
+
+The Meeting List displays a list of meetings that are scheduled in Link.me.
+
+The Status Bar displays status information regarding the storage unit. (Not relevant for basic users.)
+
+![PersonLayout](images/PersonLayout.png)
+Each client has basic information stored, as well as insurance plans and premiums attached.
+
+![MeetingLayout](images/MeetingLayout.png)
+Each meeting has the client stores, as well as the meeting time and a brief description of the meeting agenda.
+
+### Functionalities
 The features of Link.me mainly revolve around adding and editing clients as Link.me is first and foremost a client
-managing app. 
+managing app.
 
 Features of Link.me include adding, editing, deleting, searching for and filtering clients. Link.me also supports peripheral features such as meeting scheduling, 
 recording client notes and notifying the user of important upcoming events. 
@@ -353,16 +374,16 @@ Examples:
 
 ### Displaying notifications : `notif`
 
-You can view a notification window informing you of upcoming client birthdays and meetings, so that you can plan
-ahead and 
+You can view a notification window informing you of client birthdays within the next two weeks and upcoming meetings,
+which should notify you in time with a reasonable amount of time to prepare beforehand.
 
 This notification window is also shown when starting up Link.me.
 
 Format: `notif`
 
 Notification window contains:
-* All client birthdays within the next two weeks.
 * All meetings occurring today, arranged in order of time.
+* All client birthdays within the next two weeks, arranged in order of time.
 
 ![notif message](images/notifMessage.png)
 
