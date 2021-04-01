@@ -62,7 +62,7 @@ public class Order implements Item, Aggregator<Dish> {
         final StringBuilder builder = new StringBuilder();
         String state;
         if (getState() == State.UNCOMPLETED) {
-            state = "";
+            state = "(Uncompleted)";
         } else if (getState() == State.COMPLETED) {
             state = "(Completed) ";
         } else {

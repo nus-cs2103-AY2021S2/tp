@@ -36,8 +36,8 @@ public class OrderDeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
-        List<Order> lastShownList = model.getFilteredOrderList(Order.State.UNCOMPLETED);
+        model.updateFilteredOrderList(order -> order.getState() == Order.State.UNCOMPLETED);
+        List<Order> lastShownList = model.getFilteredOrderList();
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(
                     String.format(Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX, Messages.ITEM_ORDER));
@@ -45,6 +45,8 @@ public class OrderDeleteCommand extends Command {
 
         Order orderToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteOrder(orderToDelete);
+
+        model.updateFilteredOrderList(order -> order.getState() == Order.State.UNCOMPLETED);
 
         return new CommandResult(String.format(MESSAGE_DELETE_ORDER_SUCCESS, orderToDelete),
                 CommandResult.CRtype.ORDER);

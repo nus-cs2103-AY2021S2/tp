@@ -62,7 +62,7 @@ public class OrderEditCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         // You can only edit orders that are uncompleted.
-        List<Order> lastShownList = model.getFilteredOrderList(Order.State.UNCOMPLETED);
+        List<Order> lastShownList = model.getFilteredOrderList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(

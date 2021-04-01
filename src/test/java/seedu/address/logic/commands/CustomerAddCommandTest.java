@@ -294,24 +294,11 @@ public class CustomerAddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-        @Override
-        public ObservableList<Order> getFilteredOrderList(Order.State state) {
-            throw new AssertionError("This method should not be called.");
-        }
-
         /**
          * Returns an unmodifiable view of the filtered order list
-         *
-         * @param firstState
-         * @param secState
          */
         @Override
-        public ObservableList<Order> getFilteredOrderList(Order.State firstState, Order.State secState) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ObservableList<Order> getFilteredOrderList(Comparator<Order> comparator, Order.State state) {
+        public ObservableList<Order> getFilteredOrderList() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -328,6 +315,17 @@ public class CustomerAddCommandTest {
         @Override
         public void updateFilteredOrderList(Predicate<? super Order> predicate) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        /**
+         * Updates the filtered ingredient list by sorting it with {@code comparator}.
+         *
+         * @param comparator
+         * @throws NullPointerException if {@code predicate} is null.
+         */
+        @Override
+        public void updateFilteredOrderList(Comparator<Order> comparator) {
+
         }
 
         @Override

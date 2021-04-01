@@ -1,7 +1,6 @@
 package seedu.address.logic;
 
 import java.nio.file.Path;
-import java.util.Comparator;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
@@ -54,7 +53,6 @@ public interface Logic {
 
     ObservableList<Dish> getFilteredDishList();
     ObservableList<Ingredient> getFilteredInventoryList();
-    ObservableList<Order> getFilteredOrderList(Order.State state);
-    ObservableList<Order> getFilteredOrderList(Order.State firstState, Order.State secState);
-    ObservableList<Order> getFilteredOrderList(Comparator<Order> comparator, Order.State state);
+
+    ObservableList<Order> getFilteredOrderList();
 }
