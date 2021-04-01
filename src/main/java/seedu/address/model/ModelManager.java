@@ -453,25 +453,11 @@ public class ModelManager implements Model {
     };
 
     /**
-     * Returns an unmodifiable view of the filtered order list with one predicate
+     * Returns an unmodifiable view of the filtered order list
      */
     @Override
-    public ObservableList<Order> getFilteredOrderList(Order.State state) {
-        return filteredOrders.filtered(order -> order.getState() == state);
-    }
-
-    /**
-     * Returns an unmodifiable view of the filtered order list with two predicates
-     */
-    @Override
-    public ObservableList<Order> getFilteredOrderList(Order.State firstState, Order.State secState) {
-        return filteredOrders.filtered(order -> order.getState() == firstState || order.getState() == secState);
-    }
-
-    /** Returns an sorted view of the filtered order list */
-    public ObservableList<Order> getFilteredOrderList(Comparator<Order> comparator, Order.State state) {
-        sortOrder(comparator);
-        return getFilteredOrderList(state);
+    public ObservableList<Order> getFilteredOrderList() {
+        return filteredOrders;
     }
 
     /**
@@ -480,13 +466,19 @@ public class ModelManager implements Model {
      * @return
      */
     public void sortOrder(Comparator<Order> comparator) {
-        orderBook.sortItemsByDateTime(comparator);
+            orderBook.sortItemsByDateTime(comparator);
     }
 
     @Override
     public void updateFilteredOrderList(Predicate<? super Order> predicate) {
         requireNonNull(predicate);
         filteredOrders.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredOrderList(Comparator<Order> comparator) {
+        requireNonNull(comparator);
+        orderBook.sortItemsByDateTime(comparator);
     }
 
     //@@author kangtinglee

@@ -140,7 +140,7 @@ public class MainWindow extends UiPart<Stage> {
                 break;
             case ORDER_TAB_INDEX:
                 updateCompList(componentList, orderListPanel,
-                        getSortedFilteredOrderListPanel(), orderListPanelPlaceholder, orderTab);
+                        new OrderListPanel(logic.getFilteredOrderList()), orderListPanelPlaceholder, orderTab);
                 resultDisplay.setFeedbackToUser(OrderListCommand.MESSAGE_SUCCESS);
                 break;
             case INVENTORY_TAB_INDEX:
@@ -385,12 +385,7 @@ public class MainWindow extends UiPart<Stage> {
 
             case ORDER:
                 updateCompList(componentList, orderListPanel,
-                        getSortedFilteredOrderListPanel(), orderListPanelPlaceholder, orderTab);
-                break;
-
-            case ORDERHISTORY:
-                updateCompList(componentList, orderListPanel,
-                    getSortedFilteredOrderHistoryPanel(), orderListPanelPlaceholder, orderTab);
+                        new OrderListPanel(logic.getFilteredOrderList()), orderListPanelPlaceholder, orderTab);
                 break;
 
             default:
@@ -422,14 +417,5 @@ public class MainWindow extends UiPart<Stage> {
         list.getChildren().add(panelPlaceholder);
         list.getChildren().add(componentTabs);
         tab.setSelected(true);
-    }
-
-    private OrderListPanel getSortedFilteredOrderListPanel() {
-        Comparator<Order> comparator = (first, second) ->
-                first.getDatetime().isAfter(second.getDatetime()) ? 1 : 0;
-        return new OrderListPanel(logic.getFilteredOrderList(comparator, Order.State.UNCOMPLETED));
-    }
-    private OrderListPanel getSortedFilteredOrderHistoryPanel() {
-        return new OrderListPanel(logic.getFilteredOrderList(Order.State.COMPLETED, Order.State.CANCELLED));
     }
 }

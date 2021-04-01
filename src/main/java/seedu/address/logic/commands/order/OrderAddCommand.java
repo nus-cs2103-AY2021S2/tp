@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
 
 import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.List;
 
 import seedu.address.commons.core.Pair;
@@ -63,6 +64,11 @@ public class OrderAddCommand extends Command {
                 dishNumberQuantityList, model);
 
         model.addOrder(toAdd);
+
+        model.updateFilteredOrderList(order -> order.getState() == Order.State.UNCOMPLETED);
+        Comparator<Order> comparator = (first, second) ->
+                first.getDatetime().isAfter(second.getDatetime()) ? 1 : 0;
+        model.updateFilteredOrderList(comparator);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), CommandResult.CRtype.ORDER);
     }
 
