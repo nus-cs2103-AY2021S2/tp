@@ -5,6 +5,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INSURANCE_POLICY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -23,6 +24,7 @@ import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.EditCommand.EditPolicyMode;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.insurancepolicy.InsurancePolicy;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -40,7 +42,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_TAG, PREFIX_INSURANCE_POLICY);
+                        PREFIX_TAG, PREFIX_INSURANCE_POLICY, PREFIX_MEETING);
 
         Index index;
 
@@ -83,6 +85,9 @@ public class EditCommandParser implements Parser<EditCommand> {
             parsePoliciesForEdit(addAndRemovePairs.get(1)).ifPresent(editPersonDescriptor::setPoliciesToAdd);
             parsePoliciesForEdit(addAndRemovePairs.get(0)).ifPresent(editPersonDescriptor::setPoliciesToRemove);
         }
+
+        parseMeetingsForEdit(argMultimap.getAllValues(PREFIX_MEETING))
+                .ifPresent(editPersonDescriptor::setMeetings);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
@@ -208,6 +213,24 @@ public class EditCommandParser implements Parser<EditCommand> {
                 ? Collections.emptySet()
                 : policyIds;
         return Optional.of(ParserUtil.parsePolicies(policyList));
+    }
+
+    /**
+     * Parses {@code Collection<String> meetings} into a {@code List<Meeting>} if {@code meetings} is non-empty.
+     * If {@code meetings} contain only one element which is an empty string, it will be parsed into a
+     * {@code List<Meeting>} containing zero meetings.
+     */
+    private Optional<List<Meeting>> parseMeetingsForEdit(Collection<String> meetings) throws ParseException {
+        assert meetings != null;
+
+        if (meetings.isEmpty()) {
+            return Optional.empty();
+        }
+
+        Collection<String> meetingList = meetings.size() == 1 && meetings.contains("")
+                ? Collections.emptySet()
+                : meetings;
+        return Optional.of(ParserUtil.parseMeetings(meetingList));
     }
 
 }

@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INSURANCE_POLICY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -22,6 +23,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.insurancepolicy.InsurancePolicy;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -47,16 +49,21 @@ public class EditCommand extends Command {
             + "[" + PREFIX_INSURANCE_POLICY + " POLICY_ID] [-FLAG] where FLAG can be modify, insert or remove "
             + "for editing policy ids. If no flag is specified, the default behaviour is replace."
             + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_MEETING + "MEETING]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_NOT_EDITED_BATCH = "At least one field (tag or policy) to edit "
+            + "must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
     public static final String MESSAGE_MODIFY_POLICY_CONSTRAINT = "When -modify flag is indicated for editing policy,"
             + " the format should be i/[TO_MODIFY];[TO_REPLACE]. ";
     public static final String MESSAGE_MODIFY_POLICY_NOT_FOUND = "The policy %s to modify or delete is not found!";
+    public static final String MESSAGE_EXCESS_BATCH_ARGUMENTS = "Batch edit can only edit tags or insurance policies.\n"
+            + "Please check that you have not entered other prefixes.";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -135,6 +142,10 @@ public class EditCommand extends Command {
             throw new CommandException(EditPolicyMode.MESSAGE_EDIT_POLICY_MODE_CONSTRAINTS);
         }
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedPolicies);
+        List<Meeting> updatedMeetings = editPersonDescriptor.getMeetings().orElse(personToEdit.getMeetings());
+
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
+                updatedTags, updatedPolicies, updatedMeetings);
     }
 
     private static List<InsurancePolicy> removeInsurancePolicies(List<InsurancePolicy> policiesToRemoveFrom,
@@ -197,6 +208,7 @@ public class EditCommand extends Command {
         private Set<Tag> tags;
         private List<InsurancePolicy> policiesToAdd;
         private List<InsurancePolicy> policiesToRemove;
+        private List<Meeting> meetings;
 
         public EditPersonDescriptor() {}
 
@@ -212,13 +224,14 @@ public class EditCommand extends Command {
             setTags(toCopy.tags);
             setPoliciesToAdd(toCopy.policiesToAdd);
             setPoliciesToRemove(toCopy.policiesToRemove);
+            setMeetings(toCopy.meetings);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, policiesToAdd, policiesToRemove);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, policiesToAdd, policiesToRemove, meetings);
         }
 
         public void setName(Name name) {
@@ -284,6 +297,13 @@ public class EditCommand extends Command {
 
         public Optional<List<InsurancePolicy>> getPoliciesToRemove() {
             return Optional.ofNullable(policiesToRemove);
+
+        public void setMeetings(List<Meeting> meetings) {
+            this.meetings = meetings;
+        }
+
+        public Optional<List<Meeting>> getMeetings() {
+            return Optional.ofNullable(meetings);
         }
 
         @Override
@@ -308,6 +328,7 @@ public class EditCommand extends Command {
                     && getTags().equals(e.getTags())
                     && getPoliciesToAdd().equals(e.getPoliciesToAdd())
                     && getPoliciesToRemove().equals(e.getPoliciesToRemove());
+                    && getMeetings().equals(e.getMeetings());
         }
     }
 }

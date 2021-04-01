@@ -13,6 +13,7 @@ import seedu.address.model.attribute.Attribute;
 import seedu.address.model.person.AddressContainsKeywordsPredicate;
 import seedu.address.model.person.EmailContainsKeywordsPredicate;
 import seedu.address.model.person.InsurancePolicyContainsKeywordsPredicate;
+import seedu.address.model.person.MeetingContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.PhoneContainsKeywordsPredicate;
 import seedu.address.model.person.TagContainsKeywordsPredicate;
@@ -75,6 +76,9 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         case "i/":
             return new FindCommand(new InsurancePolicyContainsKeywordsPredicate(keywords), parsedAttributes);
+
+        case "m/":
+            return new FindCommand(new MeetingContainsKeywordsPredicate(keywords), parsedAttributes);
 
         default:
             throw new ParseException(
