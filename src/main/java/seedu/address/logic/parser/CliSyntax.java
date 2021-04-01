@@ -19,7 +19,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_MEETING = new Prefix("m/");
     public static final Prefix PREFIX_SHORTCUT_NAME = new Prefix("sn/");
     public static final Prefix PREFIX_SHORTCUT_COMMAND = new Prefix("sc/");
- 
 
     /**
      * Checks if a given string is a valid prefix.

@@ -141,7 +141,6 @@ public class EditCommand extends Command {
         default:
             throw new CommandException(EditPolicyMode.MESSAGE_EDIT_POLICY_MODE_CONSTRAINTS);
         }
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedPolicies);
         List<Meeting> updatedMeetings = editPersonDescriptor.getMeetings().orElse(personToEdit.getMeetings());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
@@ -231,7 +230,8 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, policiesToAdd, policiesToRemove, meetings);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, policiesToAdd, policiesToRemove,
+                    meetings);
         }
 
         public void setName(Name name) {
@@ -297,6 +297,7 @@ public class EditCommand extends Command {
 
         public Optional<List<InsurancePolicy>> getPoliciesToRemove() {
             return Optional.ofNullable(policiesToRemove);
+        }
 
         public void setMeetings(List<Meeting> meetings) {
             this.meetings = meetings;
@@ -327,7 +328,7 @@ public class EditCommand extends Command {
                     && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags())
                     && getPoliciesToAdd().equals(e.getPoliciesToAdd())
-                    && getPoliciesToRemove().equals(e.getPoliciesToRemove());
+                    && getPoliciesToRemove().equals(e.getPoliciesToRemove())
                     && getMeetings().equals(e.getMeetings());
         }
     }

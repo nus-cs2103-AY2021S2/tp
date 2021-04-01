@@ -699,7 +699,7 @@ If you get an error message (`Java command not found`), it means that Java is no
 | --------|------------------ | --- |
 [**Help**](#viewing-help--help) | `help` | `help` |
 [**Add**](#add-client-contact-add) | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [i/POLICY_ID] [t/TAG]…​` | `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 i/Policy_1023 t/premium t/lifeinsurance` |
-[**Edit**](#edit-client-contact-edit) | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [i/POLICY_NUMBER]…​ [t/TAG]…​` | `edit 2 n/James Lee e/jameslee@example.com` |
+[**Edit**](#edit-client-contact-edit) | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/POLICY_NUMBER…​ [-MODE]] [t/TAG]…​ [m/MEETING]…​` | `edit 2 n/James Lee e/jameslee@example.com` |
 [**List**](#list-all-clients--list) | `list [-ATTRIBUTE]` | `list -i` |
 [**Find**](#search-for-client-contact-based-on-keywords-find) | `find FLAG/KEYWORD [& MORE_KEYWORDS] [-ATTRIBUTES]…​` | `find a/Bedok & Clementi -p` |
 [**Policy**](#display-policies-associated-with-selected-client-policy) | `policy INDEX` | `policy 4` |
