@@ -16,11 +16,7 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.Label?>
-<fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="TutorBuddy" minWidth="800" minHeight="600" onCloseRequest="#handleExit">
-  <icons>
-    <Image url="@/images/tutorbuddy_icon.png" />
-  </icons>
+<fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" minWidth="800" minHeight="600" onCloseRequest="#handleExit">
   <fx:define>
     <Screen fx:factory="getPrimary" fx:id="screen" />
   </fx:define>
