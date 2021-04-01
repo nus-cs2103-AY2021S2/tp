@@ -7,7 +7,6 @@ import seedu.booking.commons.util.StringUtil;
 
 /**
  * Represents a Venue's name in the booking system.
- * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
 public class VenueName {
 
@@ -15,7 +14,7 @@ public class VenueName {
             "Names should only contain alphanumeric characters and spaces, and it should not be blank";
 
     /*
-     * The first character of the address must not be a whitespace,
+     * The first character of the venue name must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
@@ -34,7 +33,7 @@ public class VenueName {
     }
 
     /**
-     * Returns true if a given string is a valid name.
+     * Returns true if a given string is a valid venue name.
      */
     public static boolean isValidName(String test) {
         return test.matches(VALIDATION_REGEX);
@@ -59,7 +58,7 @@ public class VenueName {
     }
 
     /**
-     * Returns true if both venues have the same venue name.
+     * Returns true if both venues have the same venue name (case-insensitive).
      * This notion of equality between two venues.
      */
     public boolean isSameVenueName(Venue otherVenue) {

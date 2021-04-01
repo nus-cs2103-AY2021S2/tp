@@ -25,8 +25,7 @@ public class FindPersonCommandParser implements Parser<FindPersonCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_EMAIL);
 
         String email;
-        if (!arePrefixesPresent(argMultimap, PREFIX_EMAIL)
-                || argMultimap.getValue(PREFIX_EMAIL).isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_EMAIL) || argMultimap.getValue(PREFIX_EMAIL).isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPersonCommand.MESSAGE_USAGE));
         }

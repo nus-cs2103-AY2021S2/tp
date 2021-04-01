@@ -37,7 +37,7 @@ public class BookingContainsBookerPredicateTest {
         // null -> returns false
         assertFalse(firstPredicate.equals(null));
 
-        // different bookers -> returns false
+        // different bookings -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
     }
 
