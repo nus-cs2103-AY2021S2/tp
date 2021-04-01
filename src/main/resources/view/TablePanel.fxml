@@ -6,6 +6,6 @@
 <TableView fx:id="tableView" minWidth="100" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <columns>
     <TableColumn fx:id="daysBeforeExpiryCol" text="Days Before Expiry" />
-    <TableColumn fx:id="numberOfItems" text="Number of Days" />
+    <TableColumn fx:id="numberOfItems" text="Number of Items" />
   </columns>
 </TableView>
