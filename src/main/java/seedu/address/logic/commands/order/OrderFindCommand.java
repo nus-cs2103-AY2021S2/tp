@@ -39,7 +39,7 @@ public class OrderFindCommand extends Command {
         model.updateFilteredOrderList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_ITEMS_LISTED_OVERVIEW,
-                        model.getFilteredIngredientList().size(),
+                        model.getFilteredOrderList().size(),
                         Messages.ITEM_ORDERS),
                 CommandResult.CRtype.ORDER);
     }
