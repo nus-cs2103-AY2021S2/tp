@@ -121,7 +121,7 @@ public class CommandBox extends UiPart<Region> {
      */
     public void setAndAppendFlag(String flag) {
         String existingText = commandTextField.getText();
-        this.setTextValue(existingText + " " + flag + " ");
+        this.setTextValue(existingText + " " + flag);
     }
 
     /**

@@ -1,6 +1,6 @@
 package seedu.address.ui;
 
-import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -40,6 +40,8 @@ public class MainWindow extends UiPart<Stage> {
     private HelpWindow helpWindow;
     private CommandBox commandBox;
 
+    private List<String> currentList = new ArrayList<>();
+
     @FXML
     private StackPane commandBoxPlaceholder;
 
@@ -78,13 +80,46 @@ public class MainWindow extends UiPart<Stage> {
         getRoot().addEventFilter(KeyEvent.KEY_RELEASED, (KeyEvent event) -> {
             if (event.getCode() == KeyCode.TAB) {
                 String currentlyInBox = commandBox.getTextFieldText();
-                System.out.println(currentlyInBox);
+
                 if (currentlyInBox != null) {
                     boolean isAutocompleteFlag = logic.isAutocompleteFlag(currentlyInBox);
-
                     if (isAutocompleteFlag) {
                         List<String> availFlags = logic.getAvailableFlags(currentlyInBox);
-                        commandBox.setAndAppendFlag(availFlags.get(0));
+
+                        // if flag has content -> get next flag
+                        // if flag has no content -> toggle
+                        String lastFlag = currentlyInBox.split("-")[currentlyInBox.split("-").length - 1];
+
+                        // Check if lastFlag has content
+                        if (lastFlag.split(" ").length > 1 || lastFlag.equals("add ") || lastFlag.equals("edit ")) {
+                            if (!availFlags.isEmpty()) {
+                                commandBox.setAndAppendFlag(availFlags.get(0) + " ");
+                                if (!currentList.isEmpty()) {
+                                    currentList.remove(availFlags.get(0));
+                                }
+                            }
+                        } else {
+
+                            String addBack = "-" + lastFlag;
+
+                            // Populate currentList
+                            if (currentList.isEmpty()) {
+                                currentList = availFlags;
+                            }
+
+                            // String without current flag
+                            String rollBackString = currentlyInBox.split(addBack)[0];
+
+                            // Updated text if flags available
+                            if (!availFlags.isEmpty()) {
+                                commandBox.setTextValue(rollBackString + currentList.get(0) + " ");
+                            }
+                            currentList.remove(0);
+
+                            if (!currentList.contains(addBack + " ")) {
+                                currentList.add(addBack.trim());
+                            }
+                        }
                     } else {
                         System.out.println(currentlyInBox);
                         autocompleteListPanel.processTabKey((value) -> {
