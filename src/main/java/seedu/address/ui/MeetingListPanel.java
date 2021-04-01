@@ -41,7 +41,7 @@ public class MeetingListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new MeetingCard(person).getRoot());
+                setGraphic(new MeetingCard(person, getIndex() + 1).getRoot());
             }
         }
     }

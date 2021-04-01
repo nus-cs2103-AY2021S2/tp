@@ -46,9 +46,30 @@ ever-increasing clients.
 1. Refer to the [Features](#features) section below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
-## Overview of Features
+## Overview 
+
+### Layout
+The structure of the Link.me interface is split into five main parts:
+![Layout](images/Layout.png)
+The Input Command Line is where the user inputs the commands for execution.
+
+The Result Display displays the result of the user input.
+
+The Client List displays a list of client stored in Link.me, and changes according to the use input.
+
+The Meeting List displays a list of meetings that are scheduled in Link.me.
+
+The Status Bar displays status information regarding the storage unit. (Not relevant for basic users.)
+
+![PersonLayout](images/PersonLayout.png)
+Each client has basic information stored, as well as insurance plans and premiums attached.
+
+![MeetingLayout](images/MeetingLayout.png)
+Each meeting has the client stores, as well as the meeting time and a brief description of the meeting agenda.
+
+### Functionalities
 The features of Link.me mainly revolve around adding and editing clients as Link.me is first and foremost a client
-managing app. 
+managing app.
 
 Features of Link.me include adding, editing, deleting, searching for and filtering clients. Link.me also supports peripheral features such as meeting scheduling, 
 recording client notes and notifying the user of important upcoming events. 
@@ -68,7 +89,8 @@ Action                            | Format
 **Find by name**                  | `find KEYWORD [MORE_KEYWORDS]`
 **List all clients**              | `list`
 **Record, clear or view notes**   | `note INDEX r/NOTE` (record) <br>`note INDEX c/` (clear)<br>`note INDEX v/` (view)
-**Schedule or remove meetings**   | `schedule INDEX m/DESCRIPTION @ DATE_TIME` (schedule)<br/>`schedule INDEX m/remove` (unschedule)
+**Remove meetings**               | `unschedule INDEX` (remove specified meeting)<br> `unschedule all` (remove all meetings)<br> `unschedule expired` (remove expired meetings)
+**Schedule meetings**             | `schedule INDEX m/DESCRIPTION @ DATE_TIME`
 **Show notifications**            | `notif`
 **View Help**                     | `help`
 
@@ -239,6 +261,9 @@ You can record a note for a specific client.
 Format: `note INDEX r/NOTE`
 
 * Adds the provided `NOTE` to the client specified at `INDEX`.
+* `INDEX` refers to the index number shown in the displayed client list.
+* `INDEX` **must be a positive integer** 1, 2, 3, …​
+* `NOTE` should not be empty.
 
 Example:
 
@@ -251,6 +276,8 @@ You can clear all existing notes from a specific client.
 Format: `note INDEX c/`
 
 * Clears all notes from the client specified at `INDEX`.
+* `INDEX` refers to the index number shown in the displayed client list.
+* `INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Example:
 
@@ -263,15 +290,16 @@ You can view all existing notes from a specific client. Notes will be displayed 
 Format: `note INDEX v/`
 
 * View notes from the client specified at `INDEX`.
+* `INDEX` refers to the index number shown in the displayed client list.
+* `INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Example:
 
 * `note 4 v/` generates a popup box displaying the notes taken for the 4th client.
 
 
-### Scheduling or removing a meeting : `schedule`
-
-#### Scheduling a meeting
+### Arranging Meetings with Clients
+#### Scheduling a meeting : `schedule`
 
 You can schedule a meeting with a specific client in Link.me.
 
@@ -290,19 +318,23 @@ Example:
 * `schedule 2 m/Insurance Plan @ 2020-02-28 14:30` schedules a Insurance Plan meeting with your client indexed 2 in the
   displayed list on 28th October 2020 2:30 pm.
 
-#### Removing a meeting
+#### Removing a meeting : `unschedule`
 
-You can remove a meeting with a specific client.
+Removing meetings comes in three flavors:
 
-Format: `schedule INDEX m/remove`
+* `unschedule INDEX` removes the specified meeting in the meeting list.
+* `unschedule all` removes all meetings in the meeting list.
+* `unschedule expired` removes all expired meetings in the meeting list.
 
-* Removes a scheduled meeting with your client at the specified `INDEX`.
-* The `INDEX` refers to the index number shown in the displayed client list.
+
+Format: `unschedule CHOICE`
+
+* The `INDEX` refers to the index number shown in the displayed meeting list.
 * The `INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Example:
 
-* `schedule 2 m/remove` removes meeting scheduled with your client indexed 2 in the displayed list.
+* `unschedule 2` removes the second meeting on the meeting list.
 
 
 ### Searching for clients
@@ -353,16 +385,16 @@ Examples:
 
 ### Displaying notifications : `notif`
 
-You can view a notification window informing you of upcoming client birthdays and meetings, so that you can plan
-ahead and 
+You can view a notification window informing you of client birthdays within the next two weeks and upcoming meetings,
+which should notify you in time with a reasonable amount of time to prepare beforehand.
 
 This notification window is also shown when starting up Link.me.
 
 Format: `notif`
 
 Notification window contains:
-* All client birthdays within the next two weeks.
 * All meetings occurring today, arranged in order of time.
+* All client birthdays within the next two weeks, arranged in order of time.
 
 ![notif message](images/notifMessage.png)
 

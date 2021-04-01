@@ -28,20 +28,19 @@ public class ScheduleCommand extends Command {
             + PREFIX_MEETING + "MEETING_DESCRIPTION @ yyyy-mm-dd HH:MM\n"
             + "Example: " + COMMAND_WORD + " 1 m/ Insurance Plan @ 2021-03-05 14:50";
 
-    public static final String MESSAGE_SCHEDULE_PERSON_SUCCESS = "Scheduled Meeting with Person: %1$s %2$s";
-    public static final String MESSAGE_UNSCHEDULE_PERSON_SUCCESS = "Unscheduled Meeting with Person: %1$s";
+    public static final String MESSAGE_SCHEDULE_PERSON_SUCCESS = "Scheduled Meeting with Person: %1$s at %2$s";
     public static final String MESSAGE_SCHEDULE_CONFLICT_FAILURE = "Scheduling Conflict in Found at this Meeting: %1$s";
 
     private final Index targetIndex;
 
-    private final Optional<Meeting> meeting;
+    private final Meeting meeting;
 
     /**
      * Constructor for Schedule Command
      */
     public ScheduleCommand(Index targetIndex, Meeting meeting) {
         this.targetIndex = targetIndex;
-        this.meeting = Optional.ofNullable(meeting);
+        this.meeting = meeting;
     }
 
     @Override
@@ -54,20 +53,18 @@ public class ScheduleCommand extends Command {
         }
 
         Person personToSchedule = lastShownList.get(targetIndex.getZeroBased());
-        Person updatedPerson = personToSchedule.setMeeting(meeting);
+        Person updatedPerson = personToSchedule.setMeeting(Optional.of(meeting));
         if (!personToSchedule.getMeeting().equals(meeting)) {
             Optional<String> errorMsg = model
                     .clash(updatedPerson)
                     .map(meeting -> String.format(MESSAGE_SCHEDULE_CONFLICT_FAILURE, meeting.original));
             if (errorMsg.isPresent()) {
-                throw new CommandException(errorMsg.orElseThrow());
+                throw new CommandException(errorMsg.get());
             }
         }
         model.setPerson(personToSchedule, updatedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        String result = meeting.map(x -> String.format(MESSAGE_SCHEDULE_PERSON_SUCCESS, updatedPerson.getName(), x))
-                .orElse(String.format(MESSAGE_UNSCHEDULE_PERSON_SUCCESS, updatedPerson.getName()));
-        return new CommandResult(result);
+        return new CommandResult(String.format(MESSAGE_SCHEDULE_PERSON_SUCCESS, updatedPerson.getName(), meeting));
     }
 
     @Override
