@@ -17,15 +17,17 @@ https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/179/commits/aec461182c194c9ca2
   <img alt="logo" src="images/logo.png">
 </div>
 
-Welcome to the user guide of **CoLAB**! Are you a university student in search of a reliable app to keep track of your school projects? Do you struggle to keep track of the many todos and deadlines for various school projects? Do you also tend to forget the various group meetings you have scheduled? You have come to the right place!
+Welcome and thank you for downloading **CoLAB**! Are you a university student in search of a reliable app to keep track of your school projects? Do you struggle to keep track of the many todos and deadlines for various school projects? Do you also tend to forget the various group meetings you have scheduled? You have come to the right place!
 
-CoLAB (Collaboration Lab) is a **desktop app for students currently enrolled in a university to manage their school projects.** It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, CoLAB can get your project management tasks done faster than traditional GUI apps. CoLAB's main features include:
+CoLAB (Collaboration Lab) is a **desktop app for university students to manage their school projects.**  CoLAB's main features include:
 
 - Project management
 - Contacts management
-- Today View
+- Today View that surfaces an overview of upcoming events and deadlines 
 
-With CoLAB, you can efficiently manage all your school projects through our comprehensive project management tools. We have put in a lot of time and effort into designing a user-friendly User Interface (UI) such that CoLAB remains intuitive to both first-time users and seasoned ones. We look forward to seeing what you accomplish with CoLAB with a clean and inviting UI. What are you waiting for? Get your journey started with the [Quick Start section](#3quick-start)!
+It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, CoLAB can get your project management tasks done faster than traditional GUI apps.
+
+With CoLAB, you can efficiently manage all your school projects through our comprehensive project management tools. We have designed a user-friendly User Interface (UI) such that CoLAB remains intuitive to both first-time users and seasoned ones. We look forward to seeing what you accomplish with CoLAB with a clean and inviting UI. Get your journey started with the [Quick Start section](#3quick-start)!
 
 ## **2. About**
 
@@ -49,7 +51,7 @@ You can also easily sift through CoLAB's various commands and features by referr
 
 ### 2.2 Reading this Document
 
-This subsection serves to provide explanations on the symbols, syntax and technical terms used throughout this User Guide. Familiarising yourself with this subsection will make the User Guide easier to read.
+This subsection serves to provide explanations on the application's user interface (UI) as well as symbols, syntax and technical terms used throughout this User Guide. Familiarising yourself with this subsection will make the User Guide easier to read.
 
 #### 2.2.1 Sections of the Application Window
 
@@ -59,11 +61,34 @@ Different sections of the application window will be referred to by the names de
 
 #### 2.2.2 Special Formats
 
-[TODO]
+Formats discussed in this section may be used in relevant areas of this user guide.
+
+**Tips**
+
+Messages that appear in a tip box are useful for improving your experience with CoLAB.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Example tip!
+</div>
+
+**Warnings**
+
+Messages that appear in a warning box are important to follow as unintended consequences may follow otherwise.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+Example warning!
+</div>
+
+**Highlights**
+
+Words or sentences that appear in these highlighted boxes are being emphasised for their relevance in that section.
+
+`Example highlight!`
+
 
 #### 2.2.3 Command Format
 
-Commands shown in this user guide follow these rules.
+Commands discussed in this user guide follow these rules. Parameters that are discussed in this UG, such as `p/PHONE_NUMBER` or `n/NAME` refer to information that is to be included as an input of a command.
 
 <div markdown="block" class="alert alert-info">
 
@@ -84,14 +109,14 @@ Commands shown in this user guide follow these rules.
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help` and `exit`) will be ignored.<br>
+* Commands that do not take in extra parameters (such as `help` and `exit`) will ignore the additional parameters that are appended to it.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
 
 #### 2.2.4 Command Parameters
 
-This subsection serves to list out the parameters used in this document. We have set reasonable constraints on the parameters to ensure that the UI displays your information correctly.
+This subsection serves to list out the parameters used in this document. To achieve the best possible experience, we have recommended limits for some parameters. This includes recommendation on limits for long text that may result in horizontal scrolling for some areas of the UI.
 
 ##### `ADDRESS`
 
@@ -111,6 +136,7 @@ This subsection serves to list out the parameters used in this document. We have
 ##### `DESCRIPTION`
 
 * The description of a deadline, event or todo.
+* The `DESCRIPTION` parameter is not used elsewhere.
 
 ##### `EMAIL`
 
@@ -167,6 +193,7 @@ This subsection serves to list out the parameters used in this document. We have
 ##### `TAG`
 
 * The tag associated with a contact.
+* The `TAG` parameter can only be used for contacts. It cannot be used for projects.
 * Tags should consist of alphanumeric characters.
 
 ##### `TIME`
@@ -188,7 +215,7 @@ This subsection serves to list out the parameters used in this document. We have
 
 1. Copy the file to the folder you want to use as the _home folder_ for CoLAB.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data. When the sample data is no longer required, you may use the `clear` command to clear sample projects and contacts from CoLAB.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`contacts`** and pressing Enter will list all contacts.<br>
@@ -268,7 +295,11 @@ Examples:
 
 ### _**4.1.1 Todos**_
 
-`Todos` contain a `DESCRIPTION` field and are useful for tasks that have no due date.
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Todos can be thought of as Tasks (without a due date) to be done. For the entire User Guide, we will be referring to tasks as a todo. 
+</div>
+
+`Todos` contain a `DESCRIPTION` field and are useful for tasks that have no due date. 
 
 Each `Project` may have `Todos`. Hence, each of the commands related to `Todos` are done w.r.t the `Project` identified by `PROJECT_INDEX`.
 
@@ -476,7 +507,7 @@ Examples:
 
 Each `Project` may have `Groupmates`. Hence, each of the commands related to `Groupmates` are done w.r.t the `Project` identified by `PROJECT_INDEX`.
 
-#### Add a groupmate to a project: `addG`
+#### Adding a groupmate to a project: `addG`
 
 Adds a groupmate to a specified project.
 
@@ -532,6 +563,8 @@ Examples:
 
 ### **4.2 Contacts**
 
+Contacts are kept separate from Groupmates. Their information is not kept in sync. 
+
 Each Contact may have a `NAME`, `PHONE_NUMBER`, `EMAIL`, `ADDRESS` & multiple `TAGS`. 
 
 #### Adding a contact: `addC`
@@ -542,6 +575,10 @@ Format: `addC n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A contact can have any number of tags (including 0)
+</div>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+If you do not have information required for a compulsory parameter, consider leaving it as a dummy character such as "-". For example, if you do not have the address of a contact, you can enter the parameter as "a/-".
 </div>
 
 Examples:
@@ -566,10 +603,11 @@ Examples:
 
 #### Locating contacts by name: `findC`
 
-Finds contacts whose names contain any of the given keywords.
+Find contacts whose names contain any of the given keywords. Only contact names are searched.
 
 Format: `findC KEYWORD [MORE_KEYWORDS]`
 
+* `findC KEYWORD [MORE_KEYWORDS]`
 * The search is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
@@ -598,11 +636,17 @@ Examples:
 
 ### **4.3 Navigating the UI**
 
-Although most of the buttons you see on the screen are clickable, the UI has been designed primarily to be navigated using the command line interface.
+Although most of the buttons you see on the screen are clickable, the UI has been designed primarily to be navigated using the command line interface. The commands listed in this section will help you navigate the UI without leaving keyboard.
 
-#### Listing all contacts : `contacts`
+#### Viewing Today Panel : `today`
 
-Shows a list of all contacts in CoLAB.
+Displays a panel containing information on Events & Deadlines that are relevant today.
+
+Format: `today`
+
+#### Viewing all contacts : `contacts`
+
+Displays a panel with a list of all contacts in CoLAB.
 
 Format: `contacts`
 
@@ -622,7 +666,7 @@ Examples:
 
 #### Viewing the overview of a project: `overview`
 
-Views the overview of the project that is currently displayed.
+Displays a panel containing an overview of the project that is currently displayed.
 
 Format: `overview`
 
@@ -630,23 +674,15 @@ Format: `overview`
 
 #### Viewing the todos of a project: `todos`
 
-Views the todos of the project that is currently displayed.
+Displays a panel containing the todos of the project that is currently displayed.
 
 Format: `todos`
 
 * This command can only be used when a project is currently being displayed.
 
-#### View Today Panel : `today`
-
-Shows the today panel.
-
-Format: `today`
-
 #### Viewing help : `help`
 
-Shows a message explaining how to access the help page.
-
-![help message](images/helpMessage.png)
+Displays a panel containing a summary of commands as well as a link to this user guide. The link can be copied to the system clipboard by clicking on the `Copy` button.
 
 Format: `help`
 
@@ -695,6 +731,8 @@ Example:
 Reverses the most recent undo command.
 
 Format: `redo'
+
+* Requires an undo command to have been performed prior to a redo command.  
 
 --------------------------------------------------------------------------------------------------------------------
 
