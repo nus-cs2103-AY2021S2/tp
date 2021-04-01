@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import java.time.format.DateTimeFormatter;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
@@ -44,8 +46,10 @@ public class SessionCard extends UiPart<Region> {
     public SessionCard(Session session, int displayedIndex) {
         super(FXML);
         this.session = session;
+        DateTimeFormatter dateTimeFormat = DateTimeFormatter.ofPattern("dd MMM YYYY");
+        String formattedStartTime = session.getSessionDate().getDateTime().format(dateTimeFormat);
 
-        date.setText("Date: " + session.getSessionDate().getDate().toString());
+        date.setText("Date: " + formattedStartTime);
         time.setText("Time: " + session.getSessionDate().getTime().toString());
         duration.setText("Duration: " + session.getDuration().getValue() + " mins");
         subject.setText("Subject: " + session.getSubject().getValue());
@@ -53,10 +57,12 @@ public class SessionCard extends UiPart<Region> {
         id.setText(displayedIndex + "");
         if (session instanceof RecurringSession) {
             RecurringSession recurringSession = (RecurringSession) session;
+            String formattedEndTime = recurringSession.getLastSessionDate().getDateTime().format(dateTimeFormat);
+
             sessionType.setText("R");
             sessionType.setStyle("-fx-text-fill: orange");
-            date.setText("Start Date: " + session.getSessionDate().getDate().toString());
-            endDate.setText("End Date: " + recurringSession.getLastSessionDate().getDate().toString());
+            date.setText("Start Date: " + formattedStartTime);
+            endDate.setText("End Date: " + formattedEndTime);
             interval.setText("Interval: " + recurringSession.getInterval().toString());
         } else {
             sessionType.setText("I");

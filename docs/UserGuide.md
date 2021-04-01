@@ -16,7 +16,7 @@ title: User Guide
 * [Commands](#commands)
   * [General](#general)
     * [Open help panel: `help`](#viewing-help--help)
-    * [Listing all students and sessions: `list_student`](#listing-all-students-and-sessions-list_student)
+    * [Listing all students and sessions: `list`](#listing-all-students-and-sessions-list)
     * [Clearing all data : `clear`](#clearing-all-data--clear)
     * [Exit the program: `exit`](#exit-the-program-exit)
   * [Managing Students](#managing-students)
@@ -117,7 +117,7 @@ There are three main areas in TutorBuddy:
     * Type a command in the command box and press <kbd>Enter</kbd> to execute it.<br>
 
   Here are some example commands you can try:
-  * **`list_student`** : Lists all students and sessions.
+  * **`list`** : Lists all students and sessions.
   * **`add_student`**`n/John Doe p/98765432 e/johnd@example.com a/John street, Block 123, #01-01 l/Sec2 g/95421323 r/Mother` : Adds a student named `John Doe`
     to TutorBuddy.
   * **`delete_student`**`3` : Deletes the 3rd student shown in the Student section.
@@ -157,7 +157,7 @@ This section details the format of the commands available in TutorBuddy. We will
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/98765432 p/99999999`, only `p/98765432` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `emails`, `help`, `exit`, `clear` and `list_student`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `emails`, `help`, `exit`, `clear` and `list`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 * Indexes **must be positive whole numbers** 1, 2, 3, …
@@ -187,13 +187,13 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-#### Listing all students and sessions: `list_student`
+#### Listing all students and sessions: `list`
 
 Displays list of all students and all sessions in TutorBuddy.
 
 ![list](images/command_list.png)
 
-Format: `list_student` <br>
+Format: `list` <br>
 
 #### Clearing all data : `clear`
 
@@ -298,7 +298,7 @@ Example:
 3 | Jon Koh | jonkoh@gmail.com
 4 | Samuel Lee | sam@gmail.com
 
-*Figure 2.1 State of Student List After `list_student` command*
+*Figure 2.1 State of Student List After `list` command*
 
 \# | Student Name | Email
 ---- |---------|------|
@@ -307,7 +307,7 @@ Example:
 
 *Figure 2.2 State of Student List After `find_student john jon` command*
 
-* To get emails of all students (see Figure 2.1): `list_student` followed by `emails` returns `johnlee@gmail.com;johnztan@gmail.com;jonkoh@gmail.com;sam@gmail.com;`
+* To get emails of all students (see Figure 2.1): `list` followed by `emails` returns `johnlee@gmail.com;johnztan@gmail.com;jonkoh@gmail.com;sam@gmail.com;`
 
 * To get emails of specific students (see Figure 2.2): `find_student john jon` followed by  `emails` returns `johnlee@gmail.com;jonkoh@gmail.com;`
 
@@ -385,7 +385,7 @@ Example:
 Action | Format
 --------|------------------
 **Help** | `help`
-**List all students and sessions** | `list_student`
+**List all students and sessions** | `list`
 **Clear all students and sessions** | `clear`
 **Exit TutorBuddy** | `exit`
 
