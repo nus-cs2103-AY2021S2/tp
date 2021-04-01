@@ -37,6 +37,8 @@ public class LogicManager implements Logic {
         this.storage = storage;
 
         parentPalParser = new ParentPalParser();
+
+        model.orderAppointments();
     }
 
     @Override

@@ -113,7 +113,7 @@ Currently available options for the [OPTION] field include:
 * `dark` Dark theme
 
 Examples: 
-* `light` changes theme to a light theme.
+* `theme o/light` changes theme to a light theme.
 
 ### Address Book Commands
 
@@ -402,8 +402,9 @@ that works with regular tags such as 'Find' or 'Sort' will also work with Child 
 Action | Format, Examples
 --------|------------------
 ​ | **General Commands**
-**Help** | `help [COMMAND]` <br> e.g, `help find`
 **Exit** | `exit`
+**Help** | `help [COMMAND]` <br> e.g., `help find`
+**Theme** | `theme o/OPTION` <br> e.g., `theme o/light`
 ​ | **Address Book Commands**
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [tc/CHILDTAG]…​ [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Clear** | `clear [t/TAG]…​`
@@ -411,7 +412,7 @@ Action | Format, Examples
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [tc/CHILDTAG]…​ [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Fav** | `fav INDEX [o/OPTION]` <br> e.g., `fav 3 o/remove`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
+**List** | `list [o/OPTION]`
 **Tag** | `tag INDEX [o/OPTION] [tc/CHILDTAG]…​ [t/TAG]…​`<br> e.g., `tag 4 t/School t/English`
 **Sort** | `sort o/OPTION` <br> e.g., `sort o/name`
 ​ | **Appointment Book Commands**
