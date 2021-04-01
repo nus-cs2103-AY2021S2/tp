@@ -66,7 +66,7 @@ public class Dish implements Item, Aggregator<Ingredient> {
         return ingredientQuantityList;
     }
 
-    public String getIngredientsString(){
+    public String getIngredientsString() {
         StringBuilder ingredientsBuilder = new StringBuilder();
 
         for (Pair<Ingredient, Integer> ingredientPair: ingredientQuantityList) {
