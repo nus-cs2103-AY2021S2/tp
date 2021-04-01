@@ -150,10 +150,10 @@ public class TimetablePlacementPolicy {
 
         assert test(schedulable);
         Schedulable offSetSchedule = SchedulableUtil.applyNegativeOffset(schedulable, startHour, startMinute);
-        List<Schedulable> splittedSchedulables = SchedulableUtil.splitSchedulableByDay(schedulable);
+        List<Schedulable> splittedSchedulables = SchedulableUtil.splitSchedulableByDay(offSetSchedule);
         return splittedSchedulables
                 .stream()
-                .map(s -> SchedulableUtil.applyPositiveOffset(s , startHour, startMinute))
+                .map(s -> SchedulableUtil.applyPositiveOffset(s, startHour, startMinute))
                 .filter(this :: test);
 
     }
