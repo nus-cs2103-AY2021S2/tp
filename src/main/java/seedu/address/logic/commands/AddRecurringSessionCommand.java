@@ -24,22 +24,22 @@ public class AddRecurringSessionCommand extends AddSessionCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a recurring session to the student. "
             + "\nParameters: "
             + PREFIX_NAME + "NAME "
-            + PREFIX_DATE + "DATE "
+            + PREFIX_DATE + "START_DATE "
+            + PREFIX_END_DATE + "END_DATE "
+            + PREFIX_INTERVAL + "INTERVAL "
             + PREFIX_TIME + "TIME "
             + PREFIX_DURATION + "DURATION "
             + PREFIX_SUBJECT + "SUBJECT "
-            + PREFIX_FEE + "FEE "
-            + PREFIX_INTERVAL + "INTERVAL "
-            + PREFIX_END_DATE + "LAST DATE"
+            + PREFIX_FEE + "FEE"
             + "\nExample: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_DATE + "2020-01-01 "
+            + PREFIX_END_DATE + "2020-01-15 "
+            + PREFIX_INTERVAL + "7 "
             + PREFIX_TIME + "12:00 "
             + PREFIX_DURATION + "90 "
             + PREFIX_SUBJECT + "Math "
-            + PREFIX_FEE + "40 "
-            + PREFIX_INTERVAL + "7 "
-            + PREFIX_END_DATE + "2020-01-15";
+            + PREFIX_FEE + "40";
 
     public static final String MESSAGE_SUCCESS = "Added recurring session: %1$s";
     private RecurringSession sessionToAdd;
