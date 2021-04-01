@@ -75,12 +75,12 @@ Format: `start [n/NUMBER] [t/TAG]`
 * NUMBER specifies the number of questions for the quiz session.
 * TAG specifies the type of questions for the quiz session.
 * Both NUMBER and TAG are optional.
-* Keep the NUMBER to between 1 and 154, inclusive.
+* There are currently four tags available, gojuon, hiragana, katakana and numbers.
 
 Examples:
 * start n/10
 * start t/hiragana
-* start n/10 t/hiragana
+* start n/5 t/gojuon
 
 ### Checking flashcard answers: `check`
 
