@@ -53,9 +53,11 @@ public class ProgressCalculator {
 
         // For each day, give a progress report on whether intake is over or less
         // than the required amount.
-        double totalAdherence = reportDailyIntake(report, foodIntakes, dailyCarbs, dailyFats, dailyProteins);
+        if (foodIntakes.size() != 0) {
+            double totalAdherence = reportDailyIntake(report, foodIntakes, dailyCarbs, dailyFats, dailyProteins);
+            reportFinalAdherence(report, totalAdherence);
+        }
 
-        reportFinalAdherence(report, totalAdherence);
         report.append("\nEND OF REPORT");
 
         // Return the final report
@@ -119,26 +121,29 @@ public class ProgressCalculator {
                                                   PlanInfoCalculator infoCalculator) {
         // Print details of diet plan
         StringBuilder report = new StringBuilder();
-        report.append(dietPlan.viewPlan() + "\n");
         report.append(ViewPlanCommand.getResult(dietPlan, infoCalculator));
 
         // Dates that progress report is listing
         report.append("\n================================================================\n");
-        report.append("\nHere is the report for the ");
-        LocalDate firstIntakeDay = foodIntakes.get(0).getDate();
-        LocalDate lastIntakeDay = foodIntakes.get(foodIntakes.size() - 1).getDate();
+        if (foodIntakes.size() != 0) {
+            report.append("\nHere is the report for the ");
+            LocalDate firstIntakeDay = foodIntakes.get(0).getDate();
+            LocalDate lastIntakeDay = foodIntakes.get(foodIntakes.size() - 1).getDate();
 
-        if (firstIntakeDay.isEqual(lastIntakeDay)) {
-            report.append("day ");
-            report.append(firstIntakeDay.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)));
+            if (firstIntakeDay.isEqual(lastIntakeDay)) {
+                report.append("day ");
+                report.append(firstIntakeDay.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)));
+            } else {
+                report.append("days ");
+                report.append(firstIntakeDay.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)));
+                report.append(" to ");
+                report.append(lastIntakeDay.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)));
+            }
+
+            report.append(":\n\n");
         } else {
-            report.append("days ");
-            report.append(firstIntakeDay.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)));
-            report.append(" to ");
-            report.append(lastIntakeDay.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)));
+            report.append("You have not consumed any food!\n\n");
         }
-
-        report.append(":\n\n");
         return report;
     }
 
