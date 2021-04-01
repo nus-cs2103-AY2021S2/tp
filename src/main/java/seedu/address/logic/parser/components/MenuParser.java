@@ -14,10 +14,7 @@ import seedu.address.logic.commands.menu.MenuDeleteCommand;
 import seedu.address.logic.commands.menu.MenuEditCommand;
 import seedu.address.logic.commands.menu.MenuFindCommand;
 import seedu.address.logic.commands.menu.MenuListCommand;
-import seedu.address.logic.parser.commands.menu.MenuAddCommandParser;
-import seedu.address.logic.parser.commands.menu.MenuDeleteCommandParser;
-import seedu.address.logic.parser.commands.menu.MenuEditCommandParser;
-import seedu.address.logic.parser.commands.menu.MenuFindCommandParser;
+import seedu.address.logic.parser.commands.menu.*;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -60,7 +57,7 @@ public class MenuParser implements ComponentParser {
             return new MenuFindCommandParser().parse(arguments);
 
         case MenuListCommand.COMMAND_WORD:
-            return new MenuListCommand();
+            return new MenuListCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
