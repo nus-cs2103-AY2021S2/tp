@@ -8,6 +8,8 @@ import seedu.address.model.session.Session;
 import seedu.address.model.student.Student;
 import seedu.address.model.tuition.Tuition;
 
+import java.time.format.DateTimeFormatter;
+
 /**
  * An UI component that displays information of an upcoming tuition.
  */
@@ -40,9 +42,11 @@ public class UpcomingTuitionCard extends UiPart<Region> {
         super(FXML);
         this.student = tuition.getStudent();
         this.session = tuition.getSession();
+        DateTimeFormatter dateTimeFormat = DateTimeFormatter.ofPattern("dd MMM YYYY");
+
         name.setText("Name: " + student.getName().fullName);
         address.setText("Address: " + student.getAddress().value);
-        date.setText("Date: " + session.getSessionDate().getDate().toString());
+        date.setText("Date: " + session.getSessionDate().getDateTime().format(dateTimeFormat));
         time.setText("Time: " + session.getSessionDate().getTime().toString());
         duration.setText("Duration: " + session.getDuration().getValue() + " mins");
         subject.setText("Subject: " + session.getSubject().getValue());
