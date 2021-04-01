@@ -51,6 +51,8 @@ public class PoolCommand extends Command {
 
     public static final String MESSAGE_NO_COMMUTERS = "No commuters were selected.";
     public static final String MESSAGE_POOL_SUCCESS = "Successfully created pool: %s";
+    public static final String MESSAGE_POOL_SUCCESS_WITH_WARNING = "Successfully created pool: %s. \nHowever, note that"
+            + " you have passengers with time differences with the pool time of more than 15 minutes.";
     public static final String MESSAGE_DUPLICATE_POOL = "This pool already exists in the GME Terminal";
 
     private final Driver driver;
@@ -79,6 +81,17 @@ public class PoolCommand extends Command {
         this.tags = tags;
     }
 
+    private boolean checkTimeDifference(List<Passenger> passengers) {
+        for (Passenger p : passengers) {
+            TripTime passengerTime = p.getTripTime();
+            if (this.tripTime.isMoreThanFifteenMinutesDifference(passengerTime)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -105,6 +118,8 @@ public class PoolCommand extends Command {
             passengersToPool.add(passenger);
         }
 
+        boolean shouldWarn = checkTimeDifference(passengersToPool);
+
         //since passengers in list are unique, passenger fetched from idx should also be unique, so as hashset from list
         Pool toAdd = new Pool(driver, tripDay, tripTime, passengersToPool, tags);
 
@@ -115,7 +130,9 @@ public class PoolCommand extends Command {
         model.addPool(toAdd);
         model.updateFilteredPoolList(PREDICATE_SHOW_ALL_POOLS);
 
-        return new CommandResult(String.format(MESSAGE_POOL_SUCCESS, driver, toAdd));
+        String outputMessage = shouldWarn ? MESSAGE_POOL_SUCCESS_WITH_WARNING : MESSAGE_POOL_SUCCESS;
+
+        return new CommandResult(String.format(outputMessage, driver, toAdd));
     }
 
     @Override
