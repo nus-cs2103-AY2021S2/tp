@@ -13,6 +13,7 @@ import seedu.address.model.residence.Residence;
 public interface Model {
     /** {@code Predicate} that always evaluates to true */
     Predicate<Residence> PREDICATE_SHOW_ALL_RESIDENCES = unused -> true;
+    Predicate<Residence> PREDICATE_UPCOMING_BOOKED_RESIDENCES = residence -> residence.hasUpcomingBooking();
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -82,7 +83,7 @@ public interface Model {
 
     /**
      * Updates the filter of the filtered residence list to filter by the given {@code predicate}.
-     * The result of this method always sorts the Residences.
+     * The result of this method always sorts the Residences as described in the Residence's {@code compareTo} method.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredResidenceList(Predicate<Residence> predicate);

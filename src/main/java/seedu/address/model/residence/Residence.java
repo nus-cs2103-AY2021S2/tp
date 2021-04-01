@@ -2,6 +2,7 @@ package seedu.address.model.residence;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -104,6 +105,16 @@ public class Residence implements Comparable<Residence> {
 
         return otherResidence != null
                 && otherResidence.getResidenceName().equals(getResidenceName());
+    }
+
+    /**
+     * Returns true if this residence has any bookings that start in the next 7 days.
+     */
+    public boolean hasUpcomingBooking() {
+        return this.bookingList.getValue().stream()
+                .filter(b -> b.getStart().isAfter(LocalDate.now())
+                        && b.getStart().isBefore(LocalDate.now().plusDays(8)))
+                .mapToInt(b -> 1).sum() > 0;
     }
 
     /**
