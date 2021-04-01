@@ -5,13 +5,17 @@ title: User Guide
 
 # Welcome to Focuris User Guide!
 
-Focuris is a **desktop application** for **managing events** with a KanBan board, which is a board where your **events displayed according to the level of completion** of each event, which consists of Backlog, Todo, In-Progress and Done.
+Focuris is a **desktop application** for **managing events** with a KanBan board. The KanBan board is a board which 
+**displays events according to the level of completion**: Backlog, Todo, In-Progress and Done. <br/>
+
+Focuris aims to help **university students** like you to keep track of your tasks or events in order to help improve time management 
+and organisation.
 
 ## Here's why you should use Focuris:
 
-- Focuris is made specially for **university students** like you to keep track of your tasks to complete.
+- Helps with task management and scheduling with a simple and easy to navigate interface.
 - Use of a Command Line Interface (CLI) allows fast typists to manage your event boards faster than applications with a Graphical User Interface (GUI).
-- Gain ability to prioritize your tasks by looking at their priority level, from **Low** to **High**.
+- Prioritize your tasks by looking at their priority level, from **Low** to **High**.
 - Get instant overview on the level of completion of each of your tasks.
 
 ---
@@ -45,7 +49,10 @@ Start improving your productivity by following these simple steps:
 
 1. Copy the `focuris.jar` file to the folder you want to use as the _home folder_ for your installation of Focuris.
 
-1. Double-click the `focuris.jar` file to start your Focuris. You should be able to see the graphical user interface within a few seconds. Note that the application contains some sample data since you are new to the application.<br> ![Ui](images/UiWithReference.png)
+1. Double-click the `focuris.jar` file to start Focuris. 
+   You should be able to see the graphical user interface within a few seconds. Note that the application contains some sample data since you are new to the application. <br/>
+   The image below is the interface you will see when you first start up Focuris.
+   <br> ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Here are some commands you can get started with:
@@ -132,7 +139,8 @@ and [2.3](#23-event-commands).
 
 ### 2.1.2 Parameter Summary
 
-You may encounter several different [parameters](#parameters) while using Focuris. This section goes through the different [parameters](#parameters) you will encounter while using Focuris.
+You may encounter several [parameters](#parameters) while typing in commands in Focuris which might be unknown to you. <br/>
+The table below gives a detailed summary of the different [parameters](#parameters) you will encounter while using Focuris.
 
 | Parameter   | Prefix    | Description                              | Constraints                                                                                                                                                                                                                                                                                |
 | ----------- | --------- | ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -144,9 +152,9 @@ You may encounter several different [parameters](#parameters) while using Focuri
 | KEYWORD     | No Prefix | Keywords for searching Events in Focuris | No Constraints                                                                                                                                                                                                                                                                             |
 
 <div markdown="block" class="alert alert-info">
-:information_source: **Note:**
-- The default priority value, you do not specify one, is `low`
-- Identifiers are automatically generated for you, you would not need to specify an identifier for your Events
+**:information_source: Please take note of the following parameters** <br/>
+- Priority is set to `low` if you do not specify a priority for your event. <br/>
+- Identifiers are automatically generated for you, you do not need to specify an identifier for your Events
 </div>
 
 <a class="md-btn md-btn-raised" href="#table-of-contents">Return to Table of Contents</a>
@@ -232,11 +240,11 @@ If your changes to the data file makes its format invalid, Focuris will discard 
 
 For the majority of event commands, you can simply execute them via these simple steps:
 
-1. Type in the command you desire in the various formats detailed below.
+1. Type the command you desire in the command box with the specified format detailed below.
 2. Hit `enter` on your keyboard!
-3. The results and outcome of your command should be visible on the application.
+3. The results and outcome of your command should be visible on the application just above the Command Box.
 
-Start discovering our Commands now by going to the Command Summary!
+Start discovering and using the Commands now by going to the Command Summary!
 
 <a class="md-btn-outline" href="#211-command-summary">Bring me to the Command Summary</a>
 
