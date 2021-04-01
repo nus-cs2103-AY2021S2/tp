@@ -1,6 +1,8 @@
 package seedu.address.logic.commands.schedulecommands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DATE;
+import static seedu.address.commons.core.Messages.MESSAGE_TIME_FROM_GREATER_THAN;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_FROM;
@@ -9,6 +11,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_SCHEDULE;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
@@ -19,6 +22,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.common.Description;
@@ -74,8 +78,27 @@ public class EditScheduleCommand extends Command {
         Title updatedTitle =
                 editScheduleDescriptor.getTitle().orElse(scheduleToEdit.getTitle());
 
-        AppointmentDateTime updatedTimeFrom = editScheduleDescriptor.getTimeFrom().orElse(scheduleToEdit.getTimeFrom());
-        AppointmentDateTime updatedTimeTo = editScheduleDescriptor.getTimeTo().orElse(scheduleToEdit.getTimeTo());
+        AppointmentDateTime updatedTimeFrom = null, updatedTimeTo = null;
+
+        Optional<AppointmentDateTime> optionalUpdatedTimeFrom = editScheduleDescriptor.getTimeFrom();
+        Optional<AppointmentDateTime> optionalUpdatedTimeTo = editScheduleDescriptor.getTimeTo();
+
+        if (optionalUpdatedTimeFrom.isPresent() && optionalUpdatedTimeTo.isPresent()) {
+            updatedTimeFrom = optionalUpdatedTimeFrom.get();
+            updatedTimeTo = optionalUpdatedTimeTo.get();
+        }
+
+        if (optionalUpdatedTimeFrom.isPresent() && optionalUpdatedTimeTo.isEmpty()) {
+            updatedTimeFrom = optionalUpdatedTimeFrom.get();
+            LocalDate newDate = updatedTimeFrom.value.toLocalDate();
+            updatedTimeTo = new AppointmentDateTime(newDate, scheduleToEdit.getTimeTo().value.toLocalTime());
+        }
+
+        if (optionalUpdatedTimeTo.isPresent() && optionalUpdatedTimeFrom.isEmpty()) {
+            updatedTimeTo = optionalUpdatedTimeTo.get();
+            LocalDate newDate = updatedTimeTo.value.toLocalDate();
+            updatedTimeFrom = new AppointmentDateTime(newDate, scheduleToEdit.getTimeFrom().value.toLocalTime());
+        }
 
         if (editScheduleDescriptor.getDateOnly().isPresent()) {
             LocalDate newDate = editScheduleDescriptor.getDateOnly().get();
@@ -96,6 +119,7 @@ public class EditScheduleCommand extends Command {
         Description updatedDescription =
                 editScheduleDescriptor.getDescription().orElse(scheduleToEdit.getDescription());
 
+        assert updatedTimeTo != null && updatedTimeFrom != null;
         return new Schedule(updatedTitle, updatedTimeFrom, updatedTimeTo, updatedDescription);
     }
 
@@ -110,6 +134,14 @@ public class EditScheduleCommand extends Command {
 
         Schedule scheduleToEdit = lastShownList.get(index.getZeroBased());
         Schedule editedSchedule = createEditedSchedule(scheduleToEdit, editScheduleDescriptor);
+
+        if (editedSchedule.getTimeFrom().value.isBefore(LocalDateTime.now())) {
+            throw new CommandException(MESSAGE_INVALID_DATE);
+        }
+
+        if (!editedSchedule.getTimeFrom().isTimeFromValid(editedSchedule.getTimeTo())) {
+            throw new CommandException(MESSAGE_TIME_FROM_GREATER_THAN);
+        }
 
         if (!scheduleToEdit.equals(editedSchedule) && model.hasSchedule(editedSchedule)) {
             throw new CommandException(MESSAGE_DUPLICATE_SCHEDULE);

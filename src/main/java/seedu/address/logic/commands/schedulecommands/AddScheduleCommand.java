@@ -1,15 +1,20 @@
 package seedu.address.logic.commands.schedulecommands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DATE;
+import static seedu.address.commons.core.Messages.MESSAGE_TIME_FROM_GREATER_THAN;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_FROM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_TO;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
+import java.time.LocalDateTime;
+
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.schedule.Schedule;
 
@@ -60,6 +65,14 @@ public class AddScheduleCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (toAdd.getTimeFrom().value.isBefore(LocalDateTime.now())) {
+            throw new CommandException(MESSAGE_INVALID_DATE);
+        }
+
+        if (!toAdd.getTimeFrom().isTimeFromValid(toAdd.getTimeTo())) {
+            throw new CommandException(MESSAGE_TIME_FROM_GREATER_THAN);
+        }
 
         if (model.hasSchedule(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_SCHEDULE);

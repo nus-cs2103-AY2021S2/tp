@@ -25,11 +25,6 @@ import seedu.address.model.schedule.Schedule;
  */
 public class AddScheduleCommandParser implements Parser<AddScheduleCommand> {
 
-    public static final String MESSAGE_TIME_FROM_GREATER_THAN = "TIME_FROM must be before TIME_TO. "
-            + "Please check your input for TIME_FROM and TIME_TO again.";
-    public static final String MESSAGE_INVALID_DATE = "The new schedule's date must not be in the past. "
-            + "Please check your input again.";
-
     /**
      * Parses the given {@code String} of arguments in the context of the AddScheduleCommand
      * and returns an AddScheduleCommand object for execution.
@@ -53,14 +48,6 @@ public class AddScheduleCommandParser implements Parser<AddScheduleCommand> {
         String timeToString = argMultimap.getValue(PREFIX_TIME_TO).get();
         AppointmentDateTime timeFrom = ParserUtil.parseDateTime(dateString + " " + timeFromString);
         AppointmentDateTime timeTo = ParserUtil.parseDateTime(dateString + " " + timeToString);
-
-        if (timeFrom.value.isBefore(LocalDateTime.now())) {
-            throw new ParseException(MESSAGE_INVALID_DATE);
-        }
-
-        if (!timeFrom.isTimeFromValid(timeTo)) {
-            throw new ParseException(MESSAGE_TIME_FROM_GREATER_THAN);
-        }
 
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
 
