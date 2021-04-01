@@ -6,17 +6,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DRESSCODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SIZE;
-
-import java.util.Arrays;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.garment.ColourContainsKeywordsPredicate;
-import seedu.address.model.garment.ContainsKeywordsPredicate;
-import seedu.address.model.garment.DescriptionContainsKeywordsPredicate;
-import seedu.address.model.garment.DressCodeContainsKeywordsPredicate;
-import seedu.address.model.garment.NameContainsKeywordsPredicate;
-import seedu.address.model.garment.SizeContainsKeywordsPredicate;
+import seedu.address.model.garment.AttributesContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -37,43 +31,66 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_SIZE, PREFIX_COLOUR, PREFIX_DRESSCODE,
-                        PREFIX_DESCRIPTION);
+                        PREFIX_DESCRIPTION, PREFIX_TYPE);
 
-        ContainsKeywordsPredicate containsKeywordsPredicate;
-        String[] keywords;
+        if (!(isValidInput(argMultimap))) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        }
 
-        //potential issue if finding by more than 1 attribute, looks at 1st thing in here, if multiple of the same
-        // attribute will look at last one, eg find n/x n/y will find n/y, not both
-        //another issue when finding a description with >1 word causes bug
+        AttributesContainsKeywordsPredicate predicates = new AttributesContainsKeywordsPredicate(argMultimap);
+        return new FindCommand(predicates);
+    }
+
+    //maybe can separate to each prefix, but that sorta forces each prefic to be present
+    /**
+     * Returns true if the argumentMultiMap has valid prefixes and is non-empty
+     */
+    public boolean isValidInput(ArgumentMultimap argMultimap) {
+        String[] keywords = {""};
+        boolean isValidSyntax = false;
+        boolean isNotEmpty = true;
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+            isValidSyntax = true;
             keywords = argMultimap.getValue(PREFIX_NAME).get().split("\\s+");
-            containsKeywordsPredicate =
-                    new NameContainsKeywordsPredicate(Arrays.asList(keywords));
-        } else if (argMultimap.getValue(PREFIX_DRESSCODE).isPresent()) {
+            isNotEmpty = isNotEmpty && isNotEmpty(keywords);
+        }
+        if (argMultimap.getValue(PREFIX_DRESSCODE).isPresent()) {
+            isValidSyntax = true;
             keywords = argMultimap.getValue(PREFIX_DRESSCODE).get().split("\\s+");
-            containsKeywordsPredicate =
-                    new DressCodeContainsKeywordsPredicate(Arrays.asList(keywords));
-        } else if (argMultimap.getValue(PREFIX_COLOUR).isPresent()) {
+            isNotEmpty = isNotEmpty && isNotEmpty(keywords);
+        }
+        if (argMultimap.getValue(PREFIX_COLOUR).isPresent()) {
+            isValidSyntax = true;
             keywords = argMultimap.getValue(PREFIX_COLOUR).get().split("\\s+");
-            containsKeywordsPredicate =
-                    new ColourContainsKeywordsPredicate(Arrays.asList(keywords));
-        } else if (argMultimap.getValue(PREFIX_SIZE).isPresent()) {
+            isNotEmpty = isNotEmpty && isNotEmpty(keywords);
+        }
+        if (argMultimap.getValue(PREFIX_SIZE).isPresent()) {
+            isValidSyntax = true;
             keywords = argMultimap.getValue(PREFIX_SIZE).get().split("\\s+");
-            containsKeywordsPredicate =
-                    new SizeContainsKeywordsPredicate(Arrays.asList(keywords));
-        } else if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
+            isNotEmpty = isNotEmpty && isNotEmpty(keywords);
+        }
+        if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
+            isValidSyntax = true;
             keywords = argMultimap.getValue(PREFIX_DESCRIPTION).get().split("\\s+");
-            containsKeywordsPredicate =
-                    new DescriptionContainsKeywordsPredicate(Arrays.asList(keywords));
-        } else {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+            isNotEmpty = isNotEmpty && isNotEmpty(keywords);
         }
-        if (keywords[0].equals("")) { //Empty arguments
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        if (argMultimap.getValue(PREFIX_TYPE).isPresent()) {
+            isValidSyntax = true;
+            keywords = argMultimap.getValue(PREFIX_TYPE).get().split("\\s+");
+            isNotEmpty = isNotEmpty && isNotEmpty(keywords);
         }
+        return isValidSyntax && isNotEmpty;
+    }
 
-        return new FindCommand(containsKeywordsPredicate);
+    /**
+     * Returns true if the input is non empty
+     */
+    public boolean isNotEmpty(String[] input) {
+        if (!(input[0].equals(""))) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

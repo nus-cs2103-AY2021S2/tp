@@ -1,10 +1,16 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COLOUR;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DRESSCODE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SIZE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 
-import seedu.address.commons.core.Messages;
+import java.util.List;
+
 import seedu.address.model.Model;
-import seedu.address.model.garment.ContainsKeywordsPredicate;
+import seedu.address.model.garment.AttributesContainsKeywordsPredicate;
 
 /**
  * Finds and lists all garments in wardrobe whose name contains any of the argument keywords.
@@ -20,24 +26,67 @@ public class FindCommand extends Command {
             + "Parameters: n/KEYWORD [MORE_KEYWORDS] or s/KEYWORD [MORE_KEYWORDS] ... for each attribute\n"
             + "Example: " + COMMAND_WORD + " n/alice bob charlie";
 
-    private final ContainsKeywordsPredicate predicate;
+    private final AttributesContainsKeywordsPredicate predicates;
 
-    public FindCommand(ContainsKeywordsPredicate predicate) {
-        this.predicate = predicate;
+    public FindCommand(AttributesContainsKeywordsPredicate predicates) {
+        this.predicates = predicates;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredGarmentList(predicate);
-        return new CommandResult(
-                String.format(Messages.MESSAGE_GARMENTS_LISTED_OVERVIEW, model.getFilteredGarmentList().size()));
+        model.updateFilteredGarmentList(predicates);
+        //return new CommandResult(
+        //        String.format(Messages.MESSAGE_GARMENTS_LISTED_OVERVIEW, model.getFilteredGarmentList().size()));
+        return new CommandResult(showMessage());
+    }
+
+    //is this the correct class to have this method? Listcommand also has the message in its class tho
+    /**
+     * Returns the message to be shown
+     */
+    public String showMessage() {
+        String result = "Showing garments that match the following:";
+        if (predicates.isPrefixValuePresent(PREFIX_NAME)) {
+            result = result + "\nname: " + predicates.getPrefixValue(PREFIX_NAME);
+        }
+        if (predicates.isPrefixValuePresent(PREFIX_SIZE)) {
+            result = result + "\nsize: " + predicates.getPrefixValue(PREFIX_SIZE);
+        }
+        if (predicates.isPrefixValuePresent(PREFIX_COLOUR)) {
+            result = result + "\ncolour: " + predicates.getPrefixValue(PREFIX_COLOUR);
+        }
+        if (predicates.isPrefixValuePresent(PREFIX_DRESSCODE)) {
+            result = result + "\ndresscode: " + predicates.getPrefixValue(PREFIX_DRESSCODE);
+        }
+        if (predicates.isPrefixValuePresent(PREFIX_TYPE)) {
+            result = result + "\ntype: " + predicates.getPrefixValue(PREFIX_TYPE);
+        }
+        /*result = result + predicates.ifPrefixPresentGetValue(PREFIX_NAME)
+                + predicates.ifPrefixPresentGetValue(PREFIX_SIZE)
+                + predicates.ifPrefixPresentGetValue(PREFIX_COLOUR)
+                + predicates.ifPrefixPresentGetValue(PREFIX_DRESSCODE)
+                + predicates.ifPrefixPresentGetValue(PREFIX_TYPE);*/
+        List<String> predicateDesc = predicates.getDescriptionValue();
+        boolean firstDesc = true;
+        for (String desc : predicateDesc) {
+            if (firstDesc) {
+                result = result + "\ndescriptions: ";
+                firstDesc = false;
+            }
+            result = result + desc + " ";
+        }
+        return result;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof FindCommand // instanceof handles nulls
-                && predicate.equals(((FindCommand) other).predicate)); // state check
+                && predicates.equals(((FindCommand) other).predicates)); // state check
     }
+    //create a tostring
+    /*public String toString() {
+        return ;
+    }*/
 }

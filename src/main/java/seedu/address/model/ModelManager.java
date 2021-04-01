@@ -21,7 +21,8 @@ public class ModelManager implements Model {
 
     private final Wardrobe wardrobe;
     private final UserPrefs userPrefs;
-    private final FilteredList<Garment> filteredGarments;
+    //private final FilteredList<Garment> filteredGarments;
+    private FilteredList<Garment> filteredGarments;
 
     /**
      * Initializes a ModelManager with the given wardrobe and userPrefs.
