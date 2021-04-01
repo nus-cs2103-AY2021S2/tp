@@ -1,7 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE_CLEAR;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLEAR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE_RECORD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE_VIEW;
 
@@ -21,11 +21,11 @@ public class NoteCommandParser implements Parser<NoteCommand> {
      */
     public NoteCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NOTE_RECORD, PREFIX_NOTE_VIEW, PREFIX_NOTE_CLEAR);
+                ArgumentTokenizer.tokenize(args, PREFIX_NOTE_RECORD, PREFIX_NOTE_VIEW, PREFIX_CLEAR);
 
         Prefix singlePrefix;
         try {
-            singlePrefix = getSinglePrefix(argMultimap, PREFIX_NOTE_RECORD, PREFIX_NOTE_VIEW, PREFIX_NOTE_CLEAR);
+            singlePrefix = getSinglePrefix(argMultimap, PREFIX_NOTE_RECORD, PREFIX_NOTE_VIEW, PREFIX_CLEAR);
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, NoteCommand.MESSAGE_USAGE), pe);
         }

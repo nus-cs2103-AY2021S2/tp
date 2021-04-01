@@ -89,7 +89,8 @@ Action                            | Format
 **Find by name**                  | `find KEYWORD [MORE_KEYWORDS]`
 **List all clients**              | `list`
 **Record, clear or view notes**   | `note INDEX r/NOTE` (record) <br>`note INDEX c/` (clear)<br>`note INDEX v/` (view)
-**Schedule or remove meetings**   | `schedule INDEX m/DESCRIPTION @ DATE_TIME` (schedule)<br/>`schedule INDEX m/remove` (unschedule)
+**Remove meetings**               | `unschedule INDEX` (remove specified meeting)<br> `unschedule all` (remove all meetings)<br> `unschedule expired` (remove expired meetings)
+**Schedule meetings**             | `schedule INDEX m/DESCRIPTION @ DATE_TIME`
 **Show notifications**            | `notif`
 **View Help**                     | `help`
 
@@ -290,9 +291,8 @@ Example:
 * `note 4 v/` generates a popup box displaying the notes taken for the 4th client.
 
 
-### Scheduling or removing a meeting : `schedule`
-
-#### Scheduling a meeting
+### Arranging Meetings with Clients
+#### Scheduling a meeting : `schedule`
 
 You can schedule a meeting with a specific client in Link.me.
 
@@ -311,19 +311,23 @@ Example:
 * `schedule 2 m/Insurance Plan @ 2020-02-28 14:30` schedules a Insurance Plan meeting with your client indexed 2 in the
   displayed list on 28th October 2020 2:30 pm.
 
-#### Removing a meeting
+#### Removing a meeting : `unschedule`
 
-You can remove a meeting with a specific client.
+Removing meetings comes in three flavors:
 
-Format: `schedule INDEX m/remove`
+* `unschedule INDEX` removes the specified meeting in the meeting list.
+* `unschedule all` removes all meetings in the meeting list.
+* `unschedule expired` removes all expired meetings in the meeting list.
 
-* Removes a scheduled meeting with your client at the specified `INDEX`.
-* The `INDEX` refers to the index number shown in the displayed client list.
+
+Format: `unschedule CHOICE`
+
+* The `INDEX` refers to the index number shown in the displayed meeting list.
 * The `INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Example:
 
-* `schedule 2 m/remove` removes meeting scheduled with your client indexed 2 in the displayed list.
+* `schedule 2 m/remove` removes the second meeting on the meeting list.
 
 
 ### Searching for clients
