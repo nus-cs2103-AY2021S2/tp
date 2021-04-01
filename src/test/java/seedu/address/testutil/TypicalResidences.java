@@ -21,7 +21,7 @@ import seedu.address.model.residence.Residence;
 public class TypicalResidences {
 
     public static final Residence RESIDENCE_A = new ResidenceBuilder().withName("Amber Heights")
-            .withAddress("123, Jurong West Ave 6, #08-111").withTags("valuable").build();
+            .withAddress("123, Jurong West Ave 6, #08-111").withBookingList().withTags("valuable").build();
     public static final Residence RESIDENCE_B = new ResidenceBuilder().withName("Beverly Hills")
             .withAddress("311, Clementi Ave 2, #02-25").withTags("repair", "popular")
             .withCleanStatusTag("n").build();
