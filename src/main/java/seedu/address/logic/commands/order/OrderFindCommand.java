@@ -25,8 +25,8 @@ public class OrderFindCommand extends Command {
     private final Predicate<Order> predicate;
 
     /**
-     * Construct command with a list of predicates to use
-     * @param predicates list of predicates to use
+     * Constructs order command based on a list of predicates
+     * @param predicates
      */
     public OrderFindCommand(List<Predicate<Order>> predicates) {
         assert predicates != null && predicates.size() > 0;
