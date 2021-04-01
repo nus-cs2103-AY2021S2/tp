@@ -95,7 +95,7 @@ commands prepended with `e` operate on the event list.
 | Mark as done | no contact-equivalent, `edone` (event) |
 
 Other app-wide commands are also available.
-These commands do not process any additional parameters.
+These commands do not process any additional parameters, including the single-argument `help` command.
 
 | Action | Command |
 |---|---|
