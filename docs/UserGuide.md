@@ -10,7 +10,6 @@ title: User Guide
 # TutorBuddy - User Guide
 
 * Table of Contents {:toc}
-
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
@@ -93,7 +92,7 @@ There are three main areas in TutorBuddy:
     * Type a command in the command box and press <kbd>Enter</kbd> to execute it.<br>
 
   Here are some example commands you can try:
-  * **`list_student`** : Lists all students and sessions.
+  * **`list`** : Lists all students and sessions.
   * **`add_student`**`n/John Doe p/98765432 e/johnd@example.com a/John street, Block 123, #01-01 l/Sec2 g/95421323 r/Mother` : Adds a student named `John Doe`
     to TutorBuddy.
   * **`delete_student`**`3` : Deletes the 3rd student shown in the Student section.
@@ -166,7 +165,7 @@ This section details the format of the commands available in TutorBuddy. We will
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/98765432 p/99999999`, only `p/98765432` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `emails`, `help`, `exit`, `clear` and `list_student`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `emails`, `help`, `exit`, `clear` and `list`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 * Indexes **must be positive whole numbers** 1, 2, 3, …
@@ -196,13 +195,13 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-##### Listing all students and sessions: `list_student`
+#### Listing all students and sessions: `list`
 
 Displays list of all students and all sessions in TutorBuddy.
 
 ![list](images/command_list.png)
 
-Format: `list_student` <br>
+Format: `list` <br>
 
 ##### Clearing all data : `clear`
 
@@ -307,7 +306,7 @@ Example:
 3 | Jon Koh | jonkoh@gmail.com
 4 | Samuel Lee | sam@gmail.com
 
-*Figure 2.1 State of Student List After `list_student` command*
+*Figure 2.1 State of Student List After `list` command*
 
 \# | Student Name | Email
 ---- |---------|------|
@@ -316,7 +315,7 @@ Example:
 
 *Figure 2.2 State of Student List After `find_student john jon` command*
 
-* To get emails of all students (see Figure 2.1): `list_student` followed by `emails` returns `johnlee@gmail.com;johnztan@gmail.com;jonkoh@gmail.com;sam@gmail.com;`
+* To get emails of all students (see Figure 2.1): `list` followed by `emails` returns `johnlee@gmail.com;johnztan@gmail.com;jonkoh@gmail.com;sam@gmail.com;`
 
 * To get emails of specific students (see Figure 2.2): `find_student john jon` followed by  `emails` returns `johnlee@gmail.com;jonkoh@gmail.com;`
 
@@ -369,6 +368,25 @@ Format: `delete_session n/STUDENT_NAME i/SESSION_INDEX`
 Example:
 * `delete_session n/John Lee i/1` deletes John Lee's **first** session
 
+##### Deleting a recurring tuition session: `delete_rec_session`
+
+Deletes a single session from an existing recurring tuition session of a specified student from TutorBuddy.
+Spawns two recurring sessions that will span the period exclusively before and after the deleted single session.
+
+Format: `delete_rec_session n/STUDENT_NAME i/SESSION_INDEX d/DATE t/TIME`
+
+Arguments similar to `delete_session` command except the following:
+* `DATE` should be the date of the single session to be deleted
+* `TIME` should be the time of the single session to be deleted
+<div markdown="block" class="alert alert-info">
+:information_source: Note that the <code>DATE</code> and <code>TIME</code> should be a valid session date that belongs in the specified recurring session
+</div>
+
+Example:
+* `delete_rec_session n/John Doe i/1 d/2021-03-31 t/18:00` deletes a valid single session dated 2021-03-31 18:00 
+from an existing recurring session. This will spawn two recurring sessions that will span the period exclusively
+before and after 2021-03-31 18:00
+
 #### 4.2.5 Fees
 
 ##### Getting monthly fee for a particular student: `fee`
@@ -394,7 +412,7 @@ Example:
 Action | Format
 --------|------------------
 **Help** | `help`
-**List all students and sessions** | `list_student`
+**List all students and sessions** | `list`
 **Clear all students and sessions** | `clear`
 **Exit TutorBuddy** | `exit`
 
@@ -417,6 +435,7 @@ Action | Format | Examples
 **Add Single Session** | `add_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE` | `add_session n/John Doe d/2021-01-01 t/18:00 k/120 s/Biology f/80`
 **Add Recurring Session** | `add_rec_session n/STUDENT_NAME d/DATE e/LASTDATE b/INTERVAL t/TIME k/DURATION s/SUBJECT f/FEE` | `add_rec_session n/John Doe d/2021-01-01 e/2021-01-15 b/7 t/20:00 k/120 s/Geography f/80`
 **Delete Session** | `delete_session n/STUDENT_NAME i/SESSION_INDEX` | `delete_session n/John Lee i/1`
+**Delete Recurring Session** | `delete_rec_session n/STUDENT_NAME i/SESSION_INDEX d/DATE t/TIME` | `delete_rec_session n/John Doe i/1 d/2021-03-31 t/18:00`
 
 **Fees**
 

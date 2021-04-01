@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
@@ -86,8 +87,8 @@ public class MainWindow extends UiPart<Stage> {
         this.primaryStage = primaryStage;
         this.logic = logic;
 
-        // Configure the UI
-        setWindowDefaultSize(logic.getGuiSettings());
+        primaryStage.setTitle("TutorBuddy");
+        primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/images/tutorbuddy_icon.png")));
 
         setAccelerators();
 
