@@ -9,7 +9,21 @@ ClientBook is an application for insurance agents to manage client contacts, opt
 still having the benefits of a Graphical User Interface (GUI). If you are an insurance agent who can type fast, 
 ClientBook can help _you_ accomplish your client management tasks faster than traditional GUI apps.
 
-### Table of Contents 
+## Why ClientBook?
+
+ClientBook is designed for insurance agents who are always on the go. We understand the pain and inconvenience of having to navigate around
+your screen without a mouse while you are out meeting a client. We are also aware that you might have to remember various details about your many clients.
+<br>
+
+Thus, ClientBook is born!<br>
+
+Requiring **minimal interactions with your cursor**, ClientBook still allows you to complete essential contact management
+tasks with our minimal yet essential set of contact management features.<br>
+
+If you are a new user, you can start with the [Quick Start](#quick-start) section.
+If you are an experienced user, we have provided a convenient [Summary of Commands](#summary-of-commands) at the end of this user guide.
+
+## Table of Contents 
 
 * [**1**. Why ClientBook?](#why-clientbook)
 * [**2.** Quick Start](#quick-start)
@@ -35,22 +49,6 @@ ClientBook can help _you_ accomplish your client management tasks faster than tr
   * [**5.1** Setting Up](#setting-up)
 * [**6.** Summary of Commands](#summary-of-commands)
 * [**7.** Contact Us](#contact-us)
-
-
-## Why ClientBook?
-
-ClientBook is designed for insurance agents who are always on the go. We understand the pain and inconvenience of having to navigate around 
-your screen without a mouse while you are out meeting a client. We are also aware that you might have to remember various details about your many clients.
-<br>
-
-Thus, ClientBook is born!<br>
-
-Requiring **minimal interactions with your cursor**, ClientBook still allows you to complete essential contact management 
-tasks with our minimal yet essential set of contact management features.<br>
-
-If you are a new user, you can start with the [Quick Start](#quick-start) section. 
-If you are an experienced user, we have provided a convenient [Summary of Commands](#summary-of-commands) at the end of this user guide.
-
 
 ## Quick Start
 
