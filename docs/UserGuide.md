@@ -28,8 +28,7 @@ TutorsPet is a **desktop app designed for private tutors to manage students’ i
      
    * **`schedule`** : Opens a window that shows the weekly schedule.
 
-   * **`add`**`n/Alice Tan p/98765432 s/Abc Secondary School e/alicet@example.com a/John street, block 123, #01-01 
-     gn/Mary Tan gp/23456789` : Adds a student's contact named `Alice Tan` to TutorsPet.
+   * **`add`**`n/Alice Tan p/98765432 s/Abc Secondary School e/alicet@example.com a/John street, block 123, #01-01 gn/Mary Tan gp/23456789` : Adds a student's contact named `Alice Tan` to TutorsPet.
 
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
@@ -55,10 +54,6 @@ TutorsPet is a **desktop app designed for private tutors to manage students’ i
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/SUBJECT]…​` can be used as ` ` (i.e. 0 times), `t/chem`, `t/phys t/math` etc.
-  
-* Levels are represented by abbreviated names. Available levels are `pri1`, `pri2`, `pri3`, `pri4`, `pri5`, `pri6`, 
-  `sec1`, `sec2`, `sec3`, `sec4`, `jc1`, `jc2`, `graduated`.
-They cover the education levels in Primary School, Secondary School and Junior College.
   
 * Subjects are represented by abbreviated name. Available names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `math`, `phys`.
 They represent subjects Biology, Chemistry, Chinese, Economics, English, Geography, History, Mathematics and Physics respectively.
@@ -94,13 +89,13 @@ Format: `schedule`
 
 Adds a student’s contact to TutorsPet.
 
-Format: `add n/NAME p/PHONE [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] [gp/GUARDIAN_PHONE] [lv/LEVEL] [t/SUBJECT]…​ [le/LESSON]…​`
+Format: `add n/NAME p/PHONE [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] [gp/GUARDIAN_PHONE] [t/SUBJECT]…​ [le/LESSON]…​`
 
 <div markdown="span" class="alert alert-primary">
 
 :bulb:**Tip:**<br>
 
-* `n/NAME p/PHONE` are compulsory fields that must be provided, while `s/SCHOOL e/EMAIL a/ADDRESS gn/GUARDIAN_NAME gp/GUARDIAN_PHONE lv/LEVEL [t/SUBJECT]…​ [le/LESSON]…​` are optional.
+* `n/NAME p/PHONE` are compulsory fields that must be provided, while `s/SCHOOL e/EMAIL a/ADDRESS gn/GUARDIAN_NAME gp/GUARDIAN_PHONE [t/SUBJECT]…​ [le/LESSON]…​` are optional.
   
 * A student’s contact can have any number of subjects (including 0)
   
@@ -218,67 +213,9 @@ Examples:
 * `search t/CHEM`, `search t/chem`, and `search t/Chem` can all return students with the subject `chem`
 
 ### Sorting contacts: `sort`
-Sorts the student contacts list by name, school, subjects or lessons.
+Sorting for student’s contacts by name, school, subjects or lessons.
 
-Format: `sort PREFIX`
-  
-Prefix | Sorting Criteria 
------- | -----------------
-`n/`   | Name             
-`s/`   | School           
-`t/`   | Subject          
-`le`   | Lesson           
-
-* There are four sorting criteria available, represented by the prefixes `n/`, `s/`, `t/`, and 
-  `le/`. They represent sorting by name, school, subjects or lessons respectively.
-* If multiple sorting prefixes are listed out, the list will be sorted by the **first** prefix listed.
-* Any extra words typed will be ignored.
-
-Examples:
-* `sort le/` sorts students based on the chronological order of their respective earliest lesson 
-  of the week.
-* `sort n/ s/` sorts students by the alphabetical orders of their names.
-* `sort t/chem` sorts students by subject, ignoring the extra words.
-
-### Advancing all students: `levelup`
-
-Advances the education level of all the student contacts by one level, unless the student is excluded.
-This feature can be used at the start of the school year.
-
-Format: `levelup ex/[INDEX]...`
-
-* Students who are `jc1` will advance to `graduated` when `levelup` is applied. Students will not 
-  advance any further if they are `graduated`.
-* If no index is provided, all students will advance by one level (unless they have `graduated`).
-* The index refers to the index number shown in the displayed student list. Indexes are used to 
-  indicate students who are to be excluded from the advancement.
-* The index **must be a positive integer** 1, 2, 3, …​
-* Multiple indexes can be taken in, including no indexes. Indexes must be separated by spaces.
-
-Examples:
-* `levelup` advances all students except `graduated` students by one level.
-* `levelup ex/3 4` advances all students by one level, excluding the 3rd and 4th student
-  in the list, as well as any students who have `graduated`.
-
-### Demoting all students: `leveldown`
-
-Demotes the education level of all the student contacts by one level, unless the student is excluded.
-This feature can be used to undo `levelup` or indicate retainees.
-
-Format: `leveldown ex/[INDEX]...`
-
-* Students who are `pri1` will not demote any further.
-* If no index is provided, all students will demote by one level (unless they are `pri1`).
-* The index refers to the index number shown in the displayed student list. Indexes are used to
-  indicate students who are to be excluded from the demotion.
-* The index **must be a positive integer** 1, 2, 3, …​
-* Multiple indexes can be taken in, including no indexes. Indexes must be separated by spaces.
-
-Examples:
-* `leveldown` demotes all students except `pri1` students by one level.
-* `levelup ex/2 5` demotes all students by one level, excluding the 3rd and 4th student
-  in the list, as well as any students who are `pri1`.
-
+Format: `sort n/`, `sort s/`, `sort t/` or `sort le/`
 
 ### Viewing a contact details: `detail`
 
@@ -399,9 +336,7 @@ Action | Format, Examples
 **Edit** | `edit INDEX [n/NAME] [s/SCHOOL] [p/PHONE] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] [gp/GUARDIAN_PHONE] [t/SUBJECT]…​ [le/LESSON]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Search** | `search [n/KEYWORDS] [s/KEYWORDS] [t/KEYWORDS] [MORE_KEYWORDS]`<br> e.g., `search n/James Jake s/woodlands t/eng`
 **Schedule** | `schedule`
-**Sort** | `sort PREFIX` <br> e.g., `sort [n/]`, `sort [s/]`
-**Level Up** | `levelup [ex/INDEX]` <br> e.g., `levelup`, `levelup ex/2 4`
-**Level Down** | `leveldown [ex/INDEX]` <br> e.g., `levelup`, `levelup ex/1 2`
+**Sort** | `sort [n/] [s/] [t/] [le/]`
 **Detail** | `detail INDEX` <br> e.g., `detail 1`
 **List** | `list`
 **Add dates** | `add-date d/DESCRIPTION dt/DETAILS`<br> e.g, `add-date d/math exam dt/2021-11-05 1300`
