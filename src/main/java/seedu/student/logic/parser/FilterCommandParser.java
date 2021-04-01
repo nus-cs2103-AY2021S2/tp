@@ -36,12 +36,12 @@ public class FilterCommandParser implements Parser<FilterCommand> {
         boolean isValidVaccinationStatus = true;
 
         //Ensure that "not_vaccinated" or "NOT_VACCINATED" is an invalid input
-        if(condition.contains("_") || condition.equals(condition.toUpperCase())){
+        if (condition.contains("_") || condition.equals(condition.toUpperCase())) {
             isValidVaccinationStatus = false;
         }
 
         //Change input string to match "NOT_VACCINATED" in VACCINATED_STATUS
-        if(condition.equals("not vaccinated")){
+        if (condition.equals("not vaccinated")) {
             condition = UNVACCINATED_STATUS;
         }
 

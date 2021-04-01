@@ -5,7 +5,6 @@ import static seedu.student.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
 import static seedu.student.model.Model.PREDICATE_SHOW_ALL_APPOINTMENT_LISTS;
 import static seedu.student.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
-import seedu.student.commons.core.Messages;
 import seedu.student.model.Model;
 
 /**
