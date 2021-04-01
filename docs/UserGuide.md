@@ -109,6 +109,20 @@ Reflects the current status of your task. Status can only be either 'done' or 'n
 :information_source:   Your task's status will be set to 'not done' by default.
 
 
+## Constraints
+In order to maximise the efficiency of adding tasks and ensuring that there are no unnecessary attributes, there are
+two constraints to the attributes that can exist on the tasks that you create or edit.
+1. Tasks cannot have Date and Recurring Schedule at the same time.
+2. Tasks cannot have Duration on its own without a Date or Recurring Schedule.
+
+When it comes to Dates and Recurring Schedules, the main purpose of a Date attribute is to give a task a deadline or
+a single day to carry out the task itself. This should not co-exist with a Recurring Schedule, which can also indicate
+a task's deadline or day to carry out the event, except it is being repeated on a weekly or biweekly basis.
+
+As for the Duration of a task, it will be confusing to you as a user when you have multiple tasks with durations but no
+date specified. As such, this might cause you to miss your task or lower the efficiency of utilizing PlanIT when 
+searching for tasks.
+
 ## List of Commands
 
 <div markdown="block" class="alert alert-info">
