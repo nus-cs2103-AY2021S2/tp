@@ -423,13 +423,15 @@ As of the latest version of our application, we support 7 commonly used request 
 | **OPTIONS** | Retrieves the allowed communication options (methods) for a specified URI                                   |
 
 ### 8.5 JSON Format
-JSON is short for JavaScript Object Notation and is a common lightweight format for data storage. In an API call, the JSON format is also commonly used to send data between two systems. For the current version of our application, JSON is the only format supported for sending data. The following are some examples of data in JSON format:
+JSON is short for JavaScript Object Notation and is a common lightweight format for data storage (in the form of key/value pairs). In an API call, the JSON format is also commonly used to send data between two systems. For the current version of our application, JSON is the only format supported for sending data. The following are some examples of data in JSON format:
 - `{}`
 - `{"name": "john doe"}`
 - `{"persons": {"name": "john doe"}}`
 
 ### 8.6 Sample Endpoints
-An extensive list of sample endpoints have been provided below for new users to test and try out. Note that the **header** field has been omitted in the samples to keep them beginner friendly. Rest assured that the following **examples will work without the header** field specified although for the more adventurous, you may refer to this full [list of http headers](https://en.wikipedia.org/wiki/List_of_HTTP_header_fields). Go ahead and try out the sample endpoints below!
+An extensive list of sample endpoints have been provided below for new users to test and try out. Note that the **header** field has been omitted in the samples to keep them beginner friendly. Rest assured that the following **examples will work without the header** field specified although for the more adventurous, you may refer to the full [list of HTTP headers](https://en.wikipedia.org/wiki/List_of_HTTP_header_fields). 
+
+Data fields on the other hand have been included in a standalone column (if applicable). They are all in the [**JSON format**](#85-json-format) and only the keys are provided (you can play around with your own values). Go ahead and try out the sample endpoints below!
 
 <span class="pseudo-header">GET</span>
 
@@ -445,15 +447,27 @@ An extensive list of sample endpoints have been provided below for new users to 
 | https://api.data.gov.sg/v1/environment/relative-humidity       |
 | https://api.data.gov.sg/v1/environment/wind-speed              |
 | https://api.data.gov.sg/v1/environment/wind-direction          |
-| https://api.data.gov.sg/v1/environment/air-temperature         |
-| https://api.data.gov.sg/v1/technology/ipos/trademarks          |
-| https://api.data.gov.sg/v1/technology/ipos/patents             |
-| https://api.data.gov.sg/v1/technology/ipos/designs             |
-| https://api.data.gov.sg/v1/transport/taxi-availability         |
 
 <span class="pseudo-header">POST</span>
 
 | URL                                                           | Data (JSON)                                       |
 | ------------------------------------------------------------- |                                                   |
 | https://jsonplaceholder.typicode.com/posts                    | title, body, userId                               |
-| https://reqbin.com/echo/post/json                             | Id, Customer, Quantity, Price
+| https://reqbin.com/echo/post/json                             | Id, Customer, Quantity, Price                     |
+| https://reqres.in/api/register                                  | email, password                   |
+| https://reqres.in/api/login                                | email, password                     |
+| https://reqres.in/api/users                             | name, job                     |
+
+<span class="pseudo-header">PUT</span>
+
+| URL                                                           | Data (JSON)                                       |
+| ------------------------------------------------------------- |                                                   |
+| https://jsonplaceholder.typicode.com/posts/1                    | id, title, body, userId                               |
+| https://reqres.in/api/users/2                             | name, job                     |
+
+<span class="pseudo-header">DELETE</span>
+
+| URL                                                           |
+| ------------------------------------------------------------- |
+| https://jsonplaceholder.typicode.com/posts/1                  |
+| https://reqres.in/api/users/2                             |
