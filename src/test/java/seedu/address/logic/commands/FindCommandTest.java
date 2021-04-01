@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
+ * TODO : Add more tests.
  */
 public class FindCommandTest {
    /* private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());

@@ -21,6 +21,7 @@ public class FilterCombinator implements Predicate<Customer> {
 
     /**
      * Constructor for filter combinator to create a expression tree from the given argument.
+     *
      * @param argument - the filter expression
      */
     public FilterCombinator(String argument) {
@@ -43,8 +44,10 @@ public class FilterCombinator implements Predicate<Customer> {
             return LogicalOperator.AND;
         } else if (prefix.equals(PREFIX_OR)) {
             return LogicalOperator.OR;
-        } else {
+        } else if (prefix.equals(PREFIX_NOT)) {
             return LogicalOperator.NOT;
+        } else {
+            throw new IllegalArgumentException("Unknown operator");
         }
     }
 
