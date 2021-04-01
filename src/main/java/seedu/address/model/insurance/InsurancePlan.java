@@ -10,8 +10,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
  */
 public class InsurancePlan {
     public static final String MESSAGE_CONSTRAINTS = "Input should be of the form:\n"
-            + "plan INDEX i/PLAN_NAME $PREMIUM (add plan) OR plan INDEX i/remove PLAN_INDEX (remove plan)\n"
-            + "e.g. plan 3 i/Protecc $4000 OR plan 2 i/remove 3\n"
+            + "plan INDEX i/PLAN_NAME $PREMIUM (add plan) OR plan INDEX c/PLAN_INDEX (remove plan)\n"
+            + "e.g. plan 3 i/Protecc $4000 OR plan 2 c/3\n"
             + "The plan name should only contain alphanumeric characters and spaces,"
             + " and it should not be blank.\n"
             + "The yearly premium amount should be a positive integer.";

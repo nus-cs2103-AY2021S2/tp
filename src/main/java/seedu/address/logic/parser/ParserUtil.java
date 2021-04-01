@@ -166,9 +166,6 @@ public class ParserUtil {
     public static InsurancePlan parsePlan(String plan) throws ParseException {
         requireNonNull(plan);
         String trimmedPlan = plan.trim();
-        if (trimmedPlan.split(" ", 2)[0].equals("remove") && !trimmedPlan.contains("$")) {
-            return null;
-        }
         if (!InsurancePlan.isValidPlan(trimmedPlan)) {
             throw new ParseException(InsurancePlan.MESSAGE_CONSTRAINTS);
         }
@@ -183,11 +180,10 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code command} is invalid.
      */
-    public static Index parseRemovePlanIndex(String command) throws ParseException {
-        requireNonNull(command);
-        String trimmedCommand = command.trim();
-        String[] fragments = trimmedCommand.split(" ", 2);
-        Index planIndex = parseIndex(fragments[1]);
+    public static Index parseRemovePlanIndex(String index) throws ParseException {
+        requireNonNull(index);
+        String trimmedIndex = index.trim();
+        Index planIndex = parseIndex(trimmedIndex);
         return planIndex;
     }
 
