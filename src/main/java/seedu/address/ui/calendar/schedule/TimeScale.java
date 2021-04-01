@@ -54,7 +54,7 @@ public class TimeScale extends UiPart<Region> {
     private EventList events;
 
     @FXML
-    private StackPane timeScale;
+    private StackPane stackPane;
     @FXML
     private ScrollPane scrollPane;
 
@@ -89,7 +89,7 @@ public class TimeScale extends UiPart<Region> {
     }
 
     private void clearTimeScale() {
-        timeScale.getChildren().clear();
+        stackPane.getChildren().clear();
         logger.info("successfully cleared time scale children nodes");
     }
 
@@ -117,8 +117,8 @@ public class TimeScale extends UiPart<Region> {
 
         //taskMapper.put(event, eventCell);
 
-        timeScale.getChildren().add(eventCell.getRoot());
-        timeScale.setMargin(eventCell.getRoot(), new Insets(eventCell.marginTop(), 0, 0, 60));
+        stackPane.getChildren().add(eventCell.getRoot());
+        stackPane.setMargin(eventCell.getRoot(), new Insets(eventCell.marginTop(), 0, 0, 60));
     }
 
     private void setUpTimeScale() {
@@ -155,8 +155,8 @@ public class TimeScale extends UiPart<Region> {
      */
     private void setMargin() {
         for (int i = 0; i < timeScaleCells.size(); i++) {
-            timeScale.getChildren().add(timeScaleCells.get(i).getRoot());
-            timeScale.setMargin(timeScaleCells.get(i).getRoot(), new Insets(i * 40, 0, 0, 0));
+            stackPane.getChildren().add(timeScaleCells.get(i).getRoot());
+            stackPane.setMargin(timeScaleCells.get(i).getRoot(), new Insets(i * 40, 0, 0, 0));
         }
     }
 
@@ -167,8 +167,8 @@ public class TimeScale extends UiPart<Region> {
      * @param marginTop marginTop of the node
      */
     public void placeItem(Node node, double marginTop) {
-        timeScale.getChildren().add(node);
-        timeScale.setMargin(node, new Insets(marginTop, 0, 0, 0));
+        stackPane.getChildren().add(node);
+        stackPane.setMargin(node, new Insets(marginTop, 0, 0, 0));
     }
 
     /**
@@ -177,7 +177,7 @@ public class TimeScale extends UiPart<Region> {
      * @param node node to remove
      */
     public void removeItem(Node node) {
-        timeScale.getChildren().remove(node);
+        stackPane.getChildren().remove(node);
         this.currentTimePointer = null;
         timeScaleCells.forEach(timeScaleCell -> timeScaleCell.recoverTime());
     }
@@ -198,7 +198,7 @@ public class TimeScale extends UiPart<Region> {
      * @param newMarginTop
      */
     public void updateCurrentTimePosition(double newMarginTop) {
-        timeScale.setMargin(currentTimePointer.getRoot(), new Insets(newMarginTop, 0, 0, 0));
+        stackPane.setMargin(currentTimePointer.getRoot(), new Insets(newMarginTop, 0, 0, 0));
 
     }
 
