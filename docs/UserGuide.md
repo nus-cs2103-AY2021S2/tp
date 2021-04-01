@@ -89,7 +89,7 @@ There are three main areas in TutorBuddy:
     * The **Calendar** tab allow tutors to have a weekly view of all sessions.
 
 3. The command box is the area for you to enter your commands. The result of each command will be shown in the result
-   display box, which is located directly above the command box.
+   display box, which is located directly above the command box. This area is always present in all tabs.
     * Type a command in the command box and press <kbd>Enter</kbd> to execute it.<br>
 
   Here are some example commands you can try:
@@ -116,7 +116,27 @@ TutorBuddy allows the user to take full control of managing their students and t
 3. Calendar
 
 #### 4.1.1 Home
+The Home page is split into two views: **Reminder** and **Monthly Fees**.
+##### Reminder
+The Reminder section displays tuition sessions within 3 days of the current date. Namely today, tomorrow and the day after tomorrow.
 
+##### Monthly Fees
+The Monthly Fees section displays tuition fees for the current and the past two months.
+
+#### 4.1.2 Tuition
+The Tuition page is split into two views: **Student** and **Session**.
+
+##### Student
+The Student section displays students in TutorBuddy.
+
+##### Session
+The Session section displays sessions corresponding to each student.
+
+#### 4.1.3 Calendar
+The Calendar section provides a weekly view of all tuition sessions in TutorBuddy.
+
+The left and right arrow allows you to view past and future tuition sessions. 
+Click the 'Today' button and to be brought back to this week's view.
 
 ### 4.2 Commands
 
