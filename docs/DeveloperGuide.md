@@ -104,12 +104,13 @@ The `UI` component,
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying
    help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API
-call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("list")` and `execute("list l/kitchen")` API
+calls respectively.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `list` Command](images/ListStoreMandoSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `list l/kitchen` Command](images/ListLocationSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ListCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 ### Model component
@@ -149,97 +150,49 @@ Classes used by multiple components are in the `seedu.storemando.commons` packag
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### List Item `list`, `list l/LOCATION` or `list t/TAG`
 
-#### Proposed Implementation
+#### Actual Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedStoreMando`. It extends `StoreMando` with undo/redo
-history, stored internally as an `storeMandoStateList` and `currentStatePointer`. Additionally, it implements the
-following operations:
+The `list` feature allows users to list all items in the inventory based on the order they were added. 
+The `list l/LOCATION` and `list t/TAG` features allow users to list all items in a specific location
+or with a specific tag respectively.
 
-* `VersionedStoreMando#commit()` — Saves the current inventory state in its history.
-* `VersionedStoreMando#undo()` — Restores the previous inventory state from its history.
-* `VersionedStoreMando#redo()` — Restores a previously undone inventory state from its history.
+Given below is an example usage scenario and how the list operation behaves at each step.
 
-These operations are exposed in the `Model` interface as `Model#commitStoreMando()`, `Model#undoStoreMando()`
-and `Model#redoStoreMando()` respectively.
+Step 1. The user execute `list` to list all the items in the inventory. `StoreMandoParser` takes in the user input and
+determines the command word (list) and argument ("") respectively.
 
-Given below is an example usage scenario and how undo/redo mechanism behaves at each step.
+Step 2. An instance of `ListCommandParser` will be created, followed by a call on its `parse` method, taking in the
+argument stated in step 1 (""), which will be initialised to true.
 
-Step 1. The user launches the application for the first time. The `VersionedStoreMando` will be initialized with the
-initial inventory state, and the `currentStatePointer` pointing to that single inventory state.
+Step 3. The `parse` method will check for the validity of the index. If valid, a new `ListCommand` instance will be
+created and returned to `LogicManager` class via `StoreMandoParser` class.
 
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th item in the inventory. The `delete` command
-calls `Model#commitStoreMando()`, causing the modified state of the inventory after the `delete 5` command executes to
-be saved in the `storeMandoStateList`, and the `currentStatePointer` is shifted to the newly inserted inventory state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new item. The `add` command also calls `Model#commitStoreMando()`,
-causing another modified inventory state to be saved into the `storeMandoStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitStoreMando()`, so the inventory state will not be saved into the `storeMandoStateList`.
-
+<div markdown="span" class="alert alert-info"> 
+:information_source: **Note:** If the command format is determined to be invalid, a parseException will be thrown to notify the
+user of the error.
 </div>
 
-Step 4. The user now decides that adding the item was a mistake, and decides to undo that action by executing the `undo`
-command. The `undo` command will call `Model#undoStoreMando()`, which will shift the `currentStatePointer` once to the
-left, pointing it to the previous inventory state, and restores the inventory to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial StoreMando state, then there are no previous StoreMando states to restore. The `undo` command uses `Model#canUndoStoreMando()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoStoreMando()`, which shifts the `currentStatePointer` once to
-the right, pointing to the previously undone state, and restores the inventory to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `storeMandoStateList.size() - 1`, pointing to the latest inventory state, then there are no undone StoreMando states to restore. The `redo` command uses `Model#canRedoStoreMando()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the inventory, such as `list`,
-will usually not call `Model#commitStoreMando()`, `Model#undoStoreMando()` or `Model#redoStoreMando()`. Thus,
-the `storeMandoStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitStoreMando()`. Since the `currentStatePointer` is not
-pointing at the end of the `storeMandoStateList`, all inventory states after the `currentStatePointer` will be purged.
-Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop
-applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
+Step 4. The overridden `execute` method will be called. The current predicate and filtered item list of the `Model` will
+be updated, and all items in the inventory will be listed. An instance of `CommandResult` will be created, generating 
+the result of the execution. The `LogicManager` class will receive the result of the execution.
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
+![ListActivityDiagram](images/ListActivityDiagram.png)
 
 #### Design consideration:
 
-##### Aspect: How undo & redo executes
+##### Aspect: How list executes
 
-* **Alternative 1 (current choice):** Saves the entire inventory.
+* **Alternative 1 (current choice):** List the entire inventory in the order they were added.
     * Pros: Easy to implement.
-    * Cons: May have performance issues in terms of memory usage.
+    * Cons: The overview of all the items in the inventory may appear disorganised.
 
-* **Alternative 2:** Individual command knows how to undo/redo by itself.
-    * Pros: Will use less memory (e.g. for `delete`, just save the item being deleted).
-    * Cons: We must ensure that the implementation of each individual command are correct.
+* **Alternative 2:** List the entire inventory categorised in their specific locations.
+    * Pros: More organised overview of all the items in the inventory.
+    * Cons: More difficult to implement.
 
 _{more aspects and alternatives to be added}_
 
