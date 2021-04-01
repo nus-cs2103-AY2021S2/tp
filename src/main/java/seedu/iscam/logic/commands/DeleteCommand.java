@@ -64,7 +64,7 @@ public class DeleteCommand extends UndoableCommand {
             clientToBeDeleted = lastShownList.get(targetIndex.getZeroBased());
         }
 
-        model.deleteClient(clientToDelete);
+        model.deleteClient(clientToBeDeleted);
         return new CommandResult(String.format(MESSAGE_DELETE_CLIENT_SUCCESS, clientToDelete));
     }
 

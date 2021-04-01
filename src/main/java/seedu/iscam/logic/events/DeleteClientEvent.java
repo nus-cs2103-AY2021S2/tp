@@ -2,11 +2,14 @@ package seedu.iscam.logic.events;
 
 import java.util.List;
 
+import seedu.iscam.commons.core.Messages;
 import seedu.iscam.commons.core.index.Index;
 import seedu.iscam.logic.commands.AddCommand;
+import seedu.iscam.logic.commands.Command;
 import seedu.iscam.logic.commands.DeleteCommand;
 import seedu.iscam.logic.commands.UndoableCommand;
-import seedu.iscam.logic.events.Event;
+import seedu.iscam.logic.commands.exceptions.CommandException;
+import seedu.iscam.logic.events.exceptions.EventException;
 import seedu.iscam.model.Model;
 import seedu.iscam.model.client.Client;
 
@@ -37,8 +40,9 @@ public class DeleteClientEvent implements Event {
      */
     private Client generateDeletedClient(Model model) {
         List<Client> lastShownList = model.getFilteredClientList();
-        assert(index.getZeroBased() < lastShownList.size());
-        Client clientToDelete = lastShownList.get(index.getZeroBased());
+        Client clientToDelete;
+        assert (index.getZeroBased() < lastShownList.size());
+        clientToDelete = lastShownList.get(index.getZeroBased());
         return clientToDelete;
     }
 }

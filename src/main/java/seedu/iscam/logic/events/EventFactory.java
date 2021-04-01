@@ -6,9 +6,6 @@ import seedu.iscam.logic.commands.AddCommand;
 import seedu.iscam.logic.commands.DeleteCommand;
 import seedu.iscam.logic.commands.EditCommand;
 import seedu.iscam.logic.commands.UndoableCommand;
-import seedu.iscam.logic.events.AddEventFactory;
-import seedu.iscam.logic.events.delete.DeleteEventFactory;
-import seedu.iscam.logic.events.EditEventFactory;
 import seedu.iscam.logic.events.exceptions.EventException;
 import seedu.iscam.model.Model;
 

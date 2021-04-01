@@ -76,22 +76,23 @@ public class LogicManager implements Logic {
             } catch (ParseException e) {
                 continue;
             }
+
+            if (command instanceof UndoableCommand) {
+                Event undoableEvent = EventFactory.parse((UndoableCommand) command, model);
+                CommandHistory.addToUndoStack(undoableEvent);
+            }
+
             commandResult = command.execute(model);
             break;
-        }
-
-        if (command == null) {
-            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
-        }
-
-        if (command instanceof UndoableCommand) {
-            Event undoableEvent = EventFactory.parse((UndoableCommand) command, model);
-            CommandHistory.addToUndoStack(undoableEvent);
         }
 
         if (!(command instanceof UndoCommand) && !(command instanceof RedoCommand)) {
             // We clear the redo stack here as the command is a new command, so can't "redo" commands anymore
             CommandHistory.clearRedoStack();
+        }
+
+        if (command == null) {
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
 
         try {

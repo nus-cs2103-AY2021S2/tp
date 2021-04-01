@@ -1,9 +1,7 @@
-package seedu.iscam.logic.events.delete;
+package seedu.iscam.logic.events;
 
 import seedu.iscam.commons.core.index.Index;
 import seedu.iscam.logic.commands.DeleteCommand;
-import seedu.iscam.logic.events.DeleteClientEvent;
-import seedu.iscam.logic.events.Event;
 import seedu.iscam.logic.events.exceptions.EventException;
 import seedu.iscam.model.Model;
 
@@ -24,7 +22,7 @@ public class DeleteEventFactory {
 
         switch(commandWord) {
         case (DeleteCommand.COMMAND_WORD):
-            DeleteCommand tempCommand = (DeleteCommand) command;
+            DeleteCommand tempCommand = command;
             return generateDeleteClientEvent(tempCommand.getTargetIndex(), model);
 
         /*
