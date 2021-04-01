@@ -1,9 +1,10 @@
-package seedu.address.model.appointment;
+package seedu.address.model.appointment.predicate;
 
 import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.util.StringUtil;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Person;
 
 /**
