@@ -9,6 +9,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import seedu.address.model.insurancepolicy.InsurancePolicy;
 import seedu.address.model.person.Person;
 
 /**
@@ -62,8 +63,7 @@ public class PersonCard extends UiPart<Region> {
                 .map(Object::toString)
                 .collect(Collectors.joining("\n")));
         } else {
-            gridPane.getChildren().remove(insurancePolicies);
-            gridPane.setMinHeight(gridPane.getMinHeight() - 20);
+            insurancePolicies.setText(InsurancePolicy.MESSAGE_NO_POLICY);
         }
         if (!person.getTags().isEmpty()) {
             person.getTags().stream()
