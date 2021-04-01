@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import seedu.address.model.schedule.Schedulable;
+import seedu.address.model.schedule.SchedulableUtil;
 import seedu.address.model.schedule.SimplePeriod;
 
 import java.time.Duration;
@@ -148,48 +149,11 @@ public class TimetablePlacementPolicy {
     public Stream<Schedulable> breakIntoDayUnits(Schedulable schedulable) {
 
         assert test(schedulable);
-        LocalDateTime startDateTime = schedulable.getStartLocalDateTime();
-        LocalDateTime endDateTime = schedulable.getTerminateLocalDateTime();
-
-        //apply offset
-        LocalDateTime offSetStartTime = applyOffset(startDateTime);
-        LocalDateTime offSetEndTime = applyOffset(endDateTime);
-
-        //same day interval.
-        if (offSetStartTime.toLocalDate().isEqual( offSetEndTime.toLocalDate())) {
-            return List.of(schedulable).stream();
-        }
-        //case when returns more than one element.
-        ArrayList<Schedulable> listOfSchedulableUnits = new ArrayList<>();
-        String name = schedulable.getNameString();
-
-        Schedulable firstPeriod = new SimplePeriod(name,
-                removeOffset(offSetStartTime),
-                removeOffset(getEndOfTheDay(offSetStartTime)));
-        listOfSchedulableUnits.add(firstPeriod);
-
-        //Check if case !endTime == 00:00
-        if (!offSetEndTime.isEqual(getStartOfTheDay(offSetEndTime))) {
-            Schedulable lastPeriod = new SimplePeriod(name,
-                    removeOffset(getStartOfTheDay(offSetEndTime)),
-                    removeOffset(offSetEndTime));
-            listOfSchedulableUnits.add(lastPeriod);
-        }
-
-        offSetStartTime = getStartOfTheDay(offSetStartTime).plusDays(1);
-        offSetEndTime = getStartOfTheDay(offSetEndTime);
-
-        //iterate through each day slot in between
-        while(offSetEndTime.isAfter(offSetStartTime)) {
-            Schedulable toAdd = new SimplePeriod(name,
-                    removeOffset(offSetStartTime),
-                    removeOffset(getEndOfTheDay(offSetStartTime)));
-            listOfSchedulableUnits.add(toAdd);
-            offSetStartTime = getStartOfTheDay(offSetStartTime).plusDays(1);
-        }
-
-        return listOfSchedulableUnits
+        Schedulable offSetSchedule = SchedulableUtil.applyNegativeOffset(schedulable, startHour, startMinute);
+        List<Schedulable> splittedSchedulables = SchedulableUtil.splitSchedulableByDay(schedulable);
+        return splittedSchedulables
                 .stream()
+                .map(s -> SchedulableUtil.applyPositiveOffset(s , startHour, startMinute))
                 .filter(this :: test);
 
     }

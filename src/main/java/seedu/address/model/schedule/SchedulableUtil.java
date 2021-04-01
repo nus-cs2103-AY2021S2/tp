@@ -46,7 +46,7 @@ public class SchedulableUtil {
 
         //iterate through each day slot in between
         while(endDateTime.isAfter(startDateTime)) {
-            Schedulable toAdd = new SimplePeriod(name, startDateTime, getEndOfTheDay(startDateTime)));
+            Schedulable toAdd = new SimplePeriod(name, startDateTime, getEndOfTheDay(startDateTime));
             listOfSchedulableUnits.add(toAdd);
             startDateTime = getStartOfTheDay(startDateTime).plusDays(1);
         }
@@ -66,8 +66,10 @@ public class SchedulableUtil {
      */
 
     public static Schedulable applyPositiveOffset(Schedulable schedulable, int hourOffset, int minuteOffset) {
-        return new SimplePeriod( applyPositiveOffset(schedulable.getStartLocalDateTime(), hourOffset, minuteOffset),
-                applyPositiveOffset(schedulable.getTerminateLocalDateTime(), hourOffset, minuteOffset);
+
+        return new SimplePeriod(schedulable.getNameString(),
+                applyPositiveOffset(schedulable.getStartLocalDateTime(), hourOffset, minuteOffset),
+                applyPositiveOffset(schedulable.getTerminateLocalDateTime(), hourOffset, minuteOffset));
     }
 
     /**
@@ -80,8 +82,10 @@ public class SchedulableUtil {
      */
 
     public static Schedulable applyNegativeOffset(Schedulable schedulable, int hourOffset, int minuteOffset) {
-        return new SimplePeriod( applyNegativeOffset(schedulable.getStartLocalDateTime(), hourOffset, minuteOffset),
-                 applyNegativeOffset(schedulable.getTerminateLocalDateTime(), hourOffset, minuteOffset);
+        return new SimplePeriod(
+                schedulable.getNameString(),
+                applyNegativeOffset(schedulable.getStartLocalDateTime(), hourOffset, minuteOffset),
+                 applyNegativeOffset(schedulable.getTerminateLocalDateTime(), hourOffset, minuteOffset));
     }
 
     /**
