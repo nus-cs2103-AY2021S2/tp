@@ -172,6 +172,9 @@ public class ParserUtil {
         if (!InsurancePlan.isValidPlan(trimmedPlan)) {
             throw new ParseException(InsurancePlan.MESSAGE_CONSTRAINTS);
         }
+        if (!InsurancePlan.isValidAmount(trimmedPlan.split(" \\$", 2)[1])) {
+            throw new ParseException(InsurancePlan.PREMIUM_CONSTRAINTS);
+        }
         return new InsurancePlan(trimmedPlan);
     }
 

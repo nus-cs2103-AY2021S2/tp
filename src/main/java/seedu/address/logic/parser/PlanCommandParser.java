@@ -31,8 +31,7 @@ public class PlanCommandParser implements Parser<Command> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    PlanCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(pe.getMessage());
         }
 
         if (argMultimap.getValue(PREFIX_INSURANCE).isEmpty()) {

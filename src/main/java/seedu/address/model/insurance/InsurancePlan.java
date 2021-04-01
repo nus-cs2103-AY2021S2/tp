@@ -3,15 +3,18 @@ package seedu.address.model.insurance;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import seedu.address.logic.commands.exceptions.CommandException;
+
 /**
  * Represents the name and yearly premium amount of a client's insurance plan.
  */
 public class InsurancePlan {
-    public static final String MESSAGE_CONSTRAINTS =
-            "Input should be of the form: plan INDEX i/PLAN_NAME $PREMIUM\n"
-                    + "e.g. plan 3 i/Protecc $4000\n"
-                    + "The plan name should only contain alphanumeric characters and spaces,"
-                    + "and it should not be blank.";
+    public static final String MESSAGE_CONSTRAINTS = "Input should be of the form:\n"
+            + "plan INDEX i/PLAN_NAME $PREMIUM (add plan) OR plan INDEX i/remove PLAN_INDEX (remove plan)\n"
+            + "e.g. plan 3 i/Protecc $4000 OR plan 2 i/remove 3\n"
+            + "The plan name should only contain alphanumeric characters and spaces,"
+            + " and it should not be blank.\n"
+            + "The yearly premium amount should be a positive integer.";
     public static final String PREMIUM_CONSTRAINTS =
             "The yearly premium amount should be a positive integer.";
 
