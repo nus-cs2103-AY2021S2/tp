@@ -55,7 +55,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
     public static final String MESSAGE_MODIFY_POLICY_CONSTRAINT = "When -modify flag is indicated for editing policy,"
-            + " the format should be [TO_MODIFY];[TO_REPLACE]. ";
+            + " the format should be i/[TO_MODIFY];[TO_REPLACE]. ";
     public static final String MESSAGE_MODIFY_POLICY_NOT_FOUND = "The policy %s to modify or delete is not found!";
 
     private final Index index;

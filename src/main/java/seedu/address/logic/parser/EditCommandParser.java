@@ -65,14 +65,20 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
-        List<String> policies = argMultimap.getAllValues(PREFIX_INSURANCE_POLICY);
-        EditPolicyMode editPolicyMode = getEditPolicyMode(policies);
-        List<String> policiesTrimmed = getPolicyListFromInput(policies);
-        if (editPolicyMode == EditPolicyMode.REPLACE || editPolicyMode == EditPolicyMode.APPEND) {
+        List<String> inputPolicies = argMultimap.getAllValues(PREFIX_INSURANCE_POLICY);
+        EditPolicyMode editPolicyMode = getEditPolicyMode(inputPolicies);
+        List<String> policiesTrimmed = getPolicyListFromInput(inputPolicies);
+
+        boolean isModeReplaceOrAppendPolicies = editPolicyMode == EditPolicyMode.REPLACE
+                || editPolicyMode == EditPolicyMode.APPEND;
+        boolean isModeRemovePolicies = editPolicyMode == EditPolicyMode.REMOVE;
+        boolean isModeModifyPolicies = editPolicyMode == EditPolicyMode.MODIFY;
+
+        if (isModeReplaceOrAppendPolicies) {
             parsePoliciesForEdit(policiesTrimmed).ifPresent(editPersonDescriptor::setPoliciesToAdd);
-        } else if (editPolicyMode == EditPolicyMode.REMOVE) {
+        } else if (isModeRemovePolicies) {
             parsePoliciesForEdit(policiesTrimmed).ifPresent(editPersonDescriptor::setPoliciesToRemove);
-        } else if (editPolicyMode == EditPolicyMode.MODIFY) {
+        } else if (isModeModifyPolicies) {
             List<List<String>> addAndRemovePairs = getPoliciesFromModifyPairs(policiesTrimmed);
             parsePoliciesForEdit(addAndRemovePairs.get(1)).ifPresent(editPersonDescriptor::setPoliciesToAdd);
             parsePoliciesForEdit(addAndRemovePairs.get(0)).ifPresent(editPersonDescriptor::setPoliciesToRemove);
@@ -90,7 +96,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         List<String> policiesToRemove = new ArrayList<>();
         for (String pair : modifyPairs) {
             String[] policies = pair.split(";");
-            if (policies[0].isEmpty() || policies[1].isEmpty()) {
+            if (policies.length != 2 || (policies[0].isEmpty() || policies[1].isEmpty())) {
                 throw new ParseException(EditCommand.MESSAGE_MODIFY_POLICY_CONSTRAINT);
             }
             policiesToRemove.add(policies[0]);
@@ -104,7 +110,7 @@ public class EditCommandParser implements Parser<EditCommand> {
 
     /**
      * Get policy edit mode from input policies.
-     * @param inputPolicies
+     * @param inputPolicies policy input from user
      * @return EditPolicyMode
      * @throws ParseException if there is more than one flag
      */
