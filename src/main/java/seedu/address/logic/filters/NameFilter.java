@@ -36,11 +36,38 @@ public class NameFilter extends AbstractFilter {
     public static boolean isValidFilter(String filterString) {
         return filterString.matches(VALIDATION_REGEX);
     }
+    private boolean isSubsequence(String customerName, String potentialName) {
+        int customerPointer = 0;
+        int potentialPointer = 0;
+        while (customerPointer < customerName.length() && potentialPointer < potentialName.length()) {
+            if (customerName.charAt(customerPointer) == potentialName.charAt(potentialPointer)) {
+                potentialPointer++;
+            }
 
+            customerPointer++;
+        }
+
+        return potentialPointer == potentialName.length();
+    }
+
+    @Override
+    public boolean test(Customer customer) {
+        requireNonNull(customer);
+        String[] customerNameTokens = customer.getName().fullName.split("\\s+");
+        for (String token : customerNameTokens) {
+            for (String possibleName : nameList) {
+                if (isSubsequence(token, possibleName)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    //Code below is mothballed for now
     //@@author nighoggDatatype-reused
     //Reused from https://stackoverflow.com/a/13564498/11358676
-    private boolean levenshteinDistance(String s1, String s2) {
-        return isSubsequence(s1.toCharArray(), s2.toCharArray());
+    private int levenshteinDistance(String s1, String s2) {
+        return dist(s1.toCharArray(), s2.toCharArray());
     }
 
     private int dist(char[] s1, char[] s2) {
@@ -69,34 +96,6 @@ public class NameFilter extends AbstractFilter {
             prev = curr;
         }
         return prev[s2.length];
-    }
-
-    private boolean isSubsequence(char[] s1, char[] s2) {
-        int ptr1 = 0;
-        int ptr2 = 0;
-        while (ptr1 < s1.length && ptr2 < s2.length) {
-            if (s1[ptr1] == s2[ptr2]) {
-                ptr2++;
-            }
-
-            ptr1++;
-        }
-
-        return ptr2 == s2.length;
-    }
-
-    @Override
-    public boolean test(Customer customer) {
-        requireNonNull(customer);
-        String[] customerNameTokens = customer.getName().fullName.split("\\s+");
-        for (String token : customerNameTokens) {
-            for (String possibleName : nameList) {
-                if (levenshteinDistance(token, possibleName)) {
-                    return true;
-                }
-            }
-        }
-        return false;
     }
     //@@author
 }
