@@ -61,7 +61,7 @@
               <RowConstraints percentHeight="92" />
             </rowConstraints>
             <HBox GridPane.rowIndex="0" GridPane.columnIndex="0" styleClass="panel_tab_bar">
-              <Label fx:id="leftPanelLabel" text="Driver List" styleClass="panel_tab_label" />
+              <Label fx:id="leftPanelLabel" text="Passenger List" styleClass="panel_tab_label" />
             </HBox>
             <HBox GridPane.rowIndex="0" GridPane.columnIndex="1" styleClass="panel_tab_bar">
               <Label fx:id="rightPanelLabel" text="Pool List" styleClass="panel_tab_label" />

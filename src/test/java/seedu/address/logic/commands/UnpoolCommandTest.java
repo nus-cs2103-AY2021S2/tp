@@ -8,6 +8,10 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PASSENGERS;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
 import static seedu.address.testutil.TypicalPools.getTypicalAddressBookPools;
+import static seedu.address.testutil.TypicalPassengers.ALICE;
+import static seedu.address.testutil.TypicalPassengers.BOB;
+import static seedu.address.testutil.TypicalPassengers.CARL;
+import static seedu.address.testutil.TypicalPools.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -35,7 +39,8 @@ public class UnpoolCommandTest {
         Pool poolToRemove = model.getFilteredPoolList().get(INDEX_FIRST.getZeroBased());
         UnpoolCommand unpoolCommand = new UnpoolCommand(INDEX_FIRST);
 
-        String expectedMessage = String.format(UnpoolCommand.MESSAGE_UNPOOL_SUCCESS, poolToRemove);
+        String passengerNames = ALICE.getName() + ", " + BOB.getName() + ", " + CARL.getName();
+        String expectedMessage = String.format(UnpoolCommand.MESSAGE_UNPOOL_SUCCESS, passengerNames);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.deletePool(poolToRemove);

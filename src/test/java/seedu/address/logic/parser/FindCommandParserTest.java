@@ -5,11 +5,14 @@ import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PRICE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.TRIPDAY_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.TRIPTIME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PRICE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPDAY_BOB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ALL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -26,6 +29,8 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.PhoneContainsKeywordsPredicate;
 import seedu.address.model.person.passenger.AddressContainsKeywordsPredicate;
 import seedu.address.model.person.passenger.PriceContainsKeywordsPredicate;
+import seedu.address.model.pool.TripDayContainsKeywordsPredicate;
+import seedu.address.model.pool.TripTimeContainsKeywordsPredicate;
 import seedu.address.model.tag.TagContainsKeywordsPredicate;
 
 
@@ -162,5 +167,30 @@ public class FindCommandParserTest {
                 new FindCommand(new AttributeContainsKeywordsPredicate(Collections.singletonList(VALID_TAG_FRIEND)));
 
         assertParseSuccess(parser, " " + PREFIX_ALL + VALID_TAG_FRIEND, expectedAllCommand);
+    }
+
+    @Test
+    public void parse_validDayArgs_returnsFindCommand() {
+        // no leading and trailing whitespaces
+        FindCommand expectedFindCommand =
+                new FindCommand(new TripDayContainsKeywordsPredicate(
+                        Collections.singletonList(VALID_TRIPDAY_BOB.toString())));
+
+        // multiple whitespaces between keywords
+        assertParseSuccess(parser, " \n " + TRIPDAY_DESC_BOB + "\n \t", expectedFindCommand);
+
+        assertParseSuccess(parser, TRIPDAY_DESC_BOB, expectedFindCommand);
+    }
+
+    @Test
+    public void parse_validTripArgs_returnsFindCommand() {
+        // no leading and trailing whitespaces
+        FindCommand expectedFindCommand =
+                new FindCommand(new TripTimeContainsKeywordsPredicate(Collections.singletonList("1930")));
+
+        // multiple whitespaces between keywords
+        assertParseSuccess(parser, " \n " + TRIPTIME_DESC_BOB + "\n \t", expectedFindCommand);
+
+        assertParseSuccess(parser, TRIPTIME_DESC_BOB, expectedFindCommand);
     }
 }

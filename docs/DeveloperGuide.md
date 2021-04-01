@@ -179,8 +179,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
 1. Search or list out passengers available to be picked up.
 2. GME shows a list of passengers.
 3. HR executive chooses and view the details of the specific passenger.
-4. HR executive allocates drivers to specific passenger to the driver's carpooling group. 
-   
+4. HR executive allocates drivers to specific passenger to the driver's carpooling group.
+
     Use case ends.
 
 ***Extensions***
@@ -197,7 +197,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
 1. HR executive chooses the criteria that the passengers need to fulfil in order to be picked up.
 2. HR exective initiates the search.
 3. GME shows a list of passengers that fulfils the criteria.
-   
+
    Use case ends.
 
 ***Extensions***
@@ -220,11 +220,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
 
 ***Extensions***
 
-* 2a. Any required field is missing. 
+* 2a. Any required field is missing.
   * 2a1. GME warns the user to input the data missing.
-    
+
     Use case ends.
-    
+
 --------------------------------------------------------------------------------------------------------------------
 
 **Use case: Delete a passenger profile**
@@ -239,8 +239,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (un
 ***Extensions***
 
 * 2a. Index number of passenger does not exist.
-  * 2a1. GME warns that no such passenger exists. 
-    
+  * 2a1. GME warns that no such passenger exists.
+
     Use case ends.
 
 --------------------------------------------------------------------------------------------------------------------
