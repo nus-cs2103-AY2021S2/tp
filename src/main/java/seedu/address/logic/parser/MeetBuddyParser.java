@@ -14,6 +14,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListAllCommand;
 import seedu.address.logic.commands.meetings.*;
 import seedu.address.logic.commands.notes.AddNoteCommand;
+import seedu.address.logic.commands.notes.DeleteNoteCommand;
 import seedu.address.logic.commands.persons.AddPersonCommand;
 import seedu.address.logic.commands.persons.ClearPersonCommand;
 import seedu.address.logic.commands.persons.DeletePersonCommand;
@@ -29,6 +30,7 @@ import seedu.address.logic.parser.connections.DeletePersonToMeetingConnectionPar
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.meetings.*;
 import seedu.address.logic.parser.notes.AddNoteCommandParser;
+import seedu.address.logic.parser.notes.DeleteNoteCommandParser;
 import seedu.address.logic.parser.persons.AddPersonCommandParser;
 import seedu.address.logic.parser.persons.DeletePersonCommandParser;
 import seedu.address.logic.parser.persons.EditPersonCommandParser;
@@ -113,6 +115,9 @@ public class MeetBuddyParser {
         //======================= Note =====================================
         case AddNoteCommand.COMMAND_WORD:
             return new AddNoteCommandParser().parse(arguments);
+
+        case DeleteNoteCommand.COMMAND_WORD:
+            return new DeleteNoteCommandParser().parse(arguments);
 
         //======================= Timetable =====================================
 
