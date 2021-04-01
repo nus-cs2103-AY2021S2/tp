@@ -34,7 +34,8 @@ public class Status {
      * @return boolean value indicating if value is a valid status value.
      */
     public static boolean isValidStatus(String value) {
-        return value.equals("done") || value.equals("not done");
+        return value.equals("done")
+                || value.equals("not done");
     }
 
     @Override
