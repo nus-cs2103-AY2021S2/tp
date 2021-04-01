@@ -54,6 +54,7 @@ public class LogicManager implements Logic {
         return commandResult;
     }
 
+    @Override
     public CommandResult execute(Command command) throws CommandException {
         logger.info("----------------[USER COMMAND][" + command.toString() + "]");
 

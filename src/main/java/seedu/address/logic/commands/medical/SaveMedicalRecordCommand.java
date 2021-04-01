@@ -1,7 +1,7 @@
 package seedu.address.logic.commands.medical;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_MAIN_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_MAIN_PATIENTS;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -30,7 +30,7 @@ public class SaveMedicalRecordCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        model.updateFilteredPersonList(PREDICATE_SHOW_MAIN_PERSONS);
+        model.updateFilteredPersonList(PREDICATE_SHOW_MAIN_PATIENTS);
         this.patient.addMedicalRecord(mrec);
         model.setPerson(this.patient, this.patient);
         return new CommandResult(String.format(MESSAGE_SUCCESS, this.patient.getName(), mrec.getDateDisplay()),

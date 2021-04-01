@@ -1,6 +1,7 @@
 package seedu.address.model.medical;
 
 import static seedu.address.model.medical.DateFormat.DATE_FORMAT_DISPLAY;
+import static seedu.address.model.medical.DateFormat.DATE_FORMAT_NO_TIME;
 import static seedu.address.model.medical.DateFormat.DATE_FORMAT_STORAGE;
 
 import java.time.LocalDateTime;
@@ -63,11 +64,15 @@ public class MedicalRecord {
     public String getDateDisplay() {
         return date.format(DATE_FORMAT_DISPLAY);
     }
+    // for displaying on ui
+    public String getDateNoTime() {
+        return date.format(DATE_FORMAT_NO_TIME);
+    }
 
     @Override
     public String toString() {
         String sectionsString = "";
-        for (Section s : this.sections){
+        for (Section s : this.sections) {
             sectionsString += s.toString();
         }
         return "Record: " + date + " - " + sectionsString;

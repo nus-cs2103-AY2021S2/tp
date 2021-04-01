@@ -105,10 +105,12 @@ public class Patient implements Comparable<Patient> {
     }
 
     public List<Appointment> getAppointments() {
+        this.appointments.sort(Comparator.comparing(Appointment::getDate));
         return Collections.unmodifiableList(appointments);
     }
 
     public List<MedicalRecord> getRecords() {
+        this.records.sort(Comparator.comparing(MedicalRecord::getDate));
         return Collections.unmodifiableList(records);
     }
 
@@ -221,7 +223,7 @@ public class Patient implements Comparable<Patient> {
             }
         }
         this.records.add(newRecord);
-        this.records.sort(Comparator.comparing(mrec->mrec.getDate()));
+        this.records.sort(Comparator.comparing(MedicalRecord::getDate));
     }
 
     @Override

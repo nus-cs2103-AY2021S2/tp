@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -11,11 +12,27 @@ import seedu.address.model.person.Patient;
  * The API of the Model component.
  */
 public interface Model {
-    /** {@code Predicate} that only shows patients in the main list */
-    Predicate<Patient> PREDICATE_SHOW_MAIN_PERSONS = person -> !person.isArchived();
+    /**
+     * {@code Predicate} that only shows patients in the main list
+     */
+    Predicate<Patient> PREDICATE_SHOW_MAIN_PATIENTS = patient -> !patient.isArchived();
 
-    /** {@code Predicate} that only shows archived patients */
-    Predicate<Patient> PREDICATE_SHOW_ARCHIVED_PERSONS = Patient::isArchived;
+    /**
+     * {@code Predicate} that only shows archived patients
+     */
+    Predicate<Patient> PREDICATE_SHOW_ARCHIVED_PATIENTS = Patient::isArchived;
+
+    /**
+     * {@code Predicate} that only shows patients with appointments
+     */
+    Predicate<Patient> PREDICATE_SHOW_PATIENTS_WITH_APPT =
+        patient -> patient.getAppointments().size() > 0;
+
+    /**
+     * {@code Comparator} that only shows patients with appointments
+     */
+    Comparator<Patient> COMPARATOR_BY_FIRST_APPT_DATE =
+            Comparator.comparing(patient -> patient.getAppointments().get(0).getDate());
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -52,7 +69,9 @@ public interface Model {
      */
     void setAddressBook(ReadOnlyAddressBook addressBook);
 
-    /** Returns the AddressBook */
+    /**
+     * Returns the AddressBook
+     */
     ReadOnlyAddressBook getAddressBook();
 
     /**
@@ -91,14 +110,24 @@ public interface Model {
      */
     void unarchivePerson(Patient patient);
 
-    /** Returns an unmodifiable view of the filtered person list */
+    /**
+     * Returns an unmodifiable view of the filtered person list
+     */
     ObservableList<Patient> getFilteredPersonList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Patient> predicate);
+
+    /**
+     * Sorts the filtered person list to sort by the given {@code comparator}.
+     *
+     * @throws NullPointerException if {@code comparator} is null.
+     */
+    void sortFilteredPersonList(Comparator<Patient> comparator);
 
     /**
      * Selects a patient to be the selected patient in the patient box.

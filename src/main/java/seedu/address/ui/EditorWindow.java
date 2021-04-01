@@ -13,7 +13,8 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.commands.*;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.medical.SaveMedicalRecordCommand;
 import seedu.address.model.medical.MedicalRecord;
@@ -67,7 +68,7 @@ public class EditorWindow extends UiPart<Stage> {
         this.sectionListView.setItems(this.sections);
         this.sectionListView.setCellFactory(listView -> new SectionListViewCell());
 
-        if (this.mrec.getDate().isBefore(LocalDateTime.now().minusDays(1))){
+        if (this.mrec.getDate().isBefore(LocalDateTime.now().minusDays(1))) {
             newSectionButton.setDisable(true);
             returnButton.setDisable(true);
             this.sectionListView.setCellFactory(listView -> new SectionListDisabledViewCell());
@@ -180,7 +181,8 @@ public class EditorWindow extends UiPart<Stage> {
      */
     @FXML
     private void handleReturn() throws CommandException {
-        // if both title and body fields are empty, we just ignore that section and don't include it in the MedicalRecord
+        // if both title and body fields are empty, we just ignore that section and
+        // don't include it in the MedicalRecord
         List<Section> filteredSections = new ArrayList<>();
         for (int i = 0; i < this.sections.size(); i++) {
             Section section = this.sections.get(i);

@@ -2,11 +2,10 @@ package seedu.address.logic.commands.medical;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.address.model.Model.PREDICATE_SHOW_MAIN_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_MAIN_PATIENTS;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -16,9 +15,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.medical.Appointment;
 import seedu.address.model.medical.MedicalRecord;
-import seedu.address.model.person.*;
 import seedu.address.model.person.Patient;
-import seedu.address.model.tag.Tag;
 
 public class AddAppointmentCommand extends Command {
 
@@ -70,7 +67,7 @@ public class AddAppointmentCommand extends Command {
         Appointment appointment = new Appointment(date);
         patient.addAppointment(appointment);
         model.setPerson(patient, patient);
-        model.updateFilteredPersonList(PREDICATE_SHOW_MAIN_PERSONS);
+        model.updateFilteredPersonList(PREDICATE_SHOW_MAIN_PATIENTS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, appointment.getDateDisplay()));
     }
 

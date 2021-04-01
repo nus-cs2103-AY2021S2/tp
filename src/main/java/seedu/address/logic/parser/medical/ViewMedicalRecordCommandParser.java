@@ -13,7 +13,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * Parses input arguments and creates a new DeleteCommand object
  */
 public class ViewMedicalRecordCommandParser implements Parser<ViewMedicalRecordCommand> {
-// TODO DOCUMENTATION
+    // TODO DOCUMENTATION
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteCommand
      * and returns a DeleteCommand object for execution.

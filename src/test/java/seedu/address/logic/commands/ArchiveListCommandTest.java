@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.address.model.Model.PREDICATE_SHOW_ARCHIVED_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ARCHIVED_PATIENTS;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
@@ -35,7 +35,7 @@ class ArchiveListCommandTest {
         model.archivePerson(newAlice);
         model.archivePerson(newBenson);
         expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.updateFilteredPersonList(PREDICATE_SHOW_ARCHIVED_PERSONS);
+        expectedModel.updateFilteredPersonList(PREDICATE_SHOW_ARCHIVED_PATIENTS);
     }
 
     @Test

@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.medical.MedicalRecord;
 import seedu.address.model.person.Patient;
 import seedu.address.model.tag.Tag;
 
@@ -100,9 +101,11 @@ public class ViewPatientBox extends UiPart<Region> {
         }
 
         // medical records
-        patient.getRecords().stream()
-                .sorted(Comparator.comparing(mrec -> mrec.getDate()))
-                .forEach(appt -> patientBoxMedicalRecords.getChildren().add(new Label(appt.getDateDisplay())));
+        int index = 1;
+        for (MedicalRecord mrec : patient.getRecords()) {
+            patientBoxMedicalRecords.getChildren().add(new Label(index + ". " + mrec.getDateNoTime()));
+            index++;
+        }
         if (patientBoxMedicalRecords.getChildren().size() == 1) {
             medicalRecordInfo.setText("1 medical record found:");
         } else if (patientBoxMedicalRecords.getChildren().size() != 0) {
@@ -113,6 +116,15 @@ public class ViewPatientBox extends UiPart<Region> {
         }
     }
 
+    /**
+     * Constructor for when the program just initializes
+     */
+    public ViewPatientBox() {
+        super(FXML);
+        this.patient = null;
+        name.setText(STARTUP_MESSAGE);
+    }
+
     private void setLabels() {
         phoneLabel.setText("Phone: ");
         addressLabel.setText("Address: ");
@@ -121,15 +133,6 @@ public class ViewPatientBox extends UiPart<Region> {
         weightLabel.setText("Weight: ");
         appointmentLabel.setText("Appointments");
         medicalRecordLabel.setText("Medical Records");
-    }
-
-    /**
-     * Constructor for when the program just initializes
-     */
-    public ViewPatientBox() {
-        super(FXML);
-        this.patient = null;
-        name.setText(STARTUP_MESSAGE);
     }
 
     /**

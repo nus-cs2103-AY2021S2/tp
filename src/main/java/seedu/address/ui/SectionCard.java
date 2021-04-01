@@ -2,12 +2,9 @@ package seedu.address.ui;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 import seedu.address.model.medical.Section;
 
@@ -41,13 +38,15 @@ public class SectionCard extends UiPart<Region> {
         this.section = newSection;
         sectionTitle.textProperty().addListener(new ChangeListener<String>() {
             @Override
-            public void changed(final ObservableValue<? extends String> observable, final String oldValue, final String newValue) {
+            public void changed(final ObservableValue<? extends String> observable,
+                                final String oldValue, final String newValue) {
                 section.setTitle(newValue);
             }
         });
         sectionBody.textProperty().addListener(new ChangeListener<String>() {
             @Override
-            public void changed(final ObservableValue<? extends String> observable, final String oldValue, final String newValue) {
+            public void changed(final ObservableValue<? extends String> observable,
+                                final String oldValue, final String newValue) {
                 int amtContent = newValue.length() / 80;
                 int numLines = newValue.length()
                         - newValue.replace("\n", "").length();

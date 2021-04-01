@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.model.Model.PREDICATE_SHOW_ARCHIVED_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ARCHIVED_PATIENTS;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPersons.CARL;
@@ -108,7 +108,7 @@ public class FindCommandTest {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
         NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
         FindCommand command = new FindCommand(predicate);
-        newExpectedModel.updateFilteredPersonList(predicate.and(PREDICATE_SHOW_ARCHIVED_PERSONS));
+        newExpectedModel.updateFilteredPersonList(predicate.and(PREDICATE_SHOW_ARCHIVED_PATIENTS));
         assertCommandSuccess(command, newModel, expectedMessage, newExpectedModel);
         assertEquals(Arrays.asList(newCarl, newElle), newModel.getFilteredPersonList());
     }

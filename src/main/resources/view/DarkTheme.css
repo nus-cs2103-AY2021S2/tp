@@ -460,7 +460,7 @@
 
 #patientBoxMedicalRecords .label {
     -fx-text-fill: white;
-    -fx-background-color: #238a11;
+    -fx-background-color: #555555;
     -fx-padding: 3 6 3 6;
     -fx-border-radius: 10;
     -fx-background-radius: 10;

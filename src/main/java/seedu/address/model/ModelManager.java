@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -37,7 +38,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPatients = new FilteredList<>(this.addressBook.getPersonList());
         // initialise to only show main persons (no archived patients)
-        updateFilteredPersonList(PREDICATE_SHOW_MAIN_PERSONS);
+        updateFilteredPersonList(PREDICATE_SHOW_MAIN_PATIENTS);
     }
 
     public ModelManager() {
@@ -105,7 +106,7 @@ public class ModelManager implements Model {
     @Override
     public void addPerson(Patient patient) {
         addressBook.addPerson(patient);
-        updateFilteredPersonList(PREDICATE_SHOW_MAIN_PERSONS);
+        updateFilteredPersonList(PREDICATE_SHOW_MAIN_PATIENTS);
     }
 
     @Override
@@ -121,14 +122,14 @@ public class ModelManager implements Model {
     public void archivePerson(Patient target) {
         requireNonNull(target);
         addressBook.archivePerson(target);
-        updateFilteredPersonList(PREDICATE_SHOW_ARCHIVED_PERSONS);
+        updateFilteredPersonList(PREDICATE_SHOW_ARCHIVED_PATIENTS);
     }
 
     @Override
     public void unarchivePerson(Patient target) {
         requireNonNull(target);
         addressBook.unarchivePerson(target);
-        updateFilteredPersonList(PREDICATE_SHOW_MAIN_PERSONS);
+        updateFilteredPersonList(PREDICATE_SHOW_MAIN_PATIENTS);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -146,6 +147,12 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Patient> predicate) {
         requireNonNull(predicate);
         filteredPatients.setPredicate(predicate);
+    }
+
+    @Override
+    public void sortFilteredPersonList(Comparator<Patient> comparator) {
+        requireNonNull(comparator);
+        filteredPatients.sort(comparator);
     }
 
     @Override
