@@ -18,6 +18,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -96,7 +97,8 @@ public class MainWindow extends UiPart<Stage> {
                         lastFlag = currentlyInBox.split("-")[currentlyInBox.split("-").length - 1];
 
                         // Check if lastFlag has content
-                        if (lastFlag.split(" ").length > 1 || lastFlag.equals("add ") || lastFlag.equals("edit ")) {
+                        if (lastFlag.split(" ").length > 1 || lastFlag.equals(AddCommand.COMMAND_WORD + " ")
+                                || lastFlag.equals(EditCommand.COMMAND_WORD + " ")) {
                             if (!availFlags.isEmpty()) {
                                 commandBox.setAndAppendFlag(availFlags.get(0) + " ");
                                 lastFlag = lastFlag.split(" ")[0];

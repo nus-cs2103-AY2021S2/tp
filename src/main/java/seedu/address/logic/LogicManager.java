@@ -184,18 +184,21 @@ public class LogicManager implements Logic {
     @Override
     public List<String> filterExistingFlags(String currentStrings, String command) {
         List<String> flags = getAutocompleteFlags(command);
-        flags.removeIf(f -> currentStrings.contains(f));
+        flags.removeIf(currentStrings::contains);
         return flags;
     }
 
     @Override
     public boolean isAutocompleteFlag(String commandStrings) {
-        if (commandStrings.length() == 0 || commandStrings == null) {
+        if (commandStrings == null) {
+            return false;
+        }
+        if (commandStrings.length() == 0) {
             return false;
         }
 
-        String command = commandStrings.split("-")[0];
-        if (command.startsWith(AddCommand.COMMAND_WORD + " ") || command.startsWith(EditCommand.COMMAND_WORD + " ")) {
+        if (commandStrings.startsWith(AddCommand.COMMAND_WORD + " ")
+                || commandStrings.startsWith(EditCommand.COMMAND_WORD + " ")) {
             return true;
         } else {
             return false;
@@ -211,9 +214,7 @@ public class LogicManager implements Logic {
             return null;
         }
 
-        String command = commandStrings.split("-")[0];
-
-        if (command.startsWith(AddCommand.COMMAND_WORD + " ")) {
+        if (commandStrings.startsWith(AddCommand.COMMAND_WORD + " ")) {
             // Get possible flags for "ADD" command
             List<String> availFlags = this.filterExistingFlags(commandStrings, AddCommand.COMMAND_WORD);
             if (availFlags.size() != 0) {
@@ -221,10 +222,12 @@ public class LogicManager implements Logic {
             }
         }
 
-        if (command.startsWith(EditCommand.COMMAND_WORD + " ")) {
+        if (commandStrings.startsWith(EditCommand.COMMAND_WORD + " ")) {
             try {
+
+                // TODO:
                 // Check if Edit command already has index
-                Integer.parseInt(command.split("-")[0].replaceAll("\\D+", ""));
+                Integer.parseInt(commandStrings.split("-")[0].replaceAll("\\D+", ""));
                 List<String> availFlags = this.filterExistingFlags(commandStrings,
                         EditCommand.COMMAND_WORD);
                 if (availFlags.size() != 0) {
