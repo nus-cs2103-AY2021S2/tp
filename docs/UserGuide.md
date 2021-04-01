@@ -166,7 +166,7 @@ Format: <br>
 `filter SCHOOL_RESIDENCE`
 
 Examples:
-* `filter VACCINATED` 
+* `filter vaccinated` or `filter not vaccinated` 
 * `filter COM` 
 * `filter RVRC` 
 
@@ -269,10 +269,6 @@ Format: `exit`
 ### Saving the data
 
 Vax@NUS data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Adding vaccination appointments for students `[coming in v1.3]`
-
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
