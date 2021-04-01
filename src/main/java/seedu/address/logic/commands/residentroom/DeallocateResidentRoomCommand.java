@@ -57,6 +57,7 @@ public class DeallocateResidentRoomCommand extends Command {
         setRoomToUnoccupied(residentToDeallocate, model);
 
         model.deleteResidentRoom(residentRoomToDeallocate);
+        model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_SUCCESS, residentRoomToDeallocate));
     }
 
