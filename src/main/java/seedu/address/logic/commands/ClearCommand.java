@@ -23,7 +23,7 @@ public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
     public static final String MESSAGE_SUCCESS = "Address book has been cleared!";
-    public static final String MESSAGE_CLEAR_TAG_SUCCESS = "Cleared all persons with any tag: %1$s";
+    public static final String MESSAGE_CLEAR_TAG_SUCCESS = "Cleared all contacts with any tag: %1$s";
     private Set<Tag> tagsToClear;
 
     public ClearCommand(Set<Tag> tagsToClear) {

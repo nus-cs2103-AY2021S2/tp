@@ -21,15 +21,15 @@ public class FavouriteCommand extends Command {
     public static final String COMMAND_WORD = "fav";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Favourites the person at the index in the address book.\n"
+            + ": Favourites the contact at the index in the address book.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "[" + PREFIX_OPTION + "OPTION]\n"
             + "Options: remove (to unfavourite)\n"
             + "Example: " + COMMAND_WORD + " 2\n"
             + "Example: " + COMMAND_WORD + " 4 o/" + OPTION_REMOVE;
     public static final String MESSAGE_FAV_IN_PROGRESS = "Favourite command is still being implemented.";
-    public static final String MESSAGE_FAVOURITE_PERSON_SUCCESS = "Favourited Person: %1$s";
-    public static final String MESSAGE_UNFAVOURITE_PERSON_SUCCESS = "Unfavourited Person: %1$s";
+    public static final String MESSAGE_FAVOURITE_PERSON_SUCCESS = "Favourited Contact: %1$s";
+    public static final String MESSAGE_UNFAVOURITE_PERSON_SUCCESS = "Unfavourited Contact: %1$s";
 
     private final Index index;
     private final boolean isFav;

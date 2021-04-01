@@ -16,12 +16,12 @@ public class ListCommand extends Command {
     public static final String OPTION_FAV = "fav";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Lists persons in the address book.\n"
+            + ": Lists contacts in the address book.\n"
             + "Parameters: [" + PREFIX_OPTION + "OPTION]\n"
             + "Options: " + OPTION_FAV + " (to show favourites)\n"
             + "Example: " + COMMAND_WORD + " o/" + OPTION_FAV + " \n";
-    public static final String MESSAGE_SUCCESS = "Listed all persons";
-    public static final String MESSAGE_LIST_FAV_SUCCESS = "Listed all favourited persons";
+    public static final String MESSAGE_SUCCESS = "Listed all contacts";
+    public static final String MESSAGE_LIST_FAV_SUCCESS = "Listed all favourited contacts";
 
     private String option;
 

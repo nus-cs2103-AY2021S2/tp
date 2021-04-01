@@ -22,13 +22,13 @@ public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the person identified by the index number used in the displayed person list.\n"
+            + ": Deletes the contact identified by the index number used in the displayed contact list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person(s): %1$s";
+    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Contacts(s): %1$s";
     public static final String MESSAGE_DELETE_PERSON_APPOINTMENT_FAILURE =
-            "Failed to delete the following Person(s) as they are involved in appointments: %1$s";
+            "Failed to delete the following Contact(s) as they are involved in appointments: %1$s";
 
     private final List<Index> targetIndexList;
 
