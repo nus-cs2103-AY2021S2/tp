@@ -329,7 +329,7 @@ Exits the program.
 
 ### Command Auto Completion
 
-Command Auto Completion autofills a command in the command box by pressing the <kbd>Tab</kbd> key.
+Command Auto Completion automatically fills a command in the command box by pressing the <kbd>Tab</kbd> key.
 
 **Examples**:
 
@@ -345,7 +345,39 @@ See the table below for more information.
 | Command                        | Description                                                                                                                                           |
 | ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `delete`                       | The <kbd>Up</kbd>/<kbd>Down</kbd> arrow keys toggles through contacts. Appends the `index` of a contact in focus to existing text in the command box. |
-| `Other Commands` [Coming Soon] |                                                                                                                                                       |
+| `edit`                       | The <kbd>Up</kbd>/<kbd>Down</kbd> arrow keys toggles through contacts. Appends the `index` of a contact in focus to existing text in the command box. |
+| `Other Commands`| [Coming Soon] |
+
+## Command Flag Auto Completion
+
+Command flags are specific options that can be keyed in to add more information in a command.
+
+E.g `add -n John Doe -p 94326543 -e john@doe.com -a 45 Address #06-90`
+
+Command: `add`
+
+Command flags: `-n` , `-p`, `-e`, `-a`.
+
+**Usage**
+
+Press the <kbd>Tab</kbd> key for any of the commands below to automatically add command flags to the command box.    
+
+| Supported Commands                        | Available command flags|
+| ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `add`                       | `-n` , `-p`, `-e`, `-a`, `-r`, `-t` |
+| `edit`                       | `-n` , `-p`, `-e`, `-a`, `-r`, `-t` |
+
+**Example Usages**
+
+:information_source: **Note on `add` command:** a space character should follow the add command for flags to begin 
+autocompletion.
+
+| Current text in command box                        | Press <kbd>Tab</kbd> once |
+| ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `add␣`                      | `add -n ` |
+| `add -n John Doe -p 94326543 -e john@doe.com`                      | `add -n John Doe -p 94326543 -e john@doe.com -a ` |
+| `edit 3`                       | `edit 3 -n` |
+| `edit 3 -n John Doe -p 94326543`                       | `edit 3 -n John Doe -p 94326543 -e ` |
 
 ### Alias
 
