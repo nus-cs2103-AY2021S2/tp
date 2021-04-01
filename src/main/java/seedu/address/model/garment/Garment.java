@@ -4,6 +4,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -15,6 +16,7 @@ import seedu.address.model.description.Description;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Garment {
+    public static final HashMap<String, HashMap<String, String>> SAMPLES = new HashMap<>();
 
     // Identity fields
     private final Name name;
@@ -99,6 +101,60 @@ public class Garment {
 
         return otherGarment != null
                 && otherGarment.getName().equals(getName());
+    }
+
+    /**
+     * Initialises the HashMap of colours and their respective sample images.
+     */
+    public static void initialiseSamples() {
+        SAMPLES.put("red", new HashMap<>());
+        SAMPLES.get("red").put("upper", "images/redSamples/upper.png");
+        SAMPLES.get("red").put("lower", "images/redSamples/lower.png");
+        SAMPLES.get("red").put("upper", "images/redSamples/footwear.png");
+        SAMPLES.put("orange", new HashMap<>());
+        SAMPLES.get("orange").put("upper", "images/orangeSamples/upper.png");
+        SAMPLES.get("orange").put("lower", "images/orangeSamples/lower.png");
+        SAMPLES.get("orange").put("footwear", "images/orangeSamples/footwear.png");
+        SAMPLES.put("yellow", new HashMap<>());
+        SAMPLES.get("yellow").put("upper", "images/yellowSamples/upper.png");
+        SAMPLES.get("yellow").put("lower", "images/yellowSamples/lower.png");
+        SAMPLES.get("yellow").put("footwear", "images/yellowSamples/footwear.png");
+        SAMPLES.put("green", new HashMap<>());
+        SAMPLES.get("green").put("upper", "images/greenSamples/upper.png");
+        SAMPLES.get("green").put("lower", "images/greenSamples/lower.png");
+        SAMPLES.get("green").put("footwear", "images/greenSamples/footwear.png");
+        SAMPLES.put("blue", new HashMap<>());
+        SAMPLES.get("blue").put("upper", "images/blueSamples/upper.png");
+        SAMPLES.get("blue").put("lower", "images/blueSamples/lower.png");
+        SAMPLES.get("blue").put("footwear", "images/blueSamples/footwear.png");
+        SAMPLES.put("pink", new HashMap<>());
+        SAMPLES.get("pink").put("upper", "images/pinkSamples/upper.png");
+        SAMPLES.get("pink").put("lower", "images/pinkSamples/lower.png");
+        SAMPLES.get("pink").put("footwear", "images/pinkSamples/footwear.png");
+        SAMPLES.put("purple", new HashMap<>());
+        SAMPLES.get("purple").put("upper", "images/purpleSamples/upper.png");
+        SAMPLES.get("purple").put("lower", "images/purpleSamples/lower.png");
+        SAMPLES.get("purple").put("footwear", "images/purpleSamples/footwear.png");
+        SAMPLES.put("brown", new HashMap<>());
+        SAMPLES.get("brown").put("upper", "images/brownSamples/upper.png");
+        SAMPLES.get("brown").put("lower", "images/brownSamples/lower.png");
+        SAMPLES.get("brown").put("footwear", "images/brownSamples/footwear.png");
+        SAMPLES.put("black", new HashMap<>());
+        SAMPLES.get("black").put("upper", "images/blackSamples/upper.png");
+        SAMPLES.get("black").put("lower", "images/blackSamples/lower.png");
+        SAMPLES.get("black").put("footwear", "images/blackSamples/footwear.png");
+        SAMPLES.put("white", new HashMap<>());
+        SAMPLES.get("white").put("upper", "images/whiteSamples/upper.png");
+        SAMPLES.get("white").put("lower", "images/whiteSamples/lower.png");
+        SAMPLES.get("white").put("footwear", "images/whiteSamples/footwear.png");
+        SAMPLES.put("grey", new HashMap<>());
+        SAMPLES.get("grey").put("upper", "images/greySamples/upper.png");
+        SAMPLES.get("grey").put("lower", "images/greySamples/lower.png");
+        SAMPLES.get("grey").put("footwear", "images/greySamples/footwear.png");
+        SAMPLES.put("beige", new HashMap<>());
+        SAMPLES.get("beige").put("upper", "images/beigeSamples/upper.png");
+        SAMPLES.get("beige").put("lower", "images/beigeSamples/lower.png");
+        SAMPLES.get("beige").put("footwear", "images/beigeSamples/footwear.png");
     }
 
     /**
