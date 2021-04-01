@@ -24,5 +24,5 @@ public class Messages {
     public static final String messagePersonFilteredOverview(String s) {
         return "%1$d persons listed! \nYour filter keyword(s): " + s;
     }
-    public static final String MESSAGE_INVALID_PLAN_INDEX = "The plan index provided is invalid";
+
 }
