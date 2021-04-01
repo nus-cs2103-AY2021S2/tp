@@ -29,6 +29,7 @@ title: User Guide
     * [Adding a tuition session: `add_session`](#adding-a-single-tuition-session-add_session)
     * [Adding a recurring tuition session: `add_rec_session`](#adding-a-recurring-tuition-session-add_rec_session)
     * [Deleting a tuition session: `delete_session`](#deleting-a-tuition-session-delete_session)
+    * [Deleteing a recurring tuition session: `delete_rec_session`](#deleting-a-recurring-tuition-session-delete_rec_session)
   * [Fees](#fees)
     * [Getting monthly fee for a particular student: `fee`](#getting-monthly-fee-for-a-particular-student-fee)
 * [Command Summary](#command-summary)
@@ -427,6 +428,7 @@ Action | Format | Examples
 **Add Single Session** | `add_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE` | `add_session n/John Doe d/2021-01-01 t/18:00 k/120 s/Biology f/80`
 **Add Recurring Session** | `add_rec_session n/STUDENT_NAME d/DATE e/LASTDATE b/INTERVAL t/TIME k/DURATION s/SUBJECT f/FEE` | `add_rec_session n/John Doe d/2021-01-01 e/2021-01-15 b/7 t/20:00 k/120 s/Geography f/80`
 **Delete Session** | `delete_session n/STUDENT_NAME i/SESSION_INDEX` | `delete_session n/John Lee i/1`
+**Delete Recurring Session** | `delete_rec_session n/STUDENT_NAME i/SESSION_INDEX d/DATE t/TIME` | `delete_rec_session n/John Doe i/1 d/2021-03-31 t/18:00`
 
 **Fees**
 
