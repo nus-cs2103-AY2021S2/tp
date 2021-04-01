@@ -25,6 +25,9 @@ public class DeleteEventParserCommand {
         assertParseSuccess(parser, "1", new DeleteEventCommand(INDEX_FIRST_EVENT));
     }
 
+    /**
+     * Unit test for the case when input argument is not valid.
+     */
     @Test
     public void parse_invalidArgs_throwsParseException() {
         assertParseFailure(parser, "a",
