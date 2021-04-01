@@ -90,7 +90,7 @@ Format: `list`
 
 Edits the cleaning status of an existing residence.
 
-Format: `edit [INDEX] c/n `
+Format: `edit INDEX c/n `
 
 * Edits the residence status at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * The clean status field must be provided.
@@ -128,6 +128,22 @@ Format: `delete INDEX`
 
 Examples:
 * `list` followed by `delete 3` deletes the 3rd residence in the list of residences.
+
+### Update multiple Clean status: `status`
+
+Update Clean status of multiple residences at once.
+
+Format: `status clean/unclean INDEX1 INDEX2..`
+
+* Update the residences' clean status at the specified `INDEX` list.
+* The index refers to the index number shown in the displayed residences list (i.e. **NOT** zero-indexed).
+* The index must be a **positive integer** (>0)
+* The index list's length can be one or more
+* after updating, the residence list will sort automatically.
+
+Examples:
+* `status clean 1 3` update the 1st and 3rd residences clean status to `Clean`.
+
 
 ### Clearing all entries : `clear`
 
@@ -218,6 +234,7 @@ Action | Format, Examples
 **Deleteb** | `deleteb r/RESIDENCE_INDEX b/BOOKING_INDEX`<br> e.g., `delete r/3 b/2`
 **Edit** | `edit INDEX c/[y or n]`<br> e.g.,`edit 2 c/n`
 **Editb** | `editb RESIDENCE_INDEX b/BOOKING_INDEX` <br> e.g., `editb r/1 b/2 p/90069009 s/03-28-2021`
+**Status** | `status clean/unclean INDEX1 INDEX2..`<br> e.g., `status clean 1 3`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Heights`
 **List** | `list`
 **Help** | `help`
