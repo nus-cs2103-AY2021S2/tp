@@ -39,7 +39,7 @@ public class InventoryCard extends UiPart<Region> {
         this.ingredient = ingredient;
         id.setText(displayedIndex + ". ");
         name.setText(ingredient.getName());
-        quantity.setText(String.valueOf(ingredient.getQuantity()));
+        quantity.setText("Quantity: " + String.valueOf(ingredient.getQuantity()));
     }
 
     @Override

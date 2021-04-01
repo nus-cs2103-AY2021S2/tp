@@ -59,6 +59,28 @@ public class Order implements Item, Aggregator<Dish> {
         return dishQuantityList;
     }
 
+    public String getDishesString(){
+        StringBuilder dishesBuilder = new StringBuilder();
+
+        for (Pair<Dish, Integer> dishPair: dishQuantityList) {
+            String dishesStr = dishPair.getValue() + " x " + dishPair.getKey().getName()
+                    + " - SGD " +  String.format("%.2f", dishPair.getKey().getPrice()) + "\n";
+            dishesBuilder.append(dishesStr);
+        }
+
+        return dishesBuilder.toString();
+    }
+
+    public double getTotalPrice() {
+        double totalPrice = 0.0;
+
+        for (Pair<Dish, Integer> dishPair: dishQuantityList) {
+            totalPrice += dishPair.getKey().getPrice();
+        }
+
+        return totalPrice;
+    }
+
     public String getDetails() {
         final StringBuilder builder = new StringBuilder();
         String state;
