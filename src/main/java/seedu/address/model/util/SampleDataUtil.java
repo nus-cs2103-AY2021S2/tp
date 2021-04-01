@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.insurancepolicy.InsurancePolicy;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -70,6 +71,15 @@ public class SampleDataUtil {
                     String[] policyIdAndUrl = JsonAdaptedInsurancePolicy.policyIdAndUrlParser(policyString);
                     return new InsurancePolicy(policyIdAndUrl[0], policyIdAndUrl[1]);
                 })
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * Returns a list of {@code Meeting} from the list of strings given.
+     */
+    public static List<Meeting> getMeetingList(String... strings) {
+        return Arrays.stream(strings)
+                .map(Meeting::newMeeting)
                 .collect(Collectors.toList());
     }
 }

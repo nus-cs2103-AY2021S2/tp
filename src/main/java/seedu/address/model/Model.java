@@ -111,4 +111,9 @@ public interface Model {
      * @throws NullPointerException if {@code comparator} is null.
      */
     void updateSortedPersonList(Comparator<Person> comparator);
+
+    /**
+     * Returns an unmodifiable view of the entire person list
+     */
+    ObservableList<Person> getWholePersonList();
 }

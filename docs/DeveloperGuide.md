@@ -373,7 +373,7 @@ The `redo` command does the opposite — it calls `Model#redoAddressBook()`,
 
 <br>
 
-**Step 6**. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+**Step 6**. The user executes `batch delete` on all client contacts, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
 
 <p align="center"><img src="images/UndoRedoState5.png"></p>
 
@@ -616,10 +616,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list clients
-2.  ClientBook shows a list of clients
-3.  User requests to schedule a meeting with a specific client in the list
-4.  ClientBook schedules a meeting with the client
+1.  User requests to list clients.
+    
+2.  ClientBook shows a list of clients.
+    
+3.  User requests to schedule a meeting with a specific client in the list.
+    
+4.  ClientBook schedules a meeting with the client.
 
     Use case ends.
 
