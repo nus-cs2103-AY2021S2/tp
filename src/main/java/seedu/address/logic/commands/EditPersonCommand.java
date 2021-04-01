@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -29,6 +30,7 @@ import seedu.address.model.person.PersonType;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Student;
 import seedu.address.model.person.Tutor;
+import seedu.address.model.session.SessionId;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -75,7 +77,7 @@ public class EditPersonCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Person> lastShownList = model.getUnfilteredPersonList();
 
         Optional<Person> personToEdit = lastShownList.stream()
                 .filter(x-> x.getPersonId().equals(personId)).findAny();
@@ -109,12 +111,15 @@ public class EditPersonCommand extends Command {
         Phone updatedPhone = editPersonPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        List<SessionId> originalSessions = personToEdit.getSessions();
         Set<Tag> updatedTags = editPersonPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         if (originalType.equals(new PersonType("student"))) {
-            return new Student(originalId, updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+            return new Student(originalId, updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags,
+                    originalSessions);
         } else if (originalType.equals(new PersonType("tutor"))) {
-            return new Tutor(originalId, updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+            return new Tutor(originalId, updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags,
+                    originalSessions);
         } else {
             throw new CommandException("Person's original type should be student or tutor");
         }
@@ -150,6 +155,7 @@ public class EditPersonCommand extends Command {
         private Set<Tag> tags;
         private PersonType personType;
         private PersonId personId;
+        private List<SessionId> sessions = new ArrayList<>();
         public EditPersonPersonDescriptor() {}
 
         /**
@@ -164,6 +170,7 @@ public class EditPersonCommand extends Command {
             setTags(toCopy.tags);
             setPersonType(toCopy.personType);
             setPersonId(toCopy.personId);
+            setSessions(toCopy.sessions);
         }
 
         /**
@@ -221,6 +228,14 @@ public class EditPersonCommand extends Command {
             this.personId = personId;
         }
 
+        public Optional<List<SessionId>> getSessions() {
+            return Optional.ofNullable(sessions);
+        }
+
+        public void setSessions(List<SessionId> sessions) {
+            this.sessions.addAll(sessions);
+        }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -259,7 +274,8 @@ public class EditPersonCommand extends Command {
                     && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags())
                     && getPersonType().equals(e.getPersonType())
-                    && getPersonId().equals(e.getPersonId());
+                    && getPersonId().equals(e.getPersonId())
+                    && getSessions().equals(e.getSessions());
         }
     }
 }

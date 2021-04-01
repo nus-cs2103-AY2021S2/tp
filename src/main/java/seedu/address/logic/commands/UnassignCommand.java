@@ -70,7 +70,7 @@ public class UnassignCommand extends Command {
 
     private Set<Person> getStudents(Model model, Set<PersonId> studentIds, Session session) throws CommandException {
         Set<Person> studentsToUnassign = new HashSet<>();
-        List<Person> lastShownPersonsList = model.getFilteredPersonList();
+        List<Person> lastShownPersonsList = model.getUnfilteredPersonList();
         for (PersonId studentId : studentIds) {
             Optional<Person> studentToAssign = lastShownPersonsList.stream()
                     .filter(x-> x.getPersonId().equals(studentId)).findAny();
@@ -87,7 +87,7 @@ public class UnassignCommand extends Command {
     }
 
     private Person getTutor(Model model, PersonId tutorId, Session session) throws CommandException {
-        List<Person> lastShownPersonsList = model.getFilteredPersonList();
+        List<Person> lastShownPersonsList = model.getUnfilteredPersonList();
         Optional<Person> tutorToAssign = lastShownPersonsList.stream()
                 .filter(x-> x.getPersonId().equals(tutorId)).findAny();
         if (tutorToAssign.isEmpty()) {
@@ -123,7 +123,7 @@ public class UnassignCommand extends Command {
         PersonId tutorId = this.unassignment.getTutorId();
         SessionId sessionId = this.unassignment.getSessionId();
 
-        List<Session> lastShownSessionsList = model.getFilteredSessionList();
+        List<Session> lastShownSessionsList = model.getUnfilteredSessionList();
         Optional<Session> sessionToAssign = lastShownSessionsList.stream()
                 .filter(x-> x.getClassId().equals(sessionId)).findAny();
         if (sessionToAssign.isEmpty()) {

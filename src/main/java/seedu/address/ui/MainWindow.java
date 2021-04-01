@@ -13,6 +13,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListCommand;
@@ -198,9 +199,6 @@ public class MainWindow extends UiPart<Stage> {
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
-
-        CommandBox commandBox = new CommandBox(this::executeCommand);
-        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
     /**
@@ -256,6 +254,7 @@ public class MainWindow extends UiPart<Stage> {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
+            clearPanels();
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
@@ -291,10 +290,16 @@ public class MainWindow extends UiPart<Stage> {
                 clearPanels();
             }
 
+            if (commandResult.getFeedbackToUser().equals(String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW,
+                    logic.getFilteredPersonList().size()))) {
+                fillInnerParts();
+            }
+
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
+            clearPanels();
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }

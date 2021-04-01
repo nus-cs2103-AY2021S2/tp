@@ -133,6 +133,68 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Parsing user commands
+
+### Add session feature
+
+#### Current Implementation
+
+The add session feature is facilitated by `SessionList`. It is stored internally in `AddressBook` as `sessions`. It implements the following relevant operations:
+
+* `SessionList#add(Session toAdd)` — Adds the given session to the current list of sessions
+
+This operation is exposed in the `Model` interface as `Model#addSession(Session session)`.
+
+Given below is an example usage scenario and how the add session mechanism behaves at each step.
+
+Step 1: The user executes `add_session d/Saturday …` command to add a new session. The `LogicManager` calls `AddressBookParser#parseCommand(String userInput)`. 
+
+Step 2: The `parseCommand` method passes the user input to `AddSessionCommandParser#parse(String args)` which returns an `AddSessionCommand` object.
+
+Step 3: The `LogicManager` then executes the `AddSessionCommand` which calls the `Model#addSession(Session session)` method.
+
+Step 4: The `Model` adds the new session to `sessions` in `AddressBook` and returns a `CommandResult`.
+
+Step 5: The `CommandResult` is then displayed on the UI.
+
+The sequence for the example scenerio can be found below:
+
+![AddSessionSequenceDiagram](images/AddSessionSequenceDiagram.png)
+
+### Delete person feature
+
+#### Current Implementation
+
+The delete person feature is facilitated by `UniquePersonList`. It is stored internally in `AddressBook` as `persons`. It implements the following relevant operations:
+
+* `UniquePersonList#remove(Person toRemove)` - Removes the given person (student or tutor) from the current list of persons
+
+This operation is exposed in the `Model` interface as `Model#deletePerson(Person target)`.
+
+Given below is an example usage scenario and how the delete person mechanism behaves at each step.
+
+Step 1: The user launches the application for the first time. The `AddressBook` will contain a `UniquePersonList`.
+
+<img src="images/DeletePersonObjectDiagram1.png" alt="DeletePersonObjectDiagram1" width="400"/>
+
+Step 2: The user executes `delete_person s/3` command to remove the specified person. The `LogicManager` calls `AddressBookParser#parseCommand(String userInput)`. 
+
+Step 3: The `parseCommand` method passes the user input to `DeletePersonCommandParser#parse(String args)` which returns a `DeletePersonCommand` object.
+
+Step 4: The `LogicManager` then executes the `DeletePersonCommand` which calls the `Model#deletePerson(Person target)` method.
+
+Step 5: The `Model` calls `AddressBook#removePerson(Person key)`.
+
+Step 6: The `Model` removes the specified person from `persons` in `AddressBook` and returns a `commandResult`.
+
+<img src="images/DeletePersonObjectDiagram2.png" alt="DeletePersonObjectDiagram2" width="400"/>
+
+Step 7: The `commandResult` is then displayed on the UI.
+
+The sequence for the example scenerio can be found below:
+
+![DeletePersonSequenceDiagram](images/DeletePersonSequenceDiagram.png)
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -217,7 +279,6 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -275,6 +336,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 *{More to be added}*
 
+
 ### Use cases
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
@@ -316,28 +378,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
     Use case ends.
 
-
-*{More to be added}*
-
-**Use case: View a tutor**
+**Use case: View an individual person**
 
 **MSS**
 
-1.  User requests to list tutors
-2.  AddressBook shows a list of tutors
-3.  User requests to view a specific tutor in the list
-4.  AddressBook shows the specific tutor's details
+1.  User requests to view a specific tutor/student in the list according to person ID
+2.  AddressBook shows the person's details and the classes assigned to the person
 
     Use case ends.
 
 **Extensions**
 
-* 3a. The given index is invalid.
+* 1a. The given index is in the wrong format.
 
-    * 3a1. AddressBook shows an error message.
+    * 1a1. AddressBook shows an error message and show the proper usage of the command.
 
       Use case resumes at step 2.
     
+* 1b. The given index cannot be found in the address book.
+    * 1a1. AddressBook shows a message stating no person found.
+
+      Use case ends.
+    
+*{More to be added}*
+
 
 ### Non-Functional Requirements
 

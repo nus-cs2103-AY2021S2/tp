@@ -120,4 +120,6 @@ public interface Model {
 
     public boolean emptyPersonList();
     public boolean emptySessionList();
+    public ObservableList<Session> getUnfilteredSessionList();
+    public ObservableList<Person> getUnfilteredPersonList();
 }

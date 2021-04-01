@@ -182,6 +182,16 @@ public class AddPersonCommandTest {
         public boolean emptyPersonList() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public ObservableList<Person> getUnfilteredPersonList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Session> getUnfilteredSessionList() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

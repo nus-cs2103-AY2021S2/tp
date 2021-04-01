@@ -39,7 +39,7 @@ public class ViewPersonCommand extends Command {
             return new CommandResult(MESSAGE_NO_PERSON_FOUND);
         }
 
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Person> lastShownList = model.getUnfilteredPersonList();
 
         Optional<Person> personToView = lastShownList.stream()
                 .filter(x-> x.getPersonId().equals(predicate.getPersonId())).findAny();

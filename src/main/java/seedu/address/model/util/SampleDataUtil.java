@@ -27,8 +27,8 @@ import seedu.address.model.tag.Tag;
  */
 public class SampleDataUtil {
     public static Person[] getSamplePersons() {
-        Student.setStudentCount("3");
-        Tutor.setTutorCount("3");
+        Student.setStudentCount("4");
+        Tutor.setTutorCount("2");
         Person[] personList = new Person[] {
             new Student(new PersonId("s/1"), new Name("Alex Yeoh"), new Phone("87438807"),
                 new Email("alexyeoh@example.com"),

@@ -29,7 +29,7 @@ public class Person {
 
     private PersonType personType;
     private PersonId personId;
-    private final List<SessionId> sessions = new ArrayList<>();
+    private List<SessionId> sessions = new ArrayList<>();
     /**
      * Every field must be present and not null.
      */
@@ -76,6 +76,10 @@ public class Person {
 
     public List<SessionId> getSessions() {
         return sessions;
+    }
+
+    public void setSessions(List<SessionId> sessions) {
+        this.sessions = sessions;
     }
 
     /**
