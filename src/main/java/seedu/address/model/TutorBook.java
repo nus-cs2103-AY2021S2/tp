@@ -5,6 +5,9 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.subject.SubjectList;
+import seedu.address.model.subject.SubjectName;
+import seedu.address.model.subject.TutorSubject;
 import seedu.address.model.tutor.Name;
 import seedu.address.model.tutor.Tutor;
 import seedu.address.model.tutor.UniqueTutorList;
@@ -102,6 +105,25 @@ public class TutorBook implements ReadOnlyTutorBook {
         for (Tutor tutor : this.tutors) {
             if (tutor.getName().equals(name)) {
                 return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * @param name Name of tutor.
+     * @param subjectName Subject name to teach.
+     * @return True is tutor teaches this subject.
+     */
+    public boolean tutorTeachesSubject(Name name, SubjectName subjectName) {
+        for (Tutor tutor : this.tutors) {
+            if (tutor.getName().equals(name)) {
+                SubjectList subjectList = tutor.getSubjectList();
+                for (TutorSubject tutorSubject : subjectList) {
+                    if (tutorSubject.getName().equals(subjectName)) {
+                        return true;
+                    }
+                }
             }
         }
         return false;
