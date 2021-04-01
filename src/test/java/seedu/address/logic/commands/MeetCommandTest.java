@@ -18,6 +18,8 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
+import seedu.address.model.shortcut.ShortcutLibrary;
+import seedu.address.storage.Authentication;
 
 public class MeetCommandTest {
 
@@ -26,7 +28,8 @@ public class MeetCommandTest {
     private static final String MEETING_END = "18:00";
     private static final String MEETING_PLACE = "KENT RIDGE MRT";
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new Authentication(),
+            new ShortcutLibrary());
 
     @Test
     public void execute_addMeetingNoClashes_success() {
@@ -38,7 +41,8 @@ public class MeetCommandTest {
 
         String expectedMessage = String.format(MeetCommand.MESSAGE_ADD_MEETING, meeting);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(),
+                new Authentication(), new ShortcutLibrary());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), newPerson);
 
         assertCommandSuccess(meetCommand, model, expectedMessage, expectedModel);
@@ -74,7 +78,8 @@ public class MeetCommandTest {
 
         Person newerPerson = MeetCommand.deleteMeeting(newPerson, meeting);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(),
+                new Authentication() , new ShortcutLibrary());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), newerPerson);
 
         assertCommandSuccess(meetCommand, model, expectedMessage, expectedModel);
@@ -87,7 +92,8 @@ public class MeetCommandTest {
         MeetCommand meetCommand = new MeetCommand(INDEX_FIRST_PERSON, CLEAR_MEETING,
                 MEETING_EMPTY, MEETING_START, MEETING_END, MEETING_PLACE);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(),
+                new Authentication(), new ShortcutLibrary());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), newPerson);
 
         assertCommandSuccess(meetCommand, model, MeetCommand.MESSAGE_CLEAR_MEETING, expectedModel);

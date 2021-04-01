@@ -18,6 +18,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.shortcut.Shortcut;
 import seedu.address.model.tag.Tag;
 
 
@@ -197,7 +198,6 @@ public class ParserUtil {
         }
         return policyList;
     }
-
     /**
      * Parses a {@code String meeting} into a {@code meeting}.
      * Leading and trailing whitespaces will be trimmed.
@@ -230,5 +230,35 @@ public class ParserUtil {
             meetingList.add(parseMeeting(meet));
         }
         return meetingList;
+    }
+
+    /**
+     * Parses a {@code String shortcutName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code shortcutName} is invalid.
+     */
+    public static String parseShortcutName(String shortcutName) throws ParseException {
+        requireNonNull(shortcutName);
+        String trimmedShortcutName = shortcutName.trim();
+        if (!Shortcut.isValidShortcutName(trimmedShortcutName)) {
+            throw new ParseException(Shortcut.MESSAGE_NAME_CONSTRAINTS);
+        }
+        return trimmedShortcutName;
+    }
+
+    /**
+     * Parses a {@code String shortcutCommand}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code shortcutCommand} is invalid.
+     */
+    public static String parseShortcutCommand(String shortcutCommand) throws ParseException {
+        requireNonNull(shortcutCommand);
+        String trimmedShortcutCommand = shortcutCommand.trim();
+        if (!Shortcut.isValidShortcutCommand(trimmedShortcutCommand)) {
+            throw new ParseException(Shortcut.MESSAGE_COMMAND_CONSTRAINTS);
+        }
+        return trimmedShortcutCommand;
     }
 }

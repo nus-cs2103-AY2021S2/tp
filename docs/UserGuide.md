@@ -25,12 +25,17 @@ ClientBook can help _you_ accomplish your client management tasks faster than tr
   * [**4.6** `policy`: Display policies associated with a client](#policy-display-policies-associated-with-a-client)
   * [**4.7** `delete`Delete client contact](#delete-delete-client-contact)
   * [**4.8** `sort`: Sort list of clients](#sort-sort-list-of-clients)
-  * [**4.9** ` lock`: Lock ClientBook with a user-selected password](#lock-lock-clientbook-with-a-user-selected-password)
-  * [**4.10** `unlock`: Unlock ClientBook](#unlock-unlock-clientbook)
-  * [**4.11** `exit`: Exiting the program](#exit-exiting-the-program)
-  * [**4.12** Saving data](#saving-data)
-  * [**4.13** Editing data file](#editing-data-file)
-  * [**4.14** Upcoming features!](#upcoming-features-v20-and-beyond)
+  * [**4.9** `addshortcut`: Add shortcut](#addshortcut-add-shortcut)
+  * [**4.10** `editshortcut`: Edit shortcut](#editshortcut-edit-shortcut)
+  * [**4.11** `deleteshortcut`: Delete shortcut](#deleteshortcut-delete-shortcut)
+  * [**4.12** `listshortcut`: List all shortcuts](#list-list-all-shortcuts)
+  * [**4.13** `clearshortcut`: Clear all shortcuts](#clear-clear-all-shortcuts)
+  * [**4.14** `lock`: Lock ClientBook with a user-selected password](#lock-lock-clientbook-with-a-user-selected-password)
+  * [**4.15** `unlock`: Unlock ClientBook](#unlock-unlock-clientbook)
+  * [**4.16** `exit`: Exiting the program](#exit-exiting-the-program)
+  * [**4.17** Saving data](#saving-data)
+  * [**4.18** Editing data file](#editing-data-file)
+  * [**4.19** Upcoming features!](#upcoming-features-v20-and-beyond)
 * [**5.** Frequently Asked Questions](#frequently-asked-questions)
   * [**5.1** Setting Up](#setting-up)
 * [**6.** Summary of Commands](#summary-of-commands)
@@ -98,6 +103,11 @@ If you are an experienced user, we have provided a convenient [Summary of Comman
 | [`delete`](#delete-delete-client-contact) | Delete client |
 | [`sort`](#sort-sort-list-of-clients) | Sort list of clients |
 | [`meet`](#meet-schedule-a-meeting-with-a-client) | Schedule a meeting with a client |
+| [`addshortcut`](#addshortcut-add-shortcut) | Add shortcut |
+| [`editshortcut`](#editshortcut-edit-shortcut) | Edit shortcut |
+| [`deleteshortcut`](#deleteshortcut-delete-shortcut) | Delete shortcut |
+| [`listshortcut`](#listshortcut-list-all-shortcuts) | List all shortcuts |
+| [`clearshortcut`](#clearshortcut-clear-all-shortcuts) | Clear all shortcuts |
 | [`lock`](#lock-lock-clientbook-with-a-user-selected-password) | Lock ClientBook with a user-selected password |
 | [`unlock`](#unlock-unlock-clientbook) | Unlock ClientBook |
 | [`exit`](#exit-exiting-the-program) | Exit ClientBook |
@@ -442,6 +452,79 @@ Optional identifiers can be added to show the list of matched clients with only 
 <br><br>
 
 
+### `addshortcut`: Add shortcut
+
+**Purpose**: Adds a shortcut to the existing shortcut library.
+
+**Format**: `addshortcut sn/SHORTCUT_NAME sc/SHORTCUT_COMMAND`
+
+* Adds a shortcut named `SHORTCUT_NAME` to the shortcut library and assigns a valid command `SHORTCUT_COMMAND` to it.
+* The specified `SHORTCUT_NAME` must be alphanumeric and must not already exist the shortcut library.
+* The specified `SHORTCUT_COMMAND` must be a valid command.
+
+**Examples**:
+* Add a shortcut named `ls` to represent the command `listshortcut` in the shortcut library.
+    * `addshortcut sn/ls sc/listshortcut`
+
+[Return to Table of Contents](#table-of-contents)
+<br><br>
+
+
+### `editshortcut`: Edit shortcut
+
+**Purpose**: Edits the command of a shortcut in the existing shortcut library.
+
+**Format**: `editshortcut sn/SHORTCUT_NAME sc/SHORTCUT_COMMAND`
+
+* Finds a shortcut named `SHORTCUT_NAME` in the shortcut library and replaces its existing command with the provided valid command `SHORTCUT_COMMAND`.
+* The specified `SHORTCUT_NAME` must be alphanumeric and must exist the shortcut library.
+* The specified `SHORTCUT_COMMAND` must be a valid command.
+
+**Examples**:
+* Edit a shortcut named `ls` in the shortcut library such that it takes on a new command `list`.
+    * `editshortcut sn/ls sc/list`
+
+[Return to Table of Contents](#table-of-contents)
+<br><br>
+
+
+### `deleteshortcut`: Delete shortcut
+
+**Purpose**: Deletes a shortcut in the existing shortcut library.
+
+**Format**: `deleteshortcut SHORTCUT_NAME`
+
+* Finds a shortcut named `SHORTCUT_NAME` in the shortcut library and deletes it from the shortcut library.
+* The specified `SHORTCUT_NAME` must be alphanumeric and must exist the shortcut library.
+
+**Examples**:
+* Delete a shortcut named `ls` in the shortcut library.
+    * `deleteshortcut ls`
+
+[Return to Table of Contents](#table-of-contents)
+<br><br>
+
+
+### `listshortcut`: List all shortcuts
+
+**Purpose**: Lists all shortcuts in the existing shortcut library.
+
+**Format**: `listshortcut`
+
+[Return to Table of Contents](#table-of-contents)
+<br><br>
+
+
+### `clearshortcut`: Clear all shortcuts
+
+**Purpose**: Clears all shortcuts in the existing shortcut library.
+
+**Format**: `clearshortcut`
+
+[Return to Table of Contents](#table-of-contents)
+<br><br>
+
+
 ### `lock`: Lock ClientBook with a user-selected password 
 
 **Purpose**: Locks ClientBook with a user-selected password.
@@ -572,8 +655,13 @@ If you get an error message (`Java command not found`), it means that Java is no
 [**Find**](#search-for-client-contact-based-on-keywords-find) | `find FLAG/KEYWORD [& MORE_KEYWORDS] [-ATTRIBUTES]…​` | `find a/Bedok & Clementi -p` |
 [**Policy**](#display-policies-associated-with-selected-client-policy) | `policy INDEX` | `policy 4` |
 [**Delete**](#delete-client-delete) | `delete INDEX` | `delete 3` |
-[**Sort**](#sort-list-of-clients-sort) | `sort -ATTRIBUTE -DIRECTION` | `sort -n -d` |
 [**Meet**](#schedule-a-meeting-with-a-client-meet) | `meet INDEX [-ACTION] DATE START END PLACE` | `meet 1 20.05.2021 15:00 16:00 MRT` |
+[**Sort**](#sort-list-of-clients-sort) | `sort -IDENTIFIER -DIRECTION` | `sort -n -d` |
+[**Add Shortcut**](#addshortcut-add-shortcut) | `addshortcut sn/SHORTCUT_NAME sc/SHORTCUT_COMMAND` | `addshortcut sn/ls sc/listshortcut` |
+[**Edit Shortcut**](#editshortcut-edit-shortcut) | `editshortcut sn/SHORTCUT_NAME sc/SHORTCUT_COMMAND` | `editshortcut sn/ls sc/list` |
+[**Delete Shortcut**](#deleteshortcut-delete-shortcut) | `deleteshortcut SHORTCUT_NAME` | `deleteshortcut ls` |
+[**List Shortcuts**](#listshortcut-list-all-shortcuts) | `listshortcut` | `listshortcut` |
+[**Clear Shortcuts**](#clearshortcut-clear-all-shortcuts) | `clearshortcut` | `clearshortcut` |
 [**Lock**](#lock-clientbook-with-a-user-selected-password-lock) | `lock [CURRENT_PASSWORD] NEW_PASSWORD` | `lock 123 456` |
 [**Unlock**](#unlock-clientbook--unlock) | `unlock [CURRENT_PASSWORD]` | `unlock 456` |
 [**Exit**](#exiting-the-program--exit) | `exit` | `exit` |
