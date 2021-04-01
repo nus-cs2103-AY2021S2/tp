@@ -39,6 +39,7 @@ public class CommandTestUtil {
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_POLICY_ID = "P#1245";
+    public static final String VALID_POLICY_ID_WITH_URL = "POL#6789>www.youtube.com";
     public static final String VALID_MEETING_AMY = "17.7.2021 17:30 20:00 Mall";
     public static final String VALID_MEETING_BOB = "23.03.2021 12:30 15:30 MRT";
 
@@ -64,6 +65,9 @@ public class CommandTestUtil {
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
+
+    public static final String ARGS_FOR_EDIT = "t/" + VALID_TAG_HUSBAND + " i/" + VALID_POLICY_ID + " i/"
+            + VALID_POLICY_ID_WITH_URL;
 
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;

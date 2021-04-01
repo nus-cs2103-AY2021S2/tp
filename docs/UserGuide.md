@@ -24,14 +24,15 @@ ClientBook can help _you_ accomplish your client management tasks faster than tr
   * [**4.5** `find`: Search for client contact based on keywords](#find-search-for-client-contact-based-on-keywords)
   * [**4.6** `policy`: Display policies associated with a client](#policy-display-policies-associated-with-a-client)
   * [**4.7** `delete`: Delete client contact](#delete-delete-client-contact)
-  * [**4.8** `sort`: Sort list of clients](#sort-sort-list-of-clients)
-  * [**4.9** `meet`: Schedule a meeting with a client](#meet-schedule-a-meeting-with-a-client) 
-  * [**4.10** `lock`: Lock ClientBook with a user-selected password](#lock-lock-clientbook-with-a-user-selected-password)
-  * [**4.11** `unlock`: Unlock ClientBook](#unlock-unlock-clientbook)
-  * [**4.12** `exit`: Exiting the program](#exit-exiting-the-program)
-  * [**4.13** Saving data](#saving-data)
-  * [**4.14** Editing data file](#editing-data-file)
-  * [**4.15** Upcoming features!](#upcoming-features-v20-and-beyond)
+  * [**4.8** `batch` Execute commands in batch](#batch-execute-commands-in-batch)
+  * [**4.9** `sort`: Sort list of clients](#sort-sort-list-of-clients)
+  * [**4.10** `meet`: Schedule a meeting with a client](#meet-schedule-a-meeting-with-a-client) 
+  * [**4.11** `lock`: Lock ClientBook with a user-selected password](#lock-lock-clientbook-with-a-user-selected-password)
+  * [**4.12** `unlock`: Unlock ClientBook](#unlock-unlock-clientbook)
+  * [**4.13** `exit`: Exiting the program](#exit-exiting-the-program)
+  * [**4.14** Saving data](#saving-data)
+  * [**4.15** Editing data file](#editing-data-file)
+  * [**4.16** Upcoming features!](#upcoming-features-v20-and-beyond)
 * [**5.** Frequently Asked Questions](#frequently-asked-questions)
   * [**5.1** Setting Up](#setting-up)
 * [**6.** Summary of Commands](#summary-of-commands)
@@ -97,6 +98,7 @@ If you are an experienced user, we have provided a convenient [Summary of Comman
 | [`find`](#find-search-for-client-contact-based-on-keywords) | Search for client contact based on keywords |
 | [`policy`](#policy-display-policies-associated-with-a-client) | Display policies associated with a selected client |
 | [`delete`](#delete-delete-client-contact) | Delete client |
+| [`batch`](#batch-execute-commands-in-batch) | Execute commands in batch |
 | [`sort`](#sort-sort-list-of-clients) | Sort list of clients |
 | [`meet`](#meet-schedule-a-meeting-with-a-client) | Schedule a meeting with a client |
 | [`lock`](#lock-lock-clientbook-with-a-user-selected-password) | Lock ClientBook with a user-selected password |
@@ -380,6 +382,43 @@ Optional identifiers can be added to show the list of matched clients with only 
 <br><br>
 
 
+### `batch`: Execute commands in batch
+
+**Purpose**: Allows you to execute some commands in bulk, so that you do not need to repeatedly type in the same 
+commands.
+
+**Format**: `batch COMMAND INDICES [ARGUMENTS]`
+
+* Only `edit` and `delete` commands can be executed in batch.
+    * For more information on how these commands work and their parameters, refer to the
+      [`edit`](#edit-edit-client-contact) and [`delete`](#delete-delete-client-contact) sections accordingly.
+* `INDICES` are comma-separated e.g. `1, 2, 3`, and they refer to the index number shown in the displayed client list.
+* `INDICES` must all be more than 1, and less than or equal to the index of the last item in the displayed list.
+* The optional `ARGUMENTS` input is only applicable if the `COMMAND` is `edit`.
+* For `edit`, you can only batch edit the following attributes:
+    * phone number
+    * address
+    * tags
+    * insurance policies
+
+<div markdown="block" class="alert alert-info">
+:bulb: 
+**Tip**:
+The same rules apply when editing clients' phone number and address! <br>
+If a parameter is expected only once in the command, but you specified it multiple times, **only the last occurrence** of the parameter will be taken. 
+</div>
+
+**Examples**:
+* To batch edit the tags of more than 1 client contact.
+    * `batch edit 1, 2, 4 p/91234567 a/Hougang Green t/TanFamily i/FamPol#111`
+<br><br>
+* To batch delete more than 1 client contact.
+    * `batch delete 1, 2, 4`
+<br><br>
+      [Return to Table of Contents](#table-of-contents)
+<br><br>
+
+
 ### `sort`: Sort list of clients
 
 **Purpose**: Sorts the current list of clients in ClientBook.
@@ -573,7 +612,8 @@ If you get an error message (`Java command not found`), it means that Java is no
 [**Find**](#search-for-client-contact-based-on-keywords-find) | `find FLAG/KEYWORD [& MORE_KEYWORDS] [-ATTRIBUTES]…​` | `find a/Bedok & Clementi -p` |
 [**Policy**](#display-policies-associated-with-selected-client-policy) | `policy INDEX` | `policy 4` |
 [**Delete**](#delete-client-delete) | `delete INDEX` | `delete 3` |
-[**Sort**](#sort-list-of-clients-sort) | `sort -ATTRIBUTE -DIRECTION` | `sort -n -d` |
+[**Batch**](#batch-execute-commands-in-batch) | `batch COMMAND INDICES [ARGUMENTS]` | `batch edit 1, 2, 4 p/91234567 a/Hougang Green t/TanFamily i/FamPol#111` |
+[**Sort**](#sort-list-of-clients-sort) | `sort -IDENTIFIER -DIRECTION` | `sort -n -d` |
 [**Meet**](#schedule-a-meeting-with-a-client-meet) | `meet INDEX [-ACTION] DATE START END PLACE` | `meet 1 20.05.2021 15:00 16:00 MRT` |
 [**Lock**](#lock-clientbook-with-a-user-selected-password-lock) | `lock [CURRENT_PASSWORD] NEW_PASSWORD` | `lock 123 456` |
 [**Unlock**](#unlock-clientbook--unlock) | `unlock [CURRENT_PASSWORD]` | `unlock 456` |

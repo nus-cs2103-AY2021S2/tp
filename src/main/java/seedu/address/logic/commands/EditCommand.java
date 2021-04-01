@@ -54,7 +54,11 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_NOT_EDITED_BATCH = "At least one field (tag or policy) to edit "
+            + "must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_EXCESS_BATCH_ARGUMENTS = "Batch edit can only edit tags or insurance policies.\n"
+            + "Please check that you have not entered other prefixes.";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
