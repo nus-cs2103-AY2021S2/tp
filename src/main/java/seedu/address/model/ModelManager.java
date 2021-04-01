@@ -638,7 +638,9 @@ public class ModelManager implements Model {
     }
 
     //@@author Jens-Peter Haack-reused
-    //Reused from https://stackoverflow.com/questions/27644878/binding-an-observablelist-to-contents-of-two-other-observablelists with minor modifications
+    //Reused from
+    //https://stackoverflow.com/questions/27644878/binding-an-observablelist-to-contents-of-two-other-observablelists
+    //with minor modifications
     /**
      * Creates an EventList which keeps track of both Appointments and Schedules.
      * Primarily used to check if there are any overlapping or clashing dates between Events.

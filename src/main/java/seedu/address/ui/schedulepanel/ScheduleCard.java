@@ -38,8 +38,7 @@ public class ScheduleCard extends UiPart<Region> {
     private Label time;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
-     * Temporarily using a Stub due to absence of integration.
+     * Creates a {@code ScheduleCard} with the given {@code Schedule} and index to display.
      */
     public ScheduleCard(Schedule schedule, int displayedIndex) {
         super(FXML);

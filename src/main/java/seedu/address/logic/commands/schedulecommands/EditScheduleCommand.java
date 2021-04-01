@@ -22,7 +22,6 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.common.Description;
@@ -78,7 +77,8 @@ public class EditScheduleCommand extends Command {
         Title updatedTitle =
                 editScheduleDescriptor.getTitle().orElse(scheduleToEdit.getTitle());
 
-        AppointmentDateTime updatedTimeFrom = null, updatedTimeTo = null;
+        AppointmentDateTime updatedTimeFrom = null;
+        AppointmentDateTime updatedTimeTo = null;
 
         Optional<AppointmentDateTime> optionalUpdatedTimeFrom = editScheduleDescriptor.getTimeFrom();
         Optional<AppointmentDateTime> optionalUpdatedTimeTo = editScheduleDescriptor.getTimeTo();
