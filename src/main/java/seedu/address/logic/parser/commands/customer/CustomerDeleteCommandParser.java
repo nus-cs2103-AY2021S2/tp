@@ -5,7 +5,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_FORCE_DELETE;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.customer.CustomerDeleteCommand;
-import seedu.address.logic.commands.menu.MenuDeleteCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.ParserUtil;

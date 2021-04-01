@@ -39,6 +39,11 @@ public class CustomerDeleteCommand extends Command {
         this(targetIndex, false);
     }
 
+    /**
+     * Delete customer given index and isForce flag
+     * @param targetIndex index of customer to be deleted
+     * @param isForce required to be true if there are outstanding orders that will also be deleted
+     */
     public CustomerDeleteCommand(Index targetIndex, boolean isForce) {
         this.targetIndex = targetIndex;
         this.isForce = isForce;
