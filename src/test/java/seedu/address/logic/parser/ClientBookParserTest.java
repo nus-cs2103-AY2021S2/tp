@@ -83,6 +83,7 @@ public class ClientBookParserTest {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " -i") instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " -p") instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " -a") instanceof ListCommand);
+        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " -e") instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " -e -a -p -i") instanceof ListCommand);
     }
 
