@@ -16,12 +16,12 @@ public class InventoryFindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all ingredients whose names contain any of "
-            + "the specified keywords (case-insensitive) or are under a certain quantity \n"
-            + "and displays them as a list with index numbers. \n"
-            + "Parameters: n/[KEYWORD] [MORE_KEYWORDS]... q/[LESS THAN QUANTITY] \n"
-            + "Example: " + COMMAND_WORD + " n/tomato fish q/5";
-
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds ingredients. "
+            + "At least one prefix must be used. \n"
+            + "n/ - Look for names that contain any of the keywords (case-insensitive) \n"
+            + "q/ - Look for ingredients that have less than specified quantity \n"
+            + "Parameters: n/[KEYWORD] (MORE_KEYWORDS)... q/[LESS THAN QUANTITY]\n"
+            + "Example: " + COMMAND_WORD + " n/tomato q/4";
 
     private final Predicate<Ingredient> predicate;
 
