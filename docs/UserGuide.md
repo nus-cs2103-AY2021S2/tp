@@ -37,30 +37,32 @@ Format: `help`
 #### `exit` - Exit application
 Format: `exit`
 
-### `contacts`
+### `customer`
 
-#### `list` - List all contacts
+#### `list` - List all customers
 Format: 
 ```
-contacts list
+customer list
 ```
 
-#### `add` - Add a contact
+#### `add` - Add a customers
 Format: 
 ```
-contacts add n/[NAME] p/[PHONE_NUMBER] e/[EMAIL] a/[ADDRESS]
+customer add n/[NAME] p/[PHONE_NUMBER] e/[EMAIL] a/[ADDRESS]
 ```
 
-#### `delete` - Delete contact
+#### `delete` - Delete customer
 Format:
 ```
-contacts delete [INDEX]
+customer delete [INDEX] (-f)
 ```
+
+In the event that there are unfulfilled orders by the contact that is being attempted to be deleted, a `-f` flag has to be added to the end of the command to confirm the command. This is to prevent you from accidentally deleting orders unknowingly and leading to unhappy customers!
 
 #### `find` - Find contact
 Format:
 ```
-contacts find n/[KEYWORD] [MORE KEYWORDS]
+customer find n/[KEYWORD] [MORE KEYWORDS]
 ```
 
 ### `menu`

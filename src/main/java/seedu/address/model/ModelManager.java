@@ -473,12 +473,25 @@ public class ModelManager implements Model {
     }
 
     //@@author kangtinglee
-    /** Returns an unmodifiable view of the orders belonging to a particular customer */
+    /** Returns an list of the orders belonging to a particular customer */
     public List<Order> getOrdersFromPerson(Person target) {
         List<Order> result = new ArrayList<>();
         ObservableList<Order> orders = getOrderBook().getOrderList();
         for (Order o : orders) {
             if (o.isFromCustomer(target)) {
+                result.add(o);
+            }
+        }
+        return result;
+    }
+
+    //@@author kangtinglee
+    /** Returns an list of the incomplete orders belonging to a particular customer */
+    public List<Order> getIncompleteOrdersFromPerson(Person target) {
+        List<Order> result = new ArrayList<>();
+        List<Order> orders = getOrdersFromPerson(target);
+        for (Order o : orders) {
+            if (o.getState() == Order.State.UNCOMPLETED) {
                 result.add(o);
             }
         }
