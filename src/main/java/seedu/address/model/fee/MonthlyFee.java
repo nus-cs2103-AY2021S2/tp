@@ -3,7 +3,7 @@ package seedu.address.model.fee;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
- * Represents the monthly fee of a particular month and year.
+ * Represents the monthly fee of a particular month and year that is used for the UI.
  */
 public class MonthlyFee {
 

@@ -79,8 +79,8 @@ public class RecurringSessionBuilder extends SessionBuilder {
     /**
      * Sets the {@code LastSessionDate} of the {@code RecurringSession} that we are building.
      */
-    public RecurringSessionBuilder withLastSessionDate(String value) {
-        this.lastSessionDate = new SessionDate(value, DEFAULT_TIME);
+    public RecurringSessionBuilder withLastSessionDate(String dateValue, String timeValue) {
+        this.lastSessionDate = new SessionDate(dateValue, timeValue);
         return this;
     }
 
