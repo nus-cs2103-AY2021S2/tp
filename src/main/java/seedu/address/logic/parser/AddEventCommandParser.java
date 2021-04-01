@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_TIME;
@@ -39,7 +40,14 @@ public class AddEventCommandParser implements Parser<AddEventCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddEventCommand.MESSAGE_USAGE));
         }
 
-        Index projectIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
+        Index projectIndex;
+
+        try {
+            projectIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
+        } catch (ParseException pe) {
+            throw new ParseException(MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX, pe);
+        }
+
         String description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         LocalDate date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_EVENT_DATE).get());
         LocalTime time = ParserUtil.parseTime(argMultimap.getValue(PREFIX_EVENT_TIME).get());

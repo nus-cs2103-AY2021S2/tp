@@ -100,7 +100,7 @@ public class SampleDataUtil {
      */
     public static Project[] getSampleProjects() {
         try {
-            return new Project[] { getCS2103TProject(), getCS2101Project() };
+            return new Project[] { getCS2103TProject(), getCS2101Project(), getWebDevProject() };
         } catch (DateConversionException | TimeConversionException e) {
             assert false : "error with sample projects";
             e.printStackTrace();
@@ -130,12 +130,29 @@ public class SampleDataUtil {
                 getCS2101DeadlineList(), getCS2101GroupmateList());
     }
 
+    /**
+     * Creates a new Web Dev Project.
+     *
+     * @return typical {@code Project}.
+     */
+    public static Project getWebDevProject() throws DateConversionException, TimeConversionException {
+        ProjectName projectName = new ProjectName("Web Dev Project");
+        return new Project(projectName, getWebDevEventList(), getWebDevTodosList(),
+                getWebDevDeadlineList(), getWebDevGroupmateList());
+    }
+
     private static EventList getCS2103TEventList() throws DateConversionException, TimeConversionException {
         Event eventWeeklyMeeting = new Event("Weekly Project Meeting",
-                encodeDate("31-01-2021"), encodeTime("1730") , false);
+                encodeDate("31-01-2021"), encodeTime("1730") , true);
+        Event eventPracticalDryRun = new Event("Practical Exam Dry Run",
+                encodeDate("03-04-2021"), encodeTime("1400"), false);
+        Event eventPractical = new Event("Practical Exam",
+                encodeDate("16-04-2021"), encodeTime("1400"), false);
 
         EventList eventList = new EventList();
         eventList.addEvent(eventWeeklyMeeting);
+        eventList.addEvent(eventPracticalDryRun);
+        eventList.addEvent(eventPractical);
 
         return eventList;
     }
@@ -146,7 +163,7 @@ public class SampleDataUtil {
         Deadline deadlineMilestone2 = new Deadline("Milestone v1.2",
                 encodeDate("15-03-2021"), DONE);
         Deadline deadlineMilestone3 = new Deadline("Milestone v1.3",
-                encodeDate("31-03-2021"), NOT_DONE);
+                encodeDate("31-03-2021"), DONE);
         Deadline deadlineMilestone4 = new Deadline("Milestone v1.4",
                 encodeDate("12-04-2021"), NOT_DONE);
 
@@ -161,7 +178,7 @@ public class SampleDataUtil {
 
     private static TodoList getCS2103TTodosList() {
         Todo todoUpdateDocs = new Todo("Update documentation", DONE);
-        Todo todoAddCommand = new Todo("Finish add command", NOT_DONE);
+        Todo todoAddCommand = new Todo("Finish add command", DONE);
         Todo todoTests = new Todo("Add unit tests", NOT_DONE);
         Todo todoBrainstormNewIdea = new Todo("Brainstorm new feature", NOT_DONE);
 
@@ -175,10 +192,12 @@ public class SampleDataUtil {
     }
 
     private static GroupmateList getCS2103TGroupmateList() {
-        Groupmate danh = new Groupmate(new seedu.address.model.groupmate.Name("Danh"), new HashSet<>());
-        Groupmate ruochen = new Groupmate(new seedu.address.model.groupmate.Name("Ruochen"), new HashSet<>());
-        Groupmate samuel = new Groupmate(new seedu.address.model.groupmate.Name("Samuel"), new HashSet<>());
-        Groupmate vevek = new Groupmate(new seedu.address.model.groupmate.Name("Vevek"), new HashSet<>());
+        HashSet<Role> roles = new HashSet<>();
+        roles.add(new Role("Developer"));
+        Groupmate danh = new Groupmate(new seedu.address.model.groupmate.Name("Danh"), roles);
+        Groupmate ruochen = new Groupmate(new seedu.address.model.groupmate.Name("Ruochen"), roles);
+        Groupmate samuel = new Groupmate(new seedu.address.model.groupmate.Name("Samuel"), roles);
+        Groupmate vevek = new Groupmate(new seedu.address.model.groupmate.Name("Vevek"), roles);
 
         GroupmateList groupmateList = new GroupmateList();
         groupmateList.addGroupmate(danh);
@@ -214,9 +233,9 @@ public class SampleDataUtil {
 
     private static DeadlineList getCS2101DeadlineList() throws DateConversionException {
         Deadline deadlineDemo = new Deadline("Product Demo Internal Deadline",
-                encodeDate("05-04-2021"), NOT_DONE);
+                encodeDate("03-04-2021"), NOT_DONE);
         Deadline deadlinePitch = new Deadline("Product Pitch Internal Deadline",
-                encodeDate("08-04-2021"), NOT_DONE);
+                encodeDate("06-04-2021"), NOT_DONE);
 
         DeadlineList deadlineList = new DeadlineList();
         deadlineList.addDeadline(deadlineDemo);
@@ -239,10 +258,66 @@ public class SampleDataUtil {
     }
 
     private static GroupmateList getCS2101GroupmateList() {
-        Groupmate danh = new Groupmate(new seedu.address.model.groupmate.Name("Danh"), new HashSet<>());
-        Groupmate ruochen = new Groupmate(new seedu.address.model.groupmate.Name("Ruochen"), new HashSet<>());
-        Groupmate samuel = new Groupmate(new seedu.address.model.groupmate.Name("Samuel"), new HashSet<>());
-        Groupmate vevek = new Groupmate(new seedu.address.model.groupmate.Name("Vevek"), new HashSet<>());
+        HashSet<Role> roles = new HashSet<>();
+        roles.add(new Role("Team_Member"));
+        Groupmate danh = new Groupmate(new seedu.address.model.groupmate.Name("Danh"), roles);
+        Groupmate ruochen = new Groupmate(new seedu.address.model.groupmate.Name("Ruochen"), roles);
+        Groupmate samuel = new Groupmate(new seedu.address.model.groupmate.Name("Samuel"), roles);
+        Groupmate vevek = new Groupmate(new seedu.address.model.groupmate.Name("Vevek"), roles);
+
+        GroupmateList groupmateList = new GroupmateList();
+        groupmateList.addGroupmate(danh);
+        groupmateList.addGroupmate(ruochen);
+        groupmateList.addGroupmate(samuel);
+        groupmateList.addGroupmate(vevek);
+
+        return groupmateList;
+    }
+
+    private static EventList getWebDevEventList() throws DateConversionException, TimeConversionException {
+        Event eventMeeting = new Event("Web Dev Meeting",
+                encodeDate("02-04-2021"), encodeTime("2000"), true
+        );
+
+        EventList eventList = new EventList();
+        eventList.addEvent(eventMeeting);
+
+        return eventList;
+    }
+
+    private static DeadlineList getWebDevDeadlineList() throws DateConversionException {
+        Deadline deadlineFirst = new Deadline("First draft",
+                encodeDate("03-04-2021"), DONE);
+        Deadline deadlineSecond = new Deadline("Second draft",
+                encodeDate("16-04-2021"), NOT_DONE);
+
+        DeadlineList deadlineList = new DeadlineList();
+        deadlineList.addDeadline(deadlineFirst);
+        deadlineList.addDeadline(deadlineSecond);
+
+        return deadlineList;
+    }
+
+    private static TodoList getWebDevTodosList() {
+        Todo todoWriteTests = new Todo("Write unit tests", NOT_DONE);
+        Todo todoStyle = new Todo("Style buttons", DONE);
+        Todo todoHeader = new Todo("Do up header component", NOT_DONE);
+
+        TodoList todoList = new TodoList();
+        todoList.addTodo(todoWriteTests);
+        todoList.addTodo(todoStyle);
+        todoList.addTodo(todoHeader);
+
+        return todoList;
+    }
+
+    private static GroupmateList getWebDevGroupmateList() {
+        HashSet<Role> roles = new HashSet<>();
+        roles.add(new Role("Web_Developer"));
+        Groupmate danh = new Groupmate(new seedu.address.model.groupmate.Name("Danh"), roles);
+        Groupmate ruochen = new Groupmate(new seedu.address.model.groupmate.Name("Ruochen"), roles);
+        Groupmate samuel = new Groupmate(new seedu.address.model.groupmate.Name("Samuel"), roles);
+        Groupmate vevek = new Groupmate(new seedu.address.model.groupmate.Name("Vevek"), roles);
 
         GroupmateList groupmateList = new GroupmateList();
         groupmateList.addGroupmate(danh);

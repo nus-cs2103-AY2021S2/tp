@@ -2,6 +2,8 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 
 import java.util.stream.Stream;
@@ -30,9 +32,20 @@ public class DeleteEventCommandParser implements Parser<DeleteEventCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteEventCommand.MESSAGE_USAGE));
         }
 
-        Index projectIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
-        Index targetEventIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
-        return new DeleteEventCommand(projectIndex, targetEventIndex);
+        Index projectIndex;
+
+        try {
+            projectIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
+        } catch (ParseException pe) {
+            throw new ParseException(MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX, pe);
+        }
+
+        try {
+            Index targetEventIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
+            return new DeleteEventCommand(projectIndex, targetEventIndex);
+        } catch (ParseException pe) {
+            throw new ParseException(MESSAGE_INVALID_EVENT_DISPLAYED_INDEX, pe);
+        }
 
     }
 

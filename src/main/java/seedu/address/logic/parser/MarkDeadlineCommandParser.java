@@ -2,6 +2,8 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DEADLINE_DISPLAYED_INDEX;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MARK_TASK_INDEX;
 
 import java.util.stream.Stream;
@@ -34,11 +36,15 @@ public class MarkDeadlineCommandParser implements Parser<MarkDeadlineCommand> {
 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
+        } catch (ParseException pe) {
+            throw new ParseException(MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX, pe);
+        }
+
+        try {
             Index targetDeadlineIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_MARK_TASK_INDEX).get());
             return new MarkDeadlineCommand(index, targetDeadlineIndex);
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkDeadlineCommand.MESSAGE_USAGE),
-                    pe);
+            throw new ParseException(MESSAGE_INVALID_DEADLINE_DISPLAYED_INDEX, pe);
         }
     }
 

@@ -1,10 +1,11 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 
 import org.junit.jupiter.api.Test;
@@ -44,40 +45,27 @@ public class DeleteEventCommandParserTest {
         assertParseFailure(parser, userInputMissingPrefix, expectedMessage);
 
         String userInputMissingEvent = INDEX_FIRST.getOneBased() + " " + PREFIX_INDEX;
-        String expectedMessageMissingEvent = "Index is not a non-zero unsigned integer.";
 
         // missing remove prefix
-        assertParseFailure(parser, userInputMissingEvent, expectedMessageMissingEvent);
+        assertParseFailure(parser, userInputMissingEvent, MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
     }
 
     @Test
     public void parse_invalidValue_failure() {
-        Index validProjectIndex = Index.fromOneBased(1);
-        Index validEventIndex = Index.fromOneBased(1);
+        String validProjectIndex = "1";
+        String validEventIndex = "1";
 
         String userInputInvalidProjectIndex = "0 " + PREFIX_INDEX + " "
                 + validEventIndex;
 
         // invalid project index
-        assertParseFailure(parser, userInputInvalidProjectIndex, MESSAGE_INVALID_INDEX);
+        assertParseFailure(parser, userInputInvalidProjectIndex, MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
 
         String userInputInvalidEventIndex = validProjectIndex + " " + PREFIX_INDEX + " 0";
 
         // invalid remove event index
         assertParseFailure(parser, userInputInvalidEventIndex,
-                MESSAGE_INVALID_INDEX);
-
-        String userInputInvalidProjectIndexExceeded = "10 " + PREFIX_INDEX + " "
-                + validEventIndex;
-
-        // invalid project index
-        assertParseFailure(parser, userInputInvalidProjectIndexExceeded, MESSAGE_INVALID_INDEX);
-
-        String userInputInvalidEventIndexExceeded = validProjectIndex + " " + PREFIX_INDEX + " 10";
-
-        // invalid remove event index
-        assertParseFailure(parser, userInputInvalidEventIndexExceeded,
-                MESSAGE_INVALID_INDEX);
+                MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
     }
 
 }
