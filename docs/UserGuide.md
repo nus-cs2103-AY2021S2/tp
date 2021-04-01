@@ -369,9 +369,12 @@ Press the <kbd>Tab</kbd> key for any of the commands below to automatically add 
 
 **Example Usages**
 
+:information_source: **Note on `add` command:** a space character should follow the add command for flags to begin 
+autocompletion.
+
 | Current text in command box                        | Press <kbd>Tab</kbd> once |
 | ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `add`                      | `add -n ` |
+| `add␣`                      | `add -n ` |
 | `add -n John Doe -p 94326543 -e john@doe.com`                      | `add -n John Doe -p 94326543 -e john@doe.com -a ` |
 | `edit 3`                       | `edit 3 -n` |
 | `edit 3 -n John Doe -p 94326543`                       | `edit 3 -n John Doe -p 94326543 -e ` |
