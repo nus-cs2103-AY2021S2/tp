@@ -122,7 +122,7 @@ public class MainWindow extends UiPart<Stage> {
                 + "DietLAH! can help you with your eating habits so you can get your desired weight!\n\n"
                 + "To start off, we have pre-loaded some sample data for you to play around with!\n"
                 + "To clear this sample data, please use:\n"
-                + "reset t/blank\n,and set your own data with:\n"
+                + "reset t/blank\nand set your own data with:\n"
                 + "bmi g/GENDER a/AGE h/HEIGHT(CM) w/WEIGHT(KG) i/IDEAL_WEIGHT(KG)"
                 + "\n\nThereafter, you can get a diet plan recommendation using:\n"
                 + "plan_recommend\n"
