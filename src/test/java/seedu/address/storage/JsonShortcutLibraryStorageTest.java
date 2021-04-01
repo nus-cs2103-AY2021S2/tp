@@ -74,7 +74,7 @@ public class JsonShortcutLibraryStorageTest {
         assertEquals(original, new ShortcutLibrary(readBack.getShortcuts()));
 
         // Modify data, overwrite exiting file, and read back
-        original.addShortcut("listaddress", "list -address");
+        original.addShortcut("listaddress", "list -a");
         original.removeShortcut("sna");
         jsonShortcutLibraryStorage.saveShortcutLibrary(original, filePath);
         readBack = jsonShortcutLibraryStorage.readShortcutLibrary(filePath).get();
