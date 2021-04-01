@@ -1,6 +1,6 @@
 [![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S2-CS2103T-W15-2/tp/actions)
 
-![Ui](docs/images/cleanUi.png)
+![Ui](docs/images/Ui.png)
 
 * This is a **client management application**, which aims to **help insurance agents manage their immense numbers of clients through a desktop application** called _ClientBook_.
 * Example usages:

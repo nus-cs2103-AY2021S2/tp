@@ -6,7 +6,7 @@ title: ClientBook
 [![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S2-CS2103T-W15-2/tp/actions)
 [![codecov](https://codecov.io/gh/AY2021S2-CS2103T-W15-2/tp/branch/master/graph/badge.svg?token=ALm93E5HmQ)](https://codecov.io/gh/AY2021S2-CS2103T-W15-2/tp)
 
-![Ui](images/cleanUi.png)
+![Ui](images/Ui.png)
 
 **ClientBook is a desktop application for managing your clients' contact details.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
 
