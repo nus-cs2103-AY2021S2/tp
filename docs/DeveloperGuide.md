@@ -155,9 +155,9 @@ This section describes some noteworthy details on how certain features are imple
 
 The `delete` feature allows users to delete an item in their Inventory by the item's index in the list.
 
-The following sequence diagram shows how the undo operation works:
+The following sequence diagram shows how the delete operation works:
 
-![UndoSequenceDiagram](images/DeleteSequenceDiagram.png)
+![DeleteSequenceDiagram](images/DeleteSequenceDiagram.png)
 
 Given below is an example usage scenario and how delete mechanism behaves at each step.
 
@@ -183,11 +183,11 @@ execution. The item is deleted from `StoreMando`.
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-![CommitActivityDiagram](images/DeleteActivityDiagram.png)
+![DeleteActivityDiagram](images/DeleteActivityDiagram.png)
 
 #### Design consideration:
 
-##### Aspect: How undo & redo executes
+##### Aspect: How delete executes
 
 * **Alternative 1 (current choice):** Delete item by an index.
     * Pros: Easy to implement.
