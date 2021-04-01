@@ -109,6 +109,7 @@ For each of the commands, type them into the command box and press enter to exec
 
 1. **Try adding a new Client contact using the command** `add n/James Lee p/91234567 e/james@gmail.com a/Blk 123 Serangoon Rd t/Friend t/Colleague i/OCBC#412>www.ocbc.com/policy/412`.
 
+
 That is a very long command, but it can be broken down into simple parts. We have just added a client called James Lee with the following details:
 * Phone number:91234567
 * Email address: james@gmail.com
@@ -117,20 +118,26 @@ That is a very long command, but it can be broken down into simple parts. We hav
 We have also indicated that James is a friend as well as colleague of ours by adding the tags `Friend` and `Colleague`. Lastly,
 we indicated that James has purchased a policy from us with a policy ID of OCBC#412 and it can be found at `www.ocbc.com/policy/412`.
 
+
 Now, if you scroll down the contact list, you should find James at the bottom of the list.
 
 <p align="center"><img src="images/newContactJames.png"></p>
 
+
 2. **Try editing a Client contact using `edit 1 p/61234567`.**
+
 
 This command edits the phone number of the first client displayed in the contact list to 61234567. In this case, Alex Yeoh's
 phone number in ClientBook has been changed to 61234567.
 
 <p align="center"><img src="images/alexYeohChangePhone.png"></p>
 
+
 3. **Delete a Client contact using `delete 3`.**
 
+
 This command deletes the contact of the third client displayed in the contact list.
+
 
 ### Conclusion
 Now that you have tried out the basic commands available in ClientBook, you can use the command `batch delete 1,2,3,4,5,6,7`
