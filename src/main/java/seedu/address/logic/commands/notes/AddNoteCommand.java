@@ -24,7 +24,8 @@ public class AddNoteCommand extends Command {
             + "[" + PREFIX_PRIORITY + "PRIORITY]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Complete CS2103 Tutorial "
-            + PREFIX_PRIORITY + "5 ";
+            + PREFIX_PRIORITY + "5 \n"
+            + "Default priority is 1";
 
     public static final String MESSAGE_SUCCESS = "New note added: %1$s";
     public static final String MESSAGE_DUPLICATE_NOTE = "This note already exists in the note book";
