@@ -45,7 +45,7 @@ BookCoinToTheMoon is a **desktop app for managing bookings and presents users a 
   e.g. in `find_venue v/VENUE_NAME`, `VENUE_NAME` is a parameter which can be used as `find_venue v/Victoria Hall`.
 
 * Items in square brackets are optional.<br>
-  e.g. `add_venue v/VENUE_NAME [max/MAXIMUM_OCCUPANCY]` can be used as `n/Chua Thian Poh Hall max/40` or as `n/Chua Thian Poh Hall`.
+  e.g. `add_venue v/VENUE_NAME [max/MAXIMUM_OCCUPANCY]` can be used as `v/Chua Thian Poh Hall max/40` or as `v/Chua Thian Poh Hall`.
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
@@ -58,17 +58,18 @@ BookCoinToTheMoon is a **desktop app for managing bookings and presents users a 
 
 Adds a new person for the booking app. Email and phone number must be unique.
 
-Format: `add_person n/PERSON_NAME p/PERSON_PHONE_NUMBER e/PERSON_EMAIL`
+Format: `add_person n/PERSON_NAME p/PERSON_PHONE_NUMBER e/PERSON_EMAIL [t/TAG]`
 
 Examples:
-* `create_venue n/Vanessa p/90008000 e/Van@gmail.com`
+* `add_person n/John Doe p/98578028 e/johndoe@gmail.com`
+* `add_person n/Jane p/85938028 e/jane@gmail.com t/student`
 
 ### Adding a venue : `add_venue`
 
 Adds a new venue for the booking app. `add_venue` is a multi-step command that will prompt you for additional input. 
 Capacity, description and tags are optional. Default capacity without an input will be set to 10.
 
-Format: `add_venue v/VENUE_NAME`
+Format: `add_venue v/VENUE_NAME [max/MAXIMUM CAPACITY] [d/DESCRIPTION] [t/TAG]`
 
 Examples:
 * `create_venue v/Chua Thian Poh Hall max/40`
@@ -84,17 +85,67 @@ Format: `add_booking`
 Examples:
 * `add_booking`
 
-### Listing all venues : `list_venue`
+### Editing a person : `edit_person`
 
-Shows a list of all venues and their corresponding IDs in the booking app.
+Edits an existing person in the booking system with the specified email.
 
-Format: `list_venues`
+Format: `edit_person eo/EMAIL [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]`
 
-### Listing all bookings : `list_booking`
+Examples:
+* `edit_person eo/amy@example.com p/83984029`
 
-Shows a list of all bookings and their corresponding IDs in the booking app.
+### Editing a venue : `edit_venue`
 
-Format: `list_bookings`
+Edits an existing venue in the booking system with the specified venue name.
+
+Format: `edit_venue vo/VENUE_NAME [v/VENUE_NAME] [max/MAXIMUM_OCCUPANCY] [d/DESCRIPTION] [t/TAG]`
+
+Examples:
+* `edit_venue vo/Lab max/30`
+* `edit_venue vo/Victoria Hall v/Sports Hall`
+
+### Editing a booking : `edit_booking`
+
+Edits an existing booking in the booking system with the specified booking ID.
+
+Format: `edit_booking bid/BOOKING_ID [b/BOOKER_EMAIL] [v/VENUE_NAME] [d/DESCRIPTION] [bs/DATETIME] [be/DATETIME] [t/TAG]`
+
+Examples:
+* `edit_venue vo/Lab max/30`
+* `edit_venue vo/Victoria Hall v/Sports Hall`
+
+### Deleting a person : `delete_person`
+
+Deletes a person corresponding to the email specified.
+
+Format: `delete_person e/[EMAIL]`
+
+Examples:
+* `delete_venue v/Volleyball Court`
+
+### Deleting a venue : `delete_venue`
+
+Deletes a venue corresponding to the venue name specified.
+
+Format: `delete_venue v/VENUE_NAME`
+
+Examples:
+* `delete_venue v/Volleyball Court`
+
+### Deleting a booking : `delete_booking`
+
+Deletes booking corresponding to the booking ID specified.
+
+Format: `delete_booking b/BOOKING_ID`
+
+Examples:
+* `delete_booking b/2321789382`
+
+### Finding a person : `find_person`
+
+Shows information about the person corresponding to the given email.
+
+Format: `find_person e/[EMAIL]`
 
 ### Finding a venue : `find_venue`
 
@@ -114,41 +165,32 @@ Format: `find_booking b/BOOKING_ID`
 Examples:
 * `find_booking b/2321356789`
 
-### Deleting a venue : `delete_venue`
+### Listing all persons : `list_person`
 
-Deletes a venue corresponding to the venue name specified.
+Shows a list of all persons in the booking app.
 
-Format: `delete_venue v/VENUE_NAME`
+Format: `list_booking`
 
-Examples:
-* `delete_venue v/Court`
+### Listing all venues : `list_venue`
 
-### Deleting a booking : `delete_booking`
+Shows a list of all venues in the booking app.
 
-Deletes booking corresponding to the booking ID specified.
+Format: `list_venue`
 
-Format: `delete_booking b/BOOKING_ID`
+### Listing all bookings : `list_booking`
 
-Examples:
-* `delete_booking b/2`
+Shows a list of all bookings and their corresponding IDs in the booking app.
 
-### Editing a venue : `edit_venue`
+Format: `list_booking`
 
-Edits an existing venue in the booking system with the specified venue name.
+### Filtering bookings by date : `filter_booking_by_date`
 
-Format: `edit_venue vo/VENUE_NAME [v/VENUE_NAME] [max/MAXIMUM_OCCUPANCY]`
+Shows a list of bookings on the specified date.
 
-Examples:
-* `edit_venue vo/Lab max/30`
-
-### Editing a person : `edit_person`
-
-Edits an existing person in the booking system with the specified email.
-
-Format: `edit_person eo/EMAIL [e/EMAIL] [p/PHONE_NUMBER] [n/NAME]`
+Format: `filter_booking_by_date [date/DATE]`
 
 Examples:
-* `edit_person eo/amy@example.com p/83984029`
+* `filter_booking_by_date date/2020-12-12`
 
 ### Filtering bookings by booker : `filter_booking_by_booker`
 
@@ -159,23 +201,32 @@ Format: `filter_booking_by_booker [e/EMAIL]`
 Examples:
 * `filter_booking_by_booker e/JohnRose@abc.com`
 
-### Filtering bookings by date : `filter_booking_by_date`
-
-Shows a list of bookings on the specific date.
-
-Format: `filter_booking_by_date [date/DATE]`
-
-Examples:
-* `filter_booking_by_date date/2020-12-12`
-
 ### Filtering bookings by venue : `filter_booking_by_venue`
 
-Shows a list of bookings of a specific venue.
+Shows a list of bookings at the specified venue.
 
 Format: `filter_booking_by_venue [v/VENUE]`
 
 Examples:
 * `filter_booking_by_venue v/Sports Hall`
+
+### Listing all persons : `list_person`
+
+Shows a list of all persons in the booking app.
+
+Format: `list_booking`
+
+### Listing all venues : `list_venue`
+
+Shows a list of all venues in the booking app.
+
+Format: `list_venue`
+
+### Listing all bookings : `list_booking`
+
+Shows a list of all bookings and their corresponding IDs in the booking app.
+
+Format: `list_booking`
 
 ### Exiting the program : `bye`
 
