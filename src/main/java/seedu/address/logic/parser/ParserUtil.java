@@ -150,6 +150,23 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String examDateInput} into {@code LocalDateTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the {@code examDateIput} is of an invalid format.
+     */
+    public static Birthday parseBirthday(String birthdayInput, String nameInput) throws ParseException {
+        requireNonNull(birthdayInput);
+        requireNonNull(nameInput);
+        String trimmedBirthdayInput = birthdayInput.trim();
+        if (!Birthday.isValidBirthday(trimmedBirthdayInput)) {
+            throw new ParseException(Birthday.MESSAGE_CONSTRAINTS);
+        }
+
+        return new Birthday(birthdayInput, nameInput);
+    }
+
+    /**
      * Parses a {@code String titleInput} into a {@code Title}.
      * Leading and trailing whitespaces will be trimmed.
      *
