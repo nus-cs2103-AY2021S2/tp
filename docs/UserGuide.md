@@ -262,7 +262,7 @@ Action | Format, Examples
 **Update Multiple Clean Status** | `status clean/unclean INDEX1 INDEX2..`<br> e.g., `status clean 1 3`
 **Find Residence** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Heights`
 **Remind Residences with Upcoming Bookings** | `remind`
-**List All Residences** | `list`
+**List Residences** | `list`
 **Help** | `help`
 **Exit** | `exit`
 **Clear** | `clear`
