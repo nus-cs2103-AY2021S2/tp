@@ -2,12 +2,15 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
+import seedu.address.model.lesson.Day;
 import seedu.address.model.lesson.Lesson;
 import seedu.address.model.person.level.Level;
 import seedu.address.model.subject.Subject;
@@ -95,6 +98,17 @@ public class Person {
 
     public Set<Lesson> getLessons() {
         return Collections.unmodifiableSet(lessons);
+    }
+
+    public ArrayList<Day> getLessonsDays() {
+        ArrayList<Day> days = new ArrayList<>();
+        if (!lessons.isEmpty()) {
+            Iterator<Lesson> lesson = lessons.iterator();
+            while (lesson.hasNext()) {
+                days.add(lesson.next().getDay());
+            }
+        }
+        return days;
     }
 
     /**

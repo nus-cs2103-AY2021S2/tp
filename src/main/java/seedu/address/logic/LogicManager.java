@@ -113,7 +113,7 @@ public class LogicManager implements Logic {
 
     @Override
     public ObservableList<Lesson> getSundayLesson() {
-        return model.getSaturdayLesson();
+        return model.getSundayLesson();
     }
 
     @Override

@@ -224,6 +224,7 @@ public class MainWindow extends UiPart<Stage> {
                 if (logic.isProceed(commandText)) {
                     commandText = commandBox.getPreviousUserInput();
                 } else {
+                    commandBox.setWaitForNextInput(false);
                     throw new CommandException(MESSAGE_DO_NOT_PROCEED_COMMAND);
                 }
                 commandBox.setWaitForNextInput(false);

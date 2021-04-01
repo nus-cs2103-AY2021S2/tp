@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.function.Function;
+import java.util.Locale;
 import java.util.function.Predicate;
 import java.util.function.UnaryOperator;
 import java.util.logging.Logger;
@@ -20,6 +21,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.date.ImportantDate;
+import seedu.address.model.lesson.Day;
 import seedu.address.model.lesson.Lesson;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.comparators.ImportantDateDetailsComparator;
@@ -53,6 +55,15 @@ public class ModelManager implements Model {
     private final FilteredList<Lesson> saturdayLessons;
     private final FilteredList<Lesson> sundayLessons;
 
+    private final ObservableList<Lesson> transformedMondayList;
+    private final ObservableList<Lesson> transformedTuesdayList;
+    private final ObservableList<Lesson> transformedWednesdayList;
+    private final ObservableList<Lesson> transformedThursdayList;
+    private final ObservableList<Lesson> transformedFridayList;
+    private final ObservableList<Lesson> transformedSaturdayList;
+    private final ObservableList<Lesson> transformedSundayList;
+
+
     private Person selectedPerson;
     private boolean isSavedState;
 
@@ -83,13 +94,22 @@ public class ModelManager implements Model {
         transformedPersons = FXCollections.observableArrayList(this.addressBook.getPersonList());
         transformedLessons = FXCollections.observableArrayList(this.lessonBook.getLessonList());
 
-        mondayLessons = new FilteredList<>(this.lessonBook.getLessonList());
-        tuesdayLessons = new FilteredList<>(this.lessonBook.getLessonList());
-        wednesdayLessons = new FilteredList<>(this.lessonBook.getLessonList());
-        thursdayLessons = new FilteredList<>(this.lessonBook.getLessonList());
-        fridayLessons = new FilteredList<>(this.lessonBook.getLessonList());
-        saturdayLessons = new FilteredList<>(this.lessonBook.getLessonList());
-        sundayLessons = new FilteredList<>(this.lessonBook.getLessonList());
+        mondayLessons = new FilteredList<>(transformedLessons);
+        tuesdayLessons = new FilteredList<>(transformedLessons);
+        wednesdayLessons = new FilteredList<>(transformedLessons);
+        thursdayLessons = new FilteredList<>(transformedLessons);
+        fridayLessons = new FilteredList<>(transformedLessons);
+        saturdayLessons = new FilteredList<>(transformedLessons);
+        sundayLessons = new FilteredList<>(transformedLessons);
+
+        transformedMondayList = FXCollections.observableArrayList(this.mondayLessons);
+        transformedTuesdayList = FXCollections.observableArrayList(this.tuesdayLessons);
+        transformedWednesdayList = FXCollections.observableArrayList(this.wednesdayLessons);
+        transformedThursdayList = FXCollections.observableArrayList(this.thursdayLessons);
+        transformedFridayList = FXCollections.observableArrayList(this.fridayLessons);
+        transformedSaturdayList = FXCollections.observableArrayList(this.saturdayLessons);
+        transformedSundayList = FXCollections.observableArrayList(this.sundayLessons);
+
 
         selectedPerson = null;
         isSavedState = false;
@@ -213,6 +233,18 @@ public class ModelManager implements Model {
     public void setLessonBook(ReadOnlyLessonBook lessonBook) {
         this.lessonBook.resetData(lessonBook);
         updateFilteredLessonList(PREDICATE_SHOW_ALL_LESSONS);
+        setTransformedDayList();
+    }
+
+    @Override
+    public void setTransformedDayList() {
+        transformedMondayList.setAll(this.transformedLessons);
+        transformedTuesdayList.setAll(this.transformedLessons);
+        transformedWednesdayList.setAll(this.transformedLessons);
+        transformedThursdayList.setAll(this.transformedLessons);
+        transformedFridayList.setAll(this.transformedLessons);
+        transformedSaturdayList.setAll(this.transformedLessons);
+        transformedSundayList.setAll(this.transformedLessons);
     }
 
     @Override
@@ -245,14 +277,58 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void updateLessonDayList(ArrayList<Day> lessonDays) {
+        for (int i = 0; i < lessonDays.size(); i++) {
+            switch (lessonDays.get(i).toString().toLowerCase(Locale.ROOT)) {
+            case "monday":
+                updateFilteredDailyLessonList(mondayLessons, new LessonDayPredicate("monday"),
+                    transformedMondayList);
+                break;
+            case "tuesday":
+                updateFilteredDailyLessonList(tuesdayLessons, new LessonDayPredicate("tuesday"),
+                    transformedTuesdayList);
+                break;
+            case "wednesday":
+                updateFilteredDailyLessonList(wednesdayLessons, new LessonDayPredicate("wednesday"),
+                    transformedWednesdayList);
+                break;
+            case "thursday":
+                updateFilteredDailyLessonList(thursdayLessons, new LessonDayPredicate("thursday"),
+                    transformedThursdayList);
+                break;
+            case "friday":
+                updateFilteredDailyLessonList(fridayLessons, new LessonDayPredicate("friday"),
+                    transformedFridayList);
+                break;
+            case "saturday":
+                updateFilteredDailyLessonList(saturdayLessons, new LessonDayPredicate("saturday"),
+                    transformedSaturdayList);
+                break;
+            case "sunday":
+                updateFilteredDailyLessonList(sundayLessons, new LessonDayPredicate("sunday"),
+                    transformedSundayList);
+                break;
+            default:
+                break;
+            }
+        }
+
+    }
+
+    @Override
     public void addPersonToLesson(Person person) {
         lessonBook.addPersonToLesson(person);
+        ArrayList<Day> lessonDays = person.getLessonsDays();
+        updateFilteredLessonList(PREDICATE_SHOW_ALL_LESSONS);
+        updateLessonDayList(lessonDays);
     }
 
     @Override
     public void removePersonFromLesson(Person person) {
         lessonBook.removePersonFromLesson(person);
+        ArrayList<Day> lessonDays = person.getLessonsDays();
         updateFilteredLessonList(PREDICATE_SHOW_ALL_LESSONS);
+        updateLessonDayList(lessonDays);
     }
 
     @Override
@@ -358,61 +434,63 @@ public class ModelManager implements Model {
     //=========== Lesson Day Accessors =============================================================
 
     @Override
-    public ObservableList<Lesson> filterThenSortLessonDayList(FilteredList<Lesson> lessonDayList,
-            Predicate<Lesson> predicate, Comparator<Lesson> comparator) throws NullPointerException {
-
+    public void updateFilteredDailyLessonList(FilteredList<Lesson> lessons, Predicate<Lesson> predicate,
+                                              ObservableList<Lesson> transformedList) throws NullPointerException {
         requireNonNull(predicate);
-        requireNonNull(comparator);
-        lessonDayList.setPredicate(predicate);
-        ObservableList<Lesson> transformedDayList = FXCollections.observableArrayList(lessonDayList);
-        SortedList<Lesson> sortedDayList = transformedDayList.sorted(comparator);
-        sortedDayList.setComparator(comparator);
-        transformedDayList.setAll(sortedDayList);
-
-        return transformedDayList;
-
+        Comparator<Lesson> comparator = new LessonTimeComparator();
+        lessons.setPredicate(predicate);
+        SortedList<Lesson> sortedDayList = lessons.sorted(comparator);
+        transformedList.setAll(sortedDayList);
     }
+
 
     @Override
     public ObservableList<Lesson> getMondayLesson() {
-        return filterThenSortLessonDayList(mondayLessons, new LessonDayPredicate("monday"),
-                new LessonTimeComparator());
+        updateFilteredDailyLessonList(mondayLessons, new LessonDayPredicate("monday"),
+            transformedMondayList);
+        return transformedMondayList;
     }
 
     @Override
     public ObservableList<Lesson> getTuesdayLesson() {
-        return filterThenSortLessonDayList(tuesdayLessons, new LessonDayPredicate("tuesday"),
-                new LessonTimeComparator());
+        updateFilteredDailyLessonList(tuesdayLessons, new LessonDayPredicate("tuesday"),
+            transformedTuesdayList);
+        return transformedTuesdayList;
     }
 
     @Override
     public ObservableList<Lesson> getWednesdayLesson() {
-        return filterThenSortLessonDayList(wednesdayLessons, new LessonDayPredicate("wednesday"),
-                new LessonTimeComparator());
+        updateFilteredDailyLessonList(wednesdayLessons, new LessonDayPredicate("wednesday"),
+            transformedWednesdayList);
+        return transformedWednesdayList;
     }
 
     @Override
     public ObservableList<Lesson> getThursdayLesson() {
-        return filterThenSortLessonDayList(thursdayLessons, new LessonDayPredicate("thursday"),
-                new LessonTimeComparator());
+        updateFilteredDailyLessonList(thursdayLessons, new LessonDayPredicate("thursday"),
+            transformedThursdayList);
+        return transformedThursdayList;
     }
 
     @Override
     public ObservableList<Lesson> getFridayLesson() {
-        return filterThenSortLessonDayList(fridayLessons, new LessonDayPredicate("friday"),
-                new LessonTimeComparator());
+        updateFilteredDailyLessonList(fridayLessons, new LessonDayPredicate("friday"),
+            transformedFridayList);
+        return transformedFridayList;
     }
 
     @Override
     public ObservableList<Lesson> getSaturdayLesson() {
-        return filterThenSortLessonDayList(saturdayLessons, new LessonDayPredicate("saturday"),
-                new LessonTimeComparator());
+        updateFilteredDailyLessonList(saturdayLessons, new LessonDayPredicate("saturday"),
+            transformedSaturdayList);
+        return transformedSaturdayList;
     }
 
     @Override
     public ObservableList<Lesson> getSundayLesson() {
-        return filterThenSortLessonDayList(sundayLessons, new LessonDayPredicate("sunday"),
-                new LessonTimeComparator());
+        updateFilteredDailyLessonList(sundayLessons, new LessonDayPredicate("sunday"),
+            transformedSundayList);
+        return transformedSundayList;
     }
     //=========== DatesBook ================================================================================
 
@@ -554,8 +632,6 @@ public class ModelManager implements Model {
     public ObservableList<Lesson> getTransformedLessonList() {
         return transformedLessons;
     }
-
-
 
     @Override
     public void filterThenSortLessonList(Predicate<Lesson> predicate, Comparator<Lesson> comparator)
