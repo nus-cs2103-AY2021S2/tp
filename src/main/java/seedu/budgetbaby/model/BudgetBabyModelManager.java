@@ -133,7 +133,7 @@ public class BudgetBabyModelManager implements BudgetBabyModel {
     public void addFinancialRecord(FinancialRecord record) {
         FinancialRecord toAdd = record;
         versionedBudgetTracker.addFinancialRecord(record);
-        if (!record.getMonth().equals(filteredMonths.get(0))) {
+        if (!record.getMonth().equals(filteredMonths.get(0).getMonth())) {
             setCurrentDisplayMonth(record.getMonth());
         }
     }
@@ -204,6 +204,13 @@ public class BudgetBabyModelManager implements BudgetBabyModel {
     @Override
     public void setBudget(Budget budget) {
         versionedBudgetTracker.setBudget(budget);
+    }
+
+    //===========  Full List Accessors =============================================================
+
+    @Override
+    public ObservableList<Month> getFullMonthList() {
+        return versionedBudgetTracker.getMonthList();
     }
 
     //=========== Filtered List Accessors =============================================================
