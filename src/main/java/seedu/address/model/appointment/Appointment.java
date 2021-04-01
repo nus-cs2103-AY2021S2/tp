@@ -124,8 +124,10 @@ public class Appointment implements Comparable<Appointment> {
             tags.forEach(builder::append);
         }
         if (!contacts.isEmpty()) {
-            builder.append("\nContacts: ");
-            contacts.forEach(builder::append);
+            builder.append("\nContacts:");
+            builder.append("\n-----------------------------------------------");
+            contacts.forEach(contact -> builder.append(String.format("\n%s\n", contact.toString())));
+            builder.append("-----------------------------------------------");
         }
         return builder.toString();
     }
