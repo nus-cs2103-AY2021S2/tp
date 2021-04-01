@@ -373,7 +373,7 @@ The `redo` command does the opposite — it calls `Model#redoAddressBook()`,
 
 <br>
 
-**Step 6**. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+**Step 6**. The user executes `batch delete` on all client contacts, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
 
 <p align="center"><img src="images/UndoRedoState5.png"></p>
 
