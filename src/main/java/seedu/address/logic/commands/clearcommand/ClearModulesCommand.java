@@ -13,7 +13,7 @@ public class ClearModulesCommand extends ClearCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Clears ALL modules in RemindMe. "
-            + "Parameters: " + PREFIX_MODULE
+            + "\nParameters: " + PREFIX_MODULE
             + "\nExample: " + COMMAND_WORD + " "
             + PREFIX_MODULE;
 
