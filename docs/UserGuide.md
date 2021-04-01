@@ -92,6 +92,7 @@ menu delete [INDEX] (-f)
 #### `find` - Find dish
 Format:
 ```
+
 menu find n/[KEYWORD] (MORE KEYWORDS) i/[KEYWORD]
 ```
 

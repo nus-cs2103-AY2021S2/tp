@@ -69,9 +69,7 @@ public class OrderAddCommand extends Command {
 
         Order toAdd = new Order(dateTime, customer, dishQuantityList);
 
-        if (OrderCommandUtil.isValidOrderAddition(toAdd, model)) {
-            model.addOrder(toAdd);
-        }
+        System.out.println(OrderCommandUtil.isValidOrderAddition(toAdd, model));
 
         model.addOrder(toAdd);
 
