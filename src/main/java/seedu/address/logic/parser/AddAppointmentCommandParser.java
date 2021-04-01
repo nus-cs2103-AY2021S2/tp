@@ -16,7 +16,7 @@ import seedu.address.model.Address;
 import seedu.address.model.Name;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.DateTime;
-import seedu.address.model.person.Person;
+import seedu.address.model.contact.Contact;
 import seedu.address.model.tag.Tag;
 
 public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand> {
@@ -43,7 +43,7 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
         DateTime date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
 
         Set<Tag> childrenList = ParserUtil.parseChildTags(argMultimap.getAllValues(PREFIX_CHILD));
-        Set<Person> contactList = ParserUtil.parseContacts(argMultimap.getAllValues(PREFIX_CONTACT));
+        Set<Contact> contactList = ParserUtil.parseContacts(argMultimap.getAllValues(PREFIX_CONTACT));
 
         Appointment appointment = new Appointment(name, address, date, contactList, childrenList);
 

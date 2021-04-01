@@ -17,12 +17,12 @@ import java.util.Set;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.AddressContainsKeywordsPredicate;
-import seedu.address.model.person.AnyContainsKeywordsPredicate;
-import seedu.address.model.person.EmailContainsKeywordsPredicate;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.PhoneContainsKeywordsPredicate;
-import seedu.address.model.person.TagsMatchKeywordPredicate;
+import seedu.address.model.contact.AddressContainsKeywordsPredicate;
+import seedu.address.model.contact.AnyContainsKeywordsPredicate;
+import seedu.address.model.contact.EmailContainsKeywordsPredicate;
+import seedu.address.model.contact.NameContainsKeywordsPredicate;
+import seedu.address.model.contact.PhoneContainsKeywordsPredicate;
+import seedu.address.model.contact.TagsMatchKeywordPredicate;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -42,15 +42,14 @@ public class FindCommandParser implements Parser<FindCommand> {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_OPTION);
-        Optional<String> argsString = argMultimap.getValue(PREFIX_OPTION);
-        if (argsString.isPresent()) {
-            // split args into option and remaining optionArgs
+
+        if (trimmedArgs.contains(PREFIX_OPTION.getPrefix())) {
+            // get everything after PREFIX_OPTION
+            ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_OPTION);
+            Optional<String> argsString = argMultimap.getValue(PREFIX_OPTION);
             String unboxedArgsString = argsString.get();
-            String[] optionArgsArray = unboxedArgsString.split("\\s+", 2);
-            String option = optionArgsArray[0];
-            String optionArgs = optionArgsArray[1];
-            return parseFindOptions(option, optionArgs);
+
+            return parseFindOptions(unboxedArgsString);
         } else { // find by all fields
             return parseFindAll(trimmedArgs);
         }
@@ -58,11 +57,15 @@ public class FindCommandParser implements Parser<FindCommand> {
 
     /**
      * Parses args in find by options context
-     * @param option option to determine the option selected
-     * @param optionArgs {@code optionArgs} for the rest of the args
+     * @param unboxedArgsString for the rest of the args after {@code o/}
      * @return {@code FindCommand}
      */
-    public FindCommand parseFindOptions(String option, String optionArgs) throws ParseException {
+    public FindCommand parseFindOptions(String unboxedArgsString) throws ParseException {
+        // split args into option and remaining optionArgs
+        String[] optionArgsArray = unboxedArgsString.split("\\s+", 2);
+        String option = optionArgsArray[0];
+        String optionArgs = optionArgsArray[1];
+
         // get keywords
         List<String> keywords = Arrays.asList(optionArgs.split("\\s+"));
         switch (option) {
@@ -76,7 +79,7 @@ public class FindCommandParser implements Parser<FindCommand> {
             return new FindCommand(new EmailContainsKeywordsPredicate(keywords));
         case OPTION_TAG: // find by tag
             // get tags
-            ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(optionArgs, PREFIX_OPTION);
+            ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(unboxedArgsString, PREFIX_TAG);
             Set<Tag> tagSet = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
             return new FindCommand(new TagsMatchKeywordPredicate(tagSet));
         default:
@@ -95,6 +98,5 @@ public class FindCommandParser implements Parser<FindCommand> {
         assert keywords.length > 0 : "FindCommand keywords are empty";
         return new FindCommand(new AnyContainsKeywordsPredicate(Arrays.asList(keywords)));
     }
-
 
 }
