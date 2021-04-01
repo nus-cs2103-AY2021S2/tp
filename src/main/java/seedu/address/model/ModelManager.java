@@ -212,6 +212,7 @@ public class ModelManager implements Model {
     }
 
     //=========== Authenticator Accessors =============================================================
+
     public Authentication getAuthentication() {
         return this.authentication;
     }
@@ -224,6 +225,15 @@ public class ModelManager implements Model {
         modifiedList.sort(comparator);
     }
 
+    //=========== Whole Person List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the entire person list
+     */
+    @Override
+    public ObservableList<Person> getWholePersonList() {
+        return new FilteredList<>(this.addressBook.getPersonList());
+      
     //=========== Shortcut Library ================================================================================
 
     @Override

@@ -124,6 +124,11 @@ public interface Model {
     void updateSortedPersonList(Comparator<Person> comparator);
 
     /**
+     * Returns an unmodifiable view of the entire person list
+     */
+    ObservableList<Person> getWholePersonList();
+  
+    /**
      * Replaces Shortcut Library data with the data in {@code shortcutLibrary}.
      */
     void setShortcutLibrary(ShortcutLibrary shortcutLibrary);
@@ -153,5 +158,4 @@ public interface Model {
      * {@code target} must exist in the shortcut library.
      */
     void setShortcut(String target, String shortcutCommand);
-
 }

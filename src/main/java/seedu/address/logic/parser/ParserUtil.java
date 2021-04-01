@@ -13,6 +13,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.attribute.Attribute;
 import seedu.address.model.insurancepolicy.InsurancePolicy;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -61,6 +62,9 @@ public class ParserUtil {
                 break;
             case "-address":
                 parsedAttributesList.add(Attribute.ADDRESS);
+                break;
+            case "-meeting":
+                parsedAttributesList.add(Attribute.MEETING);
                 break;
             default:
                 throw new ParseException(Attribute.MESSAGE_CONSTRAINTS);
@@ -194,7 +198,39 @@ public class ParserUtil {
         }
         return policyList;
     }
+    /**
+     * Parses a {@code String meeting} into a {@code meeting}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code meeting} is invalid.
+     */
+    public static Meeting parseMeeting(String meeting) throws ParseException {
+        requireNonNull(meeting);
+        try {
+            String trimmedMeeting = meeting.trim();
+            String[] arguments = trimmedMeeting.split("\\s+", 4);
+            if (Meeting.isValidMeeting(arguments[0], arguments[1], arguments[2], arguments[3])) {
+                return new Meeting(arguments[0], arguments[1], arguments[2], arguments[3]);
+            } else {
+                throw new ParseException(Meeting.MESSAGE_CONSTRAINTS);
+            }
+        } catch (ArrayIndexOutOfBoundsException ex) {
+            throw new ParseException(Meeting.MESSAGE_CONSTRAINTS);
+        }
+    }
 
+    /**
+     * Parses {@code Collection<String> meeting} into a {@code List<Meeting>}.
+     */
+    public static List<Meeting> parseMeetings(Collection<String> meeting) throws ParseException {
+        requireNonNull(meeting);
+        final List<Meeting> meetingList = new ArrayList<>();
+        for (String meet : meeting) {
+            requireNonNull(meet);
+            meetingList.add(parseMeeting(meet));
+        }
+        return meetingList;
+      
     /**
      * Parses a {@code String shortcutName}.
      * Leading and trailing whitespaces will be trimmed.
