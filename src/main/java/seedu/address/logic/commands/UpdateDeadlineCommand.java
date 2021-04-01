@@ -30,7 +30,7 @@ public class UpdateDeadlineCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Updates the deadline of a project "
             + "identified by 2 index numbers: project index and deadline index.\n"
-            + "Parameters: PROJECT_INDEX"
+            + "Parameters: PROJECT_INDEX "
             + PREFIX_INDEX + "DEADLINE_INDEX "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_DEADLINE_DATE + "DATE]\n"
