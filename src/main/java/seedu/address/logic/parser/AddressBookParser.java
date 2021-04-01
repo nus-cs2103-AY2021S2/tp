@@ -9,8 +9,8 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddShortcutCommand;
-import seedu.address.logic.commands.ClearShortcutCommand;
 import seedu.address.logic.commands.BatchCommand;
+import seedu.address.logic.commands.ClearShortcutCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteShortcutCommand;
