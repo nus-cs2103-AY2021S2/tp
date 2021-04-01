@@ -12,7 +12,7 @@ public class ListAppointmentCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Lists appointments in the appointment book.\n"
             + "Parameters: [" + PREFIX_OPTION + "OPTION]\n";
-    public static final String MESSAGE_SUCCESS = "Listed all persons";
+    public static final String MESSAGE_SUCCESS = "Listed all appointments";
 
     public ListAppointmentCommand() {}
 

@@ -6,7 +6,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.model.appointment.Appointment;
 
 /**
- * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Contact}'s {@code Name} matches any of the keywords given.
  */
 public class ApptDateContainsKeywordsPredicate extends ApptFieldContainsKeywordsPredicate {
 

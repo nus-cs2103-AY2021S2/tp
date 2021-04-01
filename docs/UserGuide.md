@@ -4,12 +4,12 @@ title: User Guide
 ---
 Hello! Are you a parent whose phone's contact book is filling up with the contacts of teachers? Do you have trouble
 remembering who exactly that contact in your contact book is referring to? Do you have multiple children and want
-a centralised place to keep track of all their activities? Then HeliBook can be the app for you!
+a centralised place to keep track of all their activities? Then ParentPal can be the app for you!
 
-HeliBook is a **desktop app for managing your children's contacts and their related appointments, 
+ParentPal is a **desktop app for managing your children's contacts and their related appointments, 
 optimized for use via a Command Line Interface** (CLI) while still having the benefits of a 
 Graphical User Interface (GUI). 
-If you can type fast, HeliBook can get your contact management tasks done faster than traditional GUI apps.
+If you can type fast, ParentPal can get your contact management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -20,9 +20,9 @@ If you can type fast, HeliBook can get your contact management tasks done faster
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `helibook.jar` from [here](https://github.com/AY2021S2-CS2103T-W13-3/tp/releases).
+1. Download the latest `parentpal.jar` from [here](https://github.com/AY2021S2-CS2103T-W13-3/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your HeliBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your ParentPal.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -71,7 +71,7 @@ If you can type fast, HeliBook can get your contact management tasks done faster
 </div>
 
 This section is separated into the following sub-sections:
-* [General Commands](#general-commands): Commands related to navigating HeliBook
+* [General Commands](#general-commands): Commands related to navigating ParentPal
 * [Address Book Commands](#address-book-commands): Commands related to managing contacts
 * [Appointment Book Commands](#appointment-book-commands): Commands related to managing appointments
 
@@ -97,6 +97,23 @@ Examples:
 Exits the program.
 
 Format: `exit`
+
+#### Changing ParentPal's theme : `theme`
+
+Changes the theme of ParentPal.
+
+Format: `theme o/OPTION`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+ParentPal's theme is set to dark by default.
+</div>
+
+Currently available options for the [OPTION] field include: 
+* `light` Light theme
+* `dark` Dark theme
+
+Examples: 
+* `light` changes theme to a light theme.
 
 ### Address Book Commands
 
@@ -201,6 +218,10 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd contact in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st contact in the results of the `find` command.
 
+<div markdown="span" class="alert alert-primary">:warning: **Warning:**
+Contacts that are involved with appointments cannot be deleted.
+</div>
+
 #### Sorting all contacts : `sort`
 
 Sorts the address book in the order based on the given option.
@@ -228,7 +249,7 @@ Currently available options for the `[OPTION]` field include:
 
 Examples:
 * `list` followed by `fav 2` favourites the 2nd contact in the address book.
-* `find Betsy` followed by `delete 1` favourites the 1st contact in the results of the `find` command.
+* `find Betsy` followed by `fav 1` favourites the 1st contact in the results of the `find` command.
 * `fav 3 o/remove` unfavourites the 3rd contact in the address book.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -333,28 +354,28 @@ Examples:
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Managing HeliBook Data
+## Managing ParentPal Data
 
 ### Saving your data
 
-HeliBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+ParentPal data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-HeliBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+ParentPal data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, HeliBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, ParentPal will discard all data and start with an empty data file at the next run.
 </div>
 
 ### Exporting your data
 
-1. After running HeliBook at least once, locate the `data` folder on your device which can be found in the same directory as your JAR file. 
+1. After running ParentPal at least once, locate the `data` folder on your device which can be found in the same directory as your JAR file. 
 2. Send this `data` folder to your other device.  
 
 ### Importing your data
 
-1. Install HeliBook on your new device and run it once, exit the program before proceeding.
+1. Install ParentPal on your new device and run it once, exit the program before proceeding.
 2. Locate the `data` folder on your old device which can be found in the same directory as your JAR file.
 3. Copy the `data` folder from your old device to the new device to the same directory as where you installed the JAR file.
 4. Replace the files on your new device when prompted.

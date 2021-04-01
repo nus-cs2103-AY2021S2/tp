@@ -19,7 +19,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_PTM;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalAppointments.BALLET_RECITAL;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalContacts.getTypicalAddressBook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -49,7 +49,7 @@ public class AddAppointmentCommandParserTest {
     @Test
     public void parse_allFieldsPresent_success() throws ParseException {
         Appointment expectedAppointment = new AppointmentBuilder(BALLET_RECITAL).build();
-        // Person expectedPerson = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
+        // Contact expectedPerson = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BALLET_RECITAL + ADDRESS_DESC_BALLET_RECITAL

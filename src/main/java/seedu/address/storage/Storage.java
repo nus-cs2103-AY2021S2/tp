@@ -13,7 +13,7 @@ import seedu.address.model.UserPrefs;
 /**
  * API of the Storage component
  */
-public interface Storage extends HeliBookStorage, UserPrefsStorage {
+public interface Storage extends ParentPalStorage, UserPrefsStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
