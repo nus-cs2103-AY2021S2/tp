@@ -8,7 +8,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Patient;
 
 /**
  * Unarchives a Person in DocBob.
@@ -36,20 +36,20 @@ public class UnarchiveCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Patient> lastShownList = model.getFilteredPersonList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToUnarchive = lastShownList.get(targetIndex.getZeroBased());
+        Patient patientToUnarchive = lastShownList.get(targetIndex.getZeroBased());
 
-        if (!personToUnarchive.isArchived()) {
+        if (!patientToUnarchive.isArchived()) {
             throw new CommandException(MESSAGE_PERSON_NOT_ARCHIVED);
         }
 
-        model.unarchivePerson(personToUnarchive);
-        return new CommandResult(String.format(MESSAGE_UNARCHIVE_PERSON_SUCCESS, personToUnarchive));
+        model.unarchivePerson(patientToUnarchive);
+        return new CommandResult(String.format(MESSAGE_UNARCHIVE_PERSON_SUCCESS, patientToUnarchive));
     }
 
     @Override

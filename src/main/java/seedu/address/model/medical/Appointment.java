@@ -7,7 +7,7 @@ import static seedu.address.model.medical.DateFormat.DATE_FORMAT_STORAGE;
 
 import java.time.LocalDateTime;
 
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Patient;
 
 /**
  * Represents an Appointment of a Patient.
@@ -20,7 +20,7 @@ public class Appointment implements Comparable<Appointment> {
             + "DDMMYYYYhhmm or DDMMhhmm. If the year is omitted, the current year is"
             + " assumed.";
 
-    private Person person;
+    private Patient patient;
     private String zoomMeetingUrl;
     private LocalDateTime date;
 
@@ -35,9 +35,9 @@ public class Appointment implements Comparable<Appointment> {
     /**
      * Every field must be present and not null.
      */
-    public Appointment(Person person, LocalDateTime date) {
-        requireAllNonNull(person, date);
-        this.person = person;
+    public Appointment(Patient patient, LocalDateTime date) {
+        requireAllNonNull(patient, date);
+        this.patient = patient;
         this.date = date;
     }
 
@@ -58,17 +58,17 @@ public class Appointment implements Comparable<Appointment> {
         return date.format(DATE_FORMAT_DISPLAY);
     }
 
-    public Person getPerson() {
-        return person;
+    public Patient getPerson() {
+        return patient;
     }
 
-    public Appointment setPerson(Person p) {
+    public Appointment setPerson(Patient p) {
         return new Appointment(p, this.date);
     }
 
     @Override
     public int hashCode() {
-        return person.hashCode() + date.hashCode();
+        return patient.hashCode() + date.hashCode();
     }
 
     @Override
@@ -88,7 +88,7 @@ public class Appointment implements Comparable<Appointment> {
 
     @Override
     public String toString() {
-        return getDateDisplay() + " - " + person.getName();
+        return getDateDisplay() + " - " + ((patient != null) ? patient.getName() : "");
     }
 
     @Override

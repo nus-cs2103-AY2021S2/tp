@@ -1,6 +1,7 @@
 package seedu.address.model.medical;
 
 import static seedu.address.model.medical.DateFormat.DATE_FORMAT_DISPLAY;
+import static seedu.address.model.medical.DateFormat.DATE_FORMAT_NO_TIME;
 import static seedu.address.model.medical.DateFormat.DATE_FORMAT_STORAGE;
 
 import java.time.LocalDateTime;
@@ -50,13 +51,48 @@ public class MedicalRecord {
         return Collections.unmodifiableList(sections);
     }
 
+    @Override
+    public int hashCode() {
+        return date.hashCode() + sections.hashCode();
+    }
+
     // for storage into JSON
     public String getDateStorage() {
         return date.format(DATE_FORMAT_STORAGE);
     }
-
-    // for displaying, doesnt have year
+    // for displaying on ui
     public String getDateDisplay() {
         return date.format(DATE_FORMAT_DISPLAY);
+    }
+    // for displaying on ui
+    public String getDateNoTime() {
+        return date.format(DATE_FORMAT_NO_TIME);
+    }
+
+    @Override
+    public String toString() {
+        String sectionsString = "";
+        for (Section s : this.sections) {
+            sectionsString += s.toString();
+        }
+        return "Record: " + date + " - " + sectionsString;
+    }
+
+    /**
+     * Two MedicalRecords are equal if they have the same LocalDateTime
+     * This makes intuitive sense, since a patient cant have two medical records at the same time
+     */
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof MedicalRecord)) {
+            return false;
+        }
+
+        MedicalRecord otherMedicalRecord = (MedicalRecord) other;
+        return otherMedicalRecord.getDate().equals(getDate());
     }
 }

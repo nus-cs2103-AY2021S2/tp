@@ -7,7 +7,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Height;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Patient;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Weight;
 import seedu.address.model.tag.Tag;
@@ -51,15 +51,15 @@ public class PersonBuilder {
     /**
      * Initializes the PersonBuilder with the data of {@code personToCopy}.
      */
-    public PersonBuilder(Person personToCopy) {
-        name = personToCopy.getName();
-        phone = personToCopy.getPhone();
-        email = personToCopy.getEmail();
-        address = personToCopy.getAddress();
-        height = personToCopy.getHeight();
-        weight = personToCopy.getWeight();
-        tags = new HashSet<>(personToCopy.getTags());
-        isArchived = personToCopy.isArchived();
+    public PersonBuilder(Patient patientToCopy) {
+        name = patientToCopy.getName();
+        phone = patientToCopy.getPhone();
+        email = patientToCopy.getEmail();
+        address = patientToCopy.getAddress();
+        height = patientToCopy.getHeight();
+        weight = patientToCopy.getWeight();
+        tags = new HashSet<>(patientToCopy.getTags());
+        isArchived = patientToCopy.isArchived();
     }
 
     /**
@@ -121,10 +121,10 @@ public class PersonBuilder {
     /**
      * Builds the {@code Person} using the information given.
      */
-    public Person build() {
-        Person builtPerson = new Person(name, phone, email, address, height, weight, tags);
-        builtPerson.setArchived(isArchived);
-        return builtPerson;
+    public Patient build() {
+        Patient builtPatient = new Patient(name, phone, email, address, height, weight, tags);
+        builtPatient.setArchived(isArchived);
+        return builtPatient;
     }
 
 }

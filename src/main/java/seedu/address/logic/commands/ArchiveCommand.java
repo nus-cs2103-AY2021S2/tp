@@ -8,7 +8,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Patient;
 
 /**
  * Archives a Person in DocBob.
@@ -36,20 +36,20 @@ public class ArchiveCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Patient> lastShownList = model.getFilteredPersonList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToArchive = lastShownList.get(targetIndex.getZeroBased());
+        Patient patientToArchive = lastShownList.get(targetIndex.getZeroBased());
 
-        if (personToArchive.isArchived()) {
+        if (patientToArchive.isArchived()) {
             throw new CommandException(MESSAGE_ALREADY_ARCHIVED_PERSON);
         }
 
-        model.archivePerson(personToArchive);
-        return new CommandResult(String.format(MESSAGE_ARCHIVE_PERSON_SUCCESS, personToArchive));
+        model.archivePerson(patientToArchive);
+        return new CommandResult(String.format(MESSAGE_ARCHIVE_PERSON_SUCCESS, patientToArchive));
     }
 
     @Override

@@ -1,15 +1,15 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ARCHIVED_PERSONS;
-import static seedu.address.model.Model.PREDICATE_SHOW_MAIN_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ARCHIVED_PATIENTS;
+import static seedu.address.model.Model.PREDICATE_SHOW_MAIN_PATIENTS;
 
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Patient;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
@@ -33,17 +33,17 @@ public class FindCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
-        Person checkPerson;
+        List<Patient> lastShownList = model.getFilteredPersonList();
+        Patient checkPatient;
         try {
-            checkPerson = lastShownList.get(0);
-            if (checkPerson.isArchived()) {
-                model.updateFilteredPersonList(predicate.and(PREDICATE_SHOW_ARCHIVED_PERSONS));
+            checkPatient = lastShownList.get(0);
+            if (checkPatient.isArchived()) {
+                model.updateFilteredPersonList(predicate.and(PREDICATE_SHOW_ARCHIVED_PATIENTS));
             } else {
-                model.updateFilteredPersonList(predicate.and(PREDICATE_SHOW_MAIN_PERSONS));
+                model.updateFilteredPersonList(predicate.and(PREDICATE_SHOW_MAIN_PATIENTS));
             }
         } catch (IndexOutOfBoundsException e) {
-            model.updateFilteredPersonList(predicate.and(PREDICATE_SHOW_MAIN_PERSONS));
+            model.updateFilteredPersonList(predicate.and(PREDICATE_SHOW_MAIN_PATIENTS));
         }
         return new CommandResult(
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));

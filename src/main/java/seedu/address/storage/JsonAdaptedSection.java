@@ -2,7 +2,6 @@ package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.medical.Section;
@@ -27,16 +26,6 @@ public class JsonAdaptedSection {
     public JsonAdaptedSection(Section source) {
         title = source.getTitle();
         body = source.getBody();
-    }
-
-    @JsonValue
-    public String getTitle() {
-        return title;
-    }
-
-    @JsonValue
-    public String getBody() {
-        return body;
     }
 
     /**
