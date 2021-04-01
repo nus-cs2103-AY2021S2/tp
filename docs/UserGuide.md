@@ -173,18 +173,6 @@ Format: `sortp by/FIELD d/DIRECTION`
 
 Examples
 
-### Deleting a meeting: 'deletem'
-
-Deletes a meeting displayed at a specific index in the meeting list.
-
-Format 'deletem INDEX'
-
-* Deletes the meeting at the specified 'INDEX'.
-* The index refers the index number shown in the displayed meeting list
-* The index **must be a positive integer** corresponding to a numbered entry in the meeting list.
-
-
-
 ##Timetable feature
 
 ### Viewing Timetable: 
@@ -339,3 +327,4 @@ Action | Format, Examples
 **List** | `list`, `listm`, `listp`
 **Sort** | `sortp by/FIELD d/DIRECTION` <br>  `sortm by/FIELD d/DIRECTION`
 **Help** | `help`
+**SetTimtable**| `setTimetable DATE`
