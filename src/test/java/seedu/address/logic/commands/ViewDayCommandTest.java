@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalTasks.DANIEL;
 import static seedu.address.testutil.TypicalTasks.GEORGE;
 import static seedu.address.testutil.TypicalTasks.getTypicalPlanner;
 
@@ -23,13 +22,13 @@ class ViewDayCommandTest {
 
     @Test
     public void execute_viewDayWithTasks_multipleTasksFound() {
-        String expectedMessage = String.format(ViewDayCommand.MESSAGE_VIEW_DAY_SUCCESS, 2, "May", "2021");
+        String expectedMessage = String.format(ViewDayCommand.MESSAGE_VIEW_DAY_SUCCESS, 1, "May", "2021");
         Date date = new Date("27/05/2021");
         TaskOnDatePredicate predicate = new TaskOnDatePredicate(date);
         ViewDayCommand command = new ViewDayCommand(predicate, date.getDate());
         expectedModel.updateFilteredTaskList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(DANIEL, GEORGE), expectedModel.getFilteredTaskList());
+        assertEquals(Arrays.asList(GEORGE), expectedModel.getFilteredTaskList());
     }
 
     @Test
