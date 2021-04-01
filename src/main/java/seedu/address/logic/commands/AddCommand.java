@@ -45,7 +45,7 @@ public class AddCommand extends Command {
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_GUARDIAN_NAME + "Helen Doe "
             + PREFIX_GUARDIAN_PHONE + "98765431 "
-            + PREFIX_LESSON + "sec3 "
+            + PREFIX_LEVEL + "sec3 "
             + PREFIX_SUBJECT + "math "
             + PREFIX_SUBJECT + "chem "
             + PREFIX_LESSON + "monday 1300";
