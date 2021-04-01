@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 import seedu.address.model.insurancepolicy.InsurancePolicy;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -30,6 +31,7 @@ public class PersonBuilder {
     private Address address;
     private Set<Tag> tags;
     private List<InsurancePolicy> policies;
+    private List<Meeting> meetings;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -41,6 +43,7 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
         policies = new ArrayList<>();
+        meetings = new ArrayList<>();
     }
 
     /**
@@ -53,6 +56,7 @@ public class PersonBuilder {
         address = personToCopy.getAddress().get();
         tags = new HashSet<>(personToCopy.getTags());
         policies = new ArrayList<>(personToCopy.getPolicies());
+        meetings = new ArrayList<>(personToCopy.getMeetings());
     }
 
     /**
@@ -103,8 +107,16 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Meeting} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withMeetings(String ... meetings) {
+        this.meetings = SampleDataUtil.getMeetingList(meetings);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, address, tags, policies);
+        return new Person(name, phone, email, address, tags, policies, meetings);
     }
 
 }

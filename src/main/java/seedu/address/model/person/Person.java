@@ -12,6 +12,7 @@ import java.util.Set;
 
 import seedu.address.model.attribute.Attribute;
 import seedu.address.model.insurancepolicy.InsurancePolicy;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -31,18 +32,21 @@ public class Person {
     private final Optional<Address> address;
     private final Set<Tag> tags = new HashSet<>();
     private final List<InsurancePolicy> policies = new ArrayList<>();
+    private final List<Meeting> meetings = new ArrayList<>();
 
     /**
      * Every field is present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, List<InsurancePolicy> policies) {
-        requireAllNonNull(name, phone, email, address, tags, policies);
+    public Person(Name name, Phone phone, Email email, Address address,
+                  Set<Tag> tags, List<InsurancePolicy> policies, List<Meeting> meeting) {
+        requireAllNonNull(name, phone, email, address, tags, policies, meeting);
         this.name = name;
         this.phone = Optional.of(phone);
         this.email = Optional.of(email);
         this.address = Optional.of(address);
         this.tags.addAll(tags);
         this.policies.addAll(policies);
+        this.meetings.addAll(meeting);
     }
 
     /**
@@ -82,6 +86,9 @@ public class Person {
         } else {
             this.email = Optional.empty();
         }
+        if (attributes.contains(Attribute.MEETING)) {
+            this.meetings.addAll(person.meetings);
+        }
         this.tags.addAll(person.tags);
     }
 
@@ -118,6 +125,14 @@ public class Person {
     }
 
     /**
+     * Returns an immutable meeting arraylist, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public List<Meeting> getMeetings() {
+        return Collections.unmodifiableList(meetings);
+    }
+
+    /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
@@ -150,13 +165,14 @@ public class Person {
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getTags().equals(getTags())
-                && otherPerson.getPolicies().equals(getPolicies());
+                && otherPerson.getPolicies().equals(getPolicies())
+                && otherPerson.getMeetings().equals(getMeetings());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, policies);
+        return Objects.hash(name, phone, email, address, tags, policies, meetings);
     }
 
     public boolean hasPolicies() {
@@ -196,6 +212,13 @@ public class Person {
             policies.forEach(policyString -> builder.append(policyString).append(", "));
             builder.deleteCharAt(builder.length() - 1).deleteCharAt(builder.length() - 1);
         }
+
+        if (!meetings.isEmpty()) {
+            builder.append("; Meeting: ");
+            meetings.forEach(meetingString -> builder.append(meetingString).append(", "));
+            builder.deleteCharAt(builder.length() - 1).deleteCharAt(builder.length() - 1);
+        }
+
         return builder.toString();
     }
 

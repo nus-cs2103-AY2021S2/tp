@@ -616,10 +616,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list clients
-2.  ClientBook shows a list of clients
-3.  User requests to schedule a meeting with a specific client in the list
-4.  ClientBook schedules a meeting with the client
+1.  User requests to list clients.
+    
+2.  ClientBook shows a list of clients.
+    
+3.  User requests to schedule a meeting with a specific client in the list.
+    
+4.  ClientBook schedules a meeting with the client.
 
     Use case ends.
 

@@ -25,13 +25,13 @@ public class FindCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose chosen field contains any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Use a flag (n/, p/, e/, a/, t/, i/) to search by name, phone, email, address, tags or insurance "
-            + "policies respectively.\n"
+            + "Use a flag (n/, p/, e/, a/, t/, i/, m/) to search by name, phone, email, address, tags, insurance"
+            + "policies or meeting respectively.\n"
             + "Use '&' to find for multiple search terms.\n"
             + "Specify attributes by typing '-[ATTRIBUTE] after keywords\n"
             + "Keywords cannot be empty.\n"
             + "Parameters: FLAG/KEYWORD [& MORE_KEYWORDS]... [-ATTRIBUTE]... (attributes must be i for policy, "
-            + "p for phone, e for email or a for address)\n"
+            + "p for phone, e for email, a for address or m for meeting)\n"
             + "Example: " + COMMAND_WORD + " e/alice@mail.com & bob@mail.com -a -i";
 
     private final Predicate<Person> predicate;
@@ -82,6 +82,9 @@ public class FindCommand extends Command {
                 break;
             case ADDRESS:
                 attributeName.append("address");
+                break;
+            case MEETING:
+                attributeName.append("meeting");
                 break;
             default:
                 throw new CommandException("Could not list with filtered attribute");
