@@ -406,3 +406,4 @@ Action | Format, Examples
 **edit** | `edit INDEX [d/DESCRIPTION] [b/DEADLINE]…​`<br> e.g. `edit 2 d/Eat Biscuits b/2021-03-21 10:10`
 **recur** | `recur INDEX r/RECURRENCE`<br> e.g. `recur 1 r/monthly`
 **sort** | `sort n/` or `sort d/` or `sort m/` or `sort w/` or `sort b/` or `sort t/` <br> e.g. `sort b/`
+**exit** | `exit`
