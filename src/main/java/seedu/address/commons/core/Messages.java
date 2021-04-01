@@ -20,6 +20,7 @@ public class Messages {
     public static final String MESSAGE_MULTIPLE_WORD_PER_ATTRIBUTE = "You can only input one keyword per attribute!";
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
+    public static final String MESSAGE_INVALID_PLAN_INDEX = "The plan index provided is invalid";
     public static final String messagePersonFilteredOverview(String s) {
         return "%1$d persons listed! \nYour filter keyword(s): " + s;
     }
