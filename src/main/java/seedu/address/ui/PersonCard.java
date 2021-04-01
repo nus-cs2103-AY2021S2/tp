@@ -9,7 +9,6 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import seedu.address.model.insurancepolicy.InsurancePolicy;
 import seedu.address.model.person.Person;
 
 /**
@@ -46,6 +45,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label insurancePolicies;
     @FXML
+    private Label meetings;
+    @FXML
     private VBox gridPane;
 
     /**
@@ -61,7 +62,8 @@ public class PersonCard extends UiPart<Region> {
                 .map(Object::toString)
                 .collect(Collectors.joining("\n")));
         } else {
-            insurancePolicies.setText(InsurancePolicy.MESSAGE_NO_POLICY);
+            gridPane.getChildren().remove(insurancePolicies);
+            gridPane.setMinHeight(gridPane.getMinHeight() - 20);
         }
         if (!person.getTags().isEmpty()) {
             person.getTags().stream()
@@ -87,6 +89,15 @@ public class PersonCard extends UiPart<Region> {
             email.setText(person.getEmail().get().value);
         } else {
             gridPane.getChildren().remove(email);
+            gridPane.setMinHeight(gridPane.getMinHeight() - 20);
+        }
+
+        if (!person.getMeetings().isEmpty()) {
+            meetings.setText(person.getMeetings().stream()
+                    .map(Object::toString)
+                    .collect(Collectors.joining("\n")));
+        } else {
+            gridPane.getChildren().remove(meetings);
             gridPane.setMinHeight(gridPane.getMinHeight() - 20);
         }
     }
