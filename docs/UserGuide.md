@@ -228,8 +228,8 @@ Format: `plan INDEX i/PLAN_NAME $PREMIUM`
 
 * `INDEX` refers to the index number shown in the displayed client list.
 * `INDEX` **must be a positive integer** 1, 2, 3, …​
-* `PLAN_NAME` refers to the name of the insurance plan
-* `PREMIUM` refers to the yearly premium amount that the client pays for this plan
+* `PLAN_NAME` refers to the name of the insurance plan.
+* `PREMIUM` refers to the yearly premium amount that the client pays for this plan.
 * `PREMIUM` **must be a positive integer** 1, 2, 3, …​
 
 Example:
