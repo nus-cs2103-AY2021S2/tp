@@ -20,13 +20,15 @@ Thus, ClientBook is born!<br>
 Requiring **minimal interactions with your cursor**, ClientBook still allows you to complete essential contact management
 tasks with our minimal yet essential set of contact management features.<br>
 
-If you are a new user, you can start with the [Quick Start](#quick-start) section.
+## How to use this guide
+If you are a new user, you can start with the [Quick Start](#quick-start) section to get ClientBook running. After that,
+we have also provided an [Example Usage](#example-usage) section to help you get familiarised with ClientBook.
 If you are an experienced user, we have provided a convenient [Summary of Commands](#summary-of-commands) at the end of this user guide.
 
 ## Table of Contents 
 
-* [**1**. Why ClientBook?](#why-clientbook)
 * [**2.** Quick Start](#quick-start)
+  [**2.** Example Usage](#example-usage)
 * [**3.** Overview](#Overview)
   * [**3.1** Feature Summary](#feature-summary)
   * [**3.2** What information can we store for each client contact?](#what-information-can-we-store-for-each-client-contact)
@@ -80,6 +82,45 @@ If you are an experienced user, we have provided a convenient [Summary of Comman
 [Return to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+## Example Usage
+
+### Introduction
+Described below are some commands that you can try to get yourself familiarised with ClientBook.
+
+If you have followed the [Quick Start](#quick-start) guide correctly, you should see the screen below. 
+For each of the commands, type them into the command box and press enter to execute the command.
+
+
+
+
+
+1. Try adding a new Client contact using the command `add n/James Lee p/91234567 e/james@gmail.com a/Blk 123 Serangoon Rd t/Friend t/Colleague i/OCBC#412>www.ocbc.com/policy/412`.
+
+That is a very long command, but it can be broken down into simple parts. We have just added a client called James Lee with a phone number of 91234567, email address of
+james@gmail.com, address of Blk 123 Serangoon Rd and we have also indicated that James is a friend as well as colleague of ours by adding the tags `Friend` and `Colleague`. Lastly,
+we indicated that James has purchased a policy from us with a policy ID of OCBC#412 and it can be found at `www.ocbc.com/policy/412`.
+
+Now, if you scroll down, you should find James at the bottom of the list.
+
+<p align="center"><img src="/images/newContactJames"></p>
+
+2. Try editing a Client contact using `edit 1 p/61234567`.
+
+This command edits the phone number of the first client displayed in the contact list to 61234567. In this case, Alex Yeoh's
+phone number in ClientBook has been changed to 61234567.
+
+<p align="center"><img src="/images/alexYeohChangePhone"></p>
+
+3. Delete a Client contact using `delete 3`.
+
+This command deletes the contact of the third client displayed in the contact list.
+
+### Conclusion
+Now that you have tried out the basic commands available in ClientBook, you can use the `batch delete 1,2,3,4,5,6,7` command
+to delete all the sample entries and start using your very own ClientBook.
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## Overview
 
 ### Feature Summary 
