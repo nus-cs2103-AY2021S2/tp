@@ -19,7 +19,7 @@ title: User Guide
 1. Copy the file to the folder you want to use as the _home folder_ for your Dictionote application.
 
 1. Double-click the file to start the app. The GUI should appear in a few seconds. <br>
-   ![Ui](images/Ui.png)
+   ![Ui](images/UiUserguide.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.
 
@@ -62,7 +62,7 @@ title: User Guide
 
 Shows a message explaning how to access the help page.
 
-![help message](images/helpMessage.png)
+![help message](images/HelpMessage.png)
 
 Format: `help`
 
@@ -71,6 +71,32 @@ Format: `help`
 Shows a list of available command
 
 Format: `listcommand`
+
+#### Viewing Command Details
+
+##### Viewing Dictionary Command Details : `listcommandd`
+
+Shows a list of available dictionary command with description
+
+Format: `listcommandd`
+
+##### Viewing note Command Details : `listcommandn`
+
+Shows a list of available note command with description
+
+Format: `listcommandn`
+
+##### Viewing Contact Command Details : `listcommandc`
+
+Shows a list of available contact command with description
+
+Format: `listcommandc`
+
+##### Viewing Ui Command Details : `listcommandu`
+
+Shows a list of available Ui command with description
+
+Format: `listcommandu`
 
 ### Dictionary Features
 
