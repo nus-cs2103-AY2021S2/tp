@@ -58,8 +58,10 @@ Weeblingo is a desktop app for managing flashcards, **optimized for use via a Co
 * Items with `…`​ after them can be used multiple times including zero times.<br>
 
 * Parameters can be in any order.<br>
+eg. if the command specifies `n/NUMBER t/TAG`, `t/TAG n/NUMBER` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+eg. if you specify `n/5 n/10`, only `n/10` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help あいうえお`, it will be interpreted as `help`.
@@ -74,13 +76,20 @@ Format: `start [n/NUMBER] [t/TAG]`
 
 * NUMBER specifies the number of questions for the quiz session.
 * TAG specifies the type of questions for the quiz session.
-* Both NUMBER and TAG are optional.
+* NUMBER specified should be positive.
 * There are currently four tags available, gojuon, hiragana, katakana and numbers.
+* You can specify one or two tags.
 
 Examples:
 * start n/10
-* start t/hiragana
-* start n/5 t/gojuon
+* start t/katakana
+* start n/5 t/gojuon t/hiragana
+
+Before executing start command:
+![before start](images/start_before.png)
+
+After executing start command:
+![after start](images/start_after.png)
 
 ### Checking flashcard answers: `check`
 
