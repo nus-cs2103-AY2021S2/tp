@@ -49,7 +49,9 @@ Adds an entry to the Food Diary.
 
 Format: `add n/<RESTAURANT NAME> ra/RATING p/PRICE re/REVIEW a/ADDRESS [c/CATEGORY]... [s/SCHOOL]...`
 
+Note:
 - A FoodDiary entry can have any number of categories or schools
+- Price range: $0 - 999
 
 Parameters:
 
@@ -88,6 +90,7 @@ Parameters:
 2. `Review` or `Price` or both.
 
 - Adds on a review and/or a price to a FoodDiary entry at the specified `INDEX`.
+- Multiple reviews with one price can be added on.
 - Index refers to the index number shown in the displayed FoodDiary entry list. The index must be a
   positive integer (e.g. 1,2,3,...)
 - At least one of the optional fields must be provided
@@ -247,6 +250,10 @@ Example:
 Edits the details of the FoodDiary entry specified. Existing values will be overwritten by the new values.
 
 Format: `edit <INDEX> n/<RESTAURANT NAME> ra/<RATING> p/<PRICE> re/<REVIEW> a/<ADDRESS> c/<CATEGORIES> s/<SCHOOLS>`
+
+Note: 
+- Price range: $0 - 999
+- Categories and schools are stated in `add` command
 
 Parameters:
 
