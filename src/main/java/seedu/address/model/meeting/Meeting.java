@@ -27,7 +27,7 @@ public class Meeting implements Comparable<Meeting> {
      *
      * @param meeting A valid meeting.
      */
-    public Meeting(String meeting) {
+    public Meeting(String meeting) throws IllegalArgumentException {
         requireNonNull(meeting);
         checkArgument(isValidMeeting(meeting), MESSAGE_CONSTRAINTS);
         String[] fragments = meeting.split(" @ ", 2);

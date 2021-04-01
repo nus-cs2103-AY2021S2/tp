@@ -156,6 +156,15 @@ In future installments, this implementation may be scraped in favor for an imple
 as the wrapper for the `Person` class, but for the sake of functionality, we shall keep the current implementation as 
 is.
 
+### Displaying Notifications
+![NotifSequenceDiagram](images/NotifSequenceDiagram.png)
+
+The implementation of showing notifications is separated into two parts. First part handles the input command and 
+returns the result to see whether the command is a notification command and returns it back to the main window. For the 
+second part of the implementation, the `MainWindow` handles the notification command and requests the notifications from 
+`Logic`, which in turn requests from model. The `MainWindow` then sends the notification string to the `NotifWindow` to 
+be displayed.
+
 
 ### Representing birthdates of clients
 

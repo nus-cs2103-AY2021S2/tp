@@ -60,7 +60,7 @@ public class ScheduleCommand extends Command {
                     .clash(updatedPerson)
                     .map(meeting -> String.format(MESSAGE_SCHEDULE_CONFLICT_FAILURE, meeting.original));
             if (errorMsg.isPresent()) {
-                throw new CommandException(errorMsg.orElseThrow());
+                throw new CommandException(errorMsg.get());
             }
         }
         model.setPerson(personToSchedule, updatedPerson);
