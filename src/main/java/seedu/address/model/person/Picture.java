@@ -9,6 +9,7 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 public class Picture {
+
     public static final String[] ALLOWED_FILE_EXTENSIONS = {".png", ".jpeg", ".jpg"};
     public static final String ALLOWED_FILE_EXTENSIONS_STRING = String.join(", ", ALLOWED_FILE_EXTENSIONS);
 
