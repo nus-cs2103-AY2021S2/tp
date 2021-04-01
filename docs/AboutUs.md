@@ -3,57 +3,53 @@ layout: page
 title: About Us
 ---
 
-We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
+We are a team from NUS School of Computing completing this as a module requirement for CS2103/T.
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us by creating a new issue on our [GitHub issues page](https://github.com/AY2021S2-CS2103T-T12-2/tp/issues).
 
 ## Project team
 
-### John Doe
+### Soh Jun Qi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/sjq-sohjunqi.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/sjq-sohjunqi)]
 
 * Role: Team Lead
-* Responsibilities: UI
+* Responsibilities: Testing (Primary), Documentation (Primary), Model (Primary), UI (Primary), Parsing (Secondary)
 
-### Johnny Doe
+### Kuah Wei Liang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/weilianglol.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/WeiLiangLOL/)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Assistant Team Lead
+* Responsibilities: Processing (Primary), Testing (Secondary), Code quality (Secondary)
 
-### Jean Doe
+### Song Soon Wee
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ssoonwee.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/ssoonwee)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Parsing (Primary), UI (Secondary), Model (Secondary)
+
+### Neo Soon Keat
+
+<img src="images/soonkeatneo.png" width="200px">
+
+[[github](https://github.com/SoonKeatNeo)]
+
+* Role: Developer
+* Responsibilities: Code quality (Primary), Processing (Secondary), Storage (Secondary)
+
+### Jason Lim
+
+<img src="images/jasaaanlim.png" width="200px">
+
+[[github](https://github.com/jasaaanlim)]
+
+* Role: Developer
+* Responsibilities: Storage (Primary), Documentation (Secondary), Processing (Secondary)

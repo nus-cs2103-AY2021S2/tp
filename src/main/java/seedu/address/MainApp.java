@@ -21,13 +21,26 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.diet.DietPlanList;
+import seedu.address.model.food.FoodIntakeList;
+import seedu.address.model.food.UniqueFoodList;
+import seedu.address.model.user.User;
 import seedu.address.model.util.SampleDataUtil;
+import seedu.address.model.util.TemplateInitializer;
 import seedu.address.storage.AddressBookStorage;
+import seedu.address.storage.DietPlanListStorage;
+import seedu.address.storage.FoodIntakeListStorage;
 import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonDietPlanListStorage;
+import seedu.address.storage.JsonFoodIntakeListStorage;
+import seedu.address.storage.JsonUniqueFoodListStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.JsonUserStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
+import seedu.address.storage.UniqueFoodListStorage;
 import seedu.address.storage.UserPrefsStorage;
+import seedu.address.storage.UserStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
 
@@ -48,7 +61,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing AddressBook ]===========================");
+        logger.info("=============================[ Initializing DietLAH! ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -57,7 +70,15 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        UniqueFoodListStorage uniqueFoodListStorage =
+                new JsonUniqueFoodListStorage(userPrefs.getUniqueFoodListFilePath());
+        FoodIntakeListStorage foodIntakeListStorage =
+                new JsonFoodIntakeListStorage(userPrefs.getFoodIntakeListFilePath());
+        DietPlanListStorage dietPlanListStorage = new JsonDietPlanListStorage(userPrefs.getDietPlanListFilePath());
+        UserStorage userStorage = new JsonUserStorage(userPrefs.getUserFilePath());
+
+        storage = new StorageManager(addressBookStorage, uniqueFoodListStorage,
+                foodIntakeListStorage, dietPlanListStorage, userPrefsStorage, userStorage);
 
         initLogging(config);
 
@@ -74,23 +95,65 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
+        // TODO: Update handling of method
         Optional<ReadOnlyAddressBook> addressBookOptional;
         ReadOnlyAddressBook initialData;
+        Optional<UniqueFoodList> uniqueFoodListOptional;
+        UniqueFoodList uniqueFoodList;
+        Optional<FoodIntakeList> foodIntakeListOptional;
+        FoodIntakeList foodIntakeList;
+        Optional<DietPlanList> dietPlanListOptional;
+        DietPlanList dietPlanList;
+        Optional<User> userOptional;
+        User user;
+
         try {
+            TemplateInitializer templateInitializer = new TemplateInitializer();
             addressBookOptional = storage.readAddressBook();
+            uniqueFoodListOptional = storage.readFoodList();
+            foodIntakeListOptional = storage.readFoodIntakeList();
+            dietPlanListOptional = storage.readDietPlanList();
+            userOptional = storage.readUser();
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
             }
+            if (!uniqueFoodListOptional.isPresent()) {
+                logger.info("Food data file not found. Will be starting fresh");
+            }
+            if (!foodIntakeListOptional.isPresent()) {
+                logger.info("Food intake data file not found. Will be starting fresh");
+            }
+            if (!dietPlanListOptional.isPresent()) {
+                logger.info("Diet plans file not found. Will be starting fresh");
+            }
+            if (!userOptional.isPresent()) {
+                logger.info("User file not found. Will be starting with default template data");
+            }
             initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            TemplateInitializer initializer = new TemplateInitializer();
+            uniqueFoodList = uniqueFoodListOptional.orElse(initializer.getUniqueFoodListTemplate());
+            foodIntakeList = foodIntakeListOptional.orElse(initializer.getFoodListIntakeTemplate());
+            dietPlanList = dietPlanListOptional.orElseGet(templateInitializer::getDietPlanListTemplate);
+            user = userOptional.orElse(initializer.createUser(uniqueFoodList, foodIntakeList));
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
+            TemplateInitializer initializer = new TemplateInitializer();
             initialData = new AddressBook();
+            uniqueFoodList = initializer.getUniqueFoodListTemplate();
+            foodIntakeList = initializer.getFoodListIntakeTemplate();
+            dietPlanList = initializer.getDietPlanListTemplate();
+            user = initializer.createUser(uniqueFoodList, foodIntakeList);
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            TemplateInitializer initializer = new TemplateInitializer();
             initialData = new AddressBook();
+            uniqueFoodList = initializer.getUniqueFoodListTemplate();
+            foodIntakeList = initializer.getFoodListIntakeTemplate();
+            dietPlanList = initializer.getDietPlanListTemplate();
+            user = initializer.createUser(uniqueFoodList, foodIntakeList);
         }
 
-        return new ModelManager(initialData, userPrefs);
+        return new ModelManager(initialData, uniqueFoodList, foodIntakeList, dietPlanList, userPrefs, user);
     }
 
     private void initLogging(Config config) {
@@ -167,13 +230,13 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting AddressBook " + MainApp.VERSION);
+        logger.info("Starting DietLAH! " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Address Book ] =============================");
+        logger.info("============================ [ Stopping DietLAH! ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {
