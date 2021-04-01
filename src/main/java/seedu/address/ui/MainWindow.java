@@ -15,10 +15,12 @@ import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
+import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Person;
+import seedu.address.model.medical.MedicalRecord;
+import seedu.address.model.person.Patient;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -87,6 +89,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -128,7 +131,7 @@ public class MainWindow extends UiPart<Stage> {
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
-        CommandBox commandBox = new CommandBox(this::executeCommand);
+        CommandBox commandBox = new CommandBox(this::executeTextCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
         ViewPatientBox viewPatientBox = new ViewPatientBox();
@@ -163,7 +166,7 @@ public class MainWindow extends UiPart<Stage> {
      * Displays the patientViewBox which contains information about patient
      */
     @FXML
-    public void handlePatientViewBox(Person p) {
+    public void handlePatientViewBox(Patient p) {
         ViewPatientBox viewPatientBox = new ViewPatientBox(p);
         viewPatientBoxPlaceholder.getChildren().clear();
         viewPatientBoxPlaceholder.getChildren().add(viewPatientBox.getRoot());
@@ -177,8 +180,8 @@ public class MainWindow extends UiPart<Stage> {
      * Opens the help window or focuses on it if it's already opened.
      */
     @FXML
-    public void handleEdit(String context) {
-        EditorWindow editorWindow = new EditorWindow(context);
+    public void handleEdit(Patient patient, MedicalRecord medicalRecord) {
+        EditorWindow editorWindow = new EditorWindow(this::executeCommand, patient, medicalRecord);
         editorWindows.add(editorWindow);
         if (!editorWindow.isShowing()) {
             editorWindow.show();
@@ -208,33 +211,49 @@ public class MainWindow extends UiPart<Stage> {
      *
      * @see seedu.address.logic.Logic#execute(String)
      */
-    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+    private CommandResult executeTextCommand(String commandText) throws CommandException, ParseException {
+        CommandResult commandResult;
         try {
-            CommandResult commandResult = logic.execute(commandText);
-            logger.info("Result: " + commandResult.getFeedbackToUser());
-            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-
-            if (commandResult.isShowHelp()) {
-                handleHelp();
-            }
-
-            if (commandResult.isShowEdit()) {
-                handleEdit(commandResult.getFeedbackToUser());
-            }
-
-            if (commandResult.isShowViewBox()) {
-                handlePatientViewBox(commandResult.getPatient());
-            }
-
-            if (commandResult.isExit()) {
-                handleExit();
-            }
-
-            return commandResult;
+            commandResult = logic.execute(commandText);
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
+        }
+        processResult(commandResult);
+        return commandResult;
+    }
+
+    private CommandResult executeCommand(Command command) throws CommandException {
+        CommandResult commandResult;
+        try {
+            commandResult = logic.execute(command);
+        } catch (CommandException e) {
+            logger.info("Invalid command: " + command.toString());
+            resultDisplay.setFeedbackToUser(e.getMessage());
+            throw e;
+        }
+        processResult(commandResult);
+        return commandResult;
+    }
+
+    private void processResult(CommandResult commandResult) {
+        logger.info("Result: " + commandResult.getFeedbackToUser());
+        resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+        if (commandResult.isShowHelp()) {
+            handleHelp();
+        }
+
+        if (commandResult.isShowEdit()) {
+            handleEdit(commandResult.getPatient(), commandResult.getMedicalRecord());
+        }
+
+        if (commandResult.isShowViewBox()) {
+            handlePatientViewBox(commandResult.getPatient());
+        }
+
+        if (commandResult.isExit()) {
+            handleExit();
         }
     }
 }

@@ -8,7 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WEIGHT;
-import static seedu.address.model.Model.PREDICATE_SHOW_MAIN_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_MAIN_PATIENTS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -25,7 +25,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Height;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Patient;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Weight;
 import seedu.address.model.tag.Tag;
@@ -76,48 +76,48 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Patient> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
+        Patient patientToEdit = lastShownList.get(index.getZeroBased());
 
-        if (personToEdit.isArchived()) {
+        if (patientToEdit.isArchived()) {
             throw new CommandException(MESSAGE_ARCHIVED_PERSON);
         }
 
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        Patient editedPatient = createEditedPerson(patientToEdit, editPersonDescriptor);
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
+        if (!patientToEdit.isSamePerson(editedPatient) && model.hasPerson(editedPatient)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_MAIN_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+        model.setPerson(patientToEdit, editedPatient);
+        model.updateFilteredPersonList(PREDICATE_SHOW_MAIN_PATIENTS);
+        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPatient));
     }
 
     /**
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
-        assert personToEdit != null;
+    private static Patient createEditedPerson(Patient patientToEdit, EditPersonDescriptor editPersonDescriptor) {
+        assert patientToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Height updatedHeight = editPersonDescriptor.getHeight().orElse(personToEdit.getHeight());
-        Weight updatedWeight = editPersonDescriptor.getWeight().orElse(personToEdit.getWeight());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Name updatedName = editPersonDescriptor.getName().orElse(patientToEdit.getName());
+        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(patientToEdit.getPhone());
+        Email updatedEmail = editPersonDescriptor.getEmail().orElse(patientToEdit.getEmail());
+        Address updatedAddress = editPersonDescriptor.getAddress().orElse(patientToEdit.getAddress());
+        Height updatedHeight = editPersonDescriptor.getHeight().orElse(patientToEdit.getHeight());
+        Weight updatedWeight = editPersonDescriptor.getWeight().orElse(patientToEdit.getWeight());
+        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(patientToEdit.getTags());
 
-        Person updatedPerson = new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
+        Patient updatedPatient = new Patient(updatedName, updatedPhone, updatedEmail, updatedAddress,
                 updatedHeight, updatedWeight, updatedTags);
-        updatedPerson.setArchived(editPersonDescriptor.isArchived());
-        return updatedPerson;
+        updatedPatient.setArchived(editPersonDescriptor.isArchived());
+        return updatedPatient;
     }
 
     @Override

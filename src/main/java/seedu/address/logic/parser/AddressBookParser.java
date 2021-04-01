@@ -21,10 +21,12 @@ import seedu.address.logic.commands.UnarchiveCommand;
 import seedu.address.logic.commands.medical.AddAppointmentCommand;
 import seedu.address.logic.commands.medical.ListAppointmentsCommand;
 import seedu.address.logic.commands.medical.OpenMedicalRecordCommand;
+import seedu.address.logic.commands.medical.ViewMedicalRecordCommand;
 import seedu.address.logic.commands.medical.ViewPatientCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.medical.AddAppointmentCommandParser;
 import seedu.address.logic.parser.medical.OpenMedicalRecordCommandParser;
+import seedu.address.logic.parser.medical.ViewMedicalRecordCommandParser;
 import seedu.address.logic.parser.medical.ViewPatientCommandParser;
 
 /**
@@ -99,6 +101,9 @@ public class AddressBookParser {
 
         case ViewPatientCommand.COMMAND_WORD:
             return new ViewPatientCommandParser().parse(arguments);
+
+        case ViewMedicalRecordCommand.COMMAND_WORD:
+            return new ViewMedicalRecordCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

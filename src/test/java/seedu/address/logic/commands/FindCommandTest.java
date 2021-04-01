@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.model.Model.PREDICATE_SHOW_ARCHIVED_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ARCHIVED_PATIENTS;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPersons.CARL;
@@ -23,7 +23,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Patient;
 import seedu.address.testutil.PersonBuilder;
 
 /**
@@ -83,11 +83,11 @@ public class FindCommandTest {
     @Test
     public void execute_keywordsForArchivedPersons_onlyArchivedPersonsFound() {
         Model newModel = new ModelManager(new AddressBook(), new UserPrefs());
-        Person newAlice = new PersonBuilder(ALICE).build();
-        Person newBenson = new PersonBuilder(BENSON).build();
-        Person newCarl = new PersonBuilder(CARL).build();
-        Person newElle = new PersonBuilder(ELLE).build();
-        Person newFiona = new PersonBuilder(FIONA).build();
+        Patient newAlice = new PersonBuilder(ALICE).build();
+        Patient newBenson = new PersonBuilder(BENSON).build();
+        Patient newCarl = new PersonBuilder(CARL).build();
+        Patient newElle = new PersonBuilder(ELLE).build();
+        Patient newFiona = new PersonBuilder(FIONA).build();
         newModel.addPerson(newAlice);
         newModel.addPerson(newBenson);
         newModel.addPerson(newCarl);
@@ -108,7 +108,7 @@ public class FindCommandTest {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
         NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
         FindCommand command = new FindCommand(predicate);
-        newExpectedModel.updateFilteredPersonList(predicate.and(PREDICATE_SHOW_ARCHIVED_PERSONS));
+        newExpectedModel.updateFilteredPersonList(predicate.and(PREDICATE_SHOW_ARCHIVED_PATIENTS));
         assertCommandSuccess(command, newModel, expectedMessage, newExpectedModel);
         assertEquals(Arrays.asList(newCarl, newElle), newModel.getFilteredPersonList());
     }

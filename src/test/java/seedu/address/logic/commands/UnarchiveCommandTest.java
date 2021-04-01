@@ -20,7 +20,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Patient;
 import seedu.address.testutil.PersonBuilder;
 
 class UnarchiveCommandTest {
@@ -30,9 +30,9 @@ class UnarchiveCommandTest {
     @BeforeEach
     public void setUp() {
         model = new ModelManager(new AddressBook(), new UserPrefs());
-        Person newAlice = new PersonBuilder(ALICE).build();
-        Person newBenson = new PersonBuilder(BENSON).build();
-        Person newFiona = new PersonBuilder(FIONA).build();
+        Patient newAlice = new PersonBuilder(ALICE).build();
+        Patient newBenson = new PersonBuilder(BENSON).build();
+        Patient newFiona = new PersonBuilder(FIONA).build();
         model.addPerson(newAlice);
         model.addPerson(newBenson);
         model.addPerson(newFiona);
@@ -43,13 +43,13 @@ class UnarchiveCommandTest {
     public void execute_validIndexFilteredList_success() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
-        Person personInFilteredList = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        personInFilteredList.setArchived(true);
-        Person copy = new PersonBuilder(personInFilteredList).build();
+        Patient patientInFilteredList = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        patientInFilteredList.setArchived(true);
+        Patient copy = new PersonBuilder(patientInFilteredList).build();
         UnarchiveCommand unarchiveCommand = new UnarchiveCommand(INDEX_FIRST_PERSON);
 
         String expectedMessage = String.format(UnarchiveCommand.MESSAGE_UNARCHIVE_PERSON_SUCCESS,
-                personInFilteredList);
+                patientInFilteredList);
 
         expectedModel.unarchivePerson(copy);
         assertCommandSuccess(unarchiveCommand, model, expectedMessage, expectedModel);
@@ -70,13 +70,13 @@ class UnarchiveCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Person personToUnarchive = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        personToUnarchive.setArchived(true);
-        Person copy = new PersonBuilder(personToUnarchive).build();
+        Patient patientToUnarchive = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        patientToUnarchive.setArchived(true);
+        Patient copy = new PersonBuilder(patientToUnarchive).build();
 
         UnarchiveCommand unarchiveCommand = new UnarchiveCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(UnarchiveCommand.MESSAGE_UNARCHIVE_PERSON_SUCCESS, personToUnarchive);
+        String expectedMessage = String.format(UnarchiveCommand.MESSAGE_UNARCHIVE_PERSON_SUCCESS, patientToUnarchive);
 
         expectedModel.unarchivePerson(copy);
 
@@ -85,7 +85,7 @@ class UnarchiveCommandTest {
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Person newAlice = new PersonBuilder(ALICE).build();
+        Patient newAlice = new PersonBuilder(ALICE).build();
         model.archivePerson(newAlice);
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
         UnarchiveCommand archiveCommand = new UnarchiveCommand(outOfBoundIndex);

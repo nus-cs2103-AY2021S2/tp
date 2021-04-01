@@ -17,4 +17,10 @@ public class DateFormat {
             .parseDefaulting(ChronoField.MINUTE_OF_HOUR, 0)
             .parseDefaulting(ChronoField.SECOND_OF_MINUTE, 0)
             .toFormatter();
+    public static final DateTimeFormatter DATE_FORMAT_NO_TIME =
+            new DateTimeFormatterBuilder().appendPattern("dd MMM YYYY")
+                    .parseDefaulting(ChronoField.HOUR_OF_DAY, 0)
+                    .parseDefaulting(ChronoField.MINUTE_OF_HOUR, 0)
+                    .parseDefaulting(ChronoField.SECOND_OF_MINUTE, 0)
+                    .toFormatter();
 }
