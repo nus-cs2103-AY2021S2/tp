@@ -294,6 +294,7 @@ Vax@NUS saves your current date in the hard disk automatically after any command
 **Q** : Am I able to reassign an appointment to another student?
 <br>
 **A** : No, you will need to add a new appointment for the new student. 
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command Summary
