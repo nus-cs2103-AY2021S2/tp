@@ -56,7 +56,7 @@ public class NameFilter extends AbstractFilter {
         String[] customerNameTokens = customer.getName().fullName.split("\\s+");
         for (String token : customerNameTokens) {
             for (String possibleName : nameList) {
-                if (isSubsequence(token, possibleName)) {
+                if (isSubsequence(token.toLowerCase(), possibleName.toLowerCase())) {
                     return true;
                 }
             }
