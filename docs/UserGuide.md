@@ -160,10 +160,10 @@ Examples:
 * `find n/Alex Bob` will return all orders with name `Alex`, `alexander`, `Bob` or `bobby`.
 * `find n/Alex o/Chocolate` will return all orders with name `Alex` and order description `Chocolate`. <br>
   ![result for 'find n/Alex o/Chocolate'](images/findAlexChocolate.PNG) <br>
-* `find alex vanilla` will return all orders that matches `alex` or `chocolate`, <br>
-  ![result for 'find alex vanilla'](images/findAlexVanilla.PNG) <br>
-* `find n/Alex Bernice o/Chocolate` will return all orders that matches (`Alex` or `Bernice`) and `Chocolate`. <br>
-  ![result for 'find n/Alex Bernice o/Chocolate'](images/findAlexBerniceChocolate.PNG) <br>
+* `find alex bernice` will return all orders that matches `alex` or `bernice`, <br>
+  ![result for 'find alex bernice'](images/findAlexBernice.PNG) <br>
+* `find n/Alex Charlotte o/Chocolate` will return all orders that matches (`Alex` or `Charlotte`) and `Chocolate`. <br>
+  ![result for 'find n/Alex Charlotte o/Chocolate'](images/findAlexCharlotteChocolate.PNG) <br>
   
 
 ### Deleting an order : `delete`
