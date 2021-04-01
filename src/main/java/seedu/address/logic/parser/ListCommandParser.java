@@ -29,13 +29,8 @@ public class ListCommandParser implements Parser<ListCommand> {
         if (trimmedArgs.isEmpty()) {
             return new ListCommand();
         } else {
-            try {
-                List<Attribute> attributes = ParserUtil.parseAttributes(splitArgs);
-                return new ListCommand(attributes);
-            } catch (ParseException pe) {
-                throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE), pe);
-            }
+            List<Attribute> attributes = ParserUtil.parseAttributes(splitArgs);
+            return new ListCommand(attributes);
         }
     }
 
