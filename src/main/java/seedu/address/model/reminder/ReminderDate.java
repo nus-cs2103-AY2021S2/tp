@@ -21,7 +21,7 @@ public class ReminderDate {
             + "YYYY-MM-DD format";
 
     /*
-     * DateTime make use of formatter to validate instead of Regex for DateTime accuracy.
+     * Date make use of formatter to validate instead of Regex for Date accuracy.
      */
     public static final DateTimeFormatter VALIDATION_PATTERN = new DateTimeFormatterBuilder()
             .appendPattern("[y-M-d]")
@@ -45,7 +45,7 @@ public class ReminderDate {
     }
 
     /**
-     * Returns true if a given string is a valid DateTime.
+     * Returns true if a given string is a valid date.
      */
     public static boolean isValidDate(String test) {
         try {
@@ -59,7 +59,7 @@ public class ReminderDate {
     /**
      * Getter method to retrieve value of ReminderDate.
      *
-     * @return LocalDateTime stored
+     * @return LocalDate stored
      */
     public LocalDate getValue() {
         return value;
@@ -78,6 +78,13 @@ public class ReminderDate {
     public String toStorageString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return value.format(formatter);
+    }
+
+    /**
+     * Returns true if the date is before the current date.
+     */
+    public boolean isBeforeToday() {
+        return value.isBefore(LocalDate.now());
     }
 
     @Override

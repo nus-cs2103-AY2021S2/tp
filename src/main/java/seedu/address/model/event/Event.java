@@ -6,7 +6,7 @@ import seedu.address.model.appointment.AppointmentDateTime;
  * Event class is an abstract superclass of {@code Appointment} and {@code Schedule}.
  */
 public abstract class Event {
-    /* Temporarily keeping it as AppointmentDateTime as unsure how big the change could be */
+    /* Keeping it as AppointmentDateTime due to large amount of refractoring */
     protected final AppointmentDateTime timeFrom;
     protected final AppointmentDateTime timeTo;
 
