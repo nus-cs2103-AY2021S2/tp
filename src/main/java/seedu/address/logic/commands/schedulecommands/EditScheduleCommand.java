@@ -8,6 +8,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_TO;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_SCHEDULE;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -62,7 +64,7 @@ public class EditScheduleCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
+     * Creates and returns a {@code Schedule} with the details of {@code scheduleToEdit}
      * edited with {@code editPersonDescriptor}.
      */
     private static Schedule createEditedSchedule(Schedule scheduleToEdit,
@@ -71,10 +73,26 @@ public class EditScheduleCommand extends Command {
 
         Title updatedTitle =
                 editScheduleDescriptor.getTitle().orElse(scheduleToEdit.getTitle());
-        AppointmentDateTime updatedTimeFrom =
-                editScheduleDescriptor.getTimeFrom().orElse(scheduleToEdit.getTimeFrom());
-        AppointmentDateTime updatedTimeTo =
-                editScheduleDescriptor.getTimeTo().orElse(scheduleToEdit.getTimeTo());
+
+        AppointmentDateTime updatedTimeFrom = editScheduleDescriptor.getTimeFrom().orElse(scheduleToEdit.getTimeFrom());
+        AppointmentDateTime updatedTimeTo = editScheduleDescriptor.getTimeTo().orElse(scheduleToEdit.getTimeTo());
+
+        if (editScheduleDescriptor.getDateOnly().isPresent()) {
+            LocalDate newDate = editScheduleDescriptor.getDateOnly().get();
+            updatedTimeFrom = new AppointmentDateTime(newDate, scheduleToEdit.getTimeFrom().value.toLocalTime());
+            updatedTimeTo = new AppointmentDateTime(newDate, scheduleToEdit.getTimeTo().value.toLocalTime());
+        }
+
+        if (editScheduleDescriptor.getTimeFromOnly().isPresent()) {
+            updatedTimeFrom = new AppointmentDateTime(scheduleToEdit.getTimeFrom().value.toLocalDate(),
+                    editScheduleDescriptor.getTimeFromOnly().get());
+        }
+
+        if (editScheduleDescriptor.getTimeToOnly().isPresent()) {
+            updatedTimeTo = new AppointmentDateTime(scheduleToEdit.getTimeFrom().value.toLocalDate(),
+                    editScheduleDescriptor.getTimeToOnly().get());
+        }
+
         Description updatedDescription =
                 editScheduleDescriptor.getDescription().orElse(scheduleToEdit.getDescription());
 
@@ -129,6 +147,10 @@ public class EditScheduleCommand extends Command {
         private AppointmentDateTime timeTo;
         private Description description;
 
+        private LocalDate dateOnly;
+        private LocalTime timeFromOnly;
+        private LocalTime timeToOnly;
+
         public EditScheduleDescriptor() {
         }
 
@@ -146,7 +168,8 @@ public class EditScheduleCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(title, timeFrom, timeTo, description);
+            return CollectionUtil.isAnyNonNull(title, timeFrom, timeTo, description,
+                    timeFromOnly, timeToOnly, dateOnly);
         }
 
         public Optional<Title> getTitle() {
@@ -157,6 +180,14 @@ public class EditScheduleCommand extends Command {
             this.title = title;
         }
 
+        public Optional<LocalDate> getDateOnly() {
+            return Optional.ofNullable(this.dateOnly);
+        }
+
+        public void setDateOnly(LocalDate dateOnly) {
+            this.dateOnly = dateOnly;
+        }
+
         public Optional<AppointmentDateTime> getTimeFrom() {
             return Optional.ofNullable(this.timeFrom);
         }
@@ -165,12 +196,28 @@ public class EditScheduleCommand extends Command {
             this.timeFrom = timeFrom;
         }
 
+        public Optional<LocalTime> getTimeFromOnly() {
+            return Optional.ofNullable(timeFromOnly);
+        }
+
+        public void setTimeFromOnly(LocalTime timeFromOnly) {
+            this.timeFromOnly = timeFromOnly;
+        }
+
         public Optional<AppointmentDateTime> getTimeTo() {
             return Optional.ofNullable(this.timeTo);
         }
 
         public void setTimeTo(AppointmentDateTime timeTo) {
             this.timeTo = timeTo;
+        }
+
+        public Optional<LocalTime> getTimeToOnly() {
+            return Optional.ofNullable(timeToOnly);
+        }
+
+        public void setTimeToOnly(LocalTime timeToOnly) {
+            this.timeToOnly = timeToOnly;
         }
 
         public Optional<Description> getDescription() {

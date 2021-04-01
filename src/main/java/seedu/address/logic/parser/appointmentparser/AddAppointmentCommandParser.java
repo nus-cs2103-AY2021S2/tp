@@ -29,7 +29,6 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
             + "smaller than time to. Please check your input for time from and time to "
             + "again.";
 
-
     /**
      * Parses the given {@code String} of arguments in the context of the AddAppointmentCommand
      * and returns an AddAppointmentCommand object for execution.
