@@ -47,5 +47,4 @@ public class DeleteEventFactory {
         return new DeleteMeetingEvent(index, model);
     }
     */
-
 }
