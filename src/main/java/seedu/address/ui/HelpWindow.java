@@ -19,6 +19,7 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.RemindCommand;
 import seedu.address.logic.commands.StatusCommand;
 import seedu.address.logic.parser.CliSyntax;
 
@@ -120,6 +121,10 @@ public class HelpWindow extends UiPart<Stage> {
                                            + " - Shows a list of all residences in ResidenceTracker."
                                            + "\nEnter \"" + ListCommand.getCommandWord() + "\"\n\n";
 
+    public static final String REMIND_PROMPT = RemindCommand.getCommandWord()
+                                            + " - Shows a list of residences with bookings starting in the next 7 days."
+                                            + "\nEnter \"" + RemindCommand.getCommandWord() + "\"\n\n";
+
     public static final String EXIT_PROMPT = ExitCommand.getCommandWord() + " - Exits the program."
                                            + "\nEnter \"" + ExitCommand.getCommandWord() + "\"\n\n";
 
@@ -135,6 +140,7 @@ public class HelpWindow extends UiPart<Stage> {
                                             + STATUS_PROMPT
                                             + FIND_PROMPT
                                             + LIST_PROMPT
+                                            + REMIND_PROMPT
                                             + EXIT_PROMPT;
 
     public static final String URL_MESSAGE = "For more info, refer to the user guide: " + USERGUIDE_URL;
