@@ -439,7 +439,7 @@ public class ModelManager implements Model {
      */
     @Override
     public void cancelOrder(Order target) {
-        orderBook.completeOrder(target);
+        orderBook.cancelOrder(target);
     }
 
     /**

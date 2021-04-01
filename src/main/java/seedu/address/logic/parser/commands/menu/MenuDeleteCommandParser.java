@@ -1,9 +1,12 @@
 package seedu.address.logic.parser.commands.menu;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FORCE_DELETE;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.menu.MenuDeleteCommand;
+import seedu.address.logic.parser.ArgumentMultimap;
+import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.commands.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -19,9 +22,16 @@ public class MenuDeleteCommandParser implements Parser<MenuDeleteCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public MenuDeleteCommand parse(String args) throws ParseException {
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_FORCE_DELETE);
+
         try {
-            Index index = ParserUtil.parseIndex(args);
-            return new MenuDeleteCommand(index);
+            if (argMultimap.getValue(PREFIX_FORCE_DELETE).isEmpty()) {
+                Index index = ParserUtil.parseIndex(args);
+                return new MenuDeleteCommand(index, false);
+            } else {
+                Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
+                return new MenuDeleteCommand(index, true);
+            }
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, MenuDeleteCommand.MESSAGE_USAGE), pe);
