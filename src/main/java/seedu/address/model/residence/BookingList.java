@@ -70,6 +70,7 @@ public class BookingList implements Iterable<Booking> {
             throw new OverlappingBookingException();
         }
         internalList.add(toAdd);
+        sortBookingList();
     }
 
     /**
@@ -86,6 +87,7 @@ public class BookingList implements Iterable<Booking> {
         }
 
         internalList.set(index, editedBooking);
+        sortBookingList();
     }
 
     /**
@@ -128,6 +130,7 @@ public class BookingList implements Iterable<Booking> {
             throw new OverlappingBookingException();
         }
         internalList.setAll(bookings);
+        sortBookingList();
     }
 
     /**
@@ -182,4 +185,9 @@ public class BookingList implements Iterable<Booking> {
         }
         return true;
     }
+    //@@author Wang Tao
+    public void sortBookingList() {
+        FXCollections.sort(internalList);
+    }
+
 }
