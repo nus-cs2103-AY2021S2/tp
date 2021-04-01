@@ -214,7 +214,7 @@ to delete all the sample entries and start using your very own ClientBook.
 
 **:information_source: Notes about the command format:**<br>
 
-* **Words in UPPER_CASE are the parameters** to be supplied by the user. 
+* **Words in UPPER_CASE are the parameters to be supplied by the user**. 
   * e.g. in `add n/NAME`, NAME is a parameter which can be used as `add n/John Doe`.
 
 
@@ -230,15 +230,15 @@ to delete all the sample entries and start using your very own ClientBook.
   * e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 
-* If a parameter is expected only once in the command, but you specified it multiple times, **only the last occurrence** of the parameter will be taken. 
+* **If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.**
   * e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 
-* **Extraneous parameters for commands that do not take in parameters** (such as `help`, `exit` and `clear`) **will be ignored**. 
+* **Extraneous parameters for commands that do not take in parameters** (such as `help`, `exit`) **will be ignored**. 
   * e.g. if the command specifies `help 123`, it will be interpreted as `help`.
   
 
-* Attributes in the form `-identifier` will be referred to as flags, while attributes in the form `identifier/` will be referred to as prefixes.
+* **Attributes in the form `-identifier` will be referred to as flags, while attributes in the form `identifier/` will be referred to as prefixes.**
   * e.g. for the `name` attribute, its flag would be `-n`, while its prefix would be `n/`.
 
 
