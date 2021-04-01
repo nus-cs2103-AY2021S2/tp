@@ -460,15 +460,6 @@ public class ModelManager implements Model {
         return filteredOrders;
     }
 
-    /**
-     *  Returns a sorted view of the filtered Order List
-     * @param comparator
-     * @return
-     */
-    public void sortOrder(Comparator<Order> comparator) {
-        orderBook.sortItemsByDateTime(comparator);
-    }
-
     @Override
     public void updateFilteredOrderList(Predicate<? super Order> predicate) {
         requireNonNull(predicate);

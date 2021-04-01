@@ -11,7 +11,7 @@ public class DishContainsIngredientNamePredicate implements Predicate<Dish> {
 
     @Override
     public boolean test(Dish dish) {
-        return dish.containsIngredientNameIgnoreCase(ingredientName);
+        return dish.containsIngredientKeyword(ingredientName);
     }
 
     @Override
