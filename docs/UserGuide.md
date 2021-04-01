@@ -129,7 +129,7 @@ Format: `show INDEX`
 Examples:
 * `show 1` Shows the details (such as name, phone number, profile picture, insurance, etc) of the first Client on the right panel of the UI.
 
-
+![result for show command](images/show7.png)
 
 
 ### Editing a client : `edit`
