@@ -15,7 +15,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -34,6 +33,45 @@ public class HelpWindow extends UiPart<Stage> {
     private static final int ADDITIONAL_MARGIN = 30;
     private static final double WINDOW_HEIGHT = 800;
     private static final double WINDOW_WIDTH = 900;
+
+    /**
+     * Creates wrapping ability for cells in TableView.
+     */
+    private static final Callback<TableColumn<CommandHelper, String>, TableCell<CommandHelper, String>>
+            WRAPPING_CELL_FACTORY = new Callback<TableColumn<CommandHelper, String>,
+            TableCell<CommandHelper, String>>() {
+                @Override
+                public TableCell<CommandHelper, String> call(TableColumn<CommandHelper, String> param) {
+                    TableCell<CommandHelper, String> tableCell = new TableCell<CommandHelper, String>() {
+                        @Override
+                        protected void updateItem(String item, boolean empty) {
+                            if (item == getItem()) {
+                                return;
+                            }
+
+                            super.updateItem(item, empty);
+
+                            if (item == null) {
+                                super.setText(null);
+                                super.setGraphic(null);
+                            } else {
+                                super.setText(null);
+                                Label l = new Label(item);
+                                l.setWrapText(true);
+                                VBox box = new VBox(l);
+                                l.heightProperty().addListener((observable, oldValue, newValue) -> {
+                                    box.setPrefHeight(newValue.doubleValue() + 7);
+                                    Platform.runLater(() -> this.getTableRow().requestLayout());
+                                });
+                                l.setTextFill(Color.web("white"));
+                                super.setGraphic(box);
+                            }
+                        }
+                    };
+                    return tableCell;
+                }
+            };
+
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
 
@@ -101,38 +139,6 @@ public class HelpWindow extends UiPart<Stage> {
         table.getColumns().add(commandTitle);
         table.getColumns().add(commandUsage);
     }
-
-    public static final Callback<TableColumn<CommandHelper,String>, TableCell<CommandHelper,String>>
-            WRAPPING_CELL_FACTORY =
-            new Callback<TableColumn<CommandHelper,String>, TableCell<CommandHelper,String>>() {
-
-                @Override public TableCell<CommandHelper,String> call(TableColumn<CommandHelper,String> param) {
-                    TableCell<CommandHelper,String> tableCell = new TableCell<CommandHelper,String>() {
-                        @Override protected void updateItem(String item, boolean empty) {
-                            if (item == getItem()) return;
-
-                            super.updateItem(item, empty);
-
-                            if (item == null) {
-                                super.setText(null);
-                                super.setGraphic(null);
-                            } else {
-                                super.setText(null);
-                                Label l = new Label(item);
-                                l.setWrapText(true);
-                                VBox box = new VBox(l);
-                                l.heightProperty().addListener((observable,oldValue,newValue)-> {
-                                    box.setPrefHeight(newValue.doubleValue()+7);
-                                    Platform.runLater(()->this.getTableRow().requestLayout());
-                                });
-                                l.setTextFill(Color.web("white"));
-                                super.setGraphic(box);
-                            }
-                        }
-                    };
-                    return tableCell;
-                }
-            };
 
     private static ObservableList<CommandHelper> getGeneralCommands() {
         return FXCollections.observableArrayList(
