@@ -65,8 +65,6 @@ public class ModelManager implements Model {
         filteredDishes = new FilteredList<>(this.dishBook.getDishList());
         filteredIngredients = new FilteredList<>(this.ingredientBook.getIngredientList());
         filteredOrders = new FilteredList<>(this.orderBook.getOrderList());
-
-        filteredDishes.setPredicate(getAvailableDishPredicate());
     }
 
     /**

@@ -31,9 +31,6 @@ import seedu.address.commons.core.Messages;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.commands.inventory.InventoryListCommand;
-import seedu.address.logic.commands.menu.MenuListCommand;
-import seedu.address.logic.commands.order.OrderListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
