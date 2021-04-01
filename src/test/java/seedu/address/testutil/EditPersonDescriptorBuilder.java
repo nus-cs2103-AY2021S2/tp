@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.insurancepolicy.InsurancePolicy;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -39,7 +40,8 @@ public class EditPersonDescriptorBuilder {
         descriptor.setEmail(person.getEmail().get());
         descriptor.setAddress(person.getAddress().get());
         descriptor.setTags(person.getTags());
-        descriptor.setPolicies(person.getPolicies());
+        descriptor.setPoliciesToAdd(person.getPolicies());
+        descriptor.setMeetings(person.getMeetings());
     }
 
     /**
@@ -90,7 +92,17 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withPolicies(String... policyIds) {
         List<InsurancePolicy> policyList = Stream.of(policyIds).map(InsurancePolicy::new).collect(Collectors.toList());
-        descriptor.setPolicies(policyList);
+        descriptor.setPoliciesToAdd(policyList);
+        return this;
+    }
+
+    /**
+     * Parses the {@code meetings} into the {@code List<Meeting>} and set it to the {@code EditPersonDescriptor}
+     * that we are building.
+     */
+    public EditPersonDescriptorBuilder withMeeting(String... meetings) {
+        List<Meeting> meetingList = Stream.of(meetings).map(Meeting::newMeeting).collect(Collectors.toList());
+        descriptor.setMeetings(meetingList);
         return this;
     }
 
