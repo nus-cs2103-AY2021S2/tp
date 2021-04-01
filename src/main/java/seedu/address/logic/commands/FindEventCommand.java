@@ -15,8 +15,6 @@ public class FindEventCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " keyword";
 
-    public static final String MESSAGE_FIND_EVENT_SUCCESS = "Found Matching Events\n";
-
     private final EventNameContainsKeywordsPredicate predicate;
 
     public FindEventCommand(EventNameContainsKeywordsPredicate predicate) {
@@ -27,8 +25,8 @@ public class FindEventCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         model.updateFilteredEventList(predicate);
-        return new CommandResult(MESSAGE_FIND_EVENT_SUCCESS
-                + String.format(Messages.MESSAGE_EVENTS_LISTED_OVERVIEW, model.getFilteredEventList().size()));
+        return new CommandResult(
+                String.format(Messages.MESSAGE_EVENTS_LISTED_OVERVIEW, model.getFilteredEventList().size()));
     }
 
     @Override
