@@ -44,8 +44,9 @@ public class AddPersonCommandParser extends AddCommandParser implements Parser<A
         try {
             Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME)
                     .orElseThrow(() -> new ParseException("")));
-            Birthday birthday = ParserUtil.parseBirthday(argMultimap.getValue(PREFIX_BIRTHDAY)
-                    .orElseThrow(() -> new ParseException("")));
+            Birthday birthday = ParserUtil.parseBirthday(
+                    argMultimap.getValue(PREFIX_BIRTHDAY).orElseThrow(() -> new ParseException("")),
+                    argMultimap.getValue(PREFIX_NAME).orElseThrow(() -> new ParseException("")));
             Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
             Person person = new Person(name, birthday, tagList);

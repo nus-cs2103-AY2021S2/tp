@@ -30,6 +30,19 @@ public class Birthday extends Event {
     }
 
     /**
+     * Constructs a {@code Birthday} for a {@code Person}.
+     *
+     * @param birthday Birthday of the Person.
+     * @param name Name of the Person.
+     */
+    public Birthday(String birthday, String name) {
+        super(new Description(name + "'s birthday"),
+            LocalDate.parse(birthday, LocalDateTimeUtil.DATE_FORMATTER).atStartOfDay(),
+            new Tag("birthday"));
+        this.birthday = LocalDate.parse(birthday, LocalDateTimeUtil.DATE_FORMATTER);
+    }
+
+    /**
      * Returns true if a given string is a valid birthday.
      */
     public static boolean isValidBirthday(String test) {
