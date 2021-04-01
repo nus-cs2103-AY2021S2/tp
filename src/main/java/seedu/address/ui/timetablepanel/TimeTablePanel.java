@@ -175,6 +175,7 @@ public class TimeTablePanel extends UiPart<Region> {
     private void createColConstraints(int numColumns) {
         if (gridPane.getColumnCount() != numColumns) {
             hourSlot.clear();
+            timeGridPane.getChildren().clear();
             timeGridPane.getColumnConstraints().clear();
             gridPane.getColumnConstraints().clear();
 
