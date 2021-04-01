@@ -8,8 +8,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
  */
 public class MonthlyFee {
 
-    public static final String MESSAGE_CONSTRAINTS = "Format of year input is incorrect. "
-        + "(Must be between year 1970 to 2037)";
+    public static final String MESSAGE_CONSTRAINTS = "Monthly Fee format is incorrect";
 
     // Data fields
     private double monthlyFee;
