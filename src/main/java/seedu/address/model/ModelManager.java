@@ -187,6 +187,11 @@ public class ModelManager implements Model {
         tutorBook.setTutor(target, editedTutor);
     }
 
+    @Override
+    public ObservableList<Budget> getBudgetList() {
+        return budgetBook.getBudgetList();
+    }
+
     //=========== AppointmentBook=============================================================================
 
     @Override

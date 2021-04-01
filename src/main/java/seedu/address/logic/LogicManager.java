@@ -15,6 +15,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyTutorBook;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.budget.Budget;
 import seedu.address.model.event.Event;
 import seedu.address.model.grade.Grade;
 import seedu.address.model.reminder.Reminder;
@@ -107,6 +108,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Reminder> getFilteredReminderList() {
         return model.getFilteredReminderList();
+    }
+
+    @Override
+    public ObservableList<Budget> getBudgetList() {
+        return model.getBudgetList();
     }
 
     @Override

@@ -267,6 +267,10 @@ public interface Model {
      */
     void deleteBudget();
 
+    /**
+     * @return Unmodifiable view of the budget list.
+     */
+    ObservableList<Budget> getBudgetList();
 
     /**
      * Returns true if a grade with the same identity as {@code grade} exists in the
