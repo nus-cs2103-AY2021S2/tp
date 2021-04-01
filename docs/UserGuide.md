@@ -164,7 +164,57 @@ FormatL `sort FIELDNAME`
     * Sort by priority (Coming in v1.3) : `priority`
     * Sort by last seen date (Coming in v1.3) : `lastSeenDate`
 
-Examples:
+Examples
+
+### Deleting a meeting: 'deletem'
+
+Deletes a meeting displayed at a specific index in the meeting list.
+
+Format 'deletem INDEX'
+
+* Deletes the meeting at the specified 'INDEX'.
+* The index refers the the index number shown in the displayed meeting list
+* The index **must be a positive integer** corresponding to a numbered entry in the meeting list.
+
+
+
+##Timetable feature
+
+### Viewing Timetable: 
+ No command is necessary. Just click on the timetable tab to switch view from meeting list to timetable. The timetable
+ consists of 7 rows, each row corresponds a day of a week in the timetable, which default is from 7 am to 6.59 am on the next day. 
+ Each meeting is represented as an orange rectangular slot that will be placed in the timetable according to the following rules
+ 
+ * If the meetings happen on a date corresponding to a column, it will be slotted into that column
+ * The vertical axis if the timetable is the time, and slots are vertically placed according to their start time.
+ * The length of the meeting slot is proportional to the timespan of the meeting.
+ 
+ Note that it will correctly update and display all meetings. Meetings that fall outside the range of the timetable 
+ will be filtered off. Some things to note:
+ 
+ * Default when starting the application, the timetable will have the first ( leftmost column ) representing today's date.
+ * Meetings can overlap across columns.
+ * Setting small meeting times around the edge of the timetable will cause display issues, For example, setting a meeting 
+ to 6:44-7:01 might cause display issues from the 7 - 7.01 will not display the date or time.
+ * Note that you can scroll to view more slots.
+ 
+ 
+### Set timetable date : `setTimetable`
+ 
+ Sets a timetable to start on a specified date. Updates the display accordingly.
+ 
+ Format: 'setTimetable DATE'
+ 
+ * DATE must be a string strictly following the format `YYYY-mm-dd`
+ 
+ 
+### Profile picture:
+
+Gets the image of contacts from Gravatar. If contact does not have a gravatar account linked to 
+the email address, the what will be shown is a unique robo-hashed image obtained from email.
+There is no need to use any commands, the profile picture will be shown after updating/ adding contact
+If there is a problem establishing connection to the server, a default blue circle icon will be displayed
+instead.
 
 ### Clearing all entries : `clear`
 
@@ -180,11 +230,12 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+MeetBuddy data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
 AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+MeetingBook data are saved as a JSON file '[JAR file location]/data/meetingbook.json'. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
