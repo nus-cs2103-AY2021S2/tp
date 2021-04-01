@@ -38,9 +38,9 @@ public class AddCommand extends Command {
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_DOB + "2011 07 13 "
             + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney"
-            + PREFIX_CARS_OWNED + "Honda+Sedan|2030 01 01"
-            + PREFIX_CARS_PREFERRED + "+BMW+SUV";
+            + PREFIX_TAG + "owesMoney "
+            + PREFIX_CARS_OWNED + "Honda+Sedan|2030 01 01 "
+            + PREFIX_CARS_PREFERRED + "BMW+SUV ";
 
 
     public static final String MESSAGE_SUCCESS = "New customer added: %1$s";
