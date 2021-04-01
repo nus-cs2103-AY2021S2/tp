@@ -25,6 +25,7 @@ import seedu.address.model.ReadOnlyDatesBook;
 import seedu.address.model.ReadOnlyLessonBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.date.ImportantDate;
+import seedu.address.model.lesson.Day;
 import seedu.address.model.lesson.Lesson;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
@@ -271,6 +272,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void setTransformedDayList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ReadOnlyLessonBook getLessonBook() {
             throw new AssertionError("This method should not be called.");
         }
@@ -292,6 +298,11 @@ public class AddCommandTest {
 
         @Override
         public void addLesson(Lesson lesson) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateLessonDayList(ArrayList<Day> lessonDays) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -341,8 +352,8 @@ public class AddCommandTest {
         }
 
         @Override
-        public ObservableList<Lesson> filterThenSortLessonDayList(FilteredList<Lesson> filteredList,
-                Predicate<Lesson> predicate, Comparator<Lesson> comparator) {
+        public void updateFilteredDailyLessonList(FilteredList<Lesson> lessons,
+                Predicate<Lesson> predicate, ObservableList<Lesson> transformedList) {
             throw new AssertionError("This method should not be called.");
         }
 
