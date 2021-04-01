@@ -3,9 +3,8 @@ layout: page
 title: PocketEstate
 ---
 
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
-[![codecov](https://codecov.io/gh/se-edu/addressbook-level3/branch/master/graph/badge.svg)](https://codecov.io/gh/se-edu/addressbook-level3)
-
+[![Java CI](https://github.com/AY2021S2-CS2103T-T13-4/tp/actions/workflows/gradle.yml/badge.svg)](https://github.com/AY2021S2-CS2103T-T13-4/tp/actions/workflows/gradle.yml)
+[![codecov](https://codecov.io/gh/AY2021S2-CS2103T-T13-4/tp/branch/master/graph/badge.svg?token=99NL7e1PN1)](https://codecov.io/gh/AY2021S2-CS2103T-T13-4/tp)
 ![Ui](images/Ui.png)
 
 **PocketEstate is a desktop application for property agents to manage property data and appointment schedules.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
