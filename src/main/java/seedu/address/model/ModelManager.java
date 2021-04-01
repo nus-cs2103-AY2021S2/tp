@@ -195,14 +195,26 @@ public class ModelManager implements Model {
     }
 
     //=========== Authenticator Accessors =============================================================
+
     public Authentication getAuthentication() {
         return this.authentication;
     }
+
     //=========== Sorted Person List Accessors =============================================================
 
     @Override
     public void updateSortedPersonList(Comparator<Person> comparator) {
         requireNonNull(comparator);
         modifiedList.sort(comparator);
+    }
+
+    //=========== Whole Person List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the entire person list
+     */
+    @Override
+    public ObservableList<Person> getWholePersonList() {
+        return new FilteredList<>(this.addressBook.getPersonList());
     }
 }

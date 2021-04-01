@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INSURANCE_POLICY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -21,6 +22,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.insurancepolicy.InsurancePolicy;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -44,7 +46,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_INSURANCE_POLICY + " POLICY_ID] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "TAG]"
+            + "[" + PREFIX_MEETING + "MEETING]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -106,8 +109,10 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress().get());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         List<InsurancePolicy> updatedPolicies = editPersonDescriptor.getPolicies().orElse(personToEdit.getPolicies());
+        List<Meeting> updatedMeetings = editPersonDescriptor.getMeetings().orElse(personToEdit.getMeetings());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedPolicies);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
+                updatedTags, updatedPolicies, updatedMeetings);
     }
 
     @Override
@@ -139,6 +144,7 @@ public class EditCommand extends Command {
         private Address address;
         private Set<Tag> tags;
         private List<InsurancePolicy> policies;
+        private List<Meeting> meetings;
 
         public EditPersonDescriptor() {}
 
@@ -153,13 +159,14 @@ public class EditCommand extends Command {
             setAddress(toCopy.address);
             setTags(toCopy.tags);
             setPolicies(toCopy.policies);
+            setMeetings(toCopy.meetings);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, policies);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, policies, meetings);
         }
 
         public void setName(Name name) {
@@ -219,6 +226,13 @@ public class EditCommand extends Command {
             return Optional.ofNullable(policies);
         }
 
+        public void setMeetings(List<Meeting> meetings) {
+            this.meetings = meetings;
+        }
+
+        public Optional<List<Meeting>> getMeetings() {
+            return Optional.ofNullable(meetings);
+        }
 
         @Override
         public boolean equals(Object other) {
@@ -240,7 +254,8 @@ public class EditCommand extends Command {
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags())
-                    && getPolicies().equals(e.getPolicies());
+                    && getPolicies().equals(e.getPolicies())
+                    && getMeetings().equals(e.getMeetings());
         }
     }
 }

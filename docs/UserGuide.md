@@ -9,12 +9,11 @@ ClientBook is an application for insurance agents to manage client contacts, opt
 still having the benefits of a Graphical User Interface (GUI). If you are an insurance agent who can type fast, 
 ClientBook can help _you_ accomplish your client management tasks faster than traditional GUI apps.
 
-
 ### Table of Contents 
 
 * [**1**. Why ClientBook?](#why-clientbook)
 * [**2.** Quick Start](#quick-start)
-* [**3.** Overview](#overview)
+* [**3.** Overview](#Overview)
   * [**3.1** Feature Summary](#feature-summary)
   * [**3.2** What information can we store for each client contact?](#what-information-can-we-store-for-each-client-contact)
 * [**4.** Feature Description](#feature-description)
@@ -27,17 +26,17 @@ ClientBook can help _you_ accomplish your client management tasks faster than tr
   * [**4.7** `delete`: Delete client contact](#delete-delete-client-contact)
   * [**4.8** `batch` Execute commands in batch](#batch-execute-commands-in-batch)
   * [**4.9** `sort`: Sort list of clients](#sort-sort-list-of-clients)
-  * [**4.19** `lock`: Lock ClientBook with a user-selected password](#lock-lock-clientbook-with-a-user-selected-password)
-  * [**4.11** `unlock`: Unlock ClientBook](#unlock-unlock-clientbook)
-  * [**4.12** `exit`: Exiting the program](#exit-exiting-the-program)
-  * [**4.13** Saving data](#saving-data)
-  * [**4.14** Editing data file](#editing-data-file)
-  * [**4.15** Upcoming features!](#upcoming-features-v20-and-beyond)
+  * [**4.10** `meet`: Schedule a meeting with a client](#meet-schedule-a-meeting-with-a-client) 
+  * [**4.11** `lock`: Lock ClientBook with a user-selected password](#lock-lock-clientbook-with-a-user-selected-password)
+  * [**4.12** `unlock`: Unlock ClientBook](#unlock-unlock-clientbook)
+  * [**4.13** `exit`: Exiting the program](#exit-exiting-the-program)
+  * [**4.14** Saving data](#saving-data)
+  * [**4.15** Editing data file](#editing-data-file)
+  * [**4.16** Upcoming features!](#upcoming-features-v20-and-beyond)
 * [**5.** Frequently Asked Questions](#frequently-asked-questions)
   * [**5.1** Setting Up](#setting-up)
 * [**6.** Summary of Commands](#summary-of-commands)
-* [**7.** Glossary](#glossary)
-* [**8.** Contact Us](#contact-us)
+* [**7.** Contact Us](#contact-us)
 
 
 ## Why ClientBook?
@@ -58,7 +57,7 @@ If you are an experienced user, we have provided a convenient [Summary of Comman
 ## Quick Start
 
 1. Ensure you have Java `11` or above installed in your Computer.
-   * To check if you have this installed or for instructions on how to install, refer to our FAQ [here](#frequently-asked-questions).
+   * To check if you have this installed or for instructions on how to install, refer to our FAQ [here](#FAQ).
 
 1. Download the latest `clientbook.jar` [here](https://github.com/AY2021S2-CS2103T-W15-2/tp/releases/tag/v1.2).
 1. Copy the file to the folder (we will be referring to this folder as the _home folder_) where you want to store the ClientBook application and your client information.
@@ -85,6 +84,7 @@ If you are an experienced user, we have provided a convenient [Summary of Comman
 [Return to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+
 ## Overview
 
 ### Feature Summary 
@@ -100,6 +100,7 @@ If you are an experienced user, we have provided a convenient [Summary of Comman
 | [`delete`](#delete-delete-client-contact) | Delete client |
 | [`batch`](#batch-execute-commands-in-batch) | Execute commands in batch |
 | [`sort`](#sort-sort-list-of-clients) | Sort list of clients |
+| [`meet`](#meet-schedule-a-meeting-with-a-client) | Schedule a meeting with a client |
 | [`lock`](#lock-lock-clientbook-with-a-user-selected-password) | Lock ClientBook with a user-selected password |
 | [`unlock`](#unlock-unlock-clientbook) | Unlock ClientBook |
 | [`exit`](#exit-exiting-the-program) | Exit ClientBook |
@@ -188,7 +189,7 @@ If you are an experienced user, we have provided a convenient [Summary of Comman
   * e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 
-* **Extraneous parameters for commands that do not take in parameters** (such as `help`, `exit` and `clear`) **will be ignored**. 
+* **Extraneous parameters for commands that do not take in parameters** (such as `help`, `exit` and `listshortcut`) **will be ignored**. 
   * e.g. if the command specifies `help 123`, it will be interpreted as `help`.
   
 
@@ -245,11 +246,11 @@ A person can have any number of tags and insurance policies (including 0).
 
 **Purpose**: Edits an existing client contact in the ClientBook.
 
-**Format**: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/POLICY_NUMBER]…​ [t/TAG]…​`
+**Format**: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/POLICY_NUMBER]…​ [t/TAG]…​ [m/MEETING]…​`
 
 * Edits the client at the specified `INDEX`.
     * `INDEX` refers to the index number shown in the displayed client list.
-    * `INDEX` must be at least 1, and less than or equal to the index of the last item in the displayed list.
+    * `INDEX` must be more than 1, and less than or equal to the index of the last item in the displayed list.
 * At least one of the optional fields must be provided.
 
 <div markdown="block" class="alert alert-info">
@@ -260,7 +261,7 @@ A person can have any number of tags and insurance policies (including 0).
 *  Edit the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
     * `edit 1 p/91234567 e/johndoe@example.com`
       
-      ![edit 1](images/edit-annotate.png)
+      ![edit 1](images/edit-1.png)
     
 *  Edit the name of the 2nd person to be `Betsy Crower`.
     * `edit 2 n/Betsy Crower`
@@ -271,20 +272,25 @@ A person can have any number of tags and insurance policies (including 0).
 
 ### `list`: List all clients 
 
-**Purpose**: Shows a list of all clients in ClientBook. Optional identifiers can be specified to show a list with only the desired attributes.
+**Purpose**: Shows a list of all clients in ClientBook. Optional flags can be added to show a list with only the specified attributes.
 
-**Format**: `list [-n] [-p] [-e] [-a] [-i] [-t]`
+**Format**: `list [-n] [-p] [-e] [-a] [-i] [-t] [-m]`
 
 **Examples**: 
-*  `list` without any specified identifiers shows a list of all clients and all their information.
+* Shows a list of all clients and all their information.
   * `list`
     
     ![list](images/list.png)
     
-*  One or more identifiers can be used to make `list` only show the specified information. The following command shows a list of all clients and their phone number and insurance policy number.
+*  Shows a list of all clients and their insurance policy number.
+   * `list -i`
+
+     ![list policy](images/list-policy.png)
+
+*  Shows a list of all clients and their phone number and insurance policy number.
    * `list -p -i`
     
-     ![list phone](images/list-phone-policy-annotate.png)
+     ![list phone](images/list-phone-policy.png)
 
 [Return to Table of Contents](#table-of-contents)
 <br><br>
@@ -311,7 +317,7 @@ Optional identifiers can be added to show the list of matched clients with only 
 * Find `Alex David`.
   * `find n/alex david`
   
-    ![find_alex_david](images/find_alex_david-annotate.png)
+    ![find_alex_david](images/find_alex_david.png)
 <br><br>
 * Find `Alex David`, `Alex Yeoh` and `David Li`.
   * `find n/alex & david`
@@ -322,7 +328,7 @@ Optional identifiers can be added to show the list of matched clients with only 
 * Find the email and phone number of all persons whose names contain `alex` and `david` using the `&` delimiter, and only display their email and phone number.
   * `find n/alex & david -e -p`
     
-    ![find_alex_&_david_with_filter](images/find-alex-&-david-with-filter-annotate.png)
+    ![find_alex_&_david_with_filter](images/find-alex-&-david-with-filter.png)
 <br><br>
 [Return to Table of Contents](#table-of-contents)
 <br><br>
@@ -332,18 +338,22 @@ Optional identifiers can be added to show the list of matched clients with only 
 
 **Purpose**: Launches a popup window to show all the policies associated with the selected contact, if the selected contact has any policies.
 
+![without policy URL](images/without_policy_URL.png)
+
 **Format**: `policy INDEX`
 
 * Selects the client at the specified `INDEX`.
-* `INDEX` refers to the index number shown in the displayed client list.
-* `INDEX` must be more than 1, and less than or equal to the index of the last item in the displayed list.
+* The index refers to the index number shown in the displayed client list.
+* The index must be more than 1, and less than or equal to the index of the last item in the displayed list.
 
 **Examples**:
-* `policy 2` displays the policies associated with the 2nd person in the currently displayed list.
+* `list` followed by `policy 2` displays the policies associated with the 2nd person in the address book.
   
-  ![with policy URL](images/with-policy-URL-annotate.png)
+  ![with policy URL](images/with_policy_URL.png)
   
 * `find n/Bernice` followed by `policy 1` displays the policies associated with the 1st person in the results of the `find` command.
+  
+  ![with policy URL](images/find-then-policy.png)
 
 [Return to Table of Contents](#table-of-contents)
 <br><br>
@@ -356,13 +366,17 @@ Optional identifiers can be added to show the list of matched clients with only 
 **Format**: `delete INDEX`
 
 * Deletes the client at the specified `INDEX`.
-* `INDEX` refers to the index number shown in the displayed client list.
-* `INDEX` must be more than 1, and less than or equal to the index of the last item in the displayed list.
+* The index refers to the index number shown in the displayed client list.
+* The index must be more than 1, and less than or equal to the index of the last item in the displayed list.
 
 **Examples**:
-* `delete 2` deletes the 2nd person in the currently displayed list.
+* `list` followed by `delete 2` deletes the 2nd person in the address book.
+
+  ![delete 2](images/delete-2.png)
 
 * `find n/Charlotte` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+
+  ![delete charlotte](images/delete-charlotte.png)
 
 [Return to Table of Contents](#table-of-contents)
 <br><br>
@@ -409,20 +423,60 @@ If a parameter is expected only once in the command, but you specified it multip
 
 **Purpose**: Sorts the current list of clients in ClientBook.
 
-**Format**: `sort -IDENTIFIER -DIRECTION`
+**Format**: `sort -ATTRIBUTE -DIRECTION`
 
-* Sorts the list of clients according to the specified `IDENTIFIER` and `DIRECTION`.
-* The specified `IDENTIFIER` can be `-n` to sort by name alphabetically or `-i` to sort by number of insurance policies, but not both.
-* The specified `DIRECTION` can be `-asc` for ascending order or `-des` for descending order, but not both.
+* Sorts the list of clients according to the specified `ATTRIBUTE` and `DIRECTION`.
+* `ATTRIBUTE` can be `n` to sort by name alphabetically or `i` to sort by number of insurance policies, but not both.
+* `DIRECTION` can be `asc` for ascending order or `des` for descending order, but not both.
 
 **Examples**:
-* Sort the current list of clients by name in **descending** number of insurance policies.
+* Sort the current list of clients by number of insurance policies in **descending** order.
     * `sort -i -des`
+
+      ![sort](images/sort-policy-des.png)
 
 * Sort the current list of clients by name in **descending** alphabetical order.
     * `sort -n -des`
 
-      ![sort](images/sort-des-annotate.png)
+      ![sort](images/sort-des.png)
+
+[Return to Table of Contents](#table-of-contents)
+<br><br>    
+
+
+### `meet`: Schedule a meeting with a client
+
+**Purpose**: Schedules a meeting on a particular date, start time, end time and place with a client in ClientBook.
+
+**Format**: `meet INDEX [-ACTION] DATE START END PLACE`
+
+* Schedules a meeting with the client at the specified `INDEX`.
+* `INDEX` refers to the index number shown in the displayed client list.
+* `INDEX` must be more than 1, and less than or equal to the index of the last item in the displayed list.
+* `ACTION` can be `add` to add a meeting, `delete` to delete a meeting, `clear` to clear all meetings.
+* If `-ACTION` is empty, the default action is to add a meeting.
+* `DATE` must be in the `DD:MM:YYYY` format.
+* `START` and `END` must be in the `HH:MM` format.
+* `END` must be after `START` on the same `DATE`.
+* `PLACE` cannot be empty.
+* There is a check for clashes between meetings when adding a new meeting.
+
+**Examples**:
+* Add a meeting and there are no clashes.
+    * `meet 1 20.05.2021 15:00 16:00 MRT`
+
+      ![meet-add](images/meet-add.png)
+
+* Add a meeting but there are clashes.
+    * `meet 3 -add 20.05.2021 15:30 17:30 MRT`
+
+      ![meet-clash](images/meet-clash.png)
+
+* Delete a meeting.
+    * `meet 1 -delete 20.05.2021 15:00 16:00 MRT`
+
+* Clear all meetings.
+    * `meet 2 -clear`
 
 [Return to Table of Contents](#table-of-contents)
 <br><br>
@@ -491,6 +545,10 @@ If a parameter is expected only once in the command, but you specified it multip
 [Return to Table of Contents](#table-of-contents)
 <br><br>
 
+### Keyboard commands
+
+**Purpose**: We note that continuously typing the same command keywords can become tiresome. Hence, we have provided 
+[keyboard commands](#summary-of-keyboard-commands) which when pressed, will fill in the command keyword for you.
 
 ### Saving data
 
@@ -550,49 +608,29 @@ If you get an error message (`Java command not found`), it means that Java is no
 [**Help**](#viewing-help--help) | `help` | `help` |
 [**Add**](#add-client-contact-add) | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [i/POLICY_ID] [t/TAG]…​` | `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 i/Policy_1023 t/premium t/lifeinsurance` |
 [**Edit**](#edit-client-contact-edit) | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [i/POLICY_NUMBER]…​ [t/TAG]…​` | `edit 2 n/James Lee e/jameslee@example.com` |
-[**List**](#list-all-clients--list) | `list [-IDENTIFIER]` | `list -i` |
-[**Find**](#search-for-client-contact-based-on-keywords-find) | `find IDENTIFIER/KEYWORD [& KEYWORDS]…​ [-IDENTIFIER]…​` | `find a/Bedok & Clementi -p` |
+[**List**](#list-all-clients--list) | `list [-ATTRIBUTE]` | `list -i` |
+[**Find**](#search-for-client-contact-based-on-keywords-find) | `find FLAG/KEYWORD [& MORE_KEYWORDS] [-ATTRIBUTES]…​` | `find a/Bedok & Clementi -p` |
 [**Policy**](#display-policies-associated-with-selected-client-policy) | `policy INDEX` | `policy 4` |
 [**Delete**](#delete-client-delete) | `delete INDEX` | `delete 3` |
 [**Batch**](#batch-execute-commands-in-batch) | `batch COMMAND INDICES [ARGUMENTS]` | `batch edit 1, 2, 4 p/91234567 a/Hougang Green t/TanFamily i/FamPol#111` |
 [**Sort**](#sort-list-of-clients-sort) | `sort -IDENTIFIER -DIRECTION` | `sort -n -d` |
+[**Meet**](#schedule-a-meeting-with-a-client-meet) | `meet INDEX [-ACTION] DATE START END PLACE` | `meet 1 20.05.2021 15:00 16:00 MRT` |
 [**Lock**](#lock-clientbook-with-a-user-selected-password-lock) | `lock [CURRENT_PASSWORD] NEW_PASSWORD` | `lock 123 456` |
 [**Unlock**](#unlock-clientbook--unlock) | `unlock [CURRENT_PASSWORD]` | `unlock 456` |
 [**Exit**](#exiting-the-program--exit) | `exit` | `exit` |
 
 [Return to Table of Contents](#table-of-contents)
 
---------------------------------------------------------------------------------------------------------------------
+## Summary of Keyboard Commands
 
-## Glossary
-
-1. **CLI** (Command Line Interface) A text box like interface which allows a user to enter commands.
-
-
-2. **GUI** (Graphical user interface) A form of user interface with graphical features such as icons that allows a user to interact with our program.
-
-
-3. **UI** (User Interface) An interface for a user to interact with the program.
-
-
-4. **Java** A programming language and computing platform to use our ClientBook.
-
-
-5. **Command Prompt** A command line interpreter application on Windows.
-
-
-6. **Terminal** A command line interpreter application on Mac.
-
-
-7. **Attribute** The types of information you can store in our ClientBook.
-
-
-8. **Identifier** The alphabetical letter associated with the attribute.
-
-
-9. **JSON** (JavaScript Object Notation) A format for storing and transporting data.
-
-[Return to Table of Contents](#table-of-contents)
+| Shortcut | Output |
+| --------|------------------ |
+CTRL + A | `add` |
+CTRL + D | `delete` |
+CTRL + E | `edit` |
+CTRL + F | `find` |
+CTRL + L | `list` |
+CTRL + S | `sort` |
 
 --------------------------------------------------------------------------------------------------------------------
 
