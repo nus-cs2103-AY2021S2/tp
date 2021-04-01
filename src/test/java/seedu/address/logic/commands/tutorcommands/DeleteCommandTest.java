@@ -3,7 +3,6 @@ package seedu.address.logic.commands.tutorcommands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalAppointments.getTypicalAppointmentBook;
 import static seedu.address.testutil.TypicalBudgets.getTypicalBudgetBook;
@@ -34,6 +33,12 @@ public class DeleteCommandTest {
 
 
     @Test
+    public void execute_validIndexUnfilteredList_throwCommandException() {
+        Tutor personToDelete =
+                model.getFilteredTutorList().get(INDEX_FIRST_PERSON.getZeroBased());
+
+    }
+
     public void execute_validIndexUnfilteredList_success() {
         Tutor tutorToDelete = model.getFilteredTutorList().get(INDEX_FIRST_PERSON.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
@@ -45,7 +50,7 @@ public class DeleteCommandTest {
                 model.getGradeBook(), model.getScheduleTracker(), model.getReminderTracker());
         expectedModel.deleteTutor(tutorToDelete);
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_APPOINTMENT_LIST_HAS_TUTOR);
     }
 
     @Test
@@ -57,7 +62,7 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void execute_validIndexFilteredList_success() {
+    public void execute_validIndexFilteredList_throwsCommandException() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Tutor tutorToDelete = model.getFilteredTutorList().get(INDEX_FIRST_PERSON.getZeroBased());
@@ -71,7 +76,7 @@ public class DeleteCommandTest {
         expectedModel.deleteTutor(tutorToDelete);
         showNoPerson(expectedModel);
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_APPOINTMENT_LIST_HAS_TUTOR);
     }
 
     @Test

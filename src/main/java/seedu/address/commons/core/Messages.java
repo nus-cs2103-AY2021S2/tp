@@ -16,6 +16,19 @@ public class Messages {
     public static final String MESSAGE_APPOINTMENT_LISTED_OVERVIEW = "%1$d appointments listed!";
     public static final String MESSAGE_INVALID_GRADE_DISPLAYED_INDEX =
             "The grade index provided is invalid";
+    public static final String MESSAGE_TUTOR_DOES_NOT_EXIST = "Tutor of this "
+            + "appointment does not exist in the user system. Please ensure tutor "
+            + "exists or use the add_tutor function to add a tutor.";
+    public static final String MESSAGE_DUPLICATE_APPOINTMENT = "This appointment already exists in the list";
+    public static final String MESSAGE_DELETE_APPOINTMENT_FAILURE = "Appointment does"
+            + " not exists in appointment list.";
+    public static final String MESSAGE_APPOINTMENT_LIST_HAS_TUTOR = "Failed to delete tutor"
+            + " because at least one existing appointment has been booked with the"
+            + " tutor in question. Please ensure that tutor to be deleted does not"
+            + " have any existing appointments.";
+    public static final String MESSAGE_TUTOR_DOES_NOT_TEACH_SUBJECT = "Tutor in the "
+            + "appointment to be added does not teach this subject. Please ensure "
+            + "that tutor teaches this subject: %s";
     public static final String MESSAGE_TIME_FROM_GREATER_THAN = "TIME_FROM must be before TIME_TO. "
             + "Please check your input for TIME_FROM and TIME_TO again.";
     public static final String MESSAGE_INVALID_DATE = "The new date must not be in the past. "

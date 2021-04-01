@@ -35,9 +35,11 @@ import seedu.address.model.reminder.ReadOnlyReminderTracker;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.schedule.ReadOnlyScheduleTracker;
 import seedu.address.model.schedule.Schedule;
+import seedu.address.model.subject.SubjectName;
 import seedu.address.model.tutor.Name;
 import seedu.address.model.tutor.Tutor;
 import seedu.address.testutil.TutorBuilder;
+
 
 public class AddCommandTest {
 
@@ -156,6 +158,11 @@ public class AddCommandTest {
 
         @Override
         public boolean hasAppointmentContainingTutor(Name name) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean doesTutorTeachSubject(Name name, SubjectName subjectName) {
             throw new AssertionError("This method should not be called.");
         }
 

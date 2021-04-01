@@ -17,6 +17,7 @@ import seedu.address.model.reminder.ReadOnlyReminderTracker;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.schedule.ReadOnlyScheduleTracker;
 import seedu.address.model.schedule.Schedule;
+import seedu.address.model.subject.SubjectName;
 import seedu.address.model.tutor.Name;
 import seedu.address.model.tutor.Tutor;
 
@@ -123,6 +124,14 @@ public interface Model {
     boolean hasTutorByName(Name name);
 
     /**
+     * @param subjectName Subject name to query for a particular tutor
+     * @return True is tutor teaches subject.
+     */
+    boolean doesTutorTeachSubject(Name name, SubjectName subjectName);
+
+    /**
+     * Deletes the given person.
+     * The person must exist in the address book.
      * Deletes the given tutor.
      * The tutor must exist in the tutor book.
      */

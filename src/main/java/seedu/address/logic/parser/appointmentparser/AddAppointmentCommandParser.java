@@ -1,6 +1,7 @@
 package seedu.address.logic.parser.appointmentparser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_TIME_FROM_GREATER_THAN;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -25,9 +26,6 @@ import seedu.address.model.tutor.Name;
  */
 public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand> {
 
-    public static final String MESSAGE_TIME_FROM_GREATER_THAN = "Time from has to be "
-            + "smaller than time to. Please check your input for time from and time to "
-            + "again.";
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddAppointmentCommand

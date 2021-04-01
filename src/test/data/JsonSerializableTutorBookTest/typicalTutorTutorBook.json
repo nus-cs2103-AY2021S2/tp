@@ -1,6 +1,6 @@
 {
   "tutors" : [ {
-    "name" : "Alice Pauline",
+    "name" : "Alice Tan",
     "gender" : "Female",
     "phone" : "94351253",
     "email" : "alice@example.com",
@@ -108,12 +108,12 @@
     } ],
     "isFavourite" : "false"
   }, {
-    "name" : "George Best",
+    "name" : "John Doe",
     "gender" : "Male",
     "phone" : "9482442",
-    "email" : "anna@example.com",
+    "email" : "johndoe@example.com",
     "address" : "4th street",
-    "notes" : "Some notes about George",
+    "notes" : "Some notes about John",
     "tagged" : [ ],
     "tutorSubjects" : [ {
       "subjectName" : "Chemistry",

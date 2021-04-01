@@ -30,7 +30,8 @@ import seedu.address.model.tutor.Tutor;
  */
 public class TypicalTutors {
 
-    public static final Tutor ALICE = new TutorBuilder().withName("Alice Pauline").withGender("Female")
+    public static final Tutor ALICE =
+            new TutorBuilder().withName("Alice Tan").withGender("Female")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253")
             .withNotes("Some notes about Alice")
@@ -65,6 +66,12 @@ public class TypicalTutors {
             .withNotes("Some notes about Fiona")
             .withSubject("History", "Secondary 2", "40", "7", "A-Level")
             .build();
+    public static final Tutor JOHN =
+            new TutorBuilder().withName("John Doe").withGender("Male")
+                    .withNotes("Some notes about John")
+                    .withPhone("9482442").withEmail("johndoe@example.com").withAddress("4th street")
+                    .withSubject("Chemistry", "Secondary 2",
+                    "40", "4", "A-Level").build();
     public static final Tutor GEORGE = new TutorBuilder().withName("George Best").withGender("Male")
             .withNotes("Some notes about George")
             .withPhone("9482442").withEmail("anna@example.com").withAddress("4th street")
@@ -109,6 +116,7 @@ public class TypicalTutors {
     }
 
     public static List<Tutor> getTypicalPersons() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE,
+                FIONA, JOHN));
     }
 }

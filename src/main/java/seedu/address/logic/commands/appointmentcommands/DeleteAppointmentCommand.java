@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.appointmentcommands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_DELETE_APPOINTMENT_FAILURE;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
@@ -22,8 +23,6 @@ public class DeleteAppointmentCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_APPOINTMENT_SUCCESS = "Deleted Appointment: %1$s";
-    public static final String MESSAGE_DELETE_APPOINTMENT_FAILURE = "Appointment does"
-            + " not exists in appointment list.";
 
     private final Index targetIndex;
     private final Appointment toDelete;
@@ -38,15 +37,6 @@ public class DeleteAppointmentCommand extends Command {
         this.toDelete = null;
     }
 
-    /**
-     * Create {@code DeleteAppointmentCommand} with {@code Appointment} to delete.
-     * @param toDelete Appointment to delete.
-     */
-    public DeleteAppointmentCommand(Appointment toDelete) {
-        requireNonNull(toDelete);
-        this.targetIndex = null;
-        this.toDelete = toDelete;
-    }
 
     /**
      * Deletes appointment if exists in appointment list (Offer two ways to delete by
@@ -58,27 +48,14 @@ public class DeleteAppointmentCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
-        // Delete by appointment
-        if (targetIndex == null) {
-            if (model.hasAppointment(toDelete)) {
-                model.removeAppointment(toDelete);
-                return new CommandResult(String.format(MESSAGE_DELETE_APPOINTMENT_SUCCESS,
-                        toDelete));
-            } else {
-                throw new CommandException(MESSAGE_DELETE_APPOINTMENT_FAILURE);
-            }
-        } else {
-            // Delete by index
-            try {
-                model.removeAppointmentIndex(targetIndex.getZeroBased());
-                return new CommandResult(String.format(MESSAGE_DELETE_APPOINTMENT_SUCCESS,
-                        toDelete));
-            } catch (IndexOutOfBoundsException e) {
-                throw new CommandException(MESSAGE_DELETE_APPOINTMENT_FAILURE);
-            }
+        // Delete by index
+        try {
+            model.removeAppointmentIndex(targetIndex.getZeroBased());
+            return new CommandResult(String.format(MESSAGE_DELETE_APPOINTMENT_SUCCESS,
+                    toDelete));
+        } catch (IndexOutOfBoundsException e) {
+            throw new CommandException(MESSAGE_DELETE_APPOINTMENT_FAILURE);
         }
-
     }
 
     @Override

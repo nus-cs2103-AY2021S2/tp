@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.tutorcommands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_APPOINTMENT_LIST_HAS_TUTOR;
 
 import java.util.List;
 
@@ -26,10 +27,6 @@ public class DeleteCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Tutor: %1$s";
-    public static final String MESSAGE_APPOINTMENT_LIST_HAS_TUTOR = "Failed to delete tutor"
-            + " because at least one existing appointment has been booked with the"
-            + " tutor in question. Please ensure that tutor to be deleted does not"
-            + " have any existing appointments.";
 
     private final Index targetIndex;
 
