@@ -361,7 +361,7 @@ Edits an appointment with a specific index. Only the attributes present are chan
 If any one of the following three fields (DATE, TIME_FROM, TIME_TO), then all three 
 must also be present.
 
-Format: `edit_appointment Index [n/name] [s/SUBJECT_NAME] [d/DATE] [fr/TIME_FROM] 
+Format: `edit_appointment INDEX [n/name] [s/SUBJECT_NAME] [d/DATE] [fr/TIME_FROM] 
 [to/TIME_TO] [l/LOCATION]`
 
 * The date format `YYYY-MM-DD` must be strictly followed. e.g. `2021-03-01`and `2021-04-20`.
