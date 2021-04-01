@@ -85,6 +85,7 @@ Before diving into the rest of the contents in our user guide, the following are
 imPoster will start with an empty file if a modification to the data file causes the data to be invalid.
 </div>
 
+
 <div style="page-break-after: always;"></div>
 
 ## 4. Commands
@@ -151,7 +152,7 @@ Check out the screenshot of each command for an idea of the expected output in t
 
 #### 4.1.3 Exit program: `exit`
 
-**Description:** Closing the application is simple but do come back soon!
+**Description:** Closes the application. Do come back soon!
 
 **Format:** <span class="main-command">exit</span>
 
@@ -241,7 +242,7 @@ You may include [prefixes](#prefix-table) to scope your search terms!
 
 #### 4.2.6 List all saved API endpoints: `list`
 
-**Description:** Show a list of all API endpoints in the API endpoint list.
+**Description:** Show a list of all API endpoints in the API endpoint list. If there are no endpoints in the API endpoint list, nothing will show up on the Endpoint List bar.
 
 **Format:** <span class="main-command">list</span>
 
@@ -321,6 +322,10 @@ command box with the last command.
 **Description:** As users may wish to scroll the endpoints in the endpoint list or the responses in result display, the <kbd>Page Up</kbd> and <kbd>Page Down</kbd> keys (<kbd>fn</kbd> + <kbd>up</kbd> and <kbd>fn</kbd> + <kbd>down</kbd> on **MacOS**) are available as options to scroll the 2 components above.
 
 **Format:** <kbd>Page Up</kbd> and <kbd>Page Down</kbd> (<kbd>fn</kbd> + <kbd>up</kbd> and <kbd>fn</kbd> + <kbd>down</kbd> on **MacOS**)
+
+#### 4.3.4 Error Messages
+
+**Description:** Do not worry if you input any commands wrongly when using our app! Our app gives helpful error messages depending on the command you entered, and you can always enter the [Help Command](#4.1.1-View-help) if you need to refer back to the various commands avaliable!
 
 <div style="page-break-after: always;"></div>
 
@@ -452,4 +457,4 @@ An extensive list of sample endpoints have been provided below for new users to 
 | URL                                                           | Data (JSON)                                       |
 | ------------------------------------------------------------- |                                                   |
 | https://jsonplaceholder.typicode.com/posts                    | title, body, userId                               |
-
+| https://reqbin.com/echo/post/json                             | Id, Customer, Quantity, Price
