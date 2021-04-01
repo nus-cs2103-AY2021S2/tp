@@ -104,7 +104,7 @@ A client can have only one or no insurance plan
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 You can add a profile picture for your client by first adding the picture file into [JAR file location]/data/[picture file].
 Then, include the file name under the i/ prefix when adding client.
-</div>
+</div><br>
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com l/01 Singapore Street, #23-45 ip/MediShield Life i/john_doe.png t/friends t/owesMoney`
@@ -285,7 +285,7 @@ Format: `findmeet KEYWORD [MORE_KEYWORDS]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Do a listmeet command first to switch to Meeting Mode and view the meetings in the Ui
-</div>
+</div><br>
 
 * The search is case-insensitive. e.g `john` will match `John`
 * The order of the keywords does not matter. e.g. `plans discussion` will match `discuss plans`
