@@ -339,8 +339,8 @@ Examples:
 * `edit m/Software Engineering a/1 by/27/04/2021 1900`
 
 Result expected:
-* `Assignment edited: [ ] Update UG due: 23/03/2021 2359`
-* `Assignment edited: [X] Update UG due: 27/04/2021 1900`
+* `Assignment edited: Update UG due: 23/03/2021 2359 [ ]`
+* `Assignment edited: Update UG due: 27/04/2021 1900 [ ]`
 
 #### 3.3.4 Editing an exam
 You can also change the date of the exam in a module.
@@ -414,12 +414,12 @@ You can search your contacts whose names contain any of the given keywords.
 Command: `find n/KEYWORD [MORE KEYWORDS]`  
 
 Example:
-* `find n/alice`
+* `find n/jason`
 
 Expected Result:
 <br>
 ![Find Person Example](./images/findcommand/findperson.png)<br>
-*[Result for `find n/Alice`]*
+*[Result for `find n/jason`]*
 <br>
 <br>
   
@@ -505,7 +505,14 @@ When you do not need your entries anymore, you can delete them using RemindMe's 
 **Note:**
 * Deleting an entry in RemindME requires it to be present at the given index.
     
-</div>     
+</div>
+
+You can delete:
+* [3.7.1 Deleting a person](#371-deleting-a-person)
+* [3.7.2 Deleting a module](#372-deleting-a-module)
+* [3.7.3 Deleting an assignment](#373-deleting-an-assignment)
+* [3.7.4 Deleting an exam](#374-deleting-an-exam)
+* [3.7.5 Deleting a general event](#375-deleting-a-general-event)     
 
 #### 3.7.1 Deleting a person
 You can remove a person from your RemindMe, but hopefully, you won't need to use it :)
@@ -517,18 +524,10 @@ Examples:
 
 Expected Result:
 <br>
-<br>
 ![Delete Person Example](./images/deletecommand/deletealice.png)<br>
-*[Result for deleting Alice which is the first person in the contact list.]*
+*[Result for deleting Jason which is the first person in the contact list.]*
 <br>
 <br>
-
-You can delete:
-* [3.7.1 Deleting a person](#371-deleting-a-person)
-* [3.7.2 Deleting a module](#372-deleting-a-module)
-* [3.7.3 Deleting an assignment](#373-deleting-an-assignment)
-* [3.7.4 Deleting an exam](#374-deleting-an-exam)
-* [3.7.5 Deleting a general event](#375-deleting-a-general-event)
 
 #### 3.7.2 Deleting a module
 Once you have completed a module, you can delete it from RemindMe as a final goodbye!
@@ -667,7 +666,7 @@ update RemindMe.
 ### 3.11 Reminder window
 A reminder will automatically pop up at the start of RemindMe.
 
-![Ui](images/Ui.png)
+![Ui](images/Ui2.png)
 <br>
 
 ### 3.12 Exiting the program `exit` `E`
