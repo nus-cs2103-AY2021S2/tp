@@ -192,6 +192,32 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 
 ### Archiving data files `[coming in v2.0]`
 
+### Adding a meeting: `addm`
+
+Adds a meeting to MeetBuddy.
+
+Format: `addm n/NAME st/TIME ed/TIME  des/DESCRIPTIONS pr/PRIORITY [p/PERSON RELATED] [g/GROUP]…​`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+A meeting can have any number of groups that are already existed in the contacts.(including 0) 
+It will add all the persons belong to that group into the person related field.
+</div>
+
+
+
+* Assigning Priorities:
+
+  Format:
+
+  `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS pr/PRIORITY [no/NOTES] d/DATE`
+
+  PRIORITY can be {1,2,3,4,5}
+
+
+Examples:
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+* `add n/Betsy Crowe g/CS2103 e/betsycrowe@example.com a/Newgate Prison p/1234567 g/badminton`
+
 _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
