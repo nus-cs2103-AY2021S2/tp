@@ -237,20 +237,6 @@ Format: `delete_session c/ID`
 Examples:
 * `delete_session c/2` deletes the session with session ID c/2 in the address book.
 
-### Assigning people to a session : `assign`
-
-Assigns the specified people to a session.
-
-Format: `assign [s/ID]... [t/ID] c/ID`
-
-* Assigns students with the specified `s/ID` to the session with the specified `c/ID`
-* Assigns the tutor with the specified `t/ID` to the session with the specified `c/ID`
-* At least one of the optional fields must be provided.
-* Any number of students can be assigned at the same time (including 0)
-
-Examples:
-* `assign s/1 s/2 t/1 c/1` assigns students with student IDs s/1 and s/2, and tutor with tutor ID t/1 to the session with session ID c/1.
-
 ### Unassigning people from a session : `assign`
 
 Unassigns the specified people from a session.
