@@ -147,7 +147,89 @@ Classes used by multiple components are in the `seedu.storemando.commons` packag
 
 ## **Implementation**
 
-This section describes some noteworthy details on how certain features are implemented.
+### Help feature
+The help feature redirects the user to StoreMando's User Guide. If the user is connected to a internet access, StoreMando
+will redirect it's User Guide through opening another browser. Otherwise, it will have a pop out window with the User 
+Guide link. This will save the user the hassle of locating the documentation. <br>
+The help command has the following format :`help`.
+
+:information_source: : Things to note
+- Even though the help command expects the user input to contains the `help` command keyword, it still allows users to
+append arguments. However, the arguments will not be parsed by StoreMando.
+
+#### Implementation
+![HelpSequenceDiagram](images/HelpSequenceDiagram.png)
+Step 1: The user inputs `help` wanting to be redirected to the User Guide to learn more about StoreMando's command. <br>
+Step 2: The input is passed to `LogicManager` in a form of a String. <br>
+Step 3: The input string is passed to `StoreMandoParser` for it to be parsed. <br>
+Step 4: The input string is separated into command keyword and arguments containing the prefixes with the updated item's
+attribute. <br>
+Step 5: StoreMandoParser recognise that it is a `Help` command and creates a `HelpCommand` object. <br>
+Step 6: The `HelpCommand` is pass back to `LogicManager`. <br>
+Step 7: `LogicManager` then execute the `HelpCommand`. <br>
+Step 8: `HelpCommand` will create a `CommandResult` and pass to `LogicManager` with message stating 
+"Opened user guide information." <br>
+
+#### Activity Diagram
+![HelpActivityDiagram](images/HelpActivityDiagram.png)
+
+#### Design Considerations
+- Alternative 1 (Current choice): 
+    - Pros:
+    - Cons:
+
+- Alternative 2:
+    - Pros:
+    - Cons:
+
+
+### Edit feature
+The edit feature allows the user to edit an item's name, quantity, location, expiry date and tag. This will help the
+user to not delete and add back an item upon inputting an incorrect item. <br>
+The edit command has the following format: `edit INDEX [n/ITEM NAME] [l/LOCATION] [q/QUANTITY] [e/EXPIRY_DATE] [t/TAG]...` 
+and only changes the specified attribute.
+
+:information_source: : Things to note
+- Even though the edit command expects the user input to only have multiple tag prefixes, it still allows
+  other prefixes to be declared more than once. However, StoreMando only parses the last common prefix input to update the
+  item.
+  
+#### Implementation
+![EditSequenceDiagram](images/EditSequenceDiagram.png)
+
+Step 1: The user inputs `edit 1 n/apple` wanting to change the first item's name. <br> 
+Step 2: The input is passed to `LogicManager` in a form of a String. <br>
+Step 3: The input string is passed to `StoreMandoParser` for it to be parsed. <br>
+Step 4: The input string is separated into command keyword and arguments containing the prefixes with the updated item's
+attribute. <br>
+Step 5: The argument is passed to `EditCommandParser` to check if the user input follows the edit command format. <br>
+Step 6: `EditCommandParser` creates `EditItemDescriptor` through `EditCommand`. <br>
+Step 7: Based on the user input string, the `EditItemDescriptor` updates it's own attributes. <br>
+Step 8: `EditCommandParser` creates an `EditCommand` with the item index and `EditItemDescriptor`. <br>
+Step 9: The new `EditCommand` is pass from `EditCommandParser` back to `LogicManager`.<br>
+Step 10: `LogicManager` then calls the **execute** method of `EditCommand`. <br>
+Step 11: `EditCommand` calls **getFilteredList** method to get the list of item from `Model`. It also calls the 
+**createEditedItem** method to create the edited item. <br>
+Step 12: From the index argument of `EditCommand`, it gets the targetted item from the list of items and set it to the
+edit item.<br>
+Step 13: `EditCommand` will create a `CommandResult` and pass to `LogicManager` with message containing the edited 
+item's description and possibly some warning. <br>
+Step 14: Depending on the entire execution, the `LogicManager` either receive an exception or the `CommandResult`. The 
+GUI proceeds to show it on the result display.
+
+#### Activity Diagram
+![EditActivityDiagram](images/EditActivityDiagram.png)
+
+#### Design Considerations
+- Alternative 1 (Current choice): Allows the edited item's attribute to be case-insensitive
+    - Pros:
+    - Cons:
+    
+- Alternative 2: Doesn't allows the edited item's attribute to be case-insensitve
+    - Pros:
+    - Cons:
+    
+
 
 ### \[Proposed\] Undo/redo feature
 
