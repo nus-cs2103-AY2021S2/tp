@@ -1,8 +1,9 @@
-package seedu.address.model.appointment;
+package seedu.address.model.appointment.predicate;
 
 import java.util.List;
 
 import seedu.address.commons.util.StringUtil;
+import seedu.address.model.appointment.Appointment;
 
 /**
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.

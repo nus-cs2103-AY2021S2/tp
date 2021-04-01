@@ -1,8 +1,9 @@
-package seedu.address.model.person;
+package seedu.address.model.person.predicate;
 
 import java.util.List;
 
 import seedu.address.commons.util.StringUtil;
+import seedu.address.model.person.Person;
 
 
 /**
