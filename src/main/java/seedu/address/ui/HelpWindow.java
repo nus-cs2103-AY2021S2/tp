@@ -170,7 +170,7 @@ public class HelpWindow extends UiPart<Stage> {
                         + "d/START_DATE e/END_DATE b/INTERVAL t/TIME k/DURATION s/SUBJECT f/FEE"),
                 new CommandHelper("Delete single session", "delete_session n/STUDENT_NAME i/SESSION_INDEX"),
                 new CommandHelper("Delete recurring session", "delete_rec_session "
-                        + "n/STUDENT_NAME i/SESSION_INDEX d/DATE")
+                        + "n/STUDENT_NAME i/SESSION_INDEX d/DATE t/TIME")
         );
     }
 
