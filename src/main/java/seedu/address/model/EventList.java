@@ -2,6 +2,8 @@ package seedu.address.model;
 
 import java.util.ArrayList;
 
+import seedu.address.model.person.Birthday;
+
 public class EventList {
     public static final String NO_ASSIGNMENTS_OUTPUT = "You have no events! Yay! :)\n";
     private ArrayList<Event> events;
@@ -26,7 +28,11 @@ public class EventList {
     public String toString() {
         String displayString = "";
         for (Event event : events) {
-            displayString += event.tag + ": " + event.toString() + "\n";
+            if (event instanceof Birthday) {
+                displayString += ((Birthday) event).getDescription() + ": " + event.toString() + "\n";
+            } else {
+                displayString += event.tag + ": " + event.toString() + "\n";
+            }
         }
 
         return displayString;
