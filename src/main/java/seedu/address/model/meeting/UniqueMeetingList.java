@@ -136,7 +136,8 @@ public class UniqueMeetingList implements Iterable<Person> {
                     .map(meeting -> meeting.dateTime)
                     .filter(datetime -> datetime.toLocalDate().equals(LocalDate.now()))
                     .filter(datetime -> datetime.toLocalTime().compareTo(LocalTime.now()) > 0)
-                    .map(datetime -> sb.append(String.format(template, person.getName().fullName, datetime.toLocalTime())));
+                    .map(datetime ->
+                            sb.append(String.format(template, person.getName().fullName, datetime.toLocalTime())));
         }
         return sb.toString();
     }

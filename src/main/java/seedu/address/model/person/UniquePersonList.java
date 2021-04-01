@@ -108,8 +108,7 @@ public class UniquePersonList implements Iterable<Person> {
         String template = "%s's birthday is coming up in %d days.\n";
         int year = today.getYear();
         internalList.stream()
-                .map(person ->
-                {
+                .map(person -> {
                     MonthDay birthday = MonthDay.from(person.getBirthdate().value);
                     LocalDate nextBday = birthday.atYear(year);
                     if (nextBday.isBefore(today)) {
