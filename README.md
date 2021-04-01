@@ -5,7 +5,7 @@
 This is a sample project for Managers of Tuition Centres
 Example usages:
 - To allocate students and tutors to a specific class
-- Determine class size
+- Manage students, classes and tutors all in one platform
 
 The project simulates an ongoing software project for a desktop application (called EZManage) used for
 managing students, tutors and classes.
@@ -37,6 +37,8 @@ This project is a part of the se-education.org initiative. If you would like to 
 * Delete Tutor
 * Delete Session
 * Clear Contacts
+* Assign Student(s) to Session
+* Assign tutor to Session
 * Help
 * Exit
 
@@ -51,6 +53,7 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | For All Persons: <br>`list persons` <br> For All Students: <br>`list students` <br> For All Tutors: <br>`list tutors` <br> For All Sessions: <br>`list sessions`
 **View** | For Person: <br> For Session: <br> `view_session c/ID` <br> e.g., `view_session c/5`
+**Assign** | 3 different ways : <br> Student Only : `assign s/3 c/1` <br> - This assigns student with ID 3 to class of ID 1 <br> Tutor Only : `assign t/1 c/1` <br> - This assigns tutor with ID 1 to class of ID 1 <br> Both Student and Tutor : `assign s/3 t/2 c/1` <br> - This assigns student with ID 3 and tutor with ID 2 to class with ID 1
 **Help** | `help`
 
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org)

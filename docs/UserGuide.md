@@ -30,7 +30,7 @@ EzManage is a **desktop app for managing students, tutors and classes, optimized
 
    * **`delete_person`**`t/3` : Deletes the tutor with the ID `t/3` from the Contact list.
      
-   * **`assign`** : Assigns student or tutor to a specific class (Coming Soon!).
+   * **`assign`** : `assign s/3 t/2 c/1` Assigns student(s) or tutor to a specific class.
 
    * **`clear`** : Deletes all contacts.
 
@@ -290,6 +290,30 @@ Format: `delete_session c/ID`
 
 Examples:
 * `delete_session c/2` deletes the session with session ID c/2 in the address book.
+
+### Assigning student(s)/tutor to session:`assign`
+
+Assigns a student or multiple student and/or a tutor to a specific class
+
+3 Formats : 
+
+1) `assign [s/ID]…​ [c/ID]`
+
+    * This assigns a student of `s/ID` or multiple students to a class of `c/ID`
+    
+    * Example : `assign s/2 s/1 c/1` This assigns students of `s/2` and `s/1` to class `c/1`
+
+
+2) `assign [t/ID] [c/ID]`
+    * This assign a tutor of `t/ID` to a class of `c/ID`
+    * Example:  `assign t/1 c/1` This assign a tutor of `t/1` to class of `c/1`
+    
+
+3) `assign [s/ID]…​ [t/ID] [c/ID]`
+    * This assigns a student of `s/ID` or multiple students and a tutor of `t/ID` to a class of `c/ID` 
+    
+
+A class must always be provided, either student or tutor can be optional.
 
 ### Clearing all entries : `clear`
 
