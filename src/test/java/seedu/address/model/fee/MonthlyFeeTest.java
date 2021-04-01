@@ -19,6 +19,11 @@ public class MonthlyFeeTest {
     }
 
     @Test
+    public void constructor_invalidMonthlyFee_throwsIllegalArgumentException() {
+        assertThrows(java.lang.IllegalArgumentException.class, () -> new MonthlyFee(-20.0, validMonth, validYear));
+    }
+
+    @Test
     public void equals() {
         MonthlyFee monthlyFee = new MonthlyFee(validMonthlyFee, validMonth, validYear);
         MonthlyFee monthlyFeeCopy = new MonthlyFee(validMonthlyFee, validMonth, validYear);

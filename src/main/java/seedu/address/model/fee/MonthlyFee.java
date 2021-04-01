@@ -1,11 +1,15 @@
 package seedu.address.model.fee;
 
+import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 /**
  * Represents the monthly fee of a particular month and year that is used for the UI.
  */
 public class MonthlyFee {
+
+    public static final String MESSAGE_CONSTRAINTS = "Format of year input is incorrect. "
+        + "(Must be between year 1970 to 2037)";
 
     // Data fields
     private double monthlyFee;
@@ -21,9 +25,14 @@ public class MonthlyFee {
      */
     public MonthlyFee(double monthlyFee, Month month, Year year) {
         requireAllNonNull(monthlyFee, month, year);
+        checkArgument(isValidMonthlyFee(monthlyFee), MESSAGE_CONSTRAINTS);
         this.monthlyFee = monthlyFee;
         this.month = month;
         this.year = year;
+    }
+
+    private Boolean isValidMonthlyFee(double monthlyFee) {
+        return monthlyFee > 0;
     }
 
     public double getMonthlyFee() {
