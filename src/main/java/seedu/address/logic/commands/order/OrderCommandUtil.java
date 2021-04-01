@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.order;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import seedu.address.commons.core.Pair;
@@ -8,6 +9,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.dish.Dish;
+import seedu.address.model.ingredient.Ingredient;
 import seedu.address.model.order.Order;
 import seedu.address.model.person.Person;
 
@@ -15,6 +17,7 @@ public class OrderCommandUtil {
     public static final String MESSAGE_DUPLICATE_ORDER = "This order already exists in the order list";
     public static final String MESSAGE_CUSTOMER_INDEX_INVALID = "Invalid customer index!";
     public static final String MESSAGE_DISH_NOT_FOUND = "Dish in order not found on the menu";
+    private static final String MESSAGE_NOT_ENOUGH_INGREDIENTS_ORDER = "Insufficient inventory to fulfil order";
 
     /**
      * Checks whether an order is a valid addition.
@@ -27,6 +30,10 @@ public class OrderCommandUtil {
 
         if (model.hasOrder(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_ORDER);
+        }
+
+        if (!model.canFulfilOrder(toAdd)) {
+            throw new CommandException(MESSAGE_NOT_ENOUGH_INGREDIENTS_ORDER);
         }
 
         return true;

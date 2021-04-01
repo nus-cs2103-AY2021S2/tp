@@ -20,7 +20,7 @@ public class CustomerFindCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: n/[KEYWORD] [MORE_KEYWORDS]...\n"
+            + "Parameters: n/[KEYWORD] (MORE_KEYWORDS)...\n"
             + "Example: " + COMMAND_WORD + " n/alice bob charlie";
 
     private final Predicate<Person> predicate;

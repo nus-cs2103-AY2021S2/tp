@@ -167,7 +167,7 @@ public class Order implements Item, Aggregator<Dish> {
             return true;
         }
 
-        if (!(other instanceof Dish)) {
+        if (!(other instanceof Order)) {
             return false;
         }
 

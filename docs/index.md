@@ -7,7 +7,7 @@ title: JJIMY
 
 ![Ui](images/Ui.png)
 
-**JJIMY is a restaurant management app for managing food orders, ingredient inventory, etc via Command Line Interface (CLI). <br/>
+** JJIMY is a restaurant management app for managing food orders, ingredient inventory, etc via Command Line Interface (CLI). <br/>
 
 * If you are interested in using JJIMY, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
 * If you are interested about developing JJIMY, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.

@@ -6,6 +6,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -14,6 +15,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.Pair;
 import seedu.address.model.dish.Dish;
 import seedu.address.model.dish.DishBook;
 import seedu.address.model.dish.ReadOnlyDishBook;
@@ -63,6 +65,8 @@ public class ModelManager implements Model {
         filteredDishes = new FilteredList<>(this.dishBook.getDishList());
         filteredIngredients = new FilteredList<>(this.ingredientBook.getIngredientList());
         filteredOrders = new FilteredList<>(this.orderBook.getOrderList());
+
+        filteredDishes.setPredicate(getAvailableDishPredicate());
     }
 
     /**
@@ -282,6 +286,29 @@ public class ModelManager implements Model {
         filteredDishes.setPredicate(predicate);
     }
 
+    @Override
+    public Predicate<Dish> getAvailableDishPredicate() {
+        return dish -> hasSufficientIngredients(dish);
+    }
+
+    @Override
+    public boolean hasSufficientIngredients(Dish target) {
+        return hasSufficientIngredients(target, 1);
+    }
+
+    @Override
+    public boolean hasSufficientIngredients(Dish target, int amount) {
+        List<Pair<Ingredient, Integer>> requiredIngredients = target.getIngredientQuantityList();
+        for (Pair<Ingredient, Integer> ingredientQtyPair : requiredIngredients) {
+            Ingredient ingredient = ingredientQtyPair.getKey();
+            Integer quantity = ingredientQtyPair.getValue();
+            if (!getIngredientBook().hasSufficientIngredients(ingredient, amount * quantity)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     //=========== Ingredients ================================================================================
     /**
      * Replaces address book data with the data in {@code addressBook}.
@@ -450,7 +477,28 @@ public class ModelManager implements Model {
         for (Order o : targets) {
             cancelOrder(o);
         }
-    };
+    }
+
+    //@@ author kangtinglee
+    @Override
+    public boolean canFulfilOrder(Order target) {
+        List<Pair<Dish, Integer>> dishesList = target.getDishQuantityList();
+        HashMap<Ingredient, Integer> ingredientsTable = new HashMap<>();
+        for (Pair<Dish, Integer> p : dishesList) {
+            for (Pair<Ingredient, Integer> d : p.getKey().getIngredientQuantityList()) {
+                if (!ingredientsTable.containsKey(d.getKey())) {
+                    ingredientsTable.put(d.getKey(), 0);
+                }
+                ingredientsTable.put(d.getKey(), ingredientsTable.get(d.getKey()) + d.getValue() * p.getValue());
+            }
+        }
+        for (Ingredient i : ingredientsTable.keySet()) {
+            if (!getIngredientBook().hasSufficientIngredients(i, ingredientsTable.get(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
 
     /**
      * Returns an unmodifiable view of the filtered order list
@@ -473,12 +521,25 @@ public class ModelManager implements Model {
     }
 
     //@@author kangtinglee
-    /** Returns an unmodifiable view of the orders belonging to a particular customer */
+    /** Returns an list of the orders belonging to a particular customer */
     public List<Order> getOrdersFromPerson(Person target) {
         List<Order> result = new ArrayList<>();
         ObservableList<Order> orders = getOrderBook().getOrderList();
         for (Order o : orders) {
             if (o.isFromCustomer(target)) {
+                result.add(o);
+            }
+        }
+        return result;
+    }
+
+    //@@author kangtinglee
+    /** Returns an list of the incomplete orders belonging to a particular customer */
+    public List<Order> getIncompleteOrdersFromPerson(Person target) {
+        List<Order> result = new ArrayList<>();
+        List<Order> orders = getOrdersFromPerson(target);
+        for (Order o : orders) {
+            if (o.getState() == Order.State.UNCOMPLETED) {
                 result.add(o);
             }
         }

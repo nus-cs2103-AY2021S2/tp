@@ -154,6 +154,18 @@ public interface Model {
     /** Returns a list of dishes that use a particular ingredient */
     List<Dish> getDishesByIngredients(Ingredient ingredient);
 
+
+    /**
+     * Returns a predicate that returns true if a given dish can be produced (ie sufficient stock exists)
+     */
+    Predicate<Dish> getAvailableDishPredicate();
+
+    /** Returns true if there is sufficient inventory to produce a given dish */
+    boolean hasSufficientIngredients(Dish target);
+
+    /** Returns true if there is sufficient inventory to produce {@code quantity} amount of given dish */
+    boolean hasSufficientIngredients(Dish target, int quantity);
+
     //=========== IngredientBook ================================================================================
     /**
      * Replaces address book data with the data in {@code addressBook}.
@@ -265,9 +277,15 @@ public interface Model {
      */
     void updateFilteredOrderList(Comparator<Order> comparator);
 
+    //@@ author kangtinglee
     /** Returns an list of the orders belonging to a particular customer */
     List<Order> getOrdersFromPerson(Person target);
 
+    //@@ author kangtinglee
+    /** Returns an list of the incomplete orders belonging to a particular customer */
+    List<Order> getIncompleteOrdersFromPerson(Person target);
+
+    /** Mark an order as complete */
     void completeOrder(Order orderToComplete);
 
     /**
@@ -279,4 +297,7 @@ public interface Model {
      * Sets the state of the orders to cancelled
      */
     void cancelOrders(List<Order> targets);
+
+    /** Returns true if an order can be fulfilled */
+    boolean canFulfilOrder(Order target);
 }

@@ -5,4 +5,6 @@ import seedu.address.model.Book;
 
 public interface ReadOnlyIngredientBook extends Book {
     ObservableList<Ingredient> getIngredientList();
+
+    boolean hasSufficientIngredients(Ingredient ingredient, int quantity);
 }

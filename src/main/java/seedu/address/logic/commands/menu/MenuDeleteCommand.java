@@ -40,9 +40,9 @@ public class MenuDeleteCommand extends Command {
     }
 
     /**
-     * Mark order as cancelled with given index along with associated dishes
-     * @param targetIndex index in menu list
-     * @param isForce forces delete a dish
+     * Delete dish given index and isForce flag
+     * @param targetIndex index of dish to be deleted
+     * @param isForce required to be true if there are outstanding orders that will also be cancelled
      */
     public MenuDeleteCommand(Index targetIndex, boolean isForce) {
         this.targetIndex = targetIndex;
