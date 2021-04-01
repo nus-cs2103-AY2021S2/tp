@@ -11,8 +11,8 @@ import java.util.Set;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.pool.TripDay;
-import seedu.address.model.pool.TripTime;
+import seedu.address.model.TripDay;
+import seedu.address.model.TripTime;
 import seedu.address.model.tag.Tag;
 
 /**
