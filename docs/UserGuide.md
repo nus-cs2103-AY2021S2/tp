@@ -315,6 +315,22 @@ Assigns a student or multiple student and/or a tutor to a specific class
 
 A class must always be provided, either student or tutor can be optional.
 
+### Unassigning people from a session : `assign`
+
+Unassigns the specified people from a session.
+
+Format: `unassign [s/ID]… [t/ID] c/ID`
+
+* Unassigns students with the specified `s/ID` from the session with the specified `c/ID`
+* Unassigns the tutor with the specified `t/ID` from the session with the specified `c/ID`
+* At least one of the optional fields must be provided.
+* Any number of students can be unassigned at the same time (including 0)
+
+Examples:
+* `unassign s/1 c/1` unassigns the student with student ID s/1 from the session with session ID c/1.
+* `unassign c/1 t/1` unassigns the tutor with tutor ID t/1 from the session with session ID c/1.
+* `unassign s/1 s/2 t/1 c/1` unassigns students with student IDs s/1 and s/2, and the tutor with tutor ID t/1 from the session with session ID c/1.
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the list of students, tutors and classes.
@@ -358,9 +374,10 @@ Action | Format, Examples
 --------|------------------
 **Add** | For Person:`add_person tp/ROLE n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [tag/TAG]…​` <br> e.g., `add_person tp/student n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665`<br><br> For Session: `add_session d/DAY ts/TIMESLOT s/SUBJECT [tag/TAG]…​` <br> e.g. `add_session d/Saturday ts/13:00 to 15:00 s/Math` 
 **Clear** | `clear`
-**Delete** | For Student: <br> `delete_person s/ID`<br> e.g., `delete_person s/22` <br><br> For Tutor: <br> `delete_person t/ID`<br> e.g., `delete_person t/8`<br><br> For Session:<br>`delete_session c/ID` <br> e.g., `delete_session c/9`
-**Edit** | For Student: <br> `edit_person s/ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tag/TAG]…​` <br> e.g., `edit_person s/2 n/Betsy Crower tag/` <br><br> For Tutor: <br> `edit_person t/ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tag/TAG]…​` <br> e.g., `edit_person t/1 p/88888888 e/sarahwong@example.com` <br><br> For Session: <br> `edit_session c/ID [d/DAY] [ts/TIMESLOT] [s/SUBJECT] [tag/TAG]…​`<br> e.g.,`edit_session c/1 d/Monday s/Biology` <br> e.g. `edit_session c/2 d/Saturday ts/13:00 to 15:00 tag/Hard` 
+**Delete** | Tutor <br> `delete_person t/ID`<br> e.g., `delete_person t/8`<br><br> Student <br> `delete_person s/ID`<br> e.g., `delete_person s/22` <br><br> Class<br>`delete_session c/ID` <br> e.g., `delete_session c/9`
+**Assign** | `assign [s/ID]… [t/ID] c/ID`<br> e.g., `assign s/1 s/2 t/1 c/1`
+**Unassign** | `unassign [s/ID]… [t/ID] c/ID`<br> e.g., `unassign s/1 s/2 t/1 c/1`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | For All Persons: <br>`list persons` <br><br> For All Students: <br>`list students` <br><br> For All Tutors: <br>`list tutors` <br><br> For All Sessions: <br>`list sessions`
-**View** | For Person: <br><br> For Session: <br> `view_session c/ID` <br> e.g., `view_session c/5`
+**List** | `list`
 **Help** | `help`
