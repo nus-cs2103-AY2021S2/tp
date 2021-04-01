@@ -439,7 +439,7 @@ Get rid of all existing records and start afresh.
 **Expected output:**
 
 <p align="center">
-  TODO: IMAGE
+  <img src="images/user-guide/reset-blank.png">
 </p>
 
 ### 5.1 Populate application with sample template data
@@ -451,7 +451,7 @@ Get rid of all existing records and populate it with the sample template data.
 **Expected output:**
 
 <p align="center">
-  TODO: IMAGE
+  <img src="images/user-guide/reset-template.png">
 </p>
 
 ---
