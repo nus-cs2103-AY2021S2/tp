@@ -169,8 +169,9 @@ public class TimeTablePanel extends UiPart<Region> {
         LocalTime endTime = events.stream()
                 .map(event -> event.getTimeTo().value.toLocalTime())
                 .reduce((time1, time2) -> (time1.isAfter(time2) ? time1 : time2))
-                .filter((time) -> time.isAfter(LocalTime.of(22, 0)))
+                .filter((time) -> time.isAfter(LocalTime.of(11, 0)))
                 .orElse(LocalTime.of(12, 0));
+
         int hourDiff = endTime.getHour() - getStartTime().getHour();
         if (hourDiff < 4) {
             endTime = endTime.plusHours(4 - hourDiff);
