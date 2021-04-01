@@ -35,3 +35,7 @@ Given below is an example usage scenario and how the `edit` mechanism behaves.
 8. `EditToRemoveTagCommand` loops through the set of tags and persons in displayed list to remove the `friends` and `pilot` tags from each person in the displayed list.
 
 9. `EditToRemoveTagCommand` creates a `CommandResult` with the success output message and returns it to `LogicManager`.
+
+Given below is the full Sequence Diagram for interactions for the `edit 1 -r` + `TAB` API call.
+
+![Sequence Diagram for Edit Remove](images/EditRemoveSequenceDiagram.png)
