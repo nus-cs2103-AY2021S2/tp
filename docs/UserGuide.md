@@ -613,8 +613,8 @@ Action | Format, Examples
 **Sort all notes** | `sortnote`
 **Find notes using keywords** | `findnote c/NAME_KEYWORD…​ [t/TAG_KEYWORD]…​`
 **Edit note in edit mode** | `editmodenote`
-**Exit edit mode** | `exitnote`
-**Save changes to note** | `savenote`
+**Quit edit mode** | `quit`
+**Save changes to note** | `save`
 ***Contact Features*** | -
 **Add contact** | `addcontact n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `addcontact n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **List all contacts** | `listcontact`
