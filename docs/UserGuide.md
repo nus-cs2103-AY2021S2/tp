@@ -179,7 +179,7 @@ Examples:
 
 #### 3.4.1 Removing an entry : `delete`
 
-Deletes the property or appointment specified by the index from the app.
+Deletes the property or appointment at the specified index from the app.
 
 Formats:
 * `delete appointment INDEX`
