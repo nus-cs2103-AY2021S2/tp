@@ -19,7 +19,7 @@ title: User Guide
 1. Copy the file to the folder you want to use as the _home folder_ for your Dictionote application.
 
 1. Double-click the file to start the app. The GUI should appear in a few seconds. <br>
-   ![Ui](images/UiUserguide.png)
+   ![UiUserguide](images/UiUserguide.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.
 
