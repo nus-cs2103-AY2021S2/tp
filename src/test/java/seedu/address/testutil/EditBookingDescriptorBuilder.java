@@ -1,11 +1,11 @@
 package seedu.address.testutil;
 
+import java.time.LocalDate;
+
 import seedu.address.logic.commands.EditBookingCommand.EditBookingDescriptor;
 import seedu.address.model.booking.Booking;
 import seedu.address.model.booking.Phone;
 import seedu.address.model.booking.TenantName;
-
-import java.time.LocalDate;
 
 public class EditBookingDescriptorBuilder {
 
