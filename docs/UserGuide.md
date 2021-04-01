@@ -28,7 +28,7 @@ tasks with our minimal yet essential set of contact management features.<br>
 The purpose of this user guide is to help you, the user get started with using ClientBook as well as to help you to get familiarised
 with the features that it has to offer so that you can become comfortable with using it in your day-to-day operations as an insurance agent.
 
-## How to Use This Guide
+## How to Use This User Guide
 If you are a new user, you can start with the [Quick Start](#quick-start) section to get ClientBook running. After that,
 we have also provided an [Example Usage](#example-usage) section to help you get familiarised with ClientBook.
 If you are an experienced user, we have provided a convenient [Summary of Commands](#summary-of-commands) at the end of this user guide.
@@ -77,11 +77,9 @@ The quick start section provides a tutorial which will guide you through the ste
    * Alternatively, for those who are tech-savvy, you can launch the application via Command Prompt in Windows or Terminal in Mac OS/Linux using the following command: `java -jar clientbook.jar`. 
    * Note how the app contains some sample data.
     
-        <div align="center">
-            <p align="center"><img src="images/Ui.png"></p>
-            <p>Graphical user interface of ClientBook.</p>
-        </div>
-
+        <p align="center"><img src="images/Ui.png"></p>
+        <p align="center">Graphical user interface of ClientBook.</p>
+    
 1. Type the command in the command box and press Enter to execute it.
    * Some example commands you can try:
 
@@ -106,10 +104,8 @@ Described below are some commands that you can try to get yourself familiarised 
 If you have followed the [Quick Start](#quick-start) guide correctly, you should see the screen below. 
 For each of the commands, type them into the command box and press enter to execute the command.
 
-<div align="center">
-    <p align="center"><img src="images/Ui.png"></p>
-    <p>Graphical user interface of ClientBook.</p>
-</div>
+<p align="center"><img src="images/Ui.png"></p>
+<p align="center">Graphical user interface of ClientBook.</p>
 
 1. Try adding a new Client contact using the command `add n/James Lee p/91234567 e/james@gmail.com a/Blk 123 Serangoon Rd t/Friend t/Colleague i/OCBC#412>www.ocbc.com/policy/412`.
 
