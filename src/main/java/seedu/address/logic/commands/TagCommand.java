@@ -11,7 +11,7 @@ public abstract class TagCommand extends Command {
     public static final String MESSAGE_NO_SELECTED_PERSON = "You have not selected any person.";
     public static final String MESSAGE_NO_SHOWN_PERSON = "There are no shown person.";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Add or delete tags of person(s) in the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Add or delete tags of person(s) in the address book.\n"
             + "Parameters: "
             + "SUB_COMMAND [PARAMETERS]\n"
             + "Sub Commands: "
