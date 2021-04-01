@@ -283,6 +283,10 @@ Finds meetings which has its parameters matched by any of the given keywords.
 
 Format: `findmeet KEYWORD [MORE_KEYWORDS]`
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Do a listmeet command first to switch to Meeting Mode and view the meetings in the Ui
+</div>
+
 * The search is case-insensitive. e.g `john` will match `John`
 * The order of the keywords does not matter. e.g. `plans discussion` will match `discuss plans`
 * Both full and partial keywords can match. e.g. `insurance` and `sur` will both match `insurance`
