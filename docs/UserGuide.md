@@ -256,12 +256,17 @@ A person can have any number of tags and insurance policies (including 0).
 
 **Purpose**: Edits an existing client contact in the ClientBook.
 
-**Format**: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/POLICY_NUMBER]…​ [t/TAG]…​ [m/MEETING]…​`
+**Format**: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/POLICY_NUMBER…​ [-MODE]] [t/TAG]…​ [m/MEETING]…​`
 
 * Edits the client at the specified `INDEX`.
     * `INDEX` refers to the index number shown in the displayed client list.
     * `INDEX` must be more than 1, and less than or equal to the index of the last item in the displayed list.
 * At least one of the optional fields must be provided.
+* While editing the insurance policies of a client, user can choose to replace, modify, remove or insert policy ids to 
+a client, by typing `-MODE` to specify a mode after a policy number. 
+    * `-MODE` must be -insert, -modify, remove.
+    * If user chooses to modify an existing policy, the user can specify the old and new policies, separated by ';'
+    * If no mode is specified, then the policies input will replace all previous policies.
 
 <div markdown="block" class="alert alert-info">
 :exclamation: **Caution**: Existing values will be **replaced** with the input values.
@@ -273,8 +278,12 @@ A person can have any number of tags and insurance policies (including 0).
       
       ![edit 1](images/edit-1.png)
     
-*  Edit the name of the 2nd person to be `Betsy Crower`.
-    * `edit 2 n/Betsy Crower`
+*  Edit the name of the 2nd person to be `Betsy Crower` and modify the current policy 
+`P12341` to `P1234>insurance.com/policy1234`.
+    * `edit 2 n/Betsy Crower i/P12341;P1234>insurance.com/policy1234 -modify`
+    
+*  Edit the name of the 3rd person to be `Tom Doe` and remove the policies `P1234`, `P4321` and `P5123`.
+    * `edit 3 n/Tom Doe i/P1234 i/P4321 i/P5123 -remove`
 
 [Return to Table of Contents](#table-of-contents)
 <br><br>
@@ -287,8 +296,8 @@ A person can have any number of tags and insurance policies (including 0).
 **Format**: `list [-n] [-p] [-e] [-a] [-i] [-t] [-m]`
 
 **Examples**: 
-* Shows a list of all clients and all their information.
-  * `list`
+*  `list` without any specified identifiers shows a list of all clients and all their information.
+    * `list`
     
     ![list](images/list.png)
     
@@ -690,7 +699,7 @@ If you get an error message (`Java command not found`), it means that Java is no
 | --------|------------------ | --- |
 [**Help**](#viewing-help--help) | `help` | `help` |
 [**Add**](#add-client-contact-add) | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [i/POLICY_ID] [t/TAG]…​` | `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 i/Policy_1023 t/premium t/lifeinsurance` |
-[**Edit**](#edit-client-contact-edit) | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [i/POLICY_NUMBER]…​ [t/TAG]…​` | `edit 2 n/James Lee e/jameslee@example.com` |
+[**Edit**](#edit-client-contact-edit) | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/POLICY_NUMBER…​ [-MODE]] [t/TAG]…​ [m/MEETING]…​` | `edit 2 n/James Lee e/jameslee@example.com` |
 [**List**](#list-all-clients--list) | `list [-ATTRIBUTE]` | `list -i` |
 [**Find**](#search-for-client-contact-based-on-keywords-find) | `find FLAG/KEYWORD [& MORE_KEYWORDS] [-ATTRIBUTES]…​` | `find a/Bedok & Clementi -p` |
 [**Policy**](#display-policies-associated-with-selected-client-policy) | `policy INDEX` | `policy 4` |
