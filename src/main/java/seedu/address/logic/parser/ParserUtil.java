@@ -89,16 +89,16 @@ public class ParserUtil {
         List<Attribute> parsedAttributesList = new ArrayList<>();
         for (String attribute : attributes) {
             switch (attribute) {
-            case "-policy":
+            case "-i":
                 parsedAttributesList.add(Attribute.POLICY_ID);
                 break;
-            case "-phone":
+            case "-p":
                 parsedAttributesList.add(Attribute.PHONE);
                 break;
-            case "-email":
+            case "-e":
                 parsedAttributesList.add(Attribute.EMAIL);
                 break;
-            case "-address":
+            case "-a":
                 parsedAttributesList.add(Attribute.ADDRESS);
                 break;
             case "-meeting":

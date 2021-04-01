@@ -12,7 +12,7 @@ public class TypicalShortcuts {
     public static final Shortcut SECOND = new Shortcut("sna", "sort -n -asc");
     public static final Shortcut THIRD = new Shortcut("fa", "find n/alex");
     public static final Shortcut FOURTH = new Shortcut("h", "help");
-    public static final Shortcut FIFTH = new Shortcut("listphone", "list -phone");
+    public static final Shortcut FIFTH = new Shortcut("listphone", "list -p");
 
     private TypicalShortcuts() {} // prevents instantiation
 
