@@ -32,7 +32,7 @@ public class FindCommandTest {
 
         // different customer -> returns false
         assertFalse(findFirstCommand.equals(findSecondCommand));*/
-   /* }*/
+    /* }*/
 /*
     @Test
     public void execute_zeroKeywords_noCustomerFound() {
@@ -54,7 +54,7 @@ public class FindCommandTest {
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredCustomerList());
     }*/
 
-    /**
+    /*
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      *//*
     private NameContainsKeywordsPredicate preparePredicate(String userInput) {

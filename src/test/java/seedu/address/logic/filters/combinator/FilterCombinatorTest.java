@@ -2,8 +2,6 @@ package seedu.address.logic.filters.combinator;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.logging.Filter;
-
 public class FilterCombinatorTest {
 
     @Test
