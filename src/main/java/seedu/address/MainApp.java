@@ -44,11 +44,22 @@ public class MainApp extends Application {
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
+    private static Application applicationInstance;
+
     protected Ui ui;
     protected Logic logic;
     protected Storage storage;
     protected Model model;
     protected Config config;
+
+    /**
+     * Exposes an instance of JavaFX Application.
+     *
+     * @return {@code Application} instance
+     */
+    public static Application getInstance() {
+        return applicationInstance;
+    }
 
     @Override
     public void init() throws Exception {
@@ -71,6 +82,8 @@ public class MainApp extends Application {
         logic = new LogicManager(model, storage);
 
         ui = new UiManager(logic);
+
+        applicationInstance = this;
     }
 
     /**

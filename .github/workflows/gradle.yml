@@ -43,3 +43,15 @@ jobs:
         with:
           file: ${{ github.workspace }}/build/reports/jacoco/coverage/coverage.xml
           fail_ci_if_error: true
+
+      - name: Build ShadowJar
+        if: runner.os == 'Linux'
+        run: ./gradlew shadowJar
+
+      - name: Upload Artifacts
+        if: runner.os == 'Linux'
+        continue-on-error: true
+        uses: actions/upload-artifact@v2
+        with:
+          name: Package
+          path: build/libs

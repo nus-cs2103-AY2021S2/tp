@@ -10,6 +10,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -204,7 +205,27 @@ public class AddCommandTest {
         }
 
         @Override
+        public void updateSelectedPersonList(List<Person> selectedPersonList) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public int getNumOfAlias() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void clearSelectedPersonList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void applySelectedPredicate() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Predicate<Person> getSelectedPersonPredicate() {
             throw new AssertionError("This method should not be called.");
         }
 

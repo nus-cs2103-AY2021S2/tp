@@ -9,12 +9,14 @@ import static seedu.address.testutil.TypicalAliases.ADD_ALIAS;
 import static seedu.address.testutil.TypicalAliases.ADD_COMMAND_ALIAS;
 import static seedu.address.testutil.TypicalAliases.DELETE_COMMAND_ALIAS;
 import static seedu.address.testutil.TypicalAliases.EDIT_COMMAND_ALIAS;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
@@ -155,6 +157,13 @@ public class ModelManagerTest {
 
         // same object -> returns true
         assertTrue(modelManager.equals(modelManager));
+
+        // different selectedPersonList -> return false
+        modelManagerCopy.updateSelectedPersonList(Collections.singletonList(
+                modelManagerCopy.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased())));
+        modelManager.updateSelectedPersonList(modelManager.getFilteredPersonList());
+        assertFalse(modelManager.equals(modelManagerCopy));
+        assertFalse(modelManagerCopy.equals(modelManager));
 
         // null -> returns false
         assertFalse(modelManager.equals(null));
