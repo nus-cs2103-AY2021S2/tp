@@ -125,7 +125,7 @@ When you first launch DietLAH!, you will be prompted to enter your particulars.
 
 DietLAH! uses this information to provide personalized recommendations based on your personal goals and current characteristics.
 
-**Note:** ⚠️ You need to enter this command before all other commands will work!
+⚠️ <span style="color:yellow">**Note:**</span> You need to enter this command before all other commands will work!
 
 **Command Format:** `bmi g/GENDER a/AGE h/HEIGHT(CM) w/WEIGHT(KG) i/IDEAL_WEIGHT(KG)`
 
