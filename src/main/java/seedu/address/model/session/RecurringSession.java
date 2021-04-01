@@ -202,10 +202,10 @@ public class RecurringSession extends Session {
                 (int) ChronoUnit.DAYS.between(otherSession.getSessionDate().getDate(),
                         otherSession.getLastSessionDate().getDate()) + daysBetween;
         // Days from when the earlier session starts
-        int daysFromFirstSessionStart = getInterval().getValue();
+        int daysFromFirstSessionStart = 0;
         int daysFromSecondSessionStart = daysBetween;
-        while (daysFromFirstSessionStart <= firstSessionRecurrenceLength
-                || daysFromSecondSessionStart <= secondSessionRecurrenceLength) {
+        while (daysFromFirstSessionStart < firstSessionRecurrenceLength
+                || daysFromSecondSessionStart < secondSessionRecurrenceLength) {
             if (daysFromFirstSessionStart == daysFromSecondSessionStart) {
                 break;
             } else if (daysFromFirstSessionStart > daysFromSecondSessionStart) {
