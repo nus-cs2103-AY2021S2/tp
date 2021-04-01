@@ -17,8 +17,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.driver.Driver;
-import seedu.address.model.pool.TripDay;
-import seedu.address.model.pool.TripTime;
+import seedu.address.model.TripDay;
+import seedu.address.model.TripTime;
 import seedu.address.model.tag.Tag;
 
 public class PoolCommandParser implements Parser<PoolCommand> {

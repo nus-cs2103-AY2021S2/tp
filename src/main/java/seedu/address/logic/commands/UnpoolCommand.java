@@ -39,7 +39,7 @@ public class UnpoolCommand extends Command {
         List<Pool> lastShownList = model.getFilteredPoolList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PASSENGER_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_POOL_DISPLAYED_INDEX);
         }
 
         Pool poolToRemove = lastShownList.get(targetIndex.getZeroBased());
