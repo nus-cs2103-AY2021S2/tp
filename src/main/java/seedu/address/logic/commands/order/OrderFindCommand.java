@@ -16,13 +16,18 @@ import seedu.address.model.order.Order;
 public class OrderFindCommand extends Command {
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all orders whose customer's names contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Finds all orders whose customer's names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " n/alex bob";
 
     private final Predicate<Order> predicate;
 
+    /**
+     * Find orders based on the given predicates
+     * @param predicates condition to find orders
+     */
     public OrderFindCommand(List<Predicate<Order>> predicates) {
         assert predicates != null && predicates.size() > 0;
         this.predicate = PredicateUtil.composePredicates(predicates);
