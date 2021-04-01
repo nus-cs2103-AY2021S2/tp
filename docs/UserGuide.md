@@ -170,16 +170,16 @@ Examples:
 
 Deletes the specified orders from the CakeCollate database.
 
-Format: `delete INDEX...`
+Format: `delete INDEXES`
 
-* Deletes the orders with the specified indices.
-* The `INDEX` refers to the order `INDEX` number shown in the list of orders.
-* One or more indices can be entered.
-* The `INDEX` **must be valid**.
+* Deletes the orders with the specified `INDEXES`.
+* The `INDEXES` refers to the order `INDEXES` number shown in the list of orders.
+* One or more `INDEXES` can be entered.
+* The `INDEXES` **must be valid**.
 
 Examples:
 * `delete 2` deletes the order with `INDEX` 2 from the CakeCollate database.
-* `delete 2 3` deletes the orders with indices 2 and 3 from the CakeCollate database.
+* `delete 2 3` deletes the orders with `INDEXES` 2 and 3 from the CakeCollate database.
 
 ### Receiving reminders for orders : `remind`
 
@@ -281,15 +281,15 @@ Examples:
 
 Deletes order items from the order items table based on the specified list of indices.
 
-Format: `deleteItem ORDER_ITEM_INDEX...`
+Format: `deleteItem ORDER_ITEM_INDEXES`
 
-* The `ORDER_ITEM_INDEX` refers to the order `ORDER_ITEM_INDEX` number shown in the order items table.
-* One or more order item indices can be entered.
-* The `ORDER_ITEM_INDEX` **must be valid**.
+* The `ORDER_ITEM_INDEX` refers to the `ORDER_ITEM_INDEX` number shown in the order items table.
+* One or more `ORDER_ITEM_INDEXES` can be entered.
+* The `ORDER_ITEM_INDEXES` **must be valid**.
 
 Examples:
-*  delete 2` deletes the order items with `ORDER_ITEM_INDEX` 2 from the order items table.
-* `delete 2 3` deletes the order items with indices 2 and 3 from the order items table.
+*  delete 2 deletes the order items with `ORDER_ITEM_INDEX` 2 from the order items table.
+* `delete 2 3` deletes the order items with `ORDER_ITEM_INDEXES` 2 and 3 from the order items table.
 
 ### Exiting the program : `exit`
 
@@ -328,7 +328,7 @@ Action  | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS d/DELIVERY_DATE o/ORDER_DESCRIPTION... [t/TAG]...` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/13-05-2021 o/strawberry cake 3` <br><br> `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS d/DELIVERY_DATE oi/ORDER_ITEM_INDEXES [o/ORDER_DESCRIPTION]... [t/TAG]...` <br> e.g. `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/13-05-2021 o/strawberry cake oi/1` <br>
 **Clear** | `clear`
-**Delete** | `delete INDEXES`<br> e.g., `delete 3`
+**Delete** | `delete INDEXES`<br> e.g., `delete 3 4`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find [n/KEYWORD_NAME]... [p/KEYWORD_PHONE]... [e/KEYWORD_EMAIL]... [a/KEYWORD_ADDRESS]... [o/KEYWORD_ORDER_DESCRIPTION]... [t/KEYWORD_TAG]... [d/KEYWORD_DELIVERY_DATE]... [s/KEYWORD_DELIVERY_STATUS]... [r/KEYWORD_REQUEST]... `<br> e.g., `find James Jake`, `find n/Alex o/Chocolate`, `find n/Bernice d/march s/undelivered` 
 **List** | `list`
@@ -338,7 +338,8 @@ Action  | Format, Examples
 **Undelivered** | `undelivered INDEXES`<br> e.g., `undelivered 3 4`
 **Delivered** | `delivered INDEXES`<br> e.g., `delivered 3 4`
 **Cancelled** | `cancelled INDEXES`<br> e.g., `cancelled 3 4`
-
+**Add Order Item** | `addItem ORDER_ITEM_DESCRIPTION`<br> e.g., `addItem 2 x Chocolate Cake`
+**Delete Order Item** | `deleteItem ORDER_ITEM_INDEXES`<br> e.g., `deleteItem 2 3`
 --------------------------------------------------------------------------------------------------------------------
 
 ## Acknowledgements
