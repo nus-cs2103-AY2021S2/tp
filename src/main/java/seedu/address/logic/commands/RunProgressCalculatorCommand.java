@@ -6,6 +6,7 @@ import seedu.address.logic.ProgressCalculator;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.diet.DietPlan;
+import seedu.address.model.food.FoodIntakeList;
 import seedu.address.model.user.User;
 
 /**
@@ -36,9 +37,10 @@ public class RunProgressCalculatorCommand extends Command {
             throw new CommandException(MESSAGE_NO_DIET);
         }
 
+        FoodIntakeList foodIntakeList = model.getFoodIntakeList();
         User user = model.getUser();
 
-        String result = ProgressCalculator.calculateProgress(user);
+        String result = ProgressCalculator.calculateProgress(foodIntakeList, dietPlan, user);
 
         return new CommandResult(result);
 
