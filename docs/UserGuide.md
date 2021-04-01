@@ -5,11 +5,19 @@ title: User Guide
 
 <a name="introduction"></a>
 ## Introduction
-HEY MATEz is a desktop application to get rid of CCA leaders' woes by allowing them to track 
-members and tasks within the CCA efficiently. It is
-a Command Line Interface (CLI) application while still retaining a Graphical User Interface (GUI)
-as this application is catered to students who are used to typing on the keyboard frequently. With HEY MATEz, planning 
-and distributing tasks will never give you a headache again! :smile:
+As a Club leader, you may be struggling to keep track of the ever-changing members of your club as well as manage 
+the mountain of tasks that have to be completed within the club. It may be a challenge to keep track of the increasing 
+number of tasks and be able to assign these tasks to members efficiently. 
+
+HEY MATEz is a desktop application to get rid of your woes by allowing you to track 
+members and tasks within the club efficiently and easily. It is
+a Command Line Interface (CLI) application which handles user requests that are typed into the input box as commands.
+With HEY MATEz, managing and distributing tasks will never be a headache again! :smile:
+
+This user guide includes information on the features of HEY MAYEz as well as a walkthrough on how to use them. The features 
+are further divided into 3 sections which include the General features, Member related features as well as the Task related features.
+Member related features allow you to manage a list of members and find members. On the other hand, Task related features allow you
+to manage tasks which can be identified by their unique deadlines or priorities.
 
 * [Introduction](#introduction)  
 * [Quick Start](#quick-start)  
@@ -54,7 +62,7 @@ and distributing tasks will never give you a headache again! :smile:
 
 1. Copy the file to the folder you want to use as the _home folder_ for your HEY MATEz.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample tasks and members.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -141,7 +149,7 @@ Example: `help`
 <a name="addMember"></a>
 ### 1. Add Member: `addMember`
 
-Adds a member along with his/ her contract number to contact list.
+With new members joining the club, you can add a new member along with his/ her contact number to the contact list.
 
 Format: `addMember NAME -p PHONE_NUMBER -e EMAIL [-r ROLE]`
 
@@ -155,7 +163,7 @@ Examples:
 <a name="deleteMember"></a>
 ### 2. Delete Member: `deleteMember`
 
-Delete a member along with all of his/her contact details from the members list.
+As members leave the club, you can delete a member along with all of his/her contact details from the members list.
 
 Format: `deleteMember NAME`
 
@@ -169,7 +177,7 @@ Examples:
 <a name="viewMembers"></a>
 ### 3. View Members: `viewMembers`
 
-View the list of members you have added.
+Display the list of members you have added.
 
 Format: `viewMembers `
 
@@ -178,7 +186,8 @@ Examples:
 
 <a name="editMember"></a>
 ### 4. Edit Member: `editMember`
-Edits the existing Member in the application with the name you specified.
+Club members may change their emails or phone numbers after a while. This feature allows you to edit the details of the 
+existing Member in the application with the name you specify.
 
 Format: `editMember NAME_IN_LIST [-n NEW_NAME] [-p NEW_PHONE_NUMBER] [-e NEW_EMAIL] [-r ROLE]`
 
@@ -193,7 +202,8 @@ Examples:
 <a name="findMember"></a>
 ### 5. Find Members by Keywords: `findMembers`
 
-Find all members whose details contain any of the specified keywords.
+With so many members in the club, you may want to find a particular member's details quickly. 
+This feature allows you to find all members whose details contain any of the specified keywords.
 
 Format: `findMembers KEYWORD [MORE_KEYWORDS]`
 
@@ -211,7 +221,8 @@ Examples:
 <a name="addTask"></a>
 ### 1. Add Task: `addTask`
 
-Adds a task, with its description and deadline to the list.
+With new tasks that need to be completed within the club every week, you can adds a task, with its description and 
+deadline to the list.
 
 Format: `addTask TITLE -d DESCRIPTION -b DEADLINE [-s STATUS] [-p PRIORITY] [-a ASSIGNEE]...`
 
@@ -231,7 +242,7 @@ Examples:
 
 <a name="deleteTask"></a>
 ### 2. Delete Task: `deleteTask`
-Deletes a task from the list by with task INDEX you specified.
+Deletes a task from the list with task INDEX you specified.
 
 Format: `deleteTask INDEX`
 
@@ -240,7 +251,7 @@ Examples:
 
 <a name="viewTasks"></a>
 ### 3. View Tasks: `viewTasks`
-Views the list of tasks that the user has added into HEY MATEz.
+Displays the list of tasks that you have added into HEY MATEz.
 
 Format: `viewTasks`
 
@@ -249,7 +260,8 @@ Examples:
 
 <a name="editTask"></a>
 ###     4. Edit Task: `editTask`
-Edits the task at the task index that is specified with the new details you have keyed in.
+With ever-changing task requirements, you can edit a task at the task index that is specified with the new details 
+you key in.
 
 Format: `editTask INDEX [-n NEW_TITLE] [-d NEW_DESCRIPTION] [-b NEW_DEADLINE] [-s NEW_STATUS] [-p NEW_PRIORITY] [-a NEW_ASSIGNEE]`
 
@@ -271,7 +283,8 @@ Examples:
 <a name="doneTask"></a>
 ### 5. Mark Task as Completed: `done`
 
-Change the status of a task with the task index you specify from **uncompleted** to **completed**.
+Upon completion of a task, you can change the status of a task with the task index you specify from **uncompleted** 
+to **completed**.
 
 Format: `done INDEX`
 
@@ -291,7 +304,8 @@ Examples:
 <a name="findTask"></a>
 ### 7. Find Tasks by Keywords: `findTasks`
 
-Find all tasks containing any of the specified keywords in its title or description.
+With so many tasks, you may want to find tasks with given keywords quickly.
+This feature allows you to find all tasks containing any of the specified keywords in its title or description.
 
 Format: `findTasks [KEYWORD]...`
 
@@ -306,7 +320,8 @@ Examples:
 <a name="findBefore"></a>
 ### 8. Find Tasks due before certain date: `findBefore`
 
-Find all tasks with deadlines before the date you have specified.
+With so many tasks that need to be completed at different times, you may want to find tasks which are due before a certain date.
+This feature allows you to find all tasks with deadlines before the date you have specified.
 
 Format: `findBefore DATE`
 
@@ -320,7 +335,8 @@ Examples:
 <a name="findPriority"></a>
 ### 9. Find Tasks by Priority: `findPriority`
 
-Find all tasks containing the priority that you have specified.
+With so many tasks that are of different priority, this feature allows you to find all tasks containing the priority that 
+you have specified.
 
 * The valid input values for `findPriority` are **high**, **medium**, **low** and **unassigned**.
 
@@ -346,7 +362,8 @@ Examples:
 <a name="findUnassigned"></a>
 ### 11. View List of Unassigned Tasks: `viewUnassignedTasks`
 
-View the list of unassigned tasks.
+In order to efficiently distribute tasks to members, you may want to view tasks which have yet to be assigned to a member.
+This feature allows you to view the list of unassigned tasks.
 
 Format: `viewUnassignedTasks`
 
@@ -366,7 +383,8 @@ Examples:
 <a name="findTasksFor"></a>
 ### 13. Find Tasks Assigned to a Single Member: `findTasksFor`
 
-Find all tasks assigned to a single Member
+In order to manage members efficiently, you may want to track the tasks that are assigned to each member.
+This feature allows you to find all tasks assigned to a single Member.
 
 Format: `findTasksFor NAME`
 
