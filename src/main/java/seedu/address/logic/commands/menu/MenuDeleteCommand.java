@@ -40,7 +40,7 @@ public class MenuDeleteCommand extends Command {
     }
 
     /**
-     * Forces delete dish with given index along with associated ingredients
+     * Mark order as cancelled with given index along with associated dishes
      * @param targetIndex index in menu list
      * @param isForce forces delete a dish
      */

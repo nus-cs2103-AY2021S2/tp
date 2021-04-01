@@ -54,7 +54,7 @@ public class Ingredient implements Item {
         }
 
         Ingredient otherIngredient = (Ingredient) other;
-        return this.name.equals(name) && otherIngredient.quantity == quantity;
+        return this.name.equals(otherIngredient.name);
     }
 
     @Override
