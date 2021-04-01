@@ -1,19 +1,19 @@
 package seedu.address.model.person;
 
-import seedu.address.commons.util.StringUtil;
-import seedu.address.logic.parser.AgeParser;
-
-import java.time.LocalDate;
-import java.time.Period;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.function.Predicate;
+
+import seedu.address.commons.util.StringUtil;
 
 public class TagsContainsKeywordsPredicate implements Predicate<Person> {
 
 
     private final String tag;
 
+    /**
+     * Constructs an {@code TagsContainsKeywordsPredicate} to be used in the predicate test
+     *
+     * @param keywords a user filter search input.
+     */
     public TagsContainsKeywordsPredicate(String keywords) {
         this.tag = keywords;
     }

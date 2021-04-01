@@ -1,26 +1,23 @@
 package seedu.address.model.person;
 
-import seedu.address.commons.util.StringUtil;
-import seedu.address.logic.commands.FilterCommand;
-import seedu.address.logic.parser.FilterKeywordChecker;
-import seedu.address.logic.parser.exceptions.ParseException;
-
 import java.util.List;
 import java.util.function.Predicate;
-import java.util.logging.Filter;
 
-import static seedu.address.commons.core.Messages.*;
+import seedu.address.logic.parser.FilterKeywordChecker;
 
 public class AttributeContainsKeywordsPredicate implements Predicate<Person> {
 
 
     private final List<String> keywords;
 
+    /**
+     * Constructs an {@code AttributeContainsKeywordsPredicate} to be used in the predicate test
+     *
+     * @param keywords a user filter search input.
+     */
     public AttributeContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
-
-
 
     @Override
     public boolean test(Person person) {

@@ -1,28 +1,26 @@
 package seedu.address.model.person;
 
-import seedu.address.commons.util.StringUtil;
-import seedu.address.logic.parser.AgeParser;
-import seedu.address.logic.parser.exceptions.ParseException;
-
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
+
+import seedu.address.logic.parser.AgeParser;
 
 public class AgeIsInRangePredicate implements Predicate<Person> {
 
     private final String age;
     private final List<Integer> ageRangeList;
 
+    /**
+     * Constructs an {@code AgeIsInRangePredicate} to be used in the predicate test
+     *
+     * @param keywords a user filter search input.
+     */
     public AgeIsInRangePredicate(String keywords) {
         this.age = keywords;
         this.ageRangeList = new AgeParser(age).value();
     }
-
-//    address, gender, tags, insurance plan name, age
-//    keywords.stream()
-//            .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getName().fullName, keyword));
 
     @Override
     public boolean test(Person person) {

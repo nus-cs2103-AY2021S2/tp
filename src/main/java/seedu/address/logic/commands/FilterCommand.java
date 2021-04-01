@@ -14,9 +14,7 @@ public class FilterCommand extends Command {
             + " any of the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: PREFIX/KEYWORD [PREFIX/MORE_KEYWORDS]...\n"
             + "Prefixes: address: a/ADDRESS; gender: g/GENDER; tag: t/TAG; insurance plan name: plan/PLAN_NAME \n"
-//          + "Tip 1: for keywords of an attribute consisting of more than one word, connect them using an underscore "
-//          + "(eg. 'a/Jurong_East', 'plan/Protecc_Life').\n"
-            + "Tip 2: for age filter, you can search using a single age value or using a range. To use a range, \n"
+            + "Tip 1: for age filter, you can search using a single age value or using a range. To use a range, \n"
             + "input 'age/[lower_bound]-[higher_bound]'. These queries are valid: 'age/25', 'age/30-35' \n"
             + "Example: " + COMMAND_WORD + " a/Clementi g/M t/medical plan/Protecc age/30-35";
 

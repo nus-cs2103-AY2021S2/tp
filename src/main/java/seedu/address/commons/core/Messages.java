@@ -10,9 +10,9 @@ public class Messages {
     public static final String MESSAGE_INVALID_PREFIX =
             "Invalid prefix! Please refer to the list of prefixes! \n%1$s";
     public static final String MESSAGE_INVALID_AGE_INPUT =
-            "Invalid age input! Please refer to Tip 2! \n%1$s";
+            "Invalid age input! Please refer to Tip 1! \n%1$s";
     public static final String MESSAGE_BAD_AGE_RANGE_NOTATION =
-            "Invalid age range notation (You used more than one '-'! Please refer to Tip 2! \n%1$s";
+            "Invalid age range notation (You used more than one '-'! Please refer to Tip 1! \n%1$s";
     public static final String MESSAGE_EMPTY_ARGUMENT =
             "Missing keyword! Please refer to the instructions below \n%1$s";
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";

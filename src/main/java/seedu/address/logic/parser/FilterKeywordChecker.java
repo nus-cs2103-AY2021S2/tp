@@ -1,35 +1,36 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.commands.FilterCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-
-import java.util.List;
-
-import static seedu.address.commons.core.Messages.*;
-
 public class FilterKeywordChecker {
 
     private String keyword;
     private String attributeType;
 
+    /**
+     * Constructs an {@code FilterKeyWordChecker} and detects the prefix
+     *
+     * @param keyword a user filter search input.
+     */
     public FilterKeywordChecker(String keyword) {
         this.keyword = keyword;
 
-        if (keyword.substring(0,2).equals("a/")) {
+        if (keyword.substring(0, 2).equals("a/")) {
             this.attributeType = "address";
-        } else if (keyword.substring(0,2).equals("g/")) {
+        } else if (keyword.substring(0, 2).equals("g/")) {
             this.attributeType = "gender";
-        } else if (keyword.substring(0,2).equals("t/")) {
+        } else if (keyword.substring(0, 2).equals("t/")) {
             this.attributeType = "tag";
-        } else if (keyword.substring(0,4).equals("age/")) {
+        } else if (keyword.substring(0, 4).equals("age/")) {
             this.attributeType = "age";
-        } else if (keyword.substring(0,2).equals("i/")) {
+        } else if (keyword.substring(0, 2).equals("i/")) {
             this.attributeType = "plan";
         } else {
             this.attributeType = "invalid";
         }
     }
 
+    /**
+     * Returns the {@code String} value of keyword after checking the attribute type of the filter query
+     */
     public String value() {
         if (isAddress() || isGender() || isTag()) {
             return this.keyword.substring(2);
@@ -42,22 +43,37 @@ public class FilterKeywordChecker {
         }
     }
 
+    /**
+     * Returns the {@code String} value of attribute type of the query
+     */
     public String getAttributeType() {
         return this.attributeType;
     }
 
+    /**
+     * Returns true if the attribute type is address (prefix: a/), otherwise false
+     */
     public boolean isAddress() {
         return this.attributeType.equals("address");
     }
 
+    /**
+     * Returns true if the attribute type is gender (prefix: g/), otherwise false
+     */
     public boolean isGender() {
         return this.attributeType.equals("gender");
     }
 
+    /**
+     * Returns true if the attribute type is tag (prefix: t/), otherwise false
+     */
     public boolean isTag() {
         return this.attributeType.equals("tag");
     }
 
+    /**
+     * Returns true if the attribute type is age (prefix: age/), otherwise false
+     */
     public boolean isAge() {
         try {
             String[] ageArr = this.keyword.substring(4).split("-");
@@ -70,10 +86,16 @@ public class FilterKeywordChecker {
         }
     }
 
+    /**
+     * Returns true if the attribute type is insurance plan (prefix: i/), otherwise false
+     */
     public boolean isPlan() {
         return this.attributeType.equals("plan");
     }
 
+    /**
+     * Returns true if the attribute type neither of the above, and therefore "invalid", otherwise true
+     */
     public boolean isInvalid() {
         return this.attributeType.equals("invalid");
     }

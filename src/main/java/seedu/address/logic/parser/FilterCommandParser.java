@@ -1,18 +1,15 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.commons.core.Messages.*;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.commons.core.Messages.MESSAGE_BAD_AGE_RANGE_NOTATION;
+import static seedu.address.commons.core.Messages.MESSAGE_EMPTY_ARGUMENT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_AGE_INPUT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Stream;
 
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.*;
-
+import seedu.address.model.person.AttributeContainsKeywordsPredicate;
 
 public class FilterCommandParser implements Parser<FilterCommand> {
     /**
