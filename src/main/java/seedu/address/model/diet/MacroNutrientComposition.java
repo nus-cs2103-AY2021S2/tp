@@ -9,9 +9,13 @@ import java.util.Objects;
  */
 public final class MacroNutrientComposition {
 
-    private final double fats;
-    private final double carbohydrates;
-    private final double proteins;
+    private double fats;
+    private double carbohydrates;
+    private double proteins;
+
+    public MacroNutrientComposition() {
+        super();
+    }
 
     /**
      * Constructor for diet composition.
