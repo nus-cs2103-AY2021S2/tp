@@ -3,7 +3,9 @@ layout: page
 title: User Guide
 ---
 
-Weeblingo is a desktop app for managing flashcards, **optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). With a nice and friendly interface, users can learn Japanese at a comfortable pace with this application.
+Weeblingo is a desktop application for **learning Japanese, optimized for use via a Command Line Interface** (CLI) while 
+still having the benefits of a Graphical User Interface (GUI). With a nice and friendly interface, 
+users can learn Japanese at a comfortable pace and manage flashcards with this application.
 
 * [Quick Start](#quick-start)
 * [Features](#features)
@@ -17,6 +19,16 @@ Weeblingo is a desktop app for managing flashcards, **optimized for use via a Co
   * [Asking for help: `help`](#asking-for-help-help)
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
+--------------------------------------------------------------------------------------------------------------------
+
+## 1. Introduction
+
+### 1.1 About WeebLingo
+WeebLingo is a desktop application that helps users learn the Japanese language. It has three primary modes, 
+which are the **learn**, **quiz** and **history** modes. The app contains flashcards that pairs a Japanese word and 
+its corresponding English consonant for users to learn. It allows users to test themselves on their grasp of the Japanese language
+by starting a quiz session. In addition, users can view their history of past quiz attempts and the relevant statistics.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
@@ -143,11 +155,11 @@ _Details coming soon ..._
 
 ## FAQ
 
-**Q**: How do I transfer my quiz attempt scores to other computers?</br>
+**Q**: How do I transfer my quiz attempt scores to other computers?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file
 that contains the data of your previous WeebLingo home folder.
 
-**Q**: Can I add my customized flashcards?</br>
+**Q**: Can I add my customized flashcards?<br>
 **A**: Sorry, the current version of the application does not allow self-defined flashcards to be added. However, if you
 are advanced and you know how to manipulate the storage files, you can do so if you want.
 
