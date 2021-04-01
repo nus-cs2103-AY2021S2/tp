@@ -284,6 +284,12 @@ Lists all the current in-store books.
 
 Format: `listbook`
 
+#### Listing all overdue books : `listoverdue`
+
+Similar to `listbook` except the books listed are all overdue.
+
+Format: `listoverdue`
+
 ### Managing borrowing records
 
 SmartLib also provides a variety of features to manage the borrowing records of your readers.
@@ -309,6 +315,7 @@ Records a returning activity.
 Format: `return bc/BARCODE`
 
 * Let reader returns the book specified by barcode BARCODE
+* The output message will contain the amount of fine that the reader needs to pay if the book is overdue.
 
 Examples:
 * `return bc/1202179131` records a rental entry that the book with the corresponding barcode has been returned.
