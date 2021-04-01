@@ -104,11 +104,10 @@ The `UI` component,
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying
    help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("list")` and `execute("list l/kitchen")` API
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("list")` API
 calls respectively.
 
 ![Interactions Inside the Logic Component for the `list` Command](images/ListStoreMandoSequenceDiagram.png)
-![Interactions Inside the Logic Component for the `list l/kitchen` Command](images/ListLocationSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ListCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -160,6 +159,9 @@ or with a specific tag respectively.
 
 Given below is an example usage scenario and how the list operation behaves at each step.
 
+![Interactions Inside the Logic Component for the `list` Command](images/ListStoreMandoSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `list l/kitchen` Command](images/ListLocationSequenceDiagram.png)
+
 Step 1. The user execute `list` to list all the items in the inventory. `StoreMandoParser` takes in the user input and
 determines the command word (list) and argument ("") respectively.
 
@@ -169,7 +171,7 @@ argument stated in step 1 (""), which will be initialised to true.
 Step 3. The `parse` method will check for the validity of the index. If valid, a new `ListCommand` instance will be
 created and returned to `LogicManager` class via `StoreMandoParser` class.
 
-<div markdown="span" class="alert alert-info"> 
+<div markdown="span" class="alert alert-info">
 :information_source: **Note:** If the command format is determined to be invalid, a parseException will be thrown to notify the
 user of the error.
 </div>
@@ -178,7 +180,7 @@ Step 4. The overridden `execute` method will be called. The current predicate an
 be updated, and all items in the inventory will be listed. An instance of `CommandResult` will be created, generating 
 the result of the execution. The `LogicManager` class will receive the result of the execution.
 
-The following activity diagram summarizes what happens when a user executes a new command:
+The following activity diagram summarizes what happens when a user executes the list command:
 
 ![ListActivityDiagram](images/ListActivityDiagram.png)
 
@@ -193,6 +195,53 @@ The following activity diagram summarizes what happens when a user executes a ne
 * **Alternative 2:** List the entire inventory categorised in their specific locations.
     * Pros: More organised overview of all the items in the inventory.
     * Cons: More difficult to implement.
+
+_{more aspects and alternatives to be added}_
+
+### Find Item `find KEYWORD [MORE_KEYWORDS]` or `find */KEYWORD [MORE_KEYWORDS]`
+
+#### Actual Implementation
+
+The `find KEYWORD [MORE_KEYWORDS]` and `find */KEYWORD [MORE_KEYWORDS]` features find and display all items whose names 
+contain any of the given keywords, either in full or partially respectively.
+
+Given below is an example usage scenario and how the find operation behaves at each step.
+
+Step 1. The user execute `find Chocolate` to find all the items in the inventory whose names fully match the keyword. 
+`StoreMandoParser` takes in the user input and determines the command word (find) and argument ("Chocolate") respectively.
+
+Step 2. An instance of `FindCommandParser` will be created, followed by a call on its `parse` method, taking in the
+argument stated in step 1 ("Chocolate").
+
+Step 3. The `parse` method will check for the validity of the index. If valid, a new `FindCommand` instance will be
+created and returned to `LogicManager` class via `StoreMandoParser` class.
+
+<div markdown="span" class="alert alert-info"> 
+:information_source: **Note:** If the command format is determined to be invalid, a parseException will be thrown to notify the
+user of the error.
+</div>
+
+Step 4. The overridden `execute` method will be called. The current predicate and filtered item list of the `Model` will
+be updated, and all items in the inventory that matches the keyword in full will be listed. An instance of 
+`CommandResult` will be created, generating the result of the execution. The String parameter passed in the `CommandResult` depends
+on whether the number of items that matched the keyword is more than one or less than two. The `LogicManager` class will receive the 
+result of the execution.
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+![FindActivityDiagram](images/FindActivityDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: How find executes
+
+* **Alternative 1 (current choice):** Find items in the current list that matches the keyword, either fully or partially.
+    * Pros: Easy to implement.
+    * Cons: The search is limited to matching names. If there are many items containing that keyword, the search may not be efficient.
+
+* **Alternative 2:** Find items in the current list that matches the keyword and an attribute e.g. tag.
+    * Pros: More efficiently retrieve the item needed.
+    * Cons: Users need to remember the items' attributes.
 
 _{more aspects and alternatives to be added}_
 

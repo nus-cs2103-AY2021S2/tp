@@ -52,9 +52,16 @@ ListCommand -> Model : updateCurrentPredicate(true)
 activate Model
 
 Model --> ListCommand
+deactivate Model
+
 ListCommand -> Model : getCurrentPredicate()
+activate Model
+
 Model --> ListCommand : true
+deactivate Model
+
 ListCommand -> Model : updateFilteredItemList(true)
+activate Model
 
 Model --> ListCommand
 deactivate Model
