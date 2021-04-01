@@ -77,7 +77,7 @@ Adds a new residence to the list of residences, default for clean status is ‘c
 * Names can include `@` inside. e.g `pinnacle@duxton`
 * Names can include numbers. e.g `Block71`
 
-Format: ` add n/NAME_OF_APARTMENT a/ADDRESS [c/VALID_CLEAN_STATUS] [t/TAG]... `
+Format: ` add n/RESIDENCE_NAME a/ADDRESS [c/VALID_CLEAN_STATUS] [t/TAG]... `
 
 Examples:
 * `add n/Melville Park a/22 Simei Street 1, #10-02, S529948`
@@ -105,16 +105,18 @@ Format: `remind`
 
 Edits the given fields of an existing residence (excludes bookings, see `editb` instead to edit bookings).
 
-Format: `edit INDEX c/VALID_CLEAN_STATUS`
+Format: `edit INDEX [n/RESIDENCE_NAME] [a/ADDRESS] [c/VALID_CLEAN_STATUS] [t/TAG]`
 
 * Edits the residence at the specified `INDEX`.
 * The index refers to the index number shown in the displayed residence list(i.e. **NOT** zero-indexed).
 * The index **must be a positive integer** 1, 2, 3, …​
 * At least one field must be provided.
+* If this command is used to edit tags, all tags for this residence need to be specified.
 
 Examples:
 *  `edit 1 c/y` Edits the clean status of the 1st residence on the list to `Clean`.
 *  `edit 2 n/Nashville`  Edits the name of the 2nd residence on the list from to `Nashville`.
+*  `edit 1 t/tag1 t/tag2` Edits the 1st residence on the list to have tags `tag1` and `tag2`.
 
 ### Locating residences by name: `find`
 
