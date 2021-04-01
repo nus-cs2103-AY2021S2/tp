@@ -2,6 +2,7 @@ package seedu.weeblingo.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.weeblingo.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.weeblingo.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.weeblingo.testutil.Assert.assertThrows;
 import static seedu.weeblingo.testutil.TypicalIndexes.INDEX_FIRST_FLASHCARD;
@@ -13,6 +14,7 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.weeblingo.logic.commands.HelpCommand;
 import seedu.weeblingo.logic.parser.exceptions.ParseException;
 import seedu.weeblingo.model.flashcard.Answer;
 import seedu.weeblingo.model.tag.Tag;

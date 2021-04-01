@@ -4,8 +4,8 @@ import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_ANSWER_A;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_ANSWER_B;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_QUESTION_A;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_QUESTION_B;
-import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_TAG_EASY;
+import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_TAG_DIFFICULT;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -45,9 +45,9 @@ public class TypicalFlashcards {
 
     // Manually added - Flashcard's details found in {@code CommandTestUtil}
     public static final Flashcard AMY = new FlashcardBuilder()
-            .withQuestion(VALID_QUESTION_A).withAnswer(VALID_ANSWER_A).withTags(VALID_TAG_FRIEND).build();
+            .withQuestion(VALID_QUESTION_A).withAnswer(VALID_ANSWER_A).withTags(VALID_TAG_EASY).build();
     public static final Flashcard BOB = new FlashcardBuilder()
-            .withQuestion(VALID_QUESTION_B).withAnswer(VALID_ANSWER_B).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+            .withQuestion(VALID_QUESTION_B).withAnswer(VALID_ANSWER_B).withTags(VALID_TAG_DIFFICULT, VALID_TAG_EASY)
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
