@@ -29,6 +29,7 @@ title: User Guide
     * [Adding a tuition session: `add_session`](#adding-a-single-tuition-session-add_session)
     * [Adding a recurring tuition session: `add_rec_session`](#adding-a-recurring-tuition-session-add_rec_session)
     * [Deleting a tuition session: `delete_session`](#deleting-a-tuition-session-delete_session)
+    * [Deleteing a recurring tuition session: `delete_rec_session`](#deleting-a-recurring-tuition-session-delete_rec_session)
   * [Fees](#fees)
     * [Getting monthly fee for a particular student: `fee`](#getting-monthly-fee-for-a-particular-student-fee)
 * [Command Summary](#command-summary)
@@ -360,6 +361,26 @@ Format: `delete_session n/STUDENT_NAME i/SESSION_INDEX`
 Example:
 * `delete_session n/John Lee i/1` deletes John Lee's **first** session
 
+#### Deleting a recurring tuition session: `delete_rec_session`
+
+Deletes a single session from an existing recurring tuition session of a specified student from TutorBuddy.
+Spawns two recurring sessions that will span the period exclusively before and after the deleted single session.
+
+Format: `delete_rec_session n/STUDENT_NAME i/SESSION_INDEX d/DATE t/TIME`
+
+Arguments similar to `delete_session` command except the following:
+* `DATE` should be the date of the single session to be deleted
+* `TIME` should be the time of the single session to be deleted
+<div markdown="block" class="alert alert-info">
+:information_source: Note that the <code>DATE</code> and <code>TIME</code> should be a valid session date that belongs in the specified recurring session
+</div>
+
+Example:
+* `delete_rec_session n/John Doe i/1 d/2021-03-31 t/18:00` deletes a valid single session dated 2021-03-31 18:00 
+from an existing recurring session. This will spawn two recurring sessions that will span the period exclusively
+before and after 2021-03-31 18:00
+
+
 ### Fees
 
 #### Getting monthly fee for a particular student: `fee`
@@ -408,6 +429,7 @@ Action | Format | Examples
 **Add Single Session** | `add_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE` | `add_session n/John Doe d/2021-01-01 t/18:00 k/120 s/Biology f/80`
 **Add Recurring Session** | `add_rec_session n/STUDENT_NAME d/DATE e/LASTDATE b/INTERVAL t/TIME k/DURATION s/SUBJECT f/FEE` | `add_rec_session n/John Doe d/2021-01-01 e/2021-01-15 b/7 t/20:00 k/120 s/Geography f/80`
 **Delete Session** | `delete_session n/STUDENT_NAME i/SESSION_INDEX` | `delete_session n/John Lee i/1`
+**Delete Recurring Session** | `delete_rec_session n/STUDENT_NAME i/SESSION_INDEX d/DATE t/TIME` | `delete_rec_session n/John Doe i/1 d/2021-03-31 t/18:00`
 
 **Fees**
 
