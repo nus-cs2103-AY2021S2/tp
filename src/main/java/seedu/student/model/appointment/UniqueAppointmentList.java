@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.student.logic.commands.exceptions.CommandException;
 
 /**
  * A nested list of appointments grouped by dates to facilitate UI display.
@@ -62,8 +61,9 @@ public class UniqueAppointmentList implements Iterable<SameDateAppointmentList> 
      * The appointment identity of {@code editedAppointment} must not be the same as another existing
      * appointment in the list.
      */
-    public void setAppointment(Appointment target, Appointment editedAppointment) throws CommandException {
+    public void setAppointment(Appointment target, Appointment editedAppointment) {
         requireAllNonNull(target, editedAppointment);
+        boolean targetExists = false;
         LocalDate originalDate = target.getDate();
         LocalDate newDate = editedAppointment.getDate();
         boolean isSameDate = originalDate.equals(newDate);
@@ -80,9 +80,11 @@ public class UniqueAppointmentList implements Iterable<SameDateAppointmentList> 
             //edit in UniqueAppointmentList
             for (SameDateAppointmentList s : internalList) {
                 if (s.getDate().equals(originalDate)) {
-                    //this one need to update with Yien's remove
-                    remove(target);
+                    targetExists = true;
                 }
+            }
+            if (targetExists) {
+                remove(target);
             }
             add(editedAppointment);
         }

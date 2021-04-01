@@ -15,8 +15,6 @@ import seedu.student.commons.core.LogsCenter;
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String USERGUIDE_URL = "https://ay2021s2-cs2103t-w10-4.github.io/tp/UserGuide.html";
-
     public static final String DIVIDER = "\n -------------------------------------------------------------------------"
             + "----------------------------------------------------";
 
@@ -34,6 +32,8 @@ public class HelpWindow extends UiPart<Stage> {
             + "\n\n Delete an appointment: deleteAppt MATRICULATION_NUMBER"
             + "\n\n View appointment statistic: statsAppt"
             + "\n\n List all students and appointments : list";
+
+    public static final String USERGUIDE_URL = "https://ay2021s2-cs2103t-w10-4.github.io/tp/UserGuide.html";
 
     public static final String HELP_MESSAGE = DIVIDER + "\n" + "Do refer to our user guide: " + USERGUIDE_URL
                                                 + " for more information.";

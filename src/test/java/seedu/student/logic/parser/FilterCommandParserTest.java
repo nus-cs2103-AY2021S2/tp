@@ -26,10 +26,14 @@ public class FilterCommandParserTest {
         // no leading and trailing whitespaces
         FilterCommand expectedFilterCommandByVaccinationStatus =
                 new FilterCommand(new VaccinationStatusContainsKeywords("NOT_VACCINATED"));
-        assertParseSuccess(parser, "NOT_VACCINATED", expectedFilterCommandByVaccinationStatus);
+        assertParseSuccess(parser, "not vaccinated", expectedFilterCommandByVaccinationStatus);
+
+        FilterCommand expectedVaccinatedFilterCommandByVaccinationStatus =
+                new FilterCommand(new VaccinationStatusContainsKeywords("VACCINATED"));
+        assertParseSuccess(parser, "vaccinated", expectedVaccinatedFilterCommandByVaccinationStatus);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n NOT_VACCINATED \n \t", expectedFilterCommandByVaccinationStatus);
+        assertParseSuccess(parser, " \n not vaccinated \n \t", expectedFilterCommandByVaccinationStatus);
     }
 
     @Test
@@ -58,10 +62,16 @@ public class FilterCommandParserTest {
     public void parse_invalidArgs_failure() {
 
         // Filter by vaccination status
-        assertParseFailure(parser, "not vaccinated", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+        assertParseFailure(parser, "not_vaccinated", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 FilterCommand.MESSAGE_USAGE));
 
-        assertParseFailure(parser, "vaccinate", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+        assertParseFailure(parser, "VACCINATED", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                FilterCommand.MESSAGE_USAGE));
+
+        assertParseFailure(parser, "Not_Vaccinated", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                FilterCommand.MESSAGE_USAGE));
+
+        assertParseFailure(parser, "NOT VACCINATED", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 FilterCommand.MESSAGE_USAGE));
 
         // Filter by faculty
