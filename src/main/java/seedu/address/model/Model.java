@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import java.nio.file.Path;
 import java.util.Comparator;
+import java.util.function.Function;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -127,6 +128,9 @@ public interface Model {
 
     /** Returns an unmodifiable view of the transformed person list */
     ObservableList<Person> getTransformedPersonList();
+
+    /** Transforms the transformed person list according to the {@code function} supplied. */
+    void updateTransformedPersonList(Function<Person, Person> function);
 
     /** Filters the transformed person list by the given {@code predicate} then sorts the
      * transformed person list by the given {@code comparator}.

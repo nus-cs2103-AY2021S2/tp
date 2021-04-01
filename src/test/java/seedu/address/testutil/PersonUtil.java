@@ -58,7 +58,7 @@ public class PersonUtil {
             sb.append(PREFIX_GUARDIAN_PHONE + person.getGuardianPhone().get().value + " ");
         }
         if (person.getLevel().isPresent()) {
-            sb.append(PREFIX_LEVEL + person.getLevel().get().level + " ");
+            sb.append(PREFIX_LEVEL + person.getLevel().get().getLevel() + " ");
         }
         person.getSubjects().stream().forEach(
             s -> sb.append(PREFIX_SUBJECT + s.subjectName + " ")
@@ -84,7 +84,7 @@ public class PersonUtil {
         descriptor.getGuardianPhone().ifPresent(guardianPhone -> sb.append(PREFIX_GUARDIAN_PHONE)
                 .append(guardianPhone.value).append(" "));
         descriptor.getLevel().ifPresent(level -> sb.append(PREFIX_LEVEL)
-                .append(level.level).append(" "));
+                .append(level.getLevel()).append(" "));
         if (descriptor.getSubjects().isPresent()) {
             Set<Subject> subjects = descriptor.getSubjects().get();
             if (subjects.isEmpty()) {

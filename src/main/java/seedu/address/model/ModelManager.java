@@ -4,7 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -320,6 +322,25 @@ public class ModelManager implements Model {
         newSortedPersons.setComparator(comparator);
         transformedPersons.setAll(newSortedPersons);
     }
+
+    @Override
+    public void updateTransformedPersonList(Function<Person, Person> function) {
+        filteredPersons.setPredicate(PREDICATE_SHOW_ALL_PERSONS);
+        transformedPersons.setAll(transform(filteredPersons, function));
+    }
+
+    private ObservableList<Person> transform(ObservableList<Person> observableList,
+            Function<Person, Person> function) {
+        ArrayList<Person> oldList = new ArrayList<>(observableList);
+        ArrayList<Person> newList = new ArrayList<>(oldList.size());
+        for (Person p : oldList) {
+            newList.add(function.apply(p));
+        }
+        ObservableList<Person> newObservableList = FXCollections.observableArrayList(newList);
+        return newObservableList;
+    }
+
+
 
     //=========== Lesson Day Accessors =============================================================
 
