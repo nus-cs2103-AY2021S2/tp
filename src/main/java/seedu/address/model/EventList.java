@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import seedu.address.model.person.Birthday;
 
@@ -22,6 +23,10 @@ public class EventList {
 
     public boolean isEmpty() {
         return events.isEmpty();
+    }
+
+    public void sort() {
+        Collections.sort(events);
     }
 
     @Override
