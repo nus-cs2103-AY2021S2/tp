@@ -360,6 +360,25 @@ Format: `delete_session n/STUDENT_NAME i/SESSION_INDEX`
 Example:
 * `delete_session n/John Lee i/1` deletes John Lee's **first** session
 
+#### Deleting a recurring tuition session: `delete_rec_session`
+
+Deletes a single session from an existing recurring tuition session of a specified student from TutorBuddy.
+
+Format: `delete_rec_session n/STUDENT_NAME i/SESSION_INDEX d/DATE t/TIME`
+
+Arguments similar to `delete_session` command except the following:
+* `DATE` should be the date of the single session to be deleted
+* `TIME` should be the time of the single session to be deleted
+<div markdown="block" class="alert alert-info">
+:information_source: Note that the <code>DATE</code> and <code>TIME</code> should be a valid session date that belongs in the specified recurring session
+</div>
+
+Example:
+* `delete_rec_session n/John Doe i/1 d/2021-03-31 t/18:00` deletes a valid single session dated 2021-03-31 18:00 
+from an existing recurring session. This will spawn two recurring sessions that will span the period exclusively
+before and after 2021-03-31 18:00
+
+
 ### Fees
 
 #### Getting monthly fee for a particular student: `fee`
