@@ -19,11 +19,7 @@ public class ContactTest {
 
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-<<<<<<< Updated upstream:src/test/java/seedu/address/model/contact/ContactTest.java
-        Contact contact = new PersonBuilder().build();
-=======
         Contact contact = new ContactBuilder().build();
->>>>>>> Stashed changes:src/test/java/seedu/address/model/person/PersonTest.java
         assertThrows(UnsupportedOperationException.class, () -> contact.getTags().remove(0));
     }
 
@@ -36,11 +32,7 @@ public class ContactTest {
         assertFalse(ALICE.isSameContact(null));
 
         // same name and tags, all other attributes different -> returns true
-<<<<<<< Updated upstream:src/test/java/seedu/address/model/contact/ContactTest.java
-        Contact editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-=======
         Contact editedAlice = new ContactBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
->>>>>>> Stashed changes:src/test/java/seedu/address/model/person/PersonTest.java
                 .withAddress(VALID_ADDRESS_BOB).build();
         assertTrue(ALICE.isSameContact(editedAlice));
 
@@ -57,13 +49,8 @@ public class ContactTest {
         assertFalse(ALICE.isSameContact(editedAlice));
 
         // name differs in case, all other attributes same -> returns false
-<<<<<<< Updated upstream:src/test/java/seedu/address/model/contact/ContactTest.java
-        Contact editedBob = new PersonBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
-        assertFalse(BOB.isSamePerson(editedBob));
-=======
         Contact editedBob = new ContactBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
         assertFalse(BOB.isSameContact(editedBob));
->>>>>>> Stashed changes:src/test/java/seedu/address/model/person/PersonTest.java
 
         // name has trailing spaces, all other attributes same -> returns false
         String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
@@ -74,11 +61,7 @@ public class ContactTest {
     @Test
     public void equals() {
         // same values -> returns true
-<<<<<<< Updated upstream:src/test/java/seedu/address/model/contact/ContactTest.java
-        Contact aliceCopy = new PersonBuilder(ALICE).build();
-=======
         Contact aliceCopy = new ContactBuilder(ALICE).build();
->>>>>>> Stashed changes:src/test/java/seedu/address/model/person/PersonTest.java
         assertTrue(ALICE.equals(aliceCopy));
 
         // same object -> returns true
@@ -94,11 +77,7 @@ public class ContactTest {
         assertFalse(ALICE.equals(BOB));
 
         // different name -> returns false
-<<<<<<< Updated upstream:src/test/java/seedu/address/model/contact/ContactTest.java
-        Contact editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
-=======
         Contact editedAlice = new ContactBuilder(ALICE).withName(VALID_NAME_BOB).build();
->>>>>>> Stashed changes:src/test/java/seedu/address/model/person/PersonTest.java
         assertFalse(ALICE.equals(editedAlice));
 
         // different phone -> returns false

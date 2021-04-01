@@ -49,11 +49,7 @@ public class ContactBuilder {
     /**
      * Initializes the PersonBuilder with the data of {@code personToCopy}.
      */
-<<<<<<< Updated upstream:src/test/java/seedu/address/testutil/ContactBuilder.java
-    public PersonBuilder(Contact contactToCopy) {
-=======
     public ContactBuilder(Contact contactToCopy) {
->>>>>>> Stashed changes:src/test/java/seedu/address/testutil/PersonBuilder.java
         name = contactToCopy.getName();
         phone = contactToCopy.getPhone();
         email = contactToCopy.getEmail();

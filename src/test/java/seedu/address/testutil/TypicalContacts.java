@@ -57,11 +57,7 @@ public class TypicalContacts {
     public static final Contact IDA = new ContactBuilder().withName("Ida Mueller").withPhone("8482131")
             .withEmail("hans@example.com").withAddress("chicago ave").build();
 
-<<<<<<< Updated upstream:src/test/java/seedu/address/testutil/TypicalContacts.java
-    // Manually added - Person's details found in {@code CommandTestUtil}
-=======
     // Manually added - Contact's details found in {@code CommandTestUtil}
->>>>>>> Stashed changes:src/test/java/seedu/address/testutil/TypicalPersons.java
     public static final Contact AMY = new ContactBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).build();
     public static final Contact BOB = new ContactBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
@@ -77,22 +73,13 @@ public class TypicalContacts {
      */
     public static AddressBook getTypicalAddressBook() {
         AddressBook ab = new AddressBook();
-<<<<<<< Updated upstream:src/test/java/seedu/address/testutil/TypicalContacts.java
-        for (Contact contact : getTypicalPersons()) {
-            ab.addPerson(contact);
-=======
         for (Contact contact : getTypicalContacts()) {
             ab.addContact(contact);
->>>>>>> Stashed changes:src/test/java/seedu/address/testutil/TypicalPersons.java
         }
         return ab;
     }
 
-<<<<<<< Updated upstream:src/test/java/seedu/address/testutil/TypicalContacts.java
-    public static List<Contact> getTypicalPersons() {
-=======
     public static List<Contact> getTypicalContacts() {
->>>>>>> Stashed changes:src/test/java/seedu/address/testutil/TypicalPersons.java
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
 }

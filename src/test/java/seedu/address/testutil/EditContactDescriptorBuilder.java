@@ -31,13 +31,8 @@ public class EditContactDescriptorBuilder {
     /**
      * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
      */
-<<<<<<< Updated upstream:src/test/java/seedu/address/testutil/EditContactDescriptorBuilder.java
-    public EditPersonDescriptorBuilder(Contact contact) {
-        descriptor = new EditPersonDescriptor();
-=======
     public EditContactDescriptorBuilder(Contact contact) {
         descriptor = new EditContactDescriptor();
->>>>>>> Stashed changes:src/test/java/seedu/address/testutil/EditPersonDescriptorBuilder.java
         descriptor.setName(contact.getName());
         descriptor.setPhone(contact.getPhone());
         descriptor.setEmail(contact.getEmail());

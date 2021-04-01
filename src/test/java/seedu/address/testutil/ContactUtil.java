@@ -9,11 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import java.util.Set;
 
 import seedu.address.logic.commands.AddCommand;
-<<<<<<< Updated upstream:src/test/java/seedu/address/testutil/ContactUtil.java
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
-=======
 import seedu.address.logic.commands.EditCommand.EditContactDescriptor;
->>>>>>> Stashed changes:src/test/java/seedu/address/testutil/PersonUtil.java
 import seedu.address.model.contact.Contact;
 import seedu.address.model.tag.Tag;
 
@@ -26,21 +22,13 @@ public class ContactUtil {
      * Returns an add command string for adding the {@code contact}.
      */
     public static String getAddCommand(Contact contact) {
-<<<<<<< Updated upstream:src/test/java/seedu/address/testutil/ContactUtil.java
-        return AddCommand.COMMAND_WORD + " " + getPersonDetails(contact);
-=======
         return AddCommand.COMMAND_WORD + " " + getContactDetails(contact);
->>>>>>> Stashed changes:src/test/java/seedu/address/testutil/PersonUtil.java
     }
 
     /**
      * Returns the part of command string for the given {@code contact}'s details.
      */
-<<<<<<< Updated upstream:src/test/java/seedu/address/testutil/ContactUtil.java
-    public static String getPersonDetails(Contact contact) {
-=======
     public static String getContactDetails(Contact contact) {
->>>>>>> Stashed changes:src/test/java/seedu/address/testutil/PersonUtil.java
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + contact.getName().fullName + " ");
         sb.append(PREFIX_PHONE + contact.getPhone().value + " ");
