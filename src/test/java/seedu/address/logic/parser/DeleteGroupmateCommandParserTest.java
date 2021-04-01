@@ -1,10 +1,11 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_GROUPMATE_DISPLAYED_INDEX;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 
 import org.junit.jupiter.api.Test;
@@ -43,10 +44,10 @@ public class DeleteGroupmateCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid project index
         assertParseFailure(parser, "0 " + PREFIX_INDEX + " "
-                + INDEX_FIRST.getOneBased(), MESSAGE_INVALID_INDEX);
+                + INDEX_FIRST.getOneBased(), MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
 
         // invalid remove
         assertParseFailure(parser, INDEX_FIRST.getOneBased() + " " + PREFIX_INDEX + " 0",
-                MESSAGE_INVALID_INDEX);
+                MESSAGE_INVALID_GROUPMATE_DISPLAYED_INDEX);
     }
 }
