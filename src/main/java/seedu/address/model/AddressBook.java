@@ -122,9 +122,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         StringBuilder sb = new StringBuilder();
         sb.append("Here are the things you might want to take note of:\n\n");
         int length = sb.length() + 1;
-        boolean hasNotif = false;
-        sb.append(persons.getNotifications());
         sb.append(meetings.getNotifications());
+        sb.append(persons.getNotifications());
         if (sb.length() > length) {
             return sb.toString();
         }

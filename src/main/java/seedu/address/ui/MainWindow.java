@@ -4,7 +4,6 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -36,7 +35,8 @@ public class MainWindow extends UiPart<Stage> {
     private MeetingListPanel meetingListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
-    private Alert notifWindow;
+    private NotifWindow notifWindow;
+    private NotesWindow notesWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -72,6 +72,8 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        notifWindow = new NotifWindow(getPrimaryStage());
+        notesWindow = new NotesWindow(getPrimaryStage());
 
     }
 
@@ -163,14 +165,19 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleNotif() {
-        notifWindow = new Alert(Alert.AlertType.INFORMATION);
-        notifWindow.getDialogPane().getStylesheets().add("view/DarkTheme.css");
-        notifWindow.initOwner(getPrimaryStage());
-        notifWindow.setTitle("Notification");
-        notifWindow.setHeaderText("Welcome to Link.me!");
         notifWindow.setContentText(logic.getNotifications());
-        notifWindow.showAndWait();
+        notifWindow.show();
         logger.info("Displaying notif window...");
+    }
+
+    /**
+     * Displays notes to the user.
+     */
+    @FXML
+    public void handleNotes(String notes) {
+        notesWindow.setContentText(notes);
+        notesWindow.show();
+        logger.info("Displaying notes window...");
     }
 
     void show() {
@@ -187,21 +194,6 @@ public class MainWindow extends UiPart<Stage> {
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
-    }
-
-    /**
-     * Displays notes to the user.
-     */
-    @FXML
-    public void handleNotes(String notes) {
-        notifWindow = new Alert(Alert.AlertType.INFORMATION);
-        notifWindow.getDialogPane().getStylesheets().add("view/DarkTheme.css");
-        notifWindow.initOwner(getPrimaryStage());
-        notifWindow.setTitle("Notes");
-        notifWindow.setHeaderText("Here are your notes:");
-        notifWindow.setContentText(notes);
-        notifWindow.showAndWait();
-        logger.info("Displaying notes window...");
     }
 
     public PersonListPanel getPersonListPanel() {

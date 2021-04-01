@@ -27,6 +27,8 @@ public class MeetingCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
+    private Label id;
+    @FXML
     private Label name;
     @FXML
     private Label dateTime;
@@ -36,10 +38,11 @@ public class MeetingCard extends UiPart<Region> {
     /**
      * Creates a {@code MeetingCard} with the given {@code Person} and index to display.
      */
-    public MeetingCard(Person person) {
+    public MeetingCard(Person person, int displayedIndex) {
         super(FXML);
         this.person = person;
-        name.setText("Meeting With " + person.getName().fullName);
+        id.setText(displayedIndex + ". ");
+        name.setText("Meet " + person.getName().fullName);
         dateTime.setText(person.getMeeting().map(Meeting::getDateTime).orElseThrow());
         description.setText(person.getMeeting().map(Meeting::getDescription).orElseThrow());
     }

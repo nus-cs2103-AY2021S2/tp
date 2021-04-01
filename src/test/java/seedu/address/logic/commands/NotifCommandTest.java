@@ -15,7 +15,7 @@ public class NotifCommandTest {
     private Model expectedModel = new ModelManager();
 
     @Test
-    public void execute_help_success() {
+    public void execute_notif_success() {
         CommandResult expectedCommandResult = new CommandResult(SHOWING_NOTIF_MESSAGE, false,
                 true, Optional.empty(), false);
         assertCommandSuccess(new NotifCommand(), model, expectedCommandResult, expectedModel);
