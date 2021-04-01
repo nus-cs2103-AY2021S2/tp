@@ -29,9 +29,9 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
 
-public class AddressBookParserTest {
+public class ClientBookParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final ClientBookParser parser = new ClientBookParser();
 
     @Test
     public void parseCommand_add() throws Exception {
@@ -54,7 +54,7 @@ public class AddressBookParserTest {
         System.out.println(PersonUtil.getEditPersonDescriptorDetails(descriptor));
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor, EditCommand.EditPolicyMode.REPLACE), command);
     }
 
     @Test

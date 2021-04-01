@@ -17,7 +17,7 @@ public class DeleteShortcutCommandParser implements Parser<DeleteShortcutCommand
      */
     public DeleteShortcutCommand parse(String args) throws ParseException {
         try {
-            String shortcutName = ParserUtil.parseShortcutName(args);
+            String shortcutName = ParserUtil.formatShortcutName(args);
             return new DeleteShortcutCommand(shortcutName);
         } catch (ParseException pe) {
             throw new ParseException(

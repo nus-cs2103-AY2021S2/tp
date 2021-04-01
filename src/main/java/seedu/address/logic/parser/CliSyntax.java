@@ -19,7 +19,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_MEETING = new Prefix("m/");
     public static final Prefix PREFIX_SHORTCUT_NAME = new Prefix("sn/");
     public static final Prefix PREFIX_SHORTCUT_COMMAND = new Prefix("sc/");
-    public static final Prefix PREFIX_LIST_POLICY = new Prefix("-policy");
 
     /**
      * Checks if a given string is a valid prefix.
@@ -32,5 +31,4 @@ public class CliSyntax {
                 PREFIX_SHORTCUT_COMMAND));
         return prefixes.contains(new Prefix(input));
     }
-
 }

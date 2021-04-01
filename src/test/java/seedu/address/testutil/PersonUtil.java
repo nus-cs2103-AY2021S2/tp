@@ -68,8 +68,8 @@ public class PersonUtil {
                 tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
             }
         }
-        if (descriptor.getPolicies().isPresent()) {
-            List<InsurancePolicy> policies = descriptor.getPolicies().get();
+        if (descriptor.getPoliciesToAdd().isPresent()) {
+            List<InsurancePolicy> policies = descriptor.getPoliciesToAdd().get();
             if (policies.isEmpty()) {
                 sb.append(PREFIX_INSURANCE_POLICY).append(" ");
             } else {

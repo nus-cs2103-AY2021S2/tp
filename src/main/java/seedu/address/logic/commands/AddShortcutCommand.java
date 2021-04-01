@@ -7,7 +7,7 @@ import seedu.address.model.Model;
 import seedu.address.model.shortcut.Shortcut;
 
 /**
- * Adds a shortcut to the shortcut library.
+ * Adds a shortcut to the existing shortcut library.
  */
 public class AddShortcutCommand extends Command {
 

@@ -9,8 +9,8 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddShortcutCommand;
-import seedu.address.logic.commands.ClearShortcutCommand;
 import seedu.address.logic.commands.BatchCommand;
+import seedu.address.logic.commands.ClearShortcutCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteShortcutCommand;
@@ -32,7 +32,7 @@ import seedu.address.model.shortcut.ShortcutLibrary;
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class ClientBookParser {
 
     /**
      * Used for initial separation of command word and args.
@@ -41,11 +41,11 @@ public class AddressBookParser {
 
     private static HashMap<String, String> shortcuts;
 
-    public AddressBookParser() {
+    public ClientBookParser() {
         shortcuts = new HashMap<>();
     }
 
-    public AddressBookParser(ShortcutLibrary shortcutLibrary) {
+    public ClientBookParser(ShortcutLibrary shortcutLibrary) {
         shortcuts = shortcutLibrary.getShortcuts();
     }
 
