@@ -1,11 +1,14 @@
 package seedu.dictionote.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.dictionote.commons.core.Messages.MESSAGE_COMMAND_DISABLE_ON_EDIT_MODE;
 
 import java.util.List;
 
 import seedu.dictionote.commons.core.Messages;
 import seedu.dictionote.commons.core.index.Index;
+import seedu.dictionote.logic.commands.enums.UiAction;
+import seedu.dictionote.logic.commands.enums.UiActionOption;
 import seedu.dictionote.logic.commands.exceptions.CommandException;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.note.Note;
@@ -29,6 +32,11 @@ public class MarkAsUndoneNoteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (model.onEditModeNote()) {
+            throw new CommandException(MESSAGE_COMMAND_DISABLE_ON_EDIT_MODE);
+        }
+
         List<Note> lastShownList = model.getFilteredNoteList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
@@ -40,7 +48,8 @@ public class MarkAsUndoneNoteCommand extends Command {
                 noteToMarkAsUndone.getTags(), noteToMarkAsUndone.getCreateTime());
 
         model.setNote(noteToMarkAsUndone, markAsUndoneNote);
-        return new CommandResult(String.format(MESSAGE_MARK_AS_UNDONE_NOTE_SUCCESS, markAsUndoneNote));
+        return new CommandResult(String.format(MESSAGE_MARK_AS_UNDONE_NOTE_SUCCESS, markAsUndoneNote,
+            UiAction.OPEN, UiActionOption.NOTE_LIST));
     }
 
     @Override

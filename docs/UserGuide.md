@@ -19,7 +19,7 @@ title: User Guide
 1. Copy the file to the folder you want to use as the _home folder_ for your Dictionote application.
 
 1. Double-click the file to start the app. The GUI should appear in a few seconds. <br>
-   ![Ui](images/Ui.png)
+   ![UiUserguide](images/UiUserGuide.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.
 
@@ -62,7 +62,7 @@ title: User Guide
 
 Shows a message explaning how to access the help page.
 
-![help message](images/helpMessage.png)
+![help message](images/HelpMessage.png)
 
 Format: `help`
 
@@ -71,6 +71,32 @@ Format: `help`
 Shows a list of available command
 
 Format: `listcommand`
+
+#### Viewing Command Details
+
+##### Viewing Dictionary Command Details : `listcommandd`
+
+Shows a list of available dictionary command with description
+
+Format: `listcommandd`
+
+##### Viewing note Command Details : `listcommandn`
+
+Shows a list of available note command with description
+
+Format: `listcommandn`
+
+##### Viewing Contact Command Details : `listcommandc`
+
+Shows a list of available contact command with description
+
+Format: `listcommandc`
+
+##### Viewing Ui Command Details : `listcommandu`
+
+Shows a list of available Ui command with description
+
+Format: `listcommandu`
 
 ### Dictionary Features
 
@@ -239,27 +265,28 @@ Examples:
 
 #### Edit a note in edit mode : `editmode`
 
-Edits a note in edits mode.
+Edits a note in edit mode.
 
 Format: `editmodenote`
 
 * A note have to be show on the note content panel using `shownote` command.
 * In edit note mode, all others note related command will be disable.
-* To exit edit note mode, use `exitnote` to discard all changes or `savenote` to save all changes
+* To exit edit note mode, use `quit` to discard all changes or `save` to save all changes
 
 
 Examples:
 * `editmodenote`
   * note content will be editable
 
-#### Save and quit edit mode: `save`
+#### Save and exit edit mode: `save`
 
-Save edited content and quit edits mode and.
+Save edited content and exit edit mode.
 
 Format: `save`
 
 * The program have to be in edit mode.
 * All changes will be saved.
+* The program will exit edit mode after saving.
 
 Examples:
 * `save`
@@ -267,12 +294,13 @@ Examples:
 
 #### Quit edit mode : `quit`
 
-Quit edits mode.
+Quit edit mode and discard all changes.
 
 Format: `quit`
 
 * The program have to be in edit mode.
 * All changes will be discarded.
+* The program will exit edit mode.
 
 Examples:
 * `quit`
@@ -387,15 +415,7 @@ Format: `clearcontact`
 Dictionote allows the user to manipulate the user-interface via command. 
 The following are the 5 region where the user can manipulate
 
-![Ui Panel ](images/UiPanel.png)
-
-The region name is as follow :
-1. Contact Panel
-1. Dictionary List Panel
-1. Dictionary Content Panel
-1. Note List Panel
-1. Dictionary Content Panel
-
+![Ui Panel](images/UiPanel.png)
 
 #### Opening and Closing UI Panel
 
@@ -450,17 +470,12 @@ Examples:
 Dictionote allows the user to manipulate the divider between the region via command.
 The following are the 4 divider where the user can manipulate
 
-![Ui Panel ](images/UiDivider.png)
+![Ui Divider](images/UiDivider.png)
 
-The divider name is as follow :
-1. Contact Divider
-1. Dictionary Divider
-1. Note Divider 
-1. Main Divider
+The following images show the position the divider will be set when user enter a value from 1 to 9 
+in either horizontally or vertically mode.
 
-The following images show the position the divider will be set when user enter a value from 1 to 9 horizontally and vertically
-
-![Ui Panel ](images/UiDividerConfig.png)
+![Ui Divider Configuration](images/UiDividerConfig.png)
 
 ##### Set contact divider position: `setdividerc`
 
@@ -518,11 +533,7 @@ Examples:
 Dictionote allows the user to change the orientation of the divider between the region via command.
 The following are the 2 divider where the user can manipulate
 
-![Ui Panel ](images/UiOrientation.png)
-
-The divider name is as follow :
-1. Dictionary Divider
-1. Note Divider
+![Ui Orientation](images/UiOrientation.png)
 
 ##### Toggle dictionary divider orientation: `toggledividerd`
 
@@ -602,8 +613,8 @@ Action | Format, Examples
 **Sort all notes** | `sortnote`
 **Find notes using keywords** | `findnote c/NAME_KEYWORD…​ [t/TAG_KEYWORD]…​`
 **Edit note in edit mode** | `editmodenote`
-**Exit edit mode** | `exitnote`
-**Save changes to note** | `savenote`
+**Quit edit mode** | `quit`
+**Save changes to note** | `save`
 ***Contact Features*** | -
 **Add contact** | `addcontact n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `addcontact n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **List all contacts** | `listcontact`
@@ -614,8 +625,8 @@ Action | Format, Examples
 **Sort contacts by most-frequent** | `mostfreqcontact`
 **Clear contacts list** | `clearcontact`
 ***UI Features*** | -
-**Open** | `open Option` <br> e.g., `open -c`
-**Close** | `close Option` <br> e.g., `close -c`
+**Open UI panel** | `open Option` <br> e.g., `open -c`
+**Close UI panel** | `close Option` <br> e.g., `close -c`
 **Set contact divider position** | `setdividerc POSITION`
 **Set dictionary divider position** | `setdividerd POSITION`
 **Set note divider position** | `setdividern POSITION`

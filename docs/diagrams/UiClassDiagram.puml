@@ -59,8 +59,8 @@ ContactCard..> Model
 DictionaryListContentCard..> Model
 DictionaryListDefinitionCard..> Model
 NoteCard..> Model
-DictionaryContentConfig..> Model
-NoteContentConfig..> Model
+Model .left.> DictionaryContentConfig
+Model .left.> NoteContentConfig
 UiManager -up-> Logic
 MainWindow -right-> Logic
 
