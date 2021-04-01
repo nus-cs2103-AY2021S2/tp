@@ -42,4 +42,15 @@ public interface UserStorage {
      */
     void saveUser(User user, Path filePath) throws IOException;
 
+    /**
+     * Deletes the current user file.
+     */
+    void deleteUser() throws IOException;
+
+    /**
+     * Deletes the specified user file.
+     * @throws IOException if there was any problem deleting the file.
+     */
+    void deleteUser(Path filePath) throws IOException;
+
 }

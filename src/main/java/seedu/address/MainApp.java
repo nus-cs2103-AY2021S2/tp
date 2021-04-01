@@ -108,6 +108,7 @@ public class MainApp extends Application {
         User user;
 
         try {
+            TemplateInitializer templateInitializer = new TemplateInitializer();
             addressBookOptional = storage.readAddressBook();
             uniqueFoodListOptional = storage.readFoodList();
             foodIntakeListOptional = storage.readFoodIntakeList();
@@ -132,7 +133,7 @@ public class MainApp extends Application {
             TemplateInitializer initializer = new TemplateInitializer();
             uniqueFoodList = uniqueFoodListOptional.orElse(initializer.getUniqueFoodListTemplate());
             foodIntakeList = foodIntakeListOptional.orElse(initializer.getFoodListIntakeTemplate());
-            dietPlanList = dietPlanListOptional.orElseGet(SampleDataUtil::getSampleDietPlanList);
+            dietPlanList = dietPlanListOptional.orElseGet(templateInitializer::getDietPlanListTemplate);
             user = userOptional.orElse(initializer.createUser(uniqueFoodList, foodIntakeList));
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");

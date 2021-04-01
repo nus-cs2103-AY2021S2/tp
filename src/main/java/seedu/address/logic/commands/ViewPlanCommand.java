@@ -39,13 +39,14 @@ public class ViewPlanCommand extends Command {
      * @return String containing details
      */
     public static String getResult(DietPlan dietPlan, PlanInfoCalculator planInfoCalculator) {
-        String result = "Here's more information about the ";
+        String result = dietPlan.viewPlan();
+        result += "\n\nHere's more information about the ";
         PlanType planType = dietPlan.getPlanType();
         switch (planType) {
-        case WEIGHTGAIN:
+        case WEIGHT_GAIN:
             result += "Weight Gain plan:\n";
             break;
-        case WEIGHTLOSS:
+        case WEIGHT_LOSS:
             result += "Weight Loss plan:\n";
             break;
         default:

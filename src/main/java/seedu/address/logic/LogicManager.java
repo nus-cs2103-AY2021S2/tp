@@ -10,6 +10,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.AddUserCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.ResetCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -54,7 +55,7 @@ public class LogicManager implements Logic {
         } else {
             // Check if command is creating new user
             Command command = addressBookParser.parseCommand(commandText);
-            if (command instanceof AddUserCommand) {
+            if (command instanceof AddUserCommand || command instanceof ResetCommand) {
                 commandResult = command.execute(model);
             } else {
                 // Prompt user to initialize user
@@ -66,7 +67,11 @@ public class LogicManager implements Logic {
             storage.saveAddressBook(model.getAddressBook());
             storage.saveFoodList(model.getUniqueFoodList());
             storage.saveFoodIntakeList(model.getFoodIntakeList());
-            storage.saveUser(model.getUser());
+            if (model.getUser() == null) {
+                storage.deleteUser();
+            } else {
+                storage.saveUser(model.getUser());
+            }
             //storage.saveDietPlanList(model.getDietPlanList());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);

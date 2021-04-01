@@ -23,7 +23,7 @@ public class User {
 
     // Data fields
     private final List<Food> foodList;
-    private final FoodIntakeList foodIntakeList;
+    private FoodIntakeList foodIntakeList;
     private DietPlan activeDietPlan;
 
     /**
@@ -85,6 +85,16 @@ public class User {
 
     public DietPlan getActiveDietPlan() {
         return this.activeDietPlan;
+    }
+
+    /**
+     * Sets the updated food intake list for the User object
+     * @param list Food intake list to be attached to the User
+     * @return Food Intake list associated with the User object
+     */
+    public FoodIntakeList setFoodIntakeList(FoodIntakeList list) {
+        this.foodIntakeList = list;
+        return list;
     }
 
     public void setActiveDietPlan(DietPlan dietPlan) {

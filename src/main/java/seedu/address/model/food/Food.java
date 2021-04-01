@@ -21,6 +21,10 @@ public class Food {
     private double proteins;
     private double kiloCalories;
 
+    public Food() {
+        super();
+    }
+
     /**
      * Initialises the food class.
      *

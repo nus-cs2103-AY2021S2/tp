@@ -234,14 +234,15 @@ public class ModelManager implements Model {
     public String listUser() {
         User user = addressBook.getUser();
         Bmi bmi = user.getBmi();
-        String details = "Below is your current height and weight:\nLast Updated: "
+        String details = "Here is your current information:\nLast Updated on: "
                 + user.getLastUpdated() + "\nWeight: " + bmi.getWeight()
-                + " kg\nHeight: " + bmi.getHeight() + " cm\n BMI: ";
-
+                + " kg\nHeight: " + bmi.getHeight() + " cm\nGender: " + user.getGender()
+                + "\nIdeal Weight: " + user.getIdealWeight()
+                + "kg\n\nYour current BMI: ";
         if (bmi.getWeight() <= bmi.getLowerBoundWeight()) {
-            details += String.format("%.2f", bmi.calculateBmi()) + " (High Risk of nutritional deficiency)";
+            details += String.format("%.2f", bmi.calculateBmi()) + " (High Risk of Nutritional Deficiency)";
         } else if (bmi.getWeight() >= bmi.getUpperBoundWeight()) {
-            details += String.format("%.2f", bmi.calculateBmi()) + " (High Risk of Obesity-related diseases)";
+            details += String.format("%.2f", bmi.calculateBmi()) + " (High Risk of Obesity-related Diseases)";
         } else {
             details += String.format("%.2f", bmi.calculateBmi()) + " (Healthy range)";
         }
@@ -260,11 +261,11 @@ public class ModelManager implements Model {
         Bmi bmi = user.getBmi();
 
         if (bmi.getWeight() <= bmi.getLowerBoundWeight()) {
-            return PlanType.WEIGHTGAIN;
+            return PlanType.WEIGHT_GAIN;
         } else if (bmi.getWeight() >= bmi.getUpperBoundWeight()) {
-            return PlanType.WEIGHTLOSS;
+            return PlanType.WEIGHT_LOSS;
         } else {
-            return PlanType.WEIGHTMAINTAIN;
+            return PlanType.WEIGHT_MAINTAIN;
         }
 
     }

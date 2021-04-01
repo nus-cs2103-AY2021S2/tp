@@ -1,8 +1,17 @@
-[![CI Status](https://github.com/AY2021S2-CS2103T-T12-2/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S2-CS2103T-T12-2/tp/actions)
-[![codecov](https://codecov.io/gh/AY2021S2-CS2103T-T12-2/tp/branch/master/graph/badge.svg?token=1H94FQ5BPQ)](https://codecov.io/gh/AY2021S2-CS2103T-T12-2/tp)
+<p align="center">
+  <img src="docs/images/dietlah-slim.png" alt="DietLAH!">
+</p>
 
+<p align="center">
+  <a href="https://github.com/AY2021S2-CS2103T-T12-2/tp/actions">
+    <img src="https://github.com/AY2021S2-CS2103T-T12-2/tp/workflows/Java%20CI/badge.svg" alt="CI Status">
+  </a>
+  <a href="https://codecov.io/gh/AY2021S2-CS2103T-T12-2/tp">
+    <img src="https://codecov.io/gh/AY2021S2-CS2103T-T12-2/tp/branch/master/graph/badge.svg?token=1H94FQ5BPQ" alt="codecov">
+  </a>
+</p>
 
-![Ui](docs/images/Ui.png)
+### Welcome to DietLAH!
 
 * DietLAH! is **a diet tracking app that is meant to allow users to easily track and maintain their meals so that they are able to maintain their ideal weight and body shape**.<br>
 * While the app has a GUI, inputs and feedback are primarily given via a command-line interface. This allows users to work on the app quickly and efficiently as they get used to the inputs.

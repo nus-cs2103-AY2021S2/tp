@@ -1,6 +1,5 @@
 package seedu.address.storage;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,16 +18,13 @@ import seedu.address.model.food.FoodIntakeList;
 @JsonRootName(value = "foodintakelist")
 public class JsonSerializableFoodIntakeList {
 
-    private LocalDate date;
     private final List<JsonAdaptedFoodIntake> foodIntakes = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableFoodIntakeList} with the given foodIntakes.
      */
     @JsonCreator
-    public JsonSerializableFoodIntakeList(@JsonProperty("date") LocalDate date,
-                                          @JsonProperty("foodIntakes") List<JsonAdaptedFoodIntake> foodIntakes) {
-        this.date = date;
+    public JsonSerializableFoodIntakeList(@JsonProperty("foodIntakes") List<JsonAdaptedFoodIntake> foodIntakes) {
         this.foodIntakes.addAll(foodIntakes);
     }
 
