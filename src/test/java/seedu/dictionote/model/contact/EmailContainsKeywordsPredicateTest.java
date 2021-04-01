@@ -1,14 +1,15 @@
 package seedu.dictionote.model.contact;
 
-import org.junit.jupiter.api.Test;
-import seedu.dictionote.testutil.ContactBuilder;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
+
+import seedu.dictionote.testutil.ContactBuilder;
 
 /**
  * Represents a test class for {@code EmailContainsKeywordsPredicate}
@@ -31,7 +32,8 @@ public class EmailContainsKeywordsPredicateTest {
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        EmailContainsKeywordsPredicate firstPredicateCopy = new EmailContainsKeywordsPredicate(firstPredicateKeywordList);
+        EmailContainsKeywordsPredicate firstPredicateCopy =
+                new EmailContainsKeywordsPredicate(firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -74,7 +76,7 @@ public class EmailContainsKeywordsPredicateTest {
         assertFalse(predicate.test(new ContactBuilder().withEmail("alice@example.com").build()));
 
         // Keywords match name, phone and address, but does not match email.
-        // For this assertion, note that the email address is different from the one in the previous assertion. 
+        // For this assertion, note that the email address is different from the one in the previous assertion.
         predicate = new EmailContainsKeywordsPredicate(Arrays.asList("Alice", "12345", "Main", "Street"));
         assertFalse(predicate.test(new ContactBuilder().withName("Alice").withPhone("12345")
                 .withEmail("apsidalbutton52@example.com").withAddress("Main Street").build()));

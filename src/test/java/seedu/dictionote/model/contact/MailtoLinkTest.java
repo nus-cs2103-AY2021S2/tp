@@ -1,12 +1,16 @@
 package seedu.dictionote.model.contact;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
+
 import seedu.dictionote.model.note.Note;
 import seedu.dictionote.testutil.ContactBuilder;
 import seedu.dictionote.testutil.NoteBuilder;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 public class MailtoLinkTest {
     public static final Contact CONTACT = new ContactBuilder().withEmail("contact@email.com").build();
