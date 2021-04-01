@@ -36,6 +36,6 @@ Given below is an example usage scenario and how the `edit` mechanism behaves.
 
 9. `EditToRemoveTagCommand` creates a `CommandResult` with the success output message and returns it to `LogicManager`.
 
-Given below is the full Sequence Diagram for interactions for the `edit 1 -r` + `TAB` API call.
+Given below is the full Sequence Diagram for interactions for the `edit --remove -t friends -t pilot` API call.
 
 ![Sequence Diagram for Edit Remove](images/EditRemoveSequenceDiagram.png)
