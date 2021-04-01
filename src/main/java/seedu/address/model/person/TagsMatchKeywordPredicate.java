@@ -18,6 +18,7 @@ public class TagsMatchKeywordPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
+        boolean test = person.getTags().contains(new Tag("friends"));
         return tagSet.stream()
                 .anyMatch(tag ->
                         person.getTags().contains(tag));
