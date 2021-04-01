@@ -217,7 +217,7 @@ You can use this command in 2 different ways.
 * Only the item name is searched.
 * Items matching at least one keyword will be returned. For example, `find Chocolate Milk` will
   return `Cadbury Chocolate` and `Almond Milk`.
-* Items displayed are not in order of relevance.
+* Items displayed are not in order of relevance, i.e. the topmost item displayed may not be the best match.
 
 </div>
 
@@ -228,8 +228,8 @@ You can use this command in 2 different ways.
   Examples:
   
     * `find Chocolate` returns `chocolate` and `Chocolate Milk`
-    * `find potato chip` returns `Potato Biscuit` and `chocolate chip`
-    <p>&nbsp;</p>
+    * `find potato chip` returns `Potato Biscuit` and `chocolate chip`<br></br>
+    
   <div markdown="block" class="alert alert-info">
 
   **:information_source: Notes about the command:**
@@ -278,17 +278,18 @@ You can use this command in 3 different ways.
   Format: `list l/LOCATION`
 
   Example:
-    * `list l/kitchen` displays all the items in the kitchen.<br>
-
+    * `list l/kitchen` displays all the items in the kitchen.<br></br>
+    
   <div markdown="block" class="alert alert-info">
 
   **:information_source: Notes about the command:**
 
-    * The search is case-insensitive. e.g 'room' will match 'Room'.
+    * The search is case-sensitive. e.g 'room' will not match 'Room'.
     * Only full words will be matched e.g. 'Room' will not match 'Bedroom'.
     * The order of keywords for location search does not matter. e.g. 'Room Living' will match 'Living Room'.
-    * Location matching uses each word in the String to do 'AND' search e.g. 'Room' will match 'Living room' but 'Living
-      room 1' will not match 'Living room'
+    * All the keywords provided need to match an item's location for the item to be displayed.
+      e.g. 'Room' will match an item with location 'Living room' but 'Living room 1' will not match 
+      an item with location 'Living room'
 
   </div>
 
@@ -300,7 +301,7 @@ You can use this command in 3 different ways.
 
   Example:
 
-    * `list t/favourite` displays all the items with the "favourite" tag.<br>
+    * `list t/favourite` displays all the items with the "favourite" tag.<br></br>
 
   <div markdown="block" class="alert alert-info">
 
@@ -350,35 +351,35 @@ You can use this command in 3 different ways.
 
 * #### 3.7.1. Sorting items by quantity
 
-    * ##### 3.7.1.1. Ascending quantity
+    * #### 3.7.1.1. Ascending quantity
       
       Format: `sort quantity asc`
 
       Example:
       
-        * `sort quantity asc` sorts the items in the displayed list in ascending order of quantity.<br>
+        * `sort quantity asc` sorts the items in the displayed list in ascending order of quantity.<br></br>
 
       <div markdown="block" class="alert alert-info">
 
       **:information_source: Note about the sort by ascending quantity command:**
 
-        * `quantity` is case-insensitive. Keying in `sort QUANTITY asc` is also a valid command.
+        * `quantity asc` is case-insensitive. Keying in `sort QUANTITY ASC` is also a valid command.
 
       </div>
 
-    * ##### 3.7.1.2. Descending quantity
+    * #### 3.7.1.2. Descending quantity
       
       Format: `sort quantity desc`
 
       Example:
       
-        * `sort quantity desc` sorts the items in the displayed list in descending order of quantity.<br>
+        * `sort quantity desc` sorts the items in the displayed list in descending order of quantity.<br></br>
 
       <div markdown="block" class="alert alert-info">
 
       **:information_source: Note about the sort by descending quantity command:**
 
-        * `quantity` is case-insensitive. Keying in `sort QUANTITY desc` is also a valid command.
+        * `quantity desc` is case-insensitive. Keying in `sort QUANTITY DESC` is also a valid command.
 
       </div>
 
@@ -388,7 +389,7 @@ You can use this command in 3 different ways.
 
   Example:
   
-    * `sort expiryDate` sorts the items in the displayed list from the earliest expiry date to the latest.<br>
+    * `sort expiryDate` sorts the items in the displayed list from the earliest expiry date to the latest.<br></br>
 
   <div markdown="block" class="alert alert-info">
 
