@@ -253,16 +253,16 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME_OF_RESIDENCE a/ADDRESS [clean/[y or n]] [t/TAG] …​` <br> e.g., `add n/Clementi HDB a/459A Clementi Ave 3, #04-257, S121459 clean/n`
-**Addb** | `addb RESIDENCE_INDEX n/NAME_OF_BOOKER p/PHONE_OF_BOOKER s/START_TIME e/END_TIME` <br> e.g., `add 2 n/John a/91234567 s/01-01-2021 e/02-01-2021`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Deleteb** | `deleteb r/RESIDENCE_INDEX b/BOOKING_INDEX`<br> e.g., `delete r/3 b/2`
-**Edit** | `edit INDEX c/VALID_CLEAN_STATUS`<br> e.g.,`edit 2 c/n`
-**Editb** | `editb r/RESIDENCE_INDEX b/BOOKING_INDEX` <br> e.g., `editb r/1 b/2 p/90069009 s/03-28-2021`
-**Status** | `status clean/unclean INDEX1 INDEX2..`<br> e.g., `status clean 1 3`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Heights`
-**Remind** | `remind`
-**List** | `list`
+**Add Residence** | `add n/NAME_OF_RESIDENCE a/ADDRESS [clean/[y or n]] [t/TAG] …​` <br> e.g., `add n/Clementi HDB a/459A Clementi Ave 3, #04-257, S121459 clean/n`
+**Add Booking to Residence** | `addb RESIDENCE_INDEX n/NAME_OF_BOOKER p/PHONE_OF_BOOKER s/START_TIME e/END_TIME` <br> e.g., `add 2 n/John a/91234567 s/01-01-2021 e/02-01-2021`
+**Delete Residence** | `delete INDEX`<br> e.g., `delete 3`
+**Delete Booking of Residence** | `deleteb r/RESIDENCE_INDEX b/BOOKING_INDEX`<br> e.g., `delete r/3 b/2`
+**Edit Residence** | `edit INDEX [n/RESIDENCE_NAME] [a/ADDRESS] [c/VALID_CLEAN_STATUS] [t/TAG]`<br> e.g.,`edit 2 c/n`
+**Edit Booking of Residence** | `editb r/RESIDENCE_INDEX b/BOOKING_INDEX [n/TENANT_NAME] [p/PHONE] [s/START_DATE] [e/END_DATE]` <br> e.g., `editb r/1 b/2 p/90069009 s/03-28-2021`
+**Update Multiple Clean Status** | `status clean/unclean INDEX1 INDEX2..`<br> e.g., `status clean 1 3`
+**Find Residence** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Heights`
+**Remind Residences with Upcoming Bookings** | `remind`
+**List All Residences** | `list`
 **Help** | `help`
 **Exit** | `exit`
 **Clear** | `clear`
