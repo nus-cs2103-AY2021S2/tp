@@ -27,12 +27,13 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.PoolCommand;
+import seedu.address.logic.commands.UnpoolCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.TripDay;
+import seedu.address.model.TripTime;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.driver.Driver;
 import seedu.address.model.person.passenger.Passenger;
-import seedu.address.model.TripDay;
-import seedu.address.model.TripTime;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.CommuterBuilder;
 import seedu.address.testutil.DriverBuilder;
@@ -115,13 +116,12 @@ public class AddressBookParserTest {
         assertEquals(new PoolCommand(driver, commuters, tripDay, tripTime, tags), command);
     }
 
-//    @Test
-//    public void parseCommand_unpool() throws Exception {
-//        Driver driver = new DriverBuilder().build();
-//        UnpoolCommand command = (UnpoolCommand) parser.parseCommand(DriverUtil.getUnpoolCommand(driver));
-//
-//        assertEquals(new UnpoolCommand(driver), command);
-//    }
+    @Test
+    public void parseCommand_unpool() throws Exception {
+        UnpoolCommand command = (UnpoolCommand) parser.parseCommand(
+                UnpoolCommand.COMMAND_WORD + " " + INDEX_FIRST.getOneBased());
+        assertEquals(new UnpoolCommand(INDEX_FIRST), command);
+    }
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
