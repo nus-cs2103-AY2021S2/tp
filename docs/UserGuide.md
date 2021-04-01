@@ -105,7 +105,7 @@ Vax@NUS is a **one stop management app to efficiently track and schedule COVID-1
 
 ### Viewing help : `help`
 
-Shows a message explaining how to access the help page.
+Shows a list of commonly used commands, and a link to our User Guide.
 
 ![help message](images/helpMessage.png)
 
@@ -154,7 +154,7 @@ Format: `find MATRICULATION_NUMBER`
 
 
 Examples:
-* `Find A1234567X` shows John Doe's personal information and his appointment details there is one.
+* `Find A1234567X` shows John Doe's personal information, and his appointment details if there is one.
 
 ### Filtering student records: `filter`
 
@@ -166,7 +166,7 @@ Format: <br>
 `filter SCHOOL_RESIDENCE`
 
 Examples:
-* `filter VACCINATED` 
+* `filter vaccinated` or `filter not vaccinated`
 * `filter COM` 
 * `filter RVRC` 
 
@@ -263,11 +263,7 @@ Format: `exit`
 
 ### Saving the data
 
-Vax@NUS data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Adding vaccination appointments for students `[coming in v1.3]`
-
-_Details coming soon ..._
+Vax@NUS saves your current date in the hard disk automatically after any command. There is no need to save manually.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -297,9 +293,10 @@ Action | Format, Examples
 **Add Student** | `add n/NAME i/MATRICULATION_NUMBER f/FACULTY p/PHONE_NUMBER e/EMAIL a/ADDRESS s/VACCINATION_STATUS r/SCHOOL_RESIDENCE[optional] m/MEDICAL_DETAILS` <br> e.g., `add n/John Doe i/A1234567X f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated r/RVRC m/peanut allergy`
 **Edit Student** | `edit INDEX [n/NAME] [i/MATRICULATION_NUMBER] [f/FACULTY] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/VACCINATION_STATUS] [m/MEDICAL_DETAILS] [r/SCHOOL_RESIDENCE]` <br> e.g., `edit 1 p/91234567 f/MED`
 **List Students and Appointments** | `list`
-**Find** | `find MATRICULATION_NUMBER` e.g., `find A1234567X`
-**Filter Students** | `filter VACCINATION_STATUS`  e.g., `filter VACCINATED` <br> `filter FACULTY ` e.g., `filter COM` <br> `filter SCHOOL_RESIDENCE` e.g., `filter RVRC` 
-**Delete Student** | `delete MATRICULATION_NUMBER` e.g., `deleteStud A1234567X`
+**Find Students with their appointments ** | `find MATRICULATION_NUMBER` e.g., `find A1234567X`
+**Filter Students** | `filter VACCINATION_STATUS`  e.g., `filter vaccinated`, `filter not vaccinated`,
+ `filter FACULTY ` e.g., `filter COM` <br> `filter SCHOOL_RESIDENCE` e.g., `filter RVRC` 
+**Delete Student** | `delete MATRICULATION_NUMBER` e.g., `delete A1234567X`
 **Add Appointment** | `addAppt i/MATRICULATION_NUMBER d/DATE ts/START_TIME` e.g., `addAppt i/A1234567X d/2021-12-13 ts/13:00`
 **Delete Appointment** | `deleteAppt MATRICULATION_NUMBER` e.g., `deleteAppt A1234567X`
 **View Student Statistics** | `stats FACULTY` e.g., `stats COM` <br> `stats SCHOOL_RESIDENCE` e.g., `stats RC4` <br> `stats NUS` <br> `stats all` 
