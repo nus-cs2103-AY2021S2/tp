@@ -193,8 +193,8 @@ public class RecurringSession extends Session {
         if (startAfter(otherSession.getSessionDate())) {
             return otherSession.isOverlapping(this);
         }
-        int daysBetween = (int) ChronoUnit.DAYS
-                .between(getSessionDate().getDate(), otherSession.getSessionDate().getDate());
+
+        int daysBetween = getSessionDate().numOfDayTo(otherSession.getSessionDate());
         // Recurrence length in terms of when the first session begins
         int firstSessionRecurrenceLength =
                 (int) ChronoUnit.DAYS.between(getSessionDate().getDate(), getLastSessionDate().getDate());
@@ -209,8 +209,14 @@ public class RecurringSession extends Session {
             if (daysFromFirstSessionStart == daysFromSecondSessionStart) {
                 break;
             } else if (daysFromFirstSessionStart > daysFromSecondSessionStart) {
+                if (daysFromSecondSessionStart >= secondSessionRecurrenceLength) {
+                    break;
+                }
                 daysFromSecondSessionStart += otherSession.getInterval().getValue();
             } else {
+                if (daysFromFirstSessionStart >= firstSessionRecurrenceLength) {
+                    break;
+                }
                 daysFromFirstSessionStart += getInterval().getValue();
             }
         }

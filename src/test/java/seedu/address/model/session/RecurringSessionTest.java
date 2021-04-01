@@ -85,12 +85,30 @@ class RecurringSessionTest extends SessionTest {
 
     @Test
     void isRecurringOverlappingRecurring() {
-        // Days Between: 8, Interval1: 3, Interval2: 7, EndDate1: 15, EndDate2: 7
-        RecurringSession recurringSession1 = new RecurringSession(new SessionDate("2021-01-01", "10:00"),
+        // EndDate in relation to when the first session begins
+
+        // Days Between: 8, Interval1: 3, Interval2: 7, EndDate1: 15, EndDate2: 15
+        RecurringSession recurringSessionTest1 = new RecurringSession(new SessionDate("2021-01-01", "10:00"),
                 DURATION, SUBJECT, FEE, new Interval("3"), new SessionDate("2021-01-16", "10:00"));
-        RecurringSession recurringSession2 = new RecurringSession(new SessionDate("2021-01-09", "10:00"),
+        RecurringSession recurringSession2Test1 = new RecurringSession(new SessionDate("2021-01-09", "10:00"),
                 DURATION, SUBJECT, FEE, new Interval("7"), new SessionDate("2021-01-16", "10:00"));
-        assertTrue(recurringSession1.isOverlapping(recurringSession2));
+        assertTrue(recurringSessionTest1.isOverlapping(recurringSession2Test1));
+
+        // Days Between: 10, Interval1: 14, Interval2: 3, EndDate1: 28, EndDate2: 31
+        RecurringSession recurringSession1Test2 = new RecurringSession(new SessionDate("2021-01-01", "10:00"),
+                DURATION, SUBJECT, FEE, new Interval("14"), new SessionDate("2021-01-29", "10:00"));
+        RecurringSession recurringSession2Test2 = new RecurringSession(new SessionDate("2021-01-11", "10:00"),
+                DURATION, SUBJECT, FEE, new Interval("3"), new SessionDate("2021-02-01", "10:00"));
+        assertTrue(recurringSession1Test2.isOverlapping(recurringSession2Test2));
+
+        // Days Between: 10, Interval1: 14, Interval2: 3, EndDate: 28, EndDate2: 25
+        RecurringSession recurringSession1Test3 = new RecurringSession(new SessionDate("2021-01-01", "12:00"),
+                DURATION, SUBJECT, FEE, new Interval("14"), new SessionDate("2021-01-29", "12:00"));
+        RecurringSession recurringSession2Test3 = new RecurringSession(new SessionDate("2021-01-11", "12:00"),
+                DURATION, SUBJECT, FEE, new Interval("3"), new SessionDate("2021-01-26", "12:00"));
+        assertFalse(recurringSession1Test3.isOverlapping(recurringSession2Test3));
+
+
     }
 
     @Test
