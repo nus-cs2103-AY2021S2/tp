@@ -69,30 +69,45 @@ Here are some symbols you might need to know:
 PlanIT contains a list of tasks.
 Tasks can have the following attributes:
 
-### Title
-A short description or name for the task.
+### Title: `t/`
+A short description or name for the task. Titles can only contain alphanumeric values.
 
-:information_source:Every task must have a title.
+:information_source:  Every task must have a title.
 
-:information_source: Titles can only contain alphanumeric values.
-
-### Date
+### Date: `set/`
 A date to represent the deadline of a Task or to represent the day that the task will be carried out.
 
-:information_source: Dates should be of the format dd/mm/yyyy e.g 02/06/2021
+Dates should be of the format dd/mm/yyyy e.g 02/06/2021
 
-### Duration
+### Duration: `s/`
 The start and end time of a task. You should specify start time and end time in the 24-hour clock format.
 
-:information_source: Duration should be of the format hh:mm-hh:mm e.g 12:30-13:30
+Duration should be of the format hh:mm-hh:mm e.g 12:30-13:30
 
-### Recurring Schedule
+### Recurring Schedule: `r/`
 Represents a task that might repeat weekly or biweekly.
 
 :bulb: You can use this to quickly add weekly tutorials or biweekly lab session for the entire semester.
 
-:information_source: Recurring Schedule should be of the format [dd/mm/yyyy][]
-[23/10/2021][Mon][weekly]
+Recurring Schedule should be of the format [dd/mm/yyyy][DAY][FREQUENCY] e.g [23/10/2021][mon][weekly]
+
+DAY should be either: mon, tue, wed, thu, fri, sat, sun. Days are case-insensitive.
+
+FREQUENCY should be either: weekly or biweekly and is also case-insensitive.
+
+### Description: `d/`
+A text description of the task. Your description should only contain alphanumeric values.
+
+### Tag: `t/`
+A label attached to a task for easy grouping and searching of tasks. Your tag should only contain alphanumeric values.
+
+:bulb: You can use this to group tasks by modules e.g adding a `CS2103` tag to a task.
+
+### Status: 's/'
+Reflects the current status of your task. Status can only be either 'done' or 'not done'.
+
+:information_source:   Your task's status will be set to 'not done' by default.
+
 
 ## List of Commands
 
