@@ -10,6 +10,7 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.EditCommand.EditPolicyMode;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.attribute.Attribute;
 import seedu.address.model.insurancepolicy.InsurancePolicy;
@@ -41,6 +42,24 @@ public class ParserUtil {
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
 
+    /**
+     * Parses {@code edit policy mode} into a {@code an EditPolicyMode enumeration} and returns it.
+     * Leading and trailing whitespaces will be trimmed.
+     * @throws ParseException if the specified mode does not match the required constraints).
+     */
+    public static EditPolicyMode parseEditPolicyMode(String editPolicyMode) throws ParseException {
+        String trimmedEditPolicyMode = editPolicyMode.trim();
+        switch (trimmedEditPolicyMode) {
+        case "-insert":
+            return EditPolicyMode.APPEND;
+        case "-remove":
+            return EditPolicyMode.REMOVE;
+        case "-modify":
+            return EditPolicyMode.MODIFY;
+        default:
+            throw new ParseException(EditPolicyMode.MESSAGE_EDIT_POLICY_MODE_CONSTRAINTS);
+        }
+    }
     /**
      * Parses {@code oneBasedIndices} and adds to a {@code List<Index>}. Leading and trailing whitespaces
      * will be trimmed.
@@ -86,7 +105,7 @@ public class ParserUtil {
                 parsedAttributesList.add(Attribute.MEETING);
                 break;
             default:
-                throw new ParseException(Attribute.MESSAGE_CONSTRAINTS);
+                throw new ParseException(Attribute.MESSAGE_ATTRIBUTE_CONSTRAINTS);
             }
         }
         return parsedAttributesList;
