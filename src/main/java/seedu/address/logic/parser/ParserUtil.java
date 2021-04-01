@@ -276,7 +276,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code shortcutName} is invalid.
      */
-    public static String parseShortcutName(String shortcutName) throws ParseException {
+    public static String formatShortcutName(String shortcutName) throws ParseException {
         requireNonNull(shortcutName);
         String trimmedShortcutName = shortcutName.trim();
         if (!Shortcut.isValidShortcutName(trimmedShortcutName)) {
@@ -291,7 +291,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code shortcutCommand} is invalid.
      */
-    public static String parseShortcutCommand(String shortcutCommand) throws ParseException {
+    public static String formatShortcutCommand(String shortcutCommand) throws ParseException {
         requireNonNull(shortcutCommand);
         String trimmedShortcutCommand = shortcutCommand.trim();
         if (!Shortcut.isValidShortcutCommand(trimmedShortcutCommand)) {
