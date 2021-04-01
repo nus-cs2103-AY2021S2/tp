@@ -32,7 +32,7 @@ TutorsPet is a **desktop app designed for private tutors to manage students’ i
 
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
 
-   * **`clear`** : Deletes all contacts.
+   * **`clear`** : Deletes all contacts and important dates.
 
    * **`exit`** : Exits the app.
 
@@ -89,24 +89,30 @@ Format: `schedule`
 
 Adds a student’s contact to TutorsPet.
 
-Format: `add n/NAME p/PHONE [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] [gp/GUARDIAN_PHONE] [t/SUBJECT]…​ [l/LESSON]…​`
+Format: `add n/NAME p/PHONE [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] [gp/GUARDIAN_PHONE] [t/SUBJECT]…​ [le/LESSON]…​`
 
 <div markdown="span" class="alert alert-primary">
 
 :bulb:**Tip:**<br>
 
-* `n/NAME p/PHONE` are compulsory fields that must be provided, while `s/SCHOOL e/EMAIL a/ADDRESS gn/GUARDIAN_NAME gp/GUARDIAN_PHONE [t/SUBJECT]…​ [l/LESSON]…​` are optional.
+* `n/NAME p/PHONE` are compulsory fields that must be provided, while `s/SCHOOL e/EMAIL a/ADDRESS gn/GUARDIAN_NAME gp/GUARDIAN_PHONE [t/SUBJECT]…​ [le/LESSON]…​` are optional.
   
 * A student’s contact can have any number of subjects (including 0)
   
 * A student’s contact can have any number of lessons (including 0)
+
+* Lessons should only consist of the lesson day and time e.g. `Monday 1300`
+  
+* Lesson day must take on one of the values: **Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday**.
+
+* Lesson time must be in **HHmm** format e.g. **1300**
 
 </div>
 
 Examples:
 * `add n/John Doe p/98612341`
 * `add n/Alice Tan p/98765432 s/Abc Secondary School e/alicet@example.com a/John street, block 123, #01-01 gn/Mary Tan gp/23456789`
-* `add n/Bob Lee t/sec3 p/87654321 s/Def Secondary School e/bobl@example.com a/Bob street, block 321, #01-02 gn/John Lee gp/12345678 t/maths l/monday 1300`
+* `add n/Bob Lee t/sec3 p/87654321 s/Def Secondary School e/bobl@example.com a/Bob street, block 321, #01-02 gn/John Lee gp/12345678 t/maths le/monday 1300`
 
 ### Listing all contacts : `list`
 
@@ -118,7 +124,7 @@ Format: `list`
 
 Edits an existing student in TutorsPet.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] [gp/GUARDIAN_PHONE] [t/SUBJECT] [l/LESSON]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] [gp/GUARDIAN_PHONE] [t/SUBJECT] [le/LESSON]…​`
 
 * Edits the student at the specified `INDEX`.
 * The index refers to the index number shown in the displayed student list.
@@ -127,12 +133,12 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUAR
 * Existing values will be updated to the input values.
 * When editing subjects or lessons, the existing subjects or lessons of the student will be removed i.e adding of subjects or lessons are not cumulative.
 * You can remove all the student’s subjects by typing `t/` without specifying any subject names after it.
-* You can remove all the student’s lessons by typing `l/` without specifying any lesson details after it.
+* You can remove all the student’s lessons by typing `le/` without specifying any lesson details after it.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing subjects.
-*  `edit 1 l/monday 1300 l/tuesday 1400` Edits the 1st student's contact to add 2 lesson details, `monday 1300` and `tuesday 1400`
+*  `edit 1 le/monday 1300 le/tuesday 1400` Edits the 1st student's contact to add 2 lesson details, `monday 1300` and `tuesday 1400`
 
 ### Searching for a contact: `search`
 
@@ -209,7 +215,7 @@ Examples:
 ### Sorting contacts: `sort`
 Sorting for student’s contacts by name, school, subjects or lessons.
 
-Format: `search n/`, `search s/`, `search t/` or `search l/`
+Format: `sort n/`, `sort s/`, `sort t/` or `sort le/`
 
 ### Viewing a contact details: `detail`
 
@@ -324,12 +330,13 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] [gp/GUARDIAN_PHONE] [t/SUBJECT]…​ [l/LESSON]…​` <br> e.g., `add n/Bob Lee p/87654321 s/Def Secondary School a/Bob street, block 321, #01-02 gn/John Lee gp/12345678 t/geo`
+**Add** | `add n/NAME p/PHONE [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] [gp/GUARDIAN_PHONE] [t/SUBJECT]…​ [le/LESSON]…​` <br> e.g., `add n/Bob Lee p/87654321 s/Def Secondary School a/Bob street, block 321, #01-02 gn/John Lee gp/12345678 t/geo`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [s/SCHOOL] [p/PHONE] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] [gp/GUARDIAN_PHONE] [t/SUBJECT]…​ [l/LESSON]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit** | `edit INDEX [n/NAME] [s/SCHOOL] [p/PHONE] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] [gp/GUARDIAN_PHONE] [t/SUBJECT]…​ [le/LESSON]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Search** | `search [n/KEYWORDS] [s/KEYWORDS] [t/KEYWORDS] [MORE_KEYWORDS]`<br> e.g., `search n/James Jake s/woodlands t/eng`
 **Schedule** | `schedule`
+**Sort** | `sort [n/] [s/] [t/] [le/]`
 **Detail** | `detail INDEX` <br> e.g., `detail 1`
 **List** | `list`
 **Add dates** | `add-date d/DESCRIPTION dt/DETAILS`<br> e.g, `add-date d/math exam dt/2021-11-05 1300`
