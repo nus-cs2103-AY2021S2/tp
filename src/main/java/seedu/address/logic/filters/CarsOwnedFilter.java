@@ -30,6 +30,6 @@ public class CarsOwnedFilter extends CarFilter {
         return customer.getCarsOwned()
                 .keySet()
                 .parallelStream()
-                .anyMatch(x -> carFilterPredicate(x, parseCar(filterString)));
+                .anyMatch(x -> carFilterPredicate(x, filterString));
     }
 }

@@ -23,8 +23,8 @@ public class JsonAdaptedCar {
      * Converts a given {@code Car} into this class for Jackson use.
      */
     public JsonAdaptedCar(Car source) {
-        this.carBrand = source.carBrand;
-        this.carType = source.carType;
+        this.carBrand = source.getCarBrand();
+        this.carType = source.getCarType();
     }
 
 

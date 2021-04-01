@@ -24,14 +24,14 @@ public class FilterCombinator implements Predicate<Customer> {
         try {
             temp = createTree(argument);
         } catch (IllegalArgumentException | NullPointerException e) {
-
+            e.printStackTrace();
         } finally {
             rootNode = temp;
         }
     }
 
     public boolean isValidCombinator() {
-        return rootNode == null;
+        return rootNode != null;
     }
 
     private LogicalOperator getCorrespondingLogicalOperator(Prefix prefix) {
@@ -124,7 +124,7 @@ public class FilterCombinator implements Predicate<Customer> {
             nodeStack.push(new Node(filter));
         }
 
-        //System.out.println(nodeStack);
+        System.out.println(nodeStack);
 
         return formTreeFromNodeStack(nodeStack);
     }

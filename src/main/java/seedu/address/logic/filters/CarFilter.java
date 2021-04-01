@@ -10,6 +10,7 @@ import seedu.address.model.customer.Car;
 public abstract class CarFilter extends AbstractFilter {
     /**
      * Creates a filter for Cars
+     *
      * @param filterString
      */
     public CarFilter(String filterString) {
@@ -19,12 +20,15 @@ public abstract class CarFilter extends AbstractFilter {
 
     /**
      * Parses filter command for c/, cp/ prefixes.
+     *
      * @param car
      * @return
      */
     public static Car parseCar(String car) {
-        String trimmedCar = car.trim();
+        String trimmedCar = car;
         String[] carDetails = trimmedCar.split("\\+");
+
+
         if (carDetails.length != 2) {
             //throw new ParseException(Car.MESSAGE_CONSTRAINTS);
         }
@@ -42,19 +46,20 @@ public abstract class CarFilter extends AbstractFilter {
     /**
      * Predicate for abstract test method use.
      *
-     * @param car Car member from carsOwned or carsPreferred.
+     * @param car       Car member from carsOwned or carsPreferred.
      * @param filterCar Specified Car to filter by.
      * @return
      */
-    public boolean carFilterPredicate(Car car, Car filterCar) {
-        if (filterCar.carBrand == null) {
-            return car.isSameCarType(filterCar);
-        } else if (filterCar.carType == null) {
-            return car.isSameCarBrand(filterCar);
-        } else if ((filterCar.carBrand != null) && (filterCar.carType != null)) {
-            return car.isSameCarBrandAndCarType(filterCar);
+    public boolean carFilterPredicate(Car car, String filterCar) {
+        filterCar = filterCar.trim();
+        String[] carDetails = filterCar.split("\\+", 2);
+        if (carDetails.length == 1) {
+
+            return car.getCarBrand().toLowerCase().contains(filterCar.toLowerCase()) ||
+                car.getCarType().toLowerCase().contains(filterCar.toLowerCase());
         } else {
-            return false;
+            return car.getCarBrand().toLowerCase().contains(carDetails[0].toLowerCase()) ||
+                car.getCarType().toLowerCase().contains(carDetails[1].toLowerCase());
         }
     }
 }

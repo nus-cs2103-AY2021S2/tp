@@ -19,8 +19,8 @@ public class Car {
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
-    public final String carBrand;
-    public final String carType;
+    private final String carBrand;
+    private final String carType;
 
     /**
      * Constructs a {@code Car}.
@@ -65,6 +65,7 @@ public class Car {
     public boolean isSameCarBrandAndCarType(Car otherCar) {
         return isSameCarBrand(otherCar) && isSameCarType(otherCar);
     }
+
     /**
      * Compares carBrand string.
      * @param otherCar
@@ -102,4 +103,11 @@ public class Car {
         return Objects.hash(carBrand, carType);
     }
 
+    public String getCarBrand() {
+        return carBrand;
+    }
+
+    public String getCarType() {
+        return carType;
+    }
 }

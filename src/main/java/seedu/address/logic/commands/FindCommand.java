@@ -31,7 +31,7 @@ public class FindCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        if (! predicate.isValidCombinator()) {
+        if (!predicate.isValidCombinator()) {
             return new CommandResult(MESSAGE_SYNTAX_ERROR);
         }
 
