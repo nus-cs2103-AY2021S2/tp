@@ -244,7 +244,8 @@ Examples:
 
 Shows a list of all persons and meetings in MeetBuddy.
 
-Format: `list`
+Format: `deletem INDEX`
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
