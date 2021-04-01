@@ -243,7 +243,7 @@ A person can have any number of tags and insurance policies (including 0).
 
 **Purpose**: Edits an existing client contact in the ClientBook.
 
-**Format**: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/POLICY_NUMBER]…​ [-MODE] [t/TAG]…​`
+**Format**: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/POLICY_NUMBER…​ [-MODE]] [t/TAG]…​`
 
 * Edits the client at the specified `INDEX`.
     * `INDEX` refers to the index number shown in the displayed client list.
@@ -268,6 +268,9 @@ a client, by typing `-MODE` to specify a mode after a policy number.
 *  Edit the name of the 2nd person to be `Betsy Crower` and modify the current policy 
 `P12341` to `P1234>insurance.com/policy1234`.
     * `edit 2 n/Betsy Crower i/P12341;P1234>insurance.com/policy1234 -modify`
+    
+*  Edit the name of the 3rd person to be `Tom Doe` and remove the policies `P1234`, `P4321` and `P5123`.
+    * `edit 3 n/Tom Doe i/P1234 i/P4321 i/P5123 -remove`
 
 [Return to Table of Contents](#table-of-contents)
 <br><br>
