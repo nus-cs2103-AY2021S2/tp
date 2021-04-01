@@ -24,6 +24,8 @@ title: User Guide
   * [2.1. Get diet recommendations based on current BMI](#21-get-diet-recommendation-based-on-current-bmi)
   * [2.2. View active diet plan](#22-view-active-diet-plan)
   * [2.3. Select active diet plan](#23-select-active-diet-plan)
+  * [2.4. List all available diet plans](#24-list-all-available-diet-plans)
+  * [2.5. View information about a particular diet plan](#25-view-information-about-a-particular-diet-plan)
 * [3. Macronutrients Tracker](#3-macronutrients-tracker)
   * [3.1. Add food item](#31-add-food-item)
   * [3.2. Update food item](#32-update-food-item)
@@ -73,10 +75,9 @@ To make browsing the user guide more pleasant for you, here are some of the symb
 Legend | Description
 -------|-------------
 `Inline code` | Commands and user input
-[Tip - to be updated] | Extra information that may be useful
-[Important - to be updated] | Important information to take note of
-[⚠️] | Warning message
-[❌] | Problems that may cause issues
+[💡] | Tip - Extra information that may be useful
+[❕] | Note - Important things to take note of
+[❌] | Warning - Be extra careful with these
 
 ## Quick start
 
@@ -125,7 +126,7 @@ When you first launch DietLAH!, you will be prompted to enter your particulars.
 
 DietLAH! uses this information to provide personalized recommendations based on your personal goals and current characteristics.
 
-**Note:** ⚠️ You need to enter this command before all other commands will work!
+❕ **Note:** You need to enter this command before all other commands will work!
 
 **Command Format:** `bmi g/GENDER a/AGE h/HEIGHT(CM) w/WEIGHT(KG) i/IDEAL_WEIGHT(KG)`
 
@@ -239,7 +240,7 @@ Save food items you frequently consume, so you don't have to re-enter them every
 
 **Example:** `food_add n/tomato c/10 f/10 p/10`
 
-**Note:** Food names must be unique.
+❕ **Note:** Food names must be unique.
 
 **Expected output:**
 
@@ -255,9 +256,9 @@ Update food items in your food list with new nutrition values.
 
 **Example:** `food_update n/tomato c/20 f/30 p/40`
 
-**Note:** Ensure that the food item exists in the application.
+❕ **Note:** Ensure that the food item exists in the application.
 
-**Tip:** Not all nutrient fields are compulsory. Save time from having to re-enter data and only include fields you wish to update!
+💡 **Tip:** Not all nutrient fields are compulsory. Save time from having to re-enter data and only include fields you wish to update!
 
 **Expected output:**
 
@@ -287,7 +288,7 @@ Deletes the specified food item.
 
 **Example:** `food_delete n/tomato`
 
-**Note:** Deletion of a food item will not affect older food intake item records with similar name.
+❌ **Warning:** Deletion of a food item will not affect older food intake item records with similar name.
 
 **Expected output:**
 
@@ -299,7 +300,7 @@ Deletes the specified food item.
 
 For tracking your diet plan progress, you are encouraged to record your daily food intake. For your convenience, there are a few ways to input a food intake. Refer to the different scenarios outlined below!
 
-**Note:** If there are multiple food intakes with the same date and name, the food name will be automatically renamed to include a duplicate count for easy identification. E.g. Chicken rice, Chicken rice 2
+❕ **Note:** If there are multiple food intakes with the same date and name, the food name will be automatically renamed to include a duplicate count for easy identification. E.g. Chicken rice, Chicken rice 2
 
 
 ### 3.5.1 Input food intake (For new food items that are not created before)
@@ -310,7 +311,7 @@ Record your food intake for the specified date with a new food item not currentl
 
 **Example:** `food_intake_add d/31 Mar 2021 n/tomato c/10 f/10 p/10`
 
-**Note:** At least one nutrient value is required to create new food item. If a particular nutrient value is not provided, it will be set to 0 by default.
+❕ **Note:** At least one nutrient value is required to create new food item. If a particular nutrient value is not provided, it will be set to 0 by default.
 
 **Expected output:**
 
@@ -341,7 +342,7 @@ Record your food intake for the specified date using an existing food from your 
 
 **Example:** `food_intake_add d/31 Mar 2021 n/tomato c/20 f/35 p/50`
 
-**Note:** Any nutrient value(s) specified for an existing food item will be overwritten and updated in the food list for future use. Older food intake record(s) associated with the same food item will retain their original values.
+❕ **Note:** Any nutrient value(s) specified for an existing food item will be overwritten and updated in the food list for future use. Older food intake record(s) associated with the same food item will retain their original values.
 
 **Expected output:**
 
@@ -357,7 +358,7 @@ Update the nutrient value(s) of a previously entered food intake given the date 
 
 **Example:** `food_intake_update d/31 Mar 2021 n/tomato c/20 f/40 p/50`
 
-**Tip:** Not all nutrient fields are required and only the specified nutrient fields will be updated with the new value while the other values remain unchanged.
+💡 **Tip:** Not all nutrient fields are required and only the specified nutrient fields will be updated with the new value while the other values remain unchanged.
 
 **Expected output:**
 
@@ -419,7 +420,7 @@ Generates a progress report based on your current active diet plan. Your food in
 
 **Command Format:** `progress`
 
-**Note:** An active diet plan must be selected before running this command.
+❕ **Note:** An active diet plan must be selected before running this command.
 
 **Expected output:**
 
@@ -438,10 +439,10 @@ Get rid of all existing records and start afresh.
 **Expected output:**
 
 <p align="center">
-  TODO: IMAGE
+  <img src="images/user-guide/reset-blank.png">
 </p>
 
-### 5.1 Populate application with sample template data
+### 5.2 Populate application with sample template data
 
 Get rid of all existing records and populate it with the sample template data.
 
@@ -450,7 +451,7 @@ Get rid of all existing records and populate it with the sample template data.
 **Expected output:**
 
 <p align="center">
-  TODO: IMAGE
+  <img src="images/user-guide/reset-template.png">
 </p>
 
 ---
