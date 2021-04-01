@@ -1,13 +1,13 @@
 package seedu.address.model.person.functions;
 
-import java.util.function.Function;
+import java.util.function.UnaryOperator;
 
 import seedu.address.model.person.Person;
 import seedu.address.model.person.level.Level;
 
 
 
-public class PersonLevelDownFunction implements Function<Person, Person> {
+public class PersonLevelDownFunction implements UnaryOperator<Person> {
     public PersonLevelDownFunction() {}
     @Override
     public Person apply(Person p) {

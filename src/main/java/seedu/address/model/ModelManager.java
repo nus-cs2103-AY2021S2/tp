@@ -6,16 +6,20 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.function.UnaryOperator;
 import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import seedu.address.MainApp;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.date.ImportantDate;
 import seedu.address.model.lesson.Lesson;
 import seedu.address.model.person.Person;
@@ -333,12 +337,59 @@ public class ModelManager implements Model {
             Function<Person, Person> function) {
         ArrayList<Person> oldList = new ArrayList<>(observableList);
         ArrayList<Person> newList = new ArrayList<>(oldList.size());
+        Logger logger = LogsCenter.getLogger(ModelManager.class);
         for (Person p : oldList) {
+            // logger.info("*********************** p before: " + p);
+            // logger.info("*********************** p after: " + function.apply(p));
             newList.add(function.apply(p));
         }
         ObservableList<Person> newObservableList = FXCollections.observableArrayList(newList);
         return newObservableList;
     }
+
+
+
+    private void filterIndices(List<Integer> indices, FilteredList<Person> filteredList) {
+        filteredList.setPredicate(x -> !indices.contains(filteredList.indexOf(x)));
+    }
+
+    @Override
+    public void filterIndicesThenTransformPersonList(List<Index> indices, Function<Person, Person> function) {
+        logger.info("*********************** before changes: " + transformedPersons);
+        /*
+        UnaryOperator<Person> newOperator = x ->
+                !indices.contains(Index.fromZeroBased(transformedPersons.indexOf(x))) ? function.apply(x) : x;
+        */
+        UnaryOperator<Person> newOperator = x -> {
+            logger.info("*****************is " + transformedPersons.indexOf(x)
+                    + "in the blacklist? " + indices.contains(Index.fromZeroBased(transformedPersons.indexOf(x))));
+            if (!indices.contains(Index.fromZeroBased(transformedPersons.indexOf(x)))) {
+                return function.apply(x);
+            } else {
+                logger.info("*********************** this is blacklist: " + x);
+                return x;
+            }
+        };
+
+
+        // ObservableList<Person> newList = transform(transformedPersons, function);
+        transformedPersons.replaceAll(newOperator);
+        Logger logger = LogsCenter.getLogger(ModelManager.class);
+        logger.info("*********************** after changes: " + transformedPersons);
+        // transformedPersons.setAll(newList);
+        // logger.info("*********************** TRANSFORMED?: " + transformedPersons);
+        // filteredPersons.setAll(newList);
+        // sortedPersons.setAll(newList);
+        /*
+        filterIndices(indices, filteredPersons);
+        ObservableList<Person> newList = transform(filteredPersons, function);
+
+        filteredPersons.setAll(newList);
+        sortedPersons.setAll(newList);
+        transformedPersons.setAll(transform(filteredPersons, function));
+        */
+    }
+
 
 
 

@@ -23,10 +23,11 @@ import seedu.address.model.subject.Subject;
 public class Level implements Comparable<Level> {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Level can only be [pri1] to [pri6], [sec1] to [sec4] or [jc1] to [jc2].";
+            "Level can only be [pri1] to [pri6], [sec1] to [sec4], [jc1] to [jc2] or [graduated].";
 
     private String level;
     private int levelIndex;
+
 
     /**
      * Constructs a {@code Level}.
@@ -60,14 +61,12 @@ public class Level implements Comparable<Level> {
     public static boolean isValidLevel(String test) {
         // ArrayList<String> levelList = new LevelList().LEVEL_LIST;
         boolean result = false;
-        for (int i = 1; i < 12; i++) {
+        for (int i = 0; i < 13; i++) {
             if (test.equals(LEVEL_LIST.get(i))) {
                 result = true;
             }
         }
         return result;
-
-        // return LevelList.isValidLevel(test);
     }
 
     /**
@@ -76,7 +75,7 @@ public class Level implements Comparable<Level> {
      */
     private int assignLevelIndex() {
         int result = 0;
-        for (int i = 1; i < 12; i++) {
+        for (int i = 0; i < 12; i++) {
             if (level.equals(LEVEL_LIST.get(i))) {
                 result = i;
             }
@@ -88,10 +87,15 @@ public class Level implements Comparable<Level> {
      * Alters {@code Level} to reflect a {@code Level} that is one grade higher.
      */
     public void levelUp() {
-        int nextIndex = (levelIndex + 1) % 13;
-        String nextLevel = LEVEL_LIST.get(nextIndex);
-        if (nextLevel.equals("")) {
-            // TODO: implement student graduation exception message
+        int nextIndex;
+        String nextLevel;
+        if (levelIndex != 12) {
+            nextIndex = levelIndex + 1;
+            nextLevel = LEVEL_LIST.get(nextIndex);
+        } else {
+            // Student graduated
+            nextIndex = 12;
+            nextLevel = LEVEL_LIST.get(nextIndex);
         }
         this.level = nextLevel;
         this.levelIndex = nextIndex;
@@ -102,10 +106,15 @@ public class Level implements Comparable<Level> {
      * Alters {@code Level} to reflect a {@code Level} that is one grade lower.
      */
     public void levelDown() {
-        int prevIndex = (levelIndex - 1) % 13;
-        String prevLevel = LEVEL_LIST.get(prevIndex);
-        if (prevLevel.equals("")) {
-            // TODO: implement student cannot go down anymore levels
+        int prevIndex;
+        String prevLevel;
+        if (levelIndex != 0) {
+            prevIndex = levelIndex - 1;
+            prevLevel = LEVEL_LIST.get(prevIndex);
+        } else {
+            // Student is already pri1
+            prevIndex = 0;
+            prevLevel = LEVEL_LIST.get(prevIndex);
         }
         this.level = prevLevel;
         this.levelIndex = prevIndex;
@@ -128,8 +137,15 @@ public class Level implements Comparable<Level> {
         Set<Subject> subjects = person.getSubjects();
         Set<Lesson> lessons = person.getLessons();
 
-        return new Person(name, phone, school, email, address, guardianName, guardianPhone, level,
+        Person newPerson = new Person(name, phone, school, email, address, guardianName, guardianPhone, level,
                 subjects, lessons);
+
+        for (Lesson l : lessons) {
+            l.removePerson(person);
+            l.addPerson(newPerson);
+        }
+
+        return newPerson;
     }
 
     /**
@@ -148,8 +164,15 @@ public class Level implements Comparable<Level> {
         Set<Subject> subjects = person.getSubjects();
         Set<Lesson> lessons = person.getLessons();
 
-        return new Person(name, phone, school, email, address, guardianName, guardianPhone, level,
+        Person newPerson = new Person(name, phone, school, email, address, guardianName, guardianPhone, level,
                 subjects, lessons);
+
+        for (Lesson l : lessons) {
+            l.removePerson(person);
+            l.addPerson(newPerson);
+        }
+
+        return newPerson;
     }
 
     @Override

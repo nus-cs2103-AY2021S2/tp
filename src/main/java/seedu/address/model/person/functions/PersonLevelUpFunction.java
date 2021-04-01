@@ -1,12 +1,13 @@
 package seedu.address.model.person.functions;
 
-import java.util.function.Function;
+import java.util.function.UnaryOperator;
 
 import seedu.address.model.person.Person;
 import seedu.address.model.person.level.Level;
 
-public class PersonLevelUpFunction implements Function<Person, Person> {
-    public PersonLevelUpFunction() {}
+public class PersonLevelUpFunction implements UnaryOperator<Person> {
+    public PersonLevelUpFunction() {
+    }
     @Override
     public Person apply(Person p) {
         /*
@@ -18,6 +19,7 @@ public class PersonLevelUpFunction implements Function<Person, Person> {
         }
         return Level.changeLevel(p, newLevel);
          */
+        // TODO: change to an immutable implementation; this is a temporary immplementation
         Person newPerson = Level.clonePerson(p);
         newPerson.getLevel().ifPresent(x -> x.levelUp());
         return newPerson;

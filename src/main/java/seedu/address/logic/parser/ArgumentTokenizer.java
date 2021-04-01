@@ -54,7 +54,7 @@ public class ArgumentTokenizer {
         Prefix firstPrefix;
         List<PrefixPosition> prefixPositions = findAllPrefixPositions(argsString, prefixes);
         if (prefixPositions.isEmpty()) {
-            final String noPrefixMessage = "No valid sorting criteria provided.";
+            final String noPrefixMessage = "No valid prefix provided.";
             throw new ParseException(noPrefixMessage);
         }
         prefixPositions.sort((prefix1, prefix2) -> prefix1.getStartPosition() - prefix2.getStartPosition());

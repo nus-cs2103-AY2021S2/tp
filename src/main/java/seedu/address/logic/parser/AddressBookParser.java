@@ -83,7 +83,7 @@ public class AddressBookParser {
             return new ImportantDatesCommand();
 
         case LevelUpCommand.COMMAND_WORD:
-            return new LevelUpCommand();
+            return new LevelUpCommandParser().parse(arguments);
 
         case LevelDownCommand.COMMAND_WORD:
             return new LevelDownCommand();

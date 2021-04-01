@@ -2,12 +2,14 @@ package seedu.address.model;
 
 import java.nio.file.Path;
 import java.util.Comparator;
+import java.util.List;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.date.ImportantDate;
 import seedu.address.model.lesson.Lesson;
 import seedu.address.model.person.Person;
@@ -137,6 +139,8 @@ public interface Model {
      * @throws NullPointerException if {@code comparator} is null.
      */
     void filterThenSortPersonList(Predicate<Person> predicate, Comparator<Person> comparator);
+
+    void filterIndicesThenTransformPersonList(List<Index> indices, Function<Person, Person> function);
 
     void setDatesBook(ReadOnlyDatesBook datesBook);
 
