@@ -88,12 +88,14 @@ Type in `java -jar RemindMe.jar` in the command box and press Enter to execute i
 <br>
 <br>
 The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](./images/Ui2.png)
+   ![Ui](./images/Ui2.png)<br>
+   *[Start up image of RemindMe]*
 <br>
 <br>   
 
 4. Press start to proceed to the main window as shown below.<br>
-   ![UiMainWindow](images/UiMainWindow.png)
+   ![UiMainWindow](images/UiMainWindow.png)<br>
+   *[Main Window of RemindMe]*
 <br>
 <br>         
 
@@ -339,8 +341,8 @@ Examples:
 * `edit m/Software Engineering a/1 by/27/04/2021 1900`
 
 Result expected:
-* `Assignment edited: [ ] Update UG due: 23/03/2021 2359`
-* `Assignment edited: [X] Update UG due: 27/04/2021 1900`
+* `Assignment edited: Update UG due: 23/03/2021 2359 [ ]`
+* `Assignment edited: Update UG due: 27/04/2021 1900 [ ]`
 
 #### 3.3.4 Editing an exam
 You can also change the date of the exam in a module.
@@ -414,12 +416,12 @@ You can search your contacts whose names contain any of the given keywords.
 Command: `find n/KEYWORD [MORE KEYWORDS]`  
 
 Example:
-* `find n/alice`
+* `find n/jason`
 
 Expected Result:
 <br>
 ![Find Person Example](./images/findcommand/findperson.png)<br>
-*[Result for `find n/Alice`]*
+*[Result for `find n/jason`]*
 <br>
 <br>
   
@@ -505,7 +507,14 @@ When you do not need your entries anymore, you can delete them using RemindMe's 
 **Note:**
 * Deleting an entry in RemindME requires it to be present at the given index.
     
-</div>     
+</div>
+
+You can delete:
+* [3.7.1 Deleting a person](#371-deleting-a-person)
+* [3.7.2 Deleting a module](#372-deleting-a-module)
+* [3.7.3 Deleting an assignment](#373-deleting-an-assignment)
+* [3.7.4 Deleting an exam](#374-deleting-an-exam)
+* [3.7.5 Deleting a general event](#375-deleting-a-general-event)     
 
 #### 3.7.1 Deleting a person
 You can remove a person from your RemindMe, but hopefully, you won't need to use it :)
@@ -517,18 +526,10 @@ Examples:
 
 Expected Result:
 <br>
-<br>
 ![Delete Person Example](./images/deletecommand/deletealice.png)<br>
-*[Result for deleting Alice which is the first person in the contact list.]*
+*[Result for deleting Jason which is the first person in the contact list.]*
 <br>
 <br>
-
-You can delete:
-* [3.7.1 Deleting a person](#371-deleting-a-person)
-* [3.7.2 Deleting a module](#372-deleting-a-module)
-* [3.7.3 Deleting an assignment](#373-deleting-an-assignment)
-* [3.7.4 Deleting an exam](#374-deleting-an-exam)
-* [3.7.5 Deleting a general event](#375-deleting-a-general-event)
 
 #### 3.7.2 Deleting a module
 Once you have completed a module, you can delete it from RemindMe as a final goodbye!
@@ -667,7 +668,7 @@ update RemindMe.
 ### 3.11 Reminder window
 A reminder will automatically pop up at the start of RemindMe.
 
-![Ui](images/Ui.png)
+![Ui](images/Ui2.png)
 <br>
 
 ### 3.12 Exiting the program `exit` `E`
@@ -711,6 +712,7 @@ Action | Description, Format
 **add**<br>`add DESCRIPTION` |  `Adds a person` <br> *`n/NAME b/BIRTHDAY [T/TAG]`* <br><br> `Adds a module` <br> *`m/MODULE`* <br><br>`Adds an assignment` <br> *`m/MODULE a/ASSIGNMENT by/DATE-TIME`* <br><br> `Adds an exam` <br> *`m/MODULE e/DATE-TIME`* <br><br> `Adds an event` <br> *`g/GENERALEVENT on/DATE-TIME`* <br><br>
 **edit**<br>`edit DESCRIPTION` | `Edits a person` <br> *`INDEX n/NEW NAME b/NEW BIRTHDAY T/NEW TAG`* <br><br> `Edits a module` <br> *`INDEX m/NEW MODULE TITLE`* <br><br> `Edits an assignment` <br>  *`m/MODULE a/INDEX d/NEW DESCRIPTION by/NEW DATE-TIME`* <br><br> `Edits an exam` <br> *`m/MODULE e/INDEX on/NEW DATE-TIME`* <br><br> `Edits an event` <br> *`INDEX g/NEW DESCRIPTION on/NEW DATE-TIME`* <br><br>
 **find**<br>`find DESCRIPTION` | `Find persons` <br> *`n/KEYWORD [MORE KEYWORDS]`* <br><br> `Find modules` <br> *`m/KEYWORD [MORE KEYWORDS]`* <br><br> `Find general events` <br> *`g/KEYWORD [MORE KEYWORDS]`* <br><br>
+**list** | `list all entries in RemindMe`
 **delete**<br>`delete DESCRIPTION` | `Delete a person` <br> *`INDEX`* <br><br> `Delete a module` <br> *`m/MODULE`* <br><br> `Delete an assignment` <br> *`m/MODULE a/INDEX`* <br><br> `Delete an exam` <br> *`m/MODULE e/INDEX`*<br><br> `Delete a general event` <br> *`g/INDEX`*<br><br>
 **Clear**<br>`clear DESCRIPTION` | `Clear RemindMe`<br> *`NO DESCRIPTION NEEDED`*<br><br> `Clear persons` <br> *`n/`* <br><br> `Clear module` <br> *`m/`* <br><br> `Clear general events` <br> *`g/`*
 **See help page** | `help` 
@@ -719,3 +721,4 @@ Action | Description, Format
 
 [Back to Table of Contents](#table-of-contents)
 
+<i id="scroll-top-button" onclick="handleScrollTop()" aria-hidden="true" class="fa fa-arrow-circle-up fa-lg lighten" style="display: block;"></i>
