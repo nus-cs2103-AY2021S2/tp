@@ -334,6 +334,11 @@ public class CustomerAddCommandTest {
         }
 
         @Override
+        public List<Order> getIncompleteOrdersFromPerson(Person target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void completeOrder(Order orderToComplete) {
             throw new AssertionError("This method should not be called.");
         }

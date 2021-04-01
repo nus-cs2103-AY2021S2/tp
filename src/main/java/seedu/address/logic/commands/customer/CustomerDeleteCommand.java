@@ -10,6 +10,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.order.Order;
 import seedu.address.model.person.Person;
 
 /**
@@ -26,11 +27,21 @@ public class CustomerDeleteCommand extends Command {
             + "Example: " + COMPONENT_WORD + " " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted person: %1$s";
+    public static final String MESSAGE_DELETE_PERSON_FAILURE =
+            "Failed to deleted cusomter: %1 due to outstanding orders, "
+                    + "add -f flag to force delete the cusomter\n"
+                    + "Warning: This will delete any order that contains %1";
 
     private final Index targetIndex;
+    private final boolean isForce;
 
     public CustomerDeleteCommand(Index targetIndex) {
+        this(targetIndex, false);
+    }
+
+    public CustomerDeleteCommand(Index targetIndex, boolean isForce) {
         this.targetIndex = targetIndex;
+        this.isForce = isForce;
     }
 
     @Override
@@ -44,10 +55,17 @@ public class CustomerDeleteCommand extends Command {
         }
 
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
+
+        List<Order> outstandingOrders = model.getIncompleteOrdersFromPerson(personToDelete);
+        boolean isOutstandingOrders = !outstandingOrders.isEmpty();
+
+        if (isOutstandingOrders && !isForce) {
+            throw new CommandException(String.format(MESSAGE_DELETE_PERSON_FAILURE, personToDelete.getName()));
+        }
+
         model.deletePerson(personToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete),
                 CommandResult.CRtype.PERSON);
-
     }
 
     @Override

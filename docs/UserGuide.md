@@ -54,8 +54,10 @@ contacts add n/[NAME] p/[PHONE_NUMBER] e/[EMAIL] a/[ADDRESS]
 #### `delete` - Delete contact
 Format:
 ```
-contacts delete [INDEX]
+contacts delete [INDEX] [-f]
 ```
+
+In the event that there are unfulfilled orders by the contact that is being attempted to be deleted, a `-f` flag has to be added to the end of the command to confirm the command. This is to prevent you from accidentally deleting orders unknowingly and leading to unhappy customers!
 
 #### `find` - Find contact
 Format:

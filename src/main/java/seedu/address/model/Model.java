@@ -265,9 +265,15 @@ public interface Model {
      */
     void updateFilteredOrderList(Comparator<Order> comparator);
 
+    //@@ author kangtinglee
     /** Returns an list of the orders belonging to a particular customer */
     List<Order> getOrdersFromPerson(Person target);
 
+    //@@ author kangtinglee
+    /** Returns an list of the incomplete orders belonging to a particular customer */
+    List<Order> getIncompleteOrdersFromPerson(Person target);
+
+    /** Mark an order as complete */
     void completeOrder(Order orderToComplete);
 
     /**
