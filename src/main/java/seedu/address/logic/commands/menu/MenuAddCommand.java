@@ -14,6 +14,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.dish.Dish;
+import seedu.address.model.ingredient.Ingredient;
 
 /**
  * Adds a dish to the menu.
@@ -37,29 +38,35 @@ public class MenuAddCommand extends Command {
             + PREFIX_INGREDIENT + "2 "
             + PREFIX_QUANTITY + "1";
 
+
     public static final String MESSAGE_SUCCESS = "New dish added: %1$s";
 
     private final String name;
     private final double price;
-    private final List<Pair<Integer, Integer>> ingredientQuantityList;
+    private final List<Pair<Integer, Integer>> ingredientIdsQuantityList;
 
     /**
      * Creates an MenuAddCommand to add the specified {@code Dish}
      */
     public MenuAddCommand(String name, double price,
-                          List<Pair<Integer, Integer>> ingredientQuantityList) {
+                          List<Pair<Integer, Integer>> ingredientIdsQuantityList) {
         this.name = name;
         this.price = price;
-        this.ingredientQuantityList = ingredientQuantityList;
+        this.ingredientIdsQuantityList = ingredientIdsQuantityList;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        Dish toAdd = MenuCommandUtil.constructValidDish(name, price, ingredientQuantityList, model);
+        List<Pair<Ingredient, Integer>> ingredientQuantityList =
+                MenuCommandUtil.lookupIngredientIds(ingredientIdsQuantityList, model);
 
-        model.addDish(toAdd);
+        Dish toAdd = new Dish(name, price, ingredientQuantityList);
+
+        if (MenuCommandUtil.isValidDishAddition(toAdd, model)) {
+            model.addDish(toAdd);
+        }
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), CommandResult.CRtype.DISH);
     }
@@ -70,6 +77,6 @@ public class MenuAddCommand extends Command {
                 || (other instanceof MenuAddCommand // instanceof handles nulls
                 && name.equals(((MenuAddCommand) other).name)
                 && price == ((MenuAddCommand) other).price
-                && ingredientQuantityList.equals(((MenuAddCommand) other).ingredientQuantityList));
+                && ingredientIdsQuantityList.equals(((MenuAddCommand) other).ingredientIdsQuantityList));
     }
 }

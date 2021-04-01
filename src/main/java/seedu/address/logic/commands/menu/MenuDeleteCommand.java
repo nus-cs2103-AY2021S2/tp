@@ -29,7 +29,8 @@ public class MenuDeleteCommand extends Command {
     public static final String MESSAGE_DELETE_DISH_SUCCESS = "Deleted dish: %1$s";
     public static final String MESSAGE_DELETE_DISH_FAILURE =
             "Failed to deleted dish: %1$s due to outstanding orders, "
-            + "add -f flag to confirm";
+            + "add -f flag to force delete the dish\n"
+            + "Warning: This will mark any order that contains %1$s as 'Cancelled'";
 
     private final Index targetIndex;
     private final boolean isForce;
@@ -65,8 +66,7 @@ public class MenuDeleteCommand extends Command {
         boolean isOutstandingOrders = !outstandingOrders.isEmpty();
 
         if (isOutstandingOrders && !isForce) {
-            return new CommandResult(String.format(MESSAGE_DELETE_DISH_FAILURE, dishToDelete),
-                    CommandResult.CRtype.DISH);
+            throw new CommandException(String.format(MESSAGE_DELETE_DISH_FAILURE, dishToDelete.getName()));
         }
 
         model.cancelOrders(outstandingOrders);

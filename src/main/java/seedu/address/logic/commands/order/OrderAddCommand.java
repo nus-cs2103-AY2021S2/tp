@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
 
 import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.List;
 
 import seedu.address.commons.core.Pair;
@@ -14,7 +15,9 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.dish.Dish;
 import seedu.address.model.order.Order;
+import seedu.address.model.person.Person;
 
 /**
  * Adds a person to the address book.
@@ -59,10 +62,23 @@ public class OrderAddCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        Order toAdd = OrderCommandUtil.constructValidOrder(dateTime, customerId,
-                dishNumberQuantityList, model);
+        List<Pair<Dish, Integer>> dishQuantityList =
+                OrderCommandUtil.lookupDishIds(dishNumberQuantityList, model);
+
+        Person customer = OrderCommandUtil.getValidCustomerByOneIndex(customerId, model);
+
+        Order toAdd = new Order(dateTime, customer, dishQuantityList);
+
+        if (OrderCommandUtil.isValidOrderAddition(toAdd, model)) {
+            model.addOrder(toAdd);
+        }
 
         model.addOrder(toAdd);
+
+        model.updateFilteredOrderList(order -> order.getState() == Order.State.UNCOMPLETED);
+        Comparator<Order> comparator = (first, second) ->
+                first.getDatetime().isAfter(second.getDatetime()) ? 1 : 0;
+        model.updateFilteredOrderList(comparator);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), CommandResult.CRtype.ORDER);
     }
 

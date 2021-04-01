@@ -63,7 +63,7 @@ public class Order implements Item, Aggregator<Dish> {
         final StringBuilder builder = new StringBuilder();
         String state;
         if (getState() == State.UNCOMPLETED) {
-            state = "";
+            state = "(Uncompleted)";
         } else if (getState() == State.COMPLETED) {
             state = "(Completed) ";
         } else {
@@ -125,19 +125,13 @@ public class Order implements Item, Aggregator<Dish> {
         return false;
     }
 
+    /**
+     * Two orders are only the same if every one of their fields matches.
+     * Otherwise, they are different orders.
+     */
     @Override
     public boolean isSame(Item other) {
-        if (other == this) {
-            return true;
-        }
-
-        if (!(other instanceof Order)) {
-            return false;
-        }
-
-        Order otherOrder = (Order) other;
-        return otherOrder != null
-                && this.getStrDatetime().equals(otherOrder.getStrDatetime());
+        return this.equals(other);
     }
 
     @Override
