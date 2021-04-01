@@ -28,7 +28,7 @@ public class Description {
      * Returns if a given string is a valid description
      */
     public static boolean isValidDescription(String desc) {
-        return desc.length() <= CHAR_LIMIT;
+        return desc.length() <= CHAR_LIMIT && desc.length() >= 1;
     }
 
     @Override

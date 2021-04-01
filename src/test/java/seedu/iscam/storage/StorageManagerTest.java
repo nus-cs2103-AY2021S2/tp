@@ -49,11 +49,11 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void addressBookReadSave() throws Exception {
+    public void clientBookReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
-         * {@link JsonAddressBookStorage} class.
-         * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
+         * {@link JsonClientBookStorage} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonClientBookStorageTest} class.
          */
         ClientBook original = getTypicalLocationBook();
         storageManager.saveClientBook(original);
@@ -62,7 +62,28 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void getAddressBookFilePath() {
+    public void getClientBookFilePath() {
+        assertNotNull(storageManager.getClientBookFilePath());
+    }
+
+    //TODO: maybe fix this test
+    /*
+    @Test
+    public void meetingBookReadSave() throws Exception {
+        /*
+         * Note: This is an integration test that verifies the StorageManager is properly wired to the
+         * {@link JsonMeetingBookStorage} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonMeetingBookStorageTest} class.
+         */
+    /*    MeetingBook original = getTypicalMeetingBook();
+        storageManager.saveMeetingBook(original);
+        ReadOnlyMeetingBook retrieved = storageManager.readMeetingBook().get();
+        assertEquals(original, new MeetingBook(retrieved));
+    }
+    */
+
+    @Test
+    public void getMeetingBookFilePath() {
         assertNotNull(storageManager.getClientBookFilePath());
     }
 
