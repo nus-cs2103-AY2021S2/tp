@@ -101,7 +101,7 @@ public class JsonAdaptedBooking {
         }
 
         //Build formatter
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
         //Parse String to LocalDateTime
         final StartTime modelBookingStart = new StartTime(LocalDateTime.parse(bookingStart, formatter));
 

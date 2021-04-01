@@ -25,8 +25,8 @@ public class BookingBuilder {
     public static final String DEFAULT_BOOKER = "example@gmail.com";
     public static final String DEFAULT_VENUE = VENUE1.getVenueName().venueName;
     private static final String DEFAULT_DESCRIPTION = "Good";
-    private static final String DEFAULT_BOOKING_START = "2021-03-01 12:30:00";
-    private static final String DEFAULT_BOOKING_END = "2021-03-01 13:30:00";
+    private static final String DEFAULT_BOOKING_START = "2021-03-01 12:30";
+    private static final String DEFAULT_BOOKING_END = "2021-03-01 13:30";
     private static final String DEFAULT_ID = String.valueOf(1);
 
     private Email bookerEmail;
@@ -36,7 +36,7 @@ public class BookingBuilder {
     private EndTime bookingEnd;
     private Set<Tag> tags;
     private Id id;
-    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
     /**
      * Creates a {@code BookingBuilder} with the default details.

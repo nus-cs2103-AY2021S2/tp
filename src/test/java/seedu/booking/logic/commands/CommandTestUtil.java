@@ -142,10 +142,10 @@ public class CommandTestUtil {
     public static final String VALID_BOOKING_BOOKER_EMAIL_BOB = "bob@example.com";
     public static final String VALID_BOOKING_DESCRIPTION_HALL = "For FYP meeting";
     public static final String VALID_BOOKING_DESCRIPTION_FIELD = "For sports meeting";
-    public static final String VALID_BOOKING_START_HALL = "2021-02-02 07:00:00";
-    public static final String VALID_BOOKING_START_FIELD = "2021-02-02 07:00:00";
-    public static final String VALID_BOOKING_END_HALL = "2021-02-02 08:00:00";
-    public static final String VALID_BOOKING_END_FIELD = "2021-02-02 08:00:00";
+    public static final String VALID_BOOKING_START_HALL = "2021-02-02 07:00";
+    public static final String VALID_BOOKING_START_FIELD = "2021-02-02 07:00";
+    public static final String VALID_BOOKING_END_HALL = "2021-02-02 08:00";
+    public static final String VALID_BOOKING_END_FIELD = "2021-02-02 08:00";
     public static final String VALID_BOOKING_TAGS_HALL = "Indoors";
     public static final String VALID_BOOKING_ID_HALL = "111111111";
     public static final String VALID_BOOKING_ID_FIELD = "222222222";
