@@ -5,10 +5,10 @@ title: User Guide
 
 Vax@NUS is a **one stop management app to efficiently track and schedule COVID-19 vaccinations for NUS students.** It is a desktop app **optimized for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Vax@NUS can get your appointment management tasks done faster than traditional GUI apps.
 
-:information_source: This icon indicates helpful notes 
-
 * Table of Contents
 {:toc}
+
+:information_source: This icon indicates helpful notes 
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -26,7 +26,7 @@ Vax@NUS is a **one stop management app to efficiently track and schedule COVID-1
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list students`** : Lists all students.
+   * **`list`** : Lists all data.
    * **`exit`** : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
@@ -103,27 +103,17 @@ Vax@NUS is a **one stop management app to efficiently track and schedule COVID-1
 
 </div>
 
-### Viewing help : `help`
-
-Shows a list of commonly used commands, and a link to our User Guide.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
-
-
-### Adding a student entry: `add`
+### Adding a student record: `add`
 
 Adds a student to Vax@NUS records.
 
 Format: `add n/NAME i/MATRICULATION_NUMBER f/FACULTY p/PHONE_NUMBER e/EMAIL a/ADDRESS s/VACCINATION_STATUS m/MEDICAL_DETAILS r/SCHOOL_RESIDENCE[optional]`
 
-
 Examples:
 * `add n/John Doe i/A1234567X f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/RVRC`
 * `add n/Betsy Crowe f/ENG i/A7654321J p/91119222 e/betsycrowe@example.com a/212 Orchard Road, #18-08 s/not vaccinated m/nose lift surgery in 2012`
 
-### Editing a student entry: `edit`
+### Editing a student record: `edit`
 
 Edits a student in Vax@NUS records.
 
@@ -139,26 +129,22 @@ Examples:
 
 * `edit 2 r/KRH`  Edits the school residence of the second student to be KRH.
 
+### Deleting a student record: `delete`
 
-### Listing all students : `list`
+Deletes the student specified by his/her matriculation number from Vax@NUS records.
 
-Shows a list of all students in Vax@NUS records.
+Format: `delete MATRICULATION NUMBER`
 
-Format: `list students`
-
-### Finding a student : `find`
-
-Shows personal information, including appointment details if present, of the student that matches the specified matriculation number.
-
-Format: `find MATRICULATION_NUMBER`
-
+* If the matriculation number does not exist in the records, a message will be shown to inform users that 
+  the matriculation number is not found.
+  
 
 Examples:
-* `Find A1234567X` shows John Doe's personal information, and his appointment details if there is one.
+* `delete A7654321J` deletes Betsy Crowe from the records.
 
-### Filtering student records: `filter`
+### Filtering all student records: `filter`
 
-Shows all student records in Vax@NUS that match the specified filter condition.
+Shows all student records in Vax@NUS that matches the specified vaccination status, faculty or school residence.
 
 Format: <br>
 `filter VACCINATION_STATUS`
@@ -170,32 +156,25 @@ Examples:
 * `filter COM` 
 * `filter RVRC` 
 
+### Viewing statistics for student population: `stats`
 
-### Deleting a student by their matriculation number: `delete`
+Displays the statistics in terms of percentage of student vaccinated for the requested faculty/school residence or whole of NUS. 
 
-Deletes the student specified by his/her matriculation number from Vax@NUS records.
+Format: <br>
+`stats FACULTY`
+`stats SCHOOL_RESIDENCE`
+`stats NUS`
+`stats all`
 
-Format: `delete MATRICULATION NUMBER`
-
-* If the matriculation number does not exist in the records, an error message will be displayed to inform users that 
-  the matriculation number is not found.
-  
-
-Examples:
-* `delete A7654321J` deletes Betsy Crowe from the records.
-
-### Deleting an appointment by the student's matriculation number: `deleteAppt`
-
-Deletes the appointment of the student with the specified matriculation number from Vax@NUS' records. 
-
-Format: `deleteAppt MATRICULATION_NUMBER`
-
-* If the matriculation number or appointment does not exist in the records, an error message will be displayed to inform users that
-  the matriculation number or appointment is not found.
+* If there is no available data for the requested faculty or school residence, a message will be displayed to inform
+  users that the requested faculty or School Residence has no available data.
 
 Examples:
-* `deleteAppt A7654321J` deletes Betsy Crowe's appointments from the records, provided she had an appointment scheduled previously.
-
+* `stats COM` displays the percentage of vaccinated students in School of Computing.
+* `stats RC4` displays the percentage of vaccinated students in RC4.
+* `stats DOES_NOT_LIVE_ON_CAMPUS` displays the percentage of vaccinated students not living on campus.
+* `stats NUS` displays the percentage of vaccinated students in NUS.
+* `stats all` displays the list of percentages of vaccinated students in every Faculty and School Residence.
 
 ### Adding an appointment: `addAppt`
 
@@ -224,7 +203,7 @@ Edits an appointment present in Vax@NUS records by referencing the student's mat
 Format: `editAppt MATRICULATION_NUMBER d/DATE_YYYY-MM-DD ts/START_TIME_HH:MM`
 
 * The edited appointment must not clash with an existing appointment.
-* If two matriculation numbers are provided, the first one will be taken.
+* If two matriculation numbers dates or start time are provided, the first one will be taken.
   
   **i.e.** if `A1234567X A7654321J` is provided, then `A1234567X` will be used. 
 * If two dates or times are provided, the first of each will be taken 
@@ -235,28 +214,17 @@ Examples:
 * `editAppt A1234567X d/2021-12-13 ts/14:00`
 * `editAppt A7654321J d/2021-12-13 ts/14:00`
 
+### Deleting an appointment: `deleteAppt`
 
-### Viewing statistics for student population: `stats`
+Deletes the appointment of the student with the specified matriculation number from Vax@NUS' records. 
 
-Displays the statistics of the requested Faculty/School Residence, the whole of NUS or statistics of all Faculties
-and School Residences. 
+Format: `deleteAppt MATRICULATION_NUMBER`
 
-Format: <br>
-`stats FACULTY`
-`stats SCHOOL_RESIDENCE`
-`stats NUS`
-`stats all`
-
-* If there is no available data for the requested Faculty or School Residence, a message will be displayed to inform
-  users that the requested Faculty or School Residence has no available data.
-  
+* If the matriculation number or appointment does not exist in the records, a message will be displayed to inform users that
+  the matriculation number or appointment is not found.
 
 Examples:
-* `stats COM` displays the percentage of vaccinated students in School of Computing.
-* `stats RC4` displays the percentage of vaccinated students in RC4.
-* `stats DOES_NOT_LIVE_ON_CAMPUS` displays the percentage of vaccinated students not living on campus.
-* `stats NUS` displays the percentage of vaccinated students in NUS.
-* `stats all` displays the list of percentages of vaccinated students in every Faculty and School Residence.
+* `deleteAppt A7654321J` deletes Betsy Crowe's appointments from the records, provided she had an appointment scheduled previously.
 
 ### Viewing statistics for appointments: `statsAppt`
 Displays the number of upcoming and previous appointments within 6 days from the current day and includes the day itself.
@@ -264,6 +232,36 @@ Displays the number of upcoming and previous appointments within 6 days from the
 Format: <br>
 `statsAppt`
 
+
+### Listing all data : `list`
+
+Shows a list of all students and all appointments in Vax@NUS records.
+
+Format: `list students`
+
+### Finding a student and their appointment : `find`
+
+Shows personal information, including appointment details if present, of the student that matches the specified matriculation number.
+
+Format: `find MATRICULATION_NUMBER`
+
+* If the matriculation number does not exist in the records, a message will be shown to inform users that 
+  the matriculation number is not found.
+  
+Examples:
+* `Find A1234567X` shows John Doe's personal information, and his appointment details if it is present.
+
+### Viewing help : `help`
+
+Display a pop-up window showing a list of important commands and a link to our User Guide. 
+
+Format: `help`
+
+### Clearing all data : `clear`
+
+Clearing all the data from VAX@NUS.
+
+Format: `clear`
 
 ### Exiting the program : `exit`
 
@@ -290,10 +288,9 @@ Vax@NUS saves your current date in the hard disk automatically after any command
 **Q** : Will I be able to add other types of appointments besides vaccination appointments?
 <br>
 **A** : No, the current version only allows you to add vaccination appointments and not any other type of appointments. 
-
-**Q** : Am I able to change an appointment at a specific time to another student?
+**Q** : Am I able to reassign an appointment to another student?
 <br>
-**A** : No, you will need to delete that appointment first, then add the new appointment at that specific time with the new student. 
+**A** : No, you will need to add a new appointment for the new student. 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command Summary
@@ -302,13 +299,16 @@ Action | Format, Examples
 --------|------------------
 **Add Student** | `add n/NAME i/MATRICULATION_NUMBER f/FACULTY p/PHONE_NUMBER e/EMAIL a/ADDRESS s/VACCINATION_STATUS r/SCHOOL_RESIDENCE[optional] m/MEDICAL_DETAILS` <br> e.g., `add n/John Doe i/A1234567X f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated r/RVRC m/peanut allergy`
 **Edit Student** | `edit INDEX [n/NAME] [i/MATRICULATION_NUMBER] [f/FACULTY] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/VACCINATION_STATUS] [m/MEDICAL_DETAILS] [r/SCHOOL_RESIDENCE]` <br> e.g., `edit 1 p/91234567 f/MED`
-**List Students and Appointments** | `list`
-**Find Students with their appointments ** | `find MATRICULATION_NUMBER` e.g., `find A1234567X`
-**Filter Students** | `filter VACCINATION_STATUS`  e.g., `filter vaccinated`, `filter not vaccinated`,
- `filter FACULTY ` e.g., `filter COM` <br> `filter SCHOOL_RESIDENCE` e.g., `filter RVRC` 
 **Delete Student** | `delete MATRICULATION_NUMBER` e.g., `delete A1234567X`
-**Add Appointment** | `addAppt i/MATRICULATION_NUMBER d/DATE ts/START_TIME` e.g., `addAppt i/A1234567X d/2021-12-13 ts/13:00`
-**Delete Appointment** | `deleteAppt MATRICULATION_NUMBER` e.g., `deleteAppt A1234567X`
+**Filter Students** | `filter VACCINATION_STATUS`  e.g., `filter vaccinated`, `filter not vaccinated`, <br> `filter FACULTY ` e.g., `filter COM` <br> `filter SCHOOL_RESIDENCE` e.g., `filter RVRC` 
 **View Student Statistics** | `stats FACULTY` e.g., `stats COM` <br> `stats SCHOOL_RESIDENCE` e.g., `stats RC4` <br> `stats NUS` <br> `stats all` 
+**Add Appointment** | `addAppt i/MATRICULATION_NUMBER d/DATE ts/START_TIME` e.g., `addAppt i/A1234567X d/2021-12-13 ts/13:00`
+**Edit Appointment** | `editAppt MATRICULATION_NUMBER d/DATE_YYYY-MM-DD ts/START_TIME_HH:MM` e.g.,` editAppt A1234567X d/2021-12-13 ts/14:00`
+**Delete Appointment** | `deleteAppt MATRICULATION_NUMBER` e.g., `deleteAppt A1234567X`
 **View Appointment Statistics** | `statsAppt`
+**List All Data** | `list`
+**Find Student and Appointment** | `find MATRICULATION_NUMBER` e.g., `find A1234567X`
+**View Help** | `help` 
+**Clear All Data** | `clear` 
+**Exit Program** | `exit`
 
