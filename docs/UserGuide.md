@@ -20,11 +20,11 @@ Current module codes supported: CS1101S, CS1231S, CS2030, CS2040S, CS2101,
 
 1. ModuleBook3.5 can run on a computer installed with a major operating system (e.g. Windows/Mac/Linux) and Java 11.
 
-2. First, download the jar file for the latest release from [github](https://github.com/AY2021S2-CS2103T-T13-2/tp/releases)
+1. First, download the jar file for the latest release from [github](https://github.com/AY2021S2-CS2103T-T13-2/tp/releases)
 
-3. Once the jar file is ready, simply double-click the file in the download section.
+1. Once the jar file is ready, simply double-click the file in the download section.
 
-4. Refer to the [Commands](#commands) below for details of each command.
+1. Refer to the [Commands](#commands) below for details of each command.
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -85,6 +85,8 @@ Current module codes supported: CS1101S, CS1231S, CS2030, CS2040S, CS2101,
 
    * **`add`** : Add a task
 
+   * **`clear`** : Delete all tasks
+
    * **`delete`** : Delete a task
 
    * **`done`** : Mark a task as done
@@ -107,6 +109,8 @@ Current module codes supported: CS1101S, CS1231S, CS2030, CS2040S, CS2101,
    
    * **`recur`** :  Recur tasks
 
+   * **`exit`** : Close the app
+
 <div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -123,6 +127,8 @@ Format: `list`
 ### Add a task: `add`
 
 Adds a task to ModuleBook3.5. All newly added tasks are not done by default.
+
+Application: Used to add new tasks for tracking purposes.
 
 Format: `add n/TASK NAME m/MODULE d/DESCRIPTION [a/START TIME] b/DEADLINE w/WORKLOAD [r/RECURRENCE] [t/TAG]…​`
 
@@ -144,6 +150,8 @@ Examples:
 
 Deletes the specified task from the module book.
 
+Application: Used to remove tasks when tracking them is no longer necessary.
+
 Format: `delete INDEX`
 
 * Deletes the task at the specified `INDEX`.
@@ -154,10 +162,19 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd task in the ModuleBook3.5.
 * `find CS2103T` followed by `delete 1` deletes the 1st task in the results of the `find` command.
 
+### Delete all tasks: `clear`
+
+Deletes all tasks from the module book.
+
+Application: Used to clear out module book after a school term ends.
+
+Format: `clear`
 
 ### Mark a task as done : `done`
 
 Mark an existing task as done. Done tasks are coloured green.
+
+Application: Used to indicate task is completed and does not need any attention at the moment.
 
 Format: `done INDEX`
 
@@ -176,6 +193,8 @@ Examples:
 
 Mark an existing task as not done. Not done tasks are coloured pink.
 
+Application: Used to indicate task may need to be re-attempted.
+
 Format: `notdone INDEX`
 
 * Mark the task as not done at the specified `INDEX`.
@@ -191,6 +210,8 @@ Examples:
 
 Adds a tag to a task.
 
+Application: Used to briefly indicate the nature of the task.
+
 Format: `tag INDEX t/TAG [t/MORETAGS]` 
 
 * Attaches one or more tags to the task associated with INDEX. Tags can be used to identify related tasks.
@@ -205,6 +226,8 @@ Examples:
 
 Searches for tasks with a name of task  provided.
 
+Application: Used to find a certain task that may be further down the list.
+
 Format: `find KEYWORD`
 
 * Searches through ModuleBook3.5 for tasks whose names contain `KEYWORD`.
@@ -217,6 +240,8 @@ Examples:
 
 Searches for tasks with an associated tag.
 
+Application: Used to find tasks that are similar in nature.
+
 Format: `findTag KEYWORD`
 
 * Searches through ModuleBook3.5 for tasks which have a tag named `KEYWORD`.
@@ -228,6 +253,8 @@ Examples:
 ### Search tasks associated to a Module: `mod`
 
 Searches for tasks of a specific Module.
+
+Application: Used to find tasks from one Module.
 
 Format: `mod MODULE`
 
@@ -243,6 +270,8 @@ Examples:
 
 Deletes a tag from its associated task.
 
+Application: Used to remove a tag without the need to reset all other tags.
+
 Format: `deleteTag INDEX [t/TAG]`
 
 * Deletes the task at the specified `INDEX`. 
@@ -256,6 +285,8 @@ Examples:
 ### Edit a task: `edit`
 
 Edits an existing task in the module book.
+
+Application: Used to change details of a task without the need to delete them.
 
 Format: `edit INDEX [n/NAME] [m/MODULE] [d/DESCRIPTION] [a/START TIME] [b/DEADLINE] [w/WORKLOAD] [r/RECURRENCE] [t/TAG] …​`
 
@@ -278,6 +309,8 @@ Examples:
 
 Sorts the list of all tasks by workload/deadline/module.
 
+Application: Used to group and prioritise tasks based on a certain criteria.
+
 Format:  `sort n/` or `sort d/` or `sort m/` or `sort w/` or `sort b/` or `sort t/` 
 
 *  `sort n/` Sorts the tasks by name alphabetically in ascending order.
@@ -295,6 +328,8 @@ Examples:
 ### Recur tasks: `recur`
 
 Recurs a task either daily, monthly or weekly or removes the recurrence of the task.
+
+Application: Used to reset the recurring task deadline and done status when appropriate without having to manually edit the task.
 
 Format: `recur INDEX r/RECURRENCE`
 
@@ -316,6 +351,14 @@ Examples:
 * `recur 4 r/` Removes the recurrence of the 4th task in ModuleBook3.5.
 
 <div style="page-break-after: always;"></div>
+
+### Close app: `exit`
+
+Closes the app.
+
+Application: Used to exit the app. You may also click the close button or the `Exit` button under `File` in the toolbar.
+
+Format: `exit`
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -352,6 +395,7 @@ Action | Format, Examples
 **list** | `list`
 **add** | `add n/TASK NAME m/MODULE d/DESCRIPTION [a/START TIME] b/DEADLINE w/WORKLOAD [r/RECURRENCE] [t/TAG]…​` <br> e.g. `add n/TP m/CS2103T d/Team tasks b/2021-01-20 20:00 w/3 t/tagname`
 **delete** | `delete INDEX`<br> e.g. `delete 3`
+**clear** | `clear`
 **deleteTag** | `deleteTag INDEX [t/TAG NAME]`<br> e.g. `delete 3 [t/SoftwareEng]`
 **done** | `done INDEX`<br> e.g. `done 1`
 **notdone** | `notdone INDEX`<br> e.g. `notdone 1`
