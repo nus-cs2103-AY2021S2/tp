@@ -151,6 +151,8 @@ Format: <br>
 `filter FACULTY`
 `filter SCHOOL_RESIDENCE`
 
+* Please refer to the parameter formats for a list of valid vaccination status, faculty and school residence input. 
+
 Examples:
 * `filter vaccinated` or `filter not vaccinated`
 * `filter COM` 
