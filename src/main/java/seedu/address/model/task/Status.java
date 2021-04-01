@@ -35,7 +35,7 @@ public class Status {
      */
     public static boolean isValidStatus(String value) {
         return value.equals("done")
-                || value.equals("not done") || value.equals("overdue");
+                || value.equals("not done");
     }
 
     @Override
