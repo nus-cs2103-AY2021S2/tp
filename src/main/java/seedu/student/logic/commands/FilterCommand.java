@@ -18,7 +18,7 @@ public class FilterCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Display student records with "
             + "fields that matches the specified keyword (case-sensitive).\n"
-            + "Parameters: KEYWORD...\n"
+            + "Parameters: VACCINATION_STATUS/FACULTY/ SCHOOL_RESIDENCE \n"
             + "Example: " + COMMAND_WORD + " vaccinated";
 
     private final Predicate<Student> predicate;
