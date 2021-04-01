@@ -201,6 +201,10 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd contact in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st contact in the results of the `find` command.
 
+<div markdown="span" class="alert alert-primary">:warning: **Warning:**
+Contacts that are involved with appointments cannot be deleted.
+</div>
+
 #### Sorting all contacts : `sort`
 
 Sorts the address book in the order based on the given option.
@@ -228,7 +232,7 @@ Currently available options for the `[OPTION]` field include:
 
 Examples:
 * `list` followed by `fav 2` favourites the 2nd contact in the address book.
-* `find Betsy` followed by `delete 1` favourites the 1st contact in the results of the `find` command.
+* `find Betsy` followed by `fav 1` favourites the 1st contact in the results of the `find` command.
 * `fav 3 o/remove` unfavourites the 3rd contact in the address book.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
