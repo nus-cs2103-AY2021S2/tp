@@ -63,7 +63,7 @@ public class LevelUpCommand extends Command {
 
     private void checkIndexWithinBounds(Model model) throws CommandException {
         for (int i = 0; i < indices.size(); i++) {
-            Index index = indices.get(0);
+            Index index = indices.get(i);
             if (index.getZeroBased() >= model.getTransformedPersonList().size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
             }
@@ -73,7 +73,8 @@ public class LevelUpCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof LevelUpCommand); // instanceof handles nulls
+                || (other instanceof LevelUpCommand // instanceof handles nulls
+                && indices.equals(((LevelUpCommand) other).indices));
     }
 }
 

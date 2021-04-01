@@ -86,7 +86,7 @@ public class AddressBookParser {
             return new LevelUpCommandParser().parse(arguments);
 
         case LevelDownCommand.COMMAND_WORD:
-            return new LevelDownCommand();
+            return new LevelDownCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
