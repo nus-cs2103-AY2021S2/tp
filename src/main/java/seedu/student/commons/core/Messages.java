@@ -11,8 +11,6 @@ public class Messages {
     public static final String MESSAGE_STUDENTS_ARE_LISTED = "All students are listed";
     public static final String MESSAGE_NO_STUDENTS_ARE_LISTED = "No students are listed";
     public static final String MESSAGE_APPOINTMENT_IS_LISTED = " along with an appointment";
-    public static final String MESSAGE_ALL_STUDENTS_AND_APPOINTMENT_ARE_LISTED =
-            " All students and appointments are listed";
     public static final String MESSAGE_STUDENTS_AND_APPOINTMENT_FOUND =
             "Found a student with matriculation number %s \n"
                     + "Their appointment will also be listed";
