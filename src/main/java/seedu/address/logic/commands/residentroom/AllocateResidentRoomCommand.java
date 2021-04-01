@@ -82,6 +82,7 @@ public class AllocateResidentRoomCommand extends Command {
 
         // Set ResidentRoom
         model.addResidentRoom(toAllocate);
+        model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAllocate));
     }
 

@@ -51,7 +51,7 @@ public class CloseIssueCommand extends Command {
         }
 
         model.closeIssue(issueToClose);
-
+        model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_CLOSE_ISSUE_SUCCESS, issueToClose));
     }
 
