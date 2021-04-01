@@ -23,6 +23,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.Wardrobe;
 import seedu.address.model.garment.Colour;
 import seedu.address.model.garment.DressCode;
+import seedu.address.model.garment.Garment;
 import seedu.address.model.garment.Type;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.JsonUserPrefsStorage;
@@ -174,7 +175,7 @@ public class MainApp extends Application {
         Colour.initialiseMatches(); //INITIALISE MATCHING HASHMAP
         Type.initialiseMatches();
         DressCode.initialiseMatches();
-        Colour.initialiseSamples(); //INITIALISE SAMPLE HASHMAP
+        Garment.initialiseSamples(); //INITIALISE SAMPLE HASHMAP
         ui.start(primaryStage);
     }
 

@@ -9,7 +9,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.garment.Colour;
 import seedu.address.model.garment.Garment;
 
 /**
@@ -54,7 +53,7 @@ public class GarmentCard extends UiPart<Region> {
     public GarmentCard(Garment garment, int displayedIndex) {
         super(FXML);
         this.garment = garment;
-        String sample = Colour.SAMPLES.get(garment.getColour().colour);
+        String sample = Garment.SAMPLES.get(garment.getColour().colour).get(garment.getType().value);
 
         id.setText(displayedIndex + ". ");
         name.setText(garment.getName().fullName);
@@ -66,24 +65,11 @@ public class GarmentCard extends UiPart<Region> {
                 .forEach(description -> descriptions.getChildren()
                         .add(new Label("<" + description.descriptionName + ">")));
 
-        Image colourImage = new Image(sample);
-        ImageView colourView = new ImageView(colourImage);
+        Image image = new Image(sample);
+        ImageView colourView = new ImageView(image);
         colourView.setFitHeight(80);
         colourView.setPreserveRatio(true);
         sampleColour.setGraphic(colourView);
-
-        Image typeImage;
-        if (garment.getType().value.equals("upper")) {
-            typeImage = new Image("images/upper.jpeg");
-        } else if (garment.getType().value.equals("lower")) {
-            typeImage = new Image("images/lower.jpeg");
-        } else {
-            typeImage = new Image("images/footwear.jpeg");
-        }
-        ImageView typeView = new ImageView(typeImage);
-        typeView.setFitHeight(80);
-        typeView.setPreserveRatio(true);
-        type.setGraphic(typeView);
     }
 
     @Override

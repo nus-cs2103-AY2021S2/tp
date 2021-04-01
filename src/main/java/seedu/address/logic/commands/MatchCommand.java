@@ -51,12 +51,8 @@ public class MatchCommand extends Command {
     }
 
     @Override
-    //update match command when out of range of list
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
-        //could have issues when the matching clothes only in last shown list, but not the entire list?? nope match
-        // from original list
         List<Garment> lastShownList = model.getFilteredGarmentList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
@@ -69,10 +65,6 @@ public class MatchCommand extends Command {
 
         String keywordArgs = " c/";
         keywords.addAll(garmentToMatch.getColour().getMatches());
-
-        //ColourContainsKeywordsPredicate predicate = new ColourContainsKeywordsPredicate(keywords);
-        //List<ContainsKeywordsPredicate> predicateList = new ArrayList<>();
-
         for (String keyword : keywords) {
             keywordArgs = keywordArgs + keyword + " ";
         }
@@ -91,13 +83,15 @@ public class MatchCommand extends Command {
             keywordArgs = keywordArgs + keyword + " ";
         }
 
-        //predicateList.add(new ColourContainsKeywordsPredicate(keywords));
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(keywordArgs, PREFIX_NAME, PREFIX_SIZE, PREFIX_COLOUR, PREFIX_DRESSCODE,
                         PREFIX_DESCRIPTION, PREFIX_TYPE);
 
         FindCommand findMatches = new FindCommand(new AttributesContainsKeywordsPredicate(argMultimap));
-        return findMatches.execute(model);
+        findMatches.execute(model);
+        return new CommandResult("Matching results for garment\nname: " + garmentToMatch.getName()
+                + "\nsize: " + garmentToMatch.getSize() + "\ncolour: " + garmentToMatch.getColour() + "\ndresscode: "
+                + garmentToMatch.getDressCode() + "\ntype: " + garmentToMatch.getType());
     }
 
     @Override

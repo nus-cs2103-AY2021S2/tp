@@ -8,9 +8,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SIZE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.address.logic.parser.ArgumentMultimap;
+import seedu.address.logic.parser.Prefix;
 
 public class AttributesContainsKeywordsPredicate implements Predicate<Garment> {
 
@@ -50,6 +52,39 @@ public class AttributesContainsKeywordsPredicate implements Predicate<Garment> {
             testResult = testResult && new TypeContainsKeywordsPredicate(Arrays.asList(keywords)).test(garment);
         }
         return testResult;
+    }
+
+    /**
+     * Returns true if the prefix has a value in this predicate
+     */
+    public boolean isPrefixValuePresent(Prefix prefix) {
+        return argMultimap.getValue(prefix).isPresent();
+    }
+
+    //can give issues when never do the above check
+    /**
+     * Returns the prefix value in this predicate
+     */
+    public String getPrefixValue(Prefix prefix) {
+        return argMultimap.getValue(prefix).get();
+    }
+
+    /**
+     * Checks if a prefix is present and if so, returns the prefix value. Otherwise return an empty string
+     */
+    public String ifPrefixPresentGetValue(Prefix prefix) {
+        String result = "";
+        if (isPrefixValuePresent(prefix)) {
+            result = result + prefix.getPrefix() + ": " + getPrefixValue(prefix) + "\n";
+        }
+        return result;
+    }
+
+    /**
+     * Returns a list of the descriptions in this predicate
+     */
+    public List<String> getDescriptionValue() {
+        return argMultimap.getAllValues(PREFIX_DESCRIPTION);
     }
 
     @Override
