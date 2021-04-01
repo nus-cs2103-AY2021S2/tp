@@ -34,9 +34,11 @@ import seedu.booking.logic.commands.ListBookingCommand;
 import seedu.booking.logic.commands.ListPersonCommand;
 import seedu.booking.logic.commands.ListVenueCommand;
 import seedu.booking.logic.commands.PromptAddBookingCommand;
+import seedu.booking.logic.commands.PromptAddPersonCommand;
 import seedu.booking.logic.commands.PromptAddVenueCommand;
 import seedu.booking.logic.commands.PromptExitCommand;
 import seedu.booking.logic.commands.states.AddBookingCommandState;
+import seedu.booking.logic.commands.states.AddPersonCommandState;
 import seedu.booking.logic.commands.states.AddVenueCommandState;
 import seedu.booking.logic.parser.exceptions.ParseException;
 import seedu.booking.logic.parser.promptparsers.BookingDescPromptParser;
@@ -44,6 +46,7 @@ import seedu.booking.logic.parser.promptparsers.BookingEndPromptParser;
 import seedu.booking.logic.parser.promptparsers.BookingStartPromptParser;
 import seedu.booking.logic.parser.promptparsers.BookingTagPromptParser;
 import seedu.booking.logic.parser.promptparsers.EmailPromptParser;
+import seedu.booking.logic.parser.promptparsers.PromptAddPersonCommandParser;
 import seedu.booking.logic.parser.promptparsers.PromptAddVenueCommandParser;
 import seedu.booking.logic.parser.promptparsers.VenueNamePromptParser;
 import seedu.booking.model.ModelManager;
@@ -102,6 +105,18 @@ public class BookingSystemParser {
 
                 case AddVenueCommandState.STATE_TAG:
                     return new PromptAddVenueCommandParser().parseTags(userInput);
+
+                case AddPersonCommandState.STATE_EMAIL:
+                    return new PromptAddPersonCommandParser().parseEmail(userInput);
+
+                case AddPersonCommandState.STATE_NAME:
+                    return new PromptAddPersonCommandParser().parseName(userInput);
+
+                case AddPersonCommandState.STATE_PHONE:
+                    return new PromptAddPersonCommandParser().parsePhone(userInput);
+
+                case AddPersonCommandState.STATE_TAG:
+                    return new PromptAddPersonCommandParser().parseTags(userInput);
 
                 default:
                     throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
@@ -203,6 +218,8 @@ public class BookingSystemParser {
         case PromptAddVenueCommand.COMMAND_WORD:
             return new PromptAddVenueCommandParser().parse(arguments);
 
+        case PromptAddPersonCommand.COMMAND_WORD:
+            return new PromptAddPersonCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
