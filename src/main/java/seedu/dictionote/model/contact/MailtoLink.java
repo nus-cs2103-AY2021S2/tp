@@ -1,5 +1,6 @@
 package seedu.dictionote.model.contact;
 
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import seedu.dictionote.model.note.Note;
@@ -86,5 +87,13 @@ public class MailtoLink {
         }
 
         return link;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj == this
+                || (obj instanceof MailtoLink
+                && to.equals(((MailtoLink) obj).to)
+                && Objects.equals(body, ((MailtoLink) obj).body)); // this.body may be null.
     }
 }
