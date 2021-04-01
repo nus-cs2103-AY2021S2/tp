@@ -1,5 +1,14 @@
 package seedu.address.testutil;
 
+import static seedu.address.testutil.TypicalPassengers.ALICE;
+import static seedu.address.testutil.TypicalPassengers.BENSON;
+import static seedu.address.testutil.TypicalPassengers.CARL;
+import static seedu.address.testutil.TypicalPassengers.DANIEL;
+import static seedu.address.testutil.TypicalPassengers.ELLE;
+import static seedu.address.testutil.TypicalPassengers.FIONA;
+import static seedu.address.testutil.TypicalPassengers.GEORGE;
+import static seedu.address.testutil.TypicalPassengers.HILARY;
+
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -9,14 +18,6 @@ import java.util.List;
 import seedu.address.model.AddressBook;
 import seedu.address.model.person.passenger.Passenger;
 import seedu.address.model.pool.Pool;
-import static seedu.address.testutil.TypicalPassengers.ALICE;
-import static seedu.address.testutil.TypicalPassengers.BENSON;
-import static seedu.address.testutil.TypicalPassengers.CARL;
-import static seedu.address.testutil.TypicalPassengers.DANIEL;
-import static seedu.address.testutil.TypicalPassengers.ELLE;
-import static seedu.address.testutil.TypicalPassengers.FIONA;
-import static seedu.address.testutil.TypicalPassengers.GEORGE;
-import static seedu.address.testutil.TypicalPassengers.HILARY;
 
 /**
  * A utility class containing a list of {@code Pool} objects to be used in tests.

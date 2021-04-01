@@ -7,13 +7,16 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD;
+import static seedu.address.testutil.TypicalPassengers.ALICE;
+import static seedu.address.testutil.TypicalPassengers.BENSON;
+import static seedu.address.testutil.TypicalPassengers.CARL;
 import static seedu.address.testutil.TypicalPassengers.DANIEL;
 import static seedu.address.testutil.TypicalPassengers.ELLE;
 import static seedu.address.testutil.TypicalPassengers.FIONA;
 import static seedu.address.testutil.TypicalPools.getTypicalAddressBookPools;
-import static seedu.address.testutil.TypicalPassengers.ALICE;
-import static seedu.address.testutil.TypicalPassengers.BENSON;
-import static seedu.address.testutil.TypicalPassengers.CARL;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,9 +27,6 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.pool.Pool;
 import seedu.address.model.pool.PooledPassengerContainsKeywordsPredicate;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for

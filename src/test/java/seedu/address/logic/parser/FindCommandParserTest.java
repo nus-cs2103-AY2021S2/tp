@@ -24,13 +24,13 @@ import java.util.Collections;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.model.TripDayContainsKeywordsPredicate;
+import seedu.address.model.TripTimeContainsKeywordsPredicate;
 import seedu.address.model.person.AttributeContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.PhoneContainsKeywordsPredicate;
 import seedu.address.model.person.passenger.AddressContainsKeywordsPredicate;
 import seedu.address.model.person.passenger.PriceContainsKeywordsPredicate;
-import seedu.address.model.TripDayContainsKeywordsPredicate;
-import seedu.address.model.TripTimeContainsKeywordsPredicate;
 import seedu.address.model.tag.TagContainsKeywordsPredicate;
 
 

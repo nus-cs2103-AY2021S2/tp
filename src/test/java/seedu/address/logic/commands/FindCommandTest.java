@@ -25,12 +25,12 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.TripDayContainsKeywordsPredicate;
+import seedu.address.model.TripTimeContainsKeywordsPredicate;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.PhoneContainsKeywordsPredicate;
 import seedu.address.model.person.passenger.AddressContainsKeywordsPredicate;
-import seedu.address.model.TripDayContainsKeywordsPredicate;
-import seedu.address.model.TripTimeContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.

@@ -40,11 +40,11 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.PoolCommand;
+import seedu.address.model.TripDay;
+import seedu.address.model.TripTime;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.driver.Driver;
-import seedu.address.model.TripDay;
-import seedu.address.model.TripTime;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.testutil.CommuterBuilder;
@@ -128,15 +128,15 @@ public class PoolCommandParserTest {
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + TRIPDAY_DESC_MONDAY
                 + VALID_TRIPTIME_STR_MORNING + COMMUTER_DESC_1 + COMMUTER_DESC_2, expectedMessage);
 
-    // TODO: fix these test cases
+        // TODO: fix these test cases
 
-    //        // missing one commuter prefix
-    //        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + TRIPDAY_DESC_MONDAY
-    //                + TRIPTIME_DESC_MORNING + VALID_COMMUTER_1 + COMMUTER_DESC_2, expectedMessage);
+        //        // missing one commuter prefix
+        //        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + TRIPDAY_DESC_MONDAY
+        //                + TRIPTIME_DESC_MORNING + VALID_COMMUTER_1 + COMMUTER_DESC_2, expectedMessage);
 
-    //        // missing one commuter prefix
-    //        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + TRIPDAY_DESC_MONDAY
-    //                + TRIPTIME_DESC_MORNING + COMMUTER_DESC_1 + VALID_COMMUTER_2, expectedMessage);
+        //        // missing one commuter prefix
+        //        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + TRIPDAY_DESC_MONDAY
+        //                + TRIPTIME_DESC_MORNING + COMMUTER_DESC_1 + VALID_COMMUTER_2, expectedMessage);
 
         // missing all commuter prefix
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + TRIPDAY_DESC_MONDAY
