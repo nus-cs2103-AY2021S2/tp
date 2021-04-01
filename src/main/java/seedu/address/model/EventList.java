@@ -28,7 +28,8 @@ public class EventList {
     public String toString() {
         String displayString = "";
         for (Event event : events) {
-            if (event instanceof Birthday) {
+            String tagName = event.getTag().tagName;
+            if (tagName.equals("Birthday")) {
                 displayString += ((Birthday) event).getDescription() + ": " + event.toString() + "\n";
             } else {
                 displayString += event.tag + ": " + event.toString() + "\n";

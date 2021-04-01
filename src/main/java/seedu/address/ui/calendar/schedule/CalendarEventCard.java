@@ -43,7 +43,7 @@ public class CalendarEventCard extends UiPart<Region> {
 
     private void init() {
         loadCardColour();
-        this.description.setText(event.getDescription().description);
+        this.description.setText(event.getTag().tagName + ": " + event.getDescription().description);
         String time = TIME_FORMATTER.format(event.getDateTime());
         this.time.setText(time);
     }
