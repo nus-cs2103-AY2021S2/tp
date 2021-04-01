@@ -46,7 +46,7 @@ BookCoinToTheMoon is a **desktop app for managing bookings and presents users a 
 
 * Items in square brackets are optional.<br>
   e.g. `add_venue v/VENUE_NAME [max/MAXIMUM_OCCUPANCY]` can be used as `v/Chua Thian Poh Hall max/40` or as `v/Chua Thian Poh Hall`.
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `bye`) will be ignored.<br>
@@ -56,7 +56,8 @@ BookCoinToTheMoon is a **desktop app for managing bookings and presents users a 
 
 ### Adding a person : `add_person`
 
-Adds a new person for the booking app. Email and phone number must be unique.
+Adds a new person for the booking app. Email and phone number must be unique. `add_person` is a multi-step command that 
+will prompt you for additional input.
 
 Format: `add_person n/PERSON_NAME p/PERSON_PHONE_NUMBER e/PERSON_EMAIL [t/TAG]`
 
@@ -139,7 +140,7 @@ Deletes booking corresponding to the booking ID specified.
 Format: `delete_booking b/BOOKING_ID`
 
 Examples:
-* `delete_booking b/2321789382`
+* `delete_booking b/2321`
 
 ### Finding a person : `find_person`
 
@@ -163,7 +164,7 @@ Shows information about the booking corresponding to the given booking ID.
 Format: `find_booking b/BOOKING_ID`
 
 Examples:
-* `find_booking b/2321356789`
+* `find_booking b/2321`
 
 ### Listing all persons : `list_person`
 
@@ -266,8 +267,8 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add_venue v/VENUE_NAME` <br> `add_booking` (Note: add_venue and add_booking are multi-step commands)
-**Delete** | `delete_venue v/VENUE_NAME`<br> e.g., `delete_venue v/Chua Thian Poh Hall` <br><br> `delete_booking b/BOOKING_ID`<br> e.g., `delete_booking b/2`
-**Find** | `find_venue v/VENUE_ID`<br> e.g., `find_venue v/1`<br><br> `find_booking b/BOOKING_ID`<br> e.g., `find_booking b/2`
+**Add** | `add_person` <br> `add_venue v/VENUE_NAME` <br> `add_booking` <br> (Note: add_person, add_venue and add_booking are multi-step commands)
+**Delete** | `delete_person` <br><br> `delete_venue v/VENUE_NAME`<br> e.g., `delete_venue v/Chua Thian Poh Hall` <br><br> `delete_booking b/BOOKING_ID`<br> e.g., `delete_booking b/2`
+**Find** | `find_person` <br> e.g., `find_person e/PERSON_EMAIL` <br><br> `find_venue v/VENUE_ID`<br> e.g., `find_venue v/1`<br><br> `find_booking b/BOOKING_ID`<br> e.g., `find_booking b/2`
 **List** | `list_person`<br>`list_venue` <br> `list_booking`
 **Exit** | `exit`

@@ -15,7 +15,7 @@ import seedu.booking.model.person.Person;
  */
 public class AddPersonCommand extends Command {
 
-    public static final String COMMAND_WORD = "add_person";
+    public static final String COMMAND_WORD = "add_person_old";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the booking system. "
             + "Parameters: "

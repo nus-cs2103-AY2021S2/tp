@@ -26,7 +26,7 @@ public class PromptPersonTagsCommand extends Command {
         CommandResult result;
         Person person = (Person) ModelManager.create();
         result = new AddPersonCommand(person).execute(model);
-        // ModelManager.setStateInactive();
+        ModelManager.setStateInactive();
         return result;
     }
 }

@@ -62,13 +62,13 @@ class AddBookingCommandTest {
     public void equals() {
         Booking bookHall = new BookingBuilder().withVenue("Victoria Hall").withBooker("SpiderMan@gmail.com")
                 .withDescription("VIP")
-                .withBookingStart("2021-02-02 07:00:00")
-                .withBookingEnd("2021-02-02 08:00:00")
+                .withBookingStart("2021-02-02 07:00")
+                .withBookingEnd("2021-02-02 08:00")
                 .build();
         Booking bookField = new BookingBuilder().withVenue("Town Green").withBooker("SpiderMan@gmail.com")
                 .withDescription("VIP")
-                .withBookingStart("2021-02-02 07:00:00")
-                .withBookingEnd("2021-02-02 08:00:00")
+                .withBookingStart("2021-02-02 07:00")
+                .withBookingEnd("2021-02-02 08:00")
                 .build();
         AddBookingCommand addHallCommand = new AddBookingCommand(bookHall);
         AddBookingCommand addFieldCommand = new AddBookingCommand(bookField);

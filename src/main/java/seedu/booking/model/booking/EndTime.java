@@ -34,7 +34,7 @@ public class EndTime {
 
     @Override
     public String toString() {
-        return DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").format(value);
+        return DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm").format(value);
     }
 
     @Override
