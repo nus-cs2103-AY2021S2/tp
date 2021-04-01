@@ -98,14 +98,14 @@ Exits the program.
 
 Format: `exit`
 
-#### Changing HeliBook's theme : `theme`
+#### Changing ParentPal's theme : `theme`
 
-Changes the theme of HeliBook.
+Changes the theme of ParentPal.
 
 Format: `theme o/OPTION`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-HeliBook's theme is set to dark by default.
+ParentPal's theme is set to dark by default.
 </div>
 
 Currently available options for the [OPTION] field include: 
