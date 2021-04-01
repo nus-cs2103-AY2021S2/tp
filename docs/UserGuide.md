@@ -253,6 +253,7 @@ A person can have any number of tags and insurance policies (including 0).
 a client, by typing `-MODE` to specify a mode after a policy number. 
     * `-MODE` must be -insert, -modify, remove.
     * If user chooses to modify an existing policy, the user can specify the old and new policies, separated by ';'
+    * If no mode is specified, then the policies input will replace all previous policies.
 
 <div markdown="block" class="alert alert-info">
 :exclamation: **Caution**: Existing values will be **replaced** with the input values.
