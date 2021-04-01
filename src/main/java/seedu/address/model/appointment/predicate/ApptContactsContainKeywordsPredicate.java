@@ -1,13 +1,14 @@
-package seedu.address.model.appointment;
+package seedu.address.model.appointment.predicate;
 
 import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.util.StringUtil;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.contact.Contact;
 
 /**
- * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Contact}'s {@code Name} matches any of the keywords given.
  */
 public class ApptContactsContainKeywordsPredicate extends ApptFieldContainsKeywordsPredicate {
 
@@ -17,9 +18,9 @@ public class ApptContactsContainKeywordsPredicate extends ApptFieldContainsKeywo
 
     @Override
     public boolean test(Appointment appointment) {
-        Set<Contact> contacts = appointment.getContacts();
+        Set<Contact> persons = appointment.getContacts();
 
-        for (Contact contact : contacts) {
+        for (Contact contact : persons) {
             boolean isFound = super.getKeywords().stream().anyMatch(keyword ->
                     StringUtil.containsWordIgnoreCase(contact.getName().fullName, keyword));
             if (isFound) {

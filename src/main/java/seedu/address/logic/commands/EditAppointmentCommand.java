@@ -56,7 +56,7 @@ public class EditAppointmentCommand extends Command {
     private final EditAppointmentDescriptor editAppointmentDescriptor;
 
     /**
-     * @param index of the person in the filtered appointment list to edit
+     * @param index of the contact in the filtered appointment list to edit
      * @param editAppointmentDescriptor details to edit the appointment with
      */
     public EditAppointmentCommand(Index index, EditAppointmentDescriptor editAppointmentDescriptor) {
@@ -89,7 +89,7 @@ public class EditAppointmentCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
+     * Creates and returns a {@code Contact} with the details of {@code personToEdit}
      * edited with {@code editedAppointmentDescriptor}.
      */
     private static Appointment createEditedAppointment(Appointment apptToEdit,
@@ -124,8 +124,8 @@ public class EditAppointmentCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the contact with. Each non-empty field value will replace the
+     * corresponding field value of the contact.
      */
     public static class EditAppointmentDescriptor {
         private Name name;

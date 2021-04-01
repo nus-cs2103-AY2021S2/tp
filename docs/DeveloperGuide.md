@@ -103,11 +103,11 @@ The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
 * stores the address book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* exposes an unmodifiable `ObservableList<Contact>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Contact` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Contact` needing their own `Tag` object.<br>
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
 </div>
@@ -134,18 +134,18 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 This section describes some noteworthy details on how certain features are implemented.
 ### Tagging features
 #### Current Implementation 
-The current tagging system uses objects of the `Tag` class and its children `ChildTag`. Each `Person` in the
+The current tagging system uses objects of the `Tag` class and its children `ChildTag`. Each `Contact` in the
 `AddressBook` maintains its own set of tags as a `HashSet<Tag>`. 
 
 The `tag` command allows for the appending of tags to an existing
-`Person` without having to replace existing tags as offered by `edit` and is facilitated by 
+`Contact` without having to replace existing tags as offered by `edit` and is facilitated by 
 the `TagCommand` and `TagCommandParser` classes.
 
 [Placeholder: Class Diagram of Tag and related classes here... ]
 
 As part of the `Model` component, other components interact with tags through the `Model.java` API.
-As `Person` objects are designed to be immutable, commands that involve manipulating Persons such as `edit` and `tag`
-involve creating a new `Person` and replacing the original `Person` through `Model#setPerson()`.
+As `Contact` objects are designed to be immutable, commands that involve manipulating Persons such as `edit` and `tag`
+involve creating a new `Contact` and replacing the original `Contact` through `Model#setPerson()`.
 
 Given below is an example usage scenario of the `tag` command and how the application behaves through its execution.
 
@@ -168,10 +168,10 @@ and subsequently `LogicManager`.
 
 Step 6. `LogicManager` then calls the `execute` method of the newly created `TagCommand`.
 
-Step 7. Similar to `EditCommand`, `TagCommand` will generate a new `Person` object 
+Step 7. Similar to `EditCommand`, `TagCommand` will generate a new `Contact` object 
 though the `createTaggedPerson` method which will have its tags appended withe the new `Set<Tag>` defined by the command.
 
-Step 8. The `Model#setPerson()` method is used to update the model with the newly tagged `Person` and a `CommandResult`
+Step 8. The `Model#setPerson()` method is used to update the model with the newly tagged `Contact` and a `CommandResult`
 representing success is returned to the `LogicManager`.
 
 Shown below is the sequence diagram that visualises the above operations of a `tag` command.
@@ -272,14 +272,14 @@ The sort mechanism is facilitated by `SortCommand` and `SortCommandParser`.
 * `SortCommand#execute(Model model)` — Executes the sort command by sorting the `lastShownList`
   and updating the `model` accordingly.
 
-Sorting by name is done by comparing `Person` objects, which implement `Comparable<Person>`.
+Sorting by name is done by comparing `Contact` objects, which implement `Comparable<Contact>`.
 
-Sorting by date is done using the `DateComparator`, which compares the `TimeAdded` attribute of the `Person` objects.
+Sorting by date is done using the `DateComparator`, which compares the `TimeAdded` attribute of the `Contact` objects.
 
 Given below is an example usage scenario and how the sort mechanism behaves at each step.
 
 Step 1. The user executes `add n/David …​`, `add n/Anna …​` and `add n/Chloe …​` in that order.
-The `Person` objects created will be timestamped with the `TimeAdded` attribute.
+The `Contact` objects created will be timestamped with the `TimeAdded` attribute.
 By default, they will be displayed on in the order in which they were added.
 
 [comment]: <> (add UML diagram)
@@ -353,7 +353,7 @@ Attributes of the `Appointment` class:
 * Name of appointment, which is a String object
 * Location of appointment, which is a String object
 * Date of appointment, which is a DateTime object
-* Contacts that parents might need to contact about the appointment. This is an ArrayList of Person objects.
+* Contacts that parents might need to contact about the appointment. This is an ArrayList of Contact objects.
 
 ##### Logic Component
 
@@ -641,7 +641,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Contact/Person**: Entry in the address book containing a contact's contact information
+* **Contact/Contact**: Entry in the address book containing a contact's contact information
 * **Index**: Index number shown in the displayed contact list
 * **Backup file**: JSON file that stores address book data in the hard disk
 * **Action**: Executed command

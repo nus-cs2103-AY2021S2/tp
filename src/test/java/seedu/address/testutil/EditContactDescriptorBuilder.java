@@ -29,7 +29,7 @@ public class EditContactDescriptorBuilder {
     }
 
     /**
-     * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
+     * Returns an {@code EditPersonDescriptor} with fields containing {@code contact}'s details
      */
     public EditContactDescriptorBuilder(Contact contact) {
         descriptor = new EditContactDescriptor();
