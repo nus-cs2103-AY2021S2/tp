@@ -31,17 +31,22 @@ JJIMY is a **desktop app for managing your restaurant, optimized for use via a C
 
 ### General
 
-#### `help` - Access help page
-Format:
+#### Access help page
+To access the help page, input:
 ```
 help
 ```
+Alternatively, you can click on the ![settings](images/settings.png) icon > `help` or simply press `F1` on your keyboard.  
+Shortly it will open up the `User Guide` in your default browser.
 
-#### `exit` - Exit application
-Format:
+---
+
+#### Exit application
+To exit the application, input:
 ```
 exit
 ```
+Alternatively, you can click on the ![settings](images/settings.png) icons > `exit` or simply press `F2` on your keyboard.
 
 ### `customer`
 
