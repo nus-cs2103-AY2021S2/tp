@@ -5,7 +5,7 @@
 This is a sample project for Managers of Tuition Centres
 Example usages:
 - To allocate students and tutors to a specific class
-- Determine class size
+- Manage students, classes and tutors all in one platform
 
 The project simulates an ongoing software project for a desktop application (called EZManage) used for
 managing students, tutors and classes.
@@ -37,6 +37,8 @@ This project is a part of the se-education.org initiative. If you would like to 
 * Delete Tutor
 * Delete Session
 * Clear Contacts
+* Assign Student(s) to Session
+* Assign tutor to Session
 * Help
 * Exit
 
