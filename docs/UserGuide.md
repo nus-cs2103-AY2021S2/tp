@@ -100,9 +100,9 @@ Example: `editcheese 1 t/Parmesan d/2021-03-12`
 
 Edits an existing customer in CHIM.
 
-Format: `editcustomer [n/CUSTOMER_NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/tags...]`
+Format: `editcustomer INDEX [n/CUSTOMER_NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/tags...]`
 
-Example: `addcustomer 4 n/Jane Lim p/65558888`
+Example: `editcustomer 4 n/Jane Lim p/65558888`
 
 ### Delete an order: `deleteorder`
 
@@ -227,16 +227,19 @@ Format: `exit`
 Action | Format, Examples
 --------|------------------
 **Add Order** | `addorder t/CHEESE_TYPE q/QUANTITY p/PHONE_NUMBER` <br> e.g. `addorder t/Parmesan q/2 p/65555555`
-**Add Cheese** | `addcheese t/CHEESE_TYPE q/QUANTITY` <br> e.g. `addcheese t/CHEESE_TYPE q/QUANTITY`
-**Add Customer** | `addcustomer n/CUSTOMER_NAME p/PHONE_NUMBER a/ADDRESS` <br> e.g. `addcustomer n/John Doe p/65555555 a/Blk 436 Serangoon Gardens St 26 #01-01`
+**Add Cheese** | `addcheese t/CHEESE_TYPE q/QUANTITY [d/MANUFACTURE_DATE] [m/MATURITY_DATE] [d/EXPIRY_DATE]` <br> e.g. `addcheese t/gouda q/1 m/2021-05-01 e/2025-12-31`
+**Add Customer** | `addcustomer n/CUSTOMER_NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/tags...]` <br> e.g. `addcustomer n/John Doe p/65555555 e/johndoe@gmail.com a/Blk 436 Serangoon Gardens St 26 #01-01`
 **Delete Order** | `deleteorder ORDER_INDEX` <br> e.g. `deleteorder 2`
-**Delete Cheese** | `deletecheese CHEESE_INDEX` <br> Example: `deletecheese 5`
-**Delete Customer**| `deletecustomer p/PHONE_NUMBER` <br> Example: `deletecustomer p/65555555`
-**List Orders** | `listorder`
-**List Cheese** | `listcheese` <br> e.g. `listcheese`
-**List Customer** | `listcustomer`
+**Delete Cheese** | `deletecheese CHEESE_INDEX` <br> e.g. `deletecheese 5`
+**Delete Customer**| `deletecustomer p/PHONE_NUMBER` <br> e.g. `deletecustomer p/65555555`
+**List Orders** | `listorders`
+**List Cheese** | `listcheeses`
+**List Customer** | `listcustomers`
+**Edit Order** | `editorder INDEX [t/CHEESE_TYPE] [q/QUANTITY] [p/PHONE_NUMBER] [d/ORDER_DATE]` <br> e.g. `editorder 2 t/Parmesan q/2 p/65555555`
+**Edit Cheese** | `editcheese INDEX [t/CHEESE_TYPE] [d/MANUFACTURE_DATE] [m/MATURITY_DATE] [d/EXPIRY_DATE]` <br> e.g. `editcheese 1 t/Parmesan d/2021-03-12`
+**Edit Customer** | `editcustomer INDEX [n/CUSTOMER_NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/tags...]` <br> e.g. `editcustomer 4 n/Jane Lim p/65558888`
 **Mark As Done** | `done INDEX` <br> e.g. `done 2`
 **Find Customer** | `findcustomer [n/NAME_KEYWORDS...] [p/PHONE_KEYWORDS...] [e/EMAIL_KEYWORDS...] [a/ADDRESS_KEYWORDS...]` <br> e.g. `findcustomer n/Betty`
 **Find Cheese** | `findcheese [t/CHEESE_TYPE_KEYWORDS...] [s/ASSIGNMENT_STATUS]` <br> e.g. `findcheese t/Brie Feta s/unassigned`
-**Find Order** | `findorder [t/CHEESE_TYPE_KEYWORDS...] [n/CUSTOMER_NAME_KEYWORDS] [p/CUSTOMER_PHONE_KEYWORDS] [s/COMPLETION_STATUS]`  <br> e.g. `findorder t/gouda s/complete
+**Find Order** | `findorder [t/CHEESE_TYPE_KEYWORDS...] [n/CUSTOMER_NAME_KEYWORDS] [p/CUSTOMER_PHONE_KEYWORDS] [s/COMPLETION_STATUS]`  <br> e.g. `findorder t/gouda s/complete`
 **Exit** | `exit`

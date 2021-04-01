@@ -13,7 +13,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design** [In Progress]
+## **Design**
 
 ### Architecture
 
@@ -237,7 +237,7 @@ The diagram below shows how the `FindCommand`, specifically the `FindCheeseComma
 
 ![Sequence of Find Command](images/find/FindCheeseCommandSequenceDiagram.png)
 
-### Edit Command 
+### Edit Command
 
 Currently we support editing of the three models: `Cheese`, `Customer` and `Order`,
 but only under certain preconditions to reflect the real life domains.
