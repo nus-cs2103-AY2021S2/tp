@@ -1,4 +1,4 @@
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S2-CS2103-W16-4/tp/actions)
+[![CI Status](https://github.com/AY2021S2-CS2103-W16-4/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S2-CS2103-W16-4/tp/actions)
 
 ![Ui](docs/images/Ui.png)
 
@@ -19,33 +19,38 @@ students, tutors and classes all in one single web application.
 For the detailed documentation of this project, see the [EZManage product website](https://ay2021s2-cs2103-w16-4.github.io/tp/).
 This project is a part of the se-education.org initiative. If you would like to contribute code to this project, see se-education.org for more info.
 
-###Feature List
+## Feature List
+* Add Student
+* Add Tutor
+* Add Session
+* List Persons
+* List Students
+* List Tutors
+* List Sessions
+* View Student
+* View Tutor
+* View Session
+* Edit Student
+* Edit Tutor
+* Edit Session
+* Delete Student
+* Delete Tutor
+* Delete Session
+* Clear Contacts
+* Help
+* Exit
 
-####Feature 1
-Create Student
+## Command summary
 
-####Feature 2
-Create Tutor
-
-####Feature 3
-Create Class
-
-####Feature 4
-Delete Student
-
-####Feature 5
-DELETE Tutor
-
-####Feature 6
-DELETE Class
-
-####Feature 7
-View Students
-
-####Feature 8
-View Tutors
-
-####Feature 9
-View Classes
+Action | Format, Examples
+--------|------------------
+**Add** | For Person:`add_person tp/ROLE n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [tag/TAG]…​` <br> e.g., `add_person tp/student n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665`<br> For Session: `add_session d/DAY ts/TIMESLOT s/SUBJECT [tag/TAG]…​` <br> e.g. `add_session d/Saturday ts/13:00 to 15:00 s/Math` 
+**Clear** | `clear`
+**Delete** | For Student: <br> `delete_person s/ID`<br> e.g., `delete_person s/22` <br><br> For Tutor: <br> `delete_person t/ID`<br> e.g., `delete_person t/8`<br><br> For Session:<br>`delete_session c/ID` <br> e.g., `delete_session c/9`
+**Edit** | For Student: <br> `edit_person s/ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tag/TAG]…​` <br> e.g., `edit_person s/2 n/Betsy Crower tag/` <br><br> For Tutor: <br> `edit_person t/ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tag/TAG]…​` <br> e.g., `edit_person t/1 p/88888888 e/sarahwong@example.com` <br><br> For Session: <br> `edit_session c/ID [d/DAY] [ts/TIMESLOT] [s/SUBJECT] [tag/TAG]…​`<br> e.g.,`edit_session c/1 d/Monday s/Biology` <br> e.g. `edit_session c/2 d/Saturday ts/13:00 to 15:00 tag/Hard` 
+**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**List** | For All Persons: <br>`list persons` <br> For All Students: <br>`list students` <br> For All Tutors: <br>`list tutors` <br> For All Sessions: <br>`list sessions`
+**View** | For Person: <br> For Session: <br> `view_session c/ID` <br> e.g., `view_session c/5`
+**Help** | `help`
 
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org)

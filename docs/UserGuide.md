@@ -14,22 +14,21 @@ EzManage is a **desktop app for managing students, tutors and classes, optimized
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `ezmanage.jar`. [coming soon!]
-# from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `ezmanage.jar` from [here](https://github.com/AY2021S2-CS2103-W16-4/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your EzManage.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. Double-click the file to start the app. An example of the GUI is shown below. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+   * **`list persons`** : Lists all students and tutors.
 
    * **`add_person`**`tp/student n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a student named `John Doe` to the Contact List.
 
-   * **`delete_person`**`t/3` : Deletes the tutor with the ID `t/3` from the tutor list.
+   * **`delete_person`**`t/3` : Deletes the tutor with the ID `t/3` from the Contact list.
      
    * **`assign`** : Assigns student or tutor to a specific class (Coming Soon!).
 
@@ -51,7 +50,7 @@ EzManage is a **desktop app for managing students, tutors and classes, optimized
   e.g. in `add_person n/NAME`, `NAME` is a parameter which can be used as `add_person n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [tag/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `n/NAME [tag/TAG]` can be used as `n/John Doe tag/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[tag/TAG]…​` can be used as ` ` (i.e. 0 times), `tag/friend`, `tag/friend tag/family` etc.
@@ -75,7 +74,7 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-### Adding a tutor: `add`
+### Adding a tutor: `add_person`
 
 Adds a tutor to the address book.
 
@@ -89,7 +88,7 @@ Examples:
 * `add_person pt/tutor n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add_person pt/tutor n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 tag/criminal`
 
-### Adding a student: `add`
+### Adding a student: `add_person`
 
 Adds a student to the address book.
 
@@ -103,7 +102,7 @@ Examples:
 * `add_person pt/student n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add_person pt/student n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 tag/criminal`
 
-### Adding a session: `add`
+### Adding a session: `add_session`
 
 Adds a session to the address book.
 
@@ -145,8 +144,6 @@ Format: `list sessions`
 
 Shows a list of all sessions in the address book.
 
-## Viewing a person
-
 ### Viewing a tutor : `view`
 
 Views an existing tutor's details.
@@ -171,7 +168,7 @@ Format: `view s/ID`
 Example:
 * `view s/1` views the details of the student with student ID 1.
 
-### Viewing a session : `view`
+### Viewing a session : `view_session`
 
 Views an existing session's details.
 
@@ -186,25 +183,41 @@ Example:
 * `view_session c/1` views the details of the session with session ID c/1 on the Left Panel
 and views the list of assigned students (e.g. students s/1, s/2) on the Right Panel.
 
+### Editing a student : `edit_person`
 
-### Editing a person : `edit` (coming soon)
+Edits an existing student in the address book.
 
-Edits an existing person in the address book.
+Format: `edit_person s/ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tag/TAG]…​`
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
-
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the student at the specified student ID (in the format `s/ID`). The student ID can be found from the displayed student list. 
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
+* You can remove all the person’s tags by typing `tag/` without
   specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit_person s/1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the student with the ID of `s/1` to be `91234567` and `johndoe@example.com` respectively.
+*  `edit_person s/2 n/Betsy Crower tag/` Edits the name of the student with the ID of `s/2` to be `Betsy Crower` and clears all existing tags.
 
-### Editing a session : `edit`
+### Editing a tutor : `edit_person`
+
+Edits an existing tutor in the address book.
+
+Format: `edit_person t/ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tag/TAG]…​`
+
+* Edits the tutor at the specified tutor ID (in the format `s/ID`). The tutor ID can be found from the displayed tutor list. 
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
+* You can remove all the person’s tags by typing `tag/` without
+  specifying any tags after it.
+
+Examples:
+*  `edit_person t/1 p/88888888 e/sarahwong@example.com` Edits the phone number and email address of the tutor with the ID of `t/1` to be `88888888` and `sarahwong@example.com` respectively.
+*  `edit_person t/2 n/Oliver Tan tag/` Edits the name of the tutor with the ID of `t/2` to be `Oliver Tan` and clears all existing tags.
+
+### Editing a session : `edit_session`
 
 Edits an existing session in the address book.
 
@@ -242,7 +255,7 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a student : `delete`
+### Deleting a student : `delete_person`
 
 Deletes the specified student from the address book.
 
@@ -254,7 +267,7 @@ Format: `delete_person s/ID`
 Examples:
 * `delete_person s/2` deletes the student with student ID s/2 in the address book.
 
-### Deleting a tutor : `delete`
+### Deleting a tutor : `delete_person`
 
 Deletes the specified tutor from the address book.
 
@@ -266,7 +279,7 @@ Format: `delete_person t/ID`
 Examples:
 * `delete_person t/1` deletes the tutor with tutor ID t/1 in the address book.
 
-### Deleting a session : `delete`
+### Deleting a session : `delete_session`
 
 Deletes the specified session from the address book.
 
@@ -311,7 +324,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous EzManage home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -319,11 +332,11 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | For Person:`add_person tp/ROLE n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [tag/TAG]…​` <br> e.g., `add_person tp/student n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665`<br> For Session: `add_session d/DAY ts/TIMESLOT s/SUBJECT [tag/TAG]…​` <br> e.g. `add_session d/Saturday ts/13:00 to 15:00 s/Math` 
+**Add** | For Person:`add_person tp/ROLE n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [tag/TAG]…​` <br> e.g., `add_person tp/student n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665`<br><br> For Session: `add_session d/DAY ts/TIMESLOT s/SUBJECT [tag/TAG]…​` <br> e.g. `add_session d/Saturday ts/13:00 to 15:00 s/Math` 
 **Clear** | `clear`
-**Delete** | Tutor <br> `delete_person t/ID`<br> e.g., `delete_person t/8`<br><br> Student <br> `delete_person s/ID`<br> e.g., `delete_person s/22` <br><br> Session<br>`delete_session c/ID` <br> e.g., `delete_session c/9`
-**Edit** | For Person: <br> For Session: <br> `edit_session c/ID [d/DAY] [ts/TIMESLOT] [s/SUBJECT] [tag/TAG]…​`<br> e.g.,`edit_session c/1 d/Monday s/Biology` <br> e.g. `edit_session c/2 d/Saturday ts/13:00 to 15:00 tag/Hard` 
+**Delete** | For Student: <br> `delete_person s/ID`<br> e.g., `delete_person s/22` <br><br> For Tutor: <br> `delete_person t/ID`<br> e.g., `delete_person t/8`<br><br> For Session:<br>`delete_session c/ID` <br> e.g., `delete_session c/9`
+**Edit** | For Student: <br> `edit_person s/ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tag/TAG]…​` <br> e.g., `edit_person s/2 n/Betsy Crower tag/` <br><br> For Tutor: <br> `edit_person t/ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tag/TAG]…​` <br> e.g., `edit_person t/1 p/88888888 e/sarahwong@example.com` <br><br> For Session: <br> `edit_session c/ID [d/DAY] [ts/TIMESLOT] [s/SUBJECT] [tag/TAG]…​`<br> e.g.,`edit_session c/1 d/Monday s/Biology` <br> e.g. `edit_session c/2 d/Saturday ts/13:00 to 15:00 tag/Hard` 
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | For All Persons: <br>`list persons` <br> For All Students: <br>`list students` <br> For All Tutors: <br>`list tutors` <br> For All Sessions: <br>`list sessions`
-**View** | For Person: <br> For Session: <br> `view_session c/ID` <br> e.g., `view_session c/5`
+**List** | For All Persons: <br>`list persons` <br><br> For All Students: <br>`list students` <br><br> For All Tutors: <br>`list tutors` <br><br> For All Sessions: <br>`list sessions`
+**View** | For Person: <br><br> For Session: <br> `view_session c/ID` <br> e.g., `view_session c/5`
 **Help** | `help`
