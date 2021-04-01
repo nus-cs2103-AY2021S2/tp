@@ -58,7 +58,7 @@ public class MailtoLink {
      * @param str The string to be encoded.
      * @return An encoded version of the given string that is compatible with URI links/objects.
      */
-    String encodeUriCompatible(String str) {
+    static String encodeUriCompatible(String str) {
         return str
                 .chars()
                 .mapToObj(Integer::toHexString)
