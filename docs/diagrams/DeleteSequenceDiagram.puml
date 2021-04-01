@@ -4,8 +4,8 @@
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
-participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
-participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
+participant ":DeleteFoodItemCommandParser" as DeleteFoodItemCommandParser LOGIC_COLOR
+participant "d:DeleteFoodItemCommand" as DeleteFoodItemCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -19,50 +19,50 @@ activate LogicManager
 LogicManager -> AddressBookParser : parseCommand("food_delete n/grape")
 activate AddressBookParser
 
-create DeleteCommandParser
-AddressBookParser -> DeleteCommandParser
-activate DeleteCommandParser
+create DeleteFoodItemCommandParser
+AddressBookParser -> DeleteFoodItemCommandParser
+activate DeleteFoodItemCommandParser
 
-DeleteCommandParser --> AddressBookParser
-deactivate DeleteCommandParser
+DeleteFoodItemCommandParser --> AddressBookParser
+deactivate DeleteFoodItemCommandParser
 
-AddressBookParser -> DeleteCommandParser : parse("grape")
-activate DeleteCommandParser
+AddressBookParser -> DeleteFoodItemCommandParser : parse("grape")
+activate DeleteFoodItemCommandParser
 
-create DeleteCommand
-DeleteCommandParser -> DeleteCommand
-activate DeleteCommand
+create DeleteFoodItemCommand
+DeleteFoodItemCommandParser -> DeleteFoodItemCommand
+activate DeleteFoodItemCommand
 
-DeleteCommand --> DeleteCommandParser : d
-deactivate DeleteCommand
+DeleteFoodItemCommand --> DeleteFoodItemCommandParser : d
+deactivate DeleteFoodItemCommand
 
-DeleteCommandParser --> AddressBookParser : d
-deactivate DeleteCommandParser
+DeleteFoodItemCommandParser --> AddressBookParser : d
+deactivate DeleteFoodItemCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-DeleteCommandParser -[hidden]-> AddressBookParser
-destroy DeleteCommandParser
+DeleteFoodItemCommandParser -[hidden]-> AddressBookParser
+destroy DeleteFoodItemCommandParser
 
 AddressBookParser --> LogicManager : d
 deactivate AddressBookParser
 
-LogicManager -> DeleteCommand : execute()
-activate DeleteCommand
+LogicManager -> DeleteFoodItemCommand : execute()
+activate DeleteFoodItemCommand
 
-DeleteCommand -> Model : deleteFoodItem(index)
+DeleteFoodItemCommand -> Model : deleteFoodItem(index)
 activate Model
 
-Model --> DeleteCommand
+Model --> DeleteFoodItemCommand
 deactivate Model
 
 create CommandResult
-DeleteCommand -> CommandResult
+DeleteFoodItemCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> DeleteCommand
+CommandResult --> DeleteFoodItemCommand
 deactivate CommandResult
 
-DeleteCommand --> LogicManager : result
-deactivate DeleteCommand
+DeleteFoodItemCommand --> LogicManager : result
+deactivate DeleteFoodItemCommand
 
 [<--LogicManager
 deactivate LogicManager
