@@ -76,7 +76,7 @@ run {
 
 
 shadowJar {
-    archiveName = 'addressbook.jar'
+    archiveName = 'meetbuddy.jar'
 }
 
 defaultTasks 'clean', 'test'
