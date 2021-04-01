@@ -201,7 +201,7 @@ If no commands were specified in `args`, the `HelpCommand` constructor without a
 
 To execute a `HelpCommand`, `HelpCommand#execute()` is called. The method reads and parses information in the user guide (found at resources/UserGuideCopy.md) into a `helpMessage` differently depending on whether a command was specified. `helpMessage` can contain the following:
 
-* Command was not specified: A list of all available HeliBook commands that was parsed from the command summary table in the user guide.
+* Command was not specified: A list of all available ParentPal commands that was parsed from the command summary table in the user guide.
 * Command was specified: Information on the specified command taken from the user guide. If the specified command is not found in the user guide, an exception is thrown.
 
 Given below are 2 example usage scenarios and how the help mechanism behaves in each scenario.
@@ -254,9 +254,9 @@ The following activity diagram summarises what happens when a user executes the 
 
 * **Alternative 3:** Retrieve from user guide webpage.
   * Pros: Minimal updating needed when features change since only the user guide in the docs folder needs to be updated.
-  * Cons: Does not work when HeliBook is used offline, implementation might be complicated, scanning user guide for information each time help is called can be time-consuming.
+  * Cons: Does not work when ParentPal is used offline, implementation might be complicated, scanning user guide for information each time help is called can be time-consuming.
   
-Alternative 1 was eventually chosen as we were planning to make major changes to HeliBook over several iterations. Since we are already expected to update the user guide with each iteration, it is more efficient to simply copy the latest user guide document into the resources folder after updates are made rather than to edit each `helpMessage`. Furthermore, as long as the format of the user guide remains constant, parsing the markdown text into plain text is manageable and does not take too much time. This alternative will also work when HeliBook is used offline, making the application easy to use on the go. Lastly, alternative 1 keeps the actual code and documentation separate, making it a more logical and organised implementation. As such, that is the alternative that was chosen. 
+Alternative 1 was eventually chosen as we were planning to make major changes to ParentPal over several iterations. Since we are already expected to update the user guide with each iteration, it is more efficient to simply copy the latest user guide document into the resources folder after updates are made rather than to edit each `helpMessage`. Furthermore, as long as the format of the user guide remains constant, parsing the markdown text into plain text is manageable and does not take too much time. This alternative will also work when ParentPal is used offline, making the application easy to use on the go. Lastly, alternative 1 keeps the actual code and documentation separate, making it a more logical and organised implementation. As such, that is the alternative that was chosen. 
 
 ### Sort feature
 
@@ -359,7 +359,7 @@ Attributes of the `Appointment` class:
 
 ![AppointmentWithLogicClassDiagram](images/AppointmentWithLogicClassDiagram.png)
 
-`HeliBookParser` looks at the user command and determines which command it is. After determing the correct command, it creates a parser
+`ParentPalParser` looks at the user command and determines which command it is. After determing the correct command, it creates a parser
 for that particularly command.  
 
 ![AppointmentCommandClassDiagram](images/AppointmentCommandClassDiagram.png)
@@ -543,16 +543,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `HeliBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `ParentPal` and the **Actor** is the `user`, unless specified otherwise)
 
 **UC1: Edit a person**
 
 **MSS**
 
 1.  User requests to list persons
-2.  HeliBook shows a list of persons
+2.  ParentPal shows a list of persons
 3.  User requests to edit a specific person's detail in the list
-4.  HeliBook edits the person's details accordingly
+4.  ParentPal edits the person's details accordingly
 
     Use case ends.
 
@@ -564,7 +564,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. HeliBook shows an error message.
+    * 3a1. ParentPal shows an error message.
 
       Use case resumes at step 2.
     
@@ -574,9 +574,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to list persons
-2.  HeliBook shows a list of persons
+2.  ParentPal shows a list of persons
 3.  User requests to delete a specific person in the list
-4.  HeliBook deletes the person
+4.  ParentPal deletes the person
 
     Use case ends.
 
@@ -588,7 +588,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. HeliBook shows an error message.
+    * 3a1. ParentPal shows an error message.
 
       Use case resumes at step 2.
 
@@ -597,9 +597,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to list persons
-2.  HeliBook shows a list of persons
+2.  ParentPal shows a list of persons
 3.  User requests to tag a specific person in the list with a specific tag name
-4.  HeliBook adds the tag to the person
+4.  ParentPal adds the tag to the person
 
     Use case ends.
 
@@ -611,7 +611,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. HeliBook shows an error message.
+    * 3a1. ParentPal shows an error message.
 
       Use case resumes at step 2.
     

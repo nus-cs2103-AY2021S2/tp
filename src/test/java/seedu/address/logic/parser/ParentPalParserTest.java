@@ -31,9 +31,9 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
 
-public class HeliBookParserTest {
+public class ParentPalParserTest {
 
-    private final HeliBookParser parser = new HeliBookParser();
+    private final ParentPalParser parser = new ParentPalParser();
 
     @Test
     public void parseCommand_add() throws Exception {

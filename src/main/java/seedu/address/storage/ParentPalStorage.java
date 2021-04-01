@@ -11,7 +11,7 @@ import seedu.address.model.ReadOnlyAppointmentBook;
 /**
  * Represents a storage for {@link seedu.address.model.AddressBook}.
  */
-public interface HeliBookStorage {
+public interface ParentPalStorage {
 
     // ================ AddressBook methods ==============================
 
