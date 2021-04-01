@@ -177,20 +177,32 @@ Examples:
 
 ### 3.4 Deleting
 
-#### 3.4.1 Removing an entry : `delete`
+#### 3.4.1 Removing an appointment : `delete appointment`
 
-Deletes the property or appointment at the specified index from the app.
+Deletes the appointment at the specified index from the app.
 
 Formats:
 * `delete appointment INDEX`
-* `delete property INDEX`
 
 Description:
-* Deletes the appointment or property at the specified `INDEX`. The index refers to the index number shown in the displayed list. The index **must be a positive integer** 1, 2, 3, …
+* Deletes the appointment at the specified `INDEX`. The index refers to the index number shown in the displayed list. The index **must be a positive integer** 1, 2, 3, …
 * The field INDEX must be provided.
 
 Examples:
 *  `delete appointment 7` Deletes the `appointment` at index `7`.
+
+#### 3.4.2 Removing a property : `delete property`
+
+Deletes the property at the specified index from the app.
+
+Formats:
+* `delete property INDEX`
+
+Description:
+* Deletes the property at the specified `INDEX`. The index refers to the index number shown in the displayed list. The index **must be a positive integer** 1, 2, 3, …
+* The field INDEX must be provided.
+
+Examples:
 *  `delete property 7` Deletes the `property` at index `7`.
 
 ### 3.5 Listing
@@ -247,21 +259,37 @@ Examples:
 
 ### 3.7 Sorting
 
-#### 3.7.1 Sorting : `sort`
+#### 3.7.1 Sorting appointments: `sort appointment`
 
-Sorts and shows a list of properties or appointments that are sorted by the specified sorting key in the specified sorting order.
+Sorts and shows a list of appointments that are sorted by the specified sorting key in the specified sorting order.
 
 Formats:
 * `sort appointment o/SORTING_ORDER k/SORTING_KEY`
-* `sort property o/SORTING_ORDER k/SORTING_KEY`
 
 Description:
-* Sorts appointments or properties by the specified sorting key in ascending or descending order.
+* Sorts appointments by the specified sorting key in ascending or descending order.
 * The sorting key and sorting order fields must be specified.
+* The sorting key can take value of either `datetime` or `name`, and it should not be any other values.
+* The sorting order can only take value of `asc` and `desc`.
 
 Examples:
 *  `sort appointment o/asc k/datetime` Sorts `appointment` by `datetime` in ascending order.
-*  `sort property o/desc k/price` Sorts `property` by `price` in descending order.
+
+#### 3.7.2 Sorting properties: `sort property`
+
+Sorts and shows a list of properties that are sorted by the specified sorting key in the specified sorting order.
+
+Formats:
+* `sort property o/SORTING_ORDER k/SORTING_KEY`
+
+Description:
+* Sorts properties by the specified sorting key in ascending or descending order.
+* The sorting key and sorting order fields must be specified.
+* The sorting key can take value of `name`, `price`, `postalcode`, `address`, or `deadline`, and it should not be any other values.
+* The sorting order can only take value of `asc` and `desc`.
+
+Examples:
+*  `sort appointment o/asc k/datetime` Sorts `appointment` by `datetime` in ascending order.
 
 ### 3.8 Undoing
 
