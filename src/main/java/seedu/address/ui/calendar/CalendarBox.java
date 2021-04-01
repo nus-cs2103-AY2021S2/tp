@@ -3,14 +3,13 @@ package seedu.address.ui.calendar;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
-import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import seedu.address.commons.core.LogsCenter;
+import javafx.scene.paint.Color;
 import seedu.address.model.Event;
 import seedu.address.model.EventList;
 import seedu.address.model.event.GeneralEvent;
@@ -25,7 +24,6 @@ import seedu.address.ui.calendar.schedule.UpcomingSchedule;
  */
 public class CalendarBox extends UiPart<Region> {
     private static final String FXML = "CalendarBox.fxml";
-    private static Logger logger = LogsCenter.getLogger(CalendarBox.class);
 
     private LocalDate dateTime;
     private EventList events;
@@ -41,7 +39,7 @@ public class CalendarBox extends UiPart<Region> {
     @FXML
     private Label exam;
     @FXML
-    private Label meeting;
+    private Label event;
 
     /**
      * Constructs a CalendarBox object to display the entries on that day.
@@ -54,14 +52,11 @@ public class CalendarBox extends UiPart<Region> {
         this.dateTime = dateTime;
         this.events = events;
         initializeCalenderBoxInfo(dateTime);
-        logger.info("calendar box successfully initialised");
     }
 
     private void initializeCalenderBoxInfo(LocalDate dateTime) {
         loadDate();
-        logger.info("load date into calendar box successful");
         loadEventsCount();
-        logger.info("load event counts into calendar box successful");
     }
 
     public void addClickEventHandler(UpcomingSchedule upcomingSchedule) {
@@ -98,9 +93,37 @@ public class CalendarBox extends UiPart<Region> {
             }
         }
 
+        setBirthdayText(birthdayCount);
+        setAssignmentText(assignmentCount);
+        setExamCount(examCount);
+        setEventText(generalEventCount);
+    }
+
+    private void setBirthdayText(int birthdayCount) {
+        if (birthdayCount > 0) {
+            birthday.setTextFill(Color.RED);
+        }
         birthday.setText(birthdayCount + " Birthday(s)");
+    }
+
+    private void setAssignmentText(int assignmentCount) {
+        if (assignmentCount > 0) {
+            assignment.setTextFill(Color.RED);
+        }
         assignment.setText(assignmentCount + " Assignment(s)");
+    }
+
+    private void setExamCount(int examCount) {
+        if (examCount > 0) {
+            exam.setTextFill(Color.RED);
+        }
         exam.setText(examCount + " Exam(s)");
-        meeting.setText(generalEventCount + " Event(s)");
+    }
+
+    private void setEventText(int eventCount) {
+        if (eventCount > 0) {
+            event.setTextFill(Color.RED);
+        }
+        event.setText(eventCount + " Event(s)");
     }
 }
