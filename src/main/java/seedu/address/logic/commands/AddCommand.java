@@ -7,7 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DURATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RECURRINGSCHEDULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
-import static seedu.address.model.task.RecurringSchedule.INVALID_ENDDATE;
+import static seedu.address.model.task.RecurringSchedule.INVALID_END_DATE;
 
 import java.util.Set;
 import java.util.logging.Logger;
@@ -54,6 +54,9 @@ public class AddCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the planner.";
 
+    public static final String MESSAGE_INVALID_DATE_RANGE = "Task has invalid date input.\n\nNote: Months of Apr, Jun, "
+            + "Sep, Nov has only 30 days while Feb has only 28 days with leap years (mulitples of 4) having 29 days";
+
     private Task toAdd;
 
     private final Logger logger = LogsCenter.getLogger(getClass());
@@ -72,6 +75,7 @@ public class AddCommand extends Command {
 
         handleDuplicateTask(model);
         ConditionManager.enforceAttributeConstraints(toAdd);
+        handleInvalidDate();
         handleExpiredTask();
         updateTags(model);
         updateModel(model);
@@ -87,10 +91,17 @@ public class AddCommand extends Command {
         }
     }
 
+    private void handleInvalidDate() throws CommandException {
+        if (toAdd.hasInvalidDateRange()) {
+            logger.info("Invalid date detected: " + MESSAGE_INVALID_DATE_RANGE);
+            throw new CommandException(MESSAGE_INVALID_DATE_RANGE);
+        }
+    }
+
     private void handleExpiredTask() throws CommandException {
         if (toAdd.hasExpired()) {
-            logger.info("Invalid end date in recurring schedule detected: " + INVALID_ENDDATE);
-            throw new CommandException(INVALID_ENDDATE);
+            logger.info("Invalid end date in recurring schedule detected: " + INVALID_END_DATE);
+            throw new CommandException(INVALID_END_DATE);
         }
     }
 

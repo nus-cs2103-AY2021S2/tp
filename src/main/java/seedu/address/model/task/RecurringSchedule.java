@@ -38,7 +38,7 @@ public class RecurringSchedule {
             + "\n\n and without blank space arguments but can be empty if nothing is entered :-)"
             + "\n\nHere is an example: [23/10/2021][Mon][weekly]";
 
-    public static final String INVALID_ENDDATE = "End date should be ahead of current date "
+    public static final String INVALID_END_DATE = "End date should be ahead of current date "
             + "or the input end is less than a week without matching days found !!!";
 
     public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -51,6 +51,7 @@ public class RecurringSchedule {
     private List<String> weekDates = new ArrayList<>();
     private String dayOfWeek;
     private String weekFreq;
+    private boolean isValidDateRange;
     private final LocalDate currentDate = LocalDate.now();
     private Optional<LocalDate> endDate = Optional.empty();
 
@@ -105,7 +106,6 @@ public class RecurringSchedule {
 
     /**
      * Returns if the given end date within the recurring schedule have not expired
-     * Date is being checked using checkExpiryDate method in RecurringDatesUtil
      * And considered expired when end date is before current system date
      * Or less than a week after current system date without any matching days
      *
@@ -165,6 +165,15 @@ public class RecurringSchedule {
     }
 
     /**
+     * Used to check whether the input date is within range for recurring schedule when recurring schedule is non-empty
+     *
+     * @return Boolean result of whether the input date is in the correct range for recurring schedule
+     */
+    public boolean isInvalidDateRange() {
+        return !isValidDateRange && !isEmptyValue();
+    }
+
+    /**
      * Used to generate the output of the dates of the recurring schedule
      * When the recurring schedule is present (not an empty string input)
      *
@@ -172,6 +181,7 @@ public class RecurringSchedule {
      */
     public String generateRecurringDates(String recurringSchedule) {
         String[] recurringScheduleData = recurringSchedule.replaceAll("\\]", "").split("\\[");
+        isValidDateRange = ValidDateFormatter.isValid(recurringScheduleData[1]);
         endDate = Optional.of(LocalDate.parse(recurringScheduleData[1], FORMATTER));
         dayOfWeek = recurringScheduleData[2].toLowerCase();
         weekFreq = recurringScheduleData[3].toLowerCase();
