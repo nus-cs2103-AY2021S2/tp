@@ -32,6 +32,9 @@ public class UnscheduleCommand extends Command {
     private final boolean all;
     private final boolean expired;
 
+    /**
+     * Constructor for Unschedule Command
+     */
     public UnscheduleCommand(Index targetIndex, boolean all, boolean expired) {
         this.targetIndex = targetIndex;
         this.all = all;
@@ -49,7 +52,7 @@ public class UnscheduleCommand extends Command {
         }
         if (expired) {
             LocalDateTime now = LocalDateTime.now();
-            meetingList.stream().filter(person -> person.getMeeting().get().dateTime.isBefore(now))
+            meetingList.stream().filter(person -> person.getMeeting().orElseThrow().dateTime.isBefore(now))
                     .forEach(person -> model.setPerson(person, person.setMeeting(Optional.empty())));
             model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
             return new CommandResult(MESSAGE_UNSCHEDULE_EXPIRED_SUCCESS);
@@ -62,6 +65,15 @@ public class UnscheduleCommand extends Command {
         model.setPerson(personToSchedule, updatedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_UNSCHEDULE_ONE_SUCCESS, personToSchedule.getName()));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof UnscheduleCommand // instanceof handles nulls
+                && Optional.ofNullable(targetIndex).equals(Optional.ofNullable(((UnscheduleCommand) other).targetIndex))
+                && all == ((UnscheduleCommand) other).all
+                && expired == ((UnscheduleCommand) other).expired); // state check
     }
 
 }
