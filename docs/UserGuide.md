@@ -165,7 +165,7 @@ Edits an existing person in the address book.
 | `edit 1 -p 91234567 -e johndoe@example.com` | Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively. |
 | `edit 2 -n Betsy Crower -t `                | Edits the name of the 2nd person to be `Betsy Crower` and clears all of her existing tags.                          |
 | `edit 3 -r `                                | Clears any existing remark of the 3rd person.                                                                       |
-| `edit shown -r `                            | Clears any existing remark of all the displayed persons in person list.                                                  |
+| `edit shown -r `                            | Clears any existing remark of all the displayed persons in person list.                                             |
 | `edit selected -r `                         | Clears any existing remark of all the selected persons.                                                             |
 
 <div markdown="block" class="alert alert-info">
@@ -212,10 +212,10 @@ Finds persons whose field(s) contain any of the given keywords.
 
 **Examples**:
 
-| Example           | Description                          |
-| ----------------- | ------------------------------------ |
-| `find Jon`       | Returns any person that matches `jon` partially in any of the searchable fields<br> e.g. a person tagged as `Janitor` (`Jon` is similar to `Jan`) |
-| `find alex david` | Returns any person that matches `alex` or`david` partially in any of the searchable fields<br> e.g. people named `Alex Yeoh`, `David Li`      |
+| Example           | Description                                                                                                                                       |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `find Jon`        | Returns any person that matches `jon` partially in any of the searchable fields<br> e.g. a person tagged as `Janitor` (`Jon` is similar to `Jan`) |
+| `find alex david` | Returns any person that matches `alex` or`david` partially in any of the searchable fields<br> e.g. people named `Alex Yeoh`, `David Li`          |
 
 #### Searching by specific fields
 
@@ -272,7 +272,7 @@ Deletes the specified person(s) from the address book.
 | `list`<br>`delete 2`                         | `list` displays all entries.<br>`delete 2` deletes the second entry in the list shown.                                |
 | `find Betsy`<br>`delete 1`                   | `find Betsy` filters entries to the find result.<br> `delete 1` deletes the first entry in the filtered results list. |
 | `select 1 2 3`   <br>      `delete selected` | Deletes selected entries 1, 2 and 3                                                                                   |
-| `delete shown`                               | Deletes all the displayed persons in the person list                                                                   |
+| `delete shown`                               | Deletes all the displayed persons in the person list                                                                  |
 
 <div markdown="block" class="alert alert-info">
 
@@ -301,13 +301,13 @@ The selected person will have a highlighted index number to indicate selection s
 
 Examples:
 
-| Example | Description |
-| --------------- | -------- |
-| `select show` | Shows the selected person(s) |
-| `select shown`| Select the currently shown person in the person list |
-| `select clear` | Clears the current selection |
-| `select 1` | Select the person with index 1 |
-| `select 1 2` | Select persons with index 1 and 2 |
+| Example        | Description                                          |
+| -------------- | ---------------------------------------------------- |
+| `select show`  | Shows the selected person(s)                         |
+| `select shown` | Select the currently shown person in the person list |
+| `select clear` | Clears the current selection                         |
+| `select 1`     | Select the person with index 1                       |
+| `select 1 2`   | Select persons with index 1 and 2                    |
 
 ### Clearing all entries : `clear`
 
@@ -402,10 +402,10 @@ Deletes an existing alias from address book.
 
 **Examples**:
 
-| Example                             | Description                                                                                                                                                                                |
-| ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `alias delete ls`                   | Removes the alias `ls`                                                                                                                                                                     |
-| `alias delete d`                    | Removes the alias `d`                                                                                                                                                                      |
+| Example           | Description            |
+| ----------------- | ---------------------- |
+| `alias delete ls` | Removes the alias `ls` |
+| `alias delete d`  | Removes the alias `d`  |
 
 #### List Alias: `alias list`
 
@@ -433,8 +433,8 @@ Options which are excluded will be hidden.
 
 **Examples**:
 
-| Example        | Description                                             |
-| -------------- | ------------------------------------------------------- |
+| Example        | Description                                              |
+| -------------- | -------------------------------------------------------- |
 | `filter -a `   | Shows the contact's name and address only.               |
 | `filter -a -p` | Shows the contact's name, address and phone number only. |
 
@@ -446,29 +446,37 @@ Options which are excluded will be hidden.
 
 Users will be able to press tab to cycle through the available options. -->
 
-### Email Command
+### Tag
 
-Email command provides the user with the choice to mass email person(s) of their choice.
-Executing the `email` command will open up the **operating system's email client**.
+Tag allows addition and deletion of specific tags of person.
 
-Format: `email { shown | selected | INDEX… }`
+#### Add Tag: `tag add`
 
-<div markdown="span" class="alert alert-info">
-:bulb: **Notes on `email` command:**
+Adds tags to person in address book.
 
-* `shown` is a special index that refers to all the person that are in the visible person list.
+**Format**: `tag add { shown | selected | INDEX ... } -t TAG ...`
 
-</div>
+**Examples**:
 
+| Example                                     | Description                                                                  |
+| ------------------------------------------- | ---------------------------------------------------------------------------- |
+| `tag add shown -t Photoshop`                | Adds `Photoshop` tag to the people shown in the UI.                          |
+| `tag add selected -t Illustrator`           | Adds `Illustrator` tag to the people selected.                               |
+| `tag add 1 2 3 -t Photoshop -t Illustrator` | Adds `Photoshop` and `Illustrator` tags to people at index `1`, `2` and `3`. |
 
-Examples:
+#### Delete Tag: `tag delete`
 
-| Example          | Description                                     |
-| ---------------- | ----------------------------------------------- |
-| `email 1`        | Email person with index 1                       |
-| `email 1 2`      | Email person with index 1 and 2                 |
-| `email shown`    | Email all the person in the visible person list |
-| `email selected` | Email all the selected persons                  |
+Deletes tags from person in address book.
+
+**Format**: `tag delete { shown | selected | INDEX ... } -t TAG ...`
+
+**Examples**:
+
+| Example                                        | Description                                                                       |
+| ---------------------------------------------- | --------------------------------------------------------------------------------- |
+| `tag delete shown -t Photoshop`                | Deletes `Photoshop` tag from the people shown in the UI.                          |
+| `tag delete selected -t Illustrator`           | Deletes `Illustrator` tag from the people selected.                               |
+| `tag delete 1 2 3 -t Photoshop -t Illustrator` | Deletes `Photoshop` and `Illustrator` tags from people at index `1`, `2` and `3`. |
 
 ### Saving the data
 
@@ -517,7 +525,7 @@ Install the app in the other computer and overwrite the empty data file it creat
 | **Add**          | `add -n NAME -p PHONE_NUMBER -e EMAIL -c COMPANY -j JOB_TITLE -a ADDRESS [-r REMARK] [-t TAG]…` <br> e.g., `add -n James Ho -p 22224444 -e jamesho@example.com -a 123, Clementi Rd, 1234665 -r Likes ramen -t friend -t colleague` |
 | **Clear**        | `clear`                                                                                                                                                                                                                            |
 | **Delete**       | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                |
-| **Edit**         | `edit INDEX [-n NAME] [-p PHONE_NUMBER] [-e EMAIL] [-a ADDRESS] [-r REMARK] [-t TAG]…`<br> e.g.,`edit 2 -n James Lee -e jameslee@example.com`                                                                                      |
+| **Edit**         | `edit INDEX [-n NAME] [-p PHONE_NUMBER] [-e EMAIL] [-c COMPANY] [-j JOB_TITLE] [-a ADDRESS] [-r REMARK] [-t TAG]…`<br> e.g.,`edit 2 -n James Lee -e jameslee@example.com`                                                          |
 | **Find**         | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                                         |
 | **Filter**       | `filter [-p] [-e] [-a] [-t]` <br> e.g., `filter -p -a` to see only the phone number and address                                                                                                                                    |
 | **List**         | `list`                                                                                                                                                                                                                             |
@@ -525,17 +533,19 @@ Install the app in the other computer and overwrite the empty data file it creat
 | **Add Alias**    | `alias add [ALIAS] [COMMAND]`<br> e.g. `alias add ls list`                                                                                                                                                                         |
 | **Delete Alias** | `alias delete [ALIAS]`<br> e.g. `alias delete ls`                                                                                                                                                                                  |
 | **List Alias**   | `alias list`                                                                                                                                                                                                                       |
+| **Add Tag**      | `tag add { shown | selected | INDEX ... } -t TAG ...` <br> e.g., `tag add 1 2 3 -t Photoshop -t Illustrator`                                                                                                                       |
+| **Delete Tag**   | `tag delete { shown | selected | INDEX ... } -t TAG ...` <br> e.g., `tag delete shown -t Illustrator`                                                                                                                              |
 
 ## Field Summary
 
 | Mandatory | Field        | Command Flag | Restrictions                                                                                                                                                                                                                                                                                                                                                                                                          |
 | --------- | ------------ | ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Yes       | Name         | `-n`         | Names should only contain alphanumeric characters and spaces, and it should not be blank                                                                                                                                                                                                                                                                                                                              |
-| Yes       | Phone Number | `-p`         | Phone numbers should only contain numbers, and it should be at least 3 digits long                                                                                                                                                                                                                                                                                                                                    |
 | Yes       | Email        | `-e`         | Emails should be of the format local-part@domain and adhere to the following constraints:<br>1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (!#$%&'*+/=?`{|}~^.-) `.<br>2. This is followed by a '@' and then a domain name. The domain name must:<br>    - be at least 2 characters long<br>    - start and end with alphanumeric characters |
 | Yes       | Company      | `-c`         | Company can take any values, and it should not be blank                                                                                                                                                                                                                                                                                                                                                               |
 | Yes       | Job Title    | `-j`         | Job Title can take any values, and it should not be blank                                                                                                                                                                                                                                                                                                                                                             |
 | Yes       | Address      | `-a`         | Addresses can take any values, and it should not be blank                                                                                                                                                                                                                                                                                                                                                             |
+| Yes       | Phone Number | `-p`         | Phone numbers should only contain numbers, and it should be at least 3 digits long                                                                                                                                                                                                                                                                                                                                    |
 | No        | Tag          | `-t`         | Tags names should be alphanumeric and contains no spaces or symbols                                                                                                                                                                                                                                                                                                                                                   |
 | No        | Remark       | `-r`         | None                                                                                                                                                                                                                                                                                                                                                                                                                  |
 

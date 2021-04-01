@@ -26,7 +26,7 @@ public class DeleteAliasCommandParserTest {
     private DeleteAliasCommandParser parser = new DeleteAliasCommandParser();
 
     @Test
-    public void parse_validArgs_returnsDeleteCommand() {
+    public void parse_validArgs_returnsDeleteAliasCommand() {
         assertParseSuccess(parser, ADD_ALIAS_STRING, new DeleteAliasCommand(ADD_ALIAS));
     }
 
