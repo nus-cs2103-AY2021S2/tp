@@ -24,7 +24,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyAppointmentBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.person.Person;
+import seedu.address.model.contact.Contact;
 import seedu.address.testutil.AppointmentBuilder;
 
 public class AddAppointmentCommandTest {
@@ -46,7 +46,7 @@ public class AddAppointmentCommandTest {
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
+    public void execute_duplicateContact_throwsCommandException() {
         Appointment validAppointment = new AppointmentBuilder().build();
         AddAppointmentCommand addAppointmentCommand = new AddAppointmentCommand(validAppointment);
         ModelStub modelStub = new ModelStubWithAppointment(validAppointment);
@@ -75,7 +75,7 @@ public class AddAppointmentCommandTest {
         // null -> returns false
         assertFalse(addPtmCommand.equals(null));
 
-        // different person -> returns false
+        // different contact -> returns false
         assertFalse(addPtmCommand.equals(addPlayDateCommand));
     }
 
@@ -106,6 +106,16 @@ public class AddAppointmentCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public String getTheme() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setTheme(String theme) {
+            throw new AssertionError("This method should not be called.");
+        }
+
         //=========== AddressBook ================================================================================
 
         @Override
@@ -119,7 +129,7 @@ public class AddAppointmentCommandTest {
         }
 
         @Override
-        public void addPerson(Person person) {
+        public void addContact(Contact contact) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -134,37 +144,37 @@ public class AddAppointmentCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Person person) {
+        public boolean hasContact(Contact contact) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deletePerson(Person target) {
+        public void deleteContact(Contact target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(Person target, Person editedPerson) {
+        public void setContact(Contact target, Contact editedContact) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPersons(List<Person> persons) {
+        public void setContacts(List<Contact> contacts) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Person> getFilteredPersonList() {
+        public ObservableList<Contact> getFilteredContactList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
+        public void updateFilteredContactList(Predicate<Contact> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void sortPersonList(Comparator<Person> comparator) {
+        public void sortContactList(Comparator<Contact> comparator) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -223,7 +233,7 @@ public class AddAppointmentCommandTest {
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a single contact.
      */
     private class ModelStubWithAppointment extends ModelStub {
         private final Appointment appointment;
@@ -241,7 +251,7 @@ public class AddAppointmentCommandTest {
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the contact being added.
      */
     private class ModelStubAcceptingAppointmentAdded extends ModelStub {
         final ArrayList<Appointment> appointmentsAdded = new ArrayList<>();

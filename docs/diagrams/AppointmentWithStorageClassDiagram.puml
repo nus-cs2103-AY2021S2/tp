@@ -26,11 +26,11 @@ JsonAddressBookStorage .right.|> HeliBookStorage
 JsonAppointmentBookStorage .down.> JsonSerializableAppointmentBookStorage
 JsonAddressBookStorage .down.> JsonSerializableAddressBookStorage
 JsonSerializableAppointmentBookStorage .down.> JsonSerializableAppointment
-JsonSerializableAddressBookStorage .down.> JsonSerializablePerson
+JsonSerializableAddressBookStorage .down.> JsonSerializableContact
 JsonSerializableAppointment .down.> JsonAdaptedTag
 note on link
     "(Extra) For tag command"
 end note
-JsonSerializablePerson .down.> JsonAdaptedTag
+JsonSerializableContact .down.> JsonAdaptedTag
 
 @enduml

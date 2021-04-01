@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 import seedu.address.model.appointment.Appointment;
 
 /**
- * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Contact}'s {@code Name} matches any of the keywords given.
  */
 public class ApptAnyContainsKeywordsPredicate implements Predicate<Appointment> {
     private final List<String> keywords;

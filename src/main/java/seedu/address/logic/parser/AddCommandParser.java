@@ -16,11 +16,11 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Address;
 import seedu.address.model.Name;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Favourite;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.TimeAdded;
+import seedu.address.model.contact.Contact;
+import seedu.address.model.contact.Email;
+import seedu.address.model.contact.Favourite;
+import seedu.address.model.contact.Phone;
+import seedu.address.model.contact.TimeAdded;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -73,9 +73,9 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         Favourite favourite = new Favourite("false");
 
-        Person person = new Person(name, phone, email, address, tagList, timeAdded, favourite);
+        Contact contact = new Contact(name, phone, email, address, tagList, timeAdded, favourite);
 
-        return new AddCommand(person);
+        return new AddCommand(contact);
     }
 
     /**

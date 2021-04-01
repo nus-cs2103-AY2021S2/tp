@@ -7,9 +7,9 @@ title: "Tutorial: Removing Fields"
 >
 > —  Antoine de Saint-Exupery
 
-When working on AddressBook, you will most likely find that some features and fields that are no longer necessary. In scenarios like this, you can consider refactoring the existing `Person` model to suit your use case.
+When working on AddressBook, you will most likely find that some features and fields that are no longer necessary. In scenarios like this, you can consider refactoring the existing `Contact` model to suit your use case.
 
-In this tutorial, we’ll do exactly just that and remove the `address` field from `Person`.
+In this tutorial, we’ll do exactly just that and remove the `address` field from `Contact`.
 
 * Table of Contents
 {:toc}
@@ -20,7 +20,7 @@ Fortunately, IntelliJ IDEA provides a robust refactoring tool that can identify 
 
 ### Assisted refactoring
 
-The `address` field in `Person` is actually an instance of the `seedu.address.model.Address` class. Since removing the `Address` class will break the application, we start by identifying `Address`'s usages. This allows us to see code that depends on `Address` to function properly and edit them on a case-by-case basis. Right-click the `Address` class and select `Refactor` \> `Safe Delete` through the menu.
+The `address` field in `Contact` is actually an instance of the `seedu.address.model.Address` class. Since removing the `Address` class will break the application, we start by identifying `Address`'s usages. This allows us to see code that depends on `Address` to function properly and edit them on a case-by-case basis. Right-click the `Address` class and select `Refactor` \> `Safe Delete` through the menu.
 
 ![Usages detected](../images/remove/UnsafeDelete.png)
 
@@ -43,7 +43,7 @@ Let’s try removing references to `Address` in `EditPersonDescriptor`.
 
    <div markdown="span" class="alert alert-primary">
 
-   :bulb: **Tip:** Removing usages may result in errors. Exercise discretion and fix them. For example, removing the `address` field from the `Person` class will require you to modify its constructor.
+   :bulb: **Tip:** Removing usages may result in errors. Exercise discretion and fix them. For example, removing the `address` field from the `Contact` class will require you to modify its constructor.
    </div>
 
 1. Repeat the steps for the remaining usages of `Address`
@@ -91,8 +91,8 @@ In `src/test/data/`, data meant for testing purposes are stored. While keeping t
 
 ```json
 {
-  "persons": [ {
-    "name": "Person with invalid name field: Ha!ns Mu@ster",
+  "contacts": [ {
+    "name": "Contact with invalid name field: Ha!ns Mu@ster",
     "phone": "9482424",
     "email": "hans@example.com",
     "address": "4th street"

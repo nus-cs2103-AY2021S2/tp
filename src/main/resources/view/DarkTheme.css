@@ -112,15 +112,6 @@
     -fx-background-color: #515658;
 }
 
-.list-cell:filled:selected {
-    -fx-background-color: #424d5f;
-}
-
-.list-cell:filled:selected #cardPane {
-    -fx-border-color: #3e7b91;
-    -fx-border-width: 1;
-}
-
 .list-cell .label {
     -fx-text-fill: white;
 }
@@ -155,6 +146,7 @@
 
 .status-bar {
     -fx-background-color: derive(#1d1d1d, 30%);
+    -fx-text-fill: white;
 }
 
 .result-display {
@@ -339,7 +331,7 @@
     -fx-text-fill: white;
 }
 
-#filterField, #personListPanel, #personWebpage {
+#filterField, #contactListPanel, #contactWebpage {
     -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
 }
 

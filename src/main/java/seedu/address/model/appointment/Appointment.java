@@ -9,7 +9,7 @@ import java.util.Set;
 
 import seedu.address.model.Address;
 import seedu.address.model.Name;
-import seedu.address.model.person.Person;
+import seedu.address.model.contact.Contact;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -24,14 +24,14 @@ public class Appointment implements Comparable<Appointment> {
     // Data fields
     private final Address address;
     private final DateTime dateTime;
-    private final Set<Person> contacts = new HashSet<>();
+    private final Set<Contact> contacts = new HashSet<>();
     private final Set<Tag> tags = new HashSet<>();
     //private final TimeAdded timeAdded;
 
     /**
      * Every field must be present and not null.
      */
-    public Appointment(Name name, Address address, DateTime dateTime, Set<Person> contacts, Set<Tag> tags) {
+    public Appointment(Name name, Address address, DateTime dateTime, Set<Contact> contacts, Set<Tag> tags) {
         requireAllNonNull(name, address, dateTime, contacts, tags);
         this.name = name;
         this.address = address;
@@ -56,7 +56,7 @@ public class Appointment implements Comparable<Appointment> {
      * Returns an immutable persons set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Person> getContacts() {
+    public Set<Contact> getContacts() {
         return Collections.unmodifiableSet(contacts);
     }
 
@@ -118,7 +118,7 @@ public class Appointment implements Comparable<Appointment> {
                 .append("; DateTime: ")
                 .append(getDateTime());
 
-        Set<Person> contacts = getContacts();
+        Set<Contact> contacts = getContacts();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             contacts.forEach(builder::append);

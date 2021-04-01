@@ -8,7 +8,7 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.tag.Tag;
 
 /**
- * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Contact}'s {@code Name} matches any of the keywords given.
  */
 public class ApptTagsContainKeywordsPredicate extends ApptFieldContainsKeywordsPredicate {
 

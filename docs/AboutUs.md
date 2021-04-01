@@ -3,9 +3,9 @@ layout: page
 title: About Us
 ---
 
-HeliBook is a application that stores, manages and allows for quick access to your child's important contacts. 
+ParentPal is a application that stores, manages and allows for quick access to your child's important contacts. 
 
-We are the team behind HeliBook. We are based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
+We are the team behind ParentPal. We are based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
 
 ## Project team

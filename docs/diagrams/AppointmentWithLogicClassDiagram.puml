@@ -8,19 +8,19 @@ package Logic {
 
 package Parser {
 Interface Parser <<Interface>>
-Class HeliBookParser
+Class ParentPalParser
 Class XYZCommandParser
 Class CliSyntax
 Class ParserUtil
 Class ArgumentMultimap
 Class ArgumentTokenizer
 Class Prefix
-note right of HeliBookParser: create cases for\nall appointment-\nrelated command
+note right of ParentPalParser: create cases for\nall appointment-\nrelated command
 note left of XYZCommandParser: create parser\nfor each command
 }
 
-note top of LogicManager: Interacts with storage to save Addressbook\nand Appointmentbook
-note top of HeliBookParser: Previously known as AddressBook Parser
+note top of LogicManager: Interacts with storage to save AddressBook\nand AppointmentBook
+note top of ParentPalParser: Previously known as AddressBook Parser
 package Command {
 Class XYZCommand
 Class CommandResult
@@ -43,8 +43,8 @@ Class HiddenOutside #FFFFFF
 HiddenOutside ..> Logic
 
 LogicManager .up.|> Logic
-LogicManager -->"1" HeliBookParser
-HeliBookParser .left.> XYZCommandParser: creates >
+LogicManager -->"1" ParentPalParser
+ParentPalParser .left.> XYZCommandParser: creates >
 
 XYZCommandParser ..> XYZCommand : creates >
 XYZCommandParser ..|> Parser

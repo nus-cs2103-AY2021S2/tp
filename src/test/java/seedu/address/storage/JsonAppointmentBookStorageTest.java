@@ -49,13 +49,13 @@ public class JsonAppointmentBookStorageTest {
     }
 
     @Test
-    public void readAppointmentBook_invalidPersonAppointmentBook_throwDataConversionException() {
+    public void readAppointmentBook_invalidContactAppointmentBook_throwDataConversionException() {
         assertThrows(DataConversionException.class, () -> readAppointmentBook(
                 "invalidAppointmentAppointmentBook.json"));
     }
 
     @Test
-    public void readAppointmentBook_invalidAndValidPersonAppointmentBook_throwDataConversionException() {
+    public void readAppointmentBook_invalidAndValidContactAppointmentBook_throwDataConversionException() {
         assertThrows(DataConversionException.class, () -> readAppointmentBook(
                 "invalidAndValidAppointmentAppointmentBook.json"));
     }

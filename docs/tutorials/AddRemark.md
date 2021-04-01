@@ -28,7 +28,7 @@ package seedu.address.logic.commands;
 import seedu.address.model.Model;
 
 /**
- * Changes the remark of an existing person in the address book.
+ * Changes the remark of an existing contact in the address book.
  */
 public class RemarkCommand extends Command {
 
@@ -64,8 +64,8 @@ Following the convention in other commands, we add relevant messages as constant
 **`RemarkCommand.java`:**
 
 ``` java
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the remark of the person identified "
-            + "by the index number used in the last person listing. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the remark of the contact identified "
+            + "by the index number used in the last contact listing. "
             + "Existing remark will be overwritten by the input.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "r/ [REMARK]\n"
@@ -99,8 +99,8 @@ public class RemarkCommand extends Command {
     private final String remark;
 
     /**
-     * @param index of the person in the filtered person list to edit the remark
-     * @param remark of the person to be updated to
+     * @param index of the contact in the filtered contact list to edit the remark
+     * @param remark of the contact to be updated to
      */
     public RemarkCommand(Index index, String remark) {
         requireAllNonNull(index, remark);
@@ -222,11 +222,11 @@ If you are stuck, check out the sample
 
 ## Add `Remark` to the model
 
-Now that we have all the information that we need, let’s lay the groundwork for propagating the remarks added into the in-memory storage of person data. We achieve that by working with the `Person` model. Each field in a Person is implemented as a separate class (e.g. a `Name` object represents the person’s name). That means we should add a `Remark` class so that we can use a `Remark` object to represent a remark given to a person.
+Now that we have all the information that we need, let’s lay the groundwork for propagating the remarks added into the in-memory storage of contact data. We achieve that by working with the `Contact` model. Each field in a Contact is implemented as a separate class (e.g. a `Name` object represents the contact’s name). That means we should add a `Remark` class so that we can use a `Remark` object to represent a remark given to a contact.
 
 ### Add a new `Remark` class
 
-Create a new `Remark` in `seedu.address.model.person`. Since a `Remark` is a field that is similar to `Address`, we can reuse a significant bit of code.
+Create a new `Remark` in `seedu.address.model.contact`. Since a `Remark` is a field that is similar to `Address`, we can reuse a significant bit of code.
 
 A copy-paste and search-replace later, you should have something like [this](https://github.com/se-edu/addressbook-level3/commit/4516e099699baa9e2d51801bd26f016d812dedcc#diff-af2f075d24dfcd333876f0fbce321f25). Note how `Remark` has no constrains and thus does not require input
 validation.
@@ -237,9 +237,9 @@ Let’s change `RemarkCommand` and `RemarkCommandParser` to use the new `Remark`
 
 ## Add a placeholder element for remark to the UI
 
-Without getting too deep into `fxml`, let’s go on a 5 minute adventure to get some placeholder text to show up for each person.
+Without getting too deep into `fxml`, let’s go on a 5 minute adventure to get some placeholder text to show up for each contact.
 
-Simply add the following to [`seedu.address.ui.PersonCard`](https://github.com/se-edu/addressbook-level3/commit/850b78879582f38accb05dd20c245963c65ea599#diff-0c6b6abcfac8c205e075294f25e851fe).
+Simply add the following to [`seedu.address.ui.ContactCard`](https://github.com/se-edu/addressbook-level3/commit/850b78879582f38accb05dd20c245963c65ea599#diff-0c6b6abcfac8c205e075294f25e851fe).
 
 **`PersonCard.java`:**
 
@@ -263,21 +263,21 @@ That’s it! Fire up the application again and you should see something like thi
 
 ![$remark shows up in each entry](../images/add-remark/$Remark.png)
 
-## Modify `Person` to support a `Remark` field
+## Modify `Contact` to support a `Remark` field
 
-Since `PersonCard` displays data from a `Person`, we need to update `Person` to get our `Remark` displayed!
+Since `PersonCard` displays data from a `Contact`, we need to update `Contact` to get our `Remark` displayed!
 
-### Modify `Person`
+### Modify `Contact`
 
-We change the constructor of `Person` to take a `Remark`. We will also need to define new fields and accessors accordingly to store our new addition.
+We change the constructor of `Contact` to take a `Remark`. We will also need to define new fields and accessors accordingly to store our new addition.
 
-### Update other usages of `Person`
+### Update other usages of `Contact`
 
-Unfortunately, a change to `Person` will cause other commands to break, you will have to modify these commands to use the updated `Person`!
+Unfortunately, a change to `Contact` will cause other commands to break, you will have to modify these commands to use the updated `Contact`!
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: Use the `Find Usages` feature in IntelliJ IDEA on the `Person` class to find these commands.
+:bulb: Use the `Find Usages` feature in IntelliJ IDEA on the `Contact` class to find these commands.
 
 </div>
 
@@ -286,7 +286,7 @@ Refer to [this commit](https://github.com/se-edu/addressbook-level3/commit/ce998
 
 ## Updating Storage
 
-AddressBook stores data by serializing `JsonAdaptedPerson` into `json` with the help of an external library — Jackson. Let’s update `JsonAdaptedPerson` to work with our new `Person`!
+AddressBook stores data by serializing `JsonAdaptedPerson` into `json` with the help of an external library — Jackson. Let’s update `JsonAdaptedPerson` to work with our new `Contact`!
 
 While the changes to code may be minimal, the test data will have to be updated as well.
 
@@ -301,16 +301,16 @@ to see what the changes entail.
 
 ## Finalizing the UI
 
-Now that we have finalized the `Person` class and its dependencies, we can now bind the `Remark` field to the UI.
+Now that we have finalized the `Contact` class and its dependencies, we can now bind the `Remark` field to the UI.
 
 Just add [this one line of code!](https://github.com/se-edu/addressbook-level3/commit/5b98fee11b6b3f5749b6b943c4f3bd3aa049b692)
 
 **`PersonCard.java`:**
 
 ``` java
-public PersonCard(Person person, int displayedIndex) {
+public PersonCard(Contact contact, int displayedIndex) {
     //...
-    remark.setText(person.getRemark().value);
+    remark.setText(contact.getRemark().value);
 }
 ```
 
@@ -322,41 +322,41 @@ After the previous step, we notice a peculiar regression — we went from di
 
 ### Update `RemarkCommand` and `RemarkCommandParser`
 
-In this last step, we modify `RemarkCommand#execute()` to change the `Remark` of a `Person`. Since all fields in a `Person` are immutable, we create a new instance of a `Person` with the values that we want and
+In this last step, we modify `RemarkCommand#execute()` to change the `Remark` of a `Contact`. Since all fields in a `Contact` are immutable, we create a new instance of a `Contact` with the values that we want and
 save it with `Model#setPerson()`.
 
 **`RemarkCommand.java`:**
 
 ``` java
 //...
-    public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to Person: %1$s";
-    public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Removed remark from Person: %1$s";
+    public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to Contact: %1$s";
+    public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Removed remark from Contact: %1$s";
 //...
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Contact> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), remark, personToEdit.getTags());
+        Contact contactToEdit = lastShownList.get(index.getZeroBased());
+        Contact editedContact = new Contact(contactToEdit.getName(), contactToEdit.getPhone(), contactToEdit.getEmail(),
+                contactToEdit.getAddress(), remark, contactToEdit.getTags());
 
-        model.setPerson(personToEdit, editedPerson);
+        model.setPerson(contactToEdit, editedContact);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
-        return new CommandResult(generateSuccessMessage(editedPerson));
+        return new CommandResult(generateSuccessMessage(editedContact));
     }
 
     /**
      * Generates a command execution success message based on whether the remark is added to or removed from
-     * {@code personToEdit}.
+     * {@code contactToEdit}.
      */
-    private String generateSuccessMessage(Person personToEdit) {
+    private String generateSuccessMessage(Contact contactToEdit) {
         String message = !remark.value.isEmpty() ? MESSAGE_ADD_REMARK_SUCCESS : MESSAGE_DELETE_REMARK_SUCCESS;
-        return String.format(message, personToEdit);
+        return String.format(message, contactToEdit);
     }
 ```
 
