@@ -69,8 +69,11 @@ If you are an experienced user, we have provided a convenient [Summary of Comman
 1. Double-click the downloaded `clientbook.jar` file in your home folder to start the app. The GUI similar to the below should appear in a few seconds. 
    * Alternatively, for those who are tech-savvy, you can launch the application via Command Prompt in Windows or Terminal in Mac OS/Linux using the following command: `java -jar clientbook.jar`. 
    * Note how the app contains some sample data.
-     
-     ![Ui](images/Ui.png)
+    
+<div align="center">
+    <img src="images/Ui.png">
+    <p>Graphical user interface of ClientBook.</p>
+</div>
 
 1. Type the command in the command box and press Enter to execute it.
    * Some example commands you can try:
