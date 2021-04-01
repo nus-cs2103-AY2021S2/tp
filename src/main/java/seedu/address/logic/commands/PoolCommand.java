@@ -87,6 +87,10 @@ public class PoolCommand extends Command {
             Passenger passenger = lastShownList.get(idx.getZeroBased());
             assert passenger != null : "passenger should not be null";
 
+            boolean isTripDayMismatch = !passenger.getTripDay().equals(tripDay);
+            if (isTripDayMismatch) {
+                throw new CommandException(Messages.MESSAGE_PASSENGER_TRIPDAY_MISMATCH);
+            }
             passengers.add(passenger);
         }
 

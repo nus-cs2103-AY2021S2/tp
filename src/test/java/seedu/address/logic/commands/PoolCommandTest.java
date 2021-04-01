@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPDAY_MONDAY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPDAY_FRIDAY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPTIME_MORNING;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalDrivers.DRIVER_ALICE;
@@ -36,7 +36,7 @@ public class PoolCommandTest {
 
     private final Driver driver = new DriverBuilder().build();
     private final Set<Index> commuters = new CommuterBuilder().build();
-    private final TripDay tripDay = new TripDay(VALID_TRIPDAY_MONDAY);
+    private final TripDay tripDay = new TripDay(VALID_TRIPDAY_FRIDAY);
     private final TripTime tripTime = new TripTime(VALID_TRIPTIME_MORNING);
     private final Set<Tag> tags = SampleDataUtil.getTagSet(VALID_TAG_FRIEND);
 
@@ -50,7 +50,7 @@ public class PoolCommandTest {
     public void execute_poolAcceptedByModel_addSuccessful() throws Exception {
         Model model = new ModelManager(getTypicalAddressBookPassengers(), new UserPrefs());
         Pool validPool = new PoolBuilder().withModel(model).withIndex(INDEX_FIRST)
-                .withIndex(INDEX_SECOND).withTags(VALID_TAG_FRIEND).build();
+                .withIndex(INDEX_SECOND).withTripDay(VALID_TRIPDAY_FRIDAY).withTags(VALID_TAG_FRIEND).build();
 
         CommandResult commandResult = new PoolCommand(driver, commuters, tripDay, tripTime, tags).execute(model);
 
@@ -62,7 +62,7 @@ public class PoolCommandTest {
     public void execute_duplicatePool_throwsCommandException() {
         Model model = new ModelManager(getTypicalAddressBookPassengers(), new UserPrefs());
         Pool duplicatePool = new PoolBuilder().withModel(model).withIndex(INDEX_FIRST).withIndex(INDEX_SECOND)
-                .withTags(VALID_TAG_FRIEND).build();
+                .withTags(VALID_TAG_FRIEND).withTripDay(VALID_TRIPDAY_FRIDAY).build();
 
         model.addPool(duplicatePool);
 
