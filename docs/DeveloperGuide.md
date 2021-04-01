@@ -146,12 +146,6 @@ In regard to the editing of the `UniqueMeetingList`, we implemented it in such a
 everytime the `UniquePersonList` is edited. Hence the impact of the alteration only remains on the `Model` component and
 the `Ui` components, with the `Logic` component only impacted in terms of accessing the `Model`.
 
-The implementation of the `ScheduleCommand` integrates both adding and removing for the sake of simplicity of
-implementation as well as usability, as the team has concluded that having different commands that does similiar actions
-in regard to the data is overkill and would be a hassle to implement and use. Hence, we've taken the liberty to set the
-removal of a meeting as a type of "special input" case that is processed directly in the parser, rather than sending
-into a further and smaller parser.
-
 In future installments, this implementation may be scraped in favor for an implementation where the `Meeting` class acts
 as the wrapper for the `Person` class, but for the sake of functionality, we shall keep the current implementation as 
 is.
