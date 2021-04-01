@@ -15,8 +15,9 @@ to search through, and match their various clothes quickly.
 Use nufash to reduce clutter and start making wiser clothing decisions today!
 
 <br>
-This User Guide is for new users of the nufash app to learn and understand what the various features that nufash has 
-to offer. Read on to learn how to use them to full effect, and digitise your wardrobe!
+This User Guide is for new users of the nufash app to learn and understand what are the various features that nufash 
+has to offer. Read on to learn how to use them to digitise your wardrobe and use nufash full effect!
+<br><br>
 
 * [Quickstart](#quickstart)
 * [Features](#features)
@@ -204,7 +205,6 @@ Example:
 <br><br>
  
 ### Matching Garments to create an outfit: `match`<br>
-[matching of multiple input garments implemented in v1.3]<br> 
 Finds all articles of clothing that match the colour and dress code,
 but do not match the type(s) of a specified garment, or two specified
 garments of different types.<br>
@@ -216,7 +216,7 @@ Examples:
 Returns all the articles of clothing that match the colour and dress code
   of the garment at index 1 in the list of garments on display, but do not match
   its type.
-* `match 1 2`  
+* `match 1 2`  [matching of multiple input garments is to be implemented]<br> 
 Returns all the articles of clothing that match the colours and dress code of
   the garments at indices 1 and 2 in the list of garments on display, but
   do not match their types.
