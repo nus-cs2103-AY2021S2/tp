@@ -76,11 +76,7 @@ public class Shortcut {
     /**
      * Returns true if both shortcuts have the same name.
      */
-    public boolean isSameShortcut(Shortcut otherShortcut) {
-        if (otherShortcut == this) {
-            return true;
-        }
-
+    public boolean isSameShortcutName(Shortcut otherShortcut) {
         return otherShortcut != null
                 && otherShortcut.getShortcutName().equals(getShortcutName());
     }
@@ -89,7 +85,8 @@ public class Shortcut {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Shortcut // instanceof handles nulls
-                && shortcutName.equals(((Shortcut) other).shortcutName)); // state check
+                && shortcutName.equals(((Shortcut) other).shortcutName) // state check
+                && shortcutCommand.equals(((Shortcut) other).shortcutCommand)); // state check
     }
 
     @Override

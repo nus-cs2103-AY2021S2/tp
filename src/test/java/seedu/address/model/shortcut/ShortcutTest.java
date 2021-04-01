@@ -59,20 +59,17 @@ public class ShortcutTest {
         Shortcut second = new Shortcut("ls", "help");
         Shortcut third = new Shortcut("sna", "list");
 
-        // same object -> true
-        assertTrue(first.isSameShortcut(first));
-
         // same name, different command -> true
-        assertTrue(first.isSameShortcut(second));
+        assertTrue(first.isSameShortcutName(second));
 
         // same command, different name -> false
-        assertFalse(first.isSameShortcut(third));
+        assertFalse(first.isSameShortcutName(third));
 
         // same values, different object -> true
-        assertTrue(first.isSameShortcut(new Shortcut("ls", "list")));
+        assertTrue(first.isSameShortcutName(new Shortcut("ls", "list")));
 
         // null -> false
-        assertFalse(first.isSameShortcut(null));
+        assertFalse(first.isSameShortcutName(null));
 
     }
 }

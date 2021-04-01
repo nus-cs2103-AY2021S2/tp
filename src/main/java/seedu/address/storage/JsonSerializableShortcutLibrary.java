@@ -19,14 +19,15 @@ public class JsonSerializableShortcutLibrary {
 
     public static final String MESSAGE_DUPLICATE_SHORTCUT = "Shortcuts list contains duplicate shortcut(s).";
 
-    private final List<JsonAdaptedShortcut> shortcuts = new ArrayList<>();
+    private final List<JsonAdaptedShortcut> jsonAdaptedShortcuts = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableShortcutLibrary} with the given shortcuts.
      */
     @JsonCreator
-    public JsonSerializableShortcutLibrary(@JsonProperty("shortcuts") List<JsonAdaptedShortcut> shortcuts) {
-        this.shortcuts.addAll(shortcuts);
+    public JsonSerializableShortcutLibrary(
+            @JsonProperty("jsonAdaptedShortcuts") List<JsonAdaptedShortcut> jsonAdaptedShortcuts) {
+        this.jsonAdaptedShortcuts.addAll(jsonAdaptedShortcuts);
     }
 
     /**
@@ -36,8 +37,8 @@ public class JsonSerializableShortcutLibrary {
      */
     public JsonSerializableShortcutLibrary(ShortcutLibrary source) {
         source.getShortcuts().forEach((name, command) -> {
-            JsonAdaptedShortcut shortcut = new JsonAdaptedShortcut(name + "=" + command);
-            shortcuts.add(shortcut);
+            JsonAdaptedShortcut jsonAdaptedShortcut = new JsonAdaptedShortcut(name + "=" + command);
+            jsonAdaptedShortcuts.add(jsonAdaptedShortcut);
         });
     }
 
@@ -48,7 +49,7 @@ public class JsonSerializableShortcutLibrary {
      */
     public ShortcutLibrary toModelType() throws IllegalValueException {
         ShortcutLibrary shortcutLibrary = new ShortcutLibrary();
-        for (JsonAdaptedShortcut jsonAdaptedShortcut : shortcuts) {
+        for (JsonAdaptedShortcut jsonAdaptedShortcut : jsonAdaptedShortcuts) {
             Shortcut shortcut = jsonAdaptedShortcut.toModelType();
             if (shortcutLibrary.hasShortcut(shortcut.getShortcutName())) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_SHORTCUT);

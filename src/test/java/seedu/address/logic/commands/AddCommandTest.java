@@ -116,12 +116,12 @@ public class AddCommandTest {
 
         @Override
         public Path getShortcutLibraryFilePath() {
-            return null;
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void setShortcutLibraryFilePath(Path shortcutLibraryFilePath) {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -191,32 +191,32 @@ public class AddCommandTest {
 
         @Override
         public void setShortcutLibrary(ShortcutLibrary shortcutLibrary) {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public ShortcutLibrary getShortcutLibrary() {
-            return null;
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public boolean hasShortcut(String shortcutName) {
-            return false;
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void deleteShortcut(String shortcutName) {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void addShortcut(String shortcutName, String shortcutCommand) {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void setShortcut(String target, String shortcutCommand) {
-
+            throw new AssertionError("This method should not be called.");
         }
     }
 

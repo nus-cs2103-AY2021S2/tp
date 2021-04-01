@@ -65,7 +65,7 @@ public class EditShortcutCommandTest {
         // different shortcut name -> returns false
         assertFalse(first.equals(new EditShortcutCommand("sortname", "sort -n -asc")));
 
-        // different shortcut command -> returns true
-        assertTrue(first.equals(new EditShortcutCommand("sna", "list")));
+        // different shortcut command -> returns false
+        assertFalse(first.equals(new EditShortcutCommand("sna", "list")));
     }
 }

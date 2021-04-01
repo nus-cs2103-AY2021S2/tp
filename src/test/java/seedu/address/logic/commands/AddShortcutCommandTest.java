@@ -263,7 +263,7 @@ public class AddShortcutCommandTest {
         public boolean hasShortcut(String shortcutName) {
             requireNonNull(shortcutName);
             Shortcut shortcut = new Shortcut(shortcutName, "list");
-            return this.shortcut.isSameShortcut(shortcut);
+            return this.shortcut.isSameShortcutName(shortcut);
         }
     }
 
@@ -277,7 +277,7 @@ public class AddShortcutCommandTest {
         public boolean hasShortcut(String shortcutName) {
             requireNonNull(shortcutName);
             Shortcut shortcut = new Shortcut(shortcutName, "list");
-            return shortcutsAdded.stream().anyMatch(shortcut::isSameShortcut);
+            return shortcutsAdded.stream().anyMatch(shortcut::isSameShortcutName);
         }
 
         @Override
