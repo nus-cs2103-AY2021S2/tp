@@ -13,9 +13,46 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design** [In Progress]
+## **Design**
 
 ### Architecture
+
+<img src="images/Architecture.png" width="500px">
+
+The **Architecture Diagram** given above explains the high-level design of the
+App. Given below is a quick overview of each component.
+
+`Main` has two classes called `Main` and `MainApp`. It is responsible for:
+* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
+* At shut down: Shuts down the components and invokes cleanup methods where necessary.
+
+`Commons` represents a collection of classes used by multiple other components.
+
+The rest of the App consists of four components:
+
+* `UI`: The UI of the App.
+* `Logic`: The command executor.
+* `Model`: Holds the data of the App in memory.
+* `Storage`: Reads data from, and writes data to, the hard disk.
+
+Each of the four components,
+
+* defines its API in an `interface` with the same name as the Component.
+* exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
+
+For example, the `Logic` component defines its API in `Logic.java` and exposes
+its functionality using `LogicManager.java` which implements the `Logic` interface.
+Similarly, we have `Model` interface and `ModelManager` class that implements
+`Model`.
+
+**How the architecture components interact withe each other**
+
+The Sequence Diagram below shows how the components interact with each other
+for the scenario where the user issues the command `delete 1`.
+
+<img src="images/ArchitectureSequence.png" width="550px">
+
+The sections below give more details of each component.
 
 ### UI component
 
@@ -199,6 +236,59 @@ filter and sort the different lists.
 The diagram below shows how the `FindCommand`, specifically the `FindCheeseCommand` works:
 
 ![Sequence of Find Command](images/find/FindCheeseCommandSequenceDiagram.png)
+
+### Edit Command
+
+Currently we support editing of the three models: `Cheese`, `Customer` and `Order`,
+but only under certain preconditions to reflect the real life domains.
+
+The Sequence Diagram below shows how an `EditOrderCommand` is executed.
+
+<img src="images/EditCommandSequenceDiagram.png" width="750px">
+
+#### Editing a Customer
+We always allow editing of all fields of any `Customer` instances. This is possible
+since the `Order` class only maintain a reference to `Customer` with a `CustomerId`.
+This design approach allows us to only require to update a `Customer` object only
+at a particular location. This is important as the `Customer` class has a one-to-many
+relationship with `Order`.
+
+#### Editing a Cheese
+We allow editing of all fields of any `Cheese` instances only when the instances
+are not marked as assigned (to an `Order`). This is essentially to maintain the
+consistency of contract between the `Cheese` and `Order` class, namely `Cheese`
+instances that are used to fulfil an `Order` require to have the same
+`CheeseType` as the `Order`. This is consistent with the domain design as once
+an order is marked as complete, the order and cheeses involved are only kept
+as view-only  archives.
+
+#### Editing an Order
+Similarly, we only allow editing of any `Order` instances only when the instances
+are not marked as completed (with a list of assigned `CheeseID`s). An completed
+`Order` is only kept as a view-only archieve. Furthermore, since the `Order` class
+contains dependencies to `Customer` class, if the `Phone` parameter is provided,
+we are required to check that the customer phone exists and a different customer
+is being referenced.
+
+#### Alternative Designs
+An alternative approach to store a `Customer` instance in every `Order` objects
+is clearly undesirable, as that would require us to update at multiple locations
+that may cost more time and risk more bugs. Alternatively, we could choose to
+model `Customer` and `Order` via composition, where we have the `Customer` class
+maintain a list of `Order` as a field. Then, modifying customer details would be
+intuitive. However, we believe having the `Order` class being able to navigate
+to `Customer` and not the other way around is a better way to represent the real
+life applications because we require the `Order` to keep track of the `Customer`,
+but not necessarily the other way around.
+
+An alternative approach to handle the contract between `Cheese` and `Order` is
+to warn the users about modifying the sensitive fields of linked instances, and
+mark the `Order` instance as incomplete and unassign the corresponding `Cheese`
+instances to accommodate the changes. We do not choose this design as it is very
+unlikely a user would want to modify a completed `Order`, and the user can always
+add a new `Order` instance in the worst case.
+
+## **Documentation, logging, testing, configuration, dev-ops** [In Progress]
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -531,7 +621,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-***Extensions**
+**Extensions**
 * 1a. No cheeses match the input given by the user.
   * 1a1. CHIM shows an empty list.
 
