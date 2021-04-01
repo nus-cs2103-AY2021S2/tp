@@ -161,24 +161,24 @@ The following sequence diagram shows how the delete operation works:
 
 Given below is an example usage scenario and how delete mechanism behaves at each step.
 
-Step 1. User executes `delete 5` to delete the 5th item in the list. `StoreMandoParser` takes in the user input and 
+Step 1. User executes `delete 5` to delete the 5th item in the list. `StoreMandoParser` takes in the user input and
 determines the command word (delete) and argument (5) respectively.
 
-Step 2. An instance of `DeleteCommandParser` will be created, followed by a call on its `parse` method, taking in the 
-argument stated in step 1 (5). 
+Step 2. An instance of `DeleteCommandParser` will be created, followed by a call on its `parse` method, taking in the
+argument stated in step 1 (5).
 
-Step 3. The `parse` method will check for the validity of the index. If valid, a new `DeleteCommand` instance will be 
+Step 3. The `parse` method will check for the validity of the index. If valid, a new `DeleteCommand` instance will be
 created and returned to `LogicManager` class via `StoreMandoParser` class.
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: **Note:** If the index is determined to be invalid, a parseException will be thrown to notify the 
+:information_source: **Note:** If the index is determined to be invalid, a parseException will be thrown to notify the
 user of the error.
 
 </div>
 
 Step 4. The overridden `execute` method will be called, deleting the item from the list. An instance of `CommandResult`
-will be created, generating the result of the execution. The `LogicManager` class will receive the result of the 
+will be created, generating the result of the execution. The `LogicManager` class will receive the result of the
 execution. The item is deleted from `StoreMando`.
 
 The following activity diagram summarizes what happens when a user executes a new command:
@@ -220,11 +220,11 @@ The following activity diagram summarizes what happens when a user executes a ne
 * has a lot of perishable items with various expiry dates that are difficult to remember
 * prefers desktop applications over other types
 * fast typist
-* prefers typing to using mouse 
+* prefers typing to using mouse
 * comfortable using CLI applications
 
-**Value proposition**: Every info of every item you have at home - all in one place. One command is all you have to key 
-in to add, delete or find for an item. StoreMando keeps track of everything you need so that you don't have to 
+**Value proposition**: Every info of every item you have at home - all in one place. One command is all you have to key
+in to add, delete or find for an item. StoreMando keeps track of everything you need so that you don't have to
 physically search for an item to obtain information on it. Get everything you need from StoreMando - locations,
 quantities and expiry dates.
 
@@ -270,12 +270,12 @@ otherwise)
     * 1a1. StoreMando shows an error message.
 
       Use case resumes at step 1.
-    
+
 * 1b. Duplicate item exists in the inventory.
 
     * 1b1. StoreMando shows an error message.
 
-      Use case resumes at step 1.    
+      Use case resumes at step 1.
 
 **Use case: UC2 - Delete an item in a specific location**
 
@@ -291,13 +291,13 @@ otherwise)
 **Extensions**
 
 * 2a. There are no items in the specified location.
-  
-  Use case ends. 
+
+  Use case ends.
 
 * 3a. The index keyed in by the user does not exist in the displayed list.
 
     * 3a1. StoreMando shows an error message.
-    
+
       Use case resumes at step 3.
 
 **Use case: UC3 - List all items in a specific location**
@@ -316,7 +316,6 @@ otherwise)
     * 1a1. StoreMando shows an error message.
 
       Use case resumes at step 1.
-
 
 **Use case: UC4 - Find an item**
 
@@ -341,14 +340,14 @@ otherwise)
 * 1a. The command keyed in by the user has an invalid syntax.
 
     * 1a1. StoreMando shows an error message.
-    
+
       Use case resumes at step 1.
 
 * 1b. The new details keyed in by the user is the same as the existing details of the item.
 
     * 1b1. StoreMando shows an error message.
 
-      Use case resumes at step 1.    
+      Use case resumes at step 1.
 
 **Use case: UC6 - Check for expiring items**
 
@@ -364,7 +363,7 @@ otherwise)
 * 1a. User inputs a negative number.
 
     * 1a1. StoreMando shows an error message.
-    
+
       Use case resumes at step 1.
 
 * 1a. Time unit input is neither day(s) or week(s)
@@ -432,7 +431,7 @@ Use case ends.
 * 1a. The location keyed in by the user does not exist in the inventory.
 
     * 1a1. StoreMando shows an error message.
-    
+
       Use case resumes at step 1.
 
 *{More to be added}*
@@ -446,16 +445,15 @@ Use case ends.
 3. **Portability**
     * Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 4. **Usability**
-    * A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should 
-      be able to accomplish most of the tasks faster by typing rather than using the mouse. 
+    * A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should
+      be able to accomplish most of the tasks faster by typing rather than using the mouse.
     * StoreMando should work with or without Internet connection.
-
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **StoreMando**: Name of the application
-* **CLI**: Command Line Interface    
+* **CLI**: Command Line Interface
 * **GUI**: Graphical User Interface
 * **Inventory**: List of all items stored in StoreMando
 
