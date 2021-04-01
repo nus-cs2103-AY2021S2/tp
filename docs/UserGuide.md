@@ -145,7 +145,7 @@ Edits an existing person in the contact list.
 Format: `edit {INDEX [-n NAME] [-p PHONE] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY] [-r REMARK] | --remove -t TAG [-t TAG}…​}`
 1. If index supplied, `edit INDEX [...]`: Edits the person at the specified `INDEX`
    * Existing values are replaced by the input values, if specified.
-   * To retrieve existing values, use the autocompletion workflow specified below.
+   * To retrieve existing values, use the autocompletion workflow specified [below](#autocomplete-tab).
    * Tags can be removed from a contact by specifying a standalone `-t` without parameters.
 2. If `--remove` flag specified, `edit --remove -t TAG [-t TAG]...`: Removes all specified tags from every contact in the displayed list
    * All specified tags will be removed from every contact in the displayed list.
