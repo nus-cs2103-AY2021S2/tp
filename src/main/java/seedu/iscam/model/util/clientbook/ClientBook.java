@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.iscam.commons.core.index.Index;
 import seedu.iscam.model.client.Client;
 import seedu.iscam.model.client.UniqueClientList;
 
@@ -73,6 +74,14 @@ public class ClientBook implements ReadOnlyClientBook {
      */
     public void addClient(Client p) {
         clients.add(p);
+    }
+
+    /**
+     * Adds a client to the iscam book at a specific index.
+     * The client must not already exist in the iscam book.
+     */
+    public void addClientAtIndex(Index index, Client p) {
+        clients.addAtIndex(index, p);
     }
 
     /**

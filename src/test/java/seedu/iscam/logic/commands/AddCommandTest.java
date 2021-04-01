@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import seedu.iscam.commons.core.GuiSettings;
+import seedu.iscam.commons.core.index.Index;
 import seedu.iscam.logic.commands.exceptions.CommandException;
 import seedu.iscam.model.Model;
 import seedu.iscam.model.ReadOnlyUserPrefs;
@@ -90,6 +91,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public Index getIndexOfClient(Client client) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ReadOnlyUserPrefs getUserPrefs() {
             throw new AssertionError("This method should not be called.");
         }
@@ -116,6 +122,11 @@ public class AddCommandTest {
 
         @Override
         public void addClient(Client client) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addClientAtIndex(Index index, Client client) {
             throw new AssertionError("This method should not be called.");
         }
 

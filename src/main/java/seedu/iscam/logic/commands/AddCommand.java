@@ -9,6 +9,7 @@ import static seedu.iscam.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_PLAN;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_TAG;
 
+import seedu.iscam.commons.core.index.Index;
 import seedu.iscam.logic.commands.exceptions.CommandException;
 import seedu.iscam.model.Model;
 import seedu.iscam.model.client.Client;
@@ -16,7 +17,7 @@ import seedu.iscam.model.client.Client;
 /**
  * Adds a client to the iscam book.
  */
-public class AddCommand extends Command {
+public class AddCommand extends UndoableCommand {
 
     public static final String COMMAND_WORD = "add";
 
@@ -42,14 +43,37 @@ public class AddCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New client added: %1$s";
     public static final String MESSAGE_DUPLICATE_CLIENT = "This client already exists in the iscam book";
 
+    private final Index index;
     private final Client toAdd;
 
     /**
      * Creates an AddCommand to add the specified {@code Client}
+     * @param client client to be added
      */
     public AddCommand(Client client) {
         requireNonNull(client);
         toAdd = client;
+        index = null;
+    }
+
+    /**
+     * Creates an AddCommand to add the specified {@code Client} at the specified {@code Index}
+     * @param index index to add client into
+     * @param client client to be added
+     */
+    public AddCommand(Index index, Client client) {
+        requireNonNull(client);
+        toAdd = client;
+        this.index = index;
+    }
+
+    public Client getClient() {
+        return toAdd;
+    }
+
+    @Override
+    public String getCommandWord() {
+        return COMMAND_WORD;
     }
 
     @Override
@@ -60,7 +84,12 @@ public class AddCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_CLIENT);
         }
 
-        model.addClient(toAdd);
+        if (index == null) {
+            model.addClient(toAdd);
+        } else {
+            model.addClientAtIndex(index, toAdd);
+        }
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

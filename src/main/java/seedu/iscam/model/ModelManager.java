@@ -13,6 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.iscam.commons.core.GuiSettings;
 import seedu.iscam.commons.core.LogsCenter;
+import seedu.iscam.commons.core.index.Index;
 import seedu.iscam.model.client.Client;
 import seedu.iscam.model.meeting.Meeting;
 import seedu.iscam.model.util.clientbook.ClientBook;
@@ -141,6 +142,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void addClientAtIndex(Index index, Client client) {
+        clientBook.addClientAtIndex(index, client);
+        updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
+    }
+
+    @Override
     public void setClient(Client target, Client editedClient) {
         requireAllNonNull(target, editedClient);
         clientBook.setClient(target, editedClient);
@@ -262,6 +269,10 @@ public class ModelManager implements Model {
     public void setDetailedMeeting(Meeting meeting) {
         detailedMeeting.setMeeting(meeting);
 
+    }
+
+    public Index getIndexOfClient(Client client) {
+        return Index.fromZeroBased(filteredClients.indexOf(client));
     }
 
     //TODO: header

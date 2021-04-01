@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.iscam.commons.core.index.Index;
 import seedu.iscam.model.client.exceptions.ClientNotFoundException;
 import seedu.iscam.model.client.exceptions.DuplicateClientException;
 
@@ -34,6 +35,18 @@ public class UniqueClientList implements Iterable<Client> {
     public boolean contains(Client toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameClient);
+    }
+
+    /**
+     * Adds a client to the list at a specific index.
+     * The client must not already exist in the list.
+     */
+    public void addAtIndex(Index index, Client toAdd) {
+        requireNonNull(toAdd);
+        if (contains(toAdd)) {
+            throw new DuplicateClientException();
+        }
+        internalList.add(index.getZeroBased(), toAdd);
     }
 
     /**
