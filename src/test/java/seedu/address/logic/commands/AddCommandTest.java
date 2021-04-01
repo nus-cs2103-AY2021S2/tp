@@ -105,6 +105,16 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public String getTheme() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setTheme(String theme) {
+            throw new AssertionError("This mmethod should not be called.");
+        }
+
         //=========== AddressBook ================================================================================
 
         @Override

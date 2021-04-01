@@ -13,7 +13,7 @@ import seedu.address.model.Model;
 import seedu.address.model.contact.Contact;
 
 /**
- * Sorts the list of contacts in the address book in alphabetical order.
+ * Sorts the list of contacts in the address book.
  */
 public class SortCommand extends Command {
 

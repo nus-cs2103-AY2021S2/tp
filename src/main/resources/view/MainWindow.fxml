@@ -20,10 +20,9 @@
     <Image url="@/images/address_book_32.png" />
   </icons>
   <scene>
-    <Scene>
+    <Scene fx:id="scene">
       <stylesheets>
-        <URL value="@DarkTheme.css" />
-        <URL value="@Extensions.css" />
+        <URL value="@Extensions.css"/>
       </stylesheets>
 
       <VBox minWidth="-Infinity">

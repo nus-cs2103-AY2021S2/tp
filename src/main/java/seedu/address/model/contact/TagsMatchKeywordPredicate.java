@@ -7,7 +7,7 @@ import seedu.address.model.tag.Tag;
 
 
 /**
- * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Contact}'s {@code Name} matches any of the keywords given.
  */
 public class TagsMatchKeywordPredicate implements Predicate<Contact> {
     private final Set<Tag> tagSet;
@@ -18,6 +18,7 @@ public class TagsMatchKeywordPredicate implements Predicate<Contact> {
 
     @Override
     public boolean test(Contact contact) {
+        boolean test = contact.getTags().contains(new Tag("friends"));
         return tagSet.stream()
                 .anyMatch(tag ->
                         contact.getTags().contains(tag));

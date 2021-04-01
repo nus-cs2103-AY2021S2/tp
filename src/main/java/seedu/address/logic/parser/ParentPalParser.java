@@ -23,6 +23,7 @@ import seedu.address.logic.commands.ListAppointmentCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.TagCommand;
+import seedu.address.logic.commands.ThemeCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -97,6 +98,9 @@ public class ParentPalParser {
 
         case FindAppointmentCommand.COMMAND_WORD:
             return new FindAppointmentCommandParser().parse(arguments);
+
+        case ThemeCommand.COMMAND_WORD:
+            return new ThemeCommandParser().parse(arguments);
 
         case ListAppointmentCommand.COMMAND_WORD:
             return new ListAppointmentCommand();

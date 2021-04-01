@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -54,6 +55,9 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane statusbarPlaceholder;
 
+    @FXML
+    private Scene scene;
+
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -66,10 +70,11 @@ public class MainWindow extends UiPart<Stage> {
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
+        updateTheme(logic.getTheme());
 
         // setAccelerators();
 
-        helpWindow = new HelpWindow();
+        helpWindow = new HelpWindow(logic.getTheme());
     }
 
     public Stage getPrimaryStage() {
@@ -167,6 +172,15 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.show();
     }
 
+    private void updateTheme(String theme) {
+        scene.getStylesheets().clear();
+        if (theme.equals("dark")) {
+            scene.getStylesheets().add("view/DarkTheme.css");
+        } else {
+            scene.getStylesheets().add("view/HeliBookTheme.css");
+        }
+    }
+
     /**
      * Closes the application.
      */
@@ -195,6 +209,12 @@ public class MainWindow extends UiPart<Stage> {
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
             CommandResult commandResult = logic.execute(commandText);
+
+            if (commandText.startsWith("theme")) {
+                updateTheme(logic.getTheme());
+                helpWindow.updateHelpWindowTheme(logic.getTheme());
+            }
+
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 

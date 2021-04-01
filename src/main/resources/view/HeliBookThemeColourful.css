@@ -22,6 +22,7 @@
 }
 
 .menu-bar {
+	-fx-background-color: derive(#FFFFF0, 45%);
 }
 
 .menu-bar .label {
@@ -32,10 +33,13 @@
 }
 
 .pane-with-border {
-	-fx-background-color: derive(gainsboro, 25%);
+     -fx-background-color: derive(#FFFFF0, 45%);
+     -fx-border-color: derive(lightgrey, 60%);
+     -fx-border-top-width: 1px;
 }
 
 .stack-pane {
+     -fx-background-color: #FFFFF0;
 }
 
 #commandTextField {
@@ -59,7 +63,12 @@
 .list-view {
 	-fx-background-insets: 0;
     -fx-padding: 0;
-    -fx-background-color: derive(gainsboro, 25%);
+    -fx-background-color: derive(#FFFFF0, 45%);
+}
+
+.list-cell:empty {
+    /* Empty cells will not have alternating colours */
+    -fx-background: derive(#FFFFF0, 45%);
 }
 
 .list-cell {
@@ -68,17 +77,12 @@
     -fx-padding: 0 0 0 0;
 }
 
-.list-cell:empty {
-    /* Empty cells will not have alternating colours */
-    -fx-background: derive(gainsboro, 25%);
-}
-
 .list-cell:filled:even {
-	-fx-background-color: derive(gainsboro, 50%);
+	-fx-background-color: aliceblue;
 }
 
 .list-cell:filled:odd {
-	-fx-background-color: white;
+	-fx-background-color: mintcream;
 }
 
 .list-cell .label {
@@ -87,6 +91,11 @@
 
 .scroll-bar {
     -fx-background-color: derive(lightgrey, 60%);
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: derive(lightgrey, 0%);
+    -fx-background-insets: 3;
 }
 
 #tags {
