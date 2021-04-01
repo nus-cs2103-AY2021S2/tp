@@ -4,20 +4,25 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.TagContainsKeywordsPredicate;
+import seedu.address.model.person.AttributeContainsKeywordsPredicate;
 
 public class FilterCommand extends Command {
 
     public static final String COMMAND_WORD = "filter";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds and filters all persons whose tags contain any "
-            + " of the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " medical friend";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds and filters clients whose attributes contain"
+            + " any of the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
+            + "Parameters: PREFIX/KEYWORD [PREFIX/MORE_KEYWORDS]...\n"
+            + "Prefixes: address: a/ADDRESS; gender: g/GENDER; tag: t/TAG; insurance plan name: plan/PLAN_NAME \n"
+            + "Tip 1: for keywords of an attribute consisting of more than one word, connect them using an underscore "
+            + "(eg. 'a/Jurong_East', 'plan/Protecc_Life').\n"
+            + "Tip 2: for age filter, you can search using a single age value or using a range. To use a range, \n"
+            + "input 'age/[lower_bound]-[higher_bound]'. These queries are valid: 'age/25', 'age/30-35' \n"
+            + "Example: " + COMMAND_WORD + " a/Clementi_Street g/M t/medical plan/Protecc age/30-35";
 
-    private final TagContainsKeywordsPredicate predicate;
+    private final AttributeContainsKeywordsPredicate predicate;
 
-    public FilterCommand(TagContainsKeywordsPredicate predicate) {
+    public FilterCommand(AttributeContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
