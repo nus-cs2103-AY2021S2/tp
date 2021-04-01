@@ -5,9 +5,9 @@ title: User Guide
 
 # ClientBook
 
-ClientBook is an application for insurance agents to manage client contacts, optimized for use via a Command Line Interface (CLI) while 
-still having the benefits of a Graphical User Interface (GUI). If you are an insurance agent who can type fast, 
-ClientBook can help _you_ accomplish your client management tasks faster than traditional GUI apps.
+ClientBook is an application for insurance agents to manage client contacts, optimized for use with just a keyboard,
+but still offering a graphical interface for ease of viewing of client contacts. The purpose of ClientBook is to help 
+insurance agents who can type fast to accomplish their client management tasks faster than traditional applications.
 
 ## Why ClientBook?
 
