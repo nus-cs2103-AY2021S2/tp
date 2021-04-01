@@ -57,7 +57,7 @@ Format:
 customer delete [INDEX] (-f)
 ```
 
-In the event that there are unfulfilled orders by the contact that is being attempted to be deleted, a `-f` flag has to be added to the end of the command to confirm the command. This is to prevent you from accidentally deleting orders unknowingly and leading to unhappy customers!
+In the event that there are uncompleted orders by the contact that is being attempted to be deleted, a `-f` flag has to be added to the end of the command to confirm the command. This is to prevent you from accidentally deleting orders unknowingly and leading to unhappy customers!
 
 #### `find` - Find contact
 Format:
@@ -98,25 +98,36 @@ menu find [KEYWORD] [MORE KEYWORDS]
 #### `list` - List all orders
 Format: 
 ```
-orders list
+order list
 ```
 
 #### `add` - Add an order
 Format: 
 ```
-orders add n/[CUSTOMER_NAME] dt/[DELIVERY_DATETIME] (DD-MM-YYYY HH:MM) d/[DISH_NAME] q/[QUANTITY]...  
+order add n/[CUSTOMER_NAME] dt/[DELIVERY_DATETIME] (DD-MM-YYYY HH:MM) d/[DISH_NAME] q/[QUANTITY]...  
 ```
 
 #### `delete` - Delete an order
 Format:
 ```
-orders delete [INDEX]
+order delete [INDEX]
 ```
 
 #### `find` - Find an order
 Format:
 ```
-orders find [KEYWORD] [MORE KEYWORDS]
+order find [KEYWORD] [MORE KEYWORDS]
+```
+
+#### `complete` - Mark order as completed
+Format:
+```
+order complete [INDEX]
+```
+#### `history` - List all completed and cancelled orders
+Format:
+```
+order history
 ```
 
 ### `inventory`
