@@ -22,6 +22,7 @@ import seedu.iscam.logic.commands.AddCommand;
 import seedu.iscam.logic.commands.CommandResult;
 import seedu.iscam.logic.commands.ListCommand;
 import seedu.iscam.logic.commands.exceptions.CommandException;
+import seedu.iscam.logic.events.exceptions.EventException;
 import seedu.iscam.logic.parser.exceptions.ParseException;
 import seedu.iscam.model.Model;
 import seedu.iscam.model.ModelManager;
@@ -108,7 +109,7 @@ public class LogicManagerTest {
      * @see #assertCommandFailure(String, Class, String, Model)
      */
     private void assertCommandSuccess(String inputCommand, String expectedMessage,
-            Model expectedModel) throws CommandException, ParseException {
+            Model expectedModel) throws CommandException, ParseException, EventException {
         CommandResult result = logic.execute(inputCommand);
         assertEquals(expectedMessage, result.getFeedbackToUser());
         assertEquals(expectedModel, model);

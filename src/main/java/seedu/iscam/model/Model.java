@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import seedu.iscam.commons.core.GuiSettings;
+import seedu.iscam.commons.core.index.Index;
 import seedu.iscam.model.client.Client;
 import seedu.iscam.model.meeting.Meeting;
 import seedu.iscam.model.util.clientbook.ObservableClient;
@@ -83,6 +84,12 @@ public interface Model {
      * {@code client} must not already exist in the iscam book.
      */
     void addClient(Client client);
+
+    /**
+     * Adds a given client at a specific index.
+     * {@code client} must not already exist in the iscam book.
+     */
+    void addClientAtIndex(Index index, Client client);
 
     /**
      * Replaces the given client {@code target} with {@code editedClient}.

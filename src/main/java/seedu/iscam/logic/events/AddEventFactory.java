@@ -23,7 +23,7 @@ public class AddEventFactory {
         switch(commandWord) {
         case (AddCommand.COMMAND_WORD):
             AddCommand tempCommand = (AddCommand) command;
-            return generateAddClientEvent(tempCommand.getToAdd());
+            return generateAddClientEvent(tempCommand.getClient());
 
         /*
         case (AddMeetingCommand.COMMAND_WORD):
@@ -38,7 +38,7 @@ public class AddEventFactory {
         }
     }
 
-    public static AddClientEvent generateAddAccommodationEvent(Client clientAdded) {
+    public static AddClientEvent generateAddClientEvent(Client clientAdded) {
         return new AddClientEvent(clientAdded);
     }
 

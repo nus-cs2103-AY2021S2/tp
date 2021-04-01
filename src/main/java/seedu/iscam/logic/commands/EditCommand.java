@@ -144,6 +144,10 @@ public class EditCommand extends UndoableCommand {
                 && editClientDescriptor.equals(e.editClientDescriptor);
     }
 
+    public EditClientDescriptor getEditClientDescriptor() {
+        return editClientDescriptor;
+    }
+
     /**
      * Stores the details to edit the client with. Each non-empty field value will replace the
      * corresponding field value of the client.

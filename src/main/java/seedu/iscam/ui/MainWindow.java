@@ -17,6 +17,7 @@ import seedu.iscam.commons.core.LogsCenter;
 import seedu.iscam.logic.Logic;
 import seedu.iscam.logic.commands.CommandResult;
 import seedu.iscam.logic.commands.exceptions.CommandException;
+import seedu.iscam.logic.events.exceptions.EventException;
 import seedu.iscam.logic.parser.exceptions.ParseException;
 
 /**
@@ -188,7 +189,7 @@ public class MainWindow extends UiPart<Stage> {
      *
      * @see seedu.iscam.logic.Logic#execute(String)
      */
-    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+    private CommandResult executeCommand(String commandText) throws CommandException, ParseException, EventException {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());

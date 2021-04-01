@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-import org.w3c.dom.events.EventException;
-
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import seedu.iscam.commons.core.GuiSettings;
