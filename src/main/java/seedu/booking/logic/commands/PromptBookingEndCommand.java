@@ -1,6 +1,9 @@
 package seedu.booking.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.booking.commons.core.Messages.PROMPT_NEWDATE_MESSAGE;
+import static seedu.booking.commons.core.Messages.PROMPT_START_MESSAGE;
+import static seedu.booking.logic.commands.states.AddBookingCommandState.STATE_START;
 
 import seedu.booking.logic.commands.exceptions.CommandException;
 import seedu.booking.model.Model;
@@ -21,11 +24,16 @@ public class PromptBookingEndCommand extends Command {
         requireNonNull(model);
 
         ModelManager.processStateInput(endTime);
+        ModelManager.setState(STATE_START);
 
         CommandResult result;
 
-        Booking booking = (Booking) ModelManager.create();
-        result = new AddBookingCommand(booking).execute(model);
+        try {
+            Booking booking = (Booking) ModelManager.create();
+            result = new AddBookingCommand(booking).execute(model);
+        } catch (CommandException ex) {
+            throw new CommandException(ex.getMessage() + PROMPT_NEWDATE_MESSAGE + PROMPT_START_MESSAGE);
+        }
 
         ModelManager.setStateInactive();
 
