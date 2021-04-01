@@ -66,17 +66,21 @@ The quick start section provides a tutorial which will guide you through the ste
 1. Ensure you have Java `11` or above installed in your Computer.
    * To check if you have this installed or for instructions on how to install, refer to our FAQ [here](#frequently-asked-questions).
 
+
 1. Download the latest `clientbook.jar` [here](https://github.com/AY2021S2-CS2103T-W15-2/tp/releases/tag/v1.2).
+   
+
 1. Copy the file to the folder (we will be referring to this folder as the _home folder_) where you want to store the ClientBook application and your client information.
+
 
 1. Double-click the downloaded `clientbook.jar` file in your home folder to start the app. The screen below should appear in a few seconds. 
    * Alternatively, for those who are tech-savvy, you can launch the application via Command Prompt in Windows or Terminal in Mac OS/Linux using the following command: `java -jar clientbook.jar`. 
    * Note how the app contains some sample data.
     
-<div align="center">
-    <p align="center"><img src="images/Ui.png"></p>
-    <p>Graphical user interface of ClientBook.</p>
-</div>
+        <div align="center">
+            <p align="center"><img src="images/Ui.png"></p>
+            <p>Graphical user interface of ClientBook.</p>
+        </div>
 
 1. Type the command in the command box and press Enter to execute it.
    * Some example commands you can try:
@@ -109,11 +113,15 @@ For each of the commands, type them into the command box and press enter to exec
 
 1. Try adding a new Client contact using the command `add n/James Lee p/91234567 e/james@gmail.com a/Blk 123 Serangoon Rd t/Friend t/Colleague i/OCBC#412>www.ocbc.com/policy/412`.
 
-That is a very long command, but it can be broken down into simple parts. We have just added a client called James Lee with a phone number of 91234567, email address of
-james@gmail.com, address of Blk 123 Serangoon Rd and we have also indicated that James is a friend as well as colleague of ours by adding the tags `Friend` and `Colleague`. Lastly,
+That is a very long command, but it can be broken down into simple parts. We have just added a client called James Lee with the following details:
+* Phone number:91234567
+* Email address: james@gmail.com
+* Address:Blk 123 Serangoon Rd
+
+We have also indicated that James is a friend as well as colleague of ours by adding the tags `Friend` and `Colleague`. Lastly,
 we indicated that James has purchased a policy from us with a policy ID of OCBC#412 and it can be found at `www.ocbc.com/policy/412`.
 
-Now, if you scroll down, you should find James at the bottom of the list.
+Now, if you scroll down the contact list, you should find James at the bottom of the list.
 
 <p align="center"><img src="/images/newContactJames"></p>
 
@@ -129,7 +137,7 @@ phone number in ClientBook has been changed to 61234567.
 This command deletes the contact of the third client displayed in the contact list.
 
 ### Conclusion
-Now that you have tried out the basic commands available in ClientBook, you can use the `batch delete 1,2,3,4,5,6,7` command
+Now that you have tried out the basic commands available in ClientBook, you can use the command `batch delete 1,2,3,4,5,6,7`
 to delete all the sample entries and start using your very own ClientBook.
 
 --------------------------------------------------------------------------------------------------------------------
