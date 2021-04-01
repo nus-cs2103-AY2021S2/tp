@@ -34,4 +34,4 @@ Given below is an example usage scenario and how `edone` will work.
 
 Given below is the full Sequence Diagram for interactions for the `execute("edone 1 2 3")` API call.
 
-![Interactions Inside the Logic Component for the `add -n James -r Loves sweets` Command](images/EDoneSequenceDiagram.png)
+![Sequence Diagram for EDone](images/EDoneSequenceDiagram.png)
