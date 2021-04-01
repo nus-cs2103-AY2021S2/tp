@@ -80,7 +80,7 @@ Details on how to use each command are explained in the [Features](#features) se
 Action                            | Format
 ----------------------------------|------------------------------------------------------------------------------------
 **Add a client**                  | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS g/GENDER b/BIRTHDATE [t/TAG]...`
-**Add or remove insurance plans** | `plan INDEX i/PLAN_NAME $PREMIUM` (add), `plan INDEX i/remove PLAN_INDEX` (remove)
+**Add or remove insurance plans** | `plan INDEX i/PLAN_NAME $PREMIUM` (add)<br>`plan INDEX c/PLAN_INDEX` (remove)
 **Clear all clients**             | `clear`
 **Delete a client**               | `delete INDEX`
 **Edit a client**                 | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GENDER] [b/BIRTHDATE] [t/TAG]...`
@@ -228,8 +228,8 @@ Format: `plan INDEX i/PLAN_NAME $PREMIUM`
 
 * `INDEX` refers to the index number shown in the displayed client list.
 * `INDEX` **must be a positive integer** 1, 2, 3, …​
-* `PLAN_NAME` refers to the name of the insurance plan
-* `PREMIUM` refers to the yearly premium amount that the client pays for this plan
+* `PLAN_NAME` refers to the name of the insurance plan.
+* `PREMIUM` refers to the yearly premium amount that the client pays for this plan.
 * `PREMIUM` **must be a positive integer** 1, 2, 3, …​
 
 Example:
@@ -240,7 +240,7 @@ Example:
 
 You can remove an existing insurance plan from a client.
 
-Format: `plan INDEX i/remove PLAN_INDEX`
+Format: `plan INDEX c/PLAN_INDEX`
 
 * `INDEX` refers to the index number shown in the displayed client list.
 * `INDEX` **must be a positive integer** 1, 2, 3, …​
@@ -249,7 +249,7 @@ Format: `plan INDEX i/remove PLAN_INDEX`
 
 Example:
 
-* `plan 2 i/remove 3` Removes the 3rd insurance plan of the 2nd client in the displayed client list.
+* `plan 2 c/3` Removes the 3rd insurance plan of the 2nd client in the displayed client list.
 
 
 ### Recording, clearing or viewing notes : `note`

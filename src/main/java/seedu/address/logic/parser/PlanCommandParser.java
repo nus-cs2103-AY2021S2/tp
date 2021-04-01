@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLEAR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INSURANCE;
 
 import seedu.address.commons.core.index.Index;
@@ -25,26 +26,53 @@ public class PlanCommandParser implements Parser<Command> {
     public PlanCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
-                PREFIX_INSURANCE);
+                PREFIX_INSURANCE, PREFIX_CLEAR);
+
+        Prefix singlePrefix;
+        try {
+            singlePrefix = getSinglePrefix(argMultimap, PREFIX_INSURANCE, PREFIX_CLEAR);
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, PlanCommand.MESSAGE_USAGE), pe);
+        }
+        assert singlePrefix != null : "Unexpected null value";
 
         Index index;
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    PlanCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(pe.getMessage());
         }
 
-        if (argMultimap.getValue(PREFIX_INSURANCE).isEmpty()) {
+        if (argMultimap.getValue(PREFIX_INSURANCE).isEmpty() && argMultimap.getValue(PREFIX_CLEAR).isEmpty()) {
             throw new ParseException(InsurancePlan.MESSAGE_CONSTRAINTS);
         }
 
-        InsurancePlan plan = ParserUtil.parsePlan(argMultimap.getValue(PREFIX_INSURANCE).get());
-        if (plan != null) {
+        if (singlePrefix.equals(PREFIX_INSURANCE)) {
+            InsurancePlan plan = ParserUtil.parsePlan(argMultimap.getValue(PREFIX_INSURANCE).get());
             return new AddPlanCommand(index, plan);
+        } else {
+            Index planIndex = ParserUtil.parseRemovePlanIndex(argMultimap.getValue(PREFIX_CLEAR).get());
+            return new RemovePlanCommand(index, planIndex);
         }
-        Index planIndex = ParserUtil.parseRemovePlanIndex(argMultimap.getValue(PREFIX_INSURANCE).get());
-        return new RemovePlanCommand(index, planIndex);
     }
 
+    /**
+     * Returns the singular prefix contained in the given {@code ArgumentMultimap}.
+     * @throws ParseException if more or less than 1 prefix is provided by user.
+     */
+    private static Prefix getSinglePrefix(ArgumentMultimap argumentMultimap, Prefix... prefixes) throws ParseException {
+        Prefix singlePrefix = null;
+        for (Prefix prefix : prefixes) {
+            if (argumentMultimap.getValue(prefix).isPresent()) {
+                if (singlePrefix != null) {
+                    throw new ParseException("More than 1 prefix provided.");
+                }
+                singlePrefix = prefix;
+            }
+        }
+        if (singlePrefix == null) {
+            throw new ParseException("No prefix provided. ");
+        }
+        return singlePrefix;
+    }
 }

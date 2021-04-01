@@ -43,6 +43,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label birthdate;
     @FXML
+    private Label numNotes;
+    @FXML
     private FlowPane tags;
     @FXML
     private FlowPane plans;
@@ -59,6 +61,12 @@ public class PersonCard extends UiPart<Region> {
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
         gender.setText(person.getGender().value);
+        if (person.getNumNotes() == 0) {
+            numNotes.setText("\u25B6 You have no notes");
+        } else {
+            numNotes.setText(String.format("\u25B6 You have %d note%s",
+                    person.getNumNotes(), person.getNumNotes() == 1 ? "" : "s"));
+        }
         birthdate.setText("DOB: " + person.getBirthdate().value.toString());
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
