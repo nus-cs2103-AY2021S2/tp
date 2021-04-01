@@ -14,6 +14,7 @@ import seedu.iscam.commons.core.GuiSettings;
 import seedu.iscam.commons.core.LogsCenter;
 import seedu.iscam.logic.commands.Command;
 import seedu.iscam.logic.commands.CommandResult;
+import seedu.iscam.logic.commands.DeleteCommand;
 import seedu.iscam.logic.commands.RedoCommand;
 import seedu.iscam.logic.commands.UndoCommand;
 import seedu.iscam.logic.commands.UndoableCommand;
@@ -77,7 +78,7 @@ public class LogicManager implements Logic {
                 continue;
             }
 
-            if (command instanceof UndoableCommand) {
+            if ((command instanceof UndoableCommand) && !(command instanceof DeleteCommand)) {
                 Event undoableEvent = EventFactory.parse((UndoableCommand) command, model);
                 CommandHistory.addToUndoStack(undoableEvent);
             }
@@ -100,6 +101,7 @@ public class LogicManager implements Logic {
             storage.saveMeetingBook(model.getMeetingBook());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
+
         }
 
         return commandResult;

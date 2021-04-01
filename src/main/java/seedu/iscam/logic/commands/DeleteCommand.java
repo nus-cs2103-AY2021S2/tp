@@ -6,7 +6,11 @@ import java.util.List;
 
 import seedu.iscam.commons.core.Messages;
 import seedu.iscam.commons.core.index.Index;
+import seedu.iscam.logic.CommandHistory;
 import seedu.iscam.logic.commands.exceptions.CommandException;
+import seedu.iscam.logic.events.Event;
+import seedu.iscam.logic.events.EventFactory;
+import seedu.iscam.logic.events.exceptions.EventException;
 import seedu.iscam.model.Model;
 import seedu.iscam.model.client.Client;
 
@@ -24,7 +28,7 @@ public class DeleteCommand extends UndoableCommand {
 
     public static final String MESSAGE_DELETE_CLIENT_SUCCESS = "Deleted Client: %1$s";
 
-    private final Client clientToDelete;
+    private Client clientToDelete;
     private final Index targetIndex;
 
     /**
@@ -69,7 +73,13 @@ public class DeleteCommand extends UndoableCommand {
 
         } else {
             clientToBeDeleted = lastShownList.get(targetIndex.getZeroBased());
+            clientToDelete = clientToBeDeleted;
         }
+
+        try {
+            Event undoableEvent = EventFactory.parse(this, model);
+            CommandHistory.addToUndoStack(undoableEvent);
+        } catch (EventException e) { }
 
         model.deleteClient(clientToBeDeleted);
         return new CommandResult(String.format(MESSAGE_DELETE_CLIENT_SUCCESS, clientToDelete));

@@ -21,7 +21,7 @@ public class AddEventFactory {
 
         switch(commandWord) {
         case (AddCommand.COMMAND_WORD):
-            AddCommand tempCommand = (AddCommand) command;
+            AddCommand tempCommand = command;
             return generateAddClientEvent(tempCommand.getClient());
 
         /*
