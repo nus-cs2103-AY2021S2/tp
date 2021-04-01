@@ -413,7 +413,9 @@ public class MainWindow extends UiPart<Stage> {
         panel = newPanel;
         panelPlaceholder.getChildren().add(panel.getRoot());
         list.getChildren().add(panelPlaceholder);
-        list.getChildren().add(componentTabs);
-        tab.setSelected(true);
+        if(list.getId().equalsIgnoreCase("componentList")){
+            list.getChildren().add(componentTabs);
+            tab.setSelected(true);
+        }
     }
 }

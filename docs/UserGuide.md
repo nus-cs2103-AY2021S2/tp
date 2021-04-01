@@ -81,6 +81,8 @@ menu add n/[NAME] p/[PRICE]
 Format:
 ```
 menu delete [INDEX]
+or
+menu delete [INDEX] -f
 ```
 
 #### `find` - Find dish
@@ -142,6 +144,8 @@ inventory decrease [INDEX] [QUANTITY]
 Format:
 ```
 inventory delete [INDEX]
+or
+inventory delete [INDEX] -f
 ```
 
 #### `find` - Find an item
