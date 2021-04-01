@@ -9,8 +9,14 @@ title: User Guide
 ## Introduction
 **nufash** is a **digital wardrobe desktop app for university students and/or those looking to
 better organise their clothes**. The app is **optimised for users who prefer typing**, but also has the added 
-benefit of a **smooth and easy to use Graphical User Interface(GUI)**. 
+benefit of a **smooth and easy to use Graphical User Interface(GUI)**.  The nufash application allows users to input 
+their clothings into their own digital wardrobe, and be able
+to search through, and match their various clothes quickly.
 Use nufash to reduce clutter and start making wiser clothing decisions today!
+
+<br>
+This User Guide is for new users of the nufash app to learn and understand what the various features that nufash has 
+to offer. Read on to learn how to use them to full effect, and digitise your wardrobe!
 
 * [Quickstart](#quickstart)
 * [Features](#features)
@@ -121,7 +127,8 @@ Format: `list`
 <div markdown="block" class="alert alert-primary">
 
 **:bulb: Tips:** <br>
-* Displays the list of all garments in chronological ordering.
+* Displays the list of all garments in chronological ordering, to easily find the garments that have not been worn 
+  in a long time.
 <br><br>
 
 ### Deleting a singular Garment in the Wardrobe: `delete`  
