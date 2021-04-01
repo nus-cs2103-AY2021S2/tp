@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.MeetCommand.ADD_MEETING;
 import static seedu.address.logic.commands.MeetCommand.CLEAR_MEETING;
@@ -44,7 +45,7 @@ public class MeetCommandTest {
     }
 
     @Test
-    public void execute_addMeetingHasClashes_success() {
+    public void execute_addMeetingHasClashes_failure() {
         Person person = model.getFilteredPersonList().get(0);
         Meeting clashedMeeting = person.getMeetings().get(0);
         MeetCommand meetCommand = new MeetCommand(INDEX_FIRST_PERSON, ADD_MEETING,
@@ -52,9 +53,7 @@ public class MeetCommandTest {
 
         String expectedMessage = String.format(MeetCommand.MESSAGE_CLASHING_MEETING, clashedMeeting);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-
-        assertCommandSuccess(meetCommand, model, expectedMessage, expectedModel);
+        assertCommandFailure(meetCommand, model, expectedMessage);
     }
 
     @Test
