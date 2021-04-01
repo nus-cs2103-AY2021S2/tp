@@ -4,6 +4,7 @@ import static seedu.address.ui.UiUtil.generateTagLabel;
 import static seedu.address.ui.UiUtil.streamTags;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -44,7 +45,7 @@ public class ContactCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
     @FXML
-    private ImageView favIcon;
+    private Button favIcon;
 
     /**
      * Creates a {@code ContactCode} with the given {@code Contact} and index to display.
@@ -58,10 +59,8 @@ public class ContactCard extends UiPart<Region> {
         checkForPlaceholder(contact.getAddress().value, address);
         checkForPlaceholder(contact.getEmail().value, email);
         streamTags(contact.getTags()).forEach(tag -> tags.getChildren().add(generateTagLabel(tag)));
-        if (contact.getFavourite().isFav()) {
-            favIcon.setImage(new Image("/images/star_icon_filled.png"));
-        } else {
-            favIcon.setImage(new Image("/images/star_icon_empty.png"));
+        if (!contact.getFavourite().isFav()) {
+            favIcon.setStyle("-fx-background-color:transparent");
         }
     }
 
