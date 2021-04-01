@@ -80,4 +80,19 @@ public class JsonUserStorage implements UserStorage {
         JsonUtil.saveJsonFile(new JsonSerializableUser(user), filePath);
     }
 
+    @Override
+    public void deleteUser() throws IOException {
+        deleteUser(filePath);
+    }
+
+    /**
+     * Deletes the specified user file if it exists.
+     *
+     * @param filePath location of the data. Cannot be null.
+     */
+    public void deleteUser(Path filePath) throws IOException {
+        requireNonNull(filePath);
+        FileUtil.deleteFile(filePath);
+    }
+
 }

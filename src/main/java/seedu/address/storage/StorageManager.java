@@ -205,4 +205,15 @@ public class StorageManager implements Storage {
         logger.fine("Attempting to write to data file: " + filePath);
         userStorage.saveUser(user, filePath);
     }
+
+    @Override
+    public void deleteUser() throws IOException {
+        deleteUser(userStorage.getUserFilePath());
+    }
+
+    @Override
+    public void deleteUser(Path filePath) throws IOException {
+        logger.fine("Attempting to delete data file: " + userStorage.getUserFilePath());
+        userStorage.deleteUser(filePath);
+    }
 }
