@@ -8,7 +8,7 @@ import javafx.collections.ObservableList;
 
 /**
  * Wraps all data at the Schedule-Tracker level
- * Duplicates are not allowed (by .isSameSchedule comparison)
+ * Duplicates are not allowed (by .equals comparison)
  */
 public class ScheduleTracker implements ReadOnlyScheduleTracker {
 
@@ -50,7 +50,7 @@ public class ScheduleTracker implements ReadOnlyScheduleTracker {
     }
 
     /**
-     * Returns true if a person with the same identity as {@code schedule} exists in the schedule tracker.
+     * Returns true if a schedule with the same identity as {@code schedule} exists in the schedule tracker.
      */
     public boolean hasSchedule(Schedule schedule) {
         requireNonNull(schedule);
@@ -58,17 +58,17 @@ public class ScheduleTracker implements ReadOnlyScheduleTracker {
     }
 
     /**
-     * Adds a person to the schedule tracker.
-     * The person must not already exist in the schedule tracker.
+     * Adds a schedule to the schedule tracker.
+     * The schedule must not already exist in the schedule tracker.
      */
     public void addSchedule(Schedule s) {
         schedules.add(s);
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedSchedule}.
+     * Replaces the given schedule {@code target} in the list with {@code editedSchedule}.
      * {@code target} must exist in the schedule tracker.
-     * The person identity of {@code editedSchedule} must not be the same as another existing person
+     * The schedule identity of {@code editedSchedule} must not be the same as another existing schedule
      * in the schedule tracker.
      */
     public void setSchedule(Schedule target, Schedule editedSchedule) {

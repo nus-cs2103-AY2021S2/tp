@@ -17,7 +17,7 @@ public abstract class SlotContainer extends UiPart<Region> {
     @FXML
     protected HBox slotPane;
 
-    // @@author {RuiFengg}-reused
+    // @@author RuiFengg-reused
     // Reused from
     // https://github.com/AY2021S1-CS2103T-W13-3/tp/blob/master/src/main/java/seedu/homerce/ui/schedulepanel/
     // SlotContainer.java
