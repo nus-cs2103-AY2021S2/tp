@@ -242,8 +242,8 @@ public class LogicManagerTest {
     }
 
     @Test
-    public void isAutocompleteFlag_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> logic.isAutocompleteFlag(null));
+    public void isAutocompleteFlag_nullParameter() {
+        assertFalse(logic.isAutocompleteFlag(null));
     }
 
     @Test
