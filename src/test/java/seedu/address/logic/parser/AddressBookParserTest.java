@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -27,9 +29,11 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddAliasCommand;
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddTagCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteAliasCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteTagCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.EmailCommand;
@@ -43,6 +47,7 @@ import seedu.address.logic.commands.SelectClearCommand;
 import seedu.address.logic.commands.SelectCommand;
 import seedu.address.logic.commands.SelectIndexCommand;
 import seedu.address.logic.commands.SelectShowCommand;
+import seedu.address.logic.commands.TagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.DisplayFilterPredicate;
 import seedu.address.model.UniqueAliasMap;
@@ -247,6 +252,14 @@ public class AddressBookParserTest {
         assertTrue(parser.parseCommand(
                 SelectCommand.COMMAND_WORD + " " + SelectCommand.SHOW_SUB_COMMAND_WORD,
                 emptyAliases) instanceof SelectShowCommand);
+    }
+
+    @Test
+    public void parseCommand_tag() throws Exception {
+        assertTrue(parser.parseCommand(TagCommand.COMMAND_WORD + " " + TagCommand.ADD_SUB_COMMAND_WORD + " "
+                + VALID_INDEX_STRING + " " + TAG_DESC_FRIEND, emptyAliases) instanceof AddTagCommand);
+        assertTrue(parser.parseCommand(TagCommand.COMMAND_WORD + " " + TagCommand.DELETE_SUB_COMMAND_WORD + " "
+                + VALID_INDEXES_STRING + " " + TAG_DESC_HUSBAND, emptyAliases) instanceof DeleteTagCommand);
     }
 
     @Test
