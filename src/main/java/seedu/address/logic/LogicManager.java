@@ -17,6 +17,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.ReadOnlyMeetingBook;
+import seedu.address.model.note.Note;
+import seedu.address.model.note.ReadOnlyNoteBook;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.ReadOnlyAddressBook;
 import seedu.address.storage.Storage;
@@ -52,6 +54,7 @@ public class LogicManager implements Logic {
         try {
             storage.saveAddressBook(model.getAddressBook());
             storage.saveMeetingBook(model.getMeetingBook());
+            storage.saveNoteBook(model.getNoteBook());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -93,6 +96,24 @@ public class LogicManager implements Logic {
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
     }
+
+    //======================================Notebook methods ============================================
+    @Override
+    public ReadOnlyNoteBook getNoteBook() {
+        return model.getNoteBook();
+    }
+
+    @Override
+    public ObservableList<Note> getFilteredNoteList() {
+        return model.getFilteredNoteList();
+    }
+
+    @Override
+    public Path getNoteBookFilePath() {
+        return model.getNoteBookFilePath();
+    }
+
+
     //======================================Timetable UI methods ============================================
 
     @Override

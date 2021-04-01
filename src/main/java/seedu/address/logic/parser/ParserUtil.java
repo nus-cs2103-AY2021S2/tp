@@ -8,6 +8,7 @@ import seedu.address.model.meeting.DateTime;
 import seedu.address.model.meeting.Description;
 import seedu.address.model.meeting.MeetingName;
 import seedu.address.model.meeting.Priority;
+import seedu.address.model.note.Content;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.PersonName;
@@ -196,4 +197,18 @@ public class ParserUtil {
         }
         return indexSet;
     }
+
+    // =========================== ParserUtil for Note ==============================
+
+    /**
+     * Parses a {@code String content} into a {@code Content}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     */
+    public static Content parseNoteContent(String content) {
+        requireNonNull(content);
+        String trimmedContent = content.trim();
+        return new Content(trimmedContent);
+    }
+
 }

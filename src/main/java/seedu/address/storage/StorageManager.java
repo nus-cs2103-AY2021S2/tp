@@ -10,6 +10,7 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.meeting.ReadOnlyMeetingBook;
+import seedu.address.model.note.ReadOnlyNoteBook;
 import seedu.address.model.person.ReadOnlyAddressBook;
 
 /**
@@ -21,16 +22,19 @@ public class StorageManager implements Storage {
     private AddressBookStorage addressBookStorage;
     private UserPrefsStorage userPrefsStorage;
     private MeetingBookStorage meetingBookStorage;
+    private NoteBookStorage noteBookStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code AddressBookStorage},
+     * {@code meetingBookStorage}, {@code noteBookStorage} and {@code UserPrefStorage}
      */
     public StorageManager(AddressBookStorage addressBookStorage, MeetingBookStorage meetingBookStorage,
-                          UserPrefsStorage userPrefsStorage) {
+                          NoteBookStorage noteBookStorage, UserPrefsStorage userPrefsStorage) {
         super();
         this.addressBookStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
         this.meetingBookStorage = meetingBookStorage;
+        this.noteBookStorage = noteBookStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -107,6 +111,36 @@ public class StorageManager implements Storage {
     public void saveMeetingBook(ReadOnlyMeetingBook meetingBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         meetingBookStorage.saveMeetingBook(meetingBook, filePath);
+    }
+
+
+    // ================ NoteBook methods ==============================
+
+    @Override
+    public Path getNoteBookFilePath() {
+        return noteBookStorage.getNoteBookFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyNoteBook> readNoteBook() throws DataConversionException, IOException {
+        return readNoteBook(noteBookStorage.getNoteBookFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyNoteBook> readNoteBook(Path filePath) throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return noteBookStorage.readNoteBook(filePath);
+    }
+
+    @Override
+    public void saveNoteBook(ReadOnlyNoteBook noteBook) throws IOException {
+        saveNoteBook(noteBook, noteBookStorage.getNoteBookFilePath());
+    }
+
+    @Override
+    public void saveNoteBook(ReadOnlyNoteBook noteBook, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        noteBookStorage.saveNoteBook(noteBook, filePath);
     }
 
 }

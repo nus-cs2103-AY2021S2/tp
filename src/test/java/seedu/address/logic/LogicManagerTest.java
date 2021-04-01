@@ -29,6 +29,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.ReadOnlyAddressBook;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonMeetingBookStorage;
+import seedu.address.storage.JsonNoteBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
 import seedu.address.testutil.PersonBuilder;
@@ -49,7 +50,10 @@ public class LogicManagerTest {
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         JsonMeetingBookStorage meetingBookStorage = new JsonMeetingBookStorage(temporaryFolder.resolve(
                 "meetingBook.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, meetingBookStorage, userPrefsStorage);
+        JsonNoteBookStorage noteBookStorage = new JsonNoteBookStorage(temporaryFolder.resolve(
+                "noteBook.json"));
+        StorageManager storage = new StorageManager(addressBookStorage, meetingBookStorage,
+                noteBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -80,7 +84,10 @@ public class LogicManagerTest {
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         JsonMeetingBookStorage meetingBookStorage =
                 new JsonMeetingBookStorage(temporaryFolder.resolve("ioExceptionMeetingBook.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, meetingBookStorage, userPrefsStorage);
+        JsonNoteBookStorage noteBookStorage =
+                new JsonNoteBookStorage(temporaryFolder.resolve("ioExceptionNoteBook.json"));
+        StorageManager storage = new StorageManager(addressBookStorage, meetingBookStorage,
+                noteBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command

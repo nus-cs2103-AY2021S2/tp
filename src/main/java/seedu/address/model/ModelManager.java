@@ -26,6 +26,9 @@ import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingBook;
 import seedu.address.model.meeting.ReadOnlyMeetingBook;
 import seedu.address.model.meeting.UniqueMeetingList;
+import seedu.address.model.note.Note;
+import seedu.address.model.note.NoteBook;
+import seedu.address.model.note.ReadOnlyNoteBook;
 import seedu.address.model.person.AddressBook;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.ReadOnlyAddressBook;
@@ -56,6 +59,10 @@ public class ModelManager implements Model {
 
     private final ReminderBook reminderBook;
 
+    //===============  Note ===========================================================
+    private final NoteBook noteBook;
+    private final FilteredList<Note> filteredNotes;
+
     //===============  Timetable ===========================================================
     private final TimetablePrefs timetablePrefs;
 
@@ -81,6 +88,10 @@ public class ModelManager implements Model {
         this.reminderBook = new ReminderBook(this.meetingBook);
 
         //================== Timetable ==================================================================
+        this.noteBook = new NoteBook();
+        this.filteredNotes = new FilteredList<>(this.noteBook.getNoteList());
+
+        //================== Timetable ==================================================================
         //default initializes to current localdate
         timetablePrefs = new TimetablePrefs(LocalDate.now());
     }
@@ -89,7 +100,7 @@ public class ModelManager implements Model {
      * Initializes a ModelManager with the given addressBook, meetingBOok and userPrefs
      */
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyMeetingBook meetingBook,
-                        ReadOnlyUserPrefs userPrefs) {
+                        ReadOnlyNoteBook noteBook, ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(addressBook, userPrefs);
 
@@ -107,6 +118,10 @@ public class ModelManager implements Model {
         this.connection = new PersonMeetingConnection();
         this.reminderBook = new ReminderBook(this.meetingBook);
 
+        //================== Note ==================================================================
+        this.noteBook = new NoteBook(noteBook);
+        this.filteredNotes = new FilteredList<>(this.noteBook.getNoteList());
+
         //================== Timetable ==================================================================
         //default initializes to current localdate
         timetablePrefs = new TimetablePrefs(LocalDate.now());
@@ -116,7 +131,8 @@ public class ModelManager implements Model {
      * Initializes a ModelManager with the given addressBook, meetingBook, userPrefs and PersonMeetingConnection
      */
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyMeetingBook meetingBook,
-                        ReadOnlyUserPrefs userPrefs, PersonMeetingConnection connection) {
+                        ReadOnlyNoteBook noteBook, ReadOnlyUserPrefs userPrefs,
+                        PersonMeetingConnection connection) {
         super();
         requireAllNonNull(addressBook, userPrefs);
 
@@ -133,6 +149,11 @@ public class ModelManager implements Model {
         // TODO: Modify the signature of ModelManager so that we can add connection inside it.
         this.connection = connection;
         this.reminderBook = new ReminderBook(this.meetingBook);
+
+        //================== Note ==================================================================
+        this.noteBook = new NoteBook(noteBook);
+        this.filteredNotes = new FilteredList<>(this.noteBook.getNoteList());
+
         //================== Timetable ==================================================================
         //default initializes to current localdate
         timetablePrefs = new TimetablePrefs(LocalDate.now());
@@ -141,7 +162,7 @@ public class ModelManager implements Model {
 
 
     public ModelManager() {
-        this(new AddressBook(), new MeetingBook(), new UserPrefs());
+        this(new AddressBook(), new MeetingBook(), new NoteBook(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -425,6 +446,68 @@ public class ModelManager implements Model {
         sortedBeforeFilterMeetings.setComparator(comparator);
     }
 
+    // ======================= Note part of the note Model interface ============================ //
+
+    @Override
+    public void setNoteBook(ReadOnlyNoteBook noteBook) {
+        this.noteBook.resetData(noteBook);
+    }
+
+    @Override
+    public ReadOnlyNoteBook getNoteBook() {
+        return noteBook;
+    }
+
+    @Override
+    public boolean hasNote(Note note) {
+        requireNonNull(note);
+        return noteBook.hasNote(note);
+    }
+
+    @Override
+    public void deleteNote(Note target) {
+        noteBook.removeNote(target);
+    }
+
+    @Override
+    public void addNote(Note note) {
+        noteBook.addNote(note);
+        updateFilteredNoteList(PREDICATE_SHOW_ALL_NOTES);
+    }
+
+    @Override
+    public void setNote(Note target, Note editedNote) {
+        requireAllNonNull(target, editedNote);
+
+        noteBook.setNote(target, editedNote);
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Note} backed by the internal list of
+     * {@code versionedNoteBook}
+     */
+    @Override
+    public ObservableList<Note> getFilteredNoteList() {
+        return filteredNotes;
+    }
+
+    @Override
+    public void updateFilteredNoteList(Predicate<Note> predicate) {
+        requireNonNull(predicate);
+        filteredNotes.setPredicate(predicate);
+    }
+
+    @Override
+    public Path getNoteBookFilePath() {
+        return userPrefs.getNoteBookFilePath();
+    }
+
+    @Override
+    public void setNoteBookFilePath(Path noteBookFilePath) {
+        requireNonNull(noteBookFilePath);
+        userPrefs.setAddressBookFilePath(noteBookFilePath);
+    }
+
     //================= Get timetable prefs methods ================================================
 
     @Override
@@ -457,7 +540,8 @@ public class ModelManager implements Model {
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons)
                 && meetingBook.equals(other.meetingBook)
-                && filteredMeetings.equals(other.filteredMeetings);
+                && filteredMeetings.equals(other.filteredMeetings)
+                && noteBook.equals(other.noteBook);
     }
 
 }
