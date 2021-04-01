@@ -4,10 +4,12 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -51,10 +53,12 @@ public class ModelManager implements Model {
     private final FilteredList<Grade> filteredGrades;
     private final FilteredList<Schedule> filteredSchedules;
     private final FilteredList<Reminder> filteredReminders;
-    private FilteredList<Event> filteredEvents;
+    private final FilteredList<Event> filteredEvents;
+    private final ObservableMap<Integer, LocalDate> timeTableDateMap;
 
     /**
-     * Initializes a ModelManager with the given TutorBook, AppointmentBook, BudgetBook, GradeBook and userPrefs.
+     * Initializes a ModelManager with the given TutorBook, AppointmentBook, BudgetBook, GradeBook, ScheduleTracker,
+     * ReminderTracker and userPrefs.
      */
     public ModelManager(ReadOnlyTutorBook tutorBook,
                         ReadOnlyUserPrefs userPrefs,
@@ -83,6 +87,8 @@ public class ModelManager implements Model {
         this.filteredEvents = new FilteredList<>(this.eventTracker.getEventList());
         this.appointmentFilter = new AppointmentFilter();
         this.filteredReminders = new FilteredList<>(this.reminderTracker.getReminderList());
+        this.timeTableDateMap = FXCollections.observableHashMap();
+        timeTableDateMap.put(0, LocalDate.now());
     }
 
     /**
@@ -643,6 +649,21 @@ public class ModelManager implements Model {
         return filteredEvents;
     }
 
+    public void setTimeTableDate(LocalDate date) {
+        timeTableDateMap.put(0, date);
+    }
+
+    public LocalDate getTimeTableDate() {
+        System.out.println("aaa");
+
+        System.out.println(timeTableDateMap.get(0));
+        return timeTableDateMap.get(0);
+    }
+
+    //@@author Jens-Peter Haack-reused
+    //Reused from
+    //https://stackoverflow.com/questions/27644878/binding-an-observablelist-to-contents-of-two-other-observablelists
+    //with minor modifications
     /**
      * Resets the EventTracker to retrieve updated values
      */
