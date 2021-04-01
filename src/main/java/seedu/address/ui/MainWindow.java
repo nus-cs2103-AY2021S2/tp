@@ -16,6 +16,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Person;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -174,8 +175,9 @@ public class MainWindow extends UiPart<Stage> {
      * Displays notes to the user.
      */
     @FXML
-    public void handleNotes(String notes) {
-        notesWindow.setContentText(notes);
+    public void handleNotes(Person personWithNotes) {
+        notesWindow.setHeaderText(String.format("Notes for %s:", personWithNotes.getName()));
+        notesWindow.setContentText(personWithNotes.getNotesString());
         notesWindow.show();
         logger.info("Displaying notes window...");
     }
@@ -224,7 +226,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isShowNote()) {
-                handleNotes(commandResult.getNotes());
+                handleNotes(commandResult.getPersonWithNotes());
             }
 
             return commandResult;
