@@ -20,7 +20,16 @@ public class GenderContainsKeywordsPredicate implements Predicate<Person> {
     @Override
     public boolean test(Person person) {
 
-        return gender == null || StringUtil.containsWordIgnoreCase(person.getGender().value, gender);
+        if (gender.equalsIgnoreCase("M")) {
+            return gender == null || StringUtil.containsWordIgnoreCase(person.getGender().value, "Male")
+                    || StringUtil.containsWordIgnoreCase(person.getGender().value, gender);
+        } else if (gender.equalsIgnoreCase("N")) {
+            return gender == null || StringUtil.containsWordIgnoreCase(person.getGender().value, "Non-binary")
+                    || StringUtil.containsWordIgnoreCase(person.getGender().value, gender);
+        } else {
+            return gender == null || StringUtil.containsWordIgnoreCase(person.getGender().value, "Female")
+                    || StringUtil.containsWordIgnoreCase(person.getGender().value, gender);
+        }
     }
 
     @Override

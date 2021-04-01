@@ -19,6 +19,14 @@ public class AttributeContainsKeywordsPredicate implements Predicate<Person> {
         this.keywords = keywords;
     }
 
+    public String getKeywords() {
+        String keywordString = "";
+        for (String s : keywords) {
+            keywordString = keywordString + s + " ";
+        }
+        return keywordString;
+    }
+
     @Override
     public boolean test(Person person) {
 
