@@ -5,7 +5,6 @@ import static seedu.booking.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Venue's capacity in the booking system.
- * Guarantees: immutable; is valid as declared in {@link #isValidCapacity(Integer)}
  */
 public class Capacity {
 
@@ -24,7 +23,6 @@ public class Capacity {
         checkArgument(isValidCapacity(capacity), MESSAGE_CONSTRAINTS);
         venueCapacity = capacity;
     }
-
 
     /**
      * Returns true if a given Integer is a valid venue capacity.

@@ -15,6 +15,7 @@ import static seedu.booking.logic.commands.CommandTestUtil.VENUE_CAPACITY_DESC_H
 import static seedu.booking.logic.commands.CommandTestUtil.VENUE_NAME_DESC_FIELD;
 import static seedu.booking.logic.commands.CommandTestUtil.VENUE_NAME_DESC_VENUE1;
 import static seedu.booking.logic.commands.CommandTestUtil.VENUE_NAME_DESC_VENUE2;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_VENUE;
 import static seedu.booking.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.booking.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -35,13 +36,13 @@ public class EditVenueCommandParserTest {
 
     @Test
     public void parse_missingParts_failure() {
-        // no index specified
-        assertParseFailure(parser, VALID_VENUE_NAME_HALL, MESSAGE_INVALID_FORMAT);
+        // no venue name specified
+        assertParseFailure(parser, " " + PREFIX_VENUE + VALID_VENUE_NAME_VENUE1, MESSAGE_INVALID_FORMAT);
 
         // no field specified
         assertParseFailure(parser, ORIGINAL_VENUE_DESC_HALL, EditVenueCommand.MESSAGE_NOT_EDITED);
 
-        // no index and no field specified
+        // no venue name and no field specified
         assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
     }
 
