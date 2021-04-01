@@ -70,6 +70,7 @@ public class Date implements Comparable<Date> {
     };
     protected static final DateTimeFormatter[] VALID_FORMATS_WITHOUT_YEAR = new DateTimeFormatter[] {
             DateTimeFormatter.ofPattern("--MM-dd"),
+            DateTimeFormatter.ofPattern("d.M"),
             DateTimeFormatter.ofPattern("d/M"),
             DateTimeFormatter.ofPattern("d MMM"),
             DateTimeFormatter.ofPattern("d MMMM"),
