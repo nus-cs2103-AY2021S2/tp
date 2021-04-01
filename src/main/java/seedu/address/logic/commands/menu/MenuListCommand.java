@@ -20,7 +20,7 @@ public class MenuListCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredDishList(PREDICATE_SHOW_ALL_ITEMS);
+        model.updateFilteredDishList(model.getAvailableDishPredicate());
         return new CommandResult(MESSAGE_SUCCESS, CommandResult.CRtype.DISH);
     }
 }

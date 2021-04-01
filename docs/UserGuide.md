@@ -93,7 +93,7 @@ Format:
 menu find [KEYWORD] [MORE KEYWORDS]
 ```
 
-### `orders`
+### `order`
 
 #### `list` - List all orders
 Format: 
@@ -104,19 +104,19 @@ orders list
 #### `add` - Add an order
 Format: 
 ```
-orders add n/[CUSTOMER_NAME] dt/[DELIVERY_DATETIME] (DD-MM-YYYY HH:MM) d/[DISH_NAME] q/[QUANTITY]...  
+order add n/[CUSTOMER_NAME] dt/[DELIVERY_DATETIME] (DD-MM-YYYY HH:MM) d/[DISH_NAME] q/[QUANTITY]...  
 ```
 
 #### `delete` - Delete an order
 Format:
 ```
-orders delete [INDEX]
+order delete [INDEX]
 ```
 
 #### `find` - Find an order
 Format:
 ```
-orders find [KEYWORD] [MORE KEYWORDS]
+order find [KEYWORD] [MORE KEYWORDS]
 ```
 
 ### `inventory`

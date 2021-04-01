@@ -53,6 +53,16 @@ public class IngredientBook implements ReadOnlyIngredientBook {
         return ingredients.contains(ingredient);
     }
 
+    @Override
+    public boolean hasSufficientIngredients(Ingredient ingredient, int quantity) {
+        for (Ingredient i : ingredients ) {
+            if (i.isSame(ingredient)) {
+                return i.getQuantity() >= quantity;
+            }
+        }
+        return false;
+    }
+
     /**
      * Add new ingredient
      * @param o
