@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.util.StringUtil;
-import seedu.address.model.person.Person;
+import seedu.address.model.contact.Contact;
 
 /**
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
@@ -17,11 +17,11 @@ public class ApptContactsContainKeywordsPredicate extends ApptFieldContainsKeywo
 
     @Override
     public boolean test(Appointment appointment) {
-        Set<Person> persons = appointment.getContacts();
+        Set<Contact> contacts = appointment.getContacts();
 
-        for (Person person : persons) {
+        for (Contact contact : contacts) {
             boolean isFound = super.getKeywords().stream().anyMatch(keyword ->
-                    StringUtil.containsWordIgnoreCase(person.getName().fullName, keyword));
+                    StringUtil.containsWordIgnoreCase(contact.getName().fullName, keyword));
             if (isFound) {
                 return true;
             }

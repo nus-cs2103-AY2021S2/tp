@@ -10,16 +10,17 @@ import java.util.Comparator;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.contact.Contact;
+
 /**
- * Sorts the list of persons in the address book.
+ * Sorts the list of contacts in the address book.
  */
 public class SortCommand extends Command {
 
     public static final String COMMAND_WORD = "sort";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Sorts the list of persons in the address book.\n"
+            + ": Sorts the list of contacts in the address book.\n"
             + "Parameters: " + PREFIX_OPTION + "OPTION\n"
             + "Options: "
             + OPTION_NAME + " (for alphabetical order),\n"
@@ -43,26 +44,26 @@ public class SortCommand extends Command {
 
 
         if (option.equals(OPTION_NAME)) {
-            model.sortPersonList(new NameComparator());
+            model.sortContactList(new NameComparator());
             message = MESSAGE_SORT_ALPHABETICAL_SUCCESS;
         } else { // order.equals(OPTION_DATE)
-            model.sortPersonList(new DateComparator());
+            model.sortContactList(new DateComparator());
             message = MESSAGE_SORT_CHRONOLOGICAL_SUCCESS;
         }
 
         return new CommandResult(message);
     }
 
-    class NameComparator implements Comparator<Person> {
+    class NameComparator implements Comparator<Contact> {
         @Override
-        public int compare(Person p1, Person p2) {
+        public int compare(Contact p1, Contact p2) {
             return p1.compareTo(p2);
         }
     }
 
-    class DateComparator implements Comparator<Person> {
+    class DateComparator implements Comparator<Contact> {
         @Override
-        public int compare(Person p1, Person p2) {
+        public int compare(Contact p1, Contact p2) {
             Timestamp t1 = p1.getTimeAdded().getTimestamp();
             Timestamp t2 = p2.getTimeAdded().getTimestamp();
 

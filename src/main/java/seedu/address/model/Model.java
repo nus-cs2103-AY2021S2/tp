@@ -8,17 +8,17 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.person.Person;
+import seedu.address.model.contact.Contact;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Contact> PREDICATE_SHOW_ALL_CONTACTS = unused -> true;
 
-    /** {@code Predicate} that evaluates to true if a person is favourited */
-    Predicate<Person> PREDICATE_SHOW_FAVOURITES = person -> person.getFavourite().isFav();
+    /** {@code Predicate} that evaluates to true if a contact is favourited */
+    Predicate<Contact> PREDICATE_SHOW_FAVOURITES = contact -> contact.getFavourite().isFav();
 
     //=========== UserPrefs ==================================================================================
 
@@ -75,51 +75,52 @@ public interface Model {
     /** Returns the AddressBook */
     ReadOnlyAddressBook getAddressBook();
 
-    //=========== Person ================================================================================
+    //=========== Contact ================================================================================
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a contact with the same identity as {@code contact} exists in the address book.
      */
-    boolean hasPerson(Person person);
+    boolean hasContact(Contact contact);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Deletes the given contact.
+     * The contact must exist in the address book.
      */
-    void deletePerson(Person target);
+    void deleteContact(Contact target);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Adds the given contact.
+     * {@code contact} must not already exist in the address book.
      */
-    void addPerson(Person person);
+    void addContact(Contact contact);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
+     * Replaces the given contact {@code target} with {@code editedContact}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The contact identity of {@code editedContact} must not be the same as
+     * another existing contact in the address book.
      */
-    void setPerson(Person target, Person editedPerson);
+    void setContact(Contact target, Contact editedContact);
 
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered contact list */
+    ObservableList<Contact> getFilteredContactList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered contact list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void updateFilteredContactList(Predicate<Contact> predicate);
 
     /**
-     * Updates the person list to a sorted list sorted by the given {@code comaparator}.
+     * Updates the contact list to a sorted list sorted by the given {@code comaparator}.
      * @throws NullPointerException if {@code comparator} is null.
      */
-    void sortPersonList(Comparator<Person> comparator);
+    void sortContactList(Comparator<Contact> comparator);
 
     /**
-     * Sets the person list to the given {@code persons}.
+     * Sets the contact list to the given {@code contacts}.
      */
-    void setPersons(List<Person> persons);
+    void setContacts(List<Contact> contacts);
 
     //=========== AppointmentBook ================================================================================
 
@@ -163,7 +164,7 @@ public interface Model {
     /**
      * Replaces the given appointment {@code target} with {@code editedAppointment}.
      * {@code target} must exist in the appointment book.
-     * The person identity of {@code editedAppointment} must not be the same as another existing appointment
+     * The contact identity of {@code editedAppointment} must not be the same as another existing appointment
      * in the address book.
      */
     void setAppointment(Appointment target, Appointment editedAppointment);

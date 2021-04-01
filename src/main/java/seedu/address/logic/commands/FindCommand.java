@@ -13,16 +13,16 @@ import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.contact.Contact;
 
 /**
- * Finds and lists all persons in address book whose name contains any of the argument keywords.
+ * Finds and lists all contacts in address book whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
 public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose fields contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all contacts whose fields contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Options can be specified using" + PREFIX_OPTION + "<OPTION>" + " can be used to \n"
             + "Parameters: [" + PREFIX_OPTION + "<OPTION>]"
@@ -38,21 +38,21 @@ public class FindCommand extends Command {
             + COMMAND_WORD + " " + PREFIX_OPTION + OPTION_TAG + " " + PREFIX_TAG + "math "
             + PREFIX_TAG + "science " + PREFIX_TAG + "primary";
 
-    private final Predicate<Person> predicate;
+    private final Predicate<Contact> predicate;
 
     /**
-     * @param predicate Predicate to find the {@code Person} by name.
+     * @param predicate Predicate to find the {@code Contact} by name.
      */
-    public FindCommand(Predicate<Person> predicate) {
+    public FindCommand(Predicate<Contact> predicate) {
         this.predicate = predicate;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(predicate);
+        model.updateFilteredContactList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+                String.format(Messages.MESSAGE_CONTACTS_LISTED_OVERVIEW, model.getFilteredContactList().size()));
     }
 
     @Override
