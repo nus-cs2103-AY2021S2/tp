@@ -29,6 +29,8 @@ public class MenuCard extends UiPart<Region> {
     @FXML
     private Label name;
     @FXML
+    private Label ingredients;
+    @FXML
     private Label price;
 
     /**
@@ -39,7 +41,8 @@ public class MenuCard extends UiPart<Region> {
         this.dish = dish;
         id.setText(displayedIndex + ". ");
         name.setText(dish.getName());
-        price.setText(String.valueOf(dish.getPrice()));
+        ingredients.setText(dish.getIngredientsString());
+        price.setText("SGD " + String.format("%.2f", dish.getPrice()));
     }
 
     @Override

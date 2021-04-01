@@ -66,6 +66,17 @@ public class Dish implements Item, Aggregator<Ingredient> {
         return ingredientQuantityList;
     }
 
+    public String getIngredientsString() {
+        StringBuilder ingredientsBuilder = new StringBuilder();
+
+        for (Pair<Ingredient, Integer> ingredientPair: ingredientQuantityList) {
+            String ingredientStr = ingredientPair.getValue() + " x " + ingredientPair.getKey().getName() + "\n";
+            ingredientsBuilder.append(ingredientStr);
+        }
+
+        return ingredientsBuilder.toString();
+    }
+
     @Override
     public boolean isSame(Item other) {
         if (other == this) {
