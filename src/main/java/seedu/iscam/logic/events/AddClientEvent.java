@@ -3,7 +3,6 @@ package seedu.iscam.logic.events;
 import seedu.iscam.logic.commands.AddCommand;
 import seedu.iscam.logic.commands.DeleteCommand;
 import seedu.iscam.logic.commands.UndoableCommand;
-import seedu.iscam.logic.events.Event;
 import seedu.iscam.model.client.Client;
 
 /**

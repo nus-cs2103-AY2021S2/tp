@@ -59,15 +59,6 @@ public class EditCommand extends UndoableCommand {
     private final Index index;
     private final EditClientDescriptor editClientDescriptor;
 
-    public Index getIndex() {
-        return index;
-    }
-
-    @Override
-    public String getCommandWord() {
-        return COMMAND_WORD;
-    }
-
     /**
      * @param index                of the client in the filtered client list to edit
      * @param editClientDescriptor details to edit the client with
@@ -78,6 +69,15 @@ public class EditCommand extends UndoableCommand {
 
         this.index = index;
         this.editClientDescriptor = new EditClientDescriptor(editClientDescriptor);
+    }
+
+    public Index getIndex() {
+        return index;
+    }
+
+    @Override
+    public String getCommandWord() {
+        return COMMAND_WORD;
     }
 
     /**

@@ -7,7 +7,6 @@ import java.util.List;
 import seedu.iscam.commons.core.Messages;
 import seedu.iscam.commons.core.index.Index;
 import seedu.iscam.logic.commands.exceptions.CommandException;
-import seedu.iscam.logic.events.DeleteClientEvent;
 import seedu.iscam.model.Model;
 import seedu.iscam.model.client.Client;
 
@@ -28,11 +27,19 @@ public class DeleteCommand extends UndoableCommand {
     private final Client clientToDelete;
     private final Index targetIndex;
 
+    /**
+     * Creates a DeleteCommand to delete the client at the specified {@code Index}
+     * @param targetIndex index of client to be deleted
+     */
     public DeleteCommand(Index targetIndex) {
         clientToDelete = null;
         this.targetIndex = targetIndex;
     }
 
+    /**
+     * Creates a DeleteCommand to delete the specified {@code Client}
+     * @param client client to be deleted
+     */
     public DeleteCommand(Client client) {
         clientToDelete = client;
         targetIndex = null;

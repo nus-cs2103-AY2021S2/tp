@@ -48,6 +48,7 @@ public class AddCommand extends UndoableCommand {
 
     /**
      * Creates an AddCommand to add the specified {@code Client}
+     * @param client client to be added
      */
     public AddCommand(Client client) {
         requireNonNull(client);
@@ -55,6 +56,11 @@ public class AddCommand extends UndoableCommand {
         index = null;
     }
 
+    /**
+     * Creates an AddCommand to add the specified {@code Client} at the specified {@code Index}
+     * @param index index to add client into
+     * @param client client to be added
+     */
     public AddCommand(Index index, Client client) {
         requireNonNull(client);
         toAdd = client;

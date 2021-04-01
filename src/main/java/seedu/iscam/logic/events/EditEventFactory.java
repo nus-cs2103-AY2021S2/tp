@@ -3,7 +3,6 @@ package seedu.iscam.logic.events;
 import seedu.iscam.commons.core.index.Index;
 import seedu.iscam.logic.commands.EditCommand;
 import seedu.iscam.logic.commands.EditCommand.EditClientDescriptor;
-import seedu.iscam.logic.events.Event;
 import seedu.iscam.logic.events.exceptions.EventException;
 import seedu.iscam.model.Model;
 

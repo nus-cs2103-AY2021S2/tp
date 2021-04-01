@@ -5,7 +5,6 @@ import java.util.List;
 import seedu.iscam.commons.core.index.Index;
 import seedu.iscam.logic.commands.EditCommand;
 import seedu.iscam.logic.commands.UndoableCommand;
-import seedu.iscam.logic.events.Event;
 import seedu.iscam.model.Model;
 import seedu.iscam.model.client.Client;
 
@@ -17,6 +16,13 @@ public class EditClientEvent implements Event {
     private final EditCommand.EditClientDescriptor editInfo;
     private final EditCommand.EditClientDescriptor reversedEditInfo;
 
+    /**
+     * Creates an EditClientEvent wrapper that wraps around an EditCommand editing the client
+     * at the specified {@code Index}
+     * @param index index of client to be edited
+     * @param editInfo information that client should have after being edited
+     * @param model model of app that client is to be deleted from
+     */
     public EditClientEvent(Index index, EditCommand.EditClientDescriptor editInfo, Model model) {
         this.index = index;
         this.editInfo = editInfo;
