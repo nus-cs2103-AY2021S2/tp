@@ -26,7 +26,7 @@ CakeCollate is a **desktop app for managing cake orders, optimized for use via a
 
    * **`list`** : Lists all orders in the CakeCollate database.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/13-05-2021 o/ strawberry cake 3` : Adds an order with a contact named `John Doe` to CakeCollate.
+   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/13-05-2021 o/2 x Strawberry Cake` : Adds a `2 x Strawberry Cake` order to CakeCollate.
 
    * **`delete`**`3` : Deletes the 3rd order shown in the current list.
    
@@ -37,6 +37,10 @@ CakeCollate is a **desktop app for managing cake orders, optimized for use via a
    * **`exit`** : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
+
+<div markdown="span" class="alert alert-info">
+**:information_source: You can remove all the sample data using the clear command once you are ready to use CakeCollate.**<br>
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -60,9 +64,11 @@ CakeCollate is a **desktop app for managing cake orders, optimized for use via a
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* `d/DELIVERY_DATE` should specify a date at least 3 days after the date the command is executed.
+* `d/DELIVERY_DATE` should specify a `DELIVERY_DATE` that is valid and is a future date.
+  i.e. `DELIVERY_DATE` can be the date today or a date after today.
 
 * `INDEXES` refer to the list number of orders on the left of the GUI while `ORDER_ITEM_INDEXES` refers to the list number of order items on the right of the GUI <!-- [comment]: <> (can add a link to the gui screenshot and annotate which index refers to what) -->
+
 * Items that are `INDEXES` or `ORDER_ITEM_INDEXES` take in whole number parameters separated by spaces. 
   For example, for a command that takes in `oi/ORDER_ITEM_INDEXES`, you can input `oi/1` or `oi/1 4 5`.
 
