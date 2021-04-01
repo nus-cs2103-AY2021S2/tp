@@ -625,8 +625,8 @@ Action | Format, Examples
 **Sort contacts by most-frequent** | `mostfreqcontact`
 **Clear contacts list** | `clearcontact`
 ***UI Features*** | -
-**Open** | `open Option` <br> e.g., `open -c`
-**Close** | `close Option` <br> e.g., `close -c`
+**Open UI panel** | `open Option` <br> e.g., `open -c`
+**Close UI panel** | `close Option` <br> e.g., `close -c`
 **Set contact divider position** | `setdividerc POSITION`
 **Set dictionary divider position** | `setdividerd POSITION`
 **Set note divider position** | `setdividern POSITION`
