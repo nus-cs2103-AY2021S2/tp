@@ -1,5 +1,6 @@
 package seedu.address.ui.timetablepanel;
 
+import java.time.LocalDate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -27,25 +28,25 @@ public class TimeTableWindow extends UiPart<Stage> {
      *
      * @param root Stage to use as the root of the TimeTableWindow.
      */
-    public TimeTableWindow(Stage root) {
+    public TimeTableWindow(Stage root, ObservableList<Event> events) {
         super(FXML, root);
-        timeTablePanel = new TimeTablePanel();
+        timeTablePanel = new TimeTablePanel(events);
         timetablePanelPlaceholder.getChildren().add(timeTablePanel.getRoot());
     }
 
     /**
      * Creates a new TimeTableWindow.
      */
-    public TimeTableWindow() {
-        this(new Stage());
+    public TimeTableWindow(ObservableList<Event> events) {
+        this(new Stage(), events);
     }
 
     /**
      * Shows the timetable window.
      */
-    public void show(ObservableList<Event> events) {
+    public void show(LocalDate queryDate) {
         logger.fine("Showing timetable to user.");
-        timeTablePanel.reconstruct(events);
+        timeTablePanel.reconstruct(queryDate);
         getRoot().show();
         getRoot().centerOnScreen();
     }
