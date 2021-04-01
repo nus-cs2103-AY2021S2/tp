@@ -1,16 +1,16 @@
 package seedu.address.logic.conditions;
 
-import org.junit.jupiter.api.Test;
-
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.task.Task;
-import seedu.address.testutil.TaskBuilder;
-
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DURATION_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RECURRINGSCHEDULE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.task.Task;
+import seedu.address.testutil.TaskBuilder;
 
 public class ConditionManagerTest {
 
