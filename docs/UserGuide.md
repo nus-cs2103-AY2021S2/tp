@@ -69,7 +69,7 @@ The quick start section provides a tutorial which will guide you through the ste
 1. Download the latest `clientbook.jar` [here](https://github.com/AY2021S2-CS2103T-W15-2/tp/releases/tag/v1.2).
 1. Copy the file to the folder (we will be referring to this folder as the _home folder_) where you want to store the ClientBook application and your client information.
 
-1. Double-click the downloaded `clientbook.jar` file in your home folder to start the app. The GUI similar to the below should appear in a few seconds. 
+1. Double-click the downloaded `clientbook.jar` file in your home folder to start the app. The screen below should appear in a few seconds. 
    * Alternatively, for those who are tech-savvy, you can launch the application via Command Prompt in Windows or Terminal in Mac OS/Linux using the following command: `java -jar clientbook.jar`. 
    * Note how the app contains some sample data.
     
@@ -102,9 +102,10 @@ Described below are some commands that you can try to get yourself familiarised 
 If you have followed the [Quick Start](#quick-start) guide correctly, you should see the screen below. 
 For each of the commands, type them into the command box and press enter to execute the command.
 
-
-
-
+<div align="center">
+    <img src="images/Ui.png">
+    <p>Graphical user interface of ClientBook.</p>
+</div>
 
 1. Try adding a new Client contact using the command `add n/James Lee p/91234567 e/james@gmail.com a/Blk 123 Serangoon Rd t/Friend t/Colleague i/OCBC#412>www.ocbc.com/policy/412`.
 
