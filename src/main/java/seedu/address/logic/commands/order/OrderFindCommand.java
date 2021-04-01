@@ -16,11 +16,12 @@ import seedu.address.model.order.Order;
 public class OrderFindCommand extends Command {
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Finds all orders whose customer's names contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " n/alex bob";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds orders. "
+            + "At least one prefix must be used. \n"
+            + "n/ - Look for customer names that contain any of the keywords (case-insensitive) \n"
+            + "d/ - Look for dish names that contain keyword (case-insensitive) \n"
+            + "Parameters: n/[KEYWORD] (MORE_KEYWORDS)... d/[KEYWORD]\n"
+            + "Example: " + COMMAND_WORD + " n/alex sally d/burger";
 
     private final Predicate<Order> predicate;
 
