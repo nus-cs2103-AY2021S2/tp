@@ -60,6 +60,10 @@ public class FilterCommandParser implements Parser<FilterCommand> {
             } else if (input.isInvalid()) {
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
+            } else if (input.value().equals("")) {
+                throw new ParseException(
+                        String.format(MESSAGE_EMPTY_ARGUMENT, FilterCommand.MESSAGE_USAGE));
+
             }
         }
         return true;

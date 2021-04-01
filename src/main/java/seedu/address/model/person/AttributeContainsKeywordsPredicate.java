@@ -16,14 +16,8 @@ public class AttributeContainsKeywordsPredicate implements Predicate<Person> {
 
     private final List<String> keywords;
 
-    public AttributeContainsKeywordsPredicate(List<String> keywords) throws ParseException {
+    public AttributeContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
-        boolean isInvalid = keywords.stream().anyMatch(keyword ->
-                new FilterKeywordChecker(keyword).isInvalid());
-        if (isInvalid) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
-        }
     }
 
 
@@ -36,14 +30,11 @@ public class AttributeContainsKeywordsPredicate implements Predicate<Person> {
             if (input.isTag()) {
                 return new TagsContainsKeywordsPredicate(input.value()).test(person);
             } else if (input.isAddress()) {
-                return new AddressContainsKeywordsPredicate(input.value()
-                        .replace("_", " ")).test(person);
+                return new AddressContainsKeywordsPredicate(input.value()).test(person);
             } else if (input.isGender()) {
-                return new GenderContainsKeywordsPredicate(input.value()
-                        .replace("_", " ")).test(person);
+                return new GenderContainsKeywordsPredicate(input.value()).test(person);
             } else if (input.isPlan()) {
-                return new PlansContainsKeywordsPredicate(input.value()
-                        .replace("_", " ")).test(person);
+                return new PlansContainsKeywordsPredicate(input.value()).test(person);
             } else if (input.isAge()) {
                 return new AgeIsInRangePredicate(input.value()).test(person);
             } else {

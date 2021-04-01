@@ -56,7 +56,7 @@ public class StringUtil {
         String preppedWord = word.trim();
         checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
         checkArgument(preppedWord.split("\\s+").length == 1, "Word parameter should be a single word");
-        return tagSet.stream().anyMatch(tag -> tag.tagName.equals(preppedWord));
+        return tagSet.stream().anyMatch(tag -> tag.tagName.equalsIgnoreCase(preppedWord));
     }
 
     /**
@@ -72,7 +72,7 @@ public class StringUtil {
         String preppedWord = word.trim();
         checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
         checkArgument(preppedWord.split("\\s+").length == 1, "Word parameter should be a single word");
-        return plans.stream().anyMatch(plan -> plan.name.equals(preppedWord));
+        return plans.stream().anyMatch(plan -> plan.name.equalsIgnoreCase(preppedWord));
     }
 
     /**

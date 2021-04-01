@@ -13,6 +13,8 @@ public class Messages {
             "Invalid age input! Please refer to Tip 2! \n%1$s";
     public static final String MESSAGE_BAD_AGE_RANGE_NOTATION =
             "Invalid age range notation (You used more than one '-'! Please refer to Tip 2! \n%1$s";
+    public static final String MESSAGE_EMPTY_ARGUMENT =
+            "Missing keyword! Please refer to the instructions below \n%1$s";
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
 
