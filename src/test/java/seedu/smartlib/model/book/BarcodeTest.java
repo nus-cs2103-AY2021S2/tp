@@ -16,7 +16,6 @@ public class BarcodeTest {
 
     @Test
     public void isValidBarcode() {
-
         // invalid barcode numbers
         assertFalse(Barcode.isValidBarcode(1000000000 - 1)); // less than Barcode.MIN_VALUE
         assertFalse(Barcode.isValidBarcode(123)); // less than Barcode.MIN_VALUE
@@ -30,4 +29,5 @@ public class BarcodeTest {
         assertTrue(Barcode.isValidBarcode(2000000000)); // exactly Barcode.MAX_VALUE
         assertTrue(Barcode.isValidBarcode(1999999999)); // Barcode.MAX_VALUE - 1
     }
+
 }

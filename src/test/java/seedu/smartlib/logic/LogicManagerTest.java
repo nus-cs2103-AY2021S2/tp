@@ -33,6 +33,7 @@ import seedu.smartlib.storage.StorageManager;
 import seedu.smartlib.testutil.ReaderBuilder;
 
 public class LogicManagerTest {
+
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
 
     @TempDir
@@ -159,4 +160,5 @@ public class LogicManagerTest {
             throw DUMMY_IO_EXCEPTION;
         }
     }
+
 }

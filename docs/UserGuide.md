@@ -178,7 +178,7 @@ Outcome:
 * The _Result Display_ will show a message indicating success.
 * SmartLib will list out all the readers with "Bob" in their name.<br><br>
     ![result for 'findreader Bob'](images/findBobResult.png)
-  
+
 ##### By tag:
 
 You can also use this command to find readers whose tags contain any of the specified tags.
@@ -384,12 +384,12 @@ the data of your previous SmartLib home folder.
 * **Alphanumeric**: Alphanumeric characters include uppercase letters from 'A' to 'Z',
     lowercase letters from 'a' to 'z', and
     numbers from '0` to '9'.
-    
+
 * **Command Box**: The _Command Box_ is the component of the GUI where you will be entering your user input.
 
 * **Result Display**: The _Result Display_ is the component of the GUI where you will be notified whether your command
     was successfully executed by SmartLib.
-    
+
 * **Special characters**: Special characters refer to any characters that are not alphanumeric.
 
 ![annotated Ui](images/Ui-annotated.png)

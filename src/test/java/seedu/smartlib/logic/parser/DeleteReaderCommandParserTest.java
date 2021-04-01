@@ -30,4 +30,5 @@ public class DeleteReaderCommandParserTest {
         assertParseFailure(parser, "a",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteReaderCommand.MESSAGE_USAGE));
     }
+
 }
