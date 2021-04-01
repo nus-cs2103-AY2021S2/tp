@@ -177,7 +177,7 @@ public class MainWindow extends UiPart<Stage> {
         if (theme.equals("dark")) {
             scene.getStylesheets().add("view/DarkTheme.css");
         } else {
-            scene.getStylesheets().add("view/ParentPalTheme.css");
+            scene.getStylesheets().add("view/LightTheme.css");
         }
     }
 
