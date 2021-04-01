@@ -76,23 +76,11 @@ Please use the table of contents to navigate through the user guide quickly. Cli
 * [**8.** Contact Us](#contact-us)
 
 
-## Why ClientBook?
-
-ClientBook is designed for insurance agents who are always on the go. We understand the pain and inconvenience of having to navigate around 
-your screen without a mouse while you are out meeting a client. We are also aware that you might have to remember various details about your many clients.
-<br>
-
-Thus, ClientBook is born!<br>
-
-Requiring **minimal interactions with your cursor**, ClientBook still allows you to complete essential contact management 
-tasks with our minimal yet essential set of contact management features.<br>
-
-If you are a new user, you can start with the [Quick Start](#quick-start) section. 
-If you are an experienced user, we have provided a convenient [Summary of Commands](#summary-of-commands) at the end of this user guide.
-
-
 ## Quick Start
+
 The quick start section provides a tutorial which will guide you through the steps needed to get ClientBook running.
+
+<br>
 
 1. Ensure you have Java `11` or above installed in your Computer.
    * To check if you have this installed or for instructions on how to install, refer to our FAQ [here](#frequently-asked-questions).
@@ -138,7 +126,9 @@ For each of the commands, type them into the command box and press enter to exec
 <p align="center"><img src="images/Ui.png"></p>
 <p align="center">Graphical user interface of ClientBook.</p>
 
-1. **Try adding a new Client contact using the command** `add n/James Lee p/91234567 e/james@gmail.com a/Blk 123 Serangoon Rd t/Friend t/Colleague i/OCBC#412>www.ocbc.com/policy/412`.
+<p><b>Step 1.</b></p> 
+
+**Try adding a new Client contact using the command** `add n/James Lee p/91234567 e/james@gmail.com a/Blk 123 Serangoon Rd t/Friend t/Colleague i/OCBC#412>www.ocbc.com/policy/412`.
 
 
 That is a very long command, but it can be broken down into simple parts. We have just added a client called James Lee with the following details:
@@ -147,7 +137,7 @@ That is a very long command, but it can be broken down into simple parts. We hav
 * Address:Blk 123 Serangoon Rd
 
 We have also indicated that James is a friend as well as colleague of ours by adding the tags `Friend` and `Colleague`. Lastly,
-we indicated that James has purchased a policy from us with a policy ID of OCBC#412 and it can be found at `www.ocbc.com/policy/412`.
+we indicated that James has purchased a policy from us with a policy ID of OCBC#412 and that the policy's document can be found at `www.ocbc.com/policy/412`.
 
 
 Now, if you scroll down the contact list, you should find James at the bottom of the list.
@@ -155,7 +145,9 @@ Now, if you scroll down the contact list, you should find James at the bottom of
 <p align="center"><img src="images/newContactJames.png"></p>
 
 
-2. **Try editing a Client contact using `edit 1 p/61234567`.**
+<p><b>Step 2.</b></p>
+
+**Try editing a Client contact using the command `edit 1 p/61234567`.**
 
 
 This command edits the phone number of the first client displayed in the contact list to 61234567. In this case, Alex Yeoh's
@@ -164,7 +156,9 @@ phone number in ClientBook has been changed to 61234567.
 <p align="center"><img src="images/alexYeohChangePhone.png"></p>
 
 
-3. **Delete a Client contact using `delete 3`.**
+<p><b>Step 3.</b></p>
+
+**Delete a Client contact using the command `delete 3`.**
 
 
 This command deletes the contact of the third client displayed in the contact list.
