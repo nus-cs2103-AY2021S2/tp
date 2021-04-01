@@ -19,6 +19,8 @@ public class JsonSerializableRemindMeTest {
     private static final Path TYPICAL_PERSONS_FILE = TEST_DATA_FOLDER.resolve("typicalPersonsRemindMe.json");
     private static final Path INVALID_PERSON_FILE = TEST_DATA_FOLDER.resolve("invalidPersonRemindMe.json");
     private static final Path DUPLICATE_PERSON_FILE = TEST_DATA_FOLDER.resolve("duplicatePersonRemindMe.json");
+    private static final Path DUPLICATE_MODULE_FILE = TEST_DATA_FOLDER.resolve("duplicateModuleRemindMe.json");
+    private static final Path DUPLICATE_EVENT_FILE = TEST_DATA_FOLDER.resolve("duplicateEventRemindMe.json");
 
     @Test
     public void toModelType_typicalPersonsFile_success() throws Exception {
@@ -42,6 +44,22 @@ public class JsonSerializableRemindMeTest {
                 JsonSerializableRemindMe.class).get();
         assertThrows(IllegalValueException.class, JsonSerializableRemindMe.MESSAGE_DUPLICATE_PERSON,
                 dataFromFile::toModelType);
+    }
+
+    @Test
+    public void toModelType_duplicateModules_throwsIllegalValueException() throws Exception {
+        JsonSerializableRemindMe dataFromFile = JsonUtil.readJsonFile(DUPLICATE_MODULE_FILE,
+            JsonSerializableRemindMe.class).get();
+        assertThrows(IllegalValueException.class, JsonSerializableRemindMe.MESSAGE_DUPLICATE_MODULE,
+            dataFromFile::toModelType);
+    }
+
+    @Test
+    public void toModelType_duplicateEvents_throwsIllegalValueException() throws Exception {
+        JsonSerializableRemindMe dataFromFile = JsonUtil.readJsonFile(DUPLICATE_EVENT_FILE,
+            JsonSerializableRemindMe.class).get();
+        assertThrows(IllegalValueException.class, JsonSerializableRemindMe.MESSAGE_DUPLICATE_EVENT,
+            dataFromFile::toModelType);
     }
 
 }
