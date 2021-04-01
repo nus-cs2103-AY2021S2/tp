@@ -12,10 +12,10 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
-import seedu.address.model.person.Person;
+import seedu.address.model.contact.Contact;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a contact identified using it's displayed index from the address book.
  */
 public class DeleteCommand extends Command {
 
@@ -26,8 +26,8 @@ public class DeleteCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Contacts(s): %1$s";
-    public static final String MESSAGE_DELETE_PERSON_APPOINTMENT_FAILURE =
+    public static final String MESSAGE_DELETE_CONTACT_SUCCESS = "Deleted Contacts(s): %1$s";
+    public static final String MESSAGE_DELETE_CONTACT_APPOINTMENT_FAILURE =
             "Failed to delete the following Contact(s) as they are involved in appointments: %1$s";
 
     private final List<Index> targetIndexList;
@@ -44,41 +44,41 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Contact> lastShownList = model.getFilteredContactList();
         final StringBuilder outputString = new StringBuilder();
 
-        List<Person> personToDeleteList = new ArrayList<>();
-        List<Person> personCannotBeDeletedList = new ArrayList<>();
+        List<Contact> contactToDeleteList = new ArrayList<>();
+        List<Contact> contactCannotBeDeletedList = new ArrayList<>();
         ObservableList<Appointment> appointmentList = model.getFilteredAppointmentList();
 
         for (Index targetIndex : targetIndexList) {
             if (targetIndex.getZeroBased() >= lastShownList.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+                throw new CommandException(Messages.MESSAGE_INVALID_CONTACT_DISPLAYED_INDEX);
             }
-            Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
+            Contact contactToDelete = lastShownList.get(targetIndex.getZeroBased());
 
-            if (checkPersonInvolvedInAppointment(personToDelete, appointmentList)) {
-                personCannotBeDeletedList.add(personToDelete);
+            if (checkContactInvolvedInAppointment(contactToDelete, appointmentList)) {
+                contactCannotBeDeletedList.add(contactToDelete);
             } else {
-                personToDeleteList.add(personToDelete);
+                contactToDeleteList.add(contactToDelete);
             }
         }
 
-        for (Person personToDelete : personToDeleteList) {
-            model.deletePerson(personToDelete);
+        for (Contact contactToDelete : contactToDeleteList) {
+            model.deleteContact(contactToDelete);
         }
 
-        if (!personToDeleteList.isEmpty()) {
-            outputString.append(String.format(MESSAGE_DELETE_PERSON_SUCCESS,
-                    personListToStringBuilder(personToDeleteList)));
+        if (!contactToDeleteList.isEmpty()) {
+            outputString.append(String.format(MESSAGE_DELETE_CONTACT_SUCCESS,
+                    contactListToStringBuilder(contactToDeleteList)));
         }
 
-        if (!personCannotBeDeletedList.isEmpty()) {
+        if (!contactCannotBeDeletedList.isEmpty()) {
             if (outputString.length() > 0) {
                 outputString.append("\n");
             }
-            outputString.append(String.format(MESSAGE_DELETE_PERSON_APPOINTMENT_FAILURE,
-                    personListToStringBuilder(personCannotBeDeletedList)));
+            outputString.append(String.format(MESSAGE_DELETE_CONTACT_APPOINTMENT_FAILURE,
+                    contactListToStringBuilder(contactCannotBeDeletedList)));
             throw new CommandException(outputString.toString());
         }
 
@@ -86,16 +86,16 @@ public class DeleteCommand extends Command {
     }
 
     /**
-     * Checks if the specified person is involved in an existing appointment
-     * @param person person to be checked
-     * @return boolean value of whether or not person is involved in an appointment
+     * Checks if the specified contact is involved in an existing appointment
+     * @param contact contact to be checked
+     * @return boolean value of whether or not contact is involved in an appointment
      */
-    private boolean checkPersonInvolvedInAppointment(Person person, ObservableList<Appointment> appointmentList) {
+    private boolean checkContactInvolvedInAppointment(Contact contact, ObservableList<Appointment> appointmentList) {
         boolean isInvolved = false;
 
         for (Appointment appointment : appointmentList) {
-            Set<Person> personSet = appointment.getContacts();
-            if (personSet.contains(person)) {
+            Set<Contact> contactSet = appointment.getContacts();
+            if (contactSet.contains(contact)) {
                 isInvolved = true;
                 break;
             }
@@ -105,17 +105,17 @@ public class DeleteCommand extends Command {
     }
 
     /**
-     * Appends Persons in a person list to a StringBuilder
-     * @param personList list of persons to append
-     * @return StringBuilder of all the appended persons in the list
+     * Appends Contacts in a contact list to a StringBuilder
+     * @param contactList list of contacts to append
+     * @return StringBuilder of all the appended contacts in the list
      */
-    private StringBuilder personListToStringBuilder(List<Person> personList) {
+    private StringBuilder contactListToStringBuilder(List<Contact> contactList) {
         StringBuilder resultStringBuilder = new StringBuilder();
-        for (Person person : personList) {
+        for (Contact contact : contactList) {
             if (targetIndexList.size() > 1) {
                 resultStringBuilder.append("\n");
             }
-            resultStringBuilder.append(person);
+            resultStringBuilder.append(contact);
         }
         return resultStringBuilder;
     }

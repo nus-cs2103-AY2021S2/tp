@@ -2,13 +2,13 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OPTION;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CONTACTS;
 import static seedu.address.model.Model.PREDICATE_SHOW_FAVOURITES;
 
 import seedu.address.model.Model;
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all contacts in the address book to the user.
  */
 public class ListCommand extends Command {
 
@@ -36,10 +36,10 @@ public class ListCommand extends Command {
         requireNonNull(model);
 
         if (option == null) {
-            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+            model.updateFilteredContactList(PREDICATE_SHOW_ALL_CONTACTS);
             return new CommandResult(MESSAGE_SUCCESS);
         } else if (option.equals(OPTION_FAV)) {
-            model.updateFilteredPersonList(PREDICATE_SHOW_FAVOURITES);
+            model.updateFilteredContactList(PREDICATE_SHOW_FAVOURITES);
             return new CommandResult(MESSAGE_LIST_FAV_SUCCESS);
         } else {
             return new CommandResult(MESSAGE_USAGE);

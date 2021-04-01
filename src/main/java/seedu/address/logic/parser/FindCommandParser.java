@@ -17,12 +17,12 @@ import java.util.Set;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.AddressContainsKeywordsPredicate;
-import seedu.address.model.person.AnyContainsKeywordsPredicate;
-import seedu.address.model.person.EmailContainsKeywordsPredicate;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.PhoneContainsKeywordsPredicate;
-import seedu.address.model.person.TagsMatchKeywordPredicate;
+import seedu.address.model.contact.AddressContainsKeywordsPredicate;
+import seedu.address.model.contact.AnyContainsKeywordsPredicate;
+import seedu.address.model.contact.EmailContainsKeywordsPredicate;
+import seedu.address.model.contact.NameContainsKeywordsPredicate;
+import seedu.address.model.contact.PhoneContainsKeywordsPredicate;
+import seedu.address.model.contact.TagsMatchKeywordPredicate;
 import seedu.address.model.tag.Tag;
 
 /**

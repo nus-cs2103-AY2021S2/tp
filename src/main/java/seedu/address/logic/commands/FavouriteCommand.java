@@ -10,11 +10,11 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Favourite;
-import seedu.address.model.person.Person;
+import seedu.address.model.contact.Contact;
+import seedu.address.model.contact.Favourite;
 
 /**
- * Favourites a person identified using it's displayed index from the address book.
+ * Favourites a contact identified using it's displayed index from the address book.
  */
 public class FavouriteCommand extends Command {
 
@@ -28,14 +28,14 @@ public class FavouriteCommand extends Command {
             + "Example: " + COMMAND_WORD + " 2\n"
             + "Example: " + COMMAND_WORD + " 4 o/" + OPTION_REMOVE;
     public static final String MESSAGE_FAV_IN_PROGRESS = "Favourite command is still being implemented.";
-    public static final String MESSAGE_FAVOURITE_PERSON_SUCCESS = "Favourited Contact: %1$s";
-    public static final String MESSAGE_UNFAVOURITE_PERSON_SUCCESS = "Unfavourited Contact: %1$s";
+    public static final String MESSAGE_FAVOURITE_CONTACT_SUCCESS = "Favourited Contact: %1$s";
+    public static final String MESSAGE_UNFAVOURITE_CONTACT_SUCCESS = "Unfavourited Contact: %1$s";
 
     private final Index index;
     private final boolean isFav;
 
     /**
-     * @param index of the person in the filtered person list to edit
+     * @param index of the contact in the filtered contact list to edit
      * @param isFav whether this FavouriteCommand is to favourite or unfavourite
      */
     public FavouriteCommand(Index index, boolean isFav) {
@@ -46,20 +46,20 @@ public class FavouriteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Contact> lastShownList = model.getFilteredContactList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_CONTACT_DISPLAYED_INDEX);
         }
 
-        Person personToFavourite = lastShownList.get(index.getZeroBased());
-        EditCommand.EditPersonDescriptor editPersonDescriptor = new EditCommand.EditPersonDescriptor();
-        editPersonDescriptor.setFavourite(new Favourite(String.valueOf(isFav)));
-        Person favouritedPerson = EditCommand.createEditedPerson(personToFavourite, editPersonDescriptor);
+        Contact contactToFavourite = lastShownList.get(index.getZeroBased());
+        EditCommand.EditContactDescriptor editContactDescriptor = new EditCommand.EditContactDescriptor();
+        editContactDescriptor.setFavourite(new Favourite(String.valueOf(isFav)));
+        Contact favouritedContact = EditCommand.createEditedContact(contactToFavourite, editContactDescriptor);
 
-        model.setPerson(personToFavourite, favouritedPerson);
+        model.setContact(contactToFavourite, favouritedContact);
         return new CommandResult(
-                String.format(isFav ? MESSAGE_FAVOURITE_PERSON_SUCCESS : MESSAGE_UNFAVOURITE_PERSON_SUCCESS,
-                        favouritedPerson));
+                String.format(isFav ? MESSAGE_FAVOURITE_CONTACT_SUCCESS : MESSAGE_UNFAVOURITE_CONTACT_SUCCESS,
+                        favouritedContact));
     }
 }

@@ -7,7 +7,7 @@ import seedu.address.model.Address;
 import seedu.address.model.Name;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.DateTime;
-import seedu.address.model.person.Person;
+import seedu.address.model.contact.Contact;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -24,7 +24,7 @@ public class AppointmentBuilder {
     private Name name;
     private Address address;
     private DateTime dateTime;
-    private Set<Person> contacts;
+    private Set<Contact> contacts;
     private Set<Tag> tags;
 
     /**
@@ -74,16 +74,16 @@ public class AppointmentBuilder {
     }
 
     /**
-     * Parses the {@code contacts} into a {@code Set<Person>} and set it to the {@code Appointment} that
+     * Parses the {@code contacts} into a {@code Set<Contact>} and set it to the {@code Appointment} that
      * we are building.
      */
     public AppointmentBuilder withContacts(String ... contacts) {
-        this.contacts = SampleDataUtil.getPersonSet(contacts);
+        this.contacts = SampleDataUtil.getContactSet(contacts);
         return this;
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Contact} that we are building.
      */
     public AppointmentBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getChildTagSet(tags);

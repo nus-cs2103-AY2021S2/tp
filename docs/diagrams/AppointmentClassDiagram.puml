@@ -11,15 +11,15 @@ Class Appointment {
     -name: Name
     -address: Address
     -date: DateTime
-    -contacts: Set<Person>
+    -contacts: Set<Contact>
 }
 
 note top of Appointment: classified under Model
 note left of Appointment::name
-    Make use of Name class, taken out of Person package
+    Make use of Name class, taken out of Contact package
 end note
 note left of Appointment::address
-    Make use of Address class, taken out of Person package
+    Make use of Address class, taken out of Contact package
 end note
 note left of Appointment::date
     Create own DateTime class
@@ -29,9 +29,9 @@ note left of Appointment::contacts
 end note
 
 Class UniqueAppointmentList
-Class Person
+Class Contact
 
-Appointment -> "*" Person
+Appointment -> "*" Contact
 UniqueAppointmentList --> "*" Appointment
 
 show attributes

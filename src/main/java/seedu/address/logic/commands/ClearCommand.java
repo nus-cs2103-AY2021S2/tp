@@ -12,12 +12,12 @@ import java.util.Set;
 import javafx.collections.ObservableList;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
+import seedu.address.model.contact.Contact;
 import seedu.address.model.tag.Tag;
 
 
 /**
- * Clears the address book if given no arguments or clears all Persons with a particular tag.
+ * Clears the address book if given no arguments or clears all Contacts with a particular tag.
  */
 public class ClearCommand extends Command {
 
@@ -41,17 +41,17 @@ public class ClearCommand extends Command {
             model.setAddressBook(new AddressBook());
             return new CommandResult(MESSAGE_SUCCESS);
         } else {
-            ObservableList<Person> personList = model.getAddressBook().getPersonList();
-            Iterator<Person> personIterator = personList.iterator();
-            List<Person> personsToDelete = new ArrayList<>();
-            while (personIterator.hasNext()) {
-                Person person = personIterator.next();
-                Set<Tag> tags = person.getTags();
+            ObservableList<Contact> contactList = model.getAddressBook().getContactList();
+            Iterator<Contact> contactIterator = contactList.iterator();
+            List<Contact> contactsToDelete = new ArrayList<>();
+            while (contactIterator.hasNext()) {
+                Contact contact = contactIterator.next();
+                Set<Tag> tags = contact.getTags();
                 if (!Collections.disjoint(tags, tagsToClear)) {
-                    personsToDelete.add(person);
+                    contactsToDelete.add(contact);
                 }
             }
-            personsToDelete.forEach(model::deletePerson);
+            contactsToDelete.forEach(model::deleteContact);
             return new CommandResult(String.format(MESSAGE_CLEAR_TAG_SUCCESS, tagsToClear.toString()));
         }
     }

@@ -58,7 +58,7 @@
           </rowConstraints>
             <children>
 
-              <VBox fx:id="personList" minWidth="340.0" prefWidth="340.0" styleClass="pane-with-border">
+              <VBox fx:id="contactList" minWidth="340.0" prefWidth="340.0" styleClass="pane-with-border">
                 <padding>
                   <Insets bottom="10" left="10" right="10" top="10" />
                 </padding>
@@ -67,7 +67,7 @@
                      <Insets bottom="5.0" left="5.0" top="5.0" />
                   </padding>
                 </Label>
-                <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                <StackPane fx:id="contactListPanelPlaceholder" VBox.vgrow="ALWAYS" />
               </VBox>
               <VBox fx:id="appointmentList" styleClass="pane-with-border" GridPane.columnIndex="1">
                 <padding>

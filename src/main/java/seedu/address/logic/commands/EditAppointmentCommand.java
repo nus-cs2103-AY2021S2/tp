@@ -25,7 +25,7 @@ import seedu.address.model.Model;
 import seedu.address.model.Name;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.DateTime;
-import seedu.address.model.person.Person;
+import seedu.address.model.contact.Contact;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -99,7 +99,7 @@ public class EditAppointmentCommand extends Command {
         Name updatedName = editedAppointmentDescriptor.getName().orElse(apptToEdit.getName());
         Address updatedAddress = editedAppointmentDescriptor.getAddress().orElse(apptToEdit.getAddress());
         DateTime updatedDateTime = editedAppointmentDescriptor.getDateTime().orElse(apptToEdit.getDateTime());
-        Set<Person> updatedContacts = editedAppointmentDescriptor.getContacts().orElse(apptToEdit.getContacts());
+        Set<Contact> updatedContacts = editedAppointmentDescriptor.getContacts().orElse(apptToEdit.getContacts());
         Set<Tag> updatedTags = editedAppointmentDescriptor.getTags().orElse(apptToEdit.getTags());
 
         return new Appointment(updatedName, updatedAddress, updatedDateTime, updatedContacts, updatedTags);
@@ -131,7 +131,7 @@ public class EditAppointmentCommand extends Command {
         private Name name;
         private Address address;
         private DateTime dateTime;
-        private Set<Person> contacts;
+        private Set<Contact> contacts;
         private Set<Tag> tags;
 
         public EditAppointmentDescriptor() {}
@@ -179,18 +179,18 @@ public class EditAppointmentCommand extends Command {
             return Optional.ofNullable(dateTime);
         }
 
-        public void setContacts(Set<Person> contacts) {
+        public void setContacts(Set<Contact> contacts) {
             this.contacts = (contacts != null) ? new HashSet<>(contacts) : null;
         }
 
-        public Optional<Set<Person>> getContacts() {
+        public Optional<Set<Contact>> getContacts() {
             return (contacts != null) ? Optional.of(Collections.unmodifiableSet(contacts)) : Optional.empty();
         }
 
         /**
          * Adds additional {@code contacts} to this object's {@code contacts}.
          */
-        public void addAllContacts(Set<Person> contacts) {
+        public void addAllContacts(Set<Contact> contacts) {
             if (this.contacts == null) {
                 setContacts(contacts);
             } else {
