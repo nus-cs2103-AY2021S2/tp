@@ -60,19 +60,14 @@ title: User Guide
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `n/John Doe n/Jane Doe`, only `n/Jane Doe` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `ilist`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
 
-### Show help : `help`
+### Resident Management
 
-Shows a message explaining how to access the help page.
-
-Format: `help`
-
-
-### Add a resident : `radd`
+#### Add a resident : `radd`
 
 Adds a resident to the housing management system.
 
@@ -83,20 +78,14 @@ Examples:
 * `radd n/John Doe p/91234567 e/e0123456@u.nus.edu y/3` Adds a resident named `John Doe` with phone number `91234567`, email `e0123456@u.nus.edu`, and as a 3rd year student, without any room allocated.
 
 
-### List all residents : `rlist`
+#### List all residents : `rlist`
 
 Shows a list of all residents in the system sorted by alphabetical order.
 
 Format: `rlist`
 
-### List all unallocated residents : `rulist`
 
-Shows a list of all unallocated residents in the system sorted by alphabetical order.
-
-Format: `rulist`
-
-
-### Find residents : `rfind`
+#### Find residents : `rfind`
 
 Finds residents whose names contain any of the given keywords.
 
@@ -112,7 +101,7 @@ Examples:
 * `rfind alex david` returns `Alex Yeoh`, `Alexander Graham`, and `David Li`.
 
 
-### Edit a resident record : `redit`
+#### Edit a resident record : `redit`
 
 Edits the existing resident record at a specified index.
 
@@ -127,7 +116,7 @@ Example:
 * `redit 1 p/91234567 e/e0123456@u.nus.edu` Edits the phone number and email address of the 1st resident to be `91234567` and `e0123456@u.nus.edu` respectively.
 
 
-### Delete a resident : `rdel`
+#### Delete a resident : `rdel`
 
 Deletes the resident record at a specified index.
 
@@ -139,8 +128,9 @@ e.g. `dealloc n/John Tan r/03-100`.
 Example:
 * `rdel 1` deletes the 1st resident in the resident list.
 
+### Room Management
 
-### Add a room : `oadd`
+#### Add a room : `oadd`
 
 Adds a room to the housing management system.
 
@@ -152,14 +142,14 @@ Example:
 * `oadd r/10-112 t/corridor_ac g/SHN` Adds a room numbered `10-112` of type `corridor_ac` with the tag `SHN`.
 
 
-### List all rooms : `olist`
+#### List all rooms : `olist`
 
 Shows a list of all rooms in the system sorted by room number.
 
 Format: `olist`
 
 
-### Find rooms : `ofind`
+#### Find rooms : `ofind`
 
 Finds all rooms by room number or tag that contain any of the given keywords.
 
@@ -178,7 +168,7 @@ Examples:
 * `ofind 1 s` returns `10-100` and `SHN`.
 
 
-### Edit a room record : `oedit`
+#### Edit a room record : `oedit`
 
 Edits the existing room record at a specified index.
 
@@ -193,7 +183,7 @@ Example:
 * `oedit 1 g/SHN g/Blue` Edits the 1st room's tags to `SHN` and `Blue`.
 
 
-### Delete a room : `odel`
+#### Delete a room : `odel`
 
 Deletes the room at a specified index.
 
@@ -204,7 +194,15 @@ Format: `odel INDEX`
 Example:
 * `odel 1` Deletes the 1st room in the room list.
 
-### Allocate resident to room: `alloc`
+### Room Allocation/Deallocation
+
+#### List all unallocated residents : `rulist`
+
+Shows a list of all unallocated residents in the system sorted by alphabetical order.
+
+Format: `rulist`
+
+#### Allocate resident to room: `alloc`
 Allocates an existing resident to an existing room.
 
 Format: `alloc n/NAME r/ROOM_NO`
@@ -216,27 +214,19 @@ Format: `alloc n/NAME r/ROOM_NO`
 Example:
 * `alloc r/John Tan n/03-100` Allocates resident named John Tan to room 03-100.
 
-### Deallocate resident from room: `dealloc`
+#### Deallocate resident from room: `dealloc`
 Deallocates an existing resident from an existing room.
 
-<<<<<<< HEAD
 Format: `dealloc INDEX`
 * `INDEX` refers to the index number shown in the displayed resident list. `INDEX` **must be a positive integer 1,2,3, ...**.
-* The resident at the `INDEX` must already be allocated. 
-=======
-Format: `dealloc n/NAME r/ROOM_NO`
-* `NAME` and `ROOM_NO` must already exist.
-* Exact match for `NAME` is required.
-* `NAME` is case-sensitive.
-* The allocation must already exist.
-* Both fields must be provided.
-* Ensure that the resident to be deallocated is visible. Use `rlist` to view all.
->>>>>>> master
+* The resident at the `INDEX` must already be allocated.
 
 Example:
 * `dealloc 1` Deallocates the 1st resident in the resident list from its allocated room.
 
-### Add an open issue : `iadd`
+### Issue Management
+
+#### Add an open issue : `iadd`
 
 Adds an issue to the housing management system.
 
@@ -246,14 +236,14 @@ Example:
 * `iadd r/10-100 d/Broken light c/Furniture` Creates an issue for room number `10-100` with description `Broken light` under the category `Furniture`.
 
 
-### List all issues : `ilist`
+#### List all issues : `ilist`
 
 Shows a list of all issues in the system sorted by their timestamp.
 
 Format: `ilist`
 
 
-### Find issues : `ifind`
+#### Find issues : `ifind`
 
 Finds all issues that contain any of the given keywords in the description, room number or tags.
 
@@ -271,7 +261,7 @@ Examples:
 * `ifind 1 s` returns room number `10-100`, description `Table unstable` and tag `Insect` as they all either contain `1` or the string `s`.
 
 
-### Edit an issue record : `iedit`
+#### Edit an issue record : `iedit`
 
 Edits the existing issue record at a specified index.
 
@@ -284,7 +274,7 @@ Example:
 * `iedit 1 r/20-109 s/Closed` Edits the room number and status of the 1st issue to be `20-109` and `Closed` respectively.
 
 
-### Close an issue : `iclo`
+#### Close an issue : `iclo`
 
 Marks as closed the issue at a specified index.
 
@@ -295,7 +285,7 @@ Example:
 * `iclo 1` Closes the 1st issue.
 
 
-### Delete an issue : `idel`
+#### Delete an issue : `idel`
 
 Deletes the issue at a specified index.
 
@@ -305,18 +295,21 @@ Format: `idel INDEX`
 Example:
 * `idel 1` Deletes the 1st issue.
 
-### View command history : `history`
+### General
 
-Displays the user's valid command history, sorted from most to least recent.
+#### Show help : `help`
 
-Format: `history [COUNT]`
-* `COUNT` refers to the number of most recent command entries to display. `COUNT` **must be a positive integer 1,2,3, ...**.
+Shows a message explaining how to access the help page.
 
-Examples:
-* `history` Displays all command entries.
-* `history 5` Displays the 5 most recent command entries.
+Format: `help`
 
-### Undo previous command : `undo`
+#### Delete all data : `clear`
+
+Deletes all rooms, residents and issues in SunRez.
+
+Format: `clear`
+
+#### Undo previous command : `undo`
 
 Restores SunRez to its state before an _undoable_ command was executed.
 
@@ -352,7 +345,7 @@ These behave as if you entered `undo` in the command box and hit `ENTER`; an `un
 command history.
 </div>
 
-### Redo previously undone command: `redo`
+#### Redo previously undone command: `redo`
 
 Reverses the previous undo operation.
 
@@ -383,17 +376,19 @@ These behave as if you entered `redo` in the command box and hit `ENTER`; a `red
 command history.
 </div>
 
-### Add an alias : `alias`
+#### Add an alias : `alias`
 
 Adds a user-defined alias, which represents a shortcut to a longer command.
 
 Format: `alias a/ALIAS_NAME cmd/COMMAND`
+* Parameters must be in this exact order.
+* Any parameters after `cmd/` will be parsed as part of the command.
 
 Examples:
 * `alias a/ol cmd/olist` Adds the `ol` alias which is a shortcut for `olist` command.
 * `alias a/fNemo cmd/rfind Nemo` Adds the `fNemo` alias which is a shortcut for `rfind Nemo` command.
 
-### Delete an alias : `unalias`
+#### Delete an alias : `unalias`
 
 Deletes a previously defined alias.
 
@@ -402,21 +397,27 @@ Format: `unalias a/ALIAS_NAME`
 Example:
 * `unalias a/findBob` Deletes the `findBob` alias, provided that the alias was previously added.
 
-### List all aliases : `aliases`
+#### List all aliases : `aliases`
 
 Shows a list of current aliases in the system sorted by their time of creation.
 
 Format: `aliases`
 
-### Exit the program : `exit`
+#### View command history : `history`
 
-Exits the program.
+Displays the user's valid command history, sorted from most to least recent.
 
-Format: `exit`
+Format: `history [COUNT]`
+* `COUNT` refers to the number of most recent command entries to display. `COUNT` **must be a positive integer 1,2,3, ...**.
 
-### Access command history
+Examples:
+* `history` Displays all command entries.
+* `history 5` Displays the 5 most recent command entries.
 
-Previous successful commands can be accessed via the UP and DOWN arrow keys on the keyboard. UP selects the previous command. DOWN selects the next command.
+#### Access command history
+
+Previous successful commands can be accessed via the UP and DOWN arrow keys on the keyboard. 
+UP selects the previous command. DOWN selects the next command.
 
 Example usage:
 1. Enter some commands as per normal.
@@ -426,16 +427,22 @@ Example usage:
     * Hit ENTER to run that command again.
     * Alternatively, select other commands via the UP and DOWN arrow keys.
 
-### Undo/redo history
+#### Exit the program : `exit`
 
-Undo/redo history is not saved to the hard disk, so it will be lost when SunRez is exited.
+Exits the program.
 
-### Save the data
+Format: `exit`
+
+### SunRez Data Files
 
 SunRez main application data and command history are saved in the hard disk automatically after any command
 that changes the data. There is no need to save manually.
 
-### Edit the data files
+#### Undo/redo history
+
+Undo/redo history is not saved to the hard disk, so it will be lost when SunRez is exited.
+
+#### Edit the data files
 
 * SunRez main application data is saved as a JSON file `[JAR_file_location]/data/sunrez.json`.
 * SunRez command history is saved as a plain-text file `[JAR_file_location]/data/commandhistory.txt`.
@@ -453,9 +460,14 @@ If your changes to the data file makes its format invalid, SunRez will discard a
 
 ## FAQ
 
-**Q**: How do I transfer my data to another computer?<br>
-**A**: Install the app on the other computer and overwrite the empty data files it creates with the files
-from your previous **SunRez** home folder.
+### How do I transfer my data to another computer?
+* On the computer with your data, do the following:
+    1. Navigate to where SunRez is installed: the location of `sunrez.jar`.
+    1. Copy the following files to your other computer: `preferences.json`, `data/commandhistory.txt`, 
+       `data/sunrez.json`
+* Then, on your other computer, do the following:
+    1. Download SunRez (`sunrez.jar`) and place it in a suitable folder.
+    1. Paste the files from earlier in this folder. If prompted to replace existing files, do so.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -489,4 +501,5 @@ Action | Format, Examples
 **Add an alias** | `alias a/ALIAS_NAME cmd/COMMAND` <br> e.g. `alias a/il cmd/ilist`
 **Delete an alias** | `unalias a/ALIAS_NAME` <br> e.g. `unalias a/findBob`
 **List all aliases** | `aliases`
+**Delete all data** | `clear`
 **Exit the app** | `exit`
