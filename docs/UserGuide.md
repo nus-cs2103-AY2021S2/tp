@@ -26,11 +26,11 @@ Car@leads is a **desktop app for a car salesperson to manage customer contacts**
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-    * **`add`**`n/Bob Ang p/88765432 e/bobhnd@example.com a/John street, block 123, #01-01 b/1998 07 10  c/BMW+Coupe|2030 01 01 c/Porsche+SUV|2030 01 01`
+    * **`add`**`n/Bob Ang p/88765432 e/bobhnd@example.com a/John street, block 123, #01-01 b/1998 07 10  c/BMW+Coupe|2030 01 01 c/Porsche+SUV|2030 01 01 cp/MercedesBenz+SUV`
       : Adds a contact named `Bob Ang`
 
-    * **`find`**`n/Bob Ang p/88765432 c/BMW+Coupe|2030 01 01 c/Porsche+SUV|2030 01 01`
-      : Finds a contact named `Bob Ang`
+    * **`find`**`n/Bob Ang cp/BMW+Coupe`
+      : Finds a contact named `Bob Ang` whose preferred car is a BMW Coupe.
 
     * **`delete`**`John Doe` : Deletes 'John Doe' contact from contact list .
 
@@ -70,6 +70,10 @@ Car@leads is a **desktop app for a car salesperson to manage customer contacts**
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
+* `COE_EXPIRY_DATE` input order: YYYY{space}MM{space}DD
+* `|` joins car with COE expiry date
+* `+` joins car brand and car type
+
 </div>
 
 
@@ -77,20 +81,20 @@ Car@leads is a **desktop app for a car salesperson to manage customer contacts**
 
 Adds a customer to the contact list.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS c/OWNED_CARBRAND+OWNED_CARTYPE|COE_EXPIRY_DATE [t/TAG]…​`
-`n/add n/Bob Ang p/88765432 e/bobhnd@example.com a/John street, block 123, #01-01 c/BMW+Coupe|2030 01 01 c/Porsche+SUV|2030 01 01`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ c/CAR_BRAND_OWNED+CAR_TYPE_OWNED|COE_EXPIRY_DATE cp/CAR_BRAND_PREFERRED+CAR_TYPE_PREFERRED `
+<br>`n/add n/Bob Ang p/88765432 e/bobhnd@example.com a/John street, block 123, #01-01 c/BMW+Coupe|2030 01 01 c/Porsche+SUV|2030 01 01 cp/MercedesBenz+SUV`
 
-Note that the `COE_EXPIRY_DATE` input order: YYYY{space}MM{space}DD
+
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A customer can have any number of tags (including 0)
+A customer can have any number of tags, carsOwned, carPreferred (including 0)
 </div>
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 c/Honda City`
 * `add n/Betsy Crowe c/Honda City t/friend e/betsycrowe@example.com x/2011 03 27 a/Newgate Prison p/1234567 t/criminal`
 
-### Finding a customer: `find` {TO BE EDITED}
+### Finding a customer: `find` 
 
 Find customers from the contact list that matches specified filters.
 
@@ -132,6 +136,11 @@ Format: `list`
 
 ### Quick help: `help`
 * **`help`** : Overview of commands and input syntax.
+
+### Email Contact person: `email`
+* **`email`** : Opens a simplified mailbox interface enabling user to email to the desired contact persons with a prefilled text field. Currently only supports sending through Gmail accounts and requires enabling less secure app access on google security.
+  ![Ui](images/helps/googlehelp1.png)
+  Url: https://myaccount.google.com/security
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
@@ -139,9 +148,10 @@ Format: `list`
 Action | Format, Examples
 --------|------------------
 **add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS c/OWNED_CAR+COE_EXPIRY_DATE [t/TAG]…​`<br> e.g., `n/add n/Bob Ang p/88765432 e/bobhnd@example.com a/John street, block 123, #01-01 c/BMW Coupe|2030 01 01 c/Porsche|2030 01 01`
-**find TO BE EDITED** | `find [e/bob /AND p/98761234] OR b/1999 10 11`
+**find** | `find [e/bob /AND p/98761234] OR b/1999 10 11`
 **delete** | `delete NAME`<br> e.g., `delete John doe`
-**list** | `list`
-**clear** | `clear`
-**exit** | `exit`
-**help** | `help`
+**list** | `list` Generates a default list of unfiltered contacts saved in the contact book.
+**clear** | `clear` Clears the contact list, erasing all saved data.
+**exit** | `exit` The GUI Button at the top of the status bar. Clicking on it closes the application safely.
+**help** | `help` The GUI Button at the top of the status bar. Clicking on it opens a help window.
+**email** | `email`The GUI Button at the top of the status bar. Clicking on it opens a simplified MailBox interface allowing user to send email.

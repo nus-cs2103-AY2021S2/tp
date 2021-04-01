@@ -33,6 +33,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private CustomerListPanel customerListPanel;
     private ResultDisplay resultDisplay;
+    private EmailWindow emailWindow;
     private HelpWindow helpWindow;
 
     @FXML
@@ -40,6 +41,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private MenuItem helpMenuItem;
+
+    @FXML
+    private MenuItem emailMenuItem;
 
     @FXML
     private StackPane customerListPanelPlaceholder;
@@ -53,7 +57,7 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
-    public MainWindow(Stage primaryStage, Logic logic) {
+    public MainWindow(Stage primaryStage, Logic logic) throws Exception {
         super(FXML, primaryStage);
 
         // Set dependencies
@@ -65,6 +69,7 @@ public class MainWindow extends UiPart<Stage> {
 
         setAccelerators();
 
+        emailWindow = new EmailWindow();
         helpWindow = new HelpWindow();
     }
 
@@ -147,6 +152,18 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Opens the email window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleEmail() {
+        if (!emailWindow.isShowing()) {
+            emailWindow.show();
+        } else {
+            emailWindow.focus();
+        }
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -180,6 +197,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
+            }
+
+            if (commandResult.isEmail()) {
+                handleEmail();
             }
 
             if (commandResult.isExit()) {

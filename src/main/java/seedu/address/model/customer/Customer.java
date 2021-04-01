@@ -43,7 +43,9 @@ public class Customer {
             carsOwned = new HashMap<>();
         }
         this.carsOwned = carsOwned;
-        this.carsPreferred.addAll(carsPreferred);
+        if (carsPreferred != null) {
+            this.carsPreferred.addAll(carsPreferred);
+        }
     }
 
     public Name getName() {

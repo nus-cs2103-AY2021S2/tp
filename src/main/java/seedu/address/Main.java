@@ -24,7 +24,6 @@ public class Main {
      * @param args Arguments keyed into the CLI app to interact with app.
      */
     public static void main(String[] args) {
-        assert false;
         Application.launch(MainApp.class, args);
     }
 }
