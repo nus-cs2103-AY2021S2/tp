@@ -88,12 +88,14 @@ Type in `java -jar RemindMe.jar` in the command box and press Enter to execute i
 <br>
 <br>
 The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](./images/Ui2.png)
+   ![Ui](./images/Ui2.png)<br>
+   *[Start up image of RemindMe]*
 <br>
 <br>   
 
 4. Press start to proceed to the main window as shown below.<br>
-   ![UiMainWindow](images/UiMainWindow.png)
+   ![UiMainWindow](images/UiMainWindow.png)<br>
+   *[Main Window of RemindMe]*
 <br>
 <br>         
 
@@ -710,6 +712,7 @@ Action | Description, Format
 **add**<br>`add DESCRIPTION` |  `Adds a person` <br> *`n/NAME b/BIRTHDAY [T/TAG]`* <br><br> `Adds a module` <br> *`m/MODULE`* <br><br>`Adds an assignment` <br> *`m/MODULE a/ASSIGNMENT by/DATE-TIME`* <br><br> `Adds an exam` <br> *`m/MODULE e/DATE-TIME`* <br><br> `Adds an event` <br> *`g/GENERALEVENT on/DATE-TIME`* <br><br>
 **edit**<br>`edit DESCRIPTION` | `Edits a person` <br> *`INDEX n/NEW NAME b/NEW BIRTHDAY T/NEW TAG`* <br><br> `Edits a module` <br> *`INDEX m/NEW MODULE TITLE`* <br><br> `Edits an assignment` <br>  *`m/MODULE a/INDEX d/NEW DESCRIPTION by/NEW DATE-TIME`* <br><br> `Edits an exam` <br> *`m/MODULE e/INDEX on/NEW DATE-TIME`* <br><br> `Edits an event` <br> *`INDEX g/NEW DESCRIPTION on/NEW DATE-TIME`* <br><br>
 **find**<br>`find DESCRIPTION` | `Find persons` <br> *`n/KEYWORD [MORE KEYWORDS]`* <br><br> `Find modules` <br> *`m/KEYWORD [MORE KEYWORDS]`* <br><br> `Find general events` <br> *`g/KEYWORD [MORE KEYWORDS]`* <br><br>
+**list** | `list all entries in RemindMe`
 **delete**<br>`delete DESCRIPTION` | `Delete a person` <br> *`INDEX`* <br><br> `Delete a module` <br> *`m/MODULE`* <br><br> `Delete an assignment` <br> *`m/MODULE a/INDEX`* <br><br> `Delete an exam` <br> *`m/MODULE e/INDEX`*<br><br> `Delete a general event` <br> *`g/INDEX`*<br><br>
 **Clear**<br>`clear DESCRIPTION` | `Clear RemindMe`<br> *`NO DESCRIPTION NEEDED`*<br><br> `Clear persons` <br> *`n/`* <br><br> `Clear module` <br> *`m/`* <br><br> `Clear general events` <br> *`g/`*
 **See help page** | `help` 
@@ -718,3 +721,4 @@ Action | Description, Format
 
 [Back to Table of Contents](#table-of-contents)
 
+<i id="scroll-top-button" onclick="handleScrollTop()" aria-hidden="true" class="fa fa-arrow-circle-up fa-lg lighten" style="display: block;"></i>
