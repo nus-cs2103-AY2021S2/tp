@@ -18,7 +18,7 @@
   <scene>
     <Scene>
       <stylesheets>
-        <URL value="@ImposterTheme.css" />
+        <URL value="@MaterialTheme.css" />
         <URL value="@Extensions.css" />
       </stylesheets>
 
