@@ -1,9 +1,11 @@
 package seedu.address.logic.commands;
 
 //import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 //import static seedu.address.logic.commands.CommandTestUtil.DESC_RESIDENCE1;
 //import static seedu.address.logic.commands.CommandTestUtil.VALID_CLEAN_TAG;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_RESIDENCE1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_RESIDENCE1;
 //import static seedu.address.logic.commands.CommandTestUtil.VALID_UNCLEAN_TAG;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -149,7 +151,7 @@ public class EditCommandTest {
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_RESIDENCE_DISPLAYED_INDEX);
     }
 
-    /*@Test
+    @Test
     public void equals() {
         final EditCommand standardCommand =
                 new EditCommand(INDEX_FIRST_RESIDENCE, new EditResidenceDescriptor(DESC_RESIDENCE1));
@@ -173,6 +175,6 @@ public class EditCommandTest {
 
         // different descriptor -> returns false
         assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_RESIDENCE, DESC_RESIDENCE1)));
-    }*/
+    }
 
 }
