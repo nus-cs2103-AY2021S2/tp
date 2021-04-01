@@ -84,7 +84,7 @@ public class PoolCommand extends Command {
     private boolean checkTimeDifference(List<Passenger> passengers) {
         for (Passenger p : passengers) {
             TripTime passengerTime = p.getTripTime();
-            if (this.tripTime.isMoreThanFifteenMinutesDifference(passengerTime)) {
+            if (this.tripTime.compareMinutes(passengerTime) > 15) {
                 return true;
             }
         }

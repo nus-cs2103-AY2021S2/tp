@@ -28,15 +28,16 @@ public class TripTime {
     }
 
     /**
-     * Compares if 2 TripTime objects have more than 15 minutes difference
+     * Compares the time difference between 2 TripTime objects
      * @param otherTripTime
-     * @return boolean of whether 2 TripTime objects have more than 15 minutes difference
+     * @return long of 2 TripTime objects difference
      */
-    public boolean isMoreThanFifteenMinutesDifference(TripTime otherTripTime) {
+    public long compareMinutes(TripTime otherTripTime) {
         requireNonNull(otherTripTime);
         long timeDifference = ChronoUnit.MINUTES.between(this.value, otherTripTime.value);
+        long absoluteTimeDifference = Math.abs(timeDifference);
 
-        return Math.abs(timeDifference) > 15;
+        return absoluteTimeDifference;
     }
 
     @Override
