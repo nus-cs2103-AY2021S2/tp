@@ -13,11 +13,13 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.TutorTrackerParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyTutorBook;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.event.Event;
 import seedu.address.model.grade.Grade;
-import seedu.address.model.person.Person;
+import seedu.address.model.reminder.Reminder;
+import seedu.address.model.schedule.Schedule;
+import seedu.address.model.tutor.Tutor;
 import seedu.address.storage.Storage;
 
 /**
@@ -49,9 +51,12 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveTutorBook(model.getTutorBook());
             storage.saveAppointmentBook(model.getAppointmentBook());
             storage.saveBudgetBook(model.getBudgetBook());
+            storage.saveGradeBook(model.getGradeBook());
+            storage.saveScheduleTracker(model.getScheduleTracker());
+            storage.saveReminderTracker(model.getReminderTracker());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -60,13 +65,13 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlyTutorBook getAddressBook() {
+        return model.getTutorBook();
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+    public ObservableList<Tutor> getFilteredPersonList() {
+        return model.getFilteredTutorList();
     }
 
     @Override
@@ -75,18 +80,38 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Grade> getFilteredGradeList() {
-        return model.getFilteredGradeList();
-    }
-
-    @Override
     public ObservableList<Event> getFilteredEventList() {
         return model.getFilteredEventList();
     }
 
     @Override
+    public ObservableList<Grade> getFilteredGradeList() {
+        return model.getFilteredGradeList();
+    }
+
+    @Override
+    public ObservableList<Schedule> getFilteredScheduleList() {
+        return model.getFilteredScheduleList();
+    }
+
+    @Override
+    public ObservableList<String> getPersonFilterStringList() {
+        return model.getTutorFilterStringList();
+    }
+
+    @Override
+    public ObservableList<String> getAppointmentFilterStringList() {
+        return model.getAppointmentFilterStringList();
+    }
+
+    @Override
+    public ObservableList<Reminder> getFilteredReminderList() {
+        return model.getFilteredReminderList();
+    }
+
+    @Override
     public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+        return model.getTutorBookFilePath();
     }
 
     @Override

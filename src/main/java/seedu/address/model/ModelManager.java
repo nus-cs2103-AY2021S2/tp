@@ -7,7 +7,6 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
@@ -17,71 +16,82 @@ import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.appointment.DateViewPredicate;
 import seedu.address.model.budget.Budget;
 import seedu.address.model.event.Event;
+import seedu.address.model.event.EventTracker;
 import seedu.address.model.filter.AppointmentFilter;
-import seedu.address.model.filter.PersonFilter;
+import seedu.address.model.filter.TutorFilter;
 import seedu.address.model.grade.Grade;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
+import seedu.address.model.reminder.ReadOnlyReminderTracker;
+import seedu.address.model.reminder.Reminder;
+import seedu.address.model.reminder.ReminderTracker;
 import seedu.address.model.schedule.ReadOnlyScheduleTracker;
 import seedu.address.model.schedule.Schedule;
 import seedu.address.model.schedule.ScheduleTracker;
 import seedu.address.model.subject.SubjectName;
-import seedu.address.model.util.SampleDataUtil;
+import seedu.address.model.tutor.Name;
+import seedu.address.model.tutor.Tutor;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the tutor book data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final TutorBook tutorBook;
     private final AppointmentBook appointmentBook;
     private final GradeBook gradeBook;
     private final ScheduleTracker scheduleTracker;
-
+    private final EventTracker eventTracker;
+    private final ReminderTracker reminderTracker;
     private final UserPrefs userPrefs;
-
-    private final PersonFilter personFilter;
-    private final AppointmentFilter appointmentFilter;
-    private final FilteredList<Person> filteredPersons;
-    private final FilteredList<Appointment> filteredAppointment;
-    private final FilteredList<Grade> filteredGrades;
-    private final FilteredList<Schedule> filteredSchedule;
-
     private final BudgetBook budgetBook;
 
+    private final TutorFilter tutorFilter;
+    private final AppointmentFilter appointmentFilter;
+    private final FilteredList<Tutor> filteredTutors;
+    private final FilteredList<Appointment> filteredAppointment;
+    private final FilteredList<Grade> filteredGrades;
+    private final FilteredList<Schedule> filteredSchedules;
+    private final FilteredList<Reminder> filteredReminders;
+    private FilteredList<Event> filteredEvents;
+
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given TutorBook, AppointmentBook, BudgetBook, GradeBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs,
+    public ModelManager(ReadOnlyTutorBook tutorBook,
+                        ReadOnlyUserPrefs userPrefs,
                         ReadOnlyAppointmentBook appointmentBook,
-                        BudgetBook budgetBook, ReadOnlyGradeBook gradeBook) {
+                        BudgetBook budgetBook, ReadOnlyGradeBook gradeBook,
+                        ReadOnlyScheduleTracker scheduleTracker,
+                        ReadOnlyReminderTracker reminderTracker) {
         super();
-        requireAllNonNull(addressBook, appointmentBook, userPrefs, budgetBook);
+        requireAllNonNull(tutorBook, appointmentBook, userPrefs, budgetBook, scheduleTracker, reminderTracker);
+        logger.fine("Initializing Tutor Tracker: with tutor book: " + tutorBook + " and user prefs " + userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
-
-        this.addressBook = new AddressBook(addressBook);
+        this.tutorBook = new TutorBook(tutorBook);
         this.appointmentBook = new AppointmentBook(appointmentBook);
-        this.scheduleTracker = new ScheduleTracker(SampleDataUtil.getSampleScheduleTracker());
+        this.scheduleTracker = new ScheduleTracker(scheduleTracker);
         this.gradeBook = new GradeBook(gradeBook);
         this.budgetBook = new BudgetBook(budgetBook);
         this.userPrefs = new UserPrefs(userPrefs);
 
-        this.personFilter = new PersonFilter();
+        this.eventTracker = new EventTracker(appointmentBook, scheduleTracker);
+        this.reminderTracker = new ReminderTracker(reminderTracker);
+        this.tutorFilter = new TutorFilter();
+        this.filteredTutors = new FilteredList<>(this.tutorBook.getTutorList());
+        this.filteredAppointment = new FilteredList<>(this.appointmentBook.getAppointmentList());
+        this.filteredGrades = new FilteredList<>(this.gradeBook.getGradeList());
+        this.filteredSchedules = new FilteredList<>(this.scheduleTracker.getScheduleList());
+        this.filteredEvents = new FilteredList<>(this.eventTracker.getEventList());
         this.appointmentFilter = new AppointmentFilter();
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        filteredAppointment = new FilteredList<>(this.appointmentBook.getAppointmentList());
-        filteredGrades = new FilteredList<>(this.gradeBook.getGradeList());
-        this.filteredSchedule = new FilteredList<>(this.scheduleTracker.getScheduleList());
+        this.filteredReminders = new FilteredList<>(this.reminderTracker.getReminderList());
     }
 
     /**
      * Default constructor without params. Initializes with empty books.
      */
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs(), new AppointmentBook(),
-                new BudgetBook(), new GradeBook());
+        this(new TutorBook(), new UserPrefs(), new AppointmentBook(),
+                new BudgetBook(), new GradeBook(), new ScheduleTracker(), new ReminderTracker());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -109,14 +119,14 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getTutorBookFilePath() {
+        return userPrefs.getTutorBookFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setTutorBookFilePath(Path tutorBookFilePath) {
+        requireNonNull(tutorBookFilePath);
+        userPrefs.setTutorBookFilePath(tutorBookFilePath);
     }
 
     @Override
@@ -133,47 +143,48 @@ public class ModelManager implements Model {
     //=========== AddressBook ================================================================================
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public ReadOnlyTutorBook getTutorBook() {
+        return tutorBook;
     }
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setTutorBook(ReadOnlyTutorBook tutorBook) {
+        this.tutorBook.resetData(tutorBook);
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public boolean hasTutor(Tutor tutor) {
+        requireNonNull(tutor);
+        return tutorBook.hasTutor(tutor);
     }
 
     @Override
     public boolean hasTutorByName(Name name) {
-        return addressBook.containsTutorByName(name);
+        return tutorBook.containsTutorByName(name);
     }
 
     @Override
     public boolean doesTutorTeachSubject(Name name, SubjectName subjectName) {
-        return addressBook.tutorTeachesSubject(name, subjectName);
+        return tutorBook.tutorTeachesSubject(name, subjectName);
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+
+    public void deleteTutor(Tutor target) {
+        tutorBook.removeTutor(target);
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addTutor(Tutor tutor) {
+        tutorBook.addTutor(tutor);
+        updateFilteredTutorList(PREDICATE_SHOW_ALL_TUTORS);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
+    public void setTutor(Tutor target, Tutor editedTutor) {
+        requireAllNonNull(target, editedTutor);
 
-        addressBook.setPerson(target, editedPerson);
+        tutorBook.setTutor(target, editedTutor);
     }
 
     //=========== AppointmentBook=============================================================================
@@ -192,15 +203,15 @@ public class ModelManager implements Model {
         return this.appointmentBook.hasAppointmentContainingTutor(name);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Tutor List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Tutor} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Tutor> getFilteredTutorList() {
+        return filteredTutors;
     }
 
     /**
@@ -213,14 +224,14 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered tutor list to filter by the given {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.
      */
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredTutorList(Predicate<Tutor> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredTutors.setPredicate(predicate);
     }
 
     //=========== AppointmentList ============================================================================
@@ -235,8 +246,6 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredAppointment.setPredicate(predicate);
     }
-
-
 
     /**
      * Checks if Appointment exists in appointment list.
@@ -255,6 +264,7 @@ public class ModelManager implements Model {
     @Override
     public void addAppointment(Appointment appointment) {
         appointmentBook.addAppointment(appointment);
+        reset();
     }
 
     /**
@@ -265,6 +275,7 @@ public class ModelManager implements Model {
     @Override
     public void removeAppointment(Appointment appointment) {
         appointmentBook.removeAppointment(appointment);
+        reset();
     }
 
     @Override
@@ -272,6 +283,7 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedAppointment);
 
         appointmentBook.setAppointment(target, editedAppointment);
+        reset();
     }
 
     /**
@@ -282,6 +294,7 @@ public class ModelManager implements Model {
     @Override
     public void removeAppointmentIndex(int indexToRemove) {
         appointmentBook.removeAppointment(indexToRemove);
+        reset();
     }
 
     /**
@@ -440,30 +453,35 @@ public class ModelManager implements Model {
         return filteredGrades;
     }
 
-    //=========== PersonFilter =====================================================================
+    //=========== TutorFilter =====================================================================
     @Override
-    public boolean hasPersonFilter(PersonFilter personFilter) {
-        return this.personFilter.has(personFilter);
+    public boolean hasTutorFilter(TutorFilter tutorFilter) {
+        return this.tutorFilter.has(tutorFilter);
     }
 
     @Override
-    public void addPersonFilter(PersonFilter personFilter) {
-        this.personFilter.add(personFilter);
+    public void addTutorFilter(TutorFilter tutorFilter) {
+        this.tutorFilter.add(tutorFilter);
 
         // Required workaround for bug where filtered list would not trigger update
-        this.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        this.updateFilteredTutorList(PREDICATE_SHOW_ALL_TUTORS);
 
-        this.updateFilteredPersonList(this.personFilter);
+        this.updateFilteredTutorList(this.tutorFilter);
     }
 
     @Override
-    public void removePersonFilter(PersonFilter personFilter) {
-        this.personFilter.remove(personFilter);
+    public void removeTutorFilter(TutorFilter tutorFilter) {
+        this.tutorFilter.remove(tutorFilter);
 
         // Required workaround for bug where filtered list would not trigger update
-        this.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        this.updateFilteredTutorList(PREDICATE_SHOW_ALL_TUTORS);
 
-        this.updateFilteredPersonList(this.personFilter);
+        this.updateFilteredTutorList(this.tutorFilter);
+    }
+
+    @Override
+    public ObservableList<String> getTutorFilterStringList() {
+        return this.tutorFilter.asUnmodifiableObservableList();
     }
 
     //=========== AppointmentFilter =====================================================================
@@ -493,6 +511,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<String> getAppointmentFilterStringList() {
+        return this.appointmentFilter.asUnmodifiableObservableList();
+    }
+
+    @Override
     public boolean equals(Object obj) {
         // short circuit if same object
         if (obj == this) {
@@ -506,15 +529,22 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return tutorBook.equals(other.tutorBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons)
-                && personFilter.equals(other.personFilter)
+                && filteredTutors.equals(other.filteredTutors)
+                && tutorFilter.equals(other.tutorFilter)
+                && filteredAppointment.equals(other.filteredAppointment)
                 && appointmentBook.equals(other.appointmentBook)
+                && gradeBook.equals(other.gradeBook)
+                && filteredGrades.equals(other.filteredGrades)
                 && budgetBook.equals(other.budgetBook)
-                && filteredSchedule.equals(other.filteredSchedule);
+                && filteredSchedules.equals(other.filteredSchedules)
+                && scheduleTracker.equals(other.scheduleTracker)
+                && filteredReminders.equals(other.filteredReminders)
+                && reminderTracker.equals(other.reminderTracker);
     }
 
+    /* Schedule Methods */
     @Override
     public ReadOnlyScheduleTracker getScheduleTracker() {
         return scheduleTracker;
@@ -527,13 +557,13 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Schedule> getFilteredScheduleList() {
-        return filteredSchedule;
+        return filteredSchedules;
     }
 
     @Override
     public void updateFilteredScheduleList(Predicate<Schedule> predicate) {
         requireNonNull(predicate);
-        filteredSchedule.setPredicate(predicate);
+        filteredSchedules.setPredicate(predicate);
     }
 
     @Override
@@ -544,23 +574,87 @@ public class ModelManager implements Model {
     @Override
     public void addSchedule(Schedule schedule) {
         scheduleTracker.addSchedule(schedule);
+        reset();
     }
 
     @Override
     public void deleteSchedule(Schedule schedule) {
         scheduleTracker.removeSchedule(schedule);
+        reset();
     }
 
     @Override
     public void setSchedule(Schedule target, Schedule editedSchedule) {
         scheduleTracker.setSchedule(target, editedSchedule);
+        reset();
+    }
+
+    @Override
+    public boolean hasClashingDateTime(Event event) {
+        return eventTracker.hasClashingDateTime(event);
+    }
+
+    /**
+     * Sets grade book file path.
+     *
+     * @param scheduleTrackerFilePath To be supplied by user
+     */
+    public void setScheduleTrackerFilePath(Path scheduleTrackerFilePath) {
+        requireNonNull(scheduleTrackerFilePath);
+        userPrefs.setScheduleTrackerFilePath(scheduleTrackerFilePath);
+    }
+
+    @Override
+    public ReadOnlyReminderTracker getReminderTracker() {
+        return reminderTracker;
+    }
+
+    @Override
+    public void setReminderTracker(ReadOnlyReminderTracker reminderTracker) {
+        this.reminderTracker.resetData(reminderTracker);
+    }
+
+    @Override
+    public ObservableList<Reminder> getFilteredReminderList() {
+        return filteredReminders;
+    }
+
+    @Override
+    public void updateFilteredReminderList(Predicate<Reminder> predicate) {
+        requireNonNull(predicate);
+        filteredReminders.setPredicate(predicate);
+    }
+
+    @Override
+    public boolean hasReminder(Reminder reminder) {
+        return reminderTracker.hasReminder(reminder);
+    }
+
+    @Override
+    public void addReminder(Reminder reminder) {
+        reminderTracker.addReminder(reminder);
+    }
+
+    @Override
+    public void deleteReminder(Reminder reminder) {
+        reminderTracker.removeReminder(reminder);
+    }
+
+    @Override
+    public void setReminder(Reminder target, Reminder editedReminder) {
+        reminderTracker.setReminder(target, editedReminder);
     }
 
     @Override
     public ObservableList<Event> getFilteredEventList() {
-        ObservableList<Event> filteredEvents = FXCollections.observableArrayList();
-        filteredEvents.addAll(filteredAppointment);
-        filteredEvents.addAll(filteredSchedule);
         return filteredEvents;
+    }
+
+    /**
+     * Resets the EventTracker to retrieve updated values
+     */
+    private void reset() {
+        eventTracker.resetData(appointmentBook, scheduleTracker);
+        filteredEvents = new FilteredList<>(this.eventTracker.getEventList());
     }
 }

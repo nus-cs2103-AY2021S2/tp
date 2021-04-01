@@ -10,9 +10,12 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.ViewTutorPredicate;
+import seedu.address.model.tutor.Tutor;
+import seedu.address.model.tutor.ViewTutorPredicate;
 
+/**
+ * List all Tutors who are favourites
+ */
 public class ListFavouriteCommand extends Command {
 
     public static final String COMMAND_WORD = "list_favourites";
@@ -24,18 +27,18 @@ public class ListFavouriteCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        List<Person> favouritePersonList = new ArrayList<>();
-        List<Person> personList = model.getAddressBook().getPersonList();
+        List<Tutor> favouriteTutorList = new ArrayList<>();
+        List<Tutor> tutorList = model.getTutorBook().getTutorList();
 
-        for (Person p: personList) {
+        for (Tutor p: tutorList) {
             if (p.isFavourite()) {
-                favouritePersonList.add(p);
+                favouriteTutorList.add(p);
             }
         }
 
-        Predicate<Person> personPredicate = new ViewTutorPredicate(favouritePersonList);
+        Predicate<Tutor> personPredicate = new ViewTutorPredicate(favouriteTutorList);
 
-        model.updateFilteredPersonList(personPredicate);
+        model.updateFilteredTutorList(personPredicate);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

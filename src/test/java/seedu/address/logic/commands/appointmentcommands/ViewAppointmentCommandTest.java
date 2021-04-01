@@ -4,36 +4,39 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showAppointmentAtDate;
-import static seedu.address.testutil.TypicalAppointments.getTypicalAppointmentBook;
-import static seedu.address.testutil.TypicalBudgets.getTypicalBudgetBook;
+import static seedu.address.testutil.ModelManagerBuilder.ModelType.APPOINTMENTBOOK;
 import static seedu.address.testutil.TypicalDates.APPOINTMENT_FIRST_DATE;
 import static seedu.address.testutil.TypicalDates.APPOINTMENT_SECOND_DATE;
-import static seedu.address.testutil.TypicalGrades.getTypicalGradeBook;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.DateViewPredicate;
+import seedu.address.testutil.ModelManagerBuilder;
 
 public class ViewAppointmentCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(),
-            getTypicalAppointmentBook(), getTypicalBudgetBook(), getTypicalGradeBook());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(),
-            getTypicalAppointmentBook(), getTypicalBudgetBook(), getTypicalGradeBook());
+    private Model model;
+    private Model expectedModel;
+
+    @BeforeEach
+    public void setUp() {
+        model = ModelManagerBuilder.getModelManager();
+        expectedModel = ModelManagerBuilder.getModelManager(model, APPOINTMENTBOOK);
+    }
 
     @Test
     public void execute_validDateUnfilteredList_success() {
         DateViewPredicate predicate = new DateViewPredicate(APPOINTMENT_FIRST_DATE);
         Appointment appointmentToView = model.getFilteredAppointmentList().filtered(predicate).get(0);
         ViewAppointmentCommand viewCommand = new ViewAppointmentCommand(predicate);
+        expectedModel.updateFilteredAppointmentList(predicate);
 
         String expectedMessage = String.format(ViewAppointmentCommand.MESSAGE_VIEW_APPOINTMENT_SUCCESS,
                 appointmentToView.getTimeFrom().toDateString());
+        System.out.println(expectedMessage);
         assertCommandSuccess(viewCommand, model, expectedMessage, expectedModel);
     }
 
@@ -44,6 +47,7 @@ public class ViewAppointmentCommandTest {
         DateViewPredicate predicate = new DateViewPredicate(APPOINTMENT_FIRST_DATE);
         Appointment appointmentToView = model.getFilteredAppointmentList().filtered(predicate).get(0);
         ViewAppointmentCommand viewCommand = new ViewAppointmentCommand(predicate);
+        expectedModel.updateFilteredAppointmentList(predicate);
 
         String expectedMessage = String.format(ViewAppointmentCommand.MESSAGE_VIEW_APPOINTMENT_SUCCESS,
                 appointmentToView.getTimeFrom().toDateString());

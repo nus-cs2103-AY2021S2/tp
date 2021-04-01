@@ -7,6 +7,8 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
@@ -40,110 +42,164 @@
                         <Insets bottom="5" left="10" right="10" top="5" />
                     </padding>
                 </StackPane>
-                <HBox>
-                    <children>
-                        <VBox HBox.hgrow="ALWAYS">
-                            <children>
-                                <HBox style="-fx-background-color: #383838;">
-                                    <children>
-                                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                                            <image>
-                                                <Image url="@../images/favorite_icon.png" />
-                                            </image>
-                                        </ImageView>
-                                        <Label alignment="CENTER" prefHeight="25.0" style="-fx-text-fill: white;" styleClass="cell_big_label" text="Favorites">
-                                            <HBox.margin>
-                                                <Insets left="4.0" />
-                                            </HBox.margin>
-                                        </Label>
-                                    </children>
-                                    <VBox.margin>
-                                        <Insets />
-                                    </VBox.margin>
-                                    <padding>
-                                        <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
-                                    </padding>
-                                </HBox>
+            <StackPane fx:id="filtersPanelPlaceholder" HBox.hgrow="ALWAYS" VBox.vgrow="NEVER" />
+            <HBox>
+                <children>
+                    <VBox HBox.hgrow="ALWAYS">
+                        <children>
+                            <HBox style="-fx-background-color: #383838;">
+                                <children>
+                                    <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                        <image>
+                                            <Image url="@../images/favorite_icon.png" />
+                                        </image>
+                                    </ImageView>
+                                    <Label alignment="CENTER" prefHeight="25.0" style="-fx-text-fill: white;" styleClass="cell_big_label" text="Tutors">
+                                        <HBox.margin>
+                                            <Insets left="4.0" />
+                                        </HBox.margin>
+                                    </Label>
+                                </children>
+                                <VBox.margin>
+                                    <Insets />
+                                </VBox.margin>
+                                <padding>
+                                    <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
+                                </padding>
+                            </HBox>
 
-                                <VBox fx:id="personList" minWidth="340" prefWidth="150.0" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
-                                    <padding>
-                                        <Insets bottom="10" left="10" right="10" top="10" />
-                                    </padding>
-                                    <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
-                                </VBox>
-                            </children>
-                        </VBox>
-                        <VBox prefWidth="150.0" HBox.hgrow="ALWAYS">
-                            <children>
-                                <HBox alignment="CENTER" style="-fx-background-color: #383838;">
-                                    <children>
-                                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                                            <image>
-                                                <Image url="@../images/calendar_icon.png" />
-                                            </image></ImageView>
-                                        <Label alignment="CENTER" prefHeight="25.0" style="-fx-text-fill: white;" styleClass="cell_big_label" text="Schedule">
-                                            <HBox.margin>
-                                                <Insets left="4.0" />
-                                            </HBox.margin>
-                                        </Label>
-                                    </children>
-                                    <VBox.margin>
-                                        <Insets />
-                                    </VBox.margin>
-                                    <padding>
-                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                    </padding>
-                                </HBox>
-
-                                <StackPane fx:id="calendarViewPane" maxHeight="300.0" minHeight="-Infinity" prefHeight="250.0" style="-fx-background-color: #383838" styleClass="pane-with-border" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
-                                    <padding>
-                                        <Insets bottom="5" left="10" right="10" top="5" />
-                                    </padding>
-                                </StackPane>
-                                <VBox fx:id="appointmentList" prefWidth="150.0" styleClass="pane-with-border">
-                                    <padding>
-                                        <Insets bottom="10" left="10" right="10" top="10" />
-                                    </padding>
-                                    <children>
-                                        <StackPane fx:id="appointmentListPanelPlaceholder" VBox.vgrow="ALWAYS" />
-                                    </children>
-                                </VBox>
-                            </children>
-                        </VBox>
-
-                        <VBox HBox.hgrow="ALWAYS">
-                            <children>
-                                <HBox style="-fx-background-color: #383838;">
-                                    <children>
-                                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                                            <image>
-                                                <Image url="@../images/gradebook_icon.png" />
-                                            </image>
-                                        </ImageView>
-                                        <Label alignment="CENTER" prefHeight="25.0" style="-fx-text-fill: white;" styleClass="cell_big_label" text="Grades">
-                                            <HBox.margin>
-                                                <Insets left="4.0" />
-                                            </HBox.margin>
-                                        </Label>
-                                    </children>
-                                    <VBox.margin>
-                                        <Insets />
-                                    </VBox.margin>
-                                    <padding>
-                                        <Insets bottom="5.0" left="10.0" right="5.0" top="5.0" />
-                                    </padding>
-                                </HBox>
-
-                                <VBox fx:id="gradeList" prefWidth="150.0" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
-                                    <padding>
-                                        <Insets bottom="10" left="10" right="10" top="10" />
-                                    </padding>
-                                    <StackPane fx:id="gradeListPanelPlaceholder" VBox.vgrow="ALWAYS" />
-                                </VBox>
-                            </children>
-                        </VBox>
-
-                    </children>
+                            <VBox fx:id="personList" minWidth="500" prefWidth="150.0" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+                                <padding>
+                                    <Insets bottom="10" left="10" right="10" top="10" />
+                                </padding>
+                                <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                            </VBox>
+                        </children>
+                    </VBox>
+                    <VBox prefWidth="250.0" HBox.hgrow="ALWAYS">
+                        <children>
+                            <HBox alignment="CENTER" style="-fx-background-color: #383838;">
+                                <children>
+                                    <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                        <image>
+                                            <Image url="@../images/calendar_icon.png" />
+                                        </image>
+                                    </ImageView>
+                                    <Label alignment="CENTER" prefHeight="25.0" style="-fx-text-fill: white;" styleClass="cell_big_label" text="Calender">
+                                        <HBox.margin>
+                                            <Insets left="4.0" />
+                                        </HBox.margin>
+                                    </Label>
+                                </children>
+                                <VBox.margin>
+                                    <Insets />
+                                </VBox.margin>
+                                <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                </padding>
+                            </HBox>
+                            <StackPane fx:id="calendarViewPane" maxHeight="300.0" minHeight="-Infinity" prefHeight="240.0" style="-fx-background-color: #383838" styleClass="pane-with-border" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+                                <padding>
+                                    <Insets bottom="5" left="10" right="10" top="5" />
+                                </padding>
+                            </StackPane>
+                            <TabPane fx:id="tabPanePlaceHolder" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+                                <stylesheets>
+                                    <URL value="@TabStyle.css" />
+                                </stylesheets>
+                                <tabs>
+                                    <Tab closable="false" text="Appointments">
+                                        <content>
+                                            <VBox>
+                                                <children>
+                                                    <VBox fx:id="appointmentList" prefWidth="150.0" styleClass="pane-with-border">
+                                                        <padding>
+                                                            <Insets bottom="10" left="10" right="10" top="10" />
+                                                        </padding>
+                                                        <children>
+                                                            <StackPane fx:id="appointmentListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                                                        </children>
+                                                    </VBox>
+                                                </children>
+                                            </VBox>
+                                        </content>
+                                    </Tab>
+                                    <Tab closable="false" text="Schedule">
+                                        <content>
+                                            <VBox>
+                                                <children>
+                                                    <VBox fx:id="scheduleList" prefWidth="150.0" styleClass="pane-with-border">
+                                                        <padding>
+                                                            <Insets bottom="10" left="10" right="10" top="10" />
+                                                        </padding>
+                                                        <children>
+                                                            <StackPane fx:id="scheduleListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                                                        </children>
+                                                    </VBox>
+                                                </children>
+                                            </VBox>
+                                        </content>
+                                    </Tab>
+                                </tabs>
+                            </TabPane>
+                        </children>
+                    </VBox>
+                    <VBox prefWidth="250.0" HBox.hgrow="ALWAYS">
+                        <children>
+                            <HBox alignment="CENTER" style="-fx-background-color: #383838;">
+                                <children>
+                                    <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                        <image>
+                                            <Image url="@../images/book_icon.png" />
+                                        </image>
+                                    </ImageView>
+                                    <Label alignment="CENTER" prefHeight="25.0" style="-fx-text-fill: white;" styleClass="cell_big_label" text="Your Information">
+                                        <HBox.margin>
+                                            <Insets left="4.0" />
+                                        </HBox.margin>
+                                    </Label>
+                                </children>
+                                <VBox.margin>
+                                    <Insets />
+                                </VBox.margin>
+                                <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                </padding>
+                            </HBox>
+                            <TabPane fx:id="tabSidePanePlaceHolder" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+                                <stylesheets>
+                                    <URL value="@TabStyle.css" />
+                                </stylesheets>
+                                <tabs>
+                                    <Tab closable="false" text="Reminders">
+                                        <content>
+                                            <VBox>
+                                                <VBox fx:id="reminderList" prefWidth="150.0" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+                                                    <padding>
+                                                        <Insets bottom="10" left="10" right="10" top="10" />
+                                                    </padding>
+                                                    <StackPane fx:id="reminderListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                                                </VBox>
+                                            </VBox>
+                                        </content>
+                                    </Tab>
+                                    <Tab closable="false" text="Grades">
+                                        <content>
+                                            <VBox>
+                                                <VBox fx:id="gradeList" prefWidth="150.0" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+                                                    <padding>
+                                                        <Insets bottom="10" left="10" right="10" top="10" />
+                                                    </padding>
+                                                    <StackPane fx:id="gradeListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                                                </VBox>
+                                            </VBox>
+                                        </content>
+                                    </Tab>
+                                </tabs>
+                            </TabPane>
+                        </children>
+                    </VBox>
+                </children>
                 </HBox>
                 <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
             </VBox>

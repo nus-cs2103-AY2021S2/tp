@@ -7,12 +7,15 @@ import java.util.LinkedHashSet;
 import java.util.Objects;
 import java.util.Set;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentDateTime;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Name;
 import seedu.address.model.subject.SubjectName;
+import seedu.address.model.tutor.Address;
+import seedu.address.model.tutor.Name;
 
 public class AppointmentFilter implements Predicate<Appointment> {
     private final Set<Predicate<Name>> nameFilters;
@@ -27,6 +30,10 @@ public class AppointmentFilter implements Predicate<Appointment> {
     private Predicate<AppointmentDateTime> composedTimeToFilter;
     private Predicate<Address> composedLocationFilter;
 
+    private final ObservableList<String> stringList = FXCollections.observableArrayList();
+    private final ObservableList<String> unmodifiableStringList =
+            FXCollections.unmodifiableObservableList(stringList);
+
     /**
      * Constructs an empty {@code AppointmentFilter} that shows all appointments by default.
      */
@@ -38,6 +45,7 @@ public class AppointmentFilter implements Predicate<Appointment> {
         this.locationFilters = new LinkedHashSet<>();
 
         composeFilters();
+        buildStringList();
     }
 
     /**
@@ -62,6 +70,7 @@ public class AppointmentFilter implements Predicate<Appointment> {
         this.locationFilters = locationFilters;
 
         composeFilters();
+        buildStringList();
     }
 
     /**
@@ -86,6 +95,7 @@ public class AppointmentFilter implements Predicate<Appointment> {
         locationFilters.addAll(appointmentFilter.locationFilters);
 
         composeFilters();
+        buildStringList();
         return this;
     }
 
@@ -100,7 +110,15 @@ public class AppointmentFilter implements Predicate<Appointment> {
         locationFilters.removeAll(appointmentFilter.locationFilters);
 
         composeFilters();
+        buildStringList();
         return this;
+    }
+
+    /**
+     * Returns the string list as an unmodifiable {@code ObservableList}.
+     */
+    public ObservableList<String> asUnmodifiableObservableList() {
+        return unmodifiableStringList;
     }
 
     @Override
@@ -125,6 +143,11 @@ public class AppointmentFilter implements Predicate<Appointment> {
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(nameFilters, subjectNameFilters, timeFromFilters, timeToFilters, locationFilters);
+    }
+
+    @Override
+    public String toString() {
+        return String.join(", ", stringList);
     }
 
     @Override
@@ -163,5 +186,15 @@ public class AppointmentFilter implements Predicate<Appointment> {
         this.composedLocationFilter = locationFilters.stream()
                 .reduce((x, y) -> x.or(y))
                 .orElse(x -> true);
+    }
+
+    private void buildStringList() {
+        stringList.clear();
+
+        stringList.addAll(nameFilters.stream().map(x -> x.toString()).collect(Collectors.toList()));
+        stringList.addAll(subjectNameFilters.stream().map(x -> x.toString()).collect(Collectors.toList()));
+        stringList.addAll(timeFromFilters.stream().map(x -> x.toString()).collect(Collectors.toList()));
+        stringList.addAll(timeToFilters.stream().map(x -> x.toString()).collect(Collectors.toList()));
+        stringList.addAll(locationFilters.stream().map(x -> x.toString()).collect(Collectors.toList()));
     }
 }

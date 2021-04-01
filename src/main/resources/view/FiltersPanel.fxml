@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox styleClass="pane-with-border" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+  <children>
+    <Label text="${'Tutor\nFilters'}" minWidth="70.0" textAlignment="CENTER" style="-fx-text-fill: white;" styleClass="cell_big_label">
+      <padding>
+        <Insets bottom="4.0" left="8.0" right="8.0" top="4.0" />
+      </padding>
+    </Label>
+    <StackPane fx:id="tutorFilterListPlaceholder" HBox.hgrow="ALWAYS"/>
+
+    <Label text="${'Appointment\nFilters'}" minWidth="120.0" textAlignment="CENTER" style="-fx-text-fill: white;" styleClass="cell_big_label">
+      <padding>
+        <Insets bottom="4.0" left="8.0" right="8.0" top="4.0" />
+      </padding>
+    </Label>
+    <StackPane fx:id="appointmentFilterListPlaceholder" HBox.hgrow="ALWAYS"/>
+  </children>
+
+  <padding>
+    <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+  </padding>
+</HBox>

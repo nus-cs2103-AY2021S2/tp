@@ -5,7 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.util.function.Predicate;
 
-import seedu.address.model.person.Gender;
+import seedu.address.model.tutor.Gender;
 
 public class GenderFilter implements Predicate<Gender> {
     public static final String MESSAGE_CONSTRAINTS =
@@ -40,7 +40,7 @@ public class GenderFilter implements Predicate<Gender> {
 
     @Override
     public String toString() {
-        return genderFilter;
+        return "Gender: " + genderFilter;
     }
 
     @Override

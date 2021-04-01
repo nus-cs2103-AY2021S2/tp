@@ -7,8 +7,8 @@ import java.util.List;
 import javafx.collections.ObservableList;
 
 /**
- * Wraps all data at the event-book level
- * Duplicates are not allowed (by .isSameEvent comparison)
+ * Wraps all data at the Schedule-Tracker level
+ * Duplicates are not allowed (by .isSameSchedule comparison)
  */
 public class ScheduleTracker implements ReadOnlyScheduleTracker {
 
@@ -29,7 +29,7 @@ public class ScheduleTracker implements ReadOnlyScheduleTracker {
     }
 
     /**
-     * Creates an AppointmentBook using the Appointments in the {@code toBeCopied}
+     * Creates a ScheduleTracker using the Schedules in the {@code toBeCopied}
      */
     public ScheduleTracker(ReadOnlyScheduleTracker toBeCopied) {
         this();
@@ -41,7 +41,7 @@ public class ScheduleTracker implements ReadOnlyScheduleTracker {
     }
 
     /**
-     * Resets the existing data of this {@code AppointmentBook} with {@code newData}.
+     * Resets the existing data of this {@code ScheduleTracker} with {@code newData}.
      */
     public void resetData(ReadOnlyScheduleTracker newData) {
         requireNonNull(newData);
@@ -49,10 +49,8 @@ public class ScheduleTracker implements ReadOnlyScheduleTracker {
         setSchedules(newData.getScheduleList());
     }
 
-    //// person-level operations
-
     /**
-     * Returns true if a person with the same identity as {@code appointment} exists in the appointment book.
+     * Returns true if a person with the same identity as {@code schedule} exists in the schedule tracker.
      */
     public boolean hasSchedule(Schedule schedule) {
         requireNonNull(schedule);
@@ -60,18 +58,18 @@ public class ScheduleTracker implements ReadOnlyScheduleTracker {
     }
 
     /**
-     * Adds a person to the appointment book.
-     * The person must not already exist in the appointment book.
+     * Adds a person to the schedule tracker.
+     * The person must not already exist in the schedule tracker.
      */
     public void addSchedule(Schedule s) {
         schedules.add(s);
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedAppointment}.
-     * {@code target} must exist in the appointment book.
-     * The person identity of {@code editedAppointment} must not be the same as another existing person
-     * in the appointment book.
+     * Replaces the given person {@code target} in the list with {@code editedSchedule}.
+     * {@code target} must exist in the schedule tracker.
+     * The person identity of {@code editedSchedule} must not be the same as another existing person
+     * in the schedule tracker.
      */
     public void setSchedule(Schedule target, Schedule editedSchedule) {
         requireNonNull(editedSchedule);
@@ -80,8 +78,8 @@ public class ScheduleTracker implements ReadOnlyScheduleTracker {
     }
 
     /**
-     * Removes {@code key} from this {@code AppointmentBook}.
-     * {@code key} must exist in the appointment book.
+     * Removes {@code key} from this {@code ScheduleTracker}.
+     * {@code key} must exist in the schedule tracker.
      */
     public void removeSchedule(Schedule key) {
         schedules.remove(key);
@@ -89,7 +87,7 @@ public class ScheduleTracker implements ReadOnlyScheduleTracker {
 
     @Override
     public String toString() {
-        return schedules.asUnmodifiableObservableList().size() + " appointments";
+        return schedules.asUnmodifiableObservableList().size() + " schedules";
     }
 
     @Override

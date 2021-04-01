@@ -22,7 +22,7 @@ public class GradeList implements Iterable<Grade> {
      */
     public boolean contains(Grade toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::equals);
+        return internalList.stream().anyMatch(toCheck::isSameGrade);
     }
 
     /**
@@ -50,7 +50,7 @@ public class GradeList implements Iterable<Grade> {
             throw new GradeNotFoundException();
         }
 
-        if (!target.equals(editedGrade) && contains(editedGrade)) {
+        if (!target.isSameGrade(editedGrade) && contains(editedGrade)) {
             throw new DuplicateGradeException();
         }
 
@@ -109,7 +109,7 @@ public class GradeList implements Iterable<Grade> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof seedu.address.model.grade.Grade // instanceof handles nulls
+                || (other instanceof seedu.address.model.grade.GradeList // instanceof handles nulls
                 && internalList.equals(((seedu.address.model.grade.GradeList) other).internalList));
     }
 
@@ -124,7 +124,7 @@ public class GradeList implements Iterable<Grade> {
     private boolean gradesAreUnique(List<Grade> grades) {
         for (int i = 0; i < grades.size() - 1; i++) {
             for (int j = i + 1; j < grades.size(); j++) {
-                if (grades.get(i).equals(grades.get(j))) {
+                if (grades.get(i).isSameGrade(grades.get(j))) {
                     return false;
                 }
             }

@@ -6,16 +6,16 @@ import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.BudgetBook;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyAppointmentBook;
 import seedu.address.model.ReadOnlyGradeBook;
+import seedu.address.model.ReadOnlyTutorBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 /**
  * API of the Storage component
  */
-public interface Storage extends AddressBookStorage, AppointmentBookStorage, GradeBookStorage,
-        UserPrefsStorage {
+public interface Storage extends TutorBookStorage, AppointmentBookStorage, GradeBookStorage,
+        UserPrefsStorage, ScheduleTrackerStorage, ReminderTrackerStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
@@ -24,13 +24,13 @@ public interface Storage extends AddressBookStorage, AppointmentBookStorage, Gra
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
 
     @Override
-    Path getAddressBookFilePath();
+    Path getTutorBookFilePath();
 
     @Override
-    Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyTutorBook> readTutorBook() throws DataConversionException, IOException;
 
     @Override
-    void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
+    void saveTutorBook(ReadOnlyTutorBook tutorBook) throws IOException;
 
     @Override
     Path getAppointmentBookFilePath();
@@ -39,7 +39,7 @@ public interface Storage extends AddressBookStorage, AppointmentBookStorage, Gra
     Optional<ReadOnlyAppointmentBook> readAppointmentBook() throws DataConversionException, IOException;
 
     @Override
-    void saveAppointmentBook(ReadOnlyAppointmentBook addressBook) throws IOException;
+    void saveAppointmentBook(ReadOnlyAppointmentBook tutorBook) throws IOException;
 
     BudgetBook readBudgetBook();
 

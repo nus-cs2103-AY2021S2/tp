@@ -50,7 +50,7 @@ public class GradedItem implements Filterable {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof GradedItem // instanceof handles nulls
-                && gradedItem.equals(((GradedItem) other).gradedItem)); // state check
+                && gradedItem.toLowerCase().equals(((GradedItem) other).gradedItem.toLowerCase())); // state check
     }
 
     @Override

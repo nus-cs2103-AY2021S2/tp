@@ -5,7 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.util.function.Predicate;
 
-import seedu.address.model.person.Name;
+import seedu.address.model.tutor.Name;
 
 public class NameFilter implements Predicate<Name> {
     public static final String MESSAGE_CONSTRAINTS =
@@ -40,7 +40,7 @@ public class NameFilter implements Predicate<Name> {
 
     @Override
     public String toString() {
-        return nameFilter;
+        return "Name: " + nameFilter;
     }
 
     @Override

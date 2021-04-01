@@ -2,6 +2,8 @@ package seedu.address.logic.commands.gradecommands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -39,16 +41,6 @@ public class DeleteGradeCommand extends Command {
     }
 
     /**
-     * Create {@code DeleteGradeCommand} with {@code Grade} to delete.
-     * @param toDelete Grade to delete.
-     */
-    public DeleteGradeCommand(Grade toDelete) {
-        requireNonNull(toDelete);
-        this.targetIndex = null;
-        this.toDelete = toDelete;
-    }
-
-    /**
      * Deletes grade if exists in grade list (Offer two ways to delete by
      * index or by grade)
      * @param model {@code Model} which the command should operate on.
@@ -58,25 +50,16 @@ public class DeleteGradeCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        List<Grade> lastShownList = model.getFilteredGradeList();
 
-        // Delete by grade
-        if (targetIndex == null) {
-            if (model.hasGrade(toDelete)) {
-                model.deleteGrade(toDelete);
-                return new CommandResult(MESSAGE_DELETE_GRADE_SUCCESS);
-            } else {
-                return new CommandResult(MESSAGE_DELETE_GRADE_FAILURE);
-            }
-        } else {
-            // Delete by index
-            try {
-                model.removeGradeIndex(targetIndex.getZeroBased());
-                return new CommandResult(MESSAGE_DELETE_GRADE_SUCCESS);
-            } catch (IndexOutOfBoundsException e) {
-                return new CommandResult(MESSAGE_DELETE_GRADE_FAILURE);
-            }
+        // Delete by index
+        try {
+            Grade toDelete = lastShownList.get(targetIndex.getZeroBased());
+            model.removeGradeIndex(targetIndex.getZeroBased());
+            return new CommandResult(String.format(MESSAGE_DELETE_GRADE_SUCCESS, toDelete));
+        } catch (IndexOutOfBoundsException e) {
+            return new CommandResult(MESSAGE_DELETE_GRADE_FAILURE);
         }
-
     }
 
     @Override

@@ -48,7 +48,7 @@ public class SubjectName implements Filterable {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof SubjectName // instanceof handles nulls
-                && name.equals(((SubjectName) other).name)); // state check
+                && name.toLowerCase().equals(((SubjectName) other).name.toLowerCase())); // state check
     }
 
     @Override

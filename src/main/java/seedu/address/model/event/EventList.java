@@ -10,7 +10,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.event.exceptions.DuplicateEventException;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.schedule.Schedule;
 
 public class EventList implements Iterable<Event> {
 
@@ -26,6 +27,14 @@ public class EventList implements Iterable<Event> {
         return internalList.stream().anyMatch(toCheck::equals);
     }
 
+    /**
+     * Returns true if the list contains an equivalent event as the given argument.
+     */
+    public boolean containsDate(Event toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(new DateRangePredicate(toCheck));
+    }
+
     public void setEvents(EventList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
@@ -35,13 +44,11 @@ public class EventList implements Iterable<Event> {
      * Replaces the contents of this list with {@code events}.
      * {@code events} must not contain duplicate events.
      */
-    public void setEvents(List<Event> events) {
-        requireAllNonNull(events);
-        if (!eventsAreUnique(events)) {
-            throw new DuplicateEventException();
-        }
-
-        internalList.setAll(events);
+    public void setEvents(List<Appointment> appointments, List<Schedule> schedules) {
+        requireAllNonNull(appointments);
+        requireAllNonNull(schedules);
+        internalList.addAll(appointments);
+        internalList.addAll(schedules);
     }
 
     /**

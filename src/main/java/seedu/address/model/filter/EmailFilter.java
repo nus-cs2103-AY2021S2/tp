@@ -5,7 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.util.function.Predicate;
 
-import seedu.address.model.person.Email;
+import seedu.address.model.tutor.Email;
 
 public class EmailFilter implements Predicate<Email> {
     private static final String SPECIAL_CHARACTERS = "!#$%&'*+/=?`{|}~^.-@";
@@ -36,7 +36,7 @@ public class EmailFilter implements Predicate<Email> {
 
     @Override
     public String toString() {
-        return emailFilter;
+        return "Email: " + emailFilter;
     }
 
     @Override

@@ -8,38 +8,46 @@ import java.util.logging.Logger;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.BudgetBook;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyAppointmentBook;
 import seedu.address.model.ReadOnlyGradeBook;
+import seedu.address.model.ReadOnlyTutorBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.reminder.ReadOnlyReminderTracker;
+import seedu.address.model.schedule.ReadOnlyScheduleTracker;
 
 /**
- * Manages storage of AddressBook data in local storage.
+ * Manages storage of TutorBook data in local storage.
  */
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-    private AddressBookStorage addressBookStorage;
+    private TutorBookStorage tutorBookStorage;
     private UserPrefsStorage userPrefsStorage;
     private AppointmentBookStorage appointmentBookStorage;
     private BudgetBookStorage budgetBookStorage;
     private GradeBookStorage gradeBookStorage;
+    private ScheduleTrackerStorage scheduleTrackerStorage;
+    private ReminderTrackerStorage reminderTrackerStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code TutorBookStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage,
+    public StorageManager(TutorBookStorage tutorBookStorage,
                           UserPrefsStorage userPrefsStorage,
                           AppointmentBookStorage appointmentBookStorage,
-                          GradeBookStorage gradeBookStorage) {
+                          GradeBookStorage gradeBookStorage,
+                          ScheduleTrackerStorage scheduleTrackerStorage,
+                          ReminderTrackerStorage reminderTrackerStorage) {
         super();
-        this.addressBookStorage = addressBookStorage;
+        this.tutorBookStorage = tutorBookStorage;
         this.userPrefsStorage = userPrefsStorage;
         this.appointmentBookStorage = appointmentBookStorage;
         //TODO improve handling of budget book
         this.budgetBookStorage = new BudgetBookStorage();
         this.gradeBookStorage = gradeBookStorage;
+        this.scheduleTrackerStorage = scheduleTrackerStorage;
+        this.reminderTrackerStorage = reminderTrackerStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -60,33 +68,33 @@ public class StorageManager implements Storage {
     }
 
 
-    // ================ AddressBook methods ==============================
+    // ================ TutorBook methods ==============================
 
     @Override
-    public Path getAddressBookFilePath() {
-        return addressBookStorage.getAddressBookFilePath();
+    public Path getTutorBookFilePath() {
+        return tutorBookStorage.getTutorBookFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException {
-        return readAddressBook(addressBookStorage.getAddressBookFilePath());
+    public Optional<ReadOnlyTutorBook> readTutorBook() throws DataConversionException, IOException {
+        return readTutorBook(tutorBookStorage.getTutorBookFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyTutorBook> readTutorBook(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
-        return addressBookStorage.readAddressBook(filePath);
+        return tutorBookStorage.readTutorBook(filePath);
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException {
-        saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath());
+    public void saveTutorBook(ReadOnlyTutorBook tutorBook) throws IOException {
+        saveTutorBook(tutorBook, tutorBookStorage.getTutorBookFilePath());
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+    public void saveTutorBook(ReadOnlyTutorBook tutorBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        addressBookStorage.saveAddressBook(addressBook, filePath);
+        tutorBookStorage.saveTutorBook(tutorBook, filePath);
     }
 
     // ================ AppointmentBook methods ==========================
@@ -110,8 +118,8 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public void saveAppointmentBook(ReadOnlyAppointmentBook addressBook) throws IOException {
-        saveAppointmentBook(addressBook, appointmentBookStorage.getAppointmentBookFilePath());
+    public void saveAppointmentBook(ReadOnlyAppointmentBook tutorBook) throws IOException {
+        saveAppointmentBook(tutorBook, appointmentBookStorage.getAppointmentBookFilePath());
     }
 
     @Override
@@ -169,4 +177,61 @@ public class StorageManager implements Storage {
         gradeBookStorage.saveGradeBook(gradeBook, filePath);
     }
 
+    // ================ ScheduleTracker methods ==========================
+
+    @Override
+    public Path getScheduleTrackerFilePath() {
+        return scheduleTrackerStorage.getScheduleTrackerFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyScheduleTracker> readScheduleTracker() throws DataConversionException, IOException {
+        return readScheduleTracker(scheduleTrackerStorage.getScheduleTrackerFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyScheduleTracker> readScheduleTracker(Path filePath)
+            throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return scheduleTrackerStorage.readScheduleTracker(filePath);
+    }
+
+    @Override
+    public void saveScheduleTracker(ReadOnlyScheduleTracker scheduleTracker) throws IOException {
+        saveScheduleTracker(scheduleTracker, scheduleTrackerStorage.getScheduleTrackerFilePath());
+    }
+
+    @Override
+    public void saveScheduleTracker(ReadOnlyScheduleTracker scheduleTracker, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        scheduleTrackerStorage.saveScheduleTracker(scheduleTracker, filePath);
+    }
+
+    @Override
+    public Path getReminderTrackerFilePath() {
+        return reminderTrackerStorage.getReminderTrackerFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyReminderTracker> readReminderTracker() throws DataConversionException, IOException {
+        return readReminderTracker(reminderTrackerStorage.getReminderTrackerFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyReminderTracker> readReminderTracker(Path filePath)
+            throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return reminderTrackerStorage.readReminderTracker(filePath);
+    }
+
+    @Override
+    public void saveReminderTracker(ReadOnlyReminderTracker reminderTracker) throws IOException {
+        saveReminderTracker(reminderTracker, reminderTrackerStorage.getReminderTrackerFilePath());
+    }
+
+    @Override
+    public void saveReminderTracker(ReadOnlyReminderTracker reminderTracker, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        reminderTrackerStorage.saveReminderTracker(reminderTracker, filePath);
+    }
 }

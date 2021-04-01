@@ -3,10 +3,14 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TUTORS;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalReminders.MATHS_TUITION_PAYMENT_REMINDER;
+import static seedu.address.testutil.TypicalReminders.SCIENCE_TUITION_PAYMENT_REMINDER;
+import static seedu.address.testutil.TypicalSchedules.MATHS_HOMEWORK_SCHEDULE;
+import static seedu.address.testutil.TypicalSchedules.SCIENCE_HOMEWORK_SCHEDULE;
+import static seedu.address.testutil.TypicalTutors.ALICE;
+import static seedu.address.testutil.TypicalTutors.BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -21,11 +25,15 @@ import seedu.address.model.budget.Budget;
 import seedu.address.model.grade.Grade;
 import seedu.address.model.grade.GradeEnum;
 import seedu.address.model.grade.GradedItem;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.reminder.ReminderTracker;
+import seedu.address.model.schedule.ScheduleTracker;
 import seedu.address.model.subject.SubjectName;
-import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.model.tutor.Address;
+import seedu.address.model.tutor.Name;
+import seedu.address.model.tutor.NameContainsKeywordsPredicate;
+import seedu.address.testutil.ReminderTrackerBuilder;
+import seedu.address.testutil.ScheduleTrackerBuilder;
+import seedu.address.testutil.TutorBookBuilder;
 
 public class ModelManagerTest {
 
@@ -35,7 +43,7 @@ public class ModelManagerTest {
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
-        assertEquals(new AddressBook(), new AddressBook(modelManager.getAddressBook()));
+        assertEquals(new TutorBook(), new TutorBook(modelManager.getTutorBook()));
     }
 
     @Test
@@ -46,14 +54,14 @@ public class ModelManagerTest {
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setAddressBookFilePath(Paths.get("address/book/file/path"));
+        userPrefs.setTutorBookFilePath(Paths.get("address/book/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
-        userPrefs.setAddressBookFilePath(Paths.get("new/address/book/file/path"));
+        userPrefs.setTutorBookFilePath(Paths.get("new/address/book/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
@@ -71,42 +79,44 @@ public class ModelManagerTest {
 
     @Test
     public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.setAddressBookFilePath(null));
+        assertThrows(NullPointerException.class, () -> modelManager.setTutorBookFilePath(null));
     }
 
     @Test
     public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
         Path path = Paths.get("address/book/file/path");
-        modelManager.setAddressBookFilePath(path);
-        assertEquals(path, modelManager.getAddressBookFilePath());
+        modelManager.setTutorBookFilePath(path);
+        assertEquals(path, modelManager.getTutorBookFilePath());
     }
 
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.hasPerson(null));
+        assertThrows(NullPointerException.class, () -> modelManager.hasTutor(null));
     }
 
     @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(modelManager.hasPerson(ALICE));
+        assertFalse(modelManager.hasTutor(ALICE));
     }
 
     @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
-        modelManager.addPerson(ALICE);
-        assertTrue(modelManager.hasPerson(ALICE));
+        modelManager.addTutor(ALICE);
+        assertTrue(modelManager.hasTutor(ALICE));
     }
 
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredTutorList().remove(0));
     }
 
     @Test
     public void equals() {
-        AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
-        AddressBook differentAddressBook = new AddressBook();
+        TutorBook addressBook = new TutorBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
+        TutorBook differentAddressBook = new TutorBook();
+
         UserPrefs userPrefs = new UserPrefs();
+
         AppointmentBook appointmentBook = new AppointmentBook();
         AppointmentDateTime appointmentFromTime =
                 new AppointmentDateTime("2020-10-10 10:10AM");
@@ -130,11 +140,19 @@ public class ModelManagerTest {
         GradeBook differentGradeBook = new GradeBook();
         differentGradeBook.addGrade(diffGrade);
 
+        ScheduleTracker scheduleTracker = new ScheduleTrackerBuilder().withSchedule(MATHS_HOMEWORK_SCHEDULE)
+                .withSchedule(SCIENCE_HOMEWORK_SCHEDULE).build();
+        ScheduleTracker differentScheduleTracker = new ScheduleTracker();
+
+        ReminderTracker reminderTracker = new ReminderTrackerBuilder().withReminder(MATHS_TUITION_PAYMENT_REMINDER)
+                .withReminder(SCIENCE_TUITION_PAYMENT_REMINDER).build();
+        ReminderTracker differentReminderTracker = new ReminderTracker();
+
         // same values -> returns true
         modelManager = new ModelManager(addressBook, userPrefs, appointmentBook,
-         budgetBook, gradeBook);
+                budgetBook, gradeBook, scheduleTracker, reminderTracker);
         ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs,
-                appointmentBook, budgetBook, gradeBook);
+                appointmentBook, budgetBook, gradeBook, scheduleTracker, reminderTracker);
 
         assertTrue(modelManager.equals(modelManagerCopy));
 
@@ -149,35 +167,42 @@ public class ModelManagerTest {
 
         // different addressBook -> returns false
         assertFalse(modelManager.equals(new ModelManager(differentAddressBook,
-                userPrefs, appointmentBook, budgetBook, gradeBook)));
+                userPrefs, appointmentBook, budgetBook, gradeBook, scheduleTracker, reminderTracker)));
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        modelManager.updateFilteredTutorList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs,
-                appointmentBook, budgetBook, gradeBook)));
+                appointmentBook, budgetBook, gradeBook, scheduleTracker, reminderTracker)));
 
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        modelManager.updateFilteredTutorList(PREDICATE_SHOW_ALL_TUTORS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
-        differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
+        differentUserPrefs.setTutorBookFilePath(Paths.get("differentFilePath"));
         assertFalse(modelManager.equals(new ModelManager(addressBook,
-                differentUserPrefs, appointmentBook, budgetBook, gradeBook)));
+                differentUserPrefs, appointmentBook, budgetBook, gradeBook, scheduleTracker, reminderTracker)));
 
         // different appointmentBook -> returns false
         assertFalse(modelManager.equals(new ModelManager(addressBook,
-                userPrefs, differentAppointmentBook, budgetBook, gradeBook)));
+                userPrefs, differentAppointmentBook, budgetBook, gradeBook, scheduleTracker, reminderTracker)));
 
         // different budget book -> returns false
         assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs,
-                appointmentBook, diffBudgetBook, gradeBook)));
+                appointmentBook, diffBudgetBook, gradeBook, scheduleTracker, reminderTracker)));
 
         //different gradeBook -> returns false
         assertFalse(modelManager.equals(new ModelManager(differentAddressBook,
-                userPrefs, appointmentBook, budgetBook, differentGradeBook)));
+                userPrefs, appointmentBook, budgetBook, differentGradeBook, scheduleTracker, reminderTracker)));
 
+        //different schedule tracker -> returns false
+        assertFalse(modelManager.equals(new ModelManager(differentAddressBook,
+                userPrefs, appointmentBook, budgetBook, gradeBook, differentScheduleTracker, reminderTracker)));
+
+        //different reminder tracker -> returns false
+        assertFalse(modelManager.equals(new ModelManager(differentAddressBook,
+                userPrefs, appointmentBook, budgetBook, gradeBook, scheduleTracker, differentReminderTracker)));
     }
 }

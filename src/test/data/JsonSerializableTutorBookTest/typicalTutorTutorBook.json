@@ -1,0 +1,127 @@
+{
+  "tutors" : [ {
+    "name" : "Alice Tan",
+    "gender" : "Female",
+    "phone" : "94351253",
+    "email" : "alice@example.com",
+    "address" : "123, Jurong West Ave 6, #08-111",
+    "notes" : "Some notes about Alice",
+    "tagged" : [ "friends" ],
+    "tutorSubjects" : [ {
+      "subjectName" : "Mathematics",
+      "subjectLevel" : "Secondary 4",
+      "subjectRate" : "60",
+      "subjectExperience" : "5",
+      "subjectQualification" : "A-Level"
+    } ],
+    "isFavourite" : "true"
+  }, {
+    "name" : "Benson Meier",
+    "gender" : "Male",
+    "phone" : "98765432",
+    "email" : "johnd@example.com",
+    "address" : "311, Clementi Ave 2, #02-25",
+    "notes" : "",
+    "tagged" : [ "owesMoney", "friends" ],
+    "tutorSubjects" : [ {
+      "subjectName" : "English",
+      "subjectLevel" : "Secondary 4",
+      "subjectRate" : "60",
+      "subjectExperience" : "4",
+      "subjectQualification" : "A-Level"
+    }, {
+      "subjectName" : "Geography",
+      "subjectLevel" : "Secondary 4",
+      "subjectRate" : "60",
+      "subjectExperience" : "4",
+      "subjectQualification" : "A-Level"
+    } ],
+    "isFavourite" : "false"
+  }, {
+    "name" : "Carl Kurz",
+    "gender" : "Male",
+    "phone" : "95352563",
+    "email" : "heinz@example.com",
+    "address" : "wall street",
+    "notes" : "Some notes about Carl",
+    "tagged" : [ ],
+    "tutorSubjects" : [ {
+      "subjectName" : "English",
+      "subjectLevel" : "Secondary 3",
+      "subjectRate" : "50",
+      "subjectExperience" : "5",
+      "subjectQualification" : "A-Level"
+    }, {
+      "subjectName" : "Literature",
+      "subjectLevel" : "Secondary 3",
+      "subjectRate" : "50",
+      "subjectExperience" : "5",
+      "subjectQualification" : "A-Level"
+    } ],
+    "isFavourite" : "false"
+  }, {
+    "name" : "Daniel Meier",
+    "gender" : "Male",
+    "phone" : "87652533",
+    "email" : "cornelia@example.com",
+    "address" : "10th street",
+    "notes" : "Some notes about Daniel",
+    "tagged" : [ "friends" ],
+    "tutorSubjects" : [ {
+      "subjectName" : "Physics",
+      "subjectLevel" : "Secondary 3",
+      "subjectRate" : "50",
+      "subjectExperience" : "6",
+      "subjectQualification" : "A-Level"
+    } ],
+    "isFavourite" : "false"
+  }, {
+    "name" : "Elle Meyer",
+    "gender" : "Female",
+    "phone" : "9482224",
+    "email" : "werner@example.com",
+    "address" : "michegan ave",
+    "notes" : "Some notes about Elle",
+    "tagged" : [ ],
+    "tutorSubjects" : [ {
+      "subjectName" : "Geography",
+      "subjectLevel" : "Secondary 2",
+      "subjectRate" : "40",
+      "subjectExperience" : "3",
+      "subjectQualification" : "A-Level"
+    } ],
+    "isFavourite" : "false"
+  }, {
+    "name" : "Fiona Kunz",
+    "gender" : "Female",
+    "phone" : "9482427",
+    "email" : "lydia@example.com",
+    "address" : "little tokyo",
+    "notes" : "Some notes about Fiona",
+    "tagged" : [ ],
+    "tutorSubjects" : [ {
+      "subjectName" : "History",
+      "subjectLevel" : "Secondary 2",
+      "subjectRate" : "40",
+      "subjectExperience" : "7",
+      "subjectQualification" : "A-Level"
+    } ],
+    "isFavourite" : "false"
+  }, {
+    "name" : "John Doe",
+    "gender" : "Male",
+    "phone" : "9482442",
+    "email" : "johndoe@example.com",
+    "address" : "4th street",
+    "notes" : "Some notes about John",
+    "tagged" : [ ],
+    "tutorSubjects" : [ {
+      "subjectName" : "Chemistry",
+      "subjectLevel" : "Secondary 2",
+      "subjectRate" : "40",
+      "subjectExperience" : "4",
+      "subjectQualification" : "A-Level"
+    } ],
+    "isFavourite" : "false"
+  } ]
+}

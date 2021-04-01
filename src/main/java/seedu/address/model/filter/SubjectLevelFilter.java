@@ -36,7 +36,7 @@ public class SubjectLevelFilter implements Predicate<SubjectLevel> {
 
     @Override
     public String toString() {
-        return subjectLevelFilter;
+        return "Subject Level: " + subjectLevelFilter;
     }
 
     @Override

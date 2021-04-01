@@ -42,7 +42,7 @@ public class AppointmentDateTimeFilter implements Predicate<AppointmentDateTime>
 
     @Override
     public String toString() {
-        return appointmentDateTimeFilterInequality + appointmentDateTimeFilter.toString();
+        return "Date Time: " + appointmentDateTimeFilterInequality + " " + appointmentDateTimeFilter.toString();
     }
 
     @Override

@@ -36,7 +36,7 @@ public class SubjectQualificationFilter implements Predicate<SubjectQualificatio
 
     @Override
     public String toString() {
-        return subjectQualificationFilter;
+        return "Subject Qualification: " + subjectQualificationFilter;
     }
 
     @Override

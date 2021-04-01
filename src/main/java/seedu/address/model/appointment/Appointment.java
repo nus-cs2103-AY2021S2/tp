@@ -3,9 +3,9 @@ package seedu.address.model.appointment;
 import java.util.Objects;
 
 import seedu.address.model.event.Event;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Name;
 import seedu.address.model.subject.SubjectName;
+import seedu.address.model.tutor.Address;
+import seedu.address.model.tutor.Name;
 
 /**
  * Appointment class to store appointment objects to represent tutee and tutor relations

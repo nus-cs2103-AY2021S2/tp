@@ -64,6 +64,20 @@ public class Grade implements Filterable {
     }
 
     /**
+     * Returns true if both grades have the same subject and gradedItem.
+     * This defines a weaker notion of equality between two grades.
+     */
+    public boolean isSameGrade(Grade otherGrade) {
+        if (otherGrade == this) {
+            return true;
+        }
+
+        return otherGrade != null
+                && otherGrade.getSubject().equals(getSubject())
+                && otherGrade.getGradedItem().equals(getGradedItem());
+    }
+
+    /**
      * return true if the subject and gradedItem of two Grade Objects are equal.
      */
     @Override
@@ -76,7 +90,8 @@ public class Grade implements Filterable {
         }
         Grade that = (Grade) o;
         return Objects.equals(subject, that.subject)
-                && Objects.equals(gradedItem, that.gradedItem);
+                && Objects.equals(gradedItem, that.gradedItem)
+                && Objects.equals(grade, that.grade);
     }
 
     @Override

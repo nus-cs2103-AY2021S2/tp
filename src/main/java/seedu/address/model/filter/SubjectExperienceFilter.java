@@ -41,7 +41,8 @@ public class SubjectExperienceFilter implements Predicate<SubjectExperience> {
 
     @Override
     public String toString() {
-        return subjectExperienceFilter;
+        return "Subject Experience: " + subjectExperienceFilterInequality + " "
+                + subjectExperienceFilterNumber.toString();
     }
 
     @Override

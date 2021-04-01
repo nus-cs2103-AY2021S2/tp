@@ -36,7 +36,7 @@ public class SubjectNameFilter implements Predicate<SubjectName> {
 
     @Override
     public String toString() {
-        return subjectNameFilter;
+        return "Subject Name: " + subjectNameFilter;
     }
 
     @Override

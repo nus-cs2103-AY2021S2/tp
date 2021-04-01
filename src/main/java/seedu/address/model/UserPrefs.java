@@ -14,9 +14,11 @@ import seedu.address.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
+    private Path tutorBookFilePath = Paths.get("data" , "tutorbook.json");
     private Path appointmentBookFilePath = Paths.get("data", "appointmentBook.json");
     private Path gradeBookFilePath = Paths.get("data" , "gradeBook.json");
+    private Path scheduleTrackerFilePath = Paths.get("data" , "scheduleTracker.json");
+    private Path reminderTrackerFilePath = Paths.get("data" , "reminderTracker.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -37,7 +39,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void resetData(ReadOnlyUserPrefs newUserPrefs) {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
-        setAddressBookFilePath(newUserPrefs.getAddressBookFilePath());
+        setTutorBookFilePath(newUserPrefs.getTutorBookFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -49,8 +51,8 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.guiSettings = guiSettings;
     }
 
-    public Path getAddressBookFilePath() {
-        return addressBookFilePath;
+    public Path getTutorBookFilePath() {
+        return tutorBookFilePath;
     }
 
     public Path getAppointmentBookFilePath() {
@@ -61,9 +63,17 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         return gradeBookFilePath;
     }
 
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        this.addressBookFilePath = addressBookFilePath;
+    public void setTutorBookFilePath(Path tutorBookFilePath) {
+        requireNonNull(tutorBookFilePath);
+        this.tutorBookFilePath = tutorBookFilePath;
+    }
+
+    public Path getScheduleTrackerFilePath() {
+        return scheduleTrackerFilePath;
+    }
+
+    public Path getReminderTrackerFilePath() {
+        return reminderTrackerFilePath;
     }
 
     public void setAppointmentBookFilePath(Path appointmentBookFilePath) {
@@ -74,6 +84,16 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void setGradeBookFilePath(Path gradeBookFilePath) {
         requireNonNull(gradeBookFilePath);
         this.gradeBookFilePath = gradeBookFilePath;
+    }
+
+    public void setScheduleTrackerFilePath(Path scheduleTrackerFilePath) {
+        requireNonNull(scheduleTrackerFilePath);
+        this.scheduleTrackerFilePath = scheduleTrackerFilePath;
+    }
+
+    public void setReminderTrackerFilePath(Path reminderTrackerFilePath) {
+        requireNonNull(reminderTrackerFilePath);
+        this.reminderTrackerFilePath = reminderTrackerFilePath;
     }
 
     @Override
@@ -88,19 +108,19 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-                && addressBookFilePath.equals(o.addressBookFilePath);
+                && tutorBookFilePath.equals(o.tutorBookFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, addressBookFilePath);
+        return Objects.hash(guiSettings, tutorBookFilePath);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
-        sb.append("\nLocal data file location : " + addressBookFilePath);
+        sb.append("\nLocal data file location : " + tutorBookFilePath);
         return sb.toString();
     }
 

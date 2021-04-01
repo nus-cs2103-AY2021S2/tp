@@ -3,14 +3,12 @@ package seedu.address.model.budget;
 import java.util.HashMap;
 import java.util.Map;
 
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
+import seedu.address.model.ReadOnlyTutorBook;
 import seedu.address.model.subject.SubjectName;
 import seedu.address.model.subject.SubjectRate;
 import seedu.address.model.subject.TutorSubject;
-
-
+import seedu.address.model.tutor.Name;
+import seedu.address.model.tutor.Tutor;
 
 public class NameSubjectRate {
 
@@ -36,22 +34,22 @@ public class NameSubjectRate {
      * Accessory method to create map from {@code ReadOnlyAddressBook}
      */
     private static Map<Name, HashMap<SubjectName, SubjectRate>> createNameSubjectMap(
-            ReadOnlyAddressBook readOnlyAddressBook) {
+            ReadOnlyTutorBook readOnlyTutorBook) {
 
         Map<Name, HashMap<SubjectName, SubjectRate>> nameSubjectMap = new HashMap<>();
-        for (Person person : readOnlyAddressBook.getPersonList()) {
-            nameSubjectMap.put(person.getName(), createNameRateMap(person));
+        for (Tutor tutor : readOnlyTutorBook.getTutorList()) {
+            nameSubjectMap.put(tutor.getName(), createNameRateMap(tutor));
         }
         return nameSubjectMap;
     }
 
     /**
      * Acessory method to create HashMap for each {@code Person}
-     * @param person Each person in address book
+     * @param tutor Each person in address book
      */
-    private static HashMap<SubjectName, SubjectRate> createNameRateMap(Person person) {
+    private static HashMap<SubjectName, SubjectRate> createNameRateMap(Tutor tutor) {
         HashMap<SubjectName, SubjectRate> subjectRateHashMap = new HashMap<>();
-        for (TutorSubject tutorSubject : person.getSubjectList()) {
+        for (TutorSubject tutorSubject : tutor.getSubjectList()) {
             subjectRateHashMap.put(tutorSubject.getName(), tutorSubject.getRate());
         }
         return subjectRateHashMap;

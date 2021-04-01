@@ -126,7 +126,7 @@ The `Model`,
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
-* can save the Tutor Hunter details in json format and read it back.
+* can save the Tutor Tracker details in json format and read it back.
 
 ### Common classes
 
@@ -138,7 +138,7 @@ Classes used by multiple components are in the `seedu.TutorTracker.commons` pack
 
 ### [Proposed] Favourite Feature
 ####Proposed Implementation
-The proposed favourite feature is to facilitate the user to keep track of his/her favourites 
+The proposed favourite feature is to facilitate the user to keep track of his/her favourites.
 out of the entire list of tutors. It implements the following operations:
 * `Favourite tutor` - Add a tutor to the list of favourite tutors.
 * `Unfavourite tutor` - Delete the tutor from the list of favourite.
@@ -151,7 +151,7 @@ Given below are example usage scenarios and how the favourite feature behaves at
 
 ### [Proposed] Note Feature
 ####Proposed Implementation
-The proposed note feature is to facilitate the user to keep track of his/her own notes of different 
+The proposed note feature is to facilitate the user to keep track of his/her own notes of different
 tutors and appointments. Additionally, it implements the following operations:
 * `Add note` - Add a note
 * `Delete note` - Delete a note
@@ -163,12 +163,12 @@ Given below are example usage scenarios and how the note feature behaves at each
 ####Proposed Implementation
 The proposed gradebook feature is to facilitate the user to keep track of his/her
 own grades of different subjects for reference, which are internally stored as `gradeList`. Additionally,
-it implements the following operations:  
+it implements the following operations:
 * `Add a subject grade` - Add a subject grade to user's gradebook
 * `Delete a subject grade` - Delete a subject grade by subject name
 * `Edit a subject grade` - Edit a subject grade by subject name
-   
-These operations are exposed in the `Logic` interface by parsing respective `AddGradeCommand`, 
+
+These operations are exposed in the `Logic` interface by parsing respective `AddGradeCommand`,
 `DeleteGradeCommand` and `EditGradeCommand`.
 
 Given below is example usage scenarios and how the gradebook features behave.
@@ -194,9 +194,9 @@ the active and inactive filters.
 
 ### [Proposed] Schedule Feature
 ####Proposed Implementation
-The proposed schedule feature is to facilitate the user to keep track of his/her 
-own schedule, which are events that are closely related to tuition, i.e., tuition's homework deadline. 
-The schedules are internally stored in `scheduleList`. 
+The proposed schedule feature is to facilitate the user to keep track of his/her
+own schedule, which are events that are closely related to tuition, i.e., tuition's homework deadline.
+The schedules are internally stored in `scheduleList`.
 Additionally,  it implements the following operations:
 * `Add a schedule` - Add a schedule to the user's schedules
 * `Delete a schedule` - Delete a schedule by schedule name
@@ -223,11 +223,11 @@ These operations are exposed in the `Logic` interface by parsing respective `Add
 ### [Proposed Budget Feature]
 #### Proposed Implementaion
 The proposed budget feature is to facilitate the user to keep track of the total
-cost of all of his own appointments and whether it is within the budget he has set for 
-himself. The budget is an optional feature, and can easily be added through 
+cost of all of his own appointments and whether it is within the budget he has set for
+himself. The budget is an optional feature, and can easily be added through
 CLI.
 It supports the following operations:
-#### `command` - example usage 
+#### `command` - example usage
 * `add_budget budget_size` - add_budget b/500
 * `edit_budget budget_size` - edit_budget b/600
 * `delete_budget` - delete_budget
