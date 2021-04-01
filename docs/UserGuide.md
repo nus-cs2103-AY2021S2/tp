@@ -36,9 +36,9 @@ If you are an experienced user, we have provided a convenient [Summary of Comman
 ## Table of Contents 
 
 Please use the table of contents to navigate through the user guide quickly. ClientBook's commands are grouped into 
-<span style="color:#fabed4">**contact management**</span>, 
-<span style="color:#ffd8b1">**contact viewing**</span>, and 
-<span style="color:#fffac8">**general**</span> commands.
+<span style="color:#911eb4">**contact management**</span>, 
+<span style="color:#f58231">**contact viewing**</span>, and 
+<span style="color:#3cb44b">**general**</span> commands.
 
 
 
