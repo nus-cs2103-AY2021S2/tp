@@ -119,14 +119,14 @@ we indicated that James has purchased a policy from us with a policy ID of OCBC#
 
 Now, if you scroll down the contact list, you should find James at the bottom of the list.
 
-<p align="center"><img src="/images/newContactJames.png"></p>
+<p align="center"><img src="images/newContactJames.png"></p>
 
 2. Try editing a Client contact using `edit 1 p/61234567`.
 
 This command edits the phone number of the first client displayed in the contact list to 61234567. In this case, Alex Yeoh's
 phone number in ClientBook has been changed to 61234567.
 
-<p align="center"><img src="/images/alexYeohChangePhone.png"></p>
+<p align="center"><img src="images/alexYeohChangePhone.png"></p>
 
 3. Delete a Client contact using `delete 3`.
 
