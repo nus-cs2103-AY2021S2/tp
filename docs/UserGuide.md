@@ -79,6 +79,15 @@ Messages that appear in a warning box are important to follow as unintended cons
 Example warning!
 </div>
 
+**Additional Information**
+
+Messages that appear in an infomation box are additional information that may be useful to know.
+
+<div markdown="block" class="alert alert-info">:information_source:
+**Info:**
+Example information!
+</div>
+
 **Highlights**
 
 Words or sentences that appear in these highlighted boxes are being emphasised for their relevance in that section.
@@ -88,23 +97,23 @@ Words or sentences that appear in these highlighted boxes are being emphasised f
 
 #### 2.2.3 Command Format
 
-Commands discussed in this user guide follow these rules. Parameters that are discussed in this UG, such as `p/PHONE_NUMBER` or `n/NAME` refer to information that is to be included as an input of a command.
+Commands discussed in this user guide follow these rules:
+
+  * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+    e.g. in `addC n/NAME`, `NAME` is a parameter which can be used as `addC n/John Doe`.
+  
+  * Items in square brackets are optional.<br>
+    e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  
+  * Items with `…`​ after them can be used multiple times including zero times.<br>
+    e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+    
+  * Parameters can be in any order.<br>
+    e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
-
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `addC n/NAME`, `NAME` is a parameter which can be used as `addC n/John Doe`.
-
-* Items in square brackets are optional.<br>
-  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
@@ -112,6 +121,10 @@ Commands discussed in this user guide follow these rules. Parameters that are di
 * Commands that do not take in extra parameters (such as `help` and `exit`) will ignore the additional parameters that are appended to it.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
+</div>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Parameters refer to information that is to be included as an input to a command.
 </div>
 
 #### 2.2.4 Command Parameters
@@ -125,7 +138,7 @@ This subsection serves to list out the parameters used in this document. To achi
 
 ##### `DATE`
 
-* The date of a deadline or event.
+* The date associated with a deadline or event.
 * Date can be only be entered in one of these formats:
     * 23-11-2021
     * 23/11/2021
@@ -160,16 +173,6 @@ This subsection serves to list out the parameters used in this document. To achi
     * `TODO_INDEX` refers to the number shown beside the todo in the Main Panel when a project is displayed.
 * Indexes **must be a positive integer** 1, 2, 3, …​
 
-##### `REPEAT_WEEKLY`
-
-* The weekly repetition status of an event.
-* Weekly repetition can be only be entered in one of these formats:
-    * Y
-    * y
-    * N
-    * n
-* `Y` being Yes & `N` being No w.r.t to the Repeat Weekly status.
-
 ##### `KEYWORD`
 
 * The keyword used to search for contacts.
@@ -184,6 +187,17 @@ This subsection serves to list out the parameters used in this document. To achi
 
 * The phone number of a contact.
 * Phone numbers should only contain numbers, and it should be at least 3 digits long.
+
+##### `REPEAT_WEEKLY`
+
+* Indicates whether the event repeats every week.
+* `REPEAT_WEEKLY` must be one of the following values:
+    * `Y`
+    * `N`
+    * `y`
+    * `n`
+* `Y` or `y` indicates that the event repeats every week.
+* `N` or `n` indicates that the event is a one time event.
 
 ##### `ROLE`
 
@@ -202,8 +216,8 @@ This subsection serves to list out the parameters used in this document. To achi
 * Time can be only be entered in one of these formats:
     * 1730
     * 17:30
-* The Hour Field (First 2 digits) should be a non-negative number between 00 and 23 (inclusive).
-* The Minute Field (Last 2 digits) should be a non-negative number between 00 and 59 (inclusive).
+* The Hour Field (first 2 digits) should be a non-negative number between 00 and 23 (inclusive).
+* The Minute Field (last 2 digits) should be a non-negative number between 00 and 59 (inclusive).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -211,11 +225,12 @@ This subsection serves to list out the parameters used in this document. To achi
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `colab.jar` from [here](https://github.com/AY2021S2-CS2103T-T11-2/tp/releases).
+1. Download the latest `CoLAB.jar` from [here](https://github.com/AY2021S2-CS2103T-T11-2/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for CoLAB.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data. When the sample data is no longer required, you may use the `clear` command to clear sample projects and contacts from CoLAB.<br>
+1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data. <br>
+   
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`contacts`** and pressing Enter will list all contacts.<br>
@@ -235,13 +250,17 @@ This subsection serves to list out the parameters used in this document. To achi
 
 1. Refer to the [Features](#4features) below for details of each command.
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+When the sample data is no longer required, you may use the `clear` command to clear sample projects and contacts from CoLAB.
+</div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **4. Features**
 
 This section contains documentation on CoLAB's features and commands.
 
-It is split into 4 subsections,
+It is split into various subsections:
 * [Projects](#41-projects)
     * [Todos](#411-todos)
     * [Deadlines](#412-deadlines)
@@ -260,43 +279,48 @@ Each Project may have `Todos`, `Deadlines`, `Events` & `Groupmates` that are rel
 Adds a project to CoLAB.
 
 Format: `addP n/NAME`
+  * Adds a project to CoLAB with a new `NAME`.
+
+Parameters:
+  * [`NAME`](#name) The name of the project. 
 
 Examples:
-* `addP n/CS2103T Team Project`
-* `addP n/CS2101 OP2`
+  * `addP n/CS2103T Team Project`
+  * `addP n/CS2101 OP2`
 
 #### Updating a project: `updateP`
 
 Updates a specified project in CoLAB.
 
 Format `updateP PROJECT_INDEX n/NAME`
-
-* Updates name of the project at the specified `PROJECT_INDEX` to new name `NAME`.
-* The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
-* The index **must be a positive integer** 1, 2, 3, …​
+  * Updates name of the project at the specified `PROJECT_INDEX` to new name `NAME`.
+  
+Parameters:
+  * [`PROJECT_INDEX`](#index) The index of the project.
+  * [`NAME`](#name) The name of the project.
 
 Examples:
-* `updateP 1 n/2103 TP`
-* `updateP 2 n/2103 IP` 
+  * `updateP 1 n/CS2103 Group Project`
+  * `updateP 2 n/Personal Portfolio Page` 
 
 #### Deleting a project: `deleteP`
 
 Deletes a specified project from CoLAB.
 
 Format: `deleteP PROJECT_INDEX`
+  * Deletes the project at the specified `PROJECT_INDEX`.
 
-* Deletes a project at the specified `PROJECT_INDEX`.
-* The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
-* The index **must be a positive integer** 1, 2, 3, …​
+Parameters:
+  * [`PROJECT_INDEX`](#index) The index of the project.
+  * [`TODO_INDEX`](#index) The index of the todo.
 
 Examples:
-* `deleteP 1`
-* `deleteP 2`
+  * `deleteP 1`
 
 ### _**4.1.1 Todos**_
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Todos can be thought of as Tasks (without a due date) to be done. For the entire User Guide, we will be referring to tasks as a todo. 
+Todos are tasks (without a due date) to be done.
 </div>
 
 `Todos` contain a `DESCRIPTION` field and are useful for tasks that have no due date. 
@@ -308,10 +332,11 @@ Each `Project` may have `Todos`. Hence, each of the commands related to `Todos` 
 Adds a todo to a specified project.
 
 Format: `addT PROJECT_INDEX d/DESCRIPTION`
+  * Adds a todo to the project at the specified `PROJECT_INDEX`.
 
-* Adds a todo to the project at the specified `PROJECT_INDEX`.
-* The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
-* The index **must be a positive integer** 1, 2, 3, …​
+Parameters:
+  * [`PROJECT_INDEX`](#index) The index of the project.
+  * [`DESCRIPTION`](#description) The description of the todo.
 
 Examples:
 * `addT 1 d/Add unit tests`
@@ -322,29 +347,30 @@ Examples:
 Updates a specified todo of a specified project.
 
 Format: `updateT PROJECT_INDEX i/TODO_INDEX d/DESCRIPTION`
+  * Updates the `DESCRIPTION` of the todo at the specified `TODO_INDEX` of the project at the specified `PROJECT_INDEX`.
 
-* Updates the description of the todo at the specified `TODO_INDEX` of the project at the specified `PROJECT_INDEX`.
-* The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
-* The `TODO_INDEX` refers to the number shown beside the todo when viewing the project.
-* Both indexes **must be positive integers** 1, 2, 3, …​
+Parameters:
+  * [`PROJECT_INDEX`](#index) The index of the project.
+  * [`TODO_INDEX`](#index) The index of the todo.
+  * [`DESCRIPTION`](#description) The description of the todo.
 
 Examples:
-* `updateT 1 i/2 d/Review new PR`
-* `updateT 2 i/1 d/Merge new PR`
+  * `updateT 1 i/2 d/Review new PR`
+  * `updateT 2 i/1 d/Merge new PR`
 
 #### Marking a todo as done: `markT`
 
 Marks a todo from a specified project as done.
 
 Format: `markT PROJECT_INDEX i/TODO_INDEX`
+  * Marks the todo at the specified `TODO_INDEX` from the project at the specified `PROJECT_INDEX` as done.
 
-* Marks the todo at the specified `TODO_INDEX` from the project at the specified `PROJECT_INDEX` as done.
-* The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
-* The `TODO_INDEX` refers to the number shown beside the todo when viewing the project.
-* Both indexes **must be positive integers** 1, 2, 3, …​
+Parameters:
+  * [`PROJECT_INDEX`](#index) The index of the project.
+  * [`TODO_INDEX`](#index) The index of the todo.
 
 Examples:
-* `markT 1 i/1
+* `markT 1 i/1`
 * `markT 2 i/3`
 
 #### Deleting a todo from a project: `deleteT`
@@ -352,11 +378,11 @@ Examples:
 Deletes a specified todo from a specified project.
 
 Format: `deleteT PROJECT_INDEX i/TODO_INDEX`
+    * Deletes the todo at the specified `TODO_INDEX` from the project at the specified `PROJECT_INDEX`.
 
-* Deletes the todo at the specified `TODO_INDEX` from the project at the specified `PROJECT_INDEX`.
-* The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
-* The `TODO_INDEX` refers to the number shown beside the todo when viewing the project.
-* Both indexes **must be positive integers** 1, 2, 3, …​
+Parameters:
+    * [`PROJECT_INDEX`](#index) The index of the project.
+    * [`TODO_INDEX`](#index) The index of the todo.
 
 Examples:
 * `deleteT 1 i/1`
@@ -373,8 +399,13 @@ Each `Project` may have `Deadlines`. Hence, each of the commands related to `Dea
 Adds a deadline to a specified project.
 
 Format: `addD PROJECT_INDEX d/DESCRIPTION by/DATE`
+    * Adds a deadline to the project at the specified `PROJECT_INDEX`.
 
-* Adds a deadline to the project at the specified `PROJECT_INDEX`.
+Parameters:
+    * [`PROJECT_INDEX`](#index) The index of the project.
+    * [`DESCRIPTION`](#description) The description of the deadline.
+    * [`DATE`](#date) The due date of the deadline.
+
 * The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
 * The index **must be a positive integer** 1, 2, 3, …​
 * `DATE` must be in `dd-MM-yyyy`, `ddMMyyyy`, `dd/MM/yyyy` or `dd.MM.yyyy` format.
@@ -389,13 +420,13 @@ Examples:
 Updates a specified deadline of a specified project.
 
 Format: `updateD PROJECT_INDEX i/DEADLINE_INDEX [d/DESCRIPTION] [by/DATE]`
+    * Updates the description or the deadline date of the deadline at the specified `DEADLINE_INDEX` of the project at the specified `PROJECT_INDEX`.
 
-* Updates the description or the deadline date of the deadline at the specified `DEADLINE_INDEX` of the project at the specified `PROJECT_INDEX`.
-* The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
-* The `DEADLINE_INDEX` refers to the number shown beside the deadline when viewing the project.
-* Both indexes **must be positive integers** 1, 2, 3, …​
-* `DATE` must be in `dd-MM-yyyy`, `ddMMyyyy`, `dd/MM/yyyy` or `dd.MM.yyyy` format.
-* `DATE` is limited to the `yyyy` range of 0000 to 9999.
+Parameters:
+    * [`PROJECT_INDEX`](#index) The index of the project.
+    * [`DEADLINE_INDEX`](#index) The index of the deadline.
+    * [`DESCRIPTION`](#description) The description of the deadline.
+    * [`DATE`](#date) The due date of the deadline.
 
 Examples:
 * `updateD 1 i/2 d/Finish v1.3`
@@ -406,11 +437,11 @@ Examples:
 Marks a deadline from a specified project as done.
 
 Format: `markD PROJECT_INDEX i/DEADLINE_INDEX`
+    * Marks the deadline at the specified `DEADLINE_INDEX` from the project at the specified `PROJECT_INDEX` as done.
 
-* Marks the deadline at the specified `DEADLINE_INDEX` from the project at the specified `PROJECT_INDEX` as done.
-* The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
-* The `DEADLINE_INDEX` refers to the number shown beside the deadline when viewing the project.
-* Both indexes **must be positive integers** 1, 2, 3, …​
+Parameters:
+    * [`PROJECT_INDEX`](#index) The index of the project.
+    * [`DEADLINE_INDEX`](#index) The index of the deadline.
 
 Examples:
 * `markD 1 i/1
@@ -421,11 +452,11 @@ Examples:
 Deletes a specified deadline from a specified project.
 
 Format: `deleteD PROJECT_INDEX i/DEADLINE_INDEX`
+    * Deletes the deadline at the specified `DEADLINE_INDEX` from the project at the specified `PROJECT_INDEX`.
 
-* Deletes the deadline at the specified `DEADLINE_INDEX` from the project at the specified `PROJECT_INDEX`.
-* The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
-* The `DEADLINE_INDEX` refers to the number shown beside the deadline when viewing the project.
-* Both indexes **must be positive integers** 1, 2, 3, …​
+Parameters:
+    * [`PROJECT_INDEX`](#index) The index of the project.
+    * [`DEADLINE_INDEX`](#index) The index of the deadline.
 
 Examples:
 * `deleteD 1 i/1`
@@ -433,7 +464,7 @@ Examples:
 
 ### _**4.1.3 Events**_
 
-`Events` contain `DESCRIPTION`, `DATE`, `TIME` & `REPEAT_WEEKLY` field and are useful for events that occur on a `DATE` at a `TIME` that may be set to `REPEAT_WEEKLY`.
+`Events` contain a `DESCRIPTION`, `DATE`, `TIME` and a `REPEAT_WEEKLY` field and are useful for events that occur on a `DATE` at a `TIME` that may be set to `REPEAT_WEEKLY`.
 
 Each `Project` may have `Events`. Hence, each of the commands related to `Events` are done w.r.t the `Project` identified by `PROJECT_INDEX`.
 
@@ -442,20 +473,14 @@ Each `Project` may have `Events`. Hence, each of the commands related to `Events
 Adds an event to a specified project.
 
 Format: `addE PROJECT_INDEX d/DESCRIPTION on/DATE at/TIME w/REPEAT_WEEKLY`
+    * Adds an event to the project at the specified `PROJECT_INDEX`.
 
-* Adds an event to the project at the specified `PROJECT_INDEX`.
-* The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
-* The index **must be a positive integer** 1, 2, 3, …​
-* `DATE` must be in `dd-MM-yyyy`, `ddMMyyyy`, `dd/MM/yyyy` or `dd.MM.yyyy` format.
-* `DATE` is limited to the `yyyy` range of 0000 to 9999.
-* `TIME` must be in `HHmm` or `HH:mm` format.
-* `TIME` is limited to the `yyyy` range of 0000 to 9999.
-* `REPEAT_WEEKLY` must be one of the following values:
-    * `Y`
-    * `N`
-    * `y`
-    * `n`
-* `Y` being Yes & `N` being No w.r.t to the Repeat Weekly status.
+Parameters:
+    * [`PROJECT_INDEX`](#index) The index of the project.
+    * [`DESCRIPTION`](#description) The description of an event.
+    * [`DATE`](#date) The date of the event, or the starting date of the event if the event repeats every week.
+    * [`TIME`](#time) The time of the event.
+    * [`REPEAT_WEEKLY`](#repeat_weekly) Indicates whether the event repeats every week.
 
 Examples:
 * `addE 1 d/Project Meeting on/24-04-2021 at/2000 w/Y`
@@ -466,21 +491,15 @@ Examples:
 Updates a specified event of a specified project.
 
 Format: `updateE PROJECT_INDEX i/EVENT_INDEX [d/DESCRIPTION] [on/DATE] [at/TIME] [w/REPEAT_WEEKLY]`
+    * Updates the details of the event at the specified `EVENT_INDEX` of the project at the specified `PROJECT_INDEX`.
 
-* Updates the detail (description, date, time, weekly recurrence) of the event at the specified `EVENT_INDEX` of the project at the specified `PROJECT_INDEX`.
-* The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
-* The `EVENT_INDEX` refers to the number shown beside the event when viewing the project.
-* Both indexes **must be positive integers** 1, 2, 3, …​
-* `DATE` must be in `dd-MM-yyyy`, `ddMMyyyy`, `dd/MM/yyyy` or `dd.MM.yyyy` format.
-* `DATE` is limited to the `yyyy` range of 0000 to 9999.
-* `TIME` must be in `HHmm` or `HH:mm` format.
-* `TIME` is limited to the `yyyy` range of 0000 to 9999.
-* `REPEAT_WEEKLY` must be one of the following values:
-    * `Y`
-    * `N`
-    * `y`
-    * `n`
-* `Y` being Yes & `N` being No w.r.t to the Repeat Weekly status.
+Parameters:
+    * [`PROJECT_INDEX`](#index) The index of the project.
+    * [`EVENT_INDEX`](#index) The index of an event.
+    * [`DESCRIPTION`](#description) The description of an event.
+    * [`DATE`](#date) The date of the event, or the starting date of the event if the event repeats every week.
+    * [`TIME`](#time) The time of the event.
+    * [`REPEAT_WEEKLY`](#repeat_weekly) Indicates whether the event repeats every week.
 
 Examples:
 * `updateE 1 i/1 d/Project Meeting on/24-04-2021 w/Y`
@@ -491,11 +510,11 @@ Examples:
 Deletes a specified event from a specified project.
 
 Format: `deleteE PROJECT_INDEX i/EVENT_INDEX`
+    * Deletes the event at the specified `EVENT_INDEX` from the project at the specified `PROJECT_INDEX`.
 
-* Deletes the event at the specified `EVENT_INDEX` from the project at the specified `PROJECT_INDEX`.
-* The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
-* The `EVENT_INDEX` refers to the number shown beside the event when viewing the project.
-* Both indexes **must be positive integers** 1, 2, 3, …​
+Parameters:
+    * [`PROJECT_INDEX`](#index) The index of the project.
+    * [`EVENT_INDEX`](#index) The index of an event.
 
 Examples:
 * `deleteE 1 i/1`
@@ -512,13 +531,16 @@ Each `Project` may have `Groupmates`. Hence, each of the commands related to `Gr
 Adds a groupmate to a specified project.
 
 Format: `addG PROJECT_INDEX n/NAME [r/ROLE]…​`
+    * Adds a groupmate to the project at the specified `PROJECT_INDEX`.
 
-* Adds a groupmate to the project at the specified `PROJECT_INDEX`.
-* The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
-* The index **must be a positive integer** 1, 2, 3, …​
+Parameters:
+    * [`PROJECT_INDEX`](#index) The index of the project.
+    * [`NAME`](#name) The name of the groupmate.
+    * [`ROLE`](#role) The role of the groupmate.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A contact can have any number of tags (including 0)
+<div markdown="span" class="alert alert-primary">:bulb: 
+**Tip:**
+A contact can have any number of tags (including 0).
 </div>
 
 Examples:
@@ -530,11 +552,14 @@ Examples:
 Updates an existing groupmate in a specified project.
 
 Format: `updateG PROJECT_INDEX i/GROUPMATE_INDEX [n/NAME] [r/ROLE]…​`
+    * Updates the groupmate at the specified `GROUPMATE_INDEX` of the project at the specified `PROJECT_INDEX`.
 
-* Updates the groupmate at the specified `GROUPMATE_INDEX` of the project at the specified `PROJECT_INDEX`.
-* The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
-* The `GROUPMATE_INDEX` refers to the number shown beside the groupmate when viewing the project.
-* Both indexes **must be positive integers** 1, 2, 3, …​
+Parameters:
+    * [`PROJECT_INDEX`](#index) The index of the project.
+    * [`GROUPMATE_INDEX`](#index) The index of the groupmate.
+    * [`NAME`](#name) The name of the groupmate.
+    * [`ROLE`](#role) The role of the groupmate.
+
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When updating roles, the existing roles of the groupmate will be removed i.e. adding of roles is not cumulative.
@@ -551,11 +576,11 @@ Examples:
 Deletes a specified groupmate from a specified project.
 
 Format: `deleteG PROJECT_INDEX i/GROUPMATE_INDEX`
+    * Deletes the groupmate at the specified `GROUPMATE_INDEX` from the project at the specified `PROJECT_INDEX`.
 
-* Deletes the groupmate at the specified `GROUPMATE_INDEX` from the project at the specified `PROJECT_INDEX`.
-* The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
-* The `GROUPMATE_INDEX` refers to the number shown beside the groupmate when viewing the project.
-* Both indexes **must be positive integers** 1, 2, 3, …​
+Parameters:
+    * [`PROJECT_INDEX`](#index) The index of the project.
+    * [`GROUPMATE_INDEX`](#index) The index of the groupmate.
 
 Examples:
 * `deleteG 1 i/1`
@@ -572,6 +597,13 @@ Each Contact may have a `NAME`, `PHONE_NUMBER`, `EMAIL`, `ADDRESS` & multiple `T
 Adds a contact to CoLAB.
 
 Format: `addC n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+
+Parameters:
+    * [`NAME`](#name) The name of a contact.
+    * [`PHONE_NUMBER`](#phone_number) The phone number of a contact.
+    * [`EMAIL`](#email) The email of a contact.
+    * [`ADDRESS`](#address) The address of a contact.
+    * [`TAG`](#tag) The tag associated with a contact.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A contact can have any number of tags (including 0)
@@ -590,8 +622,15 @@ Examples:
 Updates an existing contact in CoLAB.
 
 Format: `updateC CONTACT_INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+    * Updates the contact at the specified `CONTACT_INDEX`. 
 
-* Updates the contact at the specified `CONTACT_INDEX`. The index refers to the index number shown in the displayed contact list. The index **must be a positive integer** 1, 2, 3, …​
+Parameters:
+    * [`NAME`](#name) The name of a contact.
+    * [`PHONE_NUMBER`](#phone_number) The phone number of a contact.
+    * [`EMAIL`](#email) The email of a contact.
+    * [`ADDRESS`](#address) The address of a contact.
+    * [`TAG`](#tag) The tag associated with a contact.
+
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When updating tags, the existing tags of the contact will be removed i.e. adding of tags is not cumulative.
@@ -607,7 +646,9 @@ Find contacts whose names contain any of the given keywords. Only contact names 
 
 Format: `findC KEYWORD [MORE_KEYWORDS]`
 
-* `findC KEYWORD [MORE_KEYWORDS]`
+Parameter:
+    * [`KEYWORD`](#keyword) The keyword used to search for contacts.
+
 * The search is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only the name is searched.
@@ -625,10 +666,10 @@ Examples:
 Deletes the specified contact from the address book.
 
 Format: `deleteC CONTACT_INDEX`
+    * Deletes the contact at the specified `CONTACT_INDEX`.
 
-* Deletes the contact at the specified `CONTACT_INDEX`.
-* The index refers to the index number shown in the displayed contact list.
-* The index **must be a positive integer** 1, 2, 3, …​
+Parameter:
+    * [`CONTACT_INDEX`](#index) The index of the contact.
 
 Examples:
 * `list` followed by `deleteC 2` deletes the 2nd contact in the address book.
@@ -655,10 +696,10 @@ Format: `contacts`
 Displays a panel with details of a specified project.
 
 Format: `project PROJECT_INDEX`
+    * Displays a panel with details of the project at the specified `PROJECT_INDEX`.
 
-* Displays a panel with details of the project at the specified `PROJECT_INDEX`.
-* The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
-* The index **must be a positive integer** 1, 2, 3, …​
+Parameter:
+    * [`PROJECT_INDEX`](#index) The index of the project.
 
 Examples:
 * `project 1` Displays the first project.
