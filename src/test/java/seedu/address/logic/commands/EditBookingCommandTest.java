@@ -7,6 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.showResidenceAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_BOOKING;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_RESIDENCE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_RESIDENCE;
+import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_RESIDENCE;
 import static seedu.address.testutil.TypicalResidences.getTypicalResidenceTracker;
 
 import org.junit.jupiter.api.Test;
@@ -31,16 +32,17 @@ public class EditBookingCommandTest {
         assertCommandFailure(editBookingCommand, model, Messages.MESSAGE_INVALID_BOOKING_DISPLAYED_INDEX);
     }
 
-    /*@Test
+    @Test
     public void execute_invalidResidenceIndexValidBookingIndexFilteredList_failure() {
         showResidenceAtIndex(model, INDEX_SECOND_RESIDENCE);
         Index outOfBoundResidenceIndex = INDEX_THIRD_RESIDENCE;
+        assertTrue(outOfBoundResidenceIndex.getZeroBased() < model.getResidenceTracker().getResidenceList().size());
         Index validBookingIndex = INDEX_FIRST_BOOKING;
         assertTrue(outOfBoundResidenceIndex.getZeroBased() < model.getResidenceTracker().getResidenceList().size());
-        EditBookingCommand editBookingCommand = new EditBookingCommand(INDEX_FIRST_RESIDENCE, outOfBoundBookingIndex,
+        EditBookingCommand editBookingCommand = new EditBookingCommand(INDEX_SECOND_RESIDENCE, validBookingIndex,
                 new EditBookingDescriptorBuilder().withName(VALID_NAME_BOOKING1).build());
+        assertCommandFailure(editBookingCommand, model, Messages.MESSAGE_INVALID_RESIDENCE_DISPLAYED_INDEX);
 
-
-    }*/
+    }
 
 }
