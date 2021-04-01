@@ -10,6 +10,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.List;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
@@ -18,6 +19,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
@@ -213,6 +215,11 @@ public class AddCommandTest {
 
         @Override
         public void updateTransformedPersonList(Function<Person, Person> function) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void filterIndicesThenTransformPersonList(List<Index> index, Function<Person, Person> function) {
             throw new AssertionError("This method should not be called.");
         }
 

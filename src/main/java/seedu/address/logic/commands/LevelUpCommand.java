@@ -3,20 +3,23 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EXCLUDE;
 
+import java.util.List;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.functions.PersonLevelUpFunction;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
+/**
+ * Advances all students by one level.
+ * Students to be excluded can be added by specifying their indices.
+ */
 public class LevelUpCommand extends Command {
     public static final String COMMAND_WORD = "levelup";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Advance all students by one level. To exclude students, add their index numbers after the ex/ prefix.\n "
+            + ": Advance all students by one level. To exclude students, add their index numbers after "
+            + "the ex/ prefix.\n "
             + "If no indices are listed, all students who can be advanced will be advanced.\n"
             + "Parameters: " + PREFIX_EXCLUDE + " INDEX... (optional, must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + "\n"
@@ -24,7 +27,7 @@ public class LevelUpCommand extends Command {
             + COMMAND_WORD + " " + PREFIX_EXCLUDE + "1 4";
 
     public static final String MESSAGE_SUCCESS = "Advanced all students by one level.";
-    public String alternativeMessage = "Advanced all students by one level except exclusions: ";
+    private static final String ALTERNATIVE_SUCCESS_MESSAGE = "Advanced all students by one level except exclusions: ";
 
     public final List<Index> indices;
     private final boolean hasIndices;
@@ -48,17 +51,18 @@ public class LevelUpCommand extends Command {
         if (!hasIndices) {
             return new CommandResult(MESSAGE_SUCCESS);
         } else {
-            updateAlternativeMessage(model);
-            return new CommandResult(alternativeMessage);
+            String excludedPeople = getExcludedPeopleDescriptors(model);
+            return new CommandResult(ALTERNATIVE_SUCCESS_MESSAGE + excludedPeople);
         }
     }
 
-    private void updateAlternativeMessage(Model model) {
+    private String getExcludedPeopleDescriptors(Model model) {
+        String result = "";
         for (int i = 0; i < indices.size(); i++) {
-                Index index = indices.get(i);
-                alternativeMessage = alternativeMessage + "\n"
-                        + model.getTransformedPersonList().get(index.getZeroBased());
+            Index index = indices.get(i);
+            result = result + "\n" + model.getTransformedPersonList().get(index.getZeroBased());
         }
+        return result;
     }
 
     private void checkIndexWithinBounds(Model model) throws CommandException {

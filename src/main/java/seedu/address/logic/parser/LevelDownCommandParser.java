@@ -3,15 +3,16 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EXCLUDE;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.LevelDownCommand;
-import seedu.address.logic.commands.LevelUpCommand;
-import seedu.address.logic.commands.SortCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.LevelDownCommand;
+import seedu.address.logic.commands.LevelUpCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+
+
 
 /**
  * Parses input arguments and creates a new LevelDownCommand object
