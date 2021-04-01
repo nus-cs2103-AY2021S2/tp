@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -31,6 +32,7 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
+    private AppointmentListPanel appointmentListPanel;
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
@@ -38,8 +40,11 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane commandBoxPlaceholder;
 
+    //    @FXML
+    //    private MenuItem helpMenuItem;
+
     @FXML
-    private MenuItem helpMenuItem;
+    private StackPane appointmentListPanelPlaceholder;
 
     @FXML
     private StackPane personListPanelPlaceholder;
@@ -49,6 +54,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private Scene scene;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -62,19 +70,20 @@ public class MainWindow extends UiPart<Stage> {
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
+        updateTheme(logic.getTheme());
 
-        setAccelerators();
+        // setAccelerators();
 
-        helpWindow = new HelpWindow();
+        helpWindow = new HelpWindow(logic.getTheme());
     }
 
     public Stage getPrimaryStage() {
         return primaryStage;
     }
 
-    private void setAccelerators() {
-        setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
-    }
+    //    private void setAccelerators() {
+    //        setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
+    //    }
 
     /**
      * Sets the accelerator of a MenuItem.
@@ -113,6 +122,9 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
+        appointmentListPanel = new AppointmentListPanel(logic.getFilteredAppointmentList());
+        appointmentListPanelPlaceholder.getChildren().add(appointmentListPanel.getRoot());
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -146,9 +158,27 @@ public class MainWindow extends UiPart<Stage> {
             helpWindow.focus();
         }
     }
+    //    @FXML
+    //    public void handleHelp(String helpMsg) {
+    //        helpWindow.setHelpMessage(helpMsg);
+    //        if (!helpWindow.isShowing()) {
+    //            helpWindow.show();
+    //        } else {
+    //            helpWindow.focus();
+    //        }
+    //    }
 
     void show() {
         primaryStage.show();
+    }
+
+    private void updateTheme(String theme) {
+        scene.getStylesheets().clear();
+        if (theme.equals("dark")) {
+            scene.getStylesheets().add("view/DarkTheme.css");
+        } else {
+            scene.getStylesheets().add("view/HeliBookTheme.css");
+        }
     }
 
     /**
@@ -163,6 +193,10 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    public AppointmentListPanel getAppointmentListPanel() {
+        return appointmentListPanel;
+    }
+
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
     }
@@ -175,11 +209,21 @@ public class MainWindow extends UiPart<Stage> {
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
             CommandResult commandResult = logic.execute(commandText);
+
+            if (commandText.startsWith("theme")) {
+                updateTheme(logic.getTheme());
+                helpWindow.updateHelpWindowTheme(logic.getTheme());
+            }
+
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
             if (commandResult.isShowHelp()) {
+                // logger.info("isShowHelp()");
+                helpWindow.setHelpText(commandResult.getHelpTitle(), commandResult.getHelpMsg());
+                // resultDisplay.setFeedbackToUser("Opened help window.");
                 handleHelp();
+                // handleHelp(commandResult.getFeedbackToUser());
             }
 
             if (commandResult.isExit()) {

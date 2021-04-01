@@ -1,4 +1,4 @@
-package seedu.address.model.person;
+package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
@@ -16,6 +16,7 @@ public class Address {
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
+    public static final String PLACEHOLDER = "NIL";
 
     public final String value;
 
@@ -31,10 +32,17 @@ public class Address {
     }
 
     /**
+     * Constructs a {@code Address} with a placeholder as the value.
+     */
+    public Address() {
+        value = PLACEHOLDER;
+    }
+
+    /**
      * Returns true if a given string is a valid email.
      */
     public static boolean isValidAddress(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX) || test.equals(PLACEHOLDER);
     }
 
     @Override

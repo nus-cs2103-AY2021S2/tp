@@ -1,0 +1,35 @@
+@startuml
+start
+:User executes help;
+:User input is parsed and number of
+  specified commands are checked;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([no commands are specified])
+    : Set help message to a
+    summary of all available
+               commands;
+else ([else])
+if () then ([1 command specified])
+    :Search user guide for
+       information on the
+      specified command;
+
+if () then ([information is found])
+    :Set help message to
+    full information about
+     specified command;
+else ([else])
+    :Throw error;
+endif;
+
+else ([else])
+    :Throw error;
+endif
+endif
+
+:Display help message in help window;
+stop
+@enduml

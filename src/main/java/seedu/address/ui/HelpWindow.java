@@ -1,8 +1,13 @@
 package seedu.address.ui;
 
+import java.awt.Desktop;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.Clipboard;
@@ -15,8 +20,8 @@ import seedu.address.commons.core.LogsCenter;
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
-    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
+    public static final String USERGUIDE_URL = "https://ay2021s2-cs2103t-w13-3.github.io/tp/UserGuide.html";
+    public static final String HELP_LINK = "Refer to the full user guide here: ";
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
@@ -25,7 +30,16 @@ public class HelpWindow extends UiPart<Stage> {
     private Button copyButton;
 
     @FXML
+    private Label helpTitle;
+
+    @FXML
     private Label helpMessage;
+
+    @FXML
+    private Label helpLink;
+
+    @FXML
+    private Scene scene;
 
     /**
      * Creates a new HelpWindow.
@@ -34,14 +48,18 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public HelpWindow(Stage root) {
         super(FXML, root);
-        helpMessage.setText(HELP_MESSAGE);
+        helpLink.setText(HELP_LINK);
+        // helpMessage.setText(HELP_MESSAGE);
+        // logger.info("help message is: " + helpMsg);
+        // helpMessage.setText(helpMsg);
     }
 
     /**
      * Creates a new HelpWindow.
      */
-    public HelpWindow() {
+    public HelpWindow(String theme) {
         this(new Stage());
+        updateHelpWindowTheme(theme);
     }
 
     /**
@@ -90,6 +108,18 @@ public class HelpWindow extends UiPart<Stage> {
     }
 
     /**
+     * Updates theme for helpWindow.
+     */
+    public void updateHelpWindowTheme(String theme) {
+        scene.getStylesheets().clear();
+        if (theme.equals("dark")) {
+            scene.getStylesheets().add("view/DarkThemeHelpWindow.css");
+        } else {
+            scene.getStylesheets().add("view/HeliBookThemeHelpWindow.css");
+        }
+    }
+
+    /**
      * Copies the URL to the user guide to the clipboard.
      */
     @FXML
@@ -98,5 +128,21 @@ public class HelpWindow extends UiPart<Stage> {
         final ClipboardContent url = new ClipboardContent();
         url.putString(USERGUIDE_URL);
         clipboard.setContent(url);
+    }
+
+    /**
+     * opens the URL to the user guide in the default user browser.
+     */
+    @FXML
+    private void openUrl() throws URISyntaxException, IOException {
+        URI userGuideUri = new URI(USERGUIDE_URL);
+        Desktop.getDesktop().browse(userGuideUri);
+    }
+
+
+    public void setHelpText(String helpTitle, String helpMsg) {
+        // logger.info("helpMsg: " + helpMsg);
+        this.helpTitle.setText(helpTitle);
+        this.helpMessage.setText(helpMsg);
     }
 }

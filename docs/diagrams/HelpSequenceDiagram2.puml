@@ -1,0 +1,71 @@
+@startuml
+!include style.puml
+
+'box UI UI_COLOR_T1
+'participant ":MainWindow" as MainWindow UI_COLOR
+'participant ":HelpWindow" as HelpWindow UI_COLOR
+'end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":HelpCommandParser" as HelpCommandParser LOGIC_COLOR
+participant "h:HelpCommand" as HelpCommand LOGIC_COLOR
+end box
+
+'[-> MainWindow : executeCommand(help find)
+'activate MainWindow
+
+[-> LogicManager : execute(help find)
+'MainWindow -> LogicManager : execute(help find)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(help find)
+activate AddressBookParser
+
+AddressBookParser -> HelpCommandParser : parse(find)
+activate HelpCommandParser
+
+create HelpCommand
+HelpCommandParser -> HelpCommand : HelpCommand(find)
+activate HelpCommand
+
+HelpCommand --> HelpCommandParser
+deactivate HelpCommand
+
+HelpCommandParser --> AddressBookParser
+deactivate HelpCommandParser
+
+AddressBookParser --> LogicManager : h
+deactivate AddressBookParser
+
+
+
+LogicManager -> HelpCommand : execute()
+activate HelpCommand
+
+HelpCommand -> HelpCommand : executeSpecific(find)
+activate HelpCommand
+
+HelpCommand --> HelpCommand : helpTitle, helpMessage
+deactivate HelpCommand
+
+HelpCommand --> LogicManager :
+deactivate HelpCommand
+HelpCommand -[hidden]-> LogicManager : command result
+destroy HelpCommand
+
+[<-- LogicManager : command result
+deactivate LogicManager
+
+'MainWindow -> HelpWindow : setHelpText()
+'activate HelpWindow
+'
+'HelpWindow --> MainWindow
+'deactivate HelpWindow
+
+'MainWindow -[hidden]-> MainWindow
+'[<-- MainWindow
+'deactivate MainWindow
+
+@enduml

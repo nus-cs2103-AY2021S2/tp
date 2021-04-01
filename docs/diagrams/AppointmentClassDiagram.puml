@@ -1,0 +1,39 @@
+@startuml
+!include style.puml
+
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+skinparam classAttributeIconSize 0
+skinparam classAttributeFontColor #white
+
+Class Appointment {
+    -name: Name
+    -address: Address
+    -date: DateTime
+    -contacts: Set<Person>
+}
+
+note top of Appointment: classified under Model
+note left of Appointment::name
+    Make use of Name class, taken out of Person package
+end note
+note left of Appointment::address
+    Make use of Address class, taken out of Person package
+end note
+note left of Appointment::date
+    Create own DateTime class
+end note
+note left of Appointment::contacts
+  (Extra) Add Set<Tag> as attribute
+end note
+
+Class UniqueAppointmentList
+Class Person
+
+Appointment -> "*" Person
+UniqueAppointmentList --> "*" Appointment
+
+show attributes
+
+@enduml

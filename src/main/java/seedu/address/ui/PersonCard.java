@@ -1,9 +1,12 @@
 package seedu.address.ui;
 
-import java.util.Comparator;
+import static seedu.address.ui.UiUtil.generateTagLabel;
+import static seedu.address.ui.UiUtil.streamTags;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -40,6 +43,8 @@ public class PersonCard extends UiPart<Region> {
     private Label email;
     @FXML
     private FlowPane tags;
+    @FXML
+    private ImageView favIcon;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -49,12 +54,24 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
-        person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        checkForPlaceholder(person.getPhone().value, phone);
+        checkForPlaceholder(person.getAddress().value, address);
+        checkForPlaceholder(person.getEmail().value, email);
+        streamTags(person.getTags()).forEach(tag -> tags.getChildren().add(generateTagLabel(tag)));
+        if (person.getFavourite().isFav()) {
+            favIcon.setImage(new Image("/images/star_icon_filled.png"));
+        } else {
+            favIcon.setImage(new Image("/images/star_icon_empty.png"));
+        }
+    }
+
+    private void checkForPlaceholder(String value, Label label) {
+        if (value.equals("NIL")) {
+            label.setManaged(false);
+        } else {
+            label.setManaged(true);
+            label.setText(value);
+        }
     }
 
     @Override
