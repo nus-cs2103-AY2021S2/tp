@@ -44,10 +44,10 @@ public class MenuCommandUtil {
         List<Pair<Ingredient, Integer>> ingredientQuantityList = new ArrayList<>();
 
         for (Pair<Integer, Integer> ingredientPair : ingredientIdsList) {
-            int ingredientId = Index.fromOneBased(ingredientPair.getKey()).getOneBased();
+            int ingredientId = Index.fromOneBased(ingredientPair.getKey()).getZeroBased();
             Integer ingredientQuantity = ingredientPair.getValue();
 
-            if (ingredientId >= model.getFilteredDishList().size()) {
+            if (ingredientId >= model.getFilteredIngredientList().size()) {
                 throw new CommandException(MESSAGE_INGREDIENT_NOT_FOUND);
             }
 
