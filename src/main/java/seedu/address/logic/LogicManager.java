@@ -11,6 +11,7 @@ import seedu.address.logic.commands.AddUserCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.ResetCommand;
 import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
@@ -54,7 +55,7 @@ public class LogicManager implements Logic {
         } else {
             // Check if command is creating new user
             Command command = addressBookParser.parseCommand(commandText);
-            if (command instanceof AddUserCommand) {
+            if (command instanceof AddUserCommand || command instanceof ResetCommand) {
                 commandResult = command.execute(model);
             } else {
                 // Prompt user to initialize user
