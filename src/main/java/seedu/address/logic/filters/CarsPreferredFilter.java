@@ -29,6 +29,6 @@ public class CarsPreferredFilter extends CarFilter {
         requireNonNull(customer);
         return customer.getCarsPreferred()
                 .parallelStream()
-                .anyMatch(x -> carFilterPredicate(x, parseCar(filterString)));
+                .anyMatch(x -> carFilterPredicate(x, filterString));
     }
 }

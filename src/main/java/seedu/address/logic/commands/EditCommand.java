@@ -2,8 +2,8 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CARSOWNED;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CARSPREFERRED;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CARS_OWNED;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CARS_PREFERRED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DOB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -51,8 +51,8 @@ public class EditCommand extends Command {
         + "[" + PREFIX_ADDRESS + "ADDRESS] "
         + "[" + PREFIX_DOB + "DATE_OF_BIRTH] "
         + "[" + PREFIX_TAG + "TAG]...\n"
-        + "[" + PREFIX_CARSOWNED + "TAG]...\n"
-        + "[" + PREFIX_CARSPREFERRED + "TAG]...\n"
+        + "[" + PREFIX_CARS_OWNED + "TAG]...\n"
+        + "[" + PREFIX_CARS_PREFERRED + "TAG]...\n"
         + "Example: " + COMMAND_WORD + " 1 "
         + PREFIX_PHONE + "91234567 "
         + PREFIX_EMAIL + "johndoe@example.com";

@@ -29,6 +29,7 @@ public class NameFilter extends AbstractFilter {
         checkArgument(isValidFilter(nameListSingleString), MESSAGE_CONSTRAINTS);
         this.nameList = nameListSingleString.split("\\s+");
     }
+
     /**
      * Returns true if a given string is a valid filter.
      */
@@ -36,43 +37,29 @@ public class NameFilter extends AbstractFilter {
         return filterString.matches(VALIDATION_REGEX);
     }
 
-    @Override
-    public boolean test(Customer customer) {
-        requireNonNull(customer);
-        String[] customerNameTokens = customer.getName().fullName.split("\\s+");
-        for (String token : customerNameTokens) {
-            for (String possibleName : nameList) {
-                if (levenshteinDistance(token, possibleName) <= MISTAKE_THRESHOLD) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
     //@@author nighoggDatatype-reused
     //Reused from https://stackoverflow.com/a/13564498/11358676
-    private static int levenshteinDistance(String s1, String s2) {
-        return dist(s1.toCharArray(), s2.toCharArray());
+    private boolean levenshteinDistance(String s1, String s2) {
+        return isSubsequence(s1.toCharArray(), s2.toCharArray());
     }
 
-    private static int dist(char[] s1, char[] s2) {
+    private int dist(char[] s1, char[] s2) {
         // memoize only previous line of distance matrix
-        int[] prev = new int[ s2.length + 1 ];
+        int[] prev = new int[s2.length + 1];
 
         for (int j = 0; j < s2.length + 1; j++) {
-            prev[ j ] = j;
+            prev[j] = j;
         }
 
         for (int i = 1; i < s1.length + 1; i++) {
             // calculate current line of distance matrix
-            int[] curr = new int[ s2.length + 1 ];
+            int[] curr = new int[s2.length + 1];
             curr[0] = i;
 
             for (int j = 1; j < s2.length + 1; j++) {
-                int d1 = prev[ j ] + 1;
-                int d2 = curr[ j - 1 ] + 1;
-                int d3 = prev[ j - 1 ];
+                int d1 = prev[j] + 1;
+                int d2 = curr[j - 1] + 1;
+                int d3 = prev[j - 1];
                 if (s1[i - 1] != s2[j - 1]) {
                     d3 += 1;
                 }
@@ -82,6 +69,34 @@ public class NameFilter extends AbstractFilter {
             prev = curr;
         }
         return prev[s2.length];
+    }
+
+    private boolean isSubsequence(char[] s1, char[] s2) {
+        int ptr1 = 0;
+        int ptr2 = 0;
+        while (ptr1 < s1.length && ptr2 < s2.length) {
+            if (s1[ptr1] == s2[ptr2]) {
+                ptr2++;
+            }
+
+            ptr1++;
+        }
+
+        return ptr2 == s2.length;
+    }
+
+    @Override
+    public boolean test(Customer customer) {
+        requireNonNull(customer);
+        String[] customerNameTokens = customer.getName().fullName.split("\\s+");
+        for (String token : customerNameTokens) {
+            for (String possibleName : nameList) {
+                if (levenshteinDistance(token, possibleName)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
     //@@author
 }

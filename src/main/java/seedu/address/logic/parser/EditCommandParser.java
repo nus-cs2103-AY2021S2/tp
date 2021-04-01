@@ -3,8 +3,8 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CARSOWNED;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CARSPREFERRED;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CARS_OWNED;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CARS_PREFERRED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DOB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -37,7 +37,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_DOB,
-                    PREFIX_TAG, PREFIX_CARSOWNED, PREFIX_CARSPREFERRED);
+                    PREFIX_TAG, PREFIX_CARS_OWNED, PREFIX_CARS_PREFERRED);
 
         Index index;
 
@@ -64,8 +64,8 @@ public class EditCommandParser implements Parser<EditCommand> {
             editCustomerDescriptor.setDateOfBirth(ParserUtil.parseDateOfBirth(argMultimap.getValue(PREFIX_DOB).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editCustomerDescriptor::setTags);
-        editCustomerDescriptor.setCarsOwned(ParserUtil.parseCarsOwned(argMultimap.getAllValues(PREFIX_CARSOWNED)));
-        parseCarsPreferredForEdit(argMultimap.getAllValues(PREFIX_CARSPREFERRED))
+        editCustomerDescriptor.setCarsOwned(ParserUtil.parseCarsOwned(argMultimap.getAllValues(PREFIX_CARS_OWNED)));
+        parseCarsPreferredForEdit(argMultimap.getAllValues(PREFIX_CARS_PREFERRED))
                 .ifPresent(editCustomerDescriptor::setCarsPreferred);
 
         if (!editCustomerDescriptor.isAnyFieldEdited()) {
