@@ -6,10 +6,17 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
+import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD;
 import static seedu.address.testutil.TypicalPassengers.ALICE;
-import static seedu.address.testutil.TypicalPassengers.BOB;
+import static seedu.address.testutil.TypicalPassengers.BENSON;
 import static seedu.address.testutil.TypicalPassengers.CARL;
-import static seedu.address.testutil.TypicalPools.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPassengers.DANIEL;
+import static seedu.address.testutil.TypicalPassengers.ELLE;
+import static seedu.address.testutil.TypicalPassengers.FIONA;
+import static seedu.address.testutil.TypicalPools.getTypicalAddressBookPools;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -19,6 +26,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.pool.Pool;
+import seedu.address.model.pool.PooledPassengerContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -26,14 +34,14 @@ import seedu.address.model.pool.Pool;
  */
 public class UnpoolCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBookPools(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Pool poolToRemove = model.getFilteredPoolList().get(INDEX_FIRST.getZeroBased());
         UnpoolCommand unpoolCommand = new UnpoolCommand(INDEX_FIRST);
 
-        String passengerNames = ALICE.getName() + ", " + BOB.getName() + ", " + CARL.getName();
+        String passengerNames = ALICE.getName() + ", " + BENSON.getName() + ", " + CARL.getName();
         String expectedMessage = String.format(UnpoolCommand.MESSAGE_UNPOOL_SUCCESS, passengerNames);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
@@ -47,38 +55,42 @@ public class UnpoolCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPoolList().size() + 1);
         UnpoolCommand unpoolCommand = new UnpoolCommand(outOfBoundIndex);
 
-        assertCommandFailure(unpoolCommand, model, Messages.MESSAGE_INVALID_PASSENGER_DISPLAYED_INDEX);
+        assertCommandFailure(unpoolCommand, model, Messages.MESSAGE_INVALID_POOL_DISPLAYED_INDEX);
     }
 
-    // TODO to be implemented once filtering pool is allowed
-    //    @Test
-    //    public void execute_validIndexFilteredList_success() {
-    //        showPoolAtIndex(model, INDEX_FIRST);
-    //
-    //        Pool poolToRemove = model.getFilteredPoolList().get(INDEX_FIRST.getZeroBased());
-    //        UnpoolCommand unpoolCommand = new UnpoolCommand(INDEX_FIRST);
-    //
-    //        String expectedMessage = String.format(UnpoolCommand.MESSAGE_UNPOOL_SUCCESS, poolToRemove);
-    //
-    //        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-    //        expectedModel.deletePool(poolToRemove);
-    //        showNoPassenger(expectedModel);
-    //
-    //        assertCommandSuccess(unpoolCommand, model, expectedMessage, expectedModel);
-    //    }
-    //
-    //    @Test
-    //    public void execute_invalidIndexFilteredList_throwsCommandException() {
-    //        showPoolAtIndex(model, INDEX_FIRST);
-    //
-    //        Index outOfBoundIndex = INDEX_SECOND;
-    //        // ensures that outOfBoundIndex is still in bounds of address book list
-    //        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPassengerList().size());
-    //
-    //        UnpoolCommand unpoolCommand = new UnpoolCommand(outOfBoundIndex);
-    //
-    //        assertCommandFailure(unpoolCommand, model, Messages.MESSAGE_INVALID_PASSENGER_DISPLAYED_INDEX);
-    //    }
+    @Test
+    public void execute_validIndexFilteredList_success() {
+        Model expectedModel = new ModelManager(getTypicalAddressBookPools(), new UserPrefs());
+        List<String> searchString = new ArrayList<>();
+        searchString.add("Daniel");
+
+        model.updateFilteredPoolList(new PooledPassengerContainsKeywordsPredicate(searchString));
+        Pool poolToRemove = model.getFilteredPoolList().get(INDEX_FIRST.getZeroBased());
+        UnpoolCommand unpoolCommand = new UnpoolCommand(INDEX_FIRST);
+        String passengerNames = DANIEL.getName() + ", " + ELLE.getName() + ", " + FIONA.getName();
+        String expectedMessage = String.format(UnpoolCommand.MESSAGE_UNPOOL_SUCCESS, passengerNames);
+
+        expectedModel.deletePool(poolToRemove);
+        showNoPools(expectedModel);
+
+        assertCommandSuccess(unpoolCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_invalidIndexFilteredList_throwsCommandException() {
+        Index outOfBoundIndex = INDEX_THIRD;
+        List<String> searchString = new ArrayList<>();
+        searchString.add("Alice");
+
+        model.updateFilteredPoolList(new PooledPassengerContainsKeywordsPredicate(searchString));
+
+        // ensures that outOfBoundIndex is still in bounds of address book list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPoolList().size());
+
+        UnpoolCommand unpoolCommand = new UnpoolCommand(outOfBoundIndex);
+
+        assertCommandFailure(unpoolCommand, model, Messages.MESSAGE_INVALID_POOL_DISPLAYED_INDEX);
+    }
 
     @Test
     public void equals() {
@@ -105,7 +117,7 @@ public class UnpoolCommandTest {
     /**
      * Updates {@code model}'s filtered list to show no one.
      */
-    private void showNoPassenger(Model model) {
+    private void showNoPools(Model model) {
         model.updateFilteredPoolList(p -> false);
 
         assertTrue(model.getFilteredPoolList().isEmpty());
