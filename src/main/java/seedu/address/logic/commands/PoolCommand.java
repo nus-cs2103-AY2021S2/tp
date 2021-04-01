@@ -59,12 +59,8 @@ public class PoolCommand extends Command {
     private final Set<Tag> tags;
 
     /**
-     * //TODO edit java docs
-     * @param driver
-     * @param passengers
-     * @param tripDay
-     * @param tripTime
-     * @param tags
+     * Creates a PoolCommand that adds a pool specified by {@code Driver}, {@code TripDay}, {@code TripTime}
+     * with passengers specified.
      */
     public PoolCommand(Driver driver, Set<Index> indexes, TripDay tripDay, TripTime tripTime, Set<Tag> tags) {
         requireNonNull(driver);
