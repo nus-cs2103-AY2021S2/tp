@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX;
 import static seedu.address.logic.commands.CommandTestUtil.INDEX_STANDALONE_ONE;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DEADLINE_DATE;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DESCRIPTION;
@@ -9,7 +10,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_DATE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 
 import java.time.LocalDate;
 
@@ -55,7 +55,7 @@ public class AddDeadlineCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid project index
         assertParseFailure(parser, INVALID_INDEX_STANDALONE + VALID_DESCRIPTION + VALID_DEADLINE_DATE,
-                MESSAGE_INVALID_INDEX);
+                MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
 
         // invalid description
         assertParseFailure(parser, INDEX_STANDALONE_ONE + INVALID_DESCRIPTION + VALID_DEADLINE_DATE,
