@@ -113,7 +113,7 @@ public class Residence implements Comparable<Residence> {
     public boolean hasUpcomingBooking() {
         return this.bookingList.getValue().stream()
                 .filter(b -> b.getStart().isAfter(LocalDate.now())
-                        && b.getStart().isBefore(LocalDate.now().plusDays(7)))
+                        && b.getStart().isBefore(LocalDate.now().plusDays(8)))
                 .mapToInt(b -> 1).sum() > 0;
     }
 
