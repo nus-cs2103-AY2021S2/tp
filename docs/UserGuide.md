@@ -209,11 +209,11 @@ Examples:
 
 | Before        | 
 | ------------- |
-|![AddApptBefore](images/addApptBefore.png)
+|![AddApptBefore](images/AddApptBefore.png)
 
 | After        | 
 | ------------- |
-|![AddApptAfter](images/addApptAfter.png)|
+|![AddApptAfter](images/AddApptAfter.png)|
 
 ### Editing an appointment: `editAppt`
 
