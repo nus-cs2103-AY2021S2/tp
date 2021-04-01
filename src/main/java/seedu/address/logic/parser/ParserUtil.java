@@ -101,6 +101,9 @@ public class ParserUtil {
             case "-a":
                 parsedAttributesList.add(Attribute.ADDRESS);
                 break;
+            case "-m":
+                parsedAttributesList.add(Attribute.MEETING);
+                break;
             default:
                 throw new ParseException(Attribute.MESSAGE_ATTRIBUTE_CONSTRAINTS);
             }
