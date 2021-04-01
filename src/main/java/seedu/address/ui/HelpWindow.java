@@ -15,7 +15,6 @@ import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.commands.Command;
 
 /**
  * Controller for a help page
@@ -25,6 +24,8 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String USERGUIDE_URL = "https://ay2021s2-cs2103t-t11-1.github.io/tp/UserGuide.html";
     public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
 
+    private static final int TABLE_ITEM_HEIGHT = 32;
+    private static final int ADDITIONAL_MARGIN = 30;
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
 
@@ -60,6 +61,16 @@ public class HelpWindow extends UiPart<Stage> {
         setUpTable(feeTableView, getFeeCommands());
     }
 
+    /**
+     * Creates a new HelpWindow.
+     */
+    public HelpWindow() {
+        this(new Stage());
+    }
+
+    /**
+     * Populates the table with all the command information.
+     */
     private void setUpTable(TableView<CommandHelper> table, ObservableList<CommandHelper> commands) {
         TableColumn<CommandHelper, String> commandTitle = new TableColumn<>("Command Title");
         commandTitle.setCellValueFactory(new PropertyValueFactory<>("commandTitle"));
@@ -71,10 +82,10 @@ public class HelpWindow extends UiPart<Stage> {
 
         table.setSelectionModel(null);
         table.prefHeightProperty()
-                .bind(Bindings.size(table.getItems()).multiply(32).add(30));
+                .bind(Bindings.size(table.getItems()).multiply(TABLE_ITEM_HEIGHT).add(ADDITIONAL_MARGIN));
 
-        commandTitle.prefWidthProperty().bind(table.widthProperty().multiply(0.12));
-        commandUsage.prefWidthProperty().bind(table.widthProperty().multiply(0.88));
+        commandTitle.prefWidthProperty().bind(table.widthProperty().multiply(0.20));
+        commandUsage.prefWidthProperty().bind(table.widthProperty().multiply(0.70));
 
         table.getColumns().add(commandTitle);
         table.getColumns().add(commandUsage);
@@ -118,13 +129,6 @@ public class HelpWindow extends UiPart<Stage> {
         return FXCollections.observableArrayList(
                 new CommandHelper("Get fee", "fee n/STUDENT_NAME m/MONTH y/YEAR")
         );
-    }
-
-    /**
-     * Creates a new HelpWindow.
-     */
-    public HelpWindow() {
-        this(new Stage());
     }
 
     /**
