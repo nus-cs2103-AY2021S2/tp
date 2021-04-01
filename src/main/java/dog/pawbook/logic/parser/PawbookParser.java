@@ -7,7 +7,6 @@ import static dog.pawbook.model.managedentity.IsEntityPredicate.IS_DOG_PREDICATE
 import static dog.pawbook.model.managedentity.IsEntityPredicate.IS_OWNER_PREDICATE;
 import static dog.pawbook.model.managedentity.IsEntityPredicate.IS_PROGRAM_PREDICATE;
 
-import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -40,7 +39,9 @@ public class PawbookParser {
      * Used for initial separation of command word, entity type, and args.
      */
     private static final Pattern BASIC_COMMAND_FORMAT =
-            Pattern.compile("(?<commandWord>\\S+) *(?<entityType>(?:owner|program|dog))?(?<arguments>.*)");
+            Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
+    private static final Pattern TYPED_ARGUMENT_FORMAT =
+            Pattern.compile("(?<entityType>(?:owner|dog|program)+)(?<arguments>.*)");
 
     /**
      * Parses user input into command for execution.
@@ -56,21 +57,26 @@ public class PawbookParser {
         }
 
         final String commandWord = matcher.group("commandWord");
-        final String arguments = " " + matcher.group("arguments");
-        final String entityType = Optional.ofNullable(matcher.group("entityType")).orElse("");
+        final String arguments = matcher.group("arguments");
+
+        // for commands that require entity type to be specified
+        final Matcher secondaryMatcher = TYPED_ARGUMENT_FORMAT.matcher(arguments.trim());
+        boolean hasEntityType = secondaryMatcher.matches();
+        final String entityType = hasEntityType ? secondaryMatcher.group("entityType") : "";
+        final String secondaryArguments = hasEntityType ? secondaryMatcher.group("arguments") : arguments;
 
         switch (commandWord) {
         case AddCommand.COMMAND_WORD:
-            return generateAddCommand(entityType, arguments);
+            return generateAddCommand(entityType, secondaryArguments);
 
         case EditEntityCommand.COMMAND_WORD:
-            return generateEditCommand(entityType, arguments);
+            return generateEditCommand(entityType, secondaryArguments);
 
         case DeleteCommand.COMMAND_WORD:
-            return generateDeleteCommand(entityType, arguments);
+            return generateDeleteCommand(entityType, secondaryArguments);
 
         case ListCommand.COMMAND_WORD:
-            return generateListCommand(entityType, arguments);
+            return generateListCommand(entityType, secondaryArguments);
 
         case ViewCommand.COMMAND_WORD:
             return new ViewCommandParser().parse(arguments);
