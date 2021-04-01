@@ -82,7 +82,7 @@ Format:
 ```
 menu delete [INDEX]
 or
-menu delete [INDEX] -f
+menu delete [INDEX] (-f)
 ```
 
 #### `find` - Find dish
@@ -145,7 +145,7 @@ Format:
 ```
 inventory delete [INDEX]
 or
-inventory delete [INDEX] -f
+inventory delete [INDEX] (-f)
 ```
 
 #### `find` - Find an item
