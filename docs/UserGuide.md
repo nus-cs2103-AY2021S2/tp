@@ -96,7 +96,7 @@ The quick start section provides a tutorial which will guide you through the ste
    * Alternatively, for those who are tech-savvy, you can launch the application via Command Prompt in Windows or Terminal in Mac OS/Linux using the following command: `java -jar clientbook.jar`. 
    * Note how the app contains some sample data.
     
-        <p align="center"><img src="images/Ui.png"></p>
+        <p align="center"><img src="images/Ui-annotate.png"></p>
         <p align="center">Graphical user interface of ClientBook.</p>
     
 1. Type the command in the command box and press Enter to execute it.
@@ -123,7 +123,7 @@ Described below are some commands that you can try to get yourself familiarised 
 If you have followed the [Quick Start](#quick-start) guide correctly, you should see the screen below. 
 For each of the commands, type them into the command box and press enter to execute the command.
 
-<p align="center"><img src="images/Ui.png"></p>
+<p align="center"><img src="images/Ui-annotate.png"></p>
 <p align="center">Graphical user interface of ClientBook.</p>
 
 <p><b>Step 1.</b></p> 
