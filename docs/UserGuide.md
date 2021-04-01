@@ -721,4 +721,4 @@ Action | Description, Format
 
 [Back to Table of Contents](#table-of-contents)
 
-<i id="scroll-top-button" onclick="handleScrollTop()" aria-hidden="true" class="fa fa-arrow-circle-up fa-lg lighten" style="display: block;"></i>
+<i class="fa fa-arrow-circle-up fa-lg" id="scroll-top-button" onclick="handleScrollTop()" aria-hidden="true"></i>
