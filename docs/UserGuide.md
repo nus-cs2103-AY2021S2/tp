@@ -266,6 +266,7 @@ Format: `find MATRICULATION_NUMBER`
 
 * If the matriculation number does not exist in the records, a message will be shown to inform users that 
   the matriculation number is not found.
+* If the student found does not have an appointment, the appointment list will appear as empty.
   
 Examples:
 * `find A0175678U` shows Bernice Yu's personal information, and her appointment details if it is present.
