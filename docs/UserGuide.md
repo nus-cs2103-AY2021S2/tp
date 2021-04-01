@@ -237,7 +237,7 @@ Examples:
 *  `edit_session c/1 d/Monday s/Biology` Edits the day and subject of the session c/1 to be `Monday` and `Biology` respectively.
 *  `edit_session c/2 ts/12:00 to 13:00 tag/haha` Edits the timeslot and tag of the session c/2 to be `12:00 to 13:00` and `haha` respectively.
 
-### Locating persons by name: `find` (coming soon)
+### Locating persons by name: `find`
 
 Finds persons whose names contain any of the given keywords.
 
