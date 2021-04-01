@@ -7,18 +7,31 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.person.passenger.Passenger;
 import seedu.address.model.pool.Pool;
+import static seedu.address.testutil.TypicalPassengers.ALICE;
+import static seedu.address.testutil.TypicalPassengers.BENSON;
+import static seedu.address.testutil.TypicalPassengers.CARL;
+import static seedu.address.testutil.TypicalPassengers.DANIEL;
+import static seedu.address.testutil.TypicalPassengers.ELLE;
+import static seedu.address.testutil.TypicalPassengers.FIONA;
+import static seedu.address.testutil.TypicalPassengers.GEORGE;
+import static seedu.address.testutil.TypicalPassengers.HILARY;
 
 /**
  * A utility class containing a list of {@code Pool} objects to be used in tests.
  */
 public class TypicalPools {
 
+    public static final List<Passenger> HOMEPOOL_PASSENGERS = new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL));
+    public static final List<Passenger> OFFICEPOOL_PASSENGERS = new ArrayList<>(Arrays.asList(DANIEL, ELLE, FIONA));
+    public static final List<Passenger> WORKPOOL_PASSENGERS = new ArrayList<>(Arrays.asList(ALICE, GEORGE, HILARY));
+
     public static final Pool HOMEPOOL = new PoolBuilder()
             .withDriver(TypicalDrivers.DRIVER_ALICE)
             .withTripDay(DayOfWeek.FRIDAY)
             .withTripTime(LocalTime.of(18, 0))
-            .withDefaultPassengers()
+            .withPassengers(HOMEPOOL_PASSENGERS)
             .withTags("friends")
             .build();
 
@@ -26,14 +39,14 @@ public class TypicalPools {
             .withDriver(TypicalDrivers.DRIVER_ALICE)
             .withTripDay(DayOfWeek.MONDAY)
             .withTripTime(LocalTime.of(6, 30))
-            .withDefaultPassengers()
+            .withPassengers(OFFICEPOOL_PASSENGERS)
             .withTags("owesMoney", "friends").build();
 
     public static final Pool WORKPOOL = new PoolBuilder()
             .withDriver(TypicalDrivers.DRIVER_BOB)
             .withTripDay(DayOfWeek.WEDNESDAY)
             .withTripTime(LocalTime.of(14, 0))
-            .withDefaultPassengers()
+            .withPassengers(WORKPOOL_PASSENGERS)
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
