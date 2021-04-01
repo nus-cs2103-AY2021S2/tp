@@ -169,6 +169,8 @@ public class LogicManager implements Logic {
             flagList.add(CliSyntax.PREFIX_NAME.getPrefix());
             flagList.add(CliSyntax.PREFIX_PHONE.getPrefix());
             flagList.add(CliSyntax.PREFIX_EMAIL.getPrefix());
+            flagList.add(CliSyntax.PREFIX_COMPANY.getPrefix());
+            flagList.add(CliSyntax.PREFIX_JOB_TITLE.getPrefix());
             flagList.add(CliSyntax.PREFIX_ADDRESS.getPrefix());
             flagList.add(CliSyntax.PREFIX_REMARK.getPrefix());
             flagList.add(CliSyntax.PREFIX_TAG.getPrefix());
