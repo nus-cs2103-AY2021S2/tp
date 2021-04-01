@@ -9,13 +9,17 @@ import java.util.regex.Pattern;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.BlacklistCommand;
 import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.CollectCommand;
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.DarkCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.LightCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.MassBlacklistCommand;
 import seedu.address.logic.commands.MassDeleteCommand;
 import seedu.address.logic.commands.RemarkCommand;
 import seedu.address.logic.commands.SortCommand;
@@ -58,6 +62,12 @@ public class AddressBookParser {
         case BlacklistCommand.COMMAND_WORD:
             return new BlacklistCommandParser().parse(arguments);
 
+        case CollectCommand.COMMAND_WORD:
+            return new CollectCommandParser().parse(arguments);
+
+        case MassBlacklistCommand.COMMAND_WORD:
+            return new MassBlacklistCommandParser().parse(arguments);
+
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
 
@@ -90,6 +100,12 @@ public class AddressBookParser {
 
         case UndoCommand.COMMAND_WORD:
             return new UndoCommand(this.addressBookState);
+
+        case LightCommand.COMMAND_WORD:
+            return new LightCommand();
+
+        case DarkCommand.COMMAND_WORD:
+            return new DarkCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

@@ -193,14 +193,14 @@ it back to the `UI` component to display it to the user.
 The following sequence diagram illustrates how the sort operation works:
 ![SortSequenceDiagram](images/SortSequenceDiagram.png)
 
-### Find persons by tag feature
-This feature is built on the current `find` command, which is used to be limited to only finding persons by names. With this change, the format of the `find` command is now modified to `find n/[NAME] t/[TAG]`.
+### Find persons by tag and address feature
+This feature is built on the current `find` command, which is used to be limited to only finding persons by names. With this change, the format of the `find` command is now modified to `find n/[NAME] t/[TAG] a/[ADDRESS]`.
 This command returns the persons with attributes that matches at least one of the attributes of interest (See User Guide for more details).
 Note that users are only required to provide at least one of the parameters to use this command. In other words, commands such as `find n/Alex` and `find t/autistic` are valid commands.
 
-To facilitate the implementation of this feature, two new predicate classes are introduced, namely `PersonTagContainsKeywordsPredicate` and `ReturnTruePredicate`. The former class is to check whether any of the `tag`s contain the keywords. The latter predicate always returns `true`. 
+To facilitate the implementation of this feature, three new predicate classes are introduced, namely `PersonTagContainsKeywordsPredicate`, `AddressContainsKeywordsPredicate` and `ReturnTruePredicate`. The former class is to check whether any of the `tag`s contain the keywords. The latter predicate always returns `true`. 
 
-The introduction of `ReturnTruePredicate` may seem pointless, but it is of great use. The key here is to realize that if X is a boolean variable, then X `and` `true` simplifies to X. If both `name` and `tag` keywords are given, the `FindCommand` class will receive `NameContainsKeywordsPredicate` and `PersonTagContainsKeywordsPredicate`. If, say, only `name` keywords are given, then `ReturnTruePredicate` will instead be supplied to `FindCommand`.
+The introduction of `ReturnTruePredicate` may seem pointless, but it is of great use. The key here is to realize that if X is a boolean variable, then X `and` `true` simplifies to X. If all keywords are given, the `FindCommand` class will receive `NameContainsKeywordsPredicate`, `PersonTagContainsKeywordsPredicate` and `AddressContainsKeywordsPredicate`. If, say, only `name` keywords are given, then two `ReturnTruePredicate`s will be supplied to `FindCommand` instead.
 As such, the filter will now solely depend on `NameContainsKeywordsPredicate` since the second predicate always returns true.
 
 The following sequence diagram shows how the `find` command works:
@@ -240,33 +240,31 @@ The following sequence diagram shows how the add command works:
 ![ModeOfContactSequenceDiagram](images/ModeOfContactSequenceDiagram.png)
 
     
-### \[Proposed\] Undo/redo feature
+### Undo feature
 
-#### Proposed Implementation
+#### Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The undo mechanism is facilitated by `State`. It contains an undo history, stored internally as an `addressBookStates`. Additionally, it implements the following operations:
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+* `State#addState()` — Saves the current contact list state in its history.
+* `State#deleteState()` — Deletes the current contact list state. The undo operation is done by calling this method.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The user launches the application for the first time. The `State` will be initialized with the initial contact list state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th person in the contact list. After execution, `State#addState()` is called, causing the modified state of the contact list after the `delete 5` command executes to be saved in the `addressBookStates`.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified contact list state to be saved into the `addressBookStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution or does not modify the contact list in anyway, it will not call `State#addState()`, so the contact list state will not be saved into the `addressBookStates`.
+Examples of commands that do not modify the list include <code>find</code>, <code>list</code> etc.
 
 </div>
 
@@ -274,8 +272,8 @@ Step 4. The user now decides that adding the person was a mistake, and decides t
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If there is only one state saved in the <code>addressBookStates</code>, then there are no previous AddressBook states to restore. The `undo` command uses `Model#getPreviousState` to check if this is the case. If so, the method will return <code>null</code>
+, causing the command to return an error to the user rather than attempting to perform the undo.
 
 </div>
 
@@ -287,27 +285,13 @@ The following sequence diagram shows how the undo operation works:
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
 The following activity diagram summarizes what happens when a user executes a new command:
 
 ![CommitActivityDiagram](images/CommitActivityDiagram.png)
 
 #### Design consideration:
 
-##### Aspect: How undo & redo executes
+##### Aspect: How undo executes
 
 * **Alternative 1 (current choice):** Saves the entire address book.
     * Pros: Easy to implement.
@@ -318,11 +302,7 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
     * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -368,13 +348,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | delete a contact                                     | remove entries that I no longer need                                    |
 | `* * *`  | user                                       | find a contact by name                               | locate details of contacts without having to go through the entire list |
 | `* * *`  | user                                       | filter contacts by tag                               | minimize chance of sending emails to the wrong recipient                |
+| `* * *`  | user                                       | find contacts by their address                       | group the contact list by the places they live and thus ease the process of sending information to those who prefer receiving information by mail.
 | `* * *`  | user                                       | specify preferred mode of contact                    | maximize chance of recipient seeing the information                     |
 | `* * *`  | user                                       | blacklist a contact                                  | reduce dissemination of information to people who do not want it        |
+| `* * *`  | user                                       | undo my operations                                   |                                                                         |
+| `* * *`  | user                                       | collect specified details of all contacts            | avoid individually copying the details for each contact                 |
 | `* *`    | user                                       | hide private contact details                         | minimize chance of someone else seeing them by accident                 |
 | `* *`    | user with many contacts                    | assign each contact an additional optional remark    | remember contacts more accurately                                       |
 | `* *`    | user with many contacts                    | sort contacts by name                                | locate a contact easily                                                 |
-
-*{More to be added}*
+| `* *`    | user                                       | review my previous commands                          | simply modify them instead of retyping the commands, especially for the commands with longer parameters list.
 
 ### Use cases
 

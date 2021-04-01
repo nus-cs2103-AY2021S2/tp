@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import javafx.util.Pair;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -23,6 +24,8 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_RANGE = "Invalid range format.";
+    public static final String MESSAGE_INVALID_START = "Start index must be positive and start index < end index";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -113,28 +116,37 @@ public class ParserUtil {
     }
 
     /**
+     * Parses  a {@code String isAscending} into a {@code boolean}.
      * Leading and trailing whitespaces will be trimmed.
-     */
-    public static String parseCriteria(String criteria) throws ParseException {
-        requireNonNull(criteria);
-        String trimmedCriteria = criteria.trim();
-        return trimmedCriteria;
-    }
-
-    /**
-     * Returns true if the input string is ascending, and false otherwise.
+     *
+     * @throws ParseException if the given {@code isAscending} is invalid.
      */
     public static boolean parseIsAscending(String isAscending) throws ParseException {
         requireNonNull(isAscending);
         String trimmedIsAscending = isAscending.trim();
         if (!trimmedIsAscending.equals("ascending") && !trimmedIsAscending.equals("descending")) {
-            throw new ParseException("Direction should either be ascending or descending");
+            throw new ParseException("Input should either be ascending or descending");
         }
         return trimmedIsAscending.equals("ascending");
     }
 
     /**
-     * Parses a {@code String modeOfContact} into an {@code ModeOfContact}.
+     * Parses  a {@code String isBlacklist} into a {@code boolean}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code isBlacklist} is invalid.
+     */
+    public static boolean parseIsBlacklist(String isBlacklist) throws ParseException {
+        requireNonNull(isBlacklist);
+        String trimmedIsAscending = isBlacklist.trim();
+        if (!trimmedIsAscending.equals("blacklist") && !trimmedIsAscending.equals("unblacklist")) {
+            throw new ParseException("Input should either be blacklist or unblacklist");
+        }
+        return trimmedIsAscending.equals("blacklist");
+    }
+
+    /**
+     * Parses a {@code String modeOfContact} into a {@code ModeOfContact}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code modeOfContact} is invalid.
@@ -146,6 +158,31 @@ public class ParserUtil {
             throw new ParseException(ModeOfContact.MESSAGE_CONSTRAINTS);
         }
         return new ModeOfContact(trimmedModeOfContact);
+    }
+
+    /**
+     * Parses  a {@code String range} into a {@code Pair}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code isAscending} is invalid.
+     */
+    public static Pair<Index, Index> parseRange(String range) throws ParseException {
+        requireNonNull(range);
+        String trimmedRange = range.trim();
+        try {
+            String[] splitRange = trimmedRange.split("-");
+            if (splitRange.length != 2) {
+                throw new ParseException(MESSAGE_INVALID_RANGE);
+            }
+            Index startIndex = parseIndex(splitRange[0]);
+            Index endIndex = parseIndex(splitRange[1]);
+            if (startIndex.getZeroBased() > endIndex.getZeroBased()) {
+                throw new ParseException(MESSAGE_INVALID_START);
+            }
+            return new Pair<>(startIndex, endIndex);
+        } catch (NumberFormatException exception) {
+            throw new ParseException(MESSAGE_INVALID_RANGE);
+        }
     }
 
     /**
@@ -174,6 +211,4 @@ public class ParserUtil {
         }
         return tagSet;
     }
-
-
 }

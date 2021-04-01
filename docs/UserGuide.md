@@ -42,7 +42,6 @@ If you can type fast, SpamEZ can get your contact management tasks done faster t
    * **`filter`** `[Computing, Student]` : Filters shown contact based on given keywords.
 
    * **`exit`** : Exits the app.
-
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -71,6 +70,8 @@ If you can type fast, SpamEZ can get your contact management tasks done faster t
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
+* Commands will only handle `INDEX` values from 1 to 2147483647 (inclusive).
+  Values out of this valid integer range will be treated as invalid inputs.
 </div>
 
 ### Viewing help : `help`
@@ -147,23 +148,23 @@ Format: `delete INDEX`
 
 * Deletes the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a valid positive integer** 1, 2, …​, 2147483647
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the contacts list.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-###Deleting multiple contacts simultaneously : `massdelete`
+###Deleting multiple contacts : `massdelete`
 
 Deletes all contacts within the specified index range.
 
-Format: `massdelete start/INDEX end/INDEX`
+Format: `massdelete START-END`
 * The index refers to the index number shown in the displayed person list.
-* Both the Start Index and End Index must be a positive integer 1,2,3, ...
+* Both the Start Index and End Index **must be a valid positive integer** 1, 2, …​, 2147483647
 * Start Index < End Index and End Index cannot be larger than the number of contacts in the list.
 
 Example:
-`massdelete start/2 end/41`
+`massdelete 2-41`
 
 ### Adding tags to a contact : `tag`
 
@@ -180,13 +181,39 @@ Format: blist INDEX
 
 * Changes the blacklist status of the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a valid positive integer** 1, 2, …​, 2147483647
 
-### Filter contacts: `filter`
+### Collect details from contacts : `collect`
 
-Filters shown contacts based on the given keyword(s).
+Collects the specified details of all contacts in the displayed person list.
+The type of detail is specified by the prefix provided. Details will be separated
+by the given separator, or by a semicolon if unspecified.
 
-Format: filter [keyword1, keyword2, …]
+Format: collect [n/] or [p/] or [e/] or [a/] [s/SEPARATOR]
+
+* Exactly one of the type of detail prefix must be provided.
+  The corresponding fields are as follows.
+  * `n/`: Name
+  * `p/`: Phone
+  * `e/`: Email
+  * `a/`: Address
+* The separator will ignore leading and trailing spaces. 
+  As such, it is not possible to start or end the separator with a space.   
+* Words following any prefix other than `s/` will be ignored.
+* Unrelated prefixes will be ignored.
+
+###Blacklist or unblacklist multiple contacts : `massblist`
+
+Blacklists all contacts within the specified index range.
+
+Format: `massblist START-END b/BLACKLIST_OR_UNBLACKLIST`
+* Blacklists or unblacklists all contacts within the specified index range(inclusive).
+* The index refers to the index number shown in the displayed person list.
+* Both the start index and end index must be a positive integer 1,2,3, ...
+* Start Index < End Index and End Index cannot be larger than the number of contacts in the list.
+
+Example:
+`massblist 15-42 b/blacklist`
 
 ### Clearing all entries : `clear`
 
@@ -204,7 +231,7 @@ Format: `remark INDEX r/REMARK`
 
 * Adds/Replaces the remark of the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a valid positive integer** 1, 2, …​, 2147483647
 
 Example:
 
@@ -212,14 +239,13 @@ Example:
 
 ### Sort entries by name : `sort`
 
-Sort the entries in the contacts list according to a specific criteria.
-The entries can be sorted in both ascending and descending order.
+Sort the entries in the contacts list by name in either ascending or descending order.
 
-Format: `sort c/CRITERIA d/ASCENDING_OR_DESCENDING`
+Format: `sort ASCENDING_OR_DESCENDING`
 
-CRITERIA | Description | Example
---------|------------------|------
-**name** | Sort by name in alphabetical order| sort c/name d/descending
+Example:
+
+`sort ascending`
 
 ### Review previous commands
 Users can view the commands they have inserted previously using up and down arrow keys.
@@ -237,15 +263,18 @@ SpamEZ data are saved in the hard disk automatically after any command that chan
 
 ### Editing the data file
 
-SpamEZ data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+SpamEZ data are saved as a JSON file `[JAR file location]/data/addressbook.json`.
+Do not update data directly by editing that data file as it may result in unintended behaviors.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, SpamEZ will discard all data and start with an empty data file at the next run.
+If you edit the data file and make its format invalid, SpamEZ will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
+### Undo previous operations: `undo`
+Undo the changes done to the list of contacts.
 
-_Details coming soon ..._
+Format: `undo`
+* This command only applies to the commands that make changes to the list of contacts, e.g. `add`, `edit`, `delete`, `undo` etc.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -262,13 +291,16 @@ Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Blacklist** | `blist INDEX`<br> e.g., `blist 2`
+**Mass blacklist** | `massblist START-END`<br> e.g., `massblist 13-67 b/blacklist`
 **Clear** | `clear`
+**Collect** | `collect [n/] or [p/] or [e/] or [a/] [s/SEPARATOR]`<br> e.g., `collect e/ s/,`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Mass Delete** | `massdelete START-END` <br> e.g., `massdelete 4-12`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Filter** | `filter [keyword1,keyword2,...]`<br> e.g., `filter[Computing, Student]`
-**Find** | `find [n/NAME_KEYWORDS] [t/TAG_KEYWORDS]`<br> e.g., `find n/James Jake t/classmates`
+**Find** | `find [n/NAME_KEYWORDS] [t/TAG_KEYWORDS] [a/ADDRESS_KEYWORDS]`<br> e.g., `find n/James Jake t/classmates a/Singapore`
 **Help** | `help`
 **List** | `list`
 **Remark** | `remark INDEX r/REMARK`<br> e.g., `remark 5 r/Currently on Leave of Absence`
 **Tag** | `tag n/NAME t/TAG`<br> e.g., `tag n/Jane Bo t/Student`
-**Sort** | `sort c/CRITERIA d/ASCENDING_OR_DESCENDING`<br> e.g., `sort c/name d/ascending`
+**Sort** | `sort ASCENDING_OR_DESCENDING`<br> e.g., `sort ascending`
+**Undo** | `undo`

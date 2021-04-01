@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -8,6 +9,7 @@ import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
+import seedu.address.model.person.AddressContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonTagContainsKeywordsPredicate;
@@ -29,10 +31,12 @@ public class FindCommand extends Command {
             + PREFIX_TAG + "TAG_KEYWORD [MORE_TAG_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "alice bob charlie "
-            + PREFIX_TAG + "friends neighbours";
+            + PREFIX_TAG + "friends neighbours"
+            + PREFIX_ADDRESS + "Singapore";
 
     private final Predicate<Person> namePredicate;
     private final Predicate<Person> tagPredicate;
+    private final Predicate<Person> addressPredicate;
 
     /**
      * Creates a FindCommand to find the {@code Person}s with matching keywords.
@@ -40,20 +44,24 @@ public class FindCommand extends Command {
      * @param tagPredicate Predicate made up of tags to match.
      */
     public FindCommand(Predicate<Person> namePredicate,
-                       Predicate<Person> tagPredicate) {
+                       Predicate<Person> tagPredicate,
+                       Predicate<Person> addressPredicate) {
         assert (namePredicate instanceof NameContainsKeywordsPredicate
                 || namePredicate instanceof ReturnTruePredicate);
         assert (tagPredicate instanceof PersonTagContainsKeywordsPredicate
                 || tagPredicate instanceof ReturnTruePredicate);
+        assert (addressPredicate instanceof AddressContainsKeywordsPredicate
+                || addressPredicate instanceof ReturnTruePredicate);
 
         this.namePredicate = namePredicate;
         this.tagPredicate = tagPredicate;
+        this.addressPredicate = addressPredicate;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(namePredicate.and(tagPredicate));
+        model.updateFilteredPersonList(namePredicate.and(tagPredicate).and(addressPredicate));
         return new CommandResult(
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
     }
@@ -63,6 +71,7 @@ public class FindCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof FindCommand // instanceof handles nulls
                 && namePredicate.equals(((FindCommand) other).namePredicate)
-                && tagPredicate.equals(((FindCommand) other).tagPredicate)); // state check
+                && tagPredicate.equals(((FindCommand) other).tagPredicate)
+                && addressPredicate.equals(((FindCommand) other).addressPredicate)); // state check
     }
 }

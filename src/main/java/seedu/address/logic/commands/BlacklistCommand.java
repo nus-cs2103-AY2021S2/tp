@@ -33,6 +33,7 @@ public class BlacklistCommand extends Command {
     private Blacklist blacklist;
 
     /**
+     * Initialises a BlacklistCommand object with default blacklist.
      * @param index of the person in the filtered person list to edit the blacklist status
      */
     public BlacklistCommand(Index index) {
@@ -46,48 +47,46 @@ public class BlacklistCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         logger.log(Level.INFO, "Starting execution of BlacklistCommand");
+        Person personToEdit = getPerson(model);
+        updateThisBlacklist(personToEdit);
+
+        logger.log(Level.INFO, "Going to replace person in model");
+        model.toggleBlacklist(personToEdit);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        logger.log(Level.INFO, "Person replaced");
+
+        Person editedPerson = getPerson(model);
+        assert(blacklist.getStatus() != editedPerson.getBlacklistStatus());
+        updateThisBlacklist(editedPerson);
+
+        logger.log(Level.INFO, "End execution of BlacklistCommand");
+        return new CommandResult(generateSuccessMessage(editedPerson));
+    }
+
+    private Person getPerson(Model model) throws CommandException {
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size() || index.getZeroBased() < 0) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        blacklist = new Blacklist(!personToEdit.getBlacklist().isBlacklisted);
-        assert(blacklist.isBlacklisted != personToEdit.getBlacklist().isBlacklisted);
+        return lastShownList.get(index.getZeroBased());
+    }
 
-        logger.log(Level.INFO, "Going to create replacement person");
-        Person editedPerson = null;
-        try {
-            editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                    personToEdit.getAddress(), personToEdit.getRemark(), personToEdit.getModeOfContact(),
-                    blacklist, personToEdit.getTags());
-            assert(editedPerson.getBlacklist().isBlacklisted != personToEdit.getBlacklist().isBlacklisted);
-        } catch (Exception ex) {
-            logger.log(Level.SEVERE, "Create person error", ex);
-        }
-        logger.log(Level.INFO, "Replacement person created");
-
-        logger.log(Level.INFO, "Going to replace person in model");
-        try {
-            model.setPerson(personToEdit, editedPerson);
-            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        } catch (Exception ex) {
-            logger.log(Level.SEVERE, "Edit model error", ex);
-        }
-        logger.log(Level.INFO, "Person replaced");
-
-        logger.log(Level.INFO, "End execution of BlacklistCommand");
-        return new CommandResult(generateSuccessMessage(editedPerson));
+    private void updateThisBlacklist(Person person) {
+        blacklist = person.getBlacklist();
     }
 
     /**
-     * Generates a command execution success message based on whether the blacklist is added to or removed from
-     * {@code personToEdit}.
+     * Generates a command execution success message based on
+     * whether the blacklist is added to or removed from.
+     * {@code editedPerson}.
      */
-    private String generateSuccessMessage(Person personToEdit) {
-        String message = blacklist.isBlacklisted ? MESSAGE_BLACKLIST_SUCCESS : MESSAGE_UNBLACKLIST_SUCCESS;
-        return String.format(message, personToEdit);
+    private String generateSuccessMessage(Person editedPerson) {
+        String message = blacklist.getStatus()
+                ? MESSAGE_BLACKLIST_SUCCESS
+                : MESSAGE_UNBLACKLIST_SUCCESS;
+        return String.format(message, editedPerson);
     }
 
     @Override

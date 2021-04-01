@@ -42,7 +42,7 @@ public class PersonListPanel extends UiPart<Region> {
                 setText(null);
             } else {
                 if (person.getBlacklist().isBlacklisted) {
-                    setStyle("-fx-background-color: #000000");
+                    setStyle("-fx-background-color: #000000;");
                 } else {
                     setStyle("");
                 }
