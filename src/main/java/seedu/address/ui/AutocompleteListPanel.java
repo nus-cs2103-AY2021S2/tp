@@ -16,7 +16,9 @@ import seedu.address.commons.core.LogsCenter;
 public class AutocompleteListPanel extends UiPart<Region> {
 
     private static final String FXML = "AutocompleteListPanel.fxml";
+    private static final int INDEX_OUT_OF_BOUNDS = -1;
     private final Logger logger = LogsCenter.getLogger(AutocompleteListPanel.class);
+
 
     @FXML
     private ListView<String> autocompleteListView;
@@ -39,9 +41,9 @@ public class AutocompleteListPanel extends UiPart<Region> {
      *
      * @param callback accept value for demo purposes.
      */
-    public void doTab(Consumer<String> callback) {
+    public void processTabKey(Consumer<String> callback) {
         int selectedIndex = autocompleteListView.getSelectionModel().getSelectedIndex();
-        if (selectedIndex == -1) {
+        if (selectedIndex == INDEX_OUT_OF_BOUNDS) {
             selectedIndex = 0;
         } else {
             selectedIndex = (selectedIndex + 1) % autocompleteListView.getItems().size();
