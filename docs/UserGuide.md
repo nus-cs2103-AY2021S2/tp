@@ -32,10 +32,16 @@ JJIMY is a **desktop app for managing your restaurant, optimized for use via a C
 ### General
 
 #### `help` - Access help page
-Format: `help`
+Format:
+```
+help
+```
 
 #### `exit` - Exit application
-Format: `exit`
+Format:
+```
+exit
+```
 
 ### `customer`
 
@@ -58,6 +64,14 @@ customer delete [INDEX] (-f)
 ```
 
 In the event that there are uncompleted orders by the contact that is being attempted to be deleted, a `-f` flag has to be added to the end of the command to confirm the command. This is to prevent you from accidentally deleting orders unknowingly and leading to unhappy customers!
+
+#### `edit` - Edit customer
+Format:
+```
+customer edit [INDEX] (n/[NAME]) (p/[PHONE_NUMBER]) (e/[EMAIL]) (a/[ADDRESS])
+```
+
+At least one of the fields in brackets must be present in the edit command.
 
 #### `find` - Find contact
 Format:
@@ -89,6 +103,14 @@ or
 menu delete [INDEX] (-f)
 ```
 
+#### `edit` - Edit dish
+Format:
+```
+menu edit [INDEX] (n/[NAME]) (p/[PRICE])
+```
+
+At least one of the fields in brackets must be present in the edit command.
+
 #### `find` - Find dish
 Format:
 ```
@@ -99,42 +121,6 @@ At least one prefix must be specified. If both are specified, both conditions wi
 
 - `n/` - Finds all dishes with names that contain any of the keywords (case-insensitive). Keywords are space separated. 
 - `i/` - Finds all dishes with ingredient names that contain keyword (case-insensitive).
-
-### `order`
-#### `list` - List all orders
-Format: 
-```
-order list
-```
-
-#### `add` - Add an order
-Format: 
-```
-order add n/[CUSTOMER_NAME] dt/[DELIVERY_DATETIME] (DD-MM-YYYY HH:MM) d/[DISH_NAME] q/[QUANTITY]...  
-```
-
-#### `delete` - Delete an order
-Format:
-```
-order delete [INDEX]
-```
-
-#### `find` - Find an order
-Format:
-```
-order find [KEYWORD] [MORE KEYWORDS]
-```
-
-#### `complete` - Mark order as completed
-Format:
-```
-order complete [INDEX]
-```
-#### `history` - List all completed and cancelled orders
-Format:
-```
-order history
-```
 
 ### `inventory`
 
@@ -167,6 +153,14 @@ or
 inventory delete [INDEX] (-f)
 ```
 
+#### `edit` - Edit item
+Format:
+```
+inventory edit [INDEX] (n/[INGREDIENT_NAME]) (q/[QUANTITY])
+```
+
+At least one of the fields in brackets must be present in the edit command.
+
 #### `find` - Find an item
 Format:
 ```
@@ -178,25 +172,33 @@ At least one prefix must be specified. If both are specified, both conditions wi
 - `n/` - Finds all ingredients with names that contain any of the keywords (case-insensitive). Keywords are space separated. 
 - `q/` - Finds all ingredients with less than specified quantity. Must be a non-negative whole number (>= 0).
 
-### `orders`
+### `order`
 
 #### `list` - List all orders
 Format: 
 ```
-orders list
+order list
 ```
 
 #### `add` - Add an order
 Format: 
 ```
-orders add n/[CUSTOMER_NAME] dt/[DELIVERY_DATETIME] (DD-MM-YYYY HH:MM) d/[DISH_NAME] q/[QUANTITY]...  
+order add n/[CUSTOMER_NAME] dt/[DELIVERY_DATETIME] (DD-MM-YYYY HH:MM) d/[DISH_NAME] q/[QUANTITY]...  
 ```
 
 #### `delete` - Delete an order
 Format:
 ```
-orders delete [INDEX]
+order delete [INDEX]
 ```
+
+#### `edit` - Edit item
+Format:
+```
+inventory edit [INDEX] (n/[CUSTOMER_NAME]) (dt/[DELIVERY_DATETIME] (DD-MM-YYYY HH:MM)) (d/[DISH_NAME] q/[QUANTITY]...)
+```
+
+At least one of the fields in brackets must be present in the edit command.
 
 #### `find` - Find an order
 Format:
@@ -209,6 +211,17 @@ At least one prefix must be specified. If both are specified, both conditions wi
 - `n/` - Finds all orders with customer names that contain any of the keywords (case-insensitive). Keywords are space separated. 
 - `d/` - Finds all orders with dish names that contain keyword (case-insensitive).
 
+#### `complete` - Mark order as completed
+Format:
+```
+order complete [INDEX]
+```
+
+#### `history` - List all completed and cancelled orders
+Format:
+```
+order history
+```
 
 --------------------------------------------------------------------------------------------------------------------
 
