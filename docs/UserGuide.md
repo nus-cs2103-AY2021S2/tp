@@ -20,7 +20,7 @@ Use nufash to reduce clutter and start making wiser clothing decisions today!
     + [Deleting a singular Garment in the Wardrobe: `delete`](#deleting-a-singular-garment-in-the-wardrobe---delete-)
     + [Clearing all Garments in Wardrobe : `clear`](#clearing-all-garments-in-wardrobe----clear-)
     + [Editing a singular Garment in Wardrobe: `edit`](#editing-a-singular-garment-in-wardrobe---edit-)
-    + [Find Garments in Wardrobe by keywords: `find`](#find-garments-in-wardrobe-by-keywords---find-)
+    + [Finding Garments in Wardrobe by keywords: `find`](#finding-garments-in-wardrobe-by-keywords---find-)
     + [Matching Garments to create an outfit: `match`<br>](#matching-garments-to-create-an-outfit---match--br-)
     + [Checking out a Garment from the Wardrobe: `select`](#checking-out-a-garment-from-the-wardrobe---select-)
     + [Viewing a valid outfit: `view`](#viewing-a-valid-outfit---view-)
@@ -66,12 +66,20 @@ Use nufash to reduce clutter and start making wiser clothing decisions today!
 
 <div markdown="block" class="alert alert-info">
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/striped shirt`.
+* Words in `UPPER_CASE` are the inputs to be supplied by the user e.g. in `add n/NAME`, `NAME` is a parameter which can 
+  be used as `add n/striped shirt`.
+* The different inputs that the user can input are the following:
+  * `n/NAME`, the name of the garment
+  * `s/SIZE`, the size of the garment
+  * `c/COLOUR`, the colour of the garment
+  * `r/DRESSCODE`, the dresscode of the garment
+  * `t/TYPE`, the type of the garment
+  * `d/DESCRIPTION`, the description of the garment
 * Items in square brackets are optional e.g. `n/NAME [c/COLOUR]` can be used as `n/striped shirt c/blue` or as `n/striped shirt`.
-* Parameters can be in any order e.g. if the command specifies `n/NAME c/COLOUR`, `c/COLOUR n/NAME` is also acceptable.
+* Inputs can be in any order e.g. if the command specifies `n/NAME c/COLOUR`, `c/COLOUR n/NAME` is also acceptable.
 * Items with `…` after them can be used multiple times including zero times.<br>e.g. `[d/DESCRIPTION]...` can be used as ` ` (i.e. 0 times), `d/stained`, `d/torn d/stained` etc.
-* Argument for `r/DRESSCODE` is either `casual`, `formal` or `active`.
-* Argument for `t/TYPE` is either `upper`, `lower` or `footwear`.
+* Input for `r/DRESSCODE` is either `casual`, `formal` or `active`.
+* Input for `t/TYPE` is either `upper`, `lower` or `footwear`.
 <br><br>
 </div>
 
@@ -109,6 +117,11 @@ Shows a list of all garments in the wardrobe<br>
 <img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/ListGarment.png" alt="alt text" width="790">
 
 Format: `list`
+
+<div markdown="block" class="alert alert-primary">
+
+**:bulb: Tips:** <br>
+* Displays the list of all garments in chronological ordering.
 <br><br>
 
 ### Deleting a singular Garment in the Wardrobe: `delete`  
@@ -160,7 +173,7 @@ Example:
   Edits the colour and size of the 1st garment in the wardrobe to be red and 30 respectively.
   <br><br>
   
-### Find Garments in Wardrobe by keywords: `find`
+### Finding Garments in Wardrobe by keywords: `find`
 Finds all garments that matched specified keywords during search.<br>
 
 <img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/FindGarmentA.png" alt="alt text" width="790">
@@ -217,7 +230,8 @@ Format: `select INDEX`
 </div>
 Example:
 
-* `select 1`
+* `select 1`<br>
+Updates the Last Used date, and places this garment at the end of the list
 <br><br>
 
 ### Viewing a valid outfit: `view`
@@ -233,7 +247,8 @@ Format: `view INDEX INDEX INDEX`
 * Displays the garments at the selected set of `INDEX`.<br>
 * The `INDEX` must be a positive integer 1, 2, 3, …
 * Garments must be of different Types (i.e. `upper`, `lower` and `footwear`).<br>
-* The command must have exactly 3 indexes as input, any more inputs will not be registered.
+* The command must have exactly 3 indexes as input, any more inputs will not be registered.<br>
+* Use the coloured garment previews to visualise how your whole outfit will look like.
 
 </div>
 
@@ -248,13 +263,16 @@ Format: `exit`
 <br><br>
 
 ### Saving the data
-nufash data is saved in the hard disk automatically after any command that changes the data. 
+nufash data is saved in the hard disk automatically as a JSON file under [JAR file location]/data/nufash.json
+after any command that changes the data. 
 There is no need to save manually.
+
+**:exclamation: Caution:**<br>
+  Remember not to delete this folder as all your saved data will be discarded.
 <br><br>
 
-### Editing the data file
-nufash data is saved as a JSON file [JAR file location]/data/nufash.json. 
-Advanced users are welcome to update data directly by editing that data file.
+### Editing the data file 
+Advanced users are welcome to update data directly by editing the data file at [JAR file location]/data/nufash.json.
 
 **:exclamation: Caution:**<br>
   If your changes to the data file makes its format invalid, nufash will discard all data and start with an empty data file at the next run.
@@ -275,17 +293,17 @@ A: Tell us about your issue [here](https://github.com/AY2021S2-CS2103T-T12-1/tp)
 
 | Action                              | Format, Examples                                                                                                                |
 | ----------------------------------- | -----------------------------------------------------------------------                                                         |
-| **Add a Garment**                   | `add n/NAME s/SIZE c/COLOUR r/DRESSCODE t/TYPE [d/DESCRIPTION]...`<br> Eg. `add n/sleek tux s/32 c/white r/formal t/upper`      |
+| **Adding a Garment**                | `add n/NAME s/SIZE c/COLOUR r/DRESSCODE t/TYPE [d/DESCRIPTION]...`<br> Eg. `add n/sleek tux s/32 c/white r/formal t/upper`      |
 | **Deleting a Garment**              | `delete INDEX`<br> Eg. `delete 4`                                                                                               |
 | **Editing a Garment**               | `edit INDEX [n/NAME] [s/SIZE] [c/COLOUR] [r/DRESSCODE] [t/TYPE] [d/DESCRIPTION]...`<br>                                         |
 | **Listing all Garments**            | `list`                                                                                                                          |
-| **Find Garments**                   | `find t/TYPE`<br> Eg. find `t/Office`                                                                                           |
-| **Match**                           | `match INDEX` <br> Eg., `match 1`                                                                                               |
+| **Finding Garments**                | `find t/TYPE`<br> Eg. find `t/Office`                                                                                           |
+| **Matching a Garment**              | `match INDEX` <br> Eg., `match 1`                                                                                               |
 | **Viewing a Garment set**           | `view INDEX INDEX INDEX` <br> Eg., `view 1 2 3`                                                                                 |
-| **Select**                          | `select INDEX` <br> Eg., `select 1`                                                                                             |
+| **Selecting a Garment**             | `select INDEX` <br> Eg., `select 1`                                                                                             |
 | **Clearing all Garments**           | `clear`                                                                                                                         |
 | **Help**                            | `help`                                                                                                                          |
-| **Exit**                            | `exit`                                                                                                                          |
+| **Exiting the application**         | `exit`                                                                                                                          |
 
 ---
 ## Credits
