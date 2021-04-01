@@ -29,6 +29,8 @@ public class DoTodayCommand extends Command {
 
     public static final String MESSAGE_REMOVED_TASK_SUCCESS = "Removed Task: %1$s from daily to-do list.";
 
+    public static final String MESSAGE_DUPLICATE_DAILY_TASK = "This task already exists in the daily task list";
+
     private final Index targetIndex;
 
     private final OperationFlag operationFlag;
@@ -54,6 +56,10 @@ public class DoTodayCommand extends Command {
             }
 
             Task taskToAdd = lastShownList.get(targetIndex.getZeroBased());
+
+            if (model.hasDailyTask(taskToAdd)) {
+                throw new CommandException(MESSAGE_DUPLICATE_DAILY_TASK);
+            }
             model.addToDailyToDoList(taskToAdd);
             return new CommandResult(String.format(MESSAGE_ADDED_TASK_SUCCESS, taskToAdd));
         } else {

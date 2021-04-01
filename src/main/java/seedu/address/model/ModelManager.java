@@ -101,6 +101,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasDailyTask(Task task) {
+        requireNonNull(task);
+        return taskTracker.hasDailyTask(task);
+    }
+
+    @Override
     public void deleteTask(Task target) {
         taskTracker.removeTask(target);
     }

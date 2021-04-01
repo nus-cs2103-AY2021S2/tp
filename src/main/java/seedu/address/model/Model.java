@@ -63,6 +63,11 @@ public interface Model {
     boolean hasTask(Task task);
 
     /**
+     * Returns true if a task with the same identity as {@code task} exists in the daily task list.
+     */
+    boolean hasDailyTask(Task taskToAdd);
+
+    /**
      * Deletes the given task.
      * The task must exist in the task tracker.
      */
