@@ -189,20 +189,13 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ##### Aspect: How undo & redo executes
 
-* **Alternative 1 (current choice):** Saves the entire inventory.
+* **Alternative 1 (current choice):** Delete item by an index.
     * Pros: Easy to implement.
-    * Cons: May have performance issues in terms of memory usage.
+    * Cons: Requires user to scroll through the list to find the item and specify the index.
 
-* **Alternative 2:** Individual command knows how to undo/redo by itself.
-    * Pros: Will use less memory (e.g. for `delete`, just save the item being deleted).
-    * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
+* **Alternative 2:** Delete item by item name.
+    * Pros: Will be easier for the user especially when the list is huge.
+    * Cons: There are items with the same name but in different location, will cause confusion.
 
 --------------------------------------------------------------------------------------------------------------------
 
