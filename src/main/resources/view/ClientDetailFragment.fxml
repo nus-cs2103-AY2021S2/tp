@@ -26,7 +26,7 @@
                 <Label fx:id="remark" styleClass="details_small_label" />
             </VBox>
         </HBox>
-        <HBox alignment="TOP_LEFT" minHeight="300" VBox.vgrow="ALWAYS" spacing="10">
+        <HBox alignment="TOP_LEFT" minHeight="100" VBox.vgrow="ALWAYS" spacing="10">
             <VBox alignment="TOP_LEFT">
                 <ListView fx:id="clientMeetingListView" VBox.vgrow="ALWAYS"/>
             </VBox>

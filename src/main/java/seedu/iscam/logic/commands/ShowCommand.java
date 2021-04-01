@@ -39,6 +39,10 @@ public class ShowCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
         }
 
+        if (!model.getIsClientMode().getValue()) {
+            model.setClientMode();
+        }
+
         Client clientToShow = lastShownList.get(targetIndex.getZeroBased());
         model.setDetailedClient(clientToShow);
 
