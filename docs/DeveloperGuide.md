@@ -246,16 +246,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | -------- | ------------------ | ------------------------------------------ | ----------------------------------------------- |
 | `* * *`  | new user           | view valid commands                        | learn how to use the Weeblingo               |
 | `* * *`  | user               | view a flashcard                           |                                                 |
-| `* * *`  | user               | see the answer to a flashcard              | check if I answered correctly                   |
-| `* * *`  | user               | start a practice run of all flashcards     | practice all flashcards in a single quiz session     |
 | `* * *`  | user               | view all flashcards                        | study the flashcards before a quiz session           |
+| `* * *`  | user               | see the answer to a flashcard              | check if I answered correctly                   |
 | `* * *`  | user               | start a quiz session                       | assess my knowledge of the Japanese language          |
+| `* * *`  | hardworking user   | start a quiz containing all flashcards     | practice all flashcards in a single quiz session     |
 | `* *`    | user               | quiz myself on a specific set of flashcards| practice a specific group of words that I may be bad at |
-| `* *`    | user               | quiz myself on a specific number of flashcards| roughly control how long I spend on the quiz |
+| `* *`    | busy user          | quiz myself on a specific number of flashcards| roughly control how long I spend on the quiz |
 | `* *`    | user               | add tags to certain flashcards             | group flashcards to test myself (e.g. specific coverage for an exam) |
-| `* *`    | user               | know how well I scored on a Quiz           | see how many mistakes I made in this Quiz       |
-| `* *`    | user               | see how I did on past Quizzes              | see how my scores have changed over time        |
-| `* *`    | user               | see the duration of a Quiz                 | see how fast I am at answering questions      |
+| `* *`    | results-oriented user | know how well I scored on a Quiz        | see how many mistakes I made in this Quiz       |
+| `* *`    | competitive user   | see the duration of a Quiz                 | gauge how fast I am at answering questions      |
+| `* *`    | user               | see my past quiz attempts                  | track my progress      |
 
 *{More to be added}*
 
