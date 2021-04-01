@@ -43,6 +43,8 @@ public class Session {
         return fee;
     }
 
+
+    // TODO : Overlap check for recurring session.
     /**
      * Checks if the {@code Session} slot overlaps with another session.
      * @param otherSession the other session that is compared to.

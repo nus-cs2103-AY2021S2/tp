@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.time.LocalDateTime;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -12,7 +13,9 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.FeeUtil;
 import seedu.address.model.session.Session;
+import seedu.address.model.session.SessionDate;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Student;
 
@@ -132,6 +135,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteRecurringSession(Name name, Index sessionIndex, SessionDate sessionDate) {
+        requireAllNonNull(name, sessionIndex, sessionDate);
+        addressBook.removeRecurringSession(name, sessionIndex, sessionDate);
+    }
+
+    @Override
     public boolean hasName(Name name) {
         requireNonNull(name);
         return addressBook.hasName(name);
@@ -183,6 +192,17 @@ public class ModelManager implements Model {
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredStudents.equals(other.filteredStudents);
+    }
+
+    //=========== Fees =============================================================
+
+    @Override
+    public double getFee(LocalDateTime startPeriod, LocalDateTime endPeriod) {
+        double fee = 0;
+        for (Student student : addressBook.getStudentList()) {
+            fee += FeeUtil.getFeePerStudent(student, startPeriod, endPeriod);
+        }
+        return fee;
     }
 
 }

@@ -2,6 +2,8 @@ package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.session.Duration;
@@ -10,6 +12,12 @@ import seedu.address.model.session.Session;
 import seedu.address.model.session.SessionDate;
 import seedu.address.model.session.Subject;
 
+@JsonTypeInfo(
+        use = JsonTypeInfo.Id.NAME,
+        include = JsonTypeInfo.As.PROPERTY,
+        property = "type")
+@JsonSubTypes(
+        @JsonSubTypes.Type(value = JsonAdaptedRecurringSession.class))
 public class JsonAdaptedSession {
     private final String sessionDate;
     private final String duration;
@@ -45,5 +53,21 @@ public class JsonAdaptedSession {
 
     public Session toModelType() throws IllegalValueException {
         return new Session(new SessionDate(sessionDate), new Duration(duration), new Subject(subject), new Fee(fee));
+    }
+
+    public String getSessionDate() {
+        return sessionDate;
+    }
+
+    public String getDuration() {
+        return duration;
+    }
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public String getFee() {
+        return fee;
     }
 }

@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.session.RecurringSession;
 import seedu.address.model.session.Session;
 import seedu.address.model.student.Address;
 import seedu.address.model.student.Email;
@@ -63,7 +64,11 @@ class JsonAdaptedStudent {
         studyLevel = source.getStudyLevel();
         guardianPhone = source.getGuardianPhone().value;
         relationship = source.getRelationship();
-        sessions.addAll(source.getListOfSessions().stream().map(JsonAdaptedSession::new).collect(Collectors.toList()));
+        sessions.addAll(source.getListOfSessions().stream()
+                .map(session -> session instanceof RecurringSession
+                        ? new JsonAdaptedRecurringSession((RecurringSession) session)
+                        : new JsonAdaptedSession(session))
+                .collect(Collectors.toList()));
     }
 
     /**

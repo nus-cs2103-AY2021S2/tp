@@ -8,13 +8,22 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root resizable="false" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableView?>
+<?import java.net.URL?>
+<fx:root title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" minWidth="800">
   <icons>
     <Image url="@/images/help_icon.png" />
   </icons>
+
   <scene>
     <Scene>
-         <HBox alignment="CENTER">
+        <stylesheets>
+            <URL value="@HelpWindow.css"/>
+        </stylesheets>
+        <VBox>
+         <HBox alignment="CENTER" styleClass="urlBackground">
             <children>
                <Label fx:id="helpMessage" text="Label">
                   <HBox.margin>
@@ -34,6 +43,35 @@
                <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
             </padding>
          </HBox>
+            <ScrollPane fitToWidth="true">
+                <VBox styleClass="commandsDisplay">
+                    <Label styleClass="label-header" text="General"/>
+                    <TableView fx:id="generalTableView" >
+                        <VBox.margin>
+                            <Insets top="10.0"/>
+                        </VBox.margin>
+                    </TableView>
+                    <Label styleClass="label-header" text="Managing Students"/>
+                    <TableView fx:id="studentTableView">
+                        <VBox.margin>
+                            <Insets top="10.0"/>
+                        </VBox.margin>
+                    </TableView>
+                    <Label styleClass="label-header" text="Managing Sessions"/>
+                    <TableView fx:id="sessionTableView">
+                        <VBox.margin>
+                            <Insets top="10.0"/>
+                        </VBox.margin>
+                    </TableView>
+                    <Label styleClass="label-header" text="Managing Fees"/>
+                    <TableView fx:id="feeTableView">
+                        <VBox.margin>
+                            <Insets top="10.0"/>
+                        </VBox.margin>
+                    </TableView>
+                </VBox>
+            </ScrollPane>
+        </VBox>
     </Scene>
   </scene>
 </fx:root>

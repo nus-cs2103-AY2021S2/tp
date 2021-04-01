@@ -1,15 +1,23 @@
 package seedu.address.ui;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.logging.Logger;
 
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
@@ -33,8 +41,11 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private StudentListPanel studentListPanel;
     private TuitionListPanel tuitionListPanel;
+    private UpcomingTuitionListPanel upcomingTuitionListPanel;
+    private MonthlyFeeListPanel monthlyFeeListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private CalendarView calendarView;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -54,6 +65,18 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane statusbarPlaceholder;
 
+    @FXML
+    private StackPane upcomingTuitionListPanelPlaceholder;
+
+    @FXML
+    private StackPane monthlyFeePanelPlaceholder;
+
+    @FXML
+    private StackPane calendarViewPlaceholder;
+
+    @FXML
+    private Tab time;
+
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -64,12 +87,15 @@ public class MainWindow extends UiPart<Stage> {
         this.primaryStage = primaryStage;
         this.logic = logic;
 
-        // Configure the UI
-        setWindowDefaultSize(logic.getGuiSettings());
+        primaryStage.setTitle("TutorBuddy");
+        primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/images/tutorbuddy_icon.png")));
 
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
+        // Make application window fit to entire screen
+        primaryStage.setMaximized(true);
     }
 
     public Stage getPrimaryStage() {
@@ -114,6 +140,12 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+        upcomingTuitionListPanel = new UpcomingTuitionListPanel(logic.getFullStudentList());
+        upcomingTuitionListPanelPlaceholder.getChildren().add(upcomingTuitionListPanel.getRoot());
+
+        monthlyFeeListPanel = new MonthlyFeeListPanel(logic.getFullStudentList());
+        monthlyFeePanelPlaceholder.getChildren().add(monthlyFeeListPanel.getRoot());
+
         studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
         studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
 
@@ -128,6 +160,11 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        calendarView = new CalendarView(logic.getFullStudentList());
+        calendarViewPlaceholder.getChildren().add(calendarView.getRoot());
+
+        displayDateAndTime();
     }
 
     /**
@@ -168,6 +205,26 @@ public class MainWindow extends UiPart<Stage> {
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
+    }
+
+    /**
+     * Displays and refreshes date time display on TutorBuddy every 1 second
+     */
+    private void displayDateAndTime() {
+        final Timeline timeline = new Timeline(
+                new KeyFrame(
+                    Duration.millis(1000),
+                    event -> {
+                        time.setText(
+                            LocalDateTime.now().toLocalDate()
+                            .format(DateTimeFormatter.ofPattern("dd MMM YYYY")) + "     "
+                            + LocalDateTime.now().toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm")));
+
+                    }
+                )
+        );
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
     }
 
     public StudentListPanel getStudentListPanel() {

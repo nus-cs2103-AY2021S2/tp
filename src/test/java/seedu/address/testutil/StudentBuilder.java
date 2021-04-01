@@ -119,11 +119,13 @@ public class StudentBuilder {
     }
 
     /**
-     * Adds a {@code Session} to the {@code sessions} of the {@code Student}.
+     * Adds {@code Sessions} that are non null to the {@code sessions} of the {@code Student}.
      */
-    public StudentBuilder addSession(Session session) {
-        requireAllNonNull(session);
-        this.sessions.add(session);
+    public StudentBuilder addSessions(Session ...sessions) {
+        for (Session session: sessions) {
+            requireAllNonNull(session);
+            this.sessions.add(session);
+        }
         return this;
     }
 

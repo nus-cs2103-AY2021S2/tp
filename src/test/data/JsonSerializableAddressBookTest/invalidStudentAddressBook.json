@@ -9,6 +9,7 @@
     "relationship" : "Mother",
     "sessions": [
       {
+        "type" : "JsonAdaptedSession",
         "sessionDate": "2020-01-01T12:00@#@#$@",
         "duration": "erRorDuraTioN",
         "subject": "",
