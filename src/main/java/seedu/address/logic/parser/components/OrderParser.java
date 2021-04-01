@@ -12,11 +12,13 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.order.OrderAddCommand;
 import seedu.address.logic.commands.order.OrderCompleteCommand;
 import seedu.address.logic.commands.order.OrderDeleteCommand;
+import seedu.address.logic.commands.order.OrderEditCommand;
 import seedu.address.logic.commands.order.OrderHistoryCommand;
 import seedu.address.logic.commands.order.OrderListCommand;
 import seedu.address.logic.parser.commands.order.OrderAddCommandParser;
 import seedu.address.logic.parser.commands.order.OrderCompleteCommandParser;
 import seedu.address.logic.parser.commands.order.OrderDeleteCommandParser;
+import seedu.address.logic.parser.commands.order.OrderEditCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -51,6 +53,9 @@ public class OrderParser implements ComponentParser {
 
         case OrderDeleteCommand.COMMAND_WORD:
             return new OrderDeleteCommandParser().parse(arguments);
+
+        case OrderEditCommand.COMMAND_WORD:
+            return new OrderEditCommandParser().parse(arguments);
 
         case OrderListCommand.COMMAND_WORD:
             return new OrderListCommand();
