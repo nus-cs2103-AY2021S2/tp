@@ -290,6 +290,7 @@ Vax@NUS saves your current date in the hard disk automatically after any command
 **Q** : Will I be able to add other types of appointments besides vaccination appointments?
 <br>
 **A** : No, the current version only allows you to add vaccination appointments and not any other type of appointments. 
+
 **Q** : Am I able to reassign an appointment to another student?
 <br>
 **A** : No, you will need to add a new appointment for the new student. 
