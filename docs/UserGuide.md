@@ -263,7 +263,7 @@ Example: `list_favourites`
 
 ### Add a new appointment: `add_appointment`
 
-Adds an appointment with a specific tutor to the schedule.<br>
+Adds an appointment with a specific tutor to the timetable.<br>
 
 Format: `add_appointment n/NAME s/SUBJECT d/DATE fr/TIME_FROM to/TIME_TO l/LOCATION`
 
@@ -276,7 +276,7 @@ Examples:<br>
 
 ### List tuition appointments: `list_appointments`
 
-Shows a list of all upcoming tuition schedules in the personal tuition appointment list.
+Shows a list of all upcoming tuition appointments in the personal tuition appointment list.
 
 Format: `list_appointments`
 
@@ -368,7 +368,7 @@ Examples: `edit_appointment 1 s/English l/Clementi`
 
 ### Adding a schedule : `add_schedule`
 
-Adds a schedule that are related to tuition appointments.<br>
+Adds a schedule that is related to tuition.<br>
 
 Format: `add_schedule t/TITLE d/DATE fr/TIME_FROM to/TIME_TO ds/DESCRIPTION`
 
@@ -376,12 +376,12 @@ Format: `add_schedule t/TITLE d/DATE fr/TIME_FROM to/TIME_TO ds/DESCRIPTION`
 * The time format `hh:mm a` must be strictly followed. e.g. `9:01 am` and `10:30 pm`.
 
 Examples:<br>
-* `add_schedule n/Science Tuition Homework d/2021-3-31 fr/6:00pm to/7:00pm ds/Chapter 5 to 6`
-* `add_schedule n/Maths Tuition Homework d/2021-4-2 fr/5:00pm to/7:00pm ds/Calculus Topic`
+* `add_schedule t/Science Tuition Homework d/2021-3-31 fr/6:00pm to/7:00pm ds/Chapter 5 to 6`
+* `add_schedule t/Maths Tuition Homework d/2021-4-2 fr/5:00pm to/7:00pm ds/Calculus Topic`
 
 ### Listing all schedules : `list_schedules`
 
-Shows a list of all upcoming events in the personal schedule list.
+Shows a list of all upcoming schedules in the personal schedule list.
 
 Format: `list_schedules`
 

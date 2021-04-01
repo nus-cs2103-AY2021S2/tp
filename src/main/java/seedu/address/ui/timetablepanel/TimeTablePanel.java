@@ -80,7 +80,7 @@ public class TimeTablePanel extends UiPart<Region> {
         this.hasChanges = false;
     }
 
-    // @@author {hansebastian}-reused
+    // @@author hansebastian-reused
     // Reused from
     // https://github.com/AY2021S1-CS2103T-W13-3/tp/blob/master/src/main/java/seedu/homerce/ui/schedulepanel/
     // SchedulePanel.java
@@ -120,7 +120,7 @@ public class TimeTablePanel extends UiPart<Region> {
         construct();
     }
 
-    // @@author {RuiFengg}-reused
+    // @@author RuiFengg-reused
     // Reused from
     // https://github.com/AY2021S1-CS2103T-W13-3/tp/blob/master/src/main/java/seedu/homerce/ui/schedulepanel/
     // SchedulePanel.java
@@ -135,7 +135,7 @@ public class TimeTablePanel extends UiPart<Region> {
         return colSpan;
     }
 
-    // @@author {RuiFengg}-reused
+    // @@author RuiFengg-reused
     // Reused from
     // https://github.com/AY2021S1-CS2103T-W13-3/tp/blob/master/src/main/java/seedu/homerce/ui/schedulepanel/
     // SchedulePanel.java
@@ -148,7 +148,7 @@ public class TimeTablePanel extends UiPart<Region> {
         return colIndex - 1;
     }
 
-    // @@author {RuiFengg}-reused
+    // @@author RuiFengg-reused
     // Reused from
     // https://github.com/AY2021S1-CS2103T-W13-3/tp/blob/master/src/main/java/seedu/homerce/ui/
     // schedulepanel/SchedulePanel.java
@@ -160,7 +160,7 @@ public class TimeTablePanel extends UiPart<Region> {
                 .orElse(LocalTime.of(8, 0));
     }
 
-    // @@author {RuiFengg}-reused
+    // @@author RuiFengg-reused
     // Reused from
     // https://github.com/AY2021S1-CS2103T-W13-3/tp/blob/master/src/main/java/seedu/homerce/ui/
     // schedulepanel/SchedulePanel.java
@@ -202,6 +202,7 @@ public class TimeTablePanel extends UiPart<Region> {
     private void createColConstraints(int numColumns) {
         if ((gridPane.getColumnCount() != numColumns) || hasChanges) {
             hourSlot.clear();
+            timeGridPane.getChildren().clear();
             timeGridPane.getColumnConstraints().clear();
             gridPane.getChildren().clear();
             gridPane.getColumnConstraints().clear();
@@ -255,7 +256,7 @@ public class TimeTablePanel extends UiPart<Region> {
 
     private void populateEvents() {
         events.forEach(curr -> {
-            // @@author {RuiFengg}-reused
+            // @@author RuiFengg-reused
             // Reused from
             // https://github.com/AY2021S1-CS2103T-W13-3/tp/blob/master/src/main/java/seedu/homerce/ui/schedulepanel/
             // SchedulePanel.java
@@ -282,7 +283,6 @@ public class TimeTablePanel extends UiPart<Region> {
     }
 
     private SlotContainer getSlot(Event event) {
-        // Only two colours - Green for Appointment, Blue for Schedule
         if (event instanceof Appointment) {
             return new AppointmentSlot((Appointment) event);
         } else {
@@ -307,7 +307,6 @@ public class TimeTablePanel extends UiPart<Region> {
     private void populateTime() {
         LocalTime start = getStartTime();
         LocalTime end = getEndTime();
-        int numTimeSlots = (end.getHour() - start.getHour());
         int count = 0;
         for (int hour = start.getHour(); hour <= end.getHour(); hour++) {
             hourSlot.add((double) hour);

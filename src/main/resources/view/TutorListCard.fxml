@@ -44,7 +44,7 @@
                     <Label fx:id="phone" styleClass="cell_small_label" text="PHONE" />
                     <Label fx:id="address" styleClass="cell_small_label" text="ADDRESS" />
                     <Label fx:id="email" styleClass="cell_small_label" text="EMAIL" />
-                    <Label fx:id="subjects" styleClass="cell_small_label" text="SUBJECTS" />
+                    <FlowPane fx:id="subjects" />
                     <FlowPane fx:id="tags" />
                   </children>
                 </VBox>

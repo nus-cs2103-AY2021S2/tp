@@ -2,9 +2,12 @@ package seedu.address.model.appointment;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.Duration;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.DateTimeParseException;
@@ -44,6 +47,17 @@ public class AppointmentDateTime {
         dateTime = dateTime.toUpperCase();
         checkArgument(isValidDateTime(dateTime), MESSAGE_CONSTRAINTS);
         value = LocalDateTime.parse(dateTime, VALIDATION_PATTERN);
+    }
+
+    /**
+     * Constructs an {@code AppointmentDateTime}.
+     *
+     * @param date A valid date.
+     * @param time A valid time.
+     */
+    public AppointmentDateTime(LocalDate date, LocalTime time) {
+        requireAllNonNull(date, time);
+        value = LocalDateTime.of(date, time);
     }
 
     /**

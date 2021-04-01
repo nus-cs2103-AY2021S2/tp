@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 import seedu.address.model.appointment.AppointmentDateTime;
 
 /**
- * Tests that an {@code Appointment}'s {@code dateTime} matches the date given.
+ * Tests that a {@code Schedule}'s {@code dateTime} matches the date given.
  * This primarily to support the Calendar's Filtering.
  */
 public class ScheduleDateViewPredicate implements Predicate<Schedule> {

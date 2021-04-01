@@ -41,8 +41,6 @@ public class ReminderTracker implements ReadOnlyReminderTracker {
         setReminders(newData.getReminderList());
     }
 
-    //// person-level operations
-
     /**
      * Returns true if a reminder with the same content as {@code reminder} exists in the reminder tracker.
      */

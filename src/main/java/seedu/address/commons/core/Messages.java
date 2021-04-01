@@ -16,5 +16,8 @@ public class Messages {
     public static final String MESSAGE_APPOINTMENT_LISTED_OVERVIEW = "%1$d appointments listed!";
     public static final String MESSAGE_INVALID_GRADE_DISPLAYED_INDEX =
             "The grade index provided is invalid";
-            //public static final String MESSAGE_GRADE_LISTED_OVERVIEW = "%1$d grades listed!";
+    public static final String MESSAGE_TIME_FROM_GREATER_THAN = "TIME_FROM must be before TIME_TO. "
+            + "Please check your input for TIME_FROM and TIME_TO again.";
+    public static final String MESSAGE_INVALID_DATE = "The new date must not be in the past. "
+            + "Please check your input again.";
 }

@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.remindercommands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 
@@ -50,6 +51,10 @@ public class AddReminderCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (toAdd.getReminderDate().isBeforeToday()) {
+            throw new CommandException(MESSAGE_INVALID_DATE);
+        }
 
         if (model.hasReminder(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_REMINDER);
