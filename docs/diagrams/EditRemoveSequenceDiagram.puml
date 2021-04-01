@@ -1,0 +1,90 @@
+@startuml
+!include style.puml
+
+box UI UI_COLOR_T1
+participant ":UI" as UI UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
+participant ":EditToRemoveTagCommand" as EditToRemoveTagCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> UI : "edit --remove -t friends -t pilot"
+activate UI
+
+UI -> LogicManager : execute("edit --remove -t friends -t pilot")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("edit --remove -t friends -t pilot")
+activate AddressBookParser
+
+create EditCommandParser
+AddressBookParser -> EditCommandParser
+activate EditCommandParser
+
+EditCommandParser --> AddressBookParser
+deactivate EditCommandParser
+
+AddressBookParser -> EditCommandParser : parse("--remove -t friends -t pilot")
+activate EditCommandParser
+
+create EditToRemoveTagCommand
+EditCommandParser -> EditToRemoveTagCommand : EditToRemoveTagCommand(Set<Tag>)
+activate EditToRemoveTagCommand
+
+EditToRemoveTagCommand --> EditCommandParser
+deactivate EditToRemoveTagCommand
+
+EditCommandParser --> AddressBookParser
+deactivate EditCommandParser
+
+AddressBookParser --> LogicManager
+deactivate AddressBookParser
+
+LogicManager -> EditToRemoveTagCommand : execute(model)
+activate EditToRemoveTagCommand
+
+EditToRemoveTagCommand -> Model : getFilteredPersonList()
+activate Model
+
+Model --> EditToRemoveTagCommand : lastShownList
+deactivate Model
+
+loop for each person
+EditToRemoveTagCommand -> EditToRemoveTagCommand : hasTags(person)
+activate EditToRemoveTagCommand
+EditToRemoveTagCommand --> EditToRemoveTagCommand
+deactivate EditToRemoveTagCommand
+end
+
+loop for each person with tags
+EditToRemoveTagCommand -> Model : setPerson(person, removeTagFromPerson(person))
+activate Model
+Model --> EditToRemoveTagCommand
+deactivate Model
+end
+
+create CommandResult
+EditToRemoveTagCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditToRemoveTagCommand
+deactivate CommandResult
+
+EditToRemoveTagCommand --> LogicManager
+deactivate EditToRemoveTagCommand
+
+LogicManager --> UI
+deactivate LogicManager
+
+[<-- UI
+deactivate UI
+@enduml

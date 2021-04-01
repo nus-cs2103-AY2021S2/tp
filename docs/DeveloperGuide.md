@@ -347,6 +347,10 @@ Given below is an example usage scenario and how the `edit` mechanism behaves.
 
 9. `EditToRemoveTagCommand` creates a `CommandResult` with the success output message and returns it to `LogicManager`.
 
+Given below is the full Sequence Diagram for interactions for the `edit 1 -r` + `TAB` API call.
+
+![Sequence Diagram for Edit Remove](images/EditRemoveSequenceDiagram.png)
+
 
 ### [Feature] Marking `Event` as Done
 
@@ -384,7 +388,7 @@ Given below is an example usage scenario and how `edone` will work.
 
 Given below is the full Sequence Diagram for interactions for the `execute("edone 1 2 3")` API call.
 
-![Interactions Inside the Logic Component for the `add -n James -r Loves sweets` Command](images/EDoneSequenceDiagram.png)
+![Sequence Diagram for EDone](images/EDoneSequenceDiagram.png)
 
 ### [Feature] Autocompleting `Edit` Command (Remark)
 
