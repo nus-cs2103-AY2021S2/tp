@@ -62,7 +62,8 @@ public class FilterCommandParserTest {
     public void parse_invalidArgs_failure() {
 
         // Filter by vaccination status
-        assertParseFailure(parser, "not_vaccinated", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+
+        assertParseFailure(parser, "NOT_VACCINATED", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 FilterCommand.MESSAGE_USAGE));
 
         assertParseFailure(parser, "VACCINATED", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
@@ -71,7 +72,10 @@ public class FilterCommandParserTest {
         assertParseFailure(parser, "Not_Vaccinated", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 FilterCommand.MESSAGE_USAGE));
 
-        assertParseFailure(parser, "NOT VACCINATED", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+        assertParseFailure(parser, "vaccinateD", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                FilterCommand.MESSAGE_USAGE));
+
+        assertParseFailure(parser, "Vaccinated", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 FilterCommand.MESSAGE_USAGE));
 
         // Filter by faculty
