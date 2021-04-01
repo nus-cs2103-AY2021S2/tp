@@ -2,12 +2,13 @@ package seedu.address.model.session;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
-import seedu.address.model.person.Person;
-import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.person.PersonId;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -17,7 +18,6 @@ import seedu.address.model.tag.Tag;
 public class Session {
     public static final String MESSAGE_CONSTRAINTS =
             "Session ID should only be c/[session ID], and it should not be blank";
-    public static final String VALIDATION_REGEX = " [c][\\/]\\d";
     private static int sessionCount = 0;
 
 
@@ -26,8 +26,8 @@ public class Session {
     private final Timeslot timeslot;
     private final Subject subject;
     private final Set<Tag> tags = new HashSet<>();
-    private final Person tutor = null;
-    private final UniquePersonList students = new UniquePersonList();
+    private PersonId tutor = new PersonId("");
+    private final List<PersonId> students = new ArrayList<>();
 
     /**
      * Every field must be present and not null.
@@ -81,26 +81,50 @@ public class Session {
         return subject;
     }
 
-    public Person getTutor() {
+    public PersonId getTutor() {
         return tutor;
     }
 
-    public UniquePersonList getStudents() {
+    public List<PersonId> getStudents() {
         return students;
+    }
+
+    public boolean emptyStudentList() {
+        return this.students.size() == 0;
+    }
+
+    public boolean emptyTutor() {
+        return this.tutor.equals(new PersonId(""));
     }
 
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
     }
 
-
     /**
      * Adds a student to the session
      * @param student The student to be added
      */
-    public void assignStudent(Person student) {
+    public void assignStudent(PersonId student) {
         requireAllNonNull(student);
         this.students.add(student);
+    }
+
+    public void assignTutor(PersonId tutor) {
+        this.tutor = tutor;
+    }
+
+    /**
+     * Removes a student from the session
+     * @param student The student to be removed
+     */
+    public void unassignStudent(PersonId student) {
+        requireAllNonNull(student);
+        this.students.remove(student);
+    }
+
+    public void unassignTutor() {
+        this.tutor = new PersonId("");
     }
 
     /**
@@ -114,6 +138,44 @@ public class Session {
 
         return otherSession != null
                 && otherSession.getClassId().equals(getClassId());
+    }
+
+    public boolean hasTutor() {
+        return !this.tutor.equals(new PersonId(""));
+    }
+
+    public void setTutor(PersonId tutor) {
+        this.tutor = tutor;
+    }
+
+    public void setStudents(List<PersonId> students) {
+        for (PersonId student :students) {
+            this.students.add(student);
+        }
+    }
+
+    private boolean isTutor(PersonId person) {
+        return this.tutor.equals(person.getPersonId());
+    }
+
+    private boolean checkEnrollement(PersonId person) {
+        for (PersonId personId : this.students) {
+            if (personId.equals(person.getPersonId())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Checks if current session clashes with another given session
+     * @param other The session to compare
+     * @return true if clashing, false otherwise
+     */
+    public boolean isClashingWith(Session other) {
+        boolean sameDay = this.day.equals(other.day);
+        boolean timeslotClashing = this.timeslot.isClashingWith(other.timeslot);
+        return sameDay && timeslotClashing;
     }
 
     /**
@@ -150,9 +212,7 @@ public class Session {
                 .append("; Day: ")
                 .append(this.getDay())
                 .append("; Time: ")
-                .append(this.getTimeslot().toString())
-                .append("; Students: ")
-                .append(this.getStudents().toString());
+                .append(this.getTimeslot().toString());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

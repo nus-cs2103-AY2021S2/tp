@@ -37,6 +37,13 @@ public class PersonType {
         }
     }
 
+    public boolean isStudent() {
+        return this.personType.equals("student");
+    }
+
+    public boolean isTutor() {
+        return this.personType.equals("tutor");
+    }
 
     @Override
     public String toString() {

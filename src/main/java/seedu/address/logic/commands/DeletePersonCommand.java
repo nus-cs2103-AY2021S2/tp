@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_ID_STUDENT;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,7 +22,7 @@ public class DeletePersonCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the person identified by the person ID shown in the displayed person list.\n"
             + "Parameters: PERSON_ID (must be a valid ID)\n"
-            + "Example: " + COMMAND_WORD + " s/1";
+            + "Example: " + COMMAND_WORD + " " + PREFIX_PERSON_ID_STUDENT + "1";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
 
@@ -38,7 +39,7 @@ public class DeletePersonCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Person> lastShownList = model.getUnfilteredPersonList();
 
         Optional<Person> personToDelete = lastShownList.stream()
                 .filter(x-> x.getPersonId().equals(targetPersonId)).findAny();

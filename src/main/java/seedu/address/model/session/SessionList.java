@@ -1,14 +1,16 @@
 package seedu.address.model.session;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.Iterator;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.exceptions.SessionNotFoundException;
 
-
 /**
- * A list of sessions tht does not allow nulls.
+ * A list of sessions that does not allow nulls.
  *
  * Supports a minimal set of list operations.
  */
@@ -27,7 +29,21 @@ public class SessionList {
     }
 
     /**
-<<<<<<< HEAD
+     * Replaces the session {@code target} in the list with {@code editedSession}.
+     * {@code target} must exist in the list.
+     */
+    public void setSession(Session target, Session editedSession) {
+        requireAllNonNull(target, editedSession);
+
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new SessionNotFoundException();
+        }
+        internalList.set(index, editedSession);
+    }
+
+    /**
+
      * Removes the equivalent session from the list.
      * The session must exist in the list.
      */
@@ -39,8 +55,6 @@ public class SessionList {
     }
 
     /**
-=======
->>>>>>> cd001c730f07dc44f63ed430127d1a1e1c32e3e7
      * Returns true if the list contains an equivalent session as the given argument.
      */
     public boolean contains(Session toCheck) {
@@ -53,5 +67,13 @@ public class SessionList {
      */
     public ObservableList<Session> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
+    }
+
+    public ObservableList<Session> getInternalList() {
+        return internalList;
+    }
+
+    public Iterator<Session> iterator() {
+        return internalList.iterator();
     }
 }

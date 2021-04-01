@@ -14,22 +14,21 @@ EzManage is a **desktop app for managing students, tutors and classes, optimized
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `ezmanage.jar`. [coming soon!]
-# from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `ezmanage.jar` from [here](https://github.com/AY2021S2-CS2103-W16-4/tp/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your EzManage.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. Double-click the file to start the app. An example of the GUI is shown below. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+   * **`list persons`** : Lists all students and tutors.
 
    * **`add_person`**`tp/student n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a student named `John Doe` to the Contact List.
 
-   * **`delete_person`**`t/3` : Deletes the tutor with the ID `t/3` from the tutor list.
+   * **`delete_person`**`t/3` : Deletes the tutor with the ID `t/3` from the Contact list.
      
    * **`assign`** : Assigns student or tutor to a specific class (Coming Soon!).
 
@@ -51,10 +50,10 @@ EzManage is a **desktop app for managing students, tutors and classes, optimized
   e.g. in `add_person n/NAME`, `NAME` is a parameter which can be used as `add_person n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `n/NAME [tag/TAG]` can be used as `n/John Doe tag/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[tag/TAG]…​` can be used as ` ` (i.e. 0 times), `tag/friend`, `tag/friend tag/family` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -62,7 +61,7 @@ EzManage is a **desktop app for managing students, tutors and classes, optimized
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
@@ -75,11 +74,11 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-### Adding a tutor: `add`
+### Adding a tutor: `add_person`
 
 Adds a tutor to the address book.
 
-Format: `add_person pt/tutor n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add_person pt/tutor n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [tag/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
@@ -87,13 +86,13 @@ A person can have any number of tags (including 0)
 
 Examples:
 * `add_person pt/tutor n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add_person pt/tutor n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add_person pt/tutor n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 tag/criminal`
 
-### Adding a student: `add`
+### Adding a student: `add_person`
 
 Adds a student to the address book.
 
-Format: `add_person pt/student n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add_person pt/student n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [tag/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
@@ -101,21 +100,25 @@ A person can have any number of tags (including 0)
 
 Examples:
 * `add_person pt/student n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add_person pt/student n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add_person pt/student n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 tag/criminal`
 
-### Adding a session: `add`
+### Adding a session: `add_session`
 
 Adds a session to the address book.
 
-Format: `add_session d/DAY t/TIMESLOT s/SUBJECT [t/TAG] …
+Format: `add_session d/DAY t/TIMESLOT s/SUBJECT [tag/TAG] …
 `
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A session can have any number of tags (including 0)
 </div>
 
+* A new session will have a unique session ID assigned after creation. 
+* DAY should match the format of a valid day in the week.
+* TIMESLOT should be in the format `HH:MM to HH:MM` and the end time should only be after the start time.
+
 Examples:
-* `add_session d/Saturday t/1300 to 1500 s/A Math`
+* `add_session d/Saturday ts/13:00 to 15:00 s/Math tag/Hard`
 
 ### Listing all persons : `list`
 
@@ -123,11 +126,23 @@ Shows a list of all persons in the address book.
 
 Format: `list persons`
 
+### Listing all students : `list`
+
+Shows a list of all students in the address book.
+
+Format: `list students`
+
+### Listing all tutors : `list`
+
+Shows a list of all tutors in the address book.
+
+Format: `list tutors`
+
 ### Listing all sessions : `list`
 
-Shows a list of all sessions in the address book.
-
 Format: `list sessions`
+
+Shows a list of all sessions in the address book.
 
 ### Viewing a tutor : `view`
 
@@ -153,37 +168,76 @@ Format: `view s/ID`
 Example:
 * `view s/1` views the details of the student with student ID 1.
 
-### Viewing a class : `view`
+### Viewing a session : `view_session`
 
-Views an existing class's details.
+Views an existing session's details.
 
-Format: `view c/ID`
+Format: `view_session c/ID`
 
-* Views the class with the specified class ID.
-* The class's assigned tutor, assigned students, time slot, subject and class size will be given.
+* Views the specified session with the specified session ID.
+* Left Panel will show the session's information such as the session ID, day
+  time slot, subject, tags and assigned tutor (if any).
+* Right Panel will show the specifed session's list of assigned students (if any).
 
 Example:
-* `view c/1` views the details of the class with class ID 1.
+* `view_session c/1` views the details of the session with session ID c/1 on the Left Panel
+and views the list of assigned students (e.g. students s/1, s/2) on the Right Panel.
 
+### Editing a student : `edit_person`
 
-### Editing a person : `edit` (coming soon)
+Edits an existing student in the address book.
 
-Edits an existing person in the address book.
+Format: `edit_person s/ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tag/TAG]…​`
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
-
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the student at the specified student ID (in the format `s/ID`). The student ID can be found from the displayed student list. 
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
+* You can remove all the person’s tags by typing `tag/` without
   specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+*  `edit_person s/1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the student with the ID of `s/1` to be `91234567` and `johndoe@example.com` respectively.
+*  `edit_person s/2 n/Betsy Crower tag/` Edits the name of the student with the ID of `s/2` to be `Betsy Crower` and clears all existing tags.
 
-### Locating persons by name: `find` (coming soon)
+### Editing a tutor : `edit_person`
+
+Edits an existing tutor in the address book.
+
+Format: `edit_person t/ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tag/TAG]…​`
+
+* Edits the tutor at the specified tutor ID (in the format `s/ID`). The tutor ID can be found from the displayed tutor list. 
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
+* You can remove all the person’s tags by typing `tag/` without
+  specifying any tags after it.
+
+Examples:
+*  `edit_person t/1 p/88888888 e/sarahwong@example.com` Edits the phone number and email address of the tutor with the ID of `t/1` to be `88888888` and `sarahwong@example.com` respectively.
+*  `edit_person t/2 n/Oliver Tan tag/` Edits the name of the tutor with the ID of `t/2` to be `Oliver Tan` and clears all existing tags.
+
+### Editing a session : `edit_session`
+
+Edits an existing session in the address book.
+
+Format: `edit_session c/ID [d/DAY] [ts/TIMESLOT] [s/SUBJECT] [tag/TAG]…​`
+
+* Edits the session with the specified session ID. The session ID can be found from the displayed session list. 
+* The session ID has to be a valid session ID i.e. the session has to exist in the Address Book.
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* DAY should match the format of a valid day in the week.
+* TIMESLOT should be in the format `HH:MM to HH:MM` and the end time should only be after the start time.
+* When editing tags, the existing tags of the session will be removed i.e adding of tags is not cumulative.
+* A user can *ONLY* edit a session’s day and time slot if the session does not have any assigned tutor and assigned students, to avoid potential timeslot clashes when session is edited.
+* Unassign students/tutor should be called before editing any session’s timeslot or day.
+
+Examples:
+*  `edit_session c/1 d/Monday s/Biology` Edits the day and subject of the session c/1 to be `Monday` and `Biology` respectively.
+*  `edit_session c/2 ts/12:00 to 13:00 tag/haha` Edits the timeslot and tag of the session c/2 to be `12:00 to 13:00` and `haha` respectively.
+
+### Locating persons by name: `find`
 
 Finds persons whose names contain any of the given keywords.
 
@@ -201,7 +255,7 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a student : `delete`
+### Deleting a student : `delete_person`
 
 Deletes the specified student from the address book.
 
@@ -213,7 +267,7 @@ Format: `delete_person s/ID`
 Examples:
 * `delete_person s/2` deletes the student with student ID s/2 in the address book.
 
-### Deleting a tutor : `delete`
+### Deleting a tutor : `delete_person`
 
 Deletes the specified tutor from the address book.
 
@@ -225,7 +279,7 @@ Format: `delete_person t/ID`
 Examples:
 * `delete_person t/1` deletes the tutor with tutor ID t/1 in the address book.
 
-### Deleting a session : `delete`
+### Deleting a session : `delete_session`
 
 Deletes the specified session from the address book.
 
@@ -270,7 +324,7 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous EzManage home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -278,10 +332,11 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | For Person:`add_person tp/ROLE n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add_person tp/student n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665`<br> For Class: `add_session d/Saturday t/1300 to 1500 l/Upper Secondary s/A Math` <br> e.g. `add_session d/Saturday t/1300 to 1500 l/Upper Secondary s/A Math` 
+**Add** | For Person:`add_person tp/ROLE n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [tag/TAG]…​` <br> e.g., `add_person tp/student n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665`<br><br> For Session: `add_session d/DAY ts/TIMESLOT s/SUBJECT [tag/TAG]…​` <br> e.g. `add_session d/Saturday ts/13:00 to 15:00 s/Math` 
 **Clear** | `clear`
-**Delete** | Tutor <br> `delete_person t/ID`<br> e.g., `delete_person t/8`<br><br> Student <br> `delete_person s/ID`<br> e.g., `delete_person s/22` <br><br> Class<br>`delete_session c/ID` <br> e.g., `delete_session c/9`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Delete** | For Student: <br> `delete_person s/ID`<br> e.g., `delete_person s/22` <br><br> For Tutor: <br> `delete_person t/ID`<br> e.g., `delete_person t/8`<br><br> For Session:<br>`delete_session c/ID` <br> e.g., `delete_session c/9`
+**Edit** | For Student: <br> `edit_person s/ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tag/TAG]…​` <br> e.g., `edit_person s/2 n/Betsy Crower tag/` <br><br> For Tutor: <br> `edit_person t/ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tag/TAG]…​` <br> e.g., `edit_person t/1 p/88888888 e/sarahwong@example.com` <br><br> For Session: <br> `edit_session c/ID [d/DAY] [ts/TIMESLOT] [s/SUBJECT] [tag/TAG]…​`<br> e.g.,`edit_session c/1 d/Monday s/Biology` <br> e.g. `edit_session c/2 d/Saturday ts/13:00 to 15:00 tag/Hard` 
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
+**List** | For All Persons: <br>`list persons` <br><br> For All Students: <br>`list students` <br><br> For All Tutors: <br>`list tutors` <br><br> For All Sessions: <br>`list sessions`
+**View** | For Person: <br><br> For Session: <br> `view_session c/ID` <br> e.g., `view_session c/5`
 **Help** | `help`

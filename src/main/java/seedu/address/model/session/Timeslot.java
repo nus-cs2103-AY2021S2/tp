@@ -50,8 +50,35 @@ public class Timeslot {
         }
     }
 
+    /**
+     * Checks if current timeslot clashes with another given timeslot
+     * @param other The timeslot to compare with
+     * @return true if clashing, false otherwise
+     */
+    public boolean isClashingWith(Timeslot other) {
+        boolean isBefore = this.end.isBefore(other.start) || this.end.isSame(other.start);
+        boolean isAfter = this.start.isAfter(other.end) || this.start.isSame(other.end);
+        return !isBefore && !isAfter;
+    }
+
     @Override
     public String toString() {
         return this.start.toString() + " to " + this.end.toString();
+    }
+
+    public Time getStart() {
+        return start;
+    }
+
+    public void setStart(Time start) {
+        this.start = start;
+    }
+
+    public Time getEnd() {
+        return end;
+    }
+
+    public void setEnd(Time end) {
+        this.end = end;
     }
 }

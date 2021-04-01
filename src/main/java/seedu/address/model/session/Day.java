@@ -54,4 +54,11 @@ public class Day {
     public String toString() {
         return this.day.name();
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Day // instanceof handles nulls
+                && day.equals(((Day) other).day)); // state check
+    }
 }

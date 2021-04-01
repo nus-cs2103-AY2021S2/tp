@@ -2,11 +2,14 @@ package seedu.address.model.session;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.address.model.session.exceptions.InvalidSessionIdException;
+
 public class SessionId {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Session ID should only be c/[session ID], and it should not be blank";
-    public static final String VALIDATION_REGEX = " [c][/]\\d";
+
+    public static final String VALIDATION_REGEX = "[c][/]\\d{1,}";
 
     private final String sessionId;
 
@@ -17,6 +20,9 @@ public class SessionId {
      */
     public SessionId(Integer id) {
         requireNonNull(id);
+        if (id <= 0) {
+            throw new InvalidSessionIdException();
+        }
         sessionId = "c/" + id;
     }
 
@@ -34,11 +40,21 @@ public class SessionId {
         return sessionId;
     }
 
+    public static SessionId fromOneBased(Integer sessionId) {
+        return new SessionId(sessionId);
+    }
+
+    /**
+     * Creates a new {@code SessionId}.
+     */
+    public static SessionId fromOneBased(int sessionId) {
+        return new SessionId(sessionId);
+    }
+
     /**
      * Returns true if a given string is a valid session ID.
      */
     public static boolean isValidSessionId(String test) {
-        System.out.println(test);
         return test.matches(VALIDATION_REGEX);
     }
 

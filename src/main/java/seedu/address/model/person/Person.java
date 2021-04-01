@@ -2,11 +2,14 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.session.SessionId;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -26,6 +29,7 @@ public class Person {
 
     private PersonType personType;
     private PersonId personId;
+    private List<SessionId> sessions = new ArrayList<>();
     /**
      * Every field must be present and not null.
      */
@@ -70,6 +74,14 @@ public class Person {
         this.personId = personId;
     }
 
+    public List<SessionId> getSessions() {
+        return sessions;
+    }
+
+    public void setSessions(List<SessionId> sessions) {
+        this.sessions = sessions;
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -89,6 +101,30 @@ public class Person {
 
         return otherPerson != null
                 && otherPerson.getName().equals(getName());
+    }
+
+    public boolean isStudent() {
+        return this.personType.isStudent();
+    }
+
+    public boolean isTutor() {
+        return this.personType.isTutor();
+    }
+
+    /**
+     * Adds a session to the list of sessions that this person is assigned to
+     * @param session
+     */
+    public void addSession(SessionId session) {
+        this.sessions.add(session);
+    }
+
+    /**
+     * Removes a session to the list of sessions that this person is assigned to
+     * @param session
+     */
+    public void removeSession(SessionId session) {
+        this.sessions.remove(session);
     }
 
     /**

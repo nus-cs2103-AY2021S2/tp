@@ -14,6 +14,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
 import seedu.address.model.session.Session;
 
+
 /**
  * Represents the in-memory model of the address book data.
  */
@@ -24,6 +25,8 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Session> filteredSessions;
+    private final FilteredList<Person> unfilteredPersons;
+    private final FilteredList<Session> unfilteredSessions;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -38,6 +41,8 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredSessions = new FilteredList<>(this.addressBook.getSessionList());
+        unfilteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        unfilteredSessions = new FilteredList<>(this.addressBook.getSessionList());
     }
 
     public ModelManager() {
@@ -126,6 +131,17 @@ public class ModelManager implements Model {
         addressBook.removeSession(target);
     }
 
+    @Override
+    public void setSession(Session target, Session editedSession) {
+        requireAllNonNull(target, editedSession);
+
+        addressBook.setSession(target, editedSession);
+    }
+
+    public void assignStudent(Person student, Session session) {
+        assert(student.isStudent());
+    }
+
     //=========== Filtered Session List Accessors =============================================================
 
     /**
@@ -138,9 +154,19 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Session> getUnfilteredSessionList() {
+        return unfilteredSessions;
+    }
+
+    @Override
     public void updateFilteredSessionList(Predicate<Session> predicate) {
         requireNonNull(predicate);
         filteredSessions.setPredicate(predicate);
+    }
+
+    @Override
+    public boolean emptySessionList() {
+        return filteredSessions.size() == 0;
     }
     //=========== Filtered Person List Accessors =============================================================
 
@@ -154,12 +180,20 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Person> getUnfilteredPersonList() {
+        return unfilteredPersons;
+    }
+
+    @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
 
-
+    @Override
+    public boolean emptyPersonList() {
+        return filteredPersons.size() == 0;
+    }
 
     @Override
     public boolean equals(Object obj) {

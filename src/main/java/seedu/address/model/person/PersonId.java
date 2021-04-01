@@ -42,8 +42,6 @@ public class PersonId {
             return false;
         }
     }
-
-
     @Override
     public String toString() {
         return personId;

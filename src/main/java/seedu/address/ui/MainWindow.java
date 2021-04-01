@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -12,9 +13,12 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ViewPersonCommand;
+import seedu.address.logic.commands.ViewSessionCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -54,7 +58,8 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane statusbarPlaceholder;
 
-
+    @FXML
+    private SplitPane viewIndividualPlaceholder;
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -114,6 +119,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+        viewIndividualPlaceholder.getItems().clear();
         sessionListPanelPlaceholder.setVisible(false);
         personListPanelPlaceholder.setVisible(true);
         personListPanelPlaceholder.setDisable(false);
@@ -121,6 +127,7 @@ public class MainWindow extends UiPart<Stage> {
         sessionListPanelPlaceholder.getChildren().clear();
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        viewIndividualPlaceholder.getItems().add(personListPanelPlaceholder);
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -133,6 +140,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     void fillInnerPartsWithSessions() {
+        viewIndividualPlaceholder.getItems().clear();
         sessionListPanelPlaceholder.setVisible(true);
         personListPanelPlaceholder.setDisable(true);
         personListPanelPlaceholder.setVisible(false);
@@ -140,6 +148,7 @@ public class MainWindow extends UiPart<Stage> {
         personListPanelPlaceholder.getChildren().clear();
         sessionListPanel = new SessionListPanel(logic.getFilteredSessionList());
         sessionListPanelPlaceholder.getChildren().add(sessionListPanel.getRoot());
+        viewIndividualPlaceholder.getItems().add(sessionListPanelPlaceholder);
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -149,6 +158,47 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+    }
+
+    void fillSplitPane(boolean viewSession) {
+        viewIndividualPlaceholder.getItems().clear();
+        sessionListPanelPlaceholder.setVisible(true);
+        personListPanelPlaceholder.setVisible(true);
+        sessionListPanelPlaceholder.setDisable(false);
+        personListPanelPlaceholder.setDisable(false);
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        sessionListPanel = new SessionListPanel(logic.getFilteredSessionList());
+        sessionListPanelPlaceholder.getChildren().add(sessionListPanel.getRoot());
+        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        if (viewSession) {
+            viewIndividualPlaceholder.getItems().addAll(sessionListPanelPlaceholder, personListPanelPlaceholder);
+        } else {
+            viewIndividualPlaceholder.getItems().addAll(personListPanelPlaceholder, sessionListPanelPlaceholder);
+        }
+
+        resultDisplay = new ResultDisplay();
+        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+
+        CommandBox commandBox = new CommandBox(this::executeCommand);
+        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+    }
+
+    /**
+     * Only used when command is invalid.
+     */
+    void clearPanels() {
+        viewIndividualPlaceholder.getItems().clear();
+        personListPanelPlaceholder.getChildren().clear();
+        sessionListPanelPlaceholder.getChildren().clear();
+
+        resultDisplay = new ResultDisplay();
+        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
     }
 
     /**
@@ -204,7 +254,7 @@ public class MainWindow extends UiPart<Stage> {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
-            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            clearPanels();
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
@@ -217,13 +267,39 @@ public class MainWindow extends UiPart<Stage> {
                 fillInnerPartsWithSessions();
             }
 
-            if (commandResult.getFeedbackToUser().equals(ListCommand.MESSAGE_SUCCESS_PERSONS)) {
+            if (commandResult.getFeedbackToUser().equals(ViewSessionCommand.MESSAGE_SUCCESS)) {
+                boolean viewSession = true;
+                fillSplitPane(viewSession);
+            }
+
+            if (commandResult.getFeedbackToUser().equals(ViewPersonCommand.MESSAGE_SUCCESS)) {
+                boolean viewSession = false;
+                fillSplitPane(viewSession);
+            }
+
+            if (commandResult.getFeedbackToUser().equals(ListCommand.MESSAGE_SUCCESS_PERSONS) || commandResult
+                    .getFeedbackToUser().equals(ListCommand.MESSAGE_SUCCESS_STUDENTS)
+                    || commandResult.getFeedbackToUser().equals(ListCommand.MESSAGE_SUCCESS_TUTORS)) {
                 fillInnerParts();
             }
 
+            if (commandResult.getFeedbackToUser().equals(ListCommand.MESSAGE_EMPTY_PERSON_LIST) || commandResult
+                    .getFeedbackToUser().equals(ListCommand.MESSAGE_EMPTY_SESSION_LIST)
+                    || commandResult.getFeedbackToUser().equals(ListCommand.MESSAGE_EMPTY_TUTOR_LIST)
+                    || commandResult.getFeedbackToUser().equals(ListCommand.MESSAGE_EMPTY_STUDENT_LIST)) {
+                clearPanels();
+            }
+
+            if (commandResult.getFeedbackToUser().equals(String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW,
+                    logic.getFilteredPersonList().size()))) {
+                fillInnerParts();
+            }
+
+            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
+            clearPanels();
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
