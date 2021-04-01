@@ -6,13 +6,13 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 import seedu.address.model.Model;
 
 /**
- * Lists all sessions in the address book to the user.
+ * Lists all students and sessions in the address book to the user.
  */
-public class ListSessionCommand extends Command {
+public class ListCommand extends Command {
 
-    public static final String COMMAND_WORD = "list_session";
+    public static final String COMMAND_WORD = "list";
 
-    public static final String MESSAGE_SUCCESS = "Listed all sessions";
+    public static final String MESSAGE_SUCCESS = "Listed all students and their respective sessions";
 
 
     @Override
