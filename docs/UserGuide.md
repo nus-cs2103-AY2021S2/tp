@@ -20,7 +20,13 @@ Thus, ClientBook is born!<br>
 Requiring **minimal interactions with your cursor**, ClientBook still allows you to complete essential contact management
 tasks with our minimal yet essential set of contact management features.<br>
 
-## How to use this guide
+
+## Purpose of This User Guide
+
+The purpose of this user guide is to help you, the user get started with using ClientBook as well as to help you to get familiarised
+with the features that it has to offer so that you can become comfortable with using it in your day-to-day operations as an insurance agent.
+
+## How to Use This Guide
 If you are a new user, you can start with the [Quick Start](#quick-start) section to get ClientBook running. After that,
 we have also provided an [Example Usage](#example-usage) section to help you get familiarised with ClientBook.
 If you are an experienced user, we have provided a convenient [Summary of Commands](#summary-of-commands) at the end of this user guide.
