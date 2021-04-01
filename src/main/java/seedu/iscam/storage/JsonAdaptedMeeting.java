@@ -1,6 +1,5 @@
 package seedu.iscam.storage;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -66,7 +65,7 @@ class JsonAdaptedMeeting {
     }
 
     /**
-     * Converts this Jackson-friendly adapted client object into the model's {@code Meeting} object.
+     * Converts this Jackson-friendly adapted meeting object into the model's {@code Meeting} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted meeting.
      */
@@ -86,7 +85,11 @@ class JsonAdaptedMeeting {
 
         if (dateTime == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    LocalDateTime.class.getSimpleName()));
+                    DateTime.class.getSimpleName()));
+        }
+
+        if (!DateTime.isValidDateTimeStr(dateTime)) {
+            throw new IllegalValueException(DateTime.MESSAGE_CONSTRAINTS);
         }
 
         final DateTime modelDateTime = new DateTime(dateTime);
@@ -111,7 +114,9 @@ class JsonAdaptedMeeting {
 
         final Set<Tag> modelTags = new HashSet<>(meetingTags);
 
-        return new Meeting(modelClient, modelDateTime, modelLocation, modelDescription, modelTags);
+        final boolean isDone = this.isDone.equals("true");
+
+        return new Meeting(modelClient, modelDateTime, modelLocation, modelDescription, modelTags, isDone);
     }
 
 }
