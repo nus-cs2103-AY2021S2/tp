@@ -6,13 +6,13 @@ import static seedu.budgetbaby.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.budgetbaby.ablogic.commands.HelpCommand;
 import seedu.budgetbaby.logic.commands.AddFrCommand;
 import seedu.budgetbaby.logic.commands.BudgetBabyCommand;
 import seedu.budgetbaby.logic.commands.DeleteFrCommand;
 import seedu.budgetbaby.logic.commands.EditFrCommand;
 import seedu.budgetbaby.logic.commands.ExitCommand;
 import seedu.budgetbaby.logic.commands.FindFrCommand;
+import seedu.budgetbaby.logic.commands.HelpCommand;
 import seedu.budgetbaby.logic.commands.RedoCommand;
 import seedu.budgetbaby.logic.commands.ResetFilterCommand;
 import seedu.budgetbaby.logic.commands.SetBudgetCommand;
@@ -77,6 +77,9 @@ public class BudgetBabyParser {
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
+
+        case HelpCommand.COMMAND_WORD:
+            return new HelpCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
