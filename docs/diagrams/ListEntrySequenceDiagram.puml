@@ -1,0 +1,77 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":ListEntryCommandParser" as ListEntryCommandParser LOGIC_COLOR
+participant ":ListEntryFormatPredicate" as ListEntryFormatPredicate LOGIC_COLOR
+participant "listEntryCommand:ListEntryCommand" as ListEntryCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("elist day")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("elist day")
+activate AddressBookParser
+
+create ListEntryCommandParser
+AddressBookParser -> ListEntryCommandParser
+activate ListEntryCommandParser
+
+ListEntryCommandParser --> AddressBookParser
+deactivate ListEntryCommandParser
+
+AddressBookParser -> ListEntryCommandParser : parse("day")
+activate ListEntryCommandParser
+
+create ListEntryFormatPredicate
+ListEntryCommandParser -> ListEntryFormatPredicate
+activate ListEntryFormatPredicate
+
+ListEntryFormatPredicate --> ListEntryCommandParser
+deactivate ListEntryFormatPredicate
+
+create ListEntryCommand
+ListEntryCommandParser -> ListEntryCommand
+activate ListEntryCommand
+
+ListEntryCommand --> ListEntryCommandParser
+deactivate ListEntryCommand
+
+ListEntryCommandParser --> AddressBookParser
+deactivate ListEntryCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ListEntryCommandParser -[hidden]-> AddressBookParser
+destroy ListEntryCommandParser
+
+AddressBookParser --> LogicManager : command
+deactivate AddressBookParser
+
+LogicManager -> ListEntryCommand : execute()
+activate ListEntryCommand
+
+ListEntryCommand -> Model : updateFilteredEntryList(predicate)
+activate Model
+
+Model --> ListEntryCommand
+deactivate Model
+
+create CommandResult
+ListEntryCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ListEntryCommand
+deactivate CommandResult
+
+ListEntryCommand --> LogicManager : commandResult
+deactivate ListEntryCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

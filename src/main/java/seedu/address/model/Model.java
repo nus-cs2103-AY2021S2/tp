@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.entry.Entry;
 import seedu.address.model.person.Person;
 import seedu.address.model.schedule.Schedule;
 import seedu.address.model.task.Task;
@@ -13,6 +14,9 @@ import seedu.address.model.task.Task;
  * The API of the Model component.
  */
 public interface Model {
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Entry> PREDICATE_SHOW_ALL_ENTRIES = unused -> true;
+
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
@@ -60,6 +64,8 @@ public interface Model {
     /** Returns the AddressBook */
     ReadOnlyAddressBook getAddressBook();
 
+    // ====== Person ======
+
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
@@ -78,17 +84,6 @@ public interface Model {
     void addPerson(Person person);
 
     /**
-     * Returns true if a task with the same identity as {@code task} exists in the task list.
-     */
-    boolean hasTask(Task task);
-
-    /**
-     * Adds the given task.
-     * {@code task} must not already exist in the task list.
-     */
-    void addTask(Task task);
-
-    /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the address book.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
@@ -103,6 +98,64 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    // ====== Entry ======
+
+    /**
+     * Returns true if the entry exists in the list.
+     */
+    boolean hasEntry(Entry entry);
+
+    /**
+     * Deletes the given entry.
+     * The entry must exist in the list.
+     */
+    void deleteEntry(Entry entry);
+
+    /**
+     * Adds the given entry.
+     * {@code entry} must not overlap with existing entries in the list.
+     */
+    void addEntry(Entry entry);
+
+    /**
+     * Replaces the given entry {@code target} with {@code editedEntry}.
+     * {@code target} must exist in the list.
+     * {@code editedEntry} must not overlap with existing entries in the list.
+     */
+    void setEntry(Entry target, Entry editedEntry);
+
+    /**
+     * Returns true if the given entry has dates overlapping with other entries in the list.
+     */
+    boolean isOverlappingEntry(Entry toAdd);
+
+    /**
+     * Removes all entries that are overdue.
+     */
+    void clearOverdueEntries();
+
+    /** Returns an unmodifiable view of the filtered entry list. */
+    ObservableList<Entry> getFilteredEntryList();
+
+    /**
+     * Updates the filter of the filtered entry list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredEntryList(Predicate<Entry> predicate);
+
+    // ====== The methods declared below are deprecated ======
+
+    /**
+     * Returns true if a task with the same identity as {@code task} exists in the task list.
+     */
+    boolean hasTask(Task task);
+
+    /**
+     * Adds the given task.
+     * {@code task} must not already exist in the task list.
+     */
+    void addTask(Task task);
 
     /**
      * Deletes the given task.
@@ -144,4 +197,5 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredTaskList(Predicate<Task> predicate);
+
 }

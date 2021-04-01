@@ -50,9 +50,13 @@
 
                 <GridPane>
                     <columnConstraints>
+                        <ColumnConstraints percentWidth="50"/>
+                        <ColumnConstraints percentWidth="50"/>
+                        <!--
                         <ColumnConstraints percentWidth="33.333"/>
                         <ColumnConstraints percentWidth="33.333"/>
                         <ColumnConstraints percentWidth="33.333"/>
+                        -->
                     </columnConstraints>
                     <VBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="340"
                           VBox.vgrow="ALWAYS" GridPane.columnIndex="0" alignment="CENTER">
@@ -63,6 +67,16 @@
                         <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
                     </VBox>
 
+                    <VBox fx:id="entryList" styleClass="pane-with-border" minWidth="340" prefWidth="340"
+                          VBox.vgrow="ALWAYS" GridPane.columnIndex="1" alignment="CENTER">
+                        <Label text="Entries"/>
+                        <padding>
+                            <Insets top="10" right="10" bottom="10" left="10"/>
+                        </padding>
+                        <StackPane fx:id="entryListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+                    </VBox>
+
+                    <!--
                     <VBox fx:id="taskList" styleClass="pane-with-border" minWidth="340" prefWidth="340"
                           VBox.vgrow="ALWAYS" GridPane.columnIndex="1" alignment="CENTER">
                         <Label text="Tasks"/>
@@ -80,6 +94,8 @@
                         </padding>
                         <StackPane fx:id="scheduleListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
                     </VBox>
+                    -->
+
                 </GridPane>
 
                 <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER"/>

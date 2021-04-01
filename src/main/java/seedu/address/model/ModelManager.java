@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.entry.Entry;
 import seedu.address.model.person.Person;
 import seedu.address.model.schedule.Schedule;
 import seedu.address.model.task.Task;
@@ -23,6 +24,7 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
+    private final FilteredList<Entry> filteredEntries;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Schedule> filteredSchedules;
     private final FilteredList<Task> filteredTasks;
@@ -38,6 +40,7 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
+        filteredEntries = new FilteredList<>(this.addressBook.getEntryList());
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredSchedules = new FilteredList<>(this.addressBook.getScheduleList());
         filteredTasks = new FilteredList<>(this.addressBook.getTaskList());
@@ -118,6 +121,53 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    // ====== Entry ======
+
+    /**
+     * checks if {@code entry} is in the list
+     */
+    @Override
+    public boolean hasEntry(Entry entry) {
+        return addressBook.hasEntry(entry);
+    }
+
+    /**
+     * adds an {@code Entry} into the list
+     */
+    @Override
+    public void addEntry(Entry entry) {
+        addressBook.addEntry(entry);
+        updateFilteredEntryList(PREDICATE_SHOW_ALL_ENTRIES);
+    }
+
+    /**
+     * deletes an {@code Entry} from the list
+     */
+    @Override
+    public void deleteEntry(Entry entry) {
+        addressBook.removeEntry(entry);
+    }
+
+    /**
+     * replaces {@code target} with {@code editedEntry}
+     */
+    @Override
+    public void setEntry(Entry target, Entry editedEntry) {
+        requireAllNonNull(target, editedEntry);
+        addressBook.setEntry(target, editedEntry);
+    }
+
+    @Override
+    public boolean isOverlappingEntry(Entry toAdd) {
+        requireNonNull(toAdd);
+        return addressBook.isOverlappingEntry(toAdd);
+    }
+
+    @Override
+    public void clearOverdueEntries() {
+        addressBook.clearOverdueEntries();
+    }
+
     // ====== Schedule ======
 
     @Override
@@ -175,13 +225,29 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    //=========== Filtered Entry List Accessors ==============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Entry} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Entry> getFilteredEntryList() {
+        return filteredEntries;
+    }
+
+    @Override
+    public void updateFilteredEntryList(Predicate<Entry> predicate) {
+        requireNonNull(predicate);
+        filteredEntries.setPredicate(predicate);
+    }
+
     //=========== Filtered Schedule List Accessors ===========================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Schedule} backed by the internal list of
      * {@code versionedAddressBook}
      */
-
     @Override
     public ObservableList<Schedule> getFilteredScheduleList() {
         return filteredSchedules;
@@ -212,6 +278,7 @@ public class ModelManager implements Model {
     }
 
     //=========== misc ===============
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object

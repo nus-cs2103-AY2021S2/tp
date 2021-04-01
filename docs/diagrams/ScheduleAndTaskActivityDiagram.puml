@@ -1,0 +1,11 @@
+@startuml
+start
+:User executes "sadd" or "tadd";
+if () then (["sadd"])
+    :Instantiates a Schedule object;
+else ([else])
+    :Instantiates a Task object;
+endif
+    :Saves to Storage;
+stop
+@enduml

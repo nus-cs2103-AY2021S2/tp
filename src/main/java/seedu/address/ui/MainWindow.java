@@ -32,8 +32,13 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+    private EntryListPanel entryListPanel;
+
+    //to be deleted.................
     private TaskListPanel taskListPanel;
     private ScheduleListPanel scheduleListPanel;
+    //to be deleted.................
+
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -47,10 +52,17 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane personListPanelPlaceholder;
 
     @FXML
+    private StackPane entryListPanelPlaceholder;
+
+    //To be deleted...........................
+
+    @FXML
     private StackPane taskListPanelPlaceholder;
 
     @FXML
     private StackPane scheduleListPanelPlaceholder;
+
+    //To be deleted............................
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -121,11 +133,17 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
+        entryListPanel = new EntryListPanel(logic.getFilteredEntryList());
+        entryListPanelPlaceholder.getChildren().add(entryListPanel.getRoot());
+
+        //To be deleted
+        /*
         taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
         taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
 
         scheduleListPanel = new ScheduleListPanel(logic.getFilteredScheduleList());
         scheduleListPanelPlaceholder.getChildren().add(scheduleListPanel.getRoot());
+         */
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
