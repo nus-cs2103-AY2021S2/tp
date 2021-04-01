@@ -27,8 +27,8 @@ public class AddCommand extends UndoableCommand {
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_LOCATION + "LOCATION "
-            + PREFIX_PLAN + "INSURANCE PLAN "
-            + "(optional) " + PREFIX_IMAGE + "IMAGE FIlE "
+            + "(optional) " + PREFIX_PLAN + "INSURANCE_PLAN "
+            + "(optional) " + PREFIX_IMAGE + "IMAGE_FIlE "
             + "(optional) " + PREFIX_TAG + "TAG(s) \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
@@ -36,7 +36,7 @@ public class AddCommand extends UndoableCommand {
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_LOCATION + "01 Singapore Street, #23-45 "
             + PREFIX_PLAN + "MediShield Life "
-            + PREFIX_IMAGE + "john_doe.png"
+            + PREFIX_IMAGE + "john_doe.png "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 
