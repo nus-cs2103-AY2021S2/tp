@@ -237,7 +237,7 @@ Format: `mk n/TITLE r/[END DATE][DAY OF WEEK][WEEK FREQUENCY]` or `edit INDEX r/
 * An example of `RECURRING SCHEDULE`: `[23/10/2021][Mon][weekly]`
 
 Examples:
-*  `mk n/CS21o3 team meeting r/[31/05/2021][mon][weekly]` Adds the task with the title `CS2103 team meeting` to the
+*  `mk n/CS2103 team meeting r/[31/05/2021][mon][weekly]` Adds the task with the title `CS2103 team meeting` to the
    planner and generate recurring dates that is on `mon` `weekly` up to `31/05/2021`.
 *  `edit 1 r/[23/12/2021][mon][biweekly]` modifies the first task in the planner and generate recurring dates that
    is on `mon` `biweekly` up to `23/12/2021`.
@@ -293,20 +293,26 @@ Format: `sort by a` or `sort by d`
 * If two tasks have the same dates, they will be ordered in equal priority.
 
 
-### Searching a task by title: `find`
+### Searching a task by title or description: `find` or `find d/`
 
 Find matching tasks based on the title keyword(s) provided 
 so that you can find matching tasks quickly when only certain words from the title of the task can be remembered.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Find matching tasks based on the description keywords provided
+so that you can find matching tasks quickly when only certain words from the multi-line description can be remembered.
 
-* The search is case-insensitive. e.g `project` will match `Project`
+Format: `find KEYWORD [MORE_KEYWORDS]` or `find d/KEYWORD [MORE_KEYWORDS]`
+
+* The search is **case-insensitive**. e.g `project` will match `Project`
 * The order of the keywords does not matter. e.g. `CS2103 Project` will match `Project CS2103`
 * Only full keywords will be matched e.g. `proj` will not match `projects`
 * Tasks matching at least one keyword will be returned e.g. `find proj` will match `find projects`
+* No `t/` or `d/` should be in the search by title query
+* No `t/` should be in the search by description query
 
 Examples:
 * `find CS2103 team project` returns matching tasks with title of following words `CS2103`, `team`, `project`
+* `find d/write user guide` returns matching tasks with description of following words `user`, `guide`, `write`
 
 ### Searching a task by tag: `find t/`
 
@@ -315,11 +321,12 @@ so that you can find matching tasks from the same category quickly when only the
 
 Format: `find t/KEYWORD`
 
-* The search is case-insensitive. e.g `cs2103t` will match `CS2103T`
-* The keyword must be single, alphanumeric and no spacing allowed. e.g. `project CS2103` will not be allowed
+* The search is **case-insensitive**. e.g `cs2103t` will match `CS2103T`
+* The keyword must be **single, alphanumeric and no spacing** allowed. e.g. `project CS2103` will not be allowed
   but `projectCS2103` will be acceptable.
 * Only full keyword will be matched e.g. `cs2103` will not match `cs2103t`
-* Suppose a task with multiple tags of `cs2103` and `cs2105`, it will be returned as a matching task
+* No `d/` should be in the search by tag query
+* Suppose a task with **multiple tags** of `cs2103` and `cs2105`, it will be returned as a matching task
   if the user inputs falls under the following cases:
   1. `t/cs2103` only
   2. `t/cs2105` only
@@ -327,21 +334,6 @@ Format: `find t/KEYWORD`
 
 Examples:
 * `find t/CS2103` returns matching tasks with tag of `CS2103` or `cs2103`
-
-### Searching a task by description: `find d/`
-
-Find matching tasks based on the description keywords provided
-so that you can find matching tasks quickly when only certain words from the multi-line description can be remembered.
-
-Format: `find d/KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `write user guide` will match `write User Guide`
-* The order of the keywords does not matter. e.g. `user guide` will match `guide user`
-* Only full keywords will be matched e.g. `proj` will not match `projects`
-* Tasks matching at least one keyword will be returned e.g. `write guide` will match `write user guide`
-
-Examples:
-* `find d/write user guide` returns matching tasks with description of following words `user`, `guide`, `write`
 
 ### Removing a task : `rmt`
 

@@ -63,7 +63,7 @@ public class CommandTestUtil {
 
     public static final String INVALID_TITLE_DESC = " " + PREFIX_TITLE + "James&"; // '&' not allowed in titles
     public static final String INVALID_DATE_DESC = " " + PREFIX_DATE
-            + "12/01/2000"; // Date not allowed in dates
+            + "12/01/20002"; // Date not allowed in dates
     public static final String INVALID_DURATION_DESC = " " + PREFIX_DURATION + "djdjhej"; // ' ' not allowed in duration
     public static final String INVALID_RECURRINGSCHEDULE_DESC = " " + PREFIX_RECURRINGSCHEDULE
              + "10/06/2021Monbiweekly"; // missing '[]' symbol within the field
