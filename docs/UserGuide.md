@@ -37,7 +37,7 @@ Focuris is a **desktop application** for **managing events** with a KanBan board
 
 1. Ensure you have Java `11` or above installed on your Computer.
 
-1. Download the latest `focuris.jar` from [here](https://github.com/AY2021S2-CS2103T-W15-4/tp/releases/tag/v1.3.trial).
+1. Download the latest `focuris.jar` from [here](https://github.com/AY2021S2-CS2103T-W15-4/tp/releases/tag/v1.3).
 
 1. Copy the `focuris.jar` file to the folder you want to use as the _home folder_ for your Focuris.
 
@@ -60,7 +60,7 @@ Focuris is a **desktop application** for **managing events** with a KanBan board
 
 1. Refer to the [Features](#features) below for details of each command.
 
-[Return to Table of Contents](#table-of-contents)
+<a class="md-btn md-btn-raised" href="#table-of-contents">Return to Table of Contents</a>
 
 <div class="page-break-before"></div>
 
@@ -87,7 +87,7 @@ Focuris is a **desktop application** for **managing events** with a KanBan board
 
 </div>
 
-[Return to Table of Contents](#table-of-contents)
+<a class="md-btn md-btn-raised" href="#table-of-contents">Return to Table of Contents</a>
 
 <div class="page-break-before"></div>
 
@@ -95,10 +95,10 @@ Focuris is a **desktop application** for **managing events** with a KanBan board
 
 ### 2.1.1 Command Summary
 
-If you are an experienced user who has used Focuris before, then here is a summary of the commands for easier navigability! 
+If you are an experienced user who has used Focuris before, then here is a summary of the commands for easier navigability!
 
-For our new users, don't be too intimidated! You can use this summary to better familiarize yourself with 
-the different commands available. We will delve deeper into the specifics at chapters [2.2](#22-general) 
+For our new users, don't be too intimidated! You can use this summary to better familiarize yourself with
+the different commands available. We will delve deeper into the specifics at chapters [2.2](#22-general)
 and [2.3](#23-event-commands).
 
 | Command                           | Description                                      | Format, Examples                                                                                           |
@@ -114,7 +114,7 @@ and [2.3](#23-event-commands).
 | [**Prog**](#233-prog-command)     | Creates a new event with status **In-Progress**  | `prog n/NAME d/DESCRIPTION [p/PRIORITY]` <br> e.g., `prog n/CS2100 d/Tutorial`                             |
 | [**Todo**](#231-todo-command)     | Creates a new event with status **Todo**         | `todo n/NAME d/DESCRIPTION [p/PRIORITY]` <br> e.g., `todo n/CS2040 d/Assignment`                           |
 
-[Return to Table of Contents](#table-of-contents)
+<a class="md-btn md-btn-raised" href="#table-of-contents">Return to Table of Contents</a>
 
 <div class="page-break-before"></div>
 
@@ -129,18 +129,23 @@ and [2.3](#23-event-commands).
 | IDENTIFIER               | No Prefix | Identifier of your Event in Focuris      | Event identifier should exist in the KanBan board.                                                                                                                                                                                                               |
 | KEYWORD                  | No Prefix | Keywords for searching Events in Focuris | No Constraints                                                                                                                                                                                                                                                   |
 
-[Return to Table of Contents](#table-of-contents)
+<a class="md-btn md-btn-raised" href="#table-of-contents">Return to Table of Contents</a>
 
 <div class="page-break-before"></div>
 
 ## 2.2 General
 
-For ease of reference:
+You can refer to the follow diagram as reference for names of fields in the event card.
+
 ![Ui](images/UiWithReference.png)
+
+<a class="md-btn md-btn-raised" href="#table-of-contents">Return to Table of Contents</a>
+
+<div class="page-break-before"></div>
 
 ### 2.2.1 `help` Command
 
-Shows a pop-up with a link to the Focuris user guide.
+Shows you a pop-up with a link to the Focuris user guide.
 
 #### Format
 
@@ -154,7 +159,7 @@ help
 
 ![help message](images/helpMessageNew.png)
 
-[Return to Table of Contents](#table-of-contents)
+<a class="md-btn md-btn-raised" href="#table-of-contents">Return to Table of Contents</a>
 
 <div class="page-break-before"></div>
 
@@ -172,7 +177,7 @@ exit
 
 - Your Focuris application window closes.
 
-[Return to Table of Contents](#table-of-contents)
+<a class="md-btn md-btn-raised" href="#table-of-contents">Return to Table of Contents</a>
 
 <div class="page-break-before"></div>
 
@@ -180,7 +185,7 @@ exit
 
 Event data in Focuris is saved **automatically** whenever you execute any command that makes changes to events. As such, there is no need for you to trigger manually saving of data.
 
-[Return to Table of Contents](#table-of-contents)
+<a class="md-btn md-btn-raised" href="#table-of-contents">Return to Table of Contents</a>
 
 ### 2.2.4 Editing your data file
 
@@ -195,16 +200,17 @@ If you are an advanced user, you are welcome to update the data file by editing 
 If your changes to the data file makes its format invalid, Focuris will discard all your existing data and start with an empty data file on the next run.
 </div>
 
-[Return to Table of Contents](#table-of-contents)
+<a class="md-btn md-btn-raised" href="#table-of-contents">Return to Table of Contents</a>
 
 <div class="page-break-before"></div>
 
 ## 2.3 Event Commands
 
 For the majority of event commands, you can simply execute them via these simple steps:
-1) Type in the command you desire in the various formats detailed below.
-2) Hit `enter` on your keyboard!
-3) The results and outcome of your command should be visible on the application.
+
+1. Type in the command you desire in the various formats detailed below.
+2. Hit `enter` on your keyboard!
+3. The results and outcome of your command should be visible on the application.
 
 ### 2.3.1 `todo` Command
 
@@ -217,6 +223,7 @@ todo n/NAME d/DESCRIPTION [p/PRIORITY]
 ```
 
 #### Examples
+
 ![Todo Sample Screenshot](./images/user-guide/todo-example-1.png)
 
 **Figure 1. Shows the result after execution of Example Command 1 in the table below.**
@@ -229,7 +236,7 @@ todo n/NAME d/DESCRIPTION [p/PRIORITY]
 | 4   | `todo n/Complete Homework d/Complete weekly quiz and group tasks for CS2103T` | New Todo added: Complete Homework; Priority: LOW; Description: Complete weekly quiz and group tasks for CS2103T; Status: TODO; |
 | 5   | `todo n/Run d/Exercise p/h`                                                   | New Todo added: Run; Priority: HIGH; Description: Exercise; Status: TODO;                                                      |
 
-[Return to Table of Contents](#table-of-contents)
+<a class="md-btn md-btn-raised" href="#table-of-contents">Return to Table of Contents</a>
 
 <div class="page-break-before"></div>
 
@@ -256,7 +263,8 @@ log n/NAME d/DESCRIPTION [p/PRIORITY]
 | 3   | `log n/CS2030 Assignment 1 d/Due on 23 Mar 2021 p/high`                      | New BackLog added: CS2030 Assignment 1; Priority: HIGH; Description: Due on 23 Mar 2021; Status: BACKLOG;                            |
 | 4   | `log n/Lunch with John d/At VivoCity on Friday p/medium`                     | New BackLog added: Lunch with John; Priority: MEDIUM; Description: At VivoCity on Friday; Status: BACKLOG;                           |
 | 5   | `log n/Run d/Exercise p/h`                                                   | New BackLog added: Run; Priority: HIGH; Description: Exercise; Status: BACKLOG;                                                      |
-[Return to Table of Contents](#table-of-contents)
+
+<a class="md-btn md-btn-raised" href="#table-of-contents">Return to Table of Contents</a>
 
 <div class="page-break-before"></div>
 
@@ -283,7 +291,8 @@ prog n/NAME d/DESCRIPTION [p/PRIORITY]
 | 3   | `prog n/Household Chores d/Cleaning the kitchen p/high`                       | New In-Progress added: Household Chores; Priority: HIGH; Description: Cleaning the kitchen; Status: IN_PROGRESS;                             |
 | 4   | `prog n/Lunch with John d/At VivoCity on Friday p/medium`                     | New In-Progress added: Lunch with John; Priority: MEDIUM; Description: At VivoCity on Friday; Status: IN_PROGRESS;                           |
 | 5   | `prog n/Run d/Exercise p/h`                                                   | New In-Progress added: Run; Priority: HIGH; Description: Exercise; Status: IN_PROGRESS;                                                      |
-[Return to Table of Contents](#table-of-contents)
+
+<a class="md-btn md-btn-raised" href="#table-of-contents">Return to Table of Contents</a>
 
 <div class="page-break-before"></div>
 
@@ -324,7 +333,7 @@ Existing event will have its data overwritten by the new values taken in by the 
 
 **Figure 5. Shows Focuris after execution of the edit command in the command box.**
 
-[Return to Table of Contents](#table-of-contents)
+<a class="md-btn md-btn-raised" href="#table-of-contents">Return to Table of Contents</a>
 
 <div class="page-break-before"></div>
 
@@ -364,7 +373,7 @@ The commands in the table above make reference to the events in Focuris as seen 
 
 </div>
 
-[Return to Table of Contents](#table-of-contents)
+<a class="md-btn md-btn-raised" href="#table-of-contents">Return to Table of Contents</a>
 
 <div class="page-break-before"></div>
 
@@ -393,7 +402,7 @@ All events will be cleared from Focuris and this is **irreversible**. Please use
 
 **Figure 8. Shows Focuris after a clear command has been executed.**
 
-[Return to Table of Contents](#table-of-contents)
+<a class="md-btn md-btn-raised" href="#table-of-contents">Return to Table of Contents</a>
 
 <div class="page-break-before"></div>
 
@@ -426,7 +435,7 @@ find KEYWORD [MORE_KEYWORDS]...
 
 **Figure 10. After execution of sample find command**
 
-[Return to Table of Contents](#table-of-contents)
+<a class="md-btn md-btn-raised" href="#table-of-contents">Return to Table of Contents</a>
 
 <div class="page-break-before"></div>
 
@@ -446,7 +455,7 @@ list
 
 **Figure 11. Execution of list command after find command in Figure 10**
 
-[Return to Table of Contents](#table-of-contents)
+<a class="md-btn md-btn-raised" href="#table-of-contents">Return to Table of Contents</a>
 
 <div class="page-break-before"></div>
 
@@ -459,15 +468,15 @@ list
 **A**: No, Focuris does not require an Internet connection to use.
 
 **Q**: What is the maximum length of text I can enter into a event name or event description?<br>
-**A**: Focuris does not limit the maximum length of text that can be entered and stored as it will increase the size 
+**A**: Focuris does not limit the maximum length of text that can be entered and stored as it will increase the size
 of the card to fit the text given. However, the general notion we try to promote is **efficiency** and **productivity**,
- and thus we recommend keeping the text under **20 characters** for the event name, and **40 characters** for the description.
+and thus we recommend keeping the text under **20 characters** for the event name, and **40 characters** for the description.
 
 **Q**: Will my data be sent anywhere else or shared with third parties?<br>
-**A**: Your data is stored locally on your own computer. Focuris does not use any Internet connection so no data can be 
+**A**: Your data is stored locally on your own computer. Focuris does not use any Internet connection so no data can be
 sent to any online servers.
 
-[Return to Table of Contents](#table-of-contents)
+<a class="md-btn md-btn-raised" href="#table-of-contents">Return to Table of Contents</a>
 
 <div class="page-break-before"></div>
 
@@ -479,4 +488,4 @@ sent to any online servers.
 
 <a name="parameters"><bold>Parameters</bold>: Parameters are the input given to commands behind prefixes such as `n/`.</a>
 
-[Return to Table of Contents](#table-of-contents)
+<a class="md-btn md-btn-raised" href="#table-of-contents">Return to Table of Contents</a>
