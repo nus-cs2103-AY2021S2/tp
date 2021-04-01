@@ -233,7 +233,8 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Person> getWholePersonList() {
         return new FilteredList<>(this.addressBook.getPersonList());
-      
+    }
+
     //=========== Shortcut Library ================================================================================
 
     @Override

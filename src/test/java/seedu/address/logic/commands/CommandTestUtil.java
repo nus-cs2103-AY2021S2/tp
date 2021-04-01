@@ -42,7 +42,7 @@ public class CommandTestUtil {
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_POLICY_ID = "P#1245";
     public static final String VALID_MEETING_AMY = "17.7.2021 17:30 20:00 Mall";
-    public static final String VALID_MEETING_BOB = "23.03.2021 12:30 15:30 MRT";    
+    public static final String VALID_MEETING_BOB = "23.03.2021 12:30 15:30 MRT";
     public static final String VALID_SHORTCUT_NAME = "ls";
     public static final String VALID_SHORTCUT_COMMAND = "list";
 
@@ -58,7 +58,7 @@ public class CommandTestUtil {
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
     public static final String POLICY_DESC = " " + PREFIX_INSURANCE_POLICY + VALID_POLICY_ID;
     public static final String MEETING_DESC_AMY = " " + PREFIX_MEETING + VALID_MEETING_AMY;
-    public static final String MEETING_DESC_BOB = " " + PREFIX_MEETING + VALID_MEETING_BOB;    
+    public static final String MEETING_DESC_BOB = " " + PREFIX_MEETING + VALID_MEETING_BOB;
     public static final String VALID_SHORTCUT_NAME_DESC = " " + PREFIX_SHORTCUT_NAME + VALID_SHORTCUT_NAME;
     public static final String VALID_SHORTCUT_COMMAND_DESC = " " + PREFIX_SHORTCUT_COMMAND + VALID_SHORTCUT_COMMAND;
 

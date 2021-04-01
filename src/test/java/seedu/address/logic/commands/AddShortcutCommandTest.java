@@ -213,6 +213,11 @@ public class AddShortcutCommandTest {
         }
 
         @Override
+        public ObservableList<Person> getWholePersonList() {
+            return null;
+        }
+
+        @Override
         public void setShortcutLibrary(ShortcutLibrary shortcutLibrary) {
 
         }

@@ -104,7 +104,7 @@ public class AddressBookParser {
 
         case MeetCommand.COMMAND_WORD:
             return new MeetCommandParser().parse(arguments);
-            
+
         case AddShortcutCommand.COMMAND_WORD:
             return new AddShortcutCommandParser().parse(arguments);
 

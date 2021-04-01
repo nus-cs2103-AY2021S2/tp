@@ -127,7 +127,7 @@ public interface Model {
      * Returns an unmodifiable view of the entire person list
      */
     ObservableList<Person> getWholePersonList();
-  
+
     /**
      * Replaces Shortcut Library data with the data in {@code shortcutLibrary}.
      */

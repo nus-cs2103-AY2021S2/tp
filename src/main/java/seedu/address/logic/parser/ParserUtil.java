@@ -230,7 +230,8 @@ public class ParserUtil {
             meetingList.add(parseMeeting(meet));
         }
         return meetingList;
-      
+    }
+
     /**
      * Parses a {@code String shortcutName}.
      * Leading and trailing whitespaces will be trimmed.
