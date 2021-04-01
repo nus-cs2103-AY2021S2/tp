@@ -48,7 +48,7 @@ public class BookingBuilder {
         bookingStart = new StartTime(LocalDateTime.parse(DEFAULT_BOOKING_START, formatter));
         bookingEnd = new EndTime(LocalDateTime.parse(DEFAULT_BOOKING_END, formatter));
         tags = new HashSet<>();
-        id = new Id(Integer.valueOf(DEFAULT_ID));
+        id = new Id(DEFAULT_ID);
     }
 
     /**
@@ -116,7 +116,7 @@ public class BookingBuilder {
      * Sets the {@code id} of the {@code Booking} that we are building.
      */
     public BookingBuilder withId(String id) {
-        this.id = new Id(Integer.valueOf(id));
+        this.id = new Id(id);
         return this;
     }
 

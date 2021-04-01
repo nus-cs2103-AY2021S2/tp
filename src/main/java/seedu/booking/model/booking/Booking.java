@@ -94,7 +94,9 @@ public class Booking {
     }
 
     public static Id getNewBookingId() {
-        return new Id(Math.abs(BOOKING_RANDOM.nextInt()));
+        int number = BOOKING_RANDOM.nextInt(9999);
+        String fourDigitNumber = String.format("%04d", number);
+        return new Id(fourDigitNumber);
     }
 
     /**

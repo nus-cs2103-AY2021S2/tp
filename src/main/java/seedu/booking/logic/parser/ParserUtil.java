@@ -58,7 +58,7 @@ public class ParserUtil {
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
-        return new Id(Integer.parseInt(trimmedIndex));
+        return new Id(trimmedIndex);
     }
 
     /**

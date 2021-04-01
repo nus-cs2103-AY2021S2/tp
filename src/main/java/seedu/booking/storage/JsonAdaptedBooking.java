@@ -118,7 +118,7 @@ public class JsonAdaptedBooking {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Integer.class.getSimpleName()));
         }
 
-        final Id modelId = new Id(Integer.parseInt(id));
+        final Id modelId = new Id(id);
 
         final List<Tag> bookingTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {

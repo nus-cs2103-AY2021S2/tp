@@ -40,7 +40,7 @@ public class TypicalBookings {
             new StartTime(LocalDateTime.of(2021, 03, 01, 12, 30, 00)),
             new EndTime(LocalDateTime.of(2021, 03, 01, 13, 30, 00)),
             new HashSet<>(),
-            new Id(0)
+            new Id("0")
     );
 
     public static final Booking BOOKING2 = new Booking(new Email("example2@gamil.com"), VENUE1.getVenueName(),
@@ -48,7 +48,7 @@ public class TypicalBookings {
             new StartTime(LocalDateTime.of(2022, 03, 01, 13, 00, 00)),
             new EndTime(LocalDateTime.of(2022, 03, 01, 14, 00, 00)),
             new HashSet<>(),
-            new Id(1)
+            new Id("1")
     );
 
     public static final Booking BOOKING3 = new Booking(new Email("example2@gamil.com"), VENUE2.getVenueName(),
@@ -56,7 +56,7 @@ public class TypicalBookings {
             new StartTime(LocalDateTime.of(2021, 03, 01, 12, 30, 00)),
             new EndTime(LocalDateTime.of(2021, 03, 01, 13, 30, 00)),
             new HashSet<>(),
-            new Id(2)
+            new Id("2")
     );
 
 
@@ -65,7 +65,7 @@ public class TypicalBookings {
             new StartTime(LocalDateTime.of(2022, 03, 01, 14, 30, 00)),
             new EndTime(LocalDateTime.of(2022, 03, 01, 15, 30, 00)),
             new HashSet<>(),
-            new Id(3)
+            new Id("3")
     );
 
     public static final Booking BOOKING_HALL = new BookingBuilder()
