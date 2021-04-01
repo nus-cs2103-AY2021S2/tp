@@ -195,11 +195,26 @@ public class RecurringSession extends Session {
         }
         int daysBetween = (int) ChronoUnit.DAYS
                 .between(getSessionDate().getDate(), otherSession.getSessionDate().getDate());
-
-        int intervalMod = getInterval().getValue() % otherSession.getInterval().getValue();
-        int startDiffMod = daysBetween % otherSession.getInterval().getValue();
-        int diffMod = intervalMod + startDiffMod % otherSession.getInterval().getValue();
-        if (diffMod != 0) {
+        // Recurrence length in terms of when the first session begins
+        int firstSessionRecurrenceLength =
+                (int) ChronoUnit.DAYS.between(getSessionDate().getDate(), getLastSessionDate().getDate());
+        int secondSessionRecurrenceLength =
+                (int) ChronoUnit.DAYS.between(otherSession.getSessionDate().getDate(),
+                        otherSession.getLastSessionDate().getDate()) + daysBetween;
+        // Days from when the earlier session starts
+        int daysFromFirstSessionStart = getInterval().getValue();
+        int daysFromSecondSessionStart = daysBetween;
+        while (daysFromFirstSessionStart <= firstSessionRecurrenceLength
+                || daysFromSecondSessionStart <= secondSessionRecurrenceLength) {
+            if (daysFromFirstSessionStart == daysFromSecondSessionStart) {
+                break;
+            } else if (daysFromFirstSessionStart > daysFromSecondSessionStart) {
+                daysFromSecondSessionStart += otherSession.getInterval().getValue();
+            } else {
+                daysFromFirstSessionStart += getInterval().getValue();
+            }
+        }
+        if (daysFromFirstSessionStart != daysFromSecondSessionStart) {
             return false;
         }
         SessionDate otherSessionStartDate = otherSession.getSessionDate();

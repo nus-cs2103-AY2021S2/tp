@@ -84,6 +84,16 @@ class RecurringSessionTest extends SessionTest {
     }
 
     @Test
+    void isRecurringOverlappingRecurring() {
+        // Days Between: 8, Interval1: 3, Interval2: 7, EndDate1: 15, EndDate2: 7
+        RecurringSession recurringSession1 = new RecurringSession(new SessionDate("2021-01-01", "10:00"),
+                DURATION, SUBJECT, FEE, new Interval("3"), new SessionDate("2021-01-16", "10:00"));
+        RecurringSession recurringSession2 = new RecurringSession(new SessionDate("2021-01-09", "10:00"),
+                DURATION, SUBJECT, FEE, new Interval("7"), new SessionDate("2021-01-16", "10:00"));
+        assertTrue(recurringSession1.isOverlapping(recurringSession2));
+    }
+
+    @Test
     void lastSessionOnOrBeforeTest() {
         RecurringSession recurringSession = new RecurringSession(new SessionDate("2020-12-11", "10:00"),
                 DURATION, SUBJECT, FEE, INTERVAL, new SessionDate("2021-01-15", "10:00"));
