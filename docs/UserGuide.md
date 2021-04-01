@@ -87,16 +87,19 @@ Examples:
 
 Shows a list of all residences in the app.
 
+Format: `list`
+
 * The displayed list of residences is always sorted.
 * Unclean residences come before clean residences.
-
-Format: `list`
 
 ### Listing residences with bookings starting in the next 7 days: `remind`
 
 Shows a list of all residences with bookings starting in the next 7 days.
 
 Format: `remind`
+
+* The displayed list of residences is always sorted.
+* Unclean residences come before clean residences.
 
 ### Editing a residence: `edit`
 
