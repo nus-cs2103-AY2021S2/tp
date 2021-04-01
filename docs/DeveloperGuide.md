@@ -139,7 +139,7 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Current Implementation
 
-The add session feature is facilitated by `SessionList`. It is stored internally in `AddressBook` as `sessions`. It implements the following relevant relavent operations:
+The add session feature is facilitated by `SessionList`. It is stored internally in `AddressBook` as `sessions`. It implements the following relevant operations:
 
 * `SessionList#add(Session toAdd)` — Adds the given session to the current list of sessions
 
@@ -160,6 +160,40 @@ Step 5: The `CommandResult` is then displayed on the UI.
 The sequence for the example scenerio can be found below:
 
 ![AddSessionSequenceDiagram](images/AddSessionSequenceDiagram.png)
+
+### Delete person feature
+
+#### Current Implementation
+
+The delete person feature is facilitated by `UniquePersonList`. It is stored internally in `AddressBook` as `persons`. It implements the following relevant operations:
+
+* `UniquePersonList#remove(Person toRemove)` - Removes the given person (student or tutor) from the current list of persons
+
+This operation is exposed in the `Model` interface as `Model#deletePerson(Person target)`.
+
+Given below is an example usage scenario and how the delete person mechanism behaves at each step.
+
+Step 1: The user launches the application for the first time. The `AddressBook` will contain a `UniquePersonList`.
+
+<img src="images/DeletePersonObjectDiagram1.png" alt="DeletePersonObjectDiagram1" width="400"/>
+
+Step 2: The user executes `delete_person s/3` command to remove the specified person. The `LogicManager` calls `AddressBookParser#parseCommand(String userInput)`. 
+
+Step 3: The `parseCommand` method passes the user input to `DeletePersonCommandParser#parse(String args)` which returns a `DeletePersonCommand` object.
+
+Step 4: The `LogicManager` then executes the `DeletePersonCommand` which calls the `Model#deletePerson(Person target)` method.
+
+Step 5: The `Model` calls `AddressBook#removePerson(Person key)`.
+
+Step 6: The `Model` removes the specified person from `persons` in `AddressBook` and returns a `commandResult`.
+
+<img src="images/DeletePersonObjectDiagram2.png" alt="DeletePersonObjectDiagram2" width="400"/>
+
+Step 7: The `commandResult` is then displayed on the UI.
+
+The sequence for the example scenerio can be found below:
+
+![DeletePersonSequenceDiagram](images/DeletePersonSequenceDiagram.png)
 
 ### \[Proposed\] Undo/redo feature
 
