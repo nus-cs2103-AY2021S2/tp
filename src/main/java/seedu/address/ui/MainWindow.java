@@ -79,18 +79,18 @@ public class MainWindow extends UiPart<Stage> {
 
         helpWindow = new HelpWindow();
 
-        getRoot().addEventFilter(KeyEvent.KEY_PRESSED, (KeyEvent event) -> {
+        getRoot().addEventFilter(KeyEvent.KEY_RELEASED, (KeyEvent event) -> {
             if (event.getCode() == KeyCode.ENTER) {
                 currentList.clear();
             }
 
             if (event.getCode() == KeyCode.TAB) {
                 String currentlyInBox = commandBox.getTextFieldText();
-                if (currentlyInBox != null) {
-                    boolean isAutocompleteFlag = logic.isAutocompleteFlag(currentlyInBox);
-                    if (isAutocompleteFlag) {
-                        List<String> availFlags = logic.getAvailableFlags(currentlyInBox);
 
+                if (currentlyInBox != null) {
+                    List<String> availFlags = logic.getAvailableFlags(currentlyInBox);
+
+                    if (availFlags != null) {
                         // if flag has content -> get next flag
                         // if flag has no content -> toggle
                         lastFlag = currentlyInBox.split("-")[currentlyInBox.split("-").length - 1];
@@ -106,6 +106,7 @@ public class MainWindow extends UiPart<Stage> {
                                 }
                             }
                         } else {
+                            // Toggling Flags
                             if (!logic.getAutocompleteFlags(AddCommand.COMMAND_WORD)
                                     .contains(("-" + lastFlag).trim())) {
                                 return;

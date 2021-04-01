@@ -205,6 +205,12 @@ public class LogicManager implements Logic {
     @Override
     public List<String> getAvailableFlags(String commandStrings) {
 
+        boolean isAutocompleteFlag = this.isAutocompleteFlag(commandStrings);
+
+        if (!isAutocompleteFlag) {
+            return null;
+        }
+
         String command = commandStrings.split("-")[0];
 
         if (command.startsWith(AddCommand.COMMAND_WORD + " ")) {
