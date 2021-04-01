@@ -19,7 +19,7 @@ title: User Guide
 1. Copy the file to the folder you want to use as the _home folder_ for your Dictionote application.
 
 1. Double-click the file to start the app. The GUI should appear in a few seconds. <br>
-   ![UiUserguide](images/UiUserguide.png)
+   ![UiUserguide](images/UiUserGuide.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.
 
@@ -415,7 +415,7 @@ Format: `clearcontact`
 Dictionote allows the user to manipulate the user-interface via command. 
 The following are the 5 region where the user can manipulate
 
-![Ui Panel ](images/UiPanel.png)
+![Ui Panel](images/UiPanel.png)
 
 #### Opening and Closing UI Panel
 
@@ -470,12 +470,12 @@ Examples:
 Dictionote allows the user to manipulate the divider between the region via command.
 The following are the 4 divider where the user can manipulate
 
-![Ui Panel ](images/UiDivider.png)
+![Ui Divider](images/UiDivider.png)
 
 The following images show the position the divider will be set when user enter a value from 1 to 9 
 in either horizontally or vertically mode.
 
-![Ui Panel ](images/UiDividerConfig.png)
+![Ui Divider Configuration](images/UiDividerConfig.png)
 
 ##### Set contact divider position: `setdividerc`
 
@@ -533,7 +533,7 @@ Examples:
 Dictionote allows the user to change the orientation of the divider between the region via command.
 The following are the 2 divider where the user can manipulate
 
-![Ui Panel ](images/UiOrientation.png)
+![Ui Orientation](images/UiOrientation.png)
 
 ##### Toggle dictionary divider orientation: `toggledividerd`
 
