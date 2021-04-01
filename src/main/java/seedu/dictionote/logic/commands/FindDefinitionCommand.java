@@ -3,6 +3,8 @@ package seedu.dictionote.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import seedu.dictionote.commons.core.Messages;
+import seedu.dictionote.logic.commands.enums.UiAction;
+import seedu.dictionote.logic.commands.enums.UiActionOption;
 import seedu.dictionote.model.Model;
 import seedu.dictionote.model.dictionary.DefinitionContainsKeywordsPredicate;
 
@@ -30,7 +32,8 @@ public class FindDefinitionCommand extends Command {
         requireNonNull(model);
         model.updateFilteredDefinitionList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_DEFINITIONS_LISTED_OVERVIEW, model.getFilteredDefinitionList().size()));
+            String.format(Messages.MESSAGE_DEFINITIONS_LISTED_OVERVIEW, model.getFilteredDefinitionList().size()),
+            UiAction.OPEN, UiActionOption.DICTIONARY_LIST);
     }
 
     @Override

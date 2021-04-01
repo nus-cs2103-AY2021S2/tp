@@ -233,7 +233,7 @@ public interface Model {
 
 
     //=========== Filtered List Accessors =============================================================
-    /** Returns an unmodifiable view of the filtered person list */
+    /** Returns an unmodifiable view of the filtered Note list */
     ObservableList<Note> getFilteredNoteList();
 
     /** Returns an unmodifiable view of the filtered person list */

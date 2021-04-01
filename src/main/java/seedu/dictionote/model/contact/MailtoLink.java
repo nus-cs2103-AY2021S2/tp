@@ -1,5 +1,7 @@
 package seedu.dictionote.model.contact;
 
+import java.util.stream.Collectors;
+
 import seedu.dictionote.model.note.Note;
 
 /**
@@ -41,6 +43,30 @@ public class MailtoLink {
     }
 
     /**
+     * Transforms the given string into a URI-compatible string by encoding all of its characters.
+     * <p>
+     * Each character in the string is transformed to its ASCII value in hexadecimal and prefixed
+     * with a percent (%) sign.
+     *
+     * Examples:
+     *     - " " becomes "%20".
+     *     - "z" becomes "%7A".
+     *
+     * Refer to <a href="https://www.ietf.org/rfc/rfc2396.txt">RFC 2396</a> for details.
+     *
+     * @param str The string to be encoded.
+     * @return An encoded version of the given string that is compatible with URI links/objects.
+     */
+    private String encodeUriCompatible(String str) {
+        return str
+                .chars()
+                .mapToObj(Integer::toHexString)
+                .map(s -> s.length() == 1 ? "0" + s : s)
+                .map(s -> "%" + s)
+                .collect(Collectors.joining());
+    }
+
+    /**
      * Returns the current object as a valid {@code mailto} link string.
      * <p>
      * Possible formats:
@@ -54,7 +80,8 @@ public class MailtoLink {
         String link = "mailto:" + to.getEmail();
 
         if (body != null) {
-            link += "?body=" + body.getNote();
+            // Encode the contents of the note to ensure its validity as a URI string.
+            link += "?body=" + encodeUriCompatible(body.getNote());
         }
 
         return link;
