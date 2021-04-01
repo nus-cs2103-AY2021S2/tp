@@ -13,4 +13,6 @@ public class Messages {
     public static final String MESSAGE_INVALID_OPTION = "Invalid option provided: %1$s";
     public static final String MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX = "The appointment index "
             + "provided is invalid";
+    public static final String MESSAGE_MORE_THAN_ONE_SAME_PREFIX = "There should only be 1 option";
+
 }
