@@ -87,6 +87,20 @@ public class User {
         return this.activeDietPlan;
     }
 
+    /**
+     * Returns a new User with the set food intake list.
+     * @param list Food intake list to be attached to the User
+     * @return New User object with the set food intake list
+     */
+    public User setFoodIntakeList(FoodIntakeList list) {
+        return new User(this.bmi,
+                this.foodList,
+                list,
+                this.age,
+                this.gender,
+                this.idealWeight);
+    }
+
     public void setActiveDietPlan(DietPlan dietPlan) {
         this.activeDietPlan = dietPlan;
     }

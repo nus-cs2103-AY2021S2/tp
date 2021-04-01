@@ -10,10 +10,14 @@ import java.util.Objects;
  */
 public class DietPlan {
 
-    private final String planName;
-    private final String description;
-    private final PlanType planType;
-    private final MacroNutrientComposition macroNutrientComposition;
+    private String planName;
+    private String description;
+    private PlanType planType;
+    private MacroNutrientComposition macroNutrientComposition;
+
+    public DietPlan() {
+        super();
+    }
 
     /**
      * Constructor for diet plan holding information of daily consumption.

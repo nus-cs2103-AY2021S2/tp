@@ -59,7 +59,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         resetData(toBeCopied);
         this.foodList = uniqueFoodList;
         this.foodIntakeList = foodIntakeList;
-        this.user = user;
+        this.user = user.setFoodIntakeList(foodIntakeList);
     }
 
     //// list overwrite operations
