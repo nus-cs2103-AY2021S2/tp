@@ -51,9 +51,6 @@ public class EndpointTest {
         // name differs in case, all other attributes same -> returns false
         Endpoint editedPost = new EndpointBuilder(POST).withMethod(VALID_METHOD_GET.toLowerCase()).build();
         assertFalse(POST.equals(editedPost));
-
-        // to-do add more tests for this
-
     }
 
     @Test
