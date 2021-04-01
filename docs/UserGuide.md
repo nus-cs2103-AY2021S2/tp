@@ -57,7 +57,7 @@ Format:
 customer delete [INDEX] (-f)
 ```
 
-In the event that there are unfulfilled orders by the contact that is being attempted to be deleted, a `-f` flag has to be added to the end of the command to confirm the command. This is to prevent you from accidentally deleting orders unknowingly and leading to unhappy customers!
+In the event that there are uncompleted orders by the contact that is being attempted to be deleted, a `-f` flag has to be added to the end of the command to confirm the command. This is to prevent you from accidentally deleting orders unknowingly and leading to unhappy customers!
 
 #### `find` - Find contact
 Format:
@@ -92,7 +92,6 @@ menu delete [INDEX] (-f)
 #### `find` - Find dish
 Format:
 ```
-
 menu find n/[KEYWORD] (MORE KEYWORDS) i/[KEYWORD]
 ```
 
@@ -100,6 +99,42 @@ At least one prefix must be specified. If both are specified, both conditions wi
 
 - `n/` - Finds all dishes with names that contain any of the keywords (case-insensitive). Keywords are space separated. 
 - `i/` - Finds all dishes with ingredient names that contain keyword (case-insensitive).
+
+### `order`
+#### `list` - List all orders
+Format: 
+```
+order list
+```
+
+#### `add` - Add an order
+Format: 
+```
+order add n/[CUSTOMER_NAME] dt/[DELIVERY_DATETIME] (DD-MM-YYYY HH:MM) d/[DISH_NAME] q/[QUANTITY]...  
+```
+
+#### `delete` - Delete an order
+Format:
+```
+order delete [INDEX]
+```
+
+#### `find` - Find an order
+Format:
+```
+order find [KEYWORD] [MORE KEYWORDS]
+```
+
+#### `complete` - Mark order as completed
+Format:
+```
+order complete [INDEX]
+```
+#### `history` - List all completed and cancelled orders
+Format:
+```
+order history
+```
 
 ### `inventory`
 
