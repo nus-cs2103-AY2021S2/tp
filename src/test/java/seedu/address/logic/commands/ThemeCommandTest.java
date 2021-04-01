@@ -25,5 +25,4 @@ public class ThemeCommandTest {
         expectedModel.setTheme(OPTION_DARK);
         assertCommandSuccess(new ThemeCommand(OPTION_DARK), model, ThemeCommand.MESSAGE_SUCCESS, expectedModel);
     }
-
 }
