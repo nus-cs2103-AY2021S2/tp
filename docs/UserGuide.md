@@ -165,6 +165,8 @@ Format: <br>
 `filter FACULTY`
 `filter SCHOOL_RESIDENCE`
 
+* Please refer to the parameter formats for a list of valid vaccination status, faculty and school residence input. 
+
 Examples:
 * `filter VACCINATED` 
 * `filter COM` 
@@ -271,8 +273,6 @@ Format: `exit`
 Vax@NUS data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Adding vaccination appointments for students `[coming in v1.3]`
-
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
