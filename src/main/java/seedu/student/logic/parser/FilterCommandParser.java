@@ -34,7 +34,7 @@ public class FilterCommandParser implements Parser<FilterCommand> {
 
         String condition = args.trim();
 
-        if(condition.equals("not_vaccinated")){
+        if (condition.equals("not_vaccinated")) {
             condition = "";
         }
 
