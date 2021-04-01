@@ -13,16 +13,20 @@ public class FilterKeywordChecker {
     public FilterKeywordChecker(String keyword) {
         this.keyword = keyword;
 
-        if (keyword.substring(0, 2).equals("a/")) {
+        if (keyword.length() < 2) {
+            this.attributeType = "invalid";
+        } else if (keyword.substring(0, 2).equals("a/")) {
             this.attributeType = "address";
         } else if (keyword.substring(0, 2).equals("g/")) {
             this.attributeType = "gender";
         } else if (keyword.substring(0, 2).equals("t/")) {
             this.attributeType = "tag";
-        } else if (keyword.substring(0, 4).equals("age/")) {
-            this.attributeType = "age";
         } else if (keyword.substring(0, 2).equals("i/")) {
             this.attributeType = "plan";
+        } else if (keyword.length() < 4 && !keyword.equals("age/")) {
+            this.attributeType = "invalid";
+        } else if (keyword.substring(0, 4).equals("age/")) {
+            this.attributeType = "age";
         } else {
             this.attributeType = "invalid";
         }

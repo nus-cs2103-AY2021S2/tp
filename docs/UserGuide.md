@@ -361,14 +361,15 @@ Examples:
 
 You can filter clients by their address, gender, age, tags or insurance plan name.
 
-Format of filter command: `filter PREFIX/KEYWORD [PREFIX/MORE_KEYWORDS]`
+Format of filter command: `filter PREFIX/KEYWORD [PREFIX/MORE_KEYWORDS]...`
 
 Format of keyword:
 
 * address: `a/ADDRESS`
 * gender: `g/GENDER`
 * tag: `t/TAG`
-* insurance plan name: `plan/PLAN_NAME`
+* age: `age/[AGE]` or `age/[AGE_LOWER_BOUND]-[AGE_HIGHER_BOUND]`
+* insurance plan name: `i/PLAN_NAME`
 
 Lists all of your clients that has attributes that match your search keywords.
 
@@ -376,11 +377,12 @@ Only attributes that are exactly the same will be matched.
 
 Examples:
 
-`filter a/Clementi g/M t/medical plan/Protecc` returns:
+`filter a/Clementi g/M t/medical i/Protecc age/23-30` returns:
 * clients that has "Clementi" in their address, or
 * clients that are Male, or
 * clients with the "medical" tag, or
-* clients with the insurance plan "Protecc"
+* clients with the insurance plan "Protecc", or
+* clients aged between 23 and 30 years old, inclusive
 
 
 ### Displaying notifications : `notif`
