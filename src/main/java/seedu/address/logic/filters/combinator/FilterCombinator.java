@@ -20,7 +20,18 @@ public class FilterCombinator implements Predicate<Customer> {
     private final Node rootNode;
 
     public FilterCombinator(String argument) {
-        rootNode = createTree(argument);
+        Node temp = null;
+        try {
+            temp = createTree(argument);
+        } catch (IllegalArgumentException | NullPointerException e) {
+
+        } finally {
+            rootNode = temp;
+        }
+    }
+
+    public boolean isValidCombinator() {
+        return rootNode == null;
     }
 
     private LogicalOperator getCorrespondingLogicalOperator(Prefix prefix) {
@@ -113,7 +124,7 @@ public class FilterCombinator implements Predicate<Customer> {
             nodeStack.push(new Node(filter));
         }
 
-        System.out.println(nodeStack);
+        //System.out.println(nodeStack);
 
         return formTreeFromNodeStack(nodeStack);
     }

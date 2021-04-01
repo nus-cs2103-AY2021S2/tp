@@ -7,17 +7,20 @@ import seedu.address.logic.filters.combinator.FilterCombinator;
 import seedu.address.model.Model;
 
 /**
- * Finds and lists all customers in address book whose name contains any of the argument keywords.
- * Keyword matching is case insensitive.
+ * Finds and lists all customers in address book whose name contains any of the argument keywords. Keyword matching is
+ * case insensitive.
  */
 public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all customers whose names contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+        + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
+        + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
+        + "Example: " + COMMAND_WORD + " alice bob charlie";
+
+    public static final String MESSAGE_SYNTAX_ERROR = "There is a syntax error in the given find command : syntax "
+        + "should be a well bracketed sequence like \' find n/Raj /AND [ p/9876 /OR /NOT b/1998 ] \'";
 
     private final FilterCombinator predicate;
 
@@ -28,15 +31,19 @@ public class FindCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
+        if (! predicate.isValidCombinator()) {
+            return new CommandResult(MESSAGE_SYNTAX_ERROR);
+        }
+
         model.updateFilteredCustomerList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_CUSTOMERS_LISTED_OVERVIEW, model.getFilteredCustomerList().size()));
+            String.format(Messages.MESSAGE_CUSTOMERS_LISTED_OVERVIEW, model.getFilteredCustomerList().size()));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FindCommand // instanceof handles nulls
-                && predicate.equals(((FindCommand) other).predicate)); // state check
+            || (other instanceof FindCommand // instanceof handles nulls
+            && predicate.equals(((FindCommand) other).predicate)); // state check
     }
 }

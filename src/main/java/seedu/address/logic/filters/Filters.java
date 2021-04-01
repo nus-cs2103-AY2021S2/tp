@@ -23,7 +23,6 @@ public class Filters {
             PREFIX_PHONE,
             PREFIX_ADDRESS, PREFIX_DOB, PREFIX_TAG, PREFIX_CARS_OWNED, PREFIX_CARS_PREFERRED);
 
-        System.out.println(argumentMultimap);
 
         if (argumentMultimap.getTotalSize() != 2) { // since there is also a dummy position :(
             throw new NullPointerException(
@@ -57,6 +56,15 @@ public class Filters {
         if (argumentMultimap.getValue(PREFIX_CARS_PREFERRED).isPresent()) {
             return new CarsPreferredFilter(argumentMultimap.getValue(PREFIX_CARS_PREFERRED).get());
         }
+
+        if (argumentMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
+            return new AddressFilter(argumentMultimap.getValue(PREFIX_ADDRESS).get());
+        }
+
+        if (argumentMultimap.getValue(PREFIX_TAG).isPresent()) {
+            return new TagFilter(argumentMultimap.getValue(PREFIX_TAG).get());
+        }
+
 
 
         /*
