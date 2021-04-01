@@ -45,9 +45,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
     @FXML
-    private Label planName;
-    @FXML
-    private Label premium;
+    private FlowPane plans;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -65,18 +63,8 @@ public class PersonCard extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-
-        String planNameText = "Insurance Plan: ";
-        if (person.getPlanName() != null) {
-            planNameText += person.getPlanName().name;
-        }
-        planName.setText(planNameText);
-
-        String premiumText = "Yearly Premium: ";
-        if (person.getPremium() != null) {
-            premiumText += person.getPremium().toString();
-        }
-        premium.setText(premiumText);
+        person.getPlanStringsList()
+                .forEach(plan -> plans.getChildren().add(new Label(plan)));
     }
 
     @Override
