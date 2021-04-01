@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_CLEAN_TAG_DESC;
+import static seedu.address.logic.commands.StatusCommand.MESSAGE_NO_RESIDENCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -39,7 +40,7 @@ public class StatusCommandParserTest {
     @Test
     public void parse_missingParts_failure() {
         // no status and index array
-        assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "", MESSAGE_NO_RESIDENCE);
 
         // no index array
         assertParseFailure(parser, "clean ", MESSAGE_INVALID_FORMAT);

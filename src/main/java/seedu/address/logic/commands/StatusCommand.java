@@ -34,7 +34,7 @@ public class StatusCommand extends Command {
 
     public static final String MESSAGE_STATUS_RESIDENCE_SUCCESS = "Residences with updated status: %1$s";
     public static final String MESSAGE_ERROR_STATUS = "Must input a correct clean status (clean/unclean)";
-    public static final String MESSAGE_NOT_STATUS = "At least one residence index to update status must be provided.";
+    public static final String MESSAGE_NO_RESIDENCE = "At least one residence index to update status must be provided.";
 
     private final ArrayList<Index> indexArray;
     private final String status;
