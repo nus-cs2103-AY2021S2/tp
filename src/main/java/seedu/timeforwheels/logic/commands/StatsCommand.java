@@ -25,7 +25,7 @@ public class StatsCommand extends Command {
             + "Deliveries Due: %8$s\n" + "Deliveries Not Due: %9$s\n"
             + "Fragile Deliveries : %3$s\n" + "Liquid Deliveries : %4$s\n"
             + "Heavy Deliveries : %5$s\n" + "Hot Deliveries : %6$s\n"
-            + "Tagless Deliveries : %7$s\n";
+            + "Other Deliveries : %7$s\n";
 
 
     public final String[] tagList = {"[hot]", "[liquid]", "[heavy]", "[fragile]"};
