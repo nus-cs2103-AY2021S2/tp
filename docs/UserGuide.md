@@ -77,7 +77,7 @@ Format: `help`
 
 Adds a person to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [g/GROUP]…​`
+Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [g/GROUP]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of groups (including 0)
@@ -126,7 +126,7 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Locating persons by personName: `findg`
+### Locating persons by group: `findg`
 
 Finds persons whose groups contain any of the given keywords.
 
@@ -155,19 +155,22 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Sorting of contacts : `sort`
+### Sorting of contacts : `sortp`
 
 Sorts the contacts displayed according to a specified field.
 
-FormatL `sort FIELDNAME`
+Format: `sortp by/FIELD d/DIRECTION`
 
-* Sorts according to the field specified by `FIELDNAME`
-* `FIELDNAME` is only restricted to the following cases:
-    * Sort by personName : `personName`
-    * Sort by priority (Coming in v1.3) : `priority`
-    * Sort by last seen date (Coming in v1.3) : `lastSeenDate`
+* Sorts according to the field specified by `FIELD`
+* `FIELD` is only restricted to the following cases:
+    * Sort by name : `NAME`
+    * Sort by email : `EMAIL`
+    * Sort by phone number : `PHONE`
+    * Sort by address : `NAME`
+* `DIRECTION` is only restricted to the following cases:
+    * Sort by ascending alphabetical order : `ASC`
+    * Sort by descending alphabetical order : `DESC`
 
-Examples:
 
 ### Clearing all entries : `clear`
 
@@ -239,6 +242,24 @@ Format: `deletem INDEX`
 
 Examples:
 * `listm` followed by `delete 2` deletes the 2nd meeting in the meeting book.
+
+### Sorting of meetings : `sortm`
+
+Sorts the meetings displayed according to a specified field.
+
+Format: `sortm by/FIELD d/DIRECTION`
+
+* Sorts according to the field specified by `FIELD`
+* `FIELD` is only restricted to the following cases:
+    * Sort by name : `NAME`
+    * Sort by start time : `START`
+    * Sort by end time : `END`
+    * Sort by priority : `PRIORITY`
+    * Sort by description : `DESCRIPTION`
+* `DIRECTION` is only restricted to the following cases:
+    * Sort by ascending order : `ASC`
+    * Sort by descending order : `DESC`
+    
 
 ### Listing all persons and meetings : `list`
 
