@@ -23,12 +23,14 @@ public class JsonAdaptedScore {
     private final String questionAttempted;
     private final String questionCorrect;
     private final String ratio;
+    private final String timeSpent;
 
     /**
      * Constructs a {@code JsonAdaptedScore} with the given score details.
      */
     @JsonCreator
     public JsonAdaptedScore(@JsonProperty("time") String time,
+                                @JsonProperty("time_spent") String timeSpent,
                                 @JsonProperty("question_attempted") String questionAttempted,
                                 @JsonProperty("question_correct") String questionCorrect,
                                 @JsonProperty("ratio") String ratio) {
@@ -36,6 +38,7 @@ public class JsonAdaptedScore {
         this.questionAttempted = questionAttempted;
         this.questionCorrect = questionCorrect;
         this.ratio = ratio;
+        this.timeSpent = timeSpent;
     }
 
     /**
@@ -46,6 +49,7 @@ public class JsonAdaptedScore {
         this.questionAttempted = score.getNumberOfQuestionsAttempted();
         this.questionCorrect = score.getNumberOfQuestionsCorrect();
         this.ratio = score.getCorrectRatioString();
+        this.timeSpent = score.getTimeSpent();
     }
 
     /**
@@ -71,7 +75,12 @@ public class JsonAdaptedScore {
             }
             Integer questionCorrect = Integer.valueOf(this.questionCorrect);
 
-            return Score.of(time, questionAttempted, questionCorrect);
+            if (this.timeSpent == null) {
+                throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Time spent"));
+            }
+            String durationString = this.timeSpent;
+
+            return Score.of(time, questionAttempted, questionCorrect, durationString);
         } catch (NumberFormatException e) {
             throw new IllegalValueException(NUMBER_FORMAT_INCORRECT);
         } catch (IllegalArgumentException e) {

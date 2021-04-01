@@ -12,6 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.weeblingo.commons.core.GuiSettings;
 import seedu.weeblingo.commons.core.LogsCenter;
+import seedu.weeblingo.logic.commands.exceptions.CommandException;
 import seedu.weeblingo.model.flashcard.Answer;
 import seedu.weeblingo.model.flashcard.Flashcard;
 import seedu.weeblingo.model.score.Score;
@@ -29,9 +30,6 @@ public class ModelManager implements Model {
     private final FilteredList<Score> filteredHistoryScores;
     private final Mode mode;
     private Quiz quizInstance;
-    private int numOfQnsForQuizSession;
-    private Set<Tag> tagsForQuizSession;
-
 
     /**
      * Initializes a ModelManager with the given flashcardBook and userPrefs.
@@ -129,6 +127,11 @@ public class ModelManager implements Model {
 
     }
 
+    @Override
+    public void addScore() {
+        flashcardBook.addScore(quizInstance.giveScore());
+    }
+
     //=========== Filtered Flashcard List Accessors =============================================================
 
     /**
@@ -180,20 +183,10 @@ public class ModelManager implements Model {
     //=========== Quiz Related =============================================================
 
     @Override
-    public void startQuiz() {
-        if (numOfQnsForQuizSession == 0 && tagsForQuizSession == null) {
-            this.quizInstance = new Quiz(filteredFlashcards);
-            Flashcard next = quizInstance.getNextQuestion();
-            updateFilteredFlashcardList(curr -> curr.equals(next));
-        } else if (tagsForQuizSession == null) {
-            this.quizInstance = new Quiz(filteredFlashcards, numOfQnsForQuizSession);
-            Flashcard next = quizInstance.getNextQuestion();
-            updateFilteredFlashcardList(curr -> curr.equals(next));
-        } else {
-            this.quizInstance = new Quiz(filteredFlashcards, tagsForQuizSession);
-            Flashcard next = quizInstance.getNextQuestion();
-            updateFilteredFlashcardList(curr -> curr.equals(next));
-        }
+    public void startQuiz(int numberOfQuestions, Set<Tag> tags) throws CommandException {
+        this.quizInstance = new Quiz(filteredFlashcards, numberOfQuestions, tags);
+        Flashcard next = quizInstance.getNextQuestion();
+        updateFilteredFlashcardList(curr -> curr.equals(next));
     }
 
     @Override
@@ -227,21 +220,25 @@ public class ModelManager implements Model {
         return quizInstance.isCorrectAttempt(attempt);
     }
 
+    /**
+     * Deletes this quiz instance.
+     */
     public void clearQuizInstance() {
         quizInstance = null;
     }
 
-    public void setNumOfQnsForQuizSession(int n) {
-        numOfQnsForQuizSession = n;
+    /**
+     * Gets this quiz instance.
+     *
+     * @return this quiz instance.
+     */
+    public Quiz getQuizInstance() {
+        return quizInstance;
     }
 
     @Override
-    public void setTagsForQuizSession(Set<Tag> tags) {
-        tagsForQuizSession = tags;
-    }
-
-    public Quiz getQuizInstance() {
-        return quizInstance;
+    public String getQuizStatisticString() {
+        return quizInstance.getStatisticString();
     }
 
     //=========== Mode Related =============================================================
@@ -276,5 +273,9 @@ public class ModelManager implements Model {
 
     public void switchModeCheckSuccess() {
         this.mode.switchModeCheckSuccess();
+    }
+
+    public void switchModeQuizSessionEnded() {
+        this.mode.switchModeQuizSessionEnded();
     }
 }

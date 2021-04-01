@@ -1,7 +1,9 @@
 package seedu.weeblingo.testutil;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
+import seedu.weeblingo.logic.commands.exceptions.CommandException;
 import seedu.weeblingo.model.Quiz;
 
 /**
@@ -10,8 +12,8 @@ import seedu.weeblingo.model.Quiz;
 public class QuizBuilder {
     private Quiz quiz;
 
-    public QuizBuilder() {
-        quiz = new Quiz(new ArrayList<>());
+    public QuizBuilder() throws CommandException {
+        quiz = new Quiz(new ArrayList<>(), 0, new HashSet<>());
     }
 
     public Quiz build() {

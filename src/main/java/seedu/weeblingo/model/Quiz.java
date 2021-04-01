@@ -6,11 +6,15 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Queue;
 import java.util.Set;
 
+import seedu.weeblingo.logic.commands.StartCommand;
+import seedu.weeblingo.logic.commands.exceptions.CommandException;
 import seedu.weeblingo.model.flashcard.Answer;
 import seedu.weeblingo.model.flashcard.Flashcard;
+import seedu.weeblingo.model.score.Score;
 import seedu.weeblingo.model.tag.Tag;
 
 /**
@@ -27,33 +31,23 @@ public class Quiz {
     private int currentQuizIndex = 0;
     private Instant startTime;
 
-    /**
-     * Initializes the quiz session with a queue of all flashcards with randomized order.
-     */
-    public Quiz(List<Flashcard> flashcards) {
-        Flashcard[] flashcardsReadFromDB = flashcards.stream().toArray(Flashcard[]::new);
-        quizSessionQueue = getRandomizedQueue(flashcardsReadFromDB);
-        startTime = Instant.now();
-    }
+    // Support for storing the quiz attempt history
+    private int numberOfQuestionsAttempted;
+    private int numberOfQuestionsCorrect;
 
-    /**
-     * Initializes the quiz session with a queue of all flashcards with
-     * randomized order and the specified number of questions.
-     */
-    public Quiz(List<Flashcard> flashcards, int numberOfQuestions) {
-        Flashcard[] flashcardsReadFromDB = flashcards.stream().toArray(Flashcard[]::new);
-        quizSessionQueue = getRandomizedSubsetQueue(flashcardsReadFromDB, numberOfQuestions);
-        startTime = Instant.now();
-    }
+    private Optional<String> optionalDurationString;
 
     /**
      * Initializes the quiz session with a queue of flashcards tagged
-     * with the specified tags in randomized order.
+     * with the specified tags in randomized order. The quiz has a length of numberOfQuestions.
+     * @param flashcards The list of flashcards to use.
+     * @param numberOfQuestions The length to limit the quiz to.
+     * @param tags The specified tags by which to filter the questions.
      */
-    public Quiz(List<Flashcard> flashcards, Set<Tag> tags) {
+    public Quiz(List<Flashcard> flashcards, int numberOfQuestions, Set<Tag> tags) throws CommandException {
         Flashcard[] flashcardsReadFromDB = flashcards.stream().toArray(Flashcard[]::new);
-        quizSessionQueue = getRandomizedSubsetQueue(flashcardsReadFromDB, tags);
-        startTime = Instant.now();
+        quizSessionQueue = getRandomizedQueue(flashcardsReadFromDB, numberOfQuestions, tags);
+        initStatistics();
     }
 
     /**
@@ -98,8 +92,19 @@ public class Quiz {
         return currentQuiz;
     }
 
+    /**
+     * Checks whether the attempt is correct with respect to the current flashcard in the quiz.
+     *
+     * @param attempt The answer to check.
+     * @return True if the attempt is correct; false otherwise. Statistics of the quiz will be updated as well.
+     */
     public boolean isCorrectAttempt(Answer attempt) {
-        return currentQuiz.getAnswer().equals(attempt);
+        numberOfQuestionsAttempted++;
+        boolean result = currentQuiz.getAnswer().equals(attempt);
+        if (result) {
+            numberOfQuestionsCorrect++;
+        }
+        return result;
     }
 
     public Queue<Flashcard> getQuizSessionQueue() {
@@ -107,53 +112,37 @@ public class Quiz {
     }
 
     /**
-     * Generates randomized queue from the given array of flashcards.
+     * Generates randomized queue that is a subset from the given array of flashcards.
      *
      * @param flashcardsReadFromDB An array of flashcards, previously read from database.
+     * @param numberOfQuestions The number of questions to limit the quiz to. Is ignored if zero.
+     * @param tags Tags used to filter the array of flashcards. Can be empty.
      * @return A queue of flashcards with randomized order.
      */
-    private Queue<Flashcard> getRandomizedQueue(Flashcard[] flashcardsReadFromDB) {
-        List<Flashcard> flashcardsToShuffle = Arrays.asList(flashcardsReadFromDB);
-        Collections.shuffle(flashcardsToShuffle);
-        Queue<Flashcard> randomizedQueue = new LinkedList<>();
-        for (Flashcard f : flashcardsToShuffle) {
-            randomizedQueue.offer(f);
-        }
-        return randomizedQueue;
-    }
-
-    /**
-     *Generates randomized queue that is a subset from the given array of flashcards.
-     * @param flashcardsReadFromDB An array of flashcards, previously read from database.
-     * @param tags Tags used to filter the array of flashcards.
-     * @return A queue of flashcards with randomized order.
-     */
-    private Queue<Flashcard> getRandomizedSubsetQueue(Flashcard[] flashcardsReadFromDB, Set<Tag> tags) {
+    private Queue<Flashcard> getRandomizedQueue(Flashcard[] flashcardsReadFromDB,
+            int numberOfQuestions, Set<Tag> tags) throws CommandException {
         List<Flashcard> flashcardsToProcess = Arrays.asList(flashcardsReadFromDB);
         Collections.shuffle(flashcardsToProcess);
         Queue<Flashcard> randomizedQueue = new LinkedList<>();
+
+        // Filter by tags if needed
         for (Flashcard f : flashcardsToProcess) {
             if (f.getWeeblingoTags().containsAll(tags) || f.getUserTags().containsAll(tags)) {
                 randomizedQueue.offer(f);
             }
         }
-        return randomizedQueue;
-    }
 
-    /**
-     * Generates randomized queue that is a subset from the given array of flashcards.
-     *
-     * @param flashcardsReadFromDB An array of flashcards, previously read from database.
-     * @param numberOfQuestions The number of questions to limit the quiz to.
-     * @return A queue of flashcards with randomized order.
-     */
-    private Queue<Flashcard> getRandomizedSubsetQueue(Flashcard[] flashcardsReadFromDB, int numberOfQuestions) {
-        List<Flashcard> flashcardsToShuffle = Arrays.asList(flashcardsReadFromDB);
-        Collections.shuffle(flashcardsToShuffle);
-        Queue<Flashcard> randomizedQueue = new LinkedList<>();
-        for (int i = 1; i <= numberOfQuestions; i++) {
-            randomizedQueue.offer(flashcardsToShuffle.get(i));
+        if (randomizedQueue.isEmpty()) {
+            throw new CommandException(StartCommand.MESSAGE_TAG_NOT_FOUND);
         }
+
+        // Shorten to numberOfQuestions if needed
+        if (numberOfQuestions != 0) {
+            while (numberOfQuestions < randomizedQueue.size()) {
+                randomizedQueue.poll();
+            }
+        }
+
         return randomizedQueue;
     }
 
@@ -165,9 +154,42 @@ public class Quiz {
     public String getQuizSessionDuration() {
         Instant endTime = Instant.now();
         Duration duration = Duration.between(startTime, endTime);
-        return String.format("%d:%02d:%02d",
+        String result = String.format("%d:%02d:%02d",
                 duration.toHours(),
                 duration.toMinutesPart(),
                 duration.toSecondsPart());
+        optionalDurationString = Optional.of(result);
+        return result;
+    }
+
+    /**
+     * Initializes the state of the quiz statistics.
+     */
+    private void initStatistics() {
+        numberOfQuestionsCorrect = 0;
+        numberOfQuestionsAttempted = 0;
+        startTime = Instant.now();
+        optionalDurationString = Optional.empty();
+    }
+
+    /**
+     * Gets the statistics information of Quiz as a string for display purposes.
+     *
+     * @return The string representation of the quiz statistics.
+     */
+    public String getStatisticString() {
+        return String.format("Number of attempts: %d; Number of correct attempts: %d; Time spent: %s",
+                numberOfQuestionsAttempted,
+                numberOfQuestionsCorrect, getQuizSessionDuration());
+    }
+
+    /**
+     * Gives a score representing the quiz attempt.
+     *
+     * @return The score containing the statistic data of the quiz attempt.
+     */
+    public Score giveScore() {
+        return Score.of(numberOfQuestionsAttempted, numberOfQuestionsCorrect,
+                optionalDurationString.orElse(getQuizSessionDuration()));
     }
 }

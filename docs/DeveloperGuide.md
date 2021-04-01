@@ -63,11 +63,16 @@ The sections below give more details of each component.
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 **API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2021S2-CS2103T-T13-1/tp/blob/master/src/main/java/seedu/weeblingo/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `FlashcardListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`,
+`FlashcardListPanel`, `ScoreHistoryListPanel`, `StatusBarFooter` etc.
+All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files
+that are in the `src/main/resources/view` folder.
+For example, the layout of the [`MainWindow`](https://github.com/AY2021S2-CS2103T-T13-1/tp/blob/master/src/main/java/seedu/weeblingo/ui/MainWindow.java)
+is specified in [`MainWindow.fxml`](https://github.com/AY2021S2-CS2103T-T13-1/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -117,11 +122,11 @@ The `Model`,
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2021S2-CS2103T-T13-1/tp/blob/master/src/main/java/seedu/weeblingo/storage/Storage.java)
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
-* can save the flashcard book data in json format and read it back.
+* can save the flashcard book data (flashcards and scores) in json format and read it back.
 
 ### Common classes
 
@@ -169,6 +174,41 @@ The start command is used to start a quiz session, enabling users to define the 
 questions they want to be tested on. The activity diagram below shows the flow of events when a user
 enters the start command.
 
+### \[Proposed\] Quiz Scoring
+*{To be updated}*
+
+### View Past Quiz Attempts
+
+The view quiz history mechanism allows users to view their past attempts of quizzes. Each entry of quiz history is
+represented in a way similar how the flashcards are represented in the Weeblingo application. 
+
+Below is the class diagram
+for how `Score` is represented in *Model* component.
+
+![HistoryModelDiagram](images/HistoryModelDiagram.png)
+
+The *UI* component, which originally only handles the display of flashcards,
+now needs to handle the display for scoring history as well.
+
+The following sequence diagram shows how the UI switches display from flashcards to score history and vice versa.
+
+![HistoryUiSequenceDiagram](images/HistoryUiSequenceDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: How to represent `Score` in the application
+
+* **Alternative 1 (current choice):** Make `Score` and `Flashcard` two separate classes.
+    * Pros: Easy to implement.
+    * Cons: 
+      * May have the overhead of writing similar code. For instance, `JsonAdaptedFlashcard` and `JsonAdaptedScore`.
+      * Changing the UI display from flashcards to score history may be cumbersome. 
+* **Alternative 2:** Let `Score` have inheritance relationship with `Flashcard`.
+    * Pros: Changing UI display is easy.
+    * Cons:
+      * The design choice is not intuitive (`Score` does not seem to be a `Flashcard` and vice versa).
+      * The overhead of maintaining the inheritance is non-trivial.
+>>>>>>> a11c1e4bd62bb43a31ed5bcd06001ba7f4cc516d
 
 --------------------------------------------------------------------------------------------------------------------
 

@@ -28,7 +28,8 @@ public class CheckCommandTest {
         Answer attempt = new FlashcardBuilder().build().getAnswer();
         ModelStubCheckSuccessful modelStub = new ModelStubCheckSuccessful();
         CommandResult commandResult = new CheckCommand(attempt).execute(modelStub);
-        assertEquals(CheckCommand.CORRECT_ATTEMPT + CheckCommand.MESSAGE_SUCCESS, commandResult.getFeedbackToUser());
+        assertEquals(CheckCommand.CORRECT_ATTEMPT + "\n"
+                + CheckCommand.MESSAGE_HELPER, commandResult.getFeedbackToUser());
     }
 
     @Test
@@ -36,7 +37,7 @@ public class CheckCommandTest {
         Answer attempt = new FlashcardBuilder().build().getAnswer();
         ModelStubCheckFailure modelStub = new ModelStubCheckFailure();
         CommandResult commandResult = new CheckCommand(attempt).execute(modelStub);
-        assertEquals(attempt + CheckCommand.WRONG_ATTEMPT + CheckCommand.MESSAGE_SUCCESS,
+        assertEquals(attempt + CheckCommand.WRONG_ATTEMPT + "\n" + CheckCommand.MESSAGE_HELPER,
                 commandResult.getFeedbackToUser());
     }
 
@@ -115,7 +116,7 @@ public class CheckCommandTest {
         }
 
         @Override
-        public void startQuiz() {
+        public void startQuiz(int numberOfQuestions, Set<Tag> tags) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -151,16 +152,6 @@ public class CheckCommandTest {
 
         @Override
         public int getCurrentMode() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setNumOfQnsForQuizSession(int numberOfQuestions) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setTagsForQuizSession(Set<Tag> tags) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -213,6 +204,21 @@ public class CheckCommandTest {
         public void switchModeHistory() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void switchModeQuizSessionEnded() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addScore() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public String getQuizStatisticString() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
@@ -231,6 +237,16 @@ public class CheckCommandTest {
 
         @Override
         public void switchModeCheckSuccess() {
+        }
+
+        @Override
+        public String getQuizStatisticString() {
+            return "";
+        }
+
+        @Override
+        public int getCurrentMode() {
+            return Mode.MODE_QUIZ;
         }
 
     }
@@ -253,5 +269,14 @@ public class CheckCommandTest {
         public void switchModeCheckSuccess() {
         }
 
+        @Override
+        public String getQuizStatisticString() {
+            return "";
+        }
+
+        @Override
+        public int getCurrentMode() {
+            return Mode.MODE_QUIZ;
+        }
     }
 }
