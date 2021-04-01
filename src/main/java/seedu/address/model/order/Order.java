@@ -100,6 +100,11 @@ public class Order implements Item, Aggregator<Dish> {
         return StringUtil.containsWordIgnoreCase(customer.getName(), name);
     }
 
+    /**
+     * Checks if dish contains given keyword
+     * @param keyword keyword to be checked
+     * @return true if dish contans given keyword
+     */
     public boolean containsDishKeyword(String keyword) {
         for (Pair<Dish, Integer> pair : getDishQuantityList()) {
             if (StringUtil.containsWordIgnoreCase(pair.getKey().getName(), keyword)) {

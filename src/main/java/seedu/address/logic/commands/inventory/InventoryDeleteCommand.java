@@ -37,11 +37,6 @@ public class InventoryDeleteCommand extends Command {
     private final Index targetIndex;
     private final boolean isForce;
 
-    public InventoryDeleteCommand(Index targetIndex) {
-        this.targetIndex = targetIndex;
-        this.isForce = false;
-    }
-
     /**
      * Forces delete dish with given index along with associated ingredients
      * @param targetIndex index in ingredient list
@@ -72,7 +67,7 @@ public class InventoryDeleteCommand extends Command {
             throw new CommandException(String.format(MESSAGE_DELETE_INGREDIENT_FAILURE, ingredientToDelete.getName()));
         }
 
-        for(Dish dishToDelete: dishesToCascade){
+        for (Dish dishToDelete: dishesToCascade) {
             List<Order> outstandingOrders = model.getIncompleteOrdersContainingDish(dishToDelete);
             model.cancelOrders(outstandingOrders);
             model.deleteDish(dishToDelete);
