@@ -30,6 +30,7 @@ import seedu.address.model.tag.Tag;
  */
 public class PoolCommand extends Command {
     public static final String COMMAND_WORD = "pool";
+    public static final long MAX_TIME_DIFFERENCE = 15;
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Pools commuters together with a driver. "
             + "Parameters: "
@@ -82,14 +83,8 @@ public class PoolCommand extends Command {
     }
 
     private boolean checkTimeDifference(List<Passenger> passengers) {
-        for (Passenger p : passengers) {
-            TripTime passengerTime = p.getTripTime();
-            if (this.tripTime.compareMinutes(passengerTime) > 15) {
-                return true;
-            }
-        }
-
-        return false;
+        return passengers.stream()
+                .anyMatch(x -> x.getTripTime().compareMinutes(this.tripTime) > MAX_TIME_DIFFERENCE);
     }
 
     @Override
