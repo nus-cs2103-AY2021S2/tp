@@ -37,8 +37,6 @@ public class LogicManager implements Logic {
         this.storage = storage;
 
         heliBookParser = new HeliBookParser();
-
-        model.orderAppointments();
     }
 
     @Override
@@ -60,8 +58,6 @@ public class LogicManager implements Logic {
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
-
-        model.orderAppointments(); // ensure that appointments are loaded in increasing date order
 
         return commandResult;
     }
