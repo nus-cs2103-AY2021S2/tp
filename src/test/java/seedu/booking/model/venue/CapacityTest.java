@@ -14,13 +14,13 @@ public class CapacityTest {
     }
 
     @Test
-    public void constructor_invalidName_throwsIllegalArgumentException() {
+    public void constructor_invalidCapacity_throwsIllegalArgumentException() {
         Integer invalidCapacity = -1;
         assertThrows(IllegalArgumentException.class, () -> new Capacity(invalidCapacity));
     }
 
     @Test
-    public void isValidName() {
+    public void isValidCapacity() {
         // null capacity
         assertThrows(NullPointerException.class, () -> Capacity.isValidCapacity(null));
 

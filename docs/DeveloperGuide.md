@@ -263,16 +263,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | admin in charge of facilities              | edit venues                    | reflect the most up to date details of the venue.                       |
 | `* * *`  | admin in charge of facilities              | delete venues                  | remove venues not available for booking.                                                                       |
 | `* * *`  | admin in charge of facilities              | view venues                    |                                                                        |
+| `* * *`  | admin in charge of facilities              | find a venue by searching the venue's name| quickly get details of that venue.                                                                      |
 | `* * *`  | admin in charge of facilities              | add bookings                   |                                                                        |
-| `* * *`  | admin in charge of facilities              | edit bookings                  | change booking details when the booker decides to amend the booking.    |
-| `* * *`  | admin in charge of facilities              | delete bookings                | remove bookings that have been cancelled by the booker.                                                                       |
-| `* * *`  | admin in charge of facilities              | view bookings                  |                                                                        |
-| `* * *`  | admin in charge of facilities              | add bookers                    | make bookings for that booker.                                                                       |
-| `* * *`  | admin in charge of facilities              | edit bookers                   | reflect the most up to date details of the booker.                       |
-| `* * *`  | admin in charge of facilities              | delete bookers                 | remove bookers who are not able to make a booking.                                                                       |
-| `* * *`  | admin in charge of facilities              | view bookers                   |                                                                        |
+| `* * *`  | admin in charge of facilities              | edit bookings                  | change booking details when the person decides to amend the booking.    |
+| `* * *`  | admin in charge of facilities              | delete bookings                | remove bookings that have been cancelled by the person.                                                                       |
+| `* * *`  | admin in charge of facilities              | view bookings                  | check the bookings that have been made.   
+| `* * *`  | admin in charge of facilities              | find a booking by searching the booking's id| quickly get details of that booking.                                                                        ||
+| `* * *`  | admin in charge of facilities              | add persons                    | make bookings for that person.                                                                       |
+| `* * *`  | admin in charge of facilities              | edit persons                   | reflect the most up to date details of the person.                       |
+| `* * *`  | admin in charge of facilities              | delete persons                 | remove persons who are not able to make a booking.                                                                       |
+| `* * *`  | admin in charge of facilities              | view persons                   |
+| `* * *`  | admin in charge of facilities              | find a person by searching the person's email| quickly get details of that person.                                                                        ||
 | `* *`    | admin in charge of facilities              | query booking information of a particular venue | quickly find out the relevant information instead of search one by one |
-| `* *`    | admin in charge of facilities              | query booking information of a particular booker | quickly find out the relevant information instead of search one by one |
+| `* *`    | admin in charge of facilities              | query booking information of a particular person | quickly find out the relevant information instead of search one by one |
 | `* *`    | admin in charge of facilities              | query booking information of a particular date | quickly find out the relevant information instead of search one by one |
 | `*`      | admin in charge of facilities              | be able to access past data           | easily check the history of certain venues                      |
 
@@ -316,18 +319,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case: UC03 - Add a booker**
+**Use case: UC03 - Add a person**
 
 **MSS**
 
-1.  User requests to add a new booker into the system.
-2.  BookCoin To The Moon adds the booker into the system.
+1.  User requests to add a new person into the system.
+2.  BookCoin To The Moon adds the person into the system.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The booker to be added is already in the system.
+* 1a. The person to be added is already in the system.
     * 1a1. BookCoin To The Moon shows an error message.
 
   Use case ends.
@@ -368,18 +371,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 1.
 
 
-**Use case: UC06 - Delete a booker**
+**Use case: UC06 - Delete a person**
 
 **MSS**
 
-1.  User requests to delete a specific booker.
-2.  BookCoin To The Moon deletes the booker.
+1.  User requests to delete a specific person.
+2.  BookCoin To The Moon deletes the person.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The given booker is invalid.
+* 1a. The given person is invalid.
 
     * 1a1. BookCoin To The Moon shows an error message.
 
@@ -403,12 +406,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: UC09 - List all bookers**
+**Use case: UC09 - List all person**
 
 **MSS**
 
-1.  User requests to list all bookers.
-2.  BookCoin To The Moon shows a list of bookers.
+1.  User requests to list all persons.
+2.  BookCoin To The Moon shows a list of persons.
 
     Use case ends.
 
@@ -445,18 +448,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case: UC12 - Find a booker**
+**Use case: UC12 - Find a person**
 
 **MSS**
 
-1.  User requests to find information about a specific booker.
-2.  BookCoin To The Moon shows the information for that booker.
+1.  User requests to find information about a specific person.
+2.  BookCoin To The Moon shows the information for that person.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The booker requested cannot be found.
+* 1a. The person requested cannot be found.
     * 1a1. BookCoin To The Moon shows an error message.
 
   Use case ends.
@@ -490,7 +493,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The booking requested cannot be found.
     * 1a1. BookCoin To The Moon shows an error message.
-* 1b. The booker email does not exist in the system.
+* 1b. The person email does not exist in the system.
     * 1b1. BookCoin To The Moon shows an error message.
 * 1c. The venue name does not exist in the system.
     * 1c1. BookCoin To The Moon shows an error message.
@@ -502,35 +505,35 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 
-**Use case: UC15 - Edit a booker**
+**Use case: UC15 - Edit a person**
 
 **MSS**
 
-1.  User requests to edit information about a specific booker.
-2.  BookCoin To The Moon updates the booker information and saves it to the booking system.
+1.  User requests to edit information about a specific person.
+2.  BookCoin To The Moon updates the person information and saves it to the booking system.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The booker requested cannot be found.
+* 1a. The person requested cannot be found.
     * 1a1. BookCoin To The Moon shows an error message.
 
   Use case ends.
 
 
-**Use case: UC16 - Filter bookings by booker**
+**Use case: UC16 - Filter bookings by person**
 
 **MSS**
 
-1.  User requests to view bookings under a specific booker.
-2.  BookCoin To The Moon displays all bookings made by the specified booker.
+1.  User requests to view bookings under a specific person.
+2.  BookCoin To The Moon displays all bookings made by the specified person.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. No booking is found under the specified booker.
+* 1a. No booking is found under the specified person.
     * 1a1. BookCoin To The Moon shows an error message.
 
   Use case ends.
@@ -617,10 +620,23 @@ testers are expected to do more *exploratory* testing.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
+      
+### Adding a person
+1. Adding a person to the booking system
+    1. Prerequisites: list all persons using the `list_person` command. A person with the same email address and/or phone number cannot already exist. If it is present as a record in the system, delete it.
+
+    2. Test case: `add n/John Doe e/johnd@example.com `<br>
+       Expected: There should be an error stating that the booking command is invalid. This is due to a missing phone number.
+
+    3. Test case: `add n/John Doe p/98765432`<br>
+       Expected: There should be an error stating that the booking command is invalid. This is due to a missing email.
+
+    4. Test case: `add n/John Doe p/98765432 e/johnd@example.com `<br>
+       Expected: A new person by the name John Doe, with phone number 98765432 and email address johnd@example.com is added into the booking system.
 
 ### Adding a venue
 1. Adding a venue to the booking system
-    1. Prerequisites: list all venues using the `list_venue`  command. A venue by the same name cannot already exist.
+    1. Prerequisites: list all venues using the `list_venue` command. A venue by the same name cannot already exist. If it is present as a record in the system, delete it.
 
     2. Test case: `add_venue v/Victoria Hall`<br>
     Expected: Victoria Hall should appear in the list of venues. The default capacity should be set to 10 as it was unspecified in the command, and there should be no description.
@@ -630,21 +646,8 @@ testers are expected to do more *exploratory* testing.
 
     4. Test case: `add_venue v/Victoria Hall d/Popular concert hall`<br>
     Expected: Victoria Hall should appear in the list of venues with a description "Popular concert hall". Capacity should be set to a default of 10.
-
-### Creating a person
-1. Adding a person record for John Doe
-    1. Prerequisites: a person by the same name cannot already exist. If it is present as a record in the system, delete it.
-
-    2. Test case: `add n/John Doe e/johnd@example.com `<br>
-    Expected: There should be an error stating that the booking command is invalid. This is due to a missing phone number.
-
-    3. Test case: `add n/John Doe p/98765432`<br>
-    Expected: There should be an error stating that the booking command is invalid. This is due to a missing email.
-
-    4. Test case: `add n/John Doe p/98765432 e/johnd@example.com `<br>
-    Expected: John Doe should appear in the list of persons with the number 98765432 and email johnd@example.com.
-
-### Creating a booking
+       
+### Adding a booking
 1. Adding a booking for Victoria Hall
     1. Prerequisites: a venue by the same name already exists and a venue by the name of Hall does not exist. If it is not present as a record in the system, create one. Similarly for the email of a person booking, create one if not present
 
@@ -661,15 +664,19 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all persons using the `list_person` command. 
+      Multiple persons in the list. Person with email johndoe@gmail.com is in the list.
+      Person with email nonexistent@gmail.com is not in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   1. Test case: `delete_person e/johndoe@gmail.com`<br>
+      Expected: Person with email johndoe@gmail.com is deleted from the list. 
+      Details of the deleted contact shown in the status message. 
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+   1. Test case: `delete_person e/nonexistent@gmail.com`<br>
+      Expected: No person is deleted. 
+      Error details shown in the status message. 
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `delete_person`, `delete_person x` <br>
       Expected: Similar to previous.
 
 
@@ -712,6 +719,27 @@ testers are expected to do more *exploratory* testing.
        Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
+
+### Editing a person
+
+1. Editing a person while all persons are being shown
+
+    1. Prerequisites: List all persons using the `list_person` command.
+       At least one person in the list. Person with email johndoe@gmail.com is in the list.
+       Person with email nonexistent@gmail.com is not in the list.
+
+    1. Test case: `edit_person eo/johndoe@gmail.com p/90398472`<br>
+       Expected: Person with email johndoe@gmail.com has his/her phone number changed to 90398472.
+       Details of the edited person in the status message.
+
+    1. Test case: `edit_person eo/nonexistent@gmail.com`<br>
+       Expected: No person is edited.
+       Error details shown in the status message.
+
+    1. Other incorrect delete commands to try: `delete_person`, `delete_person x` <br>
+       Expected: Similar to previous.
+       
+
 
 ### Accessing help
 
