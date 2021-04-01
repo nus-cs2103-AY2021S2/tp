@@ -13,6 +13,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListCommand;
@@ -287,6 +288,11 @@ public class MainWindow extends UiPart<Stage> {
                     || commandResult.getFeedbackToUser().equals(ListCommand.MESSAGE_EMPTY_TUTOR_LIST)
                     || commandResult.getFeedbackToUser().equals(ListCommand.MESSAGE_EMPTY_STUDENT_LIST)) {
                 clearPanels();
+            }
+
+            if (commandResult.getFeedbackToUser().equals(String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW,
+                    logic.getFilteredPersonList().size()))) {
+                fillInnerParts();
             }
 
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
