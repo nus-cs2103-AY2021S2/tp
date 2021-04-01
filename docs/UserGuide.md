@@ -187,10 +187,10 @@ Examples:
 * `stats all` displays the list of percentages of vaccinated students in every Faculty and School Residence.
 
 Sample Output for `stats All`:
-|![StatsALl](images/statsAll.png)
+![StatsALl](images/statsAll.png)
 
 Sample Output for `stats PGPH`:
-|![StatsALl](images/statsResidence.png)
+![StatsALl](images/statsResidence.png)
 ### Adding an appointment: `addAppt`
 
 Adds an appointment to Vax@NUS' records. 
