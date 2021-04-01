@@ -51,7 +51,7 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete_booking 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -86,7 +86,7 @@ The `UI` component,
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete_booking 1")` API call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
@@ -259,17 +259,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
 | -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | admin in charge of facilities              | add venues                     |                                                                        |
-| `* * *`  | admin in charge of facilities              | edit venues                    | reflect the most up to date details of the venue                       |
-| `* * *`  | admin in charge of facilities              | delete venues                  |                                                                        |
+| `* * *`  | admin in charge of facilities              | add venues                     | make bookings in that venue.                                                                       |
+| `* * *`  | admin in charge of facilities              | edit venues                    | reflect the most up to date details of the venue.                       |
+| `* * *`  | admin in charge of facilities              | delete venues                  | remove venues not available for booking.                                                                       |
 | `* * *`  | admin in charge of facilities              | view venues                    |                                                                        |
 | `* * *`  | admin in charge of facilities              | add bookings                   |                                                                        |
-| `* * *`  | admin in charge of facilities              | edit bookings                  | change booking details when the booker decides to amend the booking    |
-| `* * *`  | admin in charge of facilities              | delete bookings                |                                                                        |
+| `* * *`  | admin in charge of facilities              | edit bookings                  | change booking details when the booker decides to amend the booking.    |
+| `* * *`  | admin in charge of facilities              | delete bookings                | remove bookings that have been cancelled by the booker.                                                                       |
 | `* * *`  | admin in charge of facilities              | view bookings                  |                                                                        |
-| `* * *`  | admin in charge of facilities              | add bookers                    |                                                                        |
-| `* * *`  | admin in charge of facilities              | edit bookers                   | reflect the most up to date details of the booker                       |
-| `* * *`  | admin in charge of facilities              | delete bookers                 |                                                                        |
+| `* * *`  | admin in charge of facilities              | add bookers                    | make bookings for that booker.                                                                       |
+| `* * *`  | admin in charge of facilities              | edit bookers                   | reflect the most up to date details of the booker.                       |
+| `* * *`  | admin in charge of facilities              | delete bookers                 | remove bookers who are not able to make a booking.                                                                       |
 | `* * *`  | admin in charge of facilities              | view bookers                   |                                                                        |
 | `* *`    | admin in charge of facilities              | query booking information of a particular venue | quickly find out the relevant information instead of search one by one |
 | `* *`    | admin in charge of facilities              | query booking information of a particular booker | quickly find out the relevant information instead of search one by one |
@@ -280,61 +280,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is `BookCoin To The Moon` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: UC01 - Delete a venue**
-
-**MSS**
-
-1.  User requests to delete a specific venue.
-2.  BookCoin To The Moon deletes the venue.
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. The given venue is invalid.
-
-    * 1a1. BookingSystem shows an error message.
-
-      Use case resumes at step 1.
-
-
-**Use case: UC02 - Delete a booking**
-
-**MSS**
-
-1.  User requests to delete a specific booking.
-2.  BookCoin To The Moon deletes the booking.
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. The given booking is invalid.
-
-    * 1a1. BookingSystem shows an error message.
-
-      Use case resumes at step 1.
-
-
-**Use case: UC03 - Delete a booker**
-
-**MSS**
-
-1.  User requests to delete a specific booker.
-2.  BookCoin To The Moon deletes the booker.
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. The given booker is invalid.
-
-    * 1a1. BookCoin To The Moon shows an error message.
-
-      Use case resumes at step 1.
-
-
-**Use case: UC04 - Add a venue**
+**Use case: UC01 - Add a venue**
 
 **MSS**
 
@@ -354,7 +300,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. BookCoin To The Moon shows an error message and prompts the user to reenter their command.
 
 
-**Use case: UC05 - Add a booking**
+**Use case: UC02 - Add a booking**
 
 **MSS**
 
@@ -370,7 +316,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case: UC06 - Add a booker**
+**Use case: UC03 - Add a booker**
 
 **MSS**
 
@@ -386,6 +332,58 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
+**Use case: UC04 - Delete a venue**
+
+**MSS**
+
+1.  User requests to delete a specific venue.
+2.  BookCoin To The Moon deletes the venue.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given venue is invalid.
+
+    * 1a1. BookingSystem shows an error message.
+
+      Use case resumes at step 1.
+
+
+**Use case: UC05 - Delete a booking**
+
+**MSS**
+
+1.  User requests to delete a specific booking.
+2.  BookCoin To The Moon deletes the booking.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given booking is invalid.
+
+    * 1a1. BookingSystem shows an error message.
+
+      Use case resumes at step 1.
+
+
+**Use case: UC06 - Delete a booker**
+
+**MSS**
+
+1.  User requests to delete a specific booker.
+2.  BookCoin To The Moon deletes the booker.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given booker is invalid.
+
+    * 1a1. BookCoin To The Moon shows an error message.
+
+      Use case resumes at step 1.
 
 **Use case: UC07 - List all bookings**
 
@@ -414,8 +412,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
+**Use case: UC10 - Find a venue**
 
-**Use case: UC10 - Find a booking**
+**MSS**
+
+1.  User requests to find information about a specific venue.
+2.  BookCoin To The Moon shows the information for that venue.
+
+    Use case ends.
+
+**Extensions**
+
+**Use case: UC11 - Find a booking**
 
 **MSS**
 
@@ -431,29 +439,34 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case: UC11 - Find a venue**
-
-**MSS**
-
-1.  User requests to find information about a specific venue.
-2.  BookCoin To The Moon shows the information for that venue.
-
-    Use case ends.
-
-**Extensions**
 
 * 1a. The venue requested cannot be found.
     * 1a1. BookCoin To The Moon shows an error message.
 
   Use case ends.
 
-**Use case: UC12 - Edit a venue**
+**Use case: UC12 - Find a booker**
+
+**MSS**
+
+1.  User requests to find information about a specific booker.
+2.  BookCoin To The Moon shows the information for that booker.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The booker requested cannot be found.
+    * 1a1. BookCoin To The Moon shows an error message.
+
+  Use case ends.
+
+**Use case: UC13 - Edit a venue**
 
 **MSS**
 
 1.  User requests to edit information about a specific venue.
-2.  BookCoin To The Moon edits the venue information.
-3.  BookCoin To The Moon edits the corresponding booking information.
+2.  BookCoin To The Moon updates the venue information and saves it to the booking system.
     
     Use case ends.
 
@@ -464,12 +477,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case: UC13 - Edit a booking**
+**Use case: UC14 - Edit a booking**
 
 **MSS**
 
 1.  User requests to edit information about a specific booking.
-2.  BookCoin To The Moon edits the booking information.
+2.  BookCoin To The Moon updates the booking information and saves it to the booking system.
 
     Use case ends.
 
@@ -489,13 +502,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 
-**Use case: UC14 - Edit a booker**
+**Use case: UC15 - Edit a booker**
 
 **MSS**
 
 1.  User requests to edit information about a specific booker.
-2.  BookCoin To The Moon edits the booker information.
-3.  BookCoin To The Moon edits the corresponding booking information.
+2.  BookCoin To The Moon updates the booker information and saves it to the booking system.
 
     Use case ends.
 
@@ -507,7 +519,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 
-**Use case: UC15 - Filter bookings by booker**
+**Use case: UC16 - Filter bookings by booker**
 
 **MSS**
 
@@ -524,7 +536,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 
-**Use case: UC16 - Filter bookings by date**
+**Use case: UC17 - Filter bookings by date**
 
 **MSS**
 
@@ -541,7 +553,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 
-**Use case: UC17 - Filter bookings by venue**
+**Use case: UC18 - Filter bookings by venue**
 
 **MSS**
 
@@ -558,7 +570,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 
-**Use case: UC18 - Exit the program**
+**Use case: UC19 - Exit the program**
 
 **MSS**
 
@@ -566,7 +578,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  BookCoin To The Moon closes the window and terminates.
 
     Use case ends.
-
 
 
 ### Non-Functional Requirements
@@ -607,17 +618,17 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-### Creating a venue
-1. Adding Victoria Hall
-    1. Prerequisites: a venue by the same name cannot already exist. If it is present as a record in the system, delete it.
+### Adding a venue
+1. Adding a venue to the booking system
+    1. Prerequisites: list all venues using the `list_venue`  command. A venue by the same name cannot already exist.
 
-    2. Test case: `create_venue v/Victoria Hall`<br>
+    2. Test case: `add_venue v/Victoria Hall`<br>
     Expected: Victoria Hall should appear in the list of venues. The default capacity should be set to 10 as it was unspecified in the command, and there should be no description.
 
-    3. Test case: `create_venue v/Victoria Hall max/50`<br>
+    3. Test case: `add_venue v/Victoria Hall max/50`<br>
     Expected: Victoria Hall should appear in the list of venues with a capacity indicated to be 50. No description should be present.
 
-    4. Test case: `create_venue v/Victoria Hall d/Popular concert hall`<br>
+    4. Test case: `add_venue v/Victoria Hall d/Popular concert hall`<br>
     Expected: Victoria Hall should appear in the list of venues with a description "Popular concert hall". Capacity should be set to a default of 10.
 
 ### Creating a person
@@ -625,17 +636,17 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: a person by the same name cannot already exist. If it is present as a record in the system, delete it.
 
     2. Test case: `add n/John Doe e/johnd@example.com `<br>
-    Expected: There should be an error stating that the the booking command is invalid. This is due to a missing phone number.
+    Expected: There should be an error stating that the booking command is invalid. This is due to a missing phone number.
 
     3. Test case: `add n/John Doe p/98765432`<br>
-    Expected: There should be an error stating that the the booking command is invalid. This is due to a missing email.
+    Expected: There should be an error stating that the booking command is invalid. This is due to a missing email.
 
     4. Test case: `add n/John Doe p/98765432 e/johnd@example.com `<br>
     Expected: John Doe should appear in the list of persons with the number 98765432 and email johnd@example.com.
 
 ### Creating a booking
 1. Adding a booking for Victoria Hall
-    1. Prerequisites: a venue by the same name already exist and a venue by the name of Hall does not exist. If it is not present as a record in the system, create one. Similarly for the email of a person booking, create one if not present
+    1. Prerequisites: a venue by the same name already exists and a venue by the name of Hall does not exist. If it is not present as a record in the system, create one. Similarly for the email of a person booking, create one if not present
 
     2. Test case: `create_booking b/example@gmail.com v/Hall d/For FYP Meeting. bs/2012-01-31 22:59:59 be/2012-01-31 23:59:59`<br>
     Expected: There should be an error stating that the venue does not exist in the system
