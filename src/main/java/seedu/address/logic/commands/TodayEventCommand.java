@@ -14,7 +14,7 @@ public class TodayEventCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all events happen today "
             + "Example: " + COMMAND_WORD;
 
-    public static final String MESSAGE_TODAY_EVENT_SUCCESS = "Listed events that happen on today";
+    public static final String MESSAGE_TODAY_EVENT_SUCCESS = "Listed events that happen on today\n";
 
     private final EventCoversTodayPredicate predicate;
 
