@@ -247,6 +247,15 @@ public interface Model {
     GeneralEvent getEvent(int index);
 
     /**
+     * Replaces the given general event {@code target} with {@code editedEvent}.
+     * {@code target} must exist in the RemindMe.
+     * The description and date of {@code editedEvent} must not be the same as
+     * another existing general event in the RemindMe.
+     */
+    void setEvent(GeneralEvent target, GeneralEvent editedEvent);
+
+
+    /**
      * Updates the filter of the filtered module list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
