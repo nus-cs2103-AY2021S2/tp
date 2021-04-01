@@ -28,5 +28,4 @@ public class CliSyntax {
                 PREFIX_TAG, PREFIX_INSURANCE_POLICY, PREFIX_INSURANCE_POLICY_URL));
         return prefixes.contains(new Prefix(input));
     }
-
 }
