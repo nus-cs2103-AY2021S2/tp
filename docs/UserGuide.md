@@ -85,11 +85,6 @@ Before diving into the rest of the contents in our user guide, the following are
 imPoster will start with an empty file if a modification to the data file causes the data to be invalid.
 </div>
 
-<div markdown="span" class="alert alert-warning">:bulb: **Tip:**
-Do not worry if you input any commands wrongly when using our app! Our app gives helpful error messages depending on the command you entered, 
-and you can always enter the [help command](#5-view-help) if you need to refer back to the various commands avaliable! 
-</div>
-<div style="page-break-after: always;"></div>
 
 <div style="page-break-after: always;"></div>
 
@@ -327,6 +322,10 @@ command box with the last command.
 **Description:** As users may wish to scroll the endpoints in the endpoint list or the responses in result display, the <kbd>Page Up</kbd> and <kbd>Page Down</kbd> keys (<kbd>fn</kbd> + <kbd>up</kbd> and <kbd>fn</kbd> + <kbd>down</kbd> on **MacOS**) are available as options to scroll the 2 components above.
 
 **Format:** <kbd>Page Up</kbd> and <kbd>Page Down</kbd> (<kbd>fn</kbd> + <kbd>up</kbd> and <kbd>fn</kbd> + <kbd>down</kbd> on **MacOS**)
+
+#### 4.3.4 Error Messages
+
+**Description:** Do not worry if you input any commands wrongly when using our app! Our app gives helpful error messages depending on the command you entered, and you can always enter the [Help Command](#4.1.1-View-help) if you need to refer back to the various commands avaliable!
 
 <div style="page-break-after: always;"></div>
 
