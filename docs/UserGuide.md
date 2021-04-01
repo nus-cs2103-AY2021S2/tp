@@ -8,6 +8,8 @@ title: User Guide
 ClientBook is an application for insurance agents to manage client contacts, optimized for use with just a keyboard,
 but still offering a graphical interface for ease of viewing of client contacts. The purpose of ClientBook is to help 
 insurance agents who can type fast to accomplish their client management tasks faster than traditional applications.
+If this is the first time that you are using an application like ClientBook, you do not have to worry. We have included
+a section [here](#how-to-use-this-guide) to guide you through this user guide.
 
 ## Why ClientBook?
 
