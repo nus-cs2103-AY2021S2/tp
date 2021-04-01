@@ -191,6 +191,10 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+
+            //Refresh page
+            tablePanel = new TablePanel(logic.getFilteredItemList());
+            tablePanelPlaceholder.getChildren().add(tablePanel.getRoot());
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
