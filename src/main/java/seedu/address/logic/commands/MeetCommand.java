@@ -93,7 +93,7 @@ public class MeetCommand extends Command {
         List<Person> personList = model.getWholePersonList();
         String clashes = checkMeeting(personList, meeting);
         if (!clashes.isEmpty()) {
-            return new CommandResult(String.format(MESSAGE_CLASHING_MEETING, clashes));
+            throw new CommandException(String.format(MESSAGE_CLASHING_MEETING, clashes));
         }
 
         Person newPerson = addMeeting(personToMeet, meeting);
