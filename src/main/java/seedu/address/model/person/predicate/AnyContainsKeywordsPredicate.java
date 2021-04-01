@@ -1,9 +1,9 @@
 package seedu.address.model.person.predicate;
 
-import seedu.address.model.person.Person;
-
 import java.util.List;
 import java.util.function.Predicate;
+
+import seedu.address.model.person.Person;
 
 /**
  * Tests that any of {@code Person}'s fields matches any of the keywords given.

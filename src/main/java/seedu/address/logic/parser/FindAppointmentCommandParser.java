@@ -61,15 +61,15 @@ public class FindAppointmentCommandParser implements Parser<FindAppointmentComma
     public FindAppointmentCommand parseFindOptions(String option, String optionArgs) throws ParseException {
         List<String> keywords = Arrays.asList(optionArgs.split("\\s+"));
         switch (option) {
-        case OPTION_NAME:  // find by name
+        case OPTION_NAME: // find by name
             return new FindAppointmentCommand(new ApptNameContainsKeywordsPredicate(keywords));
         case OPTION_CHILD:
             return new FindAppointmentCommand(new ApptTagsContainKeywordsPredicate(keywords));
-        case OPTION_ADDRESS:  // find by address
+        case OPTION_ADDRESS: // find by address
             return new FindAppointmentCommand(new ApptAddressContainsKeywordsPredicate(keywords));
-        case OPTION_DATE:  // find by date
+        case OPTION_DATE: // find by date
             return new FindAppointmentCommand(new ApptDateContainsKeywordsPredicate(keywords));
-        case OPTION_CONTACT:  // find by contacts
+        case OPTION_CONTACT: // find by contacts
             return new FindAppointmentCommand(new ApptContactsContainKeywordsPredicate(keywords));
         default:
             throw new ParseException(

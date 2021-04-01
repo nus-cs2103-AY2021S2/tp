@@ -6,10 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.OPTION_CHILD;
 import static seedu.address.logic.parser.CliSyntax.OPTION_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.OPTION_DATE;
 import static seedu.address.logic.parser.CliSyntax.OPTION_NAME;
-import static seedu.address.logic.parser.CliSyntax.OPTION_PHONE;
-import static seedu.address.logic.parser.CliSyntax.OPTION_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.function.Predicate;
 
