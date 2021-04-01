@@ -79,6 +79,7 @@ public class UpcomingSchedule extends UiPart<Region> implements EventHandler<Mou
 
     private void fillBase() {
         schedule.getChildren().remove(eventHolder.getRoot());
+        calendarStorage.refreshStorage();
         EventList events = calendarStorage.getDateEvents(currentDay);
         eventHolder.updateList(events);
         schedule.getChildren().add(eventHolder.getRoot());
