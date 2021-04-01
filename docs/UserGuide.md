@@ -32,22 +32,23 @@ all the [features](#3-features) in the RemindMe app. You can also access the pro
       * [3.4.1 Finding persons](#341-finding-persons-n)
       * [3.4.2 Finding modules](#342-finding-modules-m)  
       * [3.4.3 Finding general events](#343-finding-general-events-g)
-    * **[3.5 Marking as done `done`](#35-marking-as-done-done)**
-    * **[3.6 Deleting: `delete`](#36-deleting-delete)**
-      * [3.6.1 Deleting a person](#361-deleting-a-person)
-      * [3.6.2 Deleting a module](#362-deleting-a-module)
-      * [3.6.3 Deleting an assignment](#363-deleting-an-assignment)
-      * [3.6.4 Deleting an exam](#364-deleting-an-exam)
-      * [3.6.5 Deleting a general event](#365-deleting-a-general-event)  
-    * **[3.7 Clearing: `clear`](#37-clearing-clear)**
-      * [3.7.1 Clearing RemindMe](#371-clearing-remindme)
-      * [3.7.2 Clearing all persons](#372-clearing-all-persons)
-      * [3.7.3 Clearing all modules](#373-clearing-all-modules)
-      * [3.7.4 Clearing all general events](#374-clearing-all-general-events)  
-    * **[3.8 Viewing calendar: `calendar`](#38-viewing-calendar-calendar-c)**
-    * **[3.9 Saving the data](#39-saving-the-data)**
-    * **[3.10 Reminder window](#310-reminder-window)**
-    * **[3.11 Exiting the program: `exit`](#311-exiting-the-program-exit-e)**
+    * **[3.5 Listing all entries](#35-listing-all-entries-list)**
+    * **[3.6 Marking as done `done`](#36-marking-as-done-done)**
+    * **[3.7 Deleting: `delete`](#37-deleting-delete)**
+      * [3.7.1 Deleting a person](#371-deleting-a-person)
+      * [3.7.2 Deleting a module](#372-deleting-a-module)
+      * [3.7.3 Deleting an assignment](#373-deleting-an-assignment)
+      * [3.7.4 Deleting an exam](#374-deleting-an-exam)
+      * [3.7.5 Deleting a general event](#375-deleting-a-general-event)  
+    * **[3.8 Clearing: `clear`](#38-clearing-clear)**
+      * [3.8.1 Clearing RemindMe](#381-clearing-remindme)
+      * [3.8.2 Clearing all persons](#382-clearing-all-persons)
+      * [3.8.3 Clearing all modules](#383-clearing-all-modules)
+      * [3.8.4 Clearing all general events](#384-clearing-all-general-events)  
+    * **[3.9 Viewing calendar: `calendar`](#39-viewing-calendar-calendar-c)**
+    * **[3.10 Saving the data](#310-saving-the-data)**
+    * **[3.11 Reminder window](#311-reminder-window)**
+    * **[3.12 Exiting the program: `exit`](#312-exiting-the-program-exit-e)**
 * **[FAQ](#4-faq)**
 * **[Command summary](#5-command-summary)**
 
@@ -137,52 +138,77 @@ feature works!
   For example: In `add n/NAME b/BIRTHDAY [t/TAG]`, the `TAG` parameter is optional. 
   Therefore, both `add n/Alice b/23/03/2021 t/friends` and `add n/Alice b/23/03/2021` are valid.
   
+**Tips:**<br>
+* `DATE-TIME` should follow format day/month/year hour minutes: `DD/MM/YYYY HHMM`.
+</div>
 
-* Commands that do not take in parameters (such as `help` and `exit`) ignore extraneous parameters.<br>
-  For example: If you input `help 123`, RemindMe will return the result of the `help` function.
-
+<div markdown="span" class="alert alert-warning">:exclamation: **Warning:**<br>
+Commands that do not take in parameters (such as `help` and `exit`) ignore extraneous parameters.<br>
+For example: If you input `help 123`, RemindMe will return the result of the `help` function.
 </div>
 
 ### 3.1 Viewing Help: `help`
-The help function shows the URL to the user guide for RemindMe, which is this current webpage!
+The help function shows the URL to the user guide for RemindMe, which is this current document!
 
 ![help message](images/helpMessage.png)<br>
-[Image of RemindMe's help message]
+*[Image of RemindMe's help message]*
 
 Format: `help`
 
 ### 3.2 Adding: `add`
-This section shows features that deal with the adding of entries into your RemindMe.
+This section explains how to add entries into your RemindMe. 
 <br>
 <div markdown="block" class="alert alert-info">
 
 **Note:**<br>
-
-* Duplicate modules are not allowed.
-    * Example: Module with the same name, assignment with the same description and date-time in the same module, etc. 
-
 * The adding of an assignment/exam requires the related module to be added first.
 
+</div>
+
+You can add:
+* [3.2.1 Adding a person](#321-adding-a-person)
+* [3.2.2 Adding a module](#322-adding-a-module)
+* [3.2.3 Adding an assignment](#323-adding-an-assignment)
+* [3.2.4 Adding an exam](#324-adding-an-exam)
+* [3.2.5 Adding a general event](#325-adding-a-general-event)
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Warning:**<br>
+* Duplicate entries are not allowed. Example:<br>
+  * Person/Module with the same name.
+  * Assignments with the same description and date-time in the same module. 
+  * Exams with the same date for the same module.
+  * General events with the same name and date-time. 
 </div>
 
 <br>
 
 #### 3.2.1 Adding a person
-Add your friend with his/her birthday to RemindMe. 
+Using the add feature, you can add your friends to RemindMe and let RemindMe remind you of their birthdays. 
+You can also add optional tags for them to showcase your relationship with them!
 
-Format: `add n/NAME b/BIRTHDAY [t/TAG]`
+<div markdown="block" class="alert alert-info">
+
+**Tip:**
+* `BIRTHDAY` follows format day/month/year: `DD/MM/YYYY`.
+
+</div>
+
+Command: `add n/NAME b/BIRTHDAY [t/TAG]`
 
 Example:
 * `add n/Alice b/22/10/1999`
 * `add n/Benson b/30/09/1997 t/friends`
 
 Expected Result:<br>
-![Expected Result for Adding Persons](./images/addcommand/addpersonexpectedresult.png)
+![Expected Result for Adding Persons](./images/addcommand/addpersonexpectedresult.png)<br>
+*[Result from adding Alice and Benson]*
 
 #### 3.2.2 Adding a module
-Add your module with its description.
+You can add modules that you are taking with their respective titles. Subsequently, you can add the corresponding
+assignments and exams for each module. Now, you can distinguish the assignments and exams for each module, easily 
+keeping track of your workload.
 
-Format: `add m/MODULE`
+Command: `add m/MODULE`
 
 Example:
 * `add m/CS1101`
@@ -193,9 +219,10 @@ Result expected:
 * `New module added: CS1203`
 
 #### 3.2.3 Adding an assignment
-Add an assignment under the module with the deadline provided.
+Now, let's add the corresponding assignment to the module. Don't forget that you need to specify the deadline when 
+adding your task to RemindMe. The deadline follows the `DATE-TIME` format.
 
-Format: `add m/MODULE a/ASSIGNMENT by/DD/MM/YYYY HHMM`
+Command: `add m/MODULE a/ASSIGNMENT by/DEADLINE`
 
 Example:
 * `add m/CS2101 a/Essay 1 by/01/01/2021 2359`
@@ -206,50 +233,75 @@ Result expected:
 #### 3.2.4 Adding an exam
 Add an exam under the module with the date-time provided.
 
-Format: `add m/MODULE e/DD/MM/YYYY HHMM`
+Command: `add m/MODULE e/DATE-TIME`
 
 Example:
 * `add m/CS2101 e/01/01/2021 2359`
 <br>
 <br>
 
-Final result for adding modules, assignments, and exams:
+**Results after the examples from 3.2.2 to 3.2.4:**
 <br>
-<br>
-![Result For Adding Modules](./images/addcommand/addtypicalmoduleresult.png)
+![Result For Adding Modules](./images/addcommand/addtypicalmoduleresult.png)<br>
+*[Result of adding the modules and their respective assignments and exams]*
 <br>
 <br>
 
 #### 3.2.5 Adding a general event
-Add a general event with the description and date-time provided.
+Outside of school work, we all have other activities that require reminders, such as meeting up with your friends or a 
+doctor's appointment. You can add these activities to RemindMe, by adding them as general events!
+
+<div markdown="block" class="alert alert-info">
+
+**Note:**
+* The date and time of your events follow the `DATE-TIME` format.
+
+</div>
     
-Format: `add g/GENERAL EVENT on/DD/MM/YYYY HHMM`
+Command: `add g/GENERAL EVENT on/DATE-TIME`
 
 Example:
 * `add g/School contest on/10/10/2021 1200`
 
 Result expected:
 <br>
-<br>
-![Result For Adding Event](./images/addcommand/addeventexpectedresult.png)
+![Result For Adding Event](./images/addcommand/addeventexpectedresult.png)<br>
+*[Result for adding the school event]*
 <br>
 <br>
 ### 3.3 Editing: `edit`
-This section shows features that deal with the editing of entries in your RemindMe.
+If you created an entry wrongly, you do not have to delete it! With RemindMe's edit function, you can edit the task, 
+saving you the hassle of deleting and recreating an entry just because of a tiny mistake. 
 
 <div markdown="block" class="alert alert-info">
 
 **Note:**<br>
-
-* Editing of a person/module/event should not result in duplicates.
 * The edited content must not be blank.
 
 </div>
 
-#### 3.3.1 Editing a person
-Edit a person in RemindMe to change his/her name/birthday/tag.
+<div markdown="span" class="alert alert-warning">:exclamation: **Warning:**<br>
+* Editing of a person/module/event should not result in duplicates. 
+</div>
 
-Format: `edit INDEX [n/NEW NAME b/NEW BIRTHDAY [t/NEW TAG]]`
+You can edit:
+* [3.3.1 Editing a person](#331-editing-a-person)
+* [3.3.2 Editing a module](#332-editing-a-module)
+* [3.3.3 Editing an assignment](#333-editing-an-assignment)
+* [3.3.4 Editing an exam](#334-editing-an-exam)
+* [3.3.5 Editing a general event](#335-editing-a-general-event)
+    
+#### 3.3.1 Editing a person
+You can update your friend's identity, either changing their name, their birthday or their tags.
+
+<div markdown="block" class="alert alert-info">
+
+**Tip:**<br>
+* You can find the contact you would want to change first with RemindMe's `find`, 
+  such that you can easily update the existing details.
+</div>
+
+Command: `edit INDEX [n/NEW NAME b/NEW BIRTHDAY [t/NEW TAG]]`
 
 Examples:
 * `edit 1 n/Jason`
@@ -258,15 +310,15 @@ Examples:
 
 Results expected:
 <br>
-<br>
-![Edit Persons Result](./images/editcommand/editpersonresult.png)
+![Edit Persons Result](./images/editcommand/editpersonresult.png)<br>
+*[Result of editing Alice to Jason and updating Benson's birthday and tag]*
 <br>
 <br>
 
 #### 3.3.2 Editing a module
-Edit a module in the RemindMe app to change its title.
+You can update your modules' titles with the edit function. 
 
-Format: `edit INDEX m/NEW MODULE TITLE`
+Command: `edit INDEX m/NEW MODULE TITLE`
 
 Examples:
 * `edit 1 m/CS2106`
@@ -277,22 +329,23 @@ Results expected:
 * `Module edited: Software Engineering`
 
 #### 3.3.3 Editing an assignment
-Edit an assignment in the module in RemindMe to change its description or deadline.
+Did an assignment's deadline get postponed? You can update the assignment's deadline using the edit function. Not only 
+that, you can change the assignment name too.
 
-Format: `edit m/MODULE a/ASSIGNMENT INDEX [d/NEW DESCRIPTION by/NEW DEADLINE]`
+Command: `edit m/MODULE a/ASSIGNMENT INDEX [d/NEW DESCRIPTION by/NEW DEADLINE]`
 
 Examples:
 * `edit m/Software Engineering a/1 d/Update UG`
 * `edit m/Software Engineering a/1 by/27/04/2021 1900`
 
 Result expected:
-* `Assignment edited: Update UG due: 23/03/2021 2359`
+* `Assignment edited: [ ] Update UG due: 23/03/2021 2359`
 * `Assignment edited: [X] Update UG due: 27/04/2021 1900`
 
 #### 3.3.4 Editing an exam
-Edit an exam in a module in the RemindMe app to change its date.
+You can also change the date of the exam in a module.
 
-Format: `edit m/MODULE e/EXAM INDEX on/NEW DATE`
+Command: `edit m/MODULE e/EXAM INDEX on/NEW DATE-TIME`
 
 Examples:
 * `edit m/CS2106 e/1 on/04/05/2021 1400`
@@ -300,17 +353,17 @@ Examples:
 Result expected:
 * `Exam edited: Exam is on: 04/05/2021 1400`
 
-Final result for editing module, assignments, and exams:
+**Final result for editing module, assignments, and exams:**
 <br>
-<br>
-![Edited modules](./images/editcommand/editmoduleresult.png)
+![Edited modules](./images/editcommand/editmoduleresult.png)<br>
+*[Results for editing the respective modules, assignments, and exams]*
 <br>
 <br>
 
 #### 3.3.5 Editing a general event
-Edit a general event in the RemindMe app to change its date or description.
+You can also update the name and date-time of your general events.
 
-Format: `edit INDEX [g/NEW DESCRIPTION on/NEW DATE]`
+Command: `edit INDEX [g/NEW DESCRIPTION on/NEW DATE]`
 
 Examples:
 * `edit 1 g/FOC logs meeting`
@@ -321,26 +374,35 @@ Results expected:
 * `Event edited: FOC logs meeting on: 01/04/2021 0001`
 <br>
 <br>
-
-![Edit Event](./images/editcommand/editeventresult.png)
+![Edit Event](./images/editcommand/editeventresult.png)<br>
+*[Results for editing the general event]*
 <br>
 <br>
 
 ### 3.4 Finding: `find`
-This section shows features that deal with the locating of entries in the RemindMe app based on the prefix specified.
+As you use RemindMe, you will have more and more entries. It can get taxing to look for specific entries, scrolling 
+through all of them. Luckily, RemindMe has a way to look for them, using the find function, where RemindMe will show you
+those matching the keywords you provide!
 
 <div markdown="block" class="alert alert-info">
 
 **Note:**<br>
-* All find operations are case-insensitive
-* The order of keywords used doesn't matter
-* Only whole words are matched
+* Only whole words are matched.
 * Entries matching at least one of the keywords will be returned.
+  
+**Tips:**<br>
+* The order of keywords doesn't matter. Hence, you can list all keywords the entry you are looking for contains.
+* All find operations are case-insensitive. Hence, capitalisation doesn't matter!
 
 </div>
 
+You can find:
+* [3.4.1 Finding persons](#341-finding-persons-n)
+* [3.4.2 Finding modules](#342-finding-modules-m)  
+* [3.4.3 Finding general events](#343-finding-general-events-g)
+
 #### 3.4.1 Finding persons: `n/`
-Find your contacts whose names contain any of the given keywords.  
+You can search your contacts whose names contain any of the given keywords.  
 
 <div markdown="block" class="alert alert-info">
 
@@ -349,43 +411,42 @@ Find your contacts whose names contain any of the given keywords.
 
 </div>
 
-Format: `find n/KEYWORD [MORE KEYWORDS]`  
+Command: `find n/KEYWORD [MORE KEYWORDS]`  
 
 Example:
 * `find n/alice`
 
 Expected Result:
 <br>
-<br>
-![Find Person Example](./images/findcommand/findperson.png)
+![Find Person Example](./images/findcommand/findperson.png)<br>
+*[Result for `find n/Alice`]*
 <br>
 <br>
   
 #### 3.4.2 Finding modules: `m/`
-Find modules with titles containing any of the given keywords.
+You can look up your modules based on their titles as well.
 
 <div markdown="block" class="alert alert-info">
 
 **Note:**<br>
-
 * Only the module titles are matched to the keywords
     
 </div>
     
-Format: `find m/KEYWORD [MORE_KEYWORDS]`  
+Command: `find m/KEYWORD [MORE_KEYWORDS]`  
 
 Examples: 
 * `find m/CS1101`  
 
 Expected Result:
 <br>
-<br>
-![Find Module Example](./images/findcommand/findcs1101.png)
+![Find Module Example](./images/findcommand/findcs1101.png)<br>
+*[Result for `find m/CS1101`]*
 <br>
 <br>
   
 #### 3.4.3 Finding general events: `g/`
-Find general events with descriptions containing any of the given keywords.  
+You can find the general events that match with your keywords too! 
 
 <div markdown="block" class="alert alert-info">
 
@@ -394,22 +455,36 @@ Find general events with descriptions containing any of the given keywords.
     
 </div>    
 
-Format: `find g/KEYWORD [KEYWORDS]`  
+Command: `find g/KEYWORD [KEYWORDS]`  
 
 Examples:
 * `find g/FOC`  
 
 Expected Result:
 <br>
-<br>
-![Find Event](./images/findcommand/findevent.png)
+![Find Event](./images/findcommand/findevent.png)<br>
+*[Result for `find g/FOC`]*
 <br>
 <br>
 
-### 3.5 Marking as done: `done`
-This section shows the feature that deals with marking an assignment as done. This feature only applies to assignments.
-    
-Format: `done m/MODULE a/INDEX`
+### 3.5 Listing all entries: `list`
+After you find your specific tasks, you now want to view all your entries. You can use RemindMe's list function to show 
+everything in RemindMe.
+
+Command: `list`
+
+### 3.6 Marking as done: `done`
+When you complete your assignments, you can mark them as done to remind yourself you complete the task and pat yourself 
+on the back!
+
+<div markdown="block" class="alert alert-info">
+
+**Note:**<br>
+* You can only mark assignments as done. 
+
+</div>  
+
+Command: `done m/MODULE a/INDEX`
 
 Example:
 *  `done m/Software Engineering a/1`
@@ -417,21 +492,25 @@ Example:
 Expected Result:
 <br>
 <br>
-![Mark Assignment as done example](./images/donecommand/doneassignment.png)
+![Mark Assignment as done example](./images/donecommand/doneassignment.png)<br>
+*[Result for marking assignment 1 in Software Engineering as done.]*
 <br>
 <br>
   
-### 3.6 Deleting: `delete`
-This section shows features that deals with the deleting of entries in the RemindMe app.
+### 3.7 Deleting: `delete`
+When you do not need your entries anymore, you can delete them using RemindMe's delete function.
+
 <div markdown="block" class="alert alert-info">
 
 **Note:**
-* Deleting an item from RemindME requires it to be present at the given index.
+* Deleting an entry in RemindME requires it to be present at the given index.
     
 </div>     
 
-#### 3.6.1 Deleting a person
-Format: `delete INDEX`  
+#### 3.7.1 Deleting a person
+You can remove a person from your RemindMe, but hopefully, you won't need to use it :)
+
+Command: `delete INDEX`  
 
 Examples:
 * `delete 1`  
@@ -439,109 +518,132 @@ Examples:
 Expected Result:
 <br>
 <br>
-![Delete Person Example](./images/deletecommand/deletealice.png)
+![Delete Person Example](./images/deletecommand/deletealice.png)<br>
+*[Result for deleting Alice which is the first person in the contact list.]*
 <br>
 <br>
 
-#### 3.6.2 Deleting a module
-Format: `delete m/MODULE`
+You can delete:
+* [3.7.1 Deleting a person](#371-deleting-a-person)
+* [3.7.2 Deleting a module](#372-deleting-a-module)
+* [3.7.3 Deleting an assignment](#373-deleting-an-assignment)
+* [3.7.4 Deleting an exam](#374-deleting-an-exam)
+* [3.7.5 Deleting a general event](#375-deleting-a-general-event)
+
+#### 3.7.2 Deleting a module
+Once you have completed a module, you can delete it from RemindMe as a final goodbye!
+
+Command: `delete m/MODULE`
 
 Example:
-* `delete m/Software Engineering`  
+* `delete m/CS1101`  
 
 Expected Result:
 <br>
-<br>
-![Delete Module Example](./images/deletecommand/deletemodule.png)
+![Delete Module Example](./images/deletecommand/deletemodule.png)<br>
+*[Result for deleting CS1101.]*
 <br>
 <br>
 
-#### 3.6.3 Deleting an assignment
-Format: `delete m/MODULE a/INDEX`
+#### 3.7.3 Deleting an assignment
+When you have completed an assignment and do not need it anymore, you can remove it from RemindMe.
+
+Command: `delete m/MODULE a/INDEX`
 
 Example:
-* `add m/CS2106 a/Essay 1 by/28/03/2021 2359`<br>
-  `delete m/CS2106 a/1`
+* `delete m/Software Engineering a/1`
 
 Expected Result:
 <br>
-<br>
-![Delete Assignment Example](./images/deletecommand/deleteassignment.png)
+![Delete Assignment Example](./images/deletecommand/deleteassignment.png)<br>
+*[Result for deleting assignment Update UG in Software Engineering]*
 <br>
 <br>
 
-#### 3.6.4 Deleting an exam
-Format: `delete m/MODULE e/INDEX`
+#### 3.7.4 Deleting an exam
+After an exam, you can delete it from RemindMe to celebrate that the exam is over!
+
+Command: `delete m/MODULE e/INDEX`
 
 Example: 
 * `delete m/CS2106 e/1`
 
 Expected Result:
 <br>
-<br>
 ![Delete Exam Example](./images/deletecommand/deleteexam.png)
+*[Result for deleting the first exam in CS2106.]*
 <br>
 <br>
 
-#### 3.6.5 Deleting a general event
-Format: `delete g/INDEX`
+#### 3.7.5 Deleting a general event
+When a general event is over, you can remove it from RemindMe, making it less cluttered.
+
+Command: `delete g/INDEX`
 
 Example:
 * `delete g/1`
 
 Expected Result:
 <br>
-<br>
-![Delete Event Example](./images/deletecommand/deleteevent.png)
+![Delete Event Example](./images/deletecommand/deleteevent.png)<br>
+*[Result for deleting the first general event in the list.]*
 <br>
 <br>
 
-### 3.7 Clearing `clear`
+### 3.8 Clearing `clear`
 This section shows features that deals with the clearing of entries in the RemindMe app.  
+
 <br>
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="span" class="alert alert-warning">:exclamation: **Warning:**
 All cleared data cannot be recover.
 </div>
 <br>
 
-#### 3.7.1 Clearing RemindMe  
-Clears all entries in RemindMe.  
-Format: `clear`
+You can clear:
+* [3.8.1 Clearing RemindMe](#381-clearing-remindme)
+* [3.8.2 Clearing all persons](#382-clearing-all-persons)
+* [3.8.3 Clearing all modules](#383-clearing-all-modules)
+* [3.8.4 Clearing all general events](#384-clearing-all-general-events)
 
-#### 3.7.2 Clearing all persons
-Clears all contacts in RemindMe.  
-Format: `clear [n/]`
+#### 3.8.1 Clearing RemindMe  
+You can start with a brand new RemindMe.
 
-#### 3.7.3 Clearing all modules
-Clears all modules in RemindMe.  
-Format: `clear [m/]`
+Command: `clear`
 
-#### 3.7.4 Clearing all general events
-Clears all general events in RemindMe.
-Format: `clear [g/]`
+#### 3.8.2 Clearing all persons
+You can remove all contacts in RemindMe.  
 
-<br>
+Command: `clear [n/]`
 
-     If you follow along, your RemindMe should be empty. Now let's start using RemindMe to remind you!
-<br>
+#### 3.8.3 Clearing all modules
+You can remove all modules in RemindMe.  
 
-### 3.8 Viewing calendar `calendar` `C`
+Command: `clear [m/]`
+
+#### 3.8.4 Clearing all general events
+You can clear all general events in RemindMe.
+
+Command: `clear [g/]`
+
+**If you follow along, your RemindMe should be empty. Now let's start using RemindMe to remind you!**<br>
+The following features are more ways for you to view your tasks in RemindMe.
+
+### 3.9 Viewing calendar `calendar` `C`
 There are 3 ways to check out the calendar.
 <br>
 1. you may type in `calendar` in the command box as shown below.
-<br>
 <br>
 ![calendar1](images/calendar1.png)
 <br>
 <br>
 
 2. Alternatively, you may type shortcut `C` in the command box as shown below.
+<br>
 ![calendar2](images/calendar2.png)
 <br>
 <br>
 
 3. You may also click on the drop out calendar menu.
-<br>
 <br>
 ![calendar3](images/calendar3.png)
 <br>
@@ -549,8 +651,6 @@ There are 3 ways to check out the calendar.
 
 The calendar window as shown below will be displayed.
 <br>
-<br>
-
 ![calendarwindow](images/calendarwindow.png)
 <br>
 <br>
@@ -560,46 +660,46 @@ Additionally, you may click on the `today` button to browse back to the month of
 
 <div class="page-break-before"></div>
 
-### 3.9 Saving the data
+### 3.10 Saving the data
 Saving of data is automatic by the application whenever you 
 update RemindMe.
 
-### 3.10 Reminder window
+### 3.11 Reminder window
 A reminder will automatically pop up at the start of RemindMe.
 
 ![Ui](images/Ui.png)
 <br>
 
-### 3.11 Exiting the program `exit` `E`
+### 3.12 Exiting the program `exit` `E`
 There are 3 ways to exit the application. 
 <br>
 1. you may type in `exit` in the command box as shown below.
-
+<br>
 ![exit1](images/exit1.png)
 <br>
 2. You may type in `E` in the command box as a shortcut as shown below.
-
+<br>
 ![exit2](images/exit2.png)
 <br>
 3. Lastly, you may simply click the `X` button on the top right-hand corner of the
 application to exit the program.
-   
+<br>
 ![exit3](images/exit3.png)
 
 <div class="page-break-before"></div>
 
 ## 4. FAQ
 
-Q: Can I add an assignment/exam first before the module?<br>
+**Q: Can I add an assignment/exam first before the module?**<br>
 A: No, You need to add a module first.
 
-Q: Can I add multiple modules with the same name? <br>
+**Q: Can I add multiple modules with the same name?**<br>
 A: No, modules must have unique names to identify them.
 
-Q: How do I clear away all my data? <br> 
-A: You can use the [`clear` command](#37-clearing-clear).
+**Q: How do I clear away all my data?**<br> 
+A: You can use the [`clear` command](#38-clearing-clear).
 
-Q: When I close RemindMe's main application, will other windows close? <br>
+**Q: When I close RemindMe's main application, will other windows close?**<br>
 A: Yes, do take note that if you close the main application, other windows will close as well.
 
 ## 5. Command Summary  
