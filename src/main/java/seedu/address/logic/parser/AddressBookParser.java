@@ -10,6 +10,7 @@ import java.util.regex.Pattern;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddShortcutCommand;
 import seedu.address.logic.commands.ClearShortcutCommand;
+import seedu.address.logic.commands.BatchCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteShortcutCommand;
@@ -63,7 +64,11 @@ public class AddressBookParser {
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
+
         switch (commandWord) {
+
+        case BatchCommand.COMMAND_WORD:
+            return new BatchCommandParser().parse(arguments);
 
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
