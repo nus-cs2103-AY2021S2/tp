@@ -1,13 +1,13 @@
 package seedu.address.ui;
 
+import java.time.format.DateTimeFormatter;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import seedu.address.model.session.RecurringSession;
 import seedu.address.model.session.Session;
-
-import java.time.format.DateTimeFormatter;
 
 /**
  * An UI component that displays information of a {@code Session}.
