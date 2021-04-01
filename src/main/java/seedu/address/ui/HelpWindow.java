@@ -2,13 +2,20 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.beans.binding.Bindings;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.Command;
 
 /**
  * Controller for a help page
@@ -27,6 +34,15 @@ public class HelpWindow extends UiPart<Stage> {
     @FXML
     private Label helpMessage;
 
+    @FXML
+    private TableView<CommandHelper> generalTableView;
+    @FXML
+    private TableView<CommandHelper> studentTableView;
+    @FXML
+    private TableView<CommandHelper> sessionTableView;
+    @FXML
+    private TableView<CommandHelper> feeTableView;
+
     /**
      * Creates a new HelpWindow.
      *
@@ -35,6 +51,73 @@ public class HelpWindow extends UiPart<Stage> {
     public HelpWindow(Stage root) {
         super(FXML, root);
         helpMessage.setText(HELP_MESSAGE);
+
+        root.setMaximized(true);
+
+        setUpTable(generalTableView, getGeneralCommands());
+        setUpTable(studentTableView, getStudentCommands());
+        setUpTable(sessionTableView, getSessionCommands());
+        setUpTable(feeTableView, getFeeCommands());
+    }
+
+    private void setUpTable(TableView<CommandHelper> table, ObservableList<CommandHelper> commands) {
+        TableColumn<CommandHelper, String> commandTitle = new TableColumn<>("Command Title");
+        commandTitle.setCellValueFactory(new PropertyValueFactory<>("commandTitle"));
+
+        TableColumn<CommandHelper, String> commandUsage = new TableColumn<>("Command Usage");
+        commandUsage.setCellValueFactory(new PropertyValueFactory<>("commandUsage"));
+
+        table.setItems(commands);
+
+        table.setSelectionModel(null);
+        table.prefHeightProperty()
+                .bind(Bindings.size(table.getItems()).multiply(32).add(30));
+
+        commandTitle.prefWidthProperty().bind(table.widthProperty().multiply(0.12));
+        commandUsage.prefWidthProperty().bind(table.widthProperty().multiply(0.88));
+
+        table.getColumns().add(commandTitle);
+        table.getColumns().add(commandUsage);
+    }
+
+    private static ObservableList<CommandHelper> getGeneralCommands() {
+        return FXCollections.observableArrayList(
+                new CommandHelper("Open help panel", "help"),
+                new CommandHelper("List all", "list"),
+                new CommandHelper("Clear all data", "clear"),
+                new CommandHelper("Exit", "exit")
+        );
+    }
+
+    private static ObservableList<CommandHelper> getStudentCommands() {
+        return FXCollections.observableArrayList(
+                new CommandHelper("Add student", "add_student n/NAME p/STUDENT_PHONE_NUMBER "
+                        + "e/EMAIL a/ADDRESS l/STUDY_LEVEL g/GUARDIAN_PHONE_NUMBER r/RELATIONSHIP_WITH_GUARDIAN"),
+                new CommandHelper("Find student", "find_student KEYWORD [MORE_KEYWORDS]"),
+                new CommandHelper("Edit student", "edit_student STUDENT_INDEX [n/NAME]"
+                        + "[p/STUDENT_PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [l/STUDY_LEVEL] [g/GUARDIAN_PHONE_NUMBER]"
+                        + " [r/RELATIONSHIP_WITH_GUARDIAN]"),
+                new CommandHelper("Delete Student", "delete_student STUDENT_INDEX"),
+                new CommandHelper("List emails", "emails")
+        );
+    }
+
+    private static ObservableList<CommandHelper> getSessionCommands() {
+        return FXCollections.observableArrayList(
+                new CommandHelper("Add single session", "add_session n/STUDENT_NAME d/DATE "
+                        + "t/TIME k/DURATION s/SUBJECT f/FEE"),
+                new CommandHelper("Add recurring session", "add_rec_session n/STUDENT_NAME "
+                        + "d/DATE e/LASTDATE b/INTERVAL t/TIME k/DURATION s/SUBJECT f/FEE"),
+                new CommandHelper("Delete single session", "delete_session n/STUDENT_NAME i/SESSION_INDEX"),
+                new CommandHelper("Delete reucrring session", "delete_rec_session "
+                        + "n/STUDENT_NAME i/SESSION_INDEX d/DATE")
+        );
+    }
+
+    private static ObservableList<CommandHelper> getFeeCommands() {
+        return FXCollections.observableArrayList(
+                new CommandHelper("Get fee", "fee n/STUDENT_NAME m/MONTH y/YEAR")
+        );
     }
 
     /**
