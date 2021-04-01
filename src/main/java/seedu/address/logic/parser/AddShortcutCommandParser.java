@@ -29,8 +29,8 @@ public class AddShortcutCommandParser implements Parser<AddShortcutCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddShortcutCommand.MESSAGE_USAGE));
         }
 
-        String shortcutName = ParserUtil.parseShortcutName(argMultimap.getValue(PREFIX_SHORTCUT_NAME).get());
-        String shortcutCommand = ParserUtil.parseShortcutCommand(argMultimap.getValue(PREFIX_SHORTCUT_COMMAND).get());
+        String shortcutName = ParserUtil.formatShortcutName(argMultimap.getValue(PREFIX_SHORTCUT_NAME).get());
+        String shortcutCommand = ParserUtil.formatShortcutCommand(argMultimap.getValue(PREFIX_SHORTCUT_COMMAND).get());
 
         return new AddShortcutCommand(shortcutName, shortcutCommand);
     }
