@@ -364,6 +364,7 @@ Example:
 #### Deleting a recurring tuition session: `delete_rec_session`
 
 Deletes a single session from an existing recurring tuition session of a specified student from TutorBuddy.
+Spawns two recurring sessions that will span the period exclusively before and after the deleted single session.
 
 Format: `delete_rec_session n/STUDENT_NAME i/SESSION_INDEX d/DATE t/TIME`
 
