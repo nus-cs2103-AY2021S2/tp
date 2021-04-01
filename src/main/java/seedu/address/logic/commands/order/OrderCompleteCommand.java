@@ -36,8 +36,8 @@ public class OrderCompleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
-        List<Order> lastShownList = model.getFilteredOrderList(Order.State.UNCOMPLETED);
+        model.updateFilteredOrderList(order -> order.getState() == Order.State.UNCOMPLETED);
+        List<Order> lastShownList = model.getFilteredOrderList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(
@@ -46,6 +46,7 @@ public class OrderCompleteCommand extends Command {
 
         Order orderToComplete = lastShownList.get(targetIndex.getZeroBased());
         model.completeOrder(orderToComplete);
+        model.updateFilteredOrderList(order -> order.getState() == Order.State.UNCOMPLETED);
 
         return new CommandResult(String.format(MESSAGE_COMPLETE_ORDER_SUCCESS, orderToComplete),
                 CommandResult.CRtype.ORDER);

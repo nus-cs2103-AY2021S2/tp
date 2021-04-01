@@ -242,13 +242,7 @@ public interface Model {
     void setOrder(Order target, Order editedOrder);
 
     /** Returns an unmodifiable view of the filtered order list */
-    ObservableList<Order> getFilteredOrderList(Order.State state);
-
-    /** Returns an unmodifiable view of the filtered order list */
-    ObservableList<Order> getFilteredOrderList(Order.State firstState, Order.State secState);
-
-    /** Sorts and filters and then returns an unmodifiable view of the filtered order list */
-    ObservableList<Order> getFilteredOrderList(Comparator<Order> comparator, Order.State state);
+    ObservableList<Order> getFilteredOrderList();
 
     //@@ author kangtinglee
     /** Returns a list of orders that have not been fulfilled and contain a given dish */
@@ -263,6 +257,13 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredOrderList(Predicate<? super Order> predicate);
+
+    /**
+     * Updates the filtered ingredient list by sorting it with {@code comparator}.
+     * @param comparator
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredOrderList(Comparator<Order> comparator);
 
     /** Returns an list of the orders belonging to a particular customer */
     List<Order> getOrdersFromPerson(Person target);
