@@ -9,7 +9,8 @@ import static seedu.booking.commons.util.AppUtil.checkArgument;
  */
 public class Capacity {
 
-    public static final String MESSAGE_CONSTRAINTS = "Capacity cannot be 0 or less.";
+    public static final String MESSAGE_CONSTRAINTS = "Capacity cannot be less than 1 or more than 500000.";
+    public static final String MESSAGE_INVALID = "Invalid input! Please input a valid number in digits.";
 
     public final Integer venueCapacity;
 
@@ -29,7 +30,7 @@ public class Capacity {
      * Returns true if a given Integer is a valid venue capacity.
      */
     public static boolean isValidCapacity(Integer test) {
-        return test > 0;
+        return test > 0 && test <= 500000;
     }
 
     @Override

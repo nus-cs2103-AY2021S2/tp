@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.function.Predicate;
 
 /**
- * Tests that a {@code Bookings} is on the date given
+ * Tests that a {@code Bookings} is on the date given.
  */
 public class BookingWithinDatePredicate implements Predicate<Booking> {
 
