@@ -31,13 +31,12 @@ public class ProgressCalculator {
     /**
      * Calculates and reports on how much percentage of each day's food intake is adhering to the diet plan.
      *
+     * @param dietPlan The diet plan to calculate daily food intake against.
+     * @param foodIntakeList The food consumption for each day.
      * @param user User's information
      * @return Progress Report
      */
-    public static String calculateProgress(User user) {
-
-        FoodIntakeList foodIntakeList = user.getFoodIntakeList();
-        DietPlan dietPlan = user.getActiveDietPlan();
+    public static String calculateProgress(FoodIntakeList foodIntakeList, DietPlan dietPlan, User user) {
 
         // Get list of Foods
         List<FoodIntake> foodIntakes = initializeFoodIntake(foodIntakeList);
