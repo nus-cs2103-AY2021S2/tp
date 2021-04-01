@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import seedu.address.logic.commands.CommandWord;
-import seedu.address.logic.parser.AddressBookParser;
+import seedu.address.logic.parser.ClientBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -51,8 +51,8 @@ public class Shortcut {
     public static boolean isValidShortcutCommand(String test) {
         requireNonNull(test);
         try {
-            AddressBookParser addressBookParser = new AddressBookParser();
-            addressBookParser.parseCommand(test);
+            ClientBookParser clientBookParser = new ClientBookParser();
+            clientBookParser.parseCommand(test);
         } catch (ParseException ex) {
             return false;
         }

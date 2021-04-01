@@ -29,7 +29,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final ClientBookParser clientBookParser;
+    private ClientBookParser clientBookParser;
 
     private boolean isListModified;
 
@@ -51,8 +51,8 @@ public class LogicManager implements Logic {
         return isFindCommandWithAttributes || isListCommandWithAttributes;
     }
 
-    private void updateAddressBookParser(ShortcutLibrary shortcutLibrary) {
-        this.addressBookParser = new AddressBookParser(shortcutLibrary);
+    private void updateClientBookParser(ShortcutLibrary shortcutLibrary) {
+        this.clientBookParser = new ClientBookParser(shortcutLibrary);
     }
 
     @Override
@@ -77,7 +77,7 @@ public class LogicManager implements Logic {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
 
-        this.updateAddressBookParser(model.getShortcutLibrary());
+        this.updateClientBookParser(model.getShortcutLibrary());
 
         try {
             this.storage.saveShortcutLibrary(model.getShortcutLibrary());

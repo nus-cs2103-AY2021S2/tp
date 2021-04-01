@@ -41,11 +41,11 @@ public class ClientBookParser {
 
     private static HashMap<String, String> shortcuts;
 
-    public AddressBookParser() {
+    public ClientBookParser() {
         shortcuts = new HashMap<>();
     }
 
-    public AddressBookParser(ShortcutLibrary shortcutLibrary) {
+    public ClientBookParser(ShortcutLibrary shortcutLibrary) {
         shortcuts = shortcutLibrary.getShortcuts();
     }
 
