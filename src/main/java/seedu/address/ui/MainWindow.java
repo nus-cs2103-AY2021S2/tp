@@ -130,24 +130,21 @@ public class MainWindow extends UiPart<Stage> {
         if (object instanceof ToggleButton) {
             ToggleButton tab = (ToggleButton) object;
             tab.setSelected(true);
-            switch(selectedIndex) {
-            case MENU_TAB_INDEX:
-                updateCompList(componentList, menuListPanel,
-                        new MenuListPanel(logic.getFilteredDishList()), menuListPanelPlaceholder, menuTab);
-                resultDisplay.setFeedbackToUser(MenuListCommand.MESSAGE_SUCCESS);
-                break;
-            case ORDER_TAB_INDEX:
-                updateCompList(componentList, orderListPanel,
-                        new OrderListPanel(logic.getFilteredOrderList()), orderListPanelPlaceholder, orderTab);
-                resultDisplay.setFeedbackToUser(OrderListCommand.MESSAGE_SUCCESS);
-                break;
-            case INVENTORY_TAB_INDEX:
-                updateCompList(componentList, inventoryListPanel,
-                        new InventoryListPanel(logic.getFilteredInventoryList()),
-                        inventoryListPanelPlaceholder, inventoryTab);
-                resultDisplay.setFeedbackToUser(InventoryListCommand.MESSAGE_SUCCESS);
-                break;
-            default:
+            try {
+                switch(selectedIndex) {
+                case MENU_TAB_INDEX:
+                    executeCommand("menu list");
+                    break;
+                case ORDER_TAB_INDEX:
+                    executeCommand("order list");
+                    break;
+                case INVENTORY_TAB_INDEX:
+                    executeCommand("inventory list");
+                    break;
+                default:
+                }
+            } catch (CommandException | ParseException e) {
+                resultDisplay.setFeedbackToUser(e.getMessage());
             }
         }
     };
