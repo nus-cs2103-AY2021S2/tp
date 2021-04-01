@@ -1017,15 +1017,15 @@ testers are expected to do more *exploratory* testing.
     
     1. Prerequisites: The application is in Main Window.
     
-    1. Test case: `alias c/add n/a` <br>
+    1. Test case: `alias cmd/add al/a` <br>
        Expected: The alias `a` will be mapped to `add`. Users will now be able to perform add command using `a`
        The result display shows a message: `New alias added for "add" command: a`.
     
-    1. Test case: `alias c/add n/delete` <br>
+    1. Test case: `alias cmd/add al/delete` <br>
        Expected: No alias is added, and the text in `CommandBox` turns red to indicate an error.
        The result display shows a message: `The alias "delete" should not be a command in FlashBack.`.
     
-    1. Test case: `alias c/cleaaar n/c` <br>
+    1. Test case: `alias cmd/cleaaar al/c` <br>
        Expected: No alias is added, and the text in `CommandBox` turns red to indicate an error.
        The result display shows a message: `The command "cleaaar" does not exist in FlashBack.`.
 
