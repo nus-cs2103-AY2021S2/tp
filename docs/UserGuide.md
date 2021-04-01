@@ -533,7 +533,7 @@ Examples:
 Dictionote allows the user to change the orientation of the divider between the region via command.
 The following are the 2 divider where the user can manipulate
 
-![Ui Panel ](images/UiOrientation.png)
+![Ui Panel ](images/UiDividerConfig.png)
 
 ##### Toggle dictionary divider orientation: `toggledividerd`
 
