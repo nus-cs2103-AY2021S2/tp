@@ -29,18 +29,18 @@ Step 3. Access the specific DOB filter to filter the results and list them out o
 
 **Target user profile**:
 
-* Car salesperson working in a multi-brand dealership 
+* Car salesperson working in a multi-brand dealership
 * has a need to manage a significant number of contacts
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: 
+**Value proposition**:
 
 * Manage contacts faster than a typical mouse/GUI driven app
 
-* Offers a higher success rate of closing deals as car salesperson can focus on selling cars that fits <br> 
+* Offers a higher success rate of closing deals as car salesperson can focus on selling cars that fits <br>
   the customer needs and requirements
 
 * Notify potential clients on promotions and new car launches based on their profile preferences
@@ -69,7 +69,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user with numerous ex-customers            | list customers with expiring COE   |  have a list of potential customers who might purchase a new car   |
 | `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
 | `*`      | user with many customers contacts          | sort customer by name          | locate a customer easily                                                 |
-| `*`      | user                                       | send customer holiday greetings| maintain cordial relationship with my customer                         | 
+| `*`      | user                                       | send customer holiday greetings| maintain cordial relationship with my customer                         |
 | `*`      | user                                       | track family status of customers| make appropriate recommendations for car type for family              |
 
 *{More to be added}*
@@ -100,8 +100,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. System shows an error message.
 
       Use case resumes at step 2.
-    
-    
+
+
 **Use case: Delete a customer**
 
 **MSS**
@@ -145,10 +145,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 customers without a noticeable sluggishness (response time within 100ms) in 
-    performance for 
-    typical 
-    usage.
+2.  Should be able to hold up to 1000 customers without a noticeable sluggishness (response time within 100ms) in
+    performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 *{More to be added}*
