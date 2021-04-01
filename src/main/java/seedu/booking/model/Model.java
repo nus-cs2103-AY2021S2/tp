@@ -231,4 +231,5 @@ public interface Model {
      */
     boolean hasOverlappedBooking(Booking toAdd);
 
+
 }

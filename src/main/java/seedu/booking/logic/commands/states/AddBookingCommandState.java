@@ -37,6 +37,16 @@ public class AddBookingCommandState extends CommandState {
         this.addBookingIntermediate = new AddBookingIntermediate();
     }
 
+    public AddBookingCommandState(boolean isActive, String state, String msg,
+                                  AddBookingIntermediate addBookingIntermediate) {
+        super(isActive, state, msg);
+        this.addBookingIntermediate = addBookingIntermediate;
+    }
+
+    public AddBookingIntermediate getAddBookingIntermediate() {
+        return this.addBookingIntermediate;
+    }
+
     @Override
     public void setNextState() {
         String state = this.getState();
@@ -96,5 +106,22 @@ public class AddBookingCommandState extends CommandState {
     @Override
     public Booking create() {
         return addBookingIntermediate.createBooking();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof AddBookingCommandState)) {
+            return false;
+        }
+
+        AddBookingCommandState otherState = (AddBookingCommandState) other;
+        return otherState.getState().equals(super.getState())
+                && otherState.getNextPromptMessage().equals(super.getNextPromptMessage())
+                && otherState.isActive() == super.isActive()
+                && otherState.getAddBookingIntermediate().equals(getAddBookingIntermediate());
     }
 }
