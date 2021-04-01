@@ -102,7 +102,7 @@ A client can have any number of tags (including 0)
 A client can have only one or no insurance plan
 </div>
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-You can add a profile picture for your client by adding the picture file into [JAR file location]/data/[picture file].
+You can add a profile picture for your client by first adding the picture file into [JAR file location]/data/[picture file].
 Then, include the file name under the i/ prefix when adding client.
 </div>
 
