@@ -200,4 +200,9 @@ public interface Model {
      * Return iScam's current mode.
      */
     ObservableValue<Boolean> getIsClientMode();
+
+    /**
+     * Returns index of given {@code Client}.
+     */
+    Index getIndexOfClient(Client client);
 }

@@ -29,7 +29,7 @@ public class DeleteCommand extends UndoableCommand {
     public static final String MESSAGE_DELETE_CLIENT_SUCCESS = "Deleted Client: %1$s";
 
     private Client clientToDelete;
-    private final Index targetIndex;
+    private Index targetIndex;
 
     /**
      * Creates a DeleteCommand to delete the client at the specified {@code Index}
@@ -49,7 +49,10 @@ public class DeleteCommand extends UndoableCommand {
         targetIndex = null;
     }
 
-    public Index getTargetIndex() {
+    public Index getTargetIndex(Model model) {
+        if (targetIndex == null) {
+            targetIndex = model.getIndexOfClient(clientToDelete);
+        }
         return targetIndex;
     }
 

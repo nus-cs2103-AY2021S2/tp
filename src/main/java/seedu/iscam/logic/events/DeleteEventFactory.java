@@ -23,7 +23,7 @@ public class DeleteEventFactory {
         switch(commandWord) {
         case (DeleteCommand.COMMAND_WORD):
             DeleteCommand tempCommand = command;
-            return generateDeleteClientEvent(tempCommand.getTargetIndex(), model);
+            return generateDeleteClientEvent(tempCommand.getTargetIndex(model), model);
 
         /*
         case (DeleteMeetingCommand.COMMAND_WORD):
