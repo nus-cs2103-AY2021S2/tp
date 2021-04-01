@@ -133,7 +133,7 @@ Examples:
 
 Update Clean status of multiple residences at once.
 
-Format: `status clean INDEX1 INDEX2..`
+Format: `status clean/unclean INDEX1 INDEX2..`
 
 * Update the residences' clean status at the specified `INDEX` list.
 * The index refers to the index number shown in the displayed residences list (i.e. **NOT** zero-indexed).
