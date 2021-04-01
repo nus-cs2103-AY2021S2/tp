@@ -17,7 +17,8 @@ public class CliSyntax {
     public static final Prefix PREFIX_INSURANCE_POLICY = new Prefix("i/");
     public static final Prefix PREFIX_INSURANCE_POLICY_URL = new Prefix("u/");
     public static final Prefix PREFIX_MEETING = new Prefix("m/");
-
+    public static final Prefix PREFIX_SHORTCUT_NAME = new Prefix("sn/");
+    public static final Prefix PREFIX_SHORTCUT_COMMAND = new Prefix("sc/");
     public static final Prefix PREFIX_LIST_POLICY = new Prefix("-policy");
 
     /**
@@ -27,7 +28,8 @@ public class CliSyntax {
      */
     public static boolean isValidPrefix(String input) {
         HashSet<Prefix> prefixes = new HashSet<>(Arrays.asList(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                PREFIX_TAG, PREFIX_INSURANCE_POLICY, PREFIX_INSURANCE_POLICY_URL, PREFIX_MEETING));
+                PREFIX_TAG, PREFIX_INSURANCE_POLICY, PREFIX_INSURANCE_POLICY_URL, PREFIX_MEETING, PREFIX_SHORTCUT_NAME,
+                PREFIX_SHORTCUT_COMMAND));
         return prefixes.contains(new Prefix(input));
     }
 

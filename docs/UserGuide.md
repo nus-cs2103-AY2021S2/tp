@@ -23,16 +23,21 @@ ClientBook can help _you_ accomplish your client management tasks faster than tr
   * [**4.4** `list`: List all clients](#list-list-all-clients)
   * [**4.5** `find`: Search for client contact based on keywords](#find-search-for-client-contact-based-on-keywords)
   * [**4.6** `policy`: Display policies associated with a client](#policy-display-policies-associated-with-a-client)
-  * [**4.7** `delete`: Delete client contact](#delete-delete-client-contact)
+  * [**4.7** `delete`Delete client contact](#delete-delete-client-contact)
   * [**4.8** `batch` Execute commands in batch](#batch-execute-commands-in-batch)
   * [**4.9** `sort`: Sort list of clients](#sort-sort-list-of-clients)
-  * [**4.10** `meet`: Schedule a meeting with a client](#meet-schedule-a-meeting-with-a-client) 
-  * [**4.11** `lock`: Lock ClientBook with a user-selected password](#lock-lock-clientbook-with-a-user-selected-password)
-  * [**4.12** `unlock`: Unlock ClientBook](#unlock-unlock-clientbook)
-  * [**4.13** `exit`: Exiting the program](#exit-exiting-the-program)
-  * [**4.14** Saving data](#saving-data)
-  * [**4.15** Editing data file](#editing-data-file)
-  * [**4.16** Upcoming features!](#upcoming-features-v20-and-beyond)
+  * [**4.10** `meet`: Schedule a meeting with a client](#meet-schedule-a-meeting-with-a-client)
+  * [**4.11** `addshortcut`: Add shortcut](#addshortcut-add-shortcut)
+  * [**4.12** `editshortcut`: Edit shortcut](#editshortcut-edit-shortcut)
+  * [**4.13** `deleteshortcut`: Delete shortcut](#deleteshortcut-delete-shortcut)
+  * [**4.14** `listshortcut`: List all shortcuts](#list-list-all-shortcuts)
+  * [**4.15** `clearshortcut`: Clear all shortcuts](#clear-clear-all-shortcuts)
+  * [**4.16** `lock`: Lock ClientBook with a user-selected password](#lock-lock-clientbook-with-a-user-selected-password)
+  * [**4.17** `unlock`: Unlock ClientBook](#unlock-unlock-clientbook)
+  * [**4.18** `exit`: Exiting the program](#exit-exiting-the-program)
+  * [**4.19** Saving data](#saving-data)
+  * [**4.20** Editing data file](#editing-data-file)
+  * [**4.21** Upcoming features!](#upcoming-features-v20-and-beyond)
 * [**5.** Frequently Asked Questions](#frequently-asked-questions)
   * [**5.1** Setting Up](#setting-up)
 * [**6.** Summary of Commands](#summary-of-commands)
@@ -101,6 +106,11 @@ If you are an experienced user, we have provided a convenient [Summary of Comman
 | [`batch`](#batch-execute-commands-in-batch) | Execute commands in batch |
 | [`sort`](#sort-sort-list-of-clients) | Sort list of clients |
 | [`meet`](#meet-schedule-a-meeting-with-a-client) | Schedule a meeting with a client |
+| [`addshortcut`](#addshortcut-add-shortcut) | Add shortcut |
+| [`editshortcut`](#editshortcut-edit-shortcut) | Edit shortcut |
+| [`deleteshortcut`](#deleteshortcut-delete-shortcut) | Delete shortcut |
+| [`listshortcut`](#listshortcut-list-all-shortcuts) | List all shortcuts |
+| [`clearshortcut`](#clearshortcut-clear-all-shortcuts) | Clear all shortcuts |
 | [`lock`](#lock-lock-clientbook-with-a-user-selected-password) | Lock ClientBook with a user-selected password |
 | [`unlock`](#unlock-unlock-clientbook) | Unlock ClientBook |
 | [`exit`](#exit-exiting-the-program) | Exit ClientBook |
@@ -482,6 +492,79 @@ If a parameter is expected only once in the command, but you specified it multip
 <br><br>
 
 
+### `addshortcut`: Add shortcut
+
+**Purpose**: Adds a shortcut to the existing shortcut library.
+
+**Format**: `addshortcut sn/SHORTCUT_NAME sc/SHORTCUT_COMMAND`
+
+* Adds a shortcut named `SHORTCUT_NAME` to the shortcut library and assigns a valid command `SHORTCUT_COMMAND` to it.
+* The specified `SHORTCUT_NAME` must be alphanumeric and must not already exist the shortcut library.
+* The specified `SHORTCUT_COMMAND` must be a valid command.
+
+**Examples**:
+* Add a shortcut named `ls` to represent the command `listshortcut` in the shortcut library.
+    * `addshortcut sn/ls sc/listshortcut`
+
+[Return to Table of Contents](#table-of-contents)
+<br><br>
+
+
+### `editshortcut`: Edit shortcut
+
+**Purpose**: Edits the command of a shortcut in the existing shortcut library.
+
+**Format**: `editshortcut sn/SHORTCUT_NAME sc/SHORTCUT_COMMAND`
+
+* Finds a shortcut named `SHORTCUT_NAME` in the shortcut library and replaces its existing command with the provided valid command `SHORTCUT_COMMAND`.
+* The specified `SHORTCUT_NAME` must be alphanumeric and must exist the shortcut library.
+* The specified `SHORTCUT_COMMAND` must be a valid command.
+
+**Examples**:
+* Edit a shortcut named `ls` in the shortcut library such that it takes on a new command `list`.
+    * `editshortcut sn/ls sc/list`
+
+[Return to Table of Contents](#table-of-contents)
+<br><br>
+
+
+### `deleteshortcut`: Delete shortcut
+
+**Purpose**: Deletes a shortcut in the existing shortcut library.
+
+**Format**: `deleteshortcut SHORTCUT_NAME`
+
+* Finds a shortcut named `SHORTCUT_NAME` in the shortcut library and deletes it from the shortcut library.
+* The specified `SHORTCUT_NAME` must be alphanumeric and must exist the shortcut library.
+
+**Examples**:
+* Delete a shortcut named `ls` in the shortcut library.
+    * `deleteshortcut ls`
+
+[Return to Table of Contents](#table-of-contents)
+<br><br>
+
+
+### `listshortcut`: List all shortcuts
+
+**Purpose**: Lists all shortcuts in the existing shortcut library.
+
+**Format**: `listshortcut`
+
+[Return to Table of Contents](#table-of-contents)
+<br><br>
+
+
+### `clearshortcut`: Clear all shortcuts
+
+**Purpose**: Clears all shortcuts in the existing shortcut library.
+
+**Format**: `clearshortcut`
+
+[Return to Table of Contents](#table-of-contents)
+<br><br>
+
+
 ### `lock`: Lock ClientBook with a user-selected password 
 
 **Purpose**: Locks ClientBook with a user-selected password.
@@ -615,6 +698,11 @@ If you get an error message (`Java command not found`), it means that Java is no
 [**Batch**](#batch-execute-commands-in-batch) | `batch COMMAND INDICES [ARGUMENTS]` | `batch edit 1, 2, 4 p/91234567 a/Hougang Green t/TanFamily i/FamPol#111` |
 [**Sort**](#sort-list-of-clients-sort) | `sort -IDENTIFIER -DIRECTION` | `sort -n -d` |
 [**Meet**](#schedule-a-meeting-with-a-client-meet) | `meet INDEX [-ACTION] DATE START END PLACE` | `meet 1 20.05.2021 15:00 16:00 MRT` |
+[**Add Shortcut**](#addshortcut-add-shortcut) | `addshortcut sn/SHORTCUT_NAME sc/SHORTCUT_COMMAND` | `addshortcut sn/ls sc/listshortcut` |
+[**Edit Shortcut**](#editshortcut-edit-shortcut) | `editshortcut sn/SHORTCUT_NAME sc/SHORTCUT_COMMAND` | `editshortcut sn/ls sc/list` |
+[**Delete Shortcut**](#deleteshortcut-delete-shortcut) | `deleteshortcut SHORTCUT_NAME` | `deleteshortcut ls` |
+[**List Shortcuts**](#listshortcut-list-all-shortcuts) | `listshortcut` | `listshortcut` |
+[**Clear Shortcuts**](#clearshortcut-clear-all-shortcuts) | `clearshortcut` | `clearshortcut` |
 [**Lock**](#lock-clientbook-with-a-user-selected-password-lock) | `lock [CURRENT_PASSWORD] NEW_PASSWORD` | `lock 123 456` |
 [**Unlock**](#unlock-clientbook--unlock) | `unlock [CURRENT_PASSWORD]` | `unlock 456` |
 [**Exit**](#exiting-the-program--exit) | `exit` | `exit` |
