@@ -207,6 +207,20 @@ Examples:
 *  `edit 1 set/13/05/2021` Adds a date to the 1st task on the list which is to be `13 May 2021`.
 *  `edit 2 set/` Clears the existing date of 2nd task on the list.
 
+### Postpone a task's date : `snooze`
+
+Postpones your task's date by a specified number of days.
+
+Format: `snooze INDEX [DAYS]`
+* Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed list.
+ The index **must be a positive integer** e.g 1, 2, 3, …​
+* The DAYS is optional and it's default value will be 1 if no number is specified in your command.
+* The snooze command will only successfully update the date of the task if the task contains a date.
+
+Examples:
+* `snooze 2` Postpones the date of the task at index 2 in the list by 1 day.
+* `snooze 3 4 ` Postpones the date of the task at index 3 in the list by 4 days.
+
 ### Listing all tasks : `ls`
 
 Shows a list of all tasks in the planner
