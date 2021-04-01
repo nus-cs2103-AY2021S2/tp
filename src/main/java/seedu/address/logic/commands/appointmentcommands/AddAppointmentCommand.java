@@ -3,6 +3,7 @@ package seedu.address.logic.commands.appointmentcommands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_APPOINTMENT;
 import static seedu.address.commons.core.Messages.MESSAGE_TUTOR_DOES_NOT_EXIST;
+import static seedu.address.commons.core.Messages.MESSAGE_TUTOR_DOES_NOT_TEACH_SUBJECT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -67,6 +68,9 @@ public class AddAppointmentCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
         } else if (!model.hasTutorByName(toAdd.getName())) {
             throw new CommandException(MESSAGE_TUTOR_DOES_NOT_EXIST);
+        } else if (!model.doesTutorTeachSubject(toAdd.getName(), toAdd.getSubject())) {
+            throw new CommandException(String.format(MESSAGE_TUTOR_DOES_NOT_TEACH_SUBJECT,
+                    toAdd.getSubject()));
         } else {
             model.addAppointment(toAdd);
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));

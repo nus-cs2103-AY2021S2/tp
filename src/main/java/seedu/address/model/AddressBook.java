@@ -8,6 +8,9 @@ import javafx.collections.ObservableList;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.subject.SubjectList;
+import seedu.address.model.subject.SubjectName;
+import seedu.address.model.subject.TutorSubject;
 
 /**
  * Wraps all data at the address-book level
@@ -102,6 +105,25 @@ public class AddressBook implements ReadOnlyAddressBook {
         for (Person person : this.persons) {
             if (person.getName().equals(name)) {
                 return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * @param name Name of tutor.
+     * @param subjectName Subject name to teach.
+     * @return True is tutor teaches this subject.
+     */
+    public boolean tutorTeachesSubject(Name name, SubjectName subjectName) {
+        for (Person person : this.persons) {
+            if (person.getName().equals(name)) {
+                SubjectList subjectList = person.getSubjectList();
+                for (TutorSubject tutorSubject : subjectList) {
+                    if (tutorSubject.getName().equals(subjectName)) {
+                        return true;
+                    }
+                }
             }
         }
         return false;

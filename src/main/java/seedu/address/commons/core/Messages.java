@@ -28,4 +28,7 @@ public class Messages {
             + " because at least one existing appointment has been booked with the"
             + " tutor in question. Please ensure that tutor to be deleted does not"
             + " have any existing appointments.";
+    public static final String MESSAGE_TUTOR_DOES_NOT_TEACH_SUBJECT = "Tutor in the "
+            + "appointment to be added does not teach this subject. Please ensure "
+            + "that tutor teaches this subject: %s";
 }

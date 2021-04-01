@@ -177,8 +177,8 @@ Format: `add_appointment e/EMAIL s/SUBJECT d/DATE fr/TIME_FROM l/LOCATION`
 * The time format `hh:mm a` must be strictly followed. e.g. `9:01 am` and `10:30 pm`.
 
 Examples:<br>
-* `appointment n/andew.ng@example.com s/Mathematics d/2021-3-1 fr/10:00am l/Bedok`
-* `appointment n/chloe.lim@example.com s/English d/2021-4-20 fr/2:00pm l/Bedok`
+* `appointment n/john doe s/Mathematics d/2021-3-1 fr/10:00am to/12:00pm l/Bedok`
+* `appointment n/chloe lim s/English d/2021-4-20 fr/2:00pm to/4:00pm l/Bedok`
 
 ### Listing all tuition appointments : `list_appointments`
 
@@ -255,13 +255,16 @@ Example Output:
 ### Editing an appointment : `edit_appointment`
 
 Edits an appointment with a specific index. Only the attributes present are changed in the appointment.
+If any one of the following three fields (DATE, TIME_FROM, TIME_TO), then all three 
+must also be present.
 
-Format: `edit_appointment [e/EMAIL] [s/SUBJECT_NAME] [d/DATE] [fr/TIME_FROM] [l/LOCATION]`
+Format: `edit_appointment [index] [n/name] [s/SUBJECT_NAME] [d/DATE] [fr/TIME_FROM] 
+[to/TIME_TO] [l/LOCATION]`
 
 * The date format `yyyy-mm-dd` must be strictly followed. e.g. `2021-3-1`and `2021-03-01`.
 * The time format `hh:mm a` must be strictly followed. e.g. `9:01 am` and `10:30 pm`.
 
-Examples: `edit_appointment e/andrewng@example.com l/Clementi`
+Examples: `edit_appointment n/chloe lim l/Clementi`
 
 ### Adding Budget : `add_budget`
 
@@ -307,12 +310,12 @@ Action | Format, Examples
 **Favourite a tutor** | `favourite INDEX`, <br> e.g. `favourite 1`
 **Unfavourite a tutor** | `unfavourite INDEX`, <br> e.g. `Unfavourite 1`
 **List favourites** | `list_favourites`, <br> e.g. `list_favourites`
-**Add a new appointment** | `add_appointment e/EMAIL s/SUBJECT d/DATE fr/TIME_FROM l/LOCATION` <br> e.g., `appointment e/chloe.lim@example.com s/English d/2021-4-20 fr/2:00pm l/Bedok`
+**Add a new appointment** | `add_appointment n/NAME s/SUBJECT d/DATE fr/TIME_FROM to/TIME_TO l/LOCATION` <br> e.g., `add_appointment n/Chloe Lim s/English d/2021-4-20 fr/12:00pm to/2:00pm l/Bedok`
 **List tuition appointments** | `list_appointments`
 **View a tuition appointment details** | `view_appointment` <br> e.g. `view_appointment 2020-03-24`
 **Find tuition appointments** | `find_appointment` <br> e.g. `find_appointment John`
 **Delete a tuition appointment** | `delete_appointment` <br> e.g. `delete_appointment 1`
-**Edit a tuition appointment** | `edit_appointment [e/EMAIL] [s/SUBJECT_NAME] [d/DATE] [fr/TIME_FROM] [l/LOCATION]` <br> e.g. `edit_appointment e/andrewng@example.com l/Clementi`
+**Edit a tuition appointment** | `edit_appointment [n/NAME] [s/SUBJECT_NAME] [d/DATE] [fr/TIME_FROM] [to/TIME_TO] [l/LOCATION]` <br> e.g. `edit_appointment n/John Doe l/Clementi`
 **Add a budget** | `add_budget` <br> e.g.`add_budget b/500`
 **Edit a budget** | `edit_budget` <br> e.g. `edit_budget b/600`
 **Deleting a budget** | `delete_budget` <br> e.g. `delete_budget`

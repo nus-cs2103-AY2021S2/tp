@@ -25,6 +25,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.schedule.ReadOnlyScheduleTracker;
 import seedu.address.model.schedule.Schedule;
 import seedu.address.model.schedule.ScheduleTracker;
+import seedu.address.model.subject.SubjectName;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -150,6 +151,11 @@ public class ModelManager implements Model {
     @Override
     public boolean hasTutorByName(Name name) {
         return addressBook.containsTutorByName(name);
+    }
+
+    @Override
+    public boolean doesTutorTeachSubject(Name name, SubjectName subjectName) {
+        return addressBook.tutorTeachesSubject(name, subjectName);
     }
 
     @Override

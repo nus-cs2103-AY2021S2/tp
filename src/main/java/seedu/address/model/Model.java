@@ -16,6 +16,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.schedule.ReadOnlyScheduleTracker;
 import seedu.address.model.schedule.Schedule;
+import seedu.address.model.subject.SubjectName;
 
 /**
  * The API of the Model component.
@@ -116,6 +117,12 @@ public interface Model {
      * @return True is there exists a tutor with that name.
      */
     boolean hasTutorByName(Name name);
+
+    /**
+     * @param subjectName Subject name to query for a particular tutor
+     * @return True is tutor teaches subject.
+     */
+    boolean doesTutorTeachSubject(Name name, SubjectName subjectName);
 
     /**
      * Deletes the given person.

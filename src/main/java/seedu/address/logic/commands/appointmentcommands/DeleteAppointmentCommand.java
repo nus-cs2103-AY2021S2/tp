@@ -48,8 +48,6 @@ public class DeleteAppointmentCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
-
         // Delete by index
         try {
             model.removeAppointmentIndex(targetIndex.getZeroBased());
@@ -58,8 +56,6 @@ public class DeleteAppointmentCommand extends Command {
         } catch (IndexOutOfBoundsException e) {
             throw new CommandException(MESSAGE_DELETE_APPOINTMENT_FAILURE);
         }
-
-
     }
 
     @Override

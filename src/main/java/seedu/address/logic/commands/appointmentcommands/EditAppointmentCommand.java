@@ -2,6 +2,8 @@ package seedu.address.logic.commands.appointmentcommands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_APPOINTMENT;
+import static seedu.address.commons.core.Messages.MESSAGE_TUTOR_DOES_NOT_EXIST;
+import static seedu.address.commons.core.Messages.MESSAGE_TUTOR_DOES_NOT_TEACH_SUBJECT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -44,7 +46,7 @@ public class EditAppointmentCommand extends Command {
             + "[" + PREFIX_TIME_TO + "TIME TO] "
             + "[" + PREFIX_LOCATION + "LOCATION]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_NAME + "chloelim@example.com "
+            + PREFIX_NAME + "chloe lim "
             + PREFIX_SUBJECT_NAME + "Science";
 
     public static final String MESSAGE_EDIT_APPOINTMENT_SUCCESS = "Edited Appointment: %1$s";
@@ -78,8 +80,15 @@ public class EditAppointmentCommand extends Command {
         Appointment appointmentToEdit = lastShownList.get(index.getZeroBased());
         Appointment editedAppointment = createEditedAppointment(appointmentToEdit, editAppointmentDescriptor);
 
+        System.out.println(editedAppointment.getName());
         if (appointmentToEdit.equals(editedAppointment) || model.hasAppointment(editedAppointment)) {
             throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
+        } else if (!model.hasTutorByName(editedAppointment.getName())) {
+            throw new CommandException(MESSAGE_TUTOR_DOES_NOT_EXIST);
+        } else if (!model.doesTutorTeachSubject(editedAppointment.getName(),
+                editedAppointment.getSubject())) {
+            throw new CommandException(String.format(MESSAGE_TUTOR_DOES_NOT_TEACH_SUBJECT,
+                    editedAppointment.getSubject()));
         }
 
         model.setAppointment(appointmentToEdit, editedAppointment);
@@ -159,7 +168,7 @@ public class EditAppointmentCommand extends Command {
             return CollectionUtil.isAnyNonNull(name, subjectName, timeFrom, address);
         }
 
-        public void setName(Name email) {
+        public void setName(Name name) {
             this.name = name;
         }
 
