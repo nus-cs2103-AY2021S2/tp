@@ -27,7 +27,15 @@ public class OrderCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label details;
+    private Label status;
+    @FXML
+    private Label customerName;
+    @FXML
+    private Label dateTime;
+    @FXML
+    private Label dishes;
+    @FXML
+    private Label totalPrice;
 
 
     /**
@@ -37,7 +45,11 @@ public class OrderCard extends UiPart<Region> {
         super(FXML);
         this.order = order;
         id.setText(displayedIndex + ". ");
-        details.setText(order.getDetails());
+        status.setText("[" + order.getState().name() + "]");
+        customerName.setText(order.getCustomer().getName());
+        dateTime.setText("- " + order.getStrDatetime());
+        dishes.setText(order.getDishesString());
+        totalPrice.setText("Total price: SGD " + String.format("%.2f", order.getTotalPrice()));
     }
 
     @Override

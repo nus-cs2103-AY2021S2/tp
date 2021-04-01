@@ -62,8 +62,10 @@ In the event that there are uncompleted orders by the contact that is being atte
 #### `find` - Find contact
 Format:
 ```
-customer find n/[KEYWORD] [MORE KEYWORDS]
+customer find n/[KEYWORD] (MORE_KEYWORDS)...
 ```
+
+- `n/` - Finds all customers whose names contain any of the keywords (case-insensitive). Keywords are space separated.
 
 ### `menu`
 
@@ -90,11 +92,15 @@ menu delete [INDEX] (-f)
 #### `find` - Find dish
 Format:
 ```
-menu find [KEYWORD] [MORE KEYWORDS]
+menu find n/[KEYWORD] (MORE KEYWORDS) i/[KEYWORD]
 ```
 
-### `orders`
+At least one prefix must be specified. If both are specified, both conditions will be checked.
 
+- `n/` - Finds all dishes with names that contain any of the keywords (case-insensitive). Keywords are space separated. 
+- `i/` - Finds all dishes with ingredient names that contain keyword (case-insensitive).
+
+### `order`
 #### `list` - List all orders
 Format: 
 ```
@@ -164,9 +170,44 @@ inventory delete [INDEX] (-f)
 #### `find` - Find an item
 Format:
 ```
-inventory find n/[KEYWORD] [MORE KEYWORDS] q/[LESS THAN QUANTITY]
+inventory find n/[KEYWORD] (MORE KEYWORDS) q/[LESS THAN QUANTITY]
 ```
 
+At least one prefix must be specified. If both are specified, both conditions will be checked.
+
+- `n/` - Finds all ingredients with names that contain any of the keywords (case-insensitive). Keywords are space separated. 
+- `q/` - Finds all ingredients with less than specified quantity. Must be a non-negative whole number (>= 0).
+
+### `orders`
+
+#### `list` - List all orders
+Format: 
+```
+orders list
+```
+
+#### `add` - Add an order
+Format: 
+```
+orders add n/[CUSTOMER_NAME] dt/[DELIVERY_DATETIME] (DD-MM-YYYY HH:MM) d/[DISH_NAME] q/[QUANTITY]...  
+```
+
+#### `delete` - Delete an order
+Format:
+```
+orders delete [INDEX]
+```
+
+#### `find` - Find an order
+Format:
+```
+orders find n/[KEYWORD] (MORE KEYWORDS) q/[LESS THAN QUANTITY]
+```
+
+At least one prefix must be specified. If both are specified, both conditions will be checked.
+
+- `n/` - Finds all orders with customer names that contain any of the keywords (case-insensitive). Keywords are space separated. 
+- `d/` - Finds all orders with dish names that contain keyword (case-insensitive).
 
 
 --------------------------------------------------------------------------------------------------------------------
