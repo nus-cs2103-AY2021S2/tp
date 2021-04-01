@@ -61,8 +61,8 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
         if (argMultimap.getValue(PREFIX_DATE).isPresent()
                 || argMultimap.getValue(PREFIX_TIME_FROM).isPresent()
                 || argMultimap.getValue(PREFIX_TIME_TO).isPresent()) {
-            if (!ArgumentTokenizer.arePrefixesPresent(argMultimap, PREFIX_TIME_FROM,
-                    PREFIX_TIME_TO)) {
+            if (!ArgumentTokenizer.arePrefixesPresent(argMultimap, PREFIX_DATE,
+                    PREFIX_TIME_FROM, PREFIX_TIME_TO)) {
                 throw new ParseException(MESSAGE_MISSING_DATE_FIELD);
             }
         }
