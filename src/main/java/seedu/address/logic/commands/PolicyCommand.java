@@ -42,11 +42,11 @@ public class PolicyCommand extends Command {
 
         if (!personPoliciesToDisplay.hasPolicies()) {
             String feedback = String.format(NO_POLICIES, personPoliciesToDisplay.getName());
-            return new CommandResult(feedback, false, true, false);
+            return new CommandResult(feedback, false, true, false, false);
         }
 
         String policiesAndUrls = personPoliciesToDisplay.getPersonNameAndAllPoliciesInString();
-        return new CommandResult(policiesAndUrls, false, true, false);
+        return new CommandResult(policiesAndUrls, false, true, false, false);
     }
 
     @Override
