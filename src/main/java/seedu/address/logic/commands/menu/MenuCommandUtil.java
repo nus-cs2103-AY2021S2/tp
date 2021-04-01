@@ -15,42 +15,48 @@ public class MenuCommandUtil {
     public static final String MESSAGE_INGREDIENT_NOT_FOUND = "Ingredient in dish not found in the inventory";
 
     /**
-     * Constructs a valid Dish from the given parameters.
-     * @param name Name of the dish.
-     * @param price Price of the dish, expressed in dollars.
-     * @param ingredientIdsList List of ingredients in the dish, in the form (ingredient ID, quantity).
+     * Checks whether a dish is a valid addition.
+     * @param toAdd Candidate dish to be added.
      * @param model The model object.
-     * @return Constructed Dish object.
-     * @throws CommandException If any parameters are invalid.
+     * @return True if the dish is a valid addition.
+     * @throws CommandException If the dish is an invalid addition.
      */
-    public static Dish constructValidDish(String name, double price,
-                                          List<Pair<Integer, Integer>> ingredientIdsList,
-                                          Model model) throws CommandException {
+    public static boolean isValidDishAddition(Dish toAdd, Model model) throws CommandException {
+
+        if (model.hasDish(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_DISH);
+        }
+
+        return true;
+    }
+
+    /**
+     * Looks up ingredients given a list of their IDs.
+     * @param ingredientIdsList List of IDs to be looked up.
+     * @param model The model object.
+     * @return List of ingredients corresponding to the input IDs.
+     * @throws CommandException If any input IDs are invalid.
+     */
+    public static List<Pair<Ingredient, Integer>> lookupIngredientIds(
+            List<Pair<Integer, Integer>> ingredientIdsList,
+            Model model) throws CommandException {
 
         List<Pair<Ingredient, Integer>> ingredientQuantityList = new ArrayList<>();
 
         for (Pair<Integer, Integer> ingredientPair : ingredientIdsList) {
             int ingredientId = Index.fromOneBased(ingredientPair.getKey()).getOneBased();
-            Integer ingredientQuant = ingredientPair.getValue();
+            Integer ingredientQuantity = ingredientPair.getValue();
 
             if (ingredientId >= model.getFilteredDishList().size()) {
                 throw new CommandException(MESSAGE_INGREDIENT_NOT_FOUND);
             }
 
             Ingredient ingredient = model.getIngredientByIndex(ingredientId);
-            Pair<Ingredient, Integer> ingredientQuantPair = new Pair<>(ingredient, ingredientQuant);
+            Pair<Ingredient, Integer> ingredientQuantityPair = new Pair<>(ingredient, ingredientQuantity);
 
-            ingredientQuantityList.add(ingredientQuantPair);
+            ingredientQuantityList.add(ingredientQuantityPair);
         }
 
-        Dish toAdd = new Dish(name, price, ingredientQuantityList);
-
-        if (model.hasDish(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_DISH);
-        }
-
-        return toAdd;
+        return ingredientQuantityList;
     }
-
-
 }

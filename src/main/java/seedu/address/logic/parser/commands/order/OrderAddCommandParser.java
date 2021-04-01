@@ -42,15 +42,16 @@ public class OrderAddCommandParser implements Parser<OrderAddCommand> {
 
         Integer customerId = Integer.parseInt(argMultimap.getValue(PREFIX_NAME).get().trim());
         String strDateTime = argMultimap.getValue(PREFIX_DATETIME).get().trim();
-        List<String> dishNums = argMultimap.getAllValues(PREFIX_DISH);
-        List<String> dishQuants = argMultimap.getAllValues(PREFIX_QUANTITY);
+        List<String> dishNumbers = argMultimap.getAllValues(PREFIX_DISH);
+        List<String> dishQuantities = argMultimap.getAllValues(PREFIX_QUANTITY);
 
         List<Pair<Integer, Integer>> dishQuantityList = new ArrayList<>();
 
-        for (int idx = 0; idx < dishNums.size(); idx++) {
+        // TODO: abstract out to parser, add size check
+        for (int i = 0; i < dishNumbers.size(); i++) {
             Pair<Integer, Integer> orderComponent =
-                    new Pair<>(Integer.parseInt(dishNums.get(idx)),
-                            Integer.parseInt(dishQuants.get(idx)));
+                    new Pair<>(Integer.parseInt(dishNumbers.get(i)),
+                            Integer.parseInt(dishQuantities.get(i)));
             dishQuantityList.add(orderComponent);
         }
 

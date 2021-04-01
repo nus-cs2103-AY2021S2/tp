@@ -1,6 +1,5 @@
 package seedu.address.logic.commands.order;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,54 +17,59 @@ public class OrderCommandUtil {
     public static final String MESSAGE_DISH_NOT_FOUND = "Dish in order not found on the menu";
 
     /**
-     * Constructs a valid Order from the given parameters.
-     * @param dateTime Date and time the order is to be delivered at.
-     * @param customerOneIndex Customer's ID number
-     * @param dishNumberQuantityList List of pairs of the form (dish index, dish quantity).
+     * Checks whether an order is a valid addition.
+     * @param toAdd Candidate order to be added.
      * @param model The model object.
-     * @return Constructed Order object.
+     * @return True if the order is a valid addition.
      * @throws CommandException If any parameters are invalid.
      */
-    public static Order constructValidOrder(LocalDateTime dateTime, Integer customerOneIndex,
-                                            List<Pair<Integer, Integer>> dishNumberQuantityList,
-                                            Model model) throws CommandException {
+    public static boolean isValidOrderAddition(Order toAdd, Model model) throws CommandException {
 
-        int customerZeroIndex = Index.fromOneBased(customerOneIndex).getZeroBased();
-
-        if (customerZeroIndex >= model.getFilteredPersonList().size()) {
-            throw new CommandException(MESSAGE_CUSTOMER_INDEX_INVALID);
+        if (model.hasOrder(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_ORDER);
         }
 
-        assert (customerZeroIndex >= 0 && customerZeroIndex < model.getFilteredPersonList().size())
-                : "Invalid customer index called";
+        return true;
+    }
 
-        Person customer = model.getPersonByIndex(customerZeroIndex);
-
-        assert (customer != null) : "Attempting to construct order with non-existent customer";
-
+    /**
+     * Looks up dishes given a list of their IDs.
+     * @param dishNumberQuantityList List of IDs to be looked up.
+     * @param model The model object.
+     * @return List of dishes corresponding to the input IDs.
+     * @throws CommandException If any input IDs are invalid.
+     */
+    public static List<Pair<Dish, Integer>> lookupDishIds(List<Pair<Integer, Integer>> dishNumberQuantityList,
+                                                          Model model) throws CommandException {
         List<Pair<Dish, Integer>> dishQuantityList = new ArrayList<>();
 
         for (Pair<Integer, Integer> dishIdPair : dishNumberQuantityList) {
 
             Integer dishId = Index.fromOneBased(dishIdPair.getKey()).getZeroBased();
-            Integer dishQuant = dishIdPair.getValue();
+            Integer dishQuantity = dishIdPair.getValue();
 
             if (dishId >= model.getFilteredDishList().size()) {
                 throw new CommandException(MESSAGE_DISH_NOT_FOUND);
             }
 
             Dish dish = model.getDishByIndex(dishId);
-            Pair<Dish, Integer> dishQuantPair = new Pair<>(dish, dishQuant);
+            Pair<Dish, Integer> dishQuantityPair = new Pair<>(dish, dishQuantity);
 
-            dishQuantityList.add(dishQuantPair);
+            dishQuantityList.add(dishQuantityPair);
         }
 
-        Order toAdd = new Order(dateTime, customer, dishQuantityList);
+        return dishQuantityList;
+    }
 
-        if (model.hasOrder(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_ORDER);
+    public static Person getValidCustomerByOneIndex(int customerId, Model model) throws CommandException {
+        int customerIndex = Index.fromOneBased(customerId).getZeroBased();
+
+        if (customerIndex >= model.getFilteredPersonList().size()) {
+            throw new CommandException(MESSAGE_CUSTOMER_INDEX_INVALID);
         }
 
-        return toAdd;
+        Person customer = model.getPersonByIndex(customerIndex);
+
+        return customer;
     }
 }
