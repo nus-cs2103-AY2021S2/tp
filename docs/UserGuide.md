@@ -10,10 +10,11 @@ users can learn Japanese at a comfortable pace and manage flashcards with this a
 * [Introduction](#introduction)
 * [Quick Start](#quick-start)
 * [Features](#features)
+  * [Entering quiz mode: `quiz`](#entering-quiz-mode-quiz)
   * [Starting a quiz session: `start`](#starting-a-quiz-session-start)
   * [Checking flashcard answers: `check`](#checking-flashcard-answers-check)
   * [Going to next flashcard: `next`](#going-to-next-flashcard-next)
-  * [Listing out all flashcards: `learn`](#listing-out-all-flashcards-learn)
+  * [Entering learn mode: `learn`](#listing-out-all-flashcards-learn)
   * [Ending the session: `end`](#ending-the-session-end)
   * [Viewing past scores: `history`](#viewing-past-scores-history)
   * [Exiting the application: `exit`](#exiting-the-application-exit)
@@ -86,6 +87,11 @@ eg. if you specify `n/5 n/10`, only `n/10` will be taken.
 
 </div>
 
+### Entering quiz mode: `quiz`
+
+Enters Quiz Mode, where all current flashcards are listed out. Answers to current flashcards are not shown.
+
+
 ### Starting a quiz session: `start`
 
 Starts a quiz session.
@@ -99,9 +105,9 @@ Format: `start [n/NUMBER] [t/TAG]`
 * You can specify one or two tags.
 
 Examples:
-* start n/10
-* start t/katakana
-* start n/5 t/gojuon t/hiragana
+* `start n/10`
+* `start t/katakana`
+* `start n/5 t/gojuon t/hiragana`
 
 Before executing start command:
 ![before start](images/start_before.png)
@@ -111,19 +117,33 @@ After executing start command:
 
 ### Checking flashcard answers: `check`
 
-Reveals the answer to the previous shown flashcard.
+Reads in user attempt and check if it matches the answer of currently shown flashcard question.
+If attempt is correct, answer to the current flashcard will be display. Else, the user will be prompted to re-enter an answer.
 
-Format: `check`
+Format: `check ATTEMPT`
+
+Examples:
+* `check a`
+* `check hi`
+
+If user attempt matches correct answer of flashcard:
+<insert screenshot here please>
+
+If user attempt does not match correct answer of flashcard:
+<insert screenshot here please>
+
+If user tries to answer already correctly answered flashcard:
+<insert screenshot here please>
 
 ### Going to next flashcard: `next`
 
-Goes to the next flashcard, if any.
+Goes to the next flashcard in the quiz session, if any.
 
 Format: `next`
 
-### Listing out all flashcards: `learn`
+### Entering learn mode: `learn`
 
-Enters Learn Mode, where all current flashcards are listed out.
+Enters Learn Mode, where all current flashcards are listed out. Answer to current flashcards are shown.
 
 Format: `learn`
 
@@ -175,8 +195,9 @@ are advanced and you know how to manipulate the storage files, you can do so if 
 
 Action | Format, Examples |
 -------|------------------|
+**Quiz** | `quiz`
 **Start** | `start`
-**Check** | `check`
+**Check** | `check ATTEMPT` <br> e.g. `check a`
 **Next** | `next`
 **Learn** | `learn`
 **End** | `end`
