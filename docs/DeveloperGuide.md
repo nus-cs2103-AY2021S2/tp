@@ -368,6 +368,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends
 
+**Extensions**
+
+* 1a. The given tutor/student information is already exist in the list
+
+    * 1a1. AddressBook shows an error message.
+
+  Use case ends.
+
 **Use case: Add a class**
 
 **MSS**
@@ -413,7 +421,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
     
 * 1b. The given index cannot be found in the address book.
-    * 1a1. AddressBook shows a message stating no person found.
+    * 1a1. AddressBook shows an error message.
 
       Use case ends.
     
