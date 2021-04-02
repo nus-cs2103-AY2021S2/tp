@@ -10,7 +10,7 @@ participant "cr:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
-participant ":record:Record" as Record MODEL_COLOR
+participant ":record:IncompleteRecord" as IncompleteRecord MODEL_COLOR
 participant ":Model" as Model MODEL_COLOR
 participant ":SmartLib" as SmartLib MODEL_COLOR
 end box
@@ -20,10 +20,10 @@ participant ":FilteredList" as FilteredList STORAGE_COLOR
 end box
 
 
-[-> LogicManager : execute("return r/Tom b/Cloud Atlas")
+[-> LogicManager : execute("return bc/1000000000")
 activate LogicManager
 
-LogicManager -> SmartLibParser : parseCommand("return r/Tom b/Cloud Atlas")
+LogicManager -> SmartLibParser : parseCommand("return bc/1000000000")
 activate SmartLibParser
 
 create ReturnCommandParser
@@ -33,15 +33,15 @@ activate ReturnCommandParser
 ReturnCommandParser --> SmartLibParser
 deactivate ReturnCommandParser
 
-SmartLibParser -> ReturnCommandParser : parse("r/Tom b/Cloud Atlas")
+SmartLibParser -> ReturnCommandParser : parse("bc/1000000000")
 activate ReturnCommandParser
 
-create Record
-ReturnCommandParser -> Record : new Record("Tom", "Cloud Atlas", new DateReturned(now()))
-activate Record
+create IncompleteRecord
+ReturnCommandParser -> IncompleteRecord : new IncompleteRecord(barcode, new DateReturned(now()))
+activate IncompleteRecord
 
-Record -> ReturnCommandParser : record
-deactivate Record
+IncompleteRecord --> ReturnCommandParser : record
+deactivate IncompleteRecord
 
 create ReturnCommand
 ReturnCommandParser -> ReturnCommand : new ReturnCommand(record)
@@ -57,31 +57,42 @@ ReturnCommandParser -[hidden]-> SmartLibParser
 destroy ReturnCommandParser
 
 SmartLibParser --> LogicManager : rc
-deactivate SmartLibParser
+destroy SmartLibParser
 
 LogicManager -> ReturnCommand : execute(model)
 activate ReturnCommand
 
+ReturnCommand -> Model : getReaderNameForReturn(barcode)
+activate Model
 
-ReturnCommand -> Model : markRecordAsReturend(record)
+Model -> SmartLib : getReaderByBarcode(barcode)
+activate SmartLib
+
+SmartLib --> Model : reader
+deactivate SmartLib
+
+Model --> ReturnCommand : readerName
+activate ReturnCommand
+
+ReturnCommand -> Model : markRecordAsReturned(record)
 activate Model
 
 Model -> FilteredList: updateFilteredRecordList()
 activate FilteredList
 
-FilteredList -> Model:
+FilteredList --> Model:
 deactivate FilteredList
 
-Model -> ReturnCommand :
+Model --> ReturnCommand :
 deactivate Model
 
-ReturnCommand -> Model : returnBook("Tom", "Cloud Atlas")
+ReturnCommand -> Model : returnBook(readerName, barcode)
 activate Model
 
-Model -> SmartLib : returnBook("Tom", "Cloud Atlas")
+Model -> SmartLib : returnBook(readerName, barcode)
 activate SmartLib
 
-SmartLib -> Model :
+SmartLib --> Model :
 deactivate SmartLib
 
 Model -> FilteredList : updateFilteredReaderList()
@@ -91,6 +102,12 @@ FilteredList --> Model :
 deactivate FilteredList
 
 Model -> FilteredList : updateFilteredBookList()
+activate FilteredList
+
+FilteredList --> Model :
+deactivate FilteredList
+
+Model -> FilteredList : updateFilteredRecordList()
 activate FilteredList
 
 FilteredList --> Model :
