@@ -63,7 +63,19 @@ Different sections of the application window will be referred to by the names de
 
 ![App Window Sections](images/app_window_sections.png)
 
-#### 2.2.2 Special Formats
+#### 2.2.2 Navigating the UI
+
+Although most of the buttons you see on the screen are clickable, the UI has been designed primarily to be navigated using the command line interface. 
+
+Users can enter commands into the command box and press `ENTER` to execute it. The result box will be updated with information on whether the command has been successfully executed. Depending on the command executed, the main panel may also be updated based on the command executed.
+
+When entering a command, you may find it helpful to see a history of your previous commands. To do so simply press `UP` or `DOWN` while typing to navigate through the command history list. 
+
+<div markdown="span" class="alert alert-info">:information_source: **Info:**
+Only successfully executed commands will be saved.
+</div>
+
+#### 2.2.3 Special Formats
 
 Formats discussed in this section may be used in relevant areas of this user guide.
 
@@ -97,8 +109,7 @@ Words or sentences that appear in these highlighted boxes are being emphasised f
 
 `Example highlight!`
 
-
-#### 2.2.3 Command Format
+#### 2.2.4 Command Format
 
 Commands discussed in this user guide follow these rules:
 
@@ -130,7 +141,7 @@ Commands discussed in this user guide follow these rules:
 Parameters refer to information that is to be included as an input to a command.
 </div>
 
-#### 2.2.4 Command Parameters
+#### 2.2.5 Command Parameters
 
 This subsection serves to list out the parameters used in this document. 
 
