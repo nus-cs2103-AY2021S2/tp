@@ -30,9 +30,11 @@ Given below are my contributions to the project.
    PR: [#47](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/47))
 6. Format the date output to make it more in line with the project.(
    PR: [#48](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/48))
+7. Modify the find command to enable search by other customer attributes.(
+   PR: [#63](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/63))   
 
 
-* **Enhancement to existing features**:
+* **Documentation**:
 
 1. Update User Guide, by adding features description and enhance existing info.(
    PR: [#16](https://github.com/AY2021S2-CS2103T-W10-3/tp/pull/16),
