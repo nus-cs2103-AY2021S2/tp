@@ -73,7 +73,7 @@ public class TypicalBookings {
             new StartTime(LocalDateTime.of(2021, 03, 01, 12, 30, 00)),
             new EndTime(LocalDateTime.of(2021, 03, 01, 13, 30, 00)),
             new HashSet<>(),
-            new Id(0)
+            new Id(4)
     );
 
     public static final Booking BOOKING_HALL = new BookingBuilder()
