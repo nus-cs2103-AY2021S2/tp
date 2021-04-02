@@ -114,7 +114,8 @@ Component | Purpose
 This help page provides a short summary list of commands that you can use, as well as a link to this main user guide page.
 
 ![HelpPageView](images/PawbookHelpPageView.png)
----
+
+----
 
 ## Quick Start
 
@@ -163,8 +164,8 @@ Examples:
    Command: `add owner n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney`
 2. Adds a dog named BRUCE belonging to owner with ID 1 in Pawbook. <br>
    Command: `add dog n/Bruce b/Chihuahua d/12-02-2019 s/Male o/1 t/playful t/active`
-3. Creates a program with Program ID 3. <br>
-   Command: `add program n/3 s/02-02-2020 18:00 t/puppies`
+3. Creates a program with program name Obedience Training. <br>
+   Command: `add program n/Obedience Training s/02-02-2020 18:00 t/puppies`
    
 :bulb: The order of the prefixes do not matter, feel free to add your information in any order that is convenient for you!
 
@@ -216,9 +217,9 @@ allows you to quickly correct that mistake.
 Format:
 
 ```
-edit dog d/[DOG ID] n/[NAME] b/[BREED] d/[DATEOFBIRTH] s/[SEX] o/[OWNERID] [t/TAGS]...
-edit owner o/[OWNER ID] n/[NAME] p/[PHONE] e/[EMAIL] a/[ADDRESS] [t/TAGS]...
-edit program o/[PROGRAM ID] n/[NAME] [s/SESSION]... [t/TAGS]...
+edit dog [DOG ID] n/[NAME] b/[BREED] d/[DATEOFBIRTH] s/[SEX] o/[OWNERID] [t/TAGS]...
+edit owner [OWNER ID] n/[NAME] p/[PHONE] e/[EMAIL] a/[ADDRESS] [t/TAGS]...
+edit program [PROGRAM ID] n/[NAME] [s/SESSION]... [t/TAGS]...
 ```
 
 Note: 
@@ -396,7 +397,8 @@ Format:
 help
 ```
 
-![Help Command](images/HelpCommandScreenshot1.png) ![Help Command Result](images/HelpCommandScreenshot2.png)
+![Help Command](images/HelpCommandScreenshot1.png)  ![Help Command Result](images/HelpCommandScreenshot2.png)
+
 
 ### Exit Command
 
