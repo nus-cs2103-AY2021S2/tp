@@ -47,9 +47,9 @@ In [Section 3: Quick Start](#3-quick-start), you will find a quick start guide t
 
 In [Section 4: Features](#4-features), you will find documentation on all of CoLAB's commands and features.
 
-In [Section 5: FAQ](#5faq), you may find answers to some questions you may have on using CoLAB.
+In [Section 5: FAQ](#5-faq), you may find answers to some questions you may have on using CoLAB.
 
-In [Section 6: Command Summary](#6command-summary), you will find a summary on CoLAB's commands.
+In [Section 6: Command Summary](#6-command-summary), you will find a summary on CoLAB's commands.
 
 You can also easily sift through CoLAB's various commands and features by referring to the Table of Contents at the beginning of this User Guide.
 
@@ -903,7 +903,7 @@ Format: `clear`
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **5.FAQ**
+## **5. FAQ**
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous CoLAB home folder.
@@ -920,7 +920,7 @@ If your changes to the data file makes its format invalid, CoLAB will discard al
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **6.Command summary**
+## **6. Command summary**
 
 ### Projects
 
@@ -990,7 +990,7 @@ Action | Format, Examples
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **7.Acknowledgements**
+## **7. Acknowledgements**
 
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
