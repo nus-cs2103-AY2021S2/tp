@@ -79,7 +79,7 @@ DocBob will open up a help window with command information.
 
 ### Adding a patients' contact: `add`
 
-Adds a patient to DocBob's contact list.
+Adds a patient to DocBob's patient list.
 
 Format: `add n/Name p/phoneNumber e/Email a/Address h/Height w/Weight [t/TAG]`
 
@@ -92,7 +92,7 @@ Output:
 
 ### Deleting a patients' contact : `delete`
 
-Deletes a patient from DocBob's contact list, identified by the index number shown in the displayed patient list.
+Deletes a patient from DocBob's patient list, identified by the index number shown in the displayed patient list.
 
 Format : `delete INDEX`
 where INDEX must be a positive integer (1,2,3,...)
@@ -104,9 +104,9 @@ Output:
 
 `Deleted Person: Shrek; Phone: 66666666; Email: shrek@swampmail.com; Address: Swamp; Height: 243cm; Weight: 94kg; Tags: [smelly]`
 
-### Listing out all patients' contacts : `list`
+### Listing out all patients : `list`
 
-Shows a list of all your saved patients information, with their next scheduled appointment beside their name.
+Shows the main list of all your saved patients information, with their next scheduled appointment beside their name.
 
 Format: `list`
 
@@ -222,11 +222,49 @@ Examples:
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 
-### Clearing all entries[Coming soon] : `clear`
+### Clearing all entries : `clear`
 
 Clears all entries from DocBob.
 
 Format: `clear`
+
+### Archiving a patient : `archive`
+
+Archives a patient from DocBob's patient list, identified by the index number shown in the displayed patient list.
+
+Format : `archive INDEX`
+where INDEX must be a positive integer (1,2,3,...)
+
+* Remember to be on the main list when archiving a patient using the `list` command.
+
+Example:
+* `archive 1`
+
+Output:
+
+`Archived Person: Shrek; Phone: 66666666; Email: shrek@swampmail.com; Address: Swamp; Height: 243cm; Weight: 94kg; Tags: [smelly]`
+
+### Listing out all archived patients : `archivelist`
+
+Shows the list of all your archived patients information, with their next scheduled appointment beside their name.
+
+Format: `archivelist`
+
+### Unarchiving a patient : `unarchive`
+
+Unarchives a patient from DocBob's archived patient list, identified by the index number shown in the displayed archived patient list.
+
+Format : `unarchive INDEX`
+where INDEX must be a positive integer (1,2,3,...)
+
+* Remember to be on the archive list when archiving a patient using the `archivelist` command.
+
+Example:
+* `unarchive 1`
+
+Output:
+
+`Unarchived Person: Shrek; Phone: 66666666; Email: shrek@swampmail.com; Address: Swamp; Height: 243cm; Weight: 94kg; Tags: [smelly]`
 
 ### Saving the data
 
@@ -261,6 +299,9 @@ Action | Format, Examples
 **listappt** | `listappt`
 **mrec** | `mrec 3`
 **view** | `view 1`
+**archive** | `archive 2`
+**archivelist** | `archivelist`
+**unarchive** | `unarchive 2`
 **exit** | `exit`
 
 ## Issues
