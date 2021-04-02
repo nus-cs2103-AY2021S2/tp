@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_QUANTITY_BANANA;
-import static seedu.storemando.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.storemando.logic.commands.CommandTestUtil.VALID_TAG_ESSENTIAL;
 import static seedu.storemando.testutil.Assert.assertThrows;
 import static seedu.storemando.testutil.TypicalItems.APPLE;
 import static seedu.storemando.testutil.TypicalItems.getTypicalStoreMando;
@@ -46,9 +46,19 @@ public class StoreMandoTest {
     }
 
     @Test
+    public void testStoreMandoEquals() {
+        StoreMando storeMando = getTypicalStoreMando();
+        assertEquals(storeMando, storeMando);
+
+        StoreMando storeMando1 = new StoreMando();
+        StoreMando storeMando2 = new StoreMando();
+        assertEquals(storeMando1, storeMando2);
+    }
+
+    @Test
     public void resetData_withDuplicateItems_throwsDuplicateItemException() {
         // Two items with the same identity fields
-        Item editedApple = new ItemBuilder(APPLE).withQuantity(VALID_QUANTITY_BANANA).withTags(VALID_TAG_HUSBAND)
+        Item editedApple = new ItemBuilder(APPLE).withQuantity(VALID_QUANTITY_BANANA).withTags(VALID_TAG_ESSENTIAL)
             .build();
         List<Item> newItems = Arrays.asList(APPLE, editedApple);
         StoreMandoStub newData = new StoreMandoStub(newItems);
@@ -75,9 +85,34 @@ public class StoreMandoTest {
     @Test
     public void hasItem_itemWithSameIdentityFieldsInStoreMando_returnsTrue() {
         storeMando.addItem(APPLE);
-        Item editedApple = new ItemBuilder(APPLE).withQuantity(VALID_QUANTITY_BANANA).withTags(VALID_TAG_HUSBAND)
+        Item editedApple = new ItemBuilder(APPLE).withQuantity(VALID_QUANTITY_BANANA).withTags(VALID_TAG_ESSENTIAL)
             .build();
         assertTrue(storeMando.hasItem(editedApple));
+    }
+
+    @Test
+    public void hasSimilarItem_nullItem_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> storeMando.hasSimilarItem(null));
+    }
+
+    @Test
+    public void hasSimilarItem_itemNotInStoreMando_returnsFalse() {
+        assertFalse(storeMando.hasSimilarItem(APPLE));
+    }
+
+    @Test
+    public void hasSimilarItem_itemInStoreMando_returnsTrue() {
+        storeMando.addItem(APPLE);
+        assertTrue(storeMando.hasSimilarItem(APPLE));
+        Item editedApple = new ItemBuilder(APPLE).withQuantity(VALID_QUANTITY_BANANA).withTags(VALID_TAG_ESSENTIAL)
+            .build();
+        assertTrue(storeMando.hasSimilarItem(editedApple));
+        editedApple = new ItemBuilder(APPLE).withName("apples").withQuantity(VALID_QUANTITY_BANANA)
+            .withTags(VALID_TAG_ESSENTIAL).build();
+        assertTrue(storeMando.hasSimilarItem(editedApple));
+        editedApple = new ItemBuilder(APPLE).withName("APPLES").withLocation("kitchen BASKET")
+            .withQuantity(VALID_QUANTITY_BANANA).withTags(VALID_TAG_ESSENTIAL).build();
+        assertTrue(storeMando.hasSimilarItem(editedApple));
     }
 
     @Test

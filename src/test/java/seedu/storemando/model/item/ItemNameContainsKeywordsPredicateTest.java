@@ -64,18 +64,18 @@ public class ItemNameContainsKeywordsPredicateTest {
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
-        ItemNameContainsKeywordsPredicate predicate = new ItemNameContainsKeywordsPredicate(Arrays.asList("Ali")
+        ItemNameContainsKeywordsPredicate predicate = new ItemNameContainsKeywordsPredicate(Arrays.asList("App")
         );
-        assertFalse(predicate.test(new ItemBuilder().withName("Alice").build()));
+        assertFalse(predicate.test(new ItemBuilder().withName("Apple").build()));
 
         // Non-matching keyword
-        predicate = new ItemNameContainsKeywordsPredicate(Arrays.asList("Carol"));
-        assertFalse(predicate.test(new ItemBuilder().withName("Alice Bob").build()));
+        predicate = new ItemNameContainsKeywordsPredicate(Arrays.asList("log"));
+        assertFalse(predicate.test(new ItemBuilder().withName("logcake").build()));
 
         // Keywords match quantity, expiryDate and location, but does not match name
         predicate = new ItemNameContainsKeywordsPredicate(Arrays.asList("12345", "2020-10-10", "Main", "Street")
         );
-        assertFalse(predicate.test(new ItemBuilder().withName("Alice").withQuantity("12345")
+        assertFalse(predicate.test(new ItemBuilder().withName("cake").withQuantity("12345")
             .withExpiryDate("2020-10-10").withLocation("Main Street").build()));
     }
 }

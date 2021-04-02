@@ -2,15 +2,17 @@ package seedu.storemando.logic.parser;
 
 import static seedu.storemando.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import seedu.storemando.logic.commands.SortAscendingQuantityCommand;
 import seedu.storemando.logic.commands.SortCommand;
+import seedu.storemando.logic.commands.SortDescendingQuantityCommand;
 import seedu.storemando.logic.commands.SortExpiryDateCommand;
-import seedu.storemando.logic.commands.SortQuantityCommand;
 import seedu.storemando.logic.parser.exceptions.ParseException;
 
 public class SortCommandParser implements Parser<SortCommand> {
 
-    public static final String QUANTITY_ASCENDING_KEYWORD = "quantity asc";
-    public static final String QUANTITY_DESCENDING_KEYWORD = "quantity desc";
+    public static final String QUANTITY_KEYWORD = "quantity";
+    public static final String ASCENDING_KEYWORD = "asc";
+    public static final String DESCENDING_KEYWORD = "desc";
     public static final String EXPIRYDATE_KEYWORD = "expirydate";
 
     /**
@@ -21,10 +23,14 @@ public class SortCommandParser implements Parser<SortCommand> {
         String trimmedArgs = args.trim();
         if (trimmedArgs.equalsIgnoreCase(EXPIRYDATE_KEYWORD)) {
             return new SortExpiryDateCommand();
-        } else if (trimmedArgs.equalsIgnoreCase(QUANTITY_ASCENDING_KEYWORD)) {
-            return new SortQuantityCommand(true);
-        } else if (trimmedArgs.equalsIgnoreCase(QUANTITY_DESCENDING_KEYWORD)) {
-            return new SortQuantityCommand(false);
+        }
+        String[] splitWords = trimmedArgs.split("\\s+");
+        if (splitWords.length == 2 && splitWords[0].equalsIgnoreCase(QUANTITY_KEYWORD)
+            && splitWords[1].equalsIgnoreCase(ASCENDING_KEYWORD)) {
+            return new SortAscendingQuantityCommand();
+        } else if (splitWords.length == 2 && splitWords[0].equalsIgnoreCase(QUANTITY_KEYWORD)
+            && splitWords[1].equalsIgnoreCase(DESCENDING_KEYWORD)) {
+            return new SortDescendingQuantityCommand();
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
         }

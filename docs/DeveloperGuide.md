@@ -122,7 +122,7 @@ call.
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the storemando data.
+* stores the StoreMando data.
 * exposes an unmodifiable `ObservableList<Item>` that can be 'observed' e.g. the UI can be bound to this list so that
   the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
@@ -266,15 +266,18 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* residents in a household
-* has a need to manage a significant number of household items
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* household resident
+* has a lot of items at home and cannot constantly keep track of their respective locations
+* has a lot of perishable items with various expiry dates that are difficult to remember
+* prefers desktop applications over other types
+* fast typist
+* prefers typing to using mouse 
+* comfortable using CLI applications
 
-**Value proposition**: A centralized inventory manager that helps to track the location of items in a household, their
-individual quantities and respective expiry dates.
+**Value proposition**: Every info of every item you have at home - all in one place. One command is all you have to key 
+in to add, delete or find for an item. StoreMando keeps track of everything you need so that you don't have to 
+physically search for an item to obtain information on it. Get everything you need from StoreMando - locations,
+quantities and expiry dates.
 
 ### User stories
 
@@ -306,95 +309,104 @@ otherwise)
 
 **MSS**
 
-1. User requests for the storage list.
-2. StoreMando displays the storage list.
-3. User input the add command with the item details.
-4. StoreMando adds the item into the storage and displays the updated list.
-
-   Use case ends.
-
-* 3a. The command has invalid date-time format.
-
-    * 3a1. StoreMando shows an error message.
-
-    * 3a2. StoreMando prompt the user for a correct input.
-
-      Use case resumes at step 3.
-
-**Use case: UC2 - Delete an item in a specific area**
-
-**MSS**
-
-1. User wants to <u> list all items in a specific location (UC3). </u>
-2. StoreMando displays all items in the location.
-3. User deletes the item in the location.
-4. StoreMando displays the updated storage.
+1. User requests to add a specific item into the inventory list.
+2. StoreMando adds the item into the inventory list and displays the updated list of items.
 
    Use case ends.
 
 **Extensions**
 
-* 3a. The item details don't match any item in the storage.
+* 1a. User input has invalid syntax.
+
+    * 1a1. StoreMando shows an error message.
+
+      Use case resumes at step 1.
+    
+* 1b. Duplicate item exists in the inventory.
+
+    * 1b1. StoreMando shows an error message.
+
+      Use case resumes at step 1.    
+
+**Use case: UC2 - Delete an item in a specific location**
+
+**MSS**
+
+1. User requests to <u> list all items in a specific location (UC3). </u>
+2. StoreMando displays all items in the location.
+3. User requests to delete a specific item in the list.
+4. StoreMando deletes the specified item from the list and displays the updated list of items.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. There are no items in the specified location.
+  
+  Use case ends. 
+
+* 3a. The index keyed in by the user does not exist in the displayed list.
 
     * 3a1. StoreMando shows an error message.
-
-    * 3a2. StoreMando prompt the user for a correct input.
-
-      Use case resumes at step 3.
-
-* 3b. The command has an out-of-range index.
-
-    * 3b1. StoreMando shows an error message.
-
-    * 3b2. StoreMando prompt the user for a correct input.
-
+    
       Use case resumes at step 3.
 
 **Use case: UC3 - List all items in a specific location**
 
 **MSS**
 
-1. User requests to display all items in that specific location.
-2. StoreMando displays all items in that specific location, can be 0 item.
-
-   Use case ends.
-
-**Use case: UC4 - Find an item**
-
-**MSS**
-
-1. User wants to find a particular item with the item’s name.
-2. StoreMando returns a list of all items whose name contains the given keyword.
-
-   Use case ends.
-
-**Use case: UC5 - Update an item**
-
-**MSS**
-
-1. User finds a <u>specific item (UC4)</u> that he wants to update.
-2. StoreMando returns a list of all items whose name contains the given keyword.
-3. User requests to update that particular item with the new values.
-4. StoreMando updates and stores the new data, then displays it.
+1. User requests to display all items in a specific location.
+2. StoreMando displays all items in that specific location.
 
    Use case ends.
 
 **Extensions**
 
-* 3a. The item details do not match any item in the storage.
+* 1a. User input has invalid syntax.
 
-    * 3a1. StoreMando shows an error message.
+    * 1a1. StoreMando shows an error message.
 
-    * 3a2. StoreMando prompt the user for a correct input.
+      Use case resumes at step 1.
 
-      Use case resumes at step 3.
+
+**Use case: UC4 - Find an item**
+
+**MSS**
+
+1. User requests to find an item with a particular name.
+2. StoreMando returns a list of all items whose name contains the name specified by the user.
+
+   Use case ends.
+
+**Use case: UC5 - Edit an item**
+
+**MSS**
+
+1. User requests to edit an existing item's details.
+2. StoreMando edits the specified item and displays the updated list of items.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The command keyed in by the user has an invalid syntax.
+
+    * 1a1. StoreMando shows an error message.
+    
+      Use case resumes at step 1.
+
+* 1b. The new details keyed in by the user is the same as the existing details of the item.
+
+    * 1b1. StoreMando shows an error message.
+
+      Use case resumes at step 1.    
 
 **Use case: UC6 - Check for expiring items**
 
 **MSS**
 
 1. User wants to search for items that are expiring within the next 7 days.
-2. StoreMando returns a list of expiring items.
+2. StoreMando displays a list of items that have either expired or are expiring within the next 7 days.
 
    Use case ends.
 
@@ -403,16 +415,12 @@ otherwise)
 * 1a. User inputs a negative number.
 
     * 1a1. StoreMando shows an error message.
-
-    * 1a2. StoreMando prompt the user for a correct input.
-
+    
       Use case resumes at step 1.
 
 * 1a. Time unit input is neither day(s) or week(s)
 
     * 1a1. StoreMando shows an error message.
-
-    * 1a2. StoreMando prompt the user for a correct input.
 
       Use case resumes at step 1.
 
@@ -420,8 +428,8 @@ otherwise)
 
 **MSS**
 
-1. User requests to display all items.
-2. StoreMando displays all items, can be 0 item.
+1. User requests to display all items in the inventory.
+2. StoreMando displays all items in the inventory.
 
    Use case ends.
 
@@ -429,8 +437,8 @@ otherwise)
 
 **MSS**
 
-1. User requests to display all items with that specific tag.
-2. StoreMando displays all items with that specific tag, can be 0 item.
+1. User requests to display all items with a specific tag.
+2. StoreMando displays all items with the specific tag.
 
    Use case ends.
 
@@ -439,7 +447,7 @@ otherwise)
 **MSS**
 
 1. User requests to sort the items in the displayed list in increasing order of quantity.
-2. StoreMando displays a sorted list of the items.
+2. StoreMando displays the list of items in increasing order of quantity.
 
    Use case ends.
 
@@ -448,7 +456,7 @@ otherwise)
 **MSS**
 
 1. User requests to sort the items in the displayed list in decreasing order of quantity.
-2. StoreMando displays a sorted list of the items.
+2. StoreMando displays the list of items in decreasing order of quantity.
 
    Use case ends.
 
@@ -457,7 +465,7 @@ otherwise)
 **MSS**
 
 1. User requests to sort the items in the displayed list by expiry date.
-2. StoreMando displays a sorted list of the items.
+2. StoreMando displays a sorted list of the items in chronological order of their expiry date.
 
    Use case ends.
 
@@ -472,28 +480,35 @@ Use case ends.
 
 **Extensions**
 
-* 1a. The location input does not match any location in the storage.
+* 1a. The location keyed in by the user does not exist in the inventory.
 
     * 1a1. StoreMando shows an error message.
-
-    * 1a2. StoreMando prompts the user for a correct location.
-
+    
       Use case resumes at step 1.
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
-1. Should be able to hold up to 1000 line items in the house without any sluggish performance for typical usage.
-2. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be
-   able to accomplish most of the tasks faster using commands than using the mouse.
+1. **Performance**
+    * Result should appear within 0.3 seconds after user keys in a command.
+2. **Reliability**
+    * Should be able to hold up to 1000 line items in the house without any sluggish performance for typical usage.
+3. **Portability**
+    * Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+4. **Usability**
+    * A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should 
+      be able to accomplish most of the tasks faster by typing rather than using the mouse. 
+    * StoreMando should work with or without Internet connection.
 
-*{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **StoreMando**: Name of the application
+* **CLI**: Command Line Interface    
+* **GUI**: Graphical User Interface
+* **Inventory**: List of all items stored in StoreMando
 
 --------------------------------------------------------------------------------------------------------------------
 

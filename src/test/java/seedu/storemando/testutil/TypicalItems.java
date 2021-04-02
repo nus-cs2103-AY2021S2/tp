@@ -8,8 +8,8 @@ import static seedu.storemando.logic.commands.CommandTestUtil.VALID_NAME_BANANA;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_NAME_CHEESE;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_QUANTITY_BANANA;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_QUANTITY_CHEESE;
-import static seedu.storemando.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.storemando.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.storemando.logic.commands.CommandTestUtil.VALID_TAG_ESSENTIAL;
+import static seedu.storemando.logic.commands.CommandTestUtil.VALID_TAG_FAVOURITE;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,8 +27,16 @@ public class TypicalItems {
         .withLocation("Kitchen Basket").withExpiryDate("2021-04-08")
         .withQuantity("9")
         .withTags("Expiring").build();
+    public static final Item FAKEAPPLE = new ItemBuilder().withName("apples")
+        .withLocation("Kitchen Basket").withExpiryDate("2021-04-08")
+        .withQuantity("9")
+        .withTags("Expiring").build();
     public static final Item BREAD = new ItemBuilder().withName("Bread")
         .withLocation("Dining Table")
+        .withExpiryDate("2021-04-08").withQuantity("1")
+        .withTags("Expiring", "Favourite").build();
+    public static final Item FAKEBREAD = new ItemBuilder().withName("Bread")
+        .withLocation("dining Table")
         .withExpiryDate("2021-04-08").withQuantity("1")
         .withTags("Expiring", "Favourite").build();
     public static final Item CREAM = new ItemBuilder().withName("Cream Cheese").withQuantity("1")
@@ -52,10 +60,10 @@ public class TypicalItems {
     // Manually added - Item's details found in {@code CommandTestUtil}
     public static final Item CHEESE = new ItemBuilder().withName(VALID_NAME_CHEESE)
         .withQuantity(VALID_QUANTITY_CHEESE).withExpiryDate(VALID_EXPIRYDATE_CHEESE).withLocation(VALID_LOCATION_CHEESE)
-        .withTags(VALID_TAG_FRIEND).build();
+        .withTags(VALID_TAG_FAVOURITE).build();
     public static final Item BANANA = new ItemBuilder().withName(VALID_NAME_BANANA).withQuantity(VALID_QUANTITY_BANANA)
-        .withExpiryDate(VALID_EXPIRYDATE_BANANA).withLocation(VALID_LOCATION_BANANA).withTags(VALID_TAG_HUSBAND,
-            VALID_TAG_FRIEND)
+        .withExpiryDate(VALID_EXPIRYDATE_BANANA).withLocation(VALID_LOCATION_BANANA).withTags(VALID_TAG_ESSENTIAL,
+            VALID_TAG_FAVOURITE)
         .build();
 
     public static final String KEYWORD_MATCHING_TOOTHBRUSH = "Toothbrush"; // A keyword that matches TOOTHBRUSH
@@ -97,7 +105,7 @@ public class TypicalItems {
     }
 
     /**
-     * Returns an {@code StoreMando} with all the typical itemss.
+     * Returns an {@code StoreMando} with all the typical items.
      */
     public static StoreMando getTypicalStoreMandoSortedByExpiryDate() {
         StoreMando ab = new StoreMando();

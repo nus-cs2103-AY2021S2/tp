@@ -45,7 +45,8 @@ public class ListCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredItemList(predicate);
+        model.updateCurrentPredicate(predicate);
+        model.updateFilteredItemList(model.getCurrentPredicate());
         return new CommandResult(MESSAGE_SUCCESS);
     }
 

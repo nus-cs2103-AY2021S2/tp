@@ -37,18 +37,23 @@ public class CommandResultTest {
 
     @Test
     public void hashcode() {
-        CommandResult commandResult = new CommandResult("feedback");
+        CommandResult firstCommandResult = new CommandResult("feedback");
+        CommandResult secondCommandResult = new CommandResult("feedback", true, false);
 
         // same values -> returns same hashcode
-        assertEquals(commandResult.hashCode(), new CommandResult("feedback").hashCode());
+        assertEquals(firstCommandResult.hashCode(), new CommandResult("feedback").hashCode());
+        assertEquals(secondCommandResult.hashCode(), new CommandResult("feedback", true, false).hashCode());
 
         // different feedbackToUser value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("different").hashCode());
+        assertNotEquals(firstCommandResult.hashCode(), new CommandResult("different").hashCode());
+        assertNotEquals(secondCommandResult.hashCode(), new CommandResult("different", true, false).hashCode());
 
         // different showHelp value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", true, false).hashCode());
+        assertNotEquals(firstCommandResult.hashCode(), new CommandResult("feedback", true, false).hashCode());
+        assertNotEquals(secondCommandResult.hashCode(), new CommandResult("feedback", false, false).hashCode());
 
         // different exit value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, true).hashCode());
+        assertNotEquals(firstCommandResult.hashCode(), new CommandResult("feedback", false, true).hashCode());
+        assertNotEquals(secondCommandResult.hashCode(), new CommandResult("feedback", true, true).hashCode());
     }
 }

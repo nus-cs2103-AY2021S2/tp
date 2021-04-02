@@ -21,8 +21,9 @@ import seedu.storemando.logic.commands.FindCommand;
 import seedu.storemando.logic.commands.HelpCommand;
 import seedu.storemando.logic.commands.ListCommand;
 import seedu.storemando.logic.commands.ReminderCommand;
+import seedu.storemando.logic.commands.SortAscendingQuantityCommand;
 import seedu.storemando.logic.commands.SortCommand;
-import seedu.storemando.logic.commands.SortQuantityCommand;
+import seedu.storemando.logic.commands.SortDescendingQuantityCommand;
 import seedu.storemando.logic.parser.exceptions.ParseException;
 import seedu.storemando.model.item.Item;
 import seedu.storemando.model.item.ItemNameContainsKeywordsPredicate;
@@ -44,7 +45,6 @@ public class StoreMandoParserTest {
     @Test
     public void parseCommand_clear() throws Exception {
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
     }
 
     @Test
@@ -91,8 +91,10 @@ public class StoreMandoParserTest {
     @Test
     public void parseCommand_sort() throws Exception {
         assertTrue(parser.parseCommand(SortCommand.COMMAND_WORD + " expiryDate") instanceof SortCommand);
-        assertTrue(parser.parseCommand(SortCommand.COMMAND_WORD + " quantity asc") instanceof SortQuantityCommand);
-        assertTrue(parser.parseCommand(SortCommand.COMMAND_WORD + " quantity desc") instanceof SortQuantityCommand);
+        assertTrue(parser.parseCommand(SortCommand.COMMAND_WORD
+            + " quantity asc") instanceof SortAscendingQuantityCommand);
+        assertTrue(parser.parseCommand(SortCommand.COMMAND_WORD
+            + " quantity desc") instanceof SortDescendingQuantityCommand);
     }
 
     @Test

@@ -38,7 +38,8 @@ public class FindCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredItemList(predicate);
+        model.updateCurrentPredicate(predicate);
+        model.updateFilteredItemList(model.getCurrentPredicate());
         int numberOfItems = model.getFilteredItemList().size();
         if (numberOfItems > 1) {
             return new CommandResult(

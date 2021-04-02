@@ -6,10 +6,13 @@ import static seedu.storemando.logic.commands.CommandTestUtil.VALID_EXPIRYDATE_B
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_LOCATION_BANANA;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_NAME_BANANA;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_QUANTITY_BANANA;
-import static seedu.storemando.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.storemando.logic.commands.CommandTestUtil.VALID_TAG_ESSENTIAL;
 import static seedu.storemando.testutil.Assert.assertThrows;
 import static seedu.storemando.testutil.TypicalItems.APPLE;
 import static seedu.storemando.testutil.TypicalItems.BANANA;
+import static seedu.storemando.testutil.TypicalItems.CHEESE;
+
+import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
@@ -31,14 +34,18 @@ public class ItemTest {
         // null -> returns false
         assertFalse(APPLE.isSameItem(null));
 
-        // same name and location, all other attributes different -> returns true
+        // same name and location, all other attributes different -> returns false
         Item editedApple = new ItemBuilder(APPLE).withQuantity(VALID_QUANTITY_BANANA)
-            .withExpiryDate(VALID_EXPIRYDATE_BANANA).withTags(VALID_TAG_HUSBAND).build();
+            .withExpiryDate(VALID_EXPIRYDATE_BANANA).withTags(VALID_TAG_ESSENTIAL).build();
+        assertFalse(APPLE.isSameItem(editedApple));
+
+        // same name, location and expiry date, all other attributes different -> returns true
+        editedApple = new ItemBuilder(APPLE).withQuantity(VALID_QUANTITY_BANANA).withTags(VALID_TAG_ESSENTIAL).build();
         assertTrue(APPLE.isSameItem(editedApple));
 
         // same name, all other attributes different -> returns false
         editedApple = new ItemBuilder(APPLE).withQuantity(VALID_QUANTITY_BANANA).withExpiryDate(VALID_EXPIRYDATE_BANANA)
-            .withLocation(VALID_LOCATION_BANANA).withTags(VALID_TAG_HUSBAND).build();
+            .withLocation(VALID_LOCATION_BANANA).withTags(VALID_TAG_ESSENTIAL).build();
         assertFalse(APPLE.isSameItem(editedApple));
 
         // different name, all other attributes same -> returns false
@@ -60,6 +67,47 @@ public class ItemTest {
     }
 
     @Test
+    public void isSimilarItem() {
+        // same object -> returns true
+        assertTrue(APPLE.isSimilarItem(APPLE));
+
+        // null -> returns false
+        assertFalse(APPLE.isSimilarItem(null));
+
+        // same name and location, all other attributes different -> returns true
+        Item editedApple = new ItemBuilder(APPLE).withQuantity(VALID_QUANTITY_BANANA)
+            .withExpiryDate(VALID_EXPIRYDATE_BANANA).withTags(VALID_TAG_ESSENTIAL).build();
+        assertTrue(APPLE.isSimilarItem(editedApple));
+
+        // name differs in case, all other attributes same -> returns true
+        Item editedBanana = new ItemBuilder(BANANA).withName(VALID_NAME_BANANA.toLowerCase()).build();
+        assertTrue(BANANA.isSimilarItem(editedBanana));
+
+        // name differs in case, all other attributes same -> returns true
+        editedBanana = new ItemBuilder(BANANA).withName(VALID_NAME_BANANA.toUpperCase()).build();
+        assertTrue(BANANA.isSimilarItem(editedBanana));
+
+        // same name, all other attributes different -> returns false
+        editedApple = new ItemBuilder(APPLE).withQuantity(VALID_QUANTITY_BANANA).withExpiryDate(VALID_EXPIRYDATE_BANANA)
+            .withLocation(VALID_LOCATION_BANANA).withTags(VALID_TAG_ESSENTIAL).build();
+        assertFalse(APPLE.isSimilarItem(editedApple));
+
+        // different name, all other attributes same -> returns false
+        editedApple = new ItemBuilder(APPLE).withName(VALID_NAME_BANANA).build();
+        assertFalse(APPLE.isSimilarItem(editedApple));
+
+        // different location, all other attributes same -> returns false
+        editedApple = new ItemBuilder(APPLE).withLocation(VALID_LOCATION_BANANA).build();
+        assertFalse(APPLE.isSimilarItem(editedApple));
+
+
+        // name has trailing spaces, all other attributes same -> returns false
+        String nameWithTrailingSpaces = VALID_NAME_BANANA + " ";
+        editedBanana = new ItemBuilder(BANANA).withName(nameWithTrailingSpaces).build();
+        assertFalse(BANANA.isSimilarItem(editedBanana));
+    }
+
+    @Test
     public void isExpiredItem() {
         //Item with expired expiry date
         Item editedApple = new ItemBuilder(APPLE).withExpiryDate("2020-10-10").build();
@@ -67,6 +115,10 @@ public class ItemTest {
 
         //Item with non expired expiry date
         Item editedBanana = new ItemBuilder(BANANA).withExpiryDate("2021-10-10").build();
+        assertFalse(editedBanana.isExpired());
+
+        //Item with current date as expired date
+        Item editedCheese = new ItemBuilder(CHEESE).withExpiryDate(LocalDate.now().toString()).build();
         assertFalse(editedBanana.isExpired());
 
         //Item with no expiry date
@@ -109,7 +161,7 @@ public class ItemTest {
         assertFalse(APPLE.equals(editedApple));
 
         // different tags -> returns false
-        editedApple = new ItemBuilder(APPLE).withTags(VALID_TAG_HUSBAND).build();
+        editedApple = new ItemBuilder(APPLE).withTags(VALID_TAG_ESSENTIAL).build();
         assertFalse(APPLE.equals(editedApple));
     }
 }

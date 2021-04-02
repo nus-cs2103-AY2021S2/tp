@@ -11,6 +11,7 @@ import seedu.storemando.model.expirydate.ItemExpiringPredicate;
 import seedu.storemando.testutil.ItemBuilder;
 
 public class ItemExpiringPredicateTest {
+
     @Test
     public void equals() {
         long firstPredicateNumOfDays = 3;
@@ -44,7 +45,19 @@ public class ItemExpiringPredicateTest {
         // Item expiring in 3 days and search for items within 3 days
         ItemExpiringPredicate predicate = new ItemExpiringPredicate((long) 3);
         LocalDate threeDayAfterToday = LocalDate.now().plusDays(3);
+
+        //item expiring exactly 3 days from today
         assertTrue(predicate.test(new ItemBuilder().withExpiryDate(threeDayAfterToday.toString()).build()));
+
+        //item expiring exactly today
+        assertTrue(predicate.test(new ItemBuilder().withExpiryDate(LocalDate.now().toString()).build()));
+
+        //item already expired
+        assertTrue(predicate.test(new ItemBuilder().withExpiryDate("2020-10-10").build()));
+
+        //item expiring 4 days from today
+        assertFalse(predicate.test(new ItemBuilder().withExpiryDate(threeDayAfterToday.plusDays(1).toString())
+            .build()));
 
         // Item expiring in 1 week and search for items within 3 days
         LocalDate oneWeekAfterToday = LocalDate.now().plusDays(7);

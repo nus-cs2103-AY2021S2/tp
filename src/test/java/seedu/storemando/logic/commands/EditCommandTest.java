@@ -5,9 +5,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.storemando.logic.commands.CommandTestUtil.DESC_BANANA;
 import static seedu.storemando.logic.commands.CommandTestUtil.DESC_CHEESE;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_EXPIRED_EXPIRYDATE_BANANA;
+import static seedu.storemando.logic.commands.CommandTestUtil.VALID_EXPIRYDATE_CHEESE;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_NAME_BANANA;
 import static seedu.storemando.logic.commands.CommandTestUtil.VALID_QUANTITY_BANANA;
-import static seedu.storemando.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.storemando.logic.commands.CommandTestUtil.VALID_QUANTITY_CHEESE;
+import static seedu.storemando.logic.commands.CommandTestUtil.VALID_TAG_ESSENTIAL;
 import static seedu.storemando.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.storemando.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.storemando.logic.commands.CommandTestUtil.showItemAtIndex;
@@ -55,10 +57,10 @@ public class EditCommandTest {
         Item lastItem = model.getFilteredItemList().get(indexLastItem.getZeroBased());
         ItemBuilder itemInList = new ItemBuilder(lastItem);
         Item editedItem = itemInList.withName(VALID_NAME_BANANA).withQuantity(VALID_QUANTITY_BANANA)
-            .withTags(VALID_TAG_HUSBAND).build();
+            .withTags(VALID_TAG_ESSENTIAL).build();
 
         EditCommand.EditItemDescriptor descriptor = new EditItemDescriptorBuilder().withName(VALID_NAME_BANANA)
-            .withQuantity(VALID_QUANTITY_BANANA).withTags(VALID_TAG_HUSBAND).build();
+            .withQuantity(VALID_QUANTITY_BANANA).withTags(VALID_TAG_ESSENTIAL).build();
         EditCommand editCommand = new EditCommand(indexLastItem, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ITEM_SUCCESS, editedItem);
@@ -69,21 +71,44 @@ public class EditCommandTest {
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
+
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_expiredSuccess() {
         Index indexLastItem = Index.fromOneBased(model.getFilteredItemList().size());
         Item lastItem = model.getFilteredItemList().get(indexLastItem.getZeroBased());
         ItemBuilder itemInList = new ItemBuilder(lastItem);
         Item editedItem = itemInList.withName(VALID_NAME_BANANA).withQuantity(VALID_QUANTITY_BANANA)
-            .withExpiryDate(VALID_EXPIRED_EXPIRYDATE_BANANA).withTags(VALID_TAG_HUSBAND).build();
+            .withExpiryDate(VALID_EXPIRED_EXPIRYDATE_BANANA).withTags(VALID_TAG_ESSENTIAL).build();
 
         EditCommand.EditItemDescriptor descriptor = new EditItemDescriptorBuilder().withName(VALID_NAME_BANANA)
             .withQuantity(VALID_QUANTITY_BANANA).withExpiryDate(VALID_EXPIRED_EXPIRYDATE_BANANA)
-            .withTags(VALID_TAG_HUSBAND).build();
+            .withTags(VALID_TAG_ESSENTIAL).build();
         EditCommand editCommand = new EditCommand(indexLastItem, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ITEM_SUCCESS
             + EditCommand.MESSAGE_ITEM_EXPIRED_WARNING, editedItem);
+
+        Model expectedModel = new ModelManager(new StoreMando(model.getStoreMando()), new UserPrefs());
+        expectedModel.setItem(lastItem, editedItem);
+
+        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_someFieldsSpecifiedUnfilteredList_similarSuccess() {
+        Index indexLastItem = Index.fromOneBased(model.getFilteredItemList().size());
+        Item lastItem = model.getFilteredItemList().get(indexLastItem.getZeroBased());
+        ItemBuilder itemInList = new ItemBuilder(lastItem);
+        Item editedItem = itemInList.withName("APples").withQuantity(VALID_QUANTITY_CHEESE)
+            .withExpiryDate(VALID_EXPIRYDATE_CHEESE).withLocation("Kitchen Basket").build();
+
+        EditCommand.EditItemDescriptor descriptor = new EditItemDescriptorBuilder().withName("APples")
+            .withQuantity(VALID_QUANTITY_CHEESE).withExpiryDate(VALID_EXPIRYDATE_CHEESE)
+            .withLocation("Kitchen Basket").build();
+        EditCommand editCommand = new EditCommand(indexLastItem, descriptor);
+
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ITEM_SUCCESS
+            + EditCommand.MESSAGE_SIMILAR_ITEM_WARNING, editedItem);
 
         Model expectedModel = new ModelManager(new StoreMando(model.getStoreMando()), new UserPrefs());
         expectedModel.setItem(lastItem, editedItem);
@@ -134,6 +159,7 @@ public class EditCommandTest {
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
+
 
     @Test
     public void execute_duplicateItemUnfilteredList_failure() {

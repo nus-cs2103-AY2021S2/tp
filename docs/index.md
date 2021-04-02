@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page 
 title: StoreMando
 ---
 
@@ -8,12 +8,14 @@ title: StoreMando
 
 ![Ui](images/Ui.png)
 
-**StoreMando is a **desktop app for managing inventory, optimized for use via a Command Line Interface** (CLI) while
-still having the benefits of a Graphical User Interface (GUI). If you can type fast, StoreMando can get your inventory
-management tasks done faster than traditional GUI apps.
+**StoreMando** is an integrated platform fully customised for residents in households, residential colleges and halls,
+to help users manage their items effectively and efficiently. StoreMando allows users to keep track of their items'
+whereabouts, quantities and expiry dates with a few simple commands. Furthermore, StoreMando also comes with an inbuilt
+reminder feature to help users keep track of items that are expiring. All items' information is encapsulated clearly on
+our simple and clean Graphical User Interface (GUI). Our application is optimised for use via the Command Line
+Interface (CLI) and if users have quick fingers, StoreMando can help users manage their items in the blink of an eye.
 
-* If you are interested in using StoreMando, head over to the [_Quick Start_ section of the **User
-  Guide**](UserGuide.md#quick-start).
+* If you are interested in using StoreMando, head over to the [**User Guide**](UserGuide.md).
 * If you are interested about developing StoreMando, the [**Developer Guide**](DeveloperGuide.md) is a good place to
   start.
 

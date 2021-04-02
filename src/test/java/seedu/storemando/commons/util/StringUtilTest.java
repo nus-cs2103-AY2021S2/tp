@@ -222,4 +222,82 @@ public class StringUtilTest {
         assertThrows(NullPointerException.class, () -> StringUtil.getDetails(null));
     }
 
+    //---------------- Tests for containsWord --------------------------------------
+
+    /*
+     * Invalid equivalence partitions for word: null, empty, multiple words
+     * Invalid equivalence partitions for sentence: null
+     * The four test cases below test one invalid input at a time.
+     */
+
+    @Test
+    public void containsWord_nullWord_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> StringUtil.containsWord("typical sentence", null));
+    }
+
+    @Test
+    public void containsWord_emptyWord_throwsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, "Word parameter cannot be empty", ()
+            -> StringUtil.containsWord("typical sentence", "  "));
+    }
+
+    @Test
+    public void containsWord_multipleWords_throwsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, "Word parameter should be a single word", ()
+            -> StringUtil.containsWord("typical sentence", "aaa BBB"));
+    }
+
+    @Test
+    public void containsWord_nullSentence_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> StringUtil.containsWord(null, "abc"));
+    }
+
+    /*
+     * Valid equivalence partitions for word:
+     *   - any word
+     *   - word containing symbols/numbers
+     *   - word with leading/trailing spaces
+     *
+     * Valid equivalence partitions for sentence:
+     *   - empty string
+     *   - one word
+     *   - multiple words
+     *   - sentence with extra spaces
+     *
+     * Possible scenarios returning true:
+     *   - matches first word in sentence
+     *   - last word in sentence
+     *   - middle word in sentence
+     *   - matches multiple words
+     *
+     * Possible scenarios returning false:
+     *   - query word matches part of a sentence word
+     *   - sentence word matches part of the query word
+     *   - query word matches the sentence word but differs in lower/upper cases
+     *
+     * The test method below tries to verify all above with a reasonably low number of test cases.
+     */
+
+    @Test
+    public void containsWord_validInputs_correctResult() {
+
+        // Empty sentence
+        assertFalse(StringUtil.containsWord("", "abc")); // Boundary case
+        assertFalse(StringUtil.containsWord("    ", "123"));
+
+        // Matches a partial word only
+        assertFalse(StringUtil.containsWord("aaa bbb ccc", "bb")); // Sentence word bigger than query word
+        assertFalse(StringUtil.containsWord("aaa bbb ccc", "bbbb")); // Query word bigger than sentence word
+
+        // Matches word in the sentence, different upper/lower case letters
+        assertFalse(StringUtil.containsWord("aaa bBb ccc", "Bbb")); // First word (boundary case)
+        assertFalse(StringUtil.containsWord("aaa bBb ccc@1", "CCc@1")); // Last word (boundary case)
+        assertFalse(StringUtil.containsWord("  AAA   bBb   ccc  ", "aaa")); // Sentence has extra spaces
+        assertFalse(StringUtil.containsWord("Aaa", "aaa")); // Only one word in sentence (boundary case)
+        assertTrue(StringUtil.containsWord("aaa bbb ccc", "  ccc  ")); // Leading/trailing spaces
+
+        // Matches multiple words in sentence
+        assertTrue(StringUtil.containsWord("AAA bbb ccc  bbb", "bbb"));
+    }
+
 }

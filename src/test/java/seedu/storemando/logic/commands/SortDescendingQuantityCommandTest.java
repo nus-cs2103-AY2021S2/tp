@@ -7,8 +7,8 @@ import static seedu.storemando.logic.commands.CommandTestUtil.assertCommandSucce
 import static seedu.storemando.logic.commands.CommandTestUtil.showEmptyListAfterFind;
 import static seedu.storemando.testutil.TypicalItems.HEATER;
 import static seedu.storemando.testutil.TypicalItems.getTypicalStoreMando;
+import static seedu.storemando.testutil.TypicalItems.getTypicalStoreMandoSortedByDecreasingQuantity;
 import static seedu.storemando.testutil.TypicalItems.getTypicalStoreMandoSortedByExpiryDate;
-import static seedu.storemando.testutil.TypicalItems.getTypicalStoreMandoSortedByIncreasingQuantity;
 
 import org.junit.jupiter.api.Test;
 
@@ -16,41 +16,41 @@ import seedu.storemando.model.Model;
 import seedu.storemando.model.ModelManager;
 import seedu.storemando.model.UserPrefs;
 
-class SortExpiryDateCommandTest {
+public class SortDescendingQuantityCommandTest {
 
     @Test
-    void execute_sortNonEmptyStoreMandoByExpiryDate_success() {
+    void execute_sortNonEmptyStoreMandoByDescendingQuantity_success() {
         Model model = new ModelManager(getTypicalStoreMando(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalStoreMando(), new UserPrefs());
-        expectedModel.setStoreMando(getTypicalStoreMandoSortedByExpiryDate());
+        expectedModel.setStoreMando(getTypicalStoreMandoSortedByDecreasingQuantity());
 
-        assertCommandSuccess(new SortExpiryDateCommand(), model,
+        assertCommandSuccess(new SortDescendingQuantityCommand(), model,
             SortCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
-    void execute_sortEmptyStoreMandoByExpiryDate_failure() {
+    void execute_sortEmptyStoreMandoByDescendingQuantity_throwsCommandException() {
         Model model = new ModelManager();
 
-        assertCommandFailure(new SortExpiryDateCommand(), model,
+        assertCommandFailure(new SortDescendingQuantityCommand(), model,
             SortCommand.MESSAGE_NO_ITEMS_TO_SORT);
     }
 
     @Test
     void execute_sortSortedStoreMando_success() {
-        Model model = new ModelManager(getTypicalStoreMandoSortedByExpiryDate(), new UserPrefs());
-        Model expectedModel = new ModelManager(getTypicalStoreMandoSortedByExpiryDate(), new UserPrefs());
+        Model model = new ModelManager(getTypicalStoreMandoSortedByDecreasingQuantity(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalStoreMandoSortedByDecreasingQuantity(), new UserPrefs());
 
-        assertCommandSuccess(new SortExpiryDateCommand(), model,
+        assertCommandSuccess(new SortDescendingQuantityCommand(), model,
             SortCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
-    void execute_sortStoreMandoSortedByQuantity_success() {
-        Model model = new ModelManager(getTypicalStoreMandoSortedByIncreasingQuantity(), new UserPrefs());
-        Model expectedModel = new ModelManager(getTypicalStoreMandoSortedByExpiryDate(), new UserPrefs());
+    void execute_sortStoreMandoSortedByExpiryDate_success() {
+        Model model = new ModelManager(getTypicalStoreMandoSortedByExpiryDate(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalStoreMandoSortedByDecreasingQuantity(), new UserPrefs());
 
-        assertCommandSuccess(new SortExpiryDateCommand(), model,
+        assertCommandSuccess(new SortDescendingQuantityCommand(), model,
             SortCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
@@ -59,14 +59,13 @@ class SortExpiryDateCommandTest {
         Model model = new ModelManager(getTypicalStoreMando(), new UserPrefs());
         showEmptyListAfterFind(model, HEATER);
 
-        assertCommandFailure(new SortExpiryDateCommand(), model,
+        assertCommandFailure(new SortDescendingQuantityCommand(), model,
             SortCommand.MESSAGE_NO_ITEMS_TO_SORT);
     }
 
-
     @Test
     void equals() {
-        final SortExpiryDateCommand standardCommand = new SortExpiryDateCommand();
+        SortDescendingQuantityCommand standardCommand = new SortDescendingQuantityCommand();
 
         // same object -> returns true
         assertTrue(standardCommand.equals(standardCommand));
@@ -75,7 +74,7 @@ class SortExpiryDateCommandTest {
         assertFalse(standardCommand.equals(null));
 
         // different types -> returns false
+        assertFalse(standardCommand.equals(new SortExpiryDateCommand()));
         assertFalse(standardCommand.equals(new SortAscendingQuantityCommand()));
-        assertFalse(standardCommand.equals(new SortDescendingQuantityCommand()));
     }
 }

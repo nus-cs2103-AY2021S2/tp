@@ -65,6 +65,11 @@ public interface Model {
     boolean hasItem(Item item);
 
     /**
+     * Returns true if an item with similar identity as {@code item} exists in the storemando.
+     */
+    boolean hasSimilarItem(Item item);
+
+    /**
      * Deletes the given item.
      * The item must exist in the storemando.
      */
@@ -93,6 +98,13 @@ public interface Model {
      */
     ObservableList<Item> getFilteredItemList();
 
+
+    /**
+     * Clears all the items in a specified location by the given {@code predicate}.
+     */
+
+    void clearLocation(Predicate<Item> predicate);
+
     /**
      * Returns an unmodifiable list of the unique locations of items.
      */
@@ -116,4 +128,16 @@ public interface Model {
      * @param comparator
      */
     void updateSortedItemList(Comparator<Item> comparator);
+
+    /**
+     * Returns a copy of the current predicate the filtered list has gone through.
+     */
+    Predicate<Item> getCurrentPredicate();
+
+    /**
+     * Updates the current predicate stored in the model.
+     * @param other another predicate that is being used newly.
+     */
+    void updateCurrentPredicate(Predicate<Item> other);
 }
+
