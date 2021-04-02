@@ -38,22 +38,20 @@ public class EditGradeCommand extends Command {
 
     public static final String MESSAGE_EDIT_GRADE_SUCCESS = "Edited Grade: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_GRADE = "This grade already exists.";
+    public static final String MESSAGE_DUPLICATE_GRADE = "This grade already exists in the grade book.";
 
     private final Index index;
-    private final EditGradeCommand.EditGradeDescriptor editGradeDescriptor;
+    private final EditGradeDescriptor editGradeDescriptor;
 
     /**
      * @param index of the appointment in the filtered appointment list to edit
      */
-    public EditGradeCommand(
-            Index index,
-            EditGradeCommand.EditGradeDescriptor editGradeDescriptor) {
+    public EditGradeCommand(Index index, EditGradeDescriptor editGradeDescriptor) {
         requireNonNull(index);
         requireNonNull(editGradeDescriptor);
 
         this.index = index;
-        this.editGradeDescriptor = editGradeDescriptor;
+        this.editGradeDescriptor = new EditGradeDescriptor(editGradeDescriptor);
     }
 
     @Override
@@ -81,9 +79,7 @@ public class EditGradeCommand extends Command {
      * Creates and returns a {@code Grade} with the details of {@code gradeToEdit}
      * edited with {@code editGradeDescriptor}.
      */
-    private static Grade createEditedGrade(
-            Grade gradeToEdit,
-            EditGradeCommand.EditGradeDescriptor editGradeDescriptor) {
+    private static Grade createEditedGrade(Grade gradeToEdit, EditGradeDescriptor editGradeDescriptor) {
         assert gradeToEdit != null;
 
         SubjectName updatedSubjectName = editGradeDescriptor.getSubjectName()
@@ -155,7 +151,7 @@ public class EditGradeCommand extends Command {
         }
 
         public Optional<GradedItem> getGradedItem() {
-            return Optional.ofNullable(this.gradedItem);
+            return Optional.ofNullable(gradedItem);
         }
 
         public void setGrade(GradeEnum grade) {
@@ -163,7 +159,7 @@ public class EditGradeCommand extends Command {
         }
 
         public Optional<GradeEnum> getGrade() {
-            return Optional.ofNullable(this.grade);
+            return Optional.ofNullable(grade);
         }
 
         @Override
@@ -174,12 +170,12 @@ public class EditGradeCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditGradeCommand.EditGradeDescriptor)) {
+            if (!(other instanceof EditGradeDescriptor)) {
                 return false;
             }
 
             // state check
-            EditGradeCommand.EditGradeDescriptor e = (EditGradeCommand.EditGradeDescriptor) other;
+            EditGradeDescriptor e = (EditGradeDescriptor) other;
 
             return getSubjectName().equals(e.getSubjectName())
                     && getGradedItem().equals(e.getGradedItem())
