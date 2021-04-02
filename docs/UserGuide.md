@@ -89,7 +89,7 @@ eg. if you specify `n/5 n/10`, only `n/10` will be taken.
 
 ### Entering quiz mode: `quiz`
 
-Enters Learn Mode, where all current flashcards are listed out. Answers to current flashcards are not shown.
+Enters Quiz Mode, where all current flashcards are listed out. Answers to current flashcards are not shown.
 
 
 ### Starting a quiz session: `start`
@@ -105,9 +105,9 @@ Format: `start [n/NUMBER] [t/TAG]`
 * You can specify one or two tags.
 
 Examples:
-* start n/10
-* start t/katakana
-* start n/5 t/gojuon t/hiragana
+* `start n/10`
+* `start t/katakana`
+* `start n/5 t/gojuon t/hiragana`
 
 Before executing start command:
 ![before start](images/start_before.png)
@@ -122,7 +122,18 @@ If attempt is correct, answer to the current flashcard will be display. Else, th
 
 Format: `check ATTEMPT`
 
-e.g. `check a`
+Examples:
+* `check a`
+* `check hi`
+
+If user attempt matches correct answer of flashcard:
+<insert screenshot here please>
+
+If user attempt does not match correct answer of flashcard:
+<insert screenshot here please>
+
+If user tries to answer already correctly answered flashcard:
+<insert screenshot here please>
 
 ### Going to next flashcard: `next`
 
