@@ -19,8 +19,6 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
-
-
 //@@author uberSaiyan-reused
 //StackOverflow answer on writing an autocomplete text field from
 //https://stackoverflow.com/questions/36861056/javafx-textfield-auto-suggestions
