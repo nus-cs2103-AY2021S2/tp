@@ -79,10 +79,14 @@ Commands such as `list`, `find`, `add`, `clear`, `delete` will change the listed
 See [Features](#features) for specific details. 
 
 ### Detail Panel
-The right panel of FriendDex is a multi-purpose details panel. It displays upcoming events by default, and can be toggled to display different information.
+The right panel of FriendDex is a multi-purpose details panel. It displays upcoming events by default, and can be toggled to display different information. 
+The available dashboards are detailed below.
 
 #### Upcoming Events
 By default, FriendDex displays your upcoming events on the details panel, such as upcoming birthdays and special dates.
+
+#### Streaks
+The Streaks dashboard shows how consistent you stick to your goal of meeting your friends up till the current day.    
 
 #### Full Details of a Person
 As a person in the FriendDex can contain a lot of information, not all of it is displayed in the main list of persons.
@@ -135,20 +139,6 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-### Creating a friend group : `group`
-
-Creates a new friend group to FriendDex with a specified name and adds all the people at the specified
-indexes to the group.
-
-Format: `add-group n/GROUP_NAME p/INDEX…​`
-
-* You should provide at least one index.
-* If the group name you provided already exists, the friends at the specified `INDEX…​` will be added to the group.
-* If some friends specified already exist in the group, they will be ignored.
-
-Examples:
-* `add-group n/Close Friends  p/1 2 3 4 5`
-
 ### Adding a person : `add`
 
 Adds a person to FriendDex.
@@ -163,6 +153,31 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 b/19-01-1998`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com b/19-03-1998 a/Newgate Prison p/1234567 t/criminal`
 
+### Creating a friend group : `add-group`
+
+Creates a new friend group to FriendDex with a specified name and adds all the people at the specified
+indexes to the group.
+
+Format: `add-group n/GROUP_NAME p/INDEX…​`
+
+* You should provide at least one index.
+* If the group name you provided already exists, the friends at the specified `INDEX…​` will be added to the group.
+* If some friends specified already exist in the group, they will be ignored.
+
+Examples:
+* `add-group n/Close Friends  p/1 2 3 4 5`
+
+### Deleting a friend group: `del-group`
+
+Deletes a friend group from FriendDex with the specified name.
+
+Format: `del-group n/GROUP_NAME`
+
+* The group name provided should already exist in FriendDex.
+
+Examples:
+* `del-group n/Close Friends`
+
 ### Adding a profile picture : `add-picture`
 
 Adds a profile picture to an existing person in FriendDex.
@@ -173,6 +188,14 @@ Format: `add-picture INDEX FILE_PATH`
 
 Examples:
 * `add-picture 1 /Users/john/Desktop/jake.png`
+
+### Deleting a profile picture: `del-picture`
+
+Deletes a profile picture from an existing person in FriendDex.
+
+Format: `del-picture INDEX`
+
+* The person selected should already have a profile picture.
 
 ### Listing all persons : `list`
 
