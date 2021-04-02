@@ -174,7 +174,7 @@ This feature allows tutees to track and manages notes that are tagged to a tutor
 
 ![Notes Ui](images/ug-images/Notes.png)
 
-Attributes / Parameters:
+**Attributes / Parameters**:
 * Note Description
 
 ##### Add note to a tutor: `add_note`
@@ -254,7 +254,7 @@ Format:`export INDEX`
 
 Example: `export 1`
 
-### Favourite
+### Favourites
 This feature allows tutees to track and manage their favourite tutors.
 
 ![Notes Ui](images/ug-images/Notes.png)
@@ -302,7 +302,7 @@ This feature allows tutees to manage and track their tuition appointments.
 
 ![Appointment Ui](images/ug-images/Appointments.png)
 
-Attribute / Parameters:
+**Attributes / Parameters**:
 * Name of the tutor
 * Subject Name
 * Appointment Date
@@ -424,7 +424,7 @@ This feature allows tutees to track and manage their tuition-related schedules, 
 
 ![Schedule Ui](images/ug-images/Schedule.png)
 
-Attributes / Parameters:
+**Attributes / Parameters**:
 * Title
 * Subject Name
 * Schedule Date
@@ -541,6 +541,9 @@ This feature allows tutees to track and manage his/her budget allocated to tuiti
 
 ![Budget Ui](images/ug-images/Budget.png)
 
+**Attributes / Parameters**:
+* Budget Amount
+
 #### Add a budget: `add_budget`
 
 Adds a budget with an amount specified by user. Stores budget in user system.
@@ -608,9 +611,10 @@ Total Cost of Appointments: 100.
 
 ### Grade Book
 This features allows tutees to track and manage their grades obtained in a particular subjects.
+
 ![Gradebook Ui](images/ug-images/Grades.png)
 
-Attributes / Parameters:
+**Attributes / Parameters**:
 * Subject Name
 * Graded Item
 * Alphabet Grade
@@ -680,7 +684,7 @@ Listed all grades
 ```
 
 ### Reminder Tracker
-This features allows tutees to track and manage reminders on a daily basis. This is exceptionally helpful if the reminders are related to the tuition or tutor itself such as setting a reminder to pay tuition fee for a particular tutor.
+This feature allows tutees to track and manage reminders daily. This is exceptionally helpful if the reminders are related to the tuition or the tutor itself, i.e. setting a reminder to pay a particular tutor's tuition fee.
 
 ![Reminder Ui](images/ug-images/Reminder.png)
 
@@ -689,7 +693,7 @@ This features allows tutees to track and manage reminders on a daily basis. This
 * Green reminder card sidebar represent upcoming reminders.
 * Orange reminder card sidebar represent upcoming reminders (less or equal to 3 days).
 
-Attributes / Parameters:
+**Attributes / Parameters**:
 * Description
 * Reminder Date
 
