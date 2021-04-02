@@ -208,7 +208,7 @@ This feature allows you to find all members whose details contain any of the spe
 Format: `findMembers KEYWORD [MORE_KEYWORDS]`
 
 <div markdown="span" class="alert alert-primary"> :bulb: **Tip:**
-* Keywords are case-insensitive.
+Keywords are case-insensitive.
 </div>
 
 Examples: 
@@ -232,8 +232,7 @@ Format: `addTask TITLE -d DESCRIPTION -b DEADLINE [-s STATUS] [-p PRIORITY] [-a 
 * PRIORITY field can only take on the values **high**, **medium**, **low** or **unassigned**.
 
 <div markdown="span" class="alert alert-primary"> :bulb: **Tip:**
-* A task can have any number of assignees (including 0).   
-* To add multiple assignees, simply use multiple assignees prefix. 
+A task can have any number of assignees (including 0). To add multiple assignees, simply use multiple assignees prefix. 
 </div>
 
 Examples: 
@@ -271,7 +270,7 @@ Format: `editTask INDEX [-n NEW_TITLE] [-d NEW_DESCRIPTION] [-b NEW_DEADLINE] [-
 * Existing values will be updated to the input values.
 * If the assignee field is being edited, the previous assignees will be overwritten. 
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Any number of assignees can be specified here (including 0).    
 </div>
 
@@ -389,8 +388,7 @@ This feature allows you to find all tasks assigned to a single Member.
 Format: `findTasksFor NAME`
 
 <div markdown="span" class="alert alert-primary"> :bulb: **Tip:**
-* The NAME specified can only belong to 1 Member. 
-* A NAME that does not exist in the Member List will return 0 tasks listed
+The NAME specified can only belong to 1 Member while a NAME that does not exist in the Member List will return 0 tasks listed
 </div>
 
 Examples: 
