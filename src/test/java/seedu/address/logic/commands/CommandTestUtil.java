@@ -21,15 +21,19 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.gradecommands.EditGradeCommand;
 import seedu.address.logic.commands.tutorcommands.EditCommand;
 import seedu.address.model.Model;
 import seedu.address.model.TutorBook;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.appointment.DateViewPredicate;
+import seedu.address.model.grade.Grade;
 import seedu.address.model.tutor.NameContainsKeywordsPredicate;
 import seedu.address.model.tutor.Tutor;
+import seedu.address.testutil.EditGradeDescriptorBuilder;
 import seedu.address.testutil.EditTutorDescriptorBuilder;
+import seedu.address.testutil.GradeBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -55,9 +59,15 @@ public class CommandTestUtil {
     public static final String VALID_SUBJECT_EXPERIENCE = "5";
     public static final String VALID_SUBJECT_QUALIFICATION = "A-Level";
 
+    public static final String VALID_SUBJECT_NAME_MATHS = "Mathematics";
+    public static final String VALID_GRADED_ITEM_MATHS = "Midterm Exam";
+    public static final String VALID_GRADE_MATHS = "A";
     public static final String VALID_SUBJECT_NAME_SCIENCE = "Science";
     public static final String VALID_GRADED_ITEM_SCIENCE = "Lab 1";
     public static final String VALID_GRADE_SCIENCE = "B";
+    public static final String VALID_SUBJECT_NAME_PHYSICS = "Physics";
+    public static final String VALID_GRADED_ITEM_PHYSICS = "Quiz";
+    public static final String VALID_GRADE_PHYSICS = "D";
 
     public static final String VALID_SCHEDULE_TITLE_ONE = "Maths Homework";
     public static final String VALID_SCHEDULE_TIMEFROM_ONE = "2021-03-24 10:00AM";
@@ -99,6 +109,9 @@ public class CommandTestUtil {
     public static final EditCommand.EditTutorDescriptor DESC_AMY;
     public static final EditCommand.EditTutorDescriptor DESC_BOB;
 
+    public static final EditGradeCommand.EditGradeDescriptor DESC_MATHS;
+    public static final EditGradeCommand.EditGradeDescriptor DESC_SCIENCE;
+
     static {
         DESC_AMY = new EditTutorDescriptorBuilder().withName(VALID_NAME_AMY).withGender(VALID_GENDER_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
@@ -112,6 +125,14 @@ public class CommandTestUtil {
                         VALID_SUBJECT_EXPERIENCE,
                         VALID_SUBJECT_QUALIFICATION)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+
+        // EditGradeDescriptor
+        DESC_MATHS = new EditGradeDescriptorBuilder()
+                .withSubject(VALID_SUBJECT_NAME_MATHS)
+                .withGradedItem(VALID_GRADED_ITEM_MATHS).withGrade(VALID_GRADE_MATHS).build();
+        DESC_SCIENCE = new EditGradeDescriptorBuilder()
+                .withSubject(VALID_SUBJECT_NAME_SCIENCE)
+                .withGradedItem(VALID_GRADED_ITEM_SCIENCE).withGrade(VALID_GRADE_SCIENCE).build();
     }
 
     /**

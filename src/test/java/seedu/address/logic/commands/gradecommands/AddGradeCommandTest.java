@@ -20,6 +20,9 @@ import static seedu.address.testutil.TypicalReminders.getTypicalReminderTracker;
 import static seedu.address.testutil.TypicalSchedules.getTypicalScheduleTracker;
 import static seedu.address.testutil.TypicalTutors.getTypicalTutorBook;
 
+/**
+ * Contains integration tests (interaction with the Model) and unit tests for AddGradeCommand.
+ */
 public class AddGradeCommandTest {
 
     private final Model model = new ModelManager(getTypicalTutorBook(),
