@@ -136,8 +136,12 @@ Adds an appointment to the app.
 
 Format: `add appointment n/NAME r/REMARKS d/DATE t/TIME​`
 
+Description:
+* All fields are compulsory.
+
 Examples:
 * `add appointment n/Meet Alex r/At M Hotel d/17-2-2021 t/1500`
+* `add appointment n/Celebrate CNY with Pauline r/Her house d/01-02-2022 t/1900`
 
 ### 3.3 Editing
 
@@ -177,21 +181,33 @@ Examples:
 
 ### 3.4 Deleting
 
-#### 3.4.1 Removing an entry : `delete`
+#### 3.4.1 Removing a property : `delete property`
 
-Deletes the specified property or appointment from the app.
+Deletes the property at the specified index from the app.
 
-Formats:
-* `delete appointment INDEX`
+Format:
 * `delete property INDEX`
 
 Description:
-* Deletes the appointment or property at the specified `INDEX`. The index refers to the index number shown in the displayed list. The index **must be a positive integer** 1, 2, 3, …
+* Deletes the property at the specified `INDEX`. The index refers to the index number shown in the displayed list. The index **must be a positive integer** 1, 2, 3, …
 * The field INDEX must be provided.
 
 Examples:
-*  `delete appointment 7` Deletes the `appointment` at index `7`.
-*  `delete property 7` Deletes the `property` at index `7`.
+*  `delete property 7` deletes the property at index `7`.
+
+#### 3.4.2 Removing an appointment : `delete appointment`
+
+Deletes the appointment at the specified index from the app.
+
+Format:
+* `delete appointment INDEX`
+
+Description:
+* Deletes the appointment at the specified `INDEX`. The index refers to the index number shown in the displayed list. The index **must be a positive integer** 1, 2, 3, …
+* The field INDEX must be provided.
+
+Examples:
+*  `delete appointment 7` deletes the appointment at index `7`.
 
 ### 3.5 Listing
 
@@ -223,7 +239,7 @@ Description:
 Options:
 * `u/new AMOUNT`
 
-    The `new` keyword can only be used on a property without an existing status. AMOUNT is the amount of money that is offered in the Option to Purchase
+    The `new` keyword can only be used on a property without an existing status. `AMOUNT` is the amount of money that is offered in the Option to Purchase
 
 
 * `u/proceed`
@@ -247,29 +263,60 @@ Examples:
 
 ### 3.7 Sorting
 
-#### 3.7.1 Sorting : `sort`
+#### 3.7.1 Sorting properties: `sort property`
 
-Sorts and shows a list of properties or appointments that is sorted according to the comparator provided.
+Sorts and shows a list of properties that are sorted by the specified sorting key in the specified sorting order.
 
-Formats:
-* `sort appointment o/SORTING_ORDER k/SORTING_KEY`
+Format:
 * `sort property o/SORTING_ORDER k/SORTING_KEY`
 
 Description:
-* Sorts appointment or property by the specified sorting key in ascending or descending order.
+* Sorts properties by the specified sorting key in ascending or descending order.
 * The sorting key and sorting order fields must be specified.
+* The `SORTING_ORDER` can only take values of `asc` and `desc`.
+* The `SORTING_KEY` can take values of `name`, `price`, `postalcode`, `address`, or `deadline`, and it should not be any other values.
 
 Examples:
 *  `sort appointment o/asc k/datetime` Sorts `appointment` by `datetime` in ascending order.
-*  `sort property o/desc k/price` Sorts `property` by `price` in descending order.
 
-### 3.8 Searching
+#### 3.7.2 Sorting appointments: `sort appointment`
 
-#### 3.8.1 Searching properties: `find property`
+Sorts and shows a list of appointments that are sorted by the specified sorting key in the specified sorting order.
+
+Format:
+* `sort appointment o/SORTING_ORDER k/SORTING_KEY`
+
+Description:
+* Sorts appointments by the specified sorting key in ascending or descending order.
+* The sorting key and sorting order fields must be specified.
+* The `SORTING_ORDER` can only take values of `asc` and `desc`.
+* The `SORTING_KEY` can take values of either `datetime` or `name`, and it should not be any other values.
+
+Examples:
+*  `sort appointment o/asc k/datetime` Sorts `appointment` by `datetime` in ascending order.
+
+### 3.8 Undoing
+
+#### 3.8.1 Undoing : `undo`
+
+Undoes the last add, delete or edit commands in the command history.
+
+Format:
+* `undo`
+
+Description:
+* Undoes the last add, delete or edit commands in the command history.
+
+Examples:
+*  `undo` after command `delete appointment 1` adds the deleted appointment back to the app.
+
+### 3.9 Searching
+
+#### 3.9.1 Searching properties: `find property`
 
 Finds all properties containing any of the specified keywords (case-insensitive) and/or with the given options. 
 
-Formats:
+Format:
 * `find property [n/NAME] [pl/UPPER_PRICE_LIMIT] [pm/LOWER_PRICE_LIMIT] [t/PROPERTY_TYPE] [a/ADDRESS]* 
 [p/POSTAL_CODE]* [d/DEADLINE]* [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT]* 
 [ce/CLIENT_EMAIL]* [tags/TAGS_SEPARATED_BY_COMMA]`
@@ -347,11 +394,11 @@ Examples:
 * `find property n/bishan north t/hdb pl/$1,000,000`
 * `find property pl/1000000 t/hdb a/1 Jurong East Street 32, #08-111 tags/3 bedrooms, need renovation cc/91234567`
 
-#### 3.8.2 Searching appointments: `find appointment`
+#### 3.9.2 Searching appointments: `find appointment`
 
 Finds all appointments containing any of the specified keywords (case-insensitive) and/or with the given parameters. 
 
-Formats:
+Format:
 * `find appointment [n/NAME] [r/REMARKS] [d/DATE]* [t/TIME]*`
 * Note that all options marked with `*` are limited to one per query. 
 
@@ -381,33 +428,31 @@ Options:
     
     Limited to one per query. 
 
-
-
 Examples:
 * `find appointment n/bob`
 * `find appointment n/alex d/25-12-2021`
 
-#### 3.8.3 Searching clients: `find client`
+#### 3.9.3 Searching clients: `find client`
 
 Finds appointments that matches the keywords and properties whose clients matches the same keywords. Both are done at the same time.
 
-Formats:
+Format:
 * `find client [KEYWORD]...`
 
 Description:
 * There can be 0 or more keywords. Keywords are case insensitive.
 
-### 3.9 Clearing
+### 3.10 Clearing
 
-#### 3.9.1 Clearing all entries : `clear all`
+#### 3.10.1 Clearing all entries : `clear all`
 
 Clears all properties and appointments from the app.
 
-#### 3.9.2 Clearing all properties : `clear property`
+#### 3.10.2 Clearing all properties : `clear property`
 
 Clears all properties from the app.
 
-#### 3.9.3 Clearing all appointments : `clear appointment`
+#### 3.10.3 Clearing all appointments : `clear appointment`
 
 Clears all appointments from the app.
 
@@ -473,6 +518,7 @@ Action | Format, Examples
 **Find appointment** | `find appointment [n/NAME] [r/REMARKS] [d/DATE]* [t/TIME]* [KEYWORD]` <br> e.g., `find appointment n/bob d/23-12-2021`
 **Find client** | `find client [KEYWORD]` <br> e.g., `find client alice`
 **Clear** | `clear property` <br> `clear appointment` <br> `clear all`
+**Undo** | `undo`
 
 ## 7. Appendix
 
