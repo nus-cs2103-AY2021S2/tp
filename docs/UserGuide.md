@@ -27,10 +27,10 @@ This user guide is to help you learn how to use Taskify to manage your tasks eff
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed in your Computer. Refer to [this guide](https://java.com/en/download/help/download_options.html) to install Java.
 2. Download the latest `taskify.jar` from [here](https://github.com/AY2021S2-CS2103T-W14-4/tp/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for Taskify.
+3. Copy the `taskify.jar` file to the folder you want to use as the _home folder_ for Taskify.
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds.
    
@@ -211,11 +211,11 @@ Examples:
 
 ### Switching between tabs :`home` / `inProgress` / `completed` / `expired`
 
-Switching between the tabs in Taskify.
+Switching between the tabs in Taskify. Each tab displays tasks with the corresponding status.
 
 Format: `home` / `inProgress` / `completed` / `expired`
 
-Examples: `completed` (chanage to the completed tab)
+Examples: `completed` (change to the completed tab)
 
 
 ### Clearing all tasks : `clear`
