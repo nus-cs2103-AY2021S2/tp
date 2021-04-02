@@ -65,4 +65,15 @@ public class StringUtil {
             return false;
         }
     }
+
+    public static boolean isSubstring(String sentence, String word) {
+        requireNonNull(sentence);
+        requireNonNull(word);
+
+        String preppedWord = word.trim();
+        checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
+        checkArgument(preppedWord.split("\\s+").length == 1, "Word parameter should be a single word");
+
+        return sentence.toLowerCase().contains(preppedWord.toLowerCase());
+    }
 }
