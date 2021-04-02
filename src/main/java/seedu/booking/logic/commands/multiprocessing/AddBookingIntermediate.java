@@ -37,6 +37,46 @@ public class AddBookingIntermediate implements Intermediate<AddBookingCommand> {
         this.tags = null;
     }
 
+    /**
+     * Initialises an AddBookingIntermediate object to store temporary user input.
+     */
+    public AddBookingIntermediate(Email bookerEmail, VenueName venueName,
+                                  Description description, StartTime bookingStart,
+                                  EndTime bookingEnd, Set<Tag> tagset) {
+        this.bookerEmail = bookerEmail;
+        this.venueName = venueName;
+        this.description = description;
+        this.bookingStart = bookingStart;
+        this.bookingEnd = bookingEnd;
+        this.tags = tagset;
+    }
+
+
+
+    public Email getBookerEmail() {
+        return this.bookerEmail;
+    }
+
+    public VenueName getVenueName() {
+        return venueName;
+    }
+
+    public Description getDescription() {
+        return description;
+    }
+
+    public StartTime getBookingStart() {
+        return bookingStart;
+    }
+
+    public EndTime getBookingEnd() {
+        return bookingEnd;
+    }
+
+    public Set<Tag> getTags() {
+        return tags;
+    }
+
     public void setEmail(Email bookerEmail) {
         this.bookerEmail = bookerEmail;
         logger.info("Intermediate: " + this.bookerEmail.toString());
@@ -87,6 +127,25 @@ public class AddBookingIntermediate implements Intermediate<AddBookingCommand> {
         Booking booking = new Booking(bookerEmail, venueName, description,
                 bookingStart, bookingEnd, tags);
         return new AddBookingCommand(booking);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof AddBookingIntermediate)) {
+            return false;
+        }
+
+        AddBookingIntermediate otherIntermediate = (AddBookingIntermediate) other;
+        return otherIntermediate.getBookerEmail().equals(bookerEmail)
+                && otherIntermediate.getDescription().equals(description)
+                && otherIntermediate.getBookingStart().equals(bookingStart)
+                && otherIntermediate.getBookingEnd().equals(bookingEnd)
+                && otherIntermediate.getTags().equals(tags)
+                && otherIntermediate.getVenueName().equals(venueName);
     }
 
 }
