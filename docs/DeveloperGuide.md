@@ -132,16 +132,48 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the SOChedule data.
+* stores the Sochedule data.
 * exposes an unmodifiable `ObservableList<Task>` and an unmodifiable `ObservableList<Event>`that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
-![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
+<div markdown="span" class="alert alert-info">:information_source: 
+**Note:** An (arguably) more OOP model can store a `Tag` list and a `Category` list in the `Sochedule`, which `Task` and `Event` can refer.
+This allows `Sochedule` to only require one `Tag` object per unique `Tag`, and one `Category` object per unique `Object`, 
+instead of each `Task` and `Event` needing their own `Tag` and `Category` object.<br>
 
 </div>
 
+#### 3.4.1 Design considerations for Task-related Models
+When implementing Task-related models, it is important to avoid adding duplicate tasks. 
+For example, it is undesirable for users to add the same task, completing CS2103 Quiz before 2021-06-01, twice into the task list. 
+Because these two tasks contain the same information and can potentially cause confusion for users 
+when he completes one and finds another task with the same description still left uncompleted.
+
+In our application, we require users to minimally provide the name, deadline and priority when creating a task.
+To ensure duplicates are handled, our team went through several alternatives and here are our considerations.
+
+* Alternative 1 (Chosen Implementation): `equals(Task task)` method should check if the name, priority, deadline, 
+  tags (if any) and categories (if any) are equal.
+  * Pros:  
+    * Tasks with same name but different deadline, priority and/or any other fields are allowed.
+  * Cons:
+    * Harder to implement.
+* Alternative 2 : `equals(Task task)` method should check for the equality of task name only.
+    * Pros:
+        * Easier to implement.
+        * Ensure that the task names are always distinct.
+    * Cons:
+        * Less flexibility and may not meet some users' need because task with same name but other different fields are not allowed.
+
+We chose Alternative 1 because it is more flexible and suitable for users' need. 
+There can be multiple tasks with same name but other different fields, like deadlines. 
+For example, a user may need to create two tasks with the same name '2103 quiz',
+but one is due on this Monday and the other is due the next Monday. Both of these 2 tasks should be allowed in our task list.
+
+#### 3.4.2 Design considerations for Event-Related Models
+Similar to Task-related Models, we face the same challenge when choosing between checking for the equality of name only and 
+checking for all fields entered by the user. We chose to check for all fields for the same reasons as mentioned above.
 
 ### 3.5 Storage component
 
