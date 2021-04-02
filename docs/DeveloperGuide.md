@@ -369,7 +369,10 @@ Given below is an example usage scenario and how the toggle command behaves at e
 
 Step 1. The user launches the application and executes `toggle light` to change the application theme to the light theme.
 
-Step 2. The `toggle` command returns a `CommandResult` that triggers the `updateTheme()` method within `MainWindow`. `MainWindow` then finds the relevant .css file containing all theme information and applies it to all elements it contains. 
+Step 2. The `toggle` command returns a `CommandResult` that triggers the `updateTheme()` method within `MainWindow`. `MainWindow` then finds the relevant .css file containing all theme information and applies it to all elements it contains.
+
+The following sequence diagram shows how the toggle command works for the above example: 
+![ToggleSequenceDiagram](images/ToggleSequenceDiagram.png)
 
 ### TODO MORE IMPLEMENTATION
 
