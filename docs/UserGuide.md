@@ -2,11 +2,21 @@
 layout: page title: User Guide
 ---
 
-_Teaching Assistant_ is a desktop application that helps **JC/Secondary school teachers** have an efficient tool to keep
-track of their **contacts and entries like tasks or schedules easily.** While it has a GUI, most of the user
-interactions rely on typing commands as user inputs.
+Welcome to the User Guide of _Teaching Assistant_!
 
-This is a mockup of our UI.
+Are you a JC/Secondary school teacher, having troubles keeping track of all your consultations, meetings and your
+students' contacts? No worries! Our application, _Teaching Assistant_ will provide an all-in-one platform for you to
+organise your entries (tasks and schedules) and contacts!
+
+_Teaching Assistant_ mainly uses a Command Line Interface (CLI). This means that a user can use the application by
+typing into a Command Box. For users who type fast, they can use this application more efficiently than other
+applications that heavily use Graphical User Interface (GUI), where a user uses the application by interacting with
+graphical features such as buttons.
+
+If you are interested, jump to [Quick Start](#quick-start) to learn how to learn how to start using _Teaching Assistant_
+.
+
+An image of our UI is shown below!
 
 ![Ui](images/Ui.png)
 
@@ -16,7 +26,23 @@ This is a mockup of our UI.
 - [Features](#features)
     - [Viewing help](#viewing-help)
     - [Contact](#adding-a-contact)
+        - [Add](#adding-a-contact)
+        - [Find](#finding-a-contact)
+        - [Filter](#filter-contact-tags)
+        - [Edit](#editing-a-contact)
+        - [List](#listing-contacts)
+        - [Delete](#deleting-a-contact)
+        - [Clear](#clearing-all-contacts)
     - [Entry](#adding-an-entry)
+        - [Add](#adding-an-entry)
+        - [Find](#finding-an-entry)
+        - [Filter](#filter-entry-tags)
+        - [Edit](#editing-a-contact)
+        - [List](#listing-entries)
+        - [Free](#checking-if-time-interval-is-free)
+        - [Delete](#deleting-an-entry)
+        - [Clear](#clearing-overdue-entries)
+    - [Exiting](#exiting-the-program)
 - [Command Summary](#command-summary)
 
 ---
@@ -25,7 +51,7 @@ This is a mockup of our UI.
 
 1. Ensure you have Java 11 installed in your computer.
 1. Download the latest `teachingAssistant.jar` [here](https://github.com/AY2021S2-CS2103T-W13-4/tp/releases).
-1. Copy the file to the folder you want to use as the *home folder* for your AddressBook.
+1. Copy the file to the folder you want to use as the *home folder* for your Teaching Assistant.
 1. Double-click the file to start the app. The GUI similar to the image above should appear.
 1. Try out some of the commands below.
 
@@ -79,13 +105,12 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The search is case-insensitive e.g. `amy` will match `Amy`.
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Only full words will be matched e.g. `Han` will not match `Hans`.
-* Persons matching at least one keyword will be returned (i.e. OR search). E.g. `Hans Bo` will return `Hans Gruber`
-  , `Bo Yang`.
+* Only contacts matching all keywords will be returned (i.e. AND search). E.g. `Hans Bo` will only return `Hans Bo`.
 
 Example(s):
 
 * `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`
+* `find alex yeoh` returns only `Alex Yeoh`
 
 ### Filter contact tags
 
