@@ -21,7 +21,12 @@ src/test/data/sandbox/
 .DS_Store
 docs/_site/
 
+# Jekyll
+.jekyll-cache
+
 # Theme files
 /theme/
 !/theme/solarized.dark.json
 !/theme/tomorrow.dark.json
+
+
