@@ -69,6 +69,10 @@ Although most of the buttons you see on the screen are clickable, the UI has bee
 
 Users can enter commands into the command box and press `ENTER` to execute it. The result box will be updated with information on whether the command has been successfully executed. Depending on the command executed, the main panel may also be updated based on the command executed.
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Most commands include all the required information (e.g. project index and deadline index when updating a deadline) needed so that you can run the command from anywhere in the app. 
+</div>
+
 When entering a command, you may find it helpful to see a history of your previous commands. To do so simply press `UP` or `DOWN` while typing to navigate through the command history list. 
 
 <div markdown="span" class="alert alert-info">:information_source: **Info:**
@@ -314,8 +318,7 @@ Parameter:
 * [`PROJECT_INDEX`](#index) The index of the project.
 
 Examples:
-* `project 1` Displays the first project.
-* `project 2` Displays the second project.
+* `project 1` displays the first project.
 
 ##### Viewing the overview of a project: `overview`
 
@@ -323,7 +326,9 @@ Displays a panel containing an overview of the project that is currently display
 
 Format: `overview`
 
-* This command can only be used when a project is currently being displayed.
+<div markdown="span" class="alert alert-info">:information_source: **Info:**
+This command can only be used when a project is currently being displayed.
+</div>
 
 ##### Viewing the todos of a project: `todos`
 
@@ -331,7 +336,9 @@ Displays a panel containing the todos of the project that is currently displayed
 
 Format: `todos`
 
-* This command can only be used when a project is currently being displayed.
+<div markdown="span" class="alert alert-info">:information_source: **Info:**
+This command can only be used when a project is currently being displayed.
+</div>
 
 ##### Adding a project: `addP`
 
@@ -344,23 +351,21 @@ Parameters:
   * [`NAME`](#name) The name of the project. 
 
 Examples:
-  * `addP n/CS2103T Team Project`
-  * `addP n/CS2101 OP2`
+  * `addP n/CS2103T Team Project` adds a project with the name `CS2103T Team Project` to CoLAB.
 
 ##### Updating a project: `updateP`
 
 Updates a specified project in CoLAB.
 
 Format `updateP PROJECT_INDEX n/NAME`
-  * Updates name of the project at the specified `PROJECT_INDEX` to new name `NAME`.
+  * Updates the name of the project at the specified `PROJECT_INDEX` to the new `NAME`.
   
 Parameters:
   * [`PROJECT_INDEX`](#index) The index of the project.
   * [`NAME`](#name) The name of the project.
 
 Examples:
-  * `updateP 1 n/CS2103 Group Project`
-  * `updateP 2 n/Personal Portfolio Page` 
+  * `updateP 1 n/CS2103 Group Project` updates the name of the first project in CoLAB to `CS2103 Group Project`.
 
 ##### Deleting a project: `deleteP`
 
@@ -374,7 +379,7 @@ Parameters:
   * [`TODO_INDEX`](#index) The index of the todo.
 
 Examples:
-  * `deleteP 1`
+  * `deleteP 1` deletes the first project in CoLAB.
 
 #### **4.1.1 Todos**
 
