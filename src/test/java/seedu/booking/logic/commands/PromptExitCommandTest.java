@@ -31,5 +31,6 @@ public class PromptExitCommandTest {
     void execute() {
         PromptExitCommand command = new PromptExitCommand();
         assertCommandSuccess(command, model, "Prompting exited.", expectedModel);
+        ModelManager.resetCommandState();
     }
 }

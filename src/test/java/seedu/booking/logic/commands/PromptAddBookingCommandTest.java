@@ -23,5 +23,7 @@ public class PromptAddBookingCommandTest {
         String state = ModelManager.getState();
         assertTrue(state.equals(STATE_EMAIL));
         assertTrue(ModelManager.isStateActive());
+
+        ModelManager.resetCommandState();
     }
 }

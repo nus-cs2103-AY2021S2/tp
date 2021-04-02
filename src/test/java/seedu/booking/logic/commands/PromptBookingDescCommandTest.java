@@ -44,5 +44,7 @@ public class PromptBookingDescCommandTest {
         System.out.println(state);
         assertTrue(state.equals(STATE_TAG));
         assertTrue(ModelManager.isStateActive());
+
+        ModelManager.resetCommandState();
     }
 }

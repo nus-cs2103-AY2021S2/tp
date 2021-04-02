@@ -43,5 +43,7 @@ public class PromptBookingStartCommandTest {
         String state = ModelManager.getState();
         assertTrue(state.equals(STATE_END));
         assertTrue(ModelManager.isStateActive());
+
+        ModelManager.resetCommandState();
     }
 }

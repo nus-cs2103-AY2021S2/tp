@@ -48,6 +48,8 @@ public class PromptBookingVenueCommandTest {
         String state = ModelManager.getState();
         assertTrue(state.equals(STATE_DESC));
         assertTrue(ModelManager.isStateActive());
+
+        ModelManager.resetCommandState();
     }
 
     @Test
@@ -59,5 +61,7 @@ public class PromptBookingVenueCommandTest {
         String state = ModelManager.getState();
         assertTrue(state.equals(STATE_VENUE));
         assertTrue(ModelManager.isStateActive());
+
+        ModelManager.resetCommandState();
     }
 }

@@ -46,5 +46,7 @@ public class PromptBookingTagCommandTest {
         String state = ModelManager.getState();
         assertTrue(state.equals(STATE_START));
         assertTrue(ModelManager.isStateActive());
+
+        ModelManager.resetCommandState();
     }
 }
