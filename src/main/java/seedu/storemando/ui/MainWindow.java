@@ -184,7 +184,10 @@ public class MainWindow extends UiPart<Stage> {
         return itemListPanel;
     }
 
-    private void updateLocationPanel(){
+    /**
+     * Updates the list of unique locations of items stored in the inventory.
+     */
+    private void updateLocationPanel() {
         locationListPanel = new LocationListPanel(logic.getLocationList());
         locationPanelPlaceholder.getChildren().add(locationListPanel.getRoot());
     }
