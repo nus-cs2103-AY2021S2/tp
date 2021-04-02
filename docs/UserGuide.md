@@ -140,9 +140,7 @@ Commands discussed in this user guide follow these rules:
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-
-* Parameters refer to information that is to be included as an input to a command.
-
+Parameters refer to information that is to be included as an input to a command.
 </div>
 
 #### **2.2.5 Command Parameters**
