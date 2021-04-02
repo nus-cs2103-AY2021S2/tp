@@ -13,9 +13,9 @@ public class Messages {
             + "Please provide another name\n";
     public static final String MESSAGE_INVALID_NAME_FORMAT = "Invalid name format, please try again.\n";
     public static final String MESSAGE_INVALID_PHONE_FORMAT = "Invalid phone format, please try again.\n";
-    public static final String PROMPT_PHONE_MESSAGE = "Please enter your phone number?\n";
-    public static final String PROMPT_EMAIL_PERSON_MESSAGE = "Please enter your email address?\n";
-    public static final String PROMPT_NAME_MESSAGE = "Please enter your name?\n";
+    public static final String PROMPT_PHONE_MESSAGE = "Please enter the booker's phone number.\n";
+    public static final String PROMPT_EMAIL_PERSON_MESSAGE = "Please enter the booker's email address.\n";
+    public static final String PROMPT_NAME_MESSAGE = "Please enter the booker's name.\n";
 
     // Venue related messages
     public static final String PROMPT_CAPACITY_MESSAGE = "Please enter the capacity of the venue.\n"
@@ -46,7 +46,7 @@ public class Messages {
     public static final String MESSAGE_VENUE_LISTED_EMPTY = "There are no venues in the system.\n";
     public static final String MESSAGE_BOOKING_LISTED_EMPTY = "There are no bookings in the system.\n";
     public static final String MESSAGE_INVALID_DATE_FORMAT = "Invalid date format! Input "
-            + "should be in yyyy-mm-dd HH:MM:SS format\n";
+            + "should be in yyyy-mm-dd HH:MM format\n";
 
     public static final String MESSAGE_INVALID_EMAIL_FORMAT = "Invalid email address format, please try again.\n";
     public static final String PROMPT_MESSAGE_TRY_AGAIN = "Please try again or enter exit_prompt to quit prompting.\n";
@@ -60,7 +60,7 @@ public class Messages {
         + "Multiple tags to be separated with commas.\n";
     public static final String PROMPT_NEWDATE_MESSAGE = "Please try another booking time period.\n";
     public static final String PROMPT_START_MESSAGE = "Please indicate the booking start time. "
-            + "Please enter a valid input in yyyy-mm-dd HH:MM:SS format\n";
+            + "Please enter a valid input in yyyy-mm-dd HH:MM format\n";
     public static final String PROMPT_END_MESSAGE = "Please indicate the booking end time. "
-            + "Please enter a valid input in yyyy-mm-dd HH:MM:SS format\n";
+            + "Please enter a valid input in yyyy-mm-dd HH:MM format\n";
 }
