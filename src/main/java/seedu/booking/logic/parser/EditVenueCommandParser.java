@@ -28,9 +28,8 @@ public class EditVenueCommandParser implements Parser<EditVenueCommand> {
      */
     public EditVenueCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_VENUE_ORIGINAL, PREFIX_VENUE,
-                        PREFIX_CAPACITY, PREFIX_DESCRIPTION, PREFIX_TAG);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_VENUE_ORIGINAL, PREFIX_VENUE,
+                PREFIX_CAPACITY, PREFIX_DESCRIPTION, PREFIX_TAG);
 
         VenueName venueName;
 

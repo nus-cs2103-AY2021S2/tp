@@ -27,5 +27,4 @@ public class PromptAddBookingCommand extends Command {
         ModelManager.setState(STATE_EMAIL);
         return new CommandResult(PROMPT_EMAIL_MESSAGE);
     }
-
 }

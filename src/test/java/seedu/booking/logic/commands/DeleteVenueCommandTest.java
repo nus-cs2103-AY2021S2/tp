@@ -26,7 +26,7 @@ public class DeleteVenueCommandTest {
     private Model model = new ModelManager(getTypicalBookingSystem(), new UserPrefs());
 
     @Test
-    public void execute_validIndexUnfilteredList_success() {
+    public void execute_validVenueUnfilteredList_success() {
         model.addVenue(VENUE1);
         Venue venueToDelete = model.getFilteredVenueList().get(INDEX_FIRST.getZeroBased());
         DeleteVenueCommand deleteVenueCommand = new DeleteVenueCommand(VENUE1);

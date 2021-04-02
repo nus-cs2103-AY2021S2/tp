@@ -42,7 +42,7 @@ public class DeletePersonCommandTest {
     }
 
     @Test
-    public void execute_invalidIndexUnfilteredList_throwsCommandException() {
+    public void execute_invalidEmailUnfilteredList_throwsCommandException() {
         Email emailNotInSystem = new Email(NON_EXISTENT_EMAIL);
         DeletePersonCommand deletePersonCommand = new DeletePersonCommand(emailNotInSystem);
 

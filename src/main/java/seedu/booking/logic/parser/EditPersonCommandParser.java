@@ -28,15 +28,14 @@ public class EditPersonCommandParser implements Parser<EditPersonCommand> {
      */
     public EditPersonCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_ORIGINAL_EMAIL, PREFIX_NAME,
-                        PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TAG);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_ORIGINAL_EMAIL, PREFIX_NAME,
+                PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TAG);
 
         Email email;
+
         if (!arePrefixesPresent(argMultimap, PREFIX_ORIGINAL_EMAIL)
                 || argMultimap.getValue(PREFIX_ORIGINAL_EMAIL).isEmpty()) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditPersonCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditPersonCommand.MESSAGE_USAGE));
         }
 
         try {
@@ -57,10 +56,11 @@ public class EditPersonCommandParser implements Parser<EditPersonCommand> {
             editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
         }
 
+        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
+
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditPersonCommand.MESSAGE_NOT_EDITED);
         }
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
         return new EditPersonCommand(email, editPersonDescriptor);
     }

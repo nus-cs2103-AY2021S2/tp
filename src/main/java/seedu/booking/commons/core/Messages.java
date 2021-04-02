@@ -4,17 +4,27 @@ package seedu.booking.commons.core;
  * Container for user visible messages.
  */
 public class Messages {
+    // Person related messages
+    public static final String MESSAGE_DUPLICATE_PERSON_DISPLAYED_EMAIL = "This email address has been "
+            + "registered in system. Please provide another email address\n";
+    public static final String MESSAGE_DUPLICATE_PERSON_DISPLAYED_PHONE = "This number has been registered in system. "
+            + "Please provide another number\n";
+    public static final String MESSAGE_DUPLICATE_PERSON_DISPLAYED_NAME = "This name has been registered in system. "
+            + "Please provide another name\n";
+    public static final String MESSAGE_INVALID_NAME_FORMAT = "Invalid name format, please try again.\n";
+    public static final String MESSAGE_INVALID_PHONE_FORMAT = "Invalid phone format, please try again.\n";
+    public static final String PROMPT_PHONE_MESSAGE = "Please enter your phone number?\n";
+    public static final String PROMPT_EMAIL_PERSON_MESSAGE = "Please enter your email address?\n";
+    public static final String PROMPT_NAME_MESSAGE = "Please enter your name?\n";
 
     // Venue related messages
     public static final String PROMPT_CAPACITY_MESSAGE = "Please enter the capacity of the venue.\n"
             + "Default capacity is set to 10 if no input is provided.";
-    public static final String PROMPT_VENUE_DESC_MESSAGE = "Please provide an optional booking description.\n";
+    public static final String PROMPT_VENUE_DESC_MESSAGE = "Please provide an optional venue description.\n";
     public static final String PROMPT_DUPLICATE_VENUE_MESSAGE = "A venue already exists "
             + "in the system with the same name!\n";
     public static final String DEFAULT_VENUE_DESCRIPTION = "No description provided.";
     public static final String PROMPT_GENERAL_ERROR = "Error detected. Please exit command and try again.";
-
-
 
     // Booking related messages
     public static final String MESSAGE_BOOKING_DISPLAYED = "%1$d Booking listed!";
@@ -48,6 +58,7 @@ public class Messages {
     public static final String PROMPT_BOOKING_DESC_MESSAGE = "Please provide an optional booking description.\n";
     public static final String PROMPT_TAG_MESSAGE = "Please add any tags if applicable. "
         + "Multiple tags to be separated with commas.\n";
+    public static final String PROMPT_NEWDATE_MESSAGE = "Please try another booking time period.\n";
     public static final String PROMPT_START_MESSAGE = "Please indicate the booking start time. "
             + "Please enter a valid input in yyyy-mm-dd HH:MM:SS format\n";
     public static final String PROMPT_END_MESSAGE = "Please indicate the booking end time. "
