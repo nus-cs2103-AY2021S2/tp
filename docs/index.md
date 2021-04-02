@@ -9,7 +9,8 @@ title: PocketEstate
 
 **PocketEstate is a desktop application for property agents to manage property data and appointment schedules.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
 
-* If you are interested in using PocketEstate, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
+* To learn more about this project, head over to the **[PocketEstate Website](https://ay2021s2-cs2103t-t13-4.github.io/tp/)**.
+* If you are interested in using PocketEstate, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#2-quick-start).
 * If you are interested about developing PocketEstate, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
 
 **Acknowledgements**

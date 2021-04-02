@@ -136,8 +136,12 @@ Adds an appointment to the app.
 
 Format: `add appointment n/NAME r/REMARKS d/DATE t/TIME​`
 
+Description:
+* All fields are compulsory.
+
 Examples:
 * `add appointment n/Meet Alex r/At M Hotel d/17-2-2021 t/1500`
+* `add appointment n/Celebrate CNY with Pauline r/Her house d/01-02-2022 t/1900`
 
 ### 3.3 Editing
 
@@ -177,25 +181,11 @@ Examples:
 
 ### 3.4 Deleting
 
-#### 3.4.1 Removing an appointment : `delete appointment`
-
-Deletes the appointment at the specified index from the app.
-
-Formats:
-* `delete appointment INDEX`
-
-Description:
-* Deletes the appointment at the specified `INDEX`. The index refers to the index number shown in the displayed list. The index **must be a positive integer** 1, 2, 3, …
-* The field INDEX must be provided.
-
-Examples:
-*  `delete appointment 7` Deletes the `appointment` at index `7`.
-
-#### 3.4.2 Removing a property : `delete property`
+#### 3.4.1 Removing a property : `delete property`
 
 Deletes the property at the specified index from the app.
 
-Formats:
+Format:
 * `delete property INDEX`
 
 Description:
@@ -203,7 +193,21 @@ Description:
 * The field INDEX must be provided.
 
 Examples:
-*  `delete property 7` Deletes the `property` at index `7`.
+*  `delete property 7` deletes the property at index `7`.
+
+#### 3.4.2 Removing an appointment : `delete appointment`
+
+Deletes the appointment at the specified index from the app.
+
+Format:
+* `delete appointment INDEX`
+
+Description:
+* Deletes the appointment at the specified `INDEX`. The index refers to the index number shown in the displayed list. The index **must be a positive integer** 1, 2, 3, …
+* The field INDEX must be provided.
+
+Examples:
+*  `delete appointment 7` deletes the appointment at index `7`.
 
 ### 3.5 Listing
 
@@ -235,7 +239,7 @@ Description:
 Options:
 * `u/new AMOUNT`
 
-    The `new` keyword can only be used on a property without an existing status. AMOUNT is the amount of money that is offered in the Option to Purchase
+    The `new` keyword can only be used on a property without an existing status. `AMOUNT` is the amount of money that is offered in the Option to Purchase
 
 
 * `u/proceed`
@@ -259,34 +263,34 @@ Examples:
 
 ### 3.7 Sorting
 
-#### 3.7.1 Sorting appointments: `sort appointment`
-
-Sorts and shows a list of appointments that are sorted by the specified sorting key in the specified sorting order.
-
-Formats:
-* `sort appointment o/SORTING_ORDER k/SORTING_KEY`
-
-Description:
-* Sorts appointments by the specified sorting key in ascending or descending order.
-* The sorting key and sorting order fields must be specified.
-* The sorting key can take value of either `datetime` or `name`, and it should not be any other values.
-* The sorting order can only take value of `asc` and `desc`.
-
-Examples:
-*  `sort appointment o/asc k/datetime` Sorts `appointment` by `datetime` in ascending order.
-
-#### 3.7.2 Sorting properties: `sort property`
+#### 3.7.1 Sorting properties: `sort property`
 
 Sorts and shows a list of properties that are sorted by the specified sorting key in the specified sorting order.
 
-Formats:
+Format:
 * `sort property o/SORTING_ORDER k/SORTING_KEY`
 
 Description:
 * Sorts properties by the specified sorting key in ascending or descending order.
 * The sorting key and sorting order fields must be specified.
-* The sorting key can take value of `name`, `price`, `postalcode`, `address`, or `deadline`, and it should not be any other values.
-* The sorting order can only take value of `asc` and `desc`.
+* The `SORTING_ORDER` can only take values of `asc` and `desc`.
+* The `SORTING_KEY` can take values of `name`, `price`, `postalcode`, `address`, or `deadline`, and it should not be any other values.
+
+Examples:
+*  `sort appointment o/asc k/datetime` Sorts `appointment` by `datetime` in ascending order.
+
+#### 3.7.2 Sorting appointments: `sort appointment`
+
+Sorts and shows a list of appointments that are sorted by the specified sorting key in the specified sorting order.
+
+Format:
+* `sort appointment o/SORTING_ORDER k/SORTING_KEY`
+
+Description:
+* Sorts appointments by the specified sorting key in ascending or descending order.
+* The sorting key and sorting order fields must be specified.
+* The `SORTING_ORDER` can only take values of `asc` and `desc`.
+* The `SORTING_KEY` can take values of either `datetime` or `name`, and it should not be any other values.
 
 Examples:
 *  `sort appointment o/asc k/datetime` Sorts `appointment` by `datetime` in ascending order.
@@ -297,7 +301,7 @@ Examples:
 
 Undoes the last add, delete or edit commands in the command history.
 
-Formats:
+Format:
 * `undo`
 
 Description:
@@ -312,7 +316,7 @@ Examples:
 
 Finds all properties containing any of the specified keywords (case-insensitive) and/or with the given options. 
 
-Formats:
+Format:
 * `find property [n/NAME] [pl/UPPER_PRICE_LIMIT] [pm/LOWER_PRICE_LIMIT] [t/PROPERTY_TYPE] [a/ADDRESS]* 
 [p/POSTAL_CODE]* [d/DEADLINE]* [r/REMARKS] [cn/CLIENT_NAME] [cc/CLIENT_CONTACT]* 
 [ce/CLIENT_EMAIL]* [tags/TAGS_SEPARATED_BY_COMMA]`
@@ -394,7 +398,7 @@ Examples:
 
 Finds all appointments containing any of the specified keywords (case-insensitive) and/or with the given parameters. 
 
-Formats:
+Format:
 * `find appointment [n/NAME] [r/REMARKS] [d/DATE]* [t/TIME]*`
 * Note that all options marked with `*` are limited to one per query. 
 
@@ -424,8 +428,6 @@ Options:
     
     Limited to one per query. 
 
-
-
 Examples:
 * `find appointment n/bob`
 * `find appointment n/alex d/25-12-2021`
@@ -434,7 +436,7 @@ Examples:
 
 Finds appointments that matches the keywords and properties whose clients matches the same keywords. Both are done at the same time.
 
-Formats:
+Format:
 * `find client [KEYWORD]...`
 
 Description:
