@@ -240,7 +240,9 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 
 ### Adding a meeting: `addm`
 
-Adds a meeting to MeetBuddy.
+Adds a meeting to MeetBuddy. Note that meetings must be of minimum length of 15 mins
+and maximum length of 7 days. For example a meeting cannot be 15 March 16:00 - 22 March 16:00,
+but can be from 15 March 16:00 - 22 march 15:59.
 
 Format: `addm n/NAME st/TIME ed/TIME des/DESCRIPTIONS pr/PRIORITY [p/PERSON RELATED]… [g/GROUP]…​`
 
