@@ -31,7 +31,7 @@ public class ReturnCommand extends Command {
     public static final String NO_BOOK_FOUND = "Sorry, we can't find the "
             + "book which you have specified. Please check if you have keyed in the correct barcode.";
     public static final String NO_READER_FOUND = "Sorry, the reader who borrowed this book "
-    + "is not in our registered reader list";
+            + "is not in our registered reader list";
     public static final String NO_READER_AND_BOOK_FOUND = "Sorry, we are unable to find "
             + "the book via the barcode. Please check if you have keyed in the correct barcode.";
     public static final String UNABLE_TO_UPDATE_CODEBASE = "Sorry, an error has occurred with the codebase and we are"
