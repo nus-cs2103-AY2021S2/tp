@@ -41,6 +41,7 @@ public class OpenMedicalRecordCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
         Patient patient = lastShownList.get(index.getZeroBased());
-        return new CommandResult(String.format(MESSAGE_SUCCESS, patient.getName()), false, true, patient, null, false);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, patient.getName()), false, true,
+                patient, null, null, false);
     }
 }

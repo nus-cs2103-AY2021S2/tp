@@ -35,6 +35,7 @@ public class ViewMedicalRecordCommand extends Command {
         requireNonNull(model);
         Patient patient = model.getSelectedPatient();
         MedicalRecord mrec = patient.getRecords().get(index.getZeroBased());
-        return new CommandResult(String.format(MESSAGE_SUCCESS, patient.getName()), false, true, patient, mrec, false);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, patient.getName()), false, true,
+                patient, mrec, null,false);
     }
 }

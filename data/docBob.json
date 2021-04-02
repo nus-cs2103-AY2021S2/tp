@@ -8,7 +8,7 @@
     "weight" : "58kg",
     "isArchived" : false,
     "tagged" : [ "asidjoajc" ],
-    "appointments" : [ ],
+    "appointments" : [ "12/12/21 10:01", "12/12/21 10:02", "12/12/21 10:03", "12/12/21 10:04", "12/12/21 10:05", "12/12/21 11:00", "12/12/21 11:50", "12/12/21 12:00", "12/12/21 13:00", "12/12/21 13:05", "12/12/21 13:10" ],
     "records" : [ {
       "dateString" : "1/4/21 2:44",
       "sections" : [ {
@@ -34,7 +34,7 @@
     "weight" : "69kg",
     "isArchived" : false,
     "tagged" : [ "friends" ],
-    "appointments" : [ "14/4/21 14:00", "12/12/21 12:00" ],
+    "appointments" : [ "14/4/21 14:00", "12/12/21 10:00", "12/12/21 12:00" ],
     "records" : [ {
       "dateString" : "31/3/21 18:18",
       "sections" : [ {
@@ -262,7 +262,7 @@
     "weight" : "58kg",
     "isArchived" : false,
     "tagged" : [ "asidjoajc" ],
-    "appointments" : [ "19/9/21 19:00" ],
+    "appointments" : [ "19/9/21 19:00", "1/1/22 12:00" ],
     "records" : [ {
       "dateString" : "1/4/21 4:03",
       "sections" : [ {

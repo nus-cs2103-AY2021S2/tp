@@ -2,8 +2,10 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
 import java.util.Objects;
 
+import seedu.address.model.medical.Appointment;
 import seedu.address.model.medical.MedicalRecord;
 import seedu.address.model.person.Patient;
 
@@ -26,6 +28,9 @@ public class CommandResult {
     /** MedicalRecord to be viewed/edited. */
     private final MedicalRecord medicalRecord;
 
+    /** List of appointments that should be shown to the user. */
+    private final List<Appointment> appointments;
+
     /** The application should exit. */
     private final boolean exit;
 
@@ -33,12 +38,13 @@ public class CommandResult {
      * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean showEdit,
-                         Patient patient, MedicalRecord medicalRecord, boolean exit) {
+                         Patient patient, MedicalRecord medicalRecord, List<Appointment> appointments, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.showEdit = showEdit;
         this.patient = patient;
         this.medicalRecord = medicalRecord;
+        this.appointments = appointments;
         this.exit = exit;
     }
 
@@ -47,7 +53,7 @@ public class CommandResult {
      * set to default value.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
-        this(feedbackToUser, showHelp, false, null, null, exit);
+        this(feedbackToUser, showHelp, false, null, null, null, exit);
     }
 
     /**
@@ -74,6 +80,10 @@ public class CommandResult {
         return patient != null;
     }
 
+    public boolean showAppointments() {
+        return appointments != null;
+    }
+
     public boolean isExit() {
         return exit;
     }
@@ -84,6 +94,10 @@ public class CommandResult {
 
     public MedicalRecord getMedicalRecord() {
         return medicalRecord;
+    }
+
+    public List<Appointment> getAppointments() {
+        return appointments;
     }
 
     @Override

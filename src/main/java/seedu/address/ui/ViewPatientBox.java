@@ -125,6 +125,11 @@ public class ViewPatientBox extends UiPart<Region> {
         name.setText(STARTUP_MESSAGE);
     }
 
+    public void setText(String s) {
+        name.setText(s);
+        name.setMinHeight(800);
+    }
+
     private void setLabels() {
         phoneLabel.setText("Phone: ");
         addressLabel.setText("Address: ");
