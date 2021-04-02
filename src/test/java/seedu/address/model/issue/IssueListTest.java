@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.issue.TypicalIssues.ISSUE_10_100;
-import static seedu.address.testutil.issue.TypicalIssues.ISSUE_20_109;
+import static seedu.address.testutil.issue.TypicalIssues.ISSUE_11_110;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -76,17 +76,17 @@ public class IssueListTest {
     @Test
     public void setIssue_editedIssueIsDifferentIssue_success() {
         issueList.add(ISSUE_10_100);
-        issueList.setIssue(ISSUE_10_100, ISSUE_20_109);
+        issueList.setIssue(ISSUE_10_100, ISSUE_11_110);
         IssueList expectedIssueList = new IssueList();
-        expectedIssueList.add(ISSUE_20_109);
+        expectedIssueList.add(ISSUE_11_110);
         assertEquals(expectedIssueList, issueList);
     }
 
     @Test
     public void setIssue_editedIssueHasNonIdentity_throwsDuplicateIssueException() {
         issueList.add(ISSUE_10_100);
-        issueList.add(ISSUE_20_109);
-        assertThrows(DuplicateIssueException.class, () -> issueList.setIssue(ISSUE_10_100, ISSUE_20_109));
+        issueList.add(ISSUE_11_110);
+        assertThrows(DuplicateIssueException.class, () -> issueList.setIssue(ISSUE_10_100, ISSUE_11_110));
     }
 
     @Test
@@ -116,7 +116,7 @@ public class IssueListTest {
     public void setIssues_uniqueIssueList_replacesOwnListWithProvidedIssueList() {
         issueList.add(ISSUE_10_100);
         IssueList expectedIssueList = new IssueList();
-        expectedIssueList.add(ISSUE_20_109);
+        expectedIssueList.add(ISSUE_11_110);
         issueList.setIssues(expectedIssueList);
         assertEquals(expectedIssueList, issueList);
     }
@@ -129,10 +129,10 @@ public class IssueListTest {
     @Test
     public void setIssues_list_replacesOwnListWithProvidedList() {
         issueList.add(ISSUE_10_100);
-        List<Issue> newInternalIssueList = Collections.singletonList(ISSUE_20_109);
+        List<Issue> newInternalIssueList = Collections.singletonList(ISSUE_11_110);
         issueList.setIssues(newInternalIssueList);
         IssueList expectedIssueList = new IssueList();
-        expectedIssueList.add(ISSUE_20_109);
+        expectedIssueList.add(ISSUE_11_110);
         assertEquals(expectedIssueList, issueList);
     }
 

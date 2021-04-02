@@ -120,6 +120,11 @@ public class AddRoomCommandTest {
         }
 
         @Override
+        public void commitAddressBook() {
+            // called by {@code AddRoomCommand#execute()}
+        }
+
+        @Override
         public ReadOnlyAddressBook getAddressBook() {
             return new AddressBook();
         }

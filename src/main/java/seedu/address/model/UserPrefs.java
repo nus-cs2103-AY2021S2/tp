@@ -16,7 +16,7 @@ import seedu.address.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
+    private Path addressBookFilePath = Paths.get("data" , "sunrez.json");
     private AliasMapping aliasMapping = new AliasMapping();
     private Path commandHistoryFilePath = Paths.get("data", "commandhistory.txt");
 
@@ -69,6 +69,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public AliasMapping getAliasMapping() {
         return aliasMapping;
     }
+
 
     /**
      * Sets the current mapping to the specified mapping.

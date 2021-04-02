@@ -6,7 +6,6 @@ import seedu.address.model.resident.Email;
 import seedu.address.model.resident.Name;
 import seedu.address.model.resident.Phone;
 import seedu.address.model.resident.Resident;
-import seedu.address.model.resident.Room;
 import seedu.address.model.resident.Year;
 
 /**
@@ -33,7 +32,6 @@ public class EditResidentDescriptorBuilder {
         descriptor.setPhone(resident.getPhone());
         descriptor.setEmail(resident.getEmail());
         descriptor.setYear(resident.getYear());
-        descriptor.setRoom(resident.getRoom());
     }
 
     /**
@@ -67,15 +65,6 @@ public class EditResidentDescriptorBuilder {
         descriptor.setYear(new Year(year));
         return this;
     }
-
-    /**
-     * Sets the {@code Room} of the {@code EditResidentDescriptor} that we are building.
-     */
-    public EditResidentDescriptorBuilder withRoom(String room) {
-        descriptor.setRoom(new Room(room));
-        return this;
-    }
-
 
     public EditResidentCommand.EditResidentDescriptor build() {
         return descriptor;

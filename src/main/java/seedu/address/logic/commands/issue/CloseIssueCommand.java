@@ -18,7 +18,7 @@ import seedu.address.model.issue.IssueStatus;
  */
 public class CloseIssueCommand extends Command {
 
-    public static final String COMMAND_WORD = "icol";
+    public static final String COMMAND_WORD = "iclo";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Closes the issue identified by the index number used in the displayed issue list.\n"
@@ -50,10 +50,8 @@ public class CloseIssueCommand extends Command {
             throw new CommandException(MESSAGE_CLOSE_ISSUE_CLOSED);
         }
 
-        Issue closedIssue = Issue.closeIssue(issueToClose);
-
-        model.setIssue(issueToClose, closedIssue);
-
+        model.closeIssue(issueToClose);
+        model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_CLOSE_ISSUE_SUCCESS, issueToClose));
     }
 

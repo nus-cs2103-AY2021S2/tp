@@ -283,6 +283,9 @@ public class ParserUtil {
         if (!Alias.isValidName(aliasName)) {
             throw new ParseException(Alias.MESSAGE_NAME_CONSTRAINTS);
         }
+        if (!Alias.isValidCommand(command)) {
+            throw new ParseException(Alias.MESSAGE_COMMAND_CONSTRAINTS);
+        }
         return new Alias(aliasName, command);
     }
 }

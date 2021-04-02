@@ -3,7 +3,7 @@ package seedu.address.model.issue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.issue.TypicalIssues.ISSUE_10_100;
-import static seedu.address.testutil.issue.TypicalIssues.ISSUE_20_109;
+import static seedu.address.testutil.issue.TypicalIssues.ISSUE_11_110;
 
 import org.junit.jupiter.api.Test;
 
@@ -35,36 +35,35 @@ public class IssueTest {
         assertFalse(ISSUE_10_100.equals(5));
 
         // different issue -> returns false
-        assertFalse(ISSUE_10_100.equals(ISSUE_20_109));
+        assertFalse(ISSUE_10_100.equals(ISSUE_11_110));
 
         // different room number -> returns false
         Issue editedIssue10100 = new IssueBuilder(ISSUE_10_100)
-                .withRoomNumber(ISSUE_20_109.getRoomNumber().value)
+                .withRoomNumber(ISSUE_11_110.getRoomNumber().value)
                 .build();
         assertFalse(ISSUE_10_100.equals(editedIssue10100));
 
         // different description -> returns false
         editedIssue10100 = new IssueBuilder(ISSUE_10_100)
-                .withDescription(ISSUE_20_109.getDescription().value)
+                .withDescription(ISSUE_11_110.getDescription().value)
                 .build();
         assertFalse(ISSUE_10_100.equals(editedIssue10100));
 
         // different timestamp -> returns false
         editedIssue10100 = new IssueBuilder(ISSUE_10_100)
-                .withTimestamp(ISSUE_20_109.getTimestamp().toString())
+                .withTimestamp(ISSUE_11_110.getTimestamp().toString())
                 .build();
         assertFalse(ISSUE_10_100.equals(editedIssue10100));
 
         // different status -> returns false
-        final String closedStatusString = "closed";
         editedIssue10100 = new IssueBuilder(ISSUE_10_100)
-                .withStatus(closedStatusString)
+                .withStatus(ISSUE_11_110.getStatus().value.toString())
                 .build();
         assertFalse(ISSUE_10_100.equals(editedIssue10100));
 
         // different category -> returns false
         editedIssue10100 = new IssueBuilder(ISSUE_10_100)
-                .withCategory(ISSUE_20_109.getCategory().value)
+                .withCategory(ISSUE_11_110.getCategory().value)
                 .build();
         assertFalse(ISSUE_10_100.equals(editedIssue10100));
     }

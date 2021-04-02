@@ -52,6 +52,7 @@ public class EditIssueCommand extends Command {
             + PREFIX_CATEGORY + "Window";
 
     public static final String MESSAGE_EDIT_ISSUE_SUCCESS = "Edited Issue: %1$s";
+    public static final String MESSAGE_NO_SUCH_ROOM = "There is no such room";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_ISSUE = "This issue already exists in the address book.";
 
@@ -82,8 +83,17 @@ public class EditIssueCommand extends Command {
         Issue issueToEdit = lastShownList.get(index.getZeroBased());
         Issue editedIssue = createEditedIssue(issueToEdit, editIssueDescriptor);
 
+        if (!model.hasRoom(new seedu.address.model.room.RoomNumber(editedIssue.getRoomNumber().value))) {
+            throw new CommandException(MESSAGE_NO_SUCH_ROOM);
+        }
+
+        if (!issueToEdit.equals(editedIssue) && model.hasIssue(editedIssue)) {
+            throw new CommandException(MESSAGE_DUPLICATE_ISSUE);
+        }
+
         model.setIssue(issueToEdit, editedIssue);
         model.updateFilteredIssueList(PREDICATE_SHOW_ALL_ISSUES);
+        model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_EDIT_ISSUE_SUCCESS, editedIssue));
     }
 

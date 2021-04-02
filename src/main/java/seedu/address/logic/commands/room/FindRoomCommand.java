@@ -6,7 +6,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
-import seedu.address.model.room.RoomNumberContainsKeywordsPredicate;
+import seedu.address.model.room.RoomNumberOrTagsContainsKeywordsPredicate;
 
 /**
  * Finds and lists all rooms in SunRez whose name contains any of the argument keywords.
@@ -20,9 +20,9 @@ public class FindRoomCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " 12-345 01-001";
 
-    private final RoomNumberContainsKeywordsPredicate predicate;
+    private final RoomNumberOrTagsContainsKeywordsPredicate predicate;
 
-    public FindRoomCommand(RoomNumberContainsKeywordsPredicate predicate) {
+    public FindRoomCommand(RoomNumberOrTagsContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 

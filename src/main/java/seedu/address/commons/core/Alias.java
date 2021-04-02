@@ -13,7 +13,9 @@ import java.util.regex.Pattern;
  * Guarantees: fields are present and not null, field values are validated, immutable.
  */
 public class Alias implements Serializable {
-    public static final String MESSAGE_NAME_CONSTRAINTS = "Only alphanumeric characters are allowed in alias names";
+    public static final String MESSAGE_NAME_CONSTRAINTS =
+            "Alias name can only contain alphanumeric characters and cannot be empty";
+    public static final String MESSAGE_COMMAND_CONSTRAINTS = "Command cannot be empty";
 
     public static final String NAME_REGEX = "\\p{Alnum}+";
 
@@ -39,6 +41,7 @@ public class Alias implements Serializable {
     public Alias(String aliasName, String command) {
         requireAllNonNull(aliasName, command);
         checkArgument(isValidName(aliasName), MESSAGE_NAME_CONSTRAINTS);
+        checkArgument(isValidCommand(command), MESSAGE_COMMAND_CONSTRAINTS);
 
         this.aliasName = aliasName;
         this.command = command;
@@ -48,10 +51,20 @@ public class Alias implements Serializable {
      * Validates alias name.
      *
      * @param aliasName Name of the alias.
-     * @return Whether the name matches the regex pattern.
+     * @return Whether the name matches the regex pattern and is not empty.
      */
     public static boolean isValidName(String aliasName) {
-        return Pattern.matches(NAME_REGEX, aliasName);
+        return Pattern.matches(NAME_REGEX, aliasName) && !aliasName.isEmpty();
+    }
+
+    /**
+     * Validates command.
+     *
+     * @param command Command string.
+     * @return Whether the command is not empty.
+     */
+    public static boolean isValidCommand(String command) {
+        return !command.isEmpty();
     }
 
     public String getAliasName() {

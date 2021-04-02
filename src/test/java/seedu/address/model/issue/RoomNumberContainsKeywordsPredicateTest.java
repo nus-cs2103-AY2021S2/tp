@@ -18,16 +18,16 @@ public class RoomNumberContainsKeywordsPredicateTest {
         List<String> firstPredicateKeywordList = Collections.singletonList("10");
         List<String> secondPredicateKeywordList = Arrays.asList("10", "20");
 
-        RoomNumberContainsKeywordsPredicate firstPredicate = new RoomNumberContainsKeywordsPredicate(
+        RoomNumberOrTagContainsKeywordsPredicate firstPredicate = new RoomNumberOrTagContainsKeywordsPredicate(
                 firstPredicateKeywordList);
-        RoomNumberContainsKeywordsPredicate secondPredicate = new RoomNumberContainsKeywordsPredicate(
+        RoomNumberOrTagContainsKeywordsPredicate secondPredicate = new RoomNumberOrTagContainsKeywordsPredicate(
                 secondPredicateKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        RoomNumberContainsKeywordsPredicate firstPredicateCopy = new RoomNumberContainsKeywordsPredicate(
+        RoomNumberOrTagContainsKeywordsPredicate firstPredicateCopy = new RoomNumberOrTagContainsKeywordsPredicate(
                 firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
@@ -45,17 +45,17 @@ public class RoomNumberContainsKeywordsPredicateTest {
     @Test
     public void test_roomNumberContainsKeywords_returnsTrue() {
         // One keyword
-        RoomNumberContainsKeywordsPredicate predicate = new RoomNumberContainsKeywordsPredicate(
+        RoomNumberOrTagContainsKeywordsPredicate predicate = new RoomNumberOrTagContainsKeywordsPredicate(
                 Collections.singletonList("10-"));
         assertTrue(predicate.test(new IssueBuilder().withRoomNumber("10-100").build()));
 
         // Multiple keywords
-        predicate = new RoomNumberContainsKeywordsPredicate(Arrays.asList("10-", "11-"));
+        predicate = new RoomNumberOrTagContainsKeywordsPredicate(Arrays.asList("10-", "11-"));
         assertTrue(predicate.test(new IssueBuilder().withRoomNumber("10-100").build()));
         assertTrue(predicate.test(new IssueBuilder().withRoomNumber("11-100").build()));
 
         // Only one matching keyword
-        predicate = new RoomNumberContainsKeywordsPredicate(Arrays.asList("11-", "12-"));
+        predicate = new RoomNumberOrTagContainsKeywordsPredicate(Arrays.asList("11-", "12-"));
         assertFalse(predicate.test(new IssueBuilder().withRoomNumber("10-100").build()));
         assertTrue(predicate.test(new IssueBuilder().withRoomNumber("11-100").build()));
     }
@@ -63,22 +63,22 @@ public class RoomNumberContainsKeywordsPredicateTest {
     @Test
     public void test_roomNumberDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
-        RoomNumberContainsKeywordsPredicate predicate = new RoomNumberContainsKeywordsPredicate(
+        RoomNumberOrTagContainsKeywordsPredicate predicate = new RoomNumberOrTagContainsKeywordsPredicate(
                 Collections.emptyList());
         assertFalse(predicate.test(new IssueBuilder().withRoomNumber("10-100").build()));
 
         // Non-matching keyword
-        predicate = new RoomNumberContainsKeywordsPredicate(Arrays.asList("123"));
+        predicate = new RoomNumberOrTagContainsKeywordsPredicate(Arrays.asList("123"));
         assertFalse(predicate.test(new IssueBuilder().withRoomNumber("10-100").build()));
 
         // Keywords match description, timestamp, status, category, but does not match room number
-        predicate = new RoomNumberContainsKeywordsPredicate(
+        predicate = new RoomNumberOrTagContainsKeywordsPredicate(
                 Arrays.asList(IssueBuilder.DEFAULT_ROOM_NUMBER,
                         IssueBuilder.DEFAULT_DESCRIPTION,
                         IssueBuilder.DEFAULT_TIMESTAMP,
                         IssueBuilder.DEFAULT_STATUS,
                         IssueBuilder.DEFAULT_CATEGORY));
-        assertFalse(predicate.test(new IssueBuilder().withRoomNumber("10-100").build()));
+        assertFalse(predicate.test(new IssueBuilder().withRoomNumber("01-001").build()));
     }
 
 }

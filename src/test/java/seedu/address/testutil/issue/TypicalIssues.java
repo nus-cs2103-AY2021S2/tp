@@ -14,32 +14,32 @@ public class TypicalIssues {
             .withStatus("pending")
             .withCategory("Furniture")
             .build();
-    public static final Issue ISSUE_20_109 = new IssueBuilder()
-            .withRoomNumber("20-109")
+    public static final Issue ISSUE_11_110 = new IssueBuilder()
+            .withRoomNumber("11-110")
             .withDescription("Flickering light")
             .withTimestamp("2021/03/20 8:35am")
-            .withStatus("pending")
+            .withStatus("closed")
             .withCategory("Electrical")
             .build();
-    public static final Issue ISSUE_15_112 = new IssueBuilder()
-            .withRoomNumber("15-112")
+    public static final Issue ISSUE_09_100 = new IssueBuilder()
+            .withRoomNumber("09-100")
             .withDescription("Chair cylinder exploded")
             .withTimestamp("2020/12/11 6:53pm")
-            .withStatus("closed")
+            .withStatus("pending")
             .withCategory("Furniture")
             .build();
-    public static final Issue ISSUE_04_119 = new IssueBuilder()
-            .withRoomNumber("04-119")
+    public static final Issue ISSUE_09_110 = new IssueBuilder()
+            .withRoomNumber("09-110")
             .withDescription("Bed soaked from rain due to open window")
             .withTimestamp("2020/11/29 11:23pm")
             .withStatus("closed")
             .withCategory("Furniture")
             .build();
-    public static final Issue ISSUE_08_104 = new IssueBuilder()
-            .withRoomNumber("08-104")
+    public static final Issue ISSUE_12_110 = new IssueBuilder()
+            .withRoomNumber("12-110")
             .withDescription("Cockroach everywhere")
             .withTimestamp("2020/08/10 8:48am")
-            .withStatus("closed")
+            .withStatus("pending")
             .withCategory("Others")
             .build();
 
@@ -47,7 +47,7 @@ public class TypicalIssues {
     } // prevents instantiation
 
     public static List<Issue> getTypicalIssues() {
-        return new ArrayList<>(Arrays.asList(ISSUE_10_100, ISSUE_20_109, ISSUE_15_112, ISSUE_04_119, ISSUE_08_104));
+        return new ArrayList<>(Arrays.asList(ISSUE_10_100, ISSUE_11_110, ISSUE_09_100, ISSUE_09_110, ISSUE_12_110));
     }
 
 }
