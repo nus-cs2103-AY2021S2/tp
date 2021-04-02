@@ -3,6 +3,7 @@ package seedu.address.ui;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.model.event.Event;
@@ -12,7 +13,7 @@ import seedu.address.model.event.Event;
  */
 public class EventCardListView extends UiPart<Region> {
 
-    private static final String FXML = "EventCardKanbanView.fxml";
+    private static final String FXML = "EventCardListView.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -34,7 +35,11 @@ public class EventCardListView extends UiPart<Region> {
     @FXML
     private Label priority;
     @FXML
+    private Label status;
+    @FXML
     private Label description;
+    @FXML
+    private HBox second;
 
 
     /**
@@ -59,6 +64,8 @@ public class EventCardListView extends UiPart<Region> {
         setEventName();
         setDescription();
         setPriority();
+        setStatus();
+        second.setSpacing(5);
     }
 
     private void setId() {
@@ -78,8 +85,12 @@ public class EventCardListView extends UiPart<Region> {
 
         String styleClassName = event.getPriority().name().toLowerCase() + "-priority";
         priority.getStyleClass().add(styleClassName);
+    }
 
-
+    private void setStatus() {
+        status.setText(event.getStatus().name());
+        String styleClassName = event.getPriority().name().toLowerCase() + "-status";
+        status.getStyleClass().add(styleClassName);
     }
 
     private void setDescription() {

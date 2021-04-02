@@ -202,6 +202,7 @@ If your changes to the data file makes its format invalid, Focuris will discard 
 ## 2.3 Event Commands
 
 For the majority of event commands, you can simply execute them via these simple steps:
+
 1) Type in the command you desire in the various formats detailed below.
 2) Hit `enter` on your keyboard!
 3) The results and outcome of your command should be visible on the application.

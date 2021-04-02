@@ -46,7 +46,7 @@ public class EventListPaneListView extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new EventCardKanbanView(event, event.getIdentifier()).getRoot());
+                setGraphic(new EventCardListView(event, event.getIdentifier()).getRoot());
             }
         }
     }
