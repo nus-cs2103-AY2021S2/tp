@@ -6,6 +6,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EDUCATION_LEVEL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADED_ITEM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUALIFICATION;
@@ -34,7 +36,6 @@ import seedu.address.model.tutor.NameContainsKeywordsPredicate;
 import seedu.address.model.tutor.Tutor;
 import seedu.address.testutil.EditGradeDescriptorBuilder;
 import seedu.address.testutil.EditTutorDescriptorBuilder;
-import seedu.address.testutil.GradeBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -98,11 +99,22 @@ public class CommandTestUtil {
     public static final String SUBJECT_EXPERIENCE_DESC = " " + PREFIX_YEAR + VALID_SUBJECT_EXPERIENCE;
     public static final String SUBJECT_QUALIFICATION_DESC = " " + PREFIX_QUALIFICATION + VALID_SUBJECT_QUALIFICATION;
 
+    public static final String SUBJECT_DESC_MATHS = " " + PREFIX_SUBJECT_NAME + VALID_SUBJECT_NAME_MATHS;
+    public static final String SUBJECT_DESC_SCIENCE = " " + PREFIX_SUBJECT_NAME + VALID_SUBJECT_NAME_SCIENCE;
+    public static final String GRADED_ITEM_DESC_MATHS = " " + PREFIX_GRADED_ITEM + VALID_GRADED_ITEM_MATHS;
+    public static final String GRADED_ITEM_DESC_SCIENCE = " " + PREFIX_GRADED_ITEM + VALID_GRADED_ITEM_SCIENCE;
+    public static final String GRADE_DESC_MATHS = " " + PREFIX_GRADE + VALID_GRADE_MATHS;
+    public static final String GRADE_DESC_SCIENCE = " " + PREFIX_GRADE + VALID_GRADE_SCIENCE;
+
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+
+    public static final String INVALID_SUBJECT_DESC = " " + PREFIX_SUBJECT_NAME + "Science&"; // '&' not allowed in names
+    public static final String INVALID_GRADED_ITEM_DESC = " " + PREFIX_GRADED_ITEM + "Midterm&"; // 'a' not allowed in phones
+    public static final String INVALID_GRADE_DESC = " " + PREFIX_GRADE + "A-"; // '-' not allowed in names
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
