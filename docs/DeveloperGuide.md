@@ -263,7 +263,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `Weeblingo` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: See the list of flashcards**
+**Use case : UC01 - See the list of flashcards**
 
 **MSS**
 
@@ -272,7 +272,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.  
 
-**Use case: Take a quiz**
+**Use case: UC02 - Take a quiz**
 
 **MSS**
 
@@ -314,7 +314,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       
       Use case resumes at step 5.
 
-**Use case: See my past quiz attempts history**
+**Use case: UC03 - See my past quiz attempts history**
 
 **MSS**
 
@@ -348,6 +348,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Question**: A Japanese character/word
 * **Answer**: The reading/definition of the Japanese given in the corresponding question
 * **Flashcard**: An object that can display a question and its answer
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
