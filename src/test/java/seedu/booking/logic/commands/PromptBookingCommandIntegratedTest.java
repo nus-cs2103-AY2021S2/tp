@@ -3,8 +3,8 @@ package seedu.booking.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.booking.testutil.TypicalBookings.BOOKING_HOON;
-import static seedu.booking.testutil.TypicalPersons.getTypicalBookingSystem;
 import static seedu.booking.testutil.TypicalPersons.HOON;
+import static seedu.booking.testutil.TypicalPersons.getTypicalBookingSystem;
 import static seedu.booking.testutil.TypicalVenues.VENUE1;
 
 import java.util.Set;
