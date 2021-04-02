@@ -56,10 +56,12 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Replaces the contents of the person list with {@code persons}.
+     * Groups will be emptied.
      * {@code persons} must not contain duplicate persons.
      */
     public void setPersons(List<Person> persons) {
         this.persons.setPersons(persons);
+        this.groups.setGroups(new HashMap<>());
         personStreaks.setPersons(persons);
     }
 
@@ -109,6 +111,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(editedPerson);
 
         persons.setPerson(target, editedPerson);
+        if (!target.isSamePerson(editedPerson)) {
+            groups.replacePerson(target.getName(), editedPerson.getName());
+        }
         personStreaks.setPerson(target, editedPerson);
     }
 
