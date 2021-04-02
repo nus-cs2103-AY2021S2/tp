@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLE;
 
@@ -33,7 +34,14 @@ public class AddGroupmateCommandParser implements Parser<AddGroupmateCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddGroupmateCommand.MESSAGE_USAGE));
         }
 
-        Index projectIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
+        Index projectIndex;
+
+        try {
+            projectIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
+        } catch (ParseException pe) {
+            throw new ParseException(MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX, pe);
+        }
+
         Name name = ParserUtil.parseGroupmateName(argMultimap.getValue(PREFIX_NAME).get());
         Set<Role> roleList = ParserUtil.parseRoles(argMultimap.getAllValues(PREFIX_ROLE));
 

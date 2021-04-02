@@ -157,7 +157,7 @@ public class HelpPanel extends UiPart<Region> {
     private static ObservableList<CommandSyntax> getContactCommands() {
         return FXCollections.observableArrayList(
                 new CommandSyntax("addC", "addC n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]..."),
-                new CommandSyntax("find", "find KEYWORD [MORE_KEYWORDS]"),
+                new CommandSyntax("find", "find KEYWORD [KEYWORD]..."),
                 new CommandSyntax("updateC",
                         "updateC INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]..."),
                 new CommandSyntax("deleteC", "deleteC INDEX")
@@ -168,6 +168,8 @@ public class HelpPanel extends UiPart<Region> {
         return FXCollections.observableArrayList(
                 new CommandSyntax("today", "today"),
                 new CommandSyntax("contacts", "contacts"),
+                new CommandSyntax("undo", "undo"),
+                new CommandSyntax("redo", "redo"),
                 new CommandSyntax("help", "help"),
                 new CommandSyntax("clear", "clear"),
                 new CommandSyntax("exit", "exit")

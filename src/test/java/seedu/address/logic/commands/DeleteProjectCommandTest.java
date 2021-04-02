@@ -35,7 +35,8 @@ public class DeleteProjectCommandTest {
         Project projectToDelete = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
         DeleteProjectCommand deleteProjectCommand = new DeleteProjectCommand(INDEX_FIRST);
 
-        String expectedMessage = String.format(DeleteProjectCommand.MESSAGE_DELETE_PROJECT_SUCCESS, projectToDelete);
+        String expectedMessage = String.format(DeleteProjectCommand.MESSAGE_DELETE_PROJECT_SUCCESS,
+                projectToDelete.getProjectName());
 
         ModelManager expectedModel = new ModelManager(getTypicalColabFolder(), new UserPrefs());
         expectedModel.deleteProject(projectToDelete);
@@ -58,7 +59,8 @@ public class DeleteProjectCommandTest {
         Project projectToDelete = model.getFilteredProjectList().get(INDEX_FIRST.getZeroBased());
         DeleteProjectCommand deleteProjectCommand = new DeleteProjectCommand(INDEX_FIRST);
 
-        String expectedMessage = String.format(DeleteProjectCommand.MESSAGE_DELETE_PROJECT_SUCCESS, projectToDelete);
+        String expectedMessage = String.format(DeleteProjectCommand.MESSAGE_DELETE_PROJECT_SUCCESS,
+                projectToDelete.getProjectName());
 
         ModelManager expectedModel = new ModelManager(getTypicalColabFolder(), new UserPrefs());
         expectedModel.deleteProject(projectToDelete);

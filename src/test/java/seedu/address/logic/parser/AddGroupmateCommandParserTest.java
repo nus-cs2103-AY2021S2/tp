@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX;
 import static seedu.address.logic.commands.CommandTestUtil.INDEX_STANDALONE_ONE;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_INDEX_STANDALONE;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
@@ -13,7 +14,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ROLE_LEADER;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ROLE_MAGICIAN;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.TypicalGroupmates.SYLPH;
 
 import org.junit.jupiter.api.Test;
@@ -68,7 +68,7 @@ public class AddGroupmateCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid project index
         assertParseFailure(parser, INVALID_INDEX_STANDALONE + NAME_DESC_SYLPH + ROLE_DESC_LEADER,
-                MESSAGE_INVALID_INDEX);
+                MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX);
 
         // invalid name
         assertParseFailure(parser, INDEX_STANDALONE_ONE + INVALID_NAME_DESC + ROLE_DESC_LEADER,
