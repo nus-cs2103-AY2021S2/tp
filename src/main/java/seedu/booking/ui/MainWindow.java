@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -51,6 +52,9 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane upcomingBookingListPanelPlaceholder;
 
     @FXML
+    private Label currentListName;
+
+    @FXML
     private StackPane resultListPanelPlaceholder;
 
     @FXML
@@ -75,6 +79,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
     }
 
     public Stage getPrimaryStage() {
@@ -126,6 +131,7 @@ public class MainWindow extends UiPart<Stage> {
         venueListPanel = new VenueListPanel(logic.getFilteredVenueList());
         bookingListPanel = new BookingListPanel(logic.getFilteredBookingList());
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+
 
         resultListPanelPlaceholder.getChildren().removeAll();
         resultListPanelPlaceholder.getChildren().add(venueListPanel.getRoot());
@@ -198,10 +204,13 @@ public class MainWindow extends UiPart<Stage> {
         resultListPanelPlaceholder.getChildren().clear();
         if (commandType.equals("booking")) {
             resultListPanelPlaceholder.getChildren().add(bookingListPanel.getRoot());
+            currentListName.setText("Bookings:");
         } else if (commandType.equals("venue")) {
             resultListPanelPlaceholder.getChildren().add(venueListPanel.getRoot());
+            currentListName.setText("Venues:");
         } else {
             resultListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+            currentListName.setText("Persons:");
         }
     }
 

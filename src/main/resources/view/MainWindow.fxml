@@ -11,6 +11,8 @@
 <?import javafx.scene.layout.VBox?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Separator?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
          title="Booking App" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
   <icons>
@@ -19,7 +21,7 @@
   <scene>
     <Scene>
       <stylesheets>
-        <URL value="@DarkTheme.css" />
+        <URL value="@LightTheme.css" />
         <URL value="@Extensions.css" />
       </stylesheets>
 
@@ -33,54 +35,42 @@
           </Menu>
         </MenuBar>
 
-        <VBox>
-          <!--<VBox fx:id="upcomingBookingList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
-            <padding>
-              <Insets top="10" right="10" bottom="10" left="10" />
-            </padding>
-            <StackPane fx:id="upcomingBookingListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-          </VBox>
-
-          <VBox fx:id="favorite" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
-            <padding>
-              <Insets top="10" right="10" bottom="10" left="10" />
-            </padding>
-            <Label fx:id="favoritePlaceholder" styleClass="cell_title_label" text="Status of favorite venues:" />
-            <StackPane fx:id="favoriteVenueListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-          </VBox>-->
-
-          <VBox style="-fx-background-color: #c4c4c4;" styleClass="pane-with-border" minWidth="340" prefWidth="340">
+        <HBox>
+          <VBox>
             <padding>
               <Insets top="5" right="10" bottom="5" left="10" />
             </padding>
-            <Label fx:id="commandTitle" id="commandTitle" styleClass="cell_title_label" text="How can I help you?" />
-            <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder">
+            <VBox styleClass="pane-without-border" minWidth="240" prefWidth="240">
+              <padding>
+                <Insets top="5" right="10" bottom="5" left="10" />
+              </padding>
+              <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder">
+              </StackPane>
+            </VBox>
+
+            <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-without-border"
+                       minHeight="50" prefHeight="50" maxHeight="50">
             </StackPane>
+            <Separator></Separator>
+
+            <StackPane>
+              <padding>
+                <Insets top="5" right="10" bottom="5" left="10" />
+              </padding>
+              <Label fx:id="currentListName" id="currentListName" styleClass="cell_title_label" StackPane.alignment="TOP_LEFT" text="List:" />
+              <Label fx:id="currentListSize" id="currentListSize" styleClass="cell_title_label" StackPane.alignment="TOP_RIGHT" text="0 Listings" />
+            </StackPane>
+
+            <VBox fx:id="resultList" styleClass="pane-with-border" minWidth="240" prefWidth="240">
+              <StackPane fx:id="resultListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+            </VBox>
+
+            <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
           </VBox>
-
-          <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
-                     minHeight="100" prefHeight="100" maxHeight="100">
-            <padding>
-              <Insets top="5" right="10" bottom="5" left="10" />
-            </padding>
-          </StackPane>
-
-          <VBox fx:id="resultList" styleClass="pane-with-border" minWidth="340" prefWidth="340">
-            <padding>
-              <Insets top="10" right="10" bottom="10" left="10" />
-            </padding>
-            <StackPane fx:id="resultListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+          <Separator ></Separator>
+          <VBox fx:id="cardDisplayPlaceholder">
           </VBox>
-
-          <!--<VBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
-            <padding>
-              <Insets top="10" right="10" bottom="10" left="10" />
-            </padding>
-            <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-          </VBox>-->
-
-          <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
-        </VBox>
+        </HBox>
       </VBox>
     </Scene>
   </scene>

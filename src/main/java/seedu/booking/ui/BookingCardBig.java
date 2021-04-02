@@ -1,7 +1,5 @@
 package seedu.booking.ui;
 
-import java.util.Comparator;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -9,12 +7,14 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.booking.model.booking.Booking;
 
-/**
- * An UI component that displays information of a {@code Booking}.
- */
-public class BookingCard extends UiPart<Region> {
+import java.util.Comparator;
 
-    private static final String FXML = "BookingListCard.fxml";
+/**
+ * An UI component that displays more detailed information of a {@code Person}.
+ */
+public class BookingCardBig extends UiPart<Region> {
+
+    private static final String FXML = "BookingListCardBig.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -48,7 +48,7 @@ public class BookingCard extends UiPart<Region> {
     /**
      * Creates a {@code BookingCard} with the given {@code Booking} and index to display.
      */
-    public BookingCard(Booking booking, int displayedIndex) {
+    public BookingCardBig(Booking booking, int displayedIndex) {
         super(FXML);
         this.booking = booking;
         id.setText(displayedIndex + ". ");
@@ -71,12 +71,12 @@ public class BookingCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof BookingCard)) {
+        if (!(other instanceof BookingCardBig)) {
             return false;
         }
 
         // state check
-        BookingCard card = (BookingCard) other;
+        BookingCardBig card = (BookingCardBig) other;
         return id.getText().equals(card.id.getText())
                 && booking.equals(card.booking);
     }
