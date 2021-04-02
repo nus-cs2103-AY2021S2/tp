@@ -52,7 +52,7 @@ public class AddGroupCommand extends Command {
         List<Person> lastShownList = model.getFilteredPersonList();
 
         Group group = model.getGroupMap().getOrDefault(groupName, new Group(groupName));
-        Set<Person> newPersonSet = new HashSet<>(group.getPersons());
+        Set<Name> newPersonSet = new HashSet<>(group.getPersonNames());
 
         boolean isNewGroup = !model.hasGroup(group);
 
@@ -62,7 +62,7 @@ public class AddGroupCommand extends Command {
 
         for (Index index: indexes) {
             Person person = lastShownList.get(index.getZeroBased());
-            newPersonSet.add(person);
+            newPersonSet.add(person.getName());
         }
 
         group.setPersons(newPersonSet);
@@ -71,7 +71,7 @@ public class AddGroupCommand extends Command {
         } else {
             model.setGroup(groupName, group);
         }
-
+        model.updateFilteredPersonList(p -> group.getPersonNames().contains(p.getName()));
         return new CommandResult(String.format(MESSAGE_ADD_GROUP_SUCCESS, groupName));
     }
 

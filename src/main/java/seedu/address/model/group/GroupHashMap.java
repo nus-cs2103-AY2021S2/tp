@@ -42,7 +42,12 @@ public class GroupHashMap {
         }
         internalMap.put(toAdd.getName(), toAdd);
     }
-
+    /**
+     * Replace given person name with new name in all groups.
+     */
+    public void replacePerson(Name personToReplace, Name newPersonName) {
+        internalMap.values().stream().forEach(g -> g.setPersonName(personToReplace, newPersonName));
+    }
 
     /**
      * Removes the equivalent group from the list.
