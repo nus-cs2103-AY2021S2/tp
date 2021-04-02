@@ -17,6 +17,10 @@ public class PromptBookingEmailCommand extends Command {
         this.email = email;
     }
 
+    public Email getEmail() {
+        return email;
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -31,4 +35,5 @@ public class PromptBookingEmailCommand extends Command {
         ModelManager.setNextState();
         return new CommandResult(ModelManager.getNextPromptMessage());
     }
+    
 }

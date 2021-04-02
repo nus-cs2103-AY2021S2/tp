@@ -68,6 +68,14 @@ public class TypicalBookings {
             new Id(3)
     );
 
+    public static final Booking BOOKING_BENSON = new Booking(new Email("johnd@example.com"), VENUE1.getVenueName(),
+            new Description("description"),
+            new StartTime(LocalDateTime.of(2021, 03, 01, 12, 30, 00)),
+            new EndTime(LocalDateTime.of(2021, 03, 01, 13, 30, 00)),
+            new HashSet<>(),
+            new Id(0)
+    );
+
     public static final Booking BOOKING_HALL = new BookingBuilder()
             .withVenue(VALID_BOOKING_VENUE_NAME_HALL).withBooker(VALID_BOOKING_BOOKER_EMAIL_AMY)
             .withDescription(VALID_BOOKING_DESCRIPTION_HALL)
