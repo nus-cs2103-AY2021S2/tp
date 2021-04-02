@@ -1,7 +1,10 @@
 package seedu.address.model.session;
 
+import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Objects;
 
 /**
@@ -14,6 +17,9 @@ public class Session {
     private Subject subject;
     private Fee fee;
 
+    public static final String MESSAGE_CONSTRAINTS = "The start time + duration should not exceed "
+        + "the current date.";
+
     /**
      * Constructs a {@code Session}.
      *
@@ -21,6 +27,7 @@ public class Session {
      */
     public Session(SessionDate sessionDate, Duration duration, Subject subject, Fee fee) {
         requireAllNonNull(sessionDate, duration, subject, fee);
+        checkArgument(isPossibleEndTime(sessionDate, duration), MESSAGE_CONSTRAINTS);
         this.sessionDate = sessionDate;
         this.duration = duration;
         this.subject = subject;
@@ -41,6 +48,14 @@ public class Session {
 
     public Fee getFee() {
         return fee;
+    }
+
+    // Ensures that duration + start time is before the end of the day
+    public boolean isPossibleEndTime(SessionDate sessionDate, Duration duration) {
+        LocalDateTime startDateTime = sessionDate.getDateTime();
+        LocalDateTime endDateTime = startDateTime.plusMinutes(duration.getValue());
+        return endDateTime.getYear() == startDateTime.getYear() && endDateTime.getMonth() == startDateTime.getMonth()
+            && endDateTime.getDayOfYear() == startDateTime.getDayOfYear();
     }
 
 
