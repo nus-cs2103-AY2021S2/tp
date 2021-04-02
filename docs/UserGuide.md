@@ -197,7 +197,7 @@ Displays URL to TutorBuddy's User Guide and a list of all commands and their usa
 
 Format: `help`
 
-#### Listing all students and sessions: `list`
+##### Listing all students and sessions: `list`
 
 Displays list of all students and all sessions in TutorBuddy.
 
