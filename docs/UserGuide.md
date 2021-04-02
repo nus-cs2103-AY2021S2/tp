@@ -286,7 +286,8 @@ It is split into various subsections:
     * [Events](#_413-events_)
     * [Groupmates](#_414-groupmates_)
 * [Contacts](#42-contacts)
-* [Others](#43-others)
+* [Contacts](#43-today-view)
+* [Others](#44-others)
 
 ### **4.1 Projects**
 
@@ -379,15 +380,15 @@ Examples:
 
 ### _**4.1.1 Todos**_
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Todos are tasks (without a due date) to be done.
-</div>
+Todos are used in CoLAB to represent a task that has to be done. These are usually short-term tasks which have to be done in a short timeframe or have no  due date.
 
-`Todos` contain a `DESCRIPTION` field and are useful for tasks that have no due date. 
+<div markdown="span" class="alert alert-info">:information_source: **Info:**
+Todos may be known as tasks in other similar applications.
+</div>
 
 ![Ui](images/todos.png)
 
-Each `Project` may have `Todos`. Hence, each of the commands related to `Todos` are done w.r.t the `Project` identified by `PROJECT_INDEX`.
+Todos contain a description. They can also be marked as done using the `markT` command. Todos that have been marked as done have a ✔ next to their description.
 
 #### Adding a todo to a project: `addT`
 
@@ -452,11 +453,11 @@ Examples:
 
 ### _**4.1.2 Deadlines**_
 
-`Deadlines` contain `DESCRIPTION` & `DATE` field and are useful for tasks that have a due date.
+Deadlines are used in CoLAB to represent project deadlines.
 
 ![Ui](images/deadlines.png)
 
-Each `Project` may have `Deadlines`. Hence, each of the commands related to `Deadlines` are done w.r.t the `Project` identified by `PROJECT_INDEX`.
+Deadlines contain a description and a date.
 
 #### Adding a deadline to a project: `addD`
 
@@ -528,11 +529,11 @@ Examples:
 
 ### _**4.1.3 Events**_
 
-`Events` contain a `DESCRIPTION`, `DATE`, `TIME` and a `REPEAT_WEEKLY` field and are useful for events that occur on a `DATE` at a `TIME` that may be set to `REPEAT_WEEKLY`.
+Events are used in CoLAB to represent project specific events.
 
 ![Ui](images/events.png)
 
-Each `Project` may have `Events`. Hence, each of the commands related to `Events` are done w.r.t the `Project` identified by `PROJECT_INDEX`.
+Events contain a description, date and a time. Events can be set to either occur once or repeat every week.
 
 #### Adding an event to a project: `addE`
 
@@ -588,11 +589,15 @@ Examples:
 
 ### _**4.1.4 Groupmates**_
 
-`Groupmates` contain `NAME` & `ROLE` field and are useful to keep track of `Groupmates` involved in a `Project` with their `ROLE` for the `Project`.
+Groupmates are used in CoLAB to represent the people you are working with for a particular project.
 
 ![Ui](images/groupmates.png)
 
-Each `Project` may have `Groupmates`. Hence, each of the commands related to `Groupmates` are done w.r.t the `Project` identified by `PROJECT_INDEX`.
+Groupmates contain a name and zero or more roles. The role serves to indicate their role in the project.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You can use the contacts feature in CoLAB to store more information about a groupmate. The groupmate can then be easily found by searching for their name using the `findC` command.
+</div>
 
 #### Adding a groupmate to a project: `addG`
 
@@ -656,11 +661,11 @@ Examples:
 
 ### **4.2 Contacts**
 
-Contacts are kept separate from Groupmates. Their information is not kept in sync.
+Contact are used in CoLAB to store contact information about a person, to help you keep track of people you contact frequently.
 
 ![Ui](images/contacts.png)
 
-Each Contact may have a `NAME`, `PHONE_NUMBER`, `EMAIL`, `ADDRESS` & multiple `TAGS`. 
+Each contact contains a name, phone_number, email, address and zero or more tags.
 
 #### Viewing all contacts : `contacts`
 
@@ -751,7 +756,9 @@ Examples:
 * `list` followed by `deleteC 2` deletes the 2nd contact in the address book.
 * `findC Betsy` followed by `deleteC 1` deletes the 1st contact in the results of the `findC` command.
 
-### **4.3 Others**
+### **4.3 Today View**
+
+### **4.4 Others**
 
 #### Viewing Today Panel : `today`
 
