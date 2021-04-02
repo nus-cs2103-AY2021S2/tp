@@ -29,7 +29,7 @@ public class Streak implements Comparable<Streak> {
     public static Streak from(Goal goal, List<Event> meetings) {
         requireAllNonNull(goal, meetings);
 
-        if (goal.isNoneFrequency()) {
+        if (goal.isNoneFrequency() || meetings.isEmpty()) {
             return Streak.empty();
         }
 
