@@ -46,7 +46,7 @@ public class JsonAdaptedOrderItems {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Cost.class.getSimpleName()));
         }
         if (!Cost.isValidCost(cost)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Cost.MESSAGE_CONSTRAINTS);
         }
         final Cost costName = new Cost(cost);
 
