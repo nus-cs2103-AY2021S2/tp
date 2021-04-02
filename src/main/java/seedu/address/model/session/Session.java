@@ -48,19 +48,19 @@ public class Session {
         return fee;
     }
 
+    public static void checkPossibleEndTime(SessionDate sessionDate, Duration duration) {
+        checkArgument(isPossibleEndTime(sessionDate, duration), MESSAGE_CONSTRAINTS);
+    }
+
     /**
      * Checks if the duration + start time is possible.
-     * @return true if the duration + start time does not exceeds the start day itself
+     * @return true if the duration + start time does not exceeds the start day itself.
      */
-    public boolean isPossibleEndTime() {
+    public static boolean isPossibleEndTime(SessionDate sessionDate, Duration duration) {
         LocalDateTime startDateTime = sessionDate.getDateTime();
         LocalDateTime endDateTime = startDateTime.plusMinutes(duration.getValue());
         return endDateTime.getYear() == startDateTime.getYear() && endDateTime.getMonth() == startDateTime.getMonth()
             && endDateTime.getDayOfYear() == startDateTime.getDayOfYear();
-    }
-
-    public void checkPossibleEndTime() {
-        checkArgument(isPossibleEndTime(), MESSAGE_CONSTRAINTS);
     }
 
     /**

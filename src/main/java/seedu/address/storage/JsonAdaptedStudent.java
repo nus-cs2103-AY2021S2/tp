@@ -131,7 +131,6 @@ class JsonAdaptedStudent {
         final List<Session> modelSession = new ArrayList<>();
         for (JsonAdaptedSession jsonAdaptedSession : sessions) {
             Session session = jsonAdaptedSession.toModelType();
-            session.checkPossibleEndTime();
             modelSession.add(session);
         }
 

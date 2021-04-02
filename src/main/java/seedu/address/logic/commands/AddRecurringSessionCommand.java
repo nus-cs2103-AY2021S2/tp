@@ -12,7 +12,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.session.RecurringSession;
-import seedu.address.model.session.Session;
 import seedu.address.model.student.Name;
 
 
@@ -57,9 +56,6 @@ public class AddRecurringSessionCommand extends AddSessionCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         super.execute(model);
-        if (!sessionToAdd.isPossibleEndTime()) {
-            throw new CommandException(Session.MESSAGE_CONSTRAINTS);
-        }
         return new CommandResult(String.format(MESSAGE_SUCCESS, sessionToAdd.toString()));
     }
 

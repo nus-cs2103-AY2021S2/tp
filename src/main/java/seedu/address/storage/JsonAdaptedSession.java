@@ -51,7 +51,13 @@ public class JsonAdaptedSession {
         fee = "" + source.getFee().getFee();
     }
 
+    /**
+     * Creates a session model based on the json values given.
+     * @return New session instance based on the given information.
+     * @throws IllegalValueException If the duration + start time is invalid.
+     */
     public Session toModelType() throws IllegalValueException {
+        Session.checkPossibleEndTime(new SessionDate(sessionDate), new Duration(duration));
         return new Session(new SessionDate(sessionDate), new Duration(duration), new Subject(subject), new Fee(fee));
     }
 

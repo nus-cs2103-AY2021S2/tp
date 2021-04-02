@@ -68,8 +68,6 @@ public class AddSessionCommand extends Command {
             }
         } else if (model.hasOverlappingSession(sessionToAdd)) {
             throw new CommandException(SESSION_OVERLAP);
-        } else if (!sessionToAdd.isPossibleEndTime()) {
-            throw new CommandException(Session.MESSAGE_CONSTRAINTS);
         }
 
         model.addSession(name, sessionToAdd);
