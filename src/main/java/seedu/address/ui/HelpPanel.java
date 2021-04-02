@@ -168,6 +168,8 @@ public class HelpPanel extends UiPart<Region> {
         return FXCollections.observableArrayList(
                 new CommandSyntax("today", "today"),
                 new CommandSyntax("contacts", "contacts"),
+                new CommandSyntax("undo", "undo"),
+                new CommandSyntax("redo", "redo"),
                 new CommandSyntax("help", "help"),
                 new CommandSyntax("clear", "clear"),
                 new CommandSyntax("exit", "exit")
