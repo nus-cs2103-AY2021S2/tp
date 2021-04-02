@@ -350,7 +350,7 @@ Action | Format, Examples
 **Clear Completed** | `clear_completed_task`
 **Clear Expired** | `clear_expired_task`
 
-###Event-related commands
+### Event-related commands
 
 Action | Format, Examples
 --------|------------------
