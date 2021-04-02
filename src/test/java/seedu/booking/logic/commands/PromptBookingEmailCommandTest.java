@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.booking.commons.core.Messages.PROMPT_BOOKING_VENUE_MESSAGE;
 import static seedu.booking.logic.commands.states.AddBookingCommandState.STATE_EMAIL;
 import static seedu.booking.logic.commands.states.AddBookingCommandState.STATE_VENUE;
-import static seedu.booking.testutil.TypicalPersons.BENSON;
+import static seedu.booking.testutil.TypicalPersons.HOON;
 import static seedu.booking.testutil.TypicalPersons.getTypicalBookingSystem;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -27,7 +27,7 @@ public class PromptBookingEmailCommandTest {
         ModelManager.setStateActive();
         ModelManager.setState(STATE_EMAIL);
         try {
-            new AddPersonCommand(BENSON).execute(model);
+            new AddPersonCommand(HOON).execute(model);
         } catch (Exception ex) {
             throw new AssertionError("Execution of command should not fail.");
         }
@@ -35,7 +35,7 @@ public class PromptBookingEmailCommandTest {
 
     @Test
     void execute() {
-        PromptBookingEmailCommand command = new PromptBookingEmailCommand(BENSON.getEmail());
+        PromptBookingEmailCommand command = new PromptBookingEmailCommand(HOON.getEmail());
         CommandResult expectedResult = new CommandResult(PROMPT_BOOKING_VENUE_MESSAGE);
         CommandResult result;
         try {
