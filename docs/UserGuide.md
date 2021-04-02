@@ -204,7 +204,7 @@ Examples:
 
 Displays a list of reminder for orders that are X days within the current date.
 
-Format: `remind DAYS...`
+Format: `remind DAYS`
 
 * Lists all orders within the current date to the numbers of days from the specified date.
 * The `DAYS` refers to the number of days from the current date.
@@ -353,7 +353,7 @@ Action  | Format, Examples
 **List** | `list`
 **Help** | `help`
 **Remind** | `remind DAYS`<br> e.g., `remind 3`
-**Request** | `remind INDEX [r/REQUEST]` <br> e.g., `request 1 r/More sugar, spice and everything nice.`
+**Request** | `request INDEX [r/REQUEST]` <br> e.g., `request 1 r/More sugar, spice and everything nice.`
 **Undelivered** | `undelivered INDEXES`<br> e.g., `undelivered 3 4`
 **Delivered** | `delivered INDEXES`<br> e.g., `delivered 3 4`
 **Cancelled** | `cancelled INDEXES`<br> e.g., `cancelled 3 4`
