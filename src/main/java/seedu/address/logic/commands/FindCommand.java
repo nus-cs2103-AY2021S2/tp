@@ -24,7 +24,7 @@ public class FindCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all contacts whose fields contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Options can be specified using" + PREFIX_OPTION + "<OPTION>" + " can be used to \n"
+            + "Options can be specified using " + PREFIX_OPTION + "<OPTION>" + " can be used to \n"
             + "Parameters: [" + PREFIX_OPTION + "<OPTION>]"
             + " KEYWORD [MORE_KEYWORDS]...\n"
             + "Options:\n"

@@ -22,7 +22,7 @@ public class FindAppointmentCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all appointments with fields containing any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Options can be specified using" + PREFIX_OPTION + "<OPTION>" + " can be used to \n\n"
+            + "Options can be specified using " + PREFIX_OPTION + "<OPTION>" + " can be used to \n\n"
             + "Parameters: [" + PREFIX_OPTION + "<OPTION>]"
             + " KEYWORD [MORE_KEYWORDS]...\n"
             + "Options:\n"
