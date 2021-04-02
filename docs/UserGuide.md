@@ -29,7 +29,9 @@ With CoLAB, you can efficiently manage all your school projects through our comp
 
 We have designed a user-friendly User Interface (UI) that is intuitive to both first-time users and seasoned ones. It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, CoLAB can get your project management tasks done faster than traditional GUI apps.
 
-  We look forward to seeing what you accomplish with CoLAB with a clean and inviting UI. Get your journey started with the [Quick Start section](#3quick-start)!
+  We look forward to seeing what you accomplish with CoLAB with a clean and inviting UI. Get your journey started with the [Quick Start section](#3-quick-start)!
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## **2. About**
 
@@ -154,7 +156,7 @@ To achieve the best possible experience, avoid adding excessively long text to C
 ##### `DESCRIPTION`
 
 * The description of a deadline, event or todo.
-* The `DESCRIPTION` parameter is not used elsewhere.
+* Description should only contain alphanumeric characters and spaces  and it should not be blank.
 
 ##### `EMAIL`
 
@@ -182,6 +184,7 @@ To achieve the best possible experience, avoid adding excessively long text to C
 
 * The keyword used to search for contacts.
 * `MORE KEYWORDS` also follows this definition.
+* Keywords can take any values, but it should not be blank.
 
 ##### `NAME`
 
@@ -253,7 +256,7 @@ To achieve the best possible experience, avoid adding excessively long text to C
 
    * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#4features) below for details of each command.
+1. Refer to the [Features](#4-features) below for details of each command.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 When the sample data is no longer required, you may use the `clear` command to clear sample projects and contacts from CoLAB.
@@ -267,10 +270,10 @@ This section contains documentation on CoLAB's features and commands.
 
 It is split into various subsections:
 * [Projects](#41-projects)
-    * [Todos](#411-todos)
-    * [Deadlines](#412-deadlines)
-    * [Events](#413-events)
-    * [Groupmates](#414-groupmates)
+    * [Todos](#_411-todos_)
+    * [Deadlines](#_412-deadlines_)
+    * [Events](#_413-events_)
+    * [Groupmates](#_414-groupmates_)
 * [Contacts](#42-contacts)
 * [Navigating the UI](#43-navigating-the-ui)
 * [Others](#44-others)
@@ -838,6 +841,8 @@ Action | Format, Examples
 Action | Format, Examples
 --------|------------------
 **Clear All Entries** | `clear`
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## **7.Acknowledgements**
 
