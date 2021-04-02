@@ -45,8 +45,8 @@ public class EditAppointmentCommand extends Command {
             + "[" + PREFIX_CONTACT + "CONTACT]... "
             + "[" + PREFIX_CHILD + "CHILDTAG]... \n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_NAME + "Parent Support Group Meeting "
+            + PREFIX_DATE + "22/01/2021 10:00";
 
     public static final String MESSAGE_EDIT_APPOINTMENT_SUCCESS = "Edited Appointment: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
