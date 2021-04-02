@@ -3,7 +3,18 @@ layout: page
 title: User Guide
 ---
 
-CakeCollate is a **desktop app for managing cake orders, optimized for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you're a small-time cake seller in need of an app to consolidate your orders, and you can type fast, CakeCollate can get your order management tasks done faster than traditional GUI apps.
+## 1. Introduction
+Welcome to our **User Guide** and thank you for using CakeCollate! Are you a home baker searching for a reliable tool to keep track of your orders? 
+While there may be other modern applications such as Microsoft Excel that may be able to help you keep track of your data, they may not be the most efficient or simplest
+way for you to manage your data. 
+
+CakeCollate promises to be an efficient desktop application that allows you to easily consolidate and manage your orders. Our main features include:<br>
+1. Order management
+2. Order Item management
+3. Reminders for orders that have delivery dates approaching the current date
+4. Checking the delivery status of your orders
+
+It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you're a small-time cake seller that can type fast, CakeCollate can get your order management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -18,7 +29,9 @@ CakeCollate is a **desktop app for managing cake orders, optimized for use via a
 
 1. Copy the file to the folder you want to use as the _home folder_ for your CakeCollate.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data. 
+You can use the sample data pre-loaded in the application to get play around and get used to the available commands. Use the command `clear`
+ to remove all sample data when you are used to the commands and want to begin inputting your own data.<br><br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will display the help window.<br>
@@ -208,7 +221,7 @@ Adds a special request to an existing order in the CakeCollate database.
 Format: `request INDEX r/REQUEST`
 
 * Adds a special request to the order at the specified `INDEX`. The index refers to the index number shown in the displayed order list. The index **must be a positive integer** 1, 2, 3, …​
-* You can remove an order’s special request by typing `t/` without specifying any requests after it.
+* You can remove an order’s special request by typing `r/` without specifying any requests after it.
 
 Examples:
 * `request 1 r/More sugar, spice and everything nice.` Sets the special request of the 1st order to be `More sugar, spice and everything nice.`
