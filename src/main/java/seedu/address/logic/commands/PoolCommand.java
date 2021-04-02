@@ -50,9 +50,9 @@ public class PoolCommand extends Command {
             + PREFIX_TAG + "female";
 
     public static final String MESSAGE_NO_COMMUTERS = "No commuters were selected.";
-    public static final String MESSAGE_POOL_SUCCESS = "Successfully created pool: %s";
-    public static final String MESSAGE_POOL_SUCCESS_WITH_WARNING = "Successfully created pool: %s. \nHowever, note that"
-            + " you have passengers with time differences with the pool time of more than 15 minutes.";
+    public static final String MESSAGE_POOL_SUCCESS = "Successfully created pool: %s, %s";
+    public static final String MESSAGE_POOL_SUCCESS_WITH_WARNING = "Successfully created pool: %s, %s. \nNOTE: "
+            + "There are passengers with time differences of more than 15 minutes with the pool time.";
     public static final String MESSAGE_DUPLICATE_POOL = "This pool already exists in the GME Terminal";
     public static final String MESSAGE_TRIPDAY_MISMATCH = "One of the passengers specified "
             + "have a trip day that does not match this pool driver's trip day";
@@ -114,7 +114,7 @@ public class PoolCommand extends Command {
         }
 
         List<Passenger> passengers = getPassengersFromIndexes(indexes, model);
-        boolean shouldWarn = checkTimeDifference(passengersToPool);
+        boolean shouldWarn = checkTimeDifference(passengers);
 
         Pool toAdd = new Pool(driver, tripDay, tripTime, passengers, tags);
 
@@ -127,7 +127,10 @@ public class PoolCommand extends Command {
 
         String outputMessage = shouldWarn ? MESSAGE_POOL_SUCCESS_WITH_WARNING : MESSAGE_POOL_SUCCESS;
 
-        return new CommandResult(String.format(outputMessage, driver, toAdd));
+        String driverDetails = toAdd.getDriverAsStr();
+        String passengerNames = toAdd.getPassengerNames();
+
+        return new CommandResult(String.format(outputMessage, driverDetails, passengerNames));
     }
 
     @Override

@@ -56,7 +56,11 @@ public class PoolCommandTest {
 
         CommandResult commandResult = new PoolCommand(driver, commuters, tripDay, tripTime, tags).execute(model);
 
-        assertEquals(String.format(PoolCommand.MESSAGE_POOL_SUCCESS, validPool), commandResult.getFeedbackToUser());
+        String driverName = validPool.getDriverAsStr();
+        String passengerNames = validPool.getPassengerNames();
+
+        assertEquals(String.format(PoolCommand.MESSAGE_POOL_SUCCESS_WITH_WARNING, driverName, passengerNames),
+                commandResult.getFeedbackToUser());
         assertTrue(model.hasPool(validPool));
     }
 
