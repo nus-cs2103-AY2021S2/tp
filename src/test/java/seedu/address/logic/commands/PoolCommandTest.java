@@ -3,7 +3,11 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPDAY_FRIDAY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPDAY_MONDAY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPTIME_EVENING;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TRIPTIME_MORNING;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalDrivers.DRIVER_ALICE;
 import static seedu.address.testutil.TypicalDrivers.DRIVER_BOB;
@@ -81,7 +85,8 @@ public class PoolCommandTest {
     @Test
     public void execute_duplicatePool_throwsCommandException() {
         Pool duplicatePool = new PoolBuilder().withModel(model).withIndex(INDEX_FIRST).withIndex(INDEX_SECOND)
-                .withTags(VALID_TAG_FRIEND).withTripDay(VALID_TRIPDAY_FRIDAY).build();
+                .withTags(VALID_TAG_FRIEND).withTripTime(tripTimeEvening.value)
+                .withTripDay(VALID_TRIPDAY_FRIDAY).build();
 
         model.addPool(duplicatePool);
 
@@ -111,7 +116,8 @@ public class PoolCommandTest {
         assertTrue(poolAliceDrivingCommand.equals(poolAliceDrivingCommand));
 
         // same values -> returns true
-        PoolCommand poolAliceDrivingCommandCopy = new PoolCommand(DRIVER_ALICE, commuters, tripDay, tripTimeEvening, tags);
+        PoolCommand poolAliceDrivingCommandCopy = new PoolCommand(DRIVER_ALICE, commuters, tripDay, tripTimeEvening,
+                tags);
         assertTrue(poolAliceDrivingCommand.equals(poolAliceDrivingCommandCopy));
 
         // different types -> returns false
