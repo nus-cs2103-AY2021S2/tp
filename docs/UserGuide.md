@@ -99,7 +99,8 @@ A Task can have any number of tags (including 0)
 
 Examples:
 * `add n/CS2100 Finals desc/Revise for Finals date/2021-04-13 12:00`
-* `add n/Consult Professor desc/Discuss project with pprof date/2021-04-04 10:30 t/project`
+* `add n/Consult Professor desc/Discuss project with prof date/2021-04-04 10:30 t/project`
+* `add n/Buy groceries desc/Don't forget tomatoes`
 
 ### Listing all tasks : `list`
 
@@ -170,7 +171,7 @@ Examples:
 
 ### Searching for a task by tags : `tag-search`
 
-Search for a task using tags.
+Find and list all tasks containing the same tag as the specified tag.
 
 Format: `tag-search TAG [MORE_TAGS]`
 
@@ -213,7 +214,7 @@ Examples:
 
 ### Switching between tabs :`home` / `inProgress` / `completed` / `expired`
 
-Switching between the tabs in Taskify. Each tab displays tasks with the corresponding status.
+Switch between the tabs in Taskify. Each tab displays tasks with the corresponding status.
 
 Format: `home` / `inProgress` / `completed` / `expired`
 
