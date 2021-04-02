@@ -250,7 +250,8 @@ The method conducts parses the `DATE` and conducts validation checks to ensure t
 Two predicates, `TaskFindSchedulePredicate(Date date)` and `EventFindSchedulePredicate(Date date)` are created based on the given date.
 Then, a `FindScheduleCommand` object is created given the two predicates and returned.
 
-**Step 2**: On `FindScheduleCommand#execute()`, `Model#updateFilteredTaskList(TaskFindSchedulePredicate taskPredicate)` 
+**Step 2**: On `FindScheduleCommand#execute()`, 
+`Model#updateFilteredTaskList(TaskFindSchedulePredicate taskPredicate)` 
 and `Model#updateFilteredEventList(EventFindSchedulePredicate eventPredicate)` are called.
 This will update the task list to only show the uncompleted tasks with deadline before or on the given date.
 Similary, the event list will be updated to only show the events with start date before or on the given date and end date after or on the given date.
@@ -262,6 +263,12 @@ A success message will be appended with `CommandResult#MESSAGE_FIND_SCHEDULE_SUC
 The sequence diagram for `FindScheduleCommand` can be found below.
 
 ![Sequence Diagram of FindSchedule Command](images/FindScheduleCommandSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: 
+**Note:** Due to the size constraint, the argument `taskPredicate` is not shown in the sequence diagram 
+when calling the method `Model#updateFilteredTaskList(TaskFindSchedulePredicate taskPredicate)`.
+Same for the method `Model#updateFilteredEventList(EventFindSchedulePredicate eventPredicate)`.
+</div>
 
 ### 4.2 Task
 
@@ -309,12 +316,9 @@ The sequence diagram for `DeleteTaskCommand` can be found below.
 
 ![Sequence Diagram of DeleteTask Command](images/DeleteTaskCommandSequenceDiagram.png)
 
-**Implementation of DoneTaskCommand**  
-The following is a detailed explanation on how DoneTaskCommand is implemented.
-
 
 **Implementation of UndoneTaskCommand**  
-The following is a detailed explanation on how DoneTaskCommand is implemented.
+The following is a detailed explanation on how UndoneTaskCommand is implemented.
 
 **Step 1**: User executes `undone_task Index` command to mark the completed task at the given index as uncompleted. 
 Let us call this task the target task.
@@ -335,7 +339,7 @@ For brevity, lower level implementation of `UndoneTaskCommand#createUncompletedT
 A success message will be appended with `CommandResult#MESSAGE_UNDONE_TASK_SUCCESS`.
 
 The sequence diagram for `UndoneTaskCommand` can be found below.
-![Sequence Diagram of DeleteTask Command](images/UndoneTaskCommandSequenceDiagram.png)
+![Sequence Diagram of UndoneTask Command](images/UndoneTaskCommandSequenceDiagram.png)
 <div markdown="span" class="alert alert-info">:information_source: 
 **Note:** Due to the size constraint, the argument `PREDICATE_SHOW_ALL_TASKS` is not shown in the sequence diagram 
 when calling the method `Model#updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS)`.
