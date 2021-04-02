@@ -35,10 +35,10 @@ class BookingTest {
     @Test
     void isId() {
         //same id -> returns true;
-        assertTrue(BOOKING1.isId(new Id(0)));
+        assertTrue(BOOKING1.isId(new Id("0")));
 
         //different id -> returns false;
-        assertFalse(BOOKING1.isId(new Id(1)));
+        assertFalse(BOOKING1.isId(new Id("1")));
     }
     @Test
     void equals() {

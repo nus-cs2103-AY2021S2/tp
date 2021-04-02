@@ -20,7 +20,7 @@ public class Messages {
     // Venue related messages
     public static final String PROMPT_CAPACITY_MESSAGE = "Please enter the capacity of the venue.\n"
             + "Default capacity is set to 10 if no input is provided.";
-    public static final String PROMPT_VENUE_DESC_MESSAGE = "Please provide an optional booking description.\n";
+    public static final String PROMPT_VENUE_DESC_MESSAGE = "Please provide an optional venue description.\n";
     public static final String PROMPT_DUPLICATE_VENUE_MESSAGE = "A venue already exists "
             + "in the system with the same name!\n";
     public static final String DEFAULT_VENUE_DESCRIPTION = "No description provided.";
@@ -58,6 +58,7 @@ public class Messages {
     public static final String PROMPT_BOOKING_DESC_MESSAGE = "Please provide an optional booking description.\n";
     public static final String PROMPT_TAG_MESSAGE = "Please add any tags if applicable. "
         + "Multiple tags to be separated with commas.\n";
+    public static final String PROMPT_NEWDATE_MESSAGE = "Please try another booking time period.\n";
     public static final String PROMPT_START_MESSAGE = "Please indicate the booking start time. "
             + "Please enter a valid input in yyyy-mm-dd HH:MM:SS format\n";
     public static final String PROMPT_END_MESSAGE = "Please indicate the booking end time. "

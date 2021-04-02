@@ -14,8 +14,17 @@ public class CommandState {
      */
     public CommandState() {
         this.isActive = false;
-        this.state = null;
-        this.nextPromptMessage = null;
+        this.state = "DEFAULT";
+        this.nextPromptMessage = "DEFAULT";
+    }
+
+    /**
+     * Initialises a command state
+     */
+    public CommandState(boolean isActive, String state, String nextPromptMessage) {
+        this.isActive = isActive;
+        this.state = state;
+        this.nextPromptMessage = nextPromptMessage;
     }
 
     public boolean isActive() {

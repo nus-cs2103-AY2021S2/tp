@@ -15,12 +15,14 @@ public class BookingTagPromptParser {
     public PromptBookingTagsCommand parse(String args) throws ParseException {
         final Set<Tag> tagSet = new HashSet<>();
 
-        String[] tags = args.split(",");
-        for (String tag : tags) {
-            if (!Tag.isValidTagName(tag.trim())) {
-                throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        if (!args.equals("")) { // checks if tag input is empty
+            String[] tags = args.split(",");
+            for (String tag : tags) {
+                if (!Tag.isValidTagName(tag.trim())) {
+                    throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+                }
+                tagSet.add(new Tag(tag.trim()));
             }
-            tagSet.add(new Tag(tag.trim()));
         }
 
         return new PromptBookingTagsCommand(tagSet);

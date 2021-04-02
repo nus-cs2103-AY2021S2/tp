@@ -101,6 +101,10 @@ public class ModelManager implements Model {
         return commandState.create();
     }
 
+    public static void resetCommandState() {
+        commandState = new CommandState();
+    }
+
     //=========== UserPrefs ==================================================================================
 
     @Override

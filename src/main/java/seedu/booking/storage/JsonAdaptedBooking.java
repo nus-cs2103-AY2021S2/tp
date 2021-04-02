@@ -101,7 +101,7 @@ public class JsonAdaptedBooking {
         }
 
         //Build formatter
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
         //Parse String to LocalDateTime
         final StartTime modelBookingStart = new StartTime(LocalDateTime.parse(bookingStart, formatter));
 
@@ -118,7 +118,7 @@ public class JsonAdaptedBooking {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Integer.class.getSimpleName()));
         }
 
-        final Id modelId = new Id(Integer.parseInt(id));
+        final Id modelId = new Id(id);
 
         final List<Tag> bookingTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
