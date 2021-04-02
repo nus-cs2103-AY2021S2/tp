@@ -19,6 +19,7 @@ users can learn Japanese at a comfortable pace and manage flashcards with this a
   * [Asking for help: `help`](#asking-for-help-help)
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Introduction
@@ -32,6 +33,7 @@ by starting a quiz session. In addition, users can view their history of past qu
 ### Additional information 
 These are symbols used throughout the User Guide you might want to take note of.
 * :information_source: : Indicates information that is likely to be helpful
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
