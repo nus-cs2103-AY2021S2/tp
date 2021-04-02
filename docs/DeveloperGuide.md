@@ -289,6 +289,62 @@ The sequence diagram for `DeleteTaskCommand` can be found below.
 
 ![Sequence Diagram of DeleteTask Command](images/DeleteTaskCommandSequenceDiagram.png)
 
+**Implementation of DoneTaskCommand**  
+The following is a detailed explanation on how DoneTaskCommand is implemented.
+
+**Step 1**: User executes `done_task Index` command to mark the completed task at the given index as uncompleted.
+Let us call this task the target task.
+A `DoneTaskParser` object is created, and the `DoneTaskParser#parse(String args)` method is called.
+The method conducts parses the `args` and conducts validation checks to ensure that all given indexes are valid unsigned non-zero integers.
+A `DoneTaskCommand` object is returned.
+
+**Step 2**: On `UndoneTaskCommand#execute()`, the index is further checked to ensure it is not out of range (i.e. larger than the size of task list)
+and the target task is indeed a completed task.
+Afterwards, `UndoneTaskCommand#createUncompletedTask()` method is called.
+This method copies the information of the target task and creates an uncompleted task with exactly the same information as the target task.
+Finally, `Model#setTask(Task taskToUndone, Task uncompletedTask)` and `Model#updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS)` method are called.
+These two methods updates the target task in the task list and refresh the UI to show the update.
+For brevity, lower level implementation of `UndoneTaskCommand#createUncompletedTask()`,
+`Model#setTask(Task taskToUndone, Task uncompletedTask)`, `Model#updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS)` are omitted.
+
+**Step 3**: On execution completion a `CommandResult` is created.
+A success message will be appended with `CommandResult#MESSAGE_UNDONE_TASK_SUCCESS`.
+
+The sequence diagram for `UndoneTaskCommand` can be found below.
+![Sequence Diagram of DeleteTask Command](images/UndoneTaskCommandSequenceDiagram.png)
+<div markdown="span" class="alert alert-info">:information_source: 
+**Note:** Due to the size constraint, the argument `PREDICATE_SHOW_ALL_TASKS` is not shown in the sequence diagram 
+when calling the method `Model#updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS)`.
+</div>
+
+
+**Implementation of UndoneTaskCommand**  
+The following is a detailed explanation on how DoneTaskCommand is implemented.
+
+**Step 1**: User executes `undone_task Index` command to mark the completed task at the given index as uncompleted. 
+Let us call this task the target task.
+A `UndoneTaskParser` object is created, and the `UndoneTaskParser#parse(String args)` method is called.
+The method conducts parses the `args` and conducts validation checks to ensure that the given index is a valid unsigned non-zero integer.
+A `UndoneTaskCommand` object is returned.
+
+**Step 2**: On `UndoneTaskCommand#execute()`, the index is further checked to ensure it is not out of range (i.e. larger than the size of task list)
+and the target task is indeed a completed task.
+Afterwards, `UndoneTaskCommand#createUncompletedTask()` method is called.
+This method copies the information of the target task and creates an uncompleted task with exactly the same information as the target task.
+Finally, `Model#setTask(Task taskToUndone, Task uncompletedTask)` and `Model#updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS)` method are called.
+These two methods updates the target task in the task list and refresh the UI to show the update.
+For brevity, lower level implementation of `UndoneTaskCommand#createUncompletedTask()`, 
+`Model#setTask(Task taskToUndone, Task uncompletedTask)`, `Model#updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS)` are omitted.
+
+**Step 3**: On execution completion a `CommandResult` is created.
+A success message will be appended with `CommandResult#MESSAGE_UNDONE_TASK_SUCCESS`.
+
+The sequence diagram for `UndoneTaskCommand` can be found below.
+![Sequence Diagram of DeleteTask Command](images/UndoneTaskCommandSequenceDiagram.png)
+<div markdown="span" class="alert alert-info">:information_source: 
+**Note:** Due to the size constraint, the argument `PREDICATE_SHOW_ALL_TASKS` is not shown in the sequence diagram 
+when calling the method `Model#updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS)`.
+</div>
 
 **Implementation of EditTaskCommand**  
 The following is a detailed explanation on how EditTaskCommand is implemented.
