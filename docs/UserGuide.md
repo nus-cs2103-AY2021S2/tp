@@ -128,7 +128,7 @@ Commands discussed in this user guide follow these rules:
 
 * Parameters can be in any order. This excludes a parameter without a prefix, which must be the first parameter when required.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-  e.g. if the command specified `PROJECT_INDEX i/TODO_INDEX d/DESCRIPTION` is acceptable but `i/TODO_INDEX d/DESCRIPTION PROJECT_INDEX` is not as `PROJECT_INDEX` is a parameter without a prefix and should be the first parameter.
+  e.g. the command `PROJECT_INDEX i/TODO_INDEX d/DESCRIPTION` is acceptable but `i/TODO_INDEX d/DESCRIPTION PROJECT_INDEX` is not as `PROJECT_INDEX` is a parameter without a prefix and should be the first parameter.
 
 <div markdown="block" class="alert alert-info">:information_source: **Info:**
 
