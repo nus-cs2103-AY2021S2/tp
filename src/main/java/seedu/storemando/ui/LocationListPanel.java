@@ -8,11 +8,10 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.storemando.commons.core.LogsCenter;
-import seedu.storemando.model.item.Item;
 import seedu.storemando.model.item.Location;
 
 /**
- * Panel containing the list of items.
+ * Panel containing the list of locations.
  */
 public class LocationListPanel extends UiPart<Region> {
     private static final String FXML = "LocationListPanel.fxml";
@@ -31,7 +30,7 @@ public class LocationListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Item} using a {@code LocationCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Location} using a {@code LocationCard}.
      */
     class LocationListViewCell extends ListCell<Location> {
         @Override

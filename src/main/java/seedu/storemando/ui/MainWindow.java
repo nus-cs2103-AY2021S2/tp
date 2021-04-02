@@ -132,7 +132,6 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
         resultDisplay.welcomeMsg();
@@ -185,6 +184,11 @@ public class MainWindow extends UiPart<Stage> {
         return itemListPanel;
     }
 
+    private void updateLocationPanel(){
+        locationListPanel = new LocationListPanel(logic.getLocationList());
+        locationPanelPlaceholder.getChildren().add(locationListPanel.getRoot());
+    }
+
     /**
      * Executes the command and returns the result.
      * @see seedu.storemando.logic.Logic#execute(String)
@@ -194,8 +198,7 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-            locationListPanel = new LocationListPanel(logic.getLocationList());      //SLAP
-            locationPanelPlaceholder.getChildren().add(locationListPanel.getRoot()); //SLAP
+            updateLocationPanel();
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }

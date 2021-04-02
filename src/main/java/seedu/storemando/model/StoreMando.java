@@ -3,7 +3,7 @@ package seedu.storemando.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 
 import javafx.collections.FXCollections;
@@ -113,11 +113,11 @@ public class StoreMando implements ReadOnlyStoreMando {
 
     @Override
     public ObservableList<Location> getLocationList() {
-        HashMap<String, Integer> hashmap = new HashMap<>();
+        HashSet<Location> hashSet = new HashSet<>();
         ArrayList<Location> locationList = new ArrayList<>();
         for (Item item : items) {
-            if (hashmap.get(item.getLocation().value) == null) {
-                hashmap.put(item.getLocation().value, 1);
+            if (!hashSet.contains(item.getLocation())) {
+                hashSet.add(item.getLocation());
                 locationList.add(item.getLocation());
             }
         }

@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.RowConstraints?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="STOREMANDO" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
+         title="STOREMANDO" minWidth="450" minHeight="600" fullScreen="true" resizable="false" onCloseRequest="#handleExit">
     <scene>
         <Scene>
             <stylesheets>
@@ -67,14 +67,12 @@
                         </VBox>
 
                         <VBox GridPane.columnIndex="2" styleClass="pane-with-border" minWidth="340" prefWidth="340"
-                                   VBox.vgrow="ALWAYS">
+                              VBox.vgrow="ALWAYS">
                             <padding>
                                 <Insets top="5" right="10" bottom="10" left="10"/>
                             </padding>
                             <StackPane fx:id="locationPanelPlaceholder" VBox.vgrow="ALWAYS"/>
                         </VBox>
-
-
                     </GridPane>
                 </VBox>
 

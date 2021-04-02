@@ -4,15 +4,11 @@ import static java.util.Objects.requireNonNull;
 import static seedu.storemando.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
 import java.util.function.Predicate;
-import java.util.logging.Filter;
 import java.util.logging.Logger;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -31,7 +27,6 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Item> filteredItems;
     private final SortedList<Item> sortedItems;
-    private final FilteredList<Location> locationList;
 
     /**
      * Initializes a ModelManager with the given storeMando and userPrefs.
@@ -46,16 +41,10 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredItems = new FilteredList<>(this.storeMando.getItemList());
         sortedItems = new SortedList<>(this.storeMando.getItemList());
-        locationList = new FilteredList<>(this.storeMando.getLocationList());
     }
 
     public ModelManager() {
         this(new StoreMando(), new UserPrefs());
-    }
-
-    @Override
-    public ObservableList<Location> getLocationList(){
-        return storeMando.getLocationList();
     }
 
     //=========== UserPrefs ==================================================================================
@@ -103,6 +92,11 @@ public class ModelManager implements Model {
     @Override
     public ReadOnlyStoreMando getStoreMando() {
         return storeMando;
+    }
+
+    @Override
+    public ObservableList<Location> getLocationList() {
+        return storeMando.getLocationList();
     }
 
     @Override

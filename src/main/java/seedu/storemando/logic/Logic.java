@@ -33,12 +33,12 @@ public interface Logic {
     ReadOnlyStoreMando getStoreMando();
 
     /**
-     * Returns an unmodifiable view of the filtered list of items
+     * Returns an unmodifiable view of the filtered list of items.
      */
     ObservableList<Item> getFilteredItemList();
 
     /**
-     * Returns an unmodifiable view of the unique locations of items
+     * Returns an unmodifiable list of unique locations of items.
      */
     ObservableList<Location> getLocationList();
 

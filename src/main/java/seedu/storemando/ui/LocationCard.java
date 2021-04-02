@@ -4,11 +4,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.storemando.model.item.Item;
 import seedu.storemando.model.item.Location;
 
 /**
- * An UI component that displays information of a {@code Item}.
+ * An UI component that displays information of a {@code Location}.
  */
 public class LocationCard extends UiPart<Region> {
 
@@ -33,7 +32,7 @@ public class LocationCard extends UiPart<Region> {
 
 
     /**
-     * Creates a {@code ItemCode} with the given {@code Item} and index to display.
+     * Creates a {@code LocationCard} with the given {@code Location} and index to display.
      */
     public LocationCard(Location location, int displayedIndex) {
         super(FXML);
