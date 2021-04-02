@@ -375,15 +375,15 @@ Then take the following pseudo processes:
 
 Given below is an example usage scenario of how the `return` mechanism behaves at each step. In our example and the
 diagrams below,
-we assume that the user input is `return r/Tom b/Cloud Atlas`:
-* Step 1: The user launches the SmartLib application with all of his/her readers already added to the reader
-  list and books added to the book list and records added to record list
-* Step 2: The user inputs `return r/Tom b/Cloud Atlas` to SmartLib, which calls upon `LogicManager#execute()`.
+we assume that the user input is `return bc/1000000000`:
+* Step 1: The user launches the SmartLib application with all of his/her readers, books and records already added to the 
+  reader list, book list and record list respectively.
+* Step 2: The user inputs `return bc/1000000000` to SmartLib, which calls upon `LogicManager#execute()`.
 * Step 3: `SmartLibParser` and `ReturnCommandParser` will check the user input, and return a `ReturnCommand` to
   the `LogicManager` if the input is valid.
 * Step 4: `LogicManager` will then call `ReturnCommand#execute()`, which in turn calls `Model#markRecordAsReturned()`
-and `Model#returnBook()`.
-* Step 5: For calling `Model#markRecordAsReturned()`, `ModelManager` will then call `SmartLib#markRecordAsReturned()`
+  ,`Model#getReaderNameForReturn()`, `Model#getBookNameForReturn()` and `Model#returnBook()`.
+* Step 5: After calling `Model#markRecordAsReturned()`, `ModelManager` will then call `SmartLib#markRecordAsReturned()`
 and `Model#updateFilteredRecordList()`
 * Step 6: `SmartLib#markRecordAsReturned()` will find the corresponding record in the record list and set the
   dateReturned to LocalDate.now()
