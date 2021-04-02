@@ -35,7 +35,7 @@ import seedu.booking.model.person.Email;
  */
 public class TypicalBookings {
 
-    public static final Booking BOOKING1 = new Booking(new Email("johnd@example.com"), VENUE1.getVenueName(),
+    public static final Booking BOOKING1 = new Booking(new Email("example1@gamil.com"), VENUE1.getVenueName(),
             new Description("description"),
             new StartTime(LocalDateTime.of(2021, 03, 01, 12, 30, 00)),
             new EndTime(LocalDateTime.of(2021, 03, 01, 13, 30, 00)),
@@ -43,7 +43,7 @@ public class TypicalBookings {
             new Id(0)
     );
 
-    public static final Booking BOOKING2 = new Booking(new Email("example2@gamil.com"), VENUE1.getVenueName(),
+    public static final Booking BOOKING2 = new Booking(new Email("johnd@example.com"), VENUE1.getVenueName(),
             new Description("description"),
             new StartTime(LocalDateTime.of(2022, 03, 01, 13, 00, 00)),
             new EndTime(LocalDateTime.of(2022, 03, 01, 14, 00, 00)),

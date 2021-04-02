@@ -2,7 +2,7 @@ package seedu.booking.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.booking.testutil.TypicalBookings.BOOKING1;
+import static seedu.booking.testutil.TypicalBookings.BOOKING2;
 import static seedu.booking.testutil.TypicalPersons.getTypicalBookingSystem;
 import static seedu.booking.testutil.TypicalVenues.VENUE1;
 
@@ -29,7 +29,7 @@ import seedu.booking.model.venue.VenueName;
  */
 public class PromptBookingCommandIntegratedTest {
     private ModelManager model;
-    private Booking expectedBooking = BOOKING1;
+    private Booking expectedBooking = BOOKING2;
     private Email emailInput;
     private VenueName venueNameInput;
     private Description descriptionInput;
@@ -43,12 +43,12 @@ public class PromptBookingCommandIntegratedTest {
         model = new ModelManager(getTypicalBookingSystem(), new UserPrefs());
         model.addVenue(VENUE1);
 
-        emailInput = BOOKING1.getBookerEmail();
-        venueNameInput = BOOKING1.getVenueName();
-        descriptionInput = BOOKING1.getDescription();
-        tagSetInput = BOOKING1.getTags();
-        startTimeInput = BOOKING1.getBookingStart();
-        endTimeInput = BOOKING1.getBookingEnd();
+        emailInput = BOOKING2.getBookerEmail();
+        venueNameInput = BOOKING2.getVenueName();
+        descriptionInput = BOOKING2.getDescription();
+        tagSetInput = BOOKING2.getTags();
+        startTimeInput = BOOKING2.getBookingStart();
+        endTimeInput = BOOKING2.getBookingEnd();
 
         CommandState commandState = new AddBookingCommandState();
         ModelManager.setCommandState(commandState);
