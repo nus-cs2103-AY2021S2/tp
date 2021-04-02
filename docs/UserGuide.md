@@ -239,17 +239,17 @@ Description:
 Options:
 * `u/new AMOUNT`
 
-    The `new` keyword can only be used on a property without an existing status. `AMOUNT` is the amount of money that is offered in the Option to Purchase
+    `u/new` can only be used on a property without an existing status. `AMOUNT` is the amount of money that is offered in the Option to Purchase
 
 
 * `u/proceed`
 
-    Can only be used on a property with an existing status. `proceed` would move the status on to the next one. e.g. `Option` to `SalesAgreement` or `SalesAgreement` to `Completion`.
+    Can only be used on a property with an existing status. `u/proceed` would move the status on to the next one. e.g. `Option` to `SalesAgreement` or `SalesAgreement` to `Completion`.
 
 
 * `u/cancel`
 
-  Can only be used on a property with an existing status. `cancel` would remove the status of the property
+  Can only be used on a property with an existing status. `u/cancel` would remove the status of the property
 
 Status Types:
 
