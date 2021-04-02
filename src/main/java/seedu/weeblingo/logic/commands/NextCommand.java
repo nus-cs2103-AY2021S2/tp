@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.weeblingo.commons.core.Messages;
 import seedu.weeblingo.logic.commands.exceptions.CommandException;
+import seedu.weeblingo.model.Mode;
 import seedu.weeblingo.model.Model;
 
 /**
@@ -17,17 +18,24 @@ public class NextCommand extends Command {
             + "Enter \"end\" to end the quiz, \"check\" to check the answer, "
             + "and \"next\" to move to the next question.";
 
+    public static final String MESSAGE_SCORE_ADDED = "Your score has been recorded:\n";
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        int currentMode = model.getCurrentMode();
         if (model.getQuizInstance() == null) {
             throw new CommandException(Messages.NO_QUIZ_ERROR_MESSAGE);
         }
 
         if (model.getNextFlashcard() == null) {
-            String quizSessionTime = model.getQuizInstance().getQuizSessionDuration();
-            String endOfQuizSessionMessage = "Your quiz session duration is " + quizSessionTime;
-            return new CommandResult(Messages.QUIZ_END_MESSAGE + endOfQuizSessionMessage);
+            if (currentMode == Mode.MODE_QUIZ_SESSION_ENDED) {
+                throw new CommandException(Messages.MESSAGE_QUIZ_ALREADY_ENDED);
+            }
+            String quizStatistics = model.getQuizStatisticString();
+            model.addScore();
+            model.switchModeQuizSessionEnded();
+            return new CommandResult(Messages.MESSAGE_QUIZ_ENDED + MESSAGE_SCORE_ADDED + quizStatistics);
         }
 
         model.switchModeQuizSession();

@@ -3,8 +3,11 @@ layout: page
 title: User Guide
 ---
 
-Weeblingo is a desktop app for managing flashcards, **optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). With a nice and friendly interface, users can learn Japanese at a comfortable pace with this application.
+Weeblingo is a desktop application for **learning Japanese, optimized for use via a Command Line Interface** (CLI) while 
+still having the benefits of a Graphical User Interface (GUI). With a nice and friendly interface, 
+users can learn Japanese at a comfortable pace and manage flashcards with this application.
 
+* [Introduction](#introduction)
 * [Quick Start](#quick-start)
 * [Features](#features)
   * [Entering quiz mode: `quiz`](#entering-quiz-mode-quiz)
@@ -18,6 +21,21 @@ Weeblingo is a desktop app for managing flashcards, **optimized for use via a Co
   * [Asking for help: `help`](#asking-for-help-help)
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Introduction
+
+### About WeebLingo
+WeebLingo is a desktop application that helps users learn the Japanese language. It has three primary modes, 
+which are the **learn**, **quiz** and **history** modes. The app contains flashcards that pairs a Japanese word and 
+its corresponding English syllable for users to learn. It allows users to test themselves on their grasp of the Japanese language
+by starting a quiz session. In addition, users can view their history of past quiz attempts and the relevant statistics.
+
+### Additional information 
+These are symbols used throughout the User Guide you might want to take note of.
+* :information_source: : Indicates information that is likely to be helpful
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
@@ -59,8 +77,10 @@ Weeblingo is a desktop app for managing flashcards, **optimized for use via a Co
 * Items with `…`​ after them can be used multiple times including zero times.<br>
 
 * Parameters can be in any order.<br>
+eg. if the command specifies `n/NUMBER t/TAG`, `t/TAG n/NUMBER` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+eg. if you specify `n/5 n/10`, only `n/10` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help あいうえお`, it will be interpreted as `help`.
@@ -76,10 +96,24 @@ Enters Learn Mode, where all current flashcards are listed out. Answers to curre
 
 Starts a quiz session.
 
-Format: `start [q/NUMBER] [t/TAG]`
+Format: `start [n/NUMBER] [t/TAG]`
 
 * NUMBER specifies the number of questions for the quiz session.
 * TAG specifies the type of questions for the quiz session.
+* NUMBER specified should be positive.
+* There are currently four tags available, gojuon, hiragana, katakana and numbers.
+* You can specify one or two tags.
+
+Examples:
+* start n/10
+* start t/katakana
+* start n/5 t/gojuon t/hiragana
+
+Before executing start command:
+![before start](images/start_before.png)
+
+After executing start command:
+![after start](images/start_after.png)
 
 ### Checking flashcard answers: `check`
 
@@ -136,11 +170,11 @@ _Details coming soon ..._
 
 ## FAQ
 
-**Q**: How do I transfer my quiz attempt scores to other computers?</br>
+**Q**: How do I transfer my quiz attempt scores to other computers?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file
 that contains the data of your previous WeebLingo home folder.
 
-**Q**: Can I add my customized flashcards?</br>
+**Q**: Can I add my customized flashcards?<br>
 **A**: Sorry, the current version of the application does not allow self-defined flashcards to be added. However, if you
 are advanced and you know how to manipulate the storage files, you can do so if you want.
 

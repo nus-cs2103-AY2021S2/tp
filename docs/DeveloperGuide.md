@@ -63,11 +63,16 @@ The sections below give more details of each component.
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 **API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2021S2-CS2103T-T13-1/tp/blob/master/src/main/java/seedu/weeblingo/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `FlashcardListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`,
+`FlashcardListPanel`, `ScoreHistoryListPanel`, `StatusBarFooter` etc.
+All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files
+that are in the `src/main/resources/view` folder.
+For example, the layout of the [`MainWindow`](https://github.com/AY2021S2-CS2103T-T13-1/tp/blob/master/src/main/java/seedu/weeblingo/ui/MainWindow.java)
+is specified in [`MainWindow.fxml`](https://github.com/AY2021S2-CS2103T-T13-1/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -118,11 +123,11 @@ The `Model`,
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2021S2-CS2103T-T13-1/tp/blob/master/src/main/java/seedu/weeblingo/storage/Storage.java)
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
-* can save the flashcard book data in json format and read it back.
+* can save the flashcard book data (flashcards and scores) in json format and read it back.
 
 ### Common classes
 
@@ -181,15 +186,52 @@ The following sequence diagram shows how the Quiz command works:
 
 ![QuizSequenceDiagram](images/QuizSequenceDiagram.png)
 
-2. The start command
+=======
+### Start Command
 
-3. The check command: The user enters `check ATTEMPT` and the `WeeblingoParser#parse(String)` will parse input as an Answer
-into a CheckCommand. If the attempt is correct, the Ui will update to reveal the correct answer of current flashcard. Else the user
-will be prompted to try again.
+The start command is used to start a quiz session, enabling users to define the number and type of 
+questions they want to be tested on. The activity diagram below shows the flow of events when a user
+enters the start command.
 
-4. The next command
+### \[Proposed\] Quiz Scoring
+*{To be updated}*
 
-5. The end command
+The user enters `check ATTEMPT` and the `WeeblingoParser#parse(String)` will parse input as an Answer
+into a CheckCommand. If the attempt is correct, the Ui will update to reveal the correct answer of current flashcard and the user score will increase.
+Else the user will be prompted to try again.
+
+### View Past Quiz Attempts
+
+The view quiz history mechanism allows users to view their past attempts of quizzes. Each entry of quiz history is
+represented in a way similar how the flashcards are represented in the Weeblingo application. 
+
+Below is the class diagram
+for how `Score` is represented in *Model* component.
+
+![HistoryModelDiagram](images/HistoryModelDiagram.png)
+
+The *UI* component, which originally only handles the display of flashcards,
+now needs to handle the display for scoring history as well.
+
+The following sequence diagram shows how the UI switches display from flashcards to score history and vice versa.
+
+![HistoryUiSequenceDiagram](images/HistoryUiSequenceDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: How to represent `Score` in the application
+
+* **Alternative 1 (current choice):** Make `Score` and `Flashcard` two separate classes.
+    * Pros: Easy to implement.
+    * Cons: 
+      * May have the overhead of writing similar code. For instance, `JsonAdaptedFlashcard` and `JsonAdaptedScore`.
+      * Changing the UI display from flashcards to score history may be cumbersome. 
+* **Alternative 2:** Let `Score` have inheritance relationship with `Flashcard`.
+    * Pros: Changing UI display is easy.
+    * Cons:
+      * The design choice is not intuitive (`Score` does not seem to be a `Flashcard` and vice versa).
+      * The overhead of maintaining the inheritance is non-trivial.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -226,16 +268,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​         | I want to …​                            | So that I can…​                              |
 | -------- | ------------------ | ------------------------------------------ | ----------------------------------------------- |
-| `* * *`  | new user           | view valid commands                        | remember how to use the Weeblingo               |
+| `* * *`  | new user           | view valid commands                        | learn how to use the Weeblingo               |
 | `* * *`  | user               | view a flashcard                           |                                                 |
+| `* * *`  | user               | view all flashcards                        | study the flashcards before a quiz session           |
 | `* * *`  | user               | see the answer to a flashcard              | check if I answered correctly                   |
-| `* * *`  | user               | start a practice run of all flashcards     | practice all flashcards in a single session     |
-| `* * *`  | user               | view all flashcards                        | study the flashcards before a session           |
+| `* * *`  | user               | start a quiz session                       | assess my knowledge of the Japanese language          |
+| `* * *`  | hardworking user   | start a quiz containing all flashcards     | practice all flashcards in a single quiz session     |
 | `* *`    | user               | quiz myself on a specific set of flashcards| practice a specific group of words that I may be bad at |
-| `* *`    | user               | quiz myself on a specific number of random flashcards| spot test myself with a group of random words |
+| `* *`    | busy user          | quiz myself on a specific number of flashcards| roughly control how long I spend on the quiz |
 | `* *`    | user               | add tags to certain flashcards             | group flashcards to test myself (e.g. specific coverage for an exam) |
-| `* *`    | user               | know how well I scored on a Quiz           | see how many mistakes I made in this Quiz       |
-| `* *`    | user               | see how I did on past Quizzes              | see how my scores have changed over time        |
+| `* *`    | results-oriented user | know how well I scored on a Quiz        | see how many mistakes I made in this Quiz       |
+| `* *`    | competitive user   | see the duration of a Quiz                 | gauge how fast I am at answering questions      |
+| `* *`    | user               | see my past quiz attempts                  | track my progress      |
 
 *{More to be added}*
 
@@ -243,72 +287,65 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `Weeblingo` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: See flashcards one by one**
+**Use case : UC01 - See the list of flashcards**
 
 **MSS**
 
-1.  User requests to view flashcards
-2.  WeebLingo shows a new flashcard on the screen
-3.  User clicks next
-4.  Go to step 2 again
+1.  User requests to enter learn mode.
+2.  WeebLingo shows a list of flashcards on the screen.
 
-**Extensions**
+    Use case ends.  
 
-* 2a. All flashcards have been shown.
-
-  Use case ends.
-
-**Use case: Take a quiz**
+**Use case: UC02 - Take a quiz**
 
 **MSS**
 
-1.  User clicks quiz
-2.  WeebLingo shows a new question on the screen
-3.  User enters his answer
-4.  WeebLingo shows whether user's answer is correct/wrong
-5.  WeebLingo displays correct answer if user's answer is wrong
-6.  WeebLingo removes this question from the list of questions for this session
-7.  Go to step 2 again
+1.  User requests to enter quiz mode.
+2.  WeebLingo shows a new question on the screen.
+3.  User enters and checks his answer.
+4.  WeebLingo shows whether user's answer is correct/wrong.
+5.  User requests to see the next question.
+6.  WeebLingo removes this question from the list of questions for this session.
+7.  Go to step 2 again.
 
 **Extensions**
 
 * 2a. All questions have been shown.
+    
+    * 2a1. WeebLingo informs user that the quiz is over. 
+      
+      Use case ends.
 
-  Use case ends.
+* 3a. User already got the question correct.
 
-**Use case: Save and see all my study data**
+    * 3a1. WeebLingo prompts user to proceed to the next question.
+    
+      Use case resumes at step 5.
+
+* 4a. User got the question wrong.
+  
+    * 4a1a. User wants to proceed to the next question.
+      
+      Use case resumes at step 5.
+    
+    * 4a1b. User wants to reattempt the same question.
+
+      Use case resumes at step 3.
+
+* 4b. User got the question correct.
+  
+    * 4b1. WeebLingo prompts user to proceed to the next question.
+      
+      Use case resumes at step 5.
+
+**Use case: UC03 - See my past quiz attempts history**
 
 **MSS**
 
-1.  User looks at a flashcard
-2.  User can save a flashcard if he is confident he has learnt the japanese word
-3.  WeebLingo saves the learnt flashcard to a storage file
-4.  User can request to see all learnt flashcards
+1.  User requests to see the history of past attempts.
+2.  WeebLingo shows the history, including relevant details of the quiz attempts.
 
     Use case ends.
-
-**Use case: Delete a flashcard**
-
-**MSS**
-
-1.  User requests to list flashcards
-2.  AddressBook shows a list of flashcards
-3.  User requests to delete a specific flashcard in the list
-4.  AddressBook deletes the flashcard
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. AddressBook shows an error message.
-
-      Use case resumes at step 2.
 
 *{More to be added}*
 
@@ -335,6 +372,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Question**: A Japanese character/word
 * **Answer**: The reading/definition of the Japanese given in the corresponding question
 * **Flashcard**: An object that can display a question and its answer
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
