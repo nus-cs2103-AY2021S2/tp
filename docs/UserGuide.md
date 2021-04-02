@@ -37,7 +37,7 @@ We look forward to seeing what you accomplish with CoLAB with a clean and inviti
 
 This section serves to familiarise you with the information and terms that would help you make the best use of this user guide.
 
-### 2.1 Structure of this Document
+### **2.1 Structure of this Document**
 
 We have included a large set of features in CoLAB to give you the greatest flexibility over what you can do with it. As such, this User Guide has been structured in a manner that allows you to easily find what you are looking for.
 
@@ -53,11 +53,11 @@ In [Section 6: Command Summary](#6command-summary), you will find a summary on C
 
 You can also easily sift through CoLAB's various commands and features by referring to the Table of Contents at the beginning of this User Guide.
 
-### 2.2 Reading this Document
+### **2.2 Reading this Document**
 
 This subsection serves to provide explanations on the application's user interface (UI) as well as symbols, syntax and technical terms used throughout this User Guide. Familiarising yourself with this subsection will make the User Guide easier to read.
 
-#### 2.2.1 Special Formats
+#### **2.2.1 Special Formats**
 
 Formats discussed in this section may be used in relevant areas of this user guide.
 
@@ -91,13 +91,13 @@ Words or sentences that appear in these highlighted boxes are being emphasised f
 
 `Example highlight!`
 
-#### 2.2.2 Sections of the Application Window
+#### **2.2.2 Sections of the Application Window**
 
 Different sections of the application window will be referred to by the names described in the image shown below:
 
 ![App Window Sections](images/app_window_sections.png)
 
-#### 2.2.3 Navigating the UI
+#### **2.2.3 Navigating the UI**
 
 Although most of the buttons you see on the screen are clickable, the UI has been designed primarily to be navigated using the command line interface.
 
@@ -113,7 +113,7 @@ When entering a command, you may find it helpful to see a history of your previo
 Only successfully executed commands will be saved.
 </div>
 
-#### 2.2.4 Command Format
+#### **2.2.4 Command Format**
 
 Commands discussed in this user guide follow these rules:
 
@@ -143,7 +143,7 @@ Commands discussed in this user guide follow these rules:
 Parameters refer to information that is to be included as an input to a command.
 </div>
 
-#### 2.2.5 Command Parameters
+#### **2.2.5 Command Parameters**
 
 This subsection serves to list out the parameters used in this document.
 
