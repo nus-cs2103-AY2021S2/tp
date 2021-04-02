@@ -256,7 +256,7 @@ Format: <br>
 
 Shows a list of all students and all appointments in Vax@NUS records.
 
-Format: `list students`
+Format: `list`
 
 ### Finding a student and their appointment : `find`
 
