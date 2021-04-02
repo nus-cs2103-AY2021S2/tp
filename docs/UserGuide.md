@@ -100,7 +100,7 @@ Example warning!
 
 **Additional Information**
 
-Messages that appear in an infomation box are additional information that may be useful to know.
+Messages that appear in an information box are additional information that may be useful to know.
 
 <div markdown="span" class="alert alert-info">:information_source: **Info:**
 Example information!
