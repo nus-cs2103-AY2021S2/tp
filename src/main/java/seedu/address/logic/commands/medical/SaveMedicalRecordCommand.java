@@ -34,6 +34,6 @@ public class SaveMedicalRecordCommand extends Command {
         this.patient.addMedicalRecord(mrec);
         model.setPerson(this.patient, this.patient);
         return new CommandResult(String.format(MESSAGE_SUCCESS, this.patient.getName(), mrec.getDateDisplay()),
-                false, false, null, null, null, false);
+                false, false, patient, null, null, false);
     }
 }
