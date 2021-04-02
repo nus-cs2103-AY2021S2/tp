@@ -420,7 +420,7 @@ You can use this command in 2 different ways.
 
   Example:
   
-    * `clear l/kitchen` clears all the items with location `kitchen`.<br>
+    * `clear l/kitchen` clears all the items with location `kitchen`.<br></br>
 
   <div markdown="block" class="alert alert-info">
 
@@ -471,11 +471,11 @@ restart with an empty data file at the next run. Proceed with caution!!
 
 ## 4. FAQ
 
-**Q**: How do I transfer my data to another computer?<br>
+**Q**: How do I transfer my data to another computer?<br></br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
 the data of your previous StoreMando home folder.
 
-**Q**: Can I have two or more inventories in one computer?<br>
+**Q**: Can I have two or more inventories in one computer?<br></br>
 **A**: Download and install StoreMando in two different folders on your computer so that you will have two different
 data files in separate locations. You can have as many inventories as you want using this method.
 
