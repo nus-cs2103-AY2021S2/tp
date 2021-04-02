@@ -3,8 +3,8 @@ layout: page
 title: User Guide
 ---
 
-Weeblingo is a desktop application for **learning Japanese, optimized for use via a Command Line Interface** (CLI) while 
-still having the benefits of a Graphical User Interface (GUI). With a nice and friendly interface, 
+Weeblingo is a desktop application for **learning Japanese, optimized for use via a Command Line Interface** (CLI) while
+still having the benefits of a Graphical User Interface (GUI). With a nice and friendly interface,
 users can learn Japanese at a comfortable pace and manage flashcards with this application.
 
 * [Introduction](#introduction)
@@ -29,12 +29,12 @@ users can learn Japanese at a comfortable pace and manage flashcards with this a
 ## Introduction
 
 ### About WeebLingo
-WeebLingo is a desktop application that helps users learn the Japanese language. It has three primary modes, 
-which are the **learn**, **quiz** and **history** modes. The app contains flashcards that pairs a Japanese word and 
+WeebLingo is a desktop application that helps users learn the Japanese language. It has three primary modes,
+which are the **learn**, **quiz** and **history** modes. The app contains flashcards that pairs a Japanese word and
 its corresponding English syllable for users to learn. It allows users to test themselves on their grasp of the Japanese language
 by starting a quiz session. In addition, users can view their history of past quiz attempts and the relevant statistics.
 
-### Additional information 
+### Additional information
 These are symbols used throughout the User Guide you might want to take note of.
 * :information_source: : Indicates information that is likely to be helpful
 
@@ -147,7 +147,7 @@ Format: `next`
 
 Enters Learn Mode, where all current flashcards are listed out. Answers to current flashcards are shown as well.
 
-Users can utilise this mode to facilitate the learning process, 
+Users can utilise this mode to facilitate the learning process,
 and look through complete flashcards without having to test themselves.
 
 Tagging related functions are also only available in this mode.
@@ -171,13 +171,13 @@ Format: `history`
 
 ### Tagging a flashcard: `tag INDEX TAGS…`
 
-Reads in an index and one or more tags, and adds these tags to the flashcard at the desired index. 
+Reads in an index and one or more tags, and adds these tags to the flashcard at the desired index.
 At least one tag must be provided, else the user will be prompted to enter a valid command.
 
 Tagging of flashcards can only be done in Weeblingo's Learn Mode.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** Default tags are provided by Weeblingo, 
-which can neither be deleted nor edited. 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Default tags are provided by Weeblingo,
+which can neither be deleted nor edited.
 The purpose of this command is to allow users to add their own tags as well to assist in the learning process.
 
 </div>
