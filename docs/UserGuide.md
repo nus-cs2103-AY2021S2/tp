@@ -79,7 +79,7 @@ This feature allows tutees to maintain and keep track of the list of tuition tut
 
 ![Tutors Ui](images/ug-images/Tutors.png)
 
-Attributes / Parameters:
+**Attributes / Parameters**:
 * Name
 * Gender
 * Phone Number
@@ -254,10 +254,10 @@ Format:`export INDEX`
 
 Example: `export 1`
 
-### Favourites
+#### Favourites
 This feature allows tutees to track and manage their favourite tutors.
 
-![Notes Ui](images/ug-images/Notes.png)
+![Favourite Ui](images/ug-images/Favourite.png)
 
 ##### Favourite a tutor: `favourite`
 
@@ -479,9 +479,9 @@ Example:
 Example Output:
 ```
 1.  Math Tuition Homework
-    Mar 24 2021
-    2:00 PM - 4:00 PM
-    Chapter 5 to 6
+Mar 24 2021
+2:00 PM - 4:00 PM
+Chapter 5 to 6
 ```
 
 #### Delete a schedule: `delete_schedule`
@@ -501,9 +501,9 @@ Example:
 Example Output:
 ```
 1.  Science Tuition Homework
-    Mar 30 2021
-    2:00 PM - 4:00 PM
-    Calculus Topic
+Mar 30 2021
+2:00 PM - 4:00 PM
+Calculus Topic
 ```
 
 #### Editing a schedule : `edit_schedule`
@@ -890,7 +890,7 @@ Action | Format | Examples
 **Edit a grade** | `edit_grade INDEX [s/SUBJECT_NAME] [gi/GRADED_ITEM] [gr/GRADE_ALPHABET]`, | `edit_grade 1 gr/B`
 **Delete a grade** | `delete_grade INDEX`, | `delete_grade 1`
 **List grades** | `list_grades` | `list_grades`
-**Add a new reminder** | `add_reminder ds/DESCRIPTION d/REMINDER_DATE` |, `add_reminder ds/Science Tuition Payment Due d/2021-4-2`
+**Add a new reminder** | `add_reminder ds/DESCRIPTION d/REMINDER_DATE` | `add_reminder ds/Science Tuition Payment Due d/2021-4-2`
 **List reminders** | `list_reminders` | `list_reminders`
 **Delete a reminder** | `delete_reminder INDEX` | `delete_reminder 1`
 **Edit a reminder** | `edit_reminder INDEX [ds/DESCRIPTION] [d/REMINDER_DATE]` | `edit_reminder 1 ds/Science Tuition Payment Due`
