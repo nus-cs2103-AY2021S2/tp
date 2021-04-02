@@ -1,22 +1,5 @@
 {
   "persons" : [ {
-    "name" : "Alanis Hines",
-    "phone" : "92624417",
-    "email" : "royb@example.com",
-    "address" : "Blk 45 Aljunied Street 85, #11-31",
-    "height" : "172cm",
-    "weight" : "58kg",
-    "isArchived" : false,
-    "tagged" : [ "asidjoajc" ],
-    "appointments" : [ "12/4/21 12:00", "12/12/21 12:00", "12/12/21 12:00", "12/12/21 12:00", "12/12/21 12:00", "12/12/21 12:00", "12/12/21 12:00", "12/12/21 12:00", "12/12/21 12:00", "12/12/21 12:00", "12/12/21 12:00", "12/12/21 12:00", "12/12/21 12:00", "12/12/21 12:00", "12/12/21 12:00" ],
-    "records" : [ {
-      "dateString" : "1/4/21 2:44",
-      "sections" : [ {
-        "title" : "appointmentLabel",
-        "body" : "else if (patientBoxMedicalRecords.getChildren().size() != 0) {\n            medicalRecordInfo.setText(String.format(\"%d medical record(s) found:\","
-      } ]
-    } ]
-  }, {
     "name" : "Alex Yeoh",
     "phone" : "87438807",
     "email" : "alexyeoh@example.com",
@@ -54,6 +37,17 @@
         "body" : "tbrstnrtnj"
       } ]
     } ]
+  }, {
+    "name" : "alexis",
+    "phone" : "98989898",
+    "email" : "royb@example.com",
+    "address" : "Blk 45 Aljunied Street 85, #11-31",
+    "height" : "172cm",
+    "weight" : "58kg",
+    "isArchived" : false,
+    "tagged" : [ "asidjoajc" ],
+    "appointments" : [ ],
+    "records" : [ ]
   }, {
     "name" : "Andreea Hanna",
     "phone" : "92624417",

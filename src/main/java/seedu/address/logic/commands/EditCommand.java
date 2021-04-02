@@ -96,7 +96,9 @@ public class EditCommand extends Command {
 
         model.setPerson(patientToEdit, editedPatient);
         model.updateFilteredPersonList(PREDICATE_SHOW_MAIN_PATIENTS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPatient));
+        //return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPatient));
+        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPatient),
+                false, false, editedPatient, null, null, false);
     }
 
     /**
