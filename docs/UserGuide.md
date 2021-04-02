@@ -1,6 +1,5 @@
 ---
-layout: page 
-title: User Guide
+layout: page title: User Guide
 ---
 
 <!-- TOC adapted from
@@ -258,15 +257,15 @@ To achieve the best possible experience, avoid adding excessively long text to C
    Some example commands you can try:
 
     * **`project 1`** : Displays the first project.
-    
+
     * **`addP`**`n/My Project` : Adds a new project named `My Project` to CoLAB.
-    
+
     * **`todos`** : Displays the todos of the currently displayed project.
-    
+
     * **`addT`**`1 d/My Task` : Adds a todo with the description `My Task` to the first project.
-    
+
     * **`deleteP`**`3` : Deletes the third project in the list.
-    
+
     * **`exit`** : Exits the app.
 
 6. Refer to the [Features](#4-features) below for details of each command.
@@ -472,7 +471,7 @@ Format: `deleteT PROJECT_INDEX i/TODO_INDEX`
 
 Parameters:
 
-* [`PROJECT_INDEX`](#index) The index of the project. 
+* [`PROJECT_INDEX`](#index) The index of the project.
 * [`TODO_INDEX`](#index) The index of the todo.
 
 Example:
@@ -499,7 +498,9 @@ Format: `addD PROJECT_INDEX d/DESCRIPTION by/DATE`
 
 Parameters:
 
-* [`PROJECT_INDEX`](#index) The index of the project. * [`DESCRIPTION`](#description) The description of the deadline. * [`DATE`](#date) The due date of the deadline.
+* [`PROJECT_INDEX`](#index) The index of the project.
+* [`DESCRIPTION`](#description) The description of the deadline.
+* [`DATE`](#date) The due date of the deadline.
 
 Example:
 
@@ -511,7 +512,8 @@ Updates an existing deadline of a project in CoLAB.
 
 Format: `updateD PROJECT_INDEX i/DEADLINE_INDEX [d/DESCRIPTION] [by/DATE]`
 
-* Updates the `DESCRIPTION` or the due `DATE` of the deadline at the specified `DEADLINE_INDEX` of the project at the specified `PROJECT_INDEX`. * Existing values will be updated to the input values.
+* Updates the `DESCRIPTION` or the due `DATE` of the deadline at the specified `DEADLINE_INDEX` of the project at the specified `PROJECT_INDEX`.
+* Existing values will be updated to the input values.
 
 <div markdown="span" class="alert alert-info">:information_source: **Info:**
 At least one of the optional fields must be provided.
@@ -519,7 +521,10 @@ At least one of the optional fields must be provided.
 
 Parameters:
 
-* [`PROJECT_INDEX`](#index) The index of the project. * [`DEADLINE_INDEX`](#index) The index of the deadline. * [`DESCRIPTION`](#description) The description of the deadline. * [`DATE`](#date) The due date of the deadline.
+* [`PROJECT_INDEX`](#index) The index of the project.
+* [`DEADLINE_INDEX`](#index) The index of the deadline.
+* [`DESCRIPTION`](#description) The description of the deadline.
+* [`DATE`](#date) The due date of the deadline.
 
 Examples:
 
@@ -536,7 +541,8 @@ Format: `markD PROJECT_INDEX i/DEADLINE_INDEX`
 
 Parameters:
 
-* [`PROJECT_INDEX`](#index) The index of the project. * [`DEADLINE_INDEX`](#index) The index of the deadline.
+* [`PROJECT_INDEX`](#index) The index of the project.
+* [`DEADLINE_INDEX`](#index) The index of the deadline.
 
 Example:
 
@@ -552,7 +558,8 @@ Format: `deleteD PROJECT_INDEX i/DEADLINE_INDEX`
 
 Parameters:
 
-* [`PROJECT_INDEX`](#index) The index of the project. * [`DEADLINE_INDEX`](#index) The index of the deadline.
+* [`PROJECT_INDEX`](#index) The index of the project.
+* [`DEADLINE_INDEX`](#index) The index of the deadline.
 
 Example:
 
@@ -574,11 +581,16 @@ Adds an event to a project in CoLAB.
 
 Format: `addE PROJECT_INDEX d/DESCRIPTION on/DATE at/TIME w/REPEAT_WEEKLY`
 
-* Adds an event to the project at the specified `PROJECT_INDEX` with a `DESCRIPTION` as well as the `DATE` and `TIME` of the event. * `REPEAT_WEEKLY` accepts values `Y` or `y` if the event repeats weekly and `N` or `n` if the event is a one time event.
+* Adds an event to the project at the specified `PROJECT_INDEX` with a `DESCRIPTION` as well as the `DATE` and `TIME` of the event.
+* `REPEAT_WEEKLY` accepts values `Y` or `y` if the event repeats weekly and `N` or `n` if the event is a one time event.
 
 Parameters:
 
-* [`PROJECT_INDEX`](#index) The index of the project. * [`DESCRIPTION`](#description) The description of an event. * [`DATE`](#date) The date of the event, or the starting date of the event if the event repeats every week. * [`TIME`](#time) The time of the event. * [`REPEAT_WEEKLY`](#repeat_weekly) Indicates whether the event repeats every week.
+* [`PROJECT_INDEX`](#index) The index of the project.
+* [`DESCRIPTION`](#description) The description of an event.
+* [`DATE`](#date) The date of the event, or the starting date of the event if the event repeats every week.
+* [`TIME`](#time) The time of the event.
+* [`REPEAT_WEEKLY`](#repeat_weekly) Indicates whether the event repeats every week.
 
 Examples:
 
@@ -591,7 +603,9 @@ Updates an existing event of a project in CoLAB.
 
 Format: `updateE PROJECT_INDEX i/EVENT_INDEX [d/DESCRIPTION] [on/DATE] [at/TIME] [w/REPEAT_WEEKLY]`
 
-* Updates the `DESCRIPTION`, `DATE`, `TIME` or `REPEAT_WEEKLY` status of the event at the specified `EVENT_INDEX` of the project at the specified `PROJECT_INDEX`. * Existing values will be updated to the input values. * `REPEAT_WEEKLY` accepts values `Y` or `y` if the event repeats weekly and `N` or `n` if the event is a one time event.
+* Updates the `DESCRIPTION`, `DATE`, `TIME` or `REPEAT_WEEKLY` status of the event at the specified `EVENT_INDEX` of the project at the specified `PROJECT_INDEX`.
+* Existing values will be updated to the input values.
+* `REPEAT_WEEKLY` accepts values `Y` or `y` if the event repeats weekly and `N` or `n` if the event is a one time event.
 
 <div markdown="span" class="alert alert-info">:information_source: **Info:**
 At least one of the optional fields must be provided.
@@ -599,7 +613,12 @@ At least one of the optional fields must be provided.
 
 Parameters:
 
-* [`PROJECT_INDEX`](#index) The index of the project. * [`EVENT_INDEX`](#index) The index of an event. * [`DESCRIPTION`](#description) The description of an event. * [`DATE`](#date) The date of the event, or the starting date of the event if the event repeats every week. * [`TIME`](#time) The time of the event. * [`REPEAT_WEEKLY`](#repeat_weekly) Indicates whether the event repeats every week.
+* [`PROJECT_INDEX`](#index) The index of the project.
+* [`EVENT_INDEX`](#index) The index of an event.
+* [`DESCRIPTION`](#description) The description of an event.
+* [`DATE`](#date) The date of the event, or the starting date of the event if the event repeats every week.
+* [`TIME`](#time) The time of the event.
+* [`REPEAT_WEEKLY`](#repeat_weekly) Indicates whether the event repeats every week.
 
 Examples:
 
@@ -616,7 +635,8 @@ Format: `deleteE PROJECT_INDEX i/EVENT_INDEX`
 
 Parameters:
 
-* [`PROJECT_INDEX`](#index) The index of the project. * [`EVENT_INDEX`](#index) The index of an event.
+* [`PROJECT_INDEX`](#index) The index of the project.
+* [`EVENT_INDEX`](#index) The index of an event.
 
 Example:
 
@@ -646,7 +666,9 @@ Format: `addG PROJECT_INDEX n/NAME [r/ROLE]…​`
 
 Parameters:
 
-* [`PROJECT_INDEX`](#index) The index of the project. * [`NAME`](#name) The name of the groupmate. * [`ROLE`](#role) The role of the groupmate.
+* [`PROJECT_INDEX`](#index) The index of the project.
+* [`NAME`](#name) The name of the groupmate.
+* [`ROLE`](#role) The role of the groupmate.
 
 <div markdown="span" class="alert alert-info">:information_source: **Info:**
 A groupmate can have any number of roles (including 0).
@@ -667,15 +689,19 @@ Format: `updateG PROJECT_INDEX i/GROUPMATE_INDEX [n/NAME] [r/ROLE]…​`
 * Existing values will be updated to the input values.
 
 <div markdown="block" class="alert alert-info">:information_source: **Info:**
-    * At least one of the optional fields must be provided.
-    * When updating roles, the existing roles of the groupmate will be removed i.e. adding of roles is not cumulative.
-    * You can remove all the roles of the groupmate by typing `r/` without
-      specifying any roles after it.
+
+* At least one of the optional fields must be provided.
+* When updating roles, the existing roles of the groupmate will be removed i.e. adding of roles is not cumulative.
+* You can remove all the roles of the groupmate by typing `r/` without specifying any roles after it.
+
 </div>
 
 Parameters:
 
-* [`PROJECT_INDEX`](#index) The index of the project. * [`GROUPMATE_INDEX`](#index) The index of the groupmate. * [`NAME`](#name) The name of the groupmate. * [`ROLE`](#role) The role of the groupmate.
+* [`PROJECT_INDEX`](#index) The index of the project.
+* [`GROUPMATE_INDEX`](#index) The index of the groupmate.
+* [`NAME`](#name) The name of the groupmate.
+* [`ROLE`](#role) The role of the groupmate.
 
 Examples:
 
@@ -693,7 +719,8 @@ Format: `deleteG PROJECT_INDEX i/GROUPMATE_INDEX`
 
 Parameters:
 
-* [`PROJECT_INDEX`](#index) The index of the project. * [`GROUPMATE_INDEX`](#index) The index of the groupmate.
+* [`PROJECT_INDEX`](#index) The index of the project.
+* [`GROUPMATE_INDEX`](#index) The index of the groupmate.
 
 Example:
 
