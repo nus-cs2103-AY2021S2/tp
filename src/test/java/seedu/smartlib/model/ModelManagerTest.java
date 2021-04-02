@@ -4,12 +4,15 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.smartlib.model.Model.PREDICATE_SHOW_ALL_READERS;
 import static seedu.smartlib.testutil.Assert.assertThrows;
 import static seedu.smartlib.testutil.TypicalModels.ALICE;
 import static seedu.smartlib.testutil.TypicalModels.AMY;
 import static seedu.smartlib.testutil.TypicalModels.BENSON;
+import static seedu.smartlib.testutil.TypicalModels.ELLE;
+import static seedu.smartlib.testutil.TypicalModels.FIONA;
 import static seedu.smartlib.testutil.TypicalModels.HABIT;
 import static seedu.smartlib.testutil.TypicalModels.HARRY;
 import static seedu.smartlib.testutil.TypicalModels.IDA;
@@ -40,7 +43,7 @@ import seedu.smartlib.testutil.SmartLibBuilder;
 public class ModelManagerTest {
 
     private ModelManager modelManager = new ModelManager();
-    private final SmartLib smartLib = new SmartLibBuilder()
+    private SmartLib smartLib = new SmartLibBuilder()
             .withReader(ALICE).withReader(BENSON)
             .withBook(HARRY).withBook(SECRET)
             .withRecord(RECORD_C)
@@ -542,8 +545,104 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void markRecordAsReturned() {
+        modelManager = new ModelManager(smartLib, userPrefs);
+
+        // EP: null record
+        assertThrows(AssertionError.class, () -> modelManager.markRecordAsReturned(null));
+
+        // EP: invalid record -> throws exception
+        assertThrows(AssertionError.class, () -> modelManager.markRecordAsReturned(RECORD_A));
+
+        // EP: valid record -> return successful
+        assertDoesNotThrow(() -> modelManager.markRecordAsReturned(RECORD_C));
+    }
+
+    @Test
+    public void getBookBarcode() {
+        modelManager = new ModelManager(smartLib, userPrefs);
+
+        // EP: null book name
+        assertThrows(NullPointerException.class, () -> modelManager.getBookBarcode(null));
+
+        // EP: invalid book name -> returns null
+        assertNull(modelManager.getBookBarcode(HABIT.getName()));
+        assertNull(modelManager.getBookBarcode(LIFE.getName()));
+
+        // EP: valid book name -> returns barcode of book
+        assertEquals(SECRET.getBarcode(), modelManager.getBookBarcode(SECRET.getName()));
+        assertEquals(HARRY.getBarcode(), modelManager.getBookBarcode(HARRY.getName()));
+    }
+
+    @Test
+    public void getBookNameForReturn() {
+        modelManager = new ModelManager(smartLib, userPrefs);
+
+        // EP: null barcode
+        assertThrows(NullPointerException.class, () -> modelManager.getBookNameForReturn(null));
+
+        // EP: invalid barcode -> returns null
+        assertNull(modelManager.getBookNameForReturn(HABIT.getBarcode()));
+        assertNull(modelManager.getBookNameForReturn(LIFE.getBarcode()));
+
+        // EP: valid barcode -> returns name of book
+        assertEquals(SECRET.getName(), modelManager.getBookNameForReturn(SECRET.getBarcode()));
+        assertEquals(HARRY.getName(), modelManager.getBookNameForReturn(HARRY.getBarcode()));
+    }
+
+    @Test
+    public void getReaderNameForReturn() {
+        modelManager = new ModelManager(smartLib, userPrefs);
+
+        // EP: null barcode
+        assertThrows(NullPointerException.class, () -> modelManager.getReaderNameForReturn(null));
+
+        // EP: invalid barcode -> returns null
+        assertNull(modelManager.getReaderNameForReturn(HABIT.getBarcode()));
+        assertNull(modelManager.getReaderNameForReturn(LIFE.getBarcode()));
+
+        // EP: valid barcode -> returns name of borrower, if any
+    }
+
+    @Test
+    public void setReader() {
+        modelManager = new ModelManager(smartLib, userPrefs);
+        modelManager.addReader(ELLE);
+
+        // EP: valid target and editedReader
+        assertDoesNotThrow(() -> modelManager.setReader(ELLE, FIONA));
+
+        // EP: null target, valid editedReader
+        assertThrows(NullPointerException.class, () -> modelManager.setReader(null, ELLE));
+
+        // EP: valid target, null editedReader
+        assertThrows(NullPointerException.class, () -> modelManager.setReader(ELLE, null));
+
+        // EP: null target and editedReader
+        assertThrows(NullPointerException.class, () -> modelManager.setReader(null, null));
+
+        // EP: valid target but duplicated editedReader
+        assertThrows(DuplicateReaderException.class, () -> modelManager.setReader(FIONA, ALICE));
+        assertThrows(DuplicateReaderException.class, () -> modelManager.setReader(FIONA, BENSON));
+
+        // EP: invalid target but duplicated editedReader
+        assertThrows(ReaderNotFoundException.class, () -> modelManager.setReader(AMY, ALICE));
+        assertThrows(ReaderNotFoundException.class, () -> modelManager.setReader(IDA, ALICE));
+    }
+
+    @Test
     public void getFilteredReaderList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredReaderList().remove(0));
+    }
+
+    @Test
+    public void getFilteredBookList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredBookList().remove(0));
+    }
+
+    @Test
+    public void getFilteredRecordList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredRecordList().remove(0));
     }
 
     @Test

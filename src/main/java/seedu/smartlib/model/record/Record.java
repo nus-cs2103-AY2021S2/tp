@@ -78,15 +78,6 @@ public class Record {
     }
 
     /**
-     * Marks the record as returned.
-     *
-     * @param dateReturned return date of the book.
-     */
-    public void returnRecord(DateReturned dateReturned) {
-        this.dateReturned = dateReturned;
-    }
-
-    /**
      * Retrieves the bookName of the book associated with this record.
      *
      * @return the bookName of the book associated with this record.
@@ -166,11 +157,11 @@ public class Record {
         }
 
         if (otherRecord.getDateReturned() != null && this.getDateReturned() != null) {
-            return otherRecord.getDateReturned() == this.getDateReturned();
+            return otherRecord.getDateReturned().equals(this.getDateReturned());
         }
 
         if (otherRecord.getDateBorrowed() != null && this.getDateBorrowed() != null) {
-            return otherRecord.getDateBorrowed() == this.getDateBorrowed();
+            return otherRecord.getDateBorrowed().equals(this.getDateBorrowed());
         }
 
         return true;

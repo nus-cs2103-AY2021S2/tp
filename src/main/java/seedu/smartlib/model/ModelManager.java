@@ -377,8 +377,9 @@ public class ModelManager implements Model {
      */
     @Override
     public Barcode getBookBarcode(Name bookName) {
+        requireNonNull(bookName);
+
         ArrayList<Book> books = smartLib.getBooksByName(bookName);
-        requireNonNull(books);
 
         for (Book b : books) {
             return b.getBarcode();
@@ -395,9 +396,10 @@ public class ModelManager implements Model {
      */
     @Override
     public Name getBookNameForReturn(Barcode barcode) {
+        requireNonNull(barcode);
+
         Book book = smartLib.getBookByBarcode(barcode);
-        requireNonNull(book);
-        return book.getName();
+        return book == null ? null : book.getName();
     }
 
     /**
@@ -408,9 +410,10 @@ public class ModelManager implements Model {
      */
     @Override
     public Name getReaderNameForReturn(Barcode barcode) {
+        requireNonNull(barcode);
+
         Reader reader = smartLib.getReaderByBarcode(barcode);
-        requireNonNull(reader);
-        return reader.getName();
+        return reader == null ? null : reader.getName();
     }
 
     /**
