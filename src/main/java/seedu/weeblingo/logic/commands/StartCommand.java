@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Set;
 
-import seedu.weeblingo.commons.core.Messages;
 import seedu.weeblingo.logic.commands.exceptions.CommandException;
 import seedu.weeblingo.model.Mode;
 import seedu.weeblingo.model.Model;
@@ -23,6 +22,8 @@ public class StartCommand extends Command {
             + "and \"next\" to move to the next question.";
 
     public static final String MESSAGE_TAG_NOT_FOUND = "Oops, no flashcards have that tag!";
+
+    public static final String MESSAGE_NOT_IN_QUIZ_MODE = "Not in quiz mode yet.";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": starts a new quiz with the specified number of "
             + "questions, filtered to have only questions that have the specified tag(s). All parameters are"
@@ -57,7 +58,7 @@ public class StartCommand extends Command {
             model.switchModeQuizSession();
             return new CommandResult(MESSAGE_SUCCESS, false, false);
         } else {
-            throw new CommandException(Messages.MESSAGE_NOT_IN_QUIZ_MODE);
+            throw new CommandException(MESSAGE_NOT_IN_QUIZ_MODE);
         }
     }
 
