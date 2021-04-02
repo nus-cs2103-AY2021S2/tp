@@ -28,6 +28,7 @@ public class Commands {
                 FindCommand.COMMAND_WORD,
                 HelpCommand.COMMAND_WORD,
                 ListCommand.COMMAND_WORD,
+                SetGoalCommand.COMMAND_WORD,
                 ThemeCommand.COMMAND_WORD,
                 ViewCommand.COMMAND_WORD
         };
