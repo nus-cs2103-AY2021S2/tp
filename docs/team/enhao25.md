@@ -3,12 +3,9 @@ layout: page
 title: En Hao's Project Portfolio Page
 ---
 
-## Project: AddressBook Level 3
+## Project: TutorBuddy
 
-TutorBuddy - Level 3 is a TutorBuddy is a desktop application made for freelance tutors who give one-to-one tuition to efficiently manage their students' contacts,
-provide a quick overview of scheduled tuition sessions, and handle monthly tuition fees calculation.
-TutorBuddy is also optimized for fast typing users to handle their day-to-day administrative responsibilities
-effectively. address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+TutorBuddy is a desktop application made for freelance tutors who give one-to-one tuition to efficiently manage their students’ contacts, provide a quick overview of scheduled tuition sessions, and handle monthly tuition fees calculation. TutorBuddy is also optimized for fast typing users to handle their day-to-day administrative responsibilities effectively.
 
 
 ## Summary of Contributions
@@ -29,6 +26,9 @@ the fields taken to be representative of a student class instead.
     * In charge of ensuring that the project is on track for completion by the given dateline.
 * Testing:
     * Written or updated more than 1000 lines of test code for the various TutorBuddy feature, based on [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=enhao25&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-02-19&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=enhao25&tabRepo=AY2021S2-CS2103T-T11-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=test-code&authorshipIsBinaryFileTypeChecked=true).
+    * Non-trivial testing PR includes:
+      * [PR #128](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/128)
+      * [PR #165](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/165)
 * Sample Data:
     * Updating sample data to better reflect our current application. [PR #166](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/166).
 * Documentation:
