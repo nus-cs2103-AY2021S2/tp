@@ -22,7 +22,7 @@ public class GeneralEvent extends Event {
      * @param date A valid date and time.
      */
     public GeneralEvent(Description description, LocalDateTime date) {
-        super(description, date, new Tag());
+        super(description, date, new Tag("GeneralEvent"));
         this.description = description;
         this.date = date;
     }
