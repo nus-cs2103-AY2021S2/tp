@@ -445,20 +445,23 @@ If the previous theme file supplied is not found or unreadable, then the default
 Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [b/BIRTHDAY] [t/TAG]…​`<br> e.g. `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Group** | `add-group n/GROUP_NAME p/[INDEX...]`<br> e.g. `add-group n/Close Friends p/1 2 3 4`
-**Add Profile Picture** | `add-picture INDEX FILE_PATH`<br> e.g. `picture 1 /Users/john/Desktop/jake.png`
+**Add Date** | `add-date INDEX d/DATE desc/DESCRIPTION`<br> e.g. `add-date 1 d/16-02-2021 desc/Anniversary`
+**Add Debt** | `add-debt INDEX DEBT_AMOUNT`<br> e.g. `add-debt 1 100`
+**Add Group** | `add-group n/GROUP_NAME p/[INDEX...]`<br> e.g. `add-group n/Close Friends p/1 2 3 4`
+**Add Meeting** | `add-meeting INDEX d/DATE t/TIME desc/DESCRIPTION`<br> e.g. `add-meeting 2 d/17-02-2021 t/1930 desc/We went to see the sunset!`
+**Add Picture** | `add-picture INDEX FILE_PATH`<br> e.g. `picture 1 /Users/john/Desktop/jake.png`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g. `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [t/TAG]…​`<br> e.g.`edit 2 n/James Lee e/jameslee@example.com`
+**Delete Date** | `del-date INDEX i/DATE_INDEX`<br> e.g. `del-date 1 i/1`
+**Delete Group** | `del-group n/GROUP_NAME` <br> e.g. `del-group n/Close Friends`
+**Delete Meeting** | `del-meeting INDEX i/MEETING_INDEX`<br> e.g. `del-meeting 1 i/2`
+**Delete Picture** | `del-picture INDEX` <br> e.g. `del-picture 1`
 **Details** | `details INDEX`<br> e.g. `details 1`
-**Add a meeting** | `add-meeting INDEX d/DATE t/TIME desc/DESCRIPTION`<br> e.g. `add-meeting 2 d/17-02-2021 t/1930 desc/We went to see the sunset!`
-**Remove a meeting** | `del-meeting INDEX i/MEETING_INDEX`<br> e.g. `del-meeting 1 i/2`
-**Add a date** | `add-date INDEX d/DATE desc/DESCRIPTION`<br> e.g. `add-date 1 d/16-02-2021 desc/Anniversary`
-**Delete a date** | `del-date INDEX i/DATE_INDEX`<br> e.g. `del-date 1 i/1`
-**Add debt** | `add-debt INDEX DEBT_AMOUNT`<br> e.g. `add-debt 1 100`
-**Subtract debt** | `subtract-debt INDEX DEBT_AMOUNT`<br> e.g. `subtract-debt 1 100`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [t/TAG]…​`<br> e.g.`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g. `find James Jake`
-**Theme** | `theme THEME`<br> e.g. `theme theme/solarized.dark.json`
-**List** | `list [n/GROUP_NAME]` <br> e.g. `list n/Close Friends`
-**Set goal** | `set-goal INDEX f/FREQUENCY` <br> e.g., `set-goal 1 f/w`
 **Help** | `help`
+**List** | `list [n/GROUP_NAME]` <br> e.g. `list n/Close Friends`
+**Set Goal** | `set-goal INDEX f/FREQUENCY` <br> e.g. `set-goal 1 f/w`
+**Subtract Debt** | `subtract-debt INDEX DEBT_AMOUNT`<br> e.g. `subtract-debt 1 100`
+**Theme** | `theme THEME`<br> e.g. `theme theme/solarized.dark.json`
+**View** | `view (upcoming events OR streaks)` <br> e.g.`view streaks`
