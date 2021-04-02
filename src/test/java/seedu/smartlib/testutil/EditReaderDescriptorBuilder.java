@@ -20,16 +20,26 @@ public class EditReaderDescriptorBuilder {
 
     private EditCommand.EditReaderDescriptor descriptor;
 
+    /**
+     * Creates a {@code EditReaderDescriptorBuilder} with the default details.
+     */
     public EditReaderDescriptorBuilder() {
         descriptor = new EditCommand.EditReaderDescriptor();
     }
 
+    /**
+     * Creates a {@code EditReaderDescriptorBuilder} with the details of the given descriptor.
+     *
+     * @param descriptor descriptor containing details of how the EditReaderDescriptorBuilder is to be built.
+     */
     public EditReaderDescriptorBuilder(EditCommand.EditReaderDescriptor descriptor) {
         this.descriptor = new EditReaderDescriptor(descriptor);
     }
 
     /**
-     * Returns an {@code EditReaderDescriptor} with fields containing {@code reader}'s details
+     * Returns an {@code EditReaderDescriptor} with fields containing {@code reader}'s details.
+     *
+     * @param reader the reader whose details are to be stored in this EditReaderDescriptor.
      */
     public EditReaderDescriptorBuilder(Reader reader) {
         descriptor = new EditCommand.EditReaderDescriptor();
@@ -42,6 +52,9 @@ public class EditReaderDescriptorBuilder {
 
     /**
      * Sets the {@code Name} of the {@code EditReaderDescriptor} that we are building.
+     *
+     * @param name name of the EditReaderDescriptor that we are building.
+     * @return an EditReaderDescriptorBuilder object with the updated name.
      */
     public EditReaderDescriptorBuilder withName(String name) {
         descriptor.setName(new Name(name));
@@ -50,6 +63,9 @@ public class EditReaderDescriptorBuilder {
 
     /**
      * Sets the {@code Phone} of the {@code EditReaderDescriptor} that we are building.
+     *
+     * @param phone phone number of the EditReaderDescriptor that we are building.
+     * @return an EditReaderDescriptorBuilder object with the updated phone number.
      */
     public EditReaderDescriptorBuilder withPhone(String phone) {
         descriptor.setPhone(new Phone(phone));
@@ -58,6 +74,9 @@ public class EditReaderDescriptorBuilder {
 
     /**
      * Sets the {@code Email} of the {@code EditReaderDescriptor} that we are building.
+     *
+     * @param email email of the EditReaderDescriptor that we are building.
+     * @return an EditReaderDescriptorBuilder object with the updated email.
      */
     public EditReaderDescriptorBuilder withEmail(String email) {
         descriptor.setEmail(new Email(email));
@@ -66,6 +85,9 @@ public class EditReaderDescriptorBuilder {
 
     /**
      * Sets the {@code Address} of the {@code EditReaderDescriptor} that we are building.
+     *
+     * @param address address of the EditReaderDescriptor that we are building.
+     * @return an EditReaderDescriptorBuilder object with the updated address.
      */
     public EditReaderDescriptorBuilder withAddress(String address) {
         descriptor.setAddress(new Address(address));
@@ -73,8 +95,11 @@ public class EditReaderDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditReaderDescriptor}
+     * Parses and sets the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditReaderDescriptor}
      * that we are building.
+     *
+     * @param tags tags of the EditReaderDescriptor that we are building.
+     * @return an EditReaderDescriptorBuilder object with the updated tags.
      */
     public EditReaderDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
@@ -82,7 +107,13 @@ public class EditReaderDescriptorBuilder {
         return this;
     }
 
+    /**
+     * Builds an EditReaderDescriptor object with the given values set in the descriptor.
+     *
+     * @return a EditReaderDescriptor object with the given descriptor.
+     */
     public EditCommand.EditReaderDescriptor build() {
         return descriptor;
     }
+
 }

@@ -14,6 +14,7 @@ import seedu.smartlib.model.reader.Reader;
  * Panel containing the list of readers.
  */
 public class ReaderListPanel extends UiPart<Region> {
+
     private static final String FXML = "ReaderListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(ReaderListPanel.class);
 
@@ -29,6 +30,7 @@ public class ReaderListPanel extends UiPart<Region> {
         super(FXML);
         readerListView.setItems(readerList);
         readerListView.setCellFactory(listView -> new ReaderListViewCell());
+
     }
 
     /**

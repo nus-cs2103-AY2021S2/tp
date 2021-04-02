@@ -36,5 +36,6 @@ public class ListRecordCommandTest {
         showRecordAtIndex(model, INDEX_FIRST_RECORD);
         assertCommandSuccess(new ListRecordCommand(), model, ListRecordCommand.MESSAGE_SUCCESS, expectedModel);
     }
+
 }
 

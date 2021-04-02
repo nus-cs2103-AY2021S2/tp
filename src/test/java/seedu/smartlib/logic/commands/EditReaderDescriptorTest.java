@@ -8,7 +8,7 @@ import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_TAG_VIP;
 
 import org.junit.jupiter.api.Test;
 
@@ -52,7 +52,8 @@ public class EditReaderDescriptorTest {
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different tags -> returns false
-        editedAmy = new EditReaderDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND).build();
+        editedAmy = new EditReaderDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_VIP).build();
         assertFalse(DESC_AMY.equals(editedAmy));
     }
+
 }

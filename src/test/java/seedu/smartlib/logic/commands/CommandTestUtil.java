@@ -37,6 +37,7 @@ import seedu.smartlib.testutil.EditReaderDescriptorBuilder;
 public class CommandTestUtil {
 
     //=========== Books ==================================================================================
+
     public static final String VALID_NAME_HARRY = "Harry Potter";
     public static final String VALID_NAME_MAZE = "Maze Runner";
     public static final String VALID_AUTHOR_HARRY = "JK Rowling";
@@ -64,7 +65,9 @@ public class CommandTestUtil {
     public static final String INVALID_PUBLISHER_DESC = " " + PREFIX_PUBLISHER;
     public static final String INVALID_ISBN_DESC = " " + PREFIX_ISBN + "837aa";
     public static final String INVALID_GENRE_DESC = " " + PREFIX_GENRE + "Sci-Fi";
+
     //=========== Readers ==================================================================================
+
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_PHONE_AMY = "11111111";
@@ -73,8 +76,8 @@ public class CommandTestUtil {
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
-    public static final String VALID_TAG_HUSBAND = "husband";
-    public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_TAG_VIP = "VIP";
+    public static final String VALID_TAG_MEMBERSHIP = "membership";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_READER + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_READER + VALID_NAME_BOB;
@@ -84,14 +87,14 @@ public class CommandTestUtil {
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
-    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
-    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String TAG_DESC_VIP = " " + PREFIX_TAG + VALID_TAG_VIP;
+    public static final String TAG_DESC_MEMBERSHIP = " " + PREFIX_TAG + VALID_TAG_MEMBERSHIP;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_READER + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
-    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "vip*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -102,16 +105,21 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditReaderDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
+                .withTags(VALID_TAG_MEMBERSHIP).build();
         DESC_BOB = new EditReaderDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withTags(VALID_TAG_VIP, VALID_TAG_MEMBERSHIP).build();
     }
 
     /**
      * Executes the given {@code command}, confirms that <br>
      * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
-     * - the {@code actualModel} matches {@code expectedModel}
+     * - the {@code actualModel} matches {@code expectedModel}.
+     *
+     * @param command command to be executed.
+     * @param actualModel model obtained from executing the command.
+     * @param expectedCommandResult expected result from the command.
+     * @param expectedModel model which we expect the executed command to produce.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
             Model expectedModel) {
@@ -127,6 +135,11 @@ public class CommandTestUtil {
     /**
      * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
      * that takes a string {@code expectedMessage}.
+     *
+     * @param command command to be executed.
+     * @param actualModel model obtained from executing the command.
+     * @param expectedMessage expected message arising from the command.
+     * @param expectedModel model which we expect the executed command to produce.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
             Model expectedModel) {
@@ -138,7 +151,11 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the smartlib, filtered reader list and selected reader in {@code actualModel} remain unchanged
+     * - the smartlib, filtered reader list and selected reader in {@code actualModel} remain unchanged.
+     *
+     * @param command command to be executed.
+     * @param actualModel model obtained from executing the command.
+     * @param expectedMessage expected message arising from the command.
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
@@ -150,9 +167,13 @@ public class CommandTestUtil {
         assertEquals(expectedSmartLib, actualModel.getSmartLib());
         assertEquals(expectedFilteredList, actualModel.getFilteredReaderList());
     }
+
     /**
      * Updates {@code model}'s filtered list to show only the reader at the given {@code targetIndex} in the
      * {@code model}'s smartlib.
+     *
+     * @param model model to be examined.
+     * @param targetIndex index of the reader to be shown in the filtered list.
      */
     public static void showReaderAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredReaderList().size());
@@ -167,6 +188,9 @@ public class CommandTestUtil {
     /**
      * Updates {@code model}'s filtered list to show only the book at the given {@code targetIndex} in the
      * {@code model}'s smartlib.
+     *
+     * @param model model to be examined.
+     * @param targetIndex index of the book to be shown in the filtered list.
      */
     public static void showBookAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredBookList().size());
@@ -181,6 +205,9 @@ public class CommandTestUtil {
     /**
      * Updates {@code model}'s filtered list to show only the record at the given {@code targetIndex} in the
      * {@code model}'s smartlib.
+     *
+     * @param model model to be examined.
+     * @param targetIndex index of the record to be shown in the filtered list.
      */
     public static void showRecordAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredRecordList().size());
@@ -190,6 +217,5 @@ public class CommandTestUtil {
         model.updateFilteredRecordList((new RecordContainsBarcodePredicate(barcode)));
         assertEquals(1, model.getFilteredRecordList().size());
     }
-
 
 }

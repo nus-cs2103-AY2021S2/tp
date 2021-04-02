@@ -18,8 +18,8 @@ import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_PUBLISHER_HARRY;
 import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_PUBLISHER_MAZE;
-import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_TAG_MEMBERSHIP;
+import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_TAG_VIP;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -121,7 +121,7 @@ public class TypicalModels {
             .withAddress("123, Jurong West Ave 6, #08-111")
             .withEmail("alice@example.com")
             .withPhone("94351253")
-            .withTags("friends")
+            .withTags("VIP")
             .build();
 
     public static final Reader BENSON = new ReaderBuilder()
@@ -129,7 +129,7 @@ public class TypicalModels {
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com")
             .withPhone("98765432")
-            .withTags("owesMoney", "friends")
+            .withTags("VIP", "TopBorrower")
             .build();
 
     public static final Reader CARL = new ReaderBuilder()
@@ -144,7 +144,7 @@ public class TypicalModels {
             .withPhone("87652533")
             .withEmail("cornelia@example.com")
             .withAddress("10th street")
-            .withTags("friends")
+            .withTags("VVIP")
             .build();
 
     public static final Reader ELLE = new ReaderBuilder()
@@ -191,7 +191,7 @@ public class TypicalModels {
             .withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY)
             .withAddress(VALID_ADDRESS_AMY)
-            .withTags(VALID_TAG_FRIEND)
+            .withTags(VALID_TAG_MEMBERSHIP)
             .build();
 
     public static final Reader BOB = new ReaderBuilder()
@@ -199,7 +199,7 @@ public class TypicalModels {
             .withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB)
             .withAddress(VALID_ADDRESS_BOB)
-            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+            .withTags(VALID_TAG_VIP, VALID_TAG_MEMBERSHIP)
             .build();
 
     //=========== Records ==================================================================================
@@ -250,4 +250,5 @@ public class TypicalModels {
     public static List<Book> getTypicalBooks() {
         return new ArrayList<>(Arrays.asList(HARRY_PORTER, PROMISE_LAND, LEGACY, HABIT, POWER, LIFE, SECRET));
     }
+
 }

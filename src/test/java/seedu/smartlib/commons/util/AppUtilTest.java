@@ -33,4 +33,5 @@ public class AppUtilTest {
         String errorMessage = "error message";
         assertThrows(IllegalArgumentException.class, errorMessage, () -> AppUtil.checkArgument(false, errorMessage));
     }
+
 }

@@ -16,14 +16,14 @@ import static seedu.smartlib.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.smartlib.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.smartlib.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.smartlib.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
-import static seedu.smartlib.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
-import static seedu.smartlib.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
+import static seedu.smartlib.logic.commands.CommandTestUtil.TAG_DESC_MEMBERSHIP;
+import static seedu.smartlib.logic.commands.CommandTestUtil.TAG_DESC_VIP;
 import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_TAG_MEMBERSHIP;
+import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_TAG_VIP;
 import static seedu.smartlib.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.smartlib.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.smartlib.testutil.TypicalModels.AMY;
@@ -41,37 +41,38 @@ import seedu.smartlib.model.tag.Tag;
 import seedu.smartlib.testutil.ReaderBuilder;
 
 public class AddReaderCommandParserTest {
+
     private AddReaderCommandParser parser = new AddReaderCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Reader expectedReader = new ReaderBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
+        Reader expectedReader = new ReaderBuilder(BOB).withTags(VALID_TAG_MEMBERSHIP).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddReaderCommand(expectedReader));
+                + ADDRESS_DESC_BOB + TAG_DESC_MEMBERSHIP, new AddReaderCommand(expectedReader));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddReaderCommand(expectedReader));
+                + ADDRESS_DESC_BOB + TAG_DESC_MEMBERSHIP, new AddReaderCommand(expectedReader));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddReaderCommand(expectedReader));
+                + ADDRESS_DESC_BOB + TAG_DESC_MEMBERSHIP, new AddReaderCommand(expectedReader));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddReaderCommand(expectedReader));
+                + ADDRESS_DESC_BOB + TAG_DESC_MEMBERSHIP, new AddReaderCommand(expectedReader));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddReaderCommand(expectedReader));
+                + ADDRESS_DESC_BOB + TAG_DESC_MEMBERSHIP, new AddReaderCommand(expectedReader));
 
         // multiple tags - all accepted
-        Reader expectedReaderMultipleTags = new ReaderBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+        Reader expectedReaderMultipleTags = new ReaderBuilder(BOB).withTags(VALID_TAG_MEMBERSHIP, VALID_TAG_VIP)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddReaderCommand(expectedReaderMultipleTags));
+                + TAG_DESC_VIP + TAG_DESC_MEMBERSHIP, new AddReaderCommand(expectedReaderMultipleTags));
     }
 
     @Test
@@ -111,23 +112,23 @@ public class AddReaderCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid name
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_VIP + TAG_DESC_MEMBERSHIP, Name.MESSAGE_CONSTRAINTS);
 
         // invalid phone
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Phone.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_VIP + TAG_DESC_MEMBERSHIP, Phone.MESSAGE_CONSTRAINTS);
 
         // invalid email
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Email.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_VIP + TAG_DESC_MEMBERSHIP, Email.MESSAGE_CONSTRAINTS);
 
         // invalid address
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Address.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_VIP + TAG_DESC_MEMBERSHIP, Address.MESSAGE_CONSTRAINTS);
 
         // invalid tag
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + INVALID_TAG_DESC + VALID_TAG_FRIEND, Tag.MESSAGE_CONSTRAINTS);
+                + INVALID_TAG_DESC + VALID_TAG_MEMBERSHIP, Tag.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC,
@@ -135,7 +136,8 @@ public class AddReaderCommandParserTest {
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+                + ADDRESS_DESC_BOB + TAG_DESC_VIP + TAG_DESC_MEMBERSHIP,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddReaderCommand.MESSAGE_USAGE));
     }
+
 }

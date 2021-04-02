@@ -31,7 +31,12 @@ public class NameContainsKeywordsPredicate implements Predicate<Reader> {
     public boolean test(Reader reader) {
         return keywords
                 .stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(reader.getName().toString(), keyword));
+                .anyMatch(keyword -> {
+                    if (!keyword.equals("")) {
+                        return StringUtil.containsWordIgnoreCase(reader.getName().toString(), keyword);
+                    }
+                    return false;
+                });
     }
 
     /**

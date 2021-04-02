@@ -262,6 +262,7 @@ public class ModelManager implements Model {
         boolean status = smartLib.borrowBook(readerName, barcode);
         updateFilteredReaderList(PREDICATE_SHOW_ALL_READERS);
         updateFilteredBookList(PREDICATE_SHOW_ALL_BOOKS);
+        updateFilteredRecordList(PREDICATE_SHOW_ALL_RECORDS);
         return status;
     }
 
@@ -376,9 +377,7 @@ public class ModelManager implements Model {
         requireNonNull(books);
 
         for (Book b : books) {
-            if (!b.isBorrowed()) {
-                return b.getBarcode();
-            }
+            return b.getBarcode();
         }
 
         return null;
@@ -433,6 +432,16 @@ public class ModelManager implements Model {
      * @return an unmodifiable view of the filtered reader list.
      */
     @Override
+    public ObservableList<Reader> getFilteredReaderList() {
+        return filteredReaders;
+    }
+
+    /**
+     * Returns an unmodifiable view of the filtered book list.
+     *
+     * @return an unmodifiable view of the filtered book list.
+     */
+    @Override
     public ObservableList<Book> getFilteredBookList() {
         return filteredBooks;
     }
@@ -445,16 +454,6 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Record> getFilteredRecordList() {
         return filteredRecords;
-    }
-
-    /**
-     * Returns an unmodifiable view of the filtered book list.
-     *
-     * @return an unmodifiable view of the filtered book list.
-     */
-    @Override
-    public ObservableList<Reader> getFilteredReaderList() {
-        return filteredReaders;
     }
 
     /**

@@ -27,6 +27,7 @@ import seedu.smartlib.model.tag.Tag;
 public class ParserUtilTest {
 
     //=========== Books ==================================================================================
+
     private static final String INVALID_BOOK_NAME = "Sorcerer's Stone";
     private static final String INVALID_BOOK_AUTHOR = "J.K. Rowling";
     private static final String INVALID_BOOK_PUBLISHER = " ";
@@ -38,7 +39,9 @@ public class ParserUtilTest {
     private static final String VALID_BOOK_PUBLISHER = "Crown Publishing Group";
     private static final String VALID_BOOK_ISBN = "9781524763169";
     private static final String VALID_BOOK_GENRE = "Novel";
+
     //=========== Readers ==================================================================================
+
     private static final String INVALID_READER_NAME = "R@chel";
     private static final String INVALID_READER_PHONE = "+651234";
     private static final String INVALID_READER_ADDRESS = " ";
@@ -318,5 +321,6 @@ public class ParserUtilTest {
         Genre expectedGenre = new Genre(new Name(VALID_BOOK_GENRE));
         assertEquals(expectedGenre, ParserUtil.parseGenre(genreWithWhitespace));
     }
+
 }
 

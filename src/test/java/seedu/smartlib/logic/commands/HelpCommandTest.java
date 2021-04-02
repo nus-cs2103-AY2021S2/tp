@@ -9,6 +9,7 @@ import seedu.smartlib.model.Model;
 import seedu.smartlib.model.ModelManager;
 
 public class HelpCommandTest {
+
     private Model model = new ModelManager();
     private Model expectedModel = new ModelManager();
 
@@ -17,4 +18,5 @@ public class HelpCommandTest {
         CommandResult expectedCommandResult = new CommandResult(SHOWING_HELP_MESSAGE, true, false);
         assertCommandSuccess(new HelpCommand(), model, expectedCommandResult, expectedModel);
     }
+
 }

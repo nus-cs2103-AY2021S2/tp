@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.smartlib.logic.commands.CommandTestUtil.VALID_TAG_VIP;
 import static seedu.smartlib.testutil.Assert.assertThrows;
 import static seedu.smartlib.testutil.TypicalModels.ALICE;
 import static seedu.smartlib.testutil.TypicalModels.BOB;
@@ -42,7 +42,7 @@ public class UniqueReaderListTest {
     @Test
     public void contains_readerWithSameIdentityFieldsInList_returnsTrue() {
         uniqueReaderList.addReader(ALICE);
-        Reader editedAlice = new ReaderBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Reader editedAlice = new ReaderBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_VIP)
                 .build();
         assertTrue(uniqueReaderList.contains(editedAlice));
     }
@@ -85,7 +85,7 @@ public class UniqueReaderListTest {
     @Test
     public void setReader_editedReaderHasSameIdentity_success() {
         uniqueReaderList.addReader(ALICE);
-        Reader editedAlice = new ReaderBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Reader editedAlice = new ReaderBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_VIP)
                 .build();
         uniqueReaderList.setReader(ALICE, editedAlice);
         UniqueReaderList expectedUniqueReaderList = new UniqueReaderList();
@@ -167,4 +167,5 @@ public class UniqueReaderListTest {
         assertThrows(UnsupportedOperationException.class, ()
             -> uniqueReaderList.asUnmodifiableObservableList().remove(0));
     }
+
 }

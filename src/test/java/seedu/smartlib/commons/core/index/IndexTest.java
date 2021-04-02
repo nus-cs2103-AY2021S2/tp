@@ -57,4 +57,5 @@ public class IndexTest {
         // different index -> returns false
         assertFalse(fifthReaderIndex.equals(Index.fromOneBased(1)));
     }
+
 }

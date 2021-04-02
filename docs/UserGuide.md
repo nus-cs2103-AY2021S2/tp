@@ -178,7 +178,7 @@ Outcome:
 * The _Result Display_ will show a message indicating success.
 * SmartLib will list out all the readers with "Bob" in their name.<br><br>
     ![result for 'findreader Bob'](images/findBobResult.png)
-  
+
 ##### By tag:
 
 You can also use this command to find readers whose tags contain any of the specified tags.
@@ -308,6 +308,12 @@ Lists all the current in-store books.
 
 Format: `listbook`
 
+#### Listing all overdue books : `listoverdue`
+
+Similar to `listbook` except the books listed are all overdue.
+
+Format: `listoverdue`
+
 ### Managing borrowing records
 
 SmartLib also provides a variety of features to manage the borrowing records of your readers.
@@ -350,6 +356,7 @@ Format: `return bc/BARCODE`
 **:information_source: Notes:**
 * Refer to [Records' Command Parameters](#records-command-parameters) for more details about each parameter.
 * Lets the reader return the book specified by barcode BARCODE.
+* The output message will contain the amount of fine that the reader needs to pay if the book is overdue.
 
 Examples:
 * `return bc/1202179131` records a rental entry that the book with the corresponding barcode has been returned.
@@ -428,12 +435,12 @@ the data of your previous SmartLib home folder.
 * **Alphanumeric**: Alphanumeric characters include uppercase letters from 'A' to 'Z',
     lowercase letters from 'a' to 'z', and
     numbers from '0` to '9'.
-    
+
 * **Command Box**: The _Command Box_ is the component of the GUI where you will be entering your user input.
 
 * **Result Display**: The _Result Display_ is the component of the GUI where you will be notified whether your command
     was successfully executed by SmartLib.
-    
+
 * **Special characters**: Special characters refer to any characters that are not alphanumeric.
 
 ![annotated Ui](images/Ui-annotated.png)

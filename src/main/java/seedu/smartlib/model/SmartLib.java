@@ -502,9 +502,6 @@ public class SmartLib implements ReadOnlySmartLib {
         }
 
         if (!reader.getBorrows().containsKey(book) || !book.getBorrowerName().equals(readerName)) {
-            System.out.println(reader.getBorrows());
-            System.out.println(book.getBorrowerName());
-            System.out.println("Reader did not borrow the book, or Book was not borrowed to the reader.");
             return false;
         }
 

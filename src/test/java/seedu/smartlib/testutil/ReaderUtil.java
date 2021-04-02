@@ -20,6 +20,9 @@ public class ReaderUtil {
 
     /**
      * Returns an add command string for adding the {@code reader}.
+     *
+     * @param reader reader to be added.
+     * @return an add command string for adding the reader.
      */
     public static String getAddCommand(Reader reader) {
         return AddReaderCommand.COMMAND_WORD + " " + getReaderDetails(reader);
@@ -27,6 +30,9 @@ public class ReaderUtil {
 
     /**
      * Returns the part of command string for the given {@code reader}'s details.
+     *
+     * @param reader reader to be examined.
+     * @return details of the reader that is examined.
      */
     public static String getReaderDetails(Reader reader) {
         StringBuilder sb = new StringBuilder();
@@ -42,6 +48,9 @@ public class ReaderUtil {
 
     /**
      * Returns the part of command string for the given {@code EditReaderDescriptor}'s details.
+     *
+     * @param descriptor edit reader descriptor to be examined.
+     * @return command string for the given EditReaderDescriptor's details.
      */
     public static String getEditReaderDescriptorDetails(EditReaderDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
@@ -59,4 +68,5 @@ public class ReaderUtil {
         }
         return sb.toString();
     }
+
 }

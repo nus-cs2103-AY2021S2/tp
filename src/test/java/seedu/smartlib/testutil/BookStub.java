@@ -9,6 +9,9 @@ import seedu.smartlib.model.book.Isbn;
 import seedu.smartlib.model.book.Publisher;
 import seedu.smartlib.model.record.DateBorrowed;
 
+/**
+ * A default book stub that has a more lenient version of the equals method.
+ */
 public class BookStub extends Book {
 
     /**
@@ -41,6 +44,12 @@ public class BookStub extends Book {
         super(name, author, publisher, isbn, barcode, genre, borrowerName, dateBorrowed);
     }
 
+    /**
+     * Checks if this BookStub is equal to another BookStub.
+     *
+     * @param other the other BookStub to be compared.
+     * @return true if this BookStub is equal to the other BookStub, and false otherwise.
+     */
     @Override
     public boolean equals(Object other) {
         if (other == this) {
