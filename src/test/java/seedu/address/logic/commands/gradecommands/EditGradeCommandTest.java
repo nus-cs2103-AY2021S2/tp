@@ -12,10 +12,15 @@ import seedu.address.testutil.GradeBuilder;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_MATHS;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_SCIENCE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SUBJECT_NAME_PHYSICS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GRADED_ITEM_PHYSICS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GRADE_PHYSICS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SUBJECT_NAME_SCIENCE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GRADED_ITEM_SCIENCE;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAppointments.getTypicalAppointmentBook;
 import static seedu.address.testutil.TypicalBudgets.getTypicalBudgetBook;
