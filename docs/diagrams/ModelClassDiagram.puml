@@ -5,52 +5,76 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Interface ReadOnlyAddressBook <<Interface>>
+Interface ReadOnlySochedule <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
-Class AddressBook
-Class ReadOnlyAddressBook
+Class Sochedule
+Class ReadOnlySochedule
 Class Model
 Class ModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
 
-Package Person {
-Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
-Class UniquePersonList
+Package Task {
+Class Task
+Class CompletionStatus
+Class Priority
+Class Deadline
+Class PinnedStatus
+Class UniqueTaskList
+}
+
+Package Event {
+Class Event
+Class StartDate
+Class StartTime
+Class EndDate
+Class EndTime
+Class UniqueEventList
 }
 
 Package Tag {
 Class Tag
+}
+
+Package Category {
+Class Category
 }
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+Sochedule .up.|> ReadOnlySochedule
 
 ModelManager .up.|> Model
 Model .right.> ObservableList
-ModelManager o--> "1" AddressBook
+ModelManager o--> "1" Sochedule
 ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList o--> "*" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+Sochedule *--> "1" UniqueTaskList
+UniqueTaskList o--> "*" Task
+Task *--> Deadline
+Task *--> CompletionStatus
+Task *--> PinnedStatus
+Task *--> Priority
+Task *--> "*" Tag
+Task *--> "*" Category
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+Sochedule *--> "1" UniqueEventList
+UniqueEventList o--> "*" Event
+Event *--> StartDate
+Event *--> StartTime
+Event *--> EndDate
+Event *--> EndTime
+Event *--> "*" Tag
+Event *--> "*" Category
 
-ModelManager ----->" ~* filtered list" Person
+PinnedStatus -[hidden]right-> CompletionStatus
+Deadline -[hidden]right-> Priority
+CompletionStatus -[hidden]right-> Deadline
+
+ModelManager ----->" ~* filtered list" Task
+ModelManager ----->" ~* filtered list" Event
 @enduml

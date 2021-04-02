@@ -127,21 +127,53 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2021S2-CS2103-W16-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the Sochedule data.
+* exposes an unmodifiable `ObservableList<Task>` and an unmodifiable `ObservableList<Event>`that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
-![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
+<div markdown="span" class="alert alert-info">:information_source: 
+**Note:** An (arguably) more OOP model can store a `Tag` list and a `Category` list in the `Sochedule`, which `Task` and `Event` can refer.
+This allows `Sochedule` to only require one `Tag` object per unique `Tag`, and one `Category` object per unique `Object`, 
+instead of each `Task` and `Event` needing their own `Tag` and `Category` object.<br>
 
 </div>
 
+#### 3.4.1 Design considerations for Task-related Models
+When implementing Task-related models, it is important to avoid adding duplicate tasks. 
+For example, it is undesirable for users to add the same task, completing CS2103 Quiz before 2021-06-01, twice into the task list. 
+Because these two tasks contain the same information and can potentially cause confusion for users 
+when he completes one and finds another task with the same description still left uncompleted.
+
+In our application, we require users to minimally provide the name, deadline and priority when creating a task.
+To ensure duplicates are handled, our team went through several alternatives and here are our considerations.
+
+* Alternative 1 (Chosen Implementation): `equals(Task task)` method should check if the name, priority, deadline, 
+  tags (if any) and categories (if any) are equal.
+  * Pros:  
+    * Tasks with same name but different deadline, priority and/or any other fields are allowed.
+  * Cons:
+    * Harder to implement.
+* Alternative 2 : `equals(Task task)` method should check for the equality of task name only.
+    * Pros:
+        * Easier to implement.
+        * Ensure that the task names are always distinct.
+    * Cons:
+        * Less flexibility and may not meet some users' need because task with same name but other different fields are not allowed.
+
+We chose Alternative 1 because it is more flexible and suitable for users' need. 
+There can be multiple tasks with same name but other different fields, like deadlines. 
+For example, a user may need to create two tasks with the same name '2103 quiz',
+but one is due on this Monday and the other is due the next Monday. Both of these 2 tasks should be allowed in our task list.
+
+#### 3.4.2 Design considerations for Event-Related Models
+Similar to Task-related Models, we face the same challenge when choosing between checking for the equality of name only and 
+checking for all fields entered by the user. We chose to check for all fields for the same reasons as mentioned above.
 
 ### 3.5 Storage component
 
@@ -209,6 +241,35 @@ The sequence diagram for `SummaryCommand` can be found below.
 
 ![Sequence Diagram of Summary Command](images/SummaryCommandSequenceDiagram.png)
 
+**Implementation of FindScheduleCommand**  
+The following is a detailed explanation on how SummaryCommand is implemented.
+
+**Step 1**: User executes `find_schedule DATE` command to find the ongoing tasks and events before or on the given date.
+An `FindScheduleCommandParser` object is created, and the `FindScheduleCommandParser#parse(String args)` method is called.
+The method conducts parses the `DATE` and conducts validation checks to ensure that it complies with the specification.
+Two predicates, `TaskFindSchedulePredicate(Date date)` and `EventFindSchedulePredicate(Date date)` are created based on the given date.
+Then, a `FindScheduleCommand` object is created given the two predicates and returned.
+
+**Step 2**: On `FindScheduleCommand#execute()`, 
+`Model#updateFilteredTaskList(TaskFindSchedulePredicate taskPredicate)` 
+and `Model#updateFilteredEventList(EventFindSchedulePredicate eventPredicate)` are called.
+This will update the task list to only show the uncompleted tasks with deadline before or on the given date.
+Similary, the event list will be updated to only show the events with start date before or on the given date and end date after or on the given date.
+For brevity, lower level implementation of `Model#updateFilteredTaskList(TaskFindSchedulePredicate taskPredicate)` 
+and `Model#updateFilteredEventList(EventFindSchedulePredicate eventPredicate)` are omitted.
+
+**Step 3**: On execution completion a `CommandResult` is created.
+A success message will be appended with `CommandResult#MESSAGE_FIND_SCHEDULE_SUCCESS`.
+The sequence diagram for `FindScheduleCommand` can be found below.
+
+![Sequence Diagram of FindSchedule Command](images/FindScheduleCommandSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: 
+**Note:** Due to the size constraint, the argument `taskPredicate` is not shown in the sequence diagram 
+when calling the method `Model#updateFilteredTaskList(TaskFindSchedulePredicate taskPredicate)`.
+Same for the method `Model#updateFilteredEventList(EventFindSchedulePredicate eventPredicate)`.
+</div>
+
 ### 4.2 Task
 
 #### 4.2.1 Overview
@@ -235,8 +296,6 @@ The sequence diagram for `AddTaskCommand` can be found below.
 
 ![Sequence Diagram of AddTask Command](images/AddTaskCommandSequenceDiagram.png)
 
-
-
 **Implementation of DeleteTaskCommand**  
 The following is a detailed explanation on how DeleteTaskCommand is implemented.
 
@@ -258,11 +317,39 @@ The sequence diagram for `DeleteTaskCommand` can be found below.
 ![Sequence Diagram of DeleteTask Command](images/DeleteTaskCommandSequenceDiagram.png)
 
 
+**Implementation of UndoneTaskCommand**  
+The following is a detailed explanation on how UndoneTaskCommand is implemented.
+
+**Step 1**: User executes `undone_task Index` command to mark the completed task at the given index as uncompleted. 
+Let us call this task the target task.
+A `UndoneTaskCommandParser` object is created, and the `UndoneTaskCommandParser#parse(String args)` method is called.
+The method conducts parses the `args` and conducts validation checks to ensure that the given index is a valid unsigned non-zero integer.
+A `UndoneTaskCommand` object is returned.
+
+**Step 2**: On `UndoneTaskCommand#execute()`, the index is further checked to ensure it is not out of range (i.e. larger than the size of task list)
+and the target task is indeed a completed task.
+Afterwards, `UndoneTaskCommand#createUncompletedTask()` method is called.
+This method copies the information of the target task and creates an uncompleted task with exactly the same information as the target task.
+Finally, `Model#setTask(Task taskToUndone, Task uncompletedTask)` and `Model#updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS)` method are called.
+These two methods updates the target task in the task list and refresh the UI to show the update.
+For brevity, lower level implementation of `UndoneTaskCommand#createUncompletedTask()`, 
+`Model#setTask(Task taskToUndone, Task uncompletedTask)`, `Model#updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS)` are omitted.
+
+**Step 3**: On execution completion a `CommandResult` is created.
+A success message will be appended with `CommandResult#MESSAGE_UNDONE_TASK_SUCCESS`.
+
+The sequence diagram for `UndoneTaskCommand` can be found below.
+![Sequence Diagram of UndoneTask Command](images/UndoneTaskCommandSequenceDiagram.png)
+<div markdown="span" class="alert alert-info">:information_source: 
+**Note:** Due to the size constraint, the argument `PREDICATE_SHOW_ALL_TASKS` is not shown in the sequence diagram 
+when calling the method `Model#updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS)`.
+</div>
+
 **Implementation of EditTaskCommand**  
 The following is a detailed explanation on how EditTaskCommand is implemented.
 
 **Step 1**: User executes `Edit_task Index` command to Edit the task at the given index.
-An `EditTaskParser` object is created, and the `EditTaskParser#parse(String args)` method is called.
+An `EditTaskCommandParser` object is created, and the `EditTaskCommandParser#parse(String args)` method is called.
 The method conducts parses the `args` and conducts validation checks to ensure that it complies with the specification.
 An `EditTaskDescriptor` object is created, and it contains all the field an Task needed. 
 If the field is edited, then store the edited one; otherwise, store the original value.
@@ -287,7 +374,7 @@ The sequence diagram for `EditTaskCommand` can be found below.
 The following is a detailed explanation on how SortTaskCommand is implemented in the Logic component.
 
 **Step 1**: User executes `sort SORT_VAR` command to sort the tasks based on the `SORT_VAR` provided.
-An `SortTaskParser` object is created, and the `SortTaskParser#parse(String args)` method is called. 
+An `SortTaskCommandParser` object is created, and the `SortTaskCommandParser#parse(String args)` method is called. 
 The method conducts parses the `SORT_VAR` and conducts validation checks to ensure that it complies with the specification.
 A `SortTaskCommand` object is returned.
 
@@ -312,7 +399,7 @@ The following is a detailed explanation on how PinTaskCommand is implemented.
 UnpinTaskCommand is largely similar in implementation to PinTaskCommand and will be omitted for brevity.
 
 **Step 1**: User executes `pin_task INDEX` command to pin the task at the given index.
-An `PinTaskParser` object is created, and the `PinTaskParser#parse(String args)` method is called.
+An `PinTaskCommandParser` object is created, and the `PinTaskCommandParser#parse(String args)` method is called.
 The method conducts parses the `args` and conducts validation checks to ensure that it complies with the specification.
 A `PinTaskCommand` object is returned.
 
