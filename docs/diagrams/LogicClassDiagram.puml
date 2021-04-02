@@ -60,4 +60,3 @@ LogicManager .down.> CommandResult
 Command .up.> CommandResult
 CommandResult -[hidden]-> Parser
 @enduml
-
