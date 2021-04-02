@@ -357,7 +357,7 @@ Action  | Format, Examples
 **Undelivered** | `undelivered INDEXES`<br> e.g., `undelivered 3 4`
 **Delivered** | `delivered INDEXES`<br> e.g., `delivered 3 4`
 **Cancelled** | `cancelled INDEXES`<br> e.g., `cancelled 3 4`
-**Add Order Item** | `addItem ORDER_ITEM_DESCRIPTION`<br> e.g., `addItem 2 x Chocolate Cake`
+**Add Order Item** | `addItem ORDER_ITEM_DESCRIPTION`<br> e.g., `addItem 2 x Red Velvet`
 **Delete Order Item** | `deleteItem ORDER_ITEM_INDEXES`<br> e.g., `deleteItem 2 3`
 --------------------------------------------------------------------------------------------------------------------
 
