@@ -12,7 +12,6 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_POOLS;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import java.util.StringJoiner;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -52,61 +51,64 @@ public class PoolCommand extends Command {
     public static final String MESSAGE_NO_COMMUTERS = "No commuters were selected.";
     public static final String MESSAGE_POOL_SUCCESS = "Successfully created pool: %s";
     public static final String MESSAGE_DUPLICATE_POOL = "This pool already exists in the GME Terminal";
+    public static final String MESSAGE_TRIPDAY_MISMATCH = "One of the passengers specified "
+            + "have a trip day that does not match this pool driver's trip day";
 
     private final Driver driver;
     private final TripDay tripDay;
     private final TripTime tripTime;
-    private final Set<Index> passengers;
+    private final Set<Index> indexes;
     private final Set<Tag> tags;
 
     /**
-     * //TODO edit java docs
-     * @param driver
-     * @param passengers
-     * @param tripDay
-     * @param tripTime
-     * @param tags
+     * Creates a PoolCommand that adds a pool specified by {@code Driver}, {@code TripDay}, {@code TripTime}
+     * with passengers specified.
      */
-    public PoolCommand(Driver driver, Set<Index> passengers, TripDay tripDay, TripTime tripTime, Set<Tag> tags) {
+    public PoolCommand(Driver driver, Set<Index> indexes, TripDay tripDay, TripTime tripTime, Set<Tag> tags) {
         requireNonNull(driver);
-        requireNonNull(passengers);
+        requireNonNull(indexes);
         requireNonNull(tripDay);
         requireNonNull(tripTime);
         this.driver = driver;
-        this.passengers = passengers;
+        this.indexes = indexes;
         this.tripDay = tripDay;
         this.tripTime = tripTime;
         this.tags = tags;
     }
 
-    @Override
-    public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
-        if (passengers.size() == 0) {
-            throw new CommandException(MESSAGE_NO_COMMUTERS);
-        }
-        StringJoiner joiner = new StringJoiner(", ");
+    private List<Passenger> getPassengersFromIndexes(Set<Index> indexes, Model model) throws CommandException {
 
-        // Freeze the list so we don't have to manage the model filtering the passengers
         List<Passenger> lastShownList = List.copyOf(model.getFilteredPassengerList());
 
-        for (Index idx : passengers) {
+        List<Passenger> passengers = new ArrayList<>();
+
+        for (Index idx : indexes) {
             if (idx.getZeroBased() >= lastShownList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_PASSENGER_DISPLAYED_INDEX);
             }
-        }
-
-        // obtain passengers from indices
-        List<Passenger> passengersToPool = new ArrayList<>();
-
-        for (Index idx : passengers) {
             Passenger passenger = lastShownList.get(idx.getZeroBased());
             assert passenger != null : "passenger should not be null";
-            passengersToPool.add(passenger);
+
+            boolean isTripDayMismatch = !passenger.getTripDay().equals(tripDay);
+            if (isTripDayMismatch) {
+                throw new CommandException(MESSAGE_TRIPDAY_MISMATCH);
+            }
+            passengers.add(passenger);
         }
 
-        //since passengers in list are unique, passenger fetched from idx should also be unique, so as hashset from list
-        Pool toAdd = new Pool(driver, tripDay, tripTime, passengersToPool, tags);
+        return passengers;
+    }
+
+    @Override
+    public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
+        if (indexes.size() == 0) {
+            throw new CommandException(MESSAGE_NO_COMMUTERS);
+        }
+
+        List<Passenger> passengers = getPassengersFromIndexes(indexes, model);
+
+        Pool toAdd = new Pool(driver, tripDay, tripTime, passengers, tags);
 
         if (model.hasPool(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_POOL);
@@ -123,6 +125,6 @@ public class PoolCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof PoolCommand // instanceof handles nulls
                 && (driver.equals(((PoolCommand) other).driver)
-                && passengers.equals(((PoolCommand) other).passengers)));
+                && indexes.equals(((PoolCommand) other).indexes)));
     }
 }
