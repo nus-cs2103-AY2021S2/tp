@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT_NAME;
 import seedu.address.logic.commands.gradecommands.AddGradeCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
+import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.grade.Grade;
@@ -18,7 +19,7 @@ import seedu.address.model.subject.SubjectName;
 /**
  * Parses input arguments and creates a new AddGradeCommand object
  */
-public class AddGradeCommandParser {
+public class AddGradeCommandParser implements Parser<AddGradeCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddGradeCommand
