@@ -85,8 +85,7 @@ Example warning!
 
 Messages that appear in an infomation box are additional information that may be useful to know.
 
-<div markdown="block" class="alert alert-info">:information_source:
-**Info:**
+<div markdown="span" class="alert alert-info">:information_source: **Info:**
 Example information!
 </div>
 
@@ -131,7 +130,11 @@ Parameters refer to information that is to be included as an input to a command.
 
 #### 2.2.4 Command Parameters
 
-This subsection serves to list out the parameters used in this document. To achieve the best possible experience, we have recommended limits for some parameters. This includes recommendation on limits for long text that may result in horizontal scrolling for some areas of the UI.
+This subsection serves to list out the parameters used in this document. 
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+To achieve the best possible experience, avoid adding excessively long text to CoLAB. At small screen resolutions and with unusually long parameters, text may be truncated to  fit in the main panel. While we do not expect such occurrences to happen in day to day regular use, we have made accommodations for it. To view the rest of the truncated text, simple hover over the relevant section and scroll sideways, either with a trackpad or shift-scroll if you are using a mouse with a scroll wheel.
+</div>
 
 ##### `ADDRESS`
 
