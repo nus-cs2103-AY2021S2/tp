@@ -887,7 +887,7 @@ Action | Format, Examples
 **Update Contact** | `updateC CONTACT_INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`updateC 2 n/James Lee e/jameslee@example.com`
 **Find Contact** | `findC KEYWORD [MORE_KEYWORDS]`<br> e.g., `findC James Jake`
 
-### Others
+### Today View and Other Commands
 
 Action | Format, Examples
 --------|------------------
