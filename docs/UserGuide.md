@@ -472,7 +472,8 @@ Format: `deleteT PROJECT_INDEX i/TODO_INDEX`
 
 Parameters:
 
-* [`PROJECT_INDEX`](#index) The index of the project. * [`TODO_INDEX`](#index) The index of the todo.
+* [`PROJECT_INDEX`](#index) The index of the project. 
+* [`TODO_INDEX`](#index) The index of the todo.
 
 Example:
 
