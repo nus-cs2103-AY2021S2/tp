@@ -85,7 +85,7 @@ The available dashboards are detailed below.
 #### Upcoming Events
 By default, FriendDex displays your upcoming events on the details panel, such as upcoming birthdays and special dates.
 
-#### Streaks
+#### Streaks Dashboard
 The Streaks dashboard shows how consistent you stick to your goal of meeting your friends up till the current day.    
 
 #### Full Details of a Person
@@ -395,6 +395,17 @@ Example:
 See also:
 * [Defining your own Theme](#defining-your-own-theme)
 
+### Viewing different details panel: `view`
+
+Select a details panel to display. Available panels:
+* Upcoming Events (`upcoming events`)
+* Streaks (`streaks`)
+
+Format: `view (upcoming events | streaks)`
+
+Example:
+* `view streaks` will switch the details panel to show the Streaks dashboard.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Data Storage
@@ -488,4 +499,4 @@ Action | Format, Examples
 **Set Goal** | `set-goal INDEX f/FREQUENCY` <br> e.g. `set-goal 1 f/w`
 **Subtract Debt** | `subtract-debt INDEX DEBT_AMOUNT`<br> e.g. `subtract-debt 1 100`
 **Theme** | `theme THEME`<br> e.g. `theme theme/solarized.dark.json`
-**View** | `view (upcoming events OR streaks)` <br> e.g.`view streaks`
+**View** | `view (upcoming events \| streaks)` <br> e.g.`view streaks`
