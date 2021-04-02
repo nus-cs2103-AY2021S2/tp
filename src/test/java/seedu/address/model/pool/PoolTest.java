@@ -25,10 +25,7 @@ public class PoolTest {
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
         Pool pool = new PoolBuilder()
-                .withPassengers(
-                        new PassengerListBuilder()
-                        .withDefaultPassengers()
-                        .build())
+                .withDefaultPassengers()
                 .build();
         assertThrows(UnsupportedOperationException.class, () -> pool.getTags().remove(0));
     }
@@ -48,7 +45,7 @@ public class PoolTest {
 
         // different details, same tags -> returns false
         editedHomePool = new PoolBuilder(HOMEPOOL)
-                .withDriver(TypicalDrivers.BOB)
+                .withDriver(TypicalDrivers.DRIVER_BOB)
                 .withTripDay(DayOfWeek.WEDNESDAY)
                 .withTripTime(LocalTime.of(14, 0))
                 .withPassengers(new PassengerListBuilder()
@@ -79,7 +76,7 @@ public class PoolTest {
         assertFalse(HOMEPOOL.equals(OFFICEPOOL));
 
         // different driver -> returns false
-        Pool editedAlice = new PoolBuilder(HOMEPOOL).withDriver(TypicalDrivers.FIONA).build();
+        Pool editedAlice = new PoolBuilder(HOMEPOOL).withDriver(TypicalDrivers.DRIVER_FIONA).build();
         assertFalse(HOMEPOOL.equals(editedAlice));
 
         // different tripDay-> returns false
