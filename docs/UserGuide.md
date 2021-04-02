@@ -142,8 +142,10 @@ menu list (-a)
 #### `add` - Add a dish
 Format: 
 ```
-menu add n/[NAME] p/[PRICE]  
+menu add n/[NAME] p/[PRICE] i/[INGREDIENT_INDEX] q/[INGREDIENT_AMOUNT]...
 ```
+
+At least one pair of ingredient index and amount must be present.
 
 #### `delete` - Delete a dish from the menu
 Format:
@@ -156,7 +158,7 @@ menu delete [INDEX] (-f)
 #### `edit` - Edit dish
 Format:
 ```
-menu edit [INDEX] (n/[NAME]) (p/[PRICE])
+menu edit [INDEX] (n/[NAME]) (p/[PRICE]) (i/[INGREDIENT_INDEX] q/[INGREDIENT_AMOUNT]...)
 ```
 
 At least one of the fields in brackets must be present in the edit command.
@@ -233,7 +235,7 @@ order list
 #### `add` - Add an order
 Format: 
 ```
-order add n/[CUSTOMER_NAME] dt/[DELIVERY_DATETIME] (DD-MM-YYYY HH:MM) d/[DISH_NAME] q/[QUANTITY]...  
+order add n/[CUSTOMER_NAME] dt/[DELIVERY_DATETIME, DD-MM-YYYY HH:MM] d/[DISH_NAME] q/[QUANTITY]...  
 ```
 
 #### `delete` - Delete an order
