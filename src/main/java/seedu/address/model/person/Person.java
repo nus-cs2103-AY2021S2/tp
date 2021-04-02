@@ -251,6 +251,8 @@ public class Person {
                 .append(getGoal())
                 .append("; Address: ")
                 .append(getAddress())
+                .append("; Picture: ")
+                .append(getPicture())
                 .append("; Debt: ")
                 .append(getDebt());
 
@@ -274,6 +276,35 @@ public class Person {
                     .collect(Collectors.joining(", "));
             builder.append("; Meetings: ");
             builder.append(meetingsStr);
+        }
+
+        return builder.toString();
+    }
+
+    /**
+     * Returns description of Person to be printed
+     * @return String Person Description
+     */
+    public String toUi() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(getName())
+                .append("; Phone: ")
+                .append(getPhone())
+                .append("; Email: ")
+                .append(getEmail())
+                .append("; Birthday: ")
+                .append(getBirthday())
+                .append("; Goal: ")
+                .append(getGoal())
+                .append("; Address: ")
+                .append(getAddress())
+                .append("; Debt: ")
+                .append(getDebt());
+
+        Set<Tag> tags = getTags();
+        if (!tags.isEmpty()) {
+            builder.append("; Tags: ");
+            tags.forEach(builder::append);
         }
 
         return builder.toString();
