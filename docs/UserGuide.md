@@ -419,8 +419,15 @@ Format `theme THEME`
 * To apply a preinstalled theme, prepend it with an `@`.
 * Applied themes will persist for subsequent sessions. 
 
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:**
+You can also define your own theme. Find out more [here](#defining-your-own-theme). To apply a custom theme, 
+pass the file path to the custom theme as the `THEME` parameter.     
+</div>
+
 Example:
 * `theme @monokai` applies the `monokai` theme to the application.
+* `theme /Users/john/Desktop/themes/solarized.dark.json` applies the custom theme found at the given file path to the application.
 
 See also:
 * [Defining your own Theme](#defining-your-own-theme)
@@ -541,5 +548,5 @@ Action | Format, Examples
 **List** | `list [n/GROUP_NAME]` <br> e.g. `list n/Close Friends`
 **Set Goal** | `set-goal INDEX f/FREQUENCY` <br> e.g. `set-goal 1 f/w`
 **Subtract Debt** | `subtract-debt INDEX DEBT_AMOUNT`<br> e.g. `subtract-debt 1 100`
-**Theme** | `theme THEME`<br> e.g. `theme theme/solarized.dark.json`
+**Theme** | `theme THEME`<br> e.g. `theme @monokai`
 **View** | `view (upcoming events \| streaks)` <br> e.g.`view streaks`
