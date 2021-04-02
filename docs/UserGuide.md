@@ -378,6 +378,7 @@ If your changes to the data files makes its format invalid, App-Ointment will di
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
+
 | Action            | Format                                  | Examples                                           |
 |-------------------|-----------------------------------------|----------------------------------------------------|
 | **add-patient** | `add-patient n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]…​` | `add-patient n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` |
