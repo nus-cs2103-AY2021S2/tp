@@ -66,6 +66,12 @@ public class StringUtil {
         }
     }
 
+    /**
+     * Returns true if the {@code sentence} contains the {@code word}, even partially.
+     * This method ignores cases too.
+     * @param sentence cannot be null
+     * @param word cannot be null, cannot be empty, must be a single word.
+     */
     public static boolean isSubstring(String sentence, String word) {
         requireNonNull(sentence);
         requireNonNull(word);

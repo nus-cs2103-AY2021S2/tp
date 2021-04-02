@@ -2,6 +2,9 @@ package seedu.address.model.person;
 
 import java.util.function.Predicate;
 
+/**
+ * Tests that whether a {@code Person} is blacklisted.
+ */
 public class PersonBlacklistedPredicate implements Predicate<Person> {
     private final boolean isBlacklisted;
 

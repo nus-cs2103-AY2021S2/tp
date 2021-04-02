@@ -5,6 +5,9 @@ import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
 
+/**
+ * Tests that a {@code Person}'s {@code Phone} matches any of the numbers given.
+ */
 public class PhoneContainsNumbersPredicate implements Predicate<Person> {
     private final List<String> numbers;
 

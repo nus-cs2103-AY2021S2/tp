@@ -2,6 +2,9 @@ package seedu.address.model.person;
 
 import java.util.function.Predicate;
 
+/**
+ * Tests that a {@code Person}'s {@code ModeOfContact} matches the mode given.
+ */
 public class ModeOfContactPredicate implements Predicate<Person> {
     private final ModeOfContact modeOfContact;
 
