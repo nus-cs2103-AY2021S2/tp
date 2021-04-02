@@ -56,29 +56,7 @@ You can also easily sift through CoLAB's various commands and features by referr
 
 This subsection serves to provide explanations on the application's user interface (UI) as well as symbols, syntax and technical terms used throughout this User Guide. Familiarising yourself with this subsection will make the User Guide easier to read.
 
-#### 2.2.1 Sections of the Application Window
-
-Different sections of the application window will be referred to by the names described in the image shown below:
-
-![App Window Sections](images/app_window_sections.png)
-
-#### 2.2.2 Navigating the UI
-
-Although most of the buttons you see on the screen are clickable, the UI has been designed primarily to be navigated using the command line interface.
-
-Users can enter commands into the command box and press `ENTER` to execute it. The result box will be updated with information on whether the command has been successfully executed. Depending on the command executed, the main panel may also be updated based on the command executed.
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Most commands include all the required information (e.g. project index and deadline index when updating a deadline) needed so that you can run the command from anywhere in the app. 
-</div>
-
-When entering a command, you may find it helpful to see a history of your previous commands. To do so simply press `UP` or `DOWN` while typing to navigate through the command history list.
-
-<div markdown="span" class="alert alert-info">:information_source: **Info:**
-Only successfully executed commands will be saved.
-</div>
-
-#### 2.2.3 Special Formats
+#### 2.2.1 Special Formats
 
 Formats discussed in this section may be used in relevant areas of this user guide.
 
@@ -111,6 +89,28 @@ Example information!
 Words or sentences that appear in these highlighted boxes are being emphasised for their relevance in that section.
 
 `Example highlight!`
+
+#### 2.2.2 Sections of the Application Window
+
+Different sections of the application window will be referred to by the names described in the image shown below:
+
+![App Window Sections](images/app_window_sections.png)
+
+#### 2.2.3 Navigating the UI
+
+Although most of the buttons you see on the screen are clickable, the UI has been designed primarily to be navigated using the command line interface.
+
+Users can enter commands into the command box and press `ENTER` to execute it. The result box will be updated with information on whether the command has been successfully executed. Depending on the command executed, the main panel may also be updated based on the command executed.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Most commands include all the required information (e.g. project index and deadline index when updating a deadline) needed so that you can run the command from anywhere in the app. 
+</div>
+
+When entering a command, you may find it helpful to see a history of your previous commands. To do so simply press `UP` or `DOWN` while typing to navigate through the command history list.
+
+<div markdown="span" class="alert alert-info">:information_source: **Info:**
+Only successfully executed commands will be saved.
+</div>
 
 #### 2.2.4 Command Format
 
