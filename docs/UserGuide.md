@@ -325,14 +325,14 @@ _Details coming soon ..._
 
 ## Command summary
 
-###General commands
+### General commands
 
 Action | Format, Examples
 --------|------------------
 **Help** | `help`
 **Exit** | `exit`
 
-###Task-related commands
+### Task-related commands
 
 Action | Format, Examples
 --------|------------------
@@ -350,7 +350,7 @@ Action | Format, Examples
 **Clear Completed** | `clear_completed_task`
 **Clear Expired** | `clear_expired_task`
 
-###Event-related commands
+### Event-related commands
 
 Action | Format, Examples
 --------|------------------
@@ -363,7 +363,9 @@ Action | Format, Examples
 **Find Free Time** | `free_time DATE` <br>e.g., `free_time 2021-01-01`
 
 ### Commands related to both task and event
+
 Action | Format, Examples
 --------|------------------
 **Find Schedule** | `find_schedule DATE` <br>e.g., `find_schedule 2021-06-01`
 **Clear Schedule** | `clear`
+**Summary** | `summary`
