@@ -92,8 +92,6 @@ Upon execution of the `details` command, FriendDex will display the full details
 
 ## Autocomplete
 
-![Autocomplete](images/Autocomplete.png)
-
 There is no need to remember commands as FriendDex will suggest them to you as you type. To use a suggested command, press up/down to the desired command and hit enter.
 The suggested command will be automatically typed into the command bar.
 
