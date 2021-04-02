@@ -20,7 +20,7 @@ import seedu.address.model.AppointmentBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.contact.NameContainsKeywordsPredicate;
+import seedu.address.model.contact.predicate.NameContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.

@@ -1,8 +1,9 @@
-package seedu.address.model.contact;
+package seedu.address.model.contact.predicate;
 
 import java.util.Set;
 import java.util.function.Predicate;
 
+import seedu.address.model.contact.Contact;
 import seedu.address.model.tag.Tag;
 
 
@@ -18,7 +19,6 @@ public class TagsMatchKeywordPredicate implements Predicate<Contact> {
 
     @Override
     public boolean test(Contact contact) {
-        boolean test = contact.getTags().contains(new Tag("friends"));
         return tagSet.stream()
                 .anyMatch(tag ->
                         contact.getTags().contains(tag));

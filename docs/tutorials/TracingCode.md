@@ -152,8 +152,8 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
    @Override
    public CommandResult execute(Model model) throws CommandException {
        ...
-       Person contactToEdit = lastShownList.get(index.getZeroBased());
-       Person editedContact = createEditedPerson(contactToEdit, editContactDescriptor);
+       Contact contactToEdit = lastShownList.get(index.getZeroBased());
+       Contact editedContact = createEditedPerson(contactToEdit, editContactDescriptor);
        if (!contactToEdit.isSamePerson(editedContact) && model.hasPerson(editedContact)) {
            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
        }
@@ -188,7 +188,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
    }
    ```
 
-1. It appears that a `JsonAdaptedPerson` is created for each `Person` and then added to the `JsonSerializableAddressBook`.
+1. It appears that a `JsonAdaptedPerson` is created for each `Contact` and then added to the `JsonSerializableAddressBook`.
 
 1. We can continue to step through until we return to `MainWindow#executeCommand()`.
 
@@ -245,6 +245,6 @@ the given commands to find exactly what happens.
 
     4.  Add a new command
 
-    5.  Add a new field to `Person`
+    5.  Add a new field to `Contact`
 
     6.  Add a new entity to the address book

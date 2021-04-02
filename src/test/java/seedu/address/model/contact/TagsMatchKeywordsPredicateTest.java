@@ -11,6 +11,7 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.contact.predicate.TagsMatchKeywordPredicate;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.ContactBuilder;
 
@@ -42,7 +43,7 @@ public class TagsMatchKeywordsPredicateTest {
         // null -> returns false
         assertFalse(firstPredicate.equals(null));
 
-        // different person -> returns false
+        // different contact -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
     }
 

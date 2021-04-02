@@ -1,7 +1,7 @@
 package seedu.address.model.contact;
 
 /**
- * Represents whether or not a Person is favourited in the address book.
+ * Represents whether or not a Contact is favourited in the address book.
  */
 public class Favourite {
     private String value;

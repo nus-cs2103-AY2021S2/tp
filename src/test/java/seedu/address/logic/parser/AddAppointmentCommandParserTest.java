@@ -49,7 +49,7 @@ public class AddAppointmentCommandParserTest {
     @Test
     public void parse_allFieldsPresent_success() throws ParseException {
         Appointment expectedAppointment = new AppointmentBuilder(BALLET_RECITAL).build();
-        // Person expectedPerson = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
+        // Contact expectedPerson = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BALLET_RECITAL + ADDRESS_DESC_BALLET_RECITAL

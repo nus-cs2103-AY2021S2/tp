@@ -70,8 +70,8 @@ public class JsonAdaptedAppointment {
     public Appointment toModelType() throws IllegalValueException {
         final Set<Contact> appointmentContacts = new HashSet<>();
 
-        for (JsonAdaptedContact person : contacts) {
-            appointmentContacts.add(person.toModelType());
+        for (JsonAdaptedContact contact : contacts) {
+            appointmentContacts.add(contact.toModelType());
         }
 
         final List<Tag> appointmentTags = new ArrayList<>();

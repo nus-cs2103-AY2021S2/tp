@@ -1,10 +1,12 @@
-package seedu.address.model.contact;
+package seedu.address.model.contact.predicate;
 
 import java.util.List;
 import java.util.function.Predicate;
 
+import seedu.address.model.contact.Contact;
+
 /**
- * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Contact}'s {@code Name} matches any of the keywords given.
  */
 public abstract class FieldContainsKeywordsPredicate implements Predicate<Contact> {
     private final List<String> keywords;

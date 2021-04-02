@@ -222,7 +222,7 @@ If you are stuck, check out the sample
 
 ## Add `Remark` to the model
 
-Now that we have all the information that we need, let’s lay the groundwork for propagating the remarks added into the in-memory storage of contact data. We achieve that by working with the `Person` model. Each field in a Person is implemented as a separate class (e.g. a `Name` object represents the contact’s name). That means we should add a `Remark` class so that we can use a `Remark` object to represent a remark given to a contact.
+Now that we have all the information that we need, let’s lay the groundwork for propagating the remarks added into the in-memory storage of contact data. We achieve that by working with the `Contact` model. Each field in a Contact is implemented as a separate class (e.g. a `Name` object represents the contact’s name). That means we should add a `Remark` class so that we can use a `Remark` object to represent a remark given to a contact.
 
 ### Add a new `Remark` class
 
@@ -263,21 +263,21 @@ That’s it! Fire up the application again and you should see something like thi
 
 ![$remark shows up in each entry](../images/add-remark/$Remark.png)
 
-## Modify `Person` to support a `Remark` field
+## Modify `Contact` to support a `Remark` field
 
-Since `PersonCard` displays data from a `Person`, we need to update `Person` to get our `Remark` displayed!
+Since `PersonCard` displays data from a `Contact`, we need to update `Contact` to get our `Remark` displayed!
 
-### Modify `Person`
+### Modify `Contact`
 
-We change the constructor of `Person` to take a `Remark`. We will also need to define new fields and accessors accordingly to store our new addition.
+We change the constructor of `Contact` to take a `Remark`. We will also need to define new fields and accessors accordingly to store our new addition.
 
-### Update other usages of `Person`
+### Update other usages of `Contact`
 
-Unfortunately, a change to `Person` will cause other commands to break, you will have to modify these commands to use the updated `Person`!
+Unfortunately, a change to `Contact` will cause other commands to break, you will have to modify these commands to use the updated `Contact`!
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: Use the `Find Usages` feature in IntelliJ IDEA on the `Person` class to find these commands.
+:bulb: Use the `Find Usages` feature in IntelliJ IDEA on the `Contact` class to find these commands.
 
 </div>
 
@@ -286,7 +286,7 @@ Refer to [this commit](https://github.com/se-edu/addressbook-level3/commit/ce998
 
 ## Updating Storage
 
-AddressBook stores data by serializing `JsonAdaptedPerson` into `json` with the help of an external library — Jackson. Let’s update `JsonAdaptedPerson` to work with our new `Person`!
+AddressBook stores data by serializing `JsonAdaptedPerson` into `json` with the help of an external library — Jackson. Let’s update `JsonAdaptedPerson` to work with our new `Contact`!
 
 While the changes to code may be minimal, the test data will have to be updated as well.
 
@@ -301,14 +301,14 @@ to see what the changes entail.
 
 ## Finalizing the UI
 
-Now that we have finalized the `Person` class and its dependencies, we can now bind the `Remark` field to the UI.
+Now that we have finalized the `Contact` class and its dependencies, we can now bind the `Remark` field to the UI.
 
 Just add [this one line of code!](https://github.com/se-edu/addressbook-level3/commit/5b98fee11b6b3f5749b6b943c4f3bd3aa049b692)
 
 **`PersonCard.java`:**
 
 ``` java
-public PersonCard(Person contact, int displayedIndex) {
+public PersonCard(Contact contact, int displayedIndex) {
     //...
     remark.setText(contact.getRemark().value);
 }
@@ -322,26 +322,26 @@ After the previous step, we notice a peculiar regression — we went from di
 
 ### Update `RemarkCommand` and `RemarkCommandParser`
 
-In this last step, we modify `RemarkCommand#execute()` to change the `Remark` of a `Person`. Since all fields in a `Person` are immutable, we create a new instance of a `Person` with the values that we want and
+In this last step, we modify `RemarkCommand#execute()` to change the `Remark` of a `Contact`. Since all fields in a `Contact` are immutable, we create a new instance of a `Contact` with the values that we want and
 save it with `Model#setPerson()`.
 
 **`RemarkCommand.java`:**
 
 ``` java
 //...
-    public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to Person: %1$s";
-    public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Removed remark from Person: %1$s";
+    public static final String MESSAGE_ADD_REMARK_SUCCESS = "Added remark to Contact: %1$s";
+    public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Removed remark from Contact: %1$s";
 //...
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Contact> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person contactToEdit = lastShownList.get(index.getZeroBased());
-        Person editedContact = new Person(contactToEdit.getName(), contactToEdit.getPhone(), contactToEdit.getEmail(),
+        Contact contactToEdit = lastShownList.get(index.getZeroBased());
+        Contact editedContact = new Contact(contactToEdit.getName(), contactToEdit.getPhone(), contactToEdit.getEmail(),
                 contactToEdit.getAddress(), remark, contactToEdit.getTags());
 
         model.setPerson(contactToEdit, editedContact);
@@ -354,7 +354,7 @@ save it with `Model#setPerson()`.
      * Generates a command execution success message based on whether the remark is added to or removed from
      * {@code contactToEdit}.
      */
-    private String generateSuccessMessage(Person contactToEdit) {
+    private String generateSuccessMessage(Contact contactToEdit) {
         String message = !remark.value.isEmpty() ? MESSAGE_ADD_REMARK_SUCCESS : MESSAGE_DELETE_REMARK_SUCCESS;
         return String.format(message, contactToEdit);
     }
