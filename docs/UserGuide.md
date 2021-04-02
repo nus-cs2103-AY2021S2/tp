@@ -22,11 +22,13 @@ To help you get started, you should read the [Installation](#installation) and [
 This document can be thought of as a manual and a reference guide for FriendDex. It will guide you on how to use FriendDex and will provide complete information on each available command.
 Furthermore, the guide gives information on the User Interface (UI) and the other useful features of FriendDex. Each section of the guide can be read independently. 
 You can view the full list of content using the Table of Contents above. You can also use your document viewer’s Find function to quickly navigate to the content you want to know more about. 
+
 It is generally advised for new users to at least read through the [Quick Start](#quick-start) section to familiarise themselves with FriendDex.
 
-Note the following symbols and formatting used in this document.
+Note the following symbols and formatting used in this document:
 
-`list` A grey highlight, also called a mark-up, indicates that it can be typed into the command line and executed by the application.  
+`list n/Close Friends` <br>
+The grey highlight, also called a mark-up, indicates that the text in it can be typed into the command line and executed by the application.  
 
 <div markdown="block" class="alert alert-info">
 
@@ -53,7 +55,7 @@ This block is used to provide you extra details about the feature that will enab
 
 2. Download the latest `frienddex.jar` from [here](https://github.com/AY2021S2-CS2103T-W14-1/tp/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your FriendDex.
+3. Copy the file to the folder you want to use as the _home folder_ for FriendDex.
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data. Once the GUI finishes loading, you are ready to start using FriendDex.<br>
    ![Ui](images/Ui.png)
@@ -69,28 +71,30 @@ This block is used to provide you extra details about the feature that will enab
 2. To add a person to the FriendDex, you may use the `add` command followed by their relevant details. 
    For example, here’s how you can add a friend, John Doe with the following particulars:
 
-Friend Detail  | Value
----------------|------------------
-Phone number | 98765432
-E-mail | johnd@example.com 
-Address | John street, block 123, #01-01
-Birthday | 19th January 1998
-
-You can run this command next
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 b/19-01-1998`.
+   Friend Detail  | Value
+   ---------------|------------------
+   Phone number | 98765432
+   E-mail | johnd@example.com 
+   Address | John street, block 123, #01-01
+   Birthday | 19th January 1998
+   
+   Type the full `add` command into the command bar to execute it
+    * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 b/19-01-1998`
+<br/><br/>
 
 3. If you made a mistake while adding a person, you can easily amend it with the `edit` command. 
-   For example, changing the phone number of John Doe to ‘87654321’. Assuming John is the first person in the list of friends on the screen, you may use the `edit` command as follows,
-* `edit 1 p/87654321`
-   
+    For example, changing the phone number of John Doe to ‘87654321’. Assuming John is the first person in the list of friends on the screen, you may use the `edit` command as follows,
+    * `edit 1 p/87654321`
+<br/><br/>    
+
 4. Now that you have populated the app, you are ready to explore the various relationship management features that FriendDex has to offer. Here are some things you can try:
-* `set-goal` : Set a goal for how often you would like to meet a friend
-* `add-meeting` : Record details about a meeting you’ve had with a friend
-* `add-group` : Categorise and group your friends on the app (e.g. RC neighbours, CCA mates)
-* `add-date` : Record special dates for a friend (e.g. Anniversary)
-
+    * `set-goal` : Set a goal for how often you would like to meet a friend
+    * `add-meeting` : Record details about a meeting you’ve had with a friend
+    * `add-group` : Categorise and group your friends on the app (e.g. RC neighbours, CCA mates)
+    * `add-date` : Record special dates for a friend (e.g. Anniversary)
+<br/><br/>
+    
 5. FriendDex comes with a built-in autocomplete feature, so there's no need to memorise any of the commands. If you need help with the commands, a thorough documentation for each command is provided in this user guide, complete with usage instructions and examples.
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -108,7 +112,7 @@ The centre panel shows the currently listed friends in the application.
 Commands such as `list`, `find`, `add`, `clear`, `delete` will change the listed friends. 
 See [Features](#features) for specific details. 
 
-### Detail Panel
+### Details Panel
 The right panel of FriendDex is a multi-purpose details panel. It displays upcoming events by default, and can be toggled to display different information. 
 The available dashboards are detailed below.
 
@@ -377,15 +381,21 @@ You can optionally provide a group name to list all friends in that group.
 
 Format: `list [n/GROUP_NAME]`
 
+Example:
+* `list n/Primary School` to list persons in the `Primary School` group
+* `list` to list all persons in FriendDex
+
 ### Setting meeting goal: `set-goal`
 
 Format: `set-goal INDEX f/FREQUENCY`
 
-* Sets reminder for meeting someone based on the frequency given and the latest meeting the user had with that person.
+* Sets a goal to achieve an ideal frequency for meeting a contact
+* FriendDex will give reminders based on the frequency specified and the latest meeting the user had with that person.
 * Accepts the following as FREQUENCY: weekly (`w`, `week`, `weekly`), monthly (`m`, `month`, `monthly`), yearly (`y`, `year`, `yearly`), and none (`n`, `none`).
 
 Example:
-* `set-goal 1 f/week`
+* `set-goal 1 f/w`, `set-goal 1 f/week` and `set-goal 1 f/weekly` will do the same thing by setting the goal to meet the person at index 1 every week.
+* `set-goal 1 f/n` and `set-goal 1 f/none` will remove the goal set with the person at the specified index. 
 
 ### Subtracting debt: `subtract-debt`
 
@@ -545,8 +555,8 @@ Action | Format, Examples
 **Exit** | `exit`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g. `find James Jake`
 **Help** | `help`
-**List** | `list [n/GROUP_NAME]` <br> e.g. `list n/Close Friends`
+**List** | `list [n/GROUP_NAME]` <br> e.g. `list` or `list n/Close Friends`
 **Set Goal** | `set-goal INDEX f/FREQUENCY` <br> e.g. `set-goal 1 f/w`
 **Subtract Debt** | `subtract-debt INDEX DEBT_AMOUNT`<br> e.g. `subtract-debt 1 100`
 **Theme** | `theme THEME`<br> e.g. `theme @monokai`
-**View** | `view (upcoming events \| streaks)` <br> e.g.`view streaks`
+**View** | `view (upcoming events | streaks)` <br> e.g.`view streaks`
