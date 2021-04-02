@@ -388,6 +388,8 @@ Todos may be known as tasks in other similar applications.
 
 Todos contain a description. They can also be marked as done using the `markT` command. Todos that have been marked as done have a ✔ next to their description.
 
+Todos are sorted alphabetically.
+
 ##### Adding a todo to a project: `addT`
 
 Adds a todo to a specified project.
@@ -456,6 +458,8 @@ Deadlines are used in CoLAB to represent project deadlines.
 ![Ui](images/deadlines.png)
 
 Deadlines contain a description and a date.
+
+Deadlines are sorted in ascending order by date.
 
 ##### Adding a deadline to a project: `addD`
 
@@ -533,6 +537,8 @@ Events are used in CoLAB to represent project specific events.
 
 Events contain a description, date and a time. Events can be set to either occur once or repeat every week.
 
+Events are sorted in ascending order by date.
+
 ##### Adding an event to a project: `addE`
 
 Adds an event to a specified project.
@@ -592,6 +598,8 @@ Groupmates are used in CoLAB to represent the people you are working with for a 
 ![Ui](images/groupmates.png)
 
 Groupmates contain a name and zero or more roles. The role serves to indicate their role in the project.
+
+Groupmates are sorted alphabetically by name.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 You can use the contacts feature in CoLAB to store more information about a groupmate. The groupmate can then be easily found by searching for their name using the `findC` command.
