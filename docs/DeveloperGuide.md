@@ -354,7 +354,23 @@ The following activity diagram summarizes what happens when a user executes a `s
 * **Alternative 2:** The request class executes the API call and catches all exceptions together in one catch block.
     * Pros: Most if not all instances of failed API calls are caught.
     * Cons: Error message is not specific enough to help the user debug the error.
-    
+
+### Toggle command feature
+
+#### What it is
+
+Allows the user to switch between supported themes (colour palettes) within the product.
+
+#### Implementation
+
+Upon entry of the toggle command, it is parsed to check if the input theme is valid (ie. among the list of available themes). If it is valid, a `ToggleCommand` is created. `ToggleCommand` is a class that extends the `Command` class and hence also inherits the `execute()` method. When `execute()` is called, it will set the theme of the application to be the input theme.
+
+Given below is an example usage scenario and how the toggle command behaves at each step.
+
+Step 1. The user launches the application and executes `toggle light` to change the application theme to the light theme.
+
+Step 2. The `toggle` command returns a `CommandResult` that triggers the `updateTheme()` method within `MainWindow`. `MainWindow` then finds the relevant .css file containing all theme information and applies it to all elements it contains. 
+
 ### TODO MORE IMPLEMENTATION
 
 ---
