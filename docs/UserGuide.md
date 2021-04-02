@@ -125,9 +125,7 @@ Commands discussed in this user guide follow these rules:
   * Parameters can be in any order.<br>
     e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Notes about the command format:**<br>
+<div markdown="block" class="alert alert-info">:information_source: **Info:**
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
@@ -281,10 +279,10 @@ This section contains documentation on CoLAB's features and commands.
 
 It is split into various subsections:
 * [Projects](#41-projects)
-    * [Todos](#_411-todos_)
-    * [Deadlines](#_412-deadlines_)
-    * [Events](#_413-events_)
-    * [Groupmates](#_414-groupmates_)
+    * [Todos](#411-todos)
+    * [Deadlines](#412-deadlines)
+    * [Events](#413-events)
+    * [Groupmates](#414-groupmates)
 * [Contacts](#42-contacts)
 * [Contacts](#43-today-view)
 * [Others](#44-others)
@@ -305,7 +303,7 @@ Each project is divided into an overview page and a todo page. The overview page
 
 Commands related to Projects will be discussed first followed by sections on `Todos`, `Deadlines`, `Events` & `Groupmates`.
 
-#### Viewing a project: `project`
+##### Viewing a project: `project`
 
 Displays a panel with details of a specified project.
 
@@ -319,7 +317,7 @@ Examples:
 * `project 1` Displays the first project.
 * `project 2` Displays the second project.
 
-#### Viewing the overview of a project: `overview`
+##### Viewing the overview of a project: `overview`
 
 Displays a panel containing an overview of the project that is currently displayed.
 
@@ -327,7 +325,7 @@ Format: `overview`
 
 * This command can only be used when a project is currently being displayed.
 
-#### Viewing the todos of a project: `todos`
+##### Viewing the todos of a project: `todos`
 
 Displays a panel containing the todos of the project that is currently displayed.
 
@@ -335,7 +333,7 @@ Format: `todos`
 
 * This command can only be used when a project is currently being displayed.
 
-#### Adding a project: `addP`
+##### Adding a project: `addP`
 
 Adds a project to CoLAB.
 
@@ -349,7 +347,7 @@ Examples:
   * `addP n/CS2103T Team Project`
   * `addP n/CS2101 OP2`
 
-#### Updating a project: `updateP`
+##### Updating a project: `updateP`
 
 Updates a specified project in CoLAB.
 
@@ -364,7 +362,7 @@ Examples:
   * `updateP 1 n/CS2103 Group Project`
   * `updateP 2 n/Personal Portfolio Page` 
 
-#### Deleting a project: `deleteP`
+##### Deleting a project: `deleteP`
 
 Deletes a specified project from CoLAB.
 
@@ -378,7 +376,7 @@ Parameters:
 Examples:
   * `deleteP 1`
 
-### _**4.1.1 Todos**_
+#### **4.1.1 Todos**
 
 Todos are used in CoLAB to represent a task that has to be done. These are usually short-term tasks which have to be done in a short timeframe or have no  due date.
 
@@ -390,7 +388,7 @@ Todos may be known as tasks in other similar applications.
 
 Todos contain a description. They can also be marked as done using the `markT` command. Todos that have been marked as done have a ✔ next to their description.
 
-#### Adding a todo to a project: `addT`
+##### Adding a todo to a project: `addT`
 
 Adds a todo to a specified project.
 
@@ -405,7 +403,7 @@ Examples:
 * `addT 1 d/Add unit tests`
 * `addT 2 d/Finish slides for presentation`
 
-#### Updating a todo of a project: `updateT`
+##### Updating a todo of a project: `updateT`
 
 Updates a specified todo of a specified project.
 
@@ -421,7 +419,7 @@ Examples:
   * `updateT 1 i/2 d/Review new PR`
   * `updateT 2 i/1 d/Merge new PR`
 
-#### Marking a todo as done: `markT`
+##### Marking a todo as done: `markT`
 
 Marks a todo from a specified project as done.
 
@@ -436,7 +434,7 @@ Examples:
 * `markT 1 i/1`
 * `markT 2 i/3`
 
-#### Deleting a todo from a project: `deleteT`
+##### Deleting a todo from a project: `deleteT`
 
 Deletes a specified todo from a specified project.
 
@@ -451,7 +449,7 @@ Examples:
 * `deleteT 1 i/1`
 * `deleteT 2 i/2`
 
-### _**4.1.2 Deadlines**_
+#### **4.1.2 Deadlines**
 
 Deadlines are used in CoLAB to represent project deadlines.
 
@@ -459,7 +457,7 @@ Deadlines are used in CoLAB to represent project deadlines.
 
 Deadlines contain a description and a date.
 
-#### Adding a deadline to a project: `addD`
+##### Adding a deadline to a project: `addD`
 
 Adds a deadline to a specified project.
 
@@ -480,7 +478,7 @@ Examples:
 * `addD 1 d/Milestone v1.2 by/01-03-2021`
 * `addD 2 d/CS2101 Project Submission by/15-03-2021`
 
-#### Updating a deadline of a project: `updateD`
+##### Updating a deadline of a project: `updateD`
 
 Updates a specified deadline of a specified project.
 
@@ -497,7 +495,7 @@ Examples:
 * `updateD 1 i/2 d/Finish v1.3`
 * `updateD 2 i/1 by/31-03-2021`
 
-#### Marking a deadline as done: `markD`
+##### Marking a deadline as done: `markD`
 
 Marks a deadline from a specified project as done.
 
@@ -512,7 +510,7 @@ Examples:
 * `markD 1 i/1
 * `markD 2 i/3`
 
-#### Deleting a deadline from a project: `deleteD`
+##### Deleting a deadline from a project: `deleteD`
 
 Deletes a specified deadline from a specified project.
 
@@ -527,7 +525,7 @@ Examples:
 * `deleteD 1 i/1`
 * `deleteD 2 i/2`
 
-### _**4.1.3 Events**_
+#### **4.1.3 Events**
 
 Events are used in CoLAB to represent project specific events.
 
@@ -535,7 +533,7 @@ Events are used in CoLAB to represent project specific events.
 
 Events contain a description, date and a time. Events can be set to either occur once or repeat every week.
 
-#### Adding an event to a project: `addE`
+##### Adding an event to a project: `addE`
 
 Adds an event to a specified project.
 
@@ -553,7 +551,7 @@ Examples:
 * `addE 1 d/Project Meeting on/24-04-2021 at/2000 w/Y`
 * `addE 2 d/CS2101 Presentation on/14-04-2021 at/1015 w/n`
 
-#### Updating an event of a project `updateE`
+##### Updating an event of a project `updateE`
 
 Updates a specified event of a specified project.
 
@@ -572,7 +570,7 @@ Examples:
 * `updateE 1 i/1 d/Project Meeting on/24-04-2021 w/Y`
 * `updateE 2 i/2 on/14-04-2021 at/1015 w/n`
 
-#### Deleting an event from a project: `deleteE`
+##### Deleting an event from a project: `deleteE`
 
 Deletes a specified event from a specified project.
 
@@ -587,7 +585,7 @@ Examples:
 * `deleteE 1 i/1`
 * `deleteE 2 i/2`
 
-### _**4.1.4 Groupmates**_
+#### **4.1.4 Groupmates**
 
 Groupmates are used in CoLAB to represent the people you are working with for a particular project.
 
@@ -599,7 +597,7 @@ Groupmates contain a name and zero or more roles. The role serves to indicate th
 You can use the contacts feature in CoLAB to store more information about a groupmate. The groupmate can then be easily found by searching for their name using the `findC` command.
 </div>
 
-#### Adding a groupmate to a project: `addG`
+##### Adding a groupmate to a project: `addG`
 
 Adds a groupmate to a specified project.
 
@@ -611,8 +609,7 @@ Parameters:
     * [`NAME`](#name) The name of the groupmate.
     * [`ROLE`](#role) The role of the groupmate.
 
-<div markdown="span" class="alert alert-primary">:bulb: 
-**Tip:**
+<div markdown="span" class="alert alert-info">:information_source: **Info:**
 A contact can have any number of tags (including 0).
 </div>
 
@@ -620,7 +617,7 @@ Examples:
 * `addG 1 n/John Doe`
 * `addG 2 n/Betsy Crowe r/member`
 
-#### Updating a groupmate : `updateG`
+##### Updating a groupmate : `updateG`
 
 Updates an existing groupmate in a specified project.
 
@@ -644,7 +641,7 @@ Examples:
 *  `updateG 2 i/2 n/Betsy Crower r/` Updates the name of the 2nd groupmate of the 2nd project to be `Betsy Crower` and clears all existing roles.
 *  `updateG 2 i/3 n/Betsy Crower r/group-leader r/tester` Updates the name of the 3rd groupmate of the 1st project to be `Betsy Crower` and changes her roles to `group-leader` and `tester`.
 
-#### Deleting a groupmate from a project: `deleteG`
+##### Deleting a groupmate from a project: `deleteG`
 
 Deletes a specified groupmate from a specified project.
 
@@ -667,13 +664,13 @@ Contact are used in CoLAB to store contact information about a person, to help y
 
 Each contact contains a name, phone_number, email, address and zero or more tags.
 
-#### Viewing all contacts : `contacts`
+##### Viewing all contacts : `contacts`
 
 Displays a panel with a list of all contacts in CoLAB.
 
 Format: `contacts`
 
-#### Adding a contact: `addC`
+##### Adding a contact: `addC`
 
 Adds a contact to CoLAB.
 
@@ -686,7 +683,7 @@ Parameters:
     * [`ADDRESS`](#address) The address of a contact.
     * [`TAG`](#tag) The tag associated with a contact.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-info">:information_source: **Info:**
 A contact can have any number of tags (including 0)
 </div>
 
@@ -698,7 +695,7 @@ Examples:
 * `addC n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `addC n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-#### Updating a contact : `updateC`
+##### Updating a contact : `updateC`
 
 Updates an existing contact in CoLAB.
 
@@ -721,7 +718,7 @@ Examples:
 *  `updateC 1 p/91234567 e/johndoe@example.com` Updates the phone number and email address of the 1st contact to be `91234567` and `johndoe@example.com` respectively.
 *  `updateC 2 n/Betsy Crower t/` Updates the name of the 2nd contact to be `Betsy Crower` and clears all existing tags.
 
-#### Locating contacts by name: `findC`
+##### Locating contacts by name: `findC`
 
 Find contacts whose names contain any of the given keywords. Only contact names are searched.
 
@@ -742,7 +739,7 @@ Examples:
 * `findC alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'findC alex david'](images/findAlexDavidResult.png)
 
-#### Deleting a contact : `deleteC`
+##### Deleting a contact : `deleteC`
 
 Deletes the specified contact from the address book.
 
@@ -758,21 +755,29 @@ Examples:
 
 ### **4.3 Today View**
 
-### **4.4 Others**
+The today view contains a summary of the events and deadlines due today.
 
-#### Viewing Today Panel : `today`
+![Ui](images/today.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Info:**
+The today page displays the events and deadlines on the day that you open the today page. To prevent events and deadlines from changing abruptly without notice, the user interface does not update the today page automatically when the date changes.
+</div>
+
+##### Viewing Today Panel : `today`
 
 Displays a panel containing information on Events & Deadlines that are relevant today.
 
 Format: `today`
 
-#### Viewing help : `help`
+### **4.4 Others**
+
+##### Viewing help : `help`
 
 Displays a panel containing a summary of commands as well as a link to this user guide. The link can be copied to the system clipboard by clicking on the `Copy` button.
 
 Format: `help`
 
-#### Undoing previous command : `undo`
+##### Undoing previous command : `undo`
 
 Restores CoLAB to the state before the previous undoable command was executed.
 
@@ -786,7 +791,7 @@ Example:
 * `deleteP 1` Deletes the first project in the list.
 * `undo` Reverses the `deleteP 1` command.
 
-#### Redoing previous command : `redo`
+##### Redoing previous command : `redo`
 
 Reverses the most recent undo command.
 
@@ -794,13 +799,13 @@ Format: `redo'
 
 * Requires an undo command to have been performed prior to a redo command.
 
-#### Exiting the program : `exit`
+##### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
 
-#### Clearing all entries : `clear`
+##### Clearing all entries : `clear`
 
 Clears all entries from CoLAB. Both contacts and projects will be cleared.
 
