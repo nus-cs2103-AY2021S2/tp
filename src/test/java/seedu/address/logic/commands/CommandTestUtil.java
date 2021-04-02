@@ -55,6 +55,10 @@ public class CommandTestUtil {
     public static final String VALID_SUBJECT_EXPERIENCE = "5";
     public static final String VALID_SUBJECT_QUALIFICATION = "A-Level";
 
+    public static final String VALID_SUBJECT_NAME_SCIENCE = "Science";
+    public static final String VALID_GRADED_ITEM_SCIENCE = "Lab 1";
+    public static final String VALID_GRADE_SCIENCE = "B";
+
     public static final String VALID_SCHEDULE_TITLE_ONE = "Maths Homework";
     public static final String VALID_SCHEDULE_TIMEFROM_ONE = "2021-03-24 10:00AM";
     public static final String VALID_SCHEDULE_TIMETO_ONE = "2021-03-24 12:00PM";
