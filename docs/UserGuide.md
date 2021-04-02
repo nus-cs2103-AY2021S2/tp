@@ -9,10 +9,8 @@ title: User Guide
 
 # TutorBuddy - User Guide
 
-<div class="toc-no-bullet-points">
-  * Table of Contents
-  {:toc}
-</div>
+* Table of Contents
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
