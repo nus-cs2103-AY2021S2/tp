@@ -1,6 +1,5 @@
 ---
-layout: page
-title: User Guide
+layout: page title: User Guide
 ---
 
 <!-- TOC adapted from
@@ -23,13 +22,13 @@ CoLAB (Collaboration Lab) is a **desktop app for university students to manage t
 
 - Project management
 - Contacts management
-- Today View that surfaces an overview of upcoming events and deadlines 
+- Today View that surfaces an overview of upcoming events and deadlines
 
 With CoLAB, you can efficiently manage all your school projects through our comprehensive project management tools.
 
 We have designed a user-friendly User Interface (UI) that is intuitive to both first-time users and seasoned ones. It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, CoLAB can get your project management tasks done faster than traditional GUI apps.
 
-  We look forward to seeing what you accomplish with CoLAB with a clean and inviting UI. Get your journey started with the [Quick Start section](#3-quick-start)!
+We look forward to seeing what you accomplish with CoLAB with a clean and inviting UI. Get your journey started with the [Quick Start section](#3-quick-start)!
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -65,7 +64,7 @@ Different sections of the application window will be referred to by the names de
 
 #### 2.2.2 Navigating the UI
 
-Although most of the buttons you see on the screen are clickable, the UI has been designed primarily to be navigated using the command line interface. 
+Although most of the buttons you see on the screen are clickable, the UI has been designed primarily to be navigated using the command line interface.
 
 Users can enter commands into the command box and press `ENTER` to execute it. The result box will be updated with information on whether the command has been successfully executed. Depending on the command executed, the main panel may also be updated based on the command executed.
 
@@ -73,7 +72,7 @@ Users can enter commands into the command box and press `ENTER` to execute it. T
 Most commands include all the required information (e.g. project index and deadline index when updating a deadline) needed so that you can run the command from anywhere in the app. 
 </div>
 
-When entering a command, you may find it helpful to see a history of your previous commands. To do so simply press `UP` or `DOWN` while typing to navigate through the command history list. 
+When entering a command, you may find it helpful to see a history of your previous commands. To do so simply press `UP` or `DOWN` while typing to navigate through the command history list.
 
 <div markdown="span" class="alert alert-info">:information_source: **Info:**
 Only successfully executed commands will be saved.
@@ -117,17 +116,17 @@ Words or sentences that appear in these highlighted boxes are being emphasised f
 
 Commands discussed in this user guide follow these rules:
 
-  * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-    e.g. in `addC n/NAME`, `NAME` is a parameter which can be used as `addC n/John Doe`.
-  
-  * Items in square brackets are optional.<br>
-    e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-  
-  * Items with `…`​ after them can be used multiple times including zero times.<br>
-    e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-    
-  * Parameters can be in any order.<br>
-    e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+  e.g. in `addC n/NAME`, `NAME` is a parameter which can be used as `addC n/John Doe`.
+
+* Items in square brackets are optional.<br>
+  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+
+* Items with `…`​ after them can be used multiple times including zero times.<br>
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+
+* Parameters can be in any order.<br>
+  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 <div markdown="block" class="alert alert-info">:information_source: **Info:**
 
@@ -145,7 +144,7 @@ Parameters refer to information that is to be included as an input to a command.
 
 #### 2.2.5 Command Parameters
 
-This subsection serves to list out the parameters used in this document. 
+This subsection serves to list out the parameters used in this document.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 To achieve the best possible experience, avoid adding excessively long text to CoLAB. At small screen resolutions and with unusually long parameters, text may be truncated to  fit in the main panel. While we do not expect such occurrences to happen in day to day regular use, we have made accommodations for it. To view the rest of the truncated text, simple hover over the relevant section and scroll sideways, either with a trackpad or shift-scroll if you are using a mouse with a scroll wheel.
@@ -169,7 +168,7 @@ To achieve the best possible experience, avoid adding excessively long text to C
 ##### `DESCRIPTION`
 
 * The description of a deadline, event or todo.
-* Description should only contain alphanumeric characters and spaces  and it should not be blank.
+* Description should only contain alphanumeric characters and spaces and it should not be blank.
 
 ##### `EMAIL`
 
@@ -251,23 +250,23 @@ To achieve the best possible experience, avoid adding excessively long text to C
 1. Copy the file to the folder you want to use as the _home folder_ for CoLAB.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data. <br>
-   
+
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`contacts`** and pressing Enter will list all contacts.<br>
    Some example commands you can try:
 
-   * **`project 1`** : Displays the first project.
+    * **`project 1`** : Displays the first project.
 
-   * **`addP`**`n/My Project` : Adds a new project named `My Project` to CoLAB.
+    * **`addP`**`n/My Project` : Adds a new project named `My Project` to CoLAB.
 
-   * **`todos`** : Displays the todos of the currently displayed project.
+    * **`todos`** : Displays the todos of the currently displayed project.
 
-   * **`addT`**`1 d/My Task` : Adds a todo with the description `My Task` to the first project.
+    * **`addT`**`1 d/My Task` : Adds a todo with the description `My Task` to the first project.
 
-   * **`deleteP`**`3` : Deletes the third project in the list.
+    * **`deleteP`**`3` : Deletes the third project in the list.
 
-   * **`exit`** : Exits the app.
+    * **`exit`** : Exits the app.
 
 1. Refer to the [Features](#4-features) below for details of each command.
 
@@ -282,6 +281,7 @@ When the sample data is no longer required, you may use the `clear` command to c
 This section contains documentation on CoLAB's features and commands.
 
 It is split into various subsections:
+
 * [Projects](#41-projects)
     * [Todos](#411-todos)
     * [Deadlines](#412-deadlines)
@@ -297,7 +297,7 @@ Each project in CoLAB contains information about todos, deadlines, events and gr
 
 ![Ui](images/project.png)
 
-You may view a list of all your projects in the side panel and view a specific  project in the main panel using the `project` command. 
+You may view a list of all your projects in the side panel and view a specific project in the main panel using the `project` command.
 
 <div markdown="span" class="alert alert-info">:information_source: **Info:**
 Project names that are too long may be truncated in the side panel. Simply view the project using the `project` command to view the full name in the main panel.
@@ -312,12 +312,15 @@ Commands related to Projects will be discussed first followed by sections on `To
 Displays a panel with details of a specified project.
 
 Format: `project PROJECT_INDEX`
+
 * Displays a panel with details of the project at the specified `PROJECT_INDEX`.
 
 Parameter:
+
 * [`PROJECT_INDEX`](#index) The index of the project.
 
-Examples:
+Example:
+
 * `project 1` displays the first project.
 
 ##### Viewing the overview of a project: `overview`
@@ -345,45 +348,55 @@ This command can only be used when a project is currently being displayed.
 Adds a project to CoLAB.
 
 Format: `addP n/NAME`
-  * Adds a project to CoLAB with a new `NAME`.
+
+* Adds a project to CoLAB with a new `NAME`.
 
 Parameters:
-  * [`NAME`](#name) The name of the project. 
 
-Examples:
-  * `addP n/CS2103T Team Project` adds a project with the name `CS2103T Team Project` to CoLAB.
+* [`NAME`](#name) The name of the project.
+
+Example:
+
+* `addP n/CS2103T Team Project` adds a project with the name `CS2103T Team Project` to CoLAB.
 
 ##### Updating a project: `updateP`
 
-Updates a specified project in CoLAB.
+Updates an existing project in CoLAB.
 
 Format `updateP PROJECT_INDEX n/NAME`
-  * Updates the name of the project at the specified `PROJECT_INDEX` to the new `NAME`.
-  
-Parameters:
-  * [`PROJECT_INDEX`](#index) The index of the project.
-  * [`NAME`](#name) The name of the project.
 
-Examples:
-  * `updateP 1 n/CS2103 Group Project` updates the name of the first project in CoLAB to `CS2103 Group Project`.
+* Updates the name of the project at the specified `PROJECT_INDEX` to the new `NAME`.
+* Existing values will be updated to the input values.
+
+Parameters:
+
+* [`PROJECT_INDEX`](#index) The index of the project.
+* [`NAME`](#name) The name of the project.
+
+Example:
+
+* `updateP 1 n/CS2103 Group Project` updates the name of the first project in CoLAB to `CS2103 Group Project`.
 
 ##### Deleting a project: `deleteP`
 
-Deletes a specified project from CoLAB.
+Deletes a project from CoLAB.
 
 Format: `deleteP PROJECT_INDEX`
-  * Deletes the project at the specified `PROJECT_INDEX`.
+
+* Deletes the project at the specified `PROJECT_INDEX`.
 
 Parameters:
-  * [`PROJECT_INDEX`](#index) The index of the project.
-  * [`TODO_INDEX`](#index) The index of the todo.
 
-Examples:
-  * `deleteP 1` deletes the first project in CoLAB.
+* [`PROJECT_INDEX`](#index) The index of the project.
+* [`TODO_INDEX`](#index) The index of the todo.
+
+Example:
+
+* `deleteP 1` deletes the first project in CoLAB.
 
 #### **4.1.1 Todos**
 
-Todos are used in CoLAB to represent a task that has to be done. These are usually short-term tasks which have to be done in a short timeframe or have no  due date.
+Todos are used in CoLAB to represent a task that has to be done. These are usually short-term tasks which have to be done in a short timeframe or have no due date.
 
 <div markdown="span" class="alert alert-info">:information_source: **Info:**
 Todos may be known as tasks in other similar applications.
@@ -397,64 +410,72 @@ Todos are sorted alphabetically.
 
 ##### Adding a todo to a project: `addT`
 
-Adds a todo to a specified project.
+Adds a todo to a project in CoLAB.
 
 Format: `addT PROJECT_INDEX d/DESCRIPTION`
-  * Adds a todo to the project at the specified `PROJECT_INDEX`.
+
+* Adds a todo with a `DESCRIPTION` to the project at the specified `PROJECT_INDEX`.
 
 Parameters:
-  * [`PROJECT_INDEX`](#index) The index of the project.
-  * [`DESCRIPTION`](#description) The description of the todo.
 
-Examples:
-* `addT 1 d/Add unit tests`
-* `addT 2 d/Finish slides for presentation`
+* [`PROJECT_INDEX`](#index) The index of the project.
+* [`DESCRIPTION`](#description) The description of the todo.
+
+Example:
+
+* `addT 1 d/Add unit tests` adds a todo with the description `Add unit tests` to the first project in CoLAB.
 
 ##### Updating a todo of a project: `updateT`
 
-Updates a specified todo of a specified project.
+Updates an existing todo of a project in CoLAB.
 
 Format: `updateT PROJECT_INDEX i/TODO_INDEX d/DESCRIPTION`
-  * Updates the `DESCRIPTION` of the todo at the specified `TODO_INDEX` of the project at the specified `PROJECT_INDEX`.
+
+* Updates the `DESCRIPTION` of the todo at the specified `TODO_INDEX` of the project at the specified `PROJECT_INDEX`.
+* Existing values will be updated to the input values.
 
 Parameters:
-  * [`PROJECT_INDEX`](#index) The index of the project.
-  * [`TODO_INDEX`](#index) The index of the todo.
-  * [`DESCRIPTION`](#description) The description of the todo.
 
-Examples:
-  * `updateT 1 i/2 d/Review new PR`
-  * `updateT 2 i/1 d/Merge new PR`
+* [`PROJECT_INDEX`](#index) The index of the project.
+* [`TODO_INDEX`](#index) The index of the todo.
+* [`DESCRIPTION`](#description) The description of the todo.
+
+Example:
+
+* `updateT 1 i/2 d/Review latest PR` updates the description of the second todo of the first project with the new description `Review latest PR`.
 
 ##### Marking a todo as done: `markT`
 
-Marks a todo from a specified project as done.
+Marks a todo as done.
 
 Format: `markT PROJECT_INDEX i/TODO_INDEX`
-  * Marks the todo at the specified `TODO_INDEX` from the project at the specified `PROJECT_INDEX` as done.
+
+* Marks the todo at the specified `TODO_INDEX` from the project at the specified `PROJECT_INDEX` as done.
 
 Parameters:
-  * [`PROJECT_INDEX`](#index) The index of the project.
-  * [`TODO_INDEX`](#index) The index of the todo.
 
-Examples:
-* `markT 1 i/1`
-* `markT 2 i/3`
+* [`PROJECT_INDEX`](#index) The index of the project.
+* [`TODO_INDEX`](#index) The index of the todo.
+
+Example:
+
+* `markT 1 i/1` marks the first todo of the first project as done.
 
 ##### Deleting a todo from a project: `deleteT`
 
-Deletes a specified todo from a specified project.
+Deletes a todo from a project in CoLAB.
 
 Format: `deleteT PROJECT_INDEX i/TODO_INDEX`
-    * Deletes the todo at the specified `TODO_INDEX` from the project at the specified `PROJECT_INDEX`.
+
+* Deletes the todo at the specified `TODO_INDEX` from the project at the specified `PROJECT_INDEX`.
 
 Parameters:
-    * [`PROJECT_INDEX`](#index) The index of the project.
-    * [`TODO_INDEX`](#index) The index of the todo.
 
-Examples:
-* `deleteT 1 i/1`
-* `deleteT 2 i/2`
+* [`PROJECT_INDEX`](#index) The index of the project. * [`TODO_INDEX`](#index) The index of the todo.
+
+Example:
+
+* `deleteT 1 i/1` deletes the first todo of the first project.
 
 #### **4.1.2 Deadlines**
 
@@ -462,77 +483,78 @@ Deadlines are used in CoLAB to represent project deadlines.
 
 ![Ui](images/deadlines.png)
 
-Deadlines contain a description and a date.
+Deadlines contain a description and a date. They can also be marked as done using the `markD` command. Deadlines that have been marked as done have a ✔ next to their description.
 
 Deadlines are sorted in ascending order by date.
 
 ##### Adding a deadline to a project: `addD`
 
-Adds a deadline to a specified project.
+Adds a deadline to a project in CoLAB.
 
 Format: `addD PROJECT_INDEX d/DESCRIPTION by/DATE`
-    * Adds a deadline to the project at the specified `PROJECT_INDEX`.
+
+* Adds a deadline to the project at the specified `PROJECT_INDEX` with a `DESCRIPTION` and a `DATE`.
 
 Parameters:
-    * [`PROJECT_INDEX`](#index) The index of the project.
-    * [`DESCRIPTION`](#description) The description of the deadline.
-    * [`DATE`](#date) The due date of the deadline.
 
-* The `PROJECT_INDEX` refers to the number shown beside the project in the side menu.
-* The index **must be a positive integer** 1, 2, 3, …​
-* `DATE` must be in `dd-MM-yyyy`, `ddMMyyyy`, `dd/MM/yyyy` or `dd.MM.yyyy` format.
-* `DATE` is limited to the `yyyy` range of 0000 to 9999.
+* [`PROJECT_INDEX`](#index) The index of the project. * [`DESCRIPTION`](#description) The description of the deadline. * [`DATE`](#date) The due date of the deadline.
 
-Examples:
-* `addD 1 d/Milestone v1.2 by/01-03-2021`
-* `addD 2 d/CS2101 Project Submission by/15-03-2021`
+Example:
+
+* `addD 1 d/Milestone v1.2 by/01-03-2021` adds a deadline to the first project with description `Milestone v1.2` and due date `01-03-2021`.
 
 ##### Updating a deadline of a project: `updateD`
 
-Updates a specified deadline of a specified project.
+Updates an existing deadline of a project in CoLAB.
 
 Format: `updateD PROJECT_INDEX i/DEADLINE_INDEX [d/DESCRIPTION] [by/DATE]`
-    * Updates the description or the deadline date of the deadline at the specified `DEADLINE_INDEX` of the project at the specified `PROJECT_INDEX`.
+
+* Updates the `DESCRIPTION` or the due `DATE` of the deadline at the specified `DEADLINE_INDEX` of the project at the specified `PROJECT_INDEX`. * Existing values will be updated to the input values.
+
+<div markdown="span" class="alert alert-info">:information_source: **Info:**
+At least one of the optional fields must be provided.
+</div>
 
 Parameters:
-    * [`PROJECT_INDEX`](#index) The index of the project.
-    * [`DEADLINE_INDEX`](#index) The index of the deadline.
-    * [`DESCRIPTION`](#description) The description of the deadline.
-    * [`DATE`](#date) The due date of the deadline.
+
+* [`PROJECT_INDEX`](#index) The index of the project. * [`DEADLINE_INDEX`](#index) The index of the deadline. * [`DESCRIPTION`](#description) The description of the deadline. * [`DATE`](#date) The due date of the deadline.
 
 Examples:
-* `updateD 1 i/2 d/Finish v1.3`
-* `updateD 2 i/1 by/31-03-2021`
+
+* `updateD 1 i/2 d/Finish v1.3 by/02-02-2021` updates the second deadline of the first project with new description `Finish v1.3` and new due date `02-02-2021`.
+* `updateD 2 i/1 by/31-03-2021` updates the first deadline of the second project with the new due date `31-03-2021`.
 
 ##### Marking a deadline as done: `markD`
 
-Marks a deadline from a specified project as done.
+Marks a deadline as done.
 
 Format: `markD PROJECT_INDEX i/DEADLINE_INDEX`
-    * Marks the deadline at the specified `DEADLINE_INDEX` from the project at the specified `PROJECT_INDEX` as done.
+
+* Marks the deadline at the specified `DEADLINE_INDEX` from the project at the specified `PROJECT_INDEX` as done.
 
 Parameters:
-    * [`PROJECT_INDEX`](#index) The index of the project.
-    * [`DEADLINE_INDEX`](#index) The index of the deadline.
 
-Examples:
-* `markD 1 i/1
-* `markD 2 i/3`
+* [`PROJECT_INDEX`](#index) The index of the project. * [`DEADLINE_INDEX`](#index) The index of the deadline.
+
+Example:
+
+* `markD 1 i/1 marks the first deadline of the first project as done.
 
 ##### Deleting a deadline from a project: `deleteD`
 
-Deletes a specified deadline from a specified project.
+Deletes a deadline from a project in CoLAB.
 
 Format: `deleteD PROJECT_INDEX i/DEADLINE_INDEX`
-    * Deletes the deadline at the specified `DEADLINE_INDEX` from the project at the specified `PROJECT_INDEX`.
+
+* Deletes the deadline at the specified `DEADLINE_INDEX` from the project at the specified `PROJECT_INDEX`.
 
 Parameters:
-    * [`PROJECT_INDEX`](#index) The index of the project.
-    * [`DEADLINE_INDEX`](#index) The index of the deadline.
 
-Examples:
-* `deleteD 1 i/1`
-* `deleteD 2 i/2`
+* [`PROJECT_INDEX`](#index) The index of the project. * [`DEADLINE_INDEX`](#index) The index of the deadline.
+
+Example:
+
+* `deleteD 1 i/1` deletes the first deadline of the first project.
 
 #### **4.1.3 Events**
 
@@ -540,61 +562,63 @@ Events are used in CoLAB to represent project specific events.
 
 ![Ui](images/events.png)
 
-Events contain a description, date and a time. Events can be set to either occur once or repeat every week.
+Events contain a description, date and a time. Events can be set to either occur once or repeat at the same time every week.
 
 Events are sorted in ascending order by date.
 
 ##### Adding an event to a project: `addE`
 
-Adds an event to a specified project.
+Adds an event to a project in CoLAB.
 
 Format: `addE PROJECT_INDEX d/DESCRIPTION on/DATE at/TIME w/REPEAT_WEEKLY`
-    * Adds an event to the project at the specified `PROJECT_INDEX`.
+
+* Adds an event to the project at the specified `PROJECT_INDEX` with a `DESCRIPTION` as well as the `DATE` and `TIME` of the event. * `REPEAT_WEEKLY` accepts values `Y` or `y` if the event repeats weekly and `N` or `n` if the event is a one time event.
 
 Parameters:
-    * [`PROJECT_INDEX`](#index) The index of the project.
-    * [`DESCRIPTION`](#description) The description of an event.
-    * [`DATE`](#date) The date of the event, or the starting date of the event if the event repeats every week.
-    * [`TIME`](#time) The time of the event.
-    * [`REPEAT_WEEKLY`](#repeat_weekly) Indicates whether the event repeats every week.
+
+* [`PROJECT_INDEX`](#index) The index of the project. * [`DESCRIPTION`](#description) The description of an event. * [`DATE`](#date) The date of the event, or the starting date of the event if the event repeats every week. * [`TIME`](#time) The time of the event. * [`REPEAT_WEEKLY`](#repeat_weekly) Indicates whether the event repeats every week.
 
 Examples:
-* `addE 1 d/Project Meeting on/24-04-2021 at/2000 w/Y`
-* `addE 2 d/CS2101 Presentation on/14-04-2021 at/1015 w/n`
+
+* `addE 1 d/Project Meeting on/24-04-2021 at/2000 w/Y` adds a weekly event with description `Project Meeting` starting on `24-04-2021` at `2000` to the first project.
+* `addE 2 d/CS2101 Presentation on/14-04-2021 at/1015 w/n` adds a one time event with description `CS2101 Presentation` on `14-04-2021` at `1015` to the second project.
 
 ##### Updating an event of a project `updateE`
 
-Updates a specified event of a specified project.
+Updates an existing event of a project in CoLAB.
 
 Format: `updateE PROJECT_INDEX i/EVENT_INDEX [d/DESCRIPTION] [on/DATE] [at/TIME] [w/REPEAT_WEEKLY]`
-    * Updates the details of the event at the specified `EVENT_INDEX` of the project at the specified `PROJECT_INDEX`.
+
+* Updates the `DESCRIPTION`, `DATE`, `TIME` or `REPEAT_WEEKLY` status of the event at the specified `EVENT_INDEX` of the project at the specified `PROJECT_INDEX`. * Existing values will be updated to the input values. * `REPEAT_WEEKLY` accepts values `Y` or `y` if the event repeats weekly and `N` or `n` if the event is a one time event.
+
+<div markdown="span" class="alert alert-info">:information_source: **Info:**
+At least one of the optional fields must be provided.
+</div>
 
 Parameters:
-    * [`PROJECT_INDEX`](#index) The index of the project.
-    * [`EVENT_INDEX`](#index) The index of an event.
-    * [`DESCRIPTION`](#description) The description of an event.
-    * [`DATE`](#date) The date of the event, or the starting date of the event if the event repeats every week.
-    * [`TIME`](#time) The time of the event.
-    * [`REPEAT_WEEKLY`](#repeat_weekly) Indicates whether the event repeats every week.
+
+* [`PROJECT_INDEX`](#index) The index of the project. * [`EVENT_INDEX`](#index) The index of an event. * [`DESCRIPTION`](#description) The description of an event. * [`DATE`](#date) The date of the event, or the starting date of the event if the event repeats every week. * [`TIME`](#time) The time of the event. * [`REPEAT_WEEKLY`](#repeat_weekly) Indicates whether the event repeats every week.
 
 Examples:
-* `updateE 1 i/1 d/Project Meeting on/24-04-2021 w/Y`
-* `updateE 2 i/2 on/14-04-2021 at/1015 w/n`
+
+* `updateE 1 i/1 d/Project Meeting on/24-04-2021 w/Y` updates the first event of the first project to be weekly event with new description `Project Meting` starting on `24-04-2021`.
+* `updateE 2 i/2 on/14-04-2021 at/1015` updates the second event of the second project to a new date `14-04-2021` at `1015`.
 
 ##### Deleting an event from a project: `deleteE`
 
-Deletes a specified event from a specified project.
+Deletes an event from a project in CoLAB.
 
 Format: `deleteE PROJECT_INDEX i/EVENT_INDEX`
-    * Deletes the event at the specified `EVENT_INDEX` from the project at the specified `PROJECT_INDEX`.
+
+* Deletes the event at the specified `EVENT_INDEX` from the project at the specified `PROJECT_INDEX`.
 
 Parameters:
-    * [`PROJECT_INDEX`](#index) The index of the project.
-    * [`EVENT_INDEX`](#index) The index of an event.
 
-Examples:
-* `deleteE 1 i/1`
-* `deleteE 2 i/2`
+* [`PROJECT_INDEX`](#index) The index of the project. * [`EVENT_INDEX`](#index) The index of an event.
+
+Example:
+
+* `deleteE 1 i/1` deletes the first event of the first project.
 
 #### **4.1.4 Groupmates**
 
@@ -612,62 +636,66 @@ You can use the contacts feature in CoLAB to store more information about a grou
 
 ##### Adding a groupmate to a project: `addG`
 
-Adds a groupmate to a specified project.
+Adds a groupmate to a project in CoLAB.
 
 Format: `addG PROJECT_INDEX n/NAME [r/ROLE]…​`
-    * Adds a groupmate to the project at the specified `PROJECT_INDEX`.
+
+* Adds a groupmate with a `NAME` and zero or more `ROLE`s to the project at the specified `PROJECT_INDEX`.
 
 Parameters:
-    * [`PROJECT_INDEX`](#index) The index of the project.
-    * [`NAME`](#name) The name of the groupmate.
-    * [`ROLE`](#role) The role of the groupmate.
+
+* [`PROJECT_INDEX`](#index) The index of the project. * [`NAME`](#name) The name of the groupmate. * [`ROLE`](#role) The role of the groupmate.
 
 <div markdown="span" class="alert alert-info">:information_source: **Info:**
-A contact can have any number of tags (including 0).
+A groupmate can have any number of roles (including 0).
 </div>
 
 Examples:
-* `addG 1 n/John Doe`
-* `addG 2 n/Betsy Crowe r/member`
+
+* `addG 1 n/John Doe` adds a groupmate with name `John Doe` to the first project.
+* `addG 2 n/Betsy Crowe r/developer` adds a groupmate with name `Betsy Crowe` and role `developer` to the second project.
 
 ##### Updating a groupmate : `updateG`
 
-Updates an existing groupmate in a specified project.
+Updates an existing groupmate of a project in CoLAB.
 
 Format: `updateG PROJECT_INDEX i/GROUPMATE_INDEX [n/NAME] [r/ROLE]…​`
-    * Updates the groupmate at the specified `GROUPMATE_INDEX` of the project at the specified `PROJECT_INDEX`.
+
+* Updates a groupmate with a new `NAME` or zero or more `ROLE`s at the specified `GROUPMATE_INDEX` of the project at the specified `PROJECT_INDEX`.
+* Existing values will be updated to the input values.
+
+<div markdown="block" class="alert alert-info">:information_source: **Info:**
+    * At least one of the optional fields must be provided.
+    * When updating roles, the existing roles of the groupmate will be removed i.e. adding of roles is not cumulative.
+    * You can remove all the roles of the groupmate by typing `r/` without
+      specifying any roles after it.
+</div>
 
 Parameters:
-    * [`PROJECT_INDEX`](#index) The index of the project.
-    * [`GROUPMATE_INDEX`](#index) The index of the groupmate.
-    * [`NAME`](#name) The name of the groupmate.
-    * [`ROLE`](#role) The role of the groupmate.
 
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When updating roles, the existing roles of the groupmate will be removed i.e. adding of roles is not cumulative.
-* You can remove all the roles of the groupmate by typing `r/` without
-  specifying any roles after it.
+* [`PROJECT_INDEX`](#index) The index of the project. * [`GROUPMATE_INDEX`](#index) The index of the groupmate. * [`NAME`](#name) The name of the groupmate. * [`ROLE`](#role) The role of the groupmate.
 
 Examples:
-*  `updateG 1 i/1 p/91234567 n/Leslie Knope` Updates the name of the 1st groupmate of the 1st project to be `Leslie Knope`.
-*  `updateG 2 i/2 n/Betsy Crower r/` Updates the name of the 2nd groupmate of the 2nd project to be `Betsy Crower` and clears all existing roles.
-*  `updateG 2 i/3 n/Betsy Crower r/group-leader r/tester` Updates the name of the 3rd groupmate of the 1st project to be `Betsy Crower` and changes her roles to `group-leader` and `tester`.
+
+* `updateG 1 i/1 n/Leslie Knope` Updates the name of the first groupmate of the first project with the new name `Leslie Knope`.
+* `updateG 2 i/2 n/Betsy Crower r/` Updates the name of the second groupmate of the second project with the new name `Betsy Crower` and clears all existing roles.
+* `updateG 2 i/3 n/Betsy Crower r/group-leader r/tester` Updates the name of the third groupmate of the first project to the new name `Betsy Crower` and changes her roles to `group-leader` and `tester`.
 
 ##### Deleting a groupmate from a project: `deleteG`
 
-Deletes a specified groupmate from a specified project.
+Deletes a groupmate from a project in CoLAB.
 
 Format: `deleteG PROJECT_INDEX i/GROUPMATE_INDEX`
-    * Deletes the groupmate at the specified `GROUPMATE_INDEX` from the project at the specified `PROJECT_INDEX`.
+
+* Deletes the groupmate at the specified `GROUPMATE_INDEX` from the project at the specified `PROJECT_INDEX`.
 
 Parameters:
-    * [`PROJECT_INDEX`](#index) The index of the project.
-    * [`GROUPMATE_INDEX`](#index) The index of the groupmate.
 
-Examples:
-* `deleteG 1 i/1`
-* `deleteG 2 i/2`
+* [`PROJECT_INDEX`](#index) The index of the project. * [`GROUPMATE_INDEX`](#index) The index of the groupmate.
+
+Example:
+
+* `deleteG 1 i/1` deletes the first groupmate of the first project.
 
 ### **4.2 Contacts**
 
@@ -689,82 +717,98 @@ Adds a contact to CoLAB.
 
 Format: `addC n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
+* Adds a contact with the a `NAME`, `PHONE_NUMBER`, `EMAIL`, `ADDRESS` and zero or more `TAG`s to CoLAB.
+
 Parameters:
-    * [`NAME`](#name) The name of a contact.
-    * [`PHONE_NUMBER`](#phone_number) The phone number of a contact.
-    * [`EMAIL`](#email) The email of a contact.
-    * [`ADDRESS`](#address) The address of a contact.
-    * [`TAG`](#tag) The tag associated with a contact.
+
+* [`NAME`](#name) The name of a contact.
+* [`PHONE_NUMBER`](#phone_number) The phone number of a contact.
+* [`EMAIL`](#email) The email of a contact.
+* [`ADDRESS`](#address) The address of a contact.
+* [`TAG`](#tag) The tag associated with a contact.
 
 <div markdown="span" class="alert alert-info">:information_source: **Info:**
 A contact can have any number of tags (including 0)
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-If you do not have information required for a compulsory parameter, consider leaving it as a dummy character such as "-". For example, if you do not have the address of a contact, you can enter the parameter as "a/-".
+If you do not have information required for a compulsory parameter, consider leaving it as a dummy character such as `-`. For example, if you do not have the address of a contact, you can enter the parameter as `a/-`.
 </div>
 
-Examples:
-* `addC n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `addC n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+Example:
+
+* `addC n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` adds a contact with the name `John Doe`, phone number `98765432`, email `johnd@example.com` and address `John street, block 123, #01-01`.
 
 ##### Updating a contact : `updateC`
 
 Updates an existing contact in CoLAB.
 
-Format: `updateC CONTACT_INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
-    * Updates the contact at the specified `CONTACT_INDEX`. 
+Format: `updateC CONTACT_INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
-Parameters:
-    * [`NAME`](#name) The name of a contact.
-    * [`PHONE_NUMBER`](#phone_number) The phone number of a contact.
-    * [`EMAIL`](#email) The email of a contact.
-    * [`ADDRESS`](#address) The address of a contact.
-    * [`TAG`](#tag) The tag associated with a contact.
-
-* At least one of the optional fields must be provided.
+* Updates the contact at the specified `CONTACT_INDEX` with a new `NAME`, `PHONE_NUMBER`, `EMAIL`, `ADDRESS` or zero or more `TAG`s.
 * Existing values will be updated to the input values.
+
+<div markdown="block" class="alert alert-info">:information_source: **Info:**
+* At least one of the optional fields must be provided.
 * When updating tags, the existing tags of the contact will be removed i.e. adding of tags is not cumulative.
 * You can remove all the contact’s tags by typing `t/` without specifying any tags after it.
+</div>
+
+Parameters:
+
+* [`NAME`](#name) The name of a contact.
+* [`PHONE_NUMBER`](#phone_number) The phone number of a contact.
+* [`EMAIL`](#email) The email of a contact.
+* [`ADDRESS`](#address) The address of a contact.
+* [`TAG`](#tag) The tag associated with a contact.
 
 Examples:
-*  `updateC 1 p/91234567 e/johndoe@example.com` Updates the phone number and email address of the 1st contact to be `91234567` and `johndoe@example.com` respectively.
-*  `updateC 2 n/Betsy Crower t/` Updates the name of the 2nd contact to be `Betsy Crower` and clears all existing tags.
+
+* `updateC 1 p/91234567 e/johndoe@example.com` updates the first contact with a new phone number `91234567` and email `johndoe@example.com`.
+* `updateC 2 n/Betsy Crower t/` Updates the second contact with a new name `Betsy Crower` and clears all existing tags.
 
 ##### Locating contacts by name: `findC`
 
-Find contacts whose names contain any of the given keywords. Only contact names are searched.
+Find contacts whose names contain any of the given keywords.
 
-Format: `findC KEYWORD [MORE_KEYWORDS]`
+Format: `findC KEYWORD [KEYWORD]…​`
 
-Parameter:
-    * [`KEYWORD`](#keyword) The keyword used to search for contacts.
+* Finds and displays contacts whose name contains any of the `KEYWORD`s.
+* At least one keyword must be present.
 
+<div markdown="block" class="alert alert-info">:information_source: **Info:**
 * The search is case-insensitive. e.g. `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
+* Only the contact name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
-* Contacts matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* Contacts matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+</div>
 
-Examples:
-* `findC John` returns `john` and `John Doe`
-* `findC alex david` returns `Alex Yeoh`, `David Li`<br>
+Parameter:
+
+* [`KEYWORD`](#keyword) The keyword used to search for contacts.
+
+Example:
+
+* `findC alex david` displays a list containing `Alex Yeoh` and `David Li`<br>
   ![result for 'findC alex david'](images/findAlexDavidResult.png)
 
 ##### Deleting a contact : `deleteC`
 
-Deletes the specified contact from the address book.
+Deletes a contact from CoLAB.
 
 Format: `deleteC CONTACT_INDEX`
-    * Deletes the contact at the specified `CONTACT_INDEX`.
+
+* Deletes the contact at the specified `CONTACT_INDEX`.
 
 Parameter:
-    * [`CONTACT_INDEX`](#index) The index of the contact.
+
+* [`CONTACT_INDEX`](#index) The index of the contact.
 
 Examples:
-* `list` followed by `deleteC 2` deletes the 2nd contact in the address book.
-* `findC Betsy` followed by `deleteC 1` deletes the 1st contact in the results of the `findC` command.
+
+* `deleteC 2` deletes the second contact in CoLAB.
+* `findC Betsy` followed by `deleteC 1` deletes the first contact in the results list of the `findC` command.
 
 ### **4.3 Today View**
 
@@ -796,8 +840,10 @@ Restores CoLAB to the state before the previous undoable command was executed.
 
 Format: `undo'
 
-* Commands that modify data are undoable. These commands include all commands that start with `add`, `update`, `delete` or `mark` as well as the `clear` command.
+<div markdown="block" class="alert alert-info">:information_source: **Info:**
+* Only commands that modify data are undoable. These commands include all commands that start with `add`, `update`, `delete` or `mark` as well as the `clear` command.
 * All other commands are not undoable.
+</div>
 
 Example:
 
@@ -898,7 +944,7 @@ Action | Format, Examples
 **Add Contact** | `addC n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `addC n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Delete Contact** | `deleteC CONTACT_INDEX`<br> e.g., `deleteC 3`
 **Update Contact** | `updateC CONTACT_INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`updateC 2 n/James Lee e/jameslee@example.com`
-**Find Contact** | `findC KEYWORD [MORE_KEYWORDS]`<br> e.g., `findC James Jake`
+**Find Contact** | `findC KEYWORD [KEYWORD]…​`<br> e.g., `findC James Jake`
 
 ### Today View and Other Commands
 
@@ -916,6 +962,7 @@ Action | Format, Examples
 ## **7.Acknowledgements**
 
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+
 - Libraries used:
     - [JavaFX](https://openjfx.io/)
     - [Jackson](https://github.com/FasterXML/jackson)
