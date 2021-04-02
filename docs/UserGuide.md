@@ -28,7 +28,7 @@ users can learn Japanese at a comfortable pace and manage flashcards with this a
 ### About WeebLingo
 WeebLingo is a desktop application that helps users learn the Japanese language. It has three primary modes, 
 which are the **learn**, **quiz** and **history** modes. The app contains flashcards that pairs a Japanese word and 
-its corresponding English consonant for users to learn. It allows users to test themselves on their grasp of the Japanese language
+its corresponding English syllable for users to learn. It allows users to test themselves on their grasp of the Japanese language
 by starting a quiz session. In addition, users can view their history of past quiz attempts and the relevant statistics.
 
 ### Additional information 
