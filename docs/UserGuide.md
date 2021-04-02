@@ -760,18 +760,6 @@ Exits the program.
 
 Format: `exit`
 
-#### Saving the data
-
-CoLAB's data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-#### Editing the data file
-
-CoLAB's data is saved as a JSON file `[JAR file location]/data/colab.json`. Advanced users are welcome to update data directly by editing that data file.
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, CoLAB will discard all data and start with an empty data file at the next run.
-</div>
-
 #### Clearing all entries : `clear`
 
 Clears all entries from CoLAB. Both contacts and projects will be cleared.
@@ -784,6 +772,16 @@ Format: `clear`
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous CoLAB home folder.
+
+**Q**: How do I save my data?<br>
+**A**: CoLAB's data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+**Q**: Can I edit the data files directly?<br>
+**A**: CoLAB's data is saved as a JSON file `[JAR file location]/data/colab.json`. Advanced users are welcome to update data directly by editing that data file.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If your changes to the data file makes its format invalid, CoLAB will discard all data and start with an empty data file at the next run.
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -804,7 +802,7 @@ Action | Format, Examples
 
 Action | Format, Examples
 --------|------------------
-**Add Todo to Project** | `addTto PROJECT_INDEX d/DESCRIPTION`
+**Add Todo to Project** | `addT PROJECT_INDEX d/DESCRIPTION`
 **Mark Todo as done** | `markT PROJECT_INDEX i/TODO_INDEX`
 **Update Todo** | `updateT PROJECT_INDEX i/TODO_INDEX d/DESCRIPTION`
 **Delete Todo from Project** | `deleteT PROJECT_INDEX i/TODO_INDEX`
@@ -813,7 +811,7 @@ Action | Format, Examples
 
 Action | Format, Examples
 --------|------------------
-**Add Deadline to Project** | `addDto PROJECT_INDEX d/DESCRIPTION by/DATE`
+**Add Deadline to Project** | `addD PROJECT_INDEX d/DESCRIPTION by/DATE`
 **Mark Deadline as done** | `markD PROJECT_INDEX i/DEADLINE_INDEX`
 **Update Deadline** | `updateD PROJECT_INDEX i/DEADLINE_INDEX [d/DESCRIPTION] [by/DATE]`
 **Delete Deadline from Project** | `deleteD PROJECT_INDEX i/DEADLINE_INDEX`
@@ -822,7 +820,7 @@ Action | Format, Examples
 
 Action | Format, Examples
 --------|------------------
-**Add Event to Project** | `addEto PROJECT_INDEX d/DESCRIPTION on/DATE at/TIME w/REPEAT_WEEKLY`
+**Add Event to Project** | `addE PROJECT_INDEX d/DESCRIPTION on/DATE at/TIME w/REPEAT_WEEKLY`
 **Update Event** | `updateE PROJECT_INDEX i/EVENT_INDEX [d/DESCRIPTION] [on/DATE] [at/TIME] [w/REPEAT_WEEKLY]`
 **Delete Event from Project** | `deleteE PROJECT_INDEX i/EVENT_INDEX`
 
