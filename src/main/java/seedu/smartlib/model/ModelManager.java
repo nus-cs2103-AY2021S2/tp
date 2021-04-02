@@ -60,6 +60,16 @@ public class ModelManager implements Model {
     //=========== UserPrefs ==================================================================================
 
     /**
+     * Returns the user prefs.
+     *
+     * @return the user's preferences.
+     */
+    @Override
+    public ReadOnlyUserPrefs getUserPrefs() {
+        return userPrefs;
+    }
+
+    /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      *
      * @param userPrefs new userPref data.
@@ -68,16 +78,6 @@ public class ModelManager implements Model {
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
         requireNonNull(userPrefs);
         this.userPrefs.resetData(userPrefs);
-    }
-
-    /**
-     * Returns the user prefs.
-     *
-     * @return the user's preferences.
-     */
-    @Override
-    public ReadOnlyUserPrefs getUserPrefs() {
-        return userPrefs;
     }
 
     /**
@@ -125,16 +125,6 @@ public class ModelManager implements Model {
     //=========== SmartLib ================================================================================
 
     /**
-     * Replaces SmartLib's data with the data in {@code smartLib}.
-     *
-     * @param smartLib the new SmartLib.
-     */
-    @Override
-    public void setSmartLib(ReadOnlySmartLib smartLib) {
-        this.smartLib.resetData(smartLib);
-    }
-
-    /**
      * Returns an immutable copy of SmartLib.
      *
      * @return an immutable copy of SmartLib.
@@ -142,6 +132,16 @@ public class ModelManager implements Model {
     @Override
     public ReadOnlySmartLib getSmartLib() {
         return smartLib;
+    }
+
+    /**
+     * Replaces SmartLib's data with the data in {@code smartLib}.
+     *
+     * @param smartLib the new SmartLib.
+     */
+    @Override
+    public void setSmartLib(ReadOnlySmartLib smartLib) {
+        this.smartLib.resetData(smartLib);
     }
 
     /**
@@ -291,6 +291,7 @@ public class ModelManager implements Model {
      */
     @Override
     public void deleteBook(Book target) {
+        requireNonNull(target);
         smartLib.removeBook(target);
     }
 
@@ -302,6 +303,7 @@ public class ModelManager implements Model {
      */
     @Override
     public void deleteReader(Reader target) {
+        requireNonNull(target);
         smartLib.removeReader(target);
     }
 
@@ -313,6 +315,7 @@ public class ModelManager implements Model {
      */
     @Override
     public void addBook(Book book) {
+        requireNonNull(book);
         smartLib.addBook(book);
         updateFilteredBookList(PREDICATE_SHOW_ALL_BOOKS);
     }
@@ -325,6 +328,7 @@ public class ModelManager implements Model {
      */
     @Override
     public void addReader(Reader reader) {
+        requireNonNull(reader);
         smartLib.addReader(reader);
         updateFilteredReaderList(PREDICATE_SHOW_ALL_READERS);
     }
@@ -337,7 +341,7 @@ public class ModelManager implements Model {
      */
     @Override
     public void addRecord(Record record) {
-        System.out.println(smartLib);
+        requireNonNull(record);
         smartLib.addRecord(record);
         updateFilteredRecordList(PREDICATE_SHOW_ALL_RECORDS);
     }
