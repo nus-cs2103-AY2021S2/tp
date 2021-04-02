@@ -368,6 +368,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends
 
+**Extensions**
+
+* 1a. The given tutor/student information is already exist in the list
+
+    * 1a1. AddressBook shows an error message.
+
+  Use case ends.
+
 **Use case: Add a class**
 
 **MSS**
@@ -413,7 +421,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
     
 * 1b. The given index cannot be found in the address book.
-    * 1a1. AddressBook shows a message stating no person found.
+    * 1a1. AddressBook shows an error message.
 
       Use case ends.
     
@@ -480,6 +488,36 @@ testers are expected to do more *exploratory* testing.
       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
+
+### Viewing a person
+1. Viewing a person
+    1. Prerequisites: there is at least 1 person in the list, 
+       and his/her personID is known to the tester.
+    1. Test case: `view_person s/1` <br>
+        Assumption: `s/1` is a valid personID <br>
+       Expected: details of person with personID `s/1` is displayed on the left pane, 
+       and his/her associated sessions are displayed on the right
+       
+    1. Test case: `view_person s/0` <br>
+        Assumption: `s/0` is an invalid personID since personID starts from 1 <br>
+       Expected: Error message is shown, no person/session is displayed
+       
+2. _{ more test cases …​ }_
+
+### Viewing a session
+1. Viewing a session
+    1. Prerequisites: there is at least 1 session in the list,
+       and the sessionID is known to the tester.
+    1. Test case: `view_session c/1` <br>
+       Assumption: `c/1` is a valid sessionID <br>
+       Expected: details of the session with sessionID `c/1` is displayed on the left pane,
+       and the students in the session are displayed on the right
+
+    1. Test case: `view_session c/0` <br>
+       Assumption: `c/0` is an invalid sessionID since sessionID starts from 1 <br>
+       Expected: Error message is shown, no person/session is displayed
+
+2. _{ more test cases …​ }_
 
 ### Saving data
 
