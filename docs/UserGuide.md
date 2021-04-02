@@ -795,7 +795,7 @@ Parameters:
 Examples:
 
 * `updateC 1 p/91234567 e/johndoe@example.com` updates the first contact with a new phone number `91234567` and email `johndoe@example.com`.
-* `updateC 2 n/Betsy Crower t/` Updates the second contact with a new name `Betsy Crower` and clears all existing tags.
+* `updateC 2 n/Betsy Crower t/` updates the second contact with a new name `Betsy Crower` and clears all existing tags.
 
 ##### Locating contacts by name: `findC`
 
