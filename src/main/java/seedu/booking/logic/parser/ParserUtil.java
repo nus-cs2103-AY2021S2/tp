@@ -224,12 +224,14 @@ public class ParserUtil {
     public static Set<Tag> parseTagsForPromptCommands(String str) throws ParseException {
         requireNonNull(str);
         final Set<Tag> tagSet = new HashSet<>();
-        String[] tags = str.split(",");
-        for (String tag : tags) {
-            if (!Tag.isValidTagName(tag.trim())) {
-                throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        if (!str.equals("")) {
+            String[] tags = str.split(",");
+            for (String tag : tags) {
+                if (!Tag.isValidTagName(tag.trim())) {
+                    throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+                }
+                tagSet.add(new Tag(tag.trim()));
             }
-            tagSet.add(new Tag(tag.trim()));
         }
         return tagSet;
     }
