@@ -54,6 +54,9 @@ public class CalendarStorage {
             }
         }
 
+        //sort the event according to time
+        events.sort();
+
         return events;
     }
 

@@ -1,6 +1,9 @@
 package seedu.address.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
+
+import seedu.address.model.person.Birthday;
 
 public class EventList {
     public static final String NO_ASSIGNMENTS_OUTPUT = "You have no events! Yay! :)\n";
@@ -22,11 +25,20 @@ public class EventList {
         return events.isEmpty();
     }
 
+    public void sort() {
+        Collections.sort(events);
+    }
+
     @Override
     public String toString() {
         String displayString = "";
         for (Event event : events) {
-            displayString += event.tag + ": " + event.toString() + "\n";
+            String tagName = event.getTag().tagName;
+            if (tagName.equals("Birthday")) {
+                displayString += ((Birthday) event).getDescription() + ": " + event.toString() + "\n";
+            } else {
+                displayString += event.tag + ": " + event.toString() + "\n";
+            }
         }
 
         return displayString;
