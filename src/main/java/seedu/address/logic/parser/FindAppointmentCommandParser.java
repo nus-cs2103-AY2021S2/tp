@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.OPTION_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.OPTION_CHILD;
 import static seedu.address.logic.parser.CliSyntax.OPTION_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.OPTION_DATE;
 import static seedu.address.logic.parser.CliSyntax.OPTION_NAME;
@@ -13,13 +14,13 @@ import java.util.List;
 import java.util.Optional;
 
 import seedu.address.logic.commands.FindAppointmentCommand;
-import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.appointment.ApptAddressContainsKeywordsPredicate;
-import seedu.address.model.appointment.ApptAnyContainsKeywordsPredicate;
-import seedu.address.model.appointment.ApptContactsContainKeywordsPredicate;
-import seedu.address.model.appointment.ApptDateContainsKeywordsPredicate;
-import seedu.address.model.appointment.ApptNameContainsKeywordsPredicate;
+import seedu.address.model.appointment.predicate.ApptAddressContainsKeywordsPredicate;
+import seedu.address.model.appointment.predicate.ApptAnyContainsKeywordsPredicate;
+import seedu.address.model.appointment.predicate.ApptContactsContainKeywordsPredicate;
+import seedu.address.model.appointment.predicate.ApptDateContainsKeywordsPredicate;
+import seedu.address.model.appointment.predicate.ApptNameContainsKeywordsPredicate;
+import seedu.address.model.appointment.predicate.ApptTagsContainKeywordsPredicate;
 
 public class FindAppointmentCommandParser implements Parser<FindAppointmentCommand> {
     /**
@@ -32,7 +33,7 @@ public class FindAppointmentCommandParser implements Parser<FindAppointmentComma
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindAppointmentCommand.MESSAGE_USAGE));
         }
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_OPTION);
         Optional<String> argsString = argMultimap.getValue(PREFIX_OPTION);
@@ -54,21 +55,24 @@ public class FindAppointmentCommandParser implements Parser<FindAppointmentComma
      * Parses args in find by options context
      * @param option option to determine the option selected
      * @param optionArgs {@code optionArgs} for the rest of the args
-     * @return {@code FindCommand}
+     * @return {@code FindAppointmentCommand}
      */
     public FindAppointmentCommand parseFindOptions(String option, String optionArgs) throws ParseException {
         List<String> keywords = Arrays.asList(optionArgs.split("\\s+"));
-        if (option.equals(OPTION_NAME)) { // find by name
+        switch (option) {
+        case OPTION_NAME: // find by name
             return new FindAppointmentCommand(new ApptNameContainsKeywordsPredicate(keywords));
-        } else if (option.equals(OPTION_ADDRESS)) { // find by address
+        case OPTION_CHILD:
+            return new FindAppointmentCommand(new ApptTagsContainKeywordsPredicate(keywords));
+        case OPTION_ADDRESS: // find by address
             return new FindAppointmentCommand(new ApptAddressContainsKeywordsPredicate(keywords));
-        } else if (option.equals(OPTION_DATE)) { // find by date
+        case OPTION_DATE: // find by date
             return new FindAppointmentCommand(new ApptDateContainsKeywordsPredicate(keywords));
-        } else if (option.equals(OPTION_CONTACT)) { // find by contacts
+        case OPTION_CONTACT: // find by contacts
             return new FindAppointmentCommand(new ApptContactsContainKeywordsPredicate(keywords));
-        } else {
+        default:
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindAppointmentCommand.MESSAGE_USAGE));
         }
     }
 
@@ -79,7 +83,7 @@ public class FindAppointmentCommandParser implements Parser<FindAppointmentComma
      */
     public FindAppointmentCommand parseFindAll(String trimmedArgs) throws ParseException {
         String[] keywords = trimmedArgs.split("\\s+");
-        assert keywords.length > 0 : "FindCommand keywords are empty";
+        assert keywords.length > 0 : "FindAppointmentCommand keywords are empty";
         return new FindAppointmentCommand(new ApptAnyContainsKeywordsPredicate(Arrays.asList(keywords)));
     }
 

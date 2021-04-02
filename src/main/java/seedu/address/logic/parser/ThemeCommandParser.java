@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_MORE_THAN_ONE_SAME_PREFIX;
 import static seedu.address.logic.parser.CliSyntax.OPTION_DARK;
 import static seedu.address.logic.parser.CliSyntax.OPTION_LIGHT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OPTION;
@@ -22,6 +23,10 @@ public class ThemeCommandParser implements Parser<ThemeCommand> {
         requireNonNull(args);
         ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(args,
                     PREFIX_OPTION);
+
+        if (argumentMultimap.getAllValues(PREFIX_OPTION).size() > 1) {
+            throw new ParseException(MESSAGE_MORE_THAN_ONE_SAME_PREFIX);
+        }
 
         Optional<String> option = argumentMultimap.getValue(PREFIX_OPTION);
 

@@ -14,7 +14,7 @@ import seedu.address.model.Address;
 import seedu.address.model.Name;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.DateTime;
-import seedu.address.model.person.Person;
+import seedu.address.model.contact.Contact;
 import seedu.address.model.tag.Tag;
 
 public class JsonAdaptedAppointment {
@@ -23,7 +23,7 @@ public class JsonAdaptedAppointment {
     private final String name;
     private final String address;
     private final DateTime date;
-    private final Set<JsonAdaptedPerson> contacts = new HashSet<>();
+    private final Set<JsonAdaptedContact> contacts = new HashSet<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -33,7 +33,7 @@ public class JsonAdaptedAppointment {
     public JsonAdaptedAppointment(@JsonProperty("name") String name, @JsonProperty("address") String address,
                                   @JsonProperty("date") DateTime date,
                                   @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                                  @JsonProperty("contacts") Set<JsonAdaptedPerson> contacts) {
+                                  @JsonProperty("contacts") Set<JsonAdaptedContact> contacts) {
         this.name = name;
         this.address = address;
         this.date = date;
@@ -55,7 +55,7 @@ public class JsonAdaptedAppointment {
         date = source.getDateTime();
 
         contacts.addAll(source.getContacts().stream()
-                .map(JsonAdaptedPerson::new)
+                .map(JsonAdaptedContact::new)
                 .collect(Collectors.toList()));
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -68,10 +68,10 @@ public class JsonAdaptedAppointment {
      * @throws IllegalValueException if there were any data constraints violated in the adapted appointment.
      */
     public Appointment toModelType() throws IllegalValueException {
-        final Set<Person> appointmentContacts = new HashSet<>();
+        final Set<Contact> appointmentContacts = new HashSet<>();
 
-        for (JsonAdaptedPerson person : contacts) {
-            appointmentContacts.add(person.toModelType());
+        for (JsonAdaptedContact contact : contacts) {
+            appointmentContacts.add(contact.toModelType());
         }
 
         final List<Tag> appointmentTags = new ArrayList<>();
@@ -101,7 +101,7 @@ public class JsonAdaptedAppointment {
         }
         final DateTime modelDate = date;
 
-        final Set<Person> modelContacts = new HashSet<>(appointmentContacts);
+        final Set<Contact> modelContacts = new HashSet<>(appointmentContacts);
         final Set<Tag> modelTags = new HashSet<>(appointmentTags);
         return new Appointment(modelName, modelAddress, modelDate, modelContacts, modelTags);
     }

@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="HeliBook" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="ParentPal" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -57,7 +57,7 @@
           </rowConstraints>
             <children>
 
-              <VBox fx:id="personList" minWidth="340.0" prefWidth="340.0" styleClass="pane-with-border">
+              <VBox fx:id="contactList" minWidth="340.0" prefWidth="340.0" styleClass="pane-with-border">
                 <padding>
                   <Insets bottom="10" left="10" right="10" top="10" />
                 </padding>
@@ -66,7 +66,7 @@
                      <Insets bottom="5.0" left="5.0" top="5.0" />
                   </padding>
                 </Label>
-                <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                <StackPane fx:id="contactListPanelPlaceholder" VBox.vgrow="ALWAYS" />
               </VBox>
               <VBox fx:id="appointmentList" styleClass="pane-with-border" GridPane.columnIndex="1">
                 <padding>

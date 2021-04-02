@@ -1,6 +1,12 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.OPTION_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.OPTION_CHILD;
+import static seedu.address.logic.parser.CliSyntax.OPTION_CONTACT;
+import static seedu.address.logic.parser.CliSyntax.OPTION_DATE;
+import static seedu.address.logic.parser.CliSyntax.OPTION_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_OPTION;
 
 import java.util.function.Predicate;
 
@@ -14,10 +20,22 @@ import seedu.address.model.appointment.Appointment;
 public class FindAppointmentCommand extends Command {
     public static final String COMMAND_WORD = "findAppt";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all Appointments with fields containing any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all appointments with fields containing any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " lunch meeting ptm";
+            + "Options can be specified using " + PREFIX_OPTION + "<OPTION>" + " can be used to \n\n"
+            + "Parameters: [" + PREFIX_OPTION + "<OPTION>]"
+            + " KEYWORD [MORE_KEYWORDS]...\n"
+            + "Options:\n"
+            + " - " + OPTION_NAME + " (to find by name)\n"
+            + " - " + OPTION_CHILD + " (to find by child)\n"
+            + " - " + OPTION_ADDRESS + " (to find by address)\n"
+            + " - " + OPTION_DATE + " (to find by date)\n"
+            + " - " + OPTION_CONTACT + " (to find by contacts)\n"
+            + "\n"
+            + "Examples:\n"
+            + " - " + COMMAND_WORD + " lunch meeting ptm\n"
+            + " - " + COMMAND_WORD + " " + PREFIX_OPTION + OPTION_NAME + "\n"
+            + " - " + COMMAND_WORD + " " + PREFIX_OPTION + OPTION_DATE + "20/05";
 
     private final Predicate<Appointment> predicate;
 

@@ -18,7 +18,7 @@ import seedu.address.model.ReadOnlyAppointmentBook;
 /**
  * A class to access AddressBook data stored as a json file on the hard disk.
  */
-public class JsonAppointmentBookStorage implements HeliBookStorage {
+public class JsonAppointmentBookStorage implements ParentPalStorage {
 
     private static final Logger logger = LogsCenter.getLogger(JsonAppointmentBookStorage.class);
 

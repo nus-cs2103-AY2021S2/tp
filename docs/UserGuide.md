@@ -4,12 +4,12 @@ title: User Guide
 ---
 Hello! Are you a parent whose phone's contact book is filling up with the contacts of teachers? Do you have trouble
 remembering who exactly that contact in your contact book is referring to? Do you have multiple children and want
-a centralised place to keep track of all their activities? Then HeliBook can be the app for you!
+a centralised place to keep track of all their activities? Then ParentPal can be the app for you!
 
-HeliBook is a **desktop app for managing your children's contacts and their related appointments, 
+ParentPal is a **desktop app for managing your children's contacts and their related appointments, 
 optimized for use via a Command Line Interface** (CLI) while still having the benefits of a 
 Graphical User Interface (GUI). 
-If you can type fast, HeliBook can get your contact management tasks done faster than traditional GUI apps.
+If you can type fast, ParentPal can get your contact management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -20,9 +20,9 @@ If you can type fast, HeliBook can get your contact management tasks done faster
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `helibook.jar` from [here](https://github.com/AY2021S2-CS2103T-W13-3/tp/releases).
+1. Download the latest `parentpal.jar` from [here](https://github.com/AY2021S2-CS2103T-W13-3/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your HeliBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your ParentPal.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -71,7 +71,7 @@ If you can type fast, HeliBook can get your contact management tasks done faster
 </div>
 
 This section is separated into the following sub-sections:
-* [General Commands](#general-commands): Commands related to navigating HeliBook
+* [General Commands](#general-commands): Commands related to navigating ParentPal
 * [Address Book Commands](#address-book-commands): Commands related to managing contacts
 * [Appointment Book Commands](#appointment-book-commands): Commands related to managing appointments
 
@@ -98,14 +98,14 @@ Exits the program.
 
 Format: `exit`
 
-#### Changing HeliBook's theme : `theme`
+#### Changing ParentPal's theme : `theme`
 
-Changes the theme of HeliBook.
+Changes the theme of ParentPal.
 
 Format: `theme o/OPTION`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-HeliBook's theme is set to dark by default.
+ParentPal's theme is set to dark by default.
 </div>
 
 Currently available options for the [OPTION] field include: 
@@ -113,7 +113,7 @@ Currently available options for the [OPTION] field include:
 * `dark` Dark theme
 
 Examples: 
-* `light` changes theme to a light theme.
+* `theme o/light` changes theme to a light theme.
 
 ### Address Book Commands
 
@@ -183,26 +183,45 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st contact to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd contact to be `Betsy Crower` and clears all existing tags.
 
-#### Locating contacts by name: `find`
+#### Finding contacts: `find`
 
-Finds contacts whose names contain any of the given keywords.
+Find contacts based on the given option. If no option specified, all of a contact's
+fields will be searched and any keyword matches in any one of the fields will return that contact.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `findAppt [o/OPTION] KEYWORD [MORE_KEYWORDS]…​`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+Currently available options for the `[OPTION]` field include:
+* `name` Find by name of the contact
+* `address` Find by address of the contact
+* `phone` Find by phone of the contact
+* `email` Find by email of the contact
+* `tag` Find by tags of the contact (only exact tags will be matched)
+
+<div markdown="span" class="alert alert-primary">:warning: **Warning:**
+When using the <code>tag</code> option <code>t/</code> needs to be placed in front of the tag 
+you are searching for. Also, please note that only exact matches will be returned for find by tag.<br>
+Example: find o/tag t/first t/second
+</div>
+
+* The search is case-insensitive. e.g `ptm` will match `PTM`
+* The order of the keywords does not matter. e.g. `Teacher meeting` will match `Meeting teacher`
 * Only the name is searched.
-* Incomplete words will also be matched e.g. `Han` will match `Hans`
-* contacts matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-* If *n* contacts can be found, message “*n* contacts listed!” will be displayed
-  e.g. when 0 results, "0 contacts listed!" is displayed
+* Incomplete words will also be matched e.g. `PT` will match `PTM`
+* Appointments with any field matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Teacher meeting` will return `Speak to ballet teacher`, `PSG meeting`
+* If *n* appointments can be found, message “*n* appointments listed!” will be displayed
+  e.g. when 0 results, "0 appointments listed!" is displayed
+
+Examples:
+* `findAppt ptm` returns `PTM`
   
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li` when no exact matches are found
 
   ![result for 'find alex david'](images/findAlexDavidResult.png)
+
+
 
 #### Deleting a contact : `delete`
 
@@ -325,17 +344,25 @@ Examples:
 be `PSG meeting` and `ABC Secondary School` respectively and replaces all related contacts with the 1st contact 
 on the contact list.
 
-#### Finding appointments by name: `findAppt`
+#### Finding appointments: `findAppt`
 
-Finds appointments whose names contain any of the given keywords.
+Find appointments based on the given option. If no option specified, all of an appointment's 
+fields will be searched and any keyword matches in any one of the fields will return that appointment.
 
-Format: `findAppt KEYWORD [MORE_KEYWORDS]…​`
+Format: `findAppt [o/OPTION] KEYWORD [MORE_KEYWORDS]…​`
+
+Currently available options for the `[OPTION]` field include:
+* `name` Find by the name of the appointment
+* `child` Find by the child that the appointment is tagged to   
+* `address` Find by address of the appointment  
+* `date` Find by date of appointment
+* `contact` Find by name of the contacts involved in the appointment
 
 * The search is case-insensitive. e.g `ptm` will match `PTM`
 * The order of the keywords does not matter. e.g. `Teacher meeting` will match `Meeting teacher`
 * Only the name is searched.
 * Incomplete words will also be matched e.g. `PT` will match `PTM`
-* Contacts matching at least one keyword will be returned (i.e. `OR` search).
+* Appointments with any field matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Teacher meeting` will return `Speak to ballet teacher`, `PSG meeting`
 * If *n* appointments can be found, message “*n* appointments listed!” will be displayed
   e.g. when 0 results, "0 appointments listed!" is displayed
@@ -354,28 +381,28 @@ Examples:
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Managing HeliBook Data
+## Managing ParentPal Data
 
 ### Saving your data
 
-HeliBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+ParentPal data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-HeliBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+ParentPal data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, HeliBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, ParentPal will discard all data and start with an empty data file at the next run.
 </div>
 
 ### Exporting your data
 
-1. After running HeliBook at least once, locate the `data` folder on your device which can be found in the same directory as your JAR file. 
+1. After running ParentPal at least once, locate the `data` folder on your device which can be found in the same directory as your JAR file. 
 2. Send this `data` folder to your other device.  
 
 ### Importing your data
 
-1. Install HeliBook on your new device and run it once, exit the program before proceeding.
+1. Install ParentPal on your new device and run it once, exit the program before proceeding.
 2. Locate the `data` folder on your old device which can be found in the same directory as your JAR file.
 3. Copy the `data` folder from your old device to the new device to the same directory as where you installed the JAR file.
 4. Replace the files on your new device when prompted.
@@ -402,21 +429,22 @@ that works with regular tags such as 'Find' or 'Sort' will also work with Child 
 Action | Format, Examples
 --------|------------------
 ​ | **General Commands**
-**Help** | `help [COMMAND]` <br> e.g, `help find`
 **Exit** | `exit`
+**Help** | `help [COMMAND]` <br> e.g., `help find`
+**Theme** | `theme o/OPTION` <br> e.g., `theme o/light`
 ​ | **Address Book Commands**
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [tc/CHILDTAG]…​ [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Clear** | `clear [t/TAG]…​`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [tc/CHILDTAG]…​ [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Fav** | `fav INDEX [o/OPTION]` <br> e.g., `fav 3 o/remove`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
+**Find** | `find [o/OPTION] KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**List** | `list [o/OPTION]`
 **Tag** | `tag INDEX [o/OPTION] [tc/CHILDTAG]…​ [t/TAG]…​`<br> e.g., `tag 4 t/School t/English`
 **Sort** | `sort o/OPTION` <br> e.g., `sort o/name`
 ​ | **Appointment Book Commands**
 **Add** | `addAppt n/NAME a/ADDRESS d/DATE [c/CONTACT_INDEX]…​ [tc/CHILDTAG]…​` <br> e.g., `addAppt n/PTM a/ABC Primary School d/21/03/2021 10:00 c/2`
 **Delete** | `deleteAppt INDEX` <br> e.g., `delete 2`
 **Edit** | `editAppt INDEX [n/NAME] [a/ADDRESS] [d/DATE] [c/CONTACT_INDEX]…​ [tc/CHILDTAG]…​` <br> e.g., `edit 1 n/PSG meeting a/ABC Secondary School c/1`
-**Find** | `find KEYWORD [MORE_KEYWORDS]…​` <br> e.g., `find PTM`
+**Find** | `findAppt [o/OPTION] KEYWORD [MORE_KEYWORDS]…​` <br> e.g., `find PTM`
 **List** | `listAppt`

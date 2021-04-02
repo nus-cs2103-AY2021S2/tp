@@ -16,7 +16,7 @@ public class ThemeCommand extends Command {
     public static final String COMMAND_WORD = "theme";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Changes the theme of HeliBook.\n"
+            + ": Changes the theme of ParentPal.\n"
             + "Parameters: " + PREFIX_OPTION + "OPTION\n"
             + "Options: dark, light\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION + OPTION_DARK + "\n"
@@ -39,5 +39,12 @@ public class ThemeCommand extends Command {
             model.setTheme(OPTION_LIGHT);
         }
         return new CommandResult(MESSAGE_SUCCESS);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ThemeCommand // instanceof handles nulls
+                && option.equals(((ThemeCommand) other).option));
     }
 }
