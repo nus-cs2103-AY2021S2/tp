@@ -123,7 +123,7 @@ There are three main areas in TutorBuddy:
     to TutorBuddy.
   * **`delete_student`**`3` : Deletes the 3rd student shown in the Student section.
   * **`add_session`**`n/John Doe d/2021-01-01 t/13:00 k/120 s/Biology f/80`: Adds a single tuition session for John Doe happening on 2021-01-01
-  * **`add_recurring_session`**`n/John Doe d/2021-01-01 t/18:00 k/120 s/Biology f/80 b/7 e/2021-01-15`: Adds a 7-day recurring session for John Doe happening from 2021-01-01 to 2021-01-15
+  * **`add_rec_session`**`n/John Doe d/2021-01-01 t/18:00 k/120 s/Biology f/80 b/7 e/2021-01-15`: Adds a 7-day recurring session for John Doe happening from 2021-01-01 to 2021-01-15
   * **`exit`** : Exits the application.<br>
 
 Refer to the [Commands](#commands) below for details of each command.

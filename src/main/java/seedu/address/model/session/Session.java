@@ -43,19 +43,64 @@ public class Session {
         return fee;
     }
 
-
-    // TODO : Overlap check for recurring session.
     /**
      * Checks if the {@code Session} slot overlaps with another session.
      * @param otherSession the other session that is compared to.
      */
     public boolean isOverlapping(Session otherSession) {
-        SessionDate otherSessionDate = otherSession.getSessionDate();
+        SessionDate otherSessionStartDate = otherSession.getSessionDate();
+        SessionDate otherSessionEndDate = otherSessionStartDate.getEndSessionDate(otherSession.getDuration());
         SessionDate sessionStartDate = sessionDate;
         SessionDate sessionEndDate = sessionStartDate.getEndSessionDate(duration);
-        return (otherSessionDate.getDateTime().isEqual(sessionStartDate.getDateTime())
-                || otherSessionDate.getDateTime().isAfter(sessionStartDate.getDateTime()))
-                && otherSessionDate.getDateTime().isBefore(sessionEndDate.getDateTime());
+        return isDateTimeOverlapping(sessionStartDate, sessionEndDate, otherSessionStartDate, otherSessionEndDate);
+    }
+
+    /**
+     * Checks if the {@code RecurringSession} slot overlaps with another session.
+     * @param otherSession the other recurring session that is compared to.
+     */
+    public boolean isOverlapping(RecurringSession otherSession) {
+        if (!otherSession.hasSessionOnDate(getSessionDate())) {
+            return false;
+        }
+        SessionDate sessionStartDate = sessionDate;
+        SessionDate sessionEndDate = sessionStartDate.getEndSessionDate(duration);
+        SessionDate otherSessionStartDate = otherSession.getSessionDate();
+        SessionDate otherSessionEndDate = otherSessionStartDate.getEndSessionDate(otherSession.getDuration());
+        return isTimeOverlapping(sessionStartDate, sessionEndDate, otherSessionStartDate, otherSessionEndDate);
+    }
+
+    /**
+     * Checks if the two session overlaps each other through {@code LocalDateTime} comparison.
+     */
+    public boolean isDateTimeOverlapping(SessionDate sessionStartDate, SessionDate sessionEndDate,
+                                         SessionDate otherSessionStartDate, SessionDate otherSessionEndDate) {
+        boolean otherSessionOverlapsAfterSessionStarts = (
+                otherSessionStartDate.getDateTime().isEqual(sessionStartDate.getDateTime())
+                        || otherSessionStartDate.getDateTime().isAfter(sessionStartDate.getDateTime()))
+                && otherSessionStartDate.getDateTime().isBefore(sessionEndDate.getDateTime());
+        boolean sessionOverlapsAfterOtherSessionStarts = (
+                sessionStartDate.getDateTime().isEqual(otherSessionStartDate.getDateTime())
+                        || sessionStartDate.getDateTime().isAfter(otherSessionStartDate.getDateTime()))
+                && sessionStartDate.getDateTime().isBefore(otherSessionEndDate.getDateTime());
+        return otherSessionOverlapsAfterSessionStarts || sessionOverlapsAfterOtherSessionStarts;
+    }
+
+    /**
+     * Checks if the two sessions overlaps each other through {@code LocalTime} comparison.
+     * A softer check compared to {@link #isDateTimeOverlapping(SessionDate, SessionDate, SessionDate, SessionDate)}.
+     */
+    public boolean isTimeOverlapping(SessionDate sessionStartDate, SessionDate sessionEndDate,
+                                     SessionDate otherSessionStartDate, SessionDate otherSessionEndDate) {
+        boolean otherSessionOverlapsAfterSessionStarts = (
+                otherSessionStartDate.getTime().equals(sessionStartDate.getTime())
+                        || otherSessionStartDate.getTime().isAfter(sessionStartDate.getTime()))
+                && otherSessionStartDate.getTime().isBefore(sessionEndDate.getTime());
+        boolean sessionOverlapsAfterOtherSessionStarts = (
+                sessionStartDate.getTime().equals(otherSessionStartDate.getTime())
+                        || sessionStartDate.getTime().isAfter(otherSessionStartDate.getTime()))
+                && sessionStartDate.getTime().isBefore(otherSessionEndDate.getTime());
+        return otherSessionOverlapsAfterSessionStarts || sessionOverlapsAfterOtherSessionStarts;
     }
 
     @Override
