@@ -19,7 +19,7 @@ public class DeleteModuleCommand extends DeleteCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the module identified by the title used list of modules\n"
-            + "Parameters: Title (must be a string value)\n"
+            + "Parameters: Module Title\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_MODULE + " CS2103T";
 

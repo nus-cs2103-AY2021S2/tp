@@ -1,17 +1,13 @@
 package seedu.address.ui.calendar.schedule;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.ScheduleUiUtil.CURRENT_TIME_POINTER_PADDING;
 import static seedu.address.commons.util.ScheduleUiUtil.calendarTextToDate;
-import static seedu.address.commons.util.ScheduleUiUtil.getMarginFromTime;
-import static seedu.address.commons.util.ScheduleUiUtil.toAmPmTime;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.logging.Logger;
 
-import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -49,10 +45,8 @@ public class UpcomingSchedule extends UiPart<Region> implements EventHandler<Mou
 
     private CurrentTimePointer currentTimePointer;
     private TimeScale timeScale;
-    //private ObservableList<Event> calendarList;
-    //private FilteredList<Event> dayList;
+    private DayEventList eventHolder;
     private LocalDate currentDay;
-    private int currentCell;
 
     /**
      * Constructs a schedule for the UpcomingSchedulePanel, which is the left panel of the {@Code CalendarWindow}.
@@ -64,7 +58,9 @@ public class UpcomingSchedule extends UiPart<Region> implements EventHandler<Mou
         this.calendarStorage = calendarStorage;
         currentDay = LocalDate.now();
         timeScale = new TimeScale();
-        schedule.getChildren().add(timeScale.getRoot());
+        eventHolder = new DayEventList();
+        schedule.getChildren().add(eventHolder.getRoot());
+        //schedule.getChildren().add(timeScale.getRoot());
         loadSchedule(currentDay);
         logger.info("upcoming schedule successfully initialised");
     }
@@ -82,32 +78,13 @@ public class UpcomingSchedule extends UiPart<Region> implements EventHandler<Mou
     }
 
     private void fillBase() {
-        schedule.getChildren().remove(timeScale.getRoot());
+        schedule.getChildren().remove(eventHolder.getRoot());
+        calendarStorage.refreshStorage();
         EventList events = calendarStorage.getDateEvents(currentDay);
-        timeScale.updateTimeScale(events);
-        schedule.getChildren().add(timeScale.getRoot());
-
-        if (currentDay.equals(LocalDate.now())) {
-            //addTimePointer();
-        }
-        addTimePointer();
+        eventHolder.updateList(events);
+        schedule.getChildren().add(eventHolder.getRoot());
     }
     /*
-    private void fillOtherDay(int date) {
-        timeScale.removeItem(currentTimePointer.getRoot());
-        //LocalDateTime dateTime = LocalDate.of(today.getYear(), today.getMonth(), date).atStartOfDay();
-        //dayList.setPredicate(task -> IN_THE_DAY.test(task, dateTime));
-        //fillTopLabelForOtherDay(dateTime);
-    }
-
-    private void fillInnerToday() {
-        dayList.setPredicate(task -> IN_THE_DAY.test(task, today.atStartOfDay()));
-        currentCell = today.getDayOfMonth();
-
-        // Fill the label for today.
-        fillTopLabelForDay();
-    }*/
-
     private void addTimePointer() {
         // Add the currentTimePointer to the TimeScale
         String currentTime = getCurrentTime();
@@ -142,28 +119,13 @@ public class UpcomingSchedule extends UiPart<Region> implements EventHandler<Mou
         });
         thread.start();
     }
+    */
 
     private void fillTopLabelForDay() {
         year.setText(String.valueOf(currentDay.getYear()));
         date.setText(getDateString(currentDay));
         day.setText(getDayString(currentDay));
     }
-
-    /*
-    private void fillTopLabelForToday() {
-        // Fill the label with date of "TODAY"
-        today = LocalDate.now();
-        year.setText(String.valueOf(today.getYear()));
-        date.setText(getDateString(today));
-        day.setText(getDayString(today));
-    }
-
-    private void fillTopLabelForOtherDay(LocalDateTime dateTime) {
-        year.setText(String.valueOf(dateTime.getYear()));
-        date.setText(getDateString(dateTime.toLocalDate()));
-        day.setText(getDayString(dateTime.toLocalDate()));
-    }
-    */
 
     private String getDateString(LocalDate date) {
         String month = date.getMonth().toString();
@@ -186,7 +148,7 @@ public class UpcomingSchedule extends UiPart<Region> implements EventHandler<Mou
     }
 
     public void endThread() {
-        thread.stop();
+        //thread.stop();
     }
 
     /**
@@ -206,7 +168,6 @@ public class UpcomingSchedule extends UiPart<Region> implements EventHandler<Mou
         }
 
         currentDay = clickedDate;
-        endThread();
         loadSchedule(currentDay);
     }
 }

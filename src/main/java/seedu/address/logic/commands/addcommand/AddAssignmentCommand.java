@@ -13,8 +13,8 @@ import seedu.address.model.module.Module;
 
 public class AddAssignmentCommand extends AddCommand {
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an assignment to the module. "
-            + "Parameters: "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an assignment to the module."
+            + "\nParameters: "
             + PREFIX_MODULE + "TITLE "
             + PREFIX_ASSIGNMENT + "DESCRIPTION "
             + PREFIX_DEADLINE + "DEADLINE"
