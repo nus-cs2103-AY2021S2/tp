@@ -133,8 +133,6 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Parsing user commands
-
 ### Add session feature
 
 #### Current Implementation
@@ -160,6 +158,25 @@ Step 5: The `CommandResult` is then displayed on the UI.
 The sequence for the example scenerio can be found below:
 
 ![AddSessionSequenceDiagram](images/AddSessionSequenceDiagram.png)
+
+### Unassign person feature
+The unassign feature utilises defensive programming to ensure that the `tutor` and `students` attributes of the session correspond with those persons' `sessions` attribute.
+
+Given below is an example usage scenario and how the unassign command behaves at each step.
+
+Step 1: The user executes `unassign s/1 c/1` command to unassign student `s/1` from session `c/1`. The `LogicManager` calls `AddressBookParser#parseCommand(String userInput)`. 
+
+Step 2: The `parseCommand` method passes the user input to `UnassignCommandParser#parse(String args)` which returns an `UnassignCommand` object.
+
+Step 3: The `LogicManager` then executes the `UnassignCommand`.
+
+Step 4: The `UnassignCommand` calls the `Person#removeSession(SessionID session)` to remove the session from the student `s/1`'s list, and `Session#unassignStudent(PersonId student)` to remove the student from the session `c/1`'s list.
+
+Step 5: A `CommandResult` object is returned and displayed on the UI.
+
+The sequence for the example scenerio can be found below:
+
+![UnassignSequenceDiagram](images/UnassignSequenceDiagram.png)
 
 ### Delete person feature
 
