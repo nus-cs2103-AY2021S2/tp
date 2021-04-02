@@ -3,20 +3,30 @@ layout: page
 title: User Guide
 ---
 
-Welcome to **FriendDex**, a **relationship management tool** looking to enhance your social life while not compromising on getting things done quickly. 
-Managing your relationships should not be any more tedious than doing your laundry.
+Our world is more connected than ever. There are numerous interactions between multiple people daily in our lives. 
+As we move forward towards more of an asynchronous and remote way of living, daily interactions become more transient and harder to remember. 
+FriendDex aims to act as a tool to bridge that gap so that interactions become more permanent. FriendDex will empower you to have better relationships with people around you.
 
-Although optimized for Command Line Interface enthusiasts, the intuitive interface allows anyone to get started with it immediately.
-To help you get started, read the [Quick start](#quick-start) section below.
+Welcome to the FriendDex User Guide. FriendDex, a portmanteau of Friend and Pokedex, is a relationship management tool, catered to those who would like to maintain their personal relationships without compromising on other aspects of their life. 
+A good example is students who are struggling to do well in both their studies and social life. Managing your relationships should not be any more tedious than doing your laundry.
+
+FriendDex uses a command line interface; this means that you type commands to interact with the application. 
+
+To help you get started, you should read the [Installation](#installation) and [Quick start](#quick-start) section first.
 
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
-## About 
-This document walks you through  the [User Interface](#UI) and [Features](#Features) present in **FriendDex**.
+## About
+This document can be thought of as a manual and a reference guide for FriendDex. It will guide you on how to use FriendDex and will provide complete information on each available command.
+Furthermore, the guide gives information on the User Interface (UI) and the other useful features of FriendDex. Each section of the guide can be read independently. 
+You can view the full list of content using the Table of Contents above. You can also use your document viewer’s Find function to quickly navigate to the content you want to know more about. 
+It is generally advised for new users to at least read through the [Quick Start](#quick-start) section to familiarise themselves with FriendDex.
 
 Note the following symbols and formatting used in this document.
+
+`list` A grey highlight, also called a mark-up, indicates that it can be typed into the command line and executed by the application.  
 
 <div markdown="block" class="alert alert-info">
 
@@ -491,6 +501,19 @@ If the previous theme file supplied is not found or unreadable, then the default
 
 **Q**: Where can I find more themes?<br>
 **A**: Certain online tools such as [terminal.sexy](https://terminal.sexy) can be used to generate the required `json` file.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Troubleshooting Instructions
+
+If FriendDex is unresponsive, you can force quit the application through your OS’s task manager and restart it. The data saved from the last operation will automatically be loaded back into the app. 
+If FriendDex is still not working, you can reinstall the app by deleting `friendDex.jar` from the _home folder_ of FriendDex and redownloading the latest version [here](https://github.com/AY2021S2-CS2103T-W14-1/tp/releases).
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Where to get additional help
+
+If you are still facing an issue that is not addressed in the guide, you submit it issue on Github page [here](https://github.com/AY2021S2-CS2103T-W14-1/tp/issues).
 
 --------------------------------------------------------------------------------------------------------------------
 
