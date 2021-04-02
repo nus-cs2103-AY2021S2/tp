@@ -106,6 +106,8 @@ public class HelpPanel extends UiPart<Region> {
     private static ObservableList<CommandSyntax> getProjectCommands() {
         return FXCollections.observableArrayList(
                 new CommandSyntax("project", "project PROJECT_INDEX"),
+                new CommandSyntax("overview", "overview"),
+                new CommandSyntax("todos", "todos"),
                 new CommandSyntax("addP", "addP n/PROJECT_NAME"),
                 new CommandSyntax("updateP", "updateP PROJECT_INDEX n/PROJECT_NAME"),
                 new CommandSyntax("deleteP", "deleteP PROJECT_INDEX")
@@ -114,7 +116,7 @@ public class HelpPanel extends UiPart<Region> {
 
     private static ObservableList<CommandSyntax> getTodoCommands() {
         return FXCollections.observableArrayList(
-                new CommandSyntax("todo", "todos"),
+
                 new CommandSyntax("addT", "addT PROJECT_INDEX d/DESCRIPTION"),
                 new CommandSyntax("updateT", "updateT PROJECT_INDEX i/TODO_INDEX d/DESCRIPTION"),
                 new CommandSyntax("deleteT", "deleteT PROJECT_INDEX i/TODO_INDEX"),
@@ -155,7 +157,7 @@ public class HelpPanel extends UiPart<Region> {
     private static ObservableList<CommandSyntax> getContactCommands() {
         return FXCollections.observableArrayList(
                 new CommandSyntax("addC", "addC n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]..."),
-                new CommandSyntax("find", "find KEYWORD [MORE_KEYWORDS]"),
+                new CommandSyntax("find", "find KEYWORD [KEYWORD]..."),
                 new CommandSyntax("updateC",
                         "updateC INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]..."),
                 new CommandSyntax("deleteC", "deleteC INDEX")
@@ -164,8 +166,10 @@ public class HelpPanel extends UiPart<Region> {
 
     private static ObservableList<CommandSyntax> getOtherCommands() {
         return FXCollections.observableArrayList(
-                new CommandSyntax("overview", "overview"),
+                new CommandSyntax("today", "today"),
+                new CommandSyntax("contacts", "contacts"),
                 new CommandSyntax("help", "help"),
+                new CommandSyntax("clear", "clear"),
                 new CommandSyntax("exit", "exit")
         );
     }
