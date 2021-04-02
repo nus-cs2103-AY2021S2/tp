@@ -19,6 +19,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.medical.Appointment;
 import seedu.address.model.medical.MedicalRecord;
 import seedu.address.model.person.Patient;
 
@@ -172,6 +173,21 @@ public class MainWindow extends UiPart<Stage> {
         viewPatientBoxPlaceholder.getChildren().add(viewPatientBox.getRoot());
     }
 
+    /**
+     * Updates the patientViewBox to show a list of appointments
+     */
+    @FXML
+    public void handleAppointmentsList(List<Appointment> appointments) {
+        ViewPatientBox viewPatientBox = new ViewPatientBox();
+        String allAppointments = String.format("You have %d upcoming appointments: \n\n", appointments.size());
+        for (Appointment appt : appointments) {
+            allAppointments += appt + "\n";
+        }
+        viewPatientBox.setText(allAppointments);
+        viewPatientBoxPlaceholder.getChildren().clear();
+        viewPatientBoxPlaceholder.getChildren().add(viewPatientBox.getRoot());
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -250,6 +266,10 @@ public class MainWindow extends UiPart<Stage> {
 
         if (commandResult.isShowViewBox()) {
             handlePatientViewBox(commandResult.getPatient());
+        }
+
+        if (commandResult.showAppointments()) {
+            handleAppointmentsList(commandResult.getAppointments());
         }
 
         if (commandResult.isExit()) {

@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.text.Text;
 import seedu.address.model.medical.MedicalRecord;
 import seedu.address.model.person.Patient;
 import seedu.address.model.tag.Tag;
@@ -50,7 +51,7 @@ public class ViewPatientBox extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
-    private Label name;
+    private Text name;
     @FXML
     private Label phone;
     @FXML
@@ -123,6 +124,10 @@ public class ViewPatientBox extends UiPart<Region> {
         super(FXML);
         this.patient = null;
         name.setText(STARTUP_MESSAGE);
+    }
+
+    public void setText(String s) {
+        this.name.setText(s);
     }
 
     private void setLabels() {

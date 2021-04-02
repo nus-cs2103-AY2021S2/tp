@@ -3,6 +3,7 @@ package seedu.address.logic.commands.medical;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import seedu.address.logic.commands.Command;
@@ -23,7 +24,7 @@ public class ListAppointmentsCommand extends Command {
             + "Parameters: None\n"
             + "Example: " + COMMAND_WORD;
 
-    public static final String MESSAGE_SUCCESS = "Hey Doc, here are your upcoming appointments! \n%s";
+    public static final String MESSAGE_SUCCESS = "Hey Doc, here are your upcoming appointments!";
 
     @Override
     public CommandResult execute(Model model) {
@@ -36,13 +37,11 @@ public class ListAppointmentsCommand extends Command {
                 appointments.add(appt.setPerson(p));
             }
         }
-        String allAppointments = "";
-        for (Appointment appt : appointments) {
-            allAppointments += appt + "\n";
-        }
+        Collections.sort(appointments);
         model.updateFilteredPersonList(Model.PREDICATE_SHOW_PATIENTS_WITH_APPT);
-        model.sortFilteredPersonList(Model.COMPARATOR_BY_FIRST_APPT_DATE);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, allAppointments));
+        //model.sortFilteredPersonList(Model.COMPARATOR_BY_FIRST_APPT_DATE);
+        return new CommandResult(MESSAGE_SUCCESS,
+                false, false, null, null, appointments, false);
     }
 
 }
