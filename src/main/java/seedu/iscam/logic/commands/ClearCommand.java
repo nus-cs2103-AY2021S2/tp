@@ -10,15 +10,10 @@ import seedu.iscam.model.util.meetingbook.MeetingBook;
 /**
  * Clears the iscam book.
  */
-public class ClearCommand extends UndoableCommand {
+public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
     public static final String MESSAGE_SUCCESS = "Client book has been cleared!";
-
-    @Override
-    public String getCommandWord() {
-        return COMMAND_WORD;
-    }
 
     @Override
     public CommandResult execute(Model model) {
