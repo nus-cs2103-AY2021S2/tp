@@ -165,8 +165,12 @@ public class PawbookParser {
     }
 
     private ListCommand generateListCommand(String entityType, String arguments) throws ParseException {
-        // if no entity is specified, arguments also has to be blank to confirm that only "list" is issued
-        if (entityType.isEmpty() && arguments.isBlank()) {
+        if (!arguments.isBlank() && !Pattern.matches("^ s*\\s*$", arguments)) {
+            throw new ParseException(ListCommand.MESSAGE_USAGE);
+        }
+
+        // if no entity is specified, list everything
+        if (entityType.isEmpty()) {
             return new ListCommand();
         }
 
