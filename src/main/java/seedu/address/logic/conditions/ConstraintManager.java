@@ -7,12 +7,12 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.task.Task;
 
 /**
- * ConditionManager checks that the necessary constraints on the attributes of Tasks are abided by.
+ * ConstraintManager checks that the necessary constraints on the attributes of Tasks are abided by.
  * Current constraints:
  * - Duration cannot exist on its own without Deadline or RecurringSchedule.
  * - Deadline cannot exist together with RecurringSchedule.
  */
-public class ConditionManager {
+public class ConstraintManager {
 
     public static final String MESSAGE_DURATION_STANDALONE_ERROR = "Task cannot have Duration on its own.\n"
             + "Duration must have a Date or RecurringSchedule.";

@@ -22,7 +22,8 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.conditions.ConditionManager;
+import seedu.address.logic.conditions.ConstraintManager;
+import seedu.address.logic.conditions.IndexManager;
 import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Date;
@@ -87,17 +88,16 @@ public class EditCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Task> lastShownList = model.getFilteredTaskList();
-        int indexValue = index.getZeroBased();
 
-        checkForValidIndex(indexValue, lastShownList);
+        IndexManager.verifyIndex(index, lastShownList);
 
-        Task taskToEdit = lastShownList.get(indexValue);
+        Task taskToEdit = getTaskToEdit(lastShownList);
         Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
 
         checkForDuplicateTask(model, taskToEdit, editedTask);
         checkInvalidDateRange(editedTask);
         checkForExpiredDate(editedTask);
-        ConditionManager.enforceAttributeConstraints(editedTask);
+        ConstraintManager.enforceAttributeConstraints(editedTask);
 
         editedTask = handleTagUpdates(model, taskToEdit, editedTask);
         updateModel(model, taskToEdit, editedTask);
@@ -105,13 +105,9 @@ public class EditCommand extends Command {
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
     }
 
-    private void checkForValidIndex(int indexValue, List<Task> lastShownList) throws CommandException {
-        boolean isInvalidIndex = indexValue >= lastShownList.size();
-
-        if (isInvalidIndex) {
-            logger.info("Invalid Index detected: " + Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
-            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
-        }
+    private Task getTaskToEdit(List<Task> list) {
+        int indexValue = index.getZeroBased();
+        return list.get(indexValue);
     }
 
     private void checkForDuplicateTask(Model model, Task taskToEdit, Task editedTask) throws CommandException {
