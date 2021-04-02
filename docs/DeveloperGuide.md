@@ -260,6 +260,7 @@ and `Model#updateFilteredEventList(EventFindSchedulePredicate eventPredicate)` a
 
 **Step 3**: On execution completion a `CommandResult` is created.
 A success message will be appended with `CommandResult#MESSAGE_FIND_SCHEDULE_SUCCESS`.
+
 The sequence diagram for `FindScheduleCommand` can be found below.
 
 ![Sequence Diagram of FindSchedule Command](images/FindScheduleCommandSequenceDiagram.png)
@@ -339,7 +340,9 @@ For brevity, lower level implementation of `UndoneTaskCommand#createUncompletedT
 A success message will be appended with `CommandResult#MESSAGE_UNDONE_TASK_SUCCESS`.
 
 The sequence diagram for `UndoneTaskCommand` can be found below.
+
 ![Sequence Diagram of UndoneTask Command](images/UndoneTaskCommandSequenceDiagram.png)
+
 <div markdown="span" class="alert alert-info">:information_source: 
 **Note:** Due to the size constraint, the argument `PREDICATE_SHOW_ALL_TASKS` is not shown in the sequence diagram 
 when calling the method `Model#updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS)`.

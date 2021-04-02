@@ -326,12 +326,14 @@ _Details coming soon ..._
 ## Command summary
 
 ###General commands
+
 Action | Format, Examples
 --------|------------------
 **Help** | `help`
 **Exit** | `exit`
 
 ###Task-related commands
+
 Action | Format, Examples
 --------|------------------
 **Add** | `add_task n/TASKNAME d/DEADLINE p/PRIORITY [c/CATEGORY]... [t/TAG]...` <br> e.g., `add_task n/CS2103 assignment d/2021-02-27 p/1 c/school work t/urgent`
@@ -349,6 +351,7 @@ Action | Format, Examples
 **Clear Expired** | `clear_expired_task`
 
 ###Event-related commands
+
 Action | Format, Examples
 --------|------------------
 **Add** | `add_event n/TASKNAME sd/STARTDATE st/STARTTIME ed/ENDDATE et/ENDTIME [c/CATEGORY]... [t/TAG]...`<br> e.g., `add_event n/CS2103 meeting sd/2021-02-27 st/15:00 ed/2021-02-27 et/17:00`
