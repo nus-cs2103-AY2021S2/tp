@@ -13,6 +13,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.conditions.IndexManager;
 import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Date;
@@ -66,7 +67,7 @@ public class SnoozeCommand extends Command {
         requireNonNull(model);
         List<Task> lastShownList = model.getFilteredTaskList();
 
-        checkForValidIndex(lastShownList);
+        IndexManager.verifyIndex(index, lastShownList);
         Task taskToSnooze = retrieveSelectedTask(lastShownList);
         enforceNonEmptyDate(taskToSnooze);
 
@@ -75,16 +76,6 @@ public class SnoozeCommand extends Command {
 
         updateModel(model, taskToSnooze, snoozedTask);
         return new CommandResult(String.format(MESSAGE_SNOOZE_TASK_SUCCESS, snoozedTaskTitle, snoozeAmount));
-    }
-
-    private void checkForValidIndex(List<Task> lastShownList) throws CommandException {
-        int indexValue = index.getZeroBased();
-        boolean isInvalidIndex = indexValue >= lastShownList.size();
-
-        if (isInvalidIndex) {
-            logger.info("Invalid Index detected: " + Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
-            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
-        }
     }
 
     private Task retrieveSelectedTask(List<Task> list) {

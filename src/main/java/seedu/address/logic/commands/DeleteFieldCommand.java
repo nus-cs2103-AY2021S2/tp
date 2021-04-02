@@ -20,6 +20,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.conditions.ConstraintManager;
+import seedu.address.logic.conditions.IndexManager;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
@@ -80,12 +81,8 @@ public class DeleteFieldCommand extends Command {
         List<Task> lastShownList = model.getFilteredTaskList();
 
         int targetIndexValue = targetIndex.getZeroBased();
-        boolean isInvalidIndex = targetIndexValue >= lastShownList.size();
 
-        if (isInvalidIndex) {
-            logger.info("Invalid index entered:" + targetIndexValue);
-            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
-        }
+        IndexManager.verifyIndex(targetIndex, lastShownList);
 
         Task taskToDeleteFieldFrom = lastShownList.get(targetIndexValue);
         Task taskWithFieldDeleted = deleteFieldFromTask(taskToDeleteFieldFrom, targetField);
