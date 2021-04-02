@@ -49,20 +49,50 @@ Given below are sections I contributed to the Developer Guide. This showcase my 
 
 ### 3 Months Fee Feature:
 
+#### Rationale:
+Independent tutors might want to keep track of their earnings. However, as different lesson could be priced differently,
+we wanted to implement a feature that helps user calculate their expected total current month salary and their previous 2 month
+monthly salary.
+
+#### Implementation Details:
+Perform the calculation in a separate FeeUtil folders that performs the calculation. Runs a loop for each month to perform and
+calculate the monthly fee from the session list, taking into account whether the sessions are individual sessions or recurring sessions.
+As the monthly fees are expected to show up in the UI, I had to create a list panel, and a card fxml file that represents the monthly fee.
+We had to add a listener to the student list as well, so that whenever the student list updates, the monthly fees would be updated and
+accurate everytime.
+
+The 2 PR that is related to this feature can be found here: [PR #118](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/118) and
+[PR #145](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/145).
+
 ### Get Particular Student's Monthly Fee Feature:
+
+#### Rationale:
+When independent tutor collects their monthly fee from the students, it might be difficult for them to keep track of how much would they receive
+when their lessons are charge on a per session basis. Hence, we wanted to create a feature that collects how much would a student have to
+pay in a particular month and year, so TutorBuddy can help the tutor calculate the fee for them instead.
+
+#### Implementation Details:
+Makes use of the methods in FeeUtil to calculate the fees for a particular student. As this is a command based query, I would have to first 
+create GetMonthlyFeeCommand class that executes the command, and a parser method for the command. New prefix are define in CliSnytax.java and I
+created 2 additional Month and Year class to enforce certain constraints. Constraint includes that the year must be between 1970 to 2037 (To avoid 2038 problem),
+and month must be between 1 and 12.
+
+The 2 PR that is related to this feature can be found here: [PR #118](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/118) and
+[PR #145](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/145).
 
 ### Person class refactoring to Student class:
 
-#### Why:
+#### Rationale:
 From the base project, we were given the person class to work with. However, as the 
 as our project was to be used for students, we will need to refactor all our existing code
 to better represent the application that we are working towards. To achieve that, I volunteered to work on this task
 as it serves as a good learning opportunity for me.
 
-#### How:
+#### Implementation Details:
 I made use of Intellij to help me with refactoring the application. However, as the code base was large, it was difficult to
 made changes to the application and ensure that the entire application still works as expected. I had to do small adjustments at 
 a time and consistently check that the test cases still works. This has allowed me to explore
 all the different components of the application such as storage, model and logic. I further updated some of the 
 commands to take in different fields. 
 The PR for the successful refactoring of 118 files can be found [here](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/34).
+Other PR related to this includes [PR #153](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/153).
