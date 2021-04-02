@@ -307,6 +307,56 @@ of the existing data file `clientbook.json`. Hence, there is minimal dependency 
 
 <br>
 
+### Feature to allow more options for user to edit insurance policy information of each client in ClientBook.
+
+#### Motivation
+
+In the previous implementation of the `EditCommand`, each time a user edits a clients policy information, the user's only option is to
+replace the client's entire existing policy list with the specified policies. This enhancement of the `EditCommand` gives the user
+the option to append, replace, remove or modify specific policies within a client's policy list.
+
+#### Implementation
+
+A new enumeration `EditPolicyMode` was created within the `EditCommand` class. It provides the developer with an enumeration of
+modes to notify other methods of the different ways of editing a client's policy list, namely `MODIFY`, `APPEND`, `REPLACE` and `REMOVE`.
+This editing mode parsed from the user input, and then passed as an argument to the constructor of `EditCommand` to specify how 
+the client's policy list should be edited.
+
+Within the `EditCommand#execute` method, a new `Person` object is created through the `EditCommand#createEditedPerson` method.
+This method creates the updated policy list of the new `Person` object based on the specified `EditPolicyMode`.
+The created `Person` is then used to update the model, which in turn updates the view and shows the change to the user.
+
+Below is an example usage scenario and how the information and data are passed around at each step.
+
+**Step 1.** The user types `edit 1 n/Tom Doe i/P12345 i/P54321 -insert` into the input box.
+
+**Step 2.** `MainWindow` receives the `commandText` (`edit 1 n/Tom Doe i/P12345 i/P54321 -insert`), 
+which is then executed by `LogicManager`.
+
+**Step 3.** `ClientBookParser` then parses the full `commandText`, returning a `Command` object. In this case, it would return an
+`EditCommand`, which would contain the index of the selected client in the displayed list (in this case 1), followed by
+the values that the user intends to edit, followed by the edit policy mode (in this case insert).
+
+**Step 4.** `EditCommand`then executes, returning a `CommandResult`. This `CommandResult` contains the feedback string message
+which indicates to the user which client was edited.
+
+**Step 5.** This `CommandResult` is passed back to `MainWindow`, which then displays the list after the edit to the user.
+
+Below is a sequence diagram illustrating the flow of this entire process.
+
+<p align="center"><img src="images/EditSequenceDiagram.png"></p>
+
+#### Design Considerations
+
+`EditPolicyMode` is implemented as an inner class within `EditCommand`, as it is not used anywhere else in the application.
+If future extensions require the use of `EditPolicyMode` in other areas, it is recommended to make `EditPolicyMode` into a
+an outer class instead.
+
+#### Implementation/Testing Considerations
+
+Compared to other commands, the `edit` command takes many arguments of varying types, so extra care should be taken during the
+parsing of its arguments and extensive testing should be done on the varying argument types.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
