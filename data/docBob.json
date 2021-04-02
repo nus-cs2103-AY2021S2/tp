@@ -15,6 +15,15 @@
         "title" : "appointmentLabel",
         "body" : "else if (patientBoxMedicalRecords.getChildren().size() != 0) {\n            medicalRecordInfo.setText(String.format(\"%d medical record(s) found:\","
       } ]
+    }, {
+      "dateString" : "1/4/21 15:59",
+      "sections" : [ {
+        "title" : "S1",
+        "body" : "Hello"
+      }, {
+        "title" : "S2",
+        "body" : "Hey\n"
+      } ]
     } ]
   }, {
     "name" : "Alex Yeoh",
@@ -25,7 +34,7 @@
     "weight" : "69kg",
     "isArchived" : false,
     "tagged" : [ "friends" ],
-    "appointments" : [ "14/4/21 14:00" ],
+    "appointments" : [ "14/4/21 14:00", "12/12/21 12:00" ],
     "records" : [ {
       "dateString" : "31/3/21 18:18",
       "sections" : [ {
@@ -233,6 +242,17 @@
         "body" : "ergrehreh"
       } ]
     } ]
+  }, {
+    "name" : "John Doe",
+    "phone" : "98765432",
+    "email" : "johnd@example.com",
+    "address" : "311, Clementi Ave 2, #02-25",
+    "height" : "169cm",
+    "weight" : "69kg",
+    "isArchived" : true,
+    "tagged" : [ "owesMoney", "friends" ],
+    "appointments" : [ ],
+    "records" : [ ]
   }, {
     "name" : "Kaia Metcalfe",
     "phone" : "92624417",
