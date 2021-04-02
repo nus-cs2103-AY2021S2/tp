@@ -304,7 +304,11 @@ You may view a list of all your projects in the side panel and view a specific p
 Project names that are too long may be truncated in the side panel. Simply view the project using the `project` command to view the full name in the main panel.
 </div>
 
-Each project is divided into an overview page and a todo page. The overview page contains information about your project's events, deadlines and groupmates and the todo page contains information about your project's todos. To switch between the two, use the `overview` and `todo` commands respectively.
+Each project is divided into an overview page and a todo page. The overview page contains information about your project's events, deadlines and groupmates and the todo page contains information about your project's todos. 
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+To switch between the overview and todo pages, you can use the `overview` and `todo` commands respectively.
+</div>
 
 Commands related to Projects will be discussed first followed by sections on `Todos`, `Deadlines`, `Events` & `Groupmates`.
 
