@@ -7,6 +7,9 @@
 
 PocketEstate enables easy organisation of mass clientele property information through sorting of information by price, location and housing type, that may otherwise be difficult to manage.
 
+## Product Website
+To learn more about this project, head over to the **[PocketEstate Website](https://ay2021s2-cs2103t-t13-4.github.io/tp/)**.
+
 ## User guide
 For more information on how to use PocketEstate, please refer to our [User Guide](https://ay2021s2-cs2103t-t13-4.github.io/tp/UserGuide.html).
 
