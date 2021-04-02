@@ -1,8 +1,8 @@
 package seedu.booking.logic.commands;
 
+import static seedu.booking.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.booking.logic.commands.states.AddBookingCommandState.STATE_START;
 import static seedu.booking.testutil.TypicalPersons.getTypicalBookingSystem;
-import static seedu.booking.logic.commands.CommandTestUtil.assertCommandSuccess;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

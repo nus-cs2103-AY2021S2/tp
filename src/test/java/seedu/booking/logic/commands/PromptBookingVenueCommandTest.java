@@ -2,16 +2,14 @@ package seedu.booking.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static seedu.booking.commons.core.Messages.MESSAGE_INVALID_VENUE_NAME;
 import static seedu.booking.commons.core.Messages.PROMPT_BOOKING_DESC_MESSAGE;
 import static seedu.booking.commons.core.Messages.PROMPT_MESSAGE_TRY_AGAIN;
-import static seedu.booking.logic.commands.states.AddBookingCommandState.STATE_VENUE;
-import static seedu.booking.logic.commands.states.AddBookingCommandState.STATE_DESC;
-import static seedu.booking.testutil.TypicalBookings.BOOKING1;
-import static seedu.booking.testutil.TypicalVenues.VENUE1;
-import static seedu.booking.testutil.TypicalPersons.getTypicalBookingSystem;
 import static seedu.booking.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.booking.logic.commands.states.AddBookingCommandState.STATE_DESC;
+import static seedu.booking.logic.commands.states.AddBookingCommandState.STATE_VENUE;
+import static seedu.booking.testutil.TypicalPersons.getTypicalBookingSystem;
+import static seedu.booking.testutil.TypicalVenues.VENUE1;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

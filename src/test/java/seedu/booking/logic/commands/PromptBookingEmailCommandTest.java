@@ -16,8 +16,6 @@ import seedu.booking.logic.commands.states.AddBookingCommandState;
 import seedu.booking.logic.commands.states.CommandState;
 import seedu.booking.model.ModelManager;
 import seedu.booking.model.UserPrefs;
-import seedu.booking.model.booking.Description;
-import seedu.booking.model.person.Email;
 
 public class PromptBookingEmailCommandTest {
     private ModelManager model = new ModelManager(getTypicalBookingSystem(), new UserPrefs());

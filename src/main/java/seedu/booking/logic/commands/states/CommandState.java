@@ -1,7 +1,5 @@
 package seedu.booking.logic.commands.states;
 
-import seedu.booking.logic.commands.Command;
-
 /**
  * This class keeps track of whether the program is responding to a multi-step command
  */
@@ -20,6 +18,9 @@ public class CommandState {
         this.nextPromptMessage = "DEFAULT";
     }
 
+    /**
+     * Initialises a command state
+     */
     public CommandState(boolean isActive, String state, String nextPromptMessage) {
         this.isActive = isActive;
         this.state = state;

@@ -33,11 +33,11 @@ public class ListBookingCommandTest {
     }
 
 
-//    @Test
-//    public void execute_listIsFiltered_showsEverything() {
-//
-//        assertCommandSuccess(new ListBookingCommand(), model,
-//                ListBookingCommand.MESSAGE_BOOKING_LISTED_SUCCESS, expectedModel);
-//    }
+    //    @Test
+    //    public void execute_listIsFiltered_showsEverything() {
+    //
+    //        assertCommandSuccess(new ListBookingCommand(), model,
+    //                ListBookingCommand.MESSAGE_BOOKING_LISTED_SUCCESS, expectedModel);
+    //    }
 
 }

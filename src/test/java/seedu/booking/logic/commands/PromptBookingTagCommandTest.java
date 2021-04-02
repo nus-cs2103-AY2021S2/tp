@@ -3,8 +3,8 @@ package seedu.booking.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.booking.commons.core.Messages.PROMPT_START_MESSAGE;
-import static seedu.booking.logic.commands.states.AddBookingCommandState.STATE_TAG;
 import static seedu.booking.logic.commands.states.AddBookingCommandState.STATE_START;
+import static seedu.booking.logic.commands.states.AddBookingCommandState.STATE_TAG;
 import static seedu.booking.testutil.TypicalPersons.getTypicalBookingSystem;
 
 import java.util.HashSet;

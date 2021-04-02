@@ -37,6 +37,9 @@ public class AddBookingCommandState extends CommandState {
         this.addBookingIntermediate = new AddBookingIntermediate();
     }
 
+    /**
+     * Initialises a BookingCommandState
+     */
     public AddBookingCommandState(boolean isActive, String state, String msg,
                                   AddBookingIntermediate addBookingIntermediate) {
         super(isActive, state, msg);

@@ -35,5 +35,5 @@ public class PromptBookingEmailCommand extends Command {
         ModelManager.setNextState();
         return new CommandResult(ModelManager.getNextPromptMessage());
     }
-    
+
 }

@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.booking.commons.core.Messages.PROMPT_TAG_MESSAGE;
 import static seedu.booking.logic.commands.states.AddBookingCommandState.STATE_DESC;
-import static seedu.booking.logic.commands.states.AddBookingCommandState.STATE_EMAIL;
 import static seedu.booking.logic.commands.states.AddBookingCommandState.STATE_TAG;
 import static seedu.booking.testutil.TypicalPersons.getTypicalBookingSystem;
 
