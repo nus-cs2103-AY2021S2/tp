@@ -106,7 +106,7 @@ given below, and familiarize yourself with them.
 | `NAME`          | The name of the reader.<br><br>It must be alphanumeric (may contain spaces).                                                                                                                                                                             | `Bob Tan`, `noobmaster69`, `X AE A12`                                            |
 | `PHONE_NUMBER`  | The contact number of the reader.<br><br>It must consist only of numbers, and be at least 3 digits long.                                                                                                                                                 | `98765432`, `012`                                                                |
 | `EMAIL`         | The email of the client.<br><br>Emails should be in `name@domain` format, where the `name` part should only contain alphanumeric and special characters, whereas the `domain` part should only contain alphanumeric characters with a period in between. | `bob@bmail.com`, `bob-123@bobby.sg`                                              |
-| `ADDRESS`       | Ths address of the reader.<br><br>There are no restrictions for this field.                                                                                                                                                                              | `#01-23, Blk 13, Bukit Timah Road`                                               |
+| `ADDRESS`       | The address of the reader.<br><br>There are no restrictions for this field.                                                                                                                                                                              | `#01-23, Blk 13, Bukit Timah Road`                                               |
 | `TAG`           | The tag that you would like to attach to or search for your reader.<br><br>It must be a single alphanumeric word.                                                                                                                                        | `VIP`, `MostBorrows`                                                             |
 | `INDEX`         | The index of the reader in the displayed list.<br><br>It must be a valid index number (i.e. in the range [`1`,`2`, ..., `length of list`]).                                                                                                              | `1`                                                                              |
 | `KEYWORD`       | The keyword that you would like to use to search for your target reader(s).<br><br>It must be a single alphanumeric word.                                                                                                                                | `Bob`, `Tan`, `noobmaster69`, `AE`                                               |
@@ -242,11 +242,30 @@ SmartLib is aware that managing your books is also an essential part of your ser
 The features provided in this section will enable you to keep track of any relevant information which you might require
 to keep track of your books.
 
+#### Books' Command Parameters
+
+Before you head into the usage of each feature, you may want to take a look at the table of command parameters
+given below, and familiarize yourself with them.
+
+| Parameter       | Description                                                                                                                                                                                                          | Valid examples                                                                   |
+| --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `NAME`          | The name of the book.<br><br>It must be alphanumeric (may contain spaces).                                                                                                                                           | `A Book`, `noobbook69`, `X AE A12`                                               |
+| `AUTHOR`        | The author of the book.<br><br>It must be alphanumeric (may contain spaces).                                                                                                                                         | `Bob Tan`, `noobmaster69`, `X AE A12`                                            |
+| `PUBLISHER`     | The publisher of the book.<br><br>It must be alphanumeric (may contain spaces).                                                                                                                                      | `Bob Tan`, `noobmaster69`, `X AE A12`                                            |
+| `ISBN`          | The ISBN of the book.<br><br>It must consist only of numbers, and be exactly 13 digits long.                                                                                                                         | `1234567890123`                                                                  |
+| `GENRE`         | The genre of the book.<br><br>It must be alphanumeric (may contain spaces).                                                                                                                                          | `Fantasy`, `Folk Tales`                                                          |
+| `INDEX`         | The index of the book in the displayed list.<br><br>It must be a valid index number (i.e. in the range [`1`,`2`, ..., `length of list`]).                                                                            | `1`                                                                              |
+| `KEYWORD`       | The keyword that you would like to use to search for your target book(s).<br><br>It must be a single alphanumeric word.                                                                                              | `Bob`, `Tan`, `noobmaster69`, `AE`                                               |
+| `MORE_KEYWORDS` | Other keywords that you may want to use to search for your target book(s).<br><br>Each additional keyword must be a single alphanumeric word, separated from each other by a space.<br><br>This field is optional. |                                                                                  |
+
 #### Adding a book : `addbook`
 
 Adds a book to the book list.
 
 Format: `addbook b/NAME a/AUTHOR p/PUBLISHER i/ISBN g/GENRE`
+
+**:information_source: Notes:**
+* Refer to [Books' Command Parameters](#books-command-parameters) for more details about each parameter.
 
 Examples:
 * `addbook b/Harry Porter a/JK Rowling p/Bloomsbury i/9783161484100 g/Fantasy`
@@ -258,6 +277,8 @@ Deletes a specific book from the book list.
 
 Format: `deletebook INDEX`
 
+**:information_source: Notes:**
+* Refer to [Books' Command Parameters](#books-command-parameters) for more details about each parameter.
 * Deletes the book at the specified `INDEX`.
 * The index refers to the index number shown in the displayed reader list.
 * The index **must be a positive integer** 1, 2, 3, ...
@@ -270,6 +291,9 @@ Examples:
 Finds books whose information (Title, Author, Publisher, ISBN, Genre) contains any of the given keywords.
 
 Format: `findbook KEYWORD [MORE_KEYWORDS]`
+
+**:information_source: Notes:**
+* Refer to [Books' Command Parameters](#books-command-parameters) for more details about each parameter.
 
 Examples:
 *`findbook Suspense` returns books under the genre Suspense.
@@ -296,13 +320,28 @@ SmartLib also provides a variety of features to manage the borrowing records of 
 The features provided in this section will enable you to keep track of any relevant information which you might require
 to keep track of your readers' borrowing records.
 
+#### Records' Command Parameters
+
+Before you head into the usage of each feature, you may want to take a look at the table of command parameters
+given below, and familiarize yourself with them.
+
+| Parameter       | Description                                                                                                                                                                                                          | Valid examples                                                                   |
+| --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `BOOKNAME`      | The name of the book associated with the record.<br><br>It must be alphanumeric (may contain spaces).                                                                                                                | `A Book`, `noobbook69`, `X AE A12`                                               |
+| `READERNAME`    | The name of the reader associated with the record.<br><br>It must be alphanumeric (may contain spaces).                                                                                                              | `Bob Tan`, `noobmaster69`, `X AE A12`                                            |
+| `BARCODE`       | The barcode of the book associated with the record.<br><br>It must be a valid barcode (i.e. it must consist only of numbers, and be exactly 10 digits long).                                                         | `1234567890`                                                                     |
+| `KEYWORD`       | The keyword that you would like to use to search for your target record(s).<br><br>It must be a single alphanumeric word.                                                                                            | `Bob`, `Tan`, `noobmaster69`, `AE`                                               |
+| `MORE_KEYWORDS` | Other keywords that you may want to use to search for your target record(s).<br><br>Each additional keyword must be a single alphanumeric word, separated from each other by a space.<br><br>This field is optional. |                                                                                  |
+
 #### Borrowing a book : `borrow`
 
 Records a borrowing activity.
 
 Format: `borrow b/BOOKNAME r/READERNAME`
 
-* Let reader at the specified name READERNAME borrow the book specified by name BOOKNAME
+**:information_source: Notes:**
+* Refer to [Records' Command Parameters](#records-command-parameters) for more details about each parameter.
+* Lets the reader with the specified name READERNAME borrow the book specified by name BOOKNAME.
 
 Examples:
 * `borrow b/The Old Man and the Sea r/Alex Yeoh` records a rental entry that reader whose name is Alex Yeoh borrowed
@@ -314,7 +353,9 @@ Records a returning activity.
 
 Format: `return bc/BARCODE`
 
-* Let reader returns the book specified by barcode BARCODE
+**:information_source: Notes:**
+* Refer to [Records' Command Parameters](#records-command-parameters) for more details about each parameter.
+* Lets the reader return the book specified by barcode BARCODE.
 * The output message will contain the amount of fine that the reader needs to pay if the book is overdue.
 
 Examples:
@@ -325,6 +366,9 @@ Examples:
 Finds relevant records with book titles containing any of the given keywords.
 
 Format: `findrecord KEYWORD [MORE_KEYWORDS]`
+
+**:information_source: Notes:**
+* Refer to [Records' Command Parameters](#records-command-parameters) for more details about each parameter.
 
 #### Listing all records : `listrecord`
 
