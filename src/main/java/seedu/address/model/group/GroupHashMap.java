@@ -46,7 +46,7 @@ public class GroupHashMap {
      * Replace given person name with new name in all groups.
      */
     public void replacePerson(Name personToReplace, Name newPersonName) {
-        internalMap.values().stream().forEach(x->x.setPersonName(personToReplace, newPersonName));
+        internalMap.values().stream().forEach(g -> g.setPersonName(personToReplace, newPersonName));
     }
 
     /**

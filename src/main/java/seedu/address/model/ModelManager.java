@@ -131,7 +131,6 @@ public class ModelManager implements Model {
     @Override
     public void addGroup(Group group) {
         addressBook.addGroup(group);
-        updateFilteredPersonList(x -> group.getPersonNames().contains(x));
     }
 
     @Override

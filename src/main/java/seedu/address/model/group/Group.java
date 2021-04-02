@@ -51,12 +51,14 @@ public class Group {
     public void addPerson(Person p) {
         persons.add(p.getName());
     }
+
     public void setPerson(Person personToEdit, Person editedPerson) {
         if (persons.contains(personToEdit.getName())) {
             persons.remove(personToEdit.getName());
             persons.add(editedPerson.getName());
         }
     }
+
     public void setPersonName(Name personNameToEdit, Name editedPersonName) {
         if (persons.contains(personNameToEdit)) {
             persons.remove(personNameToEdit);
