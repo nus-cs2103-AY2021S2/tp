@@ -142,6 +142,11 @@ public class LogicManagerTest {
             String expectedMessage, Model expectedModel) {
         assertThrows(expectedException, expectedMessage, () -> logic.execute(inputCommand));
         assertEquals(expectedModel, model);
+        try {
+            logic.execute(inputCommand);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
     /**
