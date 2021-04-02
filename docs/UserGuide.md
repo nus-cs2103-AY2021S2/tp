@@ -345,7 +345,6 @@ Location: Hougang
 #### View tuition appointment details: `view_appointment`
 
 View details of a tuition appointment via date.
-* Alternatively, users can press the desired date on the calendar panel instead to achieve the same output.
 
 Format:
 `view_appointment DATE`
@@ -361,6 +360,8 @@ Mar 24 2021
 02:00 PM - 04:00 PM
 Location: Geylang
 ```
+
+Alternatively, users can press the desired date on the calendar panel instead to achieve the same output.
 
 #### Find tuition appointments: `find_appointment`
 
@@ -465,7 +466,6 @@ Calculus Topic
 #### View schedule details: `view_schedule`
 
 View details of a schedule via date.
-* Alternatively, users can press the desired date on the calendar panel instead to achieve the same output.
 
 Format:
 `view_schedule DATE`
@@ -480,6 +480,8 @@ Mar 24 2021
 2:00 PM - 4:00 PM
 Chapter 5 to 6
 ```
+
+Alternatively, users can press the desired date on the calendar panel instead to achieve the same output.
 
 #### Delete a schedule: `delete_schedule`
 
