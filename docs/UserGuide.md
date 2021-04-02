@@ -131,14 +131,6 @@ The suggested command will be automatically typed into the command bar.
 
 </div>
 
-### Viewing help : `help`
-
-Shows a message explaining how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
-
 ### Adding a person : `add`
 
 Adds a person to FriendDex.
@@ -153,7 +145,36 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 b/19-01-1998`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com b/19-03-1998 a/Newgate Prison p/1234567 t/criminal`
 
-### Creating a friend group : `add-group`
+### Adding a special date : `add-date`
+
+Adds a special date for an existing person in FriendDex.
+
+Format: `add-date INDEX d/DATE desc/DESCRIPTION`
+
+* Adds a special date with the person at the specified `INDEX`.
+
+Examples:
+* `add-date 1 d/16-02-2021 desc/Anniversary`
+* `add-date 2 d/17-02-2021 desc/Dog's birthday`
+
+### Adding debt : `add-debt`
+
+Adds a specified amount to the debt owed to the friend at the specified `INDEX`.
+
+Format: `add-debt INDEX DEBT_AMOUNT`
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Notes: Add Debt Command**<br>
+
+* `DEBT_AMOUNT` provided should be a **positive number** of up to 2 decimal places
+  e.g `10.10` or `10.1000` and **not** `10.103`.
+</div>
+
+Examples:
+* `add-debt 1 100` adds 100 to the debt owed to the 1st listed friend.
+
+### Adding a friend group : `add-group`
 
 Creates a new friend group to FriendDex with a specified name and adds all the people at the specified
 indexes to the group.
@@ -167,16 +188,17 @@ Format: `add-group n/GROUP_NAME p/INDEX…​`
 Examples:
 * `add-group n/Close Friends  p/1 2 3 4 5`
 
-### Deleting a friend group: `del-group`
+### Adding a meeting : `add-meeting`
 
-Deletes a friend group from FriendDex with the specified name.
+Records a meeting with an existing person in FriendDex.
 
-Format: `del-group n/GROUP_NAME`
+Format: `add-meeting INDEX d/DATE t/TIME desc/DESCRIPTION`
 
-* The group name provided should already exist in FriendDex.
+* Records a meeting with the person at the specified `INDEX`.
 
 Examples:
-* `del-group n/Close Friends`
+* `meeting 1 d/16-02-2021 t/1130 desc/We had lunch together!`
+* `meeting 2 d/17-02-2021 t/1930 desc/We went to see the sunset!`
 
 ### Adding a profile picture : `add-picture`
 
@@ -189,6 +211,57 @@ Format: `add-picture INDEX FILE_PATH`
 Examples:
 * `add-picture 1 /Users/john/Desktop/jake.png`
 
+### Clearing all entries : `clear`
+
+Clears all entries from FriendDex.
+
+Format: `clear`
+
+### Deleting a person : `delete`
+
+Deletes the specified person from FriendDex.
+
+Format: `delete INDEX`
+
+* Deletes the person at the specified `INDEX`.
+
+Examples:
+* `list` followed by `delete 2` deletes the 2nd person in FriendDex.
+* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+
+### Deleting a special date : `del-date`
+
+Deletes a special date from an existing person in FriendDex.
+
+Format: `del-date INDEX i/DATE_INDEX`
+
+* Deletes a special date with the person at the specified `INDEX`.
+
+Examples:
+* `del-date 1 i/2` deletes the 2nd special date from the 1st listed friend.
+
+### Deleting a friend group: `del-group`
+
+Deletes a friend group from FriendDex with the specified name.
+
+Format: `del-group n/GROUP_NAME`
+
+* The group name provided should already exist in FriendDex.
+
+Examples:
+* `del-group n/Close Friends`
+
+### Deleting a meeting: `del-meeting`
+
+Deletes a meeting from an existing person in FriendDex.
+
+Format: `del-meeting INDEX i/MEETING_INDEX`
+
+* Deletes a meeting with the person at the specified `INDEX`.
+
+Examples:
+* `del-meeting 1 i/3` deletes the 3rd meeting from the 1st person in FriendDex.
+
 ### Deleting a profile picture: `del-picture`
 
 Deletes a profile picture from an existing person in FriendDex.
@@ -196,33 +269,6 @@ Deletes a profile picture from an existing person in FriendDex.
 Format: `del-picture INDEX`
 
 * The person selected should already have a profile picture.
-
-### Listing all persons : `list`
-
-Shows a list of all persons in FriendDex.
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-You can optionally provide a group name to list all friends in that group.
-</div>
-
-Format: `list [n/GROUP_NAME]`
-
-### Editing a person : `edit`
-
-Edits an existing person in FriendDex.
-
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [b/DATETIME] [t/TAG]…​`
-
-* Edits the person at the specified `INDEX`.
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
-
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
 ### Viewing full details : `details`
 
@@ -236,85 +282,28 @@ Examples:
 * `list` followed by `details 2` displays the details of the 2nd person in FriendDex.
 * `find Betsy` followed by `details 1` displays the details of the 1st person in the results of the `find` command.
 
-### Recording a meeting : `add-meeting`
+### Editing a person : `edit`
 
-Records a meeting with an existing person in FriendDex.
+Edits an existing person in FriendDex.
 
-Format: `add-meeting INDEX d/DATE t/TIME desc/DESCRIPTION`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [b/DATETIME] [t/TAG]…​`
 
-* Records a meeting with the person at the specified `INDEX`. 
-
-Examples:
-* `meeting 1 d/16-02-2021 t/1130 desc/We had lunch together!`
-* `meeting 2 d/17-02-2021 t/1930 desc/We went to see the sunset!`
-
-### Deleting a meeting: `del-meeting`
-
-Deletes a meeting from an existing person in FriendDex.
-
-Format: `del-meeting INDEX i/MEETING_INDEX`
-
-* Deletes a meeting with the person at the specified `INDEX`.
+* Edits the person at the specified `INDEX`.
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative.
+* You can remove all the person’s tags by typing `t/` without
+  specifying any tags after it.
 
 Examples:
-* `del-meeting 1 i/3` deletes the 3rd meeting from the 1st person in FriendDex.
+*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### Adding a special date : `add-date`
+### Exiting the program : `exit`
 
-Adds a special date for an existing person in FriendDex.
+Exits the program.
 
-Format: `add-date INDEX d/DATE desc/DESCRIPTION`
-
-* Adds a special date with the person at the specified `INDEX`.
-
-Examples:
-* `add-date 1 d/16-02-2021 desc/Anniversary`
-* `add-date 2 d/17-02-2021 desc/Dog's birthday`
-
-### Deleting a special date : `del-date`
-
-Deletes a special date from an existing person in FriendDex.
-
-Format: `del-date INDEX i/DATE_INDEX`
-
-* Deletes a special date with the person at the specified `INDEX`.
-
-Examples:
-* `del-date 1 i/2` deletes the 2nd special date from the 1st listed friend.
-
-### Adding debt : `add-debt`
-
-Adds a specified amount to the debt owed to the friend at the specified `INDEX`.
-
-Format: `add-debt INDEX DEBT_AMOUNT`
-
-<div markdown="block" class="alert alert-info">
-
-:information_source: **Notes: Add Debt Command**<br>
-
-* `DEBT_AMOUNT` provided should be a **positive number** of up to 2 decimal places 
-  e.g `10.10` or `10.1000` and **not** `10.103`.
-</div>
-
-Examples:
-* `add-debt 1 100` adds 100 to the debt owed to the 1st listed friend.
-
-### Subtracting debt: `subtract-debt`
-
-Subtracts a specified amount to the debt owed to the friend at the specified `INDEX`.
-
-<div markdown="block" class="alert alert-info">
-
-:information_source: **Notes: Subtract Debt Command**<br>
-
-* `DEBT_AMOUNT` provided should be a **positive number** of up to 2 decimal places,
-  e.g `10.10` or `10.1000` and **not** `10.103`.
-</div>
-
-Format: `subtract-debt INDEX DEBT_AMOUNT`
-
-Examples:
-`subtract-debt 1 100` subtracts 100 to the debt owed to the 1st listed friend.
+Format: `exit`
 
 ### Locating persons by name : `find`
 
@@ -340,29 +329,50 @@ Examples:
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 * `find ^a.*h$ p/` returns `Alex Yeoh`
 
-### Deleting a person : `delete`
+### Viewing help : `help`
 
-Deletes the specified person from FriendDex.
+Shows a message explaining how to access the help page.
 
-Format: `delete INDEX`
+![help message](images/helpMessage.png)
 
-* Deletes the person at the specified `INDEX`.
+Format: `help`
+
+### Listing all persons : `list`
+
+Shows a list of all persons in FriendDex.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You can optionally provide a group name to list all friends in that group.
+</div>
+
+Format: `list [n/GROUP_NAME]`
+
+### Setting meeting goal: `set-goal`
+
+Format: `set-goal INDEX f/FREQUENCY`
+
+* Sets reminder for meeting someone based on the frequency given and the latest meeting the user had with that person.
+* Accepts the following as FREQUENCY: weekly (`w`, `week`, `weekly`), monthly (`m`, `month`, `monthly`), yearly (`y`, `year`, `yearly`), and none (`n`, `none`).
+
+Example:
+* `set-goal 1 f/week`
+
+### Subtracting debt: `subtract-debt`
+
+Subtracts a specified amount to the debt owed to the friend at the specified `INDEX`.
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Notes: Subtract Debt Command**<br>
+
+* `DEBT_AMOUNT` provided should be a **positive number** of up to 2 decimal places,
+  e.g `10.10` or `10.1000` and **not** `10.103`.
+</div>
+
+Format: `subtract-debt INDEX DEBT_AMOUNT`
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in FriendDex.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
-
-### Clearing all entries : `clear`
-
-Clears all entries from FriendDex.
-
-Format: `clear`
-
-### Exiting the program : `exit`
-
-Exits the program.
-
-Format: `exit`
+`subtract-debt 1 100` subtracts 100 to the debt owed to the 1st listed friend.
 
 ### Styling the application : `theme`
 
@@ -384,16 +394,6 @@ Example:
 
 See also:
 * [Defining your own Theme](#defining-your-own-theme)
-
-### Setting meeting goal: `set-goal`
-
-Format: `set-goal INDEX f/FREQUENCY`
-
-* Sets reminder for meeting someone based on the frequency given and the latest meeting the user had with that person.
-* Accepts the following as FREQUENCY: weekly (`w`, `week`, `weekly`), monthly (`m`, `month`, `monthly`), yearly (`y`, `year`, `yearly`), and none (`n`, `none`).
-
-Example:
-* `set-goal 1 f/week`
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -481,6 +481,7 @@ Action | Format, Examples
 **Delete Picture** | `del-picture INDEX` <br> e.g. `del-picture 1`
 **Details** | `details INDEX`<br> e.g. `details 1`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [t/TAG]…​`<br> e.g.`edit 2 n/James Lee e/jameslee@example.com`
+**Exit** | `exit`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g. `find James Jake`
 **Help** | `help`
 **List** | `list [n/GROUP_NAME]` <br> e.g. `list n/Close Friends`
