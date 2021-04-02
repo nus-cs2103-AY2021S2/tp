@@ -720,5 +720,3 @@ Action | Description, Format
 **Exit program** | `exit`/`E` 
 
 [Back to Table of Contents](#table-of-contents)
-
-<i class="fa fa-arrow-circle-up fa-lg" id="scroll-top-button" onclick="handleScrollTop()" aria-hidden="true"></i>
