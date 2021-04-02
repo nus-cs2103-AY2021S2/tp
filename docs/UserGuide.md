@@ -594,6 +594,10 @@ Action | Format, Examples
 --------|------------------
 **Viewing help** | `help`
 **Viewing Command List** | `listcommand`
+**Viewing Dictionary Command Details** | `listcommandd`
+**Viewing Note Command Details** | `listcommandn`
+**Viewing Contact Command Details** | `listcommandc`
+**Viewing UI Command Details** | `listcommandu`
 **Exit** | `exit`
 ***Dictionary Features*** | -
 **Find content** | `findcontent KEYWORD [MORE_KEYWORDS]`
