@@ -6,6 +6,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.schedule.Schedulable;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.HashSet;
@@ -23,7 +24,9 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 public class Meeting implements Schedulable {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "The start date time of a meeting should be strictly earlier than the terminate date time.";
+            "The start date time of a meeting should be strictly earlier than the terminate date time. A meeting "
+                    + "should be at least 15 minutes long. A meeting should be at most one week long. For example:"
+                    + "If the meeting starts on 15 August 7:00 am, it should be at note end later than 22 Aug 6:59am";
 
 
     // Identity fields
@@ -95,10 +98,13 @@ public class Meeting implements Schedulable {
                 && otherMeeting.getTerminate().equals(getTerminate());
     }
     /**
-     * Returns true if a given date time for the meeting is valid.
+     * Returns true if a given date time for the meeting is valid. Note the meeting must be at
+     * least 15 mins long and at most 7 days long.
      */
     public static boolean isValidStartTerminate(DateTime start, DateTime terminate) {
-        return start.compareTo(terminate) < 0;
+        long minutesBetween = Duration.between(start.toLocalDateTime(), terminate.toLocalDateTime()).toMinutes();
+        long daysBetween = Duration.between(start.toLocalDateTime(), terminate.toLocalDateTime()).toDays();
+        return start.compareTo(terminate) < 0 && (minutesBetween >= 15) && (daysBetween < 7);
     }
     /**
      * Adds new groups from a set. Merge if new group appears.
