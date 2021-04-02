@@ -821,7 +821,8 @@ Parameter:
 Example:
 
 * `findC alex david` displays a list containing `Alex Yeoh` and `David Li`<br>
-  ![result for 'findC alex david'](images/findAlexDavidResult.png)
+  
+![result for 'findC alex david'](images/findAlexDavidResult.png)
 
 ##### Deleting a contact : `deleteC`
 
