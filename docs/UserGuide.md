@@ -77,7 +77,7 @@ This section contains all the information about features of TutorTracker. You ma
 ### Tutor Book
 This feature allows tutees to maintain and keep track of the list of tuition tutors.
 
-![Appointments Ui](images/ug-images/Appointments.png)
+![Tutors Ui](images/ug-images/Tutors.png)
 
 Attributes / Parameters:
 * Name
@@ -254,7 +254,7 @@ Format:`export INDEX`
 
 Example: `export 1`
 
-#### Favourite
+### Favourite
 This feature allows tutees to track and manage their favourite tutors.
 
 ![Notes Ui](images/ug-images/Notes.png)
@@ -525,6 +525,8 @@ This feature allows tutee to track and view their timetable easily.
 
 ![Timetable Ui](images/ug-images/Timetable.png)
 
+* Green slots represent `Appointment` and blue slots represent `Schedule`.
+
 #### Opening timetable window : `timetable`
 
 Launch a timetable graphical representation of the tutee's appointment and schedule.
@@ -679,7 +681,13 @@ Listed all grades
 
 ### Reminder Tracker
 This features allows tutees to track and manage reminders on a daily basis. This is exceptionally helpful if the reminders are related to the tuition or tutor itself such as setting a reminder to pay tuition fee for a particular tutor.
+
 ![Reminder Ui](images/ug-images/Reminder.png)
+
+* Red reminder card sidebar represent past reminders.
+* Yellow reminder card sidebar represent ongoing reminders.
+* Green reminder card sidebar represent upcoming reminders.
+* Orange reminder card sidebar represent upcoming reminders (less or equal to 3 days).
 
 Attributes / Parameters:
 * Description
@@ -705,9 +713,9 @@ Format: `list_reminders`
 Example outputs:
 ```
 1.  Science Tuition Payment
-    Date: Apr 2 2021
+Date: Apr 2 2021
 2.  Maths Tuition Payment Due
-    Date: Apr 21 2021
+Date: Apr 21 2021
 ```
 
 #### Delete a reminder: `delete_reminder`
@@ -726,7 +734,7 @@ Example: `delete_reminder 1`
 Example Output:
 ```
 1.  Maths Tuition Payment Due
-    Date: Apr 21 2021
+Date: Apr 21 2021
 ```
 
 #### Editing a reminder : `edit_reminder`
@@ -739,7 +747,8 @@ Format: `edit_reminder INDEX [ds/DESCRIPTION] [d/REMINDER_DATE]`
 Examples: `edit_reminder 1 ds/Science Tuition Payment Due`
 
 ### Tutor and Appointment Filters 
-This feature enhance the tutee's viewing experiences by allowing the tutees to filter tutors or appointments based on certain attributes.
+This feature enhances the tutee's viewing experiences by allowing the tutees to filter tutors or appointments based on attributes.
+
 ![Filters Ui](images/ug-images/Filters.png)
 
 #### Add a Tutor Filter: `add_tutor_filter`
