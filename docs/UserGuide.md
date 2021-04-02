@@ -3,7 +3,18 @@ layout: page
 title: User Guide
 ---
 
-CakeCollate is a **desktop app for managing cake orders, optimized for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you're a small-time cake seller in need of an app to consolidate your orders, and you can type fast, CakeCollate can get your order management tasks done faster than traditional GUI apps.
+## 1. Introduction
+Welcome to our **User Guide** and thank you for using CakeCollate! Are you a home baker searching for a reliable tool to keep track of your orders? 
+While there may be other modern applications such as Microsoft Excel that may be able to help you keep track of your data, they may not be the most efficient or simplest
+way for you to manage your data. 
+
+CakeCollate promises to be an efficient desktop application that allows you to easily consolidate and manage your orders. Our main features include:<br>
+1. Order management
+2. Order Item management
+3. Reminders for orders that have delivery dates approaching the current date
+4. Checking the delivery status of your orders
+
+It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you're a small-time cake seller that can type fast, CakeCollate can get your order management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -18,7 +29,9 @@ CakeCollate is a **desktop app for managing cake orders, optimized for use via a
 
 1. Copy the file to the folder you want to use as the _home folder_ for your CakeCollate.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data. 
+You can use the sample data pre-loaded in the application to get play around and get used to the available commands. Use the command `clear`
+ to remove all sample data when you are used to the commands and want to begin inputting your own data.<br><br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will display the help window.<br>
@@ -26,7 +39,7 @@ CakeCollate is a **desktop app for managing cake orders, optimized for use via a
 
    * **`list`** : Lists all orders in the CakeCollate database.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/13-05-2021 o/ strawberry cake 3` : Adds an order with a contact named `John Doe` to CakeCollate.
+   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/13-05-2021 o/2 x Strawberry Cake` : Adds a `2 x Strawberry Cake` order to CakeCollate.
 
    * **`delete`**`3` : Deletes the 3rd order shown in the current list.
    
@@ -37,6 +50,10 @@ CakeCollate is a **desktop app for managing cake orders, optimized for use via a
    * **`exit`** : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
+
+<div markdown="span" class="alert alert-info">
+**:information_source: You can remove all the sample data using the clear command once you are ready to use CakeCollate.**<br>
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -60,9 +77,11 @@ CakeCollate is a **desktop app for managing cake orders, optimized for use via a
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* `d/DELIVERY_DATE` should specify a date at least 3 days after the date the command is executed.
+* `d/DELIVERY_DATE` should specify a `DELIVERY_DATE` that is valid and is a future date.
+  i.e. `DELIVERY_DATE` can be the date today or a date after today.
 
 * `INDEXES` refer to the list number of orders on the left of the GUI while `ORDER_ITEM_INDEXES` refers to the list number of order items on the right of the GUI <!-- [comment]: <> (can add a link to the gui screenshot and annotate which index refers to what) -->
+
 * Items that are `INDEXES` or `ORDER_ITEM_INDEXES` take in whole number parameters separated by spaces. 
   For example, for a command that takes in `oi/ORDER_ITEM_INDEXES`, you can input `oi/1` or `oi/1 4 5`.
 
@@ -160,32 +179,32 @@ Examples:
 * `find n/Alex Bob` will return all orders with name `Alex`, `alexander`, `Bob` or `bobby`.
 * `find n/Alex o/Chocolate` will return all orders with name `Alex` and order description `Chocolate`. <br>
   ![result for 'find n/Alex o/Chocolate'](images/findAlexChocolate.PNG) <br>
-* `find alex vanilla` will return all orders that matches `alex` or `chocolate`, <br>
-  ![result for 'find alex vanilla'](images/findAlexVanilla.PNG) <br>
-* `find n/Alex Bernice o/Chocolate` will return all orders that matches (`Alex` or `Bernice`) and `Chocolate`. <br>
-  ![result for 'find n/Alex Bernice o/Chocolate'](images/findAlexBerniceChocolate.PNG) <br>
+* `find alex bernice` will return all orders that matches `alex` or `bernice`, <br>
+  ![result for 'find alex bernice'](images/findAlexBernice.PNG) <br>
+* `find n/Alex Charlotte o/Chocolate` will return all orders that matches (`Alex` or `Charlotte`) and `Chocolate`. <br>
+  ![result for 'find n/Alex Charlotte o/Chocolate'](images/findAlexCharlotteChocolate.PNG) <br>
   
 
 ### Deleting an order : `delete`
 
 Deletes the specified orders from the CakeCollate database.
 
-Format: `delete INDEX...`
+Format: `delete INDEXES`
 
-* Deletes the orders with the specified indices.
-* The `INDEX` refers to the order `INDEX` number shown in the list of orders.
-* One or more indices can be entered.
-* The `INDEX` **must be valid**.
+* Deletes the orders with the specified `INDEXES`.
+* The `INDEXES` refers to the order `INDEXES` number shown in the list of orders.
+* One or more `INDEXES` can be entered.
+* The `INDEXES` **must be valid**.
 
 Examples:
 * `delete 2` deletes the order with `INDEX` 2 from the CakeCollate database.
-* `delete 2 3` deletes the orders with indices 2 and 3 from the CakeCollate database.
+* `delete 2 3` deletes the orders with `INDEXES` 2 and 3 from the CakeCollate database.
 
 ### Receiving reminders for orders : `remind`
 
 Displays a list of reminder for orders that are X days within the current date.
 
-Format: `remind DAYS...`
+Format: `remind DAYS`
 
 * Lists all orders within the current date to the numbers of days from the specified date.
 * The `DAYS` refers to the number of days from the current date.
@@ -202,7 +221,7 @@ Adds a special request to an existing order in the CakeCollate database.
 Format: `request INDEX r/REQUEST`
 
 * Adds a special request to the order at the specified `INDEX`. The index refers to the index number shown in the displayed order list. The index **must be a positive integer** 1, 2, 3, …​
-* You can remove an order’s special request by typing `t/` without specifying any requests after it.
+* You can remove an order’s special request by typing `r/` without specifying any requests after it.
 
 Examples:
 * `request 1 r/More sugar, spice and everything nice.` Sets the special request of the 1st order to be `More sugar, spice and everything nice.`
@@ -281,15 +300,15 @@ Examples:
 
 Deletes order items from the order items table based on the specified list of indices.
 
-Format: `deleteItem ORDER_ITEM_INDEX...`
+Format: `deleteItem ORDER_ITEM_INDEXES`
 
-* The `ORDER_ITEM_INDEX` refers to the order `ORDER_ITEM_INDEX` number shown in the order items table.
-* One or more order item indices can be entered.
-* The `ORDER_ITEM_INDEX` **must be valid**.
+* The `ORDER_ITEM_INDEX` refers to the `ORDER_ITEM_INDEX` number shown in the order items table.
+* One or more `ORDER_ITEM_INDEXES` can be entered.
+* The `ORDER_ITEM_INDEXES` **must be valid**.
 
 Examples:
-*  delete 2` deletes the order items with `ORDER_ITEM_INDEX` 2 from the order items table.
-* `delete 2 3` deletes the order items with indices 2 and 3 from the order items table.
+*  delete 2 deletes the order items with `ORDER_ITEM_INDEX` 2 from the order items table.
+* `delete 2 3` deletes the order items with `ORDER_ITEM_INDEXES` 2 and 3 from the order items table.
 
 ### Exiting the program : `exit`
 
@@ -328,17 +347,18 @@ Action  | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS d/DELIVERY_DATE o/ORDER_DESCRIPTION... [t/TAG]...` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/13-05-2021 o/strawberry cake 3` <br><br> `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS d/DELIVERY_DATE oi/ORDER_ITEM_INDEXES [o/ORDER_DESCRIPTION]... [t/TAG]...` <br> e.g. `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/13-05-2021 o/strawberry cake oi/1` <br>
 **Clear** | `clear`
-**Delete** | `delete INDEXES`<br> e.g., `delete 3`
+**Delete** | `delete INDEXES`<br> e.g., `delete 3 4`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find [n/KEYWORD_NAME]... [p/KEYWORD_PHONE]... [e/KEYWORD_EMAIL]... [a/KEYWORD_ADDRESS]... [o/KEYWORD_ORDER_DESCRIPTION]... [t/KEYWORD_TAG]... [d/KEYWORD_DELIVERY_DATE]... [s/KEYWORD_DELIVERY_STATUS]... [r/KEYWORD_REQUEST]... `<br> e.g., `find James Jake`, `find n/Alex o/Chocolate`, `find n/Bernice d/march s/undelivered` 
 **List** | `list`
 **Help** | `help`
 **Remind** | `remind DAYS`<br> e.g., `remind 3`
-**Request** | `remind INDEX [r/REQUEST]` <br> e.g., `request 1 r/More sugar, spice and everything nice.`
+**Request** | `request INDEX [r/REQUEST]` <br> e.g., `request 1 r/More sugar, spice and everything nice.`
 **Undelivered** | `undelivered INDEXES`<br> e.g., `undelivered 3 4`
 **Delivered** | `delivered INDEXES`<br> e.g., `delivered 3 4`
 **Cancelled** | `cancelled INDEXES`<br> e.g., `cancelled 3 4`
-
+**Add Order Item** | `addItem ORDER_ITEM_DESCRIPTION`<br> e.g., `addItem 2 x Chocolate Cake`
+**Delete Order Item** | `deleteItem ORDER_ITEM_INDEXES`<br> e.g., `deleteItem 2 3`
 --------------------------------------------------------------------------------------------------------------------
 
 ## Acknowledgements
