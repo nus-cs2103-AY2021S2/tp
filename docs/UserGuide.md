@@ -83,22 +83,40 @@ panel will display the corresponding items.
 
 #### Command Box
 
-The command box is where you will be entering commands to be executed by StoreMando.
+The command box is the long box at the top where you will be entering commands to be executed by StoreMando.
 
 #### Result Display Box
 
-The result display box is where StoreMando’s server replies to every command that you key in. Any success, error or
-warning messages will be displayed in this box.
+The result display box, located directly below the command box, is where StoreMando’s server replies to every command 
+that you key in. Any success, error or warning messages will be displayed in this box.
 
-### 2.3. Prefixes and Keywords
+### 2.3. Information on Items
+
+Every item is made up of an item name, location and quantity. Expiry date and tags are optional. 
+
+2 items are identical when they have the exact same name, location and expiry date.
+StoreMando does not allow two identical items to exist. 
+
+Two items are considered to be similar if they have the same spelling for name and location but differ by letter case. 
+StoreMando will accept similar items but will give a warning to alert the user about the existence of similar items.
+
+Item Attribute | Remarks
+--------------------| -------
+Item Name  | An alphanumeric string that can contain spaces.
+Location | A string that can contain spaces and symbols.
+Quantity | An integer that must be at least 1.
+Expiry Date | A date in the format of YYYY-MM-DD. An item can either have 1 expiry date or no expiry date.
+Tag | An alphanumeric string that cannot contain spaces. An item can 0 or more tags.
+
+### 2.4. Prefixes and Keywords
 
 Prefix | Keyword and Format | Remarks
 :-----:|--------------------| -------
-n/ | ITEM_NAME `n/ITEM_NAME` | ITEM_NAME can take in multiple words
-l/ | LOCATION  `l/LOCATION` | LOCATION can take in multiple words
-q/ | QUANTITY `q/QUANTITY` | QUANTITY only takes in 1 positive integer
-e/ | EXPIRY_DATE `e/EXPIRY_DATE` | EXPIRY_DATE takes in date in the format of YYYY-MM-DD
-t/ | TAG `t/TAG` | TAG only takes in one word
+n/ | ITEM_NAME `n/ITEM_NAME` | ITEM_NAME can take in multiple words.
+l/ | LOCATION  `l/LOCATION` | LOCATION can take in multiple words.
+q/ | QUANTITY `q/QUANTITY` | QUANTITY only takes in 1 positive integer.
+e/ | EXPIRY_DATE `e/EXPIRY_DATE` | EXPIRY_DATE takes in a date in the format of YYYY-MM-DD.
+t/ | TAG `t/TAG` | Each TAG can only be one word long.
 */ | PARTIAL_WORD `*/PARTIAL_WORD` | PARTIAL_WORD can take in multiple partial words.
 
 ----
@@ -109,7 +127,6 @@ t/ | TAG `t/TAG` | TAG only takes in one word
 
 **:information_source: Notes about the command format:**
 
-* Every item is made up of item name, location and quantity. Expiry date and tags are optional.
 * Words in `UPPER_CASE` are the inputs to be supplied by the user.<br>
   e.g. in `add n/ITEM_NAME`, `ITEM_NAME` is an input which can be used as `add n/Chocolate Milk`.
 * Inputs in square brackets are optional.<br>
@@ -121,9 +138,15 @@ t/ | TAG `t/TAG` | TAG only takes in one word
 * Except for tags, if you specified an input field multiple times, only the last occurrence of the input will be
   taken.<br>
   e.g. if you specify `e/2020-10-10 e/2020-08-08`, only `e/2020-08-08` will be taken.
+* Features that filter the inventory list like reminder, find and list are carried out on the currently displayed 
+  list and not the entire inventory list. To carry out the filter on the entire list, simply key in `list` before 
+  keying in your command.
+  e.g. `find chair` followed by `list l/Dining Room` will return a list of chairs that are in the Dining Room instead of 
+  showing a list of all the chairs in the inventory list.
 * Additional inputs specified for commands that do not take in any input (such as `help` and `exit`) will be
   ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+* Refer to [Information on Items](#23-information-on-items) to learn more about items requirements.  
 
 </div>
 
@@ -138,6 +161,17 @@ Examples:
 * `add n/Chocolate Milk l/kitchen refrigerator q/2` adds 2 Chocolate Milk to the kitchen refrigerator.
 * `add n/Sunshine Bread l/kitchen cupboard q/10 e/2021-05-11 t/favourite` adds 10 Sunshine Bread with expiry date,
   2021-05-11, and "favourite" tag to the kitchen cupboard.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about the add command:**
+
+* StoreMando does not allow adding of [identical items](#23-information-on-items)
+* Inputs given are case-sensitive. i.e. `add n/Chocolate Milk l/kitchen refrigerator q/2` and 
+  `add n/chocolate milk l/Kitchen Refrigerator q/2` can be keyed it one after the other without
+  any error being thrown.
+
+</div>
 
 <div markdown="span" class="alert alert-primary">
 
@@ -164,6 +198,7 @@ Examples:
   respectively.
 * `edit 2 n/Chocolate Bread t/` edits the name of the 2nd item to be `Chocolate Bread` and clears all existing tags if
   there are existing tags and/or existing name of the 2nd item is not `Chocolate Bread`.
+  
 
 <div markdown="block" class="alert alert-info">
 
@@ -173,6 +208,8 @@ Examples:
   index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values **only if input values differ from the existing values**.
+* Existing values **will not be updated** if the input values edit the item to one 
+  that is [identical to another item](#23-information-on-items).
 * When editing tags, the existing tags of the item will be removed i.e. adding of tags is not cumulative.
 * You can remove all the items’ tags by typing `t/` without specifying any tags after it.
 
@@ -216,7 +253,12 @@ You can use this command in 2 different ways.
 * Only the item name is searched.
 * Items matching at least one keyword will be returned. For example, `find Chocolate Milk` will
   return `Cadbury Chocolate` and `Almond Milk`.
-* Items displayed are not in order of relevance.
+* Items displayed are not in order of relevance, i.e. the topmost item displayed may not be the best match.
+* This command is executed on the currently displayed list instead of the entire list.
+  e.g. if the list currently shows all the items in the kitchen, `find milk` will return the list
+  of milk in the kitchen instead of all milks in the inventory. `find */milk` will return the list
+  of items in the kitchen whose names contain milk instead of all milks in the inventory.
+
 
 </div>
 
@@ -227,7 +269,7 @@ You can use this command in 2 different ways.
   Examples:
   
     * `find Chocolate` returns `chocolate` and `Chocolate Milk`
-    * `find potato chip` returns `Potato Biscuit` and `chocolate chip`<br>
+    * `find potato chip` returns `Potato Biscuit` and `chocolate chip`<br></br>
     
   <div markdown="block" class="alert alert-info">
 
@@ -244,7 +286,7 @@ You can use this command in 2 different ways.
   Examples:
   
     * `find */Burger` returns `CheeseBurger` and `fishburger`
-    * `find */cheese egg` returns `MacAndCheese` and `eggs`<br>
+    * `find */cheese egg` returns `MacAndCheese` and `eggs`<br></br>
 
   <div markdown="block" class="alert alert-info">
 
@@ -277,17 +319,21 @@ You can use this command in 3 different ways.
   Format: `list l/LOCATION`
 
   Example:
-    * `list l/kitchen` displays all the items in the kitchen.<br>
-
+    * `list l/kitchen` displays all the items in the kitchen.<br></br>
+    
   <div markdown="block" class="alert alert-info">
 
   **:information_source: Notes about the command:**
 
-    * The search is case-insensitive. e.g 'room' will match 'Room'.
+    * The search is case-sensitive. e.g 'room' will not match 'Room'.
     * Only full words will be matched e.g. 'Room' will not match 'Bedroom'.
     * The order of keywords for location search does not matter. e.g. 'Room Living' will match 'Living Room'.
-    * Location matching uses each word in the String to do 'AND' search e.g. 'Room' will match 'Living room' but 'Living
-      room 1' will not match 'Living room'
+    * All the keywords provided need to match an item's location for the item to be displayed.
+      e.g. 'Room' will match an item with location 'Living room' but 'Living room 1' will not match 
+      an item with location 'Living room'
+    * This command is executed on the currently displayed list instead of the entire list. 
+      e.g. if the list currently shows all the milk in the inventory, `list l/kitchen` will return the list 
+      of milk in the kitchen instead of all items in the kitchen.
 
   </div>
 
@@ -299,13 +345,16 @@ You can use this command in 3 different ways.
 
   Example:
 
-    * `list t/favourite` displays all the items with the "favourite" tag.<br>
+    * `list t/favourite` displays all the items with the "favourite" tag.<br></br>
 
   <div markdown="block" class="alert alert-info">
 
   **:information_source: Notes about the command:**
 
     * Tag keyword must be a single word.
+    * This command is executed on the currently displayed list instead of the entire list.
+      e.g. if the list currently shows all the milk in the inventory, `list t/favourite` will return the list
+      of milk with a favourite tag instead of all items with a favourite tag.
 
   </div>
 
@@ -338,6 +387,9 @@ Examples:
 * `TIME_UNIT` is either `days` or `weeks`.
 * `day` or `week` will only be accepted when `NUMBER` is either **-1, 0 or 1**
 * Items without expiry date will not be shown.
+* This command is executed on the currently displayed list instead of the entire list.
+  e.g. if the list currently shows all the milk in the inventory, `reminder 3 days` will return the list
+  of milk expiring within 3 days instead of all items expiring within 3 days.
 
 </div>
 
@@ -349,35 +401,35 @@ You can use this command in 3 different ways.
 
 * #### 3.7.1. Sorting items by quantity
 
-    * ##### 3.7.1.1. Ascending quantity
+    * #### 3.7.1.1. Ascending quantity
       
       Format: `sort quantity asc`
 
       Example:
       
-        * `sort quantity asc` sorts the items in the displayed list in ascending order of quantity.<br>
+        * `sort quantity asc` sorts the items in the displayed list in ascending order of quantity.<br></br>
 
       <div markdown="block" class="alert alert-info">
 
       **:information_source: Note about the sort by ascending quantity command:**
 
-        * `quantity` is case-insensitive. Keying in `sort QUANTITY asc` is also a valid command.
+        * `quantity asc` is case-insensitive. Keying in `sort QUANTITY ASC` is also a valid command.
 
       </div>
 
-    * ##### 3.7.1.2. Descending quantity
+    * #### 3.7.1.2. Descending quantity
       
       Format: `sort quantity desc`
 
       Example:
       
-        * `sort quantity desc` sorts the items in the displayed list in descending order of quantity.<br>
+        * `sort quantity desc` sorts the items in the displayed list in descending order of quantity.<br></br>
 
       <div markdown="block" class="alert alert-info">
 
       **:information_source: Note about the sort by descending quantity command:**
 
-        * `quantity` is case-insensitive. Keying in `sort QUANTITY desc` is also a valid command.
+        * `quantity desc` is case-insensitive. Keying in `sort QUANTITY DESC` is also a valid command.
 
       </div>
 
@@ -387,7 +439,7 @@ You can use this command in 3 different ways.
 
   Example:
   
-    * `sort expiryDate` sorts the items in the displayed list from the earliest expiry date to the latest.<br>
+    * `sort expiryDate` sorts the items in the displayed list from the earliest expiry date to the latest.<br></br>
 
   <div markdown="block" class="alert alert-info">
 
@@ -418,7 +470,7 @@ You can use this command in 2 different ways.
 
   Example:
   
-    * `clear l/kitchen` clears all the items with location `kitchen`.<br>
+    * `clear l/kitchen` clears all the items with location `kitchen`.<br></br>
 
   <div markdown="block" class="alert alert-info">
 
@@ -495,8 +547,8 @@ Action | Format, Examples
 **[“Delete"](#33-deleting-an-item--delete)** | `delete INDEX`<br> e.g. `delete 2`
 **[“Find"](#34-finding-items-by-name--find)** | `find [*/]KEYWORD [MORE KEYWORDS]`<br> e.g. `find koko krunch` `find */choco`
 **[“List"](#35-listing-items--list)** | `list` `list [l/LOCATION]` `list [t/TAG]`<br> e.g. `list` `list l/fridge` `list t/favourite`
-**[“Reminder"](#36-viewing-expiring-items--reminder)** | `reminder NUMBER TIME_UNIT_KEYWORD`<br> e.g. `reminder -7 days` `reminder 2 weeks`
-**[“Sort"](#37-sorting-items--sort)** | `sort quantity asc` `sort quantity desc` `sort expiryDate`
+**[“Reminder"](#36-viewing-expiring-items--reminder)** | `reminder NUMBER TIME_UNIT`<br> e.g. `reminder -7 days` `reminder 2 weeks`
+**[“Sort"](#37-sorting-items--sort)** | `sort quantity asc` `sort quantity desc` `sort expirydate`
 **[“Clear"](#38-clearing-storemando--clear)** | `clear` `clear l/LOCATION` <br> e.g. `clear l/bedroom`
 **[“Help"](#39-viewing-help--help)** | `help`
 **[“Exit"](#310-exiting-storemando--exit)** | `exit`
