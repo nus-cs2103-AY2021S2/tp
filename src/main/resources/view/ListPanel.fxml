@@ -6,5 +6,4 @@
 
 <HBox minWidth="450" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <VBox fx:id="mainColumn" alignment="CENTER" styleClass="pane-with-border" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" />
-
 </HBox>

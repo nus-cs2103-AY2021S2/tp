@@ -252,6 +252,7 @@ Start discovering and using the Commands now by going to the Command Summary!
 
 <div class="page-break-before"></div>
 
+
 ### 2.3.1 `todo` Command
 
 Adds an event with status `TODO` to Focuris.

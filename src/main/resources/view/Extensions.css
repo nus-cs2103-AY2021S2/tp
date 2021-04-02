@@ -47,11 +47,11 @@
 
 #status {
     -fx-text-fill: white;
-    -fx-background-color: #4066E0;
     -fx-padding: 1 3 1 3;
     -fx-border-radius: 2;
     -fx-background-radius: 2;
-    -fx-font-size: 11;
+    -fx-font-size: 10pt;
+    -fx-background-color: #4066E0;
 }
 
 .status {
