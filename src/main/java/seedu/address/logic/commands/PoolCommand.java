@@ -51,6 +51,8 @@ public class PoolCommand extends Command {
     public static final String MESSAGE_NO_COMMUTERS = "No commuters were selected.";
     public static final String MESSAGE_POOL_SUCCESS = "Successfully created pool: %s";
     public static final String MESSAGE_DUPLICATE_POOL = "This pool already exists in the GME Terminal";
+    public static final String MESSAGE_TRIPDAY_MISMATCH = "One of the passengers specified "
+            + "have a trip day that does not match this pool driver's trip day";
 
     private final Driver driver;
     private final TripDay tripDay;
@@ -89,7 +91,7 @@ public class PoolCommand extends Command {
 
             boolean isTripDayMismatch = !passenger.getTripDay().equals(tripDay);
             if (isTripDayMismatch) {
-                throw new CommandException(Messages.MESSAGE_PASSENGER_TRIPDAY_MISMATCH);
+                throw new CommandException(MESSAGE_TRIPDAY_MISMATCH);
             }
             passengers.add(passenger);
         }
