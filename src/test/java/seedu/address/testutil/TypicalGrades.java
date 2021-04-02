@@ -23,6 +23,10 @@ public class TypicalGrades {
             .withSubject("English")
             .withGradedItem("Final")
             .withGrade("C").build();
+    public static final Grade PHYSICS_GRADE = new GradeBuilder()
+            .withSubject("Physics")
+            .withGradedItem("Quiz")
+            .withGrade("D").build();
 
     private TypicalGrades() {
     } // prevents instantiation
