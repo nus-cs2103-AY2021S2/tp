@@ -2,14 +2,16 @@
 layout: page
 title: User Guide
 ---
-_**Tutor Tracker**_ is a **desktop app designed to help secondary school students manage tutors and tuition appointments, optimised for use via a Command Line Interface** (CLI) for a fast and streamlined experience while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Tutor Tracker can get your tuition contact management tasks done faster than traditional GUI apps.
-
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## Introduction
+
+_**Tutor Tracker**_ is a **desktop app designed to help secondary school students manage tutors and tuition appointments, optimised for use via a Command Line Interface** (CLI) for a fast and streamlined experience while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Tutor Tracker can get your tuition contact management tasks done faster than traditional GUI apps.
+
+## Quick Start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -30,7 +32,15 @@ _**Tutor Tracker**_ is a **desktop app designed to help secondary school student
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Application Layout
+
+The figure below shows the GUI of TutorTracker, annotated with a description of each GUI component.
+
+![Ui Components](images/ug-images/Components.png)
+
 ## Features
+
+This section contains all the information about features of TutorTracker. You may enter a command into the Command Box to use each feature or sub-feature.
 
 <div markdown="block" class="alert alert-info">
 
@@ -45,6 +55,12 @@ _**Tutor Tracker**_ is a **desktop app designed to help secondary school student
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[l/LOCATION]…​` can be used as ` ` (i.e. 0 times), `l/Bedok`.
 
+* Items that have date as a parameter must strictly follow `YYYY-MM-DD` format.<br> 
+  e.g. `2021-03-01`and `2021-04-20`.
+
+* Items that have time as parameter must strictly follow `HH:MM AM/PM` format.<br>
+  e.g. `9:01 AM` and `10:30 PM`.
+
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME s/SUBJECT`, `s/SUBJECT n/NAME` is also acceptable.
 
@@ -58,11 +74,12 @@ _**Tutor Tracker**_ is a **desktop app designed to help secondary school student
 
 </div>
 
-### Add a new tutor: `add_tutor`
+### Tutor Book
+This feature allows tutees to maintain and keep track of the list of tuition tutors.
 
-Add a new tutor and enter their basic details as well as an optional Note.
+![Tutors Ui](images/ug-images/Tutors.png)
 
-Details:
+**Attributes / Parameters**:
 * Name
 * Gender
 * Phone Number
@@ -74,6 +91,11 @@ Details:
     * Subject Education Level
     * Subject Years of Experience
     * Subject Qualifications
+* Note
+
+#### Add a new tutor: `add_tutor`
+
+Add a new tutor and enter their basic details as well as an optional Note.
 
 Format:
 `add_tutor n/NAME g/GENDER p/PHONE_NUMBER e/EMAIL  a/ADDRESS <s/SUBJECT_NAME r/SUBJECT_RATE l/SUBJECT_EDUCATION_LEVEL y/SUBJECT_YEARS_EXPERIENCE q/SUBJECT_QUALIFICATIONS>... notes/NOTE`
@@ -81,36 +103,36 @@ Format:
 Example Input:
 `add_tutor n/John Doe g/Male p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/English r/50 l/Secondary 3 y/5 q/A-Level s/Mathematics r/60 l/Secondary 4 y/6 q/A-Level notes/Patient`
 
-### List tutors: `list_tutors`
+#### List tutors: `list_tutors`
 
 View a list of all tutors known. Will ignore all input after `list_tutors`.
 
 Example Output:
 ```
 1. John Doe
-   98765432
-   John street, block 123, #01-01
-   johnd@example.com
-   Subjects:
-   1. English
-      Level: Sec 3
-      Rate: SGD60/hr
-      Experience: 6 years
-      Qualification: Bachelor of English Literature
+98765432
+John street, block 123, #01-01
+johnd@example.com
+Subjects:
+English
+    Level: Sec 3
+    Rate: SGD60/hr
+    Experience: 6 years
+    Qualification: Bachelor of English Literature
     
 2. Jane Doe 
-   98765433
-   Jane street, block 123, #01-01
-   janed@example.com
-   Subjects:
-   1. Maths
-      Level: Sec 4
-      Rate: SGD30/hr
-      Experience: 5 years
-      Qualification: Bachelor of Mechanical Engineering
+98765433
+Jane street, block 123, #01-01
+janed@example.com
+Subjects:
+Maths
+    Level: Sec 4
+    Rate: SGD30/hr
+    Experience: 5 years
+    Qualification: Bachelor of Mechanical Engineering
 ```
 
-### Delete a tutor: `delete_tutor`
+#### Delete a tutor: `delete_tutor`
 
 Delete a tutor by index.
 
@@ -118,7 +140,7 @@ Format: `delete_tutor INDEX`
 
 Example: `delete_tutor 1`
 
-### Edit a tutor: `edit_tutor`
+#### Edit a tutor: `edit_tutor`
 
 Edit a tutor's information by index. Only the attributes present can be changed in the tutor, including notes.
 
@@ -126,7 +148,7 @@ Format: `edit_tutor INDEX [n/NAME] [g/GENDER] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDR
 
 Example: `edit_tutor 1 p/99824314 s/English r/50 l/Secondary 5 y/9 q/A-Level notes/Impatient`
 
-### View tutor details: `view_tutor`
+#### View tutor details: `view_tutor`
 
 Views a tutor's personal information.
 
@@ -147,7 +169,13 @@ English
     Experience: 6 years
     Qualification: Bachelor of English Literature
 ```
-### Add note to a tutor: `add_note`
+
+#### Notes
+This feature allows tutees to track and manages notes that are tagged to a tutor.
+
+![Notes Ui](images/ug-images/Notes.png)
+
+##### Add note to a tutor: `add_note`
 
 Shortcut for adding note to tutor at a particular index
 
@@ -173,7 +201,8 @@ English
 Notes:
 patient tutor
 ```
-### Edit note of a tutor: `edit_note`
+
+##### Edit note of a tutor: `edit_note`
 
 Shortcut for editing note to tutor at a particular index
 
@@ -200,7 +229,7 @@ English
 Notes:
 not patient
 ```
-### Delete note of a tutor: `delete_note`
+##### Delete note of a tutor: `delete_note`
 
 Deletes solely the note to tutor at a particular index
 
@@ -208,12 +237,12 @@ Format: `delete_note INDEX NOTE`
 
 Example: `delete_note 1`
 
-### List tutors with note `list_note`
+##### List tutors with note `list_note`
 Lists all the tutor with note. Will ignore all input after `list_mote`.
 
 Format:`list_note`
 
-### Export the tutor details: `export`
+##### Export the tutor details: `export`
 Export the tutor details of that index together with the notes and subject list into a text file 
 exit
 in the directory you saved
@@ -223,7 +252,12 @@ Format:`export INDEX`
 
 Example: `export 1`
 
-### Favourite a tutor: `favourite`
+#### Favourites
+This feature allows tutees to track and manage their favourite tutors.
+
+![Favourite Ui](images/ug-images/Favourite.png)
+
+##### Favourite a tutor: `favourite`
 
 Label a tutor as a favourite.
 
@@ -245,7 +279,7 @@ English
     Qualification: Bachelor of English Literature
 ```
 
-### Unfavourite a tutor: `unfavourite`
+##### Unfavourite a tutor: `unfavourite`
 
 Removes the favourite label from a tutor
 
@@ -253,7 +287,7 @@ Format: `unfavourite INDEX`
 
 Example: `unfavourite 1`
 
-### List favourites: `list_favourites`
+##### List favourites: `list_favourites`
 
 View a list of all favourites
 
@@ -261,7 +295,20 @@ Format: `list_favourites`
 
 Example: `list_favourites`
 
-### Add a new appointment: `add_appointment`
+### Appointment Tracker
+This feature allows tutees to manage and track their tuition appointments.
+
+![Appointment Ui](images/ug-images/Appointments.png)
+
+**Attributes / Parameters**:
+* Name of the tutor
+* Subject Name
+* Appointment Date
+* Time From
+* Time To
+* Location
+
+#### Add a new appointment: `add_appointment`
 
 Adds an appointment with a specific tutor to the timetable.<br>
 
@@ -274,9 +321,9 @@ Examples:<br>
 * `add_appointment n/David Li s/Mathematics d/2021-03-01 fr/10:00 AM to/12:00 PM l/Bedok`
 * `add_appointment n/Alex Yeoh s/English d/2021-04-20 fr/2:00 PM to/4:00 PM l/Bedok`
 
-### List tuition appointments: `list_appointments`
+#### List tuition appointments: `list_appointments`
 
-Shows a list of all upcoming tuition appointments in the personal tuition appointment list.
+Shows a list of all upcoming tuition appointments in the personal tuition appointment list. Appointments are automatically sorted by ascending order (oldest to newest).
 
 Format: `list_appointments`
 
@@ -295,9 +342,9 @@ Mar 27 2021
 Location: Hougang
 ```
 
-### View tuition appointment details: `view_appointment`
+#### View tuition appointment details: `view_appointment`
 
-View details of a tuition appointment.
+View details of a tuition appointment via date.
 
 Format:
 `view_appointment DATE`
@@ -314,7 +361,9 @@ Mar 24 2021
 Location: Geylang
 ```
 
-### Find tuition appointments: `find_appointment`
+Alternatively, users can press the desired date on the calendar panel instead to achieve the same output.
+
+#### Find tuition appointments: `find_appointment`
 
 Find list of tuition appointments based on tutor's name.
 
@@ -333,7 +382,7 @@ Mar 24 2021
 Location: Geylang
 ```
 
-### Delete a tuition appointment: `delete_appointment`
+#### Delete a tuition appointment: `delete_appointment`
 
 Format: `delete_appointment INDEX`
 
@@ -355,7 +404,7 @@ Mar 27 2021
 Location: Hougang
 ```
 
-### Editing an appointment: `edit_appointment`
+#### Editing an appointment: `edit_appointment`
 
 Edits an appointment with a specific index. Only the attributes present are changed in the appointment.
 If any one of the following three fields (DATE, TIME_FROM, TIME_TO), then all three 
@@ -369,7 +418,19 @@ Format: `edit_appointment INDEX [n/NAME] [s/SUBJECT_NAME] [d/DATE] [fr/TIME_FROM
 
 Examples: `edit_appointment 1 s/English l/Clementi`
 
-### Adding a schedule : `add_schedule`
+### Schedule Tracker
+This feature allows tutees to track and manage their tuition-related schedules, i.e., allocating time to do their tuition homework.
+
+![Schedule Ui](images/ug-images/Schedule.png)
+
+**Attributes / Parameters**:
+* Title
+* Schedule Date
+* Time From
+* Time To
+* Description
+
+#### Adding a schedule : `add_schedule`
 
 Adds a schedule that is related to tuition.<br>
 
@@ -377,32 +438,34 @@ Format: `add_schedule t/TITLE d/DATE fr/TIME_FROM to/TIME_TO ds/DESCRIPTION`
 
 * The date format `yyyy-mm-dd` must be strictly followed. e.g. `2021-3-1`and `2021-03-01`.
 * The time format `hh:mm a` must be strictly followed. e.g. `9:01 am` and `10:30 pm`.
+* `DATE` and `TIME_FROM` must be in the future.
+* `TIME_FROM` and `TIME_TO` must be a valid time range (`TIME_FROM` must be before `TIME_TO`).
 
 Examples:<br>
 * `add_schedule t/Science Tuition Homework d/2021-3-31 fr/6:00pm to/7:00pm ds/Chapter 5 to 6`
 * `add_schedule t/Maths Tuition Homework d/2021-4-2 fr/5:00pm to/7:00pm ds/Calculus Topic`
 
-### Listing all schedules : `list_schedules`
+#### Listing all schedules : `list_schedules`
 
-Shows a list of all upcoming schedules in the personal schedule list.
+This feature shows a list of the tutees's personal schedule. Schedules are automatically sorted by ascending order (oldest to newest).
 
 Format: `list_schedules`
 
 Example outputs:
 ```
 1.  Math Tuition Homework
-    Mar 24 2021
-    2:00 PM - 4:00 PM
-    Chapter 5 to 6
+Mar 24 2021
+2:00 PM - 4:00 PM
+Chapter 5 to 6
 2.  Science Tuition Homework
-    Mar 30 2021
-    2:00 PM - 4:00 PM
-    Calculus Topic
+Mar 30 2021
+2:00 PM - 4:00 PM
+Calculus Topic
 ```
 
-### View schedule details: `view_schedule`
+#### View schedule details: `view_schedule`
 
-View details of a schedule.
+View details of a schedule via date.
 
 Format:
 `view_schedule DATE`
@@ -413,12 +476,14 @@ Example:
 Example Output:
 ```
 1.  Math Tuition Homework
-    Mar 24 2021
-    2:00 PM - 4:00 PM
-    Chapter 5 to 6
+Mar 24 2021
+2:00 PM - 4:00 PM
+Chapter 5 to 6
 ```
 
-### Delete a schedule: `delete_schedule`
+Alternatively, users can press the desired date on the calendar panel instead to achieve the same output.
+
+#### Delete a schedule: `delete_schedule`
 
 Deletes the specific schedule at the specified INDEX.
 
@@ -435,12 +500,12 @@ Example:
 Example Output:
 ```
 1.  Science Tuition Homework
-    Mar 30 2021
-    2:00 PM - 4:00 PM
-    Calculus Topic
+Mar 30 2021
+2:00 PM - 4:00 PM
+Calculus Topic
 ```
 
-### Editing a schedule : `edit_schedule`
+#### Editing a schedule : `edit_schedule`
 
 Edits a schedule with a specific index. Only the attributes present are changed in the schedule.
 
@@ -448,16 +513,37 @@ Format: `edit_schedule INDEX [t/TITLE] [d/DATE] [fr/TIME_FROM] [to/TIME_TO] [ds/
 
 * The date format `yyyy-mm-dd` must be strictly followed. e.g. `2021-3-1`and `2021-03-01`.
 * The time format `hh:mm a` must be strictly followed. e.g. `9:01 am` and `10:30 pm`.
+* The edited `DATE` and `TIME_FROM` must be in the future.
+* `TIME_FROM` and `TIME_TO` must be a valid time range (`TIME_FROM` must be before `TIME_TO`).
 
 Examples: `edit_schedule 1 t/Science Tuition Homework`
 
-### Opening timetable window : `timetable`
+### Event Tracker
+Events represent a timetable, which comprises of both `Appointment` and `Schedule`.
+This feature allows tutee to track and view their timetable easily.
 
-Launch a graphical representation of the tutee's appointment and schedule in a timetable format.
+![Timetable Ui](images/ug-images/Timetable.png)
 
-Format: `timetable`
+* Green slots represent `Appointment` and blue slots represent `Schedule`.
 
-### Add a budget: `add_budget`
+#### Opening timetable window : `timetable`
+
+Launch a timetable graphical representation of the tutee's appointment and schedule.
+
+Format: `timetable [DATE]`
+
+* The date is an optional parameter. If there is no date entered, it will display the timetable of the current week. Otherwise, by typing `2021-3-28`, it will show the week's timetable that contains 28 March 2021.
+* The date format `yyyy-mm-dd` must be strictly followed. e.g. `2021-3-1` or `2021-03-01`.
+
+### Budget Tracker
+This feature allows tutees to track and manage his/her budget allocated to tuitions. 
+
+![Budget Ui](images/ug-images/Budget.png)
+
+**Attributes / Parameters**:
+* Budget Amount
+
+#### Add a budget: `add_budget`
 
 Adds a budget with an amount specified by user. Stores budget in user system.
 Budget must not already exist in user system, otherwise use edit_budget instead.
@@ -474,7 +560,7 @@ Budget of 500 is sucessfully added
 
 * BUDGET must be a positive integer inclusive of zero
 
-### Edit a budget: `edit_budget`
+#### Edit a budget: `edit_budget`
 
 Edits an already existing budget with an amount specified by user.
 
@@ -488,10 +574,9 @@ Example Output
 Budget of 600 is sucessfully updated.
 ```
 
-
 * BUDGET must be a positive integer inclusive of zero
 
-### Delete a budget: `delete_budget`
+#### Delete a budget: `delete_budget`
 
 Deletes an already existing budget.
 
@@ -505,7 +590,7 @@ Example Output:
 Budget of 600 is sucessfully deleted.
 ```
 
-### View a budget: `view_budget`
+#### View a budget: `view_budget`
 
 Views an already existing budget.
 
@@ -523,8 +608,17 @@ Budget: 600
 Total Cost of Appointments: 100.
 ```
 
+### Grade Book
+This features allows tutees to track and manage their grades obtained in a particular subjects.
 
-### Add a grade: `add_grade`
+![Gradebook Ui](images/ug-images/Grades.png)
+
+**Attributes / Parameters**:
+* Subject Name
+* Graded Item
+* Alphabet Grade
+
+#### Add a grade: `add_grade`
 
 Adds a grade with a subject, a graded item and a grade alphabet specified by user. Stores in user system.
 
@@ -540,7 +634,7 @@ Example Output:
 New grade added: English (Final): A
 ```
 
-### Edit a grade: `edit_grade`
+#### Edit a grade: `edit_grade`
 
 Edits an already existing grade at the specified index. Only the attributes present are changed in the grade.
 
@@ -553,7 +647,7 @@ Example Output:
 Edited Grade: Science (Lab 1): B
 ```
 
-### Delete a grade: `delete_grade`
+#### Delete a grade: `delete_grade`
 
 Deletes an already existing grade at the specified index.
 
@@ -566,7 +660,7 @@ Example Output:
 Deleted Grade: Science (Lab 1): B
 ```
 
-### List grades: `list_grades`
+#### List grades: `list_grades`
 
 Views a list of all already existing grades in storage.
 
@@ -588,7 +682,21 @@ Listed all grades
      C
 ```
 
-### Adding a reminder : `add_reminder`
+### Reminder Tracker
+This feature allows tutees to track and manage reminders daily. This is exceptionally helpful if the reminders are related to the tuition or the tutor itself, i.e. setting a reminder to pay a particular tutor's tuition fee.
+
+![Reminder Ui](images/ug-images/Reminder.png)
+
+* Red reminder card sidebar represent past reminders.
+* Yellow reminder card sidebar represent ongoing reminders.
+* Orange reminder card sidebar represent upcoming reminders (less or equal to 3 days).
+* Green reminder card sidebar represent upcoming reminders.
+
+**Attributes / Parameters**:
+* Description
+* Reminder Date
+
+#### Adding a reminder : `add_reminder`
 
 Adds a reminder with description and reminder date specified by the user.<br>
 
@@ -599,21 +707,21 @@ Examples:<br>
 * `add_reminder ds/Science Tuition Payment Due d/2021-4-2`
 * `add_reminder ds/Maths Tuition Payment Due d/2021-4-21`
 
-### Listing all reminders : `list_reminders`
+#### Listing all reminders : `list_reminders`
 
-Shows a list of all reminders in the personal reminder list.
+Shows a list of all personal reminders. Reminders are automatically sorted by ascending order (oldest to newest).
 
 Format: `list_reminders`
 
 Example outputs:
 ```
 1.  Science Tuition Payment
-    Date: Apr 2 2021
+Date: Apr 2 2021
 2.  Maths Tuition Payment Due
-    Date: Apr 21 2021
+Date: Apr 21 2021
 ```
 
-### Delete a reminder: `delete_reminder`
+#### Delete a reminder: `delete_reminder`
 
 Deletes the specific reminder at the specified INDEX.
 
@@ -629,10 +737,10 @@ Example: `delete_reminder 1`
 Example Output:
 ```
 1.  Maths Tuition Payment Due
-    Date: Apr 21 2021
+Date: Apr 21 2021
 ```
 
-### Editing a reminder : `edit_reminder`
+#### Editing a reminder : `edit_reminder`
 
 Edits a reminder with a specific index. Only the attributes present are changed in the reminder.
 
@@ -641,7 +749,12 @@ Format: `edit_reminder INDEX [ds/DESCRIPTION] [d/REMINDER_DATE]`
 
 Examples: `edit_reminder 1 ds/Science Tuition Payment Due`
 
-### Add a Tutor Filter: `add_tutor_filter`
+### Tutor and Appointment Filters 
+This feature enhances the tutee's viewing experiences by allowing the tutees to filter tutors or appointments based on attributes.
+
+![Filters Ui](images/ug-images/Filters.png)
+
+#### Add a Tutor Filter: `add_tutor_filter`
 
 Adds Tutor Filter(s) to the Tutor Filter list, filtering the tutors that are shown in the
 tutor list. Note that tutor filters **are not persistent (are not saved)**. The following tutor
@@ -676,7 +789,7 @@ Example: `add_tutor_filter r/>=40 r/<60 l/Secondary`
 
 Example_Output: `New tutor filter added: Subject Level: secondary, Subject Rate: >= 40, Subject Rate: < 60`
 
-### Delete a Tutor Filter: `delete_tutor_filter`
+#### Delete a Tutor Filter: `delete_tutor_filter`
 
 Deletes Tutor Filter(s) from the Tutor Filter list, supporting the same attributes as `add_tutor_filter`.
 
@@ -686,7 +799,7 @@ Example: `delete_tutor_filter r/<60 l/Secondary`
 
 Example_Output: `Tutor filters deleted: Subject Level: secondary, Subject Rate: < 60`
 
-### Add an Appointment Filter: `add_appointment_filter`
+#### Add an Appointment Filter: `add_appointment_filter`
 
 Adds Appointment Filter(s) to the Appointment Filter list, filtering the appointments that are shown
 in the appointment list. Note that appointment filters **are not persistent (are not saved)**. The
@@ -717,7 +830,7 @@ Example: `add_appointment_filter to/>2021-03-25 10:00 AM`
 
 Example_Output: `New appointment filter added: Date Time: > Mar 25 2021 10:00AM`
 
-### Delete an Appointment Filter: `delete_appointment_filter`
+#### Delete an Appointment Filter: `delete_appointment_filter`
 
 Deletes Appointment Filter(s) from the Appointment Filter list, supporting the same attributes as `add_appointment_filter`.
 
@@ -741,47 +854,48 @@ Closes the app.
 
 ## Command Summary
 
-Action | Format, Examples
---------|------------------
-**Add a new tutor** | `add_tutor n/NAME g/GENDER p/PHONE_NUMBER e/EMAIL  a/ADDRESS <s/SUBJECT_NAME r/SUBJECT_RATE l/SUBJECT_EDUCATION_LEVEL y/SUBJECT_YEARS_EXPERIENCE q/SUBJECT_QUALIFICATIONS>... notes/NOTE` <br> e.g., `add_tutor n/John Doe g/Male p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/English r/50 l/Secondary 3 y/5 q/A-Level s/Mathematics r/60 l/Secondary 4 y/6 q/A-Level notes/Patient`
-**List tutors** | `list_tutors`
-**Delete a tutor** | `delete_tutor INDEX`, <br> e.g. `delete_tutor 1`
-**Edit a tutor** | `edit_tutor INDEX [n/NAME] [g/GENDER] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [<s/SUBJECT_NAME r/SUBJECT_RATE l/SUBJECT_EDUCATION_LEVEL y/SUBJECT_YEARS_EXPERIENCE q/SUBJECT_QUALIFICATIONS>]... notes/NOTES`, <br> e.g. `edit_tutor 1 p/99824314 s/English r/50 l/Secondary 5 y/9 q/A-Level notes/Impatient`
-**View tutor details** | `view_tutor INDEX`, <br> e.g. `view_tutor 1`
-**Add note to a tutor** | `add_note INDEX NOTE`, <br> e.g. `add_note 1 patient tutor`
-**Edit note of a tutor** | `edit_note INDEX NOTE`, <br> e.g. `edit_note 1 not patient`
-**Delete note of a tutor** | `delete_note INDEX`, <br> e.g. `delete_note 1`
-**List tutors with note** | `list_note`, <br> e.g. `list_note`
-**Export the tutor details**| `export INDEX`, <br> e.g. `export 1`
-**Favourite a tutor** | `favourite INDEX`, <br> e.g. `favourite 1`
-**Unfavourite a tutor** | `unfavourite INDEX`, <br> e.g. `Unfavourite 1`
-**List favourites** | `list_favourites`, <br> e.g. `list_favourites`
-**Add a new appointment** | `add_appointment n/NAME s/SUBJECT d/DATE fr/TIME_FROM to/TIME_TO l/LOCATION` <br> e.g., `add_appointment n/David Li s/Mathematics d/2021-03-01 fr/10:00 AM to/12:00 PM l/Bedok`
-**List tuition appointments** | `list_appointments`
-**View tuition appointment details** | `view_appointment DATE` <br> e.g. `view_appointment 2020-03-24`
-**Find tuition appointments** | `find_appointment NAME...` <br> e.g. `find_appointment Alex Yeoh`
-**Delete a tuition appointment** | `delete_appointment INDEX` <br> e.g. `delete_appointment 1`
-**Edit a tuition appointment** | `edit_appointment INDEX [n/NAME] [s/SUBJECT_NAME] [d/DATE] [fr/TIME_FROM] [to/TIME_TO] [l/LOCATION]` <br> e.g. `edit_appointment 1 s/English l/Clementi`
-**Add a new schedule** | `add_schedule t/TITLE d/DATE fr/TIME_FROM to/TIME_TO ds/DESCRIPTION` <br> e.g., `add_schedule n/Science Tuition Homework d/2021-3-31 fr/6:00pm to/7:00pm ds/Chapter 5 to 6`
-**List schedules** | `list_schedules`
-**View schedule details** | `view_schedule DATE` <br> e.g. `view_schedule 2020-03-24`
-**Delete a schedule** | `delete_schedule INDEX` <br> e.g. `delete_schedule 1`
-**Edit a schedule** | `edit_schedule INDEX [t/TITLE] [d/DATE] [fr/TIME_FROM] [to/TIME_TO] [ds/DESCRIPTION]` <br> e.g. `edit_schedule 1 t/Science Tuition Homework`
-**Add a budget** | `add_budget b/BUDGET` <br> e.g.`add_budget b/500`
-**Edit a budget** | `edit_budget b/BUDGET` <br> e.g. `edit_budget b/600`
-**Delete a budget** | `delete_budget` <br> e.g. `delete_budget`
-**View a budget** | `view_budget` <br> e.g. `view_budget`
-**Add a grade** | `add_grade s/SUBJECT_NAME gi/GRADED_ITEM gr/GRADE_ALPHABET`, <br> e.g. `add_grade s/English gi/Final gr/A` 
-**Edit a grade** | `edit_grade INDEX [s/SUBJECT_NAME] [gi/GRADED_ITEM] [gr/GRADE_ALPHABET]`, <br> e.g. `edit_grade 1 gr/B`
-**Delete a grade** | `delete_grade INDEX`, <br> e.g. `delete_grade 1`
-**List grades** | `list_grades`
-**Add a new reminder** | `add_reminder ds/DESCRIPTION d/REMINDER_DATE` <br> e.g., `add_reminder ds/Science Tuition Payment Due d/2021-4-2`
-**List reminders** | `list_reminders`
-**Delete a reminder** | `delete_reminder INDEX` <br> e.g. `delete_reminder 1`
-**Edit a reminder** | `edit_reminder INDEX [ds/DESCRIPTION] [d/REMINDER_DATE]` <br> e.g. `edit_reminder 1 ds/Science Tuition Payment Due`
-**Add a Tutor Filter** | `add_tutor_filter [n/NAME]... [g/GENDER]... [p/PHONE_NUMBER]... [e/EMAIL]... [a/ADDRESS]... [s/SUBJECT_NAME]... [r/SUBJECT_RATE]... [l/SUBJECT_EDUCATION_LEVEL]... [y/SUBJECT_YEARS_EXPERIENCE]... [q/SUBJECT_QUALIFICATIONS]...` <br> e.g. `add_tutor_filter r/>=40 r/<60 l/Secondary`
-**Delete a Tutor Filter** | `delete_tutor_filter [n/NAME]... [g/GENDER]... [p/PHONE_NUMBER]... [e/EMAIL]... [a/ADDRESS]... [s/SUBJECT_NAME]... [r/SUBJECT_RATE]... [l/SUBJECT_EDUCATION_LEVEL]... [y/SUBJECT_YEARS_EXPERIENCE]... [q/SUBJECT_QUALIFICATIONS]...` <br> e.g. `delete_tutor_filter r/<60 l/Secondary`
-**Add an Appointment Filter** | `add_appointment_filter [n/NAME]... [s/SUBJECT_NAME]... [fr/FROM_DATE_TIME]... [to/TO_DATE_TIME]... [l/LOCATION]...` <br> e.g. `add_appointment_filter to/>2021-03-25 10:00 AM`
-**Delete an Appointment Filter** | `delete_appointment_filter [n/NAME]... [s/SUBJECT_NAME]... [fr/FROM_DATE_TIME]... [to/TO_DATE_TIME]... [l/LOCATION]...` <br> e.g. `delete_appointment_filter to/>2021-03-25 10:00 AM`
-**Exit App** | `exit`
+Action | Format | Examples
+--------|--------|----------
+**Add a new tutor** | `add_tutor n/NAME g/GENDER p/PHONE_NUMBER e/EMAIL  a/ADDRESS <s/SUBJECT_NAME r/SUBJECT_RATE l/SUBJECT_EDUCATION_LEVEL y/SUBJECT_YEARS_EXPERIENCE q/SUBJECT_QUALIFICATIONS>... notes/NOTE` | `add_tutor n/John Doe g/Male p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/English r/50 l/Secondary 3 y/5 q/A-Level s/Mathematics r/60 l/Secondary 4 y/6 q/A-Level notes/Patient`
+**List tutors** | `list_tutors` | `list_tutors`
+**Delete a tutor** | `delete_tutor INDEX` | `delete_tutor 1`
+**Edit a tutor** | `edit_tutor INDEX [n/NAME] [g/GENDER] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [<s/SUBJECT_NAME r/SUBJECT_RATE l/SUBJECT_EDUCATION_LEVEL y/SUBJECT_YEARS_EXPERIENCE q/SUBJECT_QUALIFICATIONS>]... notes/NOTES` | `edit_tutor 1 p/99824314 s/English r/50 l/Secondary 5 y/9 q/A-Level notes/Impatient`
+**View tutor details** | `view_tutor INDEX` | `view_tutor 1`
+**Add note to a tutor** | `add_note INDEX NOTE` | `add_note 1 patient tutor`
+**Edit note of a tutor** | `edit_note INDEX NOTE` | `edit_note 1 not patient`
+**Delete note of a tutor** | `delete_note INDEX` | `delete_note 1`
+**List tutors with note** | `list_note` | `list_note`
+**Export the tutor details**| `export INDEX` | `export 1`
+**Favourite a tutor** | `favourite INDEX`, | `favourite 1`
+**Unfavourite a tutor** | `unfavourite INDEX` | `unfavourite 1`
+**List favourites** | `list_favourites` | `list_favourites`
+**Add a new tuition appointment** | `add_appointment n/NAME s/SUBJECT d/DATE fr/TIME_FROM to/TIME_TO l/LOCATION` | `add_appointment n/David Li s/Mathematics d/2021-03-01 fr/10:00 AM to/12:00 PM l/Bedok`
+**List tuition appointments** | `list_appointments` | `list_appointments`
+**View tuition appointment details** | `view_appointment DATE` | `view_appointment 2020-03-24`
+**Find tuition appointments** | `find_appointment NAME...` | `find_appointment Alex Yeoh`
+**Delete a tuition appointment** | `delete_appointment INDEX` | `delete_appointment 1`
+**Edit a tuition appointment** | `edit_appointment INDEX [n/NAME] [s/SUBJECT_NAME] [d/DATE] [fr/TIME_FROM] [to/TIME_TO] [l/LOCATION]` | `edit_appointment 1 s/English l/Clementi`
+**Add a new schedule** | `add_schedule t/TITLE d/DATE fr/TIME_FROM to/TIME_TO ds/DESCRIPTION` | `add_schedule n/Science Tuition Homework d/2021-3-31 fr/6:00pm to/7:00pm ds/Chapter 5 to 6`
+**List schedules** | `list_schedules` | `list_schedules`
+**View schedule details** | `view_schedule DATE` | `view_schedule 2020-03-24`
+**Delete a schedule** | `delete_schedule INDEX` | `delete_schedule 1`
+**Edit a schedule** | `edit_schedule INDEX [t/TITLE] [d/DATE] [fr/TIME_FROM] [to/TIME_TO] [ds/DESCRIPTION]` | `edit_schedule 1 t/Science Tuition Homework`
+**View timetable** | `timetable [DATE]` | `timetable 2021-3-28`
+**Add a budget** | `add_budget b/BUDGET` |`add_budget b/500`
+**Edit a budget** | `edit_budget b/BUDGET` | `edit_budget b/600`
+**Delete a budget** | `delete_budget` | `delete_budget`
+**View a budget** | `view_budget` | `view_budget`
+**Add a grade** | `add_grade s/SUBJECT_NAME gi/GRADED_ITEM gr/GRADE_ALPHABET`, | `add_grade s/English gi/Final gr/A` 
+**Edit a grade** | `edit_grade INDEX [s/SUBJECT_NAME] [gi/GRADED_ITEM] [gr/GRADE_ALPHABET]`, | `edit_grade 1 gr/B`
+**Delete a grade** | `delete_grade INDEX`, | `delete_grade 1`
+**List grades** | `list_grades` | `list_grades`
+**Add a new reminder** | `add_reminder ds/DESCRIPTION d/REMINDER_DATE` | `add_reminder ds/Science Tuition Payment Due d/2021-4-2`
+**List reminders** | `list_reminders` | `list_reminders`
+**Delete a reminder** | `delete_reminder INDEX` | `delete_reminder 1`
+**Edit a reminder** | `edit_reminder INDEX [ds/DESCRIPTION] [d/REMINDER_DATE]` | `edit_reminder 1 ds/Science Tuition Payment Due`
+**Add a Tutor Filter** | `add_tutor_filter [n/NAME]... [g/GENDER]... [p/PHONE_NUMBER]... [e/EMAIL]... [a/ADDRESS]... [s/SUBJECT_NAME]... [r/SUBJECT_RATE]... [l/SUBJECT_EDUCATION_LEVEL]... [y/SUBJECT_YEARS_EXPERIENCE]... [q/SUBJECT_QUALIFICATIONS]...` | `add_tutor_filter r/>=40 r/<60 l/Secondary`
+**Delete a Tutor Filter** | `delete_tutor_filter [n/NAME]... [g/GENDER]... [p/PHONE_NUMBER]... [e/EMAIL]... [a/ADDRESS]... [s/SUBJECT_NAME]... [r/SUBJECT_RATE]... [l/SUBJECT_EDUCATION_LEVEL]... [y/SUBJECT_YEARS_EXPERIENCE]... [q/SUBJECT_QUALIFICATIONS]...` | `delete_tutor_filter r/<60 l/Secondary`
+**Add an Appointment Filter** | `add_appointment_filter [n/NAME]... [s/SUBJECT_NAME]... [fr/FROM_DATE_TIME]... [to/TO_DATE_TIME]... [l/LOCATION]...` | `add_appointment_filter to/>2021-03-25 10:00 AM`
+**Delete an Appointment Filter** | `delete_appointment_filter [n/NAME]... [s/SUBJECT_NAME]... [fr/FROM_DATE_TIME]... [to/TO_DATE_TIME]... [l/LOCATION]...` | `delete_appointment_filter to/>2021-03-25 10:00 AM`
+**Exit App** | `exit` | `exit`
 
