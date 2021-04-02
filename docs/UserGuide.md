@@ -91,6 +91,7 @@ This feature allows tutees to maintain and keep track of the list of tuition tut
     * Subject Education Level
     * Subject Years of Experience
     * Subject Qualifications
+* Note
 
 #### Add a new tutor: `add_tutor`
 
@@ -173,9 +174,6 @@ English
 This feature allows tutees to track and manages notes that are tagged to a tutor.
 
 ![Notes Ui](images/ug-images/Notes.png)
-
-**Attributes / Parameters**:
-* Note Description
 
 ##### Add note to a tutor: `add_note`
 
@@ -426,7 +424,6 @@ This feature allows tutees to track and manage their tuition-related schedules, 
 
 **Attributes / Parameters**:
 * Title
-* Subject Name
 * Schedule Date
 * Time From
 * Time To
@@ -690,8 +687,8 @@ This feature allows tutees to track and manage reminders daily. This is exceptio
 
 * Red reminder card sidebar represent past reminders.
 * Yellow reminder card sidebar represent ongoing reminders.
-* Green reminder card sidebar represent upcoming reminders.
 * Orange reminder card sidebar represent upcoming reminders (less or equal to 3 days).
+* Green reminder card sidebar represent upcoming reminders.
 
 **Attributes / Parameters**:
 * Description
@@ -868,7 +865,7 @@ Action | Format | Examples
 **List tutors with note** | `list_note` | `list_note`
 **Export the tutor details**| `export INDEX` | `export 1`
 **Favourite a tutor** | `favourite INDEX`, | `favourite 1`
-**Unfavourite a tutor** | `unfavourite INDEX` | `Unfavourite 1`
+**Unfavourite a tutor** | `unfavourite INDEX` | `unfavourite 1`
 **List favourites** | `list_favourites` | `list_favourites`
 **Add a new tuition appointment** | `add_appointment n/NAME s/SUBJECT d/DATE fr/TIME_FROM to/TIME_TO l/LOCATION` | `add_appointment n/David Li s/Mathematics d/2021-03-01 fr/10:00 AM to/12:00 PM l/Bedok`
 **List tuition appointments** | `list_appointments` | `list_appointments`
