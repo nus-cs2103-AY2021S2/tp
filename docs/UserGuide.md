@@ -269,7 +269,9 @@ You can use this command in 2 different ways.
   Examples:
   
     * `find Chocolate` returns `chocolate` and `Chocolate Milk`
-    * `find potato chip` returns `Potato Biscuit` and `chocolate chip`<br></br>
+    * `find potato chip` returns `Potato Biscuit` and `chocolate chip`
+      
+    <br>
     
   <div markdown="block" class="alert alert-info">
 
@@ -286,7 +288,9 @@ You can use this command in 2 different ways.
   Examples:
   
     * `find */Burger` returns `CheeseBurger` and `fishburger`
-    * `find */cheese egg` returns `MacAndCheese` and `eggs`<br></br>
+    * `find */cheese egg` returns `MacAndCheese` and `eggs`
+      
+    <br>
 
   <div markdown="block" class="alert alert-info">
 
@@ -319,8 +323,10 @@ You can use this command in 3 different ways.
   Format: `list l/LOCATION`
 
   Example:
-    * `list l/kitchen` displays all the items in the kitchen.<br></br>
-    
+    * `list l/kitchen` displays all the items in the kitchen.
+      
+    <br>
+  
   <div markdown="block" class="alert alert-info">
 
   **:information_source: Notes about the command:**
@@ -345,7 +351,9 @@ You can use this command in 3 different ways.
 
   Example:
 
-    * `list t/favourite` displays all the items with the "favourite" tag.<br></br>
+    * `list t/favourite` displays all the items with the "favourite" tag.
+      
+    <br>
 
   <div markdown="block" class="alert alert-info">
 
@@ -407,7 +415,9 @@ You can use this command in 3 different ways.
 
       Example:
       
-        * `sort quantity asc` sorts the items in the displayed list in ascending order of quantity.<br></br>
+        * `sort quantity asc` sorts the items in the displayed list in ascending order of quantity.
+          
+        <br>
 
       <div markdown="block" class="alert alert-info">
 
@@ -423,7 +433,9 @@ You can use this command in 3 different ways.
 
       Example:
       
-        * `sort quantity desc` sorts the items in the displayed list in descending order of quantity.<br></br>
+        * `sort quantity desc` sorts the items in the displayed list in descending order of quantity.
+          
+        <br>
 
       <div markdown="block" class="alert alert-info">
 
@@ -439,7 +451,9 @@ You can use this command in 3 different ways.
 
   Example:
   
-    * `sort expiryDate` sorts the items in the displayed list from the earliest expiry date to the latest.<br></br>
+    * `sort expiryDate` sorts the items in the displayed list from the earliest expiry date to the latest.
+      
+    <br>
 
   <div markdown="block" class="alert alert-info">
 
@@ -470,7 +484,9 @@ You can use this command in 2 different ways.
 
   Example:
   
-    * `clear l/kitchen` clears all the items with location `kitchen`.<br></br>
+    * `clear l/kitchen` clears all the items with location `kitchen`.
+      
+    <br>
 
   <div markdown="block" class="alert alert-info">
 
