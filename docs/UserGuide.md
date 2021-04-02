@@ -33,7 +33,7 @@ _**Tutor Tracker**_ is a **desktop app designed to help secondary school student
 --------------------------------------------------------------------------------------------------------------------
 
 ## Application Layout
-
+![Ui Components](images/ug-images/Components.png)
 
 ## Features
 
@@ -66,9 +66,10 @@ This section contains all the information about features of TutorTracker. You ma
 </div>
 
 ### Tutor Book
-As part of the TutorTracker's goal, it aims to allows tutees to maintain and keep track of the list of tuition tutors.
+This features aims to allows tutees to maintain and keep track of the list of tuition tutors.
+![Appointments Ui](images/ug-images/Appointments.png)
 
-Details:
+Attributes / Parameters:
 * Name
 * Gender
 * Phone Number
@@ -160,9 +161,9 @@ English
 
 #### Notes
 This feature allows notes to be attached to a tutor.
+![Notes Ui](images/ug-images/Notes.png)
 
-Details:
-* Index
+Attributes / Parameters:
 * Note Description
 
 ##### Add note to a tutor: `add_note`
@@ -242,7 +243,11 @@ Format:`export INDEX`
 
 Example: `export 1`
 
-#### Favourite a tutor: `favourite`
+#### Favourite
+This feature allows tutees to favourite tutors.
+![Notes Ui](images/ug-images/Notes.png)
+
+##### Favourite a tutor: `favourite`
 
 Label a tutor as a favourite.
 
@@ -264,7 +269,7 @@ English
     Qualification: Bachelor of English Literature
 ```
 
-#### Unfavourite a tutor: `unfavourite`
+##### Unfavourite a tutor: `unfavourite`
 
 Removes the favourite label from a tutor
 
@@ -272,7 +277,7 @@ Format: `unfavourite INDEX`
 
 Example: `unfavourite 1`
 
-#### List favourites: `list_favourites`
+##### List favourites: `list_favourites`
 
 View a list of all favourites
 
@@ -281,9 +286,10 @@ Format: `list_favourites`
 Example: `list_favourites`
 
 ### Appointment Tracker
-Allows tutee to manage and track their tuition appointments they have with the tutors.
+This feature allows tutee to manage and track their tuition appointments.
+![Appointment Ui](images/ug-images/Appointments.png)
 
-Details:
+Attribute / Parameters:
 * Tutor's Name
 * Subject Name
 * Time From
@@ -400,6 +406,7 @@ Examples: `edit_appointment 1 s/English l/Clementi`
 
 ### Schedule Tracker
 This feature allows tutees to track their tuition-related schedules, such as adding a timeslot to do their tuition homework.
+![Schedule Ui](images/ug-images/Schedule.png)
 
 Attributes / Parameters:
 * Title
@@ -491,8 +498,10 @@ Format: `edit_schedule INDEX [t/TITLE] [d/DATE] [fr/TIME_FROM] [to/TIME_TO] [ds/
 Examples: `edit_schedule 1 t/Science Tuition Homework`
 
 ### Event Tracker
-Events, which in fact is a timetable which comprises of both `Appointment` and `Schedule`.
+Events represent a timetable, which comprises of both `Appointment` and `Schedule`.
 This feature allows tutee to track their timetable easily.
+
+![Timetable Ui](images/ug-images/Timetable.png)
 
 #### Opening timetable window : `timetable`
 
@@ -505,6 +514,7 @@ Format: `timetable [DATE]`
 
 ### Budget Tracker
 This features allows tutee to track and manage his/her budget allocated to tuitions.
+![Budget Ui](images/ug-images/Budget.png)
 
 #### Add a budget: `add_budget`
 
@@ -573,6 +583,12 @@ Total Cost of Appointments: 100.
 
 ### Grade Book
 This features allows tutees to track and manage their grades obtained in a particular subjects.
+![Gradebook Ui](images/ug-images/Grades.png)
+
+Attributes / Parameters:
+* Subject Name
+* Graded Item
+* Alphabet Grade
 
 #### Add a grade: `add_grade`
 
@@ -640,6 +656,7 @@ Listed all grades
 
 ### Reminder Tracker
 This features allows tutees to track and manage reminders on a daily basis. This is exceptionally helpful if the reminders are related to the tuition or tutor itself such as setting a reminder to pay tuition fee for a particular tutor.
+![Reminder Ui](images/ug-images/Reminder.png)
 
 Attributes / Parameters:
 * Description
@@ -700,6 +717,7 @@ Examples: `edit_reminder 1 ds/Science Tuition Payment Due`
 
 ### Tutor and Appointment Filters 
 This feature enhance the tutee's viewing experiences by allowing the tutees to filter tutors or appointments based on certain attributes.
+![Filters Ui](images/ug-images/Filters.png)
 
 #### Add a Tutor Filter: `add_tutor_filter`
 
