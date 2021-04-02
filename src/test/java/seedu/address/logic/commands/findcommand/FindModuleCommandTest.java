@@ -1,7 +1,19 @@
 package seedu.address.logic.commands.findcommand;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.commons.core.Messages.MESSAGE_MODULE_LISTED_OVERVIEW;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalRemindMe.getTypicalRemindMe;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.exceptions.CommandException;
+
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -9,24 +21,10 @@ import seedu.address.model.module.Module;
 import seedu.address.model.module.Title;
 import seedu.address.model.module.TitleContainsKeywordsPredicate;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.commons.core.Messages.MESSAGE_MODULE_LISTED_OVERVIEW;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalRemindMe.CARL;
-import static seedu.address.testutil.TypicalRemindMe.ELLE;
-import static seedu.address.testutil.TypicalRemindMe.FIONA;
-import static seedu.address.testutil.TypicalRemindMe.getTypicalRemindMe;
 
 public class FindModuleCommandTest {
-    private Model model = new ModelManager(getTypicalRemindMe(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalRemindMe(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalRemindMe(), new UserPrefs());
+    private final Model expectedModel = new ModelManager(getTypicalRemindMe(), new UserPrefs());
 
     @Test
     public void equals() {
