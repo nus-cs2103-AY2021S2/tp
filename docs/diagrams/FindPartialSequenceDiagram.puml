@@ -13,7 +13,7 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("find Chocolate")
+[-> LogicManager : execute("find */cheese egg")
 activate LogicManager
 
 LogicManager -> StoreMandoParser : parseCommand("find */cheese egg")
