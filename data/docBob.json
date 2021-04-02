@@ -38,17 +38,6 @@
       } ]
     } ]
   }, {
-    "name" : "alexis",
-    "phone" : "98989898",
-    "email" : "royb@example.com",
-    "address" : "Blk 45 Aljunied Street 85, #11-31",
-    "height" : "172cm",
-    "weight" : "58kg",
-    "isArchived" : false,
-    "tagged" : [ "asidjoajc" ],
-    "appointments" : [ ],
-    "records" : [ ]
-  }, {
     "name" : "Andreea Hanna",
     "phone" : "92624417",
     "email" : "royb@example.com",
@@ -74,7 +63,7 @@
     "weight" : "58kg",
     "isArchived" : false,
     "tagged" : [ "asidjoajc" ],
-    "appointments" : [ ],
+    "appointments" : [ "11/11/21 12:00", "12/12/21 12:00" ],
     "records" : [ ]
   }, {
     "name" : "Bernice Yu",
@@ -396,6 +385,17 @@
   }, {
     "name" : "Teri Guy",
     "phone" : "92624417",
+    "email" : "royb@example.com",
+    "address" : "Blk 45 Aljunied Street 85, #11-31",
+    "height" : "172cm",
+    "weight" : "58kg",
+    "isArchived" : false,
+    "tagged" : [ "asidjoajc" ],
+    "appointments" : [ ],
+    "records" : [ ]
+  }, {
+    "name" : "alexis",
+    "phone" : "98989898",
     "email" : "royb@example.com",
     "address" : "Blk 45 Aljunied Street 85, #11-31",
     "height" : "172cm",
