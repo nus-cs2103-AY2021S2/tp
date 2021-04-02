@@ -294,7 +294,7 @@ Format: `addItem ORDER_ITEM_DESCRIPTION`
 * The `ORDER_ITEM_DESCRIPTION` can only contain alphanumeric characters and ".
 
 Examples:
-* `addItem 2 x Chocolate Cake` adds an order item with the specified description to the order items table.
+* `addItem 2 x Red Velvet` adds an order item with the specified description to the order items table.
 
 ### Deleting order items: 'deleteItem'
 
@@ -307,8 +307,8 @@ Format: `deleteItem ORDER_ITEM_INDEXES`
 * The `ORDER_ITEM_INDEXES` **must be valid**.
 
 Examples:
-*  delete 2 deletes the order items with `ORDER_ITEM_INDEX` 2 from the order items table.
-* `delete 2 3` deletes the order items with `ORDER_ITEM_INDEXES` 2 and 3 from the order items table.
+*  `deleteItem 2` deletes the order items with `ORDER_ITEM_INDEX` 2 from the order items table.
+* `deleteItem 2 3` deletes the order items with `ORDER_ITEM_INDEXES` 2 and 3 from the order items table.
 
 ### Exiting the program : `exit`
 
