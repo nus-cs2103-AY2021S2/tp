@@ -241,10 +241,6 @@ As dogs and programs can also be identified by their respective names instead of
 
 However, this requires there to be no duplicate dog or program names.
 
-The following activity diagram summarizes what happens when a user executes a new command:
-
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
