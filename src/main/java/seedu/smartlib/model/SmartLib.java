@@ -469,7 +469,7 @@ public class SmartLib implements ReadOnlySmartLib {
             return false;
         }
 
-        if (!book.isBorrowed()) {
+        if (canReaderBorrow(readerName) && !book.isBorrowed()) {
             reader.getBorrows().put(book, new DateBorrowed(LocalDateTime.now()));
             Reader editedReader = new Reader(reader.getName(), reader.getPhone(), reader.getEmail(),
                     reader.getAddress(), reader.getTags(), reader.getBorrows());
@@ -498,6 +498,10 @@ public class SmartLib implements ReadOnlySmartLib {
 
         Book book = getBookByBarcode(barcode);
         if (book == null) {
+            return false;
+        }
+
+        if (book.getBorrowerName() == null) {
             return false;
         }
 

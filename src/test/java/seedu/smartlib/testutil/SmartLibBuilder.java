@@ -1,7 +1,9 @@
 package seedu.smartlib.testutil;
 
 import seedu.smartlib.model.SmartLib;
+import seedu.smartlib.model.book.Book;
 import seedu.smartlib.model.reader.Reader;
+import seedu.smartlib.model.record.Record;
 
 /**
  * A utility class to help with building SmartLib objects.
@@ -36,6 +38,28 @@ public class SmartLibBuilder {
      */
     public SmartLibBuilder withReader(Reader reader) {
         smartLib.addReader(reader);
+        return this;
+    }
+
+    /**
+     * Adds a new {@code Book} to the {@code SmartLib} that we are building.
+     *
+     * @param book book associated with the SmartLib that we are building.
+     * @return a SmartLibBuilder object with the updated book.
+     */
+    public SmartLibBuilder withBook(Book book) {
+        smartLib.addBook(book);
+        return this;
+    }
+
+    /**
+     * Adds a new {@code Record} to the {@code SmartLib} that we are building.
+     *
+     * @param record record associated with the SmartLib that we are building.
+     * @return a SmartLibBuilder object with the updated record.
+     */
+    public SmartLibBuilder withRecord(Record record) {
+        smartLib.addRecord(record);
         return this;
     }
 

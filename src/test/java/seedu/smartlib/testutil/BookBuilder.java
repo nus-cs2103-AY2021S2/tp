@@ -7,6 +7,7 @@ import seedu.smartlib.model.book.Book;
 import seedu.smartlib.model.book.Genre;
 import seedu.smartlib.model.book.Isbn;
 import seedu.smartlib.model.book.Publisher;
+import seedu.smartlib.model.record.DateBorrowed;
 
 /**
  * A utility class to help with building Book objects.
@@ -26,6 +27,8 @@ public class BookBuilder {
     private Isbn isbn;
     private Barcode barcode;
     private Genre genre;
+    private Name borrowerName;
+    private DateBorrowed dateBorrowed;
 
     /**
      * Creates a {@code BookBuilder} with the default details.
@@ -120,12 +123,38 @@ public class BookBuilder {
     }
 
     /**
-     * Builds a Book as a BookStub object with the given values for name, author, publisher, isbn, barcode, and genre.
+     * Sets the {@code borrowerName} of the {@code Book} that we are building.
+     *
+     * @param borrowerName borrowerName of the Book that we are building.
+     * @return a BookBuilder object with the updated borrowerName.
+     */
+    public BookBuilder withBorrowerName(String borrowerName) {
+        this.borrowerName = new Name(borrowerName);
+        return this;
+    }
+
+    /**
+     * Sets the {@code dateBorrowed} of the {@code Book} that we are building.
+     *
+     * @param dateBorrowed dateBorrowed of the Book that we are building.
+     * @return a BookBuilder object with the updated dateBorrowed.
+     */
+    public BookBuilder withDateBorrowed(String dateBorrowed) {
+        this.dateBorrowed = new DateBorrowed(dateBorrowed);
+        return this;
+    }
+
+    /**
+     * Builds a Book as a BookStub object with the given values.
      *
      * @return a BookStub object with the given parameters.
      */
     public Book build() {
-        return new BookStub(name, author, publisher, isbn, barcode, genre);
+        if (borrowerName != null && dateBorrowed != null) {
+            return new BookStub(name, author, publisher, isbn, barcode, genre, borrowerName, dateBorrowed);
+        } else {
+            return new BookStub(name, author, publisher, isbn, barcode, genre);
+        }
     }
 
 }
