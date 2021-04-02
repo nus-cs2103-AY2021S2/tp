@@ -290,13 +290,19 @@ It is split into various subsections:
 
 ### **4.1 Projects**
 
-Each Project may have `Todos`, `Deadlines`, `Events` & `Groupmates` that are relevant and specific to it. Commands related to Projects will be discussed first followed by sections on `Todos`, `Deadlines`, `Events` & `Groupmates`.
+Each project in CoLAB contains information about todos, deadlines, events and groupmates to help you keep track of everything you need to effectively manage the project.
 
 ![Ui](images/project.png)
+
+You may view a list of all your projects in the side panel and view a specific  project in the main panel using the `project` command. 
 
 <div markdown="span" class="alert alert-info">:information_source: **Info:**
 Project names that are too long may be truncated in the side panel. Simply view the project using the `project` command to view the full name in the main panel.
 </div>
+
+Each project is divided into an overview page and a todo page. The overview page contains information about your project's events, deadlines and groupmates and the todo page contains information about your project's todos. To switch between the two, use the `overview` and `todo` commands respectively.
+
+Commands related to Projects will be discussed first followed by sections on `Todos`, `Deadlines`, `Events` & `Groupmates`.
 
 #### Viewing a project: `project`
 
