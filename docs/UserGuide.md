@@ -292,6 +292,12 @@ It is split into various subsections:
 
 Each Project may have `Todos`, `Deadlines`, `Events` & `Groupmates` that are relevant and specific to it. Commands related to Projects will be discussed first followed by sections on `Todos`, `Deadlines`, `Events` & `Groupmates`.
 
+![Ui](images/project.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Info:**
+Project names that are too long may be truncated in the side panel. Simply view the project using the `project` command to view the full name in the main panel.
+</div>
+
 #### Viewing a project: `project`
 
 Displays a panel with details of a specified project.
@@ -373,6 +379,8 @@ Todos are tasks (without a due date) to be done.
 
 `Todos` contain a `DESCRIPTION` field and are useful for tasks that have no due date. 
 
+![Ui](images/todos.png)
+
 Each `Project` may have `Todos`. Hence, each of the commands related to `Todos` are done w.r.t the `Project` identified by `PROJECT_INDEX`.
 
 #### Adding a todo to a project: `addT`
@@ -439,6 +447,8 @@ Examples:
 ### _**4.1.2 Deadlines**_
 
 `Deadlines` contain `DESCRIPTION` & `DATE` field and are useful for tasks that have a due date.
+
+![Ui](images/deadlines.png)
 
 Each `Project` may have `Deadlines`. Hence, each of the commands related to `Deadlines` are done w.r.t the `Project` identified by `PROJECT_INDEX`.
 
@@ -514,6 +524,8 @@ Examples:
 
 `Events` contain a `DESCRIPTION`, `DATE`, `TIME` and a `REPEAT_WEEKLY` field and are useful for events that occur on a `DATE` at a `TIME` that may be set to `REPEAT_WEEKLY`.
 
+![Ui](images/events.png)
+
 Each `Project` may have `Events`. Hence, each of the commands related to `Events` are done w.r.t the `Project` identified by `PROJECT_INDEX`.
 
 #### Adding an event to a project: `addE`
@@ -571,6 +583,8 @@ Examples:
 ### _**4.1.4 Groupmates**_
 
 `Groupmates` contain `NAME` & `ROLE` field and are useful to keep track of `Groupmates` involved in a `Project` with their `ROLE` for the `Project`.
+
+![Ui](images/groupmates.png)
 
 Each `Project` may have `Groupmates`. Hence, each of the commands related to `Groupmates` are done w.r.t the `Project` identified by `PROJECT_INDEX`.
 
@@ -636,7 +650,9 @@ Examples:
 
 ### **4.2 Contacts**
 
-Contacts are kept separate from Groupmates. Their information is not kept in sync. 
+Contacts are kept separate from Groupmates. Their information is not kept in sync.
+
+![Ui](images/contacts.png)
 
 Each Contact may have a `NAME`, `PHONE_NUMBER`, `EMAIL`, `ADDRESS` & multiple `TAGS`. 
 
