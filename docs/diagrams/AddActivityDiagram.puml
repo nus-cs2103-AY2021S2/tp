@@ -1,0 +1,17 @@
+@startuml
+start
+:User enters add command;
+:Parse user input;
+if() then ([User input is valid])
+    :Create and execute Add command;
+    if() then ([Item to be added is not a duplicate item])
+        :Add item to StoreMando inventory;
+        :Display command success message;
+    else([Else])
+        :Display duplicate item error message;
+    endif
+else([Else])
+    :Display parse error message;
+endif
+stop
+@enduml

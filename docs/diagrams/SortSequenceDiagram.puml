@@ -1,0 +1,91 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":StoreMandoParser" as StoreMandoParser LOGIC_COLOR
+participant ":SortCommandParser" as SortCommandParser LOGIC_COLOR
+participant "s:SortAscendingQuantityCommand" as SortAscendingQuantityCommand LOGIC_COLOR
+participant "c:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant "comparator:ItemComparatorByIncreasingQuantity" as ItemComparatorByIncreasingQuantity MODEL_COLOR
+end box
+
+[-> LogicManager : execute("sort quantity asc")
+activate LogicManager
+
+LogicManager -> StoreMandoParser : parseCommand("sort quantity asc")
+activate StoreMandoParser
+
+create SortCommandParser
+StoreMandoParser -> SortCommandParser
+activate SortCommandParser
+
+SortCommandParser --> StoreMandoParser
+deactivate SortCommandParser
+
+StoreMandoParser -> SortCommandParser : parse("quantity asc")
+activate SortCommandParser
+
+create SortAscendingQuantityCommand
+SortCommandParser -> SortAscendingQuantityCommand
+activate SortAscendingQuantityCommand
+SortAscendingQuantityCommand --> SortCommandParser : s
+deactivate SortAscendingQuantityCommand
+
+SortCommandParser --> StoreMandoParser : s
+deactivate SortCommandParser
+
+SortCommandParser -[hidden]-> StoreMandoParser
+destroy SortCommandParser
+
+StoreMandoParser --> LogicManager : s
+deactivate StoreMandoParser
+
+
+LogicManager -> SortAscendingQuantityCommand : execute(model)
+activate SortAscendingQuantityCommand
+
+SortAscendingQuantityCommand -> Model : getFilteredItemList()
+activate Model
+Model --> SortAscendingQuantityCommand
+deactivate Model
+
+create ItemComparatorByIncreasingQuantity
+SortAscendingQuantityCommand -> ItemComparatorByIncreasingQuantity : new ItemComparatorByIncreasingQuantity()
+activate ItemComparatorByIncreasingQuantity
+ItemComparatorByIncreasingQuantity --> SortAscendingQuantityCommand : comparator
+deactivate ItemComparatorByIncreasingQuantity
+
+SortAscendingQuantityCommand -> Model : updateSortedItemList(comparator)
+activate Model
+Model --> SortAscendingQuantityCommand
+deactivate Model
+
+SortAscendingQuantityCommand -> Model : getSortedItemList()
+activate Model
+Model --> SortAscendingQuantityCommand : sortedItemList
+deactivate Model
+
+SortAscendingQuantityCommand -> Model : setItems(sortedItemList)
+activate Model
+Model --> SortAscendingQuantityCommand
+deactivate Model
+
+create CommandResult
+SortAscendingQuantityCommand -> CommandResult : new CommandResult()
+activate CommandResult
+CommandResult --> SortAscendingQuantityCommand : c
+deactivate CommandResult
+
+SortAscendingQuantityCommand --> LogicManager : c
+deactivate SortAscendingQuantityCommand
+
+[<--LogicManager : c
+deactivate LogicManager
+@enduml
+
+

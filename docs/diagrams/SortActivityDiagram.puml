@@ -1,0 +1,18 @@
+@startuml
+start
+:User enters sort by ascending quantity command;
+:Parse user input;
+if() then ([Else])
+    : Display parse error message;
+else ([User input is valid])
+        : Create and execute SortByAscendingQuantity command;
+                if() then ([Displayed list of items is empty])
+                : Display no item to sort error message;
+                else([Else])
+                : Sort and display items in increasing order of quantity;
+
+:Display command success message;
+endif
+endif
+stop
+@enduml
