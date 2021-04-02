@@ -22,7 +22,7 @@ import seedu.address.model.contact.Contact;
 public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all contacts whose fields contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all contacts with fields containing any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Options can be specified using " + PREFIX_OPTION + "<OPTION>" + " can be used to \n"
             + "Parameters: [" + PREFIX_OPTION + "<OPTION>]"
