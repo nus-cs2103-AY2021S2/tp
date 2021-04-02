@@ -36,7 +36,7 @@ This block is used to provide you extra details about the feature that will enab
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## Installation
 
 1. Ensure you have Java `11` or above installed in your Computer. Your Computer's operating system (OS) needs to be Windows, macOS or Linux, and the OS version you are using should still be supported by the respective companies.
    For more detailed Java installation instructions, please click [here](https://docs.oracle.com/en/java/javase/11/install/preface.html#).
@@ -45,25 +45,45 @@ This block is used to provide you extra details about the feature that will enab
 
 3. Copy the file to the folder you want to use as the _home folder_ for your FriendDex.
 
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data. Once the GUI finishes loading, you are ready to start using FriendDex.<br>
    ![Ui](images/Ui.png)
-
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
-
-   * **`list`** : Lists all contacts.
-
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 b/01-01-1998` : Adds a contact named `John Doe` to the FriendDex.
-
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
-
-   * **`clear`** : Deletes all contacts.
-
-   * **`exit`** : Exits the app.
-
-6. Refer to the [Features](#features) below for details of each command.
+   
+5. You can move on to the [Quick Start](#quick-start) section to learn about the common operations for FriendDex.
 
 --------------------------------------------------------------------------------------------------------------------
+
+## Quick start
+
+1. Once FriendDex is installed, you first want to begin by populating it with your friends’ information. You might notice that FriendDex comes with some sample data. You may remove this sample data using the `clear` command.
+
+2. To add a person to the FriendDex, you may use the `add` command followed by their relevant details. 
+   For example, here’s how you can add a friend, John Doe with the following particulars:
+
+Friend Detail  | Value
+---------------|------------------
+Phone number | 98765432
+E-mail | johnd@example.com 
+Address | John street, block 123, #01-01
+Birthday | 19th January 1998
+
+You can run this command next
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 b/19-01-1998`.
+
+3. If you made a mistake while adding a person, you can easily amend it with the `edit` command. 
+   For example, changing the phone number of John Doe to ‘87654321’. Assuming John is the first person in the list of friends on the screen, you may use the `edit` command as follows,
+* `edit 1 p/87654321`
+   
+4. Now that you have populated the app, you are ready to explore the various relationship management features that FriendDex has to offer. Here are some things you can try:
+* `set-goal` : Set a goal for how often you would like to meet a friend
+* `add-meeting` : Record details about a meeting you’ve had with a friend
+* `add-group` : Categorise and group your friends on the app (e.g. RC neighbours, CCA mates)
+* `add-date` : Record special dates for a friend (e.g. Anniversary)
+
+5. FriendDex comes with a built-in autocomplete feature, so there's no need to memorise any of the commands. If you need help with the commands, a thorough documentation for each command is provided in this user guide, complete with usage instructions and examples.
+
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## UI 
 
 ![UiAnnotated](images/UiAnnotated.png)
