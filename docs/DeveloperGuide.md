@@ -180,7 +180,7 @@ a certain number of days which will be given by the user in the command.
 
 The following sequence diagram shows how the reminder feature works:
 
-![ReminderSequenceDiagram](images/ReminderSequenceDiagram.png)
+![ReminderSequenceDiagram](images/ReminderWeeksSequenceDiagram.png)
 
 
 The following activity diagram summarizes what happens when a user executes a new command:
@@ -224,14 +224,17 @@ a particular location or clear all items in the list.
 8. Finally, a `CommandResult` object is created and is returned to `LogicManager`.   
 
 
-The following sequence diagram shows how the clear feature works:
+The following sequence diagram shows how clear feature works:
 
-![ClearSequenceDiagram](images/ReminderSequenceDiagram.png)
+![ClearSequenceDiagram](images/ClearSequenceDiagram.png)
 
+The following sequence diagram shows how a clear by location feature works:
+
+![ClearLocationSequenceDiagram](images/ClearLocationSequenceDiagram.png)
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-![ClearActivityDiagram](images/ReminderActivityDiagram.png)
+![ClearActivityDiagram](images/ClearLocationActivityDiagram.png)
 
 #### Design consideration:
 
