@@ -1,4 +1,4 @@
-
+# BookCoin User Guide
 
 ---
 
@@ -7,7 +7,8 @@ layout | title
 page | User Guide
 ---
 
-BookCoinToTheMoon is a **desktop app for managing bookings and presents users a structured and detailed information on facility availability via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, BookCoinToTheMoon can get your facility management tasks done faster than traditional GUI apps.
+BookCoin is a **desktop app for managing bookings and presents users a structured and detailed information on facility availability via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, BookCoinToTheMoon can get your facility management tasks done faster than traditional GUI apps.
+
 
 * Table of Contents
 {:toc}
@@ -18,12 +19,12 @@ BookCoinToTheMoon is a **desktop app for managing bookings and presents users a 
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `bookcointothemoon.jar` `[coming in v2.0]`
+1. Download the latest `bookingapp.jar`
 
-1. Copy the file to the folder you want to use as the _home folder_ for your BookCoinToTheMoon.
+1. Copy the file to the folder you want to use as the _home folder_ for BookCoin.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui_Booking.png)
+1. Run java -jar bookingapp.jar via your terminal (preferred). Alternatively, double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data. (in final version) <br><br>
+   ![Ui](images/Ui_Booking_1.3.png) <br><br>
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -57,16 +58,15 @@ BookCoinToTheMoon is a **desktop app for managing bookings and presents users a 
 
 </div>
 
-### Adding a person : `add_person`
+### Adding a person : `add_person` (Multi step command)
 
-Adds a new person for the booking app. Email and phone number must be unique. `add_person` is a multi-step command that 
-will prompt you for additional input.
+Adds a new person for the booking app. Email and phone number must be unique. 
+Tags are optional and can be skipped by just pressing the `Enter` key when prompted.
+`add_person` is a multi-step command that will prompt you for additional input.
+As with other multi step commands, you can exit the command by entering `exit_prompt` at any point.
 
-Format: `add_person n/PERSON_NAME p/PERSON_PHONE_NUMBER e/PERSON_EMAIL [t/TAG]`
+Format: `add_person`
 
-Examples:
-* `add_person n/John Doe p/98578028 e/johndoe@gmail.com` adds a person with name John Doe, phone number 98578028 and email address johndoe@gmail.com.
-* `add_person n/Jane p/85938028 e/jane@gmail.com t/student` adds a person with name Jane, phone number 85938028, email address jane@gmail.com and is tagged with student.
 
 ### Adding a venue : `add_venue`
 
@@ -78,11 +78,18 @@ Format: `add_venue v/VENUE_NAME [max/MAXIMUM CAPACITY] [d/DESCRIPTION] [t/TAG]`
 Examples:
 * `add_venue v/Chua Thian Poh Hall max/40` adds a venue with venue name Chua Thian Poh Hall and a maximum capacity of 40.
 
-### Adding a booking : `add_booking`
+We are halfway through implementing a multi step command replacement for add_venue as well. You can test it by inputting 
+`add_venue_m v/VENUE_NAME`, which will guide you through the prompt process.
 
-Adds a new booking into the booking app. The default booking is set to one hour for the first iteration. The system will
-then prompt user to provide details of the booking step by step. During the multi-step prompting, user would only be
-allowed to give input that matches the format allowed by prompting question, command inputs would not be accepted during this process.
+
+### Adding a booking : `add_booking` (Multi step command)
+
+Adds a new booking into the booking app. The system will ask for and store the email of the booker, 
+the venue booked and the start and end time of your booking (in the format YYYY-MM-DD HH:MM). You may
+also choose to add an optional description or tags for your booking.
+
+`add_booking` is a multi-step command that will prompt you for additional input.
+As with other multi step commands, you can exit the command by entering `exit_prompt` at any point.
 
 Format: `add_booking`
 
@@ -91,7 +98,7 @@ Examples:
 
 ### Editing a person : `edit_person`
 
-Edits an existing person in the booking system with the specified email.
+Edits an existing person in the booking system, identified by their unique email.
 
 Format: `edit_person eo/EMAIL [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]`
 
@@ -164,16 +171,16 @@ Examples:
 
 Shows information about the booking corresponding to the given booking ID.
 
-Format: `find_booking b/BOOKING_ID`
+Format: `find_booking bid/BOOKING_ID`
 
 Examples:
-* `find_booking b/2321`
+* `find_booking bid/2321837462`
 
 ### Listing all persons : `list_person`
 
 Shows a list of all persons in the booking app.
 
-Format: `list_booking`
+Format: `list_person`
 
 ### Listing all venues : `list_venue`
 
@@ -230,12 +237,16 @@ inputs again.
 
 Format: `exit_prompt`
 
+=======
+This is a command that is only valid when you are in the process of a multi step command.
+Exits the multi-step prompting under add_booking or add_venue. After exiting prompting, user would be able to give command
+inputs again.
+
 ### Viewing all available commands : `help`
 
 Displays the link to the user guide.
 
 Format: `help`
-
 
 ### Exiting the program : `exit`
 
@@ -243,10 +254,9 @@ Exits the program.
 
 Format: `exit`
 
-
 ### Saving the data
 
-BookCoinToTheMoon data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+BookCoin data is saved in the hard disk automatically after any command which results in changes the data. There is no need to save manually.
 
 ### Editing the data file `[coming in v2.0]`
 
