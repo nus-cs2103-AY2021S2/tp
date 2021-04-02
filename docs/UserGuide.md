@@ -193,7 +193,7 @@ The following subsections will elaborate on the specific details of each TutorBu
 
 ##### Viewing help : `help`
 
-Shows a message explaining how to access the help page.
+Displays URL to TutorBuddy's User Guide and a list of all commands and their usages.
 
 ![help message](images/helpMessage.png)
 
@@ -463,5 +463,7 @@ This glossary provides definitions for the special terms used in this user guide
 **Single Session:** One time session on a particular date.
 
 **Recurring Session:** Repeating session that occurs every number of days.
+
+**URL:** The address of a web page.
 
 --------------------------------------------------------------------------------------------------------------------
