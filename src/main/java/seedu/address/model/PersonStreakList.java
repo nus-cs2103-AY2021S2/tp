@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonStreak;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
@@ -21,13 +22,15 @@ public class PersonStreakList {
 
     private final ObservableList<PersonStreak> lst;
     private final ObservableList<PersonStreak> unmodifiableLst;
+    private final FilteredList<PersonStreak> filteredLst;
 
     /**
      * Initialises the PersonStreakList
      */
     public PersonStreakList() {
         lst = FXCollections.observableArrayList();
-        unmodifiableLst = FXCollections.unmodifiableObservableList(lst);
+        filteredLst = new FilteredList<>(lst, (PersonStreak::isActiveGoal));
+        unmodifiableLst = FXCollections.unmodifiableObservableList(filteredLst);
     }
 
     /**

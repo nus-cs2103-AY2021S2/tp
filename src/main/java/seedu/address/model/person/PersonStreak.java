@@ -36,6 +36,10 @@ public class PersonStreak implements Comparable<PersonStreak> {
     public Streak getStreak() {
         return streak;
     }
+    
+    public boolean isActiveGoal() {
+        return !person.getGoal().isNoneFrequency();
+    }
 
     @Override
     public int compareTo(PersonStreak other) {
