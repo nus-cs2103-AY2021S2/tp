@@ -127,7 +127,7 @@ Commands discussed in this user guide follow these rules:
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order. This excludes a parameter without a prefix, which must be the first parameter when required.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.<br> 
+  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.<br>
   e.g. if the command specifies `PROJECT_INDEX i/TODO_INDEX d/DESCRIPTION`, `i/TODO_INDEX d/DESCRIPTION PROJECT_INDEX` is **not**  acceptable as `PROJECT_INDEX` is a parameter without a prefix and should be the first parameter.
 
 <div markdown="block" class="alert alert-info">:information_source: **Info:**
