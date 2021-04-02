@@ -249,7 +249,8 @@ enum DateTimeFormat {
     DD_DASH_MM_DASH_YY_HR("dd-MM-yy HH:mm"),
     DD_DASH_MM_DASH_YY_MERIDIAN("dd-MM-yy hh:mma"),
     DD_DASH_MM_DASH_YYYY_HR("dd-MM-yyyy HH:mm"),
-    DD_DASH_MM_DASH_YYYY_MERIDIAN("dd-MM-yyyy hh:mma");
+    DD_DASH_MM_DASH_YYYY_MERIDIAN("dd-MM-yyyy hh:mma"),
+    YYYY_DASH_MM_DASH_DD_HR("yyyy-MM-dd HH:mm");
 
     private String dateTimePattern;
 

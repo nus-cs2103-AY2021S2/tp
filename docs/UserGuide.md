@@ -86,9 +86,11 @@ Examples:
 
 ### Cleaning all entries in patient records: `clear-patient`
 Clears all entries from the patient records. <br>
-If appointments containing the patient to be deleted exists in the appointment schedule, then `--force` will have to be specified, to delete the relevant appointments as well.
+If any appointments exist in the appointment schedule, then this command will not work. 
+`clear-appt` will have to be done first to clear the appointment schedule.
 
-Format: `clear-patient [--force]`
+
+Format: `clear-patient`
 
 ### Deleting a patient : `delete-patient`
 Deletes the specified patient from the patient records.
@@ -176,9 +178,10 @@ Examples:
 
 ### Cleaning all entries in doctor records: `clear-doctor`
 Clears all entries from the doctor records. <br>
-If appointments containing the doctor to be deleted exists in the appointment schedule, then `--force` will have to be specified, to delete the relevant appointments as well.
+If any appointments exist in the appointment schedule, then this command will not work. 
+`clear-appt` will have to be done first to clear the appointment schedule.
 
-Format: `clear-doctor [--force]`
+Format: `clear-doctor`
 
 ### Deleting a doctor : `delete-doctor`
 Deletes the specified doctor from the doctor records.
@@ -258,7 +261,6 @@ Format: `clear-appt`
 
 
 ### Deleting an appointment : `delete=appt`
-[Coming Soon]
 
 Deletes the specified appointment from the schedule.
 
@@ -278,7 +280,6 @@ Examples:
 
 
 ### Editing an appointment : `edit-appt`
-[Coming Soon]
 
 Edits an existing appointment in the appointment schedule.<br>
 
@@ -304,7 +305,6 @@ Examples:
 
 
 ### Locating appointments by fields : `find-appt`
-[Coming Soon]
 
 Format: `find-appt [n/PATIENT KEYWORDS] [dr/DOCTOR_KEYWORDS] [d/DATETIME] [p/PHONE] [e/EMAIL] [a/ADDRESS_KEYWORDS] [t/TAG KEYWORDS]`
 
@@ -345,7 +345,6 @@ Exits the program.
 Format: `exit`
 
 ### Viewing help: `help`
-[Coming soon]
 
 Format: `help`
 
@@ -382,13 +381,13 @@ If your changes to the data files makes its format invalid, App-Ointment will di
 | Action            | Format                                  | Examples                                           |
 |-------------------|-----------------------------------------|----------------------------------------------------|
 | **add-patient** | `add-patient n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]…​` | `add-patient n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` |
-| **clear-patient** | `clear-patient [--force]` | |
+| **clear-patient** | `clear-patient` | |
 | **delete-patient** | `delete-patient INDEX` | `delete-patient 2` |
 | **edit-patient** | `edit-patient INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` | `edit-patient 1 e/newEmail@example.com`<br> `edit-patient 2 n/Betsy Crower t/` |
 | **find-patient** | `find KEYWORD [MORE_KEYWORDS]` | `find John`<br>`find bernice david` |
 | **list-patient** | `list-patient` | |
 | **add-doctor** | `add-doctor n/NAME [t/TAG]…​` | `add-doctor n/Dr John Doe` |
-| **clear-doctor** | `clear-doctor [--force]` | |
+| **clear-doctor** | `clear-doctor` | |
 | **delete-doctor** | `delete-doctor INDEX` | `delete-doctor 2` |
 | **edit-doctor** | `edit-doctor INDEX [n/NAME] [t/TAG]…​` | `edit-doctor 1 n/Dr Amy`<br>`edit-doctor 2 n/Dr Betsy Crower t/` |
 | **find-doctor** | `find-doctor KEYWORD [MORE_KEYWORDS]` | `find Amy`<br>`find Amy Betsy` |
