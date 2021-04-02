@@ -11,7 +11,7 @@ public class Duration {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Format of duration input is incorrect, or duration is less than 1";
-    private static final String VALIDATION_REGEX = "([1-9]\\d+)";
+    private static final String VALIDATION_REGEX = "([1-9]\\d*)";
 
     private int value;
 
