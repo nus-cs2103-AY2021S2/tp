@@ -14,10 +14,6 @@ import seedu.us.among.commons.util.JsonUtil;
  */
 public class Response {
     public static final String MESSAGE_CONSTRAINTS = "Responses can take any values, and it should not be blank";
-
-    /*
-     * //to-do match everything for now
-     */
     public static final String VALIDATION_REGEX = ".*";
 
     public final String protocolVersion;

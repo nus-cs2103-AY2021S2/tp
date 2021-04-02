@@ -85,6 +85,7 @@ Before diving into the rest of the contents in our user guide, the following are
 imPoster will start with an empty file if a modification to the data file causes the data to be invalid.
 </div>
 
+
 <div style="page-break-after: always;"></div>
 
 ## 4. Commands
@@ -151,7 +152,7 @@ Check out the screenshot of each command for an idea of the expected output in t
 
 #### 4.1.3 Exit program: `exit`
 
-**Description:** Closing the application is simple but do come back soon!
+**Description:** Closes the application. Do come back soon!
 
 **Format:** <span class="main-command">exit</span>
 
@@ -167,7 +168,6 @@ Check out the screenshot of each command for an idea of the expected output in t
 
 **Example & Output:** <span class="main-command">add</span> <span class="compulsory-param">-x POST</span> <span class="compulsory-param">-u https://reqres.in/api/users</span> <span class="optional-param">-d {"name": "tarzan", "job": "the jungle man"}</span> <span class="optional-param">-h "Content-Type: application/json"</span> <span class="optional-param">-t nature</span>
 
-//to-do tanjin update picture
 <p align="center">
   <img width="450px" src="images/commands/add.png" >
 </p>
@@ -241,7 +241,7 @@ You may include [prefixes](#prefix-table) to scope your search terms!
 
 #### 4.2.6 List all saved API endpoints: `list`
 
-**Description:** Show a list of all API endpoints in the API endpoint list.
+**Description:** Show a list of all API endpoints in the API endpoint list. If there are no endpoints in the API endpoint list, nothing will show up on the Endpoint List bar.
 
 **Format:** <span class="main-command">list</span>
 
@@ -321,6 +321,10 @@ command box with the last command.
 **Description:** As users may wish to scroll the endpoints in the endpoint list or the responses in result display, the <kbd>Page Up</kbd> and <kbd>Page Down</kbd> keys (<kbd>fn</kbd> + <kbd>up</kbd> and <kbd>fn</kbd> + <kbd>down</kbd> on **MacOS**) are available as options to scroll the 2 components above.
 
 **Format:** <kbd>Page Up</kbd> and <kbd>Page Down</kbd> (<kbd>fn</kbd> + <kbd>up</kbd> and <kbd>fn</kbd> + <kbd>down</kbd> on **MacOS**)
+
+#### 4.3.4 Error Messages
+
+**Description:** Do not worry if you input any commands wrongly when using our app! Our app gives helpful error messages depending on the command you entered, and you can always enter the [Help Command](#4.1.1-View-help) if you need to refer back to the various commands avaliable!
 
 <div style="page-break-after: always;"></div>
 
@@ -419,13 +423,15 @@ As of the latest version of our application, we support 7 commonly used request 
 | **OPTIONS** | Retrieves the allowed communication options (methods) for a specified URI                                   |
 
 ### 8.5 JSON Format
-JSON is short for JavaScript Object Notation and is a common lightweight format for data storage. In an API call, the JSON format is also commonly used to send data between two systems. For the current version of our application, JSON is the only format supported for sending data. The following are some examples of data in JSON format:
+JSON is short for JavaScript Object Notation and is a common lightweight format for data storage (in the form of key/value pairs). In an API call, the JSON format is also commonly used to send data between two systems. For the current version of our application, JSON is the only format supported for sending data. The following are some examples of data in JSON format:
 - `{}`
 - `{"name": "john doe"}`
 - `{"persons": {"name": "john doe"}}`
 
 ### 8.6 Sample Endpoints
-An extensive list of sample endpoints have been provided below for new users to test and try out. Note that the **header** field has been omitted in the samples to keep them beginner friendly. Rest assured that the following **examples will work without the header** field specified although for the more adventurous, you may refer to this full [list of http headers](https://en.wikipedia.org/wiki/List_of_HTTP_header_fields). Go ahead and try out the sample endpoints below!
+An extensive list of sample endpoints have been provided below for new users to test and try out. Note that the **header** field has been omitted in the samples to keep them beginner friendly. Rest assured that the following **examples will work without the header** field specified although for the more adventurous, you may refer to the full [list of HTTP headers](https://en.wikipedia.org/wiki/List_of_HTTP_header_fields). 
+
+Data fields on the other hand have been included in a standalone column (if applicable). They are all in the [**JSON format**](#85-json-format) and only the keys are provided (you can play around with your own values). Go ahead and try out the sample endpoints below!
 
 <span class="pseudo-header">GET</span>
 
@@ -441,15 +447,27 @@ An extensive list of sample endpoints have been provided below for new users to 
 | https://api.data.gov.sg/v1/environment/relative-humidity       |
 | https://api.data.gov.sg/v1/environment/wind-speed              |
 | https://api.data.gov.sg/v1/environment/wind-direction          |
-| https://api.data.gov.sg/v1/environment/air-temperature         |
-| https://api.data.gov.sg/v1/technology/ipos/trademarks          |
-| https://api.data.gov.sg/v1/technology/ipos/patents             |
-| https://api.data.gov.sg/v1/technology/ipos/designs             |
-| https://api.data.gov.sg/v1/transport/taxi-availability         |
 
 <span class="pseudo-header">POST</span>
 
 | URL                                                           | Data (JSON)                                       |
 | ------------------------------------------------------------- |                                                   |
 | https://jsonplaceholder.typicode.com/posts                    | title, body, userId                               |
+| https://reqbin.com/echo/post/json                             | Id, Customer, Quantity, Price                     |
+| https://reqres.in/api/register                                  | email, password                   |
+| https://reqres.in/api/login                                | email, password                     |
+| https://reqres.in/api/users                             | name, job                     |
 
+<span class="pseudo-header">PUT</span>
+
+| URL                                                           | Data (JSON)                                       |
+| ------------------------------------------------------------- |                                                   |
+| https://jsonplaceholder.typicode.com/posts/1                    | id, title, body, userId                               |
+| https://reqres.in/api/users/2                             | name, job                     |
+
+<span class="pseudo-header">DELETE</span>
+
+| URL                                                           |
+| ------------------------------------------------------------- |
+| https://jsonplaceholder.typicode.com/posts/1                  |
+| https://reqres.in/api/users/2                             |

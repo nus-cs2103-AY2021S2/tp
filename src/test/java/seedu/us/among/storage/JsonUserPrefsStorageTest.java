@@ -72,7 +72,7 @@ public class JsonUserPrefsStorageTest {
 
     private UserPrefs getTypicalUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setGuiSettings(new GuiSettings(1000, 500, 300, 100, "imposter"));
+        userPrefs.setGuiSettings(new GuiSettings(1000, 500, 300, 100, "material"));
         userPrefs.setEndpointListFilePath(Paths.get("imposter.json"));
         return userPrefs;
     }

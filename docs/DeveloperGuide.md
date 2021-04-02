@@ -26,10 +26,14 @@ nav-text: Developer Guide
 imPoster is a desktop application for beginners of API development to quickly grasp the basics. 
 imPoster's simple and minimalistic style can help beginner API developers **explore** and **test** APIs, whether those **found online** or those that they have **built** themselves.
 imPoster is also highly optimised fast typists and can be fully operated through keyboard commands.
+
+
 This developer's guide assumes its readers to have a **basic understanding** of APIs. 
 For a basic definition of [what an API is](#what-is-an-api), an appendix has been provided for readers who may be unfamiliar with the concept.
 However, it is highly recommended for readers to refer to proper tutorial contents for the basics of APIs prior to developing the application.
-Reader are also advised to download our [latest releases](https://imposter-dev.tk) from our main website in order to test out the application.
+
+
+Readers are also advised to download our [latest releases](https://imposter-dev.tk) from our main website in order to test out the application.
 
 * to-do brief description and some navigation tips about the developer guide as to what was similarly done in the user guide.
 
@@ -707,7 +711,7 @@ the `user`, unless specified otherwise)
 
     Use case resumes at step 2.
 
-### Non-Functional Requirements
+## **Appendix D: Non-Functional Requirements**
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above
     installed.
@@ -725,7 +729,7 @@ the `user`, unless specified otherwise)
 7.  Should be able to display responses not exceeding 100000 lines from an
     API call without crashing or throwing unexpected errors.
 
-### Glossary
+## **Appendix E: Glossary**
 
 - **Mainstream OS**: Windows, Linux, Unix, OS-X
 - **API endpoint/Endpoint**: The point of entry in a communication channel for two
@@ -733,12 +737,13 @@ the `user`, unless specified otherwise)
 - **API Call/Call**: A process where information is transferred, processed and a response is returned
 - **Postman**: An existing API client for developers
 
-## **Appendix D: Developer Workflow**
+## **Appendix F: Developer Workflow**
  
 Please checkout the [workflow guide](https://ay2021s2-cs2103t-t12-4.github.io/tp/WorkflowGuide.html) to understand
 the adopted approach in maintaining imPoster.
 
-## **Appendix E: API definition**
+## **Appendix G: API definition**
+
 ### What is an API?
 Broadly speaking, an **API** is an interface that enables and defines how **two systems** interact with one another. In a classic analogy, the interaction above is usually likened to a **waiter** communicating a **customer** order to the restaurant **kitchen**. In this analogy, the **customer** and **kitchen** represents the **two systems** and the **waiter** represents the **API** allowing them to communicate. The **order** and **food** delivered then corresponds to the terms **request** and **response** associated with an API call. The annotated diagrams below capture these interactions and may aid in providing a better understanding:
 
@@ -749,4 +754,63 @@ Broadly speaking, an **API** is an interface that enables and defines how **two 
 ### Why learn about APIs?
 
 You may be surprised to know that APIs are not only widely used in our daily lives, it is also likely that you have been using them frequently without actually noticing them! For example, the simple act of visiting a website involves an API request which is responsible for bringing back a response to you in the form of a webpage. Even a simple text message to your friend relies on an API to reliably deliver your message! The use of APIs is extensive in today’s highly connected world so even if they are completely unrelated to your job, it helps to have some basic understanding of them!
+
+## **Appendix H: Instructions for Manual Testing**
+
+Given below are instructions to test the app manually.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on and testers are expected to do more *exploratory* testing.
+
+</div>
+
+### Launch and shutdown
+
+1. Initial launch
+
+   1. Download the jar file and copy into an empty folder
+
+   1. Double-click the jar file Expected: Shows the GUI with a set of sample endpoints. The window size may not be optimum.
+
+1. Saving window preferences
+
+   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+
+   1. Re-launch the app by double-clicking the jar file.<br>
+       Expected: The most recent window size and location is retained.
+
+1. _{ more test cases …​ }_
+
+### Deleting an endpoint
+
+1. Deleting an endpoint while all endpoints are being shown
+
+   1. Prerequisites: List all endpoints using the `list` command. Multiple endpoints in the list.
+
+   1. Test case: `delete 1`<br>
+      Expected: First endpoint is deleted from the list. Details of the deleted endpoint shown in the result display.
+
+   1. Test case: `delete 0`<br>
+      Expected: No endpoint is deleted. Error details shown in the result display.
+
+   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+
+1. _{ more test cases …​ }_
+
+### Saving data
+
+1. Dealing with missing/corrupted data files
+
+   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+
+1. _{ more test cases …​ }_
+
+## **Appendix I: Effort**
+
+| Features | AB3    | imPoster |
+| -------- | ------ | -------- |
+| Effort   | 10     | 20       |
+| Lines of Code | 6k | 15k     |
+
+1. _{ more details to be added …​ }_
 

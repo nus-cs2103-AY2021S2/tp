@@ -62,7 +62,6 @@ public class EndpointCaller {
 
         Response response;
 
-        //to-do Tan Jin verify again all errors caught here due to API calls
         try {
             response = sendRequest();
         } catch (UnknownHostException e) {
