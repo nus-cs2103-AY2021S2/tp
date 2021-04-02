@@ -21,9 +21,9 @@ Welcome and thank you for downloading **CoLAB**! Are you a university student in
 
 CoLAB (Collaboration Lab) is a **desktop app for university students to manage their school projects.**  CoLAB's main features include:
 
-- Project management
-- Contacts management
-- Today View that surfaces an overview of upcoming events and deadlines
+* Project management
+* Contacts management
+* Today View that surfaces an overview of upcoming events and deadlines
 
 With CoLAB, you can efficiently manage all your school projects through our comprehensive project management tools.
 
@@ -258,18 +258,18 @@ To achieve the best possible experience, avoid adding excessively long text to C
    Some example commands you can try:
 
     * **`project 1`** : Displays the first project.
-
+    
     * **`addP`**`n/My Project` : Adds a new project named `My Project` to CoLAB.
-
+    
     * **`todos`** : Displays the todos of the currently displayed project.
-
+    
     * **`addT`**`1 d/My Task` : Adds a todo with the description `My Task` to the first project.
-
+    
     * **`deleteP`**`3` : Deletes the third project in the list.
-
+    
     * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#4-features) below for details of each command.
+6. Refer to the [Features](#4-features) below for details of each command.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 When the sample data is no longer required, you may use the `clear` command to clear sample projects and contacts from CoLAB.
