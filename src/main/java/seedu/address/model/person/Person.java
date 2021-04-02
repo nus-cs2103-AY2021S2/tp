@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.model.tag.Tag;
+import seedu.address.model.group.Group;
 
 /**
  * Represents a Person in the address book.
@@ -16,28 +16,29 @@ import seedu.address.model.tag.Tag;
 public class Person {
 
     // Identity fields
-    private final Name name;
+    private final PersonName personName;
     private final Phone phone;
     private final Email email;
 
     // Data fields
     private final Address address;
-    private final Set<Tag> tags = new HashSet<>();
+    private final Set<Group> groups = new HashSet<>();
+
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
-        this.name = name;
+    public Person(PersonName personName, Phone phone, Email email, Address address, Set<Group> groups) {
+        requireAllNonNull(personName, phone, email, address, groups);
+        this.personName = personName;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.tags.addAll(tags);
+        this.groups.addAll(groups);
     }
 
-    public Name getName() {
-        return name;
+    public PersonName getName() {
+        return personName;
     }
 
     public Phone getPhone() {
@@ -53,15 +54,19 @@ public class Person {
     }
 
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable group set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public Set<Group> getGroups() {
+        return Collections.unmodifiableSet(groups);
+    }
+
+    public boolean inGroup(Group group) {
+        return groups.contains(group);
     }
 
     /**
-     * Returns true if both persons have the same name.
+     * Returns true if both persons have the same personName.
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSamePerson(Person otherPerson) {
@@ -92,13 +97,13 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getGroups().equals(getGroups());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(personName, phone, email, address, groups);
     }
 
     @Override
@@ -112,10 +117,10 @@ public class Person {
                 .append("; Address: ")
                 .append(getAddress());
 
-        Set<Tag> tags = getTags();
-        if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
-            tags.forEach(builder::append);
+        Set<Group> groups = getGroups();
+        if (!groups.isEmpty()) {
+            builder.append("; Groups: ");
+            groups.forEach(builder::append);
         }
         return builder.toString();
     }

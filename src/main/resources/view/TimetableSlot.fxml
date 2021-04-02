@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<StackPane fx:id="meetingSlot" alignment="TOP_CENTER" prefHeight="100.0" styleClass="meeting-slot-background" stylesheets="@Extensions.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label fx:id="meetingLabel" styleClass="meetingslotheader" stylesheets="@Extensions.css" text="Meeting 17:05-18:05" textFill="#496160" wrapText="true">
+         <font>
+            <Font name="Arial Black" size="13.0" />
+         </font>
+      </Label>
+   </children>
+</StackPane>

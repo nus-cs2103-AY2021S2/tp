@@ -1,14 +1,21 @@
 package seedu.address.logic;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.Model;
+import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.ReadOnlyMeetingBook;
+import seedu.address.model.note.Note;
+import seedu.address.model.note.ReadOnlyNoteBook;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.ReadOnlyAddressBook;
 
 /**
  * API of the Logic component
@@ -26,7 +33,7 @@ public interface Logic {
     /**
      * Returns the AddressBook.
      *
-     * @see seedu.address.model.Model#getAddressBook()
+     * @see Model#getAddressBook()
      */
     ReadOnlyAddressBook getAddressBook();
 
@@ -39,6 +46,22 @@ public interface Logic {
     Path getAddressBookFilePath();
 
     /**
+     * Returns the MeetingBook.
+     *
+     * @see Model#getMeetingBook()
+     */
+    ReadOnlyMeetingBook getMeetingBook();
+
+    /** Returns an unmodifiable view of the filtered list of meetings */
+    ObservableList<Meeting> getFilteredMeetingList();
+
+    ReadOnlyNoteBook getNoteBook();
+
+    ObservableList<Note> getFilteredNoteList();
+
+    Path getNoteBookFilePath();
+
+    /**
      * Returns the user prefs' GUI settings.
      */
     GuiSettings getGuiSettings();
@@ -47,4 +70,15 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Gets the internal unmodifiable Observable list of all meetings inside meeting book
+     */
+    ObservableList<Meeting> getAllMeetingList();
+
+    /**
+     * Gets the observable value of the timetable start date.
+     * @return
+     */
+    public ObservableValue<LocalDate> getTimeTableStartDate();
 }

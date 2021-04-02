@@ -1,0 +1,12 @@
+{
+  "meetings" : [
+    {
+      "name" : "INVALID START TIME ",
+      "startDateTime" : "2021-03-17",
+      "endDateTime" : "2021-04-15 16:00",
+      "description" : "Discuss proposal for an app",
+      "priority" : "4",
+      "group" : ["business", "app"]
+    }
+  ]
+}

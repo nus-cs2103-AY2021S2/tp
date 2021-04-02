@@ -18,3 +18,24 @@
 .tooltip-text {
     -fx-text-fill: white;
 }
+
+.meeting-slot-header {
+    -fx-text-fill: midnightblue;
+    -fx-font-family: "Arial Black 13px";
+    -fx-wrap-text: true;
+    -fx-font-weight: bold;
+}
+.meeting-slot-background {
+    -fx-background-color: orange;
+    -fx-background-radius: 8, 7, 6;
+    -fx-background-insets: 0, 1, 2;
+    -fx-effect: dropshadow( three-pass-box, rgba(0, 0, 0, 0.6), 5, 0.0, 0, 1);
+    -fx-text-fill: black;
+}
+
+.even-timetable-row {
+    -fx-background-color: #e0dddd;
+}
+.odd-timetable-row {
+    -fx-background-color: white;
+}

@@ -42,7 +42,7 @@ The rest of the App consists of four components.
 
 Each of the four components,
 
-* defines its *API* in an `interface` with the same name as the Component.
+* defines its *API* in an `interface` with the same personName as the Component.
 * exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
 
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
@@ -104,6 +104,9 @@ The `Model`,
 * stores a `UserPref` object that represents the user’s preferences.
 * stores the address book data.
 * exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the meeting book data.
+* exposes an unmodifiable `ObservableList<Meeting>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the connection between the person in the address book and the meeting in the meeting book. e.g. Tom and July both participate in the CS2103 Lecture.
 * does not depend on any of the other three components.
 
 
@@ -132,6 +135,43 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+
+### Sort feature
+It can be helpful to sort the list of contacts and the list of meetings by a certain criteria.
+For example, sorting contacts by their names could complement the user experience.
+However, there were a few implementations details to consider.
+
+Currently, an essential attribute in the model are the filtered lists, 
+which shows the results of searches and finds. 
+The indexes used in commands like "edit" are taken with respect to these filtered list.
+These filtered lists, however, are backed by immutable observable lists, 
+which helps update the JavaFX GUI. I initially tried to make copies of these observable lists,
+so that I can mutate them through sorting and filtering. However, this would not work,
+since commands like "edit" would be making changes to a copy of the data, 
+not the data itself.
+
+The implementation I went with uses another subclass of observable lists called sorted lists.
+It goes between the link between the original immutable observable list and the filtered lists.
+Sorting would occur in the sorted list layer, and the filtering will be applied on top.
+This has the benefit of still sharing the references with the original observable list, 
+so modifications will still be reflected in the correct data structures.
+
+###Timetable feature
+
+The timetable feature will be help the user visualise the free times. 
+It also aid the user in scheduling meetings faster.
+There are two possible implementations for the model below:
+
+One: Create a two-dimensional array to represent the schedule 
+with days as the row and columns being the half hour time slots
+This will serve as the model of a person's free schedule. Slots which are occupied will have
+their state marked as so. 
+
+Pros: A Ui can listen to the model and the display can be updated quickly with each change.
+
+Cons: Takes up more space. Problems handling meetings with not nice start and ending times.
+
 
 ### \[Proposed\] Undo/redo feature
 
@@ -236,13 +276,20 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Computing minor students in NUS who like typing, and is most of the week spent moving about meeting people for his internship, lectures, or social life, have busy workdays.
+* Wants to manage school life and social life together in one app, with meetups for projects, lectures, social activities, and family all organised.
+* Would like to keep track of contacts and organise them as well for easy searching and easy remembering.
+* Can type fast
+* Prefers typing to mouse interactions
+* Is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage contacts faster than a typical mouse/GUI driven app.
+
+Can manage social life and academics by toggling between two modes <-> school activities and non-school activities. Better time management - Priorities of meetups can be ranked and less time to schedule meetings with friends, as well as keep track of existing meetings.
+Arrange activities with many people -> events not only tie with single contacts but with a group of contacts that can be added inside. Stay connected -> Keep in touch with old contacts or remove them by querying for old contacts . Keep a log and diary of past meetups, and small bios of people ,as well as images.
+
+Users would be better able to manage their social and academic commitments by toggling between both modes. With the option to rank/prioritise meetups, users can experience better time management, and can stay connected with many people easily. The app also maintains a diary of past meetups, with the inclusion of images and bios of the people.
+
 
 
 ### User stories
@@ -254,9 +301,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
 | `* * *`  | user                                       | add a new person               |                                                                        |
 | `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
+| `* * *`  | user                                       | find a person by personName          | locate details of persons without having to go through the entire list |
 | `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| `* *`    | user                                       | assign priorities for contacts | arrange my contacts and future tasks better                            |
+| `*`      | user with many persons in the MeetBuddy address book | sort persons by personName           | locate a person easily                                                 |
 
 *{More to be added}*
 
@@ -269,9 +317,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  MeetBuddy shows a list of persons
 3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+4.  MeetBuddy deletes the person
+
 
     Use case ends.
 
@@ -283,18 +332,62 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. MeetBuddy shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: Assigning priorities to contacts**
+
+**MSS**
+
+1.  User requests to add a contact with priority
+2.  MeetBuddy shows the list of persons after adding.
+
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The priority is out of range.
+
+    * 1a1. AddressBook shows an error message.
+
+  Use case ends.
+
+**Use case: Assigning priorities to meetings**
+
+**MSS**
+
+1.  User requests to add a meeting with priority
+2.  MeetBuddy shows the list of meetings after adding.
+
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The priority is out of range.
+
+    * 1a1. MeetBuddy shows an error message.
+
+  Use case ends.
+
+
+
+
+New features on V1.2
+5.  Assign priorities to contacts
+6.  Notes about the contact.
+7.  Sort contacts by (priorities/personName/groups)
+8.  Last meetup date for each contact
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
+4.  The response to any use action should become visible within 2 seconds.
+5.  The source code should be open source.
 *{More to be added}*
 
 ### Glossary
