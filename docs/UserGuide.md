@@ -33,6 +33,9 @@ _**Tutor Tracker**_ is a **desktop app designed to help secondary school student
 --------------------------------------------------------------------------------------------------------------------
 
 ## Application Layout
+
+The figure below shows the GUI of TutorTracker, annotated with a description of each GUI component.
+
 ![Ui Components](images/ug-images/Components.png)
 
 ## Features
@@ -52,6 +55,12 @@ This section contains all the information about features of TutorTracker. You ma
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[l/LOCATION]…​` can be used as ` ` (i.e. 0 times), `l/Bedok`.
 
+* Items that have date as a parameter must strictly follow `YYYY-MM-DD` format.<br> 
+  e.g. `2021-03-01`and `2021-04-20`.
+
+* Items that have time as parameter must strictly follow `HH:MM AM/PM` format.<br>
+  e.g. `9:01 AM` and `10:30 PM`.
+
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME s/SUBJECT`, `s/SUBJECT n/NAME` is also acceptable.
 
@@ -66,7 +75,8 @@ This section contains all the information about features of TutorTracker. You ma
 </div>
 
 ### Tutor Book
-This features aims to allows tutees to maintain and keep track of the list of tuition tutors.
+This feature allows tutees to maintain and keep track of the list of tuition tutors.
+
 ![Appointments Ui](images/ug-images/Appointments.png)
 
 Attributes / Parameters:
@@ -160,7 +170,8 @@ English
 ```
 
 #### Notes
-This feature allows notes to be attached to a tutor.
+This feature allows tutees to track and manages notes that are tagged to a tutor.
+
 ![Notes Ui](images/ug-images/Notes.png)
 
 Attributes / Parameters:
@@ -244,7 +255,8 @@ Format:`export INDEX`
 Example: `export 1`
 
 #### Favourite
-This feature allows tutees to favourite tutors.
+This feature allows tutees to track and manage their favourite tutors.
+
 ![Notes Ui](images/ug-images/Notes.png)
 
 ##### Favourite a tutor: `favourite`
@@ -286,12 +298,14 @@ Format: `list_favourites`
 Example: `list_favourites`
 
 ### Appointment Tracker
-This feature allows tutee to manage and track their tuition appointments.
+This feature allows tutees to manage and track their tuition appointments.
+
 ![Appointment Ui](images/ug-images/Appointments.png)
 
 Attribute / Parameters:
-* Tutor's Name
+* Name of the tutor
 * Subject Name
+* Appointment Date
 * Time From
 * Time To
 * Location
@@ -311,7 +325,7 @@ Examples:<br>
 
 #### List tuition appointments: `list_appointments`
 
-Shows a list of all upcoming tuition appointments in the personal tuition appointment list.
+Shows a list of all upcoming tuition appointments in the personal tuition appointment list. Appointments are automatically sorted by ascending order (oldest to newest).
 
 Format: `list_appointments`
 
@@ -332,7 +346,8 @@ Location: Hougang
 
 #### View tuition appointment details: `view_appointment`
 
-View details of a tuition appointment.
+View details of a tuition appointment via date.
+* Alternatively, users can press the desired date on the calendar panel instead to achieve the same output.
 
 Format:
 `view_appointment DATE`
@@ -405,12 +420,14 @@ Format: `edit_appointment INDEX [n/NAME] [s/SUBJECT_NAME] [d/DATE] [fr/TIME_FROM
 Examples: `edit_appointment 1 s/English l/Clementi`
 
 ### Schedule Tracker
-This feature allows tutees to track their tuition-related schedules, such as adding a timeslot to do their tuition homework.
+This feature allows tutees to track and manage their tuition-related schedules, i.e., allocating time to do their tuition homework.
+
 ![Schedule Ui](images/ug-images/Schedule.png)
 
 Attributes / Parameters:
 * Title
 * Subject Name
+* Schedule Date
 * Time From
 * Time To
 * Description
@@ -423,6 +440,8 @@ Format: `add_schedule t/TITLE d/DATE fr/TIME_FROM to/TIME_TO ds/DESCRIPTION`
 
 * The date format `yyyy-mm-dd` must be strictly followed. e.g. `2021-3-1`and `2021-03-01`.
 * The time format `hh:mm a` must be strictly followed. e.g. `9:01 am` and `10:30 pm`.
+* `DATE` and `TIME_FROM` must be in the future.
+* `TIME_FROM` and `TIME_TO` must be a valid time range (`TIME_FROM` must be before `TIME_TO`).
 
 Examples:<br>
 * `add_schedule t/Science Tuition Homework d/2021-3-31 fr/6:00pm to/7:00pm ds/Chapter 5 to 6`
@@ -430,7 +449,7 @@ Examples:<br>
 
 #### Listing all schedules : `list_schedules`
 
-Shows a list of all upcoming schedules in the personal schedule list.
+This feature shows a list of the tutees's personal schedule. Schedules are automatically sorted by ascending order (oldest to newest).
 
 Format: `list_schedules`
 
@@ -448,7 +467,8 @@ Calculus Topic
 
 #### View schedule details: `view_schedule`
 
-View details of a schedule.
+View details of a schedule via date.
+* Alternatively, users can press the desired date on the calendar panel instead to achieve the same output.
 
 Format:
 `view_schedule DATE`
@@ -494,12 +514,14 @@ Format: `edit_schedule INDEX [t/TITLE] [d/DATE] [fr/TIME_FROM] [to/TIME_TO] [ds/
 
 * The date format `yyyy-mm-dd` must be strictly followed. e.g. `2021-3-1`and `2021-03-01`.
 * The time format `hh:mm a` must be strictly followed. e.g. `9:01 am` and `10:30 pm`.
+* The edited `DATE` and `TIME_FROM` must be in the future.
+* `TIME_FROM` and `TIME_TO` must be a valid time range (`TIME_FROM` must be before `TIME_TO`).
 
 Examples: `edit_schedule 1 t/Science Tuition Homework`
 
 ### Event Tracker
 Events represent a timetable, which comprises of both `Appointment` and `Schedule`.
-This feature allows tutee to track their timetable easily.
+This feature allows tutee to track and view their timetable easily.
 
 ![Timetable Ui](images/ug-images/Timetable.png)
 
@@ -509,11 +531,12 @@ Launch a timetable graphical representation of the tutee's appointment and sched
 
 Format: `timetable [DATE]`
 
-* The date is an optional parameter. If there is no date entered, it will display timetable of the current week. Otherwise, for example, by typing `2021-3-28`, it will shows the timetable of the week that contains 28 March 2021.
+* The date is an optional parameter. If there is no date entered, it will display the timetable of the current week. Otherwise, by typing `2021-3-28`, it will show the week's timetable that contains 28 March 2021.
 * The date format `yyyy-mm-dd` must be strictly followed. e.g. `2021-3-1` or `2021-03-01`.
 
 ### Budget Tracker
-This features allows tutee to track and manage his/her budget allocated to tuitions.
+This feature allows tutees to track and manage his/her budget allocated to tuitions. 
+
 ![Budget Ui](images/ug-images/Budget.png)
 
 #### Add a budget: `add_budget`
@@ -675,7 +698,7 @@ Examples:<br>
 
 #### Listing all reminders : `list_reminders`
 
-Shows a list of all reminders in the personal reminder list. Reminders are automatically sorted by ascending order (oldest to newest).
+Shows a list of all personal reminders. Reminders are automatically sorted by ascending order (oldest to newest).
 
 Format: `list_reminders`
 
@@ -834,7 +857,7 @@ Action | Format | Examples
 **Favourite a tutor** | `favourite INDEX`, | `favourite 1`
 **Unfavourite a tutor** | `unfavourite INDEX` | `Unfavourite 1`
 **List favourites** | `list_favourites` | `list_favourites`
-**Add a new appointment** | `add_appointment n/NAME s/SUBJECT d/DATE fr/TIME_FROM to/TIME_TO l/LOCATION` | `add_appointment n/David Li s/Mathematics d/2021-03-01 fr/10:00 AM to/12:00 PM l/Bedok`
+**Add a new tuition appointment** | `add_appointment n/NAME s/SUBJECT d/DATE fr/TIME_FROM to/TIME_TO l/LOCATION` | `add_appointment n/David Li s/Mathematics d/2021-03-01 fr/10:00 AM to/12:00 PM l/Bedok`
 **List tuition appointments** | `list_appointments` | `list_appointments`
 **View tuition appointment details** | `view_appointment DATE` | `view_appointment 2020-03-24`
 **Find tuition appointments** | `find_appointment NAME...` | `find_appointment Alex Yeoh`
@@ -845,6 +868,7 @@ Action | Format | Examples
 **View schedule details** | `view_schedule DATE` | `view_schedule 2020-03-24`
 **Delete a schedule** | `delete_schedule INDEX` | `delete_schedule 1`
 **Edit a schedule** | `edit_schedule INDEX [t/TITLE] [d/DATE] [fr/TIME_FROM] [to/TIME_TO] [ds/DESCRIPTION]` | `edit_schedule 1 t/Science Tuition Homework`
+**View timetable** | `timetable [DATE]` | `timetable 2021-3-28`
 **Add a budget** | `add_budget b/BUDGET` |`add_budget b/500`
 **Edit a budget** | `edit_budget b/BUDGET` | `edit_budget b/600`
 **Delete a budget** | `delete_budget` | `delete_budget`
