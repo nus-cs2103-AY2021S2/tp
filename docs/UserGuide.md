@@ -25,13 +25,15 @@ CoLAB (Collaboration Lab) is a **desktop app for university students to manage t
 - Contacts management
 - Today View that surfaces an overview of upcoming events and deadlines 
 
-It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, CoLAB can get your project management tasks done faster than traditional GUI apps.
+With CoLAB, you can efficiently manage all your school projects through our comprehensive project management tools.
 
-With CoLAB, you can efficiently manage all your school projects through our comprehensive project management tools. We have designed a user-friendly User Interface (UI) such that CoLAB remains intuitive to both first-time users and seasoned ones. We look forward to seeing what you accomplish with CoLAB with a clean and inviting UI. Get your journey started with the [Quick Start section](#3quick-start)!
+We have designed a user-friendly User Interface (UI) that is intuitive to both first-time users and seasoned ones. It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, CoLAB can get your project management tasks done faster than traditional GUI apps.
+
+  We look forward to seeing what you accomplish with CoLAB with a clean and inviting UI. Get your journey started with the [Quick Start section](#3quick-start)!
 
 ## **2. About**
 
-This section serves to familiarise you with information and terms that would help you make the best use of this user guide.
+This section serves to familiarise you with the information and terms that would help you make the best use of this user guide.
 
 ### 2.1 Structure of this Document
 
@@ -39,13 +41,13 @@ We have included a large set of features in CoLAB to give you the greatest flexi
 
 In [Section 2.2: Reading this Document](#22-reading-this-document), you will find useful tips on efficiently reading this document.
 
-In [Section 3: Quick Start](#3quick-start), you will find a quick start guide to get you started with using CoLAB.
+In [Section 3: Quick Start](#3-quick-start), you will find a quick start guide to get you started with using CoLAB.
 
-In [Section 4: Features](#4features), you will find documentation on all of CoLAB's commands and features.
+In [Section 4: Features](#4-features), you will find documentation on all of CoLAB's commands and features.
 
 In [Section 5: FAQ](#5faq), you may find answers to some questions you may have on using CoLAB.
 
-In [Section 6: Command Summary](#6command-summary), you will a summary on CoLAB's commands and features.
+In [Section 6: Command Summary](#6command-summary), you will find a summary on CoLAB's commands.
 
 You can also easily sift through CoLAB's various commands and features by referring to the Table of Contents at the beginning of this User Guide.
 
