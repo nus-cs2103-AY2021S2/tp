@@ -124,6 +124,7 @@
 .page-content {
   padding: $spacing-unit 0;
   flex: 1 0 auto;
+  text-align: justify;
 }
 
 .page-heading {
@@ -265,6 +266,6 @@
 /**
   * Table of Content without bullet points
   */
-.toc-no-bullet-points ul, ol {
+.toc-no-bullet-points ul {
   list-style-type: none;
 }
