@@ -23,6 +23,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.gradecommands.EditGradeCommand;
 import seedu.address.logic.commands.tutorcommands.EditCommand;
+import seedu.address.model.GradeBook;
 import seedu.address.model.Model;
 import seedu.address.model.TutorBook;
 import seedu.address.model.appointment.Appointment;
@@ -177,6 +178,24 @@ public class CommandTestUtil {
         assertEquals(expectedAddressBook, actualModel.getTutorBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredTutorList());
     }
+
+    /**
+     * Executes the given {@code command}, confirms that <br>
+     * - a {@code CommandException} is thrown <br>
+     * - the CommandException message matches {@code expectedMessage} <br>
+     * - the grade book, filtered grade list and selected grade in {@code actualModel} remain unchanged
+     */
+    public static void assertGradeCommandFailure(Command command, Model actualModel, String expectedMessage) {
+        // we are unable to defensively copy the model for comparison later, so we can
+        // only do so by copying its components.
+        GradeBook expectedGradeBook = new GradeBook(actualModel.getGradeBook());
+        List<Grade> expectedFilteredList = new ArrayList<>(actualModel.getFilteredGradeList());
+
+        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
+        assertEquals(expectedGradeBook, actualModel.getGradeBook());
+        assertEquals(expectedFilteredList, actualModel.getFilteredGradeList());
+    }
+
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
      * {@code model}'s address book.

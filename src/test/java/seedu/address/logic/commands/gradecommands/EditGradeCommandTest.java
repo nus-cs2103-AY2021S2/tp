@@ -12,8 +12,8 @@ import seedu.address.testutil.GradeBuilder;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.assertGradeCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_MATHS;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_SCIENCE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SUBJECT_NAME_PHYSICS;
@@ -119,7 +119,7 @@ public class EditGradeCommandTest {
                         .withGradedItem(VALID_GRADED_ITEM_SCIENCE).build();
         EditGradeCommand editGradeCommand = new EditGradeCommand(outOfBoundIndex, descriptor);
 
-        assertCommandFailure(editGradeCommand, model, Messages.MESSAGE_INVALID_GRADE_DISPLAYED_INDEX);
+        assertGradeCommandFailure(editGradeCommand, model, Messages.MESSAGE_INVALID_GRADE_DISPLAYED_INDEX);
     }
 
     @Test
