@@ -1,8 +1,6 @@
 package seedu.booking.logic.commands;
 
 import static seedu.booking.logic.commands.CommandTestUtil.assertCommandSuccess;
-//import static seedu.booking.logic.commands.CommandTestUtil.showBookingAtIndex;
-//import static seedu.booking.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.booking.testutil.TypicalBookings.getTypicalBookingSystem;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -32,12 +30,10 @@ public class ListBookingCommandTest {
                 ListBookingCommand.MESSAGE_BOOKING_LISTED_SUCCESS, expectedModel);
     }
 
-
-    //    @Test
-    //    public void execute_listIsFiltered_showsEverything() {
-    //
-    //        assertCommandSuccess(new ListBookingCommand(), model,
-    //                ListBookingCommand.MESSAGE_BOOKING_LISTED_SUCCESS, expectedModel);
-    //    }
-
+    /*@Test
+    public void execute_listIsFiltered_showsEverything() {
+        showBookingAtIndex(model, INDEX_FIRST);
+        assertCommandSuccess(new ListBookingCommand(), model,
+                ListBookingCommand.MESSAGE_BOOKING_LISTED_SUCCESS, expectedModel);
+    }*/
 }
