@@ -9,8 +9,9 @@ import static seedu.timeforwheels.commons.util.AppUtil.checkArgument;
  */
 public class Tag {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
-    public static final String[] validTags = {"urgent", "fragile", "bulky", "food", "liquid", "hot", "cold", "heavy"};
+    public static final String MESSAGE_CONSTRAINTS = "Tags names should be \"urgent\", \"fragile\", \"bulky\", "
+        + "\"food\", \"liquid\", \"hot\", \"cold\", or \"heavy\".";
+    public static final String[] VALID_TAGS = {"urgent", "fragile", "bulky", "food", "liquid", "hot", "cold", "heavy"};
 
     public final String tagName;
 
@@ -29,7 +30,7 @@ public class Tag {
      * Returns true if a given string is a valid tag name.
      */
     public static boolean isValidTagName(String inputTag) {
-        for (String validTag : validTags) {
+        for (String validTag : VALID_TAGS) {
             if (validTag.matches(inputTag)) {
                 return true;
             }
