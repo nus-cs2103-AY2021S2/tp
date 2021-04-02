@@ -32,7 +32,7 @@ This user guide is to help you learn how to use Taskify to manage your tasks eff
 
 3. Copy the `taskify.jar` file to the folder you want to use as the _home folder_ for Taskify.
 
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds.
+4. Double-click the `taskify.jar` file to start the app. The GUI similar to the below should appear in a few seconds.
    
    <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
     The app comes preloaded with sample data to start you off!
@@ -78,7 +78,7 @@ This user guide is to help you learn how to use Taskify to manage your tasks eff
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -89,7 +89,9 @@ Format: `help`
 
 Adds a task to Taskify.
 
-Format: `add n/NAME desc/DESCRIPTION date/DATE [t/TAG]…`
+Format: `add n/NAME desc/DESCRIPTION [date/DATE] [t/TAG]…`
+
+* If a date is not specified in the command, the newly added Task will have its date set to the end of today (Today's date, 2359hrs).
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A Task can have any number of tags (including 0)
