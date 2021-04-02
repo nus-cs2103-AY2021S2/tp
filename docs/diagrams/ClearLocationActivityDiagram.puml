@@ -1,14 +1,16 @@
 @startuml
 start
-:User executes clear command;
-:Command is parsed;
+: User enters clear location command;
+: Parse user input;
 'Since the beta syntax does not support placing the condition outside the
 'diamond we place it as the true branch instead.
 
-if () then ([Command is valid])
-    :Clear location in StoreMando;
-else ([else])
-    :Display parse error message;
+if () then ([User input is valid])
+    : Create and execute ClearCommand;
+    : Clear all items in the location from StoreMando inventory;
+    : Display command success message;
+else ([Else])
+    : Display parse error message;
 endif
 stop
 @enduml

@@ -5,13 +5,13 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":StoreMandoParser" as StoreMandoParser LOGIC_COLOR
 participant ":ClearCommandParser" as ClearCommandParser LOGIC_COLOR
-participant "r:ClearCommand" as ClearCommand LOGIC_COLOR
-participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant "c:ClearCommand" as ClearCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
-participant "p:LocationCotainsPredicate" as LocationsContainsPredicate MODEL_COLOR
+participant "p:LocationContainsPredicate" as LocationsContainsPredicate MODEL_COLOR
 end box
 
 [-> LogicManager : execute("clear l/Kitchen")
@@ -31,7 +31,7 @@ StoreMandoParser -> ClearCommandParser : parse("l/Kitchen")
 activate ClearCommandParser
 
 create LocationsContainsPredicate
-ClearCommandParser -> LocationsContainsPredicate : LocationsContainsPredicate("Kitchen")
+ClearCommandParser -> LocationsContainsPredicate : LocationContainsPredicate("Kitchen")
 activate LocationsContainsPredicate
 
 LocationsContainsPredicate --> ClearCommandParser : p
@@ -41,23 +41,23 @@ create ClearCommand
 ClearCommandParser --> ClearCommand : ClearCommand(p)
 activate ClearCommand
 
-ClearCommand --> ClearCommandParser : r
+ClearCommand --> ClearCommandParser : c
 deactivate ClearCommand
 
-ClearCommandParser --> StoreMandoParser : r
+ClearCommandParser --> StoreMandoParser : c
 deactivate ClearCommandParser
 
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 ClearCommandParser -[hidden]-> StoreMandoParser
 destroy ClearCommandParser
 
-StoreMandoParser --> LogicManager : r
+StoreMandoParser --> LogicManager : c
 deactivate StoreMandoParser
 
 LogicManager -> ClearCommand : execute(model)
 activate ClearCommand
 
-ClearCommand --> Model : clearLocation(p)
+ClearCommand -> Model : clearLocation(p)
 activate Model
 
 Model --> ClearCommand
@@ -73,12 +73,12 @@ create CommandResult
 ClearCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> ClearCommand
+CommandResult --> ClearCommand : r
 deactivate CommandResult
 
-ClearCommand --> LogicManager : result
-deactivate ReminderCommand
+ClearCommand --> LogicManager : r
+deactivate ClearCommand
 
-[<--LogicManager
+[<--LogicManager : r
 deactivate LogicManager
 @enduml
