@@ -52,7 +52,7 @@ public class Issue implements Comparable<Issue> {
                 issue.getTimestamp(),
                 new Status(IssueStatus.Closed),
                 issue.getCategory(),
-                new HashSet<Tag>());
+                issue.getTags());
     }
 
     public RoomNumber getRoomNumber() {
