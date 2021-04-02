@@ -149,103 +149,101 @@ Classes used by multiple components are in the `seedu.storemando.commons` packag
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
 
-#### Proposed Implementation
+#### Reminder Feature
 
-The proposed undo/redo mechanism is facilitated by `VersionedStoreMando`. It extends `StoreMando` with undo/redo
-history, stored internally as an `storeMandoStateList` and `currentStatePointer`. Additionally, it implements the
-following operations:
+##### Implementation
 
-* `VersionedStoreMando#commit()` — Saves the current inventory state in its history.
-* `VersionedStoreMando#undo()` — Restores the previous inventory state from its history.
-* `VersionedStoreMando#redo()` — Restores a previously undone inventory state from its history.
+This portion describes the implementation of the reminder feature which allows users to view items that are expiring 
+a certain number of days which will be given by the user in the command.
 
-These operations are exposed in the `Model` interface as `Model#commitStoreMando()`, `Model#undoStoreMando()`
-and `Model#redoStoreMando()` respectively.
+1. When the user keys in a command string, `execute` command of the `LogicManager` is called with the given string as input. 
+2. In the method, `LogicManager` calls on the `parseCommand` method of StoreMandoParser to parse the given command.
+3. `StoreMandoParser` parses the string and determines the command given is a `ReminderCommand`. 
+    Then, a `ReminderCommandParser` object is created to further parse the command.
+4. `StoreMandoParser` then calls on the `parse` method of `ReminderCommandParser` to parse the arguments provided.
+5. `ReminderCommandParser` calls on its own timeConversion method to convert the string into an integer. A 
+    `CommandParseException` will be thrown if this is not possible. 
+6. `ReminderCommandParser` then calls on the constructor of `ItemExpiringPredicate` with the integer as parameter to 
+    create an `ItemExpiringPredicate` object and then calls on the constructor of `ReminderCommand` with the `ItemExpiringPredicate` object as 
+    a parameter. 
+7. The `ReminderCommand` object will be created and returned to `StoreMandoParser` which returns it to `LogicManager` 
+    which then calls on the `execute` method of `ReminderCommand` with a `model` as argument.
+9. `ReminderCommand` calls the `updateCurrentPredicate` method of `model` and passes its own `ItemExpiringPredicate`
+    as argument.
+10. `ReminderCommand` calls the `getCurrentPredicate` method of `model` to obtain the current predicate and uses it
+    to update the list by calling on `updateFilteredItemList` method of `model` with the current predicate as argument.
+11. `ReminderCommand` then creates a `ItemComparatorByExpiryDate` object and calls `model`'s `updateSortedList` with 
+    `ItemComparatorByExpiryDate` as argument to sort the list.
+12. Finally, a `CommandResult` object is created and returned to `LogicManager`.    
+    
 
-Given below is an example usage scenario and how undo/redo mechanism behaves at each step.
+The following sequence diagram shows how the reminder feature works:
 
-Step 1. The user launches the application for the first time. The `VersionedStoreMando` will be initialized with the
-initial inventory state, and the `currentStatePointer` pointing to that single inventory state.
+![ReminderSequenceDiagram](images/ReminderSequenceDiagram.png)
 
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th item in the inventory. The `delete` command
-calls `Model#commitStoreMando()`, causing the modified state of the inventory after the `delete 5` command executes to
-be saved in the `storeMandoStateList`, and the `currentStatePointer` is shifted to the newly inserted inventory state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new item. The `add` command also calls `Model#commitStoreMando()`,
-causing another modified inventory state to be saved into the `storeMandoStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitStoreMando()`, so the inventory state will not be saved into the `storeMandoStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the item was a mistake, and decides to undo that action by executing the `undo`
-command. The `undo` command will call `Model#undoStoreMando()`, which will shift the `currentStatePointer` once to the
-left, pointing it to the previous inventory state, and restores the inventory to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial StoreMando state, then there are no previous StoreMando states to restore. The `undo` command uses `Model#canUndoStoreMando()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoStoreMando()`, which shifts the `currentStatePointer` once to
-the right, pointing to the previously undone state, and restores the inventory to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `storeMandoStateList.size() - 1`, pointing to the latest inventory state, then there are no undone StoreMando states to restore. The `redo` command uses `Model#canRedoStoreMando()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the inventory, such as `list`,
-will usually not call `Model#commitStoreMando()`, `Model#undoStoreMando()` or `Model#redoStoreMando()`. Thus,
-the `storeMandoStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitStoreMando()`. Since the `currentStatePointer` is not
-pointing at the end of the `storeMandoStateList`, all inventory states after the `currentStatePointer` will be purged.
-Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop
-applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
+![ReminderActivityDiagram](images/ReminderActivityDiagram.png)
 
 #### Design consideration:
 
-##### Aspect: How undo & redo executes
+##### Aspect: How `reminder` executes
 
-* **Alternative 1 (current choice):** Saves the entire inventory.
-    * Pros: Easy to implement.
-    * Cons: May have performance issues in terms of memory usage.
+**Alternative 1 (current choice)** : provide integer as an input argument
+    * Pros: Faster to type as compared to date in a particular format.
+    * Cons: More cases to consider when parsing the commmand.
 
-* **Alternative 2:** Individual command knows how to undo/redo by itself.
-    * Pros: Will use less memory (e.g. for `delete`, just save the item being deleted).
-    * Cons: We must ensure that the implementation of each individual command are correct.
+**Alternative 2** : provide a date in the format of YYYY-MM-DD as input
+    * Pros: Easier to compare between items as the input date can be used to create an `expiryDate` object 
+            which can be used to compare with all the items' expiry dates.
+    * Cons: When the user wants to find items that are already expired, it is easier to key in a number then to 
+            find a particular date and key it in. This is more taxing on the user.
 
-_{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
+#### Clear Feature
 
-_{Explain here how the data archiving feature will be implemented}_
+##### Implementation
+
+This portion describes the implementation of the clear feature which allows users to clear items that are either in
+a particular location or clear all items in the list.
+
+1. When the user keys in a command string, `execute` command of the `LogicManager` is called with the given string as input.
+2. In the method, `LogicManager` calls on the `parseCommand` method of StoreMandoParser to parse the given command.
+3. `StoreMandoParser` parses the string and determines the command given is a `ClearCommand`.
+    Then, a `ClearCommandParser` object is created to further parse the command.
+4. `StoreMandoParser` then calls on the `parse` method of `ClearCommandParser` to parse the arguments provided.
+5. `ClearCommandParser` checks if the argument provided is an empty string. If so, the constructor of `ClearCommand` 
+    without any parameters is called. Else, a `LocationContainsPredicate` object will be created with the arguments 
+    as parameter.`CommandParseException` will be thrown if this is not possible.
+6. `ClearCommand` object will be returned to `ClearCommandParser` which then returns it to `LogicManager`. `LogicManager`
+    then calls the `execute` method of `ClearCommand` with a `Model` object, model, as parameter.
+7. `ClearCommand` calls on the `clearLocation` method of model with the `ClearCommand`'s attribute predicate as parameter. 
+    Subsequently, it calls on model's `updateFilteredItemList`.
+8. Finally, a `CommandResult` object is created and is returned to `LogicManager`.   
+
+
+The following sequence diagram shows how the clear feature works:
+
+![ClearSequenceDiagram](images/ReminderSequenceDiagram.png)
+
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+![ClearActivityDiagram](images/ReminderActivityDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: How `clear` executes
+
+**Alternative 1 (current choice)** : 
+* Pros: 
+* Cons: 
+
+**Alternative 2** : provide a date in the format of YYYY-MM-DD as input
+* Pros:
+* Cons: 
 
 
 --------------------------------------------------------------------------------------------------------------------

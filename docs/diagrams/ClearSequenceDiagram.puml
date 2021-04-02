@@ -1,0 +1,77 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":StoreMandoParser" as StoreMandoParser LOGIC_COLOR
+participant ":ClearCommandParser" as ClearCommandParser LOGIC_COLOR
+participant "r:ClearCommand" as ClearCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant "p:LocationCotainsPredicate" as LocationsContainsPredicate MODEL_COLOR
+end box
+
+[-> LogicManager : execute("clear")
+activate LogicManager
+
+LogicManager -> StoreMandoParser : parseCommand("clear")
+activate StoreMandoParser
+
+create ClearCommandParser
+StoreMandoParser -> ClearCommandParser
+activate ClearCommandParser
+
+ClearCommandParser --> StoreMandoParser
+deactivate ClearCommandParser
+
+StoreMandoParser -> ClearCommandParser : parse()
+activate ClearCommandParser
+
+create ClearCommand
+ClearCommandParser --> ClearCommand : ClearCommand()
+activate ClearCommand
+
+ClearCommand --> ClearCommandParser : r
+deactivate ClearCommand
+
+ClearCommandParser --> StoreMandoParser : r
+deactivate ClearCommandParser
+
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ClearCommandParser -[hidden]-> StoreMandoParser
+destroy ClearCommandParser
+
+StoreMandoParser --> LogicManager : r
+deactivate StoreMandoParser
+
+LogicManager -> ClearCommand : execute(model)
+activate ClearCommand
+
+ClearCommand --> Model : clearLocation(predicate)
+activate Model
+
+Model --> ClearCommand
+deactivate Model
+
+ClearCommand -> Model : updateFilteredItemList()
+activate Model
+
+Model --> ClearCommand
+deactivate Model
+
+create CommandResult
+ClearCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ClearCommand
+deactivate CommandResult
+
+ClearCommand --> LogicManager : result
+deactivate ReminderCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
