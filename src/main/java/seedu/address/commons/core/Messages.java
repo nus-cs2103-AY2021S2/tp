@@ -44,7 +44,7 @@ public class Messages {
             + ViewProjectCommand.COMMAND_WORD + " command.";
 
     public static final String MESSAGE_PARSER_DESCRIPTION_CONSTRAINTS =
-            "Description can take any values, and it should not be blank.";
+            "Description can take any values, and it should not be blank";
 
     public static final String MESSAGE_PARSER_WEEKLY_CONSTRAINTS =
             "Repeat Weekly should be one of: 'Y', 'N', 'y' or 'n'";
