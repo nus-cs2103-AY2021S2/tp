@@ -801,47 +801,47 @@ Closes the app.
 
 ## Command Summary
 
-Action | Format, Examples
---------|------------------
-**Add a new tutor** | `add_tutor n/NAME g/GENDER p/PHONE_NUMBER e/EMAIL  a/ADDRESS <s/SUBJECT_NAME r/SUBJECT_RATE l/SUBJECT_EDUCATION_LEVEL y/SUBJECT_YEARS_EXPERIENCE q/SUBJECT_QUALIFICATIONS>... notes/NOTE` <br> e.g., `add_tutor n/John Doe g/Male p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/English r/50 l/Secondary 3 y/5 q/A-Level s/Mathematics r/60 l/Secondary 4 y/6 q/A-Level notes/Patient`
-**List tutors** | `list_tutors`
-**Delete a tutor** | `delete_tutor INDEX`, <br> e.g. `delete_tutor 1`
-**Edit a tutor** | `edit_tutor INDEX [n/NAME] [g/GENDER] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [<s/SUBJECT_NAME r/SUBJECT_RATE l/SUBJECT_EDUCATION_LEVEL y/SUBJECT_YEARS_EXPERIENCE q/SUBJECT_QUALIFICATIONS>]... notes/NOTES`, <br> e.g. `edit_tutor 1 p/99824314 s/English r/50 l/Secondary 5 y/9 q/A-Level notes/Impatient`
-**View tutor details** | `view_tutor INDEX`, <br> e.g. `view_tutor 1`
-**Add note to a tutor** | `add_note INDEX NOTE`, <br> e.g. `add_note 1 patient tutor`
-**Edit note of a tutor** | `edit_note INDEX NOTE`, <br> e.g. `edit_note 1 not patient`
-**Delete note of a tutor** | `delete_note INDEX`, <br> e.g. `delete_note 1`
-**List tutors with note** | `list_note`, <br> e.g. `list_note`
-**Export the tutor details**| `export INDEX`, <br> e.g. `export 1`
-**Favourite a tutor** | `favourite INDEX`, <br> e.g. `favourite 1`
-**Unfavourite a tutor** | `unfavourite INDEX`, <br> e.g. `Unfavourite 1`
-**List favourites** | `list_favourites`, <br> e.g. `list_favourites`
-**Add a new appointment** | `add_appointment n/NAME s/SUBJECT d/DATE fr/TIME_FROM to/TIME_TO l/LOCATION` <br> e.g., `add_appointment n/David Li s/Mathematics d/2021-03-01 fr/10:00 AM to/12:00 PM l/Bedok`
-**List tuition appointments** | `list_appointments`
-**View tuition appointment details** | `view_appointment DATE` <br> e.g. `view_appointment 2020-03-24`
-**Find tuition appointments** | `find_appointment NAME...` <br> e.g. `find_appointment Alex Yeoh`
-**Delete a tuition appointment** | `delete_appointment INDEX` <br> e.g. `delete_appointment 1`
-**Edit a tuition appointment** | `edit_appointment INDEX [n/NAME] [s/SUBJECT_NAME] [d/DATE] [fr/TIME_FROM] [to/TIME_TO] [l/LOCATION]` <br> e.g. `edit_appointment 1 s/English l/Clementi`
-**Add a new schedule** | `add_schedule t/TITLE d/DATE fr/TIME_FROM to/TIME_TO ds/DESCRIPTION` <br> e.g., `add_schedule n/Science Tuition Homework d/2021-3-31 fr/6:00pm to/7:00pm ds/Chapter 5 to 6`
-**List schedules** | `list_schedules`
-**View schedule details** | `view_schedule DATE` <br> e.g. `view_schedule 2020-03-24`
-**Delete a schedule** | `delete_schedule INDEX` <br> e.g. `delete_schedule 1`
-**Edit a schedule** | `edit_schedule INDEX [t/TITLE] [d/DATE] [fr/TIME_FROM] [to/TIME_TO] [ds/DESCRIPTION]` <br> e.g. `edit_schedule 1 t/Science Tuition Homework`
-**Add a budget** | `add_budget b/BUDGET` <br> e.g.`add_budget b/500`
-**Edit a budget** | `edit_budget b/BUDGET` <br> e.g. `edit_budget b/600`
-**Delete a budget** | `delete_budget` <br> e.g. `delete_budget`
-**View a budget** | `view_budget` <br> e.g. `view_budget`
-**Add a grade** | `add_grade s/SUBJECT_NAME gi/GRADED_ITEM gr/GRADE_ALPHABET`, <br> e.g. `add_grade s/English gi/Final gr/A` 
-**Edit a grade** | `edit_grade INDEX [s/SUBJECT_NAME] [gi/GRADED_ITEM] [gr/GRADE_ALPHABET]`, <br> e.g. `edit_grade 1 gr/B`
-**Delete a grade** | `delete_grade INDEX`, <br> e.g. `delete_grade 1`
-**List grades** | `list_grades`
-**Add a new reminder** | `add_reminder ds/DESCRIPTION d/REMINDER_DATE` <br> e.g., `add_reminder ds/Science Tuition Payment Due d/2021-4-2`
-**List reminders** | `list_reminders`
-**Delete a reminder** | `delete_reminder INDEX` <br> e.g. `delete_reminder 1`
-**Edit a reminder** | `edit_reminder INDEX [ds/DESCRIPTION] [d/REMINDER_DATE]` <br> e.g. `edit_reminder 1 ds/Science Tuition Payment Due`
-**Add a Tutor Filter** | `add_tutor_filter [n/NAME]... [g/GENDER]... [p/PHONE_NUMBER]... [e/EMAIL]... [a/ADDRESS]... [s/SUBJECT_NAME]... [r/SUBJECT_RATE]... [l/SUBJECT_EDUCATION_LEVEL]... [y/SUBJECT_YEARS_EXPERIENCE]... [q/SUBJECT_QUALIFICATIONS]...` <br> e.g. `add_tutor_filter r/>=40 r/<60 l/Secondary`
-**Delete a Tutor Filter** | `delete_tutor_filter [n/NAME]... [g/GENDER]... [p/PHONE_NUMBER]... [e/EMAIL]... [a/ADDRESS]... [s/SUBJECT_NAME]... [r/SUBJECT_RATE]... [l/SUBJECT_EDUCATION_LEVEL]... [y/SUBJECT_YEARS_EXPERIENCE]... [q/SUBJECT_QUALIFICATIONS]...` <br> e.g. `delete_tutor_filter r/<60 l/Secondary`
-**Add an Appointment Filter** | `add_appointment_filter [n/NAME]... [s/SUBJECT_NAME]... [fr/FROM_DATE_TIME]... [to/TO_DATE_TIME]... [l/LOCATION]...` <br> e.g. `add_appointment_filter to/>2021-03-25 10:00 AM`
-**Delete an Appointment Filter** | `delete_appointment_filter [n/NAME]... [s/SUBJECT_NAME]... [fr/FROM_DATE_TIME]... [to/TO_DATE_TIME]... [l/LOCATION]...` <br> e.g. `delete_appointment_filter to/>2021-03-25 10:00 AM`
-**Exit App** | `exit`
+Action | Format | Examples
+--------|--------|----------
+**Add a new tutor** | `add_tutor n/NAME g/GENDER p/PHONE_NUMBER e/EMAIL  a/ADDRESS <s/SUBJECT_NAME r/SUBJECT_RATE l/SUBJECT_EDUCATION_LEVEL y/SUBJECT_YEARS_EXPERIENCE q/SUBJECT_QUALIFICATIONS>... notes/NOTE` | `add_tutor n/John Doe g/Male p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/English r/50 l/Secondary 3 y/5 q/A-Level s/Mathematics r/60 l/Secondary 4 y/6 q/A-Level notes/Patient`
+**List tutors** | `list_tutors` | `list_tutors`
+**Delete a tutor** | `delete_tutor INDEX` | `delete_tutor 1`
+**Edit a tutor** | `edit_tutor INDEX [n/NAME] [g/GENDER] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [<s/SUBJECT_NAME r/SUBJECT_RATE l/SUBJECT_EDUCATION_LEVEL y/SUBJECT_YEARS_EXPERIENCE q/SUBJECT_QUALIFICATIONS>]... notes/NOTES` | `edit_tutor 1 p/99824314 s/English r/50 l/Secondary 5 y/9 q/A-Level notes/Impatient`
+**View tutor details** | `view_tutor INDEX` | `view_tutor 1`
+**Add note to a tutor** | `add_note INDEX NOTE` | `add_note 1 patient tutor`
+**Edit note of a tutor** | `edit_note INDEX NOTE` | `edit_note 1 not patient`
+**Delete note of a tutor** | `delete_note INDEX` | `delete_note 1`
+**List tutors with note** | `list_note` | `list_note`
+**Export the tutor details**| `export INDEX` | `export 1`
+**Favourite a tutor** | `favourite INDEX`, | `favourite 1`
+**Unfavourite a tutor** | `unfavourite INDEX` | `Unfavourite 1`
+**List favourites** | `list_favourites` | `list_favourites`
+**Add a new appointment** | `add_appointment n/NAME s/SUBJECT d/DATE fr/TIME_FROM to/TIME_TO l/LOCATION` | `add_appointment n/David Li s/Mathematics d/2021-03-01 fr/10:00 AM to/12:00 PM l/Bedok`
+**List tuition appointments** | `list_appointments` | `list_appointments`
+**View tuition appointment details** | `view_appointment DATE` | `view_appointment 2020-03-24`
+**Find tuition appointments** | `find_appointment NAME...` | `find_appointment Alex Yeoh`
+**Delete a tuition appointment** | `delete_appointment INDEX` | `delete_appointment 1`
+**Edit a tuition appointment** | `edit_appointment INDEX [n/NAME] [s/SUBJECT_NAME] [d/DATE] [fr/TIME_FROM] [to/TIME_TO] [l/LOCATION]` | `edit_appointment 1 s/English l/Clementi`
+**Add a new schedule** | `add_schedule t/TITLE d/DATE fr/TIME_FROM to/TIME_TO ds/DESCRIPTION` | `add_schedule n/Science Tuition Homework d/2021-3-31 fr/6:00pm to/7:00pm ds/Chapter 5 to 6`
+**List schedules** | `list_schedules` | `list_schedules`
+**View schedule details** | `view_schedule DATE` | `view_schedule 2020-03-24`
+**Delete a schedule** | `delete_schedule INDEX` | `delete_schedule 1`
+**Edit a schedule** | `edit_schedule INDEX [t/TITLE] [d/DATE] [fr/TIME_FROM] [to/TIME_TO] [ds/DESCRIPTION]` | `edit_schedule 1 t/Science Tuition Homework`
+**Add a budget** | `add_budget b/BUDGET` |`add_budget b/500`
+**Edit a budget** | `edit_budget b/BUDGET` | `edit_budget b/600`
+**Delete a budget** | `delete_budget` | `delete_budget`
+**View a budget** | `view_budget` | `view_budget`
+**Add a grade** | `add_grade s/SUBJECT_NAME gi/GRADED_ITEM gr/GRADE_ALPHABET`, | `add_grade s/English gi/Final gr/A` 
+**Edit a grade** | `edit_grade INDEX [s/SUBJECT_NAME] [gi/GRADED_ITEM] [gr/GRADE_ALPHABET]`, | `edit_grade 1 gr/B`
+**Delete a grade** | `delete_grade INDEX`, | `delete_grade 1`
+**List grades** | `list_grades` | `list_grades`
+**Add a new reminder** | `add_reminder ds/DESCRIPTION d/REMINDER_DATE` |, `add_reminder ds/Science Tuition Payment Due d/2021-4-2`
+**List reminders** | `list_reminders` | `list_reminders`
+**Delete a reminder** | `delete_reminder INDEX` | `delete_reminder 1`
+**Edit a reminder** | `edit_reminder INDEX [ds/DESCRIPTION] [d/REMINDER_DATE]` | `edit_reminder 1 ds/Science Tuition Payment Due`
+**Add a Tutor Filter** | `add_tutor_filter [n/NAME]... [g/GENDER]... [p/PHONE_NUMBER]... [e/EMAIL]... [a/ADDRESS]... [s/SUBJECT_NAME]... [r/SUBJECT_RATE]... [l/SUBJECT_EDUCATION_LEVEL]... [y/SUBJECT_YEARS_EXPERIENCE]... [q/SUBJECT_QUALIFICATIONS]...` | `add_tutor_filter r/>=40 r/<60 l/Secondary`
+**Delete a Tutor Filter** | `delete_tutor_filter [n/NAME]... [g/GENDER]... [p/PHONE_NUMBER]... [e/EMAIL]... [a/ADDRESS]... [s/SUBJECT_NAME]... [r/SUBJECT_RATE]... [l/SUBJECT_EDUCATION_LEVEL]... [y/SUBJECT_YEARS_EXPERIENCE]... [q/SUBJECT_QUALIFICATIONS]...` | `delete_tutor_filter r/<60 l/Secondary`
+**Add an Appointment Filter** | `add_appointment_filter [n/NAME]... [s/SUBJECT_NAME]... [fr/FROM_DATE_TIME]... [to/TO_DATE_TIME]... [l/LOCATION]...` | `add_appointment_filter to/>2021-03-25 10:00 AM`
+**Delete an Appointment Filter** | `delete_appointment_filter [n/NAME]... [s/SUBJECT_NAME]... [fr/FROM_DATE_TIME]... [to/TO_DATE_TIME]... [l/LOCATION]...` | `delete_appointment_filter to/>2021-03-25 10:00 AM`
+**Exit App** | `exit` | `exit`
 
