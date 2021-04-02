@@ -120,7 +120,7 @@ The GUI similar to the below should appear in a few seconds. Note how the app co
 8. Use `clear` to remove the sample inputs and start adding your events!
 <br>
 <br>
-
+[Back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -149,6 +149,8 @@ Commands that do not take in parameters (such as `help` and `exit`) ignore extra
 For example: If you input `help 123`, RemindMe will return the result of the `help` function.
 </div>
 
+[Back to Table of Contents](#table-of-contents)
+
 ### 3.1 Viewing Help: `help`
 The help function shows the URL to the user guide for RemindMe, which is this current document!
 
@@ -156,6 +158,9 @@ The help function shows the URL to the user guide for RemindMe, which is this cu
 *[Image of RemindMe's help message]*
 
 Format: `help`
+
+[Back to Table of Contents](#table-of-contents)
+
 
 ### 3.2 Adding: `add`
 This section explains how to add entries into your RemindMe. 
@@ -167,13 +172,6 @@ This section explains how to add entries into your RemindMe.
 
 </div>
 
-You can add:
-* [3.2.1 Adding a person](#321-adding-a-person)
-* [3.2.2 Adding a module](#322-adding-a-module)
-* [3.2.3 Adding an assignment](#323-adding-an-assignment)
-* [3.2.4 Adding an exam](#324-adding-an-exam)
-* [3.2.5 Adding a general event](#325-adding-a-general-event)
-
 <div markdown="span" class="alert alert-warning">:exclamation: **Warning:**<br>
 * Duplicate entries are not allowed. Example:<br>
   * Person/Module with the same name.
@@ -182,6 +180,14 @@ You can add:
   * General events with the same name and date-time. 
 </div>
 
+You can add:
+* [3.2.1 Adding a person](#321-adding-a-person)
+* [3.2.2 Adding a module](#322-adding-a-module)
+* [3.2.3 Adding an assignment](#323-adding-an-assignment)
+* [3.2.4 Adding an exam](#324-adding-an-exam)
+* [3.2.5 Adding a general event](#325-adding-a-general-event)
+
+[Back to Table of Contents](#table-of-contents)
 <br>
 
 #### 3.2.1 Adding a person
@@ -205,6 +211,8 @@ Expected Result:<br>
 ![Expected Result for Adding Persons](./images/addcommand/addpersonexpectedresult.png)<br>
 *[Result from adding Alice and Benson]*
 
+[Back to Table of Contents](#table-of-contents)
+
 #### 3.2.2 Adding a module
 You can add modules that you are taking with their respective titles. Subsequently, you can add the corresponding
 assignments and exams for each module. Now, you can distinguish the assignments and exams for each module, easily 
@@ -220,6 +228,8 @@ Result expected:
 * `New module added: CS1101`
 * `New module added: CS1203`
 
+[Back to Table of Contents](#table-of-contents)
+
 #### 3.2.3 Adding an assignment
 Now, let's add the corresponding assignment to the module. Don't forget that you need to specify the deadline when 
 adding your task to RemindMe. The deadline follows the `DATE-TIME` format.
@@ -232,6 +242,8 @@ Example:
 Result expected:
 * `New assignment added: Essay 1 due: 01/01/2021 2359`
 
+[Back to Table of Contents](#table-of-contents)
+
 #### 3.2.4 Adding an exam
 Add an exam under the module with the date-time provided.
 
@@ -240,14 +252,14 @@ Command: `add m/MODULE e/DATE-TIME`
 Example:
 * `add m/CS2101 e/01/01/2021 2359`
 <br>
-<br>
 
 **Results after the examples from 3.2.2 to 3.2.4:**
 <br>
 ![Result For Adding Modules](./images/addcommand/addtypicalmoduleresult.png)<br>
 *[Result of adding the modules and their respective assignments and exams]*
 <br>
-<br>
+
+[Back to Table of Contents](#table-of-contents)
 
 #### 3.2.5 Adding a general event
 Outside of school work, we all have other activities that require reminders, such as meeting up with your friends or a 
@@ -270,7 +282,9 @@ Result expected:
 ![Result For Adding Event](./images/addcommand/addeventexpectedresult.png)<br>
 *[Result for adding the school event]*
 <br>
-<br>
+
+[Back to Table of Contents](#table-of-contents)
+
 ### 3.3 Editing: `edit`
 If you created an entry wrongly, you do not have to delete it! With RemindMe's edit function, you can edit the task, 
 saving you the hassle of deleting and recreating an entry just because of a tiny mistake. 
@@ -292,6 +306,8 @@ You can edit:
 * [3.3.3 Editing an assignment](#333-editing-an-assignment)
 * [3.3.4 Editing an exam](#334-editing-an-exam)
 * [3.3.5 Editing a general event](#335-editing-a-general-event)
+
+[Back to Table of Contents](#table-of-contents)
     
 #### 3.3.1 Editing a person
 You can update your friend's identity, either changing their name, their birthday or their tags.
@@ -315,7 +331,8 @@ Results expected:
 ![Edit Persons Result](./images/editcommand/editpersonresult.png)<br>
 *[Result of editing Alice to Jason and updating Benson's birthday and tag]*
 <br>
-<br>
+
+[Back to Table of Contents](#table-of-contents)
 
 #### 3.3.2 Editing a module
 You can update your modules' titles with the edit function. 
@@ -330,6 +347,8 @@ Results expected:
 * `Module edited: CS2106`
 * `Module edited: Software Engineering`
 
+[Back to Table of Contents](#table-of-contents)
+
 #### 3.3.3 Editing an assignment
 Did an assignment's deadline get postponed? You can update the assignment's deadline using the edit function. Not only 
 that, you can change the assignment name too.
@@ -343,6 +362,8 @@ Examples:
 Result expected:
 * `Assignment edited: Update UG due: 23/03/2021 2359 [ ]`
 * `Assignment edited: Update UG due: 27/04/2021 1900 [ ]`
+
+[Back to Table of Contents](#table-of-contents)
 
 #### 3.3.4 Editing an exam
 You can also change the date of the exam in a module.
@@ -360,7 +381,8 @@ Result expected:
 ![Edited modules](./images/editcommand/editmoduleresult.png)<br>
 *[Results for editing the respective modules, assignments, and exams]*
 <br>
-<br>
+
+[Back to Table of Contents](#table-of-contents)
 
 #### 3.3.5 Editing a general event
 You can also update the name and date-time of your general events.
@@ -379,7 +401,8 @@ Results expected:
 ![Edit Event](./images/editcommand/editeventresult.png)<br>
 *[Results for editing the general event]*
 <br>
-<br>
+
+[Back to Table of Contents](#table-of-contents)
 
 ### 3.4 Finding: `find`
 As you use RemindMe, you will have more and more entries. It can get taxing to look for specific entries, scrolling 
@@ -403,6 +426,8 @@ You can find:
 * [3.4.2 Finding modules](#342-finding-modules-m)  
 * [3.4.3 Finding general events](#343-finding-general-events-g)
 
+[Back to Table of Contents](#table-of-contents)
+
 #### 3.4.1 Finding persons: `n/`
 You can search your contacts whose names contain any of the given keywords.  
 
@@ -423,7 +448,8 @@ Expected Result:
 ![Find Person Example](./images/findcommand/findperson.png)<br>
 *[Result for `find n/jason`]*
 <br>
-<br>
+
+[Back to Table of Contents](#table-of-contents)
   
 #### 3.4.2 Finding modules: `m/`
 You can look up your modules based on their titles as well.
@@ -445,7 +471,8 @@ Expected Result:
 ![Find Module Example](./images/findcommand/findcs1101.png)<br>
 *[Result for `find m/CS1101`]*
 <br>
-<br>
+
+[Back to Table of Contents](#table-of-contents)
   
 #### 3.4.3 Finding general events: `g/`
 You can find the general events that match with your keywords too! 
@@ -467,13 +494,16 @@ Expected Result:
 ![Find Event](./images/findcommand/findevent.png)<br>
 *[Result for `find g/FOC`]*
 <br>
-<br>
+
+[Back to Table of Contents](#table-of-contents)
 
 ### 3.5 Listing all entries: `list`
 After you find your specific tasks, you now want to view all your entries. You can use RemindMe's list function to show 
 everything in RemindMe.
 
 Command: `list`
+
+[Back to Table of Contents](#table-of-contents)
 
 ### 3.6 Marking as done: `done`
 When you complete your assignments, you can mark them as done to remind yourself you complete the task and pat yourself 
@@ -497,7 +527,8 @@ Expected Result:
 ![Mark Assignment as done example](./images/donecommand/doneassignment.png)<br>
 *[Result for marking assignment 1 in Software Engineering as done.]*
 <br>
-<br>
+
+[Back to Table of Contents](#table-of-contents)
   
 ### 3.7 Deleting: `delete`
 When you do not need your entries anymore, you can delete them using RemindMe's delete function.
@@ -514,7 +545,9 @@ You can delete:
 * [3.7.2 Deleting a module](#372-deleting-a-module)
 * [3.7.3 Deleting an assignment](#373-deleting-an-assignment)
 * [3.7.4 Deleting an exam](#374-deleting-an-exam)
-* [3.7.5 Deleting a general event](#375-deleting-a-general-event)     
+* [3.7.5 Deleting a general event](#375-deleting-a-general-event)
+
+[Back to Table of Contents](#table-of-contents)    
 
 #### 3.7.1 Deleting a person
 You can remove a person from your RemindMe, but hopefully, you won't need to use it :)
@@ -529,7 +562,8 @@ Expected Result:
 ![Delete Person Example](./images/deletecommand/deletealice.png)<br>
 *[Result for deleting Jason which is the first person in the contact list.]*
 <br>
-<br>
+
+[Back to Table of Contents](#table-of-contents)
 
 #### 3.7.2 Deleting a module
 Once you have completed a module, you can delete it from RemindMe as a final goodbye!
@@ -544,7 +578,8 @@ Expected Result:
 ![Delete Module Example](./images/deletecommand/deletemodule.png)<br>
 *[Result for deleting CS1101.]*
 <br>
-<br>
+
+[Back to Table of Contents](#table-of-contents)
 
 #### 3.7.3 Deleting an assignment
 When you have completed an assignment and do not need it anymore, you can remove it from RemindMe.
@@ -559,7 +594,8 @@ Expected Result:
 ![Delete Assignment Example](./images/deletecommand/deleteassignment.png)<br>
 *[Result for deleting assignment Update UG in Software Engineering]*
 <br>
-<br>
+
+[Back to Table of Contents](#table-of-contents)
 
 #### 3.7.4 Deleting an exam
 After an exam, you can delete it from RemindMe to celebrate that the exam is over!
@@ -574,7 +610,8 @@ Expected Result:
 ![Delete Exam Example](./images/deletecommand/deleteexam.png)
 *[Result for deleting the first exam in CS2106.]*
 <br>
-<br>
+
+[Back to Table of Contents](#table-of-contents)
 
 #### 3.7.5 Deleting a general event
 When a general event is over, you can remove it from RemindMe, making it less cluttered.
@@ -589,7 +626,8 @@ Expected Result:
 ![Delete Event Example](./images/deletecommand/deleteevent.png)<br>
 *[Result for deleting the first general event in the list.]*
 <br>
-<br>
+
+[Back to Table of Contents](#table-of-contents)
 
 ### 3.8 Clearing `clear`
 This section shows features that deals with the clearing of entries in the RemindMe app.  
@@ -605,6 +643,8 @@ You can clear:
 * [3.8.2 Clearing all persons](#382-clearing-all-persons)
 * [3.8.3 Clearing all modules](#383-clearing-all-modules)
 * [3.8.4 Clearing all general events](#384-clearing-all-general-events)
+
+[Back to Table of Contents](#table-of-contents)
 
 #### 3.8.1 Clearing RemindMe  
 You can start with a brand new RemindMe.
@@ -628,6 +668,8 @@ Command: `clear [g/]`
 
 **If you follow along, your RemindMe should be empty. Now let's start using RemindMe to remind you!**<br>
 The following features are more ways for you to view your tasks in RemindMe.
+
+[Back to Table of Contents](#table-of-contents)
 
 ### 3.9 Viewing calendar `calendar` `C`
 There are 3 ways to check out the calendar.
@@ -659,17 +701,23 @@ You may browse through the calendar over the months by clicking the
 left arrow button `<` and right arrow button `>` on the top right of the calendar window.
 Additionally, you may click on the `today` button to browse back to the month of the current day's date.
 
+[Back to Table of Contents](#table-of-contents)
+
 <div class="page-break-before"></div>
 
 ### 3.10 Saving the data
 Saving of data is automatic by the application whenever you 
 update RemindMe.
 
+[Back to Table of Contents](#table-of-contents)
+
 ### 3.11 Reminder window
 A reminder will automatically pop up at the start of RemindMe.
 
 ![Ui](images/Ui2.png)
 <br>
+
+[Back to Table of Contents](#table-of-contents)
 
 ### 3.12 Exiting the program `exit` `E`
 There are 3 ways to exit the application. 
@@ -687,6 +735,8 @@ application to exit the program.
 <br>
 ![exit3](images/exit3.png)
 
+[Back to Table of Contents](#table-of-contents)
+
 <div class="page-break-before"></div>
 
 ## 4. FAQ
@@ -702,6 +752,8 @@ A: You can use the [`clear` command](#38-clearing-clear).
 
 **Q: When I close RemindMe's main application, will other windows close?**<br>
 A: Yes, do take note that if you close the main application, other windows will close as well.
+
+[Back to Table of Contents](#table-of-contents)
 
 ## 5. Command Summary  
 
@@ -720,5 +772,3 @@ Action | Description, Format
 **Exit program** | `exit`/`E` 
 
 [Back to Table of Contents](#table-of-contents)
-
-<i class="fa fa-arrow-circle-up fa-lg" id="scroll-top-button" onclick="handleScrollTop()" aria-hidden="true"></i>
