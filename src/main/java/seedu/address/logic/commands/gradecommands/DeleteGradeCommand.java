@@ -55,7 +55,7 @@ public class DeleteGradeCommand extends Command {
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_GRADE_DISPLAYED_INDEX);
         }
-        
+
         Grade gradeToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteGrade(gradeToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_GRADE_SUCCESS, gradeToDelete));
