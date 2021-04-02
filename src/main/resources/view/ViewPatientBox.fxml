@@ -11,8 +11,7 @@
 
     <SplitPane>
         <VBox>
-            <Text fx:id="text" fill="WHITE" styleClass="patient_box_huge_label" text="test" />
-            <Label fx:id="name" maxHeight="Infinity" styleClass="patient_box_huge_label" text="" />
+            <Text fx:id="name" fill="WHITE" styleClass="patient_box_huge_label" text="" />
             <FlowPane fx:id="ptags" />
             <HBox HBox.hgrow="ALWAYS">
                 <VBox maxWidth="80" minWidth="80" VBox.vgrow="NEVER">

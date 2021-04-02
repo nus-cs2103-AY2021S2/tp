@@ -51,9 +51,7 @@ public class ViewPatientBox extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
-    private Text text;
-    @FXML
-    private Label name;
+    private Text name;
     @FXML
     private Label phone;
     @FXML
@@ -125,11 +123,11 @@ public class ViewPatientBox extends UiPart<Region> {
     public ViewPatientBox() {
         super(FXML);
         this.patient = null;
-        text.setText(STARTUP_MESSAGE);
+        name.setText(STARTUP_MESSAGE);
     }
 
     public void setText(String s) {
-        this.text.setText(s);
+        this.name.setText(s);
     }
 
     private void setLabels() {
