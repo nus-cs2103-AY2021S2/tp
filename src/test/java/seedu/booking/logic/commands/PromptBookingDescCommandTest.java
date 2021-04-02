@@ -37,7 +37,7 @@ public class PromptBookingDescCommandTest {
             result = command.execute(model);
             assertEquals(expectedResult, result);
         } catch (CommandException ex) {
-            ex.printStackTrace();
+            throw new AssertionError("Execution of command should not fail.");
         }
 
         String state = ModelManager.getState();

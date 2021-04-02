@@ -43,7 +43,7 @@ public class TypicalBookings {
             new Id("0")
     );
 
-    public static final Booking BOOKING2 = new Booking(new Email("johnd@example.com"), VENUE1.getVenueName(),
+    public static final Booking BOOKING2 = new Booking(new Email("example2@gamil.com"), VENUE1.getVenueName(),
             new Description("description"),
             new StartTime(LocalDateTime.of(2022, 03, 01, 13, 00)),
             new EndTime(LocalDateTime.of(2022, 03, 01, 14, 00)),

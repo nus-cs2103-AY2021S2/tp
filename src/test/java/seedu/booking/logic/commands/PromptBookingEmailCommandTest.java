@@ -29,7 +29,7 @@ public class PromptBookingEmailCommandTest {
         try {
             new AddPersonCommand(BENSON).execute(model);
         } catch (Exception ex) {
-            ex.printStackTrace();
+            throw new AssertionError("Execution of command should not fail.");
         }
     }
 
