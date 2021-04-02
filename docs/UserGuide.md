@@ -17,6 +17,8 @@ users can learn Japanese at a comfortable pace and manage flashcards with this a
   * [Entering learn mode: `learn`](#listing-out-all-flashcards-learn)
   * [Ending the session: `end`](#ending-the-session-end)
   * [Viewing past scores: `history`](#viewing-past-scores-history)
+  * [Tagging a flashcard: `tag INDEX TAGS…`](#tagging-a-flashcard-tag-index-tags)
+  * [Deleting tags from a flashcard: `delete INDEX [TAGS…]`](#deleting-tags-from-a-flashcard-delete-index-tags)
   * [Exiting the application: `exit`](#exiting-the-application-exit)
   * [Asking for help: `help`](#asking-for-help-help)
 * [FAQ](#faq)
@@ -127,13 +129,13 @@ Examples:
 * `check hi`
 
 If user attempt matches correct answer of flashcard:
-<insert screenshot here please>
+![correct answer](images/check_correct.png)
 
 If user attempt does not match correct answer of flashcard:
-<insert screenshot here please>
+![incorrect answer](images/check_incorrect.png)
 
 If user tries to answer already correctly answered flashcard:
-<insert screenshot here please>
+![answered again](images/check_again.png)
 
 ### Going to next flashcard: `next`
 
@@ -143,9 +145,17 @@ Format: `next`
 
 ### Entering learn mode: `learn`
 
-Enters Learn Mode, where all current flashcards are listed out. Answer to current flashcards are shown.
+Enters Learn Mode, where all current flashcards are listed out. Answers to current flashcards are shown as well.
+
+Users can utilise this mode to facilitate the learning process, 
+and look through complete flashcards without having to test themselves.
+
+Tagging related functions are also only available in this mode.
 
 Format: `learn`
+
+Learn Mode:
+![learn mode](images/learn_mode.png)
 
 ### Ending the session: `end`
 
@@ -159,6 +169,46 @@ View scores of all past quiz attempts.
 
 Format: `history`
 
+### Tagging a flashcard: `tag INDEX TAGS…`
+
+Reads in an index and one or more tags, and adds these tags to the flashcard at the desired index. 
+At least one tag must be provided, else the user will be prompted to enter a valid command.
+
+Tagging of flashcards can only be done in Weeblingo's Learn Mode.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Default tags are provided by Weeblingo, 
+which can neither be deleted nor edited. 
+The purpose of this command is to allow users to add their own tags as well to assist in the learning process.
+
+</div>
+
+Format: `tag INDEX TAGS…`
+
+Examples:
+* `tag 1 t/difficult`
+* `tag 5 t/fire`
+
+After successfully adding a tag:
+![tag successful](images/tag_success.png)
+
+### Deleting tags from a flashcard: `delete INDEX [TAGS…]`
+
+Reads in an index and zero or more tags, and removes these tags from the flashcard at the desired index.
+If no tags are provided, all user-added tags will be removed from the flashcard.
+
+Tagging of flashcards can only be done in Weeblingo's Learn Mode.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Default tags are provided by Weeblingo, which can neither be deleted nor edited.
+The purpose of this command is to allow users to delete tags added by themselves.
+
+</div>
+
+Format: `delete INDEX [TAGS…]`
+
+Examples:
+* `delete 3`
+* `delete 1 t/difficult`
+
 ### Exiting the application: `exit`
 
 Exits the application.
@@ -167,7 +217,7 @@ Format: `exit`
 
 ### Asking for help: `help`
 
-Shows a message explaning how to access the help page. (to be updated)
+Shows a message explaning how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -187,7 +237,7 @@ that contains the data of your previous WeebLingo home folder.
 
 **Q**: Can I add my customized flashcards?<br>
 **A**: Sorry, the current version of the application does not allow self-defined flashcards to be added. However, if you
-are advanced and you know how to manipulate the storage files, you can do so if you want.
+are advanced and know how to manipulate the storage files, you can do so if you want.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -202,5 +252,7 @@ Action | Format, Examples |
 **Learn** | `learn`
 **End** | `end`
 **History**|`history`
+**Tag**| `tag INDEX TAGS…` <br> e.g. `tag 1 t/difficult`
+**Delete**| `delete INDEX [TAGS…]` <br> e.g. `delete 1 t/difficult`
 **Exit** | `exit`
 **Help** | `help`
