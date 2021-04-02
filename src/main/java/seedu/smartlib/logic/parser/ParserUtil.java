@@ -224,10 +224,18 @@ public class ParserUtil {
     public static Barcode parseBarcode(String barcode) throws ParseException {
         requireNonNull(barcode);
         String trimmedBarcode = barcode.trim();
-        if (!Barcode.isValidBarcode(Integer.parseInt(trimmedBarcode))) {
+
+        try {
+            int barcodeAsInt = Integer.parseInt(trimmedBarcode);
+
+            if (!Barcode.isValidBarcode(barcodeAsInt)) {
+                throw new ParseException(Barcode.MESSAGE_CONSTRAINTS);
+            }
+
+            return new Barcode(Integer.parseInt(trimmedBarcode));
+        } catch (NumberFormatException e) { // barcode given by user may exceed integer length
             throw new ParseException(Barcode.MESSAGE_CONSTRAINTS);
         }
-        return new Barcode(Integer.parseInt(trimmedBarcode));
     }
 
 }
