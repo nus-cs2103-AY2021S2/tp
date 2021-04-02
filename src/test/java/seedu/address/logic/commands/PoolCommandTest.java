@@ -70,7 +70,7 @@ public class PoolCommandTest {
     public void execute_poolAcceptedByModel_addSuccessfulNoWarning() throws Exception {
         Pool validPool = new PoolBuilder().withModel(model).withIndex(INDEX_FIRST)
                 .withIndex(INDEX_SECOND).withTripDay(VALID_TRIPDAY_FRIDAY)
-                .withTripTime(tripTimeEvening.value).withTags(VALID_TAG_FRIEND).build();
+                .withTripTime(VALID_TRIPTIME_EVENING).withTags(VALID_TAG_FRIEND).build();
 
         CommandResult commandResult = new PoolCommand(driver, commuters, tripDay, tripTimeEvening, tags).execute(model);
 
@@ -85,7 +85,7 @@ public class PoolCommandTest {
     @Test
     public void execute_duplicatePool_throwsCommandException() {
         Pool duplicatePool = new PoolBuilder().withModel(model).withIndex(INDEX_FIRST).withIndex(INDEX_SECOND)
-                .withTags(VALID_TAG_FRIEND).withTripTime(tripTimeEvening.value)
+                .withTags(VALID_TAG_FRIEND).withTripTime(VALID_TRIPTIME_EVENING)
                 .withTripDay(VALID_TRIPDAY_FRIDAY).build();
 
         model.addPool(duplicatePool);
