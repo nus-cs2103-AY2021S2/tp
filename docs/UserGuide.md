@@ -289,7 +289,7 @@ It is split into various subsections:
     * [Events](#413-events)
     * [Groupmates](#414-groupmates)
 * [Contacts](#42-contacts)
-* [Contacts](#43-today-view)
+* [Today View](#43-today-view)
 * [Others](#44-others)
 
 ### **4.1 Projects**
