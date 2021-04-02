@@ -14,6 +14,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.FeeUtil;
+import seedu.address.model.session.RecurringSession;
 import seedu.address.model.session.Session;
 import seedu.address.model.session.SessionDate;
 import seedu.address.model.student.Name;
@@ -156,6 +157,12 @@ public class ModelManager implements Model {
     public boolean hasOverlappingSession(Session session) {
         requireNonNull(session);
         return addressBook.hasOverlappingSession(session);
+    }
+
+    @Override
+    public boolean hasOverlappingSession(RecurringSession recurringSession) {
+        requireNonNull(recurringSession);
+        return addressBook.hasOverlappingSession(recurringSession);
     }
 
     //=========== Filtered Student List Accessors =============================================================

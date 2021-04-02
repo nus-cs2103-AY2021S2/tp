@@ -6,6 +6,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 
 /**
  * Class that handles RecurringSession that extend Session.
@@ -177,6 +178,59 @@ public class RecurringSession extends Session {
     }
 
     /**
+     * Checks if the {@code Session} slot overlaps with all recurring sessions.
+     * @param otherSession the other session that is compared to.
+     */
+    public boolean isOverlapping(Session otherSession) {
+        return otherSession.isOverlapping(this);
+    }
+
+    /**
+     * Checks if all {@code RecurringSession} slots overlaps with all recurring sessions.
+     * @param otherSession the other recurring session that is compared to.
+     */
+    public boolean isOverlapping(RecurringSession otherSession) {
+        if (startAfter(otherSession.getSessionDate())) {
+            return otherSession.isOverlapping(this);
+        }
+
+        int daysBetween = getSessionDate().numOfDayTo(otherSession.getSessionDate());
+        // Recurrence length in terms of when the first session begins
+        int firstSessionRecurrenceLength =
+                (int) ChronoUnit.DAYS.between(getSessionDate().getDate(), getLastSessionDate().getDate());
+        int secondSessionRecurrenceLength =
+                (int) ChronoUnit.DAYS.between(otherSession.getSessionDate().getDate(),
+                        otherSession.getLastSessionDate().getDate()) + daysBetween;
+        // Days from when the earlier session starts
+        int daysFromThisSessionStart = 0;
+        int daysFromOtherSessionStart = daysBetween;
+        while (daysFromThisSessionStart < firstSessionRecurrenceLength
+                || daysFromOtherSessionStart < secondSessionRecurrenceLength) {
+            if (daysFromThisSessionStart == daysFromOtherSessionStart) {
+                break;
+            } else if (daysFromThisSessionStart > daysFromOtherSessionStart) {
+                if (daysFromOtherSessionStart >= secondSessionRecurrenceLength) {
+                    break;
+                }
+                daysFromOtherSessionStart += otherSession.getInterval().getValue();
+            } else {
+                if (daysFromThisSessionStart >= firstSessionRecurrenceLength) {
+                    break;
+                }
+                daysFromThisSessionStart += getInterval().getValue();
+            }
+        }
+        if (daysFromThisSessionStart != daysFromOtherSessionStart) {
+            return false;
+        }
+        SessionDate otherSessionStartDate = otherSession.getSessionDate();
+        SessionDate otherSessionEndDate = otherSessionStartDate.getEndSessionDate(otherSession.getDuration());
+        SessionDate sessionStartDate = getSessionDate();
+        SessionDate sessionEndDate = sessionStartDate.getEndSessionDate(getDuration());
+        return super.isTimeOverlapping(sessionStartDate, sessionEndDate, otherSessionStartDate, otherSessionEndDate);
+    }
+
+    /**
      * Creates a new {@RecurringSession} with the new {@code newSessionDate}.
      * @param newSessionDate the new session date.
      */
@@ -193,7 +247,6 @@ public class RecurringSession extends Session {
         return new RecurringSession(getSessionDate(), getDuration(), getSubject(),
                 getFee(), getInterval(), newLastSessionDate);
     }
-
 
     @Override
     public String toString() {

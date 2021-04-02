@@ -11,6 +11,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.session.RecurringSession;
 import seedu.address.model.session.Session;
 import seedu.address.model.student.Name;
 
@@ -60,9 +61,18 @@ public class AddSessionCommand extends Command {
         if (model.hasSession(sessionToAdd)) {
             throw new CommandException(SESSION_ALREADY_EXIST_ERROR);
         }
-        if (model.hasOverlappingSession(sessionToAdd)) {
-            throw new CommandException(SESSION_OVERLAP);
+
+        if (sessionToAdd instanceof RecurringSession) {
+            RecurringSession recurringSessionToAdd = (RecurringSession) sessionToAdd;
+            if (model.hasOverlappingSession(recurringSessionToAdd)) {
+                throw new CommandException(SESSION_OVERLAP);
+            }
+        } else {
+            if (model.hasOverlappingSession(sessionToAdd)) {
+                throw new CommandException(SESSION_OVERLAP);
+            }
         }
+
         model.addSession(name, sessionToAdd);
         return new CommandResult(String.format(MESSAGE_ADD_SESSION_SUCCESS, sessionToAdd.toString()));
     }
