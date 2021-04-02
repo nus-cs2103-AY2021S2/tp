@@ -9,6 +9,7 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
+import seedu.address.model.session.RecurringSession;
 import seedu.address.model.session.Session;
 import seedu.address.model.session.SessionDate;
 import seedu.address.model.student.exceptions.DuplicateStudentException;
@@ -157,8 +158,42 @@ public class UniqueStudentList implements Iterable<Student> {
         for (Student student : internalList) {
             List<Session> sessionList = student.getListOfSessions();
             for (Session session : sessionList) {
-                if (session.isOverlapping(target)) {
-                    return true;
+                if (session instanceof RecurringSession) {
+                    RecurringSession recurringSession = (RecurringSession) session;
+                    if (recurringSession.isOverlapping(target)) {
+                        return true;
+                    }
+                } else {
+                    if (session.isOverlapping(target)) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Returns true if target {@code RecurringSession} overlaps with any of the sessions existing in any student
+     * in the unique student list.
+     * This method does not check for equality in end of {@code SessionDate} for sessions.
+     * Use {@link #hasSession(Session)} method instead.
+     */
+    public boolean hasOverlappingSession(RecurringSession target) {
+        requireNonNull(target);
+
+        for (Student student : internalList) {
+            List<Session> sessionList = student.getListOfSessions();
+            for (Session session : sessionList) {
+                if (session instanceof RecurringSession) {
+                    RecurringSession recurringSession = (RecurringSession) session;
+                    if (recurringSession.isOverlapping(target)) {
+                        return true;
+                    }
+                } else {
+                    if (session.isOverlapping(target)) {
+                        return true;
+                    }
                 }
             }
         }
