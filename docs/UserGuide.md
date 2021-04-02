@@ -58,7 +58,7 @@ Before diving into the rest of the contents in our user guide, the following are
 1. Ensure you have **Java 11 or above** installed on your Computer.
 
 2. Download the latest **imposter.jar** from
-   [here](https://github.com/AY2021S2-CS2103T-T12-4/tp/releases) and move the file to the folder you wish to use as the **home folder** for imPoster.
+   [here](https://imposter-dev.tk) and move the file to the folder you wish to use as the **home folder** for imPoster.
 
 3. **Double-click** the file to start the application. A graphical user interface (GUI) containing the annotated **3 main components** should show up as below:<br>
 
