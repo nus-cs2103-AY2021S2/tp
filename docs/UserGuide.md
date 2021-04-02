@@ -658,7 +658,7 @@ Groupmates contain a name and zero or more roles. The role serves to indicate th
 Groupmates are sorted alphabetically by name.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-You can use the contacts feature in CoLAB to store more information about a groupmate. The groupmate can then be easily found by searching for their name using the `findC` command.
+You can use the contacts feature in CoLAB to store more information about a groupmate. Once the contact has been added, you can then easily find the contact by using the `fincC` command to search for their name.
 </div>
 
 ##### Adding a groupmate to a project: `addG`
@@ -916,7 +916,7 @@ Format: `clear`
 **A**: CoLAB's data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 **Q**: Are my contacts and project groupmates linked?<br>
-**A**: No, currently there is no link between contacts and groupmates. This is a feature that we plan to add in future versions of CoLAB. However, you may still search for a groupmate in contacts using the `findC` command. 
+**A**: No, currently there is no link between contacts and groupmates. This is a feature that we plan to add in future versions of CoLAB. However, you may still add a contact with the contact details of the groupmate. Once the contact has been added, you can then easily find the contact by using the `fincC` command to search for their name.
 
 **Q**: Can I edit the data files directly?<br>
 **A**: CoLAB's data is saved as a JSON file `[JAR file location]/data/colab.json`. Advanced users are welcome to update data directly by editing that data file.
