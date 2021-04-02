@@ -1,8 +1,6 @@
 package seedu.address.model.grade;
 
 import org.junit.jupiter.api.Test;
-import seedu.address.model.appointment.AppointmentDateTime;
-import seedu.address.model.tutor.Name;
 import seedu.address.model.tutor.Phone;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -19,12 +17,12 @@ public class GradedItemTest {
     @Test
     public void constructor_invalidGradedItem_throwsIllegalArgumentException() {
         String invalidGradedItem = "";
-        assertThrows(IllegalArgumentException.class, () -> new Phone(invalidGradedItem));
+        assertThrows(IllegalArgumentException.class, () -> new GradedItem(invalidGradedItem));
     }
 
     @Test
     public void isValidGradedItem() {
-        // null phone number
+        // null graded item
         assertThrows(NullPointerException.class, () -> GradedItem.isValidGradedItem(null));
 
         // invalid graded item
