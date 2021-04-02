@@ -251,8 +251,6 @@ public class Person {
                 .append(getGoal())
                 .append("; Address: ")
                 .append(getAddress())
-                .append("; Picture: ")
-                .append(getPicture())
                 .append("; Debt: ")
                 .append(getDebt());
 
