@@ -1,15 +1,16 @@
 package seedu.address.model.grade;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.testutil.GradeBuilder;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_SUBJECT_NAME_SCIENCE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GRADED_ITEM_SCIENCE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GRADE_SCIENCE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SUBJECT_NAME_SCIENCE;
 import static seedu.address.testutil.TypicalGrades.MATHS_GRADE;
 import static seedu.address.testutil.TypicalGrades.SCIENCE_GRADE;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.testutil.GradeBuilder;
 
 public class GradeTest {
 

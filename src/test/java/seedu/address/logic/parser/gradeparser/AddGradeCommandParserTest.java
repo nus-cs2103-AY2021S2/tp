@@ -1,18 +1,32 @@
 package seedu.address.logic.parser.gradeparser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.GRADED_ITEM_DESC_MATHS;
+import static seedu.address.logic.commands.CommandTestUtil.GRADED_ITEM_DESC_SCIENCE;
+import static seedu.address.logic.commands.CommandTestUtil.GRADE_DESC_MATHS;
+import static seedu.address.logic.commands.CommandTestUtil.GRADE_DESC_SCIENCE;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_GRADED_ITEM_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_GRADE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_SUBJECT_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
+import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.address.logic.commands.CommandTestUtil.SUBJECT_DESC_MATHS;
+import static seedu.address.logic.commands.CommandTestUtil.SUBJECT_DESC_SCIENCE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GRADED_ITEM_MATHS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GRADE_MATHS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SUBJECT_NAME_MATHS;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.testutil.TypicalGrades.MATHS_GRADE;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.commands.gradecommands.AddGradeCommand;
 import seedu.address.model.grade.Grade;
 import seedu.address.model.grade.GradeEnum;
 import seedu.address.model.grade.GradedItem;
 import seedu.address.model.subject.SubjectName;
 import seedu.address.testutil.GradeBuilder;
-
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.*;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalGrades.*;
 
 public class AddGradeCommandParserTest {
 

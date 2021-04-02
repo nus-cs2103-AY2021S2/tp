@@ -1,24 +1,27 @@
 package seedu.address.logic.commands.gradecommands;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.grade.Grade;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAppointments.getTypicalAppointmentBook;
 import static seedu.address.testutil.TypicalBudgets.getTypicalBudgetBook;
 import static seedu.address.testutil.TypicalGrades.MATHS_GRADE;
-import static seedu.address.testutil.TypicalGrades.SCIENCE_GRADE;
 import static seedu.address.testutil.TypicalGrades.PHYSICS_GRADE;
+import static seedu.address.testutil.TypicalGrades.SCIENCE_GRADE;
 import static seedu.address.testutil.TypicalGrades.getTypicalGradeBook;
 import static seedu.address.testutil.TypicalReminders.getTypicalReminderTracker;
 import static seedu.address.testutil.TypicalSchedules.getTypicalScheduleTracker;
 import static seedu.address.testutil.TypicalTutors.getTypicalTutorBook;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.grade.Grade;
+
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for AddGradeCommand.
@@ -46,11 +49,11 @@ public class AddGradeCommandTest {
 
     @Test
     void execute_duplicateGrade_throwsCommandException() {
-        Grade firstGrade=
+        Grade firstGrade =
                 model.getGradeBook().getGradeList().get(0);
         AddGradeCommand addGradeCommand = new AddGradeCommand(firstGrade);
-        assertThrows(CommandException.class, AddGradeCommand.MESSAGE_DUPLICATE_GRADE,
-                () -> addGradeCommand.execute(model));
+        assertThrows(CommandException.class,
+                AddGradeCommand.MESSAGE_DUPLICATE_GRADE, () -> addGradeCommand.execute(model));
     }
 
     @Test

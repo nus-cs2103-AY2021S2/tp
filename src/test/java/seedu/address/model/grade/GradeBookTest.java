@@ -1,12 +1,13 @@
 package seedu.address.model.grade;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.GradeBook;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.Collections;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.testutil.Assert.assertThrows;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.GradeBook;
 
 public class GradeBookTest {
 

@@ -1,26 +1,16 @@
 package seedu.address.logic.commands.gradecommands;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.commands.tutorcommands.ClearCommand;
-import seedu.address.model.*;
-import seedu.address.model.grade.Grade;
-import seedu.address.testutil.EditGradeDescriptorBuilder;
-import seedu.address.testutil.GradeBuilder;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.assertGradeCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_MATHS;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_SCIENCE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_SUBJECT_NAME_PHYSICS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GRADED_ITEM_PHYSICS;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_GRADE_PHYSICS;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_SUBJECT_NAME_SCIENCE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GRADED_ITEM_SCIENCE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GRADE_PHYSICS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SUBJECT_NAME_PHYSICS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SUBJECT_NAME_SCIENCE;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.assertGradeCommandFailure;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAppointments.getTypicalAppointmentBook;
 import static seedu.address.testutil.TypicalBudgets.getTypicalBudgetBook;
@@ -31,6 +21,19 @@ import static seedu.address.testutil.TypicalReminders.getTypicalReminderTracker;
 import static seedu.address.testutil.TypicalSchedules.getTypicalScheduleTracker;
 import static seedu.address.testutil.TypicalTutors.getTypicalTutorBook;
 
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.tutorcommands.ClearCommand;
+import seedu.address.model.GradeBook;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.grade.Grade;
+import seedu.address.testutil.EditGradeDescriptorBuilder;
+import seedu.address.testutil.GradeBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditGradeCommand.
@@ -50,7 +53,8 @@ public class EditGradeCommandTest {
         String expectedMessage = String.format(EditGradeCommand.MESSAGE_EDIT_GRADE_SUCCESS, editedGrade);
 
         Model expectedModel = new ModelManager(model.getTutorBook(), new UserPrefs(),
-                model.getAppointmentBook(), model.getBudgetBook(), new GradeBook(model.getGradeBook()), model.getScheduleTracker(),
+                model.getAppointmentBook(), model.getBudgetBook(),
+                new GradeBook(model.getGradeBook()), model.getScheduleTracker(),
                 model.getReminderTracker());
         expectedModel.setGrade(model.getFilteredGradeList().get(0), editedGrade);
 
@@ -74,11 +78,12 @@ public class EditGradeCommandTest {
                 .withGrade(VALID_GRADE_PHYSICS).build();
         EditGradeCommand editGradeCommand = new EditGradeCommand(indexLastGrade, descriptor);
 
-        String expectedMessage = String.format(EditGradeCommand.MESSAGE_EDIT_GRADE_SUCCESS
-                , editedGrade);
+        String expectedMessage = String.format(EditGradeCommand.MESSAGE_EDIT_GRADE_SUCCESS,
+                editedGrade);
 
         Model expectedModel = new ModelManager(model.getTutorBook(), new UserPrefs(),
-                model.getAppointmentBook(), model.getBudgetBook(), new GradeBook(model.getGradeBook()), model.getScheduleTracker(),
+                model.getAppointmentBook(), model.getBudgetBook(),
+                new GradeBook(model.getGradeBook()), model.getScheduleTracker(),
                 model.getReminderTracker());
         expectedModel.setGrade(lastGrade, editedGrade);
 
@@ -94,7 +99,8 @@ public class EditGradeCommandTest {
         String expectedMessage = String.format(EditGradeCommand.MESSAGE_EDIT_GRADE_SUCCESS, editedGrade);
 
         Model expectedModel = new ModelManager(model.getTutorBook(), new UserPrefs(),
-                model.getAppointmentBook(), model.getBudgetBook(), new GradeBook(model.getGradeBook()), model.getScheduleTracker(),
+                model.getAppointmentBook(), model.getBudgetBook(),
+                new GradeBook(model.getGradeBook()), model.getScheduleTracker(),
                 model.getReminderTracker());
 
         assertCommandSuccess(editGradeCommand, model, expectedMessage, expectedModel);
@@ -106,8 +112,8 @@ public class EditGradeCommandTest {
         EditGradeCommand.EditGradeDescriptor descriptor =
                 new EditGradeDescriptorBuilder(firstGrade).build();
         EditGradeCommand editGradeCommand = new EditGradeCommand(INDEX_FIRST_PERSON, descriptor);
-        assertThrows(CommandException.class, EditGradeCommand.MESSAGE_DUPLICATE_GRADE,
-                () -> editGradeCommand.execute(model));
+        assertThrows(CommandException.class,
+                EditGradeCommand.MESSAGE_DUPLICATE_GRADE, () -> editGradeCommand.execute(model));
     }
 
     @Test

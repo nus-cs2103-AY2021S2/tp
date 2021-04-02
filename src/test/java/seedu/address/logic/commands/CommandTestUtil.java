@@ -112,8 +112,10 @@ public class CommandTestUtil {
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
-    public static final String INVALID_SUBJECT_DESC = " " + PREFIX_SUBJECT_NAME + "Science&"; // '&' not allowed in names
-    public static final String INVALID_GRADED_ITEM_DESC = " " + PREFIX_GRADED_ITEM + "Midterm&"; // 'a' not allowed in phones
+    public static final String INVALID_SUBJECT_DESC = " "
+            + PREFIX_SUBJECT_NAME + "Science&"; // '&' not allowed in names
+    public static final String INVALID_GRADED_ITEM_DESC = " "
+            + PREFIX_GRADED_ITEM + "Midterm&"; // 'a' not allowed in phones
     public static final String INVALID_GRADE_DESC = " " + PREFIX_GRADE + "A-"; // '-' not allowed in names
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";

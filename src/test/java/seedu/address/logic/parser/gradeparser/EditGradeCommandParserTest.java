@@ -1,18 +1,35 @@
 package seedu.address.logic.parser.gradeparser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.GRADED_ITEM_DESC_MATHS;
+import static seedu.address.logic.commands.CommandTestUtil.GRADED_ITEM_DESC_SCIENCE;
+import static seedu.address.logic.commands.CommandTestUtil.GRADE_DESC_MATHS;
+import static seedu.address.logic.commands.CommandTestUtil.GRADE_DESC_SCIENCE;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_GRADED_ITEM_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_GRADE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_SUBJECT_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.SUBJECT_DESC_MATHS;
+import static seedu.address.logic.commands.CommandTestUtil.SUBJECT_DESC_SCIENCE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GRADED_ITEM_MATHS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GRADED_ITEM_SCIENCE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GRADE_MATHS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GRADE_SCIENCE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SUBJECT_NAME_MATHS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SUBJECT_NAME_SCIENCE;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.gradecommands.EditGradeCommand;
 import seedu.address.model.grade.GradeEnum;
 import seedu.address.model.grade.GradedItem;
 import seedu.address.model.subject.SubjectName;
 import seedu.address.testutil.EditGradeDescriptorBuilder;
-
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.*;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalIndexes.*;
 
 public class EditGradeCommandParserTest {
 
@@ -50,16 +67,21 @@ public class EditGradeCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        assertParseFailure(parser, "1" + INVALID_SUBJECT_DESC, SubjectName.MESSAGE_CONSTRAINTS); // invalid subject name
-        assertParseFailure(parser, "1" + INVALID_GRADED_ITEM_DESC, GradedItem.MESSAGE_CONSTRAINTS); // invalid graded item
-        assertParseFailure(parser, "1" + INVALID_GRADE_DESC, GradeEnum.MESSAGE_CONSTRAINTS); // invalid grade
+        assertParseFailure(parser, "1" + INVALID_SUBJECT_DESC,
+                SubjectName.MESSAGE_CONSTRAINTS); // invalid subject name
+        assertParseFailure(parser, "1" + INVALID_GRADED_ITEM_DESC,
+                GradedItem.MESSAGE_CONSTRAINTS); // invalid graded item
+        assertParseFailure(parser, "1" + INVALID_GRADE_DESC,
+                GradeEnum.MESSAGE_CONSTRAINTS); // invalid grade
 
         // invalid graded item followed by valid grade
-        assertParseFailure(parser, "1" + INVALID_GRADED_ITEM_DESC + GRADE_DESC_MATHS, GradedItem.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_GRADED_ITEM_DESC
+                + GRADE_DESC_MATHS, GradedItem.MESSAGE_CONSTRAINTS);
 
         // valid graded item followed by invalid grade. The test case for invalid graded item followed by valid grade
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
-        assertParseFailure(parser, "1" + GRADED_ITEM_DESC_MATHS + INVALID_GRADE_DESC, GradeEnum.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + GRADED_ITEM_DESC_MATHS
+                + INVALID_GRADE_DESC, GradeEnum.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_SUBJECT_DESC + INVALID_GRADED_ITEM_DESC
@@ -70,9 +92,11 @@ public class EditGradeCommandParserTest {
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_PERSON;
-        String userInput = targetIndex.getOneBased() + SUBJECT_DESC_MATHS + GRADED_ITEM_DESC_MATHS + GRADE_DESC_MATHS;
+        String userInput = targetIndex.getOneBased() + SUBJECT_DESC_MATHS
+                + GRADED_ITEM_DESC_MATHS + GRADE_DESC_MATHS;
 
-        EditGradeCommand.EditGradeDescriptor descriptor = new EditGradeDescriptorBuilder().withSubject(VALID_SUBJECT_NAME_MATHS)
+        EditGradeCommand.EditGradeDescriptor descriptor = new EditGradeDescriptorBuilder()
+                .withSubject(VALID_SUBJECT_NAME_MATHS)
                 .withGradedItem(VALID_GRADED_ITEM_MATHS).withGrade(VALID_GRADE_MATHS).build();
         EditGradeCommand expectedCommand = new EditGradeCommand(targetIndex, descriptor);
 
@@ -84,7 +108,8 @@ public class EditGradeCommandParserTest {
         Index targetIndex = INDEX_FIRST_PERSON;
         String userInput = targetIndex.getOneBased() + GRADED_ITEM_DESC_MATHS + GRADE_DESC_MATHS;
 
-        EditGradeCommand.EditGradeDescriptor descriptor = new EditGradeDescriptorBuilder().withGradedItem(VALID_GRADED_ITEM_MATHS)
+        EditGradeCommand.EditGradeDescriptor descriptor = new EditGradeDescriptorBuilder()
+                .withGradedItem(VALID_GRADED_ITEM_MATHS)
                 .withGrade(VALID_GRADE_MATHS).build();
         EditGradeCommand expectedCommand = new EditGradeCommand(targetIndex, descriptor);
 
@@ -103,7 +128,8 @@ public class EditGradeCommandParserTest {
 
         // graded item
         userInput = targetIndex.getOneBased() + GRADED_ITEM_DESC_MATHS;
-        descriptor = new EditGradeDescriptorBuilder().withGradedItem(VALID_GRADED_ITEM_MATHS).build();
+        descriptor = new EditGradeDescriptorBuilder()
+                .withGradedItem(VALID_GRADED_ITEM_MATHS).build();
         expectedCommand = new EditGradeCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -121,7 +147,8 @@ public class EditGradeCommandParserTest {
                 + GRADED_ITEM_DESC_MATHS + GRADED_ITEM_DESC_SCIENCE
                 + GRADE_DESC_MATHS + GRADE_DESC_SCIENCE;
 
-        EditGradeCommand.EditGradeDescriptor descriptor = new EditGradeDescriptorBuilder().withSubject(VALID_SUBJECT_NAME_SCIENCE)
+        EditGradeCommand.EditGradeDescriptor descriptor = new EditGradeDescriptorBuilder()
+                .withSubject(VALID_SUBJECT_NAME_SCIENCE)
                 .withGradedItem(VALID_GRADED_ITEM_SCIENCE).withGrade(VALID_GRADE_SCIENCE)
                 .build();
         EditGradeCommand expectedCommand = new EditGradeCommand(targetIndex, descriptor);

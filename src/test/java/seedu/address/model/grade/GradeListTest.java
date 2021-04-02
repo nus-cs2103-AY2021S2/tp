@@ -1,15 +1,16 @@
 package seedu.address.model.grade;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.grade.exceptions.DuplicateGradeException;
-import seedu.address.model.grade.exceptions.GradeNotFoundException;
-
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalGrades.getTypicalGrades;
+
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.grade.exceptions.DuplicateGradeException;
+import seedu.address.model.grade.exceptions.GradeNotFoundException;
 
 public class GradeListTest {
 

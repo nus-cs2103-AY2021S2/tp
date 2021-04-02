@@ -1,12 +1,5 @@
 package seedu.address.logic.commands.gradecommands;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.tutorcommands.ListCommand;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalAppointments.getTypicalAppointmentBook;
 import static seedu.address.testutil.TypicalBudgets.getTypicalBudgetBook;
@@ -14,6 +7,14 @@ import static seedu.address.testutil.TypicalGrades.getTypicalGradeBook;
 import static seedu.address.testutil.TypicalReminders.getTypicalReminderTracker;
 import static seedu.address.testutil.TypicalSchedules.getTypicalScheduleTracker;
 import static seedu.address.testutil.TypicalTutors.getTypicalTutorBook;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.tutorcommands.ListCommand;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
 
 public class ListGradeCommandTest {
 
