@@ -67,11 +67,6 @@ This section contains all the information about features of TutorTracker. You ma
 
 ### Tutor Book
 As part of the TutorTracker's goal, it aims to allows tutees to maintain and keep track of the list of tuition tutors.
-These are the command parameters that are used in the tutor related commands.
-
-#### Add a new tutor: `add_tutor`
-
-Add a new tutor and enter their basic details as well as an optional Note.
 
 Details:
 * Name
@@ -86,39 +81,43 @@ Details:
     * Subject Years of Experience
     * Subject Qualifications
 
+#### Add a new tutor: `add_tutor`
+
+Add a new tutor and enter their basic details as well as an optional Note.
+
 Format:
 `add_tutor n/NAME g/GENDER p/PHONE_NUMBER e/EMAIL  a/ADDRESS <s/SUBJECT_NAME r/SUBJECT_RATE l/SUBJECT_EDUCATION_LEVEL y/SUBJECT_YEARS_EXPERIENCE q/SUBJECT_QUALIFICATIONS>... notes/NOTE`
 
 Example Input:
 `add_tutor n/John Doe g/Male p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/English r/50 l/Secondary 3 y/5 q/A-Level s/Mathematics r/60 l/Secondary 4 y/6 q/A-Level notes/Patient`
 
-##### List tutors: `list_tutors`
+#### List tutors: `list_tutors`
 
 View a list of all tutors known. Will ignore all input after `list_tutors`.
 
 Example Output:
 ```
 1. John Doe
-   98765432
-   John street, block 123, #01-01
-   johnd@example.com
-   Subjects:
-   1. English
-      Level: Sec 3
-      Rate: SGD60/hr
-      Experience: 6 years
-      Qualification: Bachelor of English Literature
+98765432
+John street, block 123, #01-01
+johnd@example.com
+Subjects:
+English
+    Level: Sec 3
+    Rate: SGD60/hr
+    Experience: 6 years
+    Qualification: Bachelor of English Literature
     
 2. Jane Doe 
-   98765433
-   Jane street, block 123, #01-01
-   janed@example.com
-   Subjects:
-   1. Maths
-      Level: Sec 4
-      Rate: SGD30/hr
-      Experience: 5 years
-      Qualification: Bachelor of Mechanical Engineering
+98765433
+Jane street, block 123, #01-01
+janed@example.com
+Subjects:
+Maths
+    Level: Sec 4
+    Rate: SGD30/hr
+    Experience: 5 years
+    Qualification: Bachelor of Mechanical Engineering
 ```
 
 #### Delete a tutor: `delete_tutor`
@@ -158,7 +157,15 @@ English
     Experience: 6 years
     Qualification: Bachelor of English Literature
 ```
-#### Add note to a tutor: `add_note`
+
+#### Notes
+This feature allows notes to be attached to a tutor.
+
+Details:
+* Index
+* Note Description
+
+##### Add note to a tutor: `add_note`
 
 Shortcut for adding note to tutor at a particular index
 
@@ -184,7 +191,8 @@ English
 Notes:
 patient tutor
 ```
-#### Edit note of a tutor: `edit_note`
+
+##### Edit note of a tutor: `edit_note`
 
 Shortcut for editing note to tutor at a particular index
 
@@ -211,7 +219,7 @@ English
 Notes:
 not patient
 ```
-#### Delete note of a tutor: `delete_note`
+##### Delete note of a tutor: `delete_note`
 
 Deletes solely the note to tutor at a particular index
 
@@ -219,12 +227,12 @@ Format: `delete_note INDEX NOTE`
 
 Example: `delete_note 1`
 
-#### List tutors with note `list_note`
+##### List tutors with note `list_note`
 Lists all the tutor with note. Will ignore all input after `list_mote`.
 
 Format:`list_note`
 
-#### Export the tutor details: `export`
+##### Export the tutor details: `export`
 Export the tutor details of that index together with the notes and subject list into a text file 
 exit
 in the directory you saved
@@ -271,6 +279,16 @@ View a list of all favourites
 Format: `list_favourites`
 
 Example: `list_favourites`
+
+### Appointment Tracker
+Allows tutee to manage and track their tuition appointments they have with the tutors.
+
+Details:
+* Tutor's Name
+* Subject Name
+* Time From
+* Time To
+* Location
 
 #### Add a new appointment: `add_appointment`
 
@@ -380,6 +398,16 @@ Format: `edit_appointment INDEX [n/NAME] [s/SUBJECT_NAME] [d/DATE] [fr/TIME_FROM
 
 Examples: `edit_appointment 1 s/English l/Clementi`
 
+### Schedule Tracker
+This feature allows tutees to track their tuition-related schedules, such as adding a timeslot to do their tuition homework.
+
+Attributes / Parameters:
+* Title
+* Subject Name
+* Time From
+* Time To
+* Description
+
 #### Adding a schedule : `add_schedule`
 
 Adds a schedule that is related to tuition.<br>
@@ -402,13 +430,13 @@ Format: `list_schedules`
 Example outputs:
 ```
 1.  Math Tuition Homework
-    Mar 24 2021
-    2:00 PM - 4:00 PM
-    Chapter 5 to 6
+Mar 24 2021
+2:00 PM - 4:00 PM
+Chapter 5 to 6
 2.  Science Tuition Homework
-    Mar 30 2021
-    2:00 PM - 4:00 PM
-    Calculus Topic
+Mar 30 2021
+2:00 PM - 4:00 PM
+Calculus Topic
 ```
 
 #### View schedule details: `view_schedule`
@@ -462,11 +490,21 @@ Format: `edit_schedule INDEX [t/TITLE] [d/DATE] [fr/TIME_FROM] [to/TIME_TO] [ds/
 
 Examples: `edit_schedule 1 t/Science Tuition Homework`
 
+### Event Tracker
+Events, which in fact is a timetable which comprises of both `Appointment` and `Schedule`.
+This feature allows tutee to track their timetable easily.
+
 #### Opening timetable window : `timetable`
 
-Launch a graphical representation of the tutee's appointment and schedule in a timetable format.
+Launch a timetable graphical representation of the tutee's appointment and schedule.
 
-Format: `timetable`
+Format: `timetable [DATE]`
+
+* The date is an optional parameter. If there is no date entered, it will display timetable of the current week. Otherwise, for example, by typing `2021-3-28`, it will shows the timetable of the week that contains 28 March 2021.
+* The date format `yyyy-mm-dd` must be strictly followed. e.g. `2021-3-1` or `2021-03-01`.
+
+### Budget Tracker
+This features allows tutee to track and manage his/her budget allocated to tuitions.
 
 #### Add a budget: `add_budget`
 
@@ -498,7 +536,6 @@ Example Output
 ```
 Budget of 600 is sucessfully updated.
 ```
-
 
 * BUDGET must be a positive integer inclusive of zero
 
@@ -534,6 +571,8 @@ Budget: 600
 Total Cost of Appointments: 100.
 ```
 
+### Grade Book
+This features allows tutees to track and manage their grades obtained in a particular subjects.
 
 #### Add a grade: `add_grade`
 
@@ -599,6 +638,13 @@ Listed all grades
      C
 ```
 
+### Reminder Tracker
+This features allows tutees to track and manage reminders on a daily basis. This is exceptionally helpful if the reminders are related to the tuition or tutor itself such as setting a reminder to pay tuition fee for a particular tutor.
+
+Attributes / Parameters:
+* Description
+* Reminder Date
+
 #### Adding a reminder : `add_reminder`
 
 Adds a reminder with description and reminder date specified by the user.<br>
@@ -612,7 +658,7 @@ Examples:<br>
 
 #### Listing all reminders : `list_reminders`
 
-Shows a list of all reminders in the personal reminder list.
+Shows a list of all reminders in the personal reminder list. Reminders are automatically sorted by ascending order (oldest to newest).
 
 Format: `list_reminders`
 
@@ -651,6 +697,9 @@ Format: `edit_reminder INDEX [ds/DESCRIPTION] [d/REMINDER_DATE]`
 * The date format `yyyy-mm-dd` must be strictly followed. e.g. `2021-3-1`and `2021-03-01`.
 
 Examples: `edit_reminder 1 ds/Science Tuition Payment Due`
+
+### Tutor and Appointment Filters 
+This feature enhance the tutee's viewing experiences by allowing the tutees to filter tutors or appointments based on certain attributes.
 
 #### Add a Tutor Filter: `add_tutor_filter`
 
