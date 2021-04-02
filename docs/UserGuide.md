@@ -275,12 +275,41 @@ It is split into various subsections:
     * [Events](#_413-events_)
     * [Groupmates](#_414-groupmates_)
 * [Contacts](#42-contacts)
-* [Navigating the UI](#43-navigating-the-ui)
-* [Others](#44-others)
+* [Others](#43-others)
 
 ### **4.1 Projects**
 
 Each Project may have `Todos`, `Deadlines`, `Events` & `Groupmates` that are relevant and specific to it. Commands related to Projects will be discussed first followed by sections on `Todos`, `Deadlines`, `Events` & `Groupmates`.
+
+#### Viewing a project: `project`
+
+Displays a panel with details of a specified project.
+
+Format: `project PROJECT_INDEX`
+* Displays a panel with details of the project at the specified `PROJECT_INDEX`.
+
+Parameter:
+* [`PROJECT_INDEX`](#index) The index of the project.
+
+Examples:
+* `project 1` Displays the first project.
+* `project 2` Displays the second project.
+
+#### Viewing the overview of a project: `overview`
+
+Displays a panel containing an overview of the project that is currently displayed.
+
+Format: `overview`
+
+* This command can only be used when a project is currently being displayed.
+
+#### Viewing the todos of a project: `todos`
+
+Displays a panel containing the todos of the project that is currently displayed.
+
+Format: `todos`
+
+* This command can only be used when a project is currently being displayed.
 
 #### Adding a project: `addP`
 
@@ -600,6 +629,12 @@ Contacts are kept separate from Groupmates. Their information is not kept in syn
 
 Each Contact may have a `NAME`, `PHONE_NUMBER`, `EMAIL`, `ADDRESS` & multiple `TAGS`. 
 
+#### Viewing all contacts : `contacts`
+
+Displays a panel with a list of all contacts in CoLAB.
+
+Format: `contacts`
+
 #### Adding a contact: `addC`
 
 Adds a contact to CoLAB.
@@ -683,9 +718,7 @@ Examples:
 * `list` followed by `deleteC 2` deletes the 2nd contact in the address book.
 * `findC Betsy` followed by `deleteC 1` deletes the 1st contact in the results of the `findC` command.
 
-### **4.3 Navigating the UI**
-
-Although most of the buttons you see on the screen are clickable, the UI has been designed primarily to be navigated using the command line interface. The commands listed in this section will help you navigate the UI without leaving keyboard.
+### **4.3 Others**
 
 #### Viewing Today Panel : `today`
 
@@ -693,55 +726,39 @@ Displays a panel containing information on Events & Deadlines that are relevant 
 
 Format: `today`
 
-#### Viewing all contacts : `contacts`
-
-Displays a panel with a list of all contacts in CoLAB.
-
-Format: `contacts`
-
-#### Viewing a project: `project`
-
-Displays a panel with details of a specified project.
-
-Format: `project PROJECT_INDEX`
-    * Displays a panel with details of the project at the specified `PROJECT_INDEX`.
-
-Parameter:
-    * [`PROJECT_INDEX`](#index) The index of the project.
-
-Examples:
-* `project 1` Displays the first project.
-* `project 2` Displays the second project.
-
-#### Viewing the overview of a project: `overview`
-
-Displays a panel containing an overview of the project that is currently displayed.
-
-Format: `overview`
-
-* This command can only be used when a project is currently being displayed.
-
-#### Viewing the todos of a project: `todos`
-
-Displays a panel containing the todos of the project that is currently displayed.
-
-Format: `todos`
-
-* This command can only be used when a project is currently being displayed.
-
 #### Viewing help : `help`
 
 Displays a panel containing a summary of commands as well as a link to this user guide. The link can be copied to the system clipboard by clicking on the `Copy` button.
 
 Format: `help`
 
+#### Undoing previous command : `undo`
+
+Restores CoLAB to the state before the previous undoable command was executed.
+
+Format: `undo'
+
+* Commands that modify data are undoable. These commands include all commands that start with `add`, `update`, `delete` or `mark` as well as the `clear` command.
+* All other commands are not undoable.
+
+Example:
+
+* `deleteP 1` Deletes the first project in the list.
+* `undo` Reverses the `deleteP 1` command.
+
+#### Redoing previous command : `redo`
+
+Reverses the most recent undo command.
+
+Format: `redo'
+
+* Requires an undo command to have been performed prior to a redo command.
+
 #### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
-
-### **4.4 Others**
 
 #### Saving the data
 
@@ -761,28 +778,6 @@ Clears all entries from CoLAB. Both contacts and projects will be cleared.
 
 Format: `clear`
 
-#### Undoing previous command : `undo`
-
-Restores CoLAB to the state before the previous undoable command was executed.
-
-Format: `undo'
-
-* Commands that modify data are undoable. These commands include all commands that start with `add`, `update`, `delete` or `mark` as well as the `clear` command.
-* All other commands are not undoable.
-
-Example:
-
-* `deleteP 1` Deletes the first project in the list.
-* `undo` Reverses the `deleteP 1` command. 
-
-#### Redoing previous command : `redo`
-
-Reverses the most recent undo command.
-
-Format: `redo'
-
-* Requires an undo command to have been performed prior to a redo command.  
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **5.FAQ**
@@ -798,48 +793,66 @@ Format: `redo'
 
 Action | Format, Examples
 --------|------------------
+**View Project** | `project PROJECT_INDEX`
+**View Overview** | `overview`
+**View Todos** | `todos`
 **Add Project** | `addP n/NAME`
-**Add Deadline to Project** | `addDto PROJECT_INDEX d/DESCRIPTION by/DATE`
-**Add Event to Project** | `addEto PROJECT_INDEX d/DESCRIPTION on/DATE at/TIME w/REPEAT_WEEKLY`
-**Add Groupmate to Project** | `addG PROJECT_INDEX n/NAME [r/ROLE]…​`
-**Add Todo to Project** | `addTto PROJECT_INDEX d/DESCRIPTION`
-**Mark Deadline as done** | `markD PROJECT_INDEX i/DEADLINE_INDEX`
-**Mark Todo as done** | `markT PROJECT_INDEX i/TODO_INDEX`
 **Update Project** | `updateP PROJECT_INDEX n/NAME`
-**Update Deadline** | `updateD PROJECT_INDEX i/DEADLINE_INDEX [d/DESCRIPTION] [by/DATE]`
-**Update Event** | `updateE PROJECT_INDEX i/EVENT_INDEX [d/DESCRIPTION] [on/DATE] [at/TIME] [w/REPEAT_WEEKLY]`
-**Update Groupmate** | `updateG PROJECT_INDEX i/GROUPMATE_INDEX [n/NAME] [r/ROLE]…​`
-**Update Todo** | `updateT PROJECT_INDEX i/TODO_INDEX d/DESCRIPTION`
 **Delete Project** | `deleteP PROJECT_INDEX`
-**Delete Deadline from Project** | `deleteD PROJECT_INDEX i/DEADLINE_INDEX`
-**Delete Event from Project** | `deleteE PROJECT_INDEX i/EVENT_INDEX`
-**Delete Groupmate from Project** | `deleteG PROJECT_INDEX i/GROUPMATE_INDEX`
+
+### Todos
+
+Action | Format, Examples
+--------|------------------
+**Add Todo to Project** | `addTto PROJECT_INDEX d/DESCRIPTION`
+**Mark Todo as done** | `markT PROJECT_INDEX i/TODO_INDEX`
+**Update Todo** | `updateT PROJECT_INDEX i/TODO_INDEX d/DESCRIPTION`
 **Delete Todo from Project** | `deleteT PROJECT_INDEX i/TODO_INDEX`
+
+### Deadlines
+
+Action | Format, Examples
+--------|------------------
+**Add Deadline to Project** | `addDto PROJECT_INDEX d/DESCRIPTION by/DATE`
+**Mark Deadline as done** | `markD PROJECT_INDEX i/DEADLINE_INDEX`
+**Update Deadline** | `updateD PROJECT_INDEX i/DEADLINE_INDEX [d/DESCRIPTION] [by/DATE]`
+**Delete Deadline from Project** | `deleteD PROJECT_INDEX i/DEADLINE_INDEX`
+
+### Events
+
+Action | Format, Examples
+--------|------------------
+**Add Event to Project** | `addEto PROJECT_INDEX d/DESCRIPTION on/DATE at/TIME w/REPEAT_WEEKLY`
+**Update Event** | `updateE PROJECT_INDEX i/EVENT_INDEX [d/DESCRIPTION] [on/DATE] [at/TIME] [w/REPEAT_WEEKLY]`
+**Delete Event from Project** | `deleteE PROJECT_INDEX i/EVENT_INDEX`
+
+### Groupmates
+
+Action | Format, Examples
+--------|------------------
+**Add Groupmate to Project** | `addG PROJECT_INDEX n/NAME [r/ROLE]…​`
+**Update Groupmate** | `updateG PROJECT_INDEX i/GROUPMATE_INDEX [n/NAME] [r/ROLE]…​`
+**Delete Groupmate from Project** | `deleteG PROJECT_INDEX i/GROUPMATE_INDEX`
 
 ### Contacts
 
 Action | Format, Examples
 --------|------------------
+**View Contacts** | `contacts`
 **Add Contact** | `addC n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `addC n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
 **Delete Contact** | `deleteC CONTACT_INDEX`<br> e.g., `deleteC 3`
 **Update Contact** | `updateC CONTACT_INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`updateC 2 n/James Lee e/jameslee@example.com`
 **Find Contact** | `findC KEYWORD [MORE_KEYWORDS]`<br> e.g., `findC James Jake`
 
-### Navigating the UI
-
-Action | Format, Examples
---------|------------------
-**View Contacts** | `contacts`
-**View Project** | `project PROJECT_INDEX`
-**View Overview** | `overview`
-**View Todos** | `todos`
-**View Today Panel** | `today`
-**Help** | `help`
-
 ### Others
 
 Action | Format, Examples
 --------|------------------
+**View Today Panel** | `today`
+**Help** | `help`
+**Undo previous command** | `undo`
+**Redo previous command** | `redo`
+**Exiting the Program** | `exit`
 **Clear All Entries** | `clear`
 
 --------------------------------------------------------------------------------------------------------------------
