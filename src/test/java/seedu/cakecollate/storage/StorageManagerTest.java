@@ -11,7 +11,11 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.cakecollate.commons.core.GuiSettings;
-import seedu.cakecollate.model.*;
+import seedu.cakecollate.model.CakeCollate;
+import seedu.cakecollate.model.OrderItems;
+import seedu.cakecollate.model.ReadOnlyCakeCollate;
+import seedu.cakecollate.model.ReadOnlyOrderItems;
+import seedu.cakecollate.model.UserPrefs;
 import seedu.cakecollate.testutil.TypicalOrderItems;
 
 public class StorageManagerTest {

@@ -1,20 +1,9 @@
 {
-  "orders": [ {
-    "name": "Alice Pauline",
-    "phone": "94351253",
-    "email": "alice@example.com",
-    "address": "123, Jurong West Ave 6, #08-111",
-    "orderDescriptions": [ "2 x Strawberry Cakes" ],
-    "tagged": [ "friends" ],
-    "deliveryDate": "02/02/2022",
-    "request": "Give me more pineapples."
+  "orderItems": [ {
+    "cost": "69420",
+    "type": "Banana Cake"
   }, {
-    "name": "Alice Pauline",
-    "phone": "94351253",
-    "email": "pauline@example.com",
-    "address": "4th street",
-    "orderDescriptions": [ "2 x Berry Cakes" ],
-    "deliveryDate": "02/02/2022",
-    "request": "Give me more pineapples."
+    "cost": "69420",
+    "type": "Banana Cake"
   } ]
 }

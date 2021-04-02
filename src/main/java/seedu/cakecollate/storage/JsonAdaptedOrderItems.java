@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.cakecollate.commons.exceptions.IllegalValueException;
-import seedu.cakecollate.model.order.Name;
 import seedu.cakecollate.model.orderitem.Cost;
 import seedu.cakecollate.model.orderitem.OrderItem;
 import seedu.cakecollate.model.orderitem.Type;

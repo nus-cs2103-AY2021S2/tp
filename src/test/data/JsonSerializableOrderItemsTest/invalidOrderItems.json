@@ -1,9 +1,9 @@
 {
   "orderItems": [ {
-    "cost": "69420",
+    "cost": "invalid cost 69420",
     "type": "Banana Cake"
   }, {
     "cost": "69420",
-    "type": "Banana Cake"
+    "type": "1111 invalid type Banana Cake"
   } ]
 }

@@ -48,12 +48,23 @@ public class TypicalOrderItems {
             .withCost(VALID_COST_CHOCOLATE)
             .build();
 
+    // manually added for testing
+    public static final OrderItem DURIAN = new OrderItemBuilder()
+            .withType("Durian")
+            .withCost("50")
+            .build();
+
+    public static final OrderItem CHENDOL = new OrderItemBuilder()
+            .withType("Chendol")
+            .withCost("2")
+            .build();
+
     private TypicalOrderItems() {
     } //prevents instantiation
 
     public static List<OrderItem> getTypicalOrderItems() {
-        return new ArrayList<>(Arrays.asList(CHOCOLATE, STRAWBERRY,
-                BUTTERSCOTCH, OREO_CHEESE, CHOCOLATE_MUD, RED_VELVET, BLACK_FOREST));
+        return new ArrayList<>(Arrays.asList(BLACK_FOREST, RED_VELVET,
+                CHOCOLATE_MUD, OREO_CHEESE, BUTTERSCOTCH, STRAWBERRY, CHOCOLATE));
     }
 
     /**

@@ -1,16 +1,9 @@
 {
-  "orders": [ {
-    "name": "Valid Order",
-    "phone": "9482424",
-    "email": "hans@example.com",
-    "address": "4th street",
-    "orderDescriptions": [ "2 x Strawberry Cakes" ],
-    "tagged": [ "friends" ],
-    "deliveryDate": "02/02/2022"
+  "orderItems": [ {
+    "cost": "1",
+    "type": "Banana Cake"
   }, {
-    "name": "Order With Invalid Phone Field",
-    "phone": "948asdf2424",
-    "email": "hans@example.com",
-    "address": "4th street"
+    "cost": "69420 Bananas",
+    "type": "Banana Cake"
   } ]
 }
