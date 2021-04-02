@@ -12,7 +12,7 @@
 
 <?import javafx.scene.layout.HBox?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="CakeCollate" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
+         title="CakeCollate" minWidth="1000" minHeight="695" onCloseRequest="#handleExit">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -46,16 +46,16 @@
           </padding>
         </StackPane>
 
-        <HBox fx:id="modelBox">
-          <HBox fx:id="unmodifiedModels" minHeight="433">
-            <VBox fx:id="list" styleClass="pane-with-border" minWidth="950" prefWidth="950" VBox.vgrow="ALWAYS">
+        <HBox fx:id="modelBox" VBox.vgrow="ALWAYS">
+          <HBox fx:id="unmodifiedModels" minHeight="433" prefWidth="1350" HBox.hgrow="ALWAYS">
+            <VBox fx:id="list" styleClass="pane-with-border" minWidth="650" prefWidth="950" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
               <padding>
                 <Insets top="10" right="10" bottom="10" left="10" />
               </padding>
               <StackPane fx:id="listPanelPlaceholder" VBox.vgrow="ALWAYS"/>
             </VBox>
 
-            <VBox fx:id="orderItem" styleClass="pane-with-border" minWidth="400" prefWidth="400" VBox.vgrow="ALWAYS">
+            <VBox fx:id="orderItem" styleClass="pane-with-border" minWidth="350" prefWidth="350" VBox.vgrow="ALWAYS">
               <padding>
                 <Insets top="10" right="10" bottom="10" left="10" />
               </padding>
