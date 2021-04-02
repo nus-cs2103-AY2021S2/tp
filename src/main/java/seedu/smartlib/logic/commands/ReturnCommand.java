@@ -47,8 +47,7 @@ public class ReturnCommand extends Command {
         this.incompleteRecord = incompleteRecord;
     }
 
-    private void verifyNameRegistration(Model model) throws CommandException {
-
+    private void verifyRegistration(Model model) throws CommandException {
         if (!model.hasBookWithBarcode(incompleteRecord.getBookBarcode())) {
             throw new CommandException(NO_BOOK_FOUND);
         }
@@ -100,7 +99,7 @@ public class ReturnCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireAllNonNull(model);
 
-        verifyNameRegistration(model);
+        verifyRegistration(model);
         Record properRecord = createProperRecord(model);
 
         if (!model.hasRecord(properRecord)) {
