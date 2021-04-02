@@ -35,7 +35,7 @@ FlashBack is a **desktop application for managing notes, optimized for use via a
         * [Showing previous flashcard](#showing-previous-flashcard--p): `p`
         * [Showing answer](#showing-answer--a): `a`
         * [Hiding answer](#hiding-answer--h): `h`
-        * [Reviewing a flashcard as correct](#reviewing-a-flashcard-as-correct--t): `t`
+        * [Reviewing a flashcard as correct](#reviewing-a-flashcard-as-correct-t): `t`
         * [Reviewing a flashcard as wrong](#reviewing-a-flashcard-as-wrong--f): `f` 
         * [Quitting review mode](#quitting-review-mode--q): `q`
 * [FAQ](#faq)
@@ -146,7 +146,7 @@ Examples:
 
 Edits an existing flashcard in the flashcard list.
 
-Format: `edit INDEX [q/NEW QUESTION] [a/NEW ANSWER] [c/NEW CATEGORY] [p/NEW PRIORITY] [t/TAG]`
+Format: `edit INDEX [q/NEW QUESTION] [a/NEW ANSWER] [c/NEW CATEGORY] [p/NEW PRIORITY] [t/TAG]...`
 
 * Edits the flashcard at the specified `INDEX`.
 * The index refers to the index number shown in the displayed flashcard list.
