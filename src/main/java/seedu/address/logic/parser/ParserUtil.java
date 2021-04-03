@@ -25,6 +25,7 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_DATE_FORMAT = "The date is not in the expected format: DD-MM-YYYY";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -117,8 +118,8 @@ public class ParserUtil {
                 throw new ParseException(Booking.MESSAGE_CONSTRAINTS);
             }
             return new Booking(tenantName, phone, startTime, endTime);
-        } catch (Exception exception) {
-            throw new ParseException("Date is not in the expected format: DD-MM-YYYY");
+        } catch (Exception e) {
+            throw new ParseException(MESSAGE_INVALID_DATE_FORMAT);
         }
     }
 
@@ -127,15 +128,18 @@ public class ParserUtil {
      */
     public static LocalDate parseDate(String date) throws ParseException {
         requireNonNull(date);
-        LocalDate trimmedDate = LocalDate.parse(date.trim(), DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-        return trimmedDate;
+        try {
+            return LocalDate.parse(date.trim(), DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+        } catch (Exception e) {
+            throw new ParseException(MESSAGE_INVALID_DATE_FORMAT);
+        }
     }
 
     /**
      * Parses a {@code String clean status(y or n)} into a {@code CleanStatusTag}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code cleanstatus} is invalid.
+     * @throws ParseException if the given {@code cleanStatus} is invalid.
      */
     public static CleanStatusTag parseCleanStatusTag(String cleanStatus) throws ParseException {
         requireNonNull(cleanStatus);
