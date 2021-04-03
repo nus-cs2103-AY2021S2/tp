@@ -226,7 +226,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+![image](https://user-images.githubusercontent.com/59093518/113469330-51427780-947f-11eb-9130-b13797e2c1b8.png)
 
 
 ### Clearing all entries : `clear`
