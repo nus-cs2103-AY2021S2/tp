@@ -176,7 +176,7 @@ Examples:
 
 Output:
 
-![image](https://user-images.githubusercontent.com/59093518/113469519-c3678c00-9480-11eb-8335-90900bf745b4.png)
+![image](https://user-images.githubusercontent.com/59093518/113469578-2f49f480-9481-11eb-9d42-46d6260417a8.png)
 
 ### View all information regarding a patient : `view`
 
