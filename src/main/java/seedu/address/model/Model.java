@@ -144,6 +144,26 @@ public interface Model {
     void editModule(int index, Title target);
 
     /**
+     * Deletes the target assignment
+     * @param module
+     * @param assignment
+     */
+    void deleteAssignment(Module module, Assignment assignment);
+
+    /**
+     * Deletes the target general event
+     * @param generalEvent
+     */
+    void deleteGeneralEvent(GeneralEvent generalEvent);
+
+    /**
+     * Deletes the target exam
+     * @param module
+     * @param exam
+     */
+    void deleteExam(Module module, Exam exam);
+
+    /**
      * Adds the given assignment.
      * {@code assignment} must not already exist in the module it is to be added to.
      */
