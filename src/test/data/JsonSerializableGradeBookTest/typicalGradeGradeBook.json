@@ -1,0 +1,15 @@
+{
+  "grades": [ {
+    "subject" : "Mathematics",
+    "gradedItem" : "Midterm Exam",
+    "grade" : "A"
+  }, {
+    "subject" : "Science",
+    "gradedItem" : "Lab 1",
+    "grade" : "B"
+  }, {
+    "subject" : "English",
+    "gradedItem" : "Final",
+    "grade" : "C"
+  } ]
+}
