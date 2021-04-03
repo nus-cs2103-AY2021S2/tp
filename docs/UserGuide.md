@@ -166,7 +166,7 @@ Output:
 
 ### View a patient's preexisting medical record : `vrec`
 
-Views a past medical report of a patient identified by the index number of the medical record of the currently selected patient via the `view` command. A medical report is only editable for a day after creation.
+Views a past medical report of a patient identified by the index number of the medical record of the currently selected patient via the `view` command. A medical report is editable for a day after creation.
 
 Format : `vrec INDEX`
 where INDEX must be a positive integer (1,2,3,...)
