@@ -49,6 +49,6 @@ public class ViewPatientCommand extends Command {
         Patient patientToView = lastShownList.get(index.getZeroBased());
         model.selectPatient(patientToView);
         return new CommandResult(String.format(MESSAGE_SUCCESS, patientToView.getName()),
-                            false, false, patientToView, null, false);
+                            false, false, patientToView, null, null, false);
     }
 }
