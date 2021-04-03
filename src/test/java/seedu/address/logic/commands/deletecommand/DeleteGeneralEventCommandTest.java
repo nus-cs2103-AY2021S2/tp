@@ -17,6 +17,10 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.event.GeneralEvent;
 
+/**
+ * Contains integration tests (interaction with the Model) and unit tests for
+ * {@code DeleteGeneralEventCommand}.
+ */
 public class DeleteGeneralEventCommandTest {
 
     private Model model = new ModelManager(getTypicalRemindMe(), new UserPrefs());

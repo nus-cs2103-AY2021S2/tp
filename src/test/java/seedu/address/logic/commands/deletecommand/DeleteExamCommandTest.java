@@ -23,6 +23,10 @@ import seedu.address.model.module.Exam;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.Title;
 
+/**
+ * Contains integration tests (interaction with the Model) and unit tests for
+ * {@code DeleteExamCommand}.
+ */
 public class DeleteExamCommandTest {
 
     private Model model = new ModelManager(getTypicalRemindMeWithFilledModules(), new UserPrefs());

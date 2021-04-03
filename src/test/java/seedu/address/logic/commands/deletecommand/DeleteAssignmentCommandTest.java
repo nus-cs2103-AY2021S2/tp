@@ -22,6 +22,10 @@ import seedu.address.model.module.Assignment;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.Title;
 
+/**
+ * Contains integration tests (interaction with the Model) and unit tests for
+ * {@code DeleteAssignmentCommand}.
+ */
 public class DeleteAssignmentCommandTest {
 
     private Model model = new ModelManager(getTypicalRemindMeWithFilledModules(), new UserPrefs());
