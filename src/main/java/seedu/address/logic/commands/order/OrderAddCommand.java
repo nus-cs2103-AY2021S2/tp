@@ -69,8 +69,6 @@ public class OrderAddCommand extends Command {
 
         Order toAdd = new Order(dateTime, customer, dishQuantityList);
 
-        System.out.println(OrderCommandUtil.isValidOrderAddition(toAdd, model));
-
         model.addOrder(toAdd);
 
         model.updateFilteredOrderList(order -> order.getState() == Order.State.UNCOMPLETED);

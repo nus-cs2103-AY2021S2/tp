@@ -49,7 +49,6 @@ public class OrderEditCommandParser {
             editOrderDescriptor.setCustomerId(Integer.parseInt(argMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_DATETIME).isPresent()) {
-            System.out.println("FUCK SWE");
             editOrderDescriptor.setDateTime(
                     LocalDateTime.parse(argMultimap.getValue(PREFIX_DATETIME).get(), dateTimeFormatter));
         }
