@@ -91,10 +91,10 @@ Action | Format, Examples
 **exit** | `exit` The GUI Button at the top of the status bar. Clicking on it closes the application safely.
 **help** | `help` The GUI Button at the top of the status bar. Clicking on it opens a help window.
 **email** | `email`The GUI Button at the top of the status bar. Clicking on it opens a simplified MailBox interface allowing user to send email.
-**up** | `/up{X}`, meaning any command starting with `/up`. Eg: `/up blahblah`
+**up** | `/up{X}`, meaning any command starting with `/up`
 
 
-## Adding a customer: `add`
+### Adding a customer: `add`
 
 Adds a customer to the contact list.
 
@@ -111,7 +111,7 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 c/Honda City`
 * `add n/Betsy Crowe c/Honda City t/friend e/betsycrowe@example.com x/2011 03 27 a/Newgate Prison p/1234567 t/criminal`
 
-## Finding a customer: `find` 
+### Finding a customer: `find` 
 
 Find customers from the contact list that matches specified filters.
 
@@ -136,6 +136,9 @@ cp/PREFERRED_CARBRAND+PREFERRED_CARTYPE b/DATE_OF_BIRTH`
     - It will _not_ return:
         - `xxx@abc.com`
         - `axbyc@hhh.com`
+
+
+Further details about the search options are as follows:
 
 - For `coe/COE_EXPIRY_DATE`, using `coe/exp` will search for all customers with an expired COE on any of the cars they own.
   it is a special case alias for the search `coe/0`, where `coe/NON_NEGATIVE_NUMBER` will search for any customers with
@@ -185,8 +188,10 @@ Format: `list`
 * **`clear`** : Deletes all customers in the system.
 
 ## Repeat last Command : `/up`
-This command pastes the last command in the Command Box.
-eg: 
+* **`/up{X}`** : Loads in the previous command. `{X}` can be any string of characters, usually the previous command.
+* Examples: `/updelete John Doe`
+
+eg: The command Box is as follows
 
     - find e/Apple
     - find e/AppleChain
