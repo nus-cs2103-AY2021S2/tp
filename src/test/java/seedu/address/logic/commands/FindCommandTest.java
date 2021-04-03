@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.ALICE;
@@ -17,21 +16,18 @@ import static seedu.address.testutil.TypicalPersons.GEORGE;
 import static seedu.address.testutil.TypicalPersons.JANE;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.ModeOfContact;
 import seedu.address.model.person.predicates.AddressContainsKeywordsPredicate;
 import seedu.address.model.person.predicates.EmailContainsKeywordsPredicate;
-import seedu.address.model.person.ModeOfContact;
 import seedu.address.model.person.predicates.ModeOfContactPredicate;
 import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
 import seedu.address.model.person.predicates.PersonBlacklistedPredicate;
@@ -84,62 +80,33 @@ public class FindCommandTest {
         ModeOfContactPredicate secondModeOfContactPredicate =
                 new ModeOfContactPredicate(new ModeOfContact("email"));
 
-        FindCommand findFirstCommand = new FindCommand(firstPredicate,
-                returnTruePredicate, returnTruePredicate, returnTruePredicate,
-                returnTruePredicate, returnTruePredicate, returnTruePredicate);
-        FindCommand findSecondCommand = new FindCommand(secondPredicate,
-                returnTruePredicate, returnTruePredicate, returnTruePredicate,
-                returnTruePredicate, returnTruePredicate, returnTruePredicate);
+        FindCommand findFirstCommand = FindCommand.returnDummyCommand().setPredicate(firstPredicate);
+        FindCommand findSecondCommand = FindCommand.returnDummyCommand().setPredicate(secondPredicate);
 
-        FindCommand findThirdCommand = new FindCommand(returnTruePredicate,
-                firstTagPredicate, returnTruePredicate, returnTruePredicate,
-                returnTruePredicate, returnTruePredicate, returnTruePredicate);
-        FindCommand findFourthCommand = new FindCommand(returnTruePredicate,
-                secondTagPredicate, returnTruePredicate, returnTruePredicate,
-                returnTruePredicate, returnTruePredicate, returnTruePredicate);
+        FindCommand findThirdCommand = FindCommand.returnDummyCommand().setPredicate(firstTagPredicate);
+        FindCommand findFourthCommand = FindCommand.returnDummyCommand().setPredicate(secondTagPredicate);
 
-        FindCommand findAddressOneCommand = new FindCommand(returnTruePredicate,
-                returnTruePredicate, firstAddressPredicate, returnTruePredicate,
-                returnTruePredicate, returnTruePredicate, returnTruePredicate);
-        FindCommand findAddressTwoCommand = new FindCommand(returnTruePredicate,
-                returnTruePredicate, secondAddressPredicate, returnTruePredicate,
-                returnTruePredicate, returnTruePredicate, returnTruePredicate);
+        FindCommand findAddressOneCommand = FindCommand.returnDummyCommand().setPredicate(firstAddressPredicate);
+        FindCommand findAddressTwoCommand = FindCommand.returnDummyCommand().setPredicate(secondAddressPredicate);
 
-        FindCommand findEmailOneCommand = new FindCommand(returnTruePredicate,
-                returnTruePredicate, returnTruePredicate, firstEmailPredicate,
-                returnTruePredicate, returnTruePredicate, returnTruePredicate);
+        FindCommand findEmailOneCommand = FindCommand.returnDummyCommand().setPredicate(firstEmailPredicate);
+        FindCommand findEmailTwoCommand = FindCommand.returnDummyCommand().setPredicate(secondEmailPredicate);
 
-        FindCommand findEmailTwoCommand = new FindCommand(returnTruePredicate,
-                returnTruePredicate, returnTruePredicate, secondEmailPredicate,
-                returnTruePredicate, returnTruePredicate, returnTruePredicate);
+        FindCommand findPhoneOneCommand = FindCommand.returnDummyCommand().setPredicate(firstPhonePredicate);
+        FindCommand findPhoneTwoCommand = FindCommand.returnDummyCommand().setPredicate(secondPhonePredicate);
 
-        FindCommand findPhoneOneCommand = new FindCommand(returnTruePredicate,
-                returnTruePredicate, returnTruePredicate, returnTruePredicate,
-                firstPhonePredicate, returnTruePredicate, returnTruePredicate);
-        FindCommand findPhoneTwoCommand = new FindCommand(returnTruePredicate,
-                returnTruePredicate, returnTruePredicate, returnTruePredicate,
-                secondPhonePredicate, returnTruePredicate, returnTruePredicate);
+        FindCommand findBlacklistOneCommand = FindCommand.returnDummyCommand().setPredicate(firstBlacklistPredicate);
+        FindCommand findBlacklistTwoCommand = FindCommand.returnDummyCommand().setPredicate(secondBlacklistPredicate);
 
-        FindCommand findBlacklistOneCommand = new FindCommand(returnTruePredicate,
-                returnTruePredicate, returnTruePredicate, returnTruePredicate,
-                returnTruePredicate, firstBlacklistPredicate, returnTruePredicate);
-        FindCommand findBlacklistTwoCommand = new FindCommand(returnTruePredicate,
-                returnTruePredicate, returnTruePredicate, returnTruePredicate,
-                returnTruePredicate, secondBlacklistPredicate, returnTruePredicate);
+        FindCommand findModeOfContactOneCommand = FindCommand.returnDummyCommand()
+                .setPredicate(firstModeOfContactPredicate);
+        FindCommand findModeOfContactTwoCommand = FindCommand.returnDummyCommand()
+                .setPredicate(secondModeOfContactPredicate);
 
-        FindCommand findModeOfContactOneCommand = new FindCommand(returnTruePredicate,
-                returnTruePredicate, returnTruePredicate, returnTruePredicate,
-                returnTruePredicate, returnTruePredicate, firstModeOfContactPredicate);
-        FindCommand findModeOfContactTwoCommand = new FindCommand(returnTruePredicate,
-                returnTruePredicate, returnTruePredicate, returnTruePredicate,
-                returnTruePredicate, returnTruePredicate, secondModeOfContactPredicate);
-
-        FindCommand findFifthCommand = new FindCommand(firstPredicate,
-                firstTagPredicate, returnTruePredicate, returnTruePredicate,
-                returnTruePredicate, returnTruePredicate, returnTruePredicate);
-        FindCommand findSixthCommand = new FindCommand(secondPredicate,
-                secondTagPredicate, returnTruePredicate, returnTruePredicate,
-                returnTruePredicate, returnTruePredicate, returnTruePredicate);
+        FindCommand findFifthCommand = FindCommand.returnDummyCommand()
+                .setPredicate(firstPredicate).setPredicate(firstTagPredicate);
+        FindCommand findSixthCommand = FindCommand.returnDummyCommand()
+                .setPredicate(secondPredicate).setPredicate(secondTagPredicate);
 
         // same object -> returns true
         assertEquals(findFirstCommand, findFirstCommand);
@@ -152,19 +119,14 @@ public class FindCommandTest {
         assertEquals(findModeOfContactOneCommand, findModeOfContactOneCommand);
 
         // same values -> returns true
-        FindCommand findFirstCommandCopy = new FindCommand(firstPredicate,
-                returnTruePredicate, returnTruePredicate, returnTruePredicate,
-                returnTruePredicate, returnTruePredicate, returnTruePredicate);
+        FindCommand findFirstCommandCopy = FindCommand.returnDummyCommand().setPredicate(firstPredicate);
         assertEquals(findFirstCommandCopy, findFirstCommand);
 
-        FindCommand findFourthCommandCopy = new FindCommand(returnTruePredicate,
-                secondTagPredicate, returnTruePredicate, returnTruePredicate,
-                returnTruePredicate, returnTruePredicate, returnTruePredicate);
+        FindCommand findFourthCommandCopy = FindCommand.returnDummyCommand().setPredicate(secondTagPredicate);
         assertEquals(findFourthCommandCopy, findFourthCommand);
 
-        FindCommand findSixthCommandCopy = new FindCommand(secondPredicate,
-                secondTagPredicate, returnTruePredicate, returnTruePredicate,
-                returnTruePredicate, returnTruePredicate, returnTruePredicate);
+        FindCommand findSixthCommandCopy = FindCommand.returnDummyCommand()
+                .setPredicate(secondPredicate).setPredicate(secondTagPredicate);
         assertEquals(findSixthCommandCopy, findSixthCommand);
 
         FindCommand findAddressOneCopy = findAddressOneCommand.copy();

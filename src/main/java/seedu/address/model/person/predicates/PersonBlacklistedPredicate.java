@@ -1,8 +1,8 @@
 package seedu.address.model.person.predicates;
 
-import seedu.address.model.person.Person;
-
 import java.util.function.Predicate;
+
+import seedu.address.model.person.Person;
 
 /**
  * Tests that whether a {@code Person} is blacklisted.

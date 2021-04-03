@@ -15,12 +15,12 @@ import java.util.function.Predicate;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.ModeOfContact;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.predicates.AddressContainsKeywordsPredicate;
 import seedu.address.model.person.predicates.EmailContainsKeywordsPredicate;
-import seedu.address.model.person.ModeOfContact;
 import seedu.address.model.person.predicates.ModeOfContactPredicate;
 import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.predicates.PersonBlacklistedPredicate;
 import seedu.address.model.person.predicates.PersonTagContainsKeywordsPredicate;
 import seedu.address.model.person.predicates.PhoneContainsNumbersPredicate;

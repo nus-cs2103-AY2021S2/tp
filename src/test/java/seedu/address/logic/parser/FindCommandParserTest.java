@@ -157,7 +157,8 @@ public class FindCommandParserTest {
         assertParseSuccess(parser, " " + PREFIX_MODE_OF_CONTACT + "email sixty nine", expectedFindCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " " + PREFIX_MODE_OF_CONTACT + " \n email \n \t sixty  \t nine", expectedFindCommand);
+        assertParseSuccess(parser, " " + PREFIX_MODE_OF_CONTACT + " \n email \n \t sixty  \t nine",
+                expectedFindCommand);
     }
 
     @Test
