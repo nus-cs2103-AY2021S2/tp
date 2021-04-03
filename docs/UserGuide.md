@@ -191,7 +191,7 @@ Examples:
 
 Output: 
 
-![image](https://user-images.githubusercontent.com/48408342/112605797-a6183980-8e52-11eb-9694-55d0ff014af4.png)
+![image](https://user-images.githubusercontent.com/48408342/113469038-e6903c80-947c-11eb-974d-8364791fea70.png)
 
 
 ### Exiting the program : `exit`
