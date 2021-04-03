@@ -17,4 +17,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_DIRECTION = new Prefix("d/");
     public static final Prefix PREFIX_START_INDEX = new Prefix("start/");
     public static final Prefix PREFIX_END_INDEX = new Prefix("end/");
+    public static final Prefix PREFIX_SEPARATOR = new Prefix("s/");
+    public static final Prefix PREFIX_BLACKLIST = new Prefix("b/");
 }

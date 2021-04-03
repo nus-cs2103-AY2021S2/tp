@@ -86,7 +86,21 @@ public class Person {
     }
 
     public Blacklist getBlacklist() {
-        return this.blacklist;
+        return blacklist;
+    }
+
+    public boolean getBlacklistStatus() {
+        return blacklist.getStatus();
+    }
+
+    /**
+     * Returns this person with a different blacklist status.
+     * @return the newly created person
+     */
+    public Person toggleBlacklistStatus() {
+        Blacklist newBlacklist = blacklist.toggleStatus();
+        return new Person(name, phone, email, address,
+                remark, modeOfContact, newBlacklist, tags);
     }
 
     /**

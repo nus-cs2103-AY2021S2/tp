@@ -149,6 +149,21 @@ public class AddCommandTest {
         }
 
         @Override
+        public void toggleBlacklist(Person target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void blacklistPerson(Person target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void unblacklistPerson(Person target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void sortByName(boolean isAscending) {
             throw new AssertionError("This method should not be called");
         }
