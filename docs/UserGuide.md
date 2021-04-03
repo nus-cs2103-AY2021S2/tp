@@ -4,18 +4,20 @@ title: User Guide
 ---
 
 <a name="introduction"></a>
-## Introduction
-As a Club leader, you may be struggling to keep track of the ever-changing members of your club as well as manage 
-the mountain of tasks that have to be completed within the club. It may be a challenge to keep track of the increasing 
-number of tasks and be able to assign these tasks to members efficiently. 
+## Welcome to HEY MATEz
+As a Club leader, are you struggling to **keep track of the ever-changing members** of your club as well as **manage 
+the mountain of tasks** that have to be completed? Or perhaps it is a challenge to **keep track of the increasing 
+number of tasks** and be able to **assign these tasks to members efficiently**. 
 
-HEY MATEz is a desktop application to get rid of your woes by allowing you to track 
-members and tasks within the club efficiently and easily. It is
+HEY MATEz is a desktop application to get rid of your woes by allowing you to **track 
+members** and **tasks** within the club **efficiently and easily**! It is
 a Command Line Interface (CLI) application which handles user requests that are typed into the input box as commands.
+
 With HEY MATEz, managing and distributing tasks will never be a headache again! :smile:
 
-This user guide includes information on the features of HEY MAYEz as well as a walkthrough on how to use them. The features 
-are further divided into 3 sections which include the General features, Member related features as well as the Task related features.
+## About this User Guide
+This user guide includes information on the **features** of HEY MAYEz as well as a walkthrough on how to use them. The features 
+are further divided into 3 sections which include the **General features**, **Member related features** as well as the **Task related features**.
 Member related features allow you to manage a list of members and find members. On the other hand, Task related features allow you
 to manage tasks which can be identified by their unique deadlines or priorities.
 
