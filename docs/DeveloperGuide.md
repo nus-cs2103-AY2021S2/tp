@@ -147,7 +147,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 The tagging mechanism allows users to add tags to flashcards of their choice while in the _Learn Mode_
 of the WeebLingo application. Each flashcard has a set of default tags which cannot be edited, followed by
-any unique user added tags. 
+any unique user added tags.
 
 ![Structure of the Flashcard with tags](images/FlashcardWithTagsObjectDiagram.png)
 
@@ -189,7 +189,7 @@ The following sequence diagram shows how the Quiz command works:
 =======
 ### Start Command
 
-The start command is used to start a quiz session, enabling users to define the number and type of 
+The start command is used to start a quiz session, enabling users to define the number and type of
 questions they want to be tested on. The activity diagram below shows the flow of events when a user
 enters the start command.
 
@@ -203,7 +203,7 @@ Else the user will be prompted to try again.
 ### View Past Quiz Attempts
 
 The view quiz history mechanism allows users to view their past attempts of quizzes. Each entry of quiz history is
-represented in a way similar how the flashcards are represented in the Weeblingo application. 
+represented in a way similar how the flashcards are represented in the Weeblingo application.
 
 Below is the class diagram
 for how `Score` is represented in *Model* component.
@@ -223,9 +223,9 @@ The following sequence diagram shows how the UI switches display from flashcards
 
 * **Alternative 1 (current choice):** Make `Score` and `Flashcard` two separate classes.
     * Pros: Easy to implement.
-    * Cons: 
+    * Cons:
       * May have the overhead of writing similar code. For instance, `JsonAdaptedFlashcard` and `JsonAdaptedScore`.
-      * Changing the UI display from flashcards to score history may be cumbersome. 
+      * Changing the UI display from flashcards to score history may be cumbersome.
 * **Alternative 2:** Let `Score` have inheritance relationship with `Flashcard`.
     * Pros: Changing UI display is easy.
     * Cons:
@@ -294,7 +294,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1.  User requests to enter learn mode.
 2.  WeebLingo shows a list of flashcards on the screen.
 
-    Use case ends.  
+    Use case ends.
 
 **Use case: UC02 - Take a quiz**
 
@@ -311,29 +311,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 2a. All questions have been shown.
-    
-    * 2a1. WeebLingo informs user that the quiz is over. 
-      
+
+    * 2a1. WeebLingo informs user that the quiz is over.
+
       Use case ends.
 
 * 3a. User already got the question correct.
 
     * 3a1. WeebLingo prompts user to proceed to the next question.
-    
+
       Use case resumes at step 5.
 
 * 4a. User got the question wrong.
-  
+
     * 4a1a. User wants to proceed to the next question.
-      
+
       Use case resumes at step 5.
-    
+
     * 4a1b. User wants to reattempt the same question.
 
       Use case resumes at step 3.
 
 * 4b. User got the question correct.
-  
+
     * 4b1. WeebLingo prompts user to proceed to the next question.
       
       Use case resumes at step 5.
@@ -407,8 +407,8 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: No quiz has been started
 
-   1. Test case: `end` _while in the quiz_<br> 
-      Expected: The current quiz is ended and displayed flashcard disappears. 
+   1. Test case: `end` _while in the quiz_<br>
+      Expected: The current quiz is ended and displayed flashcard disappears.
 
    1. Test case: `end` _while in the start menu_<br>
       Expected: Nothing happens. An error message is displayed to the user telling them that no Quiz has started yet.
