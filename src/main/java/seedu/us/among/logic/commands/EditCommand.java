@@ -65,7 +65,7 @@ public class EditCommand extends Command {
             + PREFIX_TAG + " //removes all tags \n";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of an existing API endpoint "
-            + "identified using it's displayed index from the API endpoint list. "
+            + "identified using its displayed index from the API endpoint list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_METHOD + " METHOD] "
