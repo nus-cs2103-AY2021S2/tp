@@ -368,6 +368,7 @@ Action  | Format, Examples
 **Cancelled** | `cancelled INDEXES`<br> e.g., `cancelled 3 4`
 **Add Order Item** | `addItem ORDER_ITEM_DESCRIPTION`<br> e.g., `addItem 2 x Red Velvet`
 **Delete Order Item** | `deleteItem ORDER_ITEM_INDEXES`<br> e.g., `deleteItem 2 3`
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Acknowledgements
