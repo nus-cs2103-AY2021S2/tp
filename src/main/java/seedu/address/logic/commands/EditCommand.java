@@ -46,7 +46,7 @@ public class EditCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_TITLE + "TITLE] "
             + "[" + PREFIX_DATE + "DATE] "
-            + "[" + PREFIX_DURATION + "15:30-18:30] "
+            + "[" + PREFIX_DURATION + "DURATION] "
             + "[" + PREFIX_RECURRINGSCHEDULE + "RECURRINGSCHEDULE] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_TAG + "TAG]...\n"
@@ -56,7 +56,7 @@ public class EditCommand extends Command {
     public static final String SHORT_MESSAGE_USAGE = COMMAND_WORD + " "
             + "[" + PREFIX_TITLE + "TITLE] "
             + "[" + PREFIX_DATE + "DATE] "
-            + "[" + PREFIX_DURATION + "15:30-18:30] "
+            + "[" + PREFIX_DURATION + "DURATION] "
             + "[" + PREFIX_RECURRINGSCHEDULE + "RECURRINGSCHEDULE] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_TAG + "TAG]...\n";
