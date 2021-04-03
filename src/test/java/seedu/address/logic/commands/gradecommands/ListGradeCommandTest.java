@@ -35,6 +35,6 @@ public class ListGradeCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListGradeCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListGradeCommand(), model, ListGradeCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }
