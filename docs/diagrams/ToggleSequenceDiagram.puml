@@ -1,0 +1,73 @@
+@startuml
+!include style.puml
+
+box UI UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ImposterParser" as ImposterParser LOGIC_COLOR
+participant ":ToggleCommandParser" as ToggleCommandParser LOGIC_COLOR
+participant "d:ToggleCommand" as ToggleCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+[-> MainWindow : executeCommand("toggle light")
+activate MainWindow
+
+MainWindow -> LogicManager : execute("toggle light")
+activate LogicManager
+
+LogicManager -> ImposterParser : parseCommand("toggle light")
+activate ImposterParser
+
+create ToggleCommandParser
+ImposterParser -> ToggleCommandParser
+activate ToggleCommandParser
+
+ToggleCommandParser --> ImposterParser
+deactivate ToggleCommandParser
+
+ImposterParser -> ToggleCommandParser : parse("light")
+activate ToggleCommandParser
+
+create ToggleCommand
+ToggleCommandParser -> ToggleCommand
+activate ToggleCommand
+
+ToggleCommand --> ToggleCommandParser : d
+deactivate ToggleCommand
+
+ToggleCommandParser --> ImposterParser : d
+deactivate ToggleCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ToggleCommandParser -[hidden]-> ImposterParser
+destroy ToggleCommandParser
+
+ImposterParser --> LogicManager : d
+deactivate ImposterParser
+
+LogicManager -> ToggleCommand : execute()
+activate ToggleCommand
+
+create CommandResult
+ToggleCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ToggleCommand
+deactivate CommandResult
+
+ToggleCommand --> LogicManager : result
+deactivate ToggleCommand
+
+LogicManager --> MainWindow
+deactivate LogicManager
+
+MainWindow -> MainWindow : updateTheme("light")
+activate MainWindow
+return
+
+[<-- MainWindow
+deactivate MainWindow
+@enduml
