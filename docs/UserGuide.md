@@ -91,7 +91,7 @@ Action | Format, Examples
 **exit** | `exit` The GUI Button at the top of the status bar. Clicking on it closes the application safely.
 **help** | `help` The GUI Button at the top of the status bar. Clicking on it opens a help window.
 **email** | `email`The GUI Button at the top of the status bar. Clicking on it opens a simplified MailBox interface allowing user to send email.
-**up** | `/up{X}`, meaning any command starting with `/up`
+**up** | `/up{X}`, meaning any command starting with `/up`. Eg: `/up delete John Doe`
 
 
 ### Adding a customer: `add`
@@ -190,6 +190,10 @@ Format: `list`
 ## Repeat last Command : `/up`
 * **`/up{X}`** : Loads in the previous command. `{X}` can be any string of characters, usually the previous command.
 * Examples: `/updelete John Doe`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+There does not need to be a space after /up, so long as it is the first part of the 'command'
+</div>
 
 eg: The command Box is as follows
 
