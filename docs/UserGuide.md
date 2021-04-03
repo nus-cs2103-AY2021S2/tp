@@ -193,12 +193,6 @@ Output:
 ![image](https://user-images.githubusercontent.com/48408342/113469180-3ae7ec00-947e-11eb-8a80-a35a17daa1e8.png)
 
 
-### Exiting the program : `exit`
-
-Exits the program.
-
-Format: `exit`
-
 ### Editing a patient information : `edit`
 
 Edits an existing patient in the list.
@@ -278,6 +272,13 @@ Example:
 Output:
 
 `Unarchived Person: Shrek; Phone: 66666666; Email: shrek@swampmail.com; Address: Swamp; Height: 243cm; Weight: 94kg; Tags: [smelly]`
+
+
+### Exiting the program : `exit`
+
+Exits the program.
+
+Format: `exit`
 
 ### Saving the data
 
