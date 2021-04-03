@@ -13,16 +13,22 @@ import static seedu.address.testutil.TypicalPersons.CARL;
 import static seedu.address.testutil.TypicalPersons.DANIEL;
 import static seedu.address.testutil.TypicalPersons.ELLE;
 import static seedu.address.testutil.TypicalPersons.FIONA;
+import static seedu.address.testutil.TypicalPersons.GEORGE;
+import static seedu.address.testutil.TypicalPersons.JANE;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
+import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.predicates.AddressContainsKeywordsPredicate;
 import seedu.address.model.person.predicates.EmailContainsKeywordsPredicate;
 import seedu.address.model.person.ModeOfContact;
@@ -63,7 +69,20 @@ public class FindCommandTest {
         EmailContainsKeywordsPredicate secondEmailPredicate =
                 new EmailContainsKeywordsPredicate(Collections.singletonList("emailTwo"));
 
+        PhoneContainsNumbersPredicate firstPhonePredicate =
+                new PhoneContainsNumbersPredicate(Collections.singletonList("123"));
+        PhoneContainsNumbersPredicate secondPhonePredicate =
+                new PhoneContainsNumbersPredicate(Collections.singletonList("456"));
 
+        PersonBlacklistedPredicate firstBlacklistPredicate =
+                new PersonBlacklistedPredicate(true);
+        PersonBlacklistedPredicate secondBlacklistPredicate =
+                new PersonBlacklistedPredicate(false);
+
+        ModeOfContactPredicate firstModeOfContactPredicate =
+                new ModeOfContactPredicate(new ModeOfContact("phone"));
+        ModeOfContactPredicate secondModeOfContactPredicate =
+                new ModeOfContactPredicate(new ModeOfContact("email"));
 
         FindCommand findFirstCommand = new FindCommand(firstPredicate,
                 returnTruePredicate, returnTruePredicate, returnTruePredicate,
@@ -79,6 +98,42 @@ public class FindCommandTest {
                 secondTagPredicate, returnTruePredicate, returnTruePredicate,
                 returnTruePredicate, returnTruePredicate, returnTruePredicate);
 
+        FindCommand findAddressOneCommand = new FindCommand(returnTruePredicate,
+                returnTruePredicate, firstAddressPredicate, returnTruePredicate,
+                returnTruePredicate, returnTruePredicate, returnTruePredicate);
+        FindCommand findAddressTwoCommand = new FindCommand(returnTruePredicate,
+                returnTruePredicate, secondAddressPredicate, returnTruePredicate,
+                returnTruePredicate, returnTruePredicate, returnTruePredicate);
+
+        FindCommand findEmailOneCommand = new FindCommand(returnTruePredicate,
+                returnTruePredicate, returnTruePredicate, firstEmailPredicate,
+                returnTruePredicate, returnTruePredicate, returnTruePredicate);
+
+        FindCommand findEmailTwoCommand = new FindCommand(returnTruePredicate,
+                returnTruePredicate, returnTruePredicate, secondEmailPredicate,
+                returnTruePredicate, returnTruePredicate, returnTruePredicate);
+
+        FindCommand findPhoneOneCommand = new FindCommand(returnTruePredicate,
+                returnTruePredicate, returnTruePredicate, returnTruePredicate,
+                firstPhonePredicate, returnTruePredicate, returnTruePredicate);
+        FindCommand findPhoneTwoCommand = new FindCommand(returnTruePredicate,
+                returnTruePredicate, returnTruePredicate, returnTruePredicate,
+                secondPhonePredicate, returnTruePredicate, returnTruePredicate);
+
+        FindCommand findBlacklistOneCommand = new FindCommand(returnTruePredicate,
+                returnTruePredicate, returnTruePredicate, returnTruePredicate,
+                returnTruePredicate, firstBlacklistPredicate, returnTruePredicate);
+        FindCommand findBlacklistTwoCommand = new FindCommand(returnTruePredicate,
+                returnTruePredicate, returnTruePredicate, returnTruePredicate,
+                returnTruePredicate, secondBlacklistPredicate, returnTruePredicate);
+
+        FindCommand findModeOfContactOneCommand = new FindCommand(returnTruePredicate,
+                returnTruePredicate, returnTruePredicate, returnTruePredicate,
+                returnTruePredicate, returnTruePredicate, firstModeOfContactPredicate);
+        FindCommand findModeOfContactTwoCommand = new FindCommand(returnTruePredicate,
+                returnTruePredicate, returnTruePredicate, returnTruePredicate,
+                returnTruePredicate, returnTruePredicate, secondModeOfContactPredicate);
+
         FindCommand findFifthCommand = new FindCommand(firstPredicate,
                 firstTagPredicate, returnTruePredicate, returnTruePredicate,
                 returnTruePredicate, returnTruePredicate, returnTruePredicate);
@@ -90,6 +145,11 @@ public class FindCommandTest {
         assertEquals(findFirstCommand, findFirstCommand);
         assertEquals(findThirdCommand, findThirdCommand);
         assertEquals(findFifthCommand, findFifthCommand);
+        assertEquals(findAddressOneCommand, findAddressOneCommand);
+        assertEquals(findPhoneOneCommand, findPhoneOneCommand);
+        assertEquals(findBlacklistOneCommand, findBlacklistOneCommand);
+        assertEquals(findEmailOneCommand, findEmailOneCommand);
+        assertEquals(findModeOfContactOneCommand, findModeOfContactOneCommand);
 
         // same values -> returns true
         FindCommand findFirstCommandCopy = new FindCommand(firstPredicate,
@@ -107,6 +167,23 @@ public class FindCommandTest {
                 returnTruePredicate, returnTruePredicate, returnTruePredicate);
         assertEquals(findSixthCommandCopy, findSixthCommand);
 
+        FindCommand findAddressOneCopy = findAddressOneCommand.copy();
+        // this proves that a new object is returned
+        assertNotEquals(findAddressOneCopy.hashCode(), findAddressOneCommand.hashCode());
+        assertEquals(findAddressOneCopy, findAddressOneCommand);
+
+        FindCommand findPhoneOneCopy = findPhoneOneCommand.copy();
+        assertEquals(findPhoneOneCopy, findPhoneOneCommand);
+
+        FindCommand findBlacklistOneCopy = findBlacklistOneCommand.copy();
+        assertEquals(findBlacklistOneCopy, findBlacklistOneCommand);
+
+        FindCommand findEmailOneCopy = findEmailOneCommand.copy();
+        assertEquals(findEmailOneCopy, findEmailOneCommand);
+
+        FindCommand findModeOfContactCopy = findModeOfContactOneCommand.copy();
+        assertEquals(findModeOfContactCopy, findModeOfContactOneCommand);
+
         // different types -> returns false
         assertFalse(findFirstCommand.equals(1));
 
@@ -114,13 +191,24 @@ public class FindCommandTest {
         assertNotEquals(findFirstCommand, null);
 
         // different person -> returns false
-        assertNotEquals(findSecondCommand, findFirstCommand);
-        assertNotEquals(findFourthCommand, findThirdCommand);
-        assertNotEquals(findSixthCommand, findFifthCommand);
+        List<FindCommand> commandListOne = Arrays.asList(findFirstCommand, findThirdCommand,
+                findFifthCommand, findAddressOneCommand, findBlacklistOneCommand, findEmailOneCommand,
+                findModeOfContactOneCommand, findPhoneOneCommand);
+        List<FindCommand> commandListTwo = Arrays.asList(findSecondCommand, findFourthCommand,
+                findSixthCommand, findAddressTwoCommand, findBlacklistTwoCommand, findEmailTwoCommand,
+                findModeOfContactTwoCommand, findPhoneTwoCommand);
 
-        assertNotEquals(findThirdCommand, findFirstCommand);
-        assertNotEquals(findFifthCommand, findFirstCommand);
-        assertNotEquals(findFifthCommand, findThirdCommand);
+        for (int i = 0; i < commandListOne.size(); i++) {
+            for (int j = i + 1; j < commandListOne.size(); j++) {
+                assertNotEquals(commandListOne.get(i), commandListOne.get(j));
+            }
+        }
+
+        for (FindCommand f1 : commandListOne) {
+            for (FindCommand f2 : commandListTwo) {
+                assertNotEquals(f1, f2);
+            }
+        }
     }
 
     @Test
@@ -129,8 +217,10 @@ public class FindCommandTest {
         NameContainsKeywordsPredicate predicate = prepareNamePredicate(" ");
         PersonTagContainsKeywordsPredicate tagPredicate = prepareTagPredicate(" ");
         AddressContainsKeywordsPredicate addressPredicate = prepareAddressPredicate(" ");
-        FindCommand command = new FindCommand(predicate, tagPredicate, addressPredicate, returnTruePredicate,
-                returnTruePredicate, returnTruePredicate, returnTruePredicate);
+        EmailContainsKeywordsPredicate emailPredicate = prepareEmailPredicate(" ");
+        PhoneContainsNumbersPredicate phonePredicate = preparePhonePredicate(" ");
+        FindCommand command = new FindCommand(predicate, tagPredicate, addressPredicate, emailPredicate,
+                phonePredicate, returnTruePredicate, returnTruePredicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredPersonList());
@@ -158,6 +248,61 @@ public class FindCommandTest {
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(ALICE, BENSON, DANIEL, BOB), model.getFilteredPersonList());
+    }
+
+    @Test
+    public void execute_multipleAddressKeywords_multiplePersonsFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 7);
+        AddressContainsKeywordsPredicate predicate = prepareAddressPredicate("street ave");
+        FindCommand command = new FindCommand(returnTruePredicate, returnTruePredicate, predicate, returnTruePredicate,
+                returnTruePredicate, returnTruePredicate, returnTruePredicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, GEORGE, JANE), model.getFilteredPersonList());
+    }
+
+    @Test
+    public void execute_multipleEmailKeywords_multiplePersonsFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 4);
+        EmailContainsKeywordsPredicate predicate = prepareEmailPredicate("lyd ne corn");
+        FindCommand command = new FindCommand(returnTruePredicate, returnTruePredicate, returnTruePredicate, predicate,
+                returnTruePredicate, returnTruePredicate, returnTruePredicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(DANIEL, ELLE, FIONA, JANE), model.getFilteredPersonList());
+    }
+
+    @Test
+    public void execute_multiplePhoneNumbers_multiplePersonsFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 6);
+        PhoneContainsNumbersPredicate predicate = preparePhonePredicate("482 53");
+        FindCommand command = new FindCommand(returnTruePredicate, returnTruePredicate, returnTruePredicate,
+                returnTruePredicate, predicate, returnTruePredicate, returnTruePredicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(ALICE, CARL, DANIEL, ELLE, FIONA, GEORGE), model.getFilteredPersonList());
+    }
+
+    @Test
+    public void execute_blacklisted_multiplePersonsFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
+        PersonBlacklistedPredicate predicate = prepareBlacklistPredicate(true);
+        FindCommand command = new FindCommand(returnTruePredicate, returnTruePredicate, returnTruePredicate,
+                returnTruePredicate, returnTruePredicate, predicate, returnTruePredicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(CARL, FIONA, JANE), model.getFilteredPersonList());
+    }
+
+    @Test
+    public void execute_modeOfContactsPhone_multiplePersonsFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 4);
+        ModeOfContactPredicate predicate = prepareModeOfContactPredicate("phone");
+        FindCommand command = new FindCommand(returnTruePredicate, returnTruePredicate, returnTruePredicate,
+                returnTruePredicate, returnTruePredicate, returnTruePredicate, predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(CARL, DANIEL, GEORGE, JANE), model.getFilteredPersonList());
     }
 
     @Test
