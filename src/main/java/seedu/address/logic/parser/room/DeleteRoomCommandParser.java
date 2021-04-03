@@ -1,7 +1,5 @@
 package seedu.address.logic.parser.room;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.room.DeleteRoomCommand;
 import seedu.address.logic.parser.Parser;
@@ -20,12 +18,12 @@ public class DeleteRoomCommandParser implements Parser<DeleteRoomCommand> {
      */
     @Override
     public DeleteRoomCommand parse(String userInput) throws ParseException {
+        Index index;
         try {
-            Index index = ParserUtil.parseIndex(userInput);
-            return new DeleteRoomCommand(index);
+            index = ParserUtil.parseIndex(userInput);
         } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteRoomCommand.MESSAGE_USAGE), pe);
+            throw pe;
         }
+        return new DeleteRoomCommand(index);
     }
 }
