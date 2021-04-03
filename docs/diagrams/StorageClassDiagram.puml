@@ -18,7 +18,13 @@ StorageManager o--> SmartLibStorage
 
 JsonUserPrefsStorage .left.|> UserPrefsStorage
 JsonSmartLibStorage .left.|> SmartLibStorage
-JsonSmartLibStorage .down.> JsonSerializableSmartLibStorage
-JsonSerializableSmartLibStorage .right.> JsonSerializableReader
-JsonSerializableReader .right.> JsonAdaptedTag
+JsonSmartLibStorage .down.> JsonSerializableSmartLib
+
+JsonSerializableSmartLib .right.> JsonAdaptedReader
+JsonAdaptedReader .right.> JsonAdaptedTag
+JsonAdaptedReader .down.> JsonAdaptedBookDateBorrowedPair
+
+JsonSerializableSmartLib .left.> JsonAdaptedBook
+
+JsonSerializableSmartLib .down.> JsonAdaptedRecord
 @enduml
