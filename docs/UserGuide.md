@@ -70,7 +70,7 @@ You can use the sample data pre-loaded in the application to get play around and
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
-* Items with `…`​ after them can be used multiple times. <br>  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc. <!-- order desc? --> 
+* Items with `…`​ after them can be used multiple times. <br>  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc. <!-- order desc? --> 
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -353,8 +353,7 @@ _Details coming soon ..._
 ## Command summary
 
 Action  | Format, Examples
---------|----------------
->>>>>>> d12c73c4900a07997da27e6beef5b50275053a15
+--------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS d/DELIVERY_DATE o/ORDER_DESCRIPTION... [t/TAG]...` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/13-05-2021 o/strawberry cake 3` <br><br> `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS d/DELIVERY_DATE oi/ORDER_ITEM_INDEXES [o/ORDER_DESCRIPTION]... [t/TAG]...` <br> e.g. `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/13-05-2021 o/strawberry cake oi/1` <br>
 **Clear** | `clear`
 **Delete** | `delete INDEXES`<br> e.g., `delete 3 4`
@@ -369,7 +368,6 @@ Action  | Format, Examples
 **Cancelled** | `cancelled INDEXES`<br> e.g., `cancelled 3 4`
 **Add Order Item** | `addItem ORDER_ITEM_DESCRIPTION`<br> e.g., `addItem 2 x Red Velvet`
 **Delete Order Item** | `deleteItem ORDER_ITEM_INDEXES`<br> e.g., `deleteItem 2 3`
-
 
 --------------------------------------------------------------------------------------------------------------------
 
