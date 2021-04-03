@@ -26,7 +26,7 @@ public class FindVenueCommandTest {
     private Model model = new ModelManager(getTypicalBookingSystem(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalBookingSystem(), new UserPrefs());
 
-    @Test
+    /*@Test
     public void equals() {
         VenueNameContainsKeywordsPredicate firstPredicate =
                 new VenueNameContainsKeywordsPredicate(Collections.singletonList(VALID_VENUE_NAME_VENUE1));
