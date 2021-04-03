@@ -216,11 +216,10 @@ public class UniqueStudentList implements Iterable<Student> {
 
     @Override
     public boolean equals(Object other) {
-        UniqueStudentList otherUniqueStudentList = (UniqueStudentList) other;
         return other == this // short circuit if same object
                 || (other instanceof UniqueStudentList // instanceof handles nulls
-                        && internalList.equals(otherUniqueStudentList.internalList)
-                        && allSessionEquals(otherUniqueStudentList.internalList));
+                        && internalList.equals(((UniqueStudentList) other).internalList)
+                        && allSessionEquals(((UniqueStudentList) other).internalList));
     }
 
     /**
