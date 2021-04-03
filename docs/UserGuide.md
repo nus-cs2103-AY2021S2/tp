@@ -9,7 +9,7 @@ nav-text: User Guide
 </p>
 
 <h1 class="post-title">{{ page.title | escape }}</h1>
-<h3 class="post-subtitle">v1.3</h3>
+<h3 class="post-subtitle">v1.3.1</h3>
 
 <div style="page-break-after: always;"></div>
 <br/>
@@ -24,13 +24,13 @@ nav-text: User Guide
 
 ## 1. Welcome to imPoster
 
-Are you an aspiring [**Application Programming Interface (API)**](#7-glossary) developer? Or would you like a peek into the world of how applications communicate with one another? Then **imPoster** is the app just for you! But hold on, what is imPoster?
+Are you an aspiring [**Application Programming Interface (API)**](#glossary-api) developer? Or would you like a peek into the world of how applications communicate with one another? Then **imPoster** is the app just for you! But hold on, what is imPoster?
 
 imPoster is a desktop application for beginners of API development to quickly go hands-on with the basics. Whether you are looking to **explore**, **test**, or **build** your very own APIs, the simple and minimalistic style of imPoster will quickly get you up and going.
 
 This user guide assumes that users have a **basic understanding** of APIs. If you are wondering [what an API is](#81-what-is-an-api), an appendix has been provided for users who may be unfamiliar with the concept. However, it is highly recommended for users to refer to proper tutorial contents for the basics of APIs prior to using the application.
 
-For fast typists, imPoster is also highly optimised for the command line and can be fully operated through keyboard commands. Users who are familiar with [**CURL**](#7-glossary) will also be happy to know that we share a very similar command line syntax. If you have yet to do so, be sure to download our [latest releases](https://imposter-dev.tk) from our main website and give us a try!
+For fast typists, imPoster is also highly optimised for the command line and can be fully operated through keyboard commands. Users who are familiar with [**CURL**](#glossary-curl) will also be happy to know that we share a very similar command line syntax. If you have yet to do so, be sure to download our [latest releases](https://imposter-dev.tk) from our main website and give us a try!
 
 <div style="page-break-after: always;"></div>
 
@@ -55,34 +55,31 @@ Before diving into the rest of the contents in our user guide, the following are
 
 ## 3. Quickstart
 
-1. Ensure you have **Java 11 or above** installed in your Computer.
+1. Ensure you have **Java 11 or above** installed on your Computer.
 
-2. Download the latest **imposter.jar** from
-   [here](https://github.com/AY2021S2-CS2103T-T12-4/tp/releases) and move the file to the folder you wish to use as the **home folder** for imPoster.
+2. Download the latest **imposter.jar** from [here](https://imposter-dev.tk) and move the file to the folder you wish to use as the **home folder** for imPoster.
 
-4. **Double-click** the file to start the application. A graphical user interface (GUI) containing the annotated **3 main components** should show up as below:<br>
+3. **Double-click** the file to start the application. A graphical user interface (GUI) containing the annotated **3 main components** should show up as below:<br>
 
     <p align="center">
       <img width="900px" src="images/startscreen.png" >
     </p>
 
-5. Try making your first API call through our application with the first [**endpoint**](#7-glossary) shown in the 
-   sample **Endpoint List**. Type <span class="main-command">send</span> <span class="compulsory-param">1</span> in 
-   the **Command Box** and then press <kbd>Enter</kbd>.
+4. Try making your first API call through our application with the first [**endpoint**](#glossary-endpoint) shown in the default **Endpoint List**. Type <span class="main-command">send</span> <span class="compulsory-param">1</span> in the **Command Box** and then press <kbd>Enter</kbd>.
 
-6. After which, try scrolling through the responses shown in the **Result Display** as well!
+5. After which, try scrolling through the responses shown in the **Result Display** as well!
 
-7. For a quick **overview** of all available commands, please refer to our [Command Summary](#6-command-summary).
+6. For a quick **overview** of all available commands, please refer to our [Command Summary](#6-command-summary).
 
-8. For the **details** of each command, please proceed to the next section on [Commands](#4-commands).
+7. For the **details** of each command, please proceed to the next section on [Commands](#4-commands).
 
-9. When you are ready to start testing your APIs, remove the sample **Endpoint List** by typing <span 
-   class="main-command">clear</span> in the **Command Box** and then press <kbd>Enter</kbd>.
-   
-**Note:** imPoster data are saved automatically into a JSON file `<JAR file location>/data/imposter.json` after any command that changes the data.
+8. When you are ready to start testing your APIs, clear the default **Endpoint List** by typing <span 
+   class="main-command">clear</span> in the **Command Box** and then pressing <kbd>Enter</kbd>.
+
+9. If you are new and unsure of where to find an API endpoint to start, fret not! We have prepared an extensive list of [sample endpoints](#86-sample-endpoints) for you.
 
 <div markdown="span" class="alert alert-danger">:exclamation: **Caution:**
-imPoster will start with an empty file if a modification to the data file causes the data to be invalid.
+imPoster will start with an empty file if a modification to the [data file](#data-file) causes the data to be invalid.
 </div>
 
 
@@ -112,7 +109,7 @@ In the example above, <span class="main-command">add</span> is the command word 
 | THEME        |  None  | The theme for the application                                         |
 | METHOD       |   -x   | The [request method](#84-request-methods) to use for an endpoint      |
 | ADDRESS      |   -u   | The URL to use for an endpoint                                        |
-| HEADER       |   -h   | The header to use for an endpoint **(must be enclosed with "")**      |
+| HEADER       |   -h   | The header to use for an endpoint **(must be enclosed with \"\")**      |
 | DATA         |   -d   | The data to use for an endpoint **(must be in JSON format)**          |
 | TAG          |   -t   | The tag to label an endpoint                 |
 
@@ -138,7 +135,7 @@ Check out the screenshot of each command for an idea of the expected output in t
 
 #### 4.1.2 Toggle theme: `toggle`
 
-**Description:** Seeking a more personal visual design? Go ahead and toggle the theme for the application **(light, dark, or imposter)**!
+**Description:** Seeking a more personal visual design? Choose from our themes consisting of **light, dark, material or imposter**!
 
 **Format:** <span class="main-command">toggle</span> <span class="compulsory-param">THEME</span>
 
@@ -152,7 +149,7 @@ Check out the screenshot of each command for an idea of the expected output in t
 
 #### 4.1.3 Exit program: `exit`
 
-**Description:** Closes the application. Do come back soon!
+**Description:** Looking to exit the application? A simple command does the job but do come back soon!
 
 **Format:** <span class="main-command">exit</span>
 
@@ -166,7 +163,7 @@ Check out the screenshot of each command for an idea of the expected output in t
 
 **Format:** <span class="main-command">add</span> <span class="compulsory-param">-x METHOD</span> <span class="compulsory-param">-u URL</span> <span class="optional-param">-d DATA</span> <span class="optional-param">[-h HEADER]</span> <span class="optional-param">[-t TAG]</span>
 
-**Example & Output:** <span class="main-command">add</span> <span class="compulsory-param">-x POST</span> <span class="compulsory-param">-u https://reqres.in/api/users</span> <span class="optional-param">-d {"name": "tarzan", "job": "the jungle man"}</span> <span class="optional-param">-h "Content-Type: application/json"</span> <span class="optional-param">-t nature</span>
+**Example & Output:** <span class="main-command">add</span> <span class="compulsory-param">-x POST</span> <span class="compulsory-param">-u https://reqres.in/api/users</span> <span class="optional-param">-d {\"name\": \"tarzan\", \"job\": \"the jungle man\"}</span> <span class="optional-param">-h \"Content-Type: application/json\"</span> <span class="optional-param">-t nature</span>
 
 <p align="center">
   <img width="450px" src="images/commands/add.png" >
@@ -190,7 +187,7 @@ Multiple headers/tags must be unique and duplicates will be ignored
   <img width="450px" src="images/commands/edit.png" >
 </p>
 
-<div markdown="span" class="alert alert-warning">:bulb: **Tip:**
+<div markdown="span" class="alert alert-danger">:exclamation: **Caution:**
 Multiple headers/tags must be unique and duplicates will be ignored
 </div>
 
@@ -271,7 +268,7 @@ If you wish to generate a set of sample endpoints, you may delete the **imposter
 
 #### 4.2.8 Call a saved API endpoint: `send`
 
-**Description:** [Call](#7-glossary) an API endpoint from the API endpoint list **(an ongoing call can be cancelled with <kbd>ctrl</kbd> + <kbd>d</kbd>)**.
+**Description:** [Call](#glossary-call) an API endpoint from the API endpoint list **(an ongoing call can be cancelled with <kbd>ctrl</kbd> + <kbd>d</kbd>)**.
 
 **Format** <span class="main-command">send</span> <span class="compulsory-param">INDEX</span>
 
@@ -283,7 +280,7 @@ If you wish to generate a set of sample endpoints, you may delete the **imposter
 
 #### 4.2.9 Call an API endpoint directly without saving: `run`
 
-**Description:** [Call](#7-glossary) an API endpoint directly (without saving) **(an ongoing call can be cancelled with <kbd>ctrl</kbd> + <kbd>d</kbd>)**.
+**Description:** [Call](#glossary-call) an API endpoint directly (without saving) **(an ongoing call can be cancelled with <kbd>ctrl</kbd> + <kbd>d</kbd>)**.
 
 **Format:** <span class="main-command">run</span> <span class="compulsory-param">-x METHOD</span> <span class="compulsory-param">-u URL</span> <span class="optional-param">-d DATA</span> <span class="optional-param">[-h HEADER]</span>
 
@@ -324,21 +321,30 @@ command box with the last command.
 
 #### 4.3.4 Error Messages
 
-**Description:** Do not worry if you input any commands wrongly when using our app! Our app gives helpful error messages depending on the command you entered, and you can always enter the [Help Command](#4.1.1-View-help) if you need to refer back to the various commands avaliable!
+**Description:** Do not worry if you input any commands wrongly when using our app! Our app gives helpful error messages depending on the command you entered and you can always enter the [**help command**](#411-view-help-help) if you need to refer back to the various commands available!
 
 <div style="page-break-after: always;"></div>
 
 ## 5. Frequently Asked Questions (FAQ)
 
-**Q**: I am completely new to APIs, how do I get an [endpoint](#7-glossary)?<br> **A**: While the use of APIs is commonplace, not all applications provide their API endpoints publicly. **Google** is your best friend for searching of public APIs but if you are new and just looking to try things out, fear not! We have prepared an extensive list of [sample endpoints](#86-sample-endpoints) to get you started!
+**Q**: I am completely new to APIs, how do I get an [endpoint](#glossary-endpoint)?
+<br/><br/>
+**A**: While the use of APIs is commonplace, not all applications provide their API endpoints publicly. **Google** is your best friend for searching of public APIs but if you are new and just looking to try things out, fear not! We have prepared an extensive list of [sample endpoints](#86-sample-endpoints) to get you started!
 
-**Q**: How do I transfer my data to another Computer?<br> **A**: Install the
+**Q**: How do I transfer my data to another Computer?
+<br/><br/> 
+**A**: Install the
 application in the other computer and overwrite the empty data file it creates
 with the file that contains the data of your previous imPoster home folder.
 
-**Q**: How can I send non-JSON data in the request body?<br> **A**: This current version of imPoster only supports the sending of [JSON](#85-json-format) data in the request body which is the format used by an estimated over 70% of APIs worldwide. We apologise for the inconvenience caused but we are happy to share that plans are in place to include support for other data formats in future versions!
+**Q**: How can I send non-JSON data in the request body?
+<br/><br/>
+**A**: This current version of imPoster only supports the sending of [JSON](#85-json-format) data in the request body which is the format used by an estimated over 70% of APIs worldwide. We apologise for the inconvenience caused but we are happy to share that plans are in place to include support for other data formats in future versions!
 
-{more to be added}
+<a name="data-file"></a>
+**Q**: Where are the data of imPoster saved?
+<br/><br/>
+**A**: imPoster data are saved automatically into a JSON file named `<JAR file location>/data/imposter.json` after any command that changes the data.
 
 <div style="page-break-after: always;"></div>
 
@@ -374,15 +380,15 @@ A quick overview of all supported commands, their formats and examples are given
 
 | Term                                         | Description                                               |
 | -------------------------------------------- | --------------------------------------------------------- |
-| **API** | API is short for **Application Programming Interface** and allows two systems to interact with each other  |
-| **Call** | A call to an API endpoint refers to the process of sending a [request](#83-what-are-requests-and-responses) to the server           |
-| **Endpoint** | The communication point of a system that allows it to interact with another system, commonly accessed through a URL |
+| **API** | <a name="glossary-api"></a> API is short for **Application Programming Interface** and allows two systems to interact with each other  |
+| **Call** | <a name="glossary-call"></a> A call to an API endpoint refers to the process of sending a [request to the server and then receiving a response](#83-what-are-requests-and-responses).          |
+| **Endpoint** | <a name="glossary-endpoint"></a> The communication point of a system that allows it to interact with another system, commonly accessed through a URL |
 | **Request** | A process in which information is sent out to an endpoint through one of the [request methods](#84-request-methods) (a more detailed explanation can be found [here](#83-what-are-requests-and-responses)) |
 | **Response** | The information obtained from an endpoint after a request is sent to it (a more detailed explanation can be found [here](#83-what-are-requests-and-responses)) |
 | **Parameter**   | Information passed in as part of a command with its type identified by a prefix (e.g. <span class="compulsory-param">METHOD</span>) |
 | **Prefix**   | Characters used to identify the following parameter (e.g. <span class="compulsory-param">-x</span> is the prefix for the parameter <span class="compulsory-param">METHOD</span>) |
 | **JSON** | JSON is short for **JavaScript Object Notation** which is a lightweight format for data storage (a more detailed explanation can be found [here](#85-json-format)) |
-| **CURL** | CURL is short for **Client URL** and is a command-line tool used in the transfer of data via different network protocols |
+| **CURL** | <a name="glossary-curl"></a> CURL is short for **Client URL** and is a command-line tool used in the transfer of data via different network protocols |
 | **Index** | Index in this guide refers to the position of the endpoint in the endpoint list (represented by the number beside the endpoint) |
 
 <div style="page-break-after: always;"></div>
@@ -397,7 +403,7 @@ Broadly speaking, an **API** is an interface that enables and defines how **two 
   <img width="700px" src="images/ApiExplanation.png" >
 </p>
 
-Note that for the **waiter** to pass the order to the **kitchen**, a **window/door** is required to allow communication and this is represented by the term [**endpoint**](#7-glossary) which is frequently used in relation to an API.
+Note that for the **waiter** to pass the order to the **kitchen**, a **window/door** is required to allow communication and this is represented by the term [**endpoint**](#glossary-endpoint) which is frequently used in relation to an API.
 
 <div style="page-break-after: always;"></div>
 
@@ -407,10 +413,10 @@ You may be surprised to know that APIs are not only widely used in our daily liv
 
 ### 8.3 What are requests and responses?
 
-The terms **requests** and **responses** are both messages used in the exchange of information between two systems (sender and receiver). Typically, the sender sends out a request containing information to be sent to the receiver. Next, when the receiver receives the request containing the information from the sender, it returns a response. This response is then received by the original sender, thus completing a single API call.
+The terms **requests** and **responses** both refer to messages used in the exchange of information between two systems (sender and receiver). Typically, the sender will send out a request containing information to be sent to the receiver. Then, when the receiver receives the request from the sender, it will process the request and send back a response. This response is then received and processed by the original sender, thus completing a single API call.
 
 ### 8.4 Request Methods
-As of the latest version of our application, we support 7 commonly used request methods. We recommend individuals who are interested to learn more about request types to refer to [official documentation](#https://webconcepts.info/concepts/http-method/). A brief explanation for the 7 supported requests have been provided below:
+As of the latest version of our application, we support 7 commonly used request methods. We recommend individuals who are interested to learn more about request types to refer to [official documentation](https://webconcepts.info/concepts/http-method/). A brief explanation for the 7 supported requests have been provided below:
 
 | Method      | Description                                                                                                 |
 | ----------- | ----------------------------------------------------------------------------------------------------------- |
@@ -429,9 +435,10 @@ JSON is short for JavaScript Object Notation and is a common lightweight format 
 - `{"persons": {"name": "john doe"}}`
 
 ### 8.6 Sample Endpoints
-An extensive list of sample endpoints have been provided below for new users to test and try out. Note that the **header** field has been omitted in the samples to keep them beginner friendly. Rest assured that the following **examples will work without the header** field specified although for the more adventurous, you may refer to the full [list of HTTP headers](https://en.wikipedia.org/wiki/List_of_HTTP_header_fields). 
 
-Data fields on the other hand have been included in a standalone column (if applicable). They are all in the [**JSON format**](#85-json-format) and only the keys are provided (you can play around with your own values). Go ahead and try out the sample endpoints below!
+An extensive list of sample endpoints have been provided below for new users to test and try out. Note that the **header** field has been omitted in the samples to keep them beginner friendly but rest assured that the following **sample endpoints will work without the header** field. That said, for those more familiar with APIs, some examples of headers have been included in the initial list of default endpoints that came with the JAR file. For the even more adventurous, you may refer to and explore the [full list of HTTP headers](https://en.wikipedia.org/wiki/List_of_HTTP_header_fields). 
+
+Data fields on the other hand have been included in a standalone column (if applicable). They are all in the [**JSON format**](#85-json-format) and only the keys are provided (you may play around with your own values). The sample endpoints below are organised according to their [request method types](#84-request-methods) for your convenience. Go ahead and try out the sample endpoints below!
 
 <span class="pseudo-header">GET</span>
 
@@ -442,11 +449,8 @@ Data fields on the other hand have been included in a standalone column (if appl
 | https://project-billboard.herokuapp.com/laugh                  |
 | https://api.data.gov.sg/v1/environment/psi                     |
 | https://api.data.gov.sg/v1/environment/4-day-weather-forecast  |
-| https://api.data.gov.sg/v1/environment/2-hour-weather-forecast |
-| https://api.data.gov.sg/v1/environment/rainfall                |
-| https://api.data.gov.sg/v1/environment/relative-humidity       |
-| https://api.data.gov.sg/v1/environment/wind-speed              |
-| https://api.data.gov.sg/v1/environment/wind-direction          |
+
+<div style="page-break-after: always;"></div>
 
 <span class="pseudo-header">POST</span>
 
@@ -471,3 +475,26 @@ Data fields on the other hand have been included in a standalone column (if appl
 | ------------------------------------------------------------- |
 | https://jsonplaceholder.typicode.com/posts/1                  |
 | https://reqres.in/api/users/2                             |
+
+<span class="pseudo-header">HEAD</span>
+
+| URL                                                           |
+| ------------------------------------------------------------- |  
+| https://jsonplaceholder.typicode.com/posts/1/comments        |
+| https://api.data.gov.sg/v1/environment/2-hour-weather-forecast |
+| https://cat-fact.herokuapp.com/facts                         |
+| https://dog-facts-api.herokuapp.com/api/v1/resources/dogs?number=1 |
+
+<span class="pseudo-header">PATCH</span>
+
+| URL                                                           | Data (JSON)                                       |
+| ------------------------------------------------------------- |                                                   |
+| https://reqres.in/api/users/2                             | name, job                     |
+| https://jsonplaceholder.typicode.com/posts/1                    | title, body, userId                               |
+
+<span class="pseudo-header">OPTIONS</span>
+
+| URL                                                           |
+| ------------------------------------------------------------- |  
+| http://imposter-dev.tk:6000/api/v1/options       |
+| https://gorest.co.in/public-api/users |
