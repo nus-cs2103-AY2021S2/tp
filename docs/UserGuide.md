@@ -221,6 +221,18 @@ CRITERIA | Description | Example
 --------|------------------|------
 **name** | Sort by name in alphabetical order| sort c/name d/descending
 
+### Changing view type to light mode : `light`
+
+Changes the color theme to a light theme.
+
+Format: `light`
+
+### Changing view type to dark mode : `dark`
+
+Changes the color theme to a dark theme.
+
+Format: `dark`
+
 ### Review previous commands
 Users can view the commands they have inserted previously using up and down arrow keys.
 To re-execute the command, users simply need to press enter.
@@ -272,3 +284,5 @@ Action | Format, Examples
 **Remark** | `remark INDEX r/REMARK`<br> e.g., `remark 5 r/Currently on Leave of Absence`
 **Tag** | `tag n/NAME t/TAG`<br> e.g., `tag n/Jane Bo t/Student`
 **Sort** | `sort c/CRITERIA d/ASCENDING_OR_DESCENDING`<br> e.g., `sort c/name d/ascending`
+**Light** | `light`
+**Dark** | `dark`
