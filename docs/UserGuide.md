@@ -164,6 +164,20 @@ Output:
 
 ![image](https://user-images.githubusercontent.com/48408342/112743647-aee04b00-8fcb-11eb-8ac4-9ccf999bde49.png)
 
+### View a patient's preexisting medical record : `vrec`
+
+Views a past medical report of a patient identified by the index number of the medical record of the currently selected patient via the `view` command
+
+Format : `vrec INDEX`
+where INDEX must be a positive integer (1,2,3,...)
+
+Examples:
+* `vrec 4`
+
+Output:
+
+![image](https://user-images.githubusercontent.com/48408342/113468853-7c2acc80-947b-11eb-9978-0bf0d91fb434.png)
+
 
 ### View all information regarding a patient : `view`
 
@@ -298,6 +312,7 @@ Action | Format, Examples
 **appt** | `appt 1 d/010120211200`
 **listappt** | `listappt`
 **mrec** | `mrec 3`
+**vrec** | `vrec 4`
 **view** | `view 1`
 **archive** | `archive 2`
 **archivelist** | `archivelist`
