@@ -96,9 +96,9 @@ You can use the sample data pre-loaded in the application to get play around and
 
 </div>
 
-### 4.1 **Orders**
+### **4.1 Orders**
 
-#### *Interacting with orders*
+#### **4.1.1** ***Interacting with orders***
 
 ##### Adding an order: `add`
 
@@ -243,7 +243,7 @@ Warning: this is an undo-able operation.
 
 Format: `clear`
 
-#### *Order Functionalities* 
+#### **4.1.2** ***Order Functionalities*** 
 
 ##### Locating orders by name: `find`
 
