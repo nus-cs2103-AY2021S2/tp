@@ -1,6 +1,7 @@
 package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.assignee.Assignee;
@@ -25,6 +26,11 @@ class JsonAdaptedAssignee {
      */
     public JsonAdaptedAssignee(Assignee source) {
         assigneeName = source.assigneeName;
+    }
+
+    @JsonValue
+    public String getAssigneeName() {
+        return assigneeName;
     }
 
     /**
