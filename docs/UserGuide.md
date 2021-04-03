@@ -191,6 +191,10 @@ Format: `list`
 * **`/up{X}`** : Loads in the previous command. `{X}` can be any string of characters, usually the previous command.
 * Examples: `/updelete John Doe`
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+There does not need to be a space after /up, so long as it is the first part of the 'command'
+</div>
+
 eg: The command Box is as follows
 
     - find e/Apple
