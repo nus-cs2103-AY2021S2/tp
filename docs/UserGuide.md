@@ -137,6 +137,19 @@ Examples
 
 When you specify an order description using the prefix `o/`, e.g. `o/chocolate cake`, the app automatically adds it into the order items table. As such, you don't need to go through extra steps to add in items into the order items table manually.
 
+##### Adding a special request to an order: `request`
+
+Adds a special request to an existing order in the CakeCollate database.
+
+Format: `request INDEX r/REQUEST`
+
+* Adds a special request to the order at the specified `INDEX`. The index refers to the index number shown in the displayed order list. The index **must be a positive integer** 1, 2, 3, …​
+* You can remove an order’s special request by typing `r/` without specifying any requests after it.
+
+Examples:
+* `request 1 r/More sugar, spice and everything nice.` Sets the special request of the 1st order to be `More sugar, spice and everything nice.`
+* `request 2 r/` Removes the 2nd order's current special request.
+
 ##### Deleting an order : `delete`
 
 Deletes the specified orders from the CakeCollate database.
@@ -152,7 +165,7 @@ Examples:
 * `delete 2` deletes the order with `INDEX` 2 from the CakeCollate database.
 * `delete 2 3` deletes the orders with `INDEXES` 2 and 3 from the CakeCollate database.
 
-##### Delivery Status
+##### Updating Delivery Status of an order
 
 ###### Setting the delivery status of an order as undelivered : `undelivered`
 
@@ -202,20 +215,6 @@ Examples:
 * `list` followed by `cancelled 2` sets the delivery status of the orders with `ID` 2 from the
   CakeCollate database as `cancelled`.
 * `cancelled 2 3` sets the delivery status of the orders with ids 2 and 3 from the CakeCollate database as `cancelled`.
-
-##### Adding a special request to an order: `request`
-
-Adds a special request to an existing order in the CakeCollate database.
-
-Format: `request INDEX r/REQUEST`
-
-* Adds a special request to the order at the specified `INDEX`. The index refers to the index number shown in the displayed order list. The index **must be a positive integer** 1, 2, 3, …​
-* You can remove an order’s special request by typing `r/` without specifying any requests after it.
-
-Examples:
-* `request 1 r/More sugar, spice and everything nice.` Sets the special request of the 1st order to be `More sugar, spice and everything nice.`
-* `request 2 r/` Removes the 2nd order's current special request.
-
 
 ##### Editing an order : `edit`
 
