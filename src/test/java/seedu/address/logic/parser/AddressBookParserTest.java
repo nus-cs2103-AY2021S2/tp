@@ -105,7 +105,9 @@ public class AddressBookParserTest {
                         + PREFIX_ADDRESS + addressKeywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindCommand(new NameContainsKeywordsPredicate(nameKeywords),
                         new PersonTagContainsKeywordsPredicate(tagKeywords),
-                        new AddressContainsKeywordsPredicate(addressKeywords)),
+                        new AddressContainsKeywordsPredicate(addressKeywords),
+                        returnTruePredicate,
+                        returnTruePredicate, returnTruePredicate, returnTruePredicate),
                 command);
     }
 

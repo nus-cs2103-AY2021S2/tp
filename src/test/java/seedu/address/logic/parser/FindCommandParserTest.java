@@ -30,7 +30,8 @@ public class FindCommandParserTest {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
                 new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")),
-                        returnTruePredicate, returnTruePredicate);
+                        returnTruePredicate, returnTruePredicate, returnTruePredicate,
+                        returnTruePredicate, returnTruePredicate, returnTruePredicate);
         assertParseSuccess(parser, " " + PREFIX_NAME + "Alice Bob", expectedFindCommand);
 
         // multiple whitespaces between keywords
@@ -42,7 +43,8 @@ public class FindCommandParserTest {
         FindCommand expectedFindCommand =
                 new FindCommand(returnTruePredicate,
                         new PersonTagContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")),
-                        returnTruePredicate);
+                        returnTruePredicate, returnTruePredicate,
+                        returnTruePredicate, returnTruePredicate, returnTruePredicate);
         assertParseSuccess(parser, " " + PREFIX_TAG + "Alice Bob", expectedFindCommand);
 
         // multiple whitespaces between keywords
@@ -54,7 +56,8 @@ public class FindCommandParserTest {
         FindCommand expectedFindCommand =
                 new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")),
                         new PersonTagContainsKeywordsPredicate(Arrays.asList("tagOne", "tagTwo")),
-                        returnTruePredicate);
+                        returnTruePredicate, returnTruePredicate,
+                        returnTruePredicate, returnTruePredicate, returnTruePredicate);
         assertParseSuccess(parser, " " + PREFIX_NAME + "Alice Bob " + PREFIX_TAG + "tagOne tagTwo",
                 expectedFindCommand);
 
