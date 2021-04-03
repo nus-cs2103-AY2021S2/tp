@@ -227,8 +227,7 @@ Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
 
-![image](https://user-images.githubusercontent.com/59093518/113469427-e9406100-947f-11eb-90a1-5ed130481f2b.png)
-
+![image](https://user-images.githubusercontent.com/59093518/113469654-ed6d7e00-9481-11eb-881b-5d68b73b09ce.png)
 
 ### Clearing all entries : `clear`
 
