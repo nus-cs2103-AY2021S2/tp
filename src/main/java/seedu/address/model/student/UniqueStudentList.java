@@ -216,9 +216,28 @@ public class UniqueStudentList implements Iterable<Student> {
 
     @Override
     public boolean equals(Object other) {
+        UniqueStudentList otherUniqueStudentList = (UniqueStudentList) other;
         return other == this // short circuit if same object
                 || (other instanceof UniqueStudentList // instanceof handles nulls
-                        && internalList.equals(((UniqueStudentList) other).internalList));
+                        && internalList.equals(otherUniqueStudentList.internalList)
+                        && allSessionEquals(otherUniqueStudentList.internalList));
+    }
+
+    private boolean allSessionEquals(ObservableList<Student> studentList) {
+        for (int i = 0; i < internalList.size(); i++) {
+            Student currStudent = internalList.get(i);
+            Student otherStudent = studentList.get(i);
+            List<Session> currSessionList = currStudent.getListOfSessions();
+            List<Session> otherSessionList = otherStudent.getListOfSessions();
+            for (int j = 0; j < currSessionList.size(); j++) {
+                Session currSession = currSessionList.get(j);
+                Session otherSession = otherSessionList.get(j);
+                if (!currSession.equals(otherSession)) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     @Override
