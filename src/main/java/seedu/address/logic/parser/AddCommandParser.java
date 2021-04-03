@@ -13,6 +13,7 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.conditions.ConstraintManager;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Date;
@@ -52,8 +53,12 @@ public class AddCommandParser implements Parser<AddCommand> {
     private void handleMissingCompulsoryFields(ArgumentMultimap argumentMultimap) throws ParseException {
         boolean hasPrefixesMissing = !arePrefixesPresent(argumentMultimap, PREFIX_TITLE);
         boolean hasInvalidPreamble = !argumentMultimap.getPreamble().isEmpty();
-        if (hasInvalidPreamble || hasPrefixesMissing) {
+        if (hasInvalidPreamble) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+        }
+        if (hasPrefixesMissing) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                ConstraintManager.MESSAGE_EMPTY_TITLE));
         }
     }
 

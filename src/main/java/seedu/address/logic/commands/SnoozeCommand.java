@@ -10,7 +10,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.conditions.IndexManager;
@@ -83,7 +82,7 @@ public class SnoozeCommand extends Command {
     }
 
     private void enforceNonEmptyDate(Task taskToSnooze) throws CommandException {
-        if (taskToSnooze.isDateEmpty()) {
+        if (taskToSnooze.isEmptyDate()) {
             logger.log(Level.INFO, "The task selected has no date attribute.\n" + MESSAGE_USAGE);
 
             throw new CommandException("The task selected has no date attribute.\n" + MESSAGE_USAGE);

@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.conditions.IndexManager;
@@ -60,7 +59,7 @@ public class CountdownCommand extends Command {
 
         Task taskToCountdown = lastShownList.get(targetIndexValue);
 
-        if (taskToCountdown.isDateEmpty()) {
+        if (taskToCountdown.isEmptyDate()) {
             throw new CommandException(MESSAGE_EMPTY_DEADLINE);
         }
 

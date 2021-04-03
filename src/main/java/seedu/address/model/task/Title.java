@@ -40,6 +40,9 @@ public class Title {
         return test.matches(VALIDATION_REGEX);
     }
 
+    public boolean isEmptyValue() {
+        return fullTitle.equals("");
+    }
 
     @Override
     public String toString() {

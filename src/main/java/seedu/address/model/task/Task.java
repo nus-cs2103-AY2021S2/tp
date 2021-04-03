@@ -156,7 +156,7 @@ public class Task {
      *
      * @return true if the String of Date isEmpty, false otherwise.
      */
-    public boolean isDateEmpty() {
+    public boolean isEmptyDate() {
         return date.isEmptyValue();
     }
 
@@ -165,7 +165,7 @@ public class Task {
      *
      * @return true if the String of Duration is Empty, false otherwise.
      */
-    public boolean isDurationEmpty() {
+    public boolean isEmptyDuration() {
         return duration.isEmptyValue();
     }
 
@@ -174,7 +174,7 @@ public class Task {
      *
      * @return true if the String of RecurringSchedule is Empty, false otherwise.
      */
-    public boolean isRecurringScheduleEmpty() {
+    public boolean isEmptyRecurringSchedule() {
         return recurringSchedule.isEmptyValue();
     }
 
@@ -183,6 +183,10 @@ public class Task {
      */
     public boolean isDone() {
         return status.isDone();
+    }
+
+    public boolean isEmptyTitle() {
+        return title.isEmptyValue();
     }
 
     public boolean isWithinSevenDays(LocalDate currentDate) {
