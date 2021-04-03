@@ -150,7 +150,7 @@ public class HelpPanel extends UiPart<Region> {
                 new CommandSyntax("addG", "addG PROJECT_INDEX n/NAME [r/ROLE]..."),
                 new CommandSyntax("updateG",
                         "updateG PROJECT_INDEX i/GROUPMATE_INDEX [n/NAME] [r/ROLE]..."),
-                new CommandSyntax("deleteC", "deleteC PROJECT_INDEX i/GROUPMATE_INDEX")
+                new CommandSyntax("deleteG", "deleteG PROJECT_INDEX i/GROUPMATE_INDEX")
         );
     }
 
