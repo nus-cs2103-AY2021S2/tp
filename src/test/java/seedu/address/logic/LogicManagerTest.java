@@ -25,6 +25,7 @@ import seedu.address.logic.commands.tutorcommands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.ReadOnlyGradeBook;
 import seedu.address.model.ReadOnlyTutorBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.tutor.Tutor;
