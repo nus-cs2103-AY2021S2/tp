@@ -2,14 +2,12 @@ package seedu.booking.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.booking.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.booking.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_END;
-import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_ID;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_START;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_VENUE;
-import static seedu.booking.logic.parser.ParserUtil.parseTagsForEdit;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -20,10 +18,8 @@ import java.util.stream.Stream;
 import seedu.booking.commons.core.index.Index;
 import seedu.booking.logic.commands.EditBookingCommand;
 import seedu.booking.logic.commands.EditBookingCommand.EditBookingDescriptor;
-import seedu.booking.logic.commands.EditCommand;
 import seedu.booking.logic.parser.exceptions.ParseException;
 import seedu.booking.model.Tag;
-import seedu.booking.model.booking.Id;
 
 public class EditBookingCommandParser implements Parser<EditBookingCommand> {
     /**
@@ -44,14 +40,9 @@ public class EditBookingCommandParser implements Parser<EditBookingCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditBookingCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditBookingCommand.MESSAGE_USAGE), pe);
         }
-
-//        if (!arePrefixesPresent(argMultimap, PREFIX_BOOKING_ID)
-//                || argMultimap.getValue(PREFIX_BOOKING_ID).isEmpty()) {
-//            throw new ParseException(
-//                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditBookingCommand.MESSAGE_USAGE));
-//        }
 
 
         EditBookingDescriptor editBookingDescriptor = new EditBookingDescriptor();

@@ -4,11 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.booking.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.booking.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.booking.testutil.TypicalBookings.BOOKING1;
-import static seedu.booking.testutil.TypicalBookings.BOOKING2;
+import static seedu.booking.testutil.TypicalBookings.getTypicalBookingSystem;
 import static seedu.booking.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.booking.testutil.TypicalIndexes.INDEX_SECOND;
-import static seedu.booking.testutil.TypicalBookings.getTypicalBookingSystem;
 
 import org.junit.jupiter.api.Test;
 
@@ -18,7 +16,6 @@ import seedu.booking.model.Model;
 import seedu.booking.model.ModelManager;
 import seedu.booking.model.UserPrefs;
 import seedu.booking.model.booking.Booking;
-import seedu.booking.model.person.Person;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for

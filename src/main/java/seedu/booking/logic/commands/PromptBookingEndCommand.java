@@ -1,7 +1,10 @@
 package seedu.booking.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.booking.commons.core.Messages.*;
+import static seedu.booking.commons.core.Messages.MESSAGE_INVALID_TIME;
+import static seedu.booking.commons.core.Messages.MESSAGE_OVERLAPPING_BOOKING;
+import static seedu.booking.commons.core.Messages.PROMPT_NEWDATE_MESSAGE;
+import static seedu.booking.commons.core.Messages.PROMPT_START_MESSAGE;
 import static seedu.booking.logic.commands.states.AddBookingCommandState.STATE_START;
 
 import seedu.booking.logic.commands.exceptions.CommandException;

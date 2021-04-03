@@ -6,7 +6,6 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.booking.commons.core.GuiSettings;
 import seedu.booking.model.booking.Booking;
-import seedu.booking.model.booking.Id;
 import seedu.booking.model.person.Email;
 import seedu.booking.model.person.Person;
 import seedu.booking.model.person.Phone;
@@ -232,7 +231,8 @@ public interface Model {
     boolean hasOverlappedBooking(Booking toAdd);
 
     /**
-     * Returns true if there are more than one booking with the overlapped duration as {@code toAdd} exists in the system.
+     * Returns true if there are more than one booking with the overlapped duration
+     * as {@code toAdd} exists in the system.
      */
     boolean hasMoreThanOneOverlappedBooking(Booking toAdd);
 

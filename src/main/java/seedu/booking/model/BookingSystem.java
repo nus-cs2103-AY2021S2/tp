@@ -7,7 +7,6 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.booking.model.booking.Booking;
-import seedu.booking.model.booking.Id;
 import seedu.booking.model.booking.NonOverlappingBookingList;
 import seedu.booking.model.person.Email;
 import seedu.booking.model.person.Person;

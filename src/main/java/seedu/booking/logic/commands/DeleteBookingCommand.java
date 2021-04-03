@@ -9,7 +9,6 @@ import seedu.booking.commons.core.index.Index;
 import seedu.booking.logic.commands.exceptions.CommandException;
 import seedu.booking.model.Model;
 import seedu.booking.model.booking.Booking;
-import seedu.booking.model.booking.Id;
 
 /**
  * Changes the remark of an existing person in the booking system.

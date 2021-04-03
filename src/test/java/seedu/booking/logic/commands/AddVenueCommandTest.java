@@ -21,7 +21,6 @@ import seedu.booking.model.Model;
 import seedu.booking.model.ReadOnlyBookingSystem;
 import seedu.booking.model.ReadOnlyUserPrefs;
 import seedu.booking.model.booking.Booking;
-import seedu.booking.model.booking.Id;
 import seedu.booking.model.person.Email;
 import seedu.booking.model.person.Person;
 import seedu.booking.model.person.Phone;

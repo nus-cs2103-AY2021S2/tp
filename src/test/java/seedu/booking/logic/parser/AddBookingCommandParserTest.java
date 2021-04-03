@@ -13,7 +13,6 @@ import static seedu.booking.logic.commands.CommandTestUtil.BOOKING_TAGS_DESC_HAL
 import static seedu.booking.logic.commands.CommandTestUtil.BOOKING_VENUE_NAME_DESC_FIELD;
 import static seedu.booking.logic.commands.CommandTestUtil.BOOKING_VENUE_NAME_DESC_HALL;
 import static seedu.booking.logic.commands.CommandTestUtil.INVALID_BOOKER_EMAIL;
-import static seedu.booking.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.booking.logic.commands.CommandTestUtil.VALID_BOOKING_BOOKER_EMAIL_AMY;
 import static seedu.booking.logic.commands.CommandTestUtil.VALID_BOOKING_DESCRIPTION_HALL;
 import static seedu.booking.logic.commands.CommandTestUtil.VALID_BOOKING_END_HALL;

@@ -1,15 +1,10 @@
 package seedu.booking.logic.parser;
 
 import static seedu.booking.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_ID;
-
-import java.util.stream.Stream;
 
 import seedu.booking.commons.core.index.Index;
 import seedu.booking.logic.commands.DeleteBookingCommand;
-import seedu.booking.logic.commands.DeleteCommand;
 import seedu.booking.logic.parser.exceptions.ParseException;
-import seedu.booking.model.booking.Id;
 
 public class DeleteBookingCommandParser implements Parser<DeleteBookingCommand> {
 

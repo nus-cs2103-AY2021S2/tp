@@ -13,7 +13,6 @@ import seedu.booking.commons.core.GuiSettings;
 import seedu.booking.commons.core.LogsCenter;
 import seedu.booking.logic.commands.states.CommandState;
 import seedu.booking.model.booking.Booking;
-import seedu.booking.model.booking.Id;
 import seedu.booking.model.person.Email;
 import seedu.booking.model.person.Person;
 import seedu.booking.model.person.Phone;

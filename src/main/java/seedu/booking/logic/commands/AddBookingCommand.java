@@ -1,10 +1,10 @@
 package seedu.booking.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.booking.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_END;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_START;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_VENUE;
 
 import seedu.booking.logic.commands.exceptions.CommandException;

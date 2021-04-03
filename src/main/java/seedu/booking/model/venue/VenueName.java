@@ -3,8 +3,6 @@ package seedu.booking.model.venue;
 import static java.util.Objects.requireNonNull;
 import static seedu.booking.commons.util.AppUtil.checkArgument;
 
-import java.util.regex.Pattern;
-
 import seedu.booking.commons.util.StringUtil;
 
 /**

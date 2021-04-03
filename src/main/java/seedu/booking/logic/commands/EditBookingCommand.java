@@ -1,10 +1,10 @@
 package seedu.booking.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.booking.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_END;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_START;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_VENUE;
 import static seedu.booking.model.Model.PREDICATE_SHOW_ALL_BOOKINGS;
@@ -24,7 +24,6 @@ import seedu.booking.model.Tag;
 import seedu.booking.model.booking.Booking;
 import seedu.booking.model.booking.Description;
 import seedu.booking.model.booking.EndTime;
-import seedu.booking.model.booking.Id;
 import seedu.booking.model.booking.StartTime;
 import seedu.booking.model.person.Email;
 import seedu.booking.model.venue.VenueName;
