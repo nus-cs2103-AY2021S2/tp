@@ -125,7 +125,7 @@ public class BookingSystem implements ReadOnlyBookingSystem {
      */
     public boolean hasBooking(Booking booking) {
         requireNonNull(booking);
-        return bookings.contains(booking) || bookings.containsId(booking.getId());
+        return bookings.contains(booking);
     }
 
     /**
@@ -287,5 +287,9 @@ public class BookingSystem implements ReadOnlyBookingSystem {
      */
     public boolean hasOverlappedBooking(Booking toAdd) {
         return bookings.overlaps(toAdd);
+    }
+
+    public boolean hasMoreThanOneOverlappedBooking(Booking toAdd) {
+        return bookings.countOverlaps(toAdd) > 1;
     }
 }

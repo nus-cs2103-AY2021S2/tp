@@ -183,6 +183,11 @@ public class NonOverlappingBookingList implements Iterable<Booking> {
      */
     public void updatePersonInBookings(Email oldEmail, Email newEmail) {
         internalList.stream().filter(x -> x.getBookerEmail().equals(oldEmail))
-                .forEach(x -> x.setEmail(newEmail));
+                .forEach(x -> {x.setEmail(newEmail); System.out.println("changed");});
+    }
+
+    public long countOverlaps(Booking toAdd) {
+        requireNonNull(toAdd);
+        return internalList.stream().filter(toAdd::isOverlapping).count();
     }
 }

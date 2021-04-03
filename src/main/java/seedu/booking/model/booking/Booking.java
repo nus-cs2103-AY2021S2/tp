@@ -155,7 +155,8 @@ public class Booking {
                 && otherBooking.getVenueName().equals(getVenueName())
                 && otherBooking.getDescription().equals(getDescription())
                 && otherBooking.getBookingStart().equals(getBookingStart())
-                && otherBooking.getBookingEnd().equals(getBookingEnd());
+                && otherBooking.getBookingEnd().equals(getBookingEnd())
+                && otherBooking.getTags().equals(getTags());
     }
 
     /**
@@ -206,7 +207,7 @@ public class Booking {
         }
 
         return otherBooking != null
-                && otherBooking.getId().equals(getId());
+                && otherBooking.equals(this);
     }
 
     /**

@@ -231,5 +231,10 @@ public interface Model {
      */
     boolean hasOverlappedBooking(Booking toAdd);
 
+    /**
+     * Returns true if there are more than one booking with the overlapped duration as {@code toAdd} exists in the system.
+     */
+    boolean hasMoreThanOneOverlappedBooking(Booking toAdd);
+
 
 }
