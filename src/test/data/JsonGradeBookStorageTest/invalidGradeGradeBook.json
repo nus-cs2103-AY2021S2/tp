@@ -1,0 +1,7 @@
+{
+  "grades": [ {
+    "subject": "Invalid GradedItem Field: Midterm Exam&+-#",
+    "gradedItem": "Midterm Exam&+-#",
+    "grade": "A"
+  } ]
+}

@@ -1,0 +1,12 @@
+{
+  "grades": [ {
+    "subject" : "Valid Grade",
+    "gradedItem" : "Lab 1",
+    "grade" : "B"
+  },
+    {
+    "subject": "Grade with Invalid Grade Field",
+    "gradedItem": "Midterm Exam",
+    "grade": "A+invalid-grade"
+  } ]
+}
