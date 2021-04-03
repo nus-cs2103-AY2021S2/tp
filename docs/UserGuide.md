@@ -8,7 +8,7 @@ title: User Guide
   {:toc}
 </div>
 
-## 1. Introduction
+## **1. Introduction**
 Welcome to our **User Guide** and thank you for using CakeCollate! Are you a home baker searching for a reliable tool to keep track of your orders? 
 While there may be other modern applications such as Microsoft Excel that may be able to help you keep track of your data, they may not be the most efficient or simplest
 way for you to manage your data. 
