@@ -1,6 +1,7 @@
-#BookCoin
+## BookCoin User Guide
 
 BookCoin is a **desktop app for managing bookings and presents users a structured and detailed information on facility availability via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, BookCoinToTheMoon can get your facility management tasks done faster than traditional GUI apps.
+
 
 * Table of Contents
 {:toc}
@@ -23,7 +24,7 @@ BookCoin is a **desktop app for managing bookings and presents users a structure
 
    * **`list_venue`** : Lists all venues.
 
-   * **`add_venue`**`n/Chua Thian Poh Hall max/40` : Adds a venue named `Chua Thian Poh Hall` to the BookCoinToTheMoon.
+   * **`add_venue`**`v/Chua Thian Poh Hall max/40` : Adds a venue named `Chua Thian Poh Hall` with maximum capacity `40` to BookCoinToTheMoon.
 
    * **`exit`** : Exits the app.
 
@@ -45,8 +46,8 @@ BookCoin is a **desktop app for managing bookings and presents users a structure
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `bye`) will be ignored.<br>
-  e.g. if the command specifies `bye 123`, it will be interpreted as `bye`.
+* Extraneous parameters for commands that do not take in parameters (such as `exit`) will be ignored.<br>
+  e.g. if the command specifies `exit 123`, it will be interpreted as `exit`.
 
 </div>
 
@@ -59,6 +60,7 @@ As with other multi step commands, you can exit the command by entering `exit_pr
 
 Format: `add_person`
 
+
 ### Adding a venue : `add_venue`
 
 Adds a new venue for the booking app. `add_venue` is a multi-step command that will prompt you for additional input. 
@@ -67,7 +69,7 @@ Capacity, description and tags are optional. Default capacity without an input w
 Format: `add_venue v/VENUE_NAME [max/MAXIMUM CAPACITY] [d/DESCRIPTION] [t/TAG]`
 
 Examples:
-* `create_venue v/Chua Thian Poh Hall max/40`
+* `add_venue v/Chua Thian Poh Hall max/40` adds a venue with venue name Chua Thian Poh Hall and a maximum capacity of 40.
 
 We are halfway through implementing a multi step command replacement for add_venue as well. You can test it by inputting 
 `add_venue_m v/VENUE_NAME`, which will guide you through the prompt process.
@@ -85,7 +87,7 @@ As with other multi step commands, you can exit the command by entering `exit_pr
 Format: `add_booking`
 
 Examples:
-* `add_booking`
+* `add_booking` 
 
 ### Editing a person : `edit_person`
 
@@ -94,7 +96,7 @@ Edits an existing person in the booking system, identified by their unique email
 Format: `edit_person eo/EMAIL [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]`
 
 Examples:
-* `edit_person eo/amy@example.com p/83984029`
+* `edit_person eo/amy@example.com p/83984029` changes the phone number of the person with email amy@example.com to 83984029.
 
 ### Editing a venue : `edit_venue`
 
@@ -103,8 +105,8 @@ Edits an existing venue in the booking system with the specified venue name.
 Format: `edit_venue vo/VENUE_NAME [v/VENUE_NAME] [max/MAXIMUM_OCCUPANCY] [d/DESCRIPTION] [t/TAG]`
 
 Examples:
-* `edit_venue vo/Lab max/30`
-* `edit_venue vo/Victoria Hall v/Sports Hall`
+* `edit_venue vo/Lab max/30` changes the maximum capacity of the venue named Lab to 30.
+* `edit_venue vo/Victoria Hall v/Sports Hall` changes the venue name of the venue named Victoria Hall to Sports Hall.
 
 ### Editing a booking : `edit_booking`
 
@@ -113,17 +115,17 @@ Edits an existing booking in the booking system with the specified booking ID.
 Format: `edit_booking bid/BOOKING_ID [b/BOOKER_EMAIL] [v/VENUE_NAME] [d/DESCRIPTION] [bs/DATETIME] [be/DATETIME] [t/TAG]`
 
 Examples:
-* `edit_venue vo/Lab max/30`
-* `edit_venue vo/Victoria Hall v/Sports Hall`
+* `edit_booking bid/8937936578 b/janetan@gmail.com` 
+* `edit_booking bid/9384720480 v/Field`
 
 ### Deleting a person : `delete_person`
 
 Deletes a person corresponding to the email specified.
 
-Format: `delete_person e/[EMAIL]`
+Format: `delete_person e/EMAIL`
 
 Examples:
-* `delete_venue v/Volleyball Court`
+* `delete_person e/johndoe@gmail.com`
 
 ### Deleting a venue : `delete_venue`
 
@@ -138,16 +140,16 @@ Examples:
 
 Deletes booking corresponding to the booking ID specified.
 
-Format: `delete_booking b/BOOKING_ID`
+Format: `delete_booking bid/BOOKING_ID`
 
 Examples:
-* `delete_booking b/2321`
+* `delete_booking bid/232138762134`
 
 ### Finding a person : `find_person`
 
 Shows information about the person corresponding to the given email.
 
-Format: `find_person e/[EMAIL]`
+Format: `find_person e/EMAIL`
 
 ### Finding a venue : `find_venue`
 
@@ -162,16 +164,16 @@ Examples:
 
 Shows information about the booking corresponding to the given booking ID.
 
-Format: `find_booking b/BOOKING_ID`
+Format: `find_booking bid/BOOKING_ID`
 
 Examples:
-* `find_booking b/2321`
+* `find_booking bid/2321837462`
 
 ### Listing all persons : `list_person`
 
 Shows a list of all persons in the booking app.
 
-Format: `list_booking`
+Format: `list_person`
 
 ### Listing all venues : `list_venue`
 
@@ -189,7 +191,7 @@ Format: `list_booking`
 
 Shows a list of bookings on the specified date.
 
-Format: `filter_booking_by_date [date/DATE]`
+Format: `filter_booking_by_date date/DATE`
 
 Examples:
 * `filter_booking_by_date date/2020-12-12`
@@ -198,7 +200,7 @@ Examples:
 
 Shows a list of bookings booked by the booker identified by the email address given.
 
-Format: `filter_booking_by_booker [e/EMAIL]`
+Format: `filter_booking_by_booker e/EMAIL`
 
 Examples:
 * `filter_booking_by_booker e/JohnRose@abc.com`
@@ -207,42 +209,43 @@ Examples:
 
 Shows a list of bookings at the specified venue.
 
-Format: `filter_booking_by_venue [v/VENUE]`
+Format: `filter_booking_by_venue v/VENUE`
 
 Examples:
 * `filter_booking_by_venue v/Sports Hall`
 
-### Listing all persons : `list_person`
+### Filtering bookings by tag : `filter_booking_by_tag`
 
-Shows a list of all persons in the booking app.
+Shows a list of bookings with the specified tag.
 
-Format: `list_booking`
+Format: `filter_booking_by_tag t/TAG`
 
-### Listing all venues : `list_venue`
+Examples:
+* `filter_booking_by_tag t/student`
 
-Shows a list of all venues in the booking app.
+### Exiting prompting : `exit_prompt`
 
-Format: `list_venue`
+Exits the multi-step prompting under add_booking or add_venue. After exiting prompting, user would be able to give command
+inputs again.
 
-### Listing all bookings : `list_booking`
+Format: `exit_prompt`
 
-Shows a list of all bookings and their corresponding IDs in the booking app.
+=======
+This is a command that is only valid when you are in the process of a multi step command.
+Exits the multi-step prompting under add_booking or add_venue. After exiting prompting, user would be able to give command
+inputs again.
 
-Format: `list_booking`
+### Viewing all available commands : `help`
+
+Displays the link to the user guide.
+
+Format: `help`
 
 ### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
-
-### Exiting prompting : `exit_prompt`
-
-This is a command that is only valid when you are in the process of a multi step command.
-Exits the multi-step prompting under add_booking or add_venue. After exiting prompting, user would be able to give command 
-inputs again.
-
-Format: `exit_prompt`
 
 ### Saving the data
 
@@ -269,8 +272,20 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add_person` <br> `add_venue v/VENUE_NAME` <br> `add_booking` <br> (Note: add_person, add_venue and add_booking are multi-step commands)
-**Delete** | `delete_person` <br><br> `delete_venue v/VENUE_NAME`<br> e.g., `delete_venue v/Chua Thian Poh Hall` <br><br> `delete_booking b/BOOKING_ID`<br> e.g., `delete_booking b/2`
-**Find** | `find_person` <br> e.g., `find_person e/PERSON_EMAIL` <br><br> `find_venue v/VENUE_ID`<br> e.g., `find_venue v/1`<br><br> `find_booking b/BOOKING_ID`<br> e.g., `find_booking b/2`
-**List** | `list_person`<br>`list_venue` <br> `list_booking`
-**Exit** | `exit`
+**add person** | `add_person` <br> (Note: add_person is a multi-step command)
+**add venue** | `add_venue v/VENUE_NAME` <br> (Note: add_venue is a multi-step command)
+**add booking** | `add_booking` <br> (Note: add_booking is a multi-step command)
+**delete person** | `delete_person e/EMAIL` <br> e.g. `delete_person e/jane@gmail.com`
+**delete venue** | `delete_venue v/VENUE_NAME` <br> e.g. `delete_venue v/Field`
+**delete booking** | `delete_booking bid/BOOKING_ID` <br> e.g. `delete_booking bid/8756948376`
+**edit person** | `edit_person eo/EMAIL [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]` <br> e.g., `edit_person eo/jane@example.com p/94857267`
+**edit venue** | `edit_venue vo/VENUE_NAME [v/VENUE_NAME] [max/CAPACITY] [d/DESCRIPTION] [t/TAG]` <br> e.g., `edit_venue vo/Field v/Sports Field`
+**edit booking** | `edit_booking bid/BOOKING_ID [b/BOOKER_EMAIL] [v/VENUE_NAME] [d/DESCRIPTION] [bs/DATETIME] [be/DATETIME] [t/TAG]` <br> e.g., `edit_booking bid/3984792837 e/doe@gmail.com`
+**find person** | `find_person e/EMAIL` <br> e.g., `find_person e/jane@example.com` 
+**find venue** | `find_venue v/VENUE_NAME` <br> e.g., `find_venue v/Field`
+**find person** | `find_booking bid/BOOKING_ID` <br> e.g., `find_booking bid/8756948376`
+**help** | `help`
+**list person** | `list_person`
+**list venue** | `list_venue`
+**list booking** | `list_booking`
+**exit** | `exit`
