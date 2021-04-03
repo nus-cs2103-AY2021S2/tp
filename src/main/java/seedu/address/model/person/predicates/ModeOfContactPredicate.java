@@ -1,4 +1,7 @@
-package seedu.address.model.person;
+package seedu.address.model.person.predicates;
+
+import seedu.address.model.person.ModeOfContact;
+import seedu.address.model.person.Person;
 
 import java.util.function.Predicate;
 

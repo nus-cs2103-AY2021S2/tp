@@ -13,11 +13,11 @@ import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.AddressContainsKeywordsPredicate;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.predicates.AddressContainsKeywordsPredicate;
+import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.PersonTagContainsKeywordsPredicate;
-import seedu.address.model.person.ReturnTruePredicate;
+import seedu.address.model.person.predicates.PersonTagContainsKeywordsPredicate;
+import seedu.address.model.person.predicates.ReturnTruePredicate;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.

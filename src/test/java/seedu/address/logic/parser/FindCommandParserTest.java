@@ -11,9 +11,9 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.FindCommand;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.PersonTagContainsKeywordsPredicate;
-import seedu.address.model.person.ReturnTruePredicate;
+import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
+import seedu.address.model.person.predicates.PersonTagContainsKeywordsPredicate;
+import seedu.address.model.person.predicates.ReturnTruePredicate;
 
 public class FindCommandParserTest {
 
