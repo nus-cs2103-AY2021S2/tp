@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.temporal.ChronoUnit;
 
 /**
  * Represents a meeting's date and time in the iscam book.
@@ -31,14 +32,11 @@ public class DateTime {
     public static boolean isValidDateTimeStr(String dateTime) {
         try {
             LocalDateTime validDateTime = LocalDateTime.parse(dateTime, DATETIME_PATTERN);
-            return validDateTime.isEqual(LocalDateTime.now()) || validDateTime.isAfter(LocalDateTime.now());
+            LocalDateTime now = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
+            return validDateTime.isEqual(now) || validDateTime.isAfter(now);
         } catch (DateTimeParseException exception) {
             return false;
         }
-    }
-
-    public static boolean isValidDateTime(LocalDateTime dateTime) {
-        return dateTime.isEqual(LocalDateTime.now()) || dateTime.isAfter(LocalDateTime.now());
     }
 
     public LocalDateTime get() {
