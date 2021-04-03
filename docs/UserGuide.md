@@ -251,13 +251,9 @@ Warning: this is an undo-able operation.
 
 Format: `clear`
 
-### List all existing orders : `list`
+#### *Order Functionalities* 
 
-Shows a list of all orders in the CakeCollate database.
-
-Format: `list`
-
-### Locating orders by name: `find`
+##### Locating orders by name: `find`
 
 Find orders whose specified field contain any of the given keywords.
 
@@ -284,8 +280,13 @@ Examples:
 * `find n/Alex Charlotte o/Chocolate` will return all orders that matches (`Alex` or `Charlotte`) and `Chocolate`. <br>
   ![result for 'find n/Alex Charlotte o/Chocolate'](images/findAlexCharlotteChocolate.PNG) <br>
   
+##### List all existing orders : `list`
 
-### Receiving reminders for orders : `remind`
+Shows a list of all orders in the CakeCollate database.
+
+Format: `list`
+
+##### Receiving reminders for orders : `remind`
 
 Displays a list of reminder for orders that are X days within the current date.
 
