@@ -15,6 +15,7 @@ if () then ([command commits StoreMando])
     :Notify user less than two items listed;
     endif
     :Display filtered list;
+else ([else)
 endif
 stop
 @enduml
