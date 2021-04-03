@@ -11,7 +11,6 @@ import static seedu.address.testutil.TypicalTutors.getTypicalTutorBook;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.tutorcommands.ListCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
