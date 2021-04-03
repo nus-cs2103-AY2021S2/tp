@@ -26,6 +26,7 @@ JsonSmartLibStorage .down.> JsonSerializableSmartLib
 JsonSerializableSmartLib .left.> JsonAdaptedBook
 JsonSerializableSmartLib .down.> JsonAdaptedRecord
 JsonSerializableSmartLib .right.> JsonAdaptedReader
+
 JsonAdaptedReader .right.> JsonAdaptedTag
 JsonAdaptedReader .down.> JsonAdaptedBookDateBorrowedPair
 @enduml
