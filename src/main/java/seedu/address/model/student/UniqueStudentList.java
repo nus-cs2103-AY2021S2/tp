@@ -223,6 +223,10 @@ public class UniqueStudentList implements Iterable<Student> {
                         && allSessionEquals(otherUniqueStudentList.internalList));
     }
 
+    /**
+     * Checks if all sessions of each student in {@code internalList} are equal to all sessions
+     * of each student in {@code studentList}.
+     */
     private boolean allSessionEquals(ObservableList<Student> studentList) {
         for (int i = 0; i < internalList.size(); i++) {
             Student currStudent = internalList.get(i);
