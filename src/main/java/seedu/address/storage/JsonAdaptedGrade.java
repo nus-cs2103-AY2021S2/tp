@@ -57,12 +57,22 @@ public class JsonAdaptedGrade {
             throw new IllegalValueException(SubjectName.MESSAGE_CONSTRAINTS);
         }
 
+        if (gradedItem == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    GradedItem.class.getSimpleName()));
+        }
+
         if (!Grade.isValidGradedItem(gradedItem)) {
-            throw new IllegalValueException(Tag.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(GradedItem.MESSAGE_CONSTRAINTS);
+        }
+
+        if (grade == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    GradeEnum.class.getSimpleName()));
         }
 
         if (!Grade.isValidGrade(grade)) {
-            throw new IllegalValueException(Tag.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(GradeEnum.MESSAGE_CONSTRAINTS);
         }
 
         final SubjectName modelSubjectName = new SubjectName(subject);
