@@ -6,25 +6,20 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.function.Predicate;
+import java.util.UUID;
 
 import org.junit.jupiter.api.Test;
 
-import javafx.collections.ObservableList;
-import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
-import seedu.address.model.Model;
+import seedu.address.model.ModelStub;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.ReadOnlyAppointmentSchedule;
-import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Patient;
 import seedu.address.testutil.PatientBuilder;
+
 
 public class AddPatientCommandTest {
 
@@ -80,153 +75,6 @@ public class AddPatientCommandTest {
     }
 
     /**
-     * A default model stub that have all of the methods failing.
-     */
-    private class ModelStub implements Model {
-        @Override
-        public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ReadOnlyUserPrefs getUserPrefs() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public GuiSettings getGuiSettings() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setGuiSettings(GuiSettings guiSettings) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        //=========== AddressBook ================================================================================
-        @Override
-        public Path getPatientRecordsFilePath() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setPatientRecordsFilePath(Path patientRecordsFilePath) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void addPatient(Patient person) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setPatientRecords(ReadOnlyAddressBook<Patient> newData) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ReadOnlyAddressBook<Patient> getPatientRecords() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean hasPatient(Patient patient) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void deletePatient(Patient target) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setPatient(Patient target, Patient editedPatient) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ObservableList<Patient> getFilteredPatientList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ObservableList<String> getFilteredDoctorList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void updateFilteredPatientList(Predicate<? super Patient> predicate) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        //=========== AppointmentSchedule ========================================================================
-        @Override
-        public Path getAppointmentScheduleFilePath() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setAppointmentScheduleFilePath(Path appointmentScheduleFilePath) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void addAppointment(Appointment appointment) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setAppointmentSchedule(ReadOnlyAppointmentSchedule newData) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ReadOnlyAppointmentSchedule getAppointmentSchedule() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean hasPatientInAppointmentSchedule(Patient patient) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean hasConflictingAppointment(Appointment appointment) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public boolean hasConflictingAppointmentExcludingTarget(Appointment target, Appointment appointment) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void deleteAppointment(Appointment target) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void deletePatientAppointments(Patient patient) {
-            throw new AssertionError("this method should not be called");
-        }
-
-        @Override
-        public void setAppointment(Appointment target, Appointment editedAppointment) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ObservableList<Appointment> getFilteredAppointmentList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
-            throw new AssertionError("This method should not be called.");
-        }
-    }
-
-    /**
      * A Model stub that contains a single person.
      */
     private class ModelStubWithPatient extends ModelStub {
@@ -254,6 +102,11 @@ public class AddPatientCommandTest {
         public boolean hasPatient(Patient patient) {
             requireNonNull(patient);
             return patientsAdded.stream().anyMatch(patient::isSamePerson);
+        }
+
+        @Override
+        public boolean hasConflictingUuid(UUID uuid) {
+            return patientsAdded.stream().anyMatch(patient -> patient.getUuid() == uuid);
         }
 
         @Override

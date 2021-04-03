@@ -3,6 +3,7 @@ package seedu.address.logic.commands.appointment;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showAppointmentAtIndex;
 import static seedu.address.testutil.TypicalAppObjects.getTypicalAppointmentSchedule;
+import static seedu.address.testutil.TypicalAppObjects.getTypicalDoctorRecords;
 import static seedu.address.testutil.TypicalAppObjects.getTypicalPatientRecords;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_IN_LIST;
 
@@ -23,10 +24,10 @@ public class ListAppointmentCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAppointmentSchedule(), getTypicalPatientRecords(),
-                new UserPrefs());
-        expectedModel = new ModelManager(model.getAppointmentSchedule(), model.getPatientRecords(),
-                new UserPrefs());
+        model = new ModelManager(getTypicalPatientRecords(), getTypicalDoctorRecords(),
+                getTypicalAppointmentSchedule(), new UserPrefs());
+        expectedModel = new ModelManager(model.getPatientRecords(), model.getDoctorRecords(),
+                model.getAppointmentSchedule(), new UserPrefs());
     }
 
     @Test

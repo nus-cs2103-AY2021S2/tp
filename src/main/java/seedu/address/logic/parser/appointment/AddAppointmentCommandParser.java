@@ -18,6 +18,7 @@ import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.Prefix;
+import seedu.address.logic.parser.TimeslotParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.appointment.Timeslot;
 import seedu.address.model.tag.Tag;
@@ -43,15 +44,15 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
         }
 
         Index patientIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_PATIENT).get());
-        String doctor = argMultimap.getValue(PREFIX_DOCTOR).get();
+        Index doctorIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_DOCTOR).get());
         Timeslot timeslot = (argMultimap.getValue(PREFIX_TIMESLOT_END).isPresent())
-                ? ParserUtil.parseTimeslotByEnd(argMultimap.getValue(PREFIX_TIMESLOT_START).get(),
+                ? TimeslotParser.parseTimeslotByEnd(argMultimap.getValue(PREFIX_TIMESLOT_START).get(),
                         argMultimap.getValue(PREFIX_TIMESLOT_END).get())
-                : ParserUtil.parseTimeslotByDuration(argMultimap.getValue(PREFIX_TIMESLOT_START).get(),
+                : TimeslotParser.parseTimeslotByDuration(argMultimap.getValue(PREFIX_TIMESLOT_START).get(),
                         argMultimap.getValue(PREFIX_TIMESLOT_DURATION).get());
 
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        return new AddAppointmentCommand(patientIndex, doctor, timeslot, tagList);
+        return new AddAppointmentCommand(patientIndex, doctorIndex, timeslot, tagList);
     }
 
     /**

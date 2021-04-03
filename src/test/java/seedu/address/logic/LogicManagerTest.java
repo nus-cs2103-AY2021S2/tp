@@ -22,12 +22,15 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.patient.AddPatientCommand;
 import seedu.address.logic.commands.patient.ListPatientCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.AddressBook;
+import seedu.address.model.AppointmentSchedule;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Patient;
 import seedu.address.storage.JsonAppointmentScheduleStorage;
+import seedu.address.storage.JsonDoctorRecordsStorage;
 import seedu.address.storage.JsonPatientRecordsStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
@@ -44,13 +47,17 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAppointmentScheduleStorage appointmentScheduleStorage =
-                new JsonAppointmentScheduleStorage(temporaryFolder.resolve("PatientRecords.json"));
-        JsonPatientRecordsStorage patientRecordsStorage =
-                new JsonPatientRecordsStorage(temporaryFolder.resolve("PatientRecords.json"));
+        JsonPatientRecordsStorage patientRecordsStorage = new JsonPatientRecordsStorage(
+                temporaryFolder.resolve("PatientRecords.json"));
+        JsonDoctorRecordsStorage doctorRecordsStorage = new JsonDoctorRecordsStorage(
+                temporaryFolder.resolve("DoctorRecords.json"));
+        JsonAppointmentScheduleStorage appointmentScheduleStorage = new JsonAppointmentScheduleStorage(
+                temporaryFolder.resolve("AppointmentSchedule.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(appointmentScheduleStorage, patientRecordsStorage,
-                userPrefsStorage);
+
+        StorageManager storage = new StorageManager(patientRecordsStorage, doctorRecordsStorage,
+                appointmentScheduleStorage, userPrefsStorage);
+
         logic = new LogicManager(model, storage);
     }
 
@@ -75,14 +82,17 @@ public class LogicManagerTest {
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonPatientRecordsIoExceptionThrowingStub
-        JsonAppointmentScheduleStorage appointmentScheduleStorage =
-                new JsonAppointmentScheduleStorage(temporaryFolder.resolve("ioExceptionAddressBook.json"));
-        JsonPatientRecordsStorage patientRecordsStorage =
-                new JsonPatientRecordsIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
-        JsonUserPrefsStorage userPrefsStorage =
-                new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(appointmentScheduleStorage, patientRecordsStorage,
-                userPrefsStorage);
+        JsonPatientRecordsStorage patientRecordsStorage = new JsonPatientRecordsIoExceptionThrowingStub(
+                temporaryFolder.resolve("ioExceptionPatientRecords.json"));
+        JsonDoctorRecordsStorage doctorRecordsStorage = new JsonDoctorRecordsStorage(
+                temporaryFolder.resolve("ioExceptionDoctorRecords.json"));
+        JsonAppointmentScheduleStorage appointmentScheduleStorage = new JsonAppointmentScheduleStorage(
+                temporaryFolder.resolve("ioExceptionAppointmentSchedule.json"));
+        JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(
+                temporaryFolder.resolve("ioExceptionUserPrefs.json"));
+
+        StorageManager storage = new StorageManager(patientRecordsStorage, doctorRecordsStorage,
+                appointmentScheduleStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
@@ -136,8 +146,13 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getAppointmentSchedule(), model.getPatientRecords(),
-                new UserPrefs());
+        Model expectedModel = new ModelManager(
+            new AddressBook<>(model.getPatientRecords()),
+            new AddressBook<>(model.getDoctorRecords()),
+            new AppointmentSchedule(model.getAppointmentSchedule()),
+            new UserPrefs(model.getUserPrefs())
+        );
+
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -163,7 +178,7 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void saveAddressBook(ReadOnlyAddressBook<Patient> addressBook, Path filePath) throws IOException {
+        public void saveAddressBook(ReadOnlyAddressBook<Patient> patientRecords, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

@@ -17,12 +17,12 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class DeletePatientCommandParser implements Parser<DeletePatientCommand> {
 
     /**
-     * Used for the separation of force delete format and patient index.
+     * Used for the separation of force delete format and patient index from the format '--force INDEX'.
      */
     private static final Pattern FORCE_DELETE_FORMAT = Pattern.compile("(?<forceDelete>\\D+)(?<patientIndex>.*)");
 
     /**
-     * Parses the given {@code String} of arguments in the context of the DeletePatientCommand
+     * Parses the given {@code args} in the context of the DeletePatientCommand
      * and returns a DeletePatientCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
@@ -31,17 +31,17 @@ public class DeletePatientCommandParser implements Parser<DeletePatientCommand> 
         boolean isForceDelete = false;
         String indexToParse = args;
 
-        try {
-            if (forceDeleteMatcher.matches()) {
-                final String forceDelete = forceDeleteMatcher.group("forceDelete").trim();
-                final String patientIndex = forceDeleteMatcher.group("patientIndex");
+        if (forceDeleteMatcher.matches()) {
+            final String forceDelete = forceDeleteMatcher.group("forceDelete").trim();
+            final String patientIndex = forceDeleteMatcher.group("patientIndex");
 
-                if (forceDelete.equals("--force")) {
-                    isForceDelete = true;
-                    indexToParse = patientIndex;
-                }
+            if (forceDelete.equals("--force")) {
+                isForceDelete = true;
+                indexToParse = patientIndex;
             }
+        }
 
+        try {
             Index index = ParserUtil.parseIndex(indexToParse);
 
             return new DeletePatientCommand(index, isForceDelete);

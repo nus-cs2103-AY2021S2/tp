@@ -25,13 +25,13 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new AddPatientCommand object
  */
 public class AddPatientCommandParser implements Parser<AddPatientCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddCommand
-     * and returns an AddCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AddPatientCommand
+     * and returns an AddPatientCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddPatientCommand parse(String args) throws ParseException {

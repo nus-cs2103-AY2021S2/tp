@@ -8,6 +8,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.person.Doctor;
 
 /**
  * Panel containing the list of persons.
@@ -17,12 +18,12 @@ public class DoctorListPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(DoctorListPanel.class);
 
     @FXML
-    private ListView<String> doctorListView;
+    private ListView<Doctor> doctorListView;
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public DoctorListPanel(ObservableList<String> doctorList) {
+    public DoctorListPanel(ObservableList<Doctor> doctorList) {
         super(FXML);
         doctorListView.setItems(doctorList);
         doctorListView.setCellFactory(listView -> new DoctorListViewCell());
@@ -31,10 +32,10 @@ public class DoctorListPanel extends UiPart<Region> {
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
      */
-    class DoctorListViewCell extends ListCell<String> {
+    class DoctorListViewCell extends ListCell<Doctor> {
         // TODO create doctor class and convert person class to doctor class
         @Override
-        protected void updateItem(String doctor, boolean empty) {
+        protected void updateItem(Doctor doctor, boolean empty) {
             super.updateItem(doctor, empty);
 
             if (empty || doctor == null) {

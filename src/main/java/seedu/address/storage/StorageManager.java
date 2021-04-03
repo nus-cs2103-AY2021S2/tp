@@ -11,6 +11,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyAppointmentSchedule;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.Doctor;
 import seedu.address.model.person.Patient;
 
 /**
@@ -19,20 +20,23 @@ import seedu.address.model.person.Patient;
 public class StorageManager implements Storage {
 
     private static final Logger LOGGER = LogsCenter.getLogger(StorageManager.class);
-    private AppointmentScheduleStorage appointmentScheduleStorage;
-    private AddressBookStorage<Patient> patientRecordsStorage;
     private UserPrefsStorage userPrefsStorage;
+    private AddressBookStorage<Patient> patientRecordsStorage;
+    private AddressBookStorage<Doctor> doctorRecordsStorage;
+    private AppointmentScheduleStorage appointmentScheduleStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} patient records
      * and {@code UserPrefStorage}.
      */
-    public StorageManager(AppointmentScheduleStorage appointmentScheduleStorage,
-                          AddressBookStorage<Patient> patientRecordsStorage,
+    public StorageManager(AddressBookStorage<Patient> patientRecordsStorage,
+                          AddressBookStorage<Doctor> doctorRecordsStorage,
+                          AppointmentScheduleStorage appointmentScheduleStorage,
                           UserPrefsStorage userPrefsStorage) {
         super();
-        this.appointmentScheduleStorage = appointmentScheduleStorage;
         this.patientRecordsStorage = patientRecordsStorage;
+        this.doctorRecordsStorage = doctorRecordsStorage;
+        this.appointmentScheduleStorage = appointmentScheduleStorage;
         this.userPrefsStorage = userPrefsStorage;
     }
 
@@ -85,6 +89,39 @@ public class StorageManager implements Storage {
     public void savePatientRecords(ReadOnlyAddressBook<Patient> addressBook, Path filePath) throws IOException {
         LOGGER.fine("Attempting to write to data file: " + filePath);
         patientRecordsStorage.saveAddressBook(addressBook, filePath);
+    }
+    // ================ Doctor Records ============================================================================ //
+
+    @Override
+    public Path getDoctorRecordsFilePath() {
+        return doctorRecordsStorage.getAddressBookFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyAddressBook<Doctor>> readDoctorRecords() throws DataConversionException, IOException {
+        return readDoctorRecords(doctorRecordsStorage.getAddressBookFilePath());
+    }
+
+    /**
+     * Returns a {@code ReadOnlyAddressBook<Patient>} representing patient records if {@code filePath} exists.
+     */
+    public Optional<ReadOnlyAddressBook<Doctor>> readDoctorRecords(Path filePath) throws
+            DataConversionException, IOException {
+        LOGGER.fine("Attempting to read data from file: " + filePath);
+        return doctorRecordsStorage.readAddressBook(filePath);
+    }
+
+    @Override
+    public void saveDoctorRecords(ReadOnlyAddressBook<Doctor> addressBook) throws IOException {
+        saveDoctorRecords(addressBook, doctorRecordsStorage.getAddressBookFilePath());
+    }
+
+    /**
+     * Saves a {@code ReadOnlyAddressBook<Patient>} representing patient records based on {@code filePath}.
+     */
+    public void saveDoctorRecords(ReadOnlyAddressBook<Doctor> addressBook, Path filePath) throws IOException {
+        LOGGER.fine("Attempting to write to data file: " + filePath);
+        doctorRecordsStorage.saveAddressBook(addressBook, filePath);
     }
 
     // ================ Appointment Schedule ======================================================================= //
