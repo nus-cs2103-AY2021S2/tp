@@ -77,6 +77,21 @@ Car@leads is a **desktop app for a car salesperson to manage customer contacts**
 </div>
 
 
+## Command summary
+
+Action | Format, Examples
+--------|------------------
+**add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS c/OWNED_CAR+COE_EXPIRY_DATE [t/TAG]…​`<br> e.g., `n/add n/Bob Ang p/88765432 e/bobhnd@example.com a/John street, block 123, #01-01 c/BMW Coupe|2030 01 01 c/Porsche|2030 01 01`
+**find** | `find [e/bob /AND p/98761234] /OR b/1999 10 11`
+**delete** | `delete NAME`<br> e.g., `delete John doe`
+**list** | `list` Generates a default list of unfiltered contacts saved in the contact book.
+**clear** | `clear` Clears the contact list, erasing all saved data.
+**exit** | `exit` The GUI Button at the top of the status bar. Clicking on it closes the application safely.
+**help** | `help` The GUI Button at the top of the status bar. Clicking on it opens a help window.
+**email** | `email`The GUI Button at the top of the status bar. Clicking on it opens a simplified MailBox interface allowing user to send email.
+**up** | `/up{X}`, meaning any command starting with `/up`. Eg: `/up blahblah`
+
+
 ### Adding a customer: `add`
 
 Adds a customer to the contact list.
@@ -98,10 +113,29 @@ Examples:
 
 Find customers from the contact list that matches specified filters.
 
-Format: `find  n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS c/OWNED_CARBRAND+OWNED_CARTYPE|COE_EXPIRY_DATE [t/TAG]…​`
-`n/find [e/bob /AND p/98761234] OR b/1999 10 11`
+Format: `find  n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS c/OWNED_CARBRAND+OWNED_CARTYPE coe/COE_EXPIRY_DATE t/TAGs 
+cp/PREFERRED_CARBRAND+PREFERRED_CARTYPE b/DATE_OF_BIRTH`
 
-Note that the `COE_EXPIRY_DATE` input order: YYYY{space}MM{space}DD
+**IMP** : All arguments are optional. In particular:
+- for `c/OWNED_CARBRAND+OWNED_CARTYPE`, user can either give brand or type information, or both using the `+`sign to 
+  separate.
+  
+- for `cp/PREFERRED_CARBRAND+PREFERRED_CARTYPE` user can either give brand or type information, or both using the 
+  `+` sign to separate.
+  
+- for `n/NAME` giving a partial name is also okay - all names which have the given parameter as a subsequence (Note 
+  that `abc` is a subsequence of `addbddc`) will be matched. Note that this is the only field for which we match 
+  a subsequence instead of a simple substring.
+  
+- for `e/EMAIL`, all email containing the given parameter will be valid, but note that domain name is not checked.
+    - eg `find e/abc` will return profiles with the following emails:
+        -  `abcd@gmail.com`
+        -  `bbabc@gmail.com`
+    - It will _not_ return:
+        - `xxx@abc.com`
+        - `axbyc@hhh.com`
+    
+- 
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A customer can have any number of tags (including 0)
@@ -142,16 +176,3 @@ Format: `list`
   ![Ui](images/helps/googlehelp1.png)
   Url: https://myaccount.google.com/security
 --------------------------------------------------------------------------------------------------------------------
-
-## Command summary
-
-Action | Format, Examples
---------|------------------
-**add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS c/OWNED_CAR+COE_EXPIRY_DATE [t/TAG]…​`<br> e.g., `n/add n/Bob Ang p/88765432 e/bobhnd@example.com a/John street, block 123, #01-01 c/BMW Coupe|2030 01 01 c/Porsche|2030 01 01`
-**find** | `find [e/bob /AND p/98761234] OR b/1999 10 11`
-**delete** | `delete NAME`<br> e.g., `delete John doe`
-**list** | `list` Generates a default list of unfiltered contacts saved in the contact book.
-**clear** | `clear` Clears the contact list, erasing all saved data.
-**exit** | `exit` The GUI Button at the top of the status bar. Clicking on it closes the application safely.
-**help** | `help` The GUI Button at the top of the status bar. Clicking on it opens a help window.
-**email** | `email`The GUI Button at the top of the status bar. Clicking on it opens a simplified MailBox interface allowing user to send email.
