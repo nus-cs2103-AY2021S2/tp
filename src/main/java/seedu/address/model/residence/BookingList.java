@@ -5,9 +5,11 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.booking.Booking;
 import seedu.address.model.booking.exceptions.BookingNotFoundException;
 import seedu.address.model.booking.exceptions.OverlappingBookingException;
@@ -21,13 +23,22 @@ import seedu.address.model.booking.exceptions.OverlappingBookingException;
  * Supports a minimal set of list operations.
  *
  * @see Booking#doesOverlap(Booking)
+ *
+ * Note: All operations that modify the contents of the {@code interalList} will return the sorted list
+ * as described in {@code Booking}'s {@code compareTo} method.
+ *
+ * @see Booking#compareTo(Booking)
  */
 public class BookingList implements Iterable<Booking> {
+    //@@author Soorya
+    private static final Logger logger = LogsCenter.getLogger(BookingList.class);
+
     //@@author Li Gang
     private final ObservableList<Booking> internalList = FXCollections.observableArrayList();
     private final ObservableList<Booking> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
+    //@@author Soorya
     public BookingList() {}
 
     public BookingList(List<Booking> residenceBookingList) {
@@ -38,6 +49,7 @@ public class BookingList implements Iterable<Booking> {
         resetBookings(residenceBookingList);
     }
 
+    //@@author Li Gang
     /**
      * Returns true if the list contains a booking which overlaps with the given argument.
      */
@@ -63,6 +75,7 @@ public class BookingList implements Iterable<Booking> {
     /**
      * Adds a booking to the list.
      * The booking must not overlap with another booking which already exists in the list.
+     * Returns a sorted booking list.
      */
     public void add(Booking toAdd) {
         requireNonNull(toAdd);
@@ -70,6 +83,7 @@ public class BookingList implements Iterable<Booking> {
             throw new OverlappingBookingException();
         }
         internalList.add(toAdd);
+        logger.fine("Sorting the booking list.");
         sortBookingList();
     }
 
@@ -77,6 +91,7 @@ public class BookingList implements Iterable<Booking> {
      * Replaces the booking {@code target} in the list with {@code editedBooking}.
      * {@code target} must exist in the list.
      * The booking identity of {@code editedBooking} must not overlap with another existing booking in the list.
+     * Returns a sorted booking list.
      */
     public void setBooking(Booking target, Booking editedBooking) {
         requireAllNonNull(target, editedBooking);
@@ -87,6 +102,7 @@ public class BookingList implements Iterable<Booking> {
         }
 
         internalList.set(index, editedBooking);
+        logger.fine("Sorting the booking list.");
         sortBookingList();
     }
 
@@ -114,15 +130,19 @@ public class BookingList implements Iterable<Booking> {
 
     /**
      * Replaces all the {@code bookings} with those from the other {@code BookingList}.
+     * Returns a sorted booking list.
      */
     public void resetBookings(BookingList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
+        logger.fine("Sorting the booking list.");
+        sortBookingList();
     }
 
     /**
      * Replaces the contents of this list with {@code bookings}.
      * {@code bookings} must not contain overlapping bookings.
+     * Returns a sorted booking list.
      */
     public void setBookings(List<Booking> bookings) {
         requireAllNonNull(bookings);
@@ -130,6 +150,7 @@ public class BookingList implements Iterable<Booking> {
             throw new OverlappingBookingException();
         }
         internalList.setAll(bookings);
+        logger.fine("Sorting the booking list.");
         sortBookingList();
     }
 
@@ -139,7 +160,7 @@ public class BookingList implements Iterable<Booking> {
      */
     //@@author Soorya
     public ObservableList<Booking> getValue() {
-        return internalUnmodifiableList.sorted();
+        return internalUnmodifiableList;
     }
 
     //@@author Li Gang
