@@ -1,6 +1,4 @@
-<p align="center">
-  <img width="341" height="381" src="https://user-images.githubusercontent.com/48408342/112603571-29845b80-8e50-11eb-8dee-bb88603fffb8.png">
-</p>
+![background start](https://user-images.githubusercontent.com/59093518/113469865-9668a880-9483-11eb-9e23-f5d0ff034cda.png)
 
 **DocBob** is a **desktop app for managing patient medical information and appointments, optimised for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). DocBob is targeted at Doctors and Nurses like you! If you can type fast, DocBob can help you keep track of your patient's **medical information** and **scheduled appointments** more efficiently than any other patient information management app in the market. With DocBob, you will never have to go through the hassle of manually keeping track of your patients' medical information and appointments ever again.
 
