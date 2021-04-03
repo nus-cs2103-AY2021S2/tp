@@ -1,7 +1,7 @@
 package seedu.booking.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKER;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_END;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_START;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
@@ -35,18 +35,18 @@ public class EditBookingCommand extends Command {
             + "by the id used in the displayed booking list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: bid/BOOKING_ID "
-            + "[" + PREFIX_BOOKER + "BOOKER EMAIL] "
+            + "[" + PREFIX_EMAIL + "BOOKER EMAIL] "
             + "[" + PREFIX_VENUE + "VENUE NAME] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_BOOKING_START + "DATETIME] "
             + "[" + PREFIX_BOOKING_END + "DATETIME] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " bid/1234567890 "
-            + PREFIX_BOOKER + "example@gmail.com "
+            + PREFIX_EMAIL + "example@gmail.com "
             + PREFIX_VENUE + "Hall "
             + PREFIX_DESCRIPTION + "For FYP meeting. "
-            + PREFIX_BOOKING_START + "2012-01-31 22:59:59 "
-            + PREFIX_BOOKING_END + "2012-01-31 23:59:59";
+            + PREFIX_BOOKING_START + "2012-01-31 22:59 "
+            + PREFIX_BOOKING_END + "2012-01-31 23:59";
 
     public static final String MESSAGE_EDIT_BOOKING_SUCCESS = "Edited Booking: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -89,7 +89,6 @@ public class EditBookingCommand extends Command {
         if (bookingToEdit.isExactlySameBooking(editedBooking)) {
             throw new CommandException(MESSAGE_UNCHANGED_BOOKING);
         }
-
 
         if (!bookingToEdit.isSameBooking(editedBooking) && model.hasBooking(editedBooking)) {
             throw new CommandException(MESSAGE_DUPLICATE_BOOKING);

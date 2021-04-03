@@ -2,7 +2,7 @@ package seedu.booking.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.booking.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKER;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_END;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_ID;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_START;
@@ -28,7 +28,7 @@ public class EditBookingCommandParser implements Parser<EditBookingCommand> {
     public EditBookingCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_BOOKING_ID, PREFIX_BOOKER, PREFIX_VENUE,
+                ArgumentTokenizer.tokenize(args, PREFIX_BOOKING_ID, PREFIX_EMAIL, PREFIX_VENUE,
                         PREFIX_DESCRIPTION, PREFIX_BOOKING_START, PREFIX_BOOKING_END, PREFIX_TAG);
 
 
@@ -44,9 +44,9 @@ public class EditBookingCommandParser implements Parser<EditBookingCommand> {
 
         EditBookingDescriptor editBookingDescriptor = new EditBookingDescriptor();
 
-        if (argMultimap.getValue(PREFIX_BOOKER).isPresent()) {
+        if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
             editBookingDescriptor.setBookerEmail(ParserUtil.parseEmail(
-                    argMultimap.getValue(PREFIX_BOOKER).get()));
+                    argMultimap.getValue(PREFIX_EMAIL).get()));
         }
 
         if (argMultimap.getValue(PREFIX_VENUE).isPresent()) {

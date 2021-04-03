@@ -1,7 +1,7 @@
 package seedu.booking.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKER;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_END;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_START;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
@@ -20,13 +20,13 @@ public class AddBookingCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a booking to the booking system. "
             + "Parameters: "
-            + PREFIX_BOOKER + "BOOKER EMAIL "
+            + PREFIX_EMAIL + "BOOKER EMAIL "
             + PREFIX_VENUE + "VENUE NAME "
             + PREFIX_DESCRIPTION + "DESCRIPTION "
             + PREFIX_BOOKING_START + "DATETIME "
             + PREFIX_BOOKING_END + "DATETIME\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_BOOKER + "example@gmail.com "
+            + PREFIX_EMAIL + "example@gmail.com "
             + PREFIX_VENUE + "Hall "
             + PREFIX_DESCRIPTION + "For FYP Meeting. "
             + PREFIX_BOOKING_START + "2012-01-31 22:59 "
