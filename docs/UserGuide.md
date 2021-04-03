@@ -917,7 +917,7 @@ Format: `clear`
 **A**: CoLAB's data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 **Q**: Are my contacts and project groupmates linked?<br>
-**A**: No, currently there is no link between contacts and groupmates. This is a feature that we plan to add in future versions of CoLAB. However, you may still add a contact with the contact details of the groupmate. Once the contact has been added, you can then easily find the contact by using the `fincC` command to search for their name.
+**A**: No, currently there is no link between contacts and groupmates. This is a feature that we plan to add in future versions of CoLAB. However, you may still add a contact with the contact details of the groupmate. Once the contact has been added, you can then easily find the contact by using the `findC` command to search for their name.
 
 **Q**: Can I edit the data files directly?<br>
 **A**: CoLAB's data is saved as a JSON file `[JAR file location]/data/colab.json`. Advanced users are welcome to update data directly by editing that data file.
