@@ -47,6 +47,15 @@ public class AddDoctorCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_DOCTOR);
         }
 
+        if (model.hasConflictingUuid(toAdd.getUuid())) {
+            Doctor newUuidDoctor = toAdd;
+            while (model.hasConflictingUuid(newUuidDoctor.getUuid())) {
+                newUuidDoctor = new Doctor(toAdd.getName(), toAdd.getTags());
+            }
+            model.addDoctor(newUuidDoctor);
+            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        }
+
         model.addDoctor(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }

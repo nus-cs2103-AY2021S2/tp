@@ -20,20 +20,27 @@ public class DeleteDoctorCommand extends Command {
     public static final String COMMAND_WORD = "delete-doctor";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the person identified by the index number used in the displayed person list.\n"
+            + ": Deletes the doctor identified by the index number used in the displayed doctor records.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String FORCE_DELETE_MESSAGE_USAGE = COMMAND_WORD + " --force"
-            + ": Deletes the person identified by the index number used in the displayed person list,\n"
+            + ": Deletes the doctor identified by the index number used in the displayed doctor records,\n"
             + "along with all the existing appointments associated with the person in the appointment schedule.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " --force " + " 1";
 
     private final Index targetIndex;
+    private final boolean isForceDelete;
 
-    public DeleteDoctorCommand(Index targetIndex) {
+    /**
+     * Constructor: creates a DeleteDoctorCommand
+     * @param targetIndex index of doctor to be deleted
+     * @param isForceDelete true if force delete is required
+     */
+    public DeleteDoctorCommand(Index targetIndex, boolean isForceDelete) {
         this.targetIndex = targetIndex;
+        this.isForceDelete = isForceDelete;
     }
 
     @Override
@@ -47,10 +54,14 @@ public class DeleteDoctorCommand extends Command {
 
         Doctor doctorToDelete = lastShownList.get(targetIndex.getZeroBased());
 
+        if (isForceDelete) {
+            model.deleteDoctorAppointments(doctorToDelete.getUuid());
+        }
+
         // checks if doctor has any existing appointments
         if (model.hasDoctorInAppointmentSchedule(doctorToDelete)) {
             throw new CommandException(String.format(
-                    Messages.MESSAGE_FORCE_DELETE_PATIENT_REQUIRED, FORCE_DELETE_MESSAGE_USAGE));
+                    Messages.MESSAGE_FORCE_DELETE_DOCTOR_REQUIRED, FORCE_DELETE_MESSAGE_USAGE));
         }
 
         model.deleteDoctor(doctorToDelete);

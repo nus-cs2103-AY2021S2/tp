@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import java.util.Objects;
 import java.util.Set;
+import java.util.UUID;
 
 import seedu.address.model.tag.Tag;
 
@@ -12,10 +13,18 @@ import seedu.address.model.tag.Tag;
 public class Doctor extends Person {
 
     /**
-     * Every field must be present and not null.
+     * Every field must be present and not null, except for UUID,
+     * which can be generated automatically by superclass.
      */
     public Doctor(Name name, Set<Tag> tags) {
         super(name, tags);
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Doctor(UUID uuid, Name name, Set<Tag> tags) {
+        super(uuid, name, tags);
     }
 
     /**

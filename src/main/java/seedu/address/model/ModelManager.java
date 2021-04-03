@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.UUID;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -37,8 +38,10 @@ public class ModelManager implements Model {
         super();
         requireAllNonNull(appointmentSchedule, patientRecords, userPrefs);
 
-        LOGGER.fine("Initializing with appointment schedule: " + appointmentSchedule
-                + ", address book: " + patientRecords + " and user prefs " + userPrefs);
+        LOGGER.fine("Initializing with patientRecords: " + patientRecords
+                + " and doctorRecords: " + doctorRecords
+                + " and appointment schedule: " + appointmentSchedule
+                + " and user prefs " + userPrefs);
 
         this.userPrefs = new UserPrefs(userPrefs);
         this.patientRecords = new AddressBook<>(patientRecords);
@@ -103,6 +106,13 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasConflictingUuid(UUID uuid) {
+        requireNonNull(uuid);
+        return patientRecords.hasConflictingUuid(uuid)
+                || doctorRecords.hasConflictingUuid(uuid);
+    }
+
+    @Override
     public boolean hasPatient(Patient patient) {
         requireNonNull(patient);
         return patientRecords.hasPerson(patient);
@@ -145,7 +155,7 @@ public class ModelManager implements Model {
 
     @Override
     public Path getDoctorRecordsFilePath() {
-        return userPrefs.getPatientRecordsFilePath();
+        return userPrefs.getDoctorRecordsFilePath();
     }
 
     @Override
@@ -254,9 +264,15 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deletePatientAppointments(Patient patient) {
-        requireNonNull(patient);
-        appointmentSchedule.deletePatientAppointments(patient);
+    public void deletePatientAppointments(UUID patientUuid) {
+        requireNonNull(patientUuid);
+        appointmentSchedule.deletePatientAppointments(patientUuid);
+    }
+
+    @Override
+    public void deleteDoctorAppointments(UUID doctorUuid) {
+        requireNonNull(doctorUuid);
+        appointmentSchedule.deleteDoctorAppointments(doctorUuid);
     }
 
     @Override

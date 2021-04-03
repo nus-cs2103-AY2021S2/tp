@@ -1,6 +1,6 @@
 package seedu.address.logic.commands.patient;
 
-import static seedu.address.commons.core.Messages.MESSAGE_CLEAR_APPOINTMENTS_REQUIRED;
+import static seedu.address.commons.core.Messages.MESSAGE_CLEAR_APPOINTMENTS_BEFORE_PATIENTS_REQUIRED;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalAppObjects.getEmptyAppointmentSchedule;
@@ -26,7 +26,7 @@ public class ClearPatientCommandTest {
     }
 
     @Test
-    public void execute_nonEmptyPatientRecords_success() {
+    public void execute_emptyAppointmentScheduleNonEmptyPatientRecords_success() {
         Model model = new ModelManager(getTypicalPatientRecords(), getTypicalDoctorRecords(),
                 getEmptyAppointmentSchedule(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalPatientRecords(), getTypicalDoctorRecords(),
@@ -37,11 +37,11 @@ public class ClearPatientCommandTest {
     }
 
     @Test
-    public void execute_nonEmptyPatientRecords_failure() {
+    public void execute_nonEmptyAppointmentScheduleNonEmptyPatientRecords_failure() {
         Model model = new ModelManager(getTypicalPatientRecords(), getTypicalDoctorRecords(),
                 getTypicalAppointmentSchedule(), new UserPrefs());
 
-        assertCommandFailure(new ClearPatientCommand(), model, MESSAGE_CLEAR_APPOINTMENTS_REQUIRED);
+        assertCommandFailure(new ClearPatientCommand(), model, MESSAGE_CLEAR_APPOINTMENTS_BEFORE_PATIENTS_REQUIRED);
     }
 
 }

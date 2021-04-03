@@ -3,6 +3,7 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.UUID;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.appointment.Appointment;
@@ -110,10 +111,17 @@ public class AppointmentSchedule implements ReadOnlyAppointmentSchedule {
     }
 
     /**
-     * Deletes all appointments associated with the input patient from the appointment schedule.
+     * Deletes all appointments associated with the input {@code patientUuid} from the appointment schedule.
      */
-    public void deletePatientAppointments(Patient patient) {
-        appointments.deletePatientAppointments(patient);
+    public void deletePatientAppointments(UUID patientUuid) {
+        appointments.deletePatientAppointments(patientUuid);
+    }
+
+    /**
+     * Deletes all appointments associated with the input {@code doctor} from the appointment schedule.
+     */
+    public void deleteDoctorAppointments(UUID doctorUuid) {
+        appointments.deleteDoctorAppointments(doctorUuid);
     }
 
     /**

@@ -8,6 +8,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.UUID;
 
 import org.junit.jupiter.api.Test;
 
@@ -101,6 +102,11 @@ public class AddPatientCommandTest {
         public boolean hasPatient(Patient patient) {
             requireNonNull(patient);
             return patientsAdded.stream().anyMatch(patient::isSamePerson);
+        }
+
+        @Override
+        public boolean hasConflictingUuid(UUID uuid) {
+            return patientsAdded.stream().anyMatch(patient -> patient.getUuid() == uuid);
         }
 
         @Override

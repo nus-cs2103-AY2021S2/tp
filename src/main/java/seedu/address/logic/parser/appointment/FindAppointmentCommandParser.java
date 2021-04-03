@@ -67,7 +67,7 @@ public class FindAppointmentCommandParser implements Parser<FindAppointmentComma
         if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
             Collections.addAll(tagKeywords, listKeywords(argMultimap, PREFIX_TAG));
         }
-        return new FindAppointmentCommand(new AppointmentContainsKeywordsPredicate(patientKeywords ,
+        return new FindAppointmentCommand(new AppointmentContainsKeywordsPredicate(patientKeywords,
                 doctorKeywords, timeStartKeywords, tagKeywords));
     }
 

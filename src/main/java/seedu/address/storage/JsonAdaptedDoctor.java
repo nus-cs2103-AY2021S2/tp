@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -15,14 +16,15 @@ import seedu.address.model.tag.Tag;
 
 public class JsonAdaptedDoctor extends JsonAdaptedPerson {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Doctor's %s field is missing!";
+    public static final String UUID_MESSAGE_CONSTRAINTS = "This is not a valid UUID field";
 
     /**
      * Constructs a {@code JsonAdaptedDoctor} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedDoctor(@JsonProperty("name") String name,
+    public JsonAdaptedDoctor(@JsonProperty("uuid") String uuid, @JsonProperty("name") String name,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
-        super(name, tagged);
+        super(uuid, name, tagged);
     }
 
     /**
@@ -44,6 +46,16 @@ public class JsonAdaptedDoctor extends JsonAdaptedPerson {
             personTags.add(tag.toModelType());
         }
 
+        if (uuid == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, UUID.class.getSimpleName()));
+        }
+        final UUID modelUuid;
+        try {
+            modelUuid = UUID.fromString(uuid);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalValueException(UUID_MESSAGE_CONSTRAINTS);
+        }
+
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
@@ -53,6 +65,6 @@ public class JsonAdaptedDoctor extends JsonAdaptedPerson {
         final Name modelName = new Name(name);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Doctor(modelName, modelTags);
+        return new Doctor(modelUuid, modelName, modelTags);
     }
 }

@@ -1,7 +1,7 @@
 package seedu.address.logic.commands.patient;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_CLEAR_APPOINTMENTS_REQUIRED;
+import static seedu.address.commons.core.Messages.MESSAGE_CLEAR_APPOINTMENTS_BEFORE_PATIENTS_REQUIRED;
 
 import java.util.List;
 
@@ -29,7 +29,7 @@ public class ClearPatientCommand extends Command {
         List<Patient> lastShownList = model.getFilteredPatientList();
         for (Patient patientToClear : lastShownList) {
             if (model.hasPatientInAppointmentSchedule(patientToClear)) {
-                throw new CommandException(MESSAGE_CLEAR_APPOINTMENTS_REQUIRED);
+                throw new CommandException(MESSAGE_CLEAR_APPOINTMENTS_BEFORE_PATIENTS_REQUIRED);
             }
         }
 

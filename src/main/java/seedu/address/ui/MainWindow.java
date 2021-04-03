@@ -56,7 +56,13 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane resultDisplayPlaceholder;
 
     @FXML
-    private StackPane statusbarPlaceholder;
+    private StackPane patientStatusBarPlaceholder;
+
+    @FXML
+    private StackPane doctorStatusBarPlaceholder;
+
+    @FXML
+    private StackPane appointmentStatusBarPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -118,20 +124,27 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        appointmentListPanel = new AppointmentListPanel(logic.getFilteredAppointmentList());
-        appointmentListPanelPlaceholder.getChildren().add(appointmentListPanel.getRoot());
-        // TODO add logic to getDoctorList
-        doctorListPanel = new DoctorListPanel(logic.getFilteredDoctorList());
-        doctorListPanelPlaceholder.getChildren().add(doctorListPanel.getRoot());
-        // TODO add logic to getPatientList
         patientListPanel = new PatientListPanel(logic.getFilteredPatientList());
         patientListPanelPlaceholder.getChildren().add(patientListPanel.getRoot());
+
+        doctorListPanel = new DoctorListPanel(logic.getFilteredDoctorList());
+        doctorListPanelPlaceholder.getChildren().add(doctorListPanel.getRoot());
+
+        appointmentListPanel = new AppointmentListPanel(logic.getFilteredPatientList(),
+                logic.getFilteredDoctorList(), logic.getFilteredAppointmentList());
+        appointmentListPanelPlaceholder.getChildren().add(appointmentListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getPatientRecordsFilePath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+        StatusBarFooter patientStatusBarFooter = new StatusBarFooter(logic.getPatientRecordsFilePath());
+        patientStatusBarPlaceholder.getChildren().add(patientStatusBarFooter.getRoot());
+
+        StatusBarFooter doctorStatusBarFooter = new StatusBarFooter(logic.getDoctorRecordsFilePath());
+        doctorStatusBarPlaceholder.getChildren().add(doctorStatusBarFooter.getRoot());
+
+        StatusBarFooter appointmentStatusBarFooter = new StatusBarFooter(logic.getAppointmentScheduleFilePath());
+        appointmentStatusBarPlaceholder.getChildren().add(appointmentStatusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());

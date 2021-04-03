@@ -14,8 +14,8 @@ import seedu.address.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
-    private Path patientRecordsFilePath = Paths.get("data" , "PatientRecords.json");
-    private Path doctorRecordsFilePath = Paths.get("data" , "DoctorRecords.json");
+    private Path patientRecordsFilePath = Paths.get("data", "PatientRecords.json");
+    private Path doctorRecordsFilePath = Paths.get("data", "DoctorRecords.json");
     private Path appointmentScheduleFilePath = Paths.get("data", "AppointmentSchedule.json");
 
     /**
@@ -38,8 +38,11 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
         setPatientRecordsFilePath(newUserPrefs.getPatientRecordsFilePath());
+        setDoctorRecordsFilePath(newUserPrefs.getDoctorRecordsFilePath());
+        setAppointmentScheduleFilePath(newUserPrefs.getAppointmentScheduleFilePath());
     }
 
+    @Override
     public GuiSettings getGuiSettings() {
         return guiSettings;
     }
@@ -49,7 +52,8 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.guiSettings = guiSettings;
     }
 
-    //=========== PatientRecords ================================================================================
+    //=========== PatientRecords =============================================================================
+    @Override
     public Path getPatientRecordsFilePath() {
         return patientRecordsFilePath;
     }
@@ -59,7 +63,8 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.patientRecordsFilePath = patientRecordsFilePath;
     }
 
-    //=========== DoctorRecords ================================================================================
+    //=========== DoctorRecords ==============================================================================
+    @Override
     public Path getDoctorRecordsFilePath() {
         return doctorRecordsFilePath;
     }
@@ -70,6 +75,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     }
 
     //=========== AppointmentSchedule ========================================================================
+    @Override
     public Path getAppointmentScheduleFilePath() {
         return appointmentScheduleFilePath;
     }

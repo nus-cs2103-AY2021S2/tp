@@ -43,7 +43,7 @@ import seedu.address.ui.UiManager;
  */
 public class MainApp extends Application {
 
-    public static final Version VERSION = new Version(1, 3, 0, true);
+    public static final Version VERSION = new Version(1, 3, 1, false);
 
     private static final Logger LOGGER = LogsCenter.getLogger(MainApp.class);
 
@@ -89,8 +89,12 @@ public class MainApp extends Application {
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         // passing storage as a parameter ensures that storage is initialised
-        return new ModelManager(initPatientRecords(storage), initDoctorRecords(storage),
-                initAppointmentSchedule(storage), userPrefs);
+        // separately initialise them to avoid the case where compiler initialises
+        // appointment schedule before patient/doctor records
+        ReadOnlyAddressBook<Patient> patientRecords = initPatientRecords(storage);
+        ReadOnlyAddressBook<Doctor> doctorRecords = initDoctorRecords(storage);
+        ReadOnlyAppointmentSchedule appointmentSchedule = initAppointmentSchedule(storage);
+        return new ModelManager(patientRecords, doctorRecords, appointmentSchedule, userPrefs);
     }
 
     private ReadOnlyAddressBook<Patient> initPatientRecords(Storage storage) {
@@ -100,17 +104,17 @@ public class MainApp extends Application {
         try {
             patientRecordsOptional = storage.readPatientRecords();
             if (patientRecordsOptional.isEmpty()) {
-                LOGGER.info("Patient data file not found. Will be starting with a sample Patient AddressBook");
+                LOGGER.info("Patient data file not found. Will be starting with a sample Patient Record");
             }
 
             patientRecords = patientRecordsOptional.orElseGet(SampleDataUtil::getSamplePatientRecords);
         } catch (DataConversionException e) {
             LOGGER.warning("Patient data file not in the correct format. Will be starting with an empty"
-                    + " Patient AddressBook");
+                    + " Patient Record");
             patientRecords = new AddressBook<>();
         } catch (IOException e) {
             LOGGER.warning("Problem while reading from the patient data file. Will be starting with an empty"
-                    + " Patient AddressBook");
+                    + " Patient Record");
             patientRecords = new AddressBook<>();
         }
 
@@ -124,17 +128,17 @@ public class MainApp extends Application {
         try {
             doctorRecordsOptional = storage.readDoctorRecords();
             if (doctorRecordsOptional.isEmpty()) {
-                LOGGER.info("Doctor data file not found. Will be starting with a sample Doctor AddressBook");
+                LOGGER.info("Doctor data file not found. Will be starting with a sample Doctor Record");
             }
 
             doctorRecords = doctorRecordsOptional.orElseGet(SampleDataUtil::getSampleDoctorRecords);
         } catch (DataConversionException e) {
             LOGGER.warning("Doctor data file not in the correct format. Will be starting with an empty"
-                    + " Doctor AddressBook");
+                    + " Doctor Record");
             doctorRecords = new AddressBook<>();
         } catch (IOException e) {
             LOGGER.warning("Problem while reading from the doctor data file. Will be starting with an empty"
-                    + " Doctor AddressBook");
+                    + " Doctor Record");
             doctorRecords = new AddressBook<>();
         }
 
@@ -149,17 +153,17 @@ public class MainApp extends Application {
         try {
             appointmentScheduleOptional = storage.readAppointmentSchedule();
             if (appointmentScheduleOptional.isEmpty()) {
-                LOGGER.info("Appointment data file not found. Will be starting with an empty AppointmentSchedule");
+                LOGGER.info("Appointment data file not found. Will be starting with a sample Appointment Schedule");
             }
 
-            appointmentSchedule = appointmentScheduleOptional.orElseGet(AppointmentSchedule::new);
+            appointmentSchedule = appointmentScheduleOptional.orElseGet(SampleDataUtil::getSampleAppointmentSchedule);
         } catch (DataConversionException e) {
             LOGGER.warning("Appointment data file not in the correct format. Will be starting with an empty"
-                    + " AppointmentSchedule");
+                    + " Appointment Schedule");
             appointmentSchedule = new AppointmentSchedule();
         } catch (IOException e) {
-            LOGGER.warning("Problem while reading from the patient data file. Will be starting with an empty"
-                    + " AppointmentSchedule");
+            LOGGER.warning("Problem while reading from the appointment data file. Will be starting with an empty"
+                    + " Appointment Schedule");
             appointmentSchedule = new AppointmentSchedule();
         }
 
@@ -224,7 +228,7 @@ public class MainApp extends Application {
                     + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            LOGGER.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            LOGGER.warning("Problem while reading from the file. Will be starting with an empty UserPrefs file.");
             initializedPrefs = new UserPrefs();
         }
 

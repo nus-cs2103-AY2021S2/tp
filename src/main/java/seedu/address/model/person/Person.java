@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.UUID;
 
 import seedu.address.model.tag.Tag;
 
@@ -15,6 +16,9 @@ import seedu.address.model.tag.Tag;
  */
 public abstract class Person {
 
+    // UUID to determine uniqueness
+    protected final UUID uuid;
+
     // Identity fields
     protected final Name name;
 
@@ -22,12 +26,28 @@ public abstract class Person {
     protected final Set<Tag> tags = new HashSet<>();
 
     /**
-     * Every field must be present and not null.
+     * Every field must be present and not null, except for UUID,
+     * which can be generated automatically.
      */
     public Person(Name name, Set<Tag> tags) {
         requireAllNonNull(name, tags);
+        this.uuid = UUID.randomUUID();
         this.name = name;
         this.tags.addAll(tags);
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Person(UUID uuid, Name name, Set<Tag> tags) {
+        requireAllNonNull(name, tags);
+        this.uuid = uuid;
+        this.name = name;
+        this.tags.addAll(tags);
+    }
+
+    public UUID getUuid() {
+        return uuid;
     }
 
     public Name getName() {
@@ -70,7 +90,8 @@ public abstract class Person {
         }
 
         Person otherPerson = (Person) other;
-        return otherPerson.getName().equals(getName())
+        return otherPerson.getUuid().equals(getUuid())
+                && otherPerson.getName().equals(getName())
                 && otherPerson.getTags().equals(getTags());
     }
 
