@@ -3,6 +3,11 @@ layout: page
 title: User Guide
 ---
 
+<div class="toc-no-bullet-points">
+  * Table of Contents
+  {:toc}
+</div>
+
 ## 1. Introduction
 Welcome to our **User Guide** and thank you for using CakeCollate! Are you a home baker searching for a reliable tool to keep track of your orders? 
 While there may be other modern applications such as Microsoft Excel that may be able to help you keep track of your data, they may not be the most efficient or simplest
@@ -16,12 +21,9 @@ CakeCollate promises to be an efficient desktop application that allows you to e
 
 It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you're a small-time cake seller that can type fast, CakeCollate can get your order management tasks done faster than traditional GUI apps.
 
-* Table of Contents
-{:toc}
-
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## **3. Quick start**
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -58,7 +60,7 @@ You can use the sample data pre-loaded in the application to get play around and
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## **4. Features**
 
 <div markdown="block" class="alert alert-info">
 
@@ -343,14 +345,14 @@ _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+## **5. FAQ**
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous CakeCollate home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## **6. Command summary**
 
 Action  | Format, Examples
 --------|------------------
