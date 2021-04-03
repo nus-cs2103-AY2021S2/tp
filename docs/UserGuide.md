@@ -225,8 +225,6 @@ Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
 
-![image](https://user-images.githubusercontent.com/59093518/113469669-0f670080-9482-11eb-8ce2-b2a9c71c7749.png)
-
 ### Clearing all entries : `clear`
 
 Clears all entries from DocBob.
