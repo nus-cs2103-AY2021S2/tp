@@ -15,7 +15,9 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.AppointmentBook;
+import seedu.address.model.GradeBook;
 import seedu.address.model.ReadOnlyAppointmentBook;
+import seedu.address.model.ReadOnlyGradeBook;
 import seedu.address.model.ReadOnlyTutorBook;
 import seedu.address.model.TutorBook;
 import seedu.address.model.UserPrefs;
