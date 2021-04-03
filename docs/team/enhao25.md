@@ -25,7 +25,7 @@ the fields taken to be representative of a student class instead.
 * Project Management:
     * In charge of ensuring that the project is on track for completion by the given dateline.
 * Testing:
-    * Written or updated more than 1000 lines of test code for the various TutorBuddy feature, based on [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=enhao25&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-02-19&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=enhao25&tabRepo=AY2021S2-CS2103T-T11-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=test-code&authorshipIsBinaryFileTypeChecked=true).
+    * Written or refactor more than 1000 lines of test code for the various TutorBuddy feature, based on [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=enhao25&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-02-19&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=enhao25&tabRepo=AY2021S2-CS2103T-T11-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=test-code&authorshipIsBinaryFileTypeChecked=true).
     * Non-trivial testing PR includes:
       * [PR #128](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/128)
       * [PR #165](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/165)
@@ -38,7 +38,35 @@ the fields taken to be representative of a student class instead.
 ## Contributions to the User Guide
 Given below are the sections that I contributed to the User Guide. This showcase my ability of writing user-centric documentations.
 
+### Fees
 
+#### Getting monthly fee for a particular student: `fee`
+
+Gets the monthly fee for a particular student for a particular month and year.
+
+Format: `fee n/STUDENT_NAME m/MONTH y/YEAR`
+
+* `STUDENT_NAME` should match the exact student’s name in TutorBuddy
+* `MONTH` should be a positive integer between 1 and 12
+* `YEAR` should be a positive integer between 1970 and 2037
+
+Example:
+* `fee n/John Lee m/1 y/2021` returns John Lee monthly fee for January 2021
+
+### Other Enhancement
+
+#### Tips
+
+<div markdown="span" class="alert alert-primary">:bulb: Tip:
+TutorBuddy provides sample data to allow you to try out the application easily. <br>
+Run the <code>clear</code> command to start working with TutorBuddy in a clean slate.
+</div>
+
+<br>
+
+<div markdown="span" class="alert alert-primary">:bulb: Tip:
+TutorBuddy takes care of overlapping session for you by giving a gentle prompt, so you don't have to worry about it.
+</div>
 
 ## Contributions to the Developer Guide
 Given below are sections I contributed to the Developer Guide. This showcase my ability to write technical documentations and how I chose to implement certain features in TutorBuddy.
