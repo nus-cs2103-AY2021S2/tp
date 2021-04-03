@@ -71,6 +71,8 @@ Car@leads is a **desktop app for a car salesperson to manage customer contacts**
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 * `COE_EXPIRY_DATE` input order: YYYY{space}MM{space}DD
+  * Example: `2013 12 31`
+  * This is the same input format as `DATE_OF_BIRTH`
 * `|` joins car with COE expiry date
 * `+` joins car brand and car type
 
@@ -81,7 +83,7 @@ Car@leads is a **desktop app for a car salesperson to manage customer contacts**
 
 Action | Format, Examples
 --------|------------------
-**add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS c/OWNED_CAR+COE_EXPIRY_DATE [t/TAG]…​`<br> e.g., `n/add n/Bob Ang p/88765432 e/bobhnd@example.com a/John street, block 123, #01-01 c/BMW Coupe|2030 01 01 c/Porsche|2030 01 01`
+**add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/DATE_OF_BIRTH c/OWNED_CAR+COE_EXPIRY_DATE [t/TAG]…​`<br> e.g., `n/add n/Bob Ang p/88765432 e/bobhnd@example.com a/John street, block 123, #01-01 c/BMW Coupe|2030 01 01 c/Porsche|2030 01 01`
 **find** | `find [e/bob /AND p/98761234] /OR b/1999 10 11`
 **delete** | `delete NAME`<br> e.g., `delete John doe`
 **list** | `list` Generates a default list of unfiltered contacts saved in the contact book.
@@ -96,7 +98,7 @@ Action | Format, Examples
 
 Adds a customer to the contact list.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ c/CAR_BRAND_OWNED+CAR_TYPE_OWNED|COE_EXPIRY_DATE cp/CAR_BRAND_PREFERRED+CAR_TYPE_PREFERRED `
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/DATE_OF_BIRTH [t/TAG]…​ c/CAR_BRAND_OWNED+CAR_TYPE_OWNED|COE_EXPIRY_DATE cp/CAR_BRAND_PREFERRED+CAR_TYPE_PREFERRED `
 <br>`n/add n/Bob Ang p/88765432 e/bobhnd@example.com a/John street, block 123, #01-01 c/BMW+Coupe|2030 01 01 c/Porsche+SUV|2030 01 01 cp/MercedesBenz+SUV`
 
 
@@ -134,8 +136,13 @@ cp/PREFERRED_CARBRAND+PREFERRED_CARTYPE b/DATE_OF_BIRTH`
     - It will _not_ return:
         - `xxx@abc.com`
         - `axbyc@hhh.com`
-    
-- 
+
+
+Further details about the search options are as follows:
+
+- For `coe/COE_EXPIRY_DATE`, using `coe/exp` will search for all customers with an expired COE on any of the cars they own.
+  it is a special case alias for the search `coe/0`, where `coe/NON_NEGATIVE_NUMBER` will search for any customers with
+  at least one car that will expire in `NON_NEGATIVE_NUMBER` years *or less*.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A customer can have any number of tags (including 0)
@@ -172,7 +179,9 @@ Format: `list`
 * **`help`** : Overview of commands and input syntax.
 
 ### Email Contact person: `email`
-* **`email`** : Opens a simplified mailbox interface enabling user to email to the desired contact persons with a prefilled text field. Currently only supports sending through Gmail accounts and requires enabling less secure app access on google security.
+* **`email`** : Opens a simplified mailbox interface enabling user to email to the desired contact persons with a prefilled text field.
+  Currently, it only supports sending through Gmail accounts and requires enabling less secure app access on google security.
+  This feature is **only** avaliable through the menu bar currently.
   ![Ui](images/helps/googlehelp1.png)
   Url: https://myaccount.google.com/security
 --------------------------------------------------------------------------------------------------------------------
