@@ -87,35 +87,12 @@ public class Meeting {
     }
 
     /**
-     * Update the location where the meeting takes place.
-     *
-     * @param newLocation A validated new location.
-     */
-    public void relocate(Location newLocation) {
-        this.location = newLocation;
-    }
-
-    /**
-     * Update the date and time when the meeting takes place.
-     *
-     * @param newDateTime A validated date and time
-     */
-    public void reschedule(DateTime newDateTime) {
-        this.dateTime = newDateTime;
-    }
-
-    /**
-     * Mark the meeting as done.
-     */
-    public void complete() {
-        this.isDone = true;
-    }
-
-    /**
      * Returns true if both meetings have the same date and time.
      */
     public boolean isInConflict(Meeting otherMeeting) {
-        if (otherMeeting == this) {
+        if (otherMeeting == null) {
+            return false;
+        } else if (otherMeeting == this) {
             return true;
         }
 
