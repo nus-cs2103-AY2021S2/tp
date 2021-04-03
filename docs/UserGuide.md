@@ -55,7 +55,7 @@ You can use the sample data pre-loaded in the application to get play around and
 1. Refer to the [Features](#features) below for details of each command.
 
 <div markdown="span" class="alert alert-info">
-**:information_source: You can remove all the sample data using the clear command once you are ready to use CakeCollate.**<br>
+:information_source **Tip** : You can remove all the sample data using the `clear` command once you are ready to use CakeCollate.<br>
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
