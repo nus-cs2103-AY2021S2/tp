@@ -149,6 +149,21 @@ Output:
 `Sun, 12 Dec, 12:00 - Alex Yeoh`<br>
 `Sun, 12 Dec, 12:12 - Charlotte Oliveiro`<br>
 
+![image](https://user-images.githubusercontent.com/59093518/113469628-a2536b00-9481-11eb-95e0-19607d43db7c.png)
+
+### View all information regarding a patient : `view`
+
+Shows an overview of all contact information, tags, appointments and medical records of a patient, identified by the index number shown in the displayed patient list.
+
+Format : `view INDEX`
+where INDEX must be a positive integer (1,2,3,...)
+
+Examples:
+* `view 6`
+
+Output: 
+
+![image](https://user-images.githubusercontent.com/48408342/113469180-3ae7ec00-947e-11eb-8a80-a35a17daa1e8.png)
 
 ### Create a new medical record for a patient : `mrec`
 
@@ -177,21 +192,6 @@ Examples:
 Output:
 
 ![image](https://user-images.githubusercontent.com/59093518/113469578-2f49f480-9481-11eb-9d42-46d6260417a8.png)
-
-### View all information regarding a patient : `view`
-
-Shows an overview of all contact information, tags, appointments and medical records of a patient, identified by the index number shown in the displayed patient list.
-
-Format : `view INDEX`
-where INDEX must be a positive integer (1,2,3,...)
-
-Examples:
-* `view 6`
-
-Output: 
-
-![image](https://user-images.githubusercontent.com/48408342/113469180-3ae7ec00-947e-11eb-8a80-a35a17daa1e8.png)
-
 
 ### Editing a patient information : `edit`
 
