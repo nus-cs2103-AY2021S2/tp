@@ -96,14 +96,6 @@ You can use the sample data pre-loaded in the application to get play around and
 
 </div>
 
-### 4.1 Viewing help : `help`
-
-* Gives instructions on how to enter orders into the CLI.
-* Displays a message with a list of all available commands and their format.
-* To return to the main order list click on the `Return to the main order list` button. 
-* Help can also be accessed by clicking the `help` button in the top left corner of the application or by clicking the `F1` keyboard key.
-
-Format: `help`
 ### 4.1 **Orders**
 
 #### *Interacting with orders*
@@ -301,8 +293,9 @@ Examples:
 * `remind 3` lists all orders that have a delivery date within 3 days from today.
 
 
+### **4.2 Order Items**
 
-### Adding order items: `addItem`
+#### Adding order items: `addItem`
 
 Adds an order item to the order items table on the right side of the GUI.
 
@@ -313,7 +306,7 @@ Format: `addItem ORDER_ITEM_DESCRIPTION`
 Examples:
 * `addItem 2 x Red Velvet` adds an order item with the specified description to the order items table.
 
-### Deleting order items: `deleteItem`
+#### Deleting order items: `deleteItem`
 
 Deletes order items from the order items table based on the specified list of indices.
 
@@ -327,17 +320,28 @@ Examples:
 * `deleteItem 2` deletes the order items with `ORDER_ITEM_INDEX` 2 from the order items table.
 * `deleteItem 2 3` deletes the order items with `ORDER_ITEM_INDEXES` 2 and 3 from the order items table.
 
-### Exiting the program : `exit`
+### **4.3 Others**
+
+#### Viewing help : `help`
+
+* Gives instructions on how to enter orders into the CLI.
+* Displays a message with a list of all available commands and their format.
+* To return to the main order list click on the `Return to the main order list` button. 
+* Help can also be accessed by clicking the `help` button in the top left corner of the application or by clicking the `F1` keyboard key.
+
+Format: `help`
+
+#### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
 
-### Saving the data
+#### Saving the data
 
 CakeCollate data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### Editing the data file
+#### Editing the data file
 
 CakeCollate data is saved as a JSON file `[JAR file location]/data/cakecollate.json`. Advanced users are welcome to update data directly by editing that data file.
 
@@ -345,11 +349,7 @@ CakeCollate data is saved as a JSON file `[JAR file location]/data/cakecollate.j
 If your changes to the data file makes its format invalid, CakeCollate will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
-### Keyboard shortcuts you can use
+#### Keyboard shortcuts you can use
 
 * Click the `up` arrow in the keyboard to traverse up the previously inputted commands if they exist. 
 * Click the `down` arrow in the keyboard to traverse down the previously inputted commands if they exist. 
