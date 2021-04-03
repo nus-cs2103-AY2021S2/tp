@@ -1,7 +1,6 @@
 package seedu.address.logic.commands.gradecommands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_GRADE_DISPLAYED_INDEX;
 
 import java.util.List;
 

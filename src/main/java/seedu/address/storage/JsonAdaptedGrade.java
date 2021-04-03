@@ -8,7 +8,6 @@ import seedu.address.model.grade.Grade;
 import seedu.address.model.grade.GradeEnum;
 import seedu.address.model.grade.GradedItem;
 import seedu.address.model.subject.SubjectName;
-import seedu.address.model.tag.Tag;
 
 public class JsonAdaptedGrade {
 
