@@ -34,7 +34,7 @@ public class EditVenueCommand extends Command {
             + "by the venue name used in the displayed venue list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: vo/VENUE "
-            + "[" + PREFIX_VENUE + "VENUE NAME] "
+            + "[" + PREFIX_VENUE + "VENUE_NAME] "
             + "[" + PREFIX_CAPACITY + "CAPACITY] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_TAG + "TAG] \n"

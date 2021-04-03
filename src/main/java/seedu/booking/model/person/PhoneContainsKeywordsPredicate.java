@@ -1,17 +1,14 @@
 package seedu.booking.model.person;
 
-import java.util.List;
 import java.util.function.Predicate;
 
-import seedu.booking.commons.util.StringUtil;
-
 /**
- * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Person}'s {@code Phone} matches the given phone number.
  */
 public class PhoneContainsKeywordsPredicate implements Predicate<Person> {
     private final String keyword;
 
-    public static final String MESSAGE_CONSTRAINTS = "Keyword(s) for name should not be empty";
+    public static final String MESSAGE_CONSTRAINTS = "Phone number cannot be empty.";
 
     public PhoneContainsKeywordsPredicate(String keyword) {
         this.keyword = keyword;

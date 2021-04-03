@@ -1,23 +1,17 @@
 package seedu.booking.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.booking.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.booking.logic.parser.CliSyntax.PREFIX_ORIGINAL_EMAIL;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.booking.logic.parser.ParserUtil.parseTagsForEdit;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
-import java.util.stream.Stream;
 
 import seedu.booking.logic.commands.FindPersonCommand;
 import seedu.booking.logic.parser.exceptions.ParseException;
-import seedu.booking.model.person.Email;
-import seedu.booking.model.person.EmailContainsKeywordsPredicate;
 import seedu.booking.model.person.Person;
 
 /**
@@ -33,32 +27,31 @@ public class FindPersonCommandParser implements Parser<FindPersonCommand> {
     public FindPersonCommand parse(String args) throws ParseException {
         requireNonNull(args);
 
-        List<Predicate<Person>> predicates = new ArrayList<>();
+        List<Predicate<Person>> predicateList = new ArrayList<>();
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TAG);
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            predicates.add(ParserUtil.parseNameContainsKeywordsPredicate(argMultimap.getValue(PREFIX_NAME).get()));
+            predicateList.add(ParserUtil.parseNameContainsKeywordsPredicate(argMultimap.getValue(PREFIX_NAME).get()));
         }
 
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            predicates.add(ParserUtil.parsePhoneContainsKeywordsPredicate(argMultimap.getValue(PREFIX_PHONE).get()));
+            predicateList.add(ParserUtil.parsePhoneContainsKeywordsPredicate(argMultimap.getValue(PREFIX_PHONE).get()));
         }
 
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            predicates.add(ParserUtil.parseEmailContainsKeywordsPredicate(argMultimap.getValue(PREFIX_EMAIL).get()));
+            predicateList.add(ParserUtil.parseEmailContainsKeywordsPredicate(argMultimap.getValue(PREFIX_EMAIL).get()));
         }
 
         if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
-            predicates.add(ParserUtil.parseTagContainsKeywordsPredicate(argMultimap.getValue(PREFIX_TAG).get()));
+            predicateList.add(ParserUtil.parsePersonTagContainsKeywordsPredicate(argMultimap.getValue(PREFIX_TAG).get()));
         }
 
-        if (predicates.isEmpty()) {
+        if (predicateList.isEmpty()) {
             throw new ParseException(FindPersonCommand.MESSAGE_USAGE);
         }
 
-        return new FindPersonCommand(predicates);
-
+        return new FindPersonCommand(predicateList);
     }
 
 }

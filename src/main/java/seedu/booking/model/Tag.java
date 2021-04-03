@@ -3,6 +3,8 @@ package seedu.booking.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.booking.commons.util.AppUtil.checkArgument;
 
+import seedu.booking.commons.util.StringUtil;
+
 /**
  * Represents a venueTag in the booking system.
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
@@ -46,6 +48,20 @@ public class Tag {
 
     public String getTagName() {
         return tagName;
+    }
+
+    /**
+     * Returns true if both tags are the same (case-insensitive).
+     * This notion of equality between two tags.
+     */
+    public boolean isSameTag(Tag tag) {
+        return tag != null
+                && StringUtil.containsWordIgnoreCase(this.removeSpacesWithinTag(),
+                tag.removeSpacesWithinTag());
+    }
+
+    public String removeSpacesWithinTag() {
+        return this.tagName.replace(" ", "");
     }
 
     /**

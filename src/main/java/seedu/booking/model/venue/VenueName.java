@@ -63,11 +63,11 @@ public class VenueName {
      */
     public boolean isSameVenueName(Venue otherVenue) {
         return otherVenue.getVenueName() != null
-                && StringUtil.containsWordIgnoreCase(this.removeSpacesInVenueName(),
-                otherVenue.getVenueName().removeSpacesInVenueName());
+                && StringUtil.containsWordIgnoreCase(this.removeSpacesWithinVenueName(),
+                otherVenue.getVenueName().removeSpacesWithinVenueName());
     }
 
-    public String removeSpacesInVenueName() {
+    public String removeSpacesWithinVenueName() {
         return this.venueName.replace(" ", "");
     }
 }

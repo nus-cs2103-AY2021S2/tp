@@ -8,10 +8,8 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
-import java.util.function.Predicate;
 
 import seedu.booking.commons.core.index.Index;
 import seedu.booking.commons.util.StringUtil;
@@ -21,17 +19,20 @@ import seedu.booking.model.booking.Description;
 import seedu.booking.model.booking.EndTime;
 import seedu.booking.model.booking.Id;
 import seedu.booking.model.booking.StartTime;
+import seedu.booking.model.booking.VenueNameContainsKeywordsPredicate;
 import seedu.booking.model.person.Email;
 import seedu.booking.model.person.EmailContainsKeywordsPredicate;
 import seedu.booking.model.person.Name;
 import seedu.booking.model.person.NameContainsKeywordsPredicate;
-import seedu.booking.model.person.Person;
 import seedu.booking.model.person.Phone;
 import seedu.booking.model.person.PhoneContainsKeywordsPredicate;
-import seedu.booking.model.person.TagContainsKeywordsPredicate;
+import seedu.booking.model.person.PersonTagContainsKeywordsPredicate;
 import seedu.booking.model.venue.Capacity;
+import seedu.booking.model.venue.CapacityContainsKeywordsPredicate;
 import seedu.booking.model.venue.Venue;
+import seedu.booking.model.venue.VenueDescContainsKeywordsPredicate;
 import seedu.booking.model.venue.VenueName;
+import seedu.booking.model.venue.VenueTagContainsKeywordsPredicate;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -99,13 +100,19 @@ public class ParserUtil {
         return new Phone(trimmedPhone);
     }
 
-    public static PhoneContainsKeywordsPredicate parsePhoneContainsKeywordsPredicate(String phone) throws ParseException {
-        requireNonNull(phone);
-        String trimmedPhone = phone.trim();
-        if (!Phone.isValidPhone(trimmedPhone)) {
+    /**
+     * Parses a {@code String phoneKeyword} into a {@code PhoneContainsKeywordsPredicate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code phoneKeyword} is invalid.
+     */
+    public static PhoneContainsKeywordsPredicate parsePhoneContainsKeywordsPredicate(String phoneKeyword) throws ParseException {
+        requireNonNull(phoneKeyword);
+        String trimmedPhoneKeyword = phoneKeyword.trim();
+        if (!Phone.isValidPhone(trimmedPhoneKeyword)) {
             throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
         }
-        return new PhoneContainsKeywordsPredicate(trimmedPhone);
+        return new PhoneContainsKeywordsPredicate(trimmedPhoneKeyword);
     }
 
 
@@ -124,16 +131,20 @@ public class ParserUtil {
         return new Email(trimmedEmail);
     }
 
-    public static EmailContainsKeywordsPredicate parseEmailContainsKeywordsPredicate(String email) throws ParseException {
-        requireNonNull(email);
-        String trimmedEmail = email.trim();
-        if (!Email.isValidEmail(trimmedEmail)) {
+    /**
+     * Parses a {@code String emailKeyword} into an {@code EmailContainsKeywordsPredicate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code emailKeyword} is invalid.
+     */
+    public static EmailContainsKeywordsPredicate parseEmailContainsKeywordsPredicate(String emailKeyword) throws ParseException {
+        requireNonNull(emailKeyword);
+        String trimmedEmailKeyword = emailKeyword.trim();
+        if (!Email.isValidEmail(trimmedEmailKeyword)) {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
-        return new EmailContainsKeywordsPredicate(trimmedEmail);
+        return new EmailContainsKeywordsPredicate(trimmedEmailKeyword);
     }
-
-
 
     /**
      * Parses a {@code String description} into a {@code String description}.
@@ -155,6 +166,18 @@ public class ParserUtil {
         requireNonNull(description);
         String trimmedDescription = description.trim();
         return trimmedDescription;
+    }
+
+    /**
+     * Parses a {@code String keywords} into a {@code VenueDescContainsKeywordsPredicate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     */
+    public static VenueDescContainsKeywordsPredicate parseVenueDescContainsKeywordsPredicate(String descKeywords) {
+        requireNonNull(descKeywords);
+        String trimmedDescKeywords = descKeywords.trim();
+        String[] splitDescKeywords = trimmedDescKeywords.split("\\s+");
+        return new VenueDescContainsKeywordsPredicate(Arrays.asList(splitDescKeywords));
     }
 
 
@@ -190,7 +213,7 @@ public class ParserUtil {
      * Parses a {@code String venue} into a {@code Venue}.
      * Leading and trailing whitespaces will be trimmed.
      */
-    public static Venue parseVenue(String venue) throws ParseException {
+    public static Venue parseVenue(String venue) {
         requireNonNull(venue);
         String trimmedVenue = venue.trim();
         return new Venue(new VenueName(trimmedVenue), DEFAULT_CAPACITY, DEFAULT_DESCRIPTION, new HashSet<>());
@@ -212,6 +235,27 @@ public class ParserUtil {
             }
             assert Capacity.isValidCapacity(Integer.parseInt(trimmedCapacity));
             return new Capacity(formattedCapacity);
+        } catch (NumberFormatException e) {
+            throw new ParseException(Capacity.MESSAGE_INVALID);
+        }
+    }
+
+    /**
+     * Parses a {@code String capacityKeyword} into a {@code CapacityContainsKeywordsPredicate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code capacity} is invalid.
+     */
+    public static CapacityContainsKeywordsPredicate parseCapacityContainsKeywordsPredicate(String capacityKeyword) throws ParseException, NumberFormatException {
+        requireNonNull(capacityKeyword);
+        String trimmedCapacityKeyword = capacityKeyword.trim();
+        try {
+            Integer formattedCapacityKeyword = Integer.parseInt(trimmedCapacityKeyword);
+            if (!Capacity.isValidCapacity(formattedCapacityKeyword)) {
+                throw new ParseException(Capacity.MESSAGE_CONSTRAINTS);
+            }
+            assert Capacity.isValidCapacity(Integer.parseInt(trimmedCapacityKeyword));
+            return new CapacityContainsKeywordsPredicate(formattedCapacityKeyword);
         } catch (NumberFormatException e) {
             throw new ParseException(Capacity.MESSAGE_INVALID);
         }
@@ -244,13 +288,34 @@ public class ParserUtil {
         return tagSet;
     }
 
-    public static TagContainsKeywordsPredicate parseTagContainsKeywordsPredicate(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
+    /**
+     * Parses a {@code String tagKeyword} into a {@code PersonTagContainsKeywordsPredicate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code tagKeyword} is invalid.
+     */
+    public static PersonTagContainsKeywordsPredicate parsePersonTagContainsKeywordsPredicate(String tagKeyword) throws ParseException {
+        requireNonNull(tagKeyword);
+        String trimmedTagKeyword = tagKeyword.trim();
+        if (!Tag.isValidTagName(trimmedTagKeyword)) {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }
-        return new TagContainsKeywordsPredicate(trimmedTag);
+        return new PersonTagContainsKeywordsPredicate(trimmedTagKeyword);
+    }
+
+    /**
+     * Parses a {@code String tagKeyword} into a {@code VenueTagContainsKeywordsPredicate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code tagKeyword} is invalid.
+     */
+    public static VenueTagContainsKeywordsPredicate parseVenueTagContainsKeywordsPredicate(String tagKeyword) throws ParseException {
+        requireNonNull(tagKeyword);
+        String trimmedTagKeyword = tagKeyword.trim();
+        if (!Tag.isValidTagName(trimmedTagKeyword)) {
+            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        }
+        return new VenueTagContainsKeywordsPredicate(trimmedTagKeyword);
     }
 
     /**
@@ -301,13 +366,35 @@ public class ParserUtil {
         return new VenueName(trimmedName);
     }
 
-    public static NameContainsKeywordsPredicate parseNameContainsKeywordsPredicate(String keywords) throws ParseException {
-        requireNonNull(keywords);
-        String trimmedNames = keywords.trim();
-        if (!Name.isValidName(trimmedNames)) {
+    /**
+     * Parses a {@code String venueKeywords} into a {@code VenueNameContainsKeywordsPredicate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code venueKeywords} is invalid.
+     */
+    public static VenueNameContainsKeywordsPredicate parseVenueNameContainsKeywordsPredicate(String venueKeywords) throws ParseException {
+        requireNonNull(venueKeywords);
+        String trimmedVenueKeywords = venueKeywords.trim();
+        if (!VenueName.isValidName(trimmedVenueKeywords)) {
+            throw new ParseException(VenueName.MESSAGE_CONSTRAINTS);
+        }
+        String[] splitVenueKeywords = trimmedVenueKeywords.split("\\s+");
+        return new VenueNameContainsKeywordsPredicate(Arrays.asList(splitVenueKeywords));
+    }
+
+    /**
+     * Parses a {@code String nameKeywords} into a {@code NameContainsKeywordsPredicate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code nameKeywords} is invalid.
+     */
+    public static NameContainsKeywordsPredicate parseNameContainsKeywordsPredicate(String nameKeywords) throws ParseException {
+        requireNonNull(nameKeywords);
+        String trimmedNameKeywords = nameKeywords.trim();
+        if (!Name.isValidName(trimmedNameKeywords)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
-        String[] trimmedName = trimmedNames.split("//s+");
-        return new NameContainsKeywordsPredicate(Arrays.asList(trimmedName));
+        String[] splitNameKeywords = trimmedNameKeywords.split("\\s+");
+        return new NameContainsKeywordsPredicate(Arrays.asList(splitNameKeywords));
     }
 }
