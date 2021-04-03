@@ -307,14 +307,14 @@ Action | Format, Examples
 **add** | `add n/Name p/phoneNumber e/Email a/Address h/Height w/Weight [t/TAGS]` <br> e.g., `add n/Shrek p/66666666 e/shrek@swampmail.com a/Swamp h/243cm w/94kg`
 **delete** | `delete INDEX` <br> e.g., `delete 1`
 **list** | `list`
-**appt** | `appt 1 d/010120211200`
+**appt** | `appt INDEX /dDATE` <br> e.g., `appt 1 d/010120211200`
 **listappt** | `listappt`
-**mrec** | `mrec 3`
-**vrec** | `vrec 4`
-**view** | `view 6`
-**archive** | `archive 2`
+**mrec** | `mrec INDEX` <br> e.g., `mrec 3`
+**vrec** | `vrec INDEX` <br> e.g., `vrec 4`
+**view** | `view INDEX` <br> e.g., `view 6`
+**archive** | `archive INDEX` <br> e.g., `archive 2`
 **archivelist** | `archivelist`
-**unarchive** | `unarchive 2`
+**unarchive** | `unarchive INDEX` <br> e.g., `unarchive 2`
 **exit** | `exit`
 
 ## Issues
