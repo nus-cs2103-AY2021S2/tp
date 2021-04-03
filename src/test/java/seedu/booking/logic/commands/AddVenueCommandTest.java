@@ -146,6 +146,11 @@ public class AddVenueCommandTest {
         }
 
         @Override
+        public boolean hasMoreThanOneOverlappedBooking(Booking toAdd) {
+            return false;
+        }
+
+        @Override
         public void setBookingSystem(ReadOnlyBookingSystem newData) {
             throw new AssertionError("This method should not be called.");
         }
@@ -211,6 +216,11 @@ public class AddVenueCommandTest {
         }
 
         @Override
+        public void deleteBooking(Booking target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Person> getFilteredPersonList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -232,11 +242,6 @@ public class AddVenueCommandTest {
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void deleteBooking(Id bookingId) {
             throw new AssertionError("This method should not be called.");
         }
 

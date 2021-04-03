@@ -28,6 +28,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.booking.logic.commands.AddBookingCommand;
 import seedu.booking.model.booking.Booking;
+import seedu.booking.model.person.Email;
 import seedu.booking.testutil.BookingBuilder;
 
 class AddBookingCommandParserTest {
@@ -37,13 +38,6 @@ class AddBookingCommandParserTest {
     @Test
     public void parse_allFieldsPresent_success() {
         Booking expectedBooking = new BookingBuilder(BOOKING_HALL).build();
-
-        // whitespace only preamble
-        assertParseSuccess(parser,
-                PREAMBLE_WHITESPACE + BOOKING_BOOKER_EMAIL_AMY_DESC_HALL
-                        + BOOKING_VENUE_NAME_DESC_HALL + BOOKING_DESCRIPTION_DESC_HALL
-                        + BOOKING_START_DESC_HALL + BOOKING_END_DESC_HALL,
-                new AddBookingCommand(expectedBooking));
 
         // multiple venue names - last venue name accepted
         assertParseSuccess(parser, BOOKING_BOOKER_EMAIL_AMY_DESC_HALL
@@ -130,7 +124,7 @@ class AddBookingCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddBookingCommand.MESSAGE_USAGE);
+        String expectedMessage = Email.MESSAGE_CONSTRAINTS;
 
         // invalid email
         // missing booker email prefix

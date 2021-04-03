@@ -3,6 +3,8 @@ package seedu.booking.model.venue;
 import static java.util.Objects.requireNonNull;
 import static seedu.booking.commons.util.AppUtil.checkArgument;
 
+import java.util.regex.Pattern;
+
 import seedu.booking.commons.util.StringUtil;
 
 /**
@@ -49,9 +51,7 @@ public class VenueName {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof VenueName // instanceof handles nulls
-                && venueName.equals(((VenueName) other).venueName))
-                || StringUtil.containsWordIgnoreCase(this.removeSpacesInVenueName(),
-                ((VenueName) other).venueName); // state check
+                && venueName.equals(((VenueName) other).venueName)); // state check
     }
 
     @Override

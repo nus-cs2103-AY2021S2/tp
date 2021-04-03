@@ -17,6 +17,8 @@ public class Name {
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "^[\\p{L} .'-]+$";
+    public static final String VALIDATION_REGEX_SECOND = "[\\p{Alnum}][\\p{Alnum} ]*";
+
 
     public final String fullName;
 
@@ -35,7 +37,7 @@ public class Name {
      * Returns true if a given string is a valid name.
      */
     public static boolean isValidName(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX) && test.matches(VALIDATION_REGEX_SECOND);
     }
 
 

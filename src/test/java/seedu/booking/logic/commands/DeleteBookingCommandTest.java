@@ -7,15 +7,18 @@ import static seedu.booking.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.booking.testutil.TypicalBookings.BOOKING1;
 import static seedu.booking.testutil.TypicalBookings.BOOKING2;
 import static seedu.booking.testutil.TypicalIndexes.INDEX_FIRST;
-import static seedu.booking.testutil.TypicalPersons.getTypicalBookingSystem;
+import static seedu.booking.testutil.TypicalIndexes.INDEX_SECOND;
+import static seedu.booking.testutil.TypicalBookings.getTypicalBookingSystem;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.booking.commons.core.Messages;
+import seedu.booking.commons.core.index.Index;
 import seedu.booking.model.Model;
 import seedu.booking.model.ModelManager;
 import seedu.booking.model.UserPrefs;
 import seedu.booking.model.booking.Booking;
+import seedu.booking.model.person.Person;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -27,36 +30,35 @@ public class DeleteBookingCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        model.addBooking(BOOKING1);
         Booking bookingToDelete = model.getFilteredBookingList().get(INDEX_FIRST.getZeroBased());
-        DeleteBookingCommand deleteBookingCommand = new DeleteBookingCommand(BOOKING1.getId());
+        DeleteBookingCommand deleteCommand = new DeleteBookingCommand(INDEX_FIRST);
 
-        String expectedMessage = String.format(DeleteBookingCommand.MESSAGE_DELETE_BOOKING_SUCCESS,
-                bookingToDelete.getId().toString());
+        String expectedMessage = String.format(DeleteBookingCommand.MESSAGE_DELETE_BOOKING_SUCCESS, bookingToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getBookingSystem(), new UserPrefs());
-        expectedModel.deleteBooking(bookingToDelete.getId());
-        assertCommandSuccess(deleteBookingCommand, model, expectedMessage, expectedModel);
+        expectedModel.deleteBooking(bookingToDelete);
+
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidVenueUnfilteredList_throwsCommandException() {
-        Booking bookingNotInSystem = BOOKING2;
-        DeleteBookingCommand deleteBookingCommand = new DeleteBookingCommand(bookingNotInSystem.getId());
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredBookingList().size() + 1);
+        DeleteBookingCommand deleteCommand = new DeleteBookingCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteBookingCommand, model, Messages.MESSAGE_INVALID_BOOKING_ID);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_BOOKING_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        DeleteBookingCommand deleteFirstCommand = new DeleteBookingCommand(BOOKING1.getId());
-        DeleteBookingCommand deleteSecondCommand = new DeleteBookingCommand(BOOKING2.getId());
+        DeleteBookingCommand deleteFirstCommand = new DeleteBookingCommand(INDEX_FIRST);
+        DeleteBookingCommand deleteSecondCommand = new DeleteBookingCommand(INDEX_SECOND);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteBookingCommand deleteFirstCommandCopy = new DeleteBookingCommand(BOOKING1.getId());
+        DeleteBookingCommand deleteFirstCommandCopy = new DeleteBookingCommand(INDEX_FIRST);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false
