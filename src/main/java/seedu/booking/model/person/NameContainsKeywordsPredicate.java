@@ -11,6 +11,8 @@ import seedu.booking.commons.util.StringUtil;
 public class NameContainsKeywordsPredicate implements Predicate<Person> {
     private final List<String> keywords;
 
+    public static final String MESSAGE_CONSTRAINTS = "Keyword(s) for name should not be empty";
+
     public NameContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }

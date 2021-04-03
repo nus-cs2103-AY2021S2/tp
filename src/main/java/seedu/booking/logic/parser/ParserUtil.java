@@ -4,11 +4,14 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.Predicate;
 
 import seedu.booking.commons.core.index.Index;
 import seedu.booking.commons.util.StringUtil;
@@ -19,8 +22,13 @@ import seedu.booking.model.booking.EndTime;
 import seedu.booking.model.booking.Id;
 import seedu.booking.model.booking.StartTime;
 import seedu.booking.model.person.Email;
+import seedu.booking.model.person.EmailContainsKeywordsPredicate;
 import seedu.booking.model.person.Name;
+import seedu.booking.model.person.NameContainsKeywordsPredicate;
+import seedu.booking.model.person.Person;
 import seedu.booking.model.person.Phone;
+import seedu.booking.model.person.PhoneContainsKeywordsPredicate;
+import seedu.booking.model.person.TagContainsKeywordsPredicate;
 import seedu.booking.model.venue.Capacity;
 import seedu.booking.model.venue.Venue;
 import seedu.booking.model.venue.VenueName;
@@ -91,6 +99,15 @@ public class ParserUtil {
         return new Phone(trimmedPhone);
     }
 
+    public static PhoneContainsKeywordsPredicate parsePhoneContainsKeywordsPredicate(String phone) throws ParseException {
+        requireNonNull(phone);
+        String trimmedPhone = phone.trim();
+        if (!Phone.isValidPhone(trimmedPhone)) {
+            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+        }
+        return new PhoneContainsKeywordsPredicate(trimmedPhone);
+    }
+
 
     /**
      * Parses a {@code String email} into an {@code Email}.
@@ -105,6 +122,15 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    public static EmailContainsKeywordsPredicate parseEmailContainsKeywordsPredicate(String email) throws ParseException {
+        requireNonNull(email);
+        String trimmedEmail = email.trim();
+        if (!Email.isValidEmail(trimmedEmail)) {
+            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+        }
+        return new EmailContainsKeywordsPredicate(trimmedEmail);
     }
 
 
@@ -218,6 +244,15 @@ public class ParserUtil {
         return tagSet;
     }
 
+    public static TagContainsKeywordsPredicate parseTagContainsKeywordsPredicate(String tag) throws ParseException {
+        requireNonNull(tag);
+        String trimmedTag = tag.trim();
+        if (!Tag.isValidTagName(trimmedTag)) {
+            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        }
+        return new TagContainsKeywordsPredicate(trimmedTag);
+    }
+
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>} for commands with multi-step prompts.
      */
@@ -264,5 +299,15 @@ public class ParserUtil {
             throw new ParseException(VenueName.MESSAGE_CONSTRAINTS);
         }
         return new VenueName(trimmedName);
+    }
+
+    public static NameContainsKeywordsPredicate parseNameContainsKeywordsPredicate(String keywords) throws ParseException {
+        requireNonNull(keywords);
+        String trimmedNames = keywords.trim();
+        if (!Name.isValidName(trimmedNames)) {
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        }
+        String[] trimmedName = trimmedNames.split("//s+");
+        return new NameContainsKeywordsPredicate(Arrays.asList(trimmedName));
     }
 }

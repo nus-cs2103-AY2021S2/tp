@@ -1,5 +1,6 @@
 package seedu.booking.logic.parser;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.booking.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.Arrays;
