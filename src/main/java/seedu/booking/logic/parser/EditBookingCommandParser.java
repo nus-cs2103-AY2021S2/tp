@@ -29,7 +29,7 @@ public class EditBookingCommandParser implements Parser<EditBookingCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_BOOKING_ID, PREFIX_BOOKER, PREFIX_VENUE,
-                        PREFIX_DESCRIPTION, PREFIX_BOOKING_START, PREFIX_BOOKING_END);
+                        PREFIX_DESCRIPTION, PREFIX_BOOKING_START, PREFIX_BOOKING_END, PREFIX_TAG);
 
 
         Id id;
@@ -43,10 +43,6 @@ public class EditBookingCommandParser implements Parser<EditBookingCommand> {
         id = ParserUtil.parseBookingId(argMultimap.getValue(PREFIX_BOOKING_ID).get());
 
         EditBookingDescriptor editBookingDescriptor = new EditBookingDescriptor();
-        if (argMultimap.getValue(PREFIX_BOOKING_ID).isPresent()) {
-            editBookingDescriptor.setId(ParserUtil.parseBookingId(
-                    argMultimap.getValue(PREFIX_BOOKING_ID).get()));
-        }
 
         if (argMultimap.getValue(PREFIX_BOOKER).isPresent()) {
             editBookingDescriptor.setBookerEmail(ParserUtil.parseEmail(

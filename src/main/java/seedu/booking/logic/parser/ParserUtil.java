@@ -55,9 +55,9 @@ public class ParserUtil {
      */
     public static Id parseBookingId(String bookingId) throws ParseException {
         String trimmedIndex = bookingId.trim();
-        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
-        }
+        //if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+        //    throw new ParseException(MESSAGE_INVALID_INDEX);
+        //}
         return new Id(trimmedIndex);
     }
 

@@ -79,9 +79,9 @@ public class EditBookingCommand extends Command {
         requireNonNull(model);
         List<Booking> lastShownList = model.getFilteredBookingList();
 
-//        if (lastShownList.stream().noneMatch(booking -> booking.getId().equals(id))) {
-//            throw new CommandException(Messages.MESSAGE_INVALID_BOOKING_ID);
-//        }
+        if (lastShownList.stream().noneMatch(booking -> booking.getId().equals(id))) {
+            throw new CommandException(Messages.MESSAGE_INVALID_BOOKING_ID);
+        }
 
         Booking bookingToEdit = getBookingById(id, lastShownList);
         Booking editedBooking = createEditedBooking(bookingToEdit, editBookingDescriptor);
