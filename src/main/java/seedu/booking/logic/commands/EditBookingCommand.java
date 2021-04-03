@@ -79,9 +79,9 @@ public class EditBookingCommand extends Command {
         requireNonNull(model);
         List<Booking> lastShownList = model.getFilteredBookingList();
 
-        if (lastShownList.stream().noneMatch(booking -> booking.getId().equals(id))) {
-            throw new CommandException(Messages.MESSAGE_INVALID_BOOKING_ID);
-        }
+//        if (lastShownList.stream().noneMatch(booking -> booking.getId().equals(id))) {
+//            throw new CommandException(Messages.MESSAGE_INVALID_BOOKING_ID);
+//        }
 
         Booking bookingToEdit = getBookingById(id, lastShownList);
         Booking editedBooking = createEditedBooking(bookingToEdit, editBookingDescriptor);
@@ -90,8 +90,13 @@ public class EditBookingCommand extends Command {
             throw new CommandException(MESSAGE_UNCHANGED_BOOKING);
         }
 
+
         if (!bookingToEdit.isSameBooking(editedBooking) && model.hasBooking(editedBooking)) {
             throw new CommandException(MESSAGE_DUPLICATE_BOOKING);
+        }
+
+        if (!model.hasPersonWithEmail(editedBooking.getBookerEmail())) {
+            throw new CommandException(MESSAGE_INVALID_PERSON);
         }
 
         if (!model.hasVenueWithVenueName(editedBooking.getVenueName())) {

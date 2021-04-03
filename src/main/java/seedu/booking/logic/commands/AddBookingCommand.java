@@ -29,8 +29,8 @@ public class AddBookingCommand extends Command {
             + PREFIX_BOOKER + "example@gmail.com "
             + PREFIX_VENUE + "Hall "
             + PREFIX_DESCRIPTION + "For FYP Meeting. "
-            + PREFIX_BOOKING_START + "2012-01-31 22:59:59 "
-            + PREFIX_BOOKING_END + "2012-01-31 23:59:59";
+            + PREFIX_BOOKING_START + "2012-01-31 22:59 "
+            + PREFIX_BOOKING_END + "2012-01-31 23:59";
 
     public static final String MESSAGE_SUCCESS = "New booking added: %1$s";
     public static final String MESSAGE_DUPLICATE_BOOKING = "This booking already exists in the booking system.";
@@ -73,8 +73,6 @@ public class AddBookingCommand extends Command {
         if (model.hasOverlappedBooking(toAdd)) {
             throw new CommandException(MESSAGE_OVERLAPPING_BOOKING);
         }
-
-
 
         model.addBooking(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));

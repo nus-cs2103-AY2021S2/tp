@@ -47,6 +47,10 @@ public class Messages {
     public static final String MESSAGE_BOOKING_LISTED_EMPTY = "There are no bookings in the system.\n";
     public static final String MESSAGE_INVALID_DATE_FORMAT = "Invalid date format! Input "
             + "should be in yyyy-mm-dd HH:MM format\n";
+    public static final String MESSAGE_INVALID_TIME =
+            "Invalid timing: The booking's starting time cannot be later than its ending time";
+    public static final String MESSAGE_OVERLAPPING_BOOKING = "This time slot has been booked.";
+
 
     public static final String MESSAGE_INVALID_EMAIL_FORMAT = "Invalid email address format, please try again.\n";
     public static final String PROMPT_MESSAGE_TRY_AGAIN = "Please try again or enter exit_prompt to quit prompting.\n";

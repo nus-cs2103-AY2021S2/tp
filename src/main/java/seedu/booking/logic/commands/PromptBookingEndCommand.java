@@ -1,8 +1,7 @@
 package seedu.booking.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.booking.commons.core.Messages.PROMPT_NEWDATE_MESSAGE;
-import static seedu.booking.commons.core.Messages.PROMPT_START_MESSAGE;
+import static seedu.booking.commons.core.Messages.*;
 import static seedu.booking.logic.commands.states.AddBookingCommandState.STATE_START;
 
 import seedu.booking.logic.commands.exceptions.CommandException;
@@ -25,12 +24,19 @@ public class PromptBookingEndCommand extends Command {
 
         ModelManager.processStateInput(endTime);
         ModelManager.setState(STATE_START);
-
         CommandResult result;
 
         try {
             Booking booking = (Booking) ModelManager.create();
+            if (!booking.isValidTime()) {
+                throw new CommandException(MESSAGE_INVALID_TIME);
+            }
+            if (model.hasOverlappedBooking(booking)) {
+                throw new CommandException(MESSAGE_OVERLAPPING_BOOKING);
+            }
+
             result = new AddBookingCommand(booking).execute(model);
+
         } catch (CommandException ex) {
             throw new CommandException(ex.getMessage() + PROMPT_NEWDATE_MESSAGE + PROMPT_START_MESSAGE);
         }
