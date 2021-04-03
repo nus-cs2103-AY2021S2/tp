@@ -71,7 +71,6 @@ Here are some important syntax to take note of to facilitate your reading before
 |<kbd>Enter</kbd> | Indicates the enter button on the user's keyboard |
 | `Markdown` | Example of what to type in the command textbox |
 | **Bold** | Note-worthy keywords |
-| [Repeated Parameters] | Indicates the parameters/prefixes that may be repeated multiple times |
 | :bulb: | Indicates there is something important to take note of
 | :heavy_exclamation_mark: | Indicates something that the user should take caution of. |
 
@@ -130,7 +129,7 @@ If this is your first time using Pawbook, follow these simple steps to jump stra
    typing `add` and pressing <kbd>Enter</kbd>  will allow you to start adding information to
    the database.
 
-:bulb: Please refer to the features below for details of each command.
+:bulb: Please refer to the features below for details of each command. <br>
 :heavy_exclamation_mark: Ensure that the pawbook.json file is not corrupted. If corrupted, Pawbook 
 will not be able to use the data from JSON to build the list for usage. 
 
@@ -149,9 +148,9 @@ For instance, when a new dog arrives at the school with its owner, you will need
 Format:
 
 ```
-add dog n/DOGNAME b/BREED d/DATEOFBIRTH s/SEX o/OWNERID t/TAG
-add owner n/OWNERNAME p/PHONE_NUMBER e/EMAIL a/ADDRESS
-add program n/PROGRAMNAME s/TIMEANDDATEOFSESSION t/TAG
+add dog n/[DOGNAME] b/[BREED] d/[DATEOFBIRTH] s/[SEX] o/[OWNERID] t/[TAG]
+add owner n/[OWNERNAME] p/[PHONE_NUMBER] e/[EMAIL] a/[ADDRESS]
+add program n/[PROGRAMNAME] s/[TIMEANDDATEOFSESSION] t/[TAG]
 ```
 
 Note:
@@ -446,8 +445,8 @@ A: Pawbook does not access any web services and can be run completely offline.
 
 Action | Format
 --------|------------------
-**Add** | 1. `add dog n/DOGNAME b/BREED d/DATE OF BIRTH s/SEX o/OWNERID t/TAG`<br> 2. `add owner n/OWNERNAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]...`<br> 3. `add  program n/NAME [s/DATE OF SESSION]... [t/tag]...`
-**Delete** | 1. `delete dog d/DOGID`<br> 2. `delete owner o/OWNERID`<br> 3. `delete program p/PROGRAMID`
+**Add** | 1. `add dog n/[DOGNAME] b/[BREED] d/[DATE OF BIRTH] s/[SEX] o/[OWNERID] t/[TAG]`<br> 2. `add owner n/[OWNERNAME] p/[PHONE] e/[EMAIL] a/[ADDRESS] [t/TAG]...`<br> 3. `add  program n/[NAME] [s/DATE OF SESSION]... [t/tag]...`
+**Delete** | 1. `delete dog d/[DOGID]`<br> 2. `delete owner o/[OWNERID]`<br> 3. `delete program p/[PROGRAMID]`
 **Edit** | 1. `edit dog d/[DOG ID] n/[NAME] b/[BREED] d/[DATEOFBIRTH] s/[SEX] o/[OWNERID] [t/TAGS]...`<br> 2. `edit owner o/[OWNER ID] n/[NAME] p/[PHONE] e/[EMAIL] a/[ADDRESS] [t/TAGS]...`<br> 3. `edit program o/[PROGRAM ID] n/[NAME] [s/SESSION]... [t/TAGS]...`
 **Enrol** | `enrol d/[DOG ID] p/[PROGRAM ID]`
 **Drop** | `drop d/[DOG ID] p/[PROGRAM ID]`
