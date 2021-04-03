@@ -162,7 +162,7 @@ Examples:
 
 Output:
 
-![image](https://user-images.githubusercontent.com/59093518/113469519-c3678c00-9480-11eb-8335-90900bf745b4.png)
+![image](https://user-images.githubusercontent.com/48408342/113468956-34f10b80-947c-11eb-9ccf-ec15e2fde260.png)
 
 ### View a patient's preexisting medical record : `vrec`
 
@@ -176,7 +176,7 @@ Examples:
 
 Output:
 
-  <img width="402" height="552" src="https://user-images.githubusercontent.com/59093518/113469069-28b97e00-947d-11eb-8f77-0369d60e60be.PNG">
+![image](https://user-images.githubusercontent.com/59093518/113469519-c3678c00-9480-11eb-8335-90900bf745b4.png)
 
 ### View all information regarding a patient : `view`
 
