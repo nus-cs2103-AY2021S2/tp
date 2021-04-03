@@ -1,15 +1,15 @@
 package seedu.timeforwheels.logic.commands;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.time.LocalDate;
+import java.util.Set;
 import static java.util.Objects.requireNonNull;
 
 import seedu.timeforwheels.model.DeliveryList;
 import seedu.timeforwheels.model.Model;
 import seedu.timeforwheels.model.customer.Customer;
-import seedu.timeforwheels.model.customer.NameContainsKeywordsPredicate;
 import seedu.timeforwheels.model.tag.Tag;
-
-import java.util.*;
-import java.time.LocalDate;
 
 public class SortCommand extends Command {
 
