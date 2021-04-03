@@ -189,9 +189,9 @@ public interface Model {
     /**
      * Deletes the given booking.
      * The booking must exist in the system.
-     * @param bookingId
+     * @param target
      */
-    void deleteBooking(Id bookingId);
+    void deleteBooking(Booking target);
 
 
     /**

@@ -138,11 +138,11 @@ public class BookingSystem implements ReadOnlyBookingSystem {
 
     //// booking-level operations
     /**
-     * Removes {@code bookingId} from this {@code BookingSystem}.
-     * {@code bookingId} must exist in the booking system.
+     * Removes {@code key} from this {@code BookingSystem}.
+     * {@code key} must exist in the booking system.
      */
-    public void removeBooking(Id bookingId) {
-        bookings.removeById(bookingId);
+    public void removeBooking(Booking key) {
+        bookings.remove(key);
     }
 
     /**

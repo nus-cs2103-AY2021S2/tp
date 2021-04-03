@@ -327,8 +327,8 @@ public class ModelManager implements Model {
     //=========== Bookings ================================================================================
 
     @Override
-    public void deleteBooking(Id bookingId) {
-        bookingSystem.removeBooking(bookingId);
+    public void deleteBooking(Booking target) {
+        bookingSystem.removeBooking(target);
     }
 
     //=========== Filtered Booking List Accessors =============================================================

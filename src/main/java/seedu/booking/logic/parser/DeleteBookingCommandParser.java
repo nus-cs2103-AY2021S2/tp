@@ -5,7 +5,9 @@ import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_ID;
 
 import java.util.stream.Stream;
 
+import seedu.booking.commons.core.index.Index;
 import seedu.booking.logic.commands.DeleteBookingCommand;
+import seedu.booking.logic.commands.DeleteCommand;
 import seedu.booking.logic.parser.exceptions.ParseException;
 import seedu.booking.model.booking.Id;
 
@@ -17,27 +19,12 @@ public class DeleteBookingCommandParser implements Parser<DeleteBookingCommand> 
      * @throws ParseException if the user input does not conform the expected format
      */
     public DeleteBookingCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
-                PREFIX_BOOKING_ID);
-
-        Id bookingId;
-
-        if (!arePrefixesPresent(argMultimap, PREFIX_BOOKING_ID)
-                || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    DeleteBookingCommand.MESSAGE_USAGE));
-        }
-
         try {
-            bookingId = ParserUtil.parseBookingId(argMultimap.getValue(PREFIX_BOOKING_ID).get());
+            Index index = ParserUtil.parseIndex(args);
+            return new DeleteBookingCommand(index);
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    DeleteBookingCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteBookingCommand.MESSAGE_USAGE), pe);
         }
-        return new DeleteBookingCommand(bookingId);
-    }
-
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }
