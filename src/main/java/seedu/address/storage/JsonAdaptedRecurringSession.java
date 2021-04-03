@@ -51,6 +51,7 @@ public class JsonAdaptedRecurringSession extends JsonAdaptedSession {
 
     @Override
     public Session toModelType() throws IllegalValueException {
+        Session.checkPossibleEndTime(new SessionDate(super.getSessionDate()), new Duration(super.getDuration()));
         return new RecurringSession(new SessionDate(super.getSessionDate()), new Duration(super.getDuration()),
                 new Subject(super.getSubject()), new Fee(super.getFee()),
                 new Interval(interval), new SessionDate(lastSessionDate));
