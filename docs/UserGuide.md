@@ -187,7 +187,7 @@ Format : `view INDEX`
 where INDEX must be a positive integer (1,2,3,...)
 
 Examples:
-* `view 1`
+* `view 6`
 
 Output: 
 
@@ -313,7 +313,7 @@ Action | Format, Examples
 **listappt** | `listappt`
 **mrec** | `mrec 3`
 **vrec** | `vrec 4`
-**view** | `view 1`
+**view** | `view 6`
 **archive** | `archive 2`
 **archivelist** | `archivelist`
 **unarchive** | `unarchive 2`
