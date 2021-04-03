@@ -170,7 +170,7 @@ To achieve the best possible experience, avoid adding excessively long text to C
 ##### `DESCRIPTION`
 
 * The description of a deadline, event or todo.
-* Description should only contain alphanumeric characters and spaces and it should not be blank.
+* Description can take any values, and it should not be blank.
 
 ##### `EMAIL`
 
