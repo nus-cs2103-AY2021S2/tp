@@ -175,6 +175,7 @@ Examples:
 * `vrec 4`
 
 Output:
+
   <img width="402" height="552" src="https://user-images.githubusercontent.com/59093518/113469069-28b97e00-947d-11eb-8f77-0369d60e60be.PNG">
 
 ### View all information regarding a patient : `view`
