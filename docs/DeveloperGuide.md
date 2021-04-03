@@ -2,8 +2,39 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-{:toc}
+- [**Setting up, getting started**](#--setting-up--getting-started--)
+- [**Design**](#--design--)
+    * [Architecture](#architecture)
+    * [UI component](#ui-component)
+    * [Logic component](#logic-component)
+    * [Model component](#model-component)
+    * [Storage component](#storage-component)
+    * [Common classes](#common-classes)
+- [**Implementation**](#--implementation--)
+    * [Design enhancements](#design-enhancements)
+        + [Model update](#model-update)
+        + [Storage update](#storage-update)
+        + [Component Parser](#component-parser)
+        + [Parser validation](#parser-validation)
+        + [Data consistency](#data-consistency)
+            - [Deletion of Person objects](#deletion-of-person-objects)
+            - [Deletion of Ingredient objects](#deletion-of-ingredient-objects)
+            - [Logging of Order object](#logging-of-order-object)
+        + [Concurrent list display](#concurrent-list-display)
+        + [\[Proposed\] Data archiving](#--proposed---data-archiving)
+    * [Command enhancements](#command-enhancements)
+        + [Add command](#add-command)
+        + [Delete command](#delete-command)
+        + [List command](#list-command)
+        + [\[Proposed\] Find command](#--proposed---find-command)
+        + [\[Proposed\] Edit command](#--proposed---edit-command)
+- [**Documentation, logging, testing, configuration, dev-ops**](#--documentation--logging--testing--configuration--dev-ops--)
+- [**Appendix: Requirements**](#--appendix--requirements--)
+    * [Product scope](#product-scope)
+    * [User stories](#user-stories)
+    * [Use cases](#use-cases)
+    * [Non-Functional Requirements](#non-functional-requirements)
+    * [Glossary](#glossary)
 
 --------------------------------------------------------------------------------------------------------------------
 
