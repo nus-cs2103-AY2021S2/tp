@@ -91,7 +91,7 @@ Action | Format, Examples
 **exit** | `exit` The GUI Button at the top of the status bar. Clicking on it closes the application safely.
 **help** | `help` The GUI Button at the top of the status bar. Clicking on it opens a help window.
 **email** | `email`The GUI Button at the top of the status bar. Clicking on it opens a simplified MailBox interface allowing user to send email.
-**up** | `/up{X}`, meaning any command starting with `/up`
+**up** | `/up{X}`, meaning any command starting with `/up`. Eg: `/up delete John Doe`
 
 
 ### Adding a customer: `add`
