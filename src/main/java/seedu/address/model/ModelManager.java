@@ -261,6 +261,21 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteAssignment(Module module, Assignment target) {
+        remindMe.removeAssignment(module, target);
+    }
+
+    @Override
+    public void deleteExam(Module module, Exam exam) {
+        remindMe.removeExam(module, exam);
+    }
+
+    @Override
+    public void deleteGeneralEvent(GeneralEvent generalEvent) {
+        remindMe.removeEvent(generalEvent);
+    }
+
+    @Override
     public void addAssignment(Module module, Assignment assignment) {
         requireAllNonNull(module, assignment);
         remindMe.addAssignment(module, assignment);
