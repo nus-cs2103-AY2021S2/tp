@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-#Welcome to Car@leads
+# Welcome to Car@leads
 Car@leads is a **desktop app for a car salesperson to manage customer contacts** (CLI).
 <br> Users can add new customer contacts which include details such as customer's car brand and car type preferences along with other personal information.
 <br> Users can filter through the customer data using specific filters, such as filtering out customers who prefer a specific car brand and follow up with them for sales opportunities.
@@ -94,7 +94,7 @@ Action | Format, Examples
 **up** | `/up{X}`, meaning any command starting with `/up`. Eg: `/up blahblah`
 
 
-### Adding a customer: `add`
+## Adding a customer: `add`
 
 Adds a customer to the contact list.
 
@@ -111,7 +111,7 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 c/Honda City`
 * `add n/Betsy Crowe c/Honda City t/friend e/betsycrowe@example.com x/2011 03 27 a/Newgate Prison p/1234567 t/criminal`
 
-### Finding a customer: `find` 
+## Finding a customer: `find` 
 
 Find customers from the contact list that matches specified filters.
 
@@ -137,22 +137,35 @@ cp/PREFERRED_CARBRAND+PREFERRED_CARTYPE b/DATE_OF_BIRTH`
         - `xxx@abc.com`
         - `axbyc@hhh.com`
 
-
-Further details about the search options are as follows:
-
 - For `coe/COE_EXPIRY_DATE`, using `coe/exp` will search for all customers with an expired COE on any of the cars they own.
   it is a special case alias for the search `coe/0`, where `coe/NON_NEGATIVE_NUMBER` will search for any customers with
   at least one car that will expire in `NON_NEGATIVE_NUMBER` years *or less*.
+  
+- for `a/ADDRESS` partial addresses are also acceptable
+
+- for `b/DATE_OF_BIRTH` partial dates also work. Note that `find b/1999` is a more generic search than `find b/1999 
+  02` and hence will return more items.
+  
+- for `t/TAGS` all customers satisfying _any_ tag will be returned. In particular, `find t/TAG_A TAG_B TAG_C` is a more 
+  generic 
+  query than `find t/TAG_A` 
+  
+
+**COMBINING FIND PARAMETERS**
+
+We can combine in the following way : 
+-   `find a/Orchard /AND n/John /AND /NOT t/CRIMINAL`
+-   `find a/Orchard /AND n/John /AND [ t/RICH /OR /NOT t/CRIMINAL ]`
+
+Note that for `find A /AND B /OR C /OR D /AND E` , the implicit bracketing considered is `find A /AND [B /OR [C /OR [D 
+/AND E]]]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A customer can have any number of tags (including 0)
 </div>
 
-Examples:
-* `Find c/Honda City`
 
-
-### Deleting a customer : `delete`
+## Deleting a customer : `delete`
 
 Deletes the specified customer from the contact list.
 
@@ -162,23 +175,35 @@ Format: `delete name`
 * The name refers to the customer name shown in the displayed customer contact list.
 * The name **must be valid** does not contain special characters  …​
 
-### Listing all customers : `list`
+## Listing all customers : `list`
 
 Shows a list of all customers in the system
 
 Format: `list`
 
-### Clear all customers : `clear`
+## Clear all customers : `clear`
 * **`clear`** : Deletes all customers in the system.
 
+## Repeat last Command : `/up`
+This command pastes the last command in the Command Box.
+eg: 
 
-### Exiting app: `exit`
+    - find e/Apple
+    - find e/AppleChain
+    - /up
+    - /up
+Result:  
+    - `find e/Apple`
+
+
+
+## Exiting app: `exit`
 * **`exit`** : Exits the app.
 
-### Quick help: `help`
+## Quick help: `help`
 * **`help`** : Overview of commands and input syntax.
 
-### Email Contact person: `email`
+## Email Contact person: `email`
 * **`email`** : Opens a simplified mailbox interface enabling user to email to the desired contact persons with a prefilled text field.
   Currently, it only supports sending through Gmail accounts and requires enabling less secure app access on google security.
   This feature is **only** avaliable through the menu bar currently.
