@@ -104,12 +104,15 @@ You can use the sample data pre-loaded in the application to get play around and
 * Help can also be accessed by clicking the `help` button in the top left corner of the application or by clicking the `F1` keyboard key.
 
 Format: `help`
-### 4.1 Orders
-#### Adding an order: `add`
+### 4.1 **Orders**
+
+#### *Interacting with orders*
+
+##### Adding an order: `add`
 
 Adds an order to the CakeCollate database. The order will be initialised as undelivered, but can be modified with the `delivered` and `cancelled` commands found below.
 
-##### Simple format
+###### Simple format
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS d/DELIVERY_DATE o/ORDER_DESCRIPTION... [t/TAG]...`
 
@@ -120,7 +123,7 @@ Examples:
 * `add n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 d/13-05-2100 o/chocolate cake` adds an order with all compulsory fields, one order description and no tags.
 
 
-##### Alternative format 
+###### Alternative format 
 
 Advanced Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS d/DELIVERY_DATE oi/ORDER_ITEM_INDEXES [o/ORDER_DESCRIPTION]... [t/TAG]...`
 
@@ -142,7 +145,7 @@ Examples
 
 When you specify an order description using the prefix `o/`, e.g. `o/chocolate cake`, the app automatically adds it into the order items table. As such, you don't need to go through extra steps to add in items into the order items table manually.
 
-#### Deleting an order : `delete`
+##### Deleting an order : `delete`
 
 Deletes the specified orders from the CakeCollate database.
 
@@ -157,9 +160,9 @@ Examples:
 * `delete 2` deletes the order with `INDEX` 2 from the CakeCollate database.
 * `delete 2 3` deletes the orders with `INDEXES` 2 and 3 from the CakeCollate database.
 
-#### Delivery Status
+##### Delivery Status
 
-##### Setting the delivery status of an order as undelivered : `undelivered`
+###### Setting the delivery status of an order as undelivered : `undelivered`
 
 Sets the delivery status of the specified order/orders from the CakeCollate database as `undelivered`.
 
@@ -176,7 +179,7 @@ Examples:
 * `undelivered 2 3` sets the delivery status of the orders with ids 2 and 3 from the 
   CakeCollate database as `undelivered`.
 
-##### Setting the delivery status of an order as delivered : `delivered`
+###### Setting the delivery status of an order as delivered : `delivered`
 
 Sets the delivery status of the specified order/orders from the CakeCollate database as `delivered`.
 
@@ -192,7 +195,7 @@ Examples:
   CakeCollate database as `delivered`.
 * `delivered 2 3` sets the delivery status of the orders with ids 2 and 3 from the CakeCollate database as `delivered`.
 
-##### Setting the delivery status of an order as cancelled : `cancelled`
+###### Setting the delivery status of an order as cancelled : `cancelled`
 
 Sets the delivery status of the specified order/orders from the CakeCollate database as `cancelled`.
 
@@ -208,7 +211,7 @@ Examples:
   CakeCollate database as `cancelled`.
 * `cancelled 2 3` sets the delivery status of the orders with ids 2 and 3 from the CakeCollate database as `cancelled`.
 
-#### Adding a special request to an order: `request`
+##### Adding a special request to an order: `request`
 
 Adds a special request to an existing order in the CakeCollate database.
 
@@ -222,7 +225,7 @@ Examples:
 * `request 2 r/` Removes the 2nd order's current special request.
 
 
-#### Editing an order : `edit`
+##### Editing an order : `edit`
 
 Edits an existing order in the CakeCollate database.
 
@@ -240,7 +243,7 @@ Examples:
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd order to be `Betsy Crower` and clears all existing tags.
 
 
-#### Clearing all existing orders: `clear`
+##### Clearing all existing orders: `clear`
 
 Deletes all existing orders in the CakeCollate database.
 
