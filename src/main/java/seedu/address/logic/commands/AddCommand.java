@@ -34,7 +34,6 @@ public class AddCommand extends Command {
             + "[" + PREFIX_RECURRINGSCHEDULE + "RECURRINGSCHEDULE] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "You can only have either (Date) or (Duration AND/OR RecurringSchedule) fields, but not both.\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_TITLE + "This is a task "
             + PREFIX_DATE + "20/06/2021 "
@@ -53,7 +52,6 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the planner.";
-
     public static final String MESSAGE_INVALID_DATE_RANGE = "Task has invalid date input.\n\nNote: Months of Apr, Jun, "
             + "Sep, Nov has only 30 days while Feb has only 28 days with leap years (mulitples of 4) having 29 days";
 
