@@ -2,40 +2,9 @@
 layout: page
 title: Developer Guide
 ---
-# Table of Contents
-* [Introduction](#introduction)
-    * [Purpose](#purpose)
-    * [Audience](#audience)
-    * [Overview](#overview)
-* [Getting started](#setting-up-getting-started)
-* [Design](#design)
-    * [Architecture](#architecture)
-    * [UI component](#ui-component)
-    * [Logic component](#logic-component)
-    * [Model component](#model-component)
-    * [Storage component](#storage-component)
-    * [Common classes](#common-classes)
-* [Implementation](#implementation)
-    * [Deleting a book](#deleting-a-book)
-    * [Finding a book](#finding-books-with-keywords)
-    * [Adding a reader](#adding-a-reader)
-    * [Listing all readers](#listing-all-readers)
-    * [Finding a reader](#finding-readers-with-keywords)
-    * [Borrowing a book](#borrowing-a-book)
-    * [Returning a book](#returning-a-book)
-    * [Returning overdue books](#returning-overdue-books)
-    * [\[Proposed\] Undo/redo feature](#proposed-undoredo-feature)
-* [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
-* [Appendix: Requirements](#appendix-requirements)
-    * [Product scope](#product-scope)
-    * [User stories](#user-stories)
-    * [Use cases](#use-cases)
-    * [Non-functional requirements](#non-functional-requirements)
-    * [Glossary](#glossary)
-* [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
-    * [Launch and shutdown](#launch-and-shutdown)
-    * [Deleting a reader](#deleting-a-reader)
-    * [Saving data](#saving-data)
+
+* Table of Contents
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
