@@ -6,6 +6,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EDUCATION_LEVEL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADED_ITEM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUALIFICATION;
@@ -21,14 +23,18 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.gradecommands.EditGradeCommand;
 import seedu.address.logic.commands.tutorcommands.EditCommand;
+import seedu.address.model.GradeBook;
 import seedu.address.model.Model;
 import seedu.address.model.TutorBook;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.appointment.DateViewPredicate;
+import seedu.address.model.grade.Grade;
 import seedu.address.model.tutor.NameContainsKeywordsPredicate;
 import seedu.address.model.tutor.Tutor;
+import seedu.address.testutil.EditGradeDescriptorBuilder;
 import seedu.address.testutil.EditTutorDescriptorBuilder;
 
 /**
@@ -54,6 +60,16 @@ public class CommandTestUtil {
     public static final String VALID_SUBJECT_RATE = "60";
     public static final String VALID_SUBJECT_EXPERIENCE = "5";
     public static final String VALID_SUBJECT_QUALIFICATION = "A-Level";
+
+    public static final String VALID_SUBJECT_NAME_MATHS = "Mathematics";
+    public static final String VALID_GRADED_ITEM_MATHS = "Midterm Exam";
+    public static final String VALID_GRADE_MATHS = "A";
+    public static final String VALID_SUBJECT_NAME_SCIENCE = "Science";
+    public static final String VALID_GRADED_ITEM_SCIENCE = "Lab 1";
+    public static final String VALID_GRADE_SCIENCE = "B";
+    public static final String VALID_SUBJECT_NAME_PHYSICS = "Physics";
+    public static final String VALID_GRADED_ITEM_PHYSICS = "Quiz";
+    public static final String VALID_GRADE_PHYSICS = "D";
 
     public static final String VALID_SCHEDULE_TITLE_ONE = "Maths Homework";
     public static final String VALID_SCHEDULE_TIMEFROM_ONE = "2021-03-24 10:00AM";
@@ -83,17 +99,33 @@ public class CommandTestUtil {
     public static final String SUBJECT_EXPERIENCE_DESC = " " + PREFIX_YEAR + VALID_SUBJECT_EXPERIENCE;
     public static final String SUBJECT_QUALIFICATION_DESC = " " + PREFIX_QUALIFICATION + VALID_SUBJECT_QUALIFICATION;
 
+    public static final String SUBJECT_DESC_MATHS = " " + PREFIX_SUBJECT_NAME + VALID_SUBJECT_NAME_MATHS;
+    public static final String SUBJECT_DESC_SCIENCE = " " + PREFIX_SUBJECT_NAME + VALID_SUBJECT_NAME_SCIENCE;
+    public static final String GRADED_ITEM_DESC_MATHS = " " + PREFIX_GRADED_ITEM + VALID_GRADED_ITEM_MATHS;
+    public static final String GRADED_ITEM_DESC_SCIENCE = " " + PREFIX_GRADED_ITEM + VALID_GRADED_ITEM_SCIENCE;
+    public static final String GRADE_DESC_MATHS = " " + PREFIX_GRADE + VALID_GRADE_MATHS;
+    public static final String GRADE_DESC_SCIENCE = " " + PREFIX_GRADE + VALID_GRADE_SCIENCE;
+
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
+    public static final String INVALID_SUBJECT_DESC = " "
+            + PREFIX_SUBJECT_NAME + "Science&"; // '&' not allowed in subject names
+    public static final String INVALID_GRADED_ITEM_DESC = " "
+            + PREFIX_GRADED_ITEM + "Midterm&"; // '&' not allowed in graded items
+    public static final String INVALID_GRADE_DESC = " " + PREFIX_GRADE + "A-"; // '-' not allowed in grade
+
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
     public static final EditCommand.EditTutorDescriptor DESC_AMY;
     public static final EditCommand.EditTutorDescriptor DESC_BOB;
+
+    public static final EditGradeCommand.EditGradeDescriptor DESC_MATHS;
+    public static final EditGradeCommand.EditGradeDescriptor DESC_SCIENCE;
 
     static {
         DESC_AMY = new EditTutorDescriptorBuilder().withName(VALID_NAME_AMY).withGender(VALID_GENDER_AMY)
@@ -108,6 +140,14 @@ public class CommandTestUtil {
                         VALID_SUBJECT_EXPERIENCE,
                         VALID_SUBJECT_QUALIFICATION)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+
+        // EditGradeDescriptor
+        DESC_MATHS = new EditGradeDescriptorBuilder()
+                .withSubject(VALID_SUBJECT_NAME_MATHS)
+                .withGradedItem(VALID_GRADED_ITEM_MATHS).withGrade(VALID_GRADE_MATHS).build();
+        DESC_SCIENCE = new EditGradeDescriptorBuilder()
+                .withSubject(VALID_SUBJECT_NAME_SCIENCE)
+                .withGradedItem(VALID_GRADED_ITEM_SCIENCE).withGrade(VALID_GRADE_SCIENCE).build();
     }
 
     /**
@@ -152,6 +192,24 @@ public class CommandTestUtil {
         assertEquals(expectedAddressBook, actualModel.getTutorBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredTutorList());
     }
+
+    /**
+     * Executes the given {@code command}, confirms that <br>
+     * - a {@code CommandException} is thrown <br>
+     * - the CommandException message matches {@code expectedMessage} <br>
+     * - the grade book, filtered grade list and selected grade in {@code actualModel} remain unchanged
+     */
+    public static void assertGradeCommandFailure(Command command, Model actualModel, String expectedMessage) {
+        // we are unable to defensively copy the model for comparison later, so we can
+        // only do so by copying its components.
+        GradeBook expectedGradeBook = new GradeBook(actualModel.getGradeBook());
+        List<Grade> expectedFilteredList = new ArrayList<>(actualModel.getFilteredGradeList());
+
+        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
+        assertEquals(expectedGradeBook, actualModel.getGradeBook());
+        assertEquals(expectedFilteredList, actualModel.getFilteredGradeList());
+    }
+
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
      * {@code model}'s address book.

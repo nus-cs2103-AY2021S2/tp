@@ -26,10 +26,10 @@ public class EditGradeCommandParser implements Parser<EditGradeCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public EditGradeCommand parse(String args) throws ParseException {
+
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_SUBJECT_NAME, PREFIX_GRADED_ITEM,
-                        PREFIX_GRADE);
+                ArgumentTokenizer.tokenize(args, PREFIX_SUBJECT_NAME, PREFIX_GRADED_ITEM, PREFIX_GRADE);
 
         Index index;
 
@@ -39,19 +39,18 @@ public class EditGradeCommandParser implements Parser<EditGradeCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditGradeCommand.MESSAGE_USAGE), pe);
         }
 
-        EditGradeCommand.EditGradeDescriptor editGradeDescriptor =
-                new EditGradeCommand.EditGradeDescriptor();
+        EditGradeCommand.EditGradeDescriptor editGradeDescriptor = new EditGradeCommand.EditGradeDescriptor();
         if (argMultimap.getValue(PREFIX_SUBJECT_NAME).isPresent()) {
-            editGradeDescriptor.setSubjectName(
-                    ParserUtil.parseSubjectName(argMultimap.getValue(PREFIX_SUBJECT_NAME).get()));
+            editGradeDescriptor.setSubjectName(ParserUtil
+                    .parseSubjectName(argMultimap.getValue(PREFIX_SUBJECT_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_GRADED_ITEM).isPresent()) {
-            editGradeDescriptor.setGradedItem(
-                    ParserUtil.parseGradedItem(argMultimap.getValue(PREFIX_GRADED_ITEM).get()));
+            editGradeDescriptor.setGradedItem(ParserUtil
+                    .parseGradedItem(argMultimap.getValue(PREFIX_GRADED_ITEM).get()));
         }
         if (argMultimap.getValue(PREFIX_GRADE).isPresent()) {
-            editGradeDescriptor.setGrade(
-                    ParserUtil.parseGrade(argMultimap.getValue(PREFIX_GRADE).get()));
+            editGradeDescriptor.setGrade(ParserUtil
+                    .parseGrade(argMultimap.getValue(PREFIX_GRADE).get()));
         }
 
         if (!editGradeDescriptor.isAnyFieldEdited()) {

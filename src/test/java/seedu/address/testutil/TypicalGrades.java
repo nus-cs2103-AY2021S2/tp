@@ -24,6 +24,16 @@ public class TypicalGrades {
             .withGradedItem("Final")
             .withGrade("C").build();
 
+    // Manually added
+    public static final Grade PHYSICS_GRADE = new GradeBuilder()
+            .withSubject("Physics")
+            .withGradedItem("Quiz")
+            .withGrade("D").build();
+    public static final Grade HISTORY_GRADE = new GradeBuilder()
+            .withSubject("History")
+            .withGradedItem("CA1")
+            .withGrade("S").build();
+
     private TypicalGrades() {
     } // prevents instantiation
 
