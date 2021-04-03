@@ -52,7 +52,7 @@ public class BookingCard extends UiPart<Region> {
         super(FXML);
         this.booking = booking;
         id.setText(displayedIndex + ". ");
-        title.setText(booking.getDescription().value);
+        title.setText(booking.getVenueName().venueName);
         booker.setText(booking.getBookerEmail().value);
         startTime.setText(booking.getBookingStart().toString());
         endTime.setText(booking.getBookingEnd().toString());
