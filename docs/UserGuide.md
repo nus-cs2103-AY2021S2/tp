@@ -226,7 +226,9 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
-![image](https://user-images.githubusercontent.com/59093518/113469330-51427780-947f-11eb-9130-b13797e2c1b8.png)
+
+![image]()
+<img width="1015" height="712" src="https://user-images.githubusercontent.com/59093518/113469330-51427780-947f-11eb-9130-b13797e2c1b8.png">
 
 
 ### Clearing all entries : `clear`
