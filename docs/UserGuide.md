@@ -67,7 +67,7 @@ If you can type fast, SpamEZ can get your contact management tasks done faster t
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`, `dark`, `light` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 * Commands will only handle `INDEX` values from 1 to 2147483647 (inclusive).
@@ -247,6 +247,18 @@ Example:
 
 `sort ascending`
 
+### Changing view type to light mode : `light`
+
+Changes the color theme to a light theme.
+
+Format: `light`
+
+### Changing view type to dark mode : `dark`
+
+Changes the color theme to a dark theme.
+
+Format: `dark`
+
 ### Review previous commands
 Users can view the commands they have inserted previously using up and down arrow keys.
 To re-execute the command, users simply need to press enter.
@@ -302,5 +314,8 @@ Action | Format, Examples
 **List** | `list`
 **Remark** | `remark INDEX r/REMARK`<br> e.g., `remark 5 r/Currently on Leave of Absence`
 **Tag** | `tag n/NAME t/TAG`<br> e.g., `tag n/Jane Bo t/Student`
+**Sort** | `sort c/CRITERIA d/ASCENDING_OR_DESCENDING`<br> e.g., `sort c/name d/ascending`
+**Light** | `light`
+**Dark** | `dark`
 **Sort** | `sort ASCENDING_OR_DESCENDING`<br> e.g., `sort ascending`
 **Undo** | `undo`
