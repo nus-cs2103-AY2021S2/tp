@@ -1,6 +1,9 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_NAME;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_EMAIL;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_PHONE;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
@@ -68,16 +71,20 @@ public class AddMemberCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         // invalid name
-        assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB, Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB,
+                MESSAGE_INVALID_PERSON_DISPLAYED_NAME + Name.MESSAGE_CONSTRAINTS);
 
         // invalid phone
-        assertParseFailure(parser, NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB , Phone.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB ,
+                MESSAGE_INVALID_PERSON_PHONE + Phone.MESSAGE_CONSTRAINTS);
 
         // invalid email
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC , Email.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC ,
+                MESSAGE_INVALID_PERSON_EMAIL + Email.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
-        assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB, Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB,
+                MESSAGE_INVALID_PERSON_DISPLAYED_NAME + Name.MESSAGE_CONSTRAINTS);
 
     }
 }

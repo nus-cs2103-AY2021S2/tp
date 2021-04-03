@@ -9,9 +9,10 @@ import java.time.format.DateTimeParseException;
  * Guarantees: deadline not empty and in the format YYYY-MM-DD.
  */
 public class Deadline {
-    public static final String MESSAGE_CONSTRAINTS = "Invalid Date or Date format! Deadlines should be in the format "
+    public static final String MESSAGE_CONSTRAINTS = "Deadlines should be in the format "
             + "YYYY-MM-DD and should be a valid date";
 
+    public static final String VALIDATION_REGEX = "\\d{4}-\\d{2}-\\d{2}";
     public final LocalDate date;
     public final String dateString;
     public final String unformattedDate;
@@ -57,6 +58,15 @@ public class Deadline {
             return false;
         }
         return true;
+    }
+
+    /**
+     * Returns true if a given string has a valid deadline format.
+     *
+     * @return a boolean value
+     */
+    public static boolean isValidFormat(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 
     @Override

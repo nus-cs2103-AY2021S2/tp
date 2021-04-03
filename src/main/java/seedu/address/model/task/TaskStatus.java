@@ -9,8 +9,8 @@ public enum TaskStatus {
     UNCOMPLETED("uncompleted"),
     COMPLETED("completed");
 
-    public static final String MESSAGE_CONSTRAINTS = "Error with Task Status Value. "
-            + "Task Status should take one of the predefined values: completed or uncompleted (Case sensitive)";
+    public static final String MESSAGE_CONSTRAINTS = "Task Status should take one of the predefined values: completed "
+            + "or uncompleted (Case sensitive)";
 
     public final String status;
 

@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TASK_PRIORITY;
 import static seedu.address.logic.commands.CommandTestUtil.ASSIGNEE_TASK2;
 import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_TASK1;
 import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_TASK2;
@@ -68,10 +69,12 @@ public class EditTaskCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         // invalid deadline
-        assertParseFailure(parser, "1" + INVALID_DEADLINE_DESC, Deadline.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_DEADLINE_DESC,
+                 Deadline.MESSAGE_CONSTRAINTS);
 
         //invalid priority
-        assertParseFailure(parser, "1" + INVALID_PRIORITY_DESC, Priority.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_PRIORITY_DESC, MESSAGE_INVALID_TASK_PRIORITY
+                + Priority.MESSAGE_CONSTRAINTS);
     }
 
     @Test
