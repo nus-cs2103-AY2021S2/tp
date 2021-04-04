@@ -22,7 +22,7 @@ import seedu.partyplanet.model.event.Event;
 
 public class EEditAutocompleteUtil {
 
-    private static final String INDEX_NOT_SPECIFIED_OR_INVALID_MESSAGE = "Index not specified or Invalid!";
+    private static final String INDEX_NOT_SPECIFIED_OR_INVALID_MESSAGE = "Index not specified or invalid!";
 
     /**
      * Parses an edit command to autocomplete remark.
