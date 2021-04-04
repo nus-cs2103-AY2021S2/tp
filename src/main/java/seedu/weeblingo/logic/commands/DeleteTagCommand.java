@@ -17,9 +17,9 @@ import seedu.weeblingo.model.flashcard.Flashcard;
 import seedu.weeblingo.model.flashcard.Question;
 import seedu.weeblingo.model.tag.Tag;
 
-public class DeleteCommand extends Command {
+public class DeleteTagCommand extends Command {
 
-    public static final String COMMAND_WORD = "delete";
+    public static final String COMMAND_WORD = "deleteTag";
 
     public static final String MESSAGE_SUCCESS = "Tag(s) deleted successfully!";
 
@@ -37,12 +37,12 @@ public class DeleteCommand extends Command {
     private Set<Tag> tags;
 
     /**
-     * Creates a DeleteCommand representing a user command to delete tags from a flashcard.
+     * Creates a DeleteTagCommand representing a user command to delete tags from a flashcard.
      *
      * @param index The index of the flashcard to be deleted.
      * @param tags The tags to be deleted.
      */
-    public DeleteCommand(Index index, Set<Tag> tags) {
+    public DeleteTagCommand(Index index, Set<Tag> tags) {
         this.index = index;
         this.tags = tags;
     }
