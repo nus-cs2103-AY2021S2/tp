@@ -115,7 +115,7 @@ public class LogicManager implements Logic {
 
     @Override
     public boolean showCards() {
-        if (getCurrentMode() == Mode.MODE_MENU) {
+        if (getCurrentMode() == Mode.MODE_MENU || getCurrentMode() == Mode.MODE_QUIZ_SESSION_ENDED) {
             return false;
         } else {
             return true;
