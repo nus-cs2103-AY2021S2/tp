@@ -28,19 +28,19 @@ BookCoin (to the Moon) is a **desktop app for managing bookings that presents us
 
    * **`list_venue`** : Lists all venues.
 
-   * **`add_venue`**`v/Chua Thian Poh Hall` : Starts a multi-step command to create a venue named `Chua Thian Poh Hall`. Fill in the prompts as directed.
+   * **`add_venue v/Chua Thian Poh Hall`** : Starts a multi-step command to create a venue named `Chua Thian Poh Hall`. Fill in the prompts as directed.
 
    * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#3.0-Features) below for details of each command.
+1. Refer to the [Features](#3-features) below for details of each command.
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Using BookCoin:**<br>
 
-* This section gives an overview of BookCoin’s layout so that you can get started quickly.
+This section gives an overview of BookCoin’s layout so that you can get started quickly.
 
-There are four main segments in BookCoin:
+**There are four main segments in BookCoin:**
 * Tabs that allow you to navigate between Persons, Venues and Bookings
 
 * A command box as well as a result display box at the top left of the application
