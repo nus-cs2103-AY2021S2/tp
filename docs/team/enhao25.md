@@ -11,7 +11,7 @@ TutorBuddy is a desktop application made for freelance tutors who give one-to-on
 Given below is a summary of my contributions to the TutorBuddy Application.
 
 ### Major Enhancement:
-* Getting the current month and previous 2 months monthly fees 
+* Getting the current month and previous 2 months monthly fees. 
   * **What it does:** This feature calculates the current month, and the previous 2 months expected monthly fee based on existing sessions and recurring sessions. We then display the results on the UI accordingly.
   * **Rationale:** Independent tutors might want to keep track of their earnings. However, as different lesson could be priced differently,
     we wanted to implement a feature that helps user calculate their expected total current month salary and their previous 2 months
@@ -51,12 +51,9 @@ the fields taken to be representative of a student class instead.
       [PR #153](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/153).
 
 ### Minor Enhancement:
-* Added checks to ensure that start time + duration does not exceed a day [PR #176](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/176).
+* Added checks to ensure that start time + duration does not exceed the day itself [PR #176](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/176).
 * Combining list_student and list_session command to list command [PR #167](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/167).
-* Updating sample data to better reflect our current application. [PR #166](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/166).
-
-### Code Contributed: 
-[All Codes](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=enhao25&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-02-19&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=enhao25&tabRepo=AY2021S2-CS2103T-T11-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false)
+* Updating sample data to better reflect our current application [PR #166](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/166).
 
 ### Other Contribution:
 * Project Management:
@@ -75,3 +72,5 @@ the fields taken to be representative of a student class instead.
   * Developers Guide:
     * Added implementation details for the `add_student` command with the appropriate activity diagram [PR #93](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/93).
     * Updated the application value proposition and added 5 different use cases [PR #19](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/19/files).
+  * Codes Contributed:
+    * [RepoSense Link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=enhao25&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-02-19&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=enhao25&tabRepo=AY2021S2-CS2103T-T11-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false)
