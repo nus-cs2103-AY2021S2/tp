@@ -330,11 +330,19 @@ Adds a single tuition session to TutorBuddy.
 Format: `add_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE`
 
 * `STUDENT_NAME` should match the exact student’s name in TutorBuddy
+* `DATE` should be the date of the session in yyyy-mm-dd` format
 * `DURATION` should be in minutes
-* `FEE` should be the total tuition fee for the total duration
+* `FEE` should be the total tuition fee for 1 session of the given duration
+    * TutorBuddy only accepts `FEE` within an acceptable range of values between 0 (Voluntary Session) to below 10000 as we do not except a single session to cost $10,000 or more.
+    * `FEE` only allows values up to 2 decimal points only
 
 <div markdown="span" class="alert alert-primary">:bulb: Tip:
 TutorBuddy takes care of overlapping session for you by giving a gentle prompt, so you don't have to worry about it.
+</div>
+<br>
+<div markdown="block" class="alert alert-info">
+:information_source: Note that the [Time given in <code>DATE</code> + <code>DURATION</code>] should not exceed 23:59H of the same day. 
+This is done as we do not except tutors to teach lessons beyond the day itself.
 </div>
 
 Example:
@@ -403,6 +411,10 @@ Format: `fee n/STUDENT_NAME m/MONTH y/YEAR`
 
 Example:
 * `fee n/John Lee m/1 y/2021` returns John Lee monthly fee for January 2021
+
+<div markdown="block" class="alert alert-info">
+:information_source: Note that calculation of fee is only accurate for totaled fees of up to $2,147,483,647. If it is above the specified amount, the result might be inaccurate.
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>

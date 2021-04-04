@@ -34,7 +34,7 @@ public class Fee {
      * Returns true if fee is valid
      */
     public static boolean isValidFee(String value) {
-        return value.matches(VALIDATION_REGEX);
+        return value.matches(VALIDATION_REGEX) && Double.parseDouble(value) < 10000;
     }
 
     @Override
