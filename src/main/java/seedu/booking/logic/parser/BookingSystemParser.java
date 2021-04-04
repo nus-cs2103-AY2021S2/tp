@@ -7,15 +7,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.booking.logic.commands.AddPersonCommand;
-import seedu.booking.logic.commands.AddVenueCommand;
 import seedu.booking.logic.commands.ClearCommand;
 import seedu.booking.logic.commands.Command;
 import seedu.booking.logic.commands.DeleteBookingCommand;
-import seedu.booking.logic.commands.DeleteCommand;
 import seedu.booking.logic.commands.DeletePersonCommand;
 import seedu.booking.logic.commands.DeleteVenueCommand;
 import seedu.booking.logic.commands.EditBookingCommand;
-import seedu.booking.logic.commands.EditCommand;
 import seedu.booking.logic.commands.EditPersonCommand;
 import seedu.booking.logic.commands.EditVenueCommand;
 import seedu.booking.logic.commands.ExitCommand;
@@ -24,7 +21,6 @@ import seedu.booking.logic.commands.FilterBookingByDateCommand;
 import seedu.booking.logic.commands.FilterBookingByTagCommand;
 import seedu.booking.logic.commands.FilterBookingByVenueCommand;
 import seedu.booking.logic.commands.FindBookingCommand;
-import seedu.booking.logic.commands.FindCommand;
 import seedu.booking.logic.commands.FindPersonByTagCommand;
 import seedu.booking.logic.commands.FindPersonCommand;
 import seedu.booking.logic.commands.FindVenueByTagCommand;
@@ -133,8 +129,20 @@ public class BookingSystemParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
+        case PromptAddBookingCommand.COMMAND_WORD:
+            return new PromptAddBookingCommand();
+
+        case PromptAddVenueCommand.COMMAND_WORD:
+            return new PromptAddVenueCommandParser().parse(arguments);
+
+        case PromptAddPersonCommand.COMMAND_WORD:
+            return new PromptAddPersonCommand();
+
+        case AddPersonCommand.COMMAND_WORD:
+            return new AddCommandParser().parse(arguments);
+
         case EditBookingCommand.COMMAND_WORD:
-        return new EditBookingCommandParser().parse(arguments);
+            return new EditBookingCommandParser().parse(arguments);
 
         case EditPersonCommand.COMMAND_WORD:
             return new EditPersonCommandParser().parse(arguments);
@@ -195,15 +203,6 @@ public class BookingSystemParser {
 
         case FilterBookingByTagCommand.COMMAND_WORD:
             return new FilterBookingByTagCommandParser().parse(arguments);
-
-        case PromptAddBookingCommand.COMMAND_WORD:
-            return new PromptAddBookingCommand();
-
-        case PromptAddVenueCommand.COMMAND_WORD:
-            return new PromptAddVenueCommandParser().parse(arguments);
-
-        case PromptAddPersonCommand.COMMAND_WORD:
-            return new PromptAddPersonCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

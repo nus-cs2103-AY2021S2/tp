@@ -1,33 +1,17 @@
 package seedu.booking.logic.parser;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.booking.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.booking.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.booking.testutil.Assert.assertThrows;
-import static seedu.booking.testutil.TypicalIndexes.INDEX_FIRST;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.booking.logic.commands.AddPersonCommand;
 import seedu.booking.logic.commands.ClearCommand;
-import seedu.booking.logic.commands.DeleteCommand;
-import seedu.booking.logic.commands.EditCommand;
-import seedu.booking.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.booking.logic.commands.ExitCommand;
-import seedu.booking.logic.commands.FindCommand;
 import seedu.booking.logic.commands.HelpCommand;
 import seedu.booking.logic.commands.ListPersonCommand;
 import seedu.booking.logic.parser.exceptions.ParseException;
-import seedu.booking.model.person.NameContainsKeywordsPredicate;
-import seedu.booking.model.person.Person;
-import seedu.booking.testutil.EditPersonDescriptorBuilder;
-import seedu.booking.testutil.PersonBuilder;
-import seedu.booking.testutil.PersonUtil;
 
 public class BookingSystemParserTest {
 

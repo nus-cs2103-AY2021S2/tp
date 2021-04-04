@@ -1,19 +1,11 @@
 package seedu.booking.logic.parser;
 
-import static seedu.booking.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.booking.logic.commands.CommandTestUtil.INVALID_VENUE_CAPACITY_DESC;
-import static seedu.booking.logic.commands.CommandTestUtil.INVALID_VENUE_CAPACITY_DESC2;
-import static seedu.booking.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.booking.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
-import static seedu.booking.logic.commands.CommandTestUtil.VALID_VENUE_CAPACITY_HALL;
-import static seedu.booking.logic.commands.CommandTestUtil.VALID_VENUE_DESCRIPTION_HALL;
-import static seedu.booking.logic.commands.CommandTestUtil.VALID_VENUE_NAME_HALL;
 import static seedu.booking.logic.commands.CommandTestUtil.VENUE_CAPACITY_DESC_HALL;
 import static seedu.booking.logic.commands.CommandTestUtil.VENUE_DESCRIPTION_DESC_HALL;
 import static seedu.booking.logic.commands.CommandTestUtil.VENUE_NAME_DESC_FIELD;
 import static seedu.booking.logic.commands.CommandTestUtil.VENUE_NAME_DESC_HALL;
 import static seedu.booking.logic.commands.CommandTestUtil.VENUE_TAGS_DESC_HALL;
-import static seedu.booking.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.booking.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.booking.testutil.TypicalVenues.HALL;
 
@@ -52,7 +44,7 @@ public class AddVenueCommandParserTest {
         }
      */
 
-/*
+    /*
     @Test
     public void parse_compulsoryFieldMissing_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddVenueCommand.MESSAGE_USAGE);
@@ -67,7 +59,7 @@ public class AddVenueCommandParserTest {
                 expectedMessage);
     }
 
- */
+    */
 
     @Test
     public void parse_optionalFieldMissing_success() {
@@ -88,7 +80,7 @@ public class AddVenueCommandParserTest {
 
     }
 
-/*
+    /*
     // need to add MESSAGE_CONSTRAINTS
     @Test
     public void parse_invalidValue_failure() {
