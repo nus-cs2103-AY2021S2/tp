@@ -17,12 +17,12 @@ users can learn Japanese at a comfortable pace and manage flashcards with this a
      * [Exiting the application: `exit`](#exiting-the-application-exit)
   * [**Learn Mode Commands**](#learn-mode-commands)
      * [Entering learn mode: `learn`](#entering-learn-mode-learn)
-     * [Tagging a flashcard: `tag INDEX TAGS…`](#tagging-a-flashcard-tag-index-tags)
-     * [Deleting tags from a flashcard: `delete INDEX [TAGS…]`](#deleting-tags-from-a-flashcard-delete-index-tags)
+     * [Tagging a flashcard: `tag`](#tagging-a-flashcard-tag)
+     * [Deleting tags from a flashcard: `delete`](#deleting-tags-from-a-flashcard-delete)
   * [**Quiz Mode Commands**](#quiz-mode-commands)
      * [Entering quiz mode: `quiz`](#entering-quiz-mode-quiz)
      * [Starting a quiz session: `start`](#starting-a-quiz-session-start)
-     * [Checking flashcard answers: `check ATTEMPT`](#checking-flashcard-answers-check)
+     * [Checking flashcard answers: `check`](#checking-flashcard-answers-check)
      * [Going to next flashcard: `next`](#going-to-next-flashcard-next)
   * [**History Mode Commands**](#history-mode-commands)
      * [Entering history mode: `history`](#entering-history-mode-history)
@@ -135,7 +135,7 @@ Learn Mode:
 ![learn mode](images/learn_mode.png)
 
 
-### Tagging a flashcard: `tag INDEX TAGS…`
+### Tagging a flashcard: `tag`
 
 Reads in an index and one or more tags, and adds these tags to the flashcard at the desired index.
 At least one tag must be provided, else the user will be prompted to enter a valid command.
@@ -157,7 +157,7 @@ Examples:
 After successfully adding a tag:
 ![tag successful](images/tag_success.png)
 
-### Deleting tags from a flashcard: `delete INDEX [TAGS…]`
+### Deleting tags from a flashcard: `delete`
 
 Reads in an index and zero or more tags, and removes these tags from the flashcard at the desired index.
 If no tags are provided, all user-added tags will be removed from the flashcard.
