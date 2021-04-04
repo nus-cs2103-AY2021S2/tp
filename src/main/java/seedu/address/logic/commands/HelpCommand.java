@@ -146,7 +146,8 @@ public class HelpCommand extends Command {
     }
 
     private String commandSummaryParser(String info) {
-        if (!info.startsWith("\u200B |")) {
+        // if (!info.startsWith("\u200B |")) {
+        if (!info.contains("| **")) {
             String[] separatedInfo = info.split("\\|");
             String[] commandName = separatedInfo[0].split("\\*");
             String[] commandDesc = separatedInfo[1].split("`");

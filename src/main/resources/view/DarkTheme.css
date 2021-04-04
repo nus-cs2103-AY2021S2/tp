@@ -367,3 +367,11 @@
     -fx-background-radius: 2;
     -fx-font-size: 11;
 }
+
+/* Empty star */
+#favIcon {
+	-fx-shape: "m283.48045,215.49446l88.95852,0l27.48887,-84.51021l27.48888,84.51021l88.9585,0l-71.96882,52.22959l27.49029,84.51021l-71.96885,-52.23101l-71.96884,52.23101l27.4903,-84.51021l-71.96884,-52.22959z";
+	-fx-background-color: white;
+	-fx-border-color: white;
+	-fx-border-width: 0.5;
+}

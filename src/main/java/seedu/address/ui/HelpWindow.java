@@ -115,7 +115,7 @@ public class HelpWindow extends UiPart<Stage> {
         if (theme.equals("dark")) {
             scene.getStylesheets().add("view/DarkThemeHelpWindow.css");
         } else {
-            scene.getStylesheets().add("view/HeliBookThemeHelpWindow.css");
+            scene.getStylesheets().add("view/LightThemeHelpWindow.css");
         }
     }
 

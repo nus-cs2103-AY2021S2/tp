@@ -121,7 +121,7 @@ Examples:
 
 Adds a contact to the address book.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [tc/CHILDTAG]…​ [t/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [tc/CHILDTAG]... [t/TAG]...`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A contact can have any number of tags (including 0)
@@ -139,9 +139,9 @@ Examples:
 
 Adds or replaces tags to the specified contact by index.
 
-Format: `tag INDEX [o/OPTION] [tc/CHILDTAG]…​ [t/TAG]…​`
+Format: `tag INDEX [o/OPTION] [tc/CHILDTAG]... [t/TAG]...`
 
-* Tags the contact at the specified INDEX. The index refers to the index number shown in the displayed contact list. The index must be a positive integer 1, 2, 3, …​
+* Tags the contact at the specified INDEX. The index refers to the index number shown in the displayed contact list. The index must be a positive integer 1, 2, 3, ...
 
 Currently available options for the `[OPTION]` field include:
 * `rt` Replaces the currently existing tags with the given new set of tags 
@@ -168,11 +168,11 @@ Examples:
 
 Edits an existing contact in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tc/CHILDTAG]…​ [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tc/CHILDTAG]... [t/TAG]...`
 
 * Edits the contact at the specified `INDEX`.
 * The index refers to the index number shown in the displayed contact list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3, ...
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the contact will be removed i.e adding of tags is not cumulative.
@@ -212,7 +212,7 @@ Format: `delete INDEX`
 
 * Deletes the contact at the specified `INDEX`.
 * The index refers to the index number shown in the displayed contact list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3, ...
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd contact in the address book.
@@ -242,7 +242,7 @@ Format: `fav INDEX [o/OPTION]`
 
 * Favourite the contact at the specified `INDEX`.
 * The index refers to the index number shown in the displayed contact list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3, ...
 
 Currently available options for the `[OPTION]` field include:
 * `remove` Unfavourites the specified contact
@@ -266,7 +266,7 @@ The tags here do not differentiate between ChildTags and regular Tags.
 This command will delete all entries that match **ANY** of the given tags.
 </div>
 
-Format: `clear [t/TAG]…​`
+Format: `clear [t/TAG]...`
 
 
 Examples:
@@ -279,11 +279,11 @@ Examples:
 
 Adds an appointment to the appointment book.
 
-Format: `addAppt n/NAME a/ADDRESS d/DATE [c/CONTACT_INDEX]…​ [tc/CHILDTAG]…​`
+Format: `addAppt n/NAME a/ADDRESS d/DATE [c/CONTACT_INDEX]... [tc/CHILDTAG]...`
 
 * Contact in the address book at the specified `CONTACT_INDEX` is added to the appointment.
 * The index refers to the index number shown in the displayed contact list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3, ...
 * `DATE` has to be in the format "`dd`/`MM`/`yyyy` `HH`:`mm`".
 
 Examples:
@@ -297,7 +297,7 @@ Format: `deleteAppt INDEX`
 
 * Deletes the appointment at the specified `INDEX`.
 * The index refers to the index number shown in the displayed appointment list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3, ...
 
 Examples:
 * `list` followed by `deleteAppt 2` deletes the 2nd appointment in the appointment book.
@@ -307,12 +307,12 @@ Examples:
 
 Edits an existing appointment to the appointment book.
 
-Format: `editAppt INDEX [n/NAME] [a/ADDRESS] [d/DATE] [c/CONTACT_INDEX]…​ [tc/CHILDTAG]…​`
+Format: `editAppt INDEX [n/NAME] [a/ADDRESS] [d/DATE] [c/CONTACT_INDEX]... [tc/CHILDTAG]...`
 
 * Contacts in the address book at the specified `CONTACT_INDEX` is added to the appointment.
 * Edits the appointment at the specified `INDEX`.
 * The index refers to the index number shown in the displayed appointment book.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3, ...
 * `DATE` has to be in the format "`dd`/`MM`/`yyyy` `HH`:`mm`".
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
@@ -329,7 +329,7 @@ on the contact list.
 
 Finds appointments whose names contain any of the given keywords.
 
-Format: `findAppt KEYWORD [MORE_KEYWORDS]…​`
+Format: `findAppt KEYWORD [MORE_KEYWORDS]...`
 
 * The search is case-insensitive. e.g `ptm` will match `PTM`
 * The order of the keywords does not matter. e.g. `Teacher meeting` will match `Meeting teacher`
@@ -406,18 +406,18 @@ Action | Format, Examples
 **Help** | `help [COMMAND]` <br> e.g., `help find`
 **Theme** | `theme o/OPTION` <br> e.g., `theme o/light`
 ​ | **Address Book Commands**
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [tc/CHILDTAG]…​ [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear [t/TAG]…​`
+**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [tc/CHILDTAG]... [t/TAG]...` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Clear** | `clear [t/TAG]...`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [tc/CHILDTAG]…​ [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [tc/CHILDTAG]... [t/TAG]...`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Fav** | `fav INDEX [o/OPTION]` <br> e.g., `fav 3 o/remove`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list [o/OPTION]`
-**Tag** | `tag INDEX [o/OPTION] [tc/CHILDTAG]…​ [t/TAG]…​`<br> e.g., `tag 4 t/School t/English`
+**Tag** | `tag INDEX [o/OPTION] [tc/CHILDTAG]... [t/TAG]...`<br> e.g., `tag 4 t/School t/English`
 **Sort** | `sort o/OPTION` <br> e.g., `sort o/name`
 ​ | **Appointment Book Commands**
-**Add** | `addAppt n/NAME a/ADDRESS d/DATE [c/CONTACT_INDEX]…​ [tc/CHILDTAG]…​` <br> e.g., `addAppt n/PTM a/ABC Primary School d/21/03/2021 10:00 c/2`
+**Add** | `addAppt n/NAME a/ADDRESS d/DATE [c/CONTACT_INDEX]... [tc/CHILDTAG]...` <br> e.g., `addAppt n/PTM a/ABC Primary School d/21/03/2021 10:00 c/2`
 **Delete** | `deleteAppt INDEX` <br> e.g., `delete 2`
-**Edit** | `editAppt INDEX [n/NAME] [a/ADDRESS] [d/DATE] [c/CONTACT_INDEX]…​ [tc/CHILDTAG]…​` <br> e.g., `edit 1 n/PSG meeting a/ABC Secondary School c/1`
-**Find** | `find KEYWORD [MORE_KEYWORDS]…​` <br> e.g., `find PTM`
+**Edit** | `editAppt INDEX [n/NAME] [a/ADDRESS] [d/DATE] [c/CONTACT_INDEX]... [tc/CHILDTAG]...` <br> e.g., `edit 1 n/PSG meeting a/ABC Secondary School c/1`
+**Find** | `find KEYWORD [MORE_KEYWORDS]...` <br> e.g., `find PTM`
 **List** | `listAppt`
