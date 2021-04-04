@@ -101,10 +101,13 @@ Starts a quiz session.
 Format: `start [n/NUMBER] [t/TAG]`
 
 * NUMBER specifies the number of questions for the quiz session.
-* TAG specifies the type of questions for the quiz session.
 * NUMBER specified should be positive.
-* There are currently four tags available, gojuon, hiragana, katakana and numbers.
+* TAG specifies the type of questions for the quiz session.
+* There are currently four default tags available, gojuon, hiragana, katakana and numbers.
+* Other tags can be added at your own leisure in Learn mode.
 * You can specify one or two tags.
+* If no number is specified, the quiz session starts with all flashcards that possess the given tag.
+* If no tags are specified as well, the quiz session starts with all flashcards in the database.
 
 Examples:
 * `start n/10`
