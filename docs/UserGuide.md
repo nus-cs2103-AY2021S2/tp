@@ -171,12 +171,12 @@ Format: `list [--exact] [--any] [-n NAME]... [-t TAG]... [-b BIRTHDAY]... [-s SO
 1. If no search parameters specified, `list [-s SORT_FIELD] [-o SORT_ORDER]`: List all contacts in contact list
    * `-s` parameter optionally sorts contacts by `SORT_FIELD`:
      * `n`, `name`: names in (case-sensitive) lexicographical order (by default, if `-s` not specified)
-     * `b`, `birthday`: day of the year of the birthday
+     * `b`, `birthday`: day and month of the birthday (Insensitive to year, will not sort by year)
      * `u`, `upcoming`: days left to next upcoming birthday
    * `-o` parameter optionally determines the direction of sort, according to `SORT_ORDER`:
      * `a`, `asc`, `ascending`: ascending (by default, if `-o` not specified)
      * `d`, `desc`, `descending`: descending
-     * Sorts by upcoming birthday do not accept the `descending` order
+     * Sorts by upcoming birthday only sorts in `ascending` order
 2. If search parameters specified, `list [--exact] [--any] [-n NAME]... [-t TAG]... [-b BIRTHDAY]... [-s SORT_FIELD] [-o SORT_ORDER]`: List all contacts matching the search criteria
    * Search criteria, case-insensitive:
      * `-n` filters the contacts by name
@@ -191,12 +191,16 @@ Format: `list [--exact] [--any] [-n NAME]... [-t TAG]... [-b BIRTHDAY]... [-s SO
 
 Examples:
 * `list` Lists out all the contacts in the contact list.
-* `list -s asc` Lists out all the contacts in ascending lexicographical order.
-* `list -t friend` Lists out all contacts containing the tag "friend"
-* `list -n alice -t friend` Lists out all contacts whose name is "alice" and have the "friend" tag
-* `list --any -n alice -t friend` Lists out all contacts whose name is "alice" or who have the "friend" tag
-* `list --exact -n alice -t friend` Lists out all contacts whose name contain "alice" and who have tags that contain "friend"
-* `list --exact --any -n alice -t friend` Lists out all contacts whose name contain "alice" or who have tags that contain "friend"
+* `list -s n -o desc` Lists out all the contacts in descending lexicographical order.
+* `list -t friend` Lists out all contacts who has tags containing the word "friend"
+* `list -n alice -t friend` Lists out all contacts whose name contains the word "alice" and tag contains the word 
+  "friend"
+* `list --any -n alice -t friend` Lists out all contacts whose name contains "alice" or tag contains the word 
+  "friend"
+* `list --exact -n alice -t friend` Lists out all contacts whose name is exactly "alice" and who have tags that is 
+  exactly "friend"
+* `list --exact --any -n alice -t friend` Lists out all contacts whose name is "alice" or who have tags that is exactly 
+  "friend"
 * `list --any -n alice -n bob` Lists out all contacts whose name contain either "alice" or "bob"
 * `list --any -b 8 -b 9` Lists out all contacts whose birthdays are either in August or September
 
@@ -232,23 +236,32 @@ Shows a list of all events in PartyPlanet's Event List. Similar to `list`.
 
 Format: `elist [--exact] [--any] [-n NAME] [-r DETAIL]... [-s SORT] [-o ORDER]`
 
-* List out all events by default if no arguments specified.
-* `-n` and `-r` can be specified to filer the list by name and/or detail.
-  * Search is case-insensitive, e.g. `cHriStmAs` will match `Christmas`.
-  * Partial matches to names and details are performed by default, e.g. `key` will match `turkey`.
-  * If exact match is desired, specify an additional `--exact` flag.
-  * If multiple names/tags are specified, specifying `--any` filters contacts that fulfill any prefix match.
-* -s list out all events sorted according to SORT_FIELD. Possible values of SORT_FIELD:
-  * n: names in ascending lexicographical order
-  * d: event dates from past to present
-* -o list out all events sorted according to SORT_ORDER. Possible values of SORT_ORDER:
-  * asc: ascending lexicographical order
-  * desc: descending lexicographical order
+1. If no search parameters specified, `elist [-s SORT_FIELD] [-o SORT_ORDER]`: List out all events in event list.
+    * `-s` parameter optionally sorts events by `SORT_FIELD`. Possible values of 
+      `SORT_FIELD`:
+      * `n`, `name`: names (case-sensitive) in lexicographical order (by default, if `-s` not specified)
+      * `d`: event dates (Sensitive to year, will sort according to date with respect to year)
+      * `u`, `upcoming`: days left to next upcoming event
+    * `-o` parameter optionally determines the direction of sort, according to `SORT_ORDER`. Possible values of SORT_ORDER:
+      * `a`, `asc`, `ascending`: ascending (by default, if `-o` not specified)
+      * `d`, `desc`, `descending`: descending 
+      * Sorts by upcoming event dates only sorts in `ascending` order
+2. If search parameters specified, `elist [--exact] [--any] [-n NAME]... [-r DETAIL]... [-s SORT_FIELD] [-o 
+   SORT_ORDER]`: List all events matching the search criteria
+    * Search criteria, case-insensitive: 
+        * `-n` filters the events by event name
+        * `-r` filters the events by event details
+    * Search is case-insensitive, e.g. `cHriStmAs` will match `Christmas`.
+    * Partial matches to event names and details are performed by default, e.g. `key` will match `turkey`.
+    * If exact match is desired, specify an additional `--exact` flag.
+    * If multiple names/tags are specified, all specified search criteria must be fulfilled by each event by 
+      default, unless `--any` is specified for any match. 
+    * The filtered events can be additionally sorted using the `-s` and `-o` prefixes, as above.
 
 Examples:
 * `elist --exact -n Graduation party -r Get job` Lists out all events whose name is exactly "Graduation party" and remark is exactly "Get job"
 * `elist --any -n Christmas -r tarts` Lists out all events whose name contains "Christmas" or whose remarks contain "tarts"
-* `elist -s d` Lists out all events in chronological order
+* `elist -s d` Lists out all events in chronological order (ascending event date)
 
 #### Marking events as done : `edone`
 
@@ -278,7 +291,7 @@ Examples:
 * `edelete` deletes all events in the current Events List.
 * `edelete 1 2 3` deletes events at 1st, 2nd and 3rd indexes.
 
-### General Commmands
+### General Commands
 
 #### Showing help : `help`
 
@@ -355,6 +368,15 @@ Retrieves previously entered input.
 * `ESC` key clears the text box.
 * `CTRL + Z` key combination undoes the last change to the address or event books.
 * `CTRL + SHIFT + Z` or `CTRL + Y` key combinations redo the last undone change to the address or event books.
+
+
+<div markdown="block" class="alert-warning">
+
+**:warning: PartyPlanet will use its default Address Book and Event Book JSON file if it is unable to locate the 
+JSON file. It will start with an empty JSON file if there is an error in the JSON file.**
+
+</div>
+
 
 ### Coming Soon (Additional Features)
 * Archiving of Data Files
