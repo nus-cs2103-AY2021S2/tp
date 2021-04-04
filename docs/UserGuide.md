@@ -159,7 +159,15 @@ Learn Mode:
 
 ### Ending the session: `end`
 
-Ends the current session, saving progress.
+Prematurely ends the current quiz session. Quiz progress will not be saved if this is done.
+
+The end command is only applicable while the user is in Quiz mode.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If you want to end your current quiz
+session but want to see the statistics of the questions answered so far, consider skipping all questions until the 
+end using next instead. The end command is meant as a way to quickly discard and close the current quiz session.
+
+</div>
 
 Format: `end`
 
