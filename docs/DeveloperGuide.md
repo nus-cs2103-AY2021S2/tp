@@ -142,7 +142,7 @@ This feature is facilitated by `ListStudentCommand` which extends `Command`.
 The method `ListStudentCommand#execute` updates the filtered student list by calling the method
 `Model#updateFilteredStudentList` exposed in the `Model` interface.
 
-Given below is an example of how the list student 
+Given below is an example of how the list student
 1. The user executes the list student command with the input `list_student`.
 2. `LogicManager` executes the input and parses the command using `AddressBookParser`.
 3. `AddressBookParser` identifies the correct command and creates a new `ListStudentCommand`.
@@ -150,20 +150,20 @@ Given below is an example of how the list student
 5. `LogicManager` executes the `ListStudentCommand`.
 6. `ListStudentCommand` now calls `Model` to update the `filteredStudentList` to show all students.
 
-The following sequence diagram shows the interactions when user executes the `list_student` command:  
+The following sequence diagram shows the interactions when user executes the `list_student` command:
 ![ListStudentSequenceDiagram](images/choonwei/ListStudentSequenceDiagram.png)
 
 NOTE: The lifeline of `ListStudentCommand` should end at the cross but is not shown due to the limitations of PlantUML.
 
-The following activity diagram summarizes what happens when a user executes the `list_student` command.  
+The following activity diagram summarizes what happens when a user executes the `list_student` command.
 ![ListStudentActivityDiagram](images/choonwei/ListStudentActivityDiagram.png)
 
 ### Add Student Feature
 
 #### Implementation
-The add student feature allows user to add a student to the TutorBuddy Application. 
+The add student feature allows user to add a student to the TutorBuddy Application.
 
-This feature makes use of `AddStudentCommandParser` and `AddStudentCommand` to create a new `Student` object. The operation can be accessed in the Model interface through `Model#addStudent()`. 
+This feature makes use of `AddStudentCommandParser` and `AddStudentCommand` to create a new `Student` object. The operation can be accessed in the Model interface through `Model#addStudent()`.
 
 Given below is an example of how the add student mechanism runs:
 1. The user executes the add student command with the command word `add_student` and include all the information required.
@@ -183,7 +183,7 @@ The following activity diagram summarizes what happens when a user executes the 
 ### List Students' Email Feature
 The list students' email feature allows the end-user to retrieve a list of students' emails, which are concatenated with
 a semi-colon `;`. This allows for easy copy and pasting to e-mail applications, such as Microsoft Outlook, for mass
-e-mail purposes (e.g. newsletter). 
+e-mail purposes (e.g. newsletter).
 
 #### Implementation
 This feature is mainly supported by `EmailCommand`, with retrieval of students' emails through the Model interface
@@ -209,7 +209,7 @@ The following sequence diagram summarizes what happens when a user executes the 
 ### Add Session Feature
 The add session feature allows users to add individual tuition sessions with specific details of each session.
 
-This section explains the implementation of the add session mechanism and highlights the design considerations 
+This section explains the implementation of the add session mechanism and highlights the design considerations
 taken into account when implementing this feature.
 <!--
 ### Session Feature
@@ -221,13 +221,14 @@ and a `Student` can have multiple `Session`s.
 #### Implementation
 The add attendance mechanism is facilitated by `AddAttendanceCommand` and it extends `Command`. The method,
 `AddSessionCommand#execute()`, performs a validity check on student name input and session details input by the user
+before adding the session.
 <!--
 The creation of a session is facilitated by `AddSessionCommand` and it extends `Command`. The method,
 `AddSessionCommand#execute()`, performs a validity check on student name input and session details input by the user
 before adding the session.
 -->
 
-The following sequence diagram shows the interactions between the Model and Logic components during the execution of 
+The following sequence diagram shows the interactions between the Model and Logic components during the execution of
 an AddSessionCommand with user input `add_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE`:
 
 ![AddSessionSequenceDiagram](images/junwei/AddSessionSequenceDiagram.png)
@@ -252,9 +253,9 @@ Aspect 1: Type of input for AddSessionCommand
         * Allows fast entering of input.
     * Cons:
         * User has to constantly refer to the application for student index id.
-    
+
 Alternative 1 was chosen because the cons of implementing alternative 2 outweighs the benefits derived from it. Student index id may change when
-a user adds a new student into the AddressBook. If the AddressBook contains many students, it may take some time for the user to find the 
+a user adds a new student into the AddressBook. If the AddressBook contains many students, it may take some time for the user to find the
 updated student index id. Student name on the other hand, stays constant throughout the application lifetime unless the user edits this information,
 which he also has knowledge of. Therefore, student name can be easily entered without reference to the AddressBook, saving much more time compared
 to alternative 2.
@@ -380,7 +381,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * is reasonably comfortable using CLI apps
 
 
-**Value proposition**: 
+**Value proposition**:
 * Cut down admin overhead for independent tutors
 * All in one platform to manage their students' information
 
@@ -503,8 +504,8 @@ MSS:
 
 *{More to be added}*
 
-### Non-Functional Requirements  
-* Technical requirements:  
+### Non-Functional Requirements
+* Technical requirements:
     * TutorBuddy should work on both 32-bit and 64-bit environments.
     * TutorBuddy should work on any _mainstream OS_ with Java `11` or above installed.
     * The user should have enough memory on their computer to ensure that data will be stored in the application without errors.

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.Scene?>
+
+<VBox prefHeight="400.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <stylesheets>
+      <URL value="@Calendar.css" />
+   </stylesheets>
+   <children>
+      <HBox prefHeight="50.0" prefWidth="200.0">
+         <children>
+            <Label fx:id="dateLabel" text=" - " styleClass="header" minWidth="200" maxWidth="200">
+               <HBox.margin>
+                  <Insets left="10.0" top="10.0" />
+               </HBox.margin>
+            </Label>
+            <Button text="←" onMouseClicked="#backwardCalendar">
+               <HBox.margin>
+                  <Insets left="10.0" top="10.0"/>
+               </HBox.margin>
+            </Button>
+            <Button text="→" onMouseClicked="#advanceCalendar">
+               <HBox.margin>
+                  <Insets left="5.0" top="10.0" />
+               </HBox.margin>
+            </Button>
+            <Button text="TODAY" onMouseClicked="#advanceToday">
+               <HBox.margin>
+                  <Insets left="15.0" top="10.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <HBox prefHeight="50.0" prefWidth="200.0" alignment="CENTER">
+         <children>
+            <Label fx:id="dateHeaderMon" prefWidth="200.0" styleClass="date-header">
+            </Label>
+            <Label fx:id="dateHeaderTue" prefWidth="200.0" styleClass="date-header">
+            </Label>
+            <Label fx:id="dateHeaderWed" prefWidth="200.0" styleClass="date-header">
+            </Label>
+            <Label fx:id="dateHeaderThur" prefWidth="200.0" styleClass="date-header">
+            </Label>
+            <Label fx:id="dateHeaderFri" prefWidth="200.0" styleClass="date-header">
+            </Label>
+            <Label fx:id="dateHeaderSat" prefWidth="200.0" styleClass="date-header">
+            </Label>
+            <Label fx:id="dateHeaderSun" prefWidth="200.0" styleClass="date-header">
+            </Label>
+         </children>
+      </HBox>
+      <HBox prefHeight="50.0" prefWidth="200.0">
+         <children>
+            <Label text="Monday" prefWidth="200.0">
+            </Label>
+            <Label text="Tuesday" prefWidth="200.0">
+            </Label>
+            <Label text="Wednesday" prefWidth="200.0">
+            </Label>
+            <Label text="Thursday" prefWidth="200.0">
+            </Label>
+            <Label text="Friday" prefWidth="200.0">
+            </Label>
+            <Label text="Saturday" prefWidth="200.0">
+            </Label>
+            <Label text="Sunday" prefWidth="200.0">
+            </Label>
+         </children>
+      </HBox>
+      <HBox prefHeight="360.0" prefWidth="200.0">
+         <children>
+            <ListView fx:id="monListView" prefHeight="200.0" prefWidth="200.0"
+                      styleClass="calendar-list-view" />
+            <ListView fx:id="tueListView" prefHeight="200.0" prefWidth="200.0"
+                      styleClass="calendar-list-view"/>
+            <ListView fx:id="wedListView" prefHeight="200.0" prefWidth="200.0"
+                      styleClass="calendar-list-view"/>
+            <ListView fx:id="thurListView" prefHeight="200.0" prefWidth="200.0"
+                      styleClass="calendar-list-view"/>
+            <ListView fx:id="friListView" prefHeight="200.0" prefWidth="200.0"
+                      styleClass="calendar-list-view"/>
+            <ListView fx:id="satListView" prefHeight="200.0" prefWidth="200.0"
+                      styleClass="calendar-list-view"/>
+            <ListView fx:id="sunListView" prefHeight="200.0" prefWidth="200.0"
+                      styleClass="calendar-list-view"/>
+         </children>
+      </HBox>
+   </children>
+</VBox>

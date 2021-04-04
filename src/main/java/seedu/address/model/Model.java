@@ -1,12 +1,15 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.time.LocalDateTime;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
+import seedu.address.model.session.RecurringSession;
 import seedu.address.model.session.Session;
+import seedu.address.model.session.SessionDate;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Student;
 
@@ -97,6 +100,12 @@ public interface Model {
     void deleteSession(Name name, Index sessionIndex);
 
     /**
+     * Deletes the given session from a recurring session.
+     * The student must exist in the address book and the session must be a recurring session.
+     */
+    void deleteRecurringSession(Name name, Index sessionIndex, SessionDate sessionDate);
+
+    /**
      * Returns true if a student with this name exists in the unique student list
      */
     boolean hasName(Name name);
@@ -106,6 +115,17 @@ public interface Model {
      */
     boolean hasSession(Session session);
 
+    /**
+     * Returns true if {@code session} overlaps with any session in any of the students in the unique student list
+     */
+    boolean hasOverlappingSession(Session session);
+
+    /**
+     * Returns true if {@code recurringSession} overlaps with any session in any of the students in the unique
+     * student list
+     */
+    boolean hasOverlappingSession(RecurringSession recurringSession);
+
     /** Returns an unmodifiable view of the filtered student list */
     ObservableList<Student> getFilteredStudentList();
 
@@ -114,4 +134,12 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredStudentList(Predicate<Student> predicate);
+
+    /**
+     * Gets the total fee between 2 time period  from {@code startPeriod} to {@code endPeriod}
+     * @param startPeriod Start of time period
+     * @param endPeriod End of time period
+     * @return Total fee between the 2 time period
+     */
+    double getFee(LocalDateTime startPeriod, LocalDateTime endPeriod);
 }

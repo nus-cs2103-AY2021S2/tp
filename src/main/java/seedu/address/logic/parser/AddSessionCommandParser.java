@@ -47,6 +47,10 @@ public class AddSessionCommandParser implements Parser<AddSessionCommand> {
         Subject subject = ParserUtil.parseSubject(argMultimap.getValue(PREFIX_SUBJECT).get());
         Fee fee = ParserUtil.parseFee(argMultimap.getValue(PREFIX_FEE).get());
 
+        if (!Session.isPossibleEndTime(sessionDate, duration)) {
+            throw new ParseException(Session.MESSAGE_CONSTRAINTS);
+        }
+
         Session session = new Session(sessionDate, duration, subject, fee);
 
         return new AddSessionCommand(session, name);

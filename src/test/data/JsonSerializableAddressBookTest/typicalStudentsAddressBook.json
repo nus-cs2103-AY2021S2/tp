@@ -10,6 +10,7 @@
     "relationship" : "Mother",
     "sessions": [
       {
+        "type" : "JsonAdaptedSession",
         "sessionDate": "2020-01-01T12:00",
         "duration": "100",
         "subject": "COMPUTING",
@@ -26,6 +27,7 @@
     "relationship" : "Father",
     "sessions": [
       {
+        "type" : "JsonAdaptedSession",
         "sessionDate": "2020-01-02T12:00",
         "duration": "100",
         "subject": "COMPUTING",
@@ -42,6 +44,7 @@
     "relationship" : "Mother",
     "sessions": [
       {
+        "type" : "JsonAdaptedSession",
         "sessionDate": "2020-01-03T12:00",
         "duration": "100",
         "subject": "COMPUTING",
@@ -58,6 +61,7 @@
     "relationship" : "Father",
     "sessions": [
       {
+        "type" : "JsonAdaptedSession",
         "sessionDate": "2020-01-04T12:00",
         "duration": "100",
         "subject": "COMPUTING",
@@ -74,6 +78,7 @@
     "relationship" : "Mother",
     "sessions": [
       {
+        "type" : "JsonAdaptedSession",
         "sessionDate": "2020-01-05T12:00",
         "duration": "100",
         "subject": "COMPUTING",
@@ -90,6 +95,7 @@
     "relationship" : "Mother",
     "sessions": [
       {
+        "type" : "JsonAdaptedSession",
         "sessionDate": "2020-01-06T12:00",
         "duration": "100",
         "subject": "COMPUTING",
@@ -106,6 +112,7 @@
     "relationship" : "Father",
     "sessions": [
       {
+        "type" : "JsonAdaptedSession",
         "sessionDate": "2020-01-07T12:00",
         "duration": "100",
         "subject": "COMPUTING",

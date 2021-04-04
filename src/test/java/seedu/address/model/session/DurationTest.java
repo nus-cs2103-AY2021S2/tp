@@ -34,7 +34,7 @@ public class DurationTest {
 
         // valid duration formats
         assertTrue(Duration.isValidDuration("20"));
-        assertTrue(Duration.isValidDuration("0"));
+        assertFalse(Duration.isValidDuration("0"));
         assertTrue(Duration.isValidDuration("45298345293"));
     }
 }

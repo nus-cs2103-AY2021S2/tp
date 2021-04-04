@@ -20,6 +20,7 @@ import seedu.address.model.student.Student;
  * {@code DeleteSessionCommand}.
  */
 class DeleteSessionCommandTest {
+    // TODO: add delete session related tests.
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 

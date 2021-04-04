@@ -1,11 +1,13 @@
 package seedu.address.model.session;
 
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
+import java.time.temporal.ChronoUnit;
 
 /**
  * Represents the date and time of the session
@@ -48,6 +50,23 @@ public class SessionDate {
         }
     }
 
+    /**
+     * Constructs a {@code SessionDate} using a {@code LocalDateTime} object.
+     */
+    public SessionDate(LocalDateTime localDateTime) {
+        requireAllNonNull(localDateTime);
+        this.dateTime = localDateTime;
+    }
+
+    /**
+     * Creates a new {@code SessionDate} representing the date time where the session ends.
+     * @param duration duration of the session.
+     * @return a new end {@code SessionDate}
+     */
+    public SessionDate getEndSessionDate(Duration duration) {
+        return new SessionDate(this.dateTime.plusMinutes((long) duration.getValue()));
+    }
+
     public LocalDateTime getDateTime() {
         return dateTime;
     }
@@ -58,6 +77,35 @@ public class SessionDate {
 
     public LocalTime getTime() {
         return dateTime.toLocalTime();
+    }
+
+    public boolean isSameTime(SessionDate sessionDate) {
+        return getTime().equals(sessionDate.getTime());
+    }
+
+    /**
+     * Returns the number of calendar days between this inclusive, sessionDate exclusive.
+     * @param sessionDate the other sessionDate
+     * @return number of calendar days
+     */
+    public int numOfDayTo(SessionDate sessionDate) {
+        return (int) ChronoUnit.DAYS.between(getDate(), sessionDate.getDate());
+    }
+
+    /**
+     * Returns a new {@code SessionDate} that adds a defined {@code days} days to current {@code localDate}.
+     * @param days number of days to add.
+     */
+    public SessionDate addDays(int days) {
+        return new SessionDate(dateTime.plusDays((long) days));
+    }
+
+    /**
+     * Returns a new {@code SessionDate} that deducts a defined {@code days} days from current {@code localDate}.
+     * @param days number of days to deduct.
+     */
+    public SessionDate minusDays(int days) {
+        return new SessionDate(dateTime.minusDays((long) days));
     }
 
     /**

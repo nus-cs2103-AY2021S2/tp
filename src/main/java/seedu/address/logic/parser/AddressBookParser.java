@@ -6,19 +6,21 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.address.logic.commands.AddRecurringSessionCommand;
 import seedu.address.logic.commands.AddSessionCommand;
 import seedu.address.logic.commands.AddStudentCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.DeleteRecurringSessionCommand;
 import seedu.address.logic.commands.DeleteSessionCommand;
 import seedu.address.logic.commands.DeleteStudentCommand;
 import seedu.address.logic.commands.EditStudentCommand;
 import seedu.address.logic.commands.EmailCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindStudentCommand;
+import seedu.address.logic.commands.GetMonthlyFeeCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListSessionCommand;
-import seedu.address.logic.commands.ListStudentCommand;
+import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -63,11 +65,8 @@ public class AddressBookParser {
         case FindStudentCommand.COMMAND_WORD:
             return new FindStudentCommandParser().parse(arguments);
 
-        case ListStudentCommand.COMMAND_WORD:
-            return new ListStudentCommand();
-
-        case ListSessionCommand.COMMAND_WORD:
-            return new ListSessionCommand();
+        case ListCommand.COMMAND_WORD:
+            return new ListCommand();
 
         case EmailCommand.COMMAND_WORD:
             return new EmailCommand();
@@ -83,6 +82,15 @@ public class AddressBookParser {
 
         case DeleteSessionCommand.COMMAND_WORD:
             return new DeleteSessionCommandParser().parse(arguments);
+
+        case AddRecurringSessionCommand.COMMAND_WORD:
+            return new AddRecurringSessionCommandParser().parse(arguments);
+
+        case DeleteRecurringSessionCommand.COMMAND_WORD:
+            return new DeleteRecurringSessionCommandParser().parse(arguments);
+
+        case GetMonthlyFeeCommand.COMMAND_WORD:
+            return new GetMonthlyFeeCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
