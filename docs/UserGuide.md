@@ -337,8 +337,9 @@ iScam data are saved in the hard disk automatically after any command that chang
 
 ### Editing the data files
 
-iScam data are saved as JSON files. Client data are saved in `[JAR file location]/data/clientbook.json`. 
-Meeting data are saved in `[JAR file location]/data/meetingbook.json`. Advanced users are welcome to update data directly by editing those data files.
+iScam data are saved as JSON files. Advanced users are welcome to update data directly by editing those data files.
+Client data are saved in `[JAR file location]/data/clientbook.json`. 
+Meeting data are saved in `[JAR file location]/data/meetingbook.json`. 
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, iScam will discard all data and start with an empty data file at the next run.
@@ -349,10 +350,6 @@ If your changes to the data file makes its format invalid, iScam will discard al
 Images for clients can be added by placing an image in the `/data` folder, with the
 `clientbook.json` and `meetingbook.json` files. Any image file used must be of file
 type `.jpg`, `.jpeg` or `.png`.
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
