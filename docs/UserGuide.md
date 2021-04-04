@@ -32,49 +32,28 @@ may lie.
 
 ### **2.1 What's in the User Guide**
 
-In [Section 2.2: Reading the User Guide](#22-reading-the-user-guide), you find essential information that enables to read
+In [Section 2.2: Reading the User Guide](#22-reading-the-user-guide), you can find essential information that enables to read
 the user guide seamlessly.
 
+In [Section 3: Quick Start](#3-quick-start), you can find the instructions of how and where you can start installing and setting up 
+CakeCollate.
+
+In [Section 4: Features](#4-features), you can find instructions on what are the existing features and commands in CakeCollate
+and how you can use them to suit your needs.
+
+In [Section 5: FAQ](#5-faq), you can find solutions to commonly asked questions.
+
+In [Section 6: Command Summary](#6-command-summary), you can find a summary to all of existing CakeCollate's commands.
+
+
 ### **2.2 Reading the User Guide**
+In this section, you will learn how to read CakeCollate's User Interface (UI), the format of commands, and the user inputs
+commands may receive.
 
-## **3. Quick start**
+#### **2.2.1 Sections of the UI**
+Insert annotated screenshot here.
 
-1. Ensure you have Java `11` or above installed in your Computer.
-
-1. Download the latest `cakecollate.jar` from [here](https://github.com/AY2021S2-CS2103T-T11-4/tp/releases).
-
-1. Copy the file to the folder you want to use as the _home folder_ for your CakeCollate.
-
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data. 
-You can use the sample data pre-loaded in the application to get play around and get used to the available commands. Use the command `clear`
- to remove all sample data when you are used to the commands and want to begin inputting your own data.<br><br>
-   ![Ui](images/Ui.png)
-
-
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will display the help window.<br>
-   Some example commands you can try:
-
-   * **`list`** : Lists all orders in the CakeCollate database.
-
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/13-05-2021 o/2 x Strawberry Cake` : Adds a `2 x Strawberry Cake` order to CakeCollate.
-
-   * **`delete`**`3` : Deletes the 3rd order shown in the current list.
-   
-   * **`remind`**`2` : Lists all orders that are 2 days within the current local date.
-
-   * **`clear`** : Deletes all order in the CakeCollate database.
-
-   * **`exit`** : Exits the app.
-
-1. Refer to the [Features](#features) below for details of each command.
-
-<div markdown="span" class="alert alert-primary">
-:bulb: **Tip:** You can remove all the sample data using the `clear` command once you are ready to use CakeCollate.<br>
-</div>
-
---------------------------------------------------------------------------------------------------------------------
-
-## **4. Features**
+#### **2.2.2 Formatting of Commands**
 
 <div markdown="block" class="alert alert-info">
 
@@ -106,6 +85,51 @@ You can use the sample data pre-loaded in the application to get play around and
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
+
+#### **2.2.3 Types of User Input**
+
+
+
+## **3. Quick start**
+
+1. Ensure you have Java `11` or above installed in your Computer.
+
+1. Download the latest `cakecollate.jar` from [here](https://github.com/AY2021S2-CS2103T-T11-4/tp/releases).
+
+1. Copy the file to the folder you want to use as the _home folder_ for your CakeCollate.
+
+1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data. 
+You can use the sample data pre-loaded in the application to get play around and get used to the available commands. <br>
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:** You can remove all the sample data using the `clear` command once you are ready to use CakeCollate.<br>
+</div> <br>
+   
+![Ui](images/Ui.png)
+
+
+1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will display the help window.<br>
+   Some example commands you can try:
+
+   * **`list`** : Lists all orders in the CakeCollate database.
+
+   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/13-05-2021 o/2 x Strawberry Cake` : Adds a `2 x Strawberry Cake` order to CakeCollate.
+
+   * **`delete`**`3` : Deletes the 3rd order shown in the current list.
+   
+   * **`remind`**`2` : Lists all orders that are 2 days within the current local date.
+
+   * **`clear`** : Deletes all order in the CakeCollate database.
+
+   * **`exit`** : Exits the app.
+
+1. Refer to the [Features](#features) below for details of each command.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **4. Features**
+
+This section contains information about all existing commands and features that we have implemented.
+Being well-versed in this section will enable you to use our application to it's fullest potential. 
 
 ### **4.1 Orders**
 
