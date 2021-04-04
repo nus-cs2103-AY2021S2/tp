@@ -153,9 +153,9 @@ call.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
-<div style="page-break-after: always;"></div>
- 
+
 ### Model component
+<div style="page-break-after: always;"></div>
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
@@ -241,7 +241,7 @@ Step 2: The user enters `review` command in `CommandBox`. After the logic execut
 
 Step 3: Depending on the command that user enters in the `CommandBox` of `ReviewMode`, different methods in `ReviewManager` are called to handle user inputs.
 
-Step 4: If the user enters `q` in the `CommandBox`, `ReviewMode#handleQuitCommand` method is called, and the user returns back to the `MainWindow`.
+Step 4: If the user enters `q` in the `CommandBox`, `ReviewMode#handleQuitCommand` method is called, and the user returns to the `MainWindow`.
 
 The following sequence diagram illustrates how the user enter `ReviewMode`: <br>
 ![ReviewSequenceDiagram](images/ReviewSequenceDiagram.png) <br>
@@ -267,24 +267,19 @@ The following sequence diagram illustrates how the user enter `ReviewMode`: <br>
 The statistics feature is supported by `LogicManager` and `ModelManager`.
 
 To show flashcard statistics, `LogicManager` first calls `FlashBackParser#parseCommand` to parse through user input.
-If user input is recognized as a command to display statistics, `StatsCommandParser#parse` is invoked to create
-a new `StatsCommand` object.
+If user input is recognized as a command to display statistics, `StatsCommandParser#parse` is invoked to create a new `StatsCommand` object.
 
 The `StatsCommand` is then executed:
 * The current flashcard list is obtained from the `ModelManager`.
 
 
-* If a valid flashcard index is included in the user input, the flashcard
-identified by the provided index is retrieved from the current flashcard list, and the statistics associated with the card is obtained by
+* If a valid flashcard index is included in the user input, the flashcard identified by the provided index is retrieved from the current flashcard list, and the statistics associated with the card is obtained by
 `Flashcard#getStats()`.
-
 
 * If the flashcard index is omitted from the user input. A new `Statistics` object is created, representing the
 overall statistics of the current flashcard list.
 
-
-A `CommandResult` is created with the generated flashcard `Statistics`. It is then passed to `MainWindow`, where
-the UI is updated to display the retrieved statistics.
+A `CommandResult` is created with the generated flashcard `Statistics`. It is then passed to `MainWindow`, where the UI is updated to display the retrieved statistics.
 
 Example: `stats 3` is entered by the user
 
