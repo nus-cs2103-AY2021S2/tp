@@ -64,9 +64,9 @@ public class AddMeetingCommand extends Command {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
-
+        // ignore time comparisons for leniency
         if (meeting.getDate().isAfter(LocalDate.now())) {
-            throw new CommandException(String.format(MESSAGE_ADD_MEETING_FAILURE, LocalDate.now()));
+            throw new CommandException(String.format(MESSAGE_ADD_MEETING_FAILURE, meeting.getDate()));
         }
 
         if (index.getZeroBased() >= lastShownList.size()) {

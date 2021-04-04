@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import java.util.Comparator;
+import java.util.stream.Collectors;
 
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
@@ -64,7 +65,9 @@ public class PersonDetailsCard extends UiPart<Region> {
                 .size(FXCollections.observableList(person.getDates()))
                 .multiply(EventCard.HEIGHT));
 
-        meetingsListView.setItems(FXCollections.observableArrayList(person.getMeetings()));
+        meetingsListView.setItems(FXCollections.observableArrayList(person.getMeetings().stream()
+                .sorted(Comparator.comparing(Event::getDate).reversed())
+                .collect(Collectors.toList())));
         meetingsListView.setCellFactory(listView -> new EventListViewCell());
         meetingsListView.prefHeightProperty().bind(Bindings
                 .size(FXCollections.observableList(person.getMeetings()))
