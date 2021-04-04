@@ -5,18 +5,40 @@ title: User Guide
 
 # Welcome to Focuris User Guide!
 
+Thank you for downloading **Focuris**! As a busy University student, Focuris helps you manage and keep track of all your
+work, deadlines, and projects. We hope this **User Guide** helps you get started with Focuris so you can start making 
+your student  life a little easier! <br/>
+
 Focuris is a **desktop application** for **managing events** with a KanBan board. The KanBan board is a board which
 **displays events according to the level of completion**: Backlog, Todo, In-Progress and Done. <br/>
 
 Focuris aims to help **university students** like you to keep track of your tasks or events in order to help improve time management
 and organisation.
 
+Get started quickly on your journey with Focuris [here](#1-quick-start)!
+
 ## Here's why you should use Focuris:
 
-- Helps with task management and scheduling with a simple and easy to navigate interface.
-- Use of a Command Line Interface (CLI) allows fast typists to manage your event boards faster than applications with a Graphical User Interface (GUI).
-- Prioritize your tasks by looking at their priority level, from **Low** to **High**.
+As a student, have you ever been overwhelmed by work in the middle of the semester? Or have you ever struggled to 
+keep track of all your deadlines and projects? Or perhaps have you ever wondered what work to prioritise when things 
+get hectic? Well, Focuris is here to help! Focuris can:
+
+- Help with task management and scheduling through a simple and easy to navigate interface.
+- Use a Command Line Interface (CLI) which allows fast typists to manage your event boards faster than applications with a Graphical User Interface (GUI).
+- Prioritise your tasks by looking at their priority level, from **Low** to **High**.
 - Get instant overview on the level of completion of each of your tasks.
+
+## How to use our User Guide:
+
+- To get started quickly, head to [1. Quick Start](#1-quick-start)!
+- To learn about conventions in this User Guide, head to [2. Features](#2-features)!
+- To get an overview of all our Commands, head to [2.1.1 Command Summary](#211-command-summary)!
+- To learn about the parameters for our Commands, head to [2.1.2 Parameters](#212-parameter-summary)!
+- To get answers to some FAQs, head to [3. FAQ](#3-faq)!
+- To learn more about some keywords we use, head to [4. Glossary](#4-glossary)!
+
+Feel free to read on or check out our [Table of Contents](#table-of-contents), to learn more about our features 
+and customise your experience with Focuris!
 
 ---
 
@@ -281,10 +303,10 @@ todo n/NAME d/DESCRIPTION [p/PRIORITY]
 **What you should expect to happen:**
 
 - Before executing `todo n/Household Chores d/Cleaning the kitchen p/high`:
-  ![Todo before](./images/user-guide/beforeTodoExecution.png)
+  ![Todo before](./images/user-guide/Annotated/beforeTodoExecutionAnnotated.png)
 
 - After executing `todo n/Household Chores d/Cleaning the kitchen p/high`:
-  ![Todo after](./images/user-guide/afterTodoExecution.png)
+  ![Todo after](./images/user-guide/Annotated/afterTodoExecutionAnnotated.png)
 
 **More Sample Commands:**
 
@@ -312,9 +334,9 @@ log n/NAME d/DESCRIPTION [p/PRIORITY]
 **What you should expect to happen:**
 
 - Before executing `log n/Complete Homework d/Complete weekly quiz and group tasks for CS2103T`:
-  ![Backlog before](./images/user-guide/beforeLogExecution.png)
+  ![Backlog before](./images/user-guide/Annotated/beforeLogExecutionAnnotated.png)
 - After executing `log n/Complete Homework d/Complete weekly quiz and group tasks for CS2103T`:
-  ![Backlog after](./images/user-guide/afterLogExecution.png)
+  ![Backlog after](./images/user-guide/Annotated/afterLogExecutionAnnotated.png)
 
 **More Sample Commands:**
 
@@ -342,9 +364,9 @@ prog n/NAME d/DESCRIPTION [p/PRIORITY]
 **What you should expect to happen:**
 
 - Before executing `prog n/CS2030 Assignment d/Due on 23 May 2021 p/medium`:
-  ![Before Prog](./images/user-guide/beforeProgExecution.png)
+  ![Before Prog](./images/user-guide/Annotated/beforeProgExecutionAnnotated.png)
 - After executing `prog n/CS2030 Assignment d/Due on 23 May 2021 p/medium`:
-  ![After Prog](./images/user-guide/afterProgExecution.png)
+  ![After Prog](./images/user-guide/Annotated/afterProgExecutionAnnotated.png)
 
 **More Sample Commands:**
 
@@ -372,28 +394,28 @@ edit IDENTIFIER [n/NAME] [d/DESCRIPTION] [s/STATUS] [p/PRIORITY]
 **Things you should take note about the `edit` command:**
 
 - The identifier refers to the index number shown in the respective displayed event list.
-- The identifier **must be a positive integer** 1, 2, 3, …​
+- The identifier **must be a positive integer** 1, 2, 3, …​.
 - At least one of the optional fields must be provided.
 
 <div markdown="block" class="alert alert-warning">
 :exclamation: **Caution**
 
-Existing event will have its data overwritten by the new values taken in by the `edit` command
+Existing event will have its data overwritten by the new values taken in by the `edit` command.
 
 </div>
 
 **What you should expect to happen:**
 
 - Before executing `edit 6 n/CS2040S d/Merge Sort Algorithm p/m`:
-  ![Before edit](./images/user-guide/beforeEditExecution.png)
+  ![Before edit](./images/user-guide/Annotated/beforeEditExecutionAnnotated.png)
 
 - After executing `edit 6 n/CS2040S d/Merge Sort Algorithm p/m`:
-  ![After edit](./images/user-guide/afterEditExecution.png)
+  ![After edit](./images/user-guide/Annotated/afterEditExecutionAnnotated.png)
 
 **More Sample Commands:**
 
 - `edit 1 n/CS2030 d/Assignment` Edits the event name and event description of the event with identifier `#1` to be `CS2030` and `Assignment` respectively.
-- `edit 2 s/backlog` Edits the status of the event with identifier `#2` to be `BACKLOG`
+- `edit 2 s/backlog` Edits the status of the event with identifier `#2` to be `BACKLOG`.
 - `edit 3 n/CS1101S d/Streams assignment s/in_progress p/high` Edits event the event name, description, status and priority of the event with identifier `#3` to be `CS1101S`, `Streams assignment`, `IN_PROGRESS`, `HIGH` respectively.
 - `edit 4 s/d p/l` Edits the status and the priority of the event with identifier `#4` to be `DONE` and `LOW` respectively.
 
@@ -412,14 +434,14 @@ delete IDENTIFIER
 ```
 
 - The identifier refers to the number beside the hex symbol, e.g. `#10` has an identifier of 10.
-- The identifier **must be a positive integer** 1, 2, 3, …​
+- The identifier **must be a positive integer** 1, 2, 3, …​.
 
 **What you should expect to happen:**
 
 - Before execution of `delete 7` command:
-  ![Before delete](./images/user-guide/beforeDeleteExecution.png)
+  ![Before delete](./images/user-guide/Annotated/beforeDeleteExecutionAnnotated.png)
 - After execution of `delete 7` command:
-  ![After delete](./images/user-guide/afterDeleteExecution.png)
+  ![After delete](./images/user-guide/Annotated/afterDeleteExecutionAnnotated.png)
 
 **More Sample Commands:**
 
@@ -458,9 +480,9 @@ All events will be cleared from Focuris and this is **irreversible**. Please use
 **What you should expect to happen:**
 
 - Before execution of the `clear` command:
-  ![Before clear](./images/user-guide/beforeClearCommand.png)
+  ![Before clear](./images/user-guide/Annotated/beforeClearCommandAnnotated.png)
 - After execution of the `clear` command:
-  ![After clear](./images/user-guide/afterClearCommand.png)
+  ![After clear](./images/user-guide/Annotated/afterClearCommandAnnotated.png)
 
 <a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
 
@@ -478,11 +500,11 @@ find KEYWORD [MORE_KEYWORDS]...
 
 **Things you should take note about the `find` command:**
 
-- Your keyword inputs are [case-insensitive](#case-insensitive)
+- Your keyword inputs are [case-insensitive](#case-insensitive).
   - e.g. `cs2103` will match `cs2103`, `cS2103`, `Cs2103` and `CS2103`
 - The order of your inputs will not matter.
   - e.g. `CS2103T Project` will match `Project CS2103T`
-- Your keywords will only be matched with full words
+- Your keywords will only be matched with full words.
   - e.g. `CS2103` will not match `CS2103T`
 - If your keywords match at least one word in an Event's `NAME` or `DESCRIPTION`, you should see it in the output.
   - e.g. `CS2103T` will match `CS2103T Project`, `CS2103T v1.3 Deadline`, etc.
@@ -491,9 +513,9 @@ find KEYWORD [MORE_KEYWORDS]...
 **What you should expect to happen:**
 
 - Before execution of `find cs2040s` command:
-  ![Before find](./images/user-guide/beforeFindExecution.png)
+  ![Before find](./images/user-guide/Annotated/beforeFindExecutionAnnotated.png)
 - After execution of `find cs2040s` command:
-  ![After find](./images/user-guide/afterFindExecution.png)
+  ![After find](./images/user-guide/Annotated/afterFindExecutionAnnotated.png)
 
 **More Example Commands:**
 
@@ -528,9 +550,11 @@ list
 **What you should expect to happen:**
 
 - After execution of `find cs2040s` command:
-  ![Before list](./images/user-guide/beforeListExecution.png)
+  ![Before list](./images/user-guide/Annotated/beforeListExecutionAnnotated.png)
 - After execution of `list` command:
-  ![After list](./images/user-guide/afterListExecution.png)
+  ![After list](./images/user-guide/Annotated/afterListExecutionAnnotated.png)
+
+<a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
 
 <div class="page-break-before"></div>
 
@@ -547,10 +571,10 @@ done IDENTIFIER
 **What you should expect to happen:**
 
 - Before the execution of the `done 4` command:
-  ![Before done](./images/user-guide/beforeDoneExecution.png)
+  ![Before done](./images/user-guide/Annotated/beforeDoneExecutionAnnotated.png)
 
 - After the execution of `done 4` command:
-  ![After done](./images/user-guide/afterDoneExecution.png)
+  ![After done](./images/user-guide/Annotated/afterDoneExecutionAnnotated.png)
 
 <a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
 
@@ -569,10 +593,10 @@ switch
 **What you should expect to happen:**
 
 - Before execution of the `switch` command, in `KanBan` view:
-  ![Before switch](./images/user-guide/beforeSwitchExecution.png)
+  ![Before switch](./images/user-guide/Annotated/beforeSwitchExecutionAnnotated.png)
 
 - After execution of the `switch` command, from `KanBan` view to `List` view:
-  ![After switch](./images/user-guide/afterSwitchExecution.png)
+  ![After switch](./images/user-guide/Annotated/afterSwitchExecutionAnnotated.png)
 
 <a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
 
