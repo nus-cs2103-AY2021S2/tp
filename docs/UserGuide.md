@@ -142,7 +142,7 @@ Examples:
 
 Edits an existing person in the contact list.
 
-Format: `edit {INDEX [-n NAME] [-p PHONE] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY] [-r REMARK] | --remove -t TAG [-t TAG}…​}`
+Format: `edit {INDEX [-n NAME] [-p PHONE] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY] [-r REMARK] | --remove -t TAG [-t TAG]…​}`
 1. If index supplied, `edit INDEX [...]`: Edits the person at the specified `INDEX`
    * Existing values are replaced by the input values, if specified.
    * To retrieve existing values, use the autocompletion workflow specified [below](#autocomplete-tab).
@@ -370,7 +370,7 @@ Action | Format, Examples
 **Delete** | `delete [{INDEX [INDEX]…​ | [--any] -t TAG [-t TAG]...}]`<br> e.g. `delete` <br> e.g. `delete 3 4 5` <br> e.g., `delete -t colleague`
 **EDelete** | `edelete [INDEX [INDEX]...]` <br> e.g. `edelete 1 2 3`
 **EDone** | `edone INDEX [INDEX]…​` <br> e.g. `edone 2 3 5`
-**Edit** | `edit {INDEX [-n NAME] [-p PHONE] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY] [-r DETAIL] | --remove -t TAG [-t TAG}…​}`<br> e.g.,`edit 2 -n James Lee -e jameslee@example.com`<br> e.g., `edit --remove -t colleague`
+**Edit** | `edit {INDEX [-n NAME] [-p PHONE] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY] [-r DETAIL] | --remove -t TAG [-t TAG]…​}`<br> e.g.,`edit 2 -n James Lee -e jameslee@example.com`<br> e.g., `edit --remove -t colleague`
 **EEdit** | `eedit INDEX [-n NAME] [-d DATE] [-r DETAIL]` <br> e.g. `eedit 3 -r Celebrate during first combined practice`
 **List** | `list [--exact] [--any] [-n NAME]... [-t TAG]... [-b BIRTHDAY] [-s SORT_FIELD] [-o SORT_ORDER]`<br> e.g., `list`<br> e.g., `list -s asc`
 **EList** | `elist [--exact] [--any] [-n NAME] [-r DETAIL] ... [-s SORT] [-o ORDER]` <br> e.g. `elist --any -n Christmas -r tarts`
