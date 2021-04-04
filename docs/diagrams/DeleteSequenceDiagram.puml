@@ -45,8 +45,14 @@ destroy DeleteCommandParser
 StoreMandoParser --> LogicManager : d
 deactivate StoreMandoParser
 
-LogicManager -> DeleteCommand : execute()
+LogicManager -> DeleteCommand : execute(model)
 activate DeleteCommand
+
+DeleteCommand -> Model : getFilteredItemList()
+activate Model
+
+Model --> DeleteCommand
+deactivate Model
 
 DeleteCommand -> Model : deleteItem(5)
 activate Model
