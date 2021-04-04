@@ -149,8 +149,6 @@ Format: `edit INDEX [n/TITLE] [set/DATE] [s/DURATION] [d/DESCRIPTION]
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the task will be removed i.e adding of tags is not cumulative.
-* You can remove the task’s field by typing its prefix (e.g. `t/`) without
-  specifying anything after it.
 
 Examples:
 *  `edit 1 set/10/10/2021 d/Remember to update User Guide` Edits the date and description of the 1st task to be
@@ -188,19 +186,20 @@ Examples:
 *  `edit 1 r/[23/12/2021][mon][biweekly]` modifies the first task in the planner and generate recurring dates that
    is on `mon` `biweekly` up to `23/12/2021`.
 
-### Adding date to a task : `mk`
+### Adding date to a task : `edit`
 
 Adds a date to an existing task in the planner
 so that you can have the option to set a deadline to the task or use it for a single day event task.
 
 Format: `edit INDEX [set/DATE]…​`
-Date should only be in the format of DD/MM/YYYY as specified above. 
+Date should only be in the format of dd/mm/yyyy as specified above. 
 
-* Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed list. 
+The index **must be a positive integer** 1, 2, 3, …​
 * Date field must be provided.
 * Existing values will be updated to the input values.
-* When editing dateline, the existing dates of the task will be removed i.e adding of dateline is not cumulative.
-* You can remove all the task’s dateline by typing `set/` without
+* When editing date, the existing dates of the task will be removed i.e adding of date is not cumulative.
+* You can remove all the task’s date by typing `set/` without
   specifying any date after it.
 
 Examples:
