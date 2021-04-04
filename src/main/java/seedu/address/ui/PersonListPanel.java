@@ -43,13 +43,13 @@ public class PersonListPanel extends UiPart<Region> {
     }
 
     /**
-     * Updates the filter used for PersonCard fields. Forces the listview to re-draw it's content.
+     * Updates the filter used for PersonCard fields. Forces the listview to re-create all {@code ListCell}.
      *
      * @param displayFilterPredicate display filter
      */
     public void updateDisplayFilter(DisplayFilterPredicate displayFilterPredicate) {
         this.displayFilterPredicate = displayFilterPredicate;
-        this.personListView.refresh();
+        personListView.setCellFactory(listView -> new PersonListViewCell());
     }
 
     /**
@@ -117,6 +117,7 @@ public class PersonListPanel extends UiPart<Region> {
         @Override
         protected void updateItem(Person person, boolean empty) {
             super.updateItem(person, empty);
+            logger.info("updateItem");
 
             if (empty || person == null) {
                 setGraphic(null);
