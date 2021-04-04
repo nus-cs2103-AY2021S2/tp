@@ -174,6 +174,24 @@ public class MainWindow extends UiPart<Stage> {
         filtersPanelPlaceholder.getChildren().add(filtersPanel.getRoot());
         filtersPanel.fillInnerParts(logic.getPersonFilterStringList(),
                 logic.getAppointmentFilterStringList());
+
+        tabSidePanePlaceHolder.getSelectionModel().selectedItemProperty().addListener((ov, oldTab, newTab) -> {
+            String tabName = newTab.getText();
+            try {
+                switch (tabName) {
+                case "Reminders":
+                    executeCommand("list_reminders");
+                    break;
+                case "Grades":
+                    executeCommand("list_grades");
+                    break;
+                default:
+                    break;
+                }
+            } catch (CommandException | ParseException e) {
+                logger.info("Invalid command executed");
+            }
+        });
     }
 
     /**
