@@ -31,8 +31,8 @@ public class CommandTestUtil {
     public static final String VALID_QUESTION_B = "い";
     public static final String VALID_ANSWER_A = "a";
     public static final String VALID_ANSWER_B = "i";
-    public static final String VALID_TAG_HUSBAND = "husband";
-    public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_TAG_DIFFICULT = "difficult";
+    public static final String VALID_TAG_EASY = "easy";
     public static final String VALID_START_INTEGER_MIN = "1";
     public static final String VALID_START_INTEGER_MIDDLE = "10";
     public static final String VALID_START_INTEGER_MAX = String.valueOf(Integer.MAX_VALUE);
@@ -63,8 +63,8 @@ public class CommandTestUtil {
     public static final String QUESTION_DESC_B = " " + PREFIX_QUESTION + VALID_QUESTION_B;
     public static final String ANSWER_DESC_A = " " + PREFIX_ANSWER + VALID_ANSWER_A;
     public static final String ANSWER_DESC_B = " " + PREFIX_ANSWER + VALID_ANSWER_B;
-    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
-    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_EASY;
+    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_DIFFICULT;
 
     public static final String INVALID_QUESTION_DESC = " " + PREFIX_QUESTION + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ANSWER_DESC = " " + PREFIX_ANSWER; // empty string not allowed for answeres

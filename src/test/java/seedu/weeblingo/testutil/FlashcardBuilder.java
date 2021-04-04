@@ -15,6 +15,7 @@ public class FlashcardBuilder {
 
     public static final String DEFAULT_QUESTION = "あ";
     public static final String DEFAULT_ANSWER = "a";
+    public static final Tag DEFAULT_TAG = new Tag("gojuon");
 
     private Question question;
     private Answer answer;
@@ -28,6 +29,7 @@ public class FlashcardBuilder {
         question = new Question(DEFAULT_QUESTION);
         answer = new Answer(DEFAULT_ANSWER);
         tags = new HashSet<>();
+        tags.add(DEFAULT_TAG);
         userTags = new HashSet<>();
     }
 
@@ -45,6 +47,15 @@ public class FlashcardBuilder {
      */
     public FlashcardBuilder withTags(String ... tags) {
         this.tags = LocalDatabasePopulator.getTagSet(tags);
+        return this;
+    }
+
+    /**
+     * Parses the {@code tags} into a {@code Set<Tag>}
+     * and set it to the user tags of the {@code Flashcard} that we are building.
+     */
+    public FlashcardBuilder withUserTags(String ... tags) {
+        this.userTags = LocalDatabasePopulator.getTagSet(tags);
         return this;
     }
 
