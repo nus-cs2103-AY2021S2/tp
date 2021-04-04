@@ -53,7 +53,7 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues with any command.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<img src="images/shion/ArchitectureSequenceDiagram.png" width="574" />
 
 The sections below give more details of each component.
 
