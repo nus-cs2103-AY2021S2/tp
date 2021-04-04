@@ -32,10 +32,10 @@ PartyPlanet can get the planning of your birthday celebrations done faster than 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add -n NAME`, `NAME` is a parameter which can be used as `add -n John Doe`.
 
-* Items in square brackets are optional.<br>
+* Parameters in square brackets are optional.<br>
   e.g. `-n NAME [-t TAG]` can be used as `-n John Doe -t friend` or as `-n John Doe`.
 
-* Items with `...` after them can be used any number of times.<br>
+* Parameters with `...` after them can be used any number of times.<br>
   e.g. `[-t TAG]...` can be used as ` `, `-t friend`, `-t friend -t family` etc.
 
 * Parameters can be in any order.<br>
@@ -46,6 +46,11 @@ PartyPlanet can get the planning of your birthday celebrations done faster than 
 
 * Extraneous parameters for commands that do not take in parameters (such as `exit` and `undo`) will be ignored.<br>
   e.g. if the command specifies `exit 123`, it will be interpreted as `exit`.
+
+* Parameters in `{}` represents mutually-exclusive parameters.<br>
+  Each mutually-exclusve parameter is separated by a `|`.<br>
+  e.g. `command {foo | bar}` means that either `command foo` or `command bar` are valid commands.<br>
+  However `command foo bar` is an invalid command.
 
 </div>
 
