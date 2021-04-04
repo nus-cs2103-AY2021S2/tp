@@ -1,8 +1,8 @@
-package seedu.iscam.storage;
+package seedu.iscam.storage.meeting;
 
 import static java.lang.String.valueOf;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.iscam.storage.JsonAdaptedMeeting.MISSING_FIELD_MESSAGE_FORMAT;
+import static seedu.iscam.storage.meeting.JsonAdaptedMeeting.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.iscam.testutil.Assert.assertThrows;
 import static seedu.iscam.testutil.TypicalMeetings.BENSON_1;
 
@@ -30,8 +30,8 @@ public class JsonAdaptedMeetingTest {
     private static final String VALID_DATETIME = BENSON_1.getDateTime().toString();
     private static final String VALID_DESCRIPTION = BENSON_1.getDescription().toString();
     private static final String VALID_LOCATION = BENSON_1.getLocation().toString();
-    private static final List<JsonAdaptedTag> VALID_TAGS = BENSON_1.getTags().stream()
-            .map(JsonAdaptedTag::new)
+    private static final List<JsonAdaptedMeetingTag> VALID_TAGS = BENSON_1.getTags().stream()
+            .map(JsonAdaptedMeetingTag::new)
             .collect(Collectors.toList());
     private static final String VALID_ISDONE = valueOf(BENSON_1.getIsDone());
 
@@ -113,8 +113,8 @@ public class JsonAdaptedMeetingTest {
 
     @Test
     public void toModelType_invalidTags_throwsIllegalValueException() {
-        List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
-        invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
+        List<JsonAdaptedMeetingTag> invalidTags = new ArrayList<>(VALID_TAGS);
+        invalidTags.add(new JsonAdaptedMeetingTag(INVALID_TAG));
         JsonAdaptedMeeting meeting =
                 new JsonAdaptedMeeting(VALID_NAME, VALID_DATETIME, VALID_LOCATION,
                         VALID_DESCRIPTION, invalidTags, VALID_ISDONE);

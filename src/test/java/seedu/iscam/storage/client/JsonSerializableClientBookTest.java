@@ -1,4 +1,4 @@
-package seedu.iscam.storage;
+package seedu.iscam.storage.client;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.iscam.testutil.Assert.assertThrows;

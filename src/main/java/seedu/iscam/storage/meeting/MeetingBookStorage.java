@@ -1,4 +1,4 @@
-package seedu.iscam.storage;
+package seedu.iscam.storage.meeting;
 
 import java.io.IOException;
 import java.nio.file.Path;

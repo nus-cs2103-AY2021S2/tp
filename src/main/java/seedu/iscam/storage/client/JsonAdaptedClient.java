@@ -1,4 +1,4 @@
-package seedu.iscam.storage;
+package seedu.iscam.storage.client;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -31,7 +31,7 @@ class JsonAdaptedClient {
     private final String email;
     private final String insurancePlan;
     private final String location;
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedClientTag> tagged = new ArrayList<>();
     private final String imageRes;
 
     /**
@@ -40,7 +40,7 @@ class JsonAdaptedClient {
     @JsonCreator
     public JsonAdaptedClient(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("location") String location,
-            @JsonProperty("plan") String insurancePlan, @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+            @JsonProperty("plan") String insurancePlan, @JsonProperty("tagged") List<JsonAdaptedClientTag> tagged,
             @JsonProperty("image") String imageRes) {
         this.name = name;
         this.phone = phone;
@@ -65,7 +65,7 @@ class JsonAdaptedClient {
         insurancePlan = source.getPlan().planName;
         location = source.getLocation().value;
         tagged.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
+                .map(JsonAdaptedClientTag::new)
                 .collect(Collectors.toList()));
         imageRes = source.getImageRes().value;
     }
@@ -77,7 +77,7 @@ class JsonAdaptedClient {
      */
     public Client toModelType() throws IllegalValueException {
         final List<Tag> clientTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
+        for (JsonAdaptedClientTag tag : tagged) {
             clientTags.add(tag.toModelType());
         }
 

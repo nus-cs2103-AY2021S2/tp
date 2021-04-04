@@ -46,12 +46,12 @@ public class EditMeetingCommand extends Command {
             + "[" + PREFIX_TAG + "TAG(s)] "
             + "[" + PREFIX_DONE + "IS_DONE (yes/no)]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_LOCATION + "Macdonald, Bedok"
+            + PREFIX_LOCATION + "Macdonald, Bedok "
             + PREFIX_DESCRIPTION + "Client's family will be coming along";
 
     public static final String MESSAGE_EDIT_MEETING_SUCCESS = "Edited Meeting: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_MEETING = "This meeting already exists in the iscam book.";
+    public static final String MESSAGE_DUPLICATE_MEETING = "No changes found in any field.";
 
     private final Index index;
     private final EditMeetingDescriptor editMeetingDescriptor;

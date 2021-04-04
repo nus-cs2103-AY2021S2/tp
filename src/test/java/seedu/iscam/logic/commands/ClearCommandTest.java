@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.iscam.model.Model;
 import seedu.iscam.model.ModelManager;
-import seedu.iscam.model.UserPrefs;
+import seedu.iscam.model.user.UserPrefs;
 import seedu.iscam.model.util.clientbook.ClientBook;
 import seedu.iscam.model.util.meetingbook.MeetingBook;
 

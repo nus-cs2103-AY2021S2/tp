@@ -1,7 +1,6 @@
-package seedu.iscam.model;
+package seedu.iscam.model.meeting;
 
 import javafx.collections.ObservableList;
-import seedu.iscam.model.meeting.Meeting;
 
 /**
  * Unmodifiable view of a meeting list

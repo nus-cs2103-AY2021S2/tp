@@ -11,9 +11,12 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.iscam.commons.core.GuiSettings;
-import seedu.iscam.model.UserPrefs;
+import seedu.iscam.model.user.UserPrefs;
 import seedu.iscam.model.util.clientbook.ClientBook;
 import seedu.iscam.model.util.clientbook.ReadOnlyClientBook;
+import seedu.iscam.storage.client.JsonClientBookStorage;
+import seedu.iscam.storage.meeting.JsonMeetingBookStorage;
+import seedu.iscam.storage.user.JsonUserPrefsStorage;
 
 public class StorageManagerTest {
 

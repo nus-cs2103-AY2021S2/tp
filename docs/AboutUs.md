@@ -8,7 +8,7 @@ You can reach us at the email at our individual emails below!
 
 ### Kelvin
 
-<img src="images/zoeykobe.png" width="200px">
+<img src="images/members/zoeykobe.png" width="200px">
 
 [GitHub](https://github.com/zoeykobe) | [Portfolio](team/kelvin.md) | [Email](zhou_yi_kelvin@u.nus.edu)
 
@@ -16,7 +16,7 @@ You can reach us at the email at our individual emails below!
 
 ### Friscilia
 
-<img src="images/frisciliasultan.png" width="200px">
+<img src="images/members/frisciliasultan.png" width="200px">
 
 [GitHub](https://github.com/frisciliasultan) | [Portfolio](team/friscilia.md) | [Email](frisciliasultan@u.nus.edu)
 
@@ -25,7 +25,7 @@ You can reach us at the email at our individual emails below!
 
 ### Isaiah
 
-<img src="images/zaiah0505.png" width="200px">
+<img src="images/members/zaiah0505.png" width="200px">
 
 [GitHub](https://github.com/Zaiah0505) | [Portfolio](team/isaiah.md) | [Email](isaiah.koh@u.nus.edu)
 
@@ -34,7 +34,7 @@ You can reach us at the email at our individual emails below!
 
 ### Jody
 
-<img src="images/jodylorah.png" width="200px">
+<img src="images/members/jodylorah.png" width="200px">
 
 [GitHub](https://github.com/JodyLorah) | [Portfolio](team/jodylorah.md) | [Email](jodylorah@u.nus.edu)
 
@@ -43,7 +43,7 @@ You can reach us at the email at our individual emails below!
 
 ### Qin Liang
 
-<img src="images/tomashiwa.png" width="200px">
+<img src="images/members/tomashiwa.png" width="200px">
 
 [GitHub](http://github.com/Tomashiwa) | [Portfolio](team/qinliang.md) | [Email](e0407322@u.nus.edu)
 
@@ -52,7 +52,7 @@ You can reach us at the email at our individual emails below!
 
 ### Shaun
 
-<img src="images/juzzanoob.png" width="200px">
+<img src="images/members/juzzanoob.png" width="200px">
 
 [GitHub](http://github.com/Juzzanoob) | [Portfolio](team/shaun.md) | [Email](e0418165@u.nus.edu)
 
