@@ -232,7 +232,7 @@ to using the `edit` command.
 **Take note when revising an entry:**
 - Leave a white-space between categories to separate them
 - Leave a white-space between schools to separate them
-- Leave a blank line to differentiate between each reviews
+- Leave a blank line to differentiate between each review
 
 **Expected behaviour: Revise window will close, showing successful edit of entry in Main Window's command box** 
 
