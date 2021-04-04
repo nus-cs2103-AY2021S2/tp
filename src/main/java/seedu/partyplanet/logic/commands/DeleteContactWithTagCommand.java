@@ -10,7 +10,7 @@ import java.util.function.Predicate;
 import seedu.partyplanet.logic.commands.exceptions.CommandException;
 import seedu.partyplanet.model.Model;
 import seedu.partyplanet.model.person.Person;
-import seedu.partyplanet.model.person.predicates.TagsContainsExactTagPredicate;
+import seedu.partyplanet.model.person.predicates.TagsContainsExactCaseTagPredicate;
 import seedu.partyplanet.model.tag.Tag;
 
 /**
@@ -77,7 +77,7 @@ public class DeleteContactWithTagCommand extends DeleteCommand {
      */
     private boolean containsAllTags(Person person) {
         for (Tag t : targetTags) {
-            Predicate<Person> predicate = new TagsContainsExactTagPredicate(t.tagName);
+            Predicate<Person> predicate = new TagsContainsExactCaseTagPredicate(t.tagName);
             if (!predicate.test(person)) {
                 return false;
             }
@@ -90,7 +90,7 @@ public class DeleteContactWithTagCommand extends DeleteCommand {
      */
     private boolean containsAnyTags(Person person) {
         for (Tag t : targetTags) {
-            Predicate<Person> predicate = new TagsContainsExactTagPredicate(t.tagName);
+            Predicate<Person> predicate = new TagsContainsExactCaseTagPredicate(t.tagName);
             if (predicate.test(person)) {
                 return true;
             }
@@ -112,6 +112,7 @@ public class DeleteContactWithTagCommand extends DeleteCommand {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DeleteContactWithTagCommand // instanceof handles nulls
-                && targetTags.equals(((DeleteContactWithTagCommand) other).targetTags)); // state check
+                && targetTags.equals(((DeleteContactWithTagCommand) other).targetTags)) // state check
+                && isAny == (((DeleteContactWithTagCommand) other).isAny); // state check
     }
 }
