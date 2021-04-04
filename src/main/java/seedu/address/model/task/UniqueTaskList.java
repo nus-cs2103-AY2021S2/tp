@@ -153,7 +153,7 @@ public class UniqueTaskList implements Iterable<Task> {
 
         for (Task t : internalList) {
 
-            if (!t.isDateEmpty()) {
+            if (!t.isEmptyDate()) {
                 boolean isWithinSevenDays = t.isWithinSevenDays(LocalDate.now());
                 if (isWithinSevenDays) {
                     totalNumDue++;

@@ -1,4 +1,4 @@
-package seedu.address.model.task;
+package seedu.address.model.task.attributes;
 
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -9,12 +9,14 @@ import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.address.model.task.ValidDateFormatter;
+
 
 /**
  * Represents a Task's date in the planner.
  * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)}
  */
-public class Date {
+public class Date implements Attribute {
     public static final String FIELD_NAME = "Date";
 
     public static final String MESSAGE_CONSTRAINTS =

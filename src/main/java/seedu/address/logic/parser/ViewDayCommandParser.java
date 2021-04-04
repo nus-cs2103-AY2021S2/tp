@@ -4,7 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 
 import seedu.address.logic.commands.ViewDayCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.task.Date;
+import seedu.address.model.task.attributes.Date;
 import seedu.address.model.task.predicates.TaskOnDatePredicate;
 
 /**

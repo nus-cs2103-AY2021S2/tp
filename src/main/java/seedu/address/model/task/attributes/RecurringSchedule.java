@@ -1,4 +1,4 @@
-package seedu.address.model.task;
+package seedu.address.model.task.attributes;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
@@ -16,11 +16,13 @@ import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.address.model.task.ValidDateFormatter;
+
 /**
  * Represents a Task's Recurring Schedule in the planner.
  * Guarantees: immutable; is valid and can be empty as declared in {@link #isValidRecurringScheduleInput(String)}
  */
-public class RecurringSchedule {
+public class RecurringSchedule implements Attribute {
     public static final String FIELD_NAME = "RecurringSchedule";
 
     // example format: [23/10/2021]

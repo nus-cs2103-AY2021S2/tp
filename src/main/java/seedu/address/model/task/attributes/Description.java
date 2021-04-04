@@ -1,4 +1,4 @@
-package seedu.address.model.task;
+package seedu.address.model.task.attributes;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Task's description in the planner.
  * Guarantees: immutable; is valid as declared in {@link #isValidDescription(String)}
  */
-public class Description {
+public class Description implements Attribute {
     public static final String FIELD_NAME = "Description";
 
     public static final String MESSAGE_CONSTRAINTS = "Descriptions can take any values";
@@ -35,6 +35,10 @@ public class Description {
      */
     public static boolean isValidDescription(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    public boolean isEmptyValue() {
+        return value.equals("");
     }
 
     @Override

@@ -34,7 +34,7 @@ public class TaskUtil {
     public static String getTaskDetails(Task task) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_TITLE + task.getTitle().fullTitle + " ");
-        if (!task.isDateEmpty()) {
+        if (!task.isEmptyDate()) {
             sb.append(PREFIX_DATE + task.getDate().toString() + " ");
         }
         sb.append(PREFIX_DURATION + task.getDuration().toString() + " ");
