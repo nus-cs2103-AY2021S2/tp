@@ -11,6 +11,7 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.weeblingo.commons.core.index.Index;
+import seedu.weeblingo.logic.commands.exceptions.CommandException;
 import seedu.weeblingo.model.FlashcardBook;
 import seedu.weeblingo.model.Model;
 import seedu.weeblingo.model.ModelManager;
@@ -28,7 +29,7 @@ public class TagCommandTest {
     private ModelManager modelManager = new ModelManager(getTypicalFlashcardBook(), new UserPrefs());
 
     @Test
-    public void execute_tag_success() {
+    public void execute_tag_success() throws CommandException {
         Index targetIndex = INDEX_FIRST_FLASHCARD;
 
         Set<Tag> oneTag = new HashSet<>();
