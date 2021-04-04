@@ -283,7 +283,7 @@ public class AddCommandTest {
         @Override
         public boolean hasOrderItem(OrderItem item) {
             requireNonNull(item);
-            return orderItemsStub.stream().anyMatch(item::isSameOrderItem);
+            return orderItemsStub.stream().anyMatch(item::equals);
         }
 
         @Override
