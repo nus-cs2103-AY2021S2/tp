@@ -480,7 +480,7 @@ in either horizontally or vertically mode.
 ##### Set contact divider position: `setdividerc`
 
 Sets the position of the contact divider.
-The note divider is the divider separating the contact and others user interface.
+The contact divider is the divider separating the contact and others user interface.
 
 Format: `setdividerc Position`
 
