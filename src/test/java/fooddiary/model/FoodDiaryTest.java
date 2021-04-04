@@ -1,7 +1,6 @@
 package fooddiary.model;
 
 import static fooddiary.logic.commands.CommandTestUtil.VALID_ADDRESS_A;
-import static fooddiary.logic.commands.CommandTestUtil.VALID_ADDRESS_B;
 import static fooddiary.logic.commands.CommandTestUtil.VALID_TAG_CATEGORY_WESTERN;
 import static fooddiary.testutil.Assert.assertThrows;
 import static fooddiary.testutil.TypicalEntries.ENTRY_A;
