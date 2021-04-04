@@ -13,7 +13,7 @@ import seedu.weeblingo.model.tag.Tag;
 public class LearnCommandParser implements Parser<LearnCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of StartCommand and returns the StartCommand
+     * Parses the given {@code String} of arguments in the context of LearnCommand and returns the LearnCommand
      * object for execution.
      * @throws ParseException if the user input does not conform to the expected format
      */
