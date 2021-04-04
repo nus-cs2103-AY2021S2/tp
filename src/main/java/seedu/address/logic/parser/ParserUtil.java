@@ -293,10 +293,13 @@ public class ParserUtil {
     public static Time parseAppointmentTime(String time) throws ParseException {
         requireNonNull(time);
         String trimmedTime = time.trim();
+        if (!Time.isValidTime(trimmedTime)) {
+            throw new ParseException(Time.MESSAGE_CONSTRAINTS);
+        }
         try {
             return new Time(LocalTime.parse(trimmedTime, DateTimeFormat.INPUT_TIME_FORMAT));
         } catch (DateTimeParseException ex) {
-            throw new ParseException(Time.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Time.MESSAGE_INVALID_TIME);
         }
     }
 
