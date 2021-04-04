@@ -138,7 +138,8 @@ Format: `find PREFIX/KEYWORD` where PREFIX is one of the following: `n`, `a`, `p
 * More than 1 keyword can be specified for a single prefix
 * Keywords separated by space will require both keywords to be matched.
   e.g. `Hans Yang` will only return `Hans Gruber Yang` instead of `Bo Yang`
-* Prefixes for searching name `n/`, address `a/`, tag `tag/`, phone number `p/`
+* Prefixes for searching name `n/`, address `a/`, tag `tag/`, phone number `p/`, price `pr/`, day `d/` and time `t/`
+* `all` prefix for searching across names, addresses, tags and phone numbers quickly 
 </div>
 
 **Examples:**
