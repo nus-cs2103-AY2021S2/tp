@@ -107,15 +107,15 @@ Examples:
 
 Deletes a FoodDiary entry from the Food Diary.
 
-Format: `delete n/<NAME>` or `delete i/<INDEX>`
+Format: `delete <INDEX>`
 
 Parameters:
 
-1. `Restaurant name` or `Index`.
+1. `Index of FoodDiary entry`
 
 Example:
 
-    delete n/McDonald’s Clementi Mall
+    delete 1
 
 ### Find FoodDiary entries generally: `find`
 
