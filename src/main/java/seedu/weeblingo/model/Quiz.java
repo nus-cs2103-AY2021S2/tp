@@ -127,7 +127,7 @@ public class Quiz {
 
         // Filter by tags if needed
         for (Flashcard f : flashcardsToProcess) {
-            if (checkTags(f, tags)) {
+            if (f.checkHasTags(tags)) {
                 randomizedQueue.offer(f);
             }
         }
@@ -144,16 +144,6 @@ public class Quiz {
         }
 
         return randomizedQueue;
-    }
-
-    private boolean checkTags(Flashcard flashcard, Set<Tag> tags) {
-        boolean check = true;
-        Set<Tag> weeblingoTags = flashcard.getWeeblingoTags();
-        Set<Tag> userTags = flashcard.getUserTags();
-        for (Tag tag : tags) {
-            check = check && (weeblingoTags.contains(tag) || userTags.contains(tag));
-        }
-        return check;
     }
 
     /**

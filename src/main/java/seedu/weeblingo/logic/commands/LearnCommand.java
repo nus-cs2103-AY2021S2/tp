@@ -33,21 +33,11 @@ public class LearnCommand extends Command {
         requireNonNull(model);
         int currentMode = model.getCurrentMode();
         if (currentMode == Mode.MODE_MENU) {
-            model.updateFilteredFlashcardList(flashcard -> checkTags(flashcard, tags));
+            model.updateFilteredFlashcardList(flashcard -> flashcard.checkHasTags(tags));
             model.switchModeLearn();
             return new CommandResult(MESSAGE_SUCCESS, false, false);
         } else {
             throw new CommandException(Messages.MESSAGE_NOT_IN_MENU_MODE);
         }
-    }
-
-    private boolean checkTags(Flashcard flashcard, Set<Tag> tags) {
-        boolean check = true;
-        Set<Tag> weeblingoTags = flashcard.getWeeblingoTags();
-        Set<Tag> userTags = flashcard.getUserTags();
-        for (Tag tag : tags) {
-            check = check && (weeblingoTags.contains(tag) || userTags.contains(tag));
-        }
-        return check;
     }
 }
