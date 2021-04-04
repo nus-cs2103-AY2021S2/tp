@@ -23,6 +23,7 @@ public class Date implements Comparable<Date> {
             + "    - dd mmm yyyy\n"
             + "    - mmm dd yyyy";
     public static final String MESSAGE_NOYEAR_FORMATS = "    - --mm-dd (ISO format)\n"
+            + "    - dd.mm\n"
             + "    - dd/mm\n"
             + "    - dd mmm\n"
             + "    - mmm dd";
@@ -56,8 +57,8 @@ public class Date implements Comparable<Date> {
     );
 
     public static final int EMPTY_MONTH = 0;
-    protected static final int MIN_YEAR = 0;
-    protected static final int NON_YEAR = -1;
+    protected static final int MIN_YEAR = 1;
+    protected static final int NON_YEAR = 0;
 
     protected static final DateTimeFormatter[] VALID_FORMATS = new DateTimeFormatter[] {
             DateTimeFormatter.ofPattern("yyyy-MM-dd"),
@@ -102,7 +103,6 @@ public class Date implements Comparable<Date> {
      */
     public Date(String inputDate) {
         requireNonNull(inputDate);
-        checkArgument(isValidDate(inputDate), MESSAGE_CONSTRAINTS);
         dateValue = parseDate(inputDate);
         if (dateValue.getYear() == NON_YEAR) {
             value = READABLE_FORMAT_WITHOUT_YEAR.format(dateValue);
