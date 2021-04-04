@@ -57,11 +57,11 @@ Start improving your productivity by following these simple steps:
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Here are some commands you can get started with:
 
-   - **`todo`**`n/CS2030 Lab 1 d/Lab 1 to complete` : Adds an event named `CS2030 Lab 1` to the application with status `TODO`.
+   - **`todo`**`n/CS2030 Lab 2 d/Lab 2 to complete` : Adds an event named `CS2030 Lab 2` to the application with status `TODO`.
 
-   - **`log`**`n/CS2107 Finals d/Finals on 3rd May 2021` : Adds an event named `CS2107 Finals` to the application with status `BACKLOG`.
+   - **`log`**`n/CS2107 Mid Terms d/Mid terms on 2nd Mar 2021` : Adds an event named `CS2107 Mid Terms` to the application with status `BACKLOG`.
 
-   - **`prog`**`n/CS2100 d/Lab` : Adds an event named `CS2100` to the application with status `IN PROGRESS`.
+   - **`prog`**`n/CS2100 Lab 3 d/Lab homework` : Adds an event named `CS2100 Lab 3` to the application with status `IN PROGRESS`.
 
    - **`delete`**`3` : Deletes the event with the identifier of 3 shown on the KanBan board.
 
@@ -120,19 +120,24 @@ For our new users, don't be too intimidated! You can use this summary to better 
 the different commands available. We will delve deeper into the specifics at chapters [2.2](#22-general)
 and [2.3](#23-event-commands).
 
-| Command                            | Description                                           | Format, Examples                                                                                           |
-| ---------------------------------- | ----------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| [**Clear**](#236-clear-command)    | **Clears** all of your events in Focuris              | `clear`                                                                                                    |
-| [**Done**](#239-done-command)      | Marks an existing event in Focuris as **`DONE`**      | `done IDENTIFIER`<br> e.g., `done 3`                                                                       |
-| [**Edit**](#234-edit-command)      | **Edits** your existing event's attributes in Focuris | `edit IDENTIFIER [n/NAME] [s/STATUS] [d/DESCRIPTION] [p/PRIORITY]`<br> e.g.,`edit 2 n/CS2030 d/Assignment` |
-| [**Find**](#237-find-command)      | **Finds** your existing event by specific keywords    | `find KEYWORD [KEYWORD]...`<br> e.g., `find James Jake`                                                    |
-| [**Exit**](#222-exit-command)      | **Exits** the application                             | `exit`                                                                                                     |
-| [**Help**](#221-help-command)      | Displays **help menu** pop-up                         | `help`                                                                                                     |
-| [**List**](#232-list-command)      | Clears your previous filters and lists all events     | `list`                                                                                                     |
-| [**Log**](#232-log-command)        | Creates your new event with status **Backlog**        | `log n/NAME d/DESCRIPTION [p/PRIORITY]` <br> e.g., `log n/CS2030 d/Lab`                                    |
-| [**Prog**](#233-prog-command)      | Creates your new event with status **In-Progress**    | `prog n/NAME d/DESCRIPTION [p/PRIORITY]` <br> e.g., `prog n/CS2100 d/Tutorial`                             |
-| [**Switch**](#2310-switch-command) | **Switch** between list and kanban view in Focuris    | `prog n/NAME d/DESCRIPTION [p/PRIORITY]` <br> e.g., `prog n/CS2100 d/Tutorial`                             |
-| [**Todo**](#231-todo-command)      | Creates your new event with status **Todo**           | `todo n/NAME d/DESCRIPTION [p/PRIORITY]` <br> e.g., `todo n/CS2040 d/Assignment`                           |
+| Command                            | Description                                                          | Format, Examples                                                                                           |
+| ---------------------------------- | -------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| [**Clear**](#236-clear-command)    | **Clears** all of your events in Focuris                             | `clear`                                                                                                    |
+| [**Done**](#239-done-command)      | Marks an existing event in Focuris as **`DONE`**                     | `done IDENTIFIER`<br> e.g., `done 3`                                                                       |
+| [**Edit**](#234-edit-command)      | **Edits** your existing event's [parameters](#parameters) in Focuris | `edit IDENTIFIER [n/NAME] [s/STATUS] [d/DESCRIPTION] [p/PRIORITY]`<br> e.g.,`edit 2 n/CS2030 d/Assignment` |
+| [**Find**](#237-find-command)      | **Finds** your existing event by specific keywords                   | `find KEYWORD [KEYWORD]...`<br> e.g., `find James Jake`                                                    |
+| [**Exit**](#222-exit-command)      | **Exits** the application                                            | `exit`                                                                                                     |
+| [**Help**](#221-help-command)      | Displays **help menu** pop-up                                        | `help`                                                                                                     |
+| [**List**](#238-list-command)      | Clears your previous filters and **lists** all events                | `list`                                                                                                     |
+| [**Log**](#232-log-command)        | Creates your new event with status **Backlog**                       | `log n/NAME d/DESCRIPTION [p/PRIORITY]` <br> e.g., `log n/CS2030 d/Lab`                                    |
+| [**Prog**](#233-prog-command)      | Creates your new event with status **In-Progress**                   | `prog n/NAME d/DESCRIPTION [p/PRIORITY]` <br> e.g., `prog n/CS2100 d/Tutorial`                             |
+| [**Switch**](#2310-switch-command) | **Switch** between list and kanban view in Focuris                   | `prog n/NAME d/DESCRIPTION [p/PRIORITY]` <br> e.g., `prog n/CS2100 d/Tutorial`                             |
+| [**Todo**](#231-todo-command)      | Creates your new event with status **Todo**                          | `todo n/NAME d/DESCRIPTION [p/PRIORITY]` <br> e.g., `todo n/CS2040 d/Assignment`                           |
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Please take note of the following with regards to Events in Focuris:** <br/>
+- You will not be allowed to add Events with the same name into Focuris, regardless of their description, priority or status.
+</div>
 
 <a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
 
@@ -153,9 +158,11 @@ The table below gives a detailed summary of the different [parameters](#paramete
 | KEYWORD     | No Prefix | Keywords for searching Events in Focuris | No Constraints                                                                                                                                                                                                                                                                             |
 
 <div markdown="block" class="alert alert-info">
-**:information_source: Please take note of the following parameters** <br/>
+**:information_source: Please take note of the following with regards to parameters in Focuris:** <br/>
+- Identifiers are not meant to be a counter of your events. It is meant to be a unique identifier for your Events in Focuris and may not count in order.
+- Identifiers are automatically generated for you, you do not need to specify an identifier for your Events. 
+- Identifiers will be reset every time you run Focuris.
 - Priority is set to `low` if you do not specify a priority for your event. <br/>
-- Identifiers are automatically generated for you, you do not need to specify an identifier for your Events
 </div>
 
 <a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
@@ -275,13 +282,13 @@ _Figure 1. Shows the result **after** execution of Example Command 1 in the tabl
 
 **More Sample Commands:**
 
-| No  | Example Command                                                               | Expected Command Result                                                                                                        |
-| --- | ----------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| 1   | `todo n/Household Chores d/Cleaning the kitchen p/high`                       | New Todo added: Household Chores; Priority: HIGH; Description: Cleaning the kitchen; Status: TODO;                             |
-| 2   | `todo n/CS2030 Assignment 1 d/Due on 23 Mar 2021 p/high`                      | New Todo added: CS2030 Assignment 1; Priority: HIGH; Description: Due on 23 Mar 2021; Status: TODO;                            |
-| 3   | `todo n/Lunch with John d/At VivoCity on Friday p/medium`                     | New Todo added: Lunch with John; Priority: MEDIUM; Description: At VivoCity on Friday; Status: TODO;                           |
-| 4   | `todo n/Complete Homework d/Complete weekly quiz and group tasks for CS2103T` | New Todo added: Complete Homework; Priority: LOW; Description: Complete weekly quiz and group tasks for CS2103T; Status: TODO; |
-| 5   | `todo n/Run d/Exercise p/h`                                                   | New Todo added: Run; Priority: HIGH; Description: Exercise; Status: TODO;                                                      |
+| No  | Example Command                                                                        | Expected Command Result                                                                                                          |
+| --- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | `todo n/Household Chores d/Cleaning the kitchen p/high`                                | New Todo added: Household Chores; Priority: HIGH; Description: Cleaning the kitchen; Status: TODO                                |
+| 2   | `todo n/CS2030 Assignment 1 d/Due on 23 Mar 2021 p/h`                                  | New Todo added: CS2030 Assignment 1; Priority: HIGH; Description: Due on 23 Mar 2021; Status: TODO                               |
+| 3   | `todo n/Lunch with John d/At VivoCity on Friday p/m`                                   | New Todo added: Lunch with John; Priority: MEDIUM; Description: At VivoCity on Friday; Status: TODO                              |
+| 4   | `todo n/Complete Homework d/Complete weekly quiz and group tasks for CS2103T p/medium` | New Todo added: Complete Homework; Priority: MEDIUM; Description: Complete weekly quiz and group tasks for CS2103T; Status: TODO |
+| 5   | `todo n/Run d/Exercise p/h`                                                            | New Todo added: Run; Priority: HIGH; Description: Exercise; Status: TODO                                                         |
 
 <a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
 
@@ -307,13 +314,13 @@ _Figure 2. Shows the result after execution of Example Command 1 in the table be
 
 **More Sample Commands:**
 
-| No  | Example Command                                                              | Expected Command Result                                                                                                              |
-| --- | ---------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| 1   | `log n/Complete Homework d/Complete weekly quiz and group tasks for CS2103T` | New BackLog added: Complete Homework; Priority: LOW; Description: Complete weekly quiz and group tasks for CS2103T; Status: BACKLOG; |
-| 2   | `log n/Household Chores d/Cleaning the kitchen p/high`                       | New BackLog added: Household Chores; Priority: HIGH; Description: Cleaning the kitchen; Status: BACKLOG;                             |
-| 3   | `log n/CS2030 Assignment 1 d/Due on 23 Mar 2021 p/high`                      | New BackLog added: CS2030 Assignment 1; Priority: HIGH; Description: Due on 23 Mar 2021; Status: BACKLOG;                            |
-| 4   | `log n/Lunch with John d/At VivoCity on Friday p/medium`                     | New BackLog added: Lunch with John; Priority: MEDIUM; Description: At VivoCity on Friday; Status: BACKLOG;                           |
-| 5   | `log n/Run d/Exercise p/h`                                                   | New BackLog added: Run; Priority: HIGH; Description: Exercise; Status: BACKLOG;                                                      |
+| No  | Example Command                                                              | Expected Command Result                                                                                                             |
+| --- | ---------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | `log n/Complete Homework d/Complete weekly quiz and group tasks for CS2103T` | New BackLog added: Complete Homework; Priority: LOW; Description: Complete weekly quiz and group tasks for CS2103T; Status: BACKLOG |
+| 2   | `log n/Household Chores d/Cleaning the kitchen p/h`                          | New BackLog added: Household Chores; Priority: HIGH; Description: Cleaning the kitchen; Status: BACKLOG                             |
+| 3   | `log n/CS2030 Assignment 1 d/Due on 23 Mar 2021 p/m`                         | New BackLog added: CS2030 Assignment 1; Priority: MEDIUM; Description: Due on 23 Mar 2021; Status: BACKLOG                          |
+| 4   | `log n/Lunch with John d/At VivoCity on Friday p/medium`                     | New BackLog added: Lunch with John; Priority: MEDIUM; Description: At VivoCity on Friday; Status: BACKLOG                           |
+| 5   | `log n/Run d/Exercise p/high`                                                | New BackLog added: Run; Priority: HIGH; Description: Exercise; Status: BACKLOG                                                      |
 
 <a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
 
@@ -339,13 +346,13 @@ _Figure 3. Shows the result **after** execution of Example Command 1 below._
 
 **More Sample Commands:**
 
-| No  | Example Command                                                               | Expected Command Result                                                                                                                      |
-| --- | ----------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1   | `prog n/CS2030 Assignment d/Due on 23 May 2021 p/medium`                      | New In-Progress added: CS2030 Assignment 1; Priority: MEDIUM; Description: Due on 23 Mar 2021; ; Status: IN_PROGRESS;                        |
-| 2   | `prog n/Complete Homework d/Complete weekly quiz and group tasks for CS2103T` | New In-Progress added: Complete Homework; Priority: LOW; Description: Complete weekly quiz and group tasks for CS2103T; Status: IN_PROGRESS; |
-| 3   | `prog n/Household Chores d/Cleaning the kitchen p/high`                       | New In-Progress added: Household Chores; Priority: HIGH; Description: Cleaning the kitchen; Status: IN_PROGRESS;                             |
-| 4   | `prog n/Lunch with John d/At VivoCity on Friday p/medium`                     | New In-Progress added: Lunch with John; Priority: MEDIUM; Description: At VivoCity on Friday; Status: IN_PROGRESS;                           |
-| 5   | `prog n/Run d/Exercise p/h`                                                   | New In-Progress added: Run; Priority: HIGH; Description: Exercise; Status: IN_PROGRESS;                                                      |
+| No  | Example Command                                                               | Expected Command Result                                                                                                                     |
+| --- | ----------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | `prog n/CS2030 Assignment d/Due on 23 May 2021 p/medium`                      | New In-Progress added: CS2030 Assignment 1; Priority: MEDIUM; Description: Due on 23 Mar 2021; Status: IN_PROGRESS                          |
+| 2   | `prog n/Complete Homework d/Complete weekly quiz and group tasks for CS2103T` | New In-Progress added: Complete Homework; Priority: LOW; Description: Complete weekly quiz and group tasks for CS2103T; Status: IN_PROGRESS |
+| 3   | `prog n/Household Chores d/Cleaning the kitchen p/high`                       | New In-Progress added: Household Chores; Priority: HIGH; Description: Cleaning the kitchen; Status: IN_PROGRESS                             |
+| 4   | `prog n/Lunch with John d/At VivoCity on Friday p/medium`                     | New In-Progress added: Lunch with John; Priority: MEDIUM; Description: At VivoCity on Friday; Status: IN_PROGRESS                           |
+| 5   | `prog n/Run d/Exercise p/h`                                                   | New In-Progress added: Run; Priority: HIGH; Description: Exercise; Status: IN_PROGRESS                                                      |
 
 <a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
 
@@ -367,7 +374,7 @@ edit IDENTIFIER [n/NAME] [d/DESCRIPTION] [s/STATUS] [p/PRIORITY]
 - The identifier **must be a positive integer** 1, 2, 3, …​
 - At least one of the optional fields must be provided.
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-warning">
 :exclamation: **Caution**
 
 Existing event will have its data overwritten by the new values taken in by the `edit` command
@@ -430,7 +437,7 @@ _Figure 7. Shows Focuris **after** the execution of the delete command in the co
 
 | No  | Example Command | Expected Command Result                                                                  |
 | --- | --------------- | ---------------------------------------------------------------------------------------- |
-| 1   | `delete 1`      | Deleted Event: CS2030 Lab 1; Status: TODO; Description: Lab 1 to complete;               |
+| 1   | `delete 1`      | Deleted Event: CS2030 Lab 1; Status: TODO; Description: Lab 1 to complete                |
 | 2   | `delete 5`      | Deleted Event: CS2105 Assignment 2; Status: IN_PROGRESS; Description: Due on 28 Mar 2021 |
 
 <div markdown="block" class="alert alert-info">
@@ -454,7 +461,7 @@ Clears all events in Focuris.
 clear
 ```
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-warning">
 :exclamation: **Caution:**
 All events will be cleared from Focuris and this is **irreversible**. Please use this command with care.
 
@@ -590,7 +597,7 @@ _Figure 11. Execution of list command after find command in Figure 10_
 
 <div class="page-break-before"></div>
 
-## 3. FAQ
+# 3. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Focuris home folder.
@@ -611,7 +618,7 @@ sent to any online servers.
 
 <div class="page-break-before"></div>
 
-## 4. Glossary
+# 4. Glossary
 
 <a name="case-insensitive"><bold>Case Insensitive</bold>: Case Insensitive means that a word input in upper case and lower case will be taken the same way.</a>
 
