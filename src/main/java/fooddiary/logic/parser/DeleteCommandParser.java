@@ -2,6 +2,7 @@ package fooddiary.logic.parser;
 
 import static fooddiary.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import fooddiary.commons.core.Messages;
 import fooddiary.commons.core.index.Index;
 import fooddiary.logic.commands.DeleteCommand;
 import fooddiary.logic.parser.exceptions.ParseException;
@@ -20,9 +21,10 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
         try {
             Index index = ParserUtil.parseIndex(args);
             return new DeleteCommand(index);
+        } catch (IndexOutOfBoundsException e) {
+            throw new ParseException(Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);
         } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
         }
     }
 
