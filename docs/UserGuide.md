@@ -179,9 +179,9 @@ Format: `list [--exact] [--any] [-n NAME]... [-t TAG]... [-b BIRTHDAY]... [-s SO
      * Sorts by upcoming birthday ignores the sort order parameter and only sorts in `ascending` order
 2. If search parameters specified, `list [--exact] [--any] [-n NAME]... [-t TAG]... [-b BIRTHDAY]... [-s SORT_FIELD] [-o SORT_ORDER]`: List all contacts matching the search criteria
    * Search criteria, case-insensitive:
-     * `-n` filters the contacts by name
-     * `-t` filters the contacts by tags
-     * `-b` filters contacts by birthday month
+     * `-n`, `--name` filters the contacts by name
+     * `-t`, `--tag` filters the contacts by tags
+     * `-b`, `--birthday` filters contacts by birthday month
        * If `BIRTHDAY` is "0" or unspecified, filtered contacts do not have a birthday.
        * Otherwise `BIRTHDAY` must be one of the 12 months, represented either by the month value or string,
          i.e. `12`, `Dec`, `December` filters contacts with a birthday in December.
@@ -240,7 +240,7 @@ Format: `elist [--exact] [--any] [-n NAME] [-r DETAIL]... [-s SORT] [-o ORDER]`
     * `-s` parameter optionally sorts events by `SORT_FIELD`. Possible values of 
       `SORT_FIELD`:
       * `n`, `name`: names (case-sensitive) in lexicographical order (by default, if `-s` not specified)
-      * `d`: event dates (Sensitive to year, will sort according to date with respect to year)
+      * `d`, `date`: event dates (Sensitive to year, will sort according to date with respect to year)
       * `u`, `upcoming`: days left to next upcoming event
     * `-o` parameter optionally determines the direction of sort, according to `SORT_ORDER`. Possible values of SORT_ORDER:
       * `a`, `asc`, `ascending`: ascending (by default, if `-o` not specified)
@@ -249,8 +249,8 @@ Format: `elist [--exact] [--any] [-n NAME] [-r DETAIL]... [-s SORT] [-o ORDER]`
 2. If search parameters specified, `elist [--exact] [--any] [-n NAME]... [-r DETAIL]... [-s SORT_FIELD] [-o 
    SORT_ORDER]`: List all events matching the search criteria
     * Search criteria, case-insensitive: 
-        * `-n` filters the events by event name
-        * `-r` filters the events by event details
+        * `-n`, `--name` filters the events by event name
+        * `-r`, `--remark` filters the events by event details
     * Search is case-insensitive, e.g. `cHriStmAs` will match `Christmas`.
     * Partial matches to event names and details are performed by default, e.g. `key` will match `turkey`.
     * If exact match is desired, specify an additional `--exact` flag.
