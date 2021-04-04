@@ -122,4 +122,12 @@ public class DeleteCommand extends Command {
 
         return new Flashcard(question, answer, tags, userTags);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof DeleteCommand // instanceof handles nulls
+                && index.equals(((DeleteCommand) other).index)
+                && tags.equals(((DeleteCommand) other).tags));
+    }
 }
