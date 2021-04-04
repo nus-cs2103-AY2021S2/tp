@@ -51,7 +51,7 @@ title: User Guide
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `listcommand`, `exit` and `clearcontact`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
   
-* Extraneous parameter for commands that only take in one parameters (such as `open`, `close`, and `setdividerc) will not be ignored.<br>
+* Extraneous parameter for commands that only take in one parameters (such as `open`, `close`, and `setdividerc` will **not** be ignored.<br>
   e.g. if the command specifies `open -c 123`, the command will be invalid.
   
   
