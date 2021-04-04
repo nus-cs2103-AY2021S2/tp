@@ -76,7 +76,7 @@ public class FindPropertyCommandTest {
     }
 
     @Test
-    public void equalsPrice() {
+    public void equalsPrice() throws ParseException {
         PropertyPricePredicate firstPredicate =
                 new PropertyPricePredicate("10000", true);
         PropertyPricePredicate secondPredicate =
@@ -165,7 +165,7 @@ public class FindPropertyCommandTest {
     }
 
     @Test
-    public void priceMoreThanTest() {
+    public void priceMoreThanTest() throws ParseException {
         String expectedMessage = String.format(MESSAGE_PROPERTIES_LISTED_OVERVIEW_SINGULAR, 1);
         PropertyPredicateList predicate =
                 new PropertyPredicateList(
@@ -177,7 +177,7 @@ public class FindPropertyCommandTest {
     }
 
     @Test
-    public void priceLessThanTest() {
+    public void priceLessThanTest() throws ParseException {
         String expectedMessage = String.format(MESSAGE_PROPERTIES_LISTED_OVERVIEW_SINGULAR, 1);
         PropertyPredicateList predicate =
                 new PropertyPredicateList(
@@ -189,7 +189,7 @@ public class FindPropertyCommandTest {
     }
 
     @Test
-    public void priceOutsideTest() {
+    public void priceOutsideTest() throws ParseException {
         String expectedMessage = String.format(MESSAGE_PROPERTIES_LISTED_OVERVIEW_SINGULAR, 0);
         PropertyPredicateList predicate =
                 new PropertyPredicateList(
@@ -201,7 +201,7 @@ public class FindPropertyCommandTest {
     }
 
     @Test
-    public void multiPriceTest() {
+    public void multiPriceTest() throws ParseException {
         String expectedMessage = String.format(MESSAGE_PROPERTIES_LISTED_OVERVIEW_SINGULAR, 1);
         PropertyPredicateList predicate =
                 new PropertyPredicateList(

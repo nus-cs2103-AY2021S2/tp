@@ -65,7 +65,7 @@ public class FindPropertyCommandParserTest {
     }
 
     @Test
-    public void parseValidPriceTest() {
+    public void parseValidPriceTest() throws ParseException {
         List<Predicate<Property>> predicates = new ArrayList<>();
 
         // price less

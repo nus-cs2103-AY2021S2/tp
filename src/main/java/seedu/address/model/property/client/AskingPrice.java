@@ -47,6 +47,7 @@ public class AskingPrice implements Comparable<AskingPrice> {
      */
     public AskingPrice(Long askingPrice) {
         requireNonNull(askingPrice);
+        checkArgument(askingPrice >= 0, MESSAGE_CONSTRAINTS);
         this.askingPrice = askingPrice;
     }
 

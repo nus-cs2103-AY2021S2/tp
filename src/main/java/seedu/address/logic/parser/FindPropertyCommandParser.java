@@ -81,7 +81,7 @@ public class FindPropertyCommandParser implements Parser<FindPropertyCommand> {
 
         if (argMultimap.getValue(PREFIX_PROPERTY_PRICE_LESS).isPresent()) {
             for (String argument: argMultimap.getAllValues(PREFIX_PROPERTY_PRICE_LESS)) {
-                predicates.add(new PropertyPricePredicate(argument, false));
+                predicates.add(new PropertyPricePredicate(argument, true));
             }
         }
 
