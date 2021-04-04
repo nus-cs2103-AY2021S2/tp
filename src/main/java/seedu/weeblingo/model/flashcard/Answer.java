@@ -17,7 +17,7 @@ public class Answer {
      * The first character of the answer must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = RegexUtil.REGEX_ENG_WORD;
+    public static final String VALIDATION_REGEX = RegexUtil.REGEX_ENG_WORDS;
     public final String value;
 
     /**
