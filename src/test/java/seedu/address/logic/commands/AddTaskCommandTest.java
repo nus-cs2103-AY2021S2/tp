@@ -178,6 +178,11 @@ public class AddTaskCommandTest {
         public boolean checkAssignees(Task task) {
             throw new AssertionError("This method should not be called.");
         };
+
+        @Override
+        public void removeAssignee(Person person) {
+            throw new AssertionError("This method should not be called.");
+        };
     }
 
     /**
