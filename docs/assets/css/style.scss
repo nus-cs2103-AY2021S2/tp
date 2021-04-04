@@ -14,6 +14,17 @@
   page-break-before: always;
 }
 
+.logo-title {
+  margin: 0;
+  font-weight: 600;
+  font-size: 2em;
+}
+
+.logo-subtitle {
+  margin: 0;
+  font-style: italic;
+}
+
 .do-not-decorate {
   text-decoration: none !important;
   color: black;
