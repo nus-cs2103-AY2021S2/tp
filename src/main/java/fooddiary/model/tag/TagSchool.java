@@ -32,7 +32,7 @@ public class TagSchool extends Tag {
     }
 
     public static boolean isValidTagName(String tag) {
-        return School.matches(tag) && !(tag.equals("INVALID"));
+        return School.matches(tag) && !(tag.equals(School.INVALID.name()));
     }
 
     @Override
