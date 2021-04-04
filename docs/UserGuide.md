@@ -229,7 +229,8 @@ to using the `edit` command.
 - `Ctrl + S` (Windows) or `Command + S` (Mac) to save
 - `ESC` key to quickly exit the revise window
  
-**Take note when revising an entry:**
+**Note:**
+- Price can be a value or range e.g. `5` or `5-9`
 - Leave a white-space between categories to separate them
 - Leave a white-space between schools to separate them
 - Leave a blank line to differentiate between each review
@@ -253,12 +254,13 @@ Example:
 ### Editing a specific FoodDiary entry `edit`
 
 Edits the details of the FoodDiary entry specified. Existing values will be overwritten by the new values.
+Mainly used if previous entry values do not matter in new edit.
 
 Format: `edit <INDEX> n/<RESTAURANT NAME> ra/<RATING> p/<PRICE> re/<REVIEW> a/<ADDRESS> c/<CATEGORIES> s/<SCHOOLS>`
 
 Note: 
-- Price range: $0 - 999
-- Categories and schools are stated in `add` command
+- Price can be a value or range e.g. `5` or `5-9`
+- Categories and schools tags are stated in `add` command
 
 Parameters:
 
