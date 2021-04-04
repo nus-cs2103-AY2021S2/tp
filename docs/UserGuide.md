@@ -123,6 +123,7 @@ and [2.3](#23-event-commands).
 | Command                            | Description                                                          | Format, Examples                                                                                           |
 | ---------------------------------- | -------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
 | [**Clear**](#236-clear-command)    | **Clears** all of your events in Focuris                             | `clear`                                                                                                    |
+| [**Delete**](#235-delete-command)  | **Deletes** an existing event in Focuris                             | `delete IDENTIFIER`<br> e.g., `delete 2`                                                                   |
 | [**Done**](#239-done-command)      | Marks an existing event in Focuris as **`DONE`**                     | `done IDENTIFIER`<br> e.g., `done 3`                                                                       |
 | [**Edit**](#234-edit-command)      | **Edits** your existing event's [parameters](#parameters) in Focuris | `edit IDENTIFIER [n/NAME] [s/STATUS] [d/DESCRIPTION] [p/PRIORITY]`<br> e.g.,`edit 2 n/CS2030 d/Assignment` |
 | [**Find**](#237-find-command)      | **Finds** your existing event by specific keywords                   | `find KEYWORD [KEYWORD]...`<br> e.g., `find James Jake`                                                    |
@@ -173,7 +174,13 @@ The table below gives a detailed summary of the different [parameters](#paramete
 
 As a new user, the image below should give you a better understanding of what each part of our graphical user interface means!
 
+There are two views in Focuris, which can be toggled between with the [`switch` command](#2310-switch-command):
+
+1. KanBan view
+
 ![Ui](images/UiWithReference.png)
+
+2. List view
 
 <a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
 
@@ -587,11 +594,9 @@ switch
 
 **What you should expect to happen:**
 
-- After execution of the `list` command:
+- Before execution of the `switch` command, in `KanBan` view:
 
-![list example](./images/user-guide/list-example-1.png)
-
-_Figure 11. Execution of list command after find command in Figure 10_
+- After execution of the `switch` command, from `KanBan` view:
 
 <a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
 
@@ -620,10 +625,10 @@ sent to any online servers.
 
 # 4. Glossary
 
-<a name="case-insensitive"><bold>Case Insensitive</bold>: Case Insensitive means that a word input in upper case and lower case will be taken the same way.</a>
+<a name="case-insensitive" class="do-not-decorate"><bold>Case Insensitive</bold>: Case Insensitive means that a word input in upper case and lower case will be taken the same way.</a>
 
-<a name="parameters"><bold>Parameters</bold>: Parameters are the input given to commands behind prefixes such as `n/`.</a>
+<a name="parameters" class="do-not-decorate"><bold>Parameters</bold>: Parameters are the input given to commands behind prefixes such as `n/`.</a>
 
-<a name="special-characters"><bold>Special Characters</bold>: Characters that are neither alphabets, from A to Z, nor digits, from 0 to 9.</a>
+<a name="special-characters" class="do-not-decorate"><bold>Special Characters</bold>: Characters that are neither alphabets, from A to Z, nor digits, from 0 to 9.</a>
 
 <a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
