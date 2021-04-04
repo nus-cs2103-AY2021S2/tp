@@ -252,7 +252,7 @@ Format: `elist [--exact] [--any] [-n NAME] [-r DETAIL]... [-s SORT] [-o ORDER]`
       `SORT_FIELD`:
       * `n`, `name`: names (case-sensitive) in lexicographical order (by default, if `-s` not specified)
       * `d`, `date`: event dates (Sensitive to year, will sort according to date with respect to year)
-      * `u`, `upcoming`: days left to next upcoming event
+      * `u`, `upcoming`: days left to next upcoming event (All events marked as `done` will appear at the bottom of the list regardless of the date)
     * `-o` parameter optionally determines the direction of sort, according to `SORT_ORDER`. Possible values of SORT_ORDER:
       * `a`, `asc`, `ascending`: ascending (by default, if `-o` not specified)
       * `d`, `desc`, `descending`: descending
