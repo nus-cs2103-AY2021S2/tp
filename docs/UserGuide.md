@@ -21,6 +21,13 @@ PartyPlanet can get the planning of your birthday celebrations done faster than 
 3. Double-click the file to start the app.<br>
    ![Ui](images/Ui.png)
 
+
+<div markdown="block" class="alert-warning">
+
+**:warning: PartyPlanet will use its default Address Book and Event Book JSON file if it is unable to locate the 
+JSON file. It will start with an empty JSON file if there is an error in the JSON file.**
+
+</div>
 --------------------------------------------------------------------------------------------------------------------
 
 ## Glossary of parameters
@@ -368,14 +375,6 @@ Retrieves previously entered input.
 * `ESC` key clears the text box.
 * `CTRL + Z` key combination undoes the last change to the address or event books.
 * `CTRL + SHIFT + Z` or `CTRL + Y` key combinations redo the last undone change to the address or event books.
-
-
-<div markdown="block" class="alert-warning">
-
-**:warning: PartyPlanet will use its default Address Book and Event Book JSON file if it is unable to locate the 
-JSON file. It will start with an empty JSON file if there is an error in the JSON file.**
-
-</div>
 
 
 ### Coming Soon (Additional Features)
