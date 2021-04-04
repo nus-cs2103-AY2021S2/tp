@@ -7,7 +7,7 @@ import seedu.dictionote.model.Model;
  */
 public class ListCommandNoteCommand extends Command {
 
-    public static final String COMMAND_WORD = "listcommandn";
+    public static final String COMMAND_WORD = "commanddetailn";
 
     public static final String SHOWING_LIST_COMMAND_MESSAGE =
         "Note Command Details (enter in the command for usage details)\n"
