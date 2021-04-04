@@ -87,8 +87,12 @@ Insert annotated screenshot here.
 </div>
 
 #### **2.2.3 Types of User Input**
+To expand.
 
-
+##### `NAME`
+* The name of the person who has made the order.
+* The name of the person must not be empty, it can take in numbers, characters or a mix of both.
+:information_source: _Fun Fact: Elon Musk, the world richest man has a son named X Æ A-12._
 
 ## **3. Quick start**
 
@@ -273,7 +277,10 @@ Examples:
 
 Deletes all existing orders in the CakeCollate database.
 
-Warning: this is an undo-able operation.
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+This is not an un-doable action! With this command, all existing orders are deleted from the CakeCollate database
+and you will not be able to retrieve them. 
+</div>
 
 Format: `clear`
 
