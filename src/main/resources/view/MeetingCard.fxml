@@ -12,7 +12,7 @@
                 <HBox alignment="CENTER_LEFT" spacing="10.0" VBox.vgrow="NEVER">
                     <children>
                         <Label fx:id="id" text="Label"/>
-                        <Label fx:id="name" text="A VERY LONG MEETING" wrapText="true" HBox.hgrow="ALWAYS"/>
+                        <Label fx:id="name" text="A VERY LONG MEETING" wrapText="true" HBox.hgrow="ALWAYS" styleClass="meetingcard-header" stylesheets="@DarkTheme.css"/>
                     </children>
                     <padding>
                         <Insets top="5.0"/>
