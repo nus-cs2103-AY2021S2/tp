@@ -26,7 +26,7 @@ import seedu.partyplanet.model.person.Person;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
- * {@code DeleteCommand}.
+ * {@code DeleteContactCommand}.
  */
 public class DeleteContactCommandTest {
 
