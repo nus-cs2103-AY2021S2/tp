@@ -85,7 +85,7 @@
                                             <Image url="@../images/calendar_icon.png" />
                                         </image>
                                     </ImageView>
-                                    <Label alignment="CENTER" prefHeight="25.0" style="-fx-text-fill: white;" styleClass="cell_big_label" text="Calender">
+                                    <Label alignment="CENTER" prefHeight="25.0" style="-fx-text-fill: white;" styleClass="cell_big_label" text="Calendar">
                                         <HBox.margin>
                                             <Insets left="4.0" />
                                         </HBox.margin>
@@ -108,7 +108,7 @@
                                     <URL value="@TabStyle.css" />
                                 </stylesheets>
                                 <tabs>
-                                    <Tab closable="false" text="Appointments">
+                                    <Tab closable="false" text="Appointments" fx:id="tabAppointment">
                                         <content>
                                             <VBox>
                                                 <children>
@@ -124,7 +124,7 @@
                                             </VBox>
                                         </content>
                                     </Tab>
-                                    <Tab closable="false" text="Schedule">
+                                    <Tab closable="false" text="Schedules" fx:id="tabSchedule">
                                         <content>
                                             <VBox>
                                                 <children>
