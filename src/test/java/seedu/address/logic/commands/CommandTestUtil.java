@@ -69,6 +69,12 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
+    public static final String VALID_SORT_DIRECTION_ASCENDING = "ascending";
+    public static final String VALID_SORT_DIRECTION_DESCENDING = "descending";
+    public static final String INVALID_SORT_DIRECTION = "?????????";
+    public static final boolean SORT_ASCENDING = true;
+    public static final boolean SORT_DESCENDING = false;
+
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
 
