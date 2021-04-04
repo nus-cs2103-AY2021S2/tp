@@ -55,8 +55,8 @@ public class EditMeetingCommand extends Command {
     public static final String MESSAGE_EDIT_MEETING_SUCCESS = "Edited Meeting: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_MEETING = "No changes found in any field.";
-    public static final String MESSAGE_CONFLICT = "There is another meeting with the same date and time, consider " +
-            "changing to another time.";
+    public static final String MESSAGE_CONFLICT = "There is another meeting with the same date and time, consider "
+            + "changing to another time.";
 
     private final Index index;
     private final EditMeetingDescriptor editMeetingDescriptor;

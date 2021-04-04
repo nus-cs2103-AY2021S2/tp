@@ -61,10 +61,13 @@ public class MeetingBook implements ReadOnlyMeetingBook {
         return meetings.contains(meeting);
     }
 
+    /**
+     * Returns true if the meeting shares the same date and time with any meeting in the iscam book.
+     */
     public boolean hasConflictingMeetingWith(Meeting meeting) {
         requireNonNull(meeting);
-        for(Meeting other : meetings) {
-            if(other.isInConflict(meeting) && !other.getClientName().equals(meeting.getClientName())) {
+        for (Meeting other : meetings) {
+            if (other.isInConflict(meeting) && !other.getClientName().equals(meeting.getClientName())) {
                 return true;
             }
         }

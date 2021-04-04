@@ -30,8 +30,8 @@ public class RescheduleMeetingCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Rescheduled meeting: %1$s";
     public static final String MESSAGE_DUPLICATE_DATETIME = "The new date and time must be different from the "
             + "original.";
-    public static final String MESSAGE_CONFLICT = "There is another meeting with the same date and time, consider " +
-            "scheduling to another time.";
+    public static final String MESSAGE_CONFLICT = "There is another meeting with the same date and time, consider "
+            + "scheduling to another time.";
 
     private final Index index;
     private final DateTime dateTime;
