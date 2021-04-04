@@ -240,10 +240,6 @@ public class CheckCommandTest {
         }
 
         @Override
-        public void switchModeQuizSession() { this.getMode().switchModeQuizSession();
-        }
-
-        @Override
         public String getQuizStatisticString() {
             return "";
         }
@@ -272,8 +268,7 @@ public class CheckCommandTest {
         @Override
         public void switchModeCheckSuccess() {
         }
-
-
+        
         @Override
         public String getQuizStatisticString() {
             return "";
