@@ -165,7 +165,7 @@ public class ParserUtil {
      */
     public static DateTime parseDateTime(String dateTimeStr) throws ParseException {
         requireNonNull(dateTimeStr);
-        if (!DateTime.isValidDateTimeStr(dateTimeStr)) {
+        if (!DateTime.isStringValidDateTime(dateTimeStr)) {
             throw new ParseFormatException(DateTime.MESSAGE_CONSTRAINTS);
         }
         return new DateTime(dateTimeStr);

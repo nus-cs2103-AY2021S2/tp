@@ -70,11 +70,7 @@ class JsonAdaptedMeeting {
      * @throws IllegalValueException if there were any data constraints violated in the adapted meeting.
      */
     public Meeting toModelType() throws IllegalValueException {
-        final List<Tag> meetingTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tags) {
-            meetingTags.add(tag.toModelType());
-        }
-
+        // Name
         if (clientName == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Client.class.getSimpleName()));
         }
@@ -83,17 +79,17 @@ class JsonAdaptedMeeting {
         }
         final Name modelClient = new Name(clientName);
 
+        // Date and time
         if (dateTime == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     DateTime.class.getSimpleName()));
         }
-
-        if (!DateTime.isValidDateTimeStr(dateTime)) {
+        if (!DateTime.isStringValidFormat(dateTime)) {
             throw new IllegalValueException(DateTime.MESSAGE_CONSTRAINTS);
         }
-
         final DateTime modelDateTime = new DateTime(dateTime);
 
+        // Location
         if (location == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Location.class.getSimpleName()));
@@ -103,6 +99,7 @@ class JsonAdaptedMeeting {
         }
         final Location modelLocation = new Location(location);
 
+        // Description
         if (description == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Description.class.getSimpleName()));
@@ -112,6 +109,11 @@ class JsonAdaptedMeeting {
         }
         final Description modelDescription = new Description(description);
 
+        // Tags
+        final List<Tag> meetingTags = new ArrayList<>();
+        for (JsonAdaptedTag tag : tags) {
+            meetingTags.add(tag.toModelType());
+        }
         final Set<Tag> modelTags = new HashSet<>(meetingTags);
 
         final boolean isDone = this.isDone.equals("true");
