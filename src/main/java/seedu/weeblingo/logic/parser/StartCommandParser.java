@@ -29,8 +29,9 @@ public class StartCommandParser implements Parser<StartCommand> {
         } else {
             try {
                 numberOfQuestions = Integer.parseInt(stringNumberOfQuestions.get());
+                System.out.println(numberOfQuestions);
             } catch (NumberFormatException e) {
-                throw new ParseException(StartCommand.MESSAGE_INVALID_NUMBER_OF_QUESTIONS);
+                throw new ParseException(StartCommand.MESSAGE_NUMBER_TOO_LARGE);
             }
             if (numberOfQuestions <= 0) {
                 throw new ParseException(StartCommand.MESSAGE_INVALID_NUMBER_OF_QUESTIONS);
