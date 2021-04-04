@@ -394,13 +394,13 @@ edit IDENTIFIER [n/NAME] [d/DESCRIPTION] [s/STATUS] [p/PRIORITY]
 **Things you should take note about the `edit` command:**
 
 - The identifier refers to the index number shown in the respective displayed event list.
-- The identifier **must be a positive integer** 1, 2, 3, …​
+- The identifier **must be a positive integer** 1, 2, 3, …​.
 - At least one of the optional fields must be provided.
 
 <div markdown="block" class="alert alert-warning">
 :exclamation: **Caution**
 
-Existing event will have its data overwritten by the new values taken in by the `edit` command
+Existing event will have its data overwritten by the new values taken in by the `edit` command.
 
 </div>
 
@@ -415,7 +415,7 @@ Existing event will have its data overwritten by the new values taken in by the 
 **More Sample Commands:**
 
 - `edit 1 n/CS2030 d/Assignment` Edits the event name and event description of the event with identifier `#1` to be `CS2030` and `Assignment` respectively.
-- `edit 2 s/backlog` Edits the status of the event with identifier `#2` to be `BACKLOG`
+- `edit 2 s/backlog` Edits the status of the event with identifier `#2` to be `BACKLOG`.
 - `edit 3 n/CS1101S d/Streams assignment s/in_progress p/high` Edits event the event name, description, status and priority of the event with identifier `#3` to be `CS1101S`, `Streams assignment`, `IN_PROGRESS`, `HIGH` respectively.
 - `edit 4 s/d p/l` Edits the status and the priority of the event with identifier `#4` to be `DONE` and `LOW` respectively.
 
@@ -434,7 +434,7 @@ delete IDENTIFIER
 ```
 
 - The identifier refers to the number beside the hex symbol, e.g. `#10` has an identifier of 10.
-- The identifier **must be a positive integer** 1, 2, 3, …​
+- The identifier **must be a positive integer** 1, 2, 3, …​.
 
 **What you should expect to happen:**
 
@@ -500,11 +500,11 @@ find KEYWORD [MORE_KEYWORDS]...
 
 **Things you should take note about the `find` command:**
 
-- Your keyword inputs are [case-insensitive](#case-insensitive)
+- Your keyword inputs are [case-insensitive](#case-insensitive).
   - e.g. `cs2103` will match `cs2103`, `cS2103`, `Cs2103` and `CS2103`
 - The order of your inputs will not matter.
   - e.g. `CS2103T Project` will match `Project CS2103T`
-- Your keywords will only be matched with full words
+- Your keywords will only be matched with full words.
   - e.g. `CS2103` will not match `CS2103T`
 - If your keywords match at least one word in an Event's `NAME` or `DESCRIPTION`, you should see it in the output.
   - e.g. `CS2103T` will match `CS2103T Project`, `CS2103T v1.3 Deadline`, etc.
