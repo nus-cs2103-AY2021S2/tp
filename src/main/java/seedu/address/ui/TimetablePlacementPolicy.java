@@ -31,8 +31,9 @@ import java.util.stream.Stream;
  */
 public class TimetablePlacementPolicy {
 
-    private static final int MINUTES_IN_AN_HOUR = 60;
-    private static final int MINUTES_IN_DAY = 2400;
+    private static final int SECONDS_IN_A_MINUTE = 60;
+    private static final int SECONDS_IN_AN_HOUR = 3600;
+    private static final long SECONDS_IN_DAY = 86400;
 
     public static final double TIMETABLE_DISPLAY_SIZE = 5760;
 
@@ -104,19 +105,19 @@ public class TimetablePlacementPolicy {
     }
 
     /**
-     * Gets the number of minutes so far in a day, starting from 00:00
+     * Gets the number of seconds so far in a day, starting from 00:00
      * @param localDateTime
      * @return
      */
 
-    public static int getMinutesInDay(LocalDateTime localDateTime) {
-        return localDateTime.getHour() * MINUTES_IN_AN_HOUR + localDateTime.getMinute();
+    public static int getSecondsInDay(LocalDateTime localDateTime) {
+        return localDateTime.getHour() * SECONDS_IN_AN_HOUR + localDateTime.getMinute() * SECONDS_IN_A_MINUTE + localDateTime.getSecond();
     }
 
     public double getVerticalPosition(Schedulable schedulable) {
         LocalDateTime startingDateTime = schedulable.getStartLocalDateTime();
-        int minutesSoFar = getMinutesInDay(applyOffset(startingDateTime));
-        double ratio = (double) minutesSoFar / MINUTES_IN_DAY;
+        int minutesSoFar = getSecondsInDay(applyOffset(startingDateTime));
+        double ratio = (double) minutesSoFar / SECONDS_IN_DAY;
         return ratio * TIMETABLE_DISPLAY_SIZE;
     }
 
@@ -129,10 +130,10 @@ public class TimetablePlacementPolicy {
     public double getLengthOfSlot(Schedulable schedulable) {
         LocalDateTime offSetStartDate = applyOffset(schedulable.getStartLocalDateTime());
         LocalDateTime offSetEndDate = applyOffset(schedulable.getTerminateLocalDateTime());
-        int startMinutesSoFar = getMinutesInDay(offSetStartDate);
-        int endMinutesSoFar = getMinutesInDay(offSetEndDate);
-        assert endMinutesSoFar >= startMinutesSoFar;
-        double ratio = (double)(endMinutesSoFar - startMinutesSoFar) / MINUTES_IN_DAY;
+        long startSecondsSoFar = getSecondsInDay(offSetStartDate);
+        long endSecondsSoFar = getSecondsInDay(offSetEndDate);
+        assert endSecondsSoFar >= startSecondsSoFar;
+        double ratio = (double)(endSecondsSoFar - startSecondsSoFar) / SECONDS_IN_DAY;
         return TIMETABLE_DISPLAY_SIZE * ratio;
 
     }

@@ -24,7 +24,11 @@ public class TimetableSlot extends UiPart<Region> {
 
     public TimetableSlot(double slotLength, String header) {
         super(FXML);
-        this.meetingLabel.setText(header);
+        if (slotLength < 13) {
+            this.meetingLabel.setText(""); // Prevent overflow of text
+        } else {
+            this.meetingLabel.setText(header);
+        }
         meetingSlot.setPrefHeight(slotLength);
         meetingSlot.setMinHeight(slotLength);
         meetingSlot.setMaxHeight(slotLength);

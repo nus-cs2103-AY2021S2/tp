@@ -3,7 +3,7 @@ package seedu.address.model.person;
 public enum PersonSortOption {
     NAME("NAME"),
     EMAIL("EMAIL"),
-    PHONE("EMAIL"),
+    PHONE("PHONE"),
     ADDRESS("ADDRESS");
 
     private String sortString;
