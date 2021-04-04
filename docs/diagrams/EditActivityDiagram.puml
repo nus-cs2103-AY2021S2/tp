@@ -2,15 +2,16 @@
 'https://plantuml.com/activity-diagram-beta
 
 start
-:User executes edit command;
+:User enters edit command;
+:Parse user input;
 if () then ([Index > number of items in StoreMando])
-    : An error message is displayed to user;
+    : Display parse error message;
 else ([else])
     if () then ([Input matches the edit command format)
         :Item's attributes update accordingly;
         :A success message is displayed to the user;
     else ([else])
-        : An error message is displayed to user;
+        : Display parse error message;
     endif
 endif
 stop

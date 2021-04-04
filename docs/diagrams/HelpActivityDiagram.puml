@@ -2,7 +2,8 @@
 'https://plantuml.com/activity-diagram-beta
 
 start
-:User execute help command;
+:User enters help command;
+:Parse user input;
 if () then ([User has Internet Connection])
     :Redirect user to StoreMando's User Guide;
 else ([User does not has Internet Connection])
