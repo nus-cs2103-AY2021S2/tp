@@ -2,7 +2,6 @@ package seedu.partyplanet.model.date;
 
 import static java.util.Map.entry;
 import static java.util.Objects.requireNonNull;
-import static seedu.partyplanet.commons.util.AppUtil.checkArgument;
 
 import java.time.DateTimeException;
 import java.time.LocalDate;
