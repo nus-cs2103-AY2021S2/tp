@@ -330,10 +330,10 @@ Adds a single tuition session to TutorBuddy.
 Format: `add_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE`
 
 * `STUDENT_NAME` should match the exact student’s name in TutorBuddy
-* `DATE` should be the date of the session in yyyy-mm-dd` format
+* `DATE` should be the date of the session in `yyyy-mm-dd` format
 * `DURATION` should be in minutes
 * `FEE` should be the total tuition fee for 1 session of the given duration
-    * TutorBuddy only accepts `FEE` within an acceptable range of values between 0 (Voluntary Session) to below 10000 as we do not except a single session to cost $10,000 or more.
+    * TutorBuddy only accepts `FEE` within an acceptable range of values between 0 (Voluntary Session) to below 10000 as we do not expect a single session to cost $10,000 or more.
     * `FEE` only allows values up to 2 decimal points only
 
 <div markdown="span" class="alert alert-primary">:bulb: Tip:
@@ -413,7 +413,8 @@ Example:
 * `fee n/John Lee m/1 y/2021` returns John Lee monthly fee for January 2021
 
 <div markdown="block" class="alert alert-info">
-:information_source: Note that calculation of fee is only accurate for totaled fees of up to $2,147,483,647. If it is above the specified amount, the result might be inaccurate.
+:information_source: Note that calculation of fee is only guaranteed to be accurate for totaled fees of up to $2,147,483,647. 
+As we do not expect a person to earn more than $2,147,483,647 a month, the fee calculation should be accurate for all actual users.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
