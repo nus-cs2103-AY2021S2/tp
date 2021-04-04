@@ -9,6 +9,7 @@ import seedu.storemando.logic.commands.exceptions.CommandException;
 import seedu.storemando.logic.parser.exceptions.ParseException;
 import seedu.storemando.model.ReadOnlyStoreMando;
 import seedu.storemando.model.item.Item;
+import seedu.storemando.model.item.Location;
 
 /**
  * API of the Logic component
@@ -32,9 +33,14 @@ public interface Logic {
     ReadOnlyStoreMando getStoreMando();
 
     /**
-     * Returns an unmodifiable view of the filtered list of items
+     * Returns an unmodifiable view of the filtered list of items.
      */
     ObservableList<Item> getFilteredItemList();
+
+    /**
+     * Returns an unmodifiable list of unique locations of items.
+     */
+    ObservableList<Location> getLocationList();
 
     /**
      * Returns the user prefs' storemando file path.

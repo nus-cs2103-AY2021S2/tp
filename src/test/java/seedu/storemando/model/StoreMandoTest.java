@@ -9,6 +9,7 @@ import static seedu.storemando.testutil.Assert.assertThrows;
 import static seedu.storemando.testutil.TypicalItems.APPLE;
 import static seedu.storemando.testutil.TypicalItems.getTypicalStoreMando;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -19,6 +20,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.storemando.model.item.Item;
+import seedu.storemando.model.item.Location;
 import seedu.storemando.model.item.exceptions.DuplicateItemException;
 import seedu.storemando.testutil.ItemBuilder;
 
@@ -131,6 +133,11 @@ public class StoreMandoTest {
         @Override
         public ObservableList<Item> getItemList() {
             return items;
+        }
+
+        @Override
+        public ObservableList<Location> getLocationList() {
+            return FXCollections.observableList(new ArrayList<Location>());
         }
     }
 
