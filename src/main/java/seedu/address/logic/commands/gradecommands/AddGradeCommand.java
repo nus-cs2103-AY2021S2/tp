@@ -48,7 +48,7 @@ public class AddGradeCommand extends Command {
         }
 
         model.addGrade(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), TabName.GRADE);
     }
 
     @Override
