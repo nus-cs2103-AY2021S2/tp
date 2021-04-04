@@ -1,4 +1,4 @@
-package seedu.address.model.task;
+package seedu.address.model.task.attributes;
 
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -8,6 +8,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import seedu.address.model.task.ValidDateFormatter;
 
 
 /**

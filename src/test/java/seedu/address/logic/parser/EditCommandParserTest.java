@@ -36,9 +36,9 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.Date;
-import seedu.address.model.task.RecurringSchedule;
-import seedu.address.model.task.Title;
+import seedu.address.model.task.attributes.Date;
+import seedu.address.model.task.attributes.RecurringSchedule;
+import seedu.address.model.task.attributes.Title;
 import seedu.address.testutil.EditTaskDescriptorBuilder;
 
 public class EditCommandParserTest {

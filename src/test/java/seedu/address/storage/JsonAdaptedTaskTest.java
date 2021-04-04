@@ -12,12 +12,12 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.task.Date;
-import seedu.address.model.task.Description;
-import seedu.address.model.task.Duration;
-import seedu.address.model.task.RecurringSchedule;
-import seedu.address.model.task.Status;
-import seedu.address.model.task.Title;
+import seedu.address.model.task.attributes.Date;
+import seedu.address.model.task.attributes.Description;
+import seedu.address.model.task.attributes.Duration;
+import seedu.address.model.task.attributes.RecurringSchedule;
+import seedu.address.model.task.attributes.Status;
+import seedu.address.model.task.attributes.Title;
 
 public class JsonAdaptedTaskTest {
     private static final String INVALID_TITLE = "R@chel";

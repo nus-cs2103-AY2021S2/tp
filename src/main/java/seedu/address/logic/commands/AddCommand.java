@@ -7,7 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DURATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RECURRINGSCHEDULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
-import static seedu.address.model.task.RecurringSchedule.INVALID_END_DATE;
+import static seedu.address.model.task.attributes.RecurringSchedule.INVALID_END_DATE;
 
 import java.util.Set;
 import java.util.logging.Logger;

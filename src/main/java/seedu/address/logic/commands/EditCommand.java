@@ -8,7 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_RECURRINGSCHEDULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
-import static seedu.address.model.task.RecurringSchedule.INVALID_END_DATE;
+import static seedu.address.model.task.attributes.RecurringSchedule.INVALID_END_DATE;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -25,13 +25,13 @@ import seedu.address.logic.conditions.ConstraintManager;
 import seedu.address.logic.conditions.IndexManager;
 import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.Date;
-import seedu.address.model.task.Description;
-import seedu.address.model.task.Duration;
-import seedu.address.model.task.RecurringSchedule;
-import seedu.address.model.task.Status;
+import seedu.address.model.task.attributes.Date;
+import seedu.address.model.task.attributes.Description;
+import seedu.address.model.task.attributes.Duration;
+import seedu.address.model.task.attributes.RecurringSchedule;
+import seedu.address.model.task.attributes.Status;
 import seedu.address.model.task.Task;
-import seedu.address.model.task.Title;
+import seedu.address.model.task.attributes.Title;
 
 /**
  * Edits the details of an existing task in the planner.

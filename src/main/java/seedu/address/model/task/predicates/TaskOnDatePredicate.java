@@ -2,7 +2,7 @@ package seedu.address.model.task.predicates;
 
 import java.util.function.Predicate;
 
-import seedu.address.model.task.Date;
+import seedu.address.model.task.attributes.Date;
 import seedu.address.model.task.Task;
 
 /**

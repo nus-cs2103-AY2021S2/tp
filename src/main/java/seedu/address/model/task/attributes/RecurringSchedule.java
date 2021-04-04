@@ -1,4 +1,4 @@
-package seedu.address.model.task;
+package seedu.address.model.task.attributes;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
@@ -15,6 +15,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import seedu.address.model.task.ValidDateFormatter;
 
 /**
  * Represents a Task's Recurring Schedule in the planner.

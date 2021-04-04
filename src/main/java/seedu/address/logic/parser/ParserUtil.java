@@ -11,12 +11,12 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.Date;
-import seedu.address.model.task.Description;
-import seedu.address.model.task.Duration;
-import seedu.address.model.task.RecurringSchedule;
-import seedu.address.model.task.Status;
-import seedu.address.model.task.Title;
+import seedu.address.model.task.attributes.Date;
+import seedu.address.model.task.attributes.Description;
+import seedu.address.model.task.attributes.Duration;
+import seedu.address.model.task.attributes.RecurringSchedule;
+import seedu.address.model.task.attributes.Status;
+import seedu.address.model.task.attributes.Title;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
