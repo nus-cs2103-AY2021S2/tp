@@ -46,13 +46,6 @@ Given below are my contributions to the project.
     * Added implementation details of the `undo` and `find` feature: [#52](https://github.com/AY2021S2-CS2103-T16-1/tp/pull/52), [\#70](https://github.com/AY2021S2-CS2103-T16-1/tp/pull/70/commits/645903a8755ea8df6573c9e63f151a0e64572801)
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
-
-* **Tools**:
-  * Integrated a third party library (Natty) to the project ([\#42]())
-  * Integrated a new Github plugin (CircleCI) to the team repo
-
-* _{you can add/remove categories in the list above}_
+  * PRs reviewed (with non-trivial review comments): [\#60](https://github.com/AY2021S2-CS2103-T16-1/tp/pull/60), [\#32](), [\#19](), [\#42]()
+  * Contributed to forum discussions (example: [\#121](https://github.com/nus-cs2103-AY2021S2/forum/issues/121))
+  * Reported bugs and suggestions for other teams in the class (example: https://github.com/JQChong/ped/issues)
