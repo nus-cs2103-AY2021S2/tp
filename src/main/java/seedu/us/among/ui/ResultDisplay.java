@@ -13,6 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import javafx.util.Duration;
+import seedu.us.among.commons.core.GuiSettings;
 import seedu.us.among.model.endpoint.Endpoint;
 
 /**
@@ -34,7 +35,9 @@ public class ResultDisplay extends UiPart<Region> {
     private ImageView emptyListPlaceholder;
 
     private Timeline errorGifTimeline;
+
     private String errorGifType = "error-white.gif";
+
     private final Image error = new Image(this.getClass().getResourceAsStream("/images/" + errorGifType));
 
     private final Image loadingSpinnerForDark = new Image(this.getClass().getResourceAsStream(
@@ -48,7 +51,16 @@ public class ResultDisplay extends UiPart<Region> {
      */
     public ResultDisplay() {
         super(FXML);
-        this.loadingSpinnerPlaceholder.setImage(loadingSpinnerForDark);
+
+        if (GuiSettings.DEFAULT_THEME.equalsIgnoreCase("light")
+            || GuiSettings.DEFAULT_THEME.equalsIgnoreCase("material")) {
+            this.errorGifType = "error-black.gif";
+            this.loadingSpinnerPlaceholder.setImage(loadingSpinnerForLight);
+        } else {
+            this.errorGifType = "error-white.gif";
+            this.loadingSpinnerPlaceholder.setImage(loadingSpinnerForDark);
+        }
+
         this.errorPlaceholder.setImage(error);
         this.emptyListPlaceholder.setImage(emptyList);
 
