@@ -17,8 +17,15 @@ public class QuizCommand extends Command {
 
     public static final String COMMAND_WORD = "quiz";
 
-    public static final String MESSAGE_SUCCESS = "You are now in quiz mode.\n"
-            + "Enter \"start\" to start quiz.";
+    public static final String MESSAGE_SUCCESS = "You are now in quiz mode."
+            + "You can start a quiz session \n"
+            + "Enter \"end\" to return to main menu.";
+
+    public static final String MESSAGE_ALREADY_IN_QUIZ_MODE = "You are already in quiz mode.";
+
+    public static final String MESSAGE_IN_QUIZ_SESSION = "You are in a quiz session! \n"
+            + "Enter \"end\" to return to menu first or complete current quiz session "
+            + "before entering quiz view.";
 
     private Set<Tag> tags;
 
@@ -29,13 +36,25 @@ public class QuizCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
         int currentMode = model.getCurrentMode();
-        if (currentMode == Mode.MODE_MENU) {
-            model.updateFilteredFlashcardList(flashcard -> flashcard.checkHasTags(tags));
-            model.switchModeQuiz();
-            return new CommandResult(MESSAGE_SUCCESS, false, false);
-        } else {
+
+        if (currentMode == Mode.MODE_QUIZ) {
+            throw new CommandException(MESSAGE_ALREADY_IN_QUIZ_MODE);
+        }
+
+        if (currentMode == Mode.MODE_QUIZ_SESSION || currentMode == Mode.MODE_CHECK_SUCCESS) {
+            throw new CommandException(MESSAGE_IN_QUIZ_SESSION);
+        }
+
+        if (currentMode == Mode.MODE_HISTORY || currentMode == Mode.MODE_LEARN) {
             throw new CommandException(Messages.MESSAGE_NOT_IN_MENU_MODE);
         }
+
+        assert currentMode == Mode.MODE_MENU || currentMode == Mode.MODE_QUIZ_SESSION_ENDED;
+
+        model.updateFilteredFlashcardList(flashcard -> flashcard.checkHasTags(tags));
+        model.switchModeQuiz();
+        return new CommandResult(MESSAGE_SUCCESS, false, false);
     }
 }

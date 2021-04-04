@@ -67,20 +67,19 @@ public class DeleteCommand extends Command {
             throw new CommandException(MESSAGE_NO_TAGS_TO_DELETE);
         }
 
-        boolean isAllTagsExist = true;
+        boolean isAllTagsExist;
         for (Tag t : tags) {
-            isAllTagsExist = isAllTagsExist && checkIfTagExists(t, flashcardToDeleteTags);
-        }
+            isAllTagsExist = checkIfTagExists(t, flashcardToDeleteTags);
 
-        if (!isAllTagsExist) {
-            throw new CommandException(MESSAGE_TAG_DOES_NOT_EXIST);
+            if (!isAllTagsExist) {
+                throw new CommandException(MESSAGE_TAG_DOES_NOT_EXIST);
+            }
         }
 
         Flashcard flashcardWithDeletedTags = createDeletedTagFlashcard(flashcardToDeleteTags, tags);
 
         model.setFlashcard(flashcardToDeleteTags, flashcardWithDeletedTags);
         model.updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
-
         return new CommandResult(MESSAGE_SUCCESS, false, false);
     }
 

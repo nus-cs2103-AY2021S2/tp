@@ -246,7 +246,7 @@ public class CheckCommandTest {
 
         @Override
         public int getCurrentMode() {
-            return Mode.MODE_QUIZ;
+            return Mode.MODE_QUIZ_SESSION;
         }
 
     }
@@ -276,7 +276,7 @@ public class CheckCommandTest {
 
         @Override
         public int getCurrentMode() {
-            return Mode.MODE_QUIZ;
+            return Mode.MODE_QUIZ_SESSION;
         }
     }
 }

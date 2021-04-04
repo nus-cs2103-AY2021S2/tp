@@ -17,9 +17,11 @@ public class LearnCommand extends Command {
 
     public static final String COMMAND_WORD = "learn";
 
-    public static final String MESSAGE_SUCCESS = "You are now in learn mode.\n"
-            + "Enter \"end\" to end your study or "
-            + "\"quiz\" to start a quiz session on the flashcards.";
+    public static final String MESSAGE_SUCCESS = "You are now in learn mode. "
+            + "You can add or delete tags for the flashcards.\n"
+            + "Enter \"end\" to return to menu.";
+
+    public static final String MESSAGE_ALREADY_IN_LEARN_MODE = "You are already in learn mode.";
 
     private Set<Tag> tags;
 
@@ -30,18 +32,24 @@ public class LearnCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
         int currentMode = model.getCurrentMode();
-        if (currentMode == Mode.MODE_MENU) {
-            if (tags.isEmpty()) {
-                model.updateFilteredFlashcardList(Model.PREDICATE_SHOW_ALL_FLASHCARDS);
-            } else {
-                model.updateFilteredFlashcardList(flashcard -> flashcard.checkHasTags(tags));
-            }
-            model.switchModeLearn();
-            return new CommandResult(MESSAGE_SUCCESS, false, false);
-        } else {
+        if (currentMode == Mode.MODE_LEARN) {
+            throw new CommandException(MESSAGE_ALREADY_IN_LEARN_MODE);
+        }
+
+        if (currentMode != Mode.MODE_MENU) {
             throw new CommandException(Messages.MESSAGE_NOT_IN_MENU_MODE);
         }
+
+        if (tags.isEmpty()) {
+            model.updateFilteredFlashcardList(Model.PREDICATE_SHOW_ALL_FLASHCARDS);
+        } else {
+            model.updateFilteredFlashcardList(flashcard -> flashcard.checkHasTags(tags));
+        }
+
+        model.switchModeLearn();
+        return new CommandResult(MESSAGE_SUCCESS, false, false);
     }
 
     @Override
