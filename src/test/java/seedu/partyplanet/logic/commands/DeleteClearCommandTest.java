@@ -29,7 +29,7 @@ public class DeleteClearCommandTest {
 
         List<Person> personsDeleted = model.getFilteredPersonList();
 
-        String expectedMessage = String.format(DeleteContactCommand.MESSAGE_DELETE_PERSON_SUCCESS,
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
                 displayPersons(personsDeleted));
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), model.getEventBook(), new UserPrefs());
         for (Person p : personsDeleted) {
@@ -45,7 +45,7 @@ public class DeleteClearCommandTest {
 
         model.updateFilteredPersonList(p -> false);
 
-        String expectedMessage = String.format(DeleteContactCommand.MESSAGE_DELETE_PERSON_SUCCESS, "None!");
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, "None!");
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), model.getEventBook(), new UserPrefs());
         expectedModel.updateFilteredPersonList(p -> false);
 
