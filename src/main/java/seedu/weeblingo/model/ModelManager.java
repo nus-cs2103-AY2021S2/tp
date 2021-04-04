@@ -248,6 +248,7 @@ public class ModelManager implements Model {
     }
 
     public int getCurrentMode() {
+        assert this.mode.isValidMode();
         return this.mode.getCurrentMode();
     }
 

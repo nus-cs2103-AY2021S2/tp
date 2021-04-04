@@ -2,6 +2,9 @@ package seedu.weeblingo.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.weeblingo.commons.core.Messages;
+import seedu.weeblingo.logic.commands.exceptions.CommandException;
+import seedu.weeblingo.model.Mode;
 import seedu.weeblingo.model.Model;
 
 /**
@@ -12,11 +15,34 @@ public class QuizCommand extends Command {
     public static final String COMMAND_WORD = "quiz";
 
     public static final String MESSAGE_SUCCESS = "You are now in quiz mode.\n"
-            + "Enter \"start\" to start quiz.";
+            + "Enter \"start\" to start quiz or \"end\" to return to main menu.";
+
+    public static final String MESSAGE_ALREADY_IN_QUIZ_MODE = "You are already in quiz mode";
+
+    public static final String MESSAGE_IN_QUIZ_SESSION = "You are in a quiz session! \n"
+            + "Enter \"end\" to return to menu mode first or complete current quiz session "
+            + "before entering quiz view.";
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        int currentMode = model.getCurrentMode();
+
+        if (currentMode == Mode.MODE_QUIZ) {
+            throw new CommandException(MESSAGE_ALREADY_IN_QUIZ_MODE);
+        }
+
+        if (currentMode == Mode.MODE_QUIZ_SESSION || currentMode == Mode.MODE_CHECK_SUCCESS) {
+            throw new CommandException(MESSAGE_IN_QUIZ_SESSION);
+        }
+
+        if (currentMode == Mode.MODE_HISTORY || currentMode == Mode.MODE_LEARN) {
+            throw new CommandException(Messages.MESSAGE_NOT_IN_MENU_MODE);
+        }
+
+        assert currentMode == Mode.MODE_MENU || currentMode == Mode.MODE_QUIZ_SESSION_ENDED;
+
         model.updateFilteredFlashcardList(Model.PREDICATE_SHOW_ALL_FLASHCARDS);
         model.switchModeQuiz();
         return new CommandResult(MESSAGE_SUCCESS, false, false);
