@@ -210,9 +210,6 @@ The session feature is facilitated by the `Session` class which stores specific 
 a tuition session with one student. Each session is composed within a `Student`,
 and a `Student` can have multiple `Session`s.
 
-![SessionClassDiagram](images/shion/SessionClassDiagram.png)
-
-
 #### Implementation
 The creation of a session is facilitated by `AddSessionCommand` and it extends `Command`. The method,
 `AddSessionCommand#execute()`, performs a validity check on student name input and session details input by the user
