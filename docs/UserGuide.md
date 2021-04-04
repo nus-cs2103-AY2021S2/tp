@@ -312,7 +312,9 @@ Note: Valid INDEX must be used in order for Autocomplete to function.
 
 #### Undoing actions : `undo`
 
-Undoes the most recent action that changed PartyPlanet's Contact or Event List.
+Undoes the most recent action that changed PartyPlanet's Contact or Event List.<br>
+Note: This means that only commands such as `add`, `delete` etc.. can be undoed. Other changes such as `theme` will not be affected.
+
 Can be invoked repeatedly until there is no more history from the current session.
 
 Format: `undo`
@@ -322,6 +324,7 @@ Shortcut: `CTRL + Z`
 #### Redoing actions : `redo`
 
 Redoes the previous action that changed PartyPlanet's Contact or Event List.
+
 Can be invoked repeatedly until there are no more previously executed actions from the current session.
 
 Format: `redo`
