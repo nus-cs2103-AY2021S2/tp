@@ -135,6 +135,7 @@ Format: `find PREFIX/KEYWORD` where PREFIX is one of the following: `n`, `a`, `p
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * Only full words will be matched e.g. `Han` will not match `Hans`
 * Only **one type of prefix** can be specified
+* More than 1 keyword can be specified for a single prefix
 * Keywords separated by space will require both keywords to be matched.
   e.g. `Hans Yang` will only return `Hans Gruber Yang` instead of `Bo Yang`
 * Prefixes for searching name `n/`, address `a/`, tag `tag/`, phone number `p/`
@@ -144,6 +145,8 @@ Format: `find PREFIX/KEYWORD` where PREFIX is one of the following: `n`, `a`, `p
 * `find n/John` returns `john` and `John Doe`
 * `find a/serangoon` returns `Bernice Yu`, `David Li`<br>
   ![result for 'find serangoon'](images/findAddress.png)
+* `find d/Monday d/Tuesday` returns `Alex Yeoh`, `Irfan Ibrahim` and `Roy Balakrishnan`
+  ![result for 'find d/Monday d/Tuesday'](images/findCommandExampleDay.png)
 
 ### 3.6 Delete passengers: `delete`
 
