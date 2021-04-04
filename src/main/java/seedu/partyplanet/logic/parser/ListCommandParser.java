@@ -18,6 +18,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import seedu.partyplanet.logic.commands.ListCommand;
 import seedu.partyplanet.logic.parser.exceptions.ParseException;
@@ -65,20 +66,44 @@ public class ListCommandParser implements Parser<ListCommand> {
     }
 
     /**
+     * Returns a list of parsed name strings from the argument map.
+     */
+    private List<String> getParsedNames(ArgumentMultimap argMap) throws ParseException {
+        List<String> names = argMap.getAllValues(PREFIX_NAME);
+        for (int i = 0; i < names.size(); i++) {
+            String name = names.get(i);
+            names.set(i, ParserUtil.parseName(name).fullName);
+        }
+        return names;
+    }
+
+    /**
+     * Returns a list of parsed tag strings from the argument map.
+     */
+    private List<String> getParsedTags(ArgumentMultimap argMap) throws ParseException {
+        List<String> tags = argMap.getAllValues(PREFIX_TAG);
+        return ParserUtil.parseTags(tags)
+                .stream()
+                .map(x -> x.tagName)
+                .collect(Collectors.toList());
+    }
+
+    /**
      * Returns a list of filtering predicates depending on whether partial search is disabled.
      */
     private List<Predicate<Person>> getPredicates(ArgumentMultimap argMap) throws ParseException {
         boolean isExactSearch = argMap.contains(FLAG_EXACT);
         List<Predicate<Person>> predicates = new ArrayList<>();
+        List<String> allNames = getParsedNames(argMap);
+        List<String> allTags = getParsedTags(argMap);
+
         if (isExactSearch) {
-            List<String> allNames = argMap.getAllValues(PREFIX_NAME);
             if (!allNames.isEmpty()) {
                 stringFind += "\n\u2022 Requires exact name: " + String.join(", ", allNames);
             }
             for (String name : allNames) {
                 predicates.add(new NameContainsExactKeywordsPredicate(name));
             }
-            List<String> allTags = argMap.getAllValues(PREFIX_TAG);
             if (!allTags.isEmpty()) {
                 stringFind += "\n\u2022 Requires exact tag: " + String.join(", ", allTags);
             }
@@ -86,14 +111,12 @@ public class ListCommandParser implements Parser<ListCommand> {
                 predicates.add(new TagsContainsExactTagPredicate(tag));
             }
         } else {
-            List<String> allNames = argMap.getAllValues(PREFIX_NAME);
             if (!allNames.isEmpty()) {
                 stringFind += "\n\u2022 Requires partial name: " + String.join(", ", allNames);
             }
             for (String name : allNames) {
                 predicates.add(new NameContainsKeywordsPredicate(name));
             }
-            List<String> allTags = argMap.getAllValues(PREFIX_TAG);
             if (!allTags.isEmpty()) {
                 stringFind += "\n\u2022 Requires partial tag: " + String.join(", ", allTags);
             }
