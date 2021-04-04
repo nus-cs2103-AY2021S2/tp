@@ -83,8 +83,11 @@ on ModuleBook3.5.
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the compulsory parameters to be supplied by you.<br>
+* Words in `UPPER_CASE` are parameters to be supplied by you.<br>
   e.g. in `add d/DESCRIPTION`, `DESCRIPTION` is a parameter which can be used as `add d/DESCRIPTION`.
+
+* Parameters in square brackets are optional. Parameters without square brackets are compulsory. <br>
+  e.g. `d/DESCRIPTION [t/TAG]` can be used as `d/CS3243 Assignment4 t/Minimax` or as `d/CS3243 Assignment4`.
   
 * For commands that take in an `INDEX`, only one index is to be supplied.<br>
   e.g. `delete 1` will work but `delete 1 3` (2 indices) will not.
@@ -94,9 +97,6 @@ on ModuleBook3.5.
   
 * For `START TIME` and `DEADLINE`, the accepted date-time formats are: yyyy-MM-dd HH:mm or yyyy-MM-dd (HH:mm taken as current time).<br>
   e.g. `2021-03-21 10:10` or `2021-03-21`.
-
-* Items in square brackets are optional.<br>
-  e.g. `d/DESCRIPTION [t/TAG]` can be used as `d/CS3243 Assignment4 t/Minimax` or as `d/CS3243 Assignment4`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/Minimax`, `t/Minimax t/CSP` etc.
