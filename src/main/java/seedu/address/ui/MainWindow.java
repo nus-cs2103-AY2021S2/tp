@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
+import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -256,6 +257,26 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+
+            if (commandResult.getTabName().isPresent()) {
+                Command.TabName tabName = commandResult.getTabName().get();
+                switch (tabName) {
+                case APPOINTMENT:
+                    tabPanePlaceHolder.getSelectionModel().select(0);
+                    break;
+                case SCHEDULE:
+                    tabPanePlaceHolder.getSelectionModel().select(1);
+                    break;
+                case GRADE:
+                    tabSidePanePlaceHolder.getSelectionModel().select(1);
+                    break;
+                case REMINDER:
+                    tabSidePanePlaceHolder.getSelectionModel().select(0);
+                    break;
+                default:
+                    break;
+                }
+            }
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

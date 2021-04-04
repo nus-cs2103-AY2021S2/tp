@@ -9,6 +9,16 @@ import seedu.address.model.Model;
 public abstract class Command {
 
     /**
+     * Enums to identify operation on which object to allow {@code MainWindow} to switch tabs accordingly.
+     */
+    public enum TabName {
+        APPOINTMENT,
+        GRADE,
+        REMINDER,
+        SCHEDULE
+    }
+
+    /**
      * Executes the command and returns the result message.
      *
      * @param model {@code Model} which the command should operate on.
