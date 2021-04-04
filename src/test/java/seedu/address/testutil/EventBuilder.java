@@ -52,6 +52,9 @@ public class EventBuilder {
      * Builds an Event with the attributes from EventBuilder
      */
     public Event build() {
-        return new Event(date, time, description);
+        if (time != null) {
+            return new Event(date, time, description);
+        }
+        return new Event(date, description);
     }
 }
