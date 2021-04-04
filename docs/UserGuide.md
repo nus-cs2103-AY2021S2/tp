@@ -180,7 +180,7 @@ Format: `delete INDEX`
 
 Examples:
 
-* `list` followed by `delete 2` deletes the 2nd flashcard in the flashcard list. <br>
+* `list` followed by `delete 2` deletes the 2nd flashcard in the flashcard list. <br><br>
   Before executing command `delete 2`: <br><br>
   ![UIBeforeDelete](./images/UiBeforeDelete.png) <br>
   <div style="page-break-after: always;"></div>
@@ -284,20 +284,19 @@ Restores FlashBack to the state before the previous command was executed.
 </div>
 
 Format: `undo`
+<div style="page-break-after: always;"></div>
 
 Examples:
 `delete 3` <br><br>
 ![UiDeleteBeforeUndo](./images/UiDeleteBeforeUndo.png) <br>
-<div style="page-break-after: always;"></div>
 
 `clear`  <br><br>
 ![UiClearBeforeUndo](./images/UiClearBeforeUndo.png) <br><br>
-`undo` will reverse the `clear` command. <br><br>
-![UiClearAfterUndo](./images/UiClearAfterUndo.png) <br><br>
-
 <div style="page-break-after: always;"></div>
 
-`undo` will reverse the `delete 3` command. <br>
+`undo` will reverse the `clear` command. <br><br>
+![UiClearAfterUndo](./images/UiClearAfterUndo.png) <br><br>
+`undo` will reverse the `delete 3` command. <br><br>
 ![UiDeleteAfterUndo](./images/UiDeleteAfterUndo.png) <br><br>
 
 ### Redoing a command : `redo`
@@ -325,18 +324,18 @@ Sorts all flashcards according to a given option.
 </div>
 
 Format: `sort OPTION ORDER` <br>
+<div style="page-break-after: always;"></div>
+
 Examples:
 
 `sort priority -a` will sort the flashcards by ascending priority. <br>
 `sort priority -d` will sort the flashcards by descending priority. <br>
 `sort question -a` will sort the flashcards by ascending question. <br>
 `sort question -d` will sort the flashcards by descending question. <br>
-<div style="page-break-after: always;"></div>
 
 Before sort command is executed. <br><br>
 ![UiBeforeSort](./images/UiBeforeSort.png) <br><br>
-`sort priority -a`<br><br>
-After sort command is executed. <br><br>
+After `sort priority -a` command is executed. <br><br>
 ![UiAfterSort](./images/UiAfterSort.png)
 <div style="page-break-after: always;"></div>
 
@@ -403,8 +402,8 @@ Format: `exit`
 
 ### Saving the data
 
-FlashBack data are saved in the hard disk automatically after any command that changes the data. There is no need to
-save manually.
+FlashBack data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+<div style="page-break-after: always;"></div>
 
 ### Editing the data file
 

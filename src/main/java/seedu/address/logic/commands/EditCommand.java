@@ -103,7 +103,7 @@ public class EditCommand extends Command {
         Answer updatedAnswer = editCardDescriptor.getAnswer().orElse(flashcardToEdit.getAnswer());
         Category updatedCategory = editCardDescriptor.getCategory().orElse(flashcardToEdit.getCategory());
         Priority updatedPriority = editCardDescriptor.getPriority().orElse(flashcardToEdit.getPriority());
-        Remark updatedRemark = flashcardToEdit.getRemark();
+        Remark updatedRemark = new Remark("");
         Set<Tag> updatedTags = editCardDescriptor.getTags().orElse(flashcardToEdit.getTags());
 
         return new Flashcard(updatedQuestion, updatedAnswer, updatedCategory,
