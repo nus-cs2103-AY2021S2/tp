@@ -7,8 +7,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -33,6 +36,8 @@ public class AddMeetingCommand extends Command {
             + PREFIX_DESCRIPTION + "We went to the beach!";
 
     public static final String MESSAGE_ADD_MEETING_SUCCESS = "Added meeting for %1$s";
+    public static final String MESSAGE_ADD_MEETING_FAILURE = "Failed to add meeting: Meeting "
+            + "date %1$s is after current date.";
 
     private final Index index;
     private final Event meeting;
@@ -52,6 +57,9 @@ public class AddMeetingCommand extends Command {
         assert personToEdit != null;
         List<Event> meetingsToEdit = new ArrayList<>(personToEdit.getMeetings());
         meetingsToEdit.add(meeting);
+        meetingsToEdit = meetingsToEdit.stream()
+                .sorted(Comparator.comparing(Event::getDate).reversed())
+                .collect(Collectors.toList());
 
         return personToEdit.withMeetings(meetingsToEdit);
     }
@@ -60,6 +68,11 @@ public class AddMeetingCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
+
+        // ignore time comparisons for leniency
+        if (meeting.getDate().isAfter(LocalDate.now())) {
+            throw new CommandException(String.format(MESSAGE_ADD_MEETING_FAILURE, meeting.getDate()));
+        }
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
