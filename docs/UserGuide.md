@@ -183,7 +183,7 @@ Format: blist INDEX
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a valid positive integer** 1, 2, …​, 2147483647
 
-###Blacklist or unblacklist multiple contacts : `massblist`
+### Blacklist or unblacklist multiple contacts : `massblist`
 
 Blacklists or unblacklists all contacts within the specified index range (inclusive).
 
