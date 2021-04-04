@@ -28,28 +28,28 @@ public class TagCommandParserTest {
     @Test
     public void parse_missingParts_failure() {
         //no index specified
-        assertParseFailure(parser, VALID_TAG_EASY, MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX);
+        assertParseFailure(parser, VALID_TAG_EASY, MESSAGE_INVALID_FORMAT);
 
         //no tag specified
         assertParseFailure(parser, VALID_START_INTEGER_MIN, TagCommand.MESSAGE_NO_TAGS_PROVIDED);
 
         //no index and no field specified
-        assertParseFailure(parser, "", MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX);
+        assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
     }
 
     @Test
     public void parse_invalidPreamble_failure() {
         //negative index
-        assertParseFailure(parser, "-69" + VALID_TAG_EASY, MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX);
+        assertParseFailure(parser, "-69 t/" + VALID_TAG_EASY, MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX);
 
         //zero index
-        assertParseFailure(parser, "0" + VALID_TAG_EASY, MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX);
+        assertParseFailure(parser, "0 t/" + VALID_TAG_EASY, MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX);
 
         //invalid arguments being parsed as preamble
         assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
 
         //invalid prefix being parsed as preamble
-        assertParseFailure(parser, "1 i/ string", MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX);
+        assertParseFailure(parser, "1 i/ string", MESSAGE_INVALID_FORMAT);
     }
 
     @Test
