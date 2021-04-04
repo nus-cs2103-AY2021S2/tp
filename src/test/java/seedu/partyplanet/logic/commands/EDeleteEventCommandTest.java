@@ -35,7 +35,7 @@ public class EDeleteEventCommandTest {
     @Test
     public void execute_validSingleIndexUnfilteredList_success() {
         Event eventToDelete = model.getFilteredEventList().get(INDEX_FIRST_EVENT.getZeroBased());
-        EDeleteCommand deleteCommand = new EDeleteEventCommand(List.of(INDEX_FIRST_EVENT), List.of());
+        EDeleteCommand eDeleteCommand = new EDeleteEventCommand(List.of(INDEX_FIRST_EVENT), List.of());
 
         String expectedMessage = String.format(EDeleteEventCommand.MESSAGE_DELETE_EVENT_SUCCESS,
                 eventToDelete.getName());
@@ -43,7 +43,7 @@ public class EDeleteEventCommandTest {
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), model.getEventBook(), new UserPrefs());
         expectedModel.deleteEvent(eventToDelete);
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(eDeleteCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -51,7 +51,7 @@ public class EDeleteEventCommandTest {
         showEventAtIndex(model, INDEX_FIRST_EVENT);
 
         Event eventToDelete = model.getFilteredEventList().get(INDEX_FIRST_EVENT.getZeroBased());
-        EDeleteCommand deleteCommand = new EDeleteEventCommand(List.of(INDEX_FIRST_EVENT), List.of());
+        EDeleteCommand eDeleteCommand = new EDeleteEventCommand(List.of(INDEX_FIRST_EVENT), List.of());
 
         String expectedMessage = String.format(EDeleteEventCommand.MESSAGE_DELETE_EVENT_SUCCESS,
                 eventToDelete.getName());
@@ -60,7 +60,7 @@ public class EDeleteEventCommandTest {
         expectedModel.deleteEvent(eventToDelete);
         showNoEvent(expectedModel);
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(eDeleteCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -70,7 +70,7 @@ public class EDeleteEventCommandTest {
         eventsToDelete.add(model.getFilteredEventList().get(INDEX_FIRST_EVENT.getZeroBased()));
         eventsToDelete.add(model.getFilteredEventList().get(INDEX_SECOND_EVENT.getZeroBased()));
 
-        EDeleteCommand deleteCommand = new EDeleteEventCommand(
+        EDeleteCommand eDeleteCommand = new EDeleteEventCommand(
                 List.of(INDEX_FIRST_EVENT, INDEX_SECOND_EVENT), List.of());
 
         String expectedMessage = String.format(EDeleteEventCommand.MESSAGE_DELETE_EVENT_SUCCESS,
@@ -81,7 +81,7 @@ public class EDeleteEventCommandTest {
             expectedModel.deleteEvent(p);
         }
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(eDeleteCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -92,7 +92,7 @@ public class EDeleteEventCommandTest {
         eventsToDelete.add(model.getFilteredEventList().get(INDEX_FIRST_EVENT.getZeroBased()));
         eventsToDelete.add(model.getFilteredEventList().get(INDEX_SECOND_EVENT.getZeroBased()));
 
-        EDeleteCommand deleteCommand = new EDeleteEventCommand(
+        EDeleteCommand eDeleteCommand = new EDeleteEventCommand(
                 List.of(INDEX_FIRST_EVENT, INDEX_SECOND_EVENT), List.of());
 
         String expectedMessage = String.format(EDeleteEventCommand.MESSAGE_DELETE_EVENT_SUCCESS,
@@ -104,17 +104,17 @@ public class EDeleteEventCommandTest {
         }
         showNoEvent(expectedModel);
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(eDeleteCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_allInvalidIndexUnfilteredList_throwsCommandException() {
 
-        EDeleteCommand deleteCommand = new EDeleteEventCommand(List.of(Index.fromZeroBased(100)), new ArrayList<>());
+        EDeleteCommand eDeleteCommand = new EDeleteEventCommand(List.of(Index.fromZeroBased(100)), new ArrayList<>());
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), model.getEventBook(), new UserPrefs());
 
         assertThrows(CommandException.class,
-                Messages.MESSAGE_NONE_INDEX_VALID, () -> deleteCommand.execute(expectedModel));
+                Messages.MESSAGE_NONE_INDEX_VALID, () -> eDeleteCommand.execute(expectedModel));
     }
 
     @Test
@@ -124,7 +124,7 @@ public class EDeleteEventCommandTest {
         eventsToDelete.add(model.getFilteredEventList().get(INDEX_FIRST_EVENT.getZeroBased()));
         eventsToDelete.add(model.getFilteredEventList().get(INDEX_SECOND_EVENT.getZeroBased()));
 
-        EDeleteCommand deleteCommand = new EDeleteEventCommand(
+        EDeleteCommand eDeleteCommand = new EDeleteEventCommand(
                 List.of(INDEX_FIRST_EVENT, INDEX_SECOND_EVENT), List.of("invalid", "-1"));
 
         String expectedMessage = String.format(EDeleteEventCommand.MESSAGE_DELETE_EVENT_SUCCESS
@@ -136,29 +136,29 @@ public class EDeleteEventCommandTest {
             expectedModel.deleteEvent(p);
         }
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(eDeleteCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void equals() {
-        EDeleteCommand deleteFirstCommand = new EDeleteEventCommand(List.of(INDEX_FIRST_EVENT), List.of());
-        EDeleteCommand deleteSecondCommand = new EDeleteEventCommand(List.of(INDEX_SECOND_EVENT), List.of());
+        EDeleteCommand eDeleteFirstCommand = new EDeleteEventCommand(List.of(INDEX_FIRST_EVENT), List.of());
+        EDeleteCommand eDeleteSecondCommand = new EDeleteEventCommand(List.of(INDEX_SECOND_EVENT), List.of());
 
         // same object -> returns true
-        assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
+        assertTrue(eDeleteFirstCommand.equals(eDeleteFirstCommand));
 
         // same values -> returns true
-        EDeleteCommand deleteFirstCommandCopy = new EDeleteEventCommand(List.of(INDEX_FIRST_EVENT), List.of());
-        assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
+        EDeleteCommand eDeleteFirstCommandCopy = new EDeleteEventCommand(List.of(INDEX_FIRST_EVENT), List.of());
+        assertTrue(eDeleteFirstCommand.equals(eDeleteFirstCommandCopy));
 
         // different types -> returns false
-        assertFalse(deleteFirstCommand.equals(1));
+        assertFalse(eDeleteFirstCommand.equals(1));
 
         // null -> returns false
-        assertFalse(deleteFirstCommand.equals(null));
+        assertFalse(eDeleteFirstCommand.equals(null));
 
         // different event -> returns false
-        assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
+        assertFalse(eDeleteFirstCommand.equals(eDeleteSecondCommand));
     }
 
     /**
