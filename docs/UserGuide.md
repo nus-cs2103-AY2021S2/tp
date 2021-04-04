@@ -24,8 +24,8 @@ PartyPlanet can get the planning of your birthday celebrations done faster than 
 
 <div markdown="block" class="alert-warning">
 
-**:warning: PartyPlanet will use its default Address Book and Event Book JSON file if it is unable to locate the 
-JSON file. It will start with an empty JSON file if there is an error in the JSON file.**
+**:warning: PartyPlanet will use its default Address Book and Event Book if it is unable to locate the 
+JSON files. It will start with an empty Address Book and Event Book if there is an error in the JSON files.**
 
 </div>
 --------------------------------------------------------------------------------------------------------------------
