@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 
 /**
  * Represents a Passenger's address in the address book.
@@ -24,6 +25,19 @@ public class TripTime {
     public TripTime(LocalTime tripTime) {
         requireNonNull(tripTime);
         this.value = tripTime;
+    }
+
+    /**
+     * Compares the time difference between 2 TripTime objects
+     * @param otherTripTime
+     * @return long of 2 TripTime objects difference
+     */
+    public long compareMinutes(TripTime otherTripTime) {
+        requireNonNull(otherTripTime);
+        long timeDifference = ChronoUnit.MINUTES.between(this.value, otherTripTime.value);
+        long absoluteTimeDifference = Math.abs(timeDifference);
+
+        return absoluteTimeDifference;
     }
 
     @Override

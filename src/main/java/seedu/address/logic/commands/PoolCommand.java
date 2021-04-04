@@ -29,6 +29,7 @@ import seedu.address.model.tag.Tag;
  */
 public class PoolCommand extends Command {
     public static final String COMMAND_WORD = "pool";
+    public static final long MAX_TIME_DIFFERENCE = 15;
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Pools commuters together with a driver. "
             + "Parameters: "
@@ -49,7 +50,9 @@ public class PoolCommand extends Command {
             + PREFIX_TAG + "female";
 
     public static final String MESSAGE_NO_COMMUTERS = "No commuters were selected.";
-    public static final String MESSAGE_POOL_SUCCESS = "Successfully created pool: %s";
+    public static final String MESSAGE_POOL_SUCCESS = "Successfully created pool: %s, %s";
+    public static final String MESSAGE_POOL_SUCCESS_WITH_WARNING = "Successfully created pool: %s, %s. \nNOTE: "
+            + "There are passengers with time differences of more than 15 minutes with the pool time.";
     public static final String MESSAGE_DUPLICATE_POOL = "This pool already exists in the GME Terminal";
     public static final String MESSAGE_TRIPDAY_MISMATCH = "One of the passengers specified "
             + "have a trip day that does not match this pool driver's trip day";
@@ -76,6 +79,10 @@ public class PoolCommand extends Command {
         this.tags = tags;
     }
 
+    private boolean checkTimeDifference(List<Passenger> passengers) {
+        return passengers.stream()
+                .anyMatch(x -> x.getTripTime().compareMinutes(this.tripTime) > MAX_TIME_DIFFERENCE);
+    }
     private List<Passenger> getPassengersFromIndexes(Set<Index> indexes, Model model) throws CommandException {
 
         List<Passenger> lastShownList = List.copyOf(model.getFilteredPassengerList());
@@ -107,6 +114,7 @@ public class PoolCommand extends Command {
         }
 
         List<Passenger> passengers = getPassengersFromIndexes(indexes, model);
+        boolean shouldWarn = checkTimeDifference(passengers);
 
         Pool toAdd = new Pool(driver, tripDay, tripTime, passengers, tags);
 
@@ -117,7 +125,12 @@ public class PoolCommand extends Command {
         model.addPool(toAdd);
         model.updateFilteredPoolList(PREDICATE_SHOW_ALL_POOLS);
 
-        return new CommandResult(String.format(MESSAGE_POOL_SUCCESS, toAdd));
+        String outputMessage = shouldWarn ? MESSAGE_POOL_SUCCESS_WITH_WARNING : MESSAGE_POOL_SUCCESS;
+
+        String driverDetails = toAdd.getDriverAsStr();
+        String passengerNames = toAdd.getPassengerNames();
+
+        return new CommandResult(String.format(outputMessage, driverDetails, passengerNames));
     }
 
     @Override
