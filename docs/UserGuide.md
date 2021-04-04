@@ -23,38 +23,12 @@ PartyPlanet can get the planning of your birthday celebrations done faster than 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
-
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Notes about the command format:**<br>
-
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add -n NAME`, `NAME` is a parameter which can be used as `add -n John Doe`.
-
-* Items in square brackets are optional.<br>
-  e.g. `-n NAME [-t TAG]` can be used as `-n John Doe -t friend` or as `-n John Doe`.
-
-* Items with `...` after them can be used any number of times.<br>
-  e.g. `[-t TAG]...` can be used as ` `, `-t friend`, `-t friend -t family` etc.
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `-n NAME -p PHONE`, the alternative `-p PHONE -n NAME` is also acceptable.
-
-* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `-p 12341234 -p 56785678`, only `-p 56785678` will be taken.
-
-* Extraneous parameters for commands that do not take in parameters (such as `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `exit 123`, it will be interpreted as `exit`.
-
-</div>
-
 ## Glossary of parameters
 
 | Parameter | Prefix | Applicable to | Description |
 |---|---|---|---|
 | `ADDRESS` | `-a`, `--address` | Contact | Any value |
-| `BIRTHDAY` | `-b`, `--birthday` | Contact | Valid date, with or without a year:{::nomarkdown}<ul><li>Year must be non-negative if specified, and birthday must be in the past</li><li>If the year is incompatible with the date, the closest valid date will be matched<br>e.g. <code>29 Feb 2021</code> is mapped to <code>28 Feb 2021</code></li><li>Accepted date formats are listed below, case-insensitive:<ul><li>ISO format: <code>--01-09</code> / <code>1997-01-09</code></li><li>Dot delimited: <code>9.1</code> / <code>9.1.1997</code></li><li>Slash delimited: <code>9/1</code> / <code>9/1/1997</code></li><li>Long DMY format: <code>9 Jan</code> / <code>9 Jan 1997</code></li><li>Full DMY format: <code>9 January</code> / <code>9 January 1997</code></li><li>Long YMD format: <code>Jan 9</code> / <code>Jan 9 1997</code></li><li>Full YMD format: <code>January 9</code> / <code>January 9 1997</code></li></ul></li></ul>{:/} |
+| `BIRTHDAY` | `-b`, `--birthday` | Contact | Valid date, with or without a year:{::nomarkdown}<ul><li>Year must be non-negative if specified, and birthday must be in the past</li><li>If the day is incompatible with the month and year, the closest valid date may be matched<br>e.g. <code>29 Feb 2021</code> is mapped to <code>28 Feb 2021</code></li><li>Accepted date formats are listed below, case-insensitive:<ul><li>ISO format: <code>--01-09</code> / <code>1997-01-09</code></li><li>Dot delimited: <code>9.1</code> / <code>9.1.1997</code></li><li>Slash delimited: <code>9/1</code> / <code>9/1/1997</code></li><li>Long DMY format: <code>9 Jan</code> / <code>9 Jan 1997</code></li><li>Full DMY format: <code>9 January</code> / <code>9 January 1997</code></li><li>Long YMD format: <code>Jan 9</code> / <code>Jan 9 1997</code></li><li>Full YMD format: <code>January 9</code> / <code>January 9 1997</code></li></ul></li></ul>{:/} |
 | `COMMAND` | - | - | Any valid command listed [below](#party-planet-commands) |
 | `DATE` | `-d`, `--date` | Event | Valid date with a year:{::nomarkdown}<ul><li>Year must be present and non-negative</li><li>See <code>BIRTHDAY</code> parameter above for available date formats</li></ul>{:/} |
 | `DETAIL` | `-r`, `--remark` | Event | Any value |
@@ -77,9 +51,43 @@ PartyPlanet can get the planning of your birthday celebrations done faster than 
 
 * All parameters will have leading and trailing spaces removed before processing.
 
+* All references to alphanumerics in PartyPlanet specifically refer to ASCII alphanumerics only.
+  The character codes are 48-57 (0-9), 65-90 (A-Z), 97-122 (a-z).
+
 </div>
 
+--------------------------------------------------------------------------------------------------------------------
+
 ## Party Planet Commands
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about the command format:**<br>
+
+* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+  e.g. in `add -n NAME`, `NAME` is a parameter which can be used as `add -n John Doe`.
+
+* Parameters in square brackets are optional.<br>
+  e.g. `-n NAME [-t TAG]` can be used as `-n John Doe -t friend` or as `-n John Doe`.
+
+* Parameters with `...` after them can be used any number of times.<br>
+  e.g. `[-t TAG]...` can be used as ` `, `-t friend`, `-t friend -t family` etc.
+
+* Parameters can be in any order.<br>
+  e.g. if the command specifies `-n NAME -p PHONE`, the alternative `-p PHONE -n NAME` is also acceptable.
+
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+  e.g. if you specify `-p 12341234 -p 56785678`, only `-p 56785678` will be taken.
+
+* Extraneous parameters for commands that do not take in parameters (such as `exit` and `undo`) will be ignored.<br>
+  e.g. if the command specifies `exit 123`, it will be interpreted as `exit`.
+
+* Parameters in `{}` represents mutually-exclusive parameters.<br>
+  Each mutually-exclusve parameter is separated by a `|`.<br>
+  e.g. `command {foo | bar}` means that either `command foo` or `command bar` are valid commands.<br>
+  However `command foo bar` is an invalid command.
+
+</div>
 
 ### Summary
 
@@ -129,7 +137,8 @@ Format: `delete [{INDEX [INDEX]... | [--any] -t TAG [-t TAG]...}]`
 2. If indices supplied, `delete INDEX [INDEX]...`: Deletes the contacts associated with each specified `INDEX`
    * Invalid indices are ignored.
 3. If tags supplied, `delete [--any] -t TAG [-t TAG]...`: Delete the contacts containing all specified tags
-   * If the `--any` flag is supplied, contacts need only match with any specified tag.
+   * If the `--any` flag is supplied, contacts only need to match with any of the specified tags.
+   * Tags specified are case-sensitive.
 
 Examples:
 * `delete` deletes all contacts in current filtered list
@@ -142,13 +151,14 @@ Examples:
 
 Edits an existing person in the contact list.
 
-Format: `edit {INDEX [-n NAME] [-p PHONE] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY] [-r REMARK] | --remove -t TAG [-t TAG}…​}`
+Format: `edit {INDEX [-n NAME] [-p PHONE] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY] [-r REMARK] | --remove -t TAG [-t TAG]…​}`
 1. If index supplied, `edit INDEX [...]`: Edits the person at the specified `INDEX`
    * Existing values are replaced by the input values, if specified.
    * To retrieve existing values, use the autocompletion workflow specified [below](#autocomplete-tab).
    * Tags can be removed from a contact by specifying a standalone `-t` without parameters.
 2. If `--remove` flag specified, `edit --remove -t TAG [-t TAG]...`: Removes all specified tags from every contact in the displayed list
    * All specified tags will be removed from every contact in the displayed list.
+   * Tags specified are case-sensitive.
 
 Examples:
 * `edit 2 -n James Lee -e jameslee@example.com` Edits the contact name to be "James Lee" and email address to be “jameslee@example.com”.
@@ -159,7 +169,7 @@ Examples:
 
 Displays a list of contacts in the contact list, with optional search criteria.
 
-Format: `list [--exact] [--any] [-n NAME]... [-t TAG]... [-b BIRTHDAY] [-s SORT_FIELD] [-o SORT_ORDER]`
+Format: `list [--exact] [--any] [-n NAME]... [-t TAG]... [-b BIRTHDAY]... [-s SORT_FIELD] [-o SORT_ORDER]`
 1. If no search parameters specified, `list [-s SORT_FIELD] [-o SORT_ORDER]`: List all contacts in contact list
    * `-s` parameter optionally sorts contacts by `SORT_FIELD`:
      * `n`, `name`: names in (case-sensitive) lexicographical order (by default, if `-s` not specified)
@@ -169,7 +179,7 @@ Format: `list [--exact] [--any] [-n NAME]... [-t TAG]... [-b BIRTHDAY] [-s SORT_
      * `a`, `asc`, `ascending`: ascending (by default, if `-o` not specified)
      * `d`, `desc`, `descending`: descending
      * Sorts by upcoming birthday do not accept the `descending` order
-2. If search parameters specified, `list [--exact] [--any] [-n NAME]... [-t TAG]... [-b BIRTHDAY] [-s SORT_FIELD] [-o SORT_ORDER]`: List all contacts matching the search criteria
+2. If search parameters specified, `list [--exact] [--any] [-n NAME]... [-t TAG]... [-b BIRTHDAY]... [-s SORT_FIELD] [-o SORT_ORDER]`: List all contacts matching the search criteria
    * Search criteria, case-insensitive:
      * `-n` filters the contacts by name
      * `-t` filters the contacts by tags
@@ -189,6 +199,8 @@ Examples:
 * `list --any -n alice -t friend` Lists out all contacts whose name is "alice" or who have the "friend" tag
 * `list --exact -n alice -t friend` Lists out all contacts whose name contain "alice" and who have tags that contain "friend"
 * `list --exact --any -n alice -t friend` Lists out all contacts whose name contain "alice" or who have tags that contain "friend"
+* `list --any -n alice -n bob` Lists out all contacts whose name contain either "alice" or "bob"
+* `list --any -b 8 -b 9` Lists out all contacts whose birthdays are either in August or September
 
 ### Event List Commands
 
@@ -290,9 +302,9 @@ The Autocomplete feature helps autocomplete when editing a Person or an Event to
 
 For any valid and empty prefix that the user inputs, the relevant details will be autocompleted on `TAB` keypress down.
 
-Format: 
+Format:
 
-Edit: `edit INDEX [-n NAME] [-p PHONE] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY] [-r REMARK] TAB` 
+Edit: `edit INDEX [-n NAME] [-p PHONE] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY] [-r REMARK] TAB`
 
 EEdit: `eedit INDEX [-n NAME] [-d DATE] [-r DETAIL] TAB`
 
@@ -301,6 +313,10 @@ Note: Valid INDEX must be used in order for Autocomplete to function.
 #### Undoing actions : `undo`
 
 Undoes the most recent action that changed PartyPlanet's Contact or Event List.
+
+Note: This means that only commands such, as `add`, `delete` etc.., can be undoed.<br>
+Other command that only changes display, such as `theme`, `list` etc.., will not be affected.
+
 Can be invoked repeatedly until there is no more history from the current session.
 
 Format: `undo`
@@ -310,6 +326,7 @@ Shortcut: `CTRL + Z`
 #### Redoing actions : `redo`
 
 Redoes the previous action that changed PartyPlanet's Contact or Event List.
+
 Can be invoked repeatedly until there are no more previously executed actions from the current session.
 
 Format: `redo`
@@ -370,7 +387,7 @@ Action | Format, Examples
 **Delete** | `delete [{INDEX [INDEX]…​ | [--any] -t TAG [-t TAG]...}]`<br> e.g. `delete` <br> e.g. `delete 3 4 5` <br> e.g., `delete -t colleague`
 **EDelete** | `edelete [INDEX [INDEX]...]` <br> e.g. `edelete 1 2 3`
 **EDone** | `edone INDEX [INDEX]…​` <br> e.g. `edone 2 3 5`
-**Edit** | `edit {INDEX [-n NAME] [-p PHONE] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY] [-r DETAIL] | --remove -t TAG [-t TAG}…​}`<br> e.g.,`edit 2 -n James Lee -e jameslee@example.com`<br> e.g., `edit --remove -t colleague`
+**Edit** | `edit {INDEX [-n NAME] [-p PHONE] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY] [-r DETAIL] | --remove -t TAG [-t TAG]…​}`<br> e.g.,`edit 2 -n James Lee -e jameslee@example.com`<br> e.g., `edit --remove -t colleague`
 **EEdit** | `eedit INDEX [-n NAME] [-d DATE] [-r DETAIL]` <br> e.g. `eedit 3 -r Celebrate during first combined practice`
 **List** | `list [--exact] [--any] [-n NAME]... [-t TAG]... [-b BIRTHDAY] [-s SORT_FIELD] [-o SORT_ORDER]`<br> e.g., `list`<br> e.g., `list -s asc`
 **EList** | `elist [--exact] [--any] [-n NAME] [-r DETAIL] ... [-s SORT] [-o ORDER]` <br> e.g. `elist --any -n Christmas -r tarts`
