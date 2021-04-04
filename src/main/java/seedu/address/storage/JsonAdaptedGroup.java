@@ -41,8 +41,8 @@ public class JsonAdaptedGroup {
      */
     public JsonAdaptedGroup(Group source) {
         groupName = source.getName().fullName;
-        personNames.addAll(source.getPersons().stream()
-                .map(Person::getName).map(Name::toString)
+        personNames.addAll(source.getPersonNames().stream()
+                .map(Name::toString)
                 .collect(Collectors.toList()));
     }
 
@@ -61,7 +61,7 @@ public class JsonAdaptedGroup {
         }
         final Name modelName = new Name(groupName);
 
-        final Set<Person> modelPersonSet = new HashSet<>();
+        final Set<Name> modelPersonNameSet = new HashSet<>();
         for (String personName : personNames) {
             if (!Name.isValidName(personName)) {
                 throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
@@ -73,9 +73,8 @@ public class JsonAdaptedGroup {
             if (person == null) {
                 throw new IllegalValueException(MESSAGE_INVALID_PERSON);
             }
-            modelPersonSet.add(person);
-
+            modelPersonNameSet.add(person.getName());
         }
-        return new Group(modelName, modelPersonSet);
+        return new Group(modelName, modelPersonNameSet);
     }
 }

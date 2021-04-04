@@ -72,8 +72,8 @@ public class SampleDataUtil {
                 .collect(Collectors.toSet());
     }
 
-    public static Set<Person> getPersonSet(Person... persons) {
-        return Arrays.stream(persons)
+    public static Set<Name> getPersonSet(Name... personNames) {
+        return Arrays.stream(personNames)
                 .collect(Collectors.toSet());
     }
 

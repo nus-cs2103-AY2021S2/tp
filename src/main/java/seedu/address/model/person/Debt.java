@@ -84,7 +84,7 @@ public class Debt {
 
     @Override
     public String toString() {
-        return String.format("", value);
+        return String.format("%.2f", value);
     }
 
     @Override

@@ -11,7 +11,7 @@ import seedu.address.model.group.Group;
 import seedu.address.model.person.Name;
 
 public class DeleteGroupCommand extends Command {
-    public static final String COMMAND_WORD = "delete-group";
+    public static final String COMMAND_WORD = "del-group";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes the group of the specified name \n"
             + "Parameters: " + PREFIX_NAME + "GROUP_NAME (must be alphanumeric only) \n"

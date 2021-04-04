@@ -47,7 +47,7 @@ public class AddGroupCommandTest {
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedModel.addGroup(group);
-
+        expectedModel.updateFilteredPersonList(x->group.getPersonNames().contains(x.getName()));
         assertCommandSuccess(addGroupCommand, model, expectedMessage, expectedModel);
     }
 

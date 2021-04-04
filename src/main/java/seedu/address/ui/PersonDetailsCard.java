@@ -3,17 +3,13 @@ package seedu.address.ui;
 import java.util.Comparator;
 import java.util.stream.Collectors;
 
-import javafx.beans.binding.Bindings;
-import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
-import seedu.address.model.person.Event;
+import javafx.scene.layout.VBox;
 import seedu.address.model.person.Person;
 
 public class PersonDetailsCard extends UiPart<Region> {
@@ -37,9 +33,9 @@ public class PersonDetailsCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
     @FXML
-    private ListView<Event> datesListView;
+    private VBox datesContainer;
     @FXML
-    private ListView<Event> meetingsListView;
+    private VBox meetingsContainer;
     @FXML
     private StackPane picturePlaceholder;
 
@@ -73,6 +69,14 @@ public class PersonDetailsCard extends UiPart<Region> {
                 .size(FXCollections.observableList(person.getMeetings()))
                 .multiply(EventCard.HEIGHT));
 
+        person.getDates().forEach(date -> datesContainer
+                .getChildren()
+                .add((new EventCard(date)).getRoot()));
+        person.getMeetings().forEach(meeting -> meetingsContainer
+                .getChildren()
+                .add((new EventCard(meeting)).getRoot()));
+
+
         ProfilePicture profilePicture = new ProfilePicture(person, new Insets(0, 0, 10, 0));
         picturePlaceholder.getChildren().add(profilePicture.getRoot());
     }
@@ -92,19 +96,5 @@ public class PersonDetailsCard extends UiPart<Region> {
         // state check
         PersonDetailsCard card = (PersonDetailsCard) other;
         return person.equals(card.person);
-    }
-
-    class EventListViewCell extends ListCell<Event> {
-        @Override
-        protected void updateItem(Event event, boolean empty) {
-            super.updateItem(event, empty);
-
-            if (empty || event == null) {
-                setGraphic(null);
-                setText(null);
-            } else {
-                setGraphic(new EventCard(event).getRoot());
-            }
-        }
     }
 }

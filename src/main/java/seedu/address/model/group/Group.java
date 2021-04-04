@@ -16,21 +16,21 @@ import seedu.address.model.person.Person;
 public class Group {
 
     private Name groupName;
-    private Set<Person> persons;
+    private Set<Name> persons;
 
     /**
      * Constructs a {@code Group}.
      *  @param name A valid name.
      * @param persons A set of person.
      */
-    public Group(Name name, Set<Person> persons) {
+    public Group(Name name, Set<Name> persons) {
         requireAllNonNull(name, persons);
         this.groupName = name;
         this.persons = persons;
     }
 
     /**
-     * Constructs a {@code Group} with an empty set of Persons.
+     * Constructs a {@code Group} with an empty set of Names.
      *
      * @param name A valid name.
      */
@@ -44,15 +44,29 @@ public class Group {
         return groupName;
     }
 
-    public Set<Person> getPersons() {
+    public Set<Name> getPersonNames() {
         return persons;
     }
 
     public void addPerson(Person p) {
-        persons.add(p);
+        persons.add(p.getName());
     }
 
-    public void setPersons(Set<Person> editedPersonSet) {
+    public void setPerson(Person personToEdit, Person editedPerson) {
+        if (persons.contains(personToEdit.getName())) {
+            persons.remove(personToEdit.getName());
+            persons.add(editedPerson.getName());
+        }
+    }
+
+    public void setPersonName(Name personNameToEdit, Name editedPersonName) {
+        if (persons.contains(personNameToEdit)) {
+            persons.remove(personNameToEdit);
+            persons.add(editedPersonName);
+        }
+    }
+
+    public void setPersons(Set<Name> editedPersonSet) {
         persons = editedPersonSet;
     }
 
@@ -90,7 +104,7 @@ public class Group {
 
         Group otherGroup = (Group) other;
         return otherGroup.getName().equals(getName())
-                && otherGroup.getPersons().equals(getPersons());
+                && otherGroup.getPersonNames().equals(getPersonNames());
     }
 
     @Override

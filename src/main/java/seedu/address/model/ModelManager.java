@@ -117,13 +117,13 @@ public class ModelManager implements Model {
     public void addPerson(Person person) {
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        updateUpcomingDates();
     }
 
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
         addressBook.setPerson(target, editedPerson);
-
         if (detailedPerson.size() == 1 && target.isSamePerson(detailedPerson.get(0))) {
             updateDetailedPerson(editedPerson);
         }
@@ -132,7 +132,6 @@ public class ModelManager implements Model {
     @Override
     public void addGroup(Group group) {
         addressBook.addGroup(group);
-        updateFilteredPersonList(x -> group.getPersons().contains(x));
     }
 
     @Override
@@ -149,7 +148,6 @@ public class ModelManager implements Model {
     @Override
     public void setGroup(Name groupName, Group editedGroup) {
         addressBook.setGroup(groupName, editedGroup);
-        updateFilteredPersonList(x -> editedGroup.getPersons().contains(x));
     }
 
     //=========== Filtered Person List Accessors =============================================================

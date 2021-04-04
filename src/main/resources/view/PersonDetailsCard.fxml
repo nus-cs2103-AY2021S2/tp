@@ -56,11 +56,11 @@
                 <Insets left="5.0" />
             </padding>
         </Label>
-        <ListView fx:id="datesListView" VBox.vgrow="ALWAYS">
+        <VBox fx:id="datesContainer" VBox.vgrow="ALWAYS">
             <padding>
                 <Insets top="5.0" />
             </padding>
-        </ListView>
+        </VBox>
     </VBox>
     <VBox styleClass="person-details-section">
         <VBox.margin>
@@ -74,10 +74,10 @@
                 <Insets left="5.0" />
             </padding>
         </Label>
-        <ListView fx:id="meetingsListView" VBox.vgrow="ALWAYS">
+        <VBox fx:id="meetingsContainer" VBox.vgrow="ALWAYS">
             <padding>
                 <Insets top="5.0" />
             </padding>
-        </ListView>
+        </VBox>
     </VBox>
 </VBox>

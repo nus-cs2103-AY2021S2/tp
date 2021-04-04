@@ -11,17 +11,16 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
 
 public class GroupTest {
-    private Set<Person> personSet = new HashSet<>();
+    private Set<Name> personNameSet = new HashSet<>();
 
     private final Name name = new Name("test");
     private final Name diffName = new Name("Test");
 
     @Test
     public void constructor_nullGroupName_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Group(null, personSet));
+        assertThrows(NullPointerException.class, () -> new Group(null, personNameSet));
     }
 
     @Test
@@ -31,31 +30,31 @@ public class GroupTest {
 
     @Test
     public void isSameGroup() {
-        Set<Person> diffPersonSet = new HashSet<>();
-        diffPersonSet.add(ALICE);
+        Set<Name> diffPersonNameSet = new HashSet<>();
+        diffPersonNameSet.add(ALICE.getName());
 
-        Group group = new Group(name, personSet);
-        Group diffGroup = new Group(diffName, personSet);
+        Group group = new Group(name, personNameSet);
+        Group diffGroup = new Group(diffName, personNameSet);
         assertTrue(group.isSameGroup(group));
         assertFalse(group.isSameGroup(null));
         assertFalse(group.isSameGroup(diffGroup)); //different group name
 
-        diffGroup = new Group(name, diffPersonSet);
+        diffGroup = new Group(name, diffPersonNameSet);
         assertTrue(group.isSameGroup(diffGroup)); //different group person sets.
     }
 
     @Test
     public void equals() {
-        Set<Person> diffPersonSet = new HashSet<>();
-        diffPersonSet.add(ALICE);
+        Set<Name> diffPersonNameSet = new HashSet<>();
+        diffPersonNameSet.add(ALICE.getName());
 
-        Group group = new Group(name, personSet);
-        Group diffGroup = new Group(diffName, personSet);
+        Group group = new Group(name, personNameSet);
+        Group diffGroup = new Group(diffName, personNameSet);
         assertTrue(group.equals(group));
         assertFalse(group.equals(null));
         assertFalse(group.equals(diffGroup)); //different group name
 
-        diffGroup = new Group(name, diffPersonSet);
+        diffGroup = new Group(name, diffPersonNameSet);
         assertFalse(group.equals(diffGroup)); //different group person sets.
     }
 

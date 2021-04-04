@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -10,8 +11,10 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.DateUtil;
 import seedu.address.model.tag.Tag;
 
@@ -22,14 +25,16 @@ import seedu.address.model.tag.Tag;
  */
 public class Person {
 
+    private static final Logger logger = LogsCenter.getLogger(Person.class);
+
     // Identity fields
     private final Name name;
     private final Phone phone;
     private final Email email;
     private final Birthday birthday;
-    private final Goal goal;
 
     // Data fields
+    private final Goal goal;
     private final Address address;
     private final Picture picture;
     private final Debt debt;
@@ -87,6 +92,10 @@ public class Person {
         return birthday;
     }
 
+    public Goal getGoal() {
+        return goal;
+    }
+
     public Address getAddress() {
         return address;
     }
@@ -101,10 +110,6 @@ public class Person {
 
     public Optional<Picture> getPicture() {
         return Optional.ofNullable(picture);
-    }
-
-    public Goal getGoal() {
-        return this.goal;
     }
 
     public Person withPicture(Picture picture) {
@@ -164,6 +169,27 @@ public class Person {
             return latestMeetingDate;
         }
         return goal.getGoalDeadline(latestMeetingDate);
+    }
+
+    /**
+     * Deletes the picture from person. The person is guaranteed to have a null {@code Picture} after
+     * execution of this method. Physical file may still remain if for some reason, the file cannot be deleted from
+     * disk.
+     */
+    public Person deletePicture() {
+        if (picture == null) {
+            return this;
+        }
+
+        try {
+            // It is not that critical for the physical file of picture to get deleted so we just log the error.
+            picture.deleteFile();
+        } catch (IOException e) {
+            logger.warning("Unable to delete physical picture file for " + toString());
+            logger.warning("IOException caught: " + e.getMessage());
+        }
+
+        return withPicture(null);
     }
 
     /**
@@ -253,6 +279,35 @@ public class Person {
                     .collect(Collectors.joining(", "));
             builder.append("; Meetings: ");
             builder.append(meetingsStr);
+        }
+
+        return builder.toString();
+    }
+
+    /**
+     * Returns description of Person to be printed
+     * @return String Person Description
+     */
+    public String toUi() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(getName())
+                .append("; Phone: ")
+                .append(getPhone())
+                .append("; Email: ")
+                .append(getEmail())
+                .append("; Birthday: ")
+                .append(getBirthday())
+                .append("; Goal: ")
+                .append(getGoal())
+                .append("; Address: ")
+                .append(getAddress())
+                .append("; Debt: ")
+                .append(getDebt());
+
+        Set<Tag> tags = getTags();
+        if (!tags.isEmpty()) {
+            builder.append("; Tags: ");
+            tags.forEach(builder::append);
         }
 
         return builder.toString();
