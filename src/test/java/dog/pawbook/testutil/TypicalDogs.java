@@ -36,7 +36,7 @@ public class TypicalDogs {
 
     public static final Dog APPLE = new DogBuilder().withName("Apple")
             .withBreed("Golden Retriever").withDateOfBirth("11-2-2020")
-            .withSex("female").withOwnerID(1).withTags("friendly").build();
+            .withSex("female").withOwnerID(DOG_OWNER_ID).withTags("friendly").build();
     public static final Dog BUBBLES = new DogBuilder().withName("Bubbles")
             .withBreed("Bulldog").withDateOfBirth("1-1-2021").withSex("female").withOwnerID(DOG_OWNER_ID)
             .withTags("cheerful").build();
