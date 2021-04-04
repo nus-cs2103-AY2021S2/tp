@@ -78,6 +78,10 @@ public class AddOnCommand extends Command {
         Entry entryToAddOn = lastShownList.get(index.getZeroBased());
         Entry updatedEntry = createUpdatedEntry(entryToAddOn, addOnToEntryDescriptor);
 
+        if (!addOnToEntryDescriptor.isAnyFieldAddedOn()) {
+            throw new CommandException(MESSAGE_NOT_ADDED_ON);
+        }
+
         if (!entryToAddOn.isSameEntry(updatedEntry) && model.hasEntry(updatedEntry)) {
             throw new CommandException(MESSAGE_DUPLICATE_ENTRY);
         }

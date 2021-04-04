@@ -9,6 +9,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
+import fooddiary.commons.core.Messages;
 import fooddiary.commons.core.index.Index;
 import fooddiary.logic.commands.AddOnCommand;
 import fooddiary.logic.commands.AddOnCommand.AddOnToEntryDescriptor;
@@ -36,6 +37,8 @@ public class AddOnCommandParser implements Parser<AddOnCommand> {
 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
+        } catch (IndexOutOfBoundsException e) {
+            throw new ParseException(Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddOnCommand.MESSAGE_USAGE), pe);
         }
@@ -51,10 +54,6 @@ public class AddOnCommandParser implements Parser<AddOnCommand> {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddOnCommand.MESSAGE_USAGE));
             }
 
-        }
-
-        if (!addOnToEntryDescriptor.isAnyFieldAddedOn()) {
-            throw new ParseException(AddOnCommand.MESSAGE_NOT_ADDED_ON);
         }
 
         return new AddOnCommand(index, addOnToEntryDescriptor);
