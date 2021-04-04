@@ -35,7 +35,7 @@ public class ListCommandUtil {
     }
 
     /**
-     * Returns a list of parsed tag strings from the argument map.
+     * Returns a list of parsed remarks from the argument map.
      */
     public static List<String> getParsedRemarks(ArgumentMultimap argMap) throws ParseException {
         List<String> remarks = argMap.getAllValues(PREFIX_REMARK);
