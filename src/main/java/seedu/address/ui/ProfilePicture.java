@@ -42,11 +42,16 @@ public class ProfilePicture extends UiPart<Region> {
                 Image userImage = new Image(new FileInputStream(imgFile));
                 picture.setImage(userImage);
 
+                // Set viewport to center of image
                 if (userImage.getHeight() > userImage.getWidth()) {
-                    picture.setViewport(new Rectangle2D(0, 0, userImage.getWidth(), userImage.getWidth()));
+                    picture.setViewport(
+                            new Rectangle2D(0, (userImage.getHeight() - userImage.getWidth()) / 2,
+                                    userImage.getWidth(), userImage.getWidth()));
                     picture.setFitWidth(100);
                 } else {
-                    picture.setViewport(new Rectangle2D(0, 0, userImage.getHeight(), userImage.getHeight()));
+                    picture.setViewport(
+                            new Rectangle2D((userImage.getWidth() - userImage.getHeight()) / 2, 0,
+                                    userImage.getHeight(), userImage.getHeight()));
                     picture.setFitHeight(100);
                 }
 
