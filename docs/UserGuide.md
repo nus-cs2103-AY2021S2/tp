@@ -303,7 +303,7 @@ DocBob will open up a help window with command information.
 **A**: A parameter, generally, is any characteristic that can help in defining or classifying a particular system. For example, how fast a car can go is a parameter for us to judge how good a car is.  In this case, the words in UPPER_CASE are what we should key in.
 
 
-**Q**: What does index refer to?
+**Q**: What does index refer to?<br>
 **A**: In this case, index refers to the position of the patient in the patient list.  For example, if the patient list is {Alice,Bob,Charlie} then Alice's index is 1, Bob's is 2 and Charlie's is 3.
 
 --------------------------------------------------------------------------------------------------------------------
