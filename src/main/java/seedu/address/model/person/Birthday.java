@@ -58,7 +58,7 @@ public class Birthday {
             return false;
         }
     }
-
+    
     @Override
     public String toString() {
         return DateUtil.toString(date, BIRTHDAY_INPUT_FORMAT);

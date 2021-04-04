@@ -4,10 +4,15 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.address.testutil.TypicalEvents.MEETING_NOW;
 import static seedu.address.testutil.TypicalEvents.MEETING_ONE;
+import static seedu.address.testutil.TypicalEvents.MEETING_TODAY;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 import org.junit.jupiter.api.Test;
 
@@ -19,11 +24,13 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Event;
 import seedu.address.model.person.Person;
+import seedu.address.testutil.EventBuilder;
 import seedu.address.testutil.PersonBuilder;
 
 class AddMeetingCommandTest {
 
     private static final Event VALID_MEETING = MEETING_ONE;
+
     private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
@@ -78,5 +85,46 @@ class AddMeetingCommandTest {
 
         AddMeetingCommand meetingCommand = new AddMeetingCommand(outOfBoundIndex, VALID_MEETING);
         assertCommandFailure(meetingCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_validMeetings_success() {
+        testValidMeeting(MEETING_TODAY);
+        testValidMeeting(MEETING_NOW);
+    }
+
+    public void testValidMeeting(Event meeting) {
+        Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person editedPerson = new PersonBuilder(firstPerson).withMeetings(meeting).build();
+
+        AddMeetingCommand cmd = new AddMeetingCommand(INDEX_FIRST_PERSON, meeting);
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.setPerson(firstPerson, editedPerson);
+
+        String expectedMessage = String.format(AddMeetingCommand.MESSAGE_ADD_MEETING_SUCCESS, editedPerson.getName());
+        assertCommandSuccess(cmd, model, expectedMessage, expectedModel);
+
+        // reset model
+        model.setPerson(editedPerson, firstPerson);
+    }
+
+    @Test
+    public void execute_invalidMeetings_failure() {
+        Event meetingTomorrow = new EventBuilder().withDate(LocalDate.now().plusDays(1)).build();
+        Event meetingTodayAfterNow = new EventBuilder()
+                .withDate(LocalDate.now())
+                .withTime(LocalTime.now().plusMinutes(1))
+                .build();
+
+        testInvalidMeeting(meetingTomorrow, String.format(
+                AddMeetingCommand.MESSAGE_ADD_MEETING_FAILURE_DATE_AFTER_TODAY, meetingTomorrow.getDate()));
+        testInvalidMeeting(meetingTodayAfterNow, String.format(
+                AddMeetingCommand.MESSAGE_ADD_MEETING_FAILURE_TIME_AFTER_NOW, meetingTodayAfterNow.getTime()));
+    }
+
+    public void testInvalidMeeting(Event meeting, String errorMessage) {
+        AddMeetingCommand cmd = new AddMeetingCommand(INDEX_FIRST_PERSON, meeting);
+        assertCommandFailure(cmd, model, errorMessage);
     }
 }

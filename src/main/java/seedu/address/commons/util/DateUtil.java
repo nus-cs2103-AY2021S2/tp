@@ -57,6 +57,14 @@ public class DateUtil {
         return date;
     }
 
+    public static boolean isToday(LocalDate date) {
+        return date.isEqual(LocalDate.now());
+    }
+
+    public static boolean afterToday(LocalDate date) {
+        return date.isAfter(LocalDate.now());
+    }
+
     public static String toString(LocalDate localDate, DateTimeFormatter dateFormatter) {
         return dateFormatter.format(localDate);
     }

@@ -50,6 +50,10 @@ public class TimeUtil {
         return time;
     }
 
+    public static boolean afterNow(LocalTime time) {
+        return time.isAfter(LocalTime.now());
+    }
+
     public static String toUi(LocalTime localTime) {
         return DEFAULT_FORMATTER.format(localTime);
     }

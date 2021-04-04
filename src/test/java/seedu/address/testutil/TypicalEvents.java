@@ -16,4 +16,14 @@ public class TypicalEvents {
             .withDate(LocalDate.of(2019, 10, 10))
             .withDescription("Anniversary")
             .build();
+
+    public static final Event MEETING_TODAY = new EventBuilder()
+            .withDate(LocalDate.now())
+            .withTime(LocalTime.of(0, 0))
+            .build();
+
+    public static final Event MEETING_NOW = new EventBuilder()
+            .withDate(LocalDate.now())
+            .withTime(LocalTime.now())
+            .build();
 }

@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_DATE_AFTER_TODAY;
+import static seedu.address.commons.core.Messages.MESSAGE_TIME_AFTER_NOW;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
@@ -8,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -15,6 +18,8 @@ import java.util.stream.Collectors;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.DateUtil;
+import seedu.address.commons.util.TimeUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Event;
@@ -36,8 +41,10 @@ public class AddMeetingCommand extends Command {
             + PREFIX_DESCRIPTION + "We went to the beach!";
 
     public static final String MESSAGE_ADD_MEETING_SUCCESS = "Added meeting for %1$s";
-    public static final String MESSAGE_ADD_MEETING_FAILURE = "Failed to add meeting: Meeting "
-            + "date %1$s is after current date.";
+    public static final String MESSAGE_ADD_MEETING_FAILURE_DATE_AFTER_TODAY = "Failed to add meeting: " +
+            MESSAGE_DATE_AFTER_TODAY;
+    public static final String MESSAGE_ADD_MEETING_FAILURE_TIME_AFTER_NOW = "Failed to add meeting: " +
+            MESSAGE_TIME_AFTER_NOW;
 
     private final Index index;
     private final Event meeting;
@@ -69,9 +76,17 @@ public class AddMeetingCommand extends Command {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
-        // ignore time comparisons for leniency
-        if (meeting.getDate().isAfter(LocalDate.now())) {
-            throw new CommandException(String.format(MESSAGE_ADD_MEETING_FAILURE, meeting.getDate()));
+        LocalDate meetingDate = meeting.getDate();
+        LocalTime meetingTime = meeting.getTime();
+
+
+
+        if (DateUtil.afterToday(meetingDate)) {
+            throw new CommandException(String.format(MESSAGE_ADD_MEETING_FAILURE_DATE_AFTER_TODAY, meetingDate));
+        }
+
+        if (DateUtil.isToday(meetingDate) && TimeUtil.afterNow(meetingTime)) {
+            throw new CommandException(String.format(MESSAGE_ADD_MEETING_FAILURE_TIME_AFTER_NOW, meetingTime));
         }
 
         if (index.getZeroBased() >= lastShownList.size()) {
