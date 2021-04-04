@@ -155,7 +155,7 @@ Format: `exit_prompt`
 Adds a new person for the booking app. `add_person` is a multi-step command that will prompt you for additional input. Inputting 
 `add_person` will start the command and the app will guide you through the command through prompts for each field. As with other multi step commands, you can exit the command by entering `exit_prompt` at any point. Optional fields can be skipped by pressing the <kbd>Enter</kbd> key when you are prompted to input an optional field.
 
-Email and phone number must be unique. Tags are optional.
+Email and phone number must be unique. Tags are optional.<br>
 Format: `add_person`
 
 #### 3.3.2. Editing a person : `edit_person`
