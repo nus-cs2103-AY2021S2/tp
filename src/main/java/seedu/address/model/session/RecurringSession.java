@@ -51,6 +51,22 @@ public class RecurringSession extends Session {
     }
 
     /**
+     * Returns the last valid date for a session to occur on or before the {@dateToTest},
+     * if the recurring session starts on {@startDate} and recurs with {@interval} .
+     * @param dateToTest a valid date to check for; must not be before startDate
+     * @param startDate the start date of the recurring session
+     * @param interval the interval of recurrence for the recurring session
+     * @return {@LocalDate} of the last valid date of session, on or before {@dateToTest}.
+     */
+    public static LocalDate lastValidDateOnOrBefore(SessionDate dateToTest, SessionDate startDate, Interval interval) {
+        assert(!dateToTest.getDate().isBefore(startDate.getDate()));
+        int numOfDaysBetween = startDate.numOfDayTo(dateToTest);
+        LocalDate lastLocalDate = dateToTest.getDateTime()
+                .minusDays(numOfDaysBetween % interval.getValue()).toLocalDate();
+        return lastLocalDate;
+    }
+
+    /**
      * Returns true if Date of {@code sessionDate1} is consistent with
      * {@code sessionDate2} and {@code interval}.
      * @param sessionDate1 the SessionDate value for a session
@@ -62,7 +78,6 @@ public class RecurringSession extends Session {
             SessionDate sessionDate1, SessionDate sessionDate2, Interval interval) {
         requireAllNonNull(sessionDate1, sessionDate2, interval);
         int daysBetween = sessionDate1.numOfDayTo(sessionDate2);
-        //TODO: Disallow recurringsessions of 0 interval
         return daysBetween >= 0 && daysBetween % interval.getValue() == 0;
     }
 
@@ -132,9 +147,7 @@ public class RecurringSession extends Session {
     public Session lastSessionOnOrBefore(SessionDate sessionDate) {
         requireAllNonNull(sessionDate);
         checkArgument(!startAfter(sessionDate), "There exists no session before.");
-        int numOfDaysBetween = getSessionDate().numOfDayTo(sessionDate);
-        LocalDate lastLocalDate = sessionDate.getDateTime()
-                .minusDays(numOfDaysBetween % interval.getValue()).toLocalDate();
+        LocalDate lastLocalDate = lastValidDateOnOrBefore(sessionDate, getSessionDate(), interval);
         SessionDate lastSessionDate = new SessionDate(
                 LocalDateTime.of(lastLocalDate, getSessionDate().getTime())
                         .toString());
