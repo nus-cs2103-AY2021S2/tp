@@ -398,8 +398,8 @@ Gets the monthly fee for a particular student for a particular month and year.
 Format: `fee n/STUDENT_NAME m/MONTH y/YEAR`
 
 * `STUDENT_NAME` should match the exact student’s name in TutorBuddy
-* `MONTH` should be a positive integer between 1 and 12
-* `YEAR` should be a positive integer between 1970 and 2037
+* `MONTH` should be a positive integer between 1 and 12 inclusive
+* `YEAR` should be a positive integer between 1970 and 2037 inclusive
 
 Example:
 * `fee n/John Lee m/1 y/2021` returns John Lee monthly fee for January 2021
