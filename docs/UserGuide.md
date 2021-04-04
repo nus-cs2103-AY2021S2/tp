@@ -237,26 +237,26 @@ Shows a list of all events in PartyPlanet's Event List. Similar to `list`.
 Format: `elist [--exact] [--any] [-n NAME] [-r DETAIL]... [-s SORT] [-o ORDER]`
 
 1. If no search parameters specified, `elist [-s SORT_FIELD] [-o SORT_ORDER]`: List out all events in event list.
-* `-s` parameter optionally sorts events by `SORT_FIELD`. Possible values of 
-  `SORT_FIELD`:
-  * `n`, `name`: names (case-sensitive) in lexicographical order (by default, if `-s` not specified)
-  * `d`: event dates (Sensitive to year, will sort according to date with respect to year)
-  * `u`, `upcoming`: days left to next upcoming event
-* `-o` parameter optionally determines the direction of sort, according to `SORT_ORDER`. Possible values of SORT_ORDER:
-  * `a`, `asc`, `ascending`: ascending (by default, if `-o` not specified)
-  * `d`, `desc`, `descending`: descending 
-  * Sorts by upcoming event dates only sorts in `ascending` order
+    * `-s` parameter optionally sorts events by `SORT_FIELD`. Possible values of 
+      `SORT_FIELD`:
+      * `n`, `name`: names (case-sensitive) in lexicographical order (by default, if `-s` not specified)
+      * `d`: event dates (Sensitive to year, will sort according to date with respect to year)
+      * `u`, `upcoming`: days left to next upcoming event
+    * `-o` parameter optionally determines the direction of sort, according to `SORT_ORDER`. Possible values of SORT_ORDER:
+      * `a`, `asc`, `ascending`: ascending (by default, if `-o` not specified)
+      * `d`, `desc`, `descending`: descending 
+      * Sorts by upcoming event dates only sorts in `ascending` order
 2. If search parameters specified, `elist [--exact] [--any] [-n NAME]... [-r DETAIL]... [-s SORT_FIELD] [-o 
    SORT_ORDER]`: List all events matching the search criteria
-* Search criteria, case-insensitive: 
-    * `-n` filters the events by event name
-    * `-r` filters the events by event details
-* Search is case-insensitive, e.g. `cHriStmAs` will match `Christmas`.
-* Partial matches to event names and details are performed by default, e.g. `key` will match `turkey`.
-* If exact match is desired, specify an additional `--exact` flag.
-* If multiple names/tags are specified, all specified search criteria must be fulfilled by each event by 
-  default, unless `--any` is specified for any match. 
-* The filtered events can be additionally sorted using the `-s` and `-o` prefixes, as above.
+    * Search criteria, case-insensitive: 
+        * `-n` filters the events by event name
+        * `-r` filters the events by event details
+    * Search is case-insensitive, e.g. `cHriStmAs` will match `Christmas`.
+    * Partial matches to event names and details are performed by default, e.g. `key` will match `turkey`.
+    * If exact match is desired, specify an additional `--exact` flag.
+    * If multiple names/tags are specified, all specified search criteria must be fulfilled by each event by 
+      default, unless `--any` is specified for any match. 
+    * The filtered events can be additionally sorted using the `-s` and `-o` prefixes, as above.
 
 Examples:
 * `elist --exact -n Graduation party -r Get job` Lists out all events whose name is exactly "Graduation party" and remark is exactly "Get job"
@@ -371,8 +371,10 @@ Retrieves previously entered input.
 
 <div markdown="block" class="alert-warning">
 
+
 **:warning: PartyPlanet will use its default Address Book and Event Book JSON file if it is unable to locate the 
 JSON file. It will start with an empty JSON file if there is an error in the JSON file.**
+
 
 </div>
 
