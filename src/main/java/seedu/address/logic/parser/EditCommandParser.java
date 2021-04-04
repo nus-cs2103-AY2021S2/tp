@@ -37,12 +37,11 @@ public class EditCommandParser implements Parser<EditCommand> {
                         PREFIX_BOOKING, PREFIX_CLEAN_STATUS_TAG, PREFIX_TAG);
 
         Index index;
-
-        try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+        if (argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
         }
+
+        index = ParserUtil.parseIndex(argMultimap.getPreamble());
 
         EditResidenceDescriptor editResidenceDescriptor = new EditResidenceDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
