@@ -69,7 +69,7 @@ Format: `clear`
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: warning about clear command: **<br>
+**:information_source: Warning about clear command:**<br>
 
 * The clear command is especially useful for first time users because the app would first launch with sample data for new users
   to have greater convenience when testing app functionalities. Users can then use the clear command to
@@ -120,7 +120,7 @@ Format: `exit_prompt`
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: about persons: **<br>
+**:information_source: About persons:**<br>
 
 * BookCoin stores information about venue bookers which is important for scheduling/ contacting purposes. When bookers are stored, their information can be used for multiple bookings in the future which allows you to access their details easily without having to repeat the same booker details multiple times across bookings.
 * For your convenience, we use the term "person" in the app instead of "booker" to make a distinction between "booker" and "booking", which can be confusing.
