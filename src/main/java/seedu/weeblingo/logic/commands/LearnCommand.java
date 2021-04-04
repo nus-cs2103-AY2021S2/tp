@@ -8,7 +8,6 @@ import seedu.weeblingo.commons.core.Messages;
 import seedu.weeblingo.logic.commands.exceptions.CommandException;
 import seedu.weeblingo.model.Mode;
 import seedu.weeblingo.model.Model;
-import seedu.weeblingo.model.flashcard.Flashcard;
 import seedu.weeblingo.model.tag.Tag;
 
 /**
@@ -33,7 +32,11 @@ public class LearnCommand extends Command {
         requireNonNull(model);
         int currentMode = model.getCurrentMode();
         if (currentMode == Mode.MODE_MENU) {
-            model.updateFilteredFlashcardList(flashcard -> checkTags(flashcard, tags));
+            if (tags.isEmpty()) {
+                model.updateFilteredFlashcardList(Model.PREDICATE_SHOW_ALL_FLASHCARDS);
+            } else {
+                model.updateFilteredFlashcardList(flashcard -> flashcard.checkHasTags(tags));
+            }
             model.switchModeLearn();
             return new CommandResult(MESSAGE_SUCCESS, false, false);
         } else {
@@ -41,13 +44,13 @@ public class LearnCommand extends Command {
         }
     }
 
-    private boolean checkTags(Flashcard flashcard, Set<Tag> tags) {
-        boolean check = true;
-        Set<Tag> weeblingoTags = flashcard.getWeeblingoTags();
-        Set<Tag> userTags = flashcard.getUserTags();
-        for (Tag tag : tags) {
-            check = check && (weeblingoTags.contains(tag) || userTags.contains(tag));
+    @Override
+    public boolean equals(Object other) {
+        if (other instanceof LearnCommand) {
+            LearnCommand otherCommand = (LearnCommand) other;
+            return this.tags.containsAll(otherCommand.tags) && otherCommand.tags.containsAll(this.tags);
+        } else {
+            return false;
         }
-        return check;
     }
 }

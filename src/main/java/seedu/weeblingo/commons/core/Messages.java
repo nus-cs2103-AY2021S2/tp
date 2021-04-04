@@ -21,4 +21,6 @@ public class Messages {
             + "to go to the next question";
     public static final String MESSAGE_QUIZ_ALREADY_ENDED = "The quiz session has already ended. \n"
             + "Enter \"end\" to go back to menu mode.";;
+    public static final String MESSAGE_TAG_NOT_FOUND = "Oops, no flashcards have that tag!";
+
 }
