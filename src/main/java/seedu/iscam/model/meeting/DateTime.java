@@ -12,7 +12,7 @@ import java.time.format.DateTimeParseException;
  */
 public class DateTime {
     public static final String MESSAGE_CONSTRAINTS = "Date & time must be in the form of dd-MM-yyyy HH:mm and cannot "
-            + "be in the past.";
+            + "be in the past or blank.";
     public static final DateTimeFormatter DATETIME_PATTERN = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
     public final LocalDateTime dateTime;

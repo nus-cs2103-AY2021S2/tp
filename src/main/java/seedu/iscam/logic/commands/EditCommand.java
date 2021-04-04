@@ -31,7 +31,7 @@ import seedu.iscam.model.commons.Name;
 import seedu.iscam.model.commons.Tag;
 
 /**
- * Edits the details of an existing client in the iscam book.
+ * Edits the details of an existing client in the iScam book.
  */
 public class EditCommand extends UndoableCommand {
 
