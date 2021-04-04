@@ -1,8 +1,11 @@
 package seedu.address.ui;
 
+import static javafx.collections.FXCollections.*;
 import java.util.Comparator;
 import java.util.stream.Collectors;
 
+import javafx.beans.binding.Bindings;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
@@ -10,6 +13,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import seedu.address.model.person.Event;
 import seedu.address.model.person.Person;
 
 public class PersonDetailsCard extends UiPart<Region> {
@@ -43,6 +47,7 @@ public class PersonDetailsCard extends UiPart<Region> {
      * Creates a {@code PersonDetailsCard} with the given {@code Person}.
      */
     public PersonDetailsCard(Person person) {
+
         super(FXML);
         this.person = person;
         name.setText(person.getName().fullName);
@@ -52,30 +57,16 @@ public class PersonDetailsCard extends UiPart<Region> {
         debt.setText("Debt: " + person.getDebt().value.toString());
         birthday.setText(person.getBirthday().toUi());
         person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-
-        datesListView.setItems(FXCollections.observableArrayList(person.getDates()));
-        datesListView.setCellFactory(listView -> new EventListViewCell());
-        datesListView.prefHeightProperty().bind(Bindings
-                .size(FXCollections.observableList(person.getDates()))
-                .multiply(EventCard.HEIGHT));
-
-        meetingsListView.setItems(FXCollections.observableArrayList(person.getMeetings().stream()
-                .sorted(Comparator.comparing(Event::getDate).reversed())
-                .collect(Collectors.toList())));
-        meetingsListView.setCellFactory(listView -> new EventListViewCell());
-        meetingsListView.prefHeightProperty().bind(Bindings
-                .size(FXCollections.observableList(person.getMeetings()))
-                .multiply(EventCard.HEIGHT));
+            .sorted(Comparator.comparing(tag -> tag.tagName))
+            .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
 
         person.getDates().forEach(date -> datesContainer
                 .getChildren()
                 .add((new EventCard(date)).getRoot()));
-        person.getMeetings().forEach(meeting -> meetingsContainer
+        person.getMeetings().stream().sorted(Comparator.comparing(Event::getDate).reversed())
+                .forEach(meeting -> meetingsContainer
                 .getChildren()
                 .add((new EventCard(meeting)).getRoot()));
-
 
         ProfilePicture profilePicture = new ProfilePicture(person, new Insets(0, 0, 10, 0));
         picturePlaceholder.getChildren().add(profilePicture.getRoot());
