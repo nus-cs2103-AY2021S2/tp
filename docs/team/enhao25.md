@@ -53,7 +53,7 @@ the fields taken to be representative of a student class instead.
 ### Minor Enhancement:
 * Added checks to ensure that start time + duration does not exceed the day itself [PR #176](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/176).
 * Combining list_student and list_session command to list command [PR #167](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/167).
-* Updating sample data to better reflect our current application [PR #166](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/166).
+* Updating sample data to include sample sessions as well to better reflect our current application [PR #166](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/166).
 
 ### Other Contribution:
 * Project Management:
