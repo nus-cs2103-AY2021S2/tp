@@ -183,6 +183,20 @@ Format: blist INDEX
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a valid positive integer** 1, 2, …​, 2147483647
 
+### Blacklist or unblacklist multiple contacts : `massblist`
+
+Blacklists or unblacklists all contacts within the specified index range (inclusive).
+
+Format: `massblist START-END b/BLACKLIST_OR_UNBLACKLIST`
+
+* The index refers to the index number shown in the displayed person list.
+* Both the start index and end index **must be valid positive integers** positive integers 1, 2, …​, 2147483647
+* Start index must be strictly smaller than the end index. 
+* End index cannot be larger than the number of contacts in the list.
+
+Example:
+`massblist 15-42 b/blacklist`
+
 ### Collect details from contacts : `collect`
 
 Collects the specified details of all contacts in the displayed person list.
@@ -201,19 +215,6 @@ Format: collect [n/] or [p/] or [e/] or [a/] [s/SEPARATOR]
   As such, it is not possible to start or end the separator with a space.   
 * Words following any prefix other than `s/` will be ignored.
 * Unrelated prefixes will be ignored.
-
-###Blacklist or unblacklist multiple contacts : `massblist`
-
-Blacklists all contacts within the specified index range.
-
-Format: `massblist START-END b/BLACKLIST_OR_UNBLACKLIST`
-* Blacklists or unblacklists all contacts within the specified index range(inclusive).
-* The index refers to the index number shown in the displayed person list.
-* Both the start index and end index must be a positive integer 1,2,3, ...
-* Start Index < End Index and End Index cannot be larger than the number of contacts in the list.
-
-Example:
-`massblist 15-42 b/blacklist`
 
 ### Clearing all entries : `clear`
 
