@@ -133,13 +133,11 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Parsing user commands
-
 ### Add session feature
 
 #### Current Implementation
 
-The add session feature is facilitated by `SessionList`. It is stored internally in `AddressBook` as `sessions`. It implements the following relevant relavent operations:
+The add session feature is facilitated by `SessionList`. It is stored internally in `AddressBook` as `sessions`. It implements the following relevant operations:
 
 * `SessionList#add(Session toAdd)` — Adds the given session to the current list of sessions
 
@@ -160,6 +158,59 @@ Step 5: The `CommandResult` is then displayed on the UI.
 The sequence for the example scenerio can be found below:
 
 ![AddSessionSequenceDiagram](images/AddSessionSequenceDiagram.png)
+
+### Unassign person feature
+The unassign feature utilises defensive programming to ensure that the `tutor` and `students` attributes of the session correspond with those persons' `sessions` attribute.
+
+Given below is an example usage scenario and how the unassign command behaves at each step.
+
+Step 1: The user executes `unassign s/1 c/1` command to unassign student `s/1` from session `c/1`. The `LogicManager` calls `AddressBookParser#parseCommand(String userInput)`. 
+
+Step 2: The `parseCommand` method passes the user input to `UnassignCommandParser#parse(String args)` which returns an `UnassignCommand` object.
+
+Step 3: The `LogicManager` then executes the `UnassignCommand`.
+
+Step 4: The `UnassignCommand` calls the `Person#removeSession(SessionID session)` to remove the session from the student `s/1`'s list, and `Session#unassignStudent(PersonId student)` to remove the student from the session `c/1`'s list.
+
+Step 5: A `CommandResult` object is returned and displayed on the UI.
+
+The sequence for the example scenerio can be found below:
+
+![UnassignSequenceDiagram](images/UnassignSequenceDiagram.png)
+
+### Delete person feature
+
+#### Current Implementation
+
+The delete person feature is facilitated by `UniquePersonList`. It is stored internally in `AddressBook` as `persons`. It implements the following relevant operations:
+
+* `UniquePersonList#remove(Person toRemove)` - Removes the given person (student or tutor) from the current list of persons
+
+This operation is exposed in the `Model` interface as `Model#deletePerson(Person target)`.
+
+Given below is an example usage scenario and how the delete person mechanism behaves at each step.
+
+Step 1: The user launches the application for the first time. The `AddressBook` will contain a `UniquePersonList`.
+
+<img src="images/DeletePersonObjectDiagram1.png" alt="DeletePersonObjectDiagram1" width="400"/>
+
+Step 2: The user executes `delete_person s/3` command to remove the specified person. The `LogicManager` calls `AddressBookParser#parseCommand(String userInput)`. 
+
+Step 3: The `parseCommand` method passes the user input to `DeletePersonCommandParser#parse(String args)` which returns a `DeletePersonCommand` object.
+
+Step 4: The `LogicManager` then executes the `DeletePersonCommand` which calls the `Model#deletePerson(Person target)` method.
+
+Step 5: The `Model` calls `AddressBook#removePerson(Person key)`.
+
+Step 6: The `Model` removes the specified person from `persons` in `AddressBook` and returns a `commandResult`.
+
+<img src="images/DeletePersonObjectDiagram2.png" alt="DeletePersonObjectDiagram2" width="400"/>
+
+Step 7: The `commandResult` is then displayed on the UI.
+
+The sequence for the example scenerio can be found below:
+
+![DeletePersonSequenceDiagram](images/DeletePersonSequenceDiagram.png)
 
 ### \[Proposed\] Undo/redo feature
 
@@ -317,6 +368,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends
 
+**Extensions**
+
+* 1a. The given tutor/student information is already exist in the list
+
+    * 1a1. AddressBook shows an error message.
+
+  Use case ends.
+
 **Use case: Add a class**
 
 **MSS**
@@ -362,7 +421,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
     
 * 1b. The given index cannot be found in the address book.
-    * 1a1. AddressBook shows a message stating no person found.
+    * 1a1. AddressBook shows an error message.
 
       Use case ends.
     
@@ -400,7 +459,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file <br> Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -413,20 +472,52 @@ testers are expected to do more *exploratory* testing.
 
 ### Deleting a person
 
-1. Deleting a person while all persons are being shown
+1. Deleting a person
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: Know a valid person ID.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   1. Test case: `delete s/1`<br>
+      Assumption: `s/1` is a valid person ID. <br>
+      Expected: Person with the ID `s/1` is deleted from the person list. Details of the deleted contact shown in the status message.
 
-   1. Test case: `delete 0`<br>
+   1. Test case: `delete t/0`<br>
+      Assumption: `t/0` is an invalid person ID. <br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is an invalid person ID)<br>
       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
+
+### Viewing a person
+1. Viewing a person
+    1. Prerequisites: there is at least 1 person in the list, 
+       and his/her personID is known to the tester.
+    1. Test case: `view_person s/1` <br>
+        Assumption: `s/1` is a valid personID <br>
+       Expected: details of person with personID `s/1` is displayed on the left pane, 
+       and his/her associated sessions are displayed on the right
+       
+    1. Test case: `view_person s/0` <br>
+        Assumption: `s/0` is an invalid personID since personID starts from 1 <br>
+       Expected: Error message is shown, no person/session is displayed
+       
+2. _{ more test cases …​ }_
+
+### Viewing a session
+1. Viewing a session
+    1. Prerequisites: there is at least 1 session in the list,
+       and the sessionID is known to the tester.
+    1. Test case: `view_session c/1` <br>
+       Assumption: `c/1` is a valid sessionID <br>
+       Expected: details of the session with sessionID `c/1` is displayed on the left pane,
+       and the students in the session are displayed on the right
+
+    1. Test case: `view_session c/0` <br>
+       Assumption: `c/0` is an invalid sessionID since sessionID starts from 1 <br>
+       Expected: Error message is shown, no person/session is displayed
+
+2. _{ more test cases …​ }_
 
 ### Saving data
 
