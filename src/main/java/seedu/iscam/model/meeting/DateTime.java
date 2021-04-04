@@ -8,7 +8,7 @@ import java.time.format.DateTimeParseException;
 
 /**
  * Represents a meeting's date and time in the iscam book.
- * Guarantees: immutable; is valid as declared in {@link #isValidDateTimeStr(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isStringValidDateTime(String)}
  */
 public class DateTime {
     public static final String MESSAGE_CONSTRAINTS = "Date & time must be in the form of dd-MM-yyyy HH:mm and cannot "
@@ -18,7 +18,7 @@ public class DateTime {
     public final LocalDateTime dateTime;
 
     /**
-     * Construct a {@code DateTime} with a {@code String dateTime}
+     * Constructs a {@code DateTime} with a {@code String dateTime}
      */
     public DateTime(String dateTime) {
         requireNonNull(dateTime);
@@ -26,19 +26,28 @@ public class DateTime {
     }
 
     /**
-     * Check if {@code string} can be converted into a valid {@code DateTime}
+     * Checks if {@code string} follows the correct date-time format.
      */
-    public static boolean isValidDateTimeStr(String dateTime) {
+    public static boolean isStringValidFormat(String str) {
         try {
-            LocalDateTime validDateTime = LocalDateTime.parse(dateTime, DATETIME_PATTERN);
-            return validDateTime.isEqual(LocalDateTime.now()) || validDateTime.isAfter(LocalDateTime.now());
+            LocalDateTime validDateTime = LocalDateTime.parse(str, DATETIME_PATTERN);
+            return true;
         } catch (DateTimeParseException exception) {
             return false;
         }
     }
 
-    public static boolean isValidDateTime(LocalDateTime dateTime) {
-        return dateTime.isEqual(LocalDateTime.now()) || dateTime.isAfter(LocalDateTime.now());
+    /**
+     * Checks if {@code string} can be converted into a valid {@code DateTime}.
+     */
+    public static boolean isStringValidDateTime(String str) {
+        try {
+            LocalDateTime toVerify = LocalDateTime.parse(str, DATETIME_PATTERN);
+            LocalDateTime now = LocalDateTime.now().withSecond(0).withNano(0);
+            return toVerify.isEqual(now) || toVerify.isAfter(now);
+        } catch (DateTimeParseException exception) {
+            return false;
+        }
     }
 
     public LocalDateTime get() {
