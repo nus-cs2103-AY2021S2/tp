@@ -302,9 +302,9 @@ The Autocomplete feature helps autocomplete when editing a Person or an Event to
 
 For any valid and empty prefix that the user inputs, the relevant details will be autocompleted on `TAB` keypress down.
 
-Format: 
+Format:
 
-Edit: `edit INDEX [-n NAME] [-p PHONE] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY] [-r REMARK] TAB` 
+Edit: `edit INDEX [-n NAME] [-p PHONE] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY] [-r REMARK] TAB`
 
 EEdit: `eedit INDEX [-n NAME] [-d DATE] [-r DETAIL] TAB`
 

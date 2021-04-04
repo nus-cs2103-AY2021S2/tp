@@ -42,7 +42,7 @@ A full list of code contribution can be found here:
   [\#111](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/111)
 - Proposed command list consolidation to remove `tags`, `find`, `clear`.
 - Update GUI visuals, usability feature:
-  [\#198](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/198) 
+  [\#198](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/198)
 - Refactor theme toggling command to use enumeration instead, add GUI option to toggle theme:
   [\#184](https://github.com/AY2021S2-CS2103-W16-3/tp/pull/184)
   builds on
