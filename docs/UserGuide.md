@@ -197,7 +197,7 @@ Shows a list of all FoodDiary entries.
 
 Format: `list`
 
-Parameter: none
+Parameters: none
 
 Example:
 
@@ -210,7 +210,7 @@ Opens up a window to show a condensed form of all the different commands,
 
 Format: `help`
 
-Parameter: none
+Parameters: none
 
 Example:
 
