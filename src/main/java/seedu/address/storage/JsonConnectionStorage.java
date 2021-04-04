@@ -6,8 +6,8 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.connection.PersonMeetingConnection;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.ReadOnlyAddressBook;
+import seedu.address.model.meeting.MeetingBook;
+import seedu.address.model.person.AddressBook;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -29,17 +29,17 @@ public class JsonConnectionStorage {
         return filePath;
     }
 
-    public Optional<PersonMeetingConnection> readAddressBook() throws DataConversionException {
-        return readConnection(filePath);
+    public Optional<PersonMeetingConnection> readConnection(MeetingBook meetingBook, AddressBook addressBook) throws DataConversionException {
+        return readConnection(filePath, meetingBook, addressBook);
     }
 
     /**
-     * Similar to {@link #readAddressBook()}.
+     * Similar to {@link #readConnection(MeetingBook, AddressBook)}}.
      *
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<PersonMeetingConnection> readConnection(Path filePath) throws DataConversionException {
+    public Optional<PersonMeetingConnection> readConnection(Path filePath, MeetingBook meetingBook, AddressBook addressBook) throws DataConversionException {
         requireNonNull(filePath);
 
         Optional<JsonSerializableConnection> jsonConnection = JsonUtil.readJsonFile(
@@ -49,7 +49,7 @@ public class JsonConnectionStorage {
         }
 
         try {
-            return Optional.of(jsonConnection.get().toModelType());
+            return Optional.of(jsonConnection.get().toModelType(meetingBook, addressBook));
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);
@@ -70,6 +70,6 @@ public class JsonConnectionStorage {
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableAddressBook(connection), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableConnection(connection), filePath);
     }
 }
