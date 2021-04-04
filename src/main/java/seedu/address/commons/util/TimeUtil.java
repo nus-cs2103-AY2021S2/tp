@@ -15,6 +15,7 @@ public class TimeUtil {
     private static final DateTimeFormatter TIME_PARSER;
 
     private static final DateTimeFormatter DEFAULT_FORMATTER = DateTimeFormatter.ofPattern("hh:mm a");
+    private static final DateTimeFormatter ERROR_MESSAGE_FORMATTER = DateTimeFormatter.ofPattern("HHmm");
 
     private static final String[] patterns;
     private static final String[] examples;
@@ -52,6 +53,10 @@ public class TimeUtil {
 
     public static boolean afterNow(LocalTime time) {
         return time.isAfter(LocalTime.now());
+    }
+
+    public static String toErrorMessage(LocalTime time) {
+        return ERROR_MESSAGE_FORMATTER.format(time);
     }
 
     public static String toUi(LocalTime localTime) {

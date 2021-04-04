@@ -90,15 +90,18 @@ public class AddMeetingCommand extends Command {
         LocalTime meetingTime = meeting.getTime();
 
         if (person.beforeBirthday(meetingDate)) {
-            throw new CommandException(String.format(MESSAGE_ADD_MEETING_FAILURE_DATE_BEFORE_BIRTHDAY, meetingDate));
+            throw new CommandException(String.format(MESSAGE_ADD_MEETING_FAILURE_DATE_BEFORE_BIRTHDAY,
+                    DateUtil.toErrorMessage(meetingDate)));
         }
 
         if (DateUtil.afterToday(meetingDate)) {
-            throw new CommandException(String.format(MESSAGE_ADD_MEETING_FAILURE_DATE_AFTER_TODAY, meetingDate));
+            throw new CommandException(String.format(MESSAGE_ADD_MEETING_FAILURE_DATE_AFTER_TODAY,
+                    DateUtil.toErrorMessage(meetingDate)));
         }
 
         if (DateUtil.isToday(meetingDate) && TimeUtil.afterNow(meetingTime)) {
-            throw new CommandException(String.format(MESSAGE_ADD_MEETING_FAILURE_TIME_AFTER_NOW, meetingTime));
+            throw new CommandException(String.format(MESSAGE_ADD_MEETING_FAILURE_TIME_AFTER_NOW,
+                    TimeUtil.toErrorMessage(meetingTime)));
         }
 
         Person editedPerson = createEditedPerson(person, meeting);

@@ -19,14 +19,17 @@ public class DateUtil {
     private static final DateTimeFormatter DATE_PARSER;
 
     private static final DateTimeFormatter DEFAULT_FORMATTER = DateTimeFormatter.ofPattern("dd MMM yyyy");
+    private static final DateTimeFormatter ERROR_MESSAGE_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
     private static final DateTimeFormatter NO_YEAR_FORMATTER = DateTimeFormatter.ofPattern("dd MMM");
 
     private static final String[] patterns;
+    private static final String[] toShowPatterns;
     private static final String[] examples;
 
     static {
-        patterns = new String[]{"dd-MM-yyyy"};
+        patterns = new String[]{"d-M-yyyy", "d-MM-yyyy", "dd-M-yyyy", "dd-MM-yyyy"};
+        toShowPatterns = new String[]{"dd-MM-yyyy"};
         examples = new String[]{"12-12-2020"};
 
         DateTimeFormatterBuilder builder = new DateTimeFormatterBuilder();
@@ -36,7 +39,7 @@ public class DateUtil {
     }
 
     public static final String MESSAGE_CONSTRAINT = MESSAGE_INVALID_DATE_FORMAT + "Format given should be one of "
-        + String.join(", ", patterns) + "\n"
+        + String.join(", ", toShowPatterns) + "\n"
         + "Some examples are " + String.join(", ", examples);
 
     /**
@@ -65,15 +68,19 @@ public class DateUtil {
         return date.isAfter(LocalDate.now());
     }
 
-    public static String toString(LocalDate localDate, DateTimeFormatter dateFormatter) {
-        return dateFormatter.format(localDate);
-    }
-
     public static String toUi(LocalDate localDate) {
         return DEFAULT_FORMATTER.format(localDate);
     }
 
     public static String toUiNoYear(LocalDate localDate) {
         return NO_YEAR_FORMATTER.format(localDate);
+    }
+
+    public static String toErrorMessage(LocalDate localDate) {
+        return ERROR_MESSAGE_FORMATTER.format(localDate);
+    }
+
+    public static String toString(LocalDate localDate, DateTimeFormatter dateFormatter) {
+        return dateFormatter.format(localDate);
     }
 }
