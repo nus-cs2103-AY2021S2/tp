@@ -79,7 +79,7 @@ public class SampleDataUtil {
                 new Type("Hdb"),
                 new Address("226A Compassvale Walk #10-07"),
                 new PostalCode("540236"),
-                new Deadline(LocalDate.parse("01-2-2021", DateTimeFormat.INPUT_DATE_FORMAT)),
+                new Deadline(LocalDate.parse("01-02-2021", DateTimeFormat.INPUT_DATE_FORMAT)),
                 new Remark("Big living room"),
                 getTagSet("3 bedrooms", "Renovation needed"))
         };
