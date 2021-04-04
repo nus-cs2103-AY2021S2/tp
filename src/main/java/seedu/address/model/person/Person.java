@@ -160,6 +160,9 @@ public class Person {
                 .filter(x -> x.isBefore(beforeDate.plusDays(1)))
                 .max(LocalDate::compareTo)
                 .orElse(DateUtil.ZERO_DAY);
+        if (latestMeetingDate.equals(DateUtil.ZERO_DAY)) {
+            return latestMeetingDate;
+        }
         return goal.getGoalDeadline(latestMeetingDate);
     }
 

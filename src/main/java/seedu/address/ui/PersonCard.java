@@ -71,7 +71,8 @@ public class PersonCard extends UiPart<Region> {
             goalText = "No goal set for this person";
         } else {
             LocalDate deadline = person.getGoalDeadline(LocalDate.now());
-            if (deadline.getYear() == DateUtil.ZERO_DAY.getYear()) {
+            LocalDate zeroDay = DateUtil.ZERO_DAY;
+            if (deadline.equals(zeroDay)) {
                 goalText = "Yet to meet this person!";
             } else if (deadline.plusDays(1).isAfter(LocalDate.now())) {
                 goalText = String.format("Deadline for goal: %s", DateUtil.toUi(deadline));

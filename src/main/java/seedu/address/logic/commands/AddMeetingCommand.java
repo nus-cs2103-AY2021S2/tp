@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,6 +34,8 @@ public class AddMeetingCommand extends Command {
             + PREFIX_DESCRIPTION + "We went to the beach!";
 
     public static final String MESSAGE_ADD_MEETING_SUCCESS = "Added meeting for %1$s";
+    public static final String MESSAGE_ADD_MEETING_FAILURE = "Failed to add meeting: Meeting "
+            + "date %1$s is after current date.";
 
     private final Index index;
     private final Event meeting;
@@ -60,6 +63,11 @@ public class AddMeetingCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
+
+
+        if (meeting.getDate().isAfter(LocalDate.now())) {
+            throw new CommandException(String.format(MESSAGE_ADD_MEETING_FAILURE, LocalDate.now()));
+        }
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
