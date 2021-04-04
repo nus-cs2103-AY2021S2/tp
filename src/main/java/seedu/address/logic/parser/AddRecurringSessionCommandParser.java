@@ -29,8 +29,9 @@ import seedu.address.model.student.Name;
 
 public class AddRecurringSessionCommandParser implements Parser<AddRecurringSessionCommand> {
     private static final String MESSAGE_LAST_BEFORE_START = "Last date specified is before the starting date.";
-    private static final String MESSAGE_UNUSED_RECURRENCE = "The session is not recurring, add as a single session" +
-            "or edit the last date.";
+    private static final String MESSAGE_UNUSED_RECURRENCE = "The session is not recurring, "
+            + "add as a single session with add_session "
+            + "or edit the last date.";
     @Override
     public AddRecurringSessionCommand parse(String userInput) throws ParseException {
         ArgumentMultimap argMultimap =
@@ -64,8 +65,8 @@ public class AddRecurringSessionCommandParser implements Parser<AddRecurringSess
             }
             LocalDate possibleDate = RecurringSession.lastValidDateOnOrBefore(lastDateTime, sessionDate, interval);
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, RecurringSession.MESSAGE_CONSTRAINTS + "\n" +
-                            "Did you mean " + possibleDate + " for last date?"));
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, RecurringSession.MESSAGE_CONSTRAINTS + "\n"
+                            + "Did you mean " + possibleDate + " for last date?"));
         }
 
         if (sessionDate.equals(lastDateTime)) {

@@ -45,9 +45,10 @@ class RecurringSessionTest extends SessionTest {
 
         assertEquals(SESSION_DATE.getDate().plusDays(INTERVAL.getValue()),
                 RecurringSession
-                        .lastValidDateOnOrBefore(SESSION_DATE.addDays(INTERVAL.getValue() + 1), SESSION_DATE, INTERVAL));
+                        .lastValidDateOnOrBefore(
+                                SESSION_DATE.addDays(INTERVAL.getValue() + 1), SESSION_DATE, INTERVAL));
     }
-    
+
     @Test
     public void isConsistentDatesAndIntervalTest() {
         SessionDate consistentDateAndInterval = new SessionDate("2021-01-15", "12:00");
