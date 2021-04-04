@@ -54,10 +54,14 @@ public class StatusCommand extends Command {
         requireNonNull(model);
         List<Residence> lastShownList = model.getFilteredResidenceList();
         String updatedResidenceArrayString = "";
+        //check index list first
         for (Index index : indexArray) {
             if (index.getZeroBased() >= lastShownList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_RESIDENCE_DISPLAYED_INDEX);
             }
+        }
+
+        for (Index index : indexArray) {
             Residence residenceToUpdateStatus = lastShownList.get(index.getZeroBased());
             Residence updatedResidence = createUpdatedResidence(residenceToUpdateStatus, status);
             model.setResidence(residenceToUpdateStatus, updatedResidence);
