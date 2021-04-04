@@ -1,4 +1,7 @@
-#About Us
+---
+layout: page
+title: User Guide
+---
 
 Bookcoin to the Moon was developed by the team CS2103-W17-3.
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
