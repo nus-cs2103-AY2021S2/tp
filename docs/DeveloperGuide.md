@@ -239,15 +239,8 @@ an AddSessionCommand with user input `add_session n/STUDENT_NAME d/DATE t/TIME k
    `addSession(name, sessionToAdd)` which adds the session to the specific student.
 5. The result of the command execution is encapsulated as a CommandResult object which is passed back to the Ui.
 
-The `DeleteSessionCommand` does the opposite -- it calls `Model#deleteSession(studentName, sessionIndex)` instead
-which calls `AddressBook#removeSession(studentName, sessionIndex)` and
-`UniqueStudentList#deleteSession(targetStudent, sessionIndex)`.
-
-The following sequence diagram shows how deleting a session works:
-![DeleteSessionSequenceDiagram](images/shion/DeleteSessionSequenceDiagram.png)
-
 #### Design Considerations
-Aspect 1: Type of input for AddSessionCommand and DeleteSessionCommand
+Aspect 1: Type of input for AddSessionCommand
 * **Alternative 1 (current choice)**: Using student name to identify the student to add the session to.
     * Pros:
         * Easier for user to add sessions without constantly having to refer to the application for student id
@@ -266,6 +259,15 @@ updated student index id. Student name on the other hand, stays constant through
 which he also has knowledge of. Therefore, student name can be easily entered without reference to the AddressBook, saving much more time compared
 to alternative 2.
 
+###Delete Session Feature
+The `DeleteSessionCommand` does the opposite of `AddSessionCommand` -- it calls `Model#deleteSession(studentName, sessionIndex)` instead
+which calls `AddressBook#removeSession(studentName, sessionIndex)` and
+`UniqueStudentList#deleteSession(targetStudent, sessionIndex)`.
+
+The following sequence diagram shows how deleting a session works:
+![DeleteSessionSequenceDiagram](images/shion/DeleteSessionSequenceDiagram.png)
+
+It shares the same design considerations as what is mentioned in Add Session Feature. 
 
 
 ### \[Proposed\] Undo/redo feature
