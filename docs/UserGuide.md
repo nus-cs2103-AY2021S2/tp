@@ -267,6 +267,6 @@ Action | Format, Examples |
 **End** | `end`
 **History**|`history`
 **Tag**| `tag INDEX TAGS…` <br> e.g. `tag 1 t/difficult`
-**Delete**| `delete INDEX [TAGS…]` <br> e.g. `delete 1 t/difficult`
+**Delete**| `delete INDEX [TAGS…]` <br> e.g. `delete 1 t/difficult`, `delete 3`
 **Exit** | `exit`
 **Help** | `help`
