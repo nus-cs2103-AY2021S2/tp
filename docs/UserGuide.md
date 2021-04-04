@@ -52,7 +52,7 @@ Start improving your productivity by following these simple steps:
 1. Double-click the `focuris.jar` file to start Focuris.
    You should be able to see the graphical user interface within a few seconds. Note that the application contains some sample data since you are new to the application. <br/>
    The image below is the interface you will see when you first start up Focuris.
-   <br> ![Ui](images/Ui.png)
+   <br> ![Ui](images/user-guide/UiWithReference.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Here are some commands you can get started with:
@@ -162,7 +162,7 @@ The table below gives a detailed summary of the different [parameters](#paramete
 **:information_source: Please take note of the following with regards to parameters in Focuris:** <br/>
 - Identifiers are not meant to be a counter of your events. It is meant to be a unique identifier for your Events in Focuris and may not count in order.
 - Identifiers are automatically generated for you, you do not need to specify an identifier for your Events. 
-- Identifiers will be reset every time you run Focuris.
+- Identifiers will be recalculated every time you run Focuris.
 - Priority is set to `low` if you do not specify a priority for your event. <br/>
 </div>
 
@@ -176,11 +176,11 @@ As a new user, the image below should give you a better understanding of what ea
 
 There are two views in Focuris, which can be toggled between with the [`switch` command](#2310-switch-command):
 
-1. KanBan view
+1. `KanBan` view <br/>
+   ![Ui KanBan](images/user-guide/UiWithReference.png)
 
-![Ui](images/UiWithReference.png)
-
-2. List view
+2. `List` view<br/>
+   ![Ui List](images/user-guide/UiListWithReference.png)
 
 <a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
 
@@ -200,7 +200,7 @@ help
 
 - Pop-up shows you the link to Focuris' user guide.
 
-![help message](images/helpMessageNew.png)
+![help message](images/user-guide/helpMessageNew.png)
 
 <a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
 
@@ -279,23 +279,20 @@ todo n/NAME d/DESCRIPTION [p/PRIORITY]
 
 **What you should expect to happen:**
 
-- After typing
-  `todo n/Household Chores d/Cleaning the kitchen p/high`
-  and pressing enter:
+- Before executing `todo n/Household Chores d/Cleaning the kitchen p/high`:
+  ![Todo before](./images/user-guide/beforeTodoExecution.png)
 
-![Todo Sample Screenshot](./images/user-guide/todo-example-1.png)
-
-_Figure 1. Shows the result **after** execution of Example Command 1 in the table below._
+- After executing `todo n/Household Chores d/Cleaning the kitchen p/high`:
+  ![Todo after](./images/user-guide/afterTodoExecution.png)
 
 **More Sample Commands:**
 
 | No  | Example Command                                                                        | Expected Command Result                                                                                                          |
 | --- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| 1   | `todo n/Household Chores d/Cleaning the kitchen p/high`                                | New Todo added: Household Chores; Priority: HIGH; Description: Cleaning the kitchen; Status: TODO                                |
-| 2   | `todo n/CS2030 Assignment 1 d/Due on 23 Mar 2021 p/h`                                  | New Todo added: CS2030 Assignment 1; Priority: HIGH; Description: Due on 23 Mar 2021; Status: TODO                               |
-| 3   | `todo n/Lunch with John d/At VivoCity on Friday p/m`                                   | New Todo added: Lunch with John; Priority: MEDIUM; Description: At VivoCity on Friday; Status: TODO                              |
-| 4   | `todo n/Complete Homework d/Complete weekly quiz and group tasks for CS2103T p/medium` | New Todo added: Complete Homework; Priority: MEDIUM; Description: Complete weekly quiz and group tasks for CS2103T; Status: TODO |
-| 5   | `todo n/Run d/Exercise p/h`                                                            | New Todo added: Run; Priority: HIGH; Description: Exercise; Status: TODO                                                         |
+| 1   | `todo n/CS2030 Assignment 1 d/Due on 23 Mar 2021 p/h`                                  | New Todo added: CS2030 Assignment 1; Priority: HIGH; Description: Due on 23 Mar 2021; Status: TODO                               |
+| 2   | `todo n/Lunch with John d/At VivoCity on Friday p/m`                                   | New Todo added: Lunch with John; Priority: MEDIUM; Description: At VivoCity on Friday; Status: TODO                              |
+| 3   | `todo n/Complete Homework d/Complete weekly quiz and group tasks for CS2103T p/medium` | New Todo added: Complete Homework; Priority: MEDIUM; Description: Complete weekly quiz and group tasks for CS2103T; Status: TODO |
+| 4   | `todo n/Run d/Exercise p/h`                                                            | New Todo added: Run; Priority: HIGH; Description: Exercise; Status: TODO                                                         |
 
 <a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
 
@@ -313,21 +310,19 @@ log n/NAME d/DESCRIPTION [p/PRIORITY]
 
 **What you should expect to happen:**
 
-- After typing `log n/Complete Homework d/Complete weekly quiz and group tasks for CS2103T` and pressing enter:
-
-![Backlog sample screenshot](./images/user-guide/log-example-1.png)
-
-_Figure 2. Shows the result after execution of Example Command 1 in the table below._
+- Before executing `log n/Complete Homework d/Complete weekly quiz and group tasks for CS2103T`:
+  ![Backlog before](./images/user-guide/beforeLogExecution.png)
+- After executing `log n/Complete Homework d/Complete weekly quiz and group tasks for CS2103T`:
+  ![Backlog after](./images/user-guide/afterLogExecution.png)
 
 **More Sample Commands:**
 
-| No  | Example Command                                                              | Expected Command Result                                                                                                             |
-| --- | ---------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| 1   | `log n/Complete Homework d/Complete weekly quiz and group tasks for CS2103T` | New BackLog added: Complete Homework; Priority: LOW; Description: Complete weekly quiz and group tasks for CS2103T; Status: BACKLOG |
-| 2   | `log n/Household Chores d/Cleaning the kitchen p/h`                          | New BackLog added: Household Chores; Priority: HIGH; Description: Cleaning the kitchen; Status: BACKLOG                             |
-| 3   | `log n/CS2030 Assignment 1 d/Due on 23 Mar 2021 p/m`                         | New BackLog added: CS2030 Assignment 1; Priority: MEDIUM; Description: Due on 23 Mar 2021; Status: BACKLOG                          |
-| 4   | `log n/Lunch with John d/At VivoCity on Friday p/medium`                     | New BackLog added: Lunch with John; Priority: MEDIUM; Description: At VivoCity on Friday; Status: BACKLOG                           |
-| 5   | `log n/Run d/Exercise p/high`                                                | New BackLog added: Run; Priority: HIGH; Description: Exercise; Status: BACKLOG                                                      |
+| No  | Example Command                                          | Expected Command Result                                                                                    |
+| --- | -------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| 1   | `log n/Household Chores d/Cleaning the kitchen p/h`      | New BackLog added: Household Chores; Priority: HIGH; Description: Cleaning the kitchen; Status: BACKLOG    |
+| 2   | `log n/CS2030 Assignment 1 d/Due on 23 Mar 2021 p/m`     | New BackLog added: CS2030 Assignment 1; Priority: MEDIUM; Description: Due on 23 Mar 2021; Status: BACKLOG |
+| 3   | `log n/Lunch with John d/At VivoCity on Friday p/medium` | New BackLog added: Lunch with John; Priority: MEDIUM; Description: At VivoCity on Friday; Status: BACKLOG  |
+| 4   | `log n/Run d/Exercise p/high`                            | New BackLog added: Run; Priority: HIGH; Description: Exercise; Status: BACKLOG                             |
 
 <a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
 
@@ -345,21 +340,19 @@ prog n/NAME d/DESCRIPTION [p/PRIORITY]
 
 **What you should expect to happen:**
 
-- After typing `prog n/CS2030 Assignment d/Due on 23 May 2021 p/medium` and pressing enter:
-
-![Prog sample screenshot](./images/user-guide/prog-example-1.png)
-
-_Figure 3. Shows the result **after** execution of Example Command 1 below._
+- Before executing `prog n/CS2030 Assignment d/Due on 23 May 2021 p/medium`:
+  ![Before Prog](./images/user-guide/beforeProgExecution.png)
+- After executing `prog n/CS2030 Assignment d/Due on 23 May 2021 p/medium`:
+  ![After Prog](./images/user-guide/afterProgExecution.png)
 
 **More Sample Commands:**
 
 | No  | Example Command                                                               | Expected Command Result                                                                                                                     |
 | --- | ----------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1   | `prog n/CS2030 Assignment d/Due on 23 May 2021 p/medium`                      | New In-Progress added: CS2030 Assignment 1; Priority: MEDIUM; Description: Due on 23 Mar 2021; Status: IN_PROGRESS                          |
-| 2   | `prog n/Complete Homework d/Complete weekly quiz and group tasks for CS2103T` | New In-Progress added: Complete Homework; Priority: LOW; Description: Complete weekly quiz and group tasks for CS2103T; Status: IN_PROGRESS |
-| 3   | `prog n/Household Chores d/Cleaning the kitchen p/high`                       | New In-Progress added: Household Chores; Priority: HIGH; Description: Cleaning the kitchen; Status: IN_PROGRESS                             |
-| 4   | `prog n/Lunch with John d/At VivoCity on Friday p/medium`                     | New In-Progress added: Lunch with John; Priority: MEDIUM; Description: At VivoCity on Friday; Status: IN_PROGRESS                           |
-| 5   | `prog n/Run d/Exercise p/h`                                                   | New In-Progress added: Run; Priority: HIGH; Description: Exercise; Status: IN_PROGRESS                                                      |
+| 1   | `prog n/Complete Homework d/Complete weekly quiz and group tasks for CS2103T` | New In-Progress added: Complete Homework; Priority: LOW; Description: Complete weekly quiz and group tasks for CS2103T; Status: IN_PROGRESS |
+| 2   | `prog n/Household Chores d/Cleaning the kitchen p/high`                       | New In-Progress added: Household Chores; Priority: HIGH; Description: Cleaning the kitchen; Status: IN_PROGRESS                             |
+| 3   | `prog n/Lunch with John d/At VivoCity on Friday p/medium`                     | New In-Progress added: Lunch with John; Priority: MEDIUM; Description: At VivoCity on Friday; Status: IN_PROGRESS                           |
+| 4   | `prog n/Run d/Exercise p/h`                                                   | New In-Progress added: Run; Priority: HIGH; Description: Exercise; Status: IN_PROGRESS                                                      |
 
 <a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
 
@@ -390,17 +383,11 @@ Existing event will have its data overwritten by the new values taken in by the 
 
 **What you should expect to happen:**
 
-- Before you execute the command:
+- Before executing `edit 6 n/CS2040S d/Merge Sort Algorithm p/m`:
+  ![Before edit](./images/user-guide/beforeEditExecution.png)
 
-![Edit command screenshot before](./images/user-guide/edit-example-1.png)
-
-_Figure 4. Shows Focuris **before** execution of the edit command in the command box._
-
-- After typing in `edit 5 n/CS2105 Assignment 2 p/high` and pressing enter:
-
-![Edit command screenshot after](./images/user-guide/edit-example-2.png)
-
-_Figure 5. Shows Focuris **after** execution of the edit command in the command box._
+- After executing `edit 6 n/CS2040S d/Merge Sort Algorithm p/m`:
+  ![After edit](./images/user-guide/afterEditExecution.png)
 
 **More Sample Commands:**
 
@@ -428,17 +415,10 @@ delete IDENTIFIER
 
 **What you should expect to happen:**
 
-- Before executing the command:
-
-![delete command screenshot](./images/user-guide/delete-example-1.png)
-
-_Figure 6. Shows Focuris **before** the execution of the delete command in the command box._
-
-- After typing `delete 2` and pressing enter:
-
-![deleted command screenshot](./images/user-guide/delete-example-2.png)
-
-_Figure 7. Shows Focuris **after** the execution of the delete command in the command box._
+- Before execution of `delete 7` command:
+  ![Before delete](./images/user-guide/beforeDeleteExecution.png)
+- After execution of `delete 7` command:
+  ![After delete](./images/user-guide/afterDeleteExecution.png)
 
 **More Sample Commands:**
 
@@ -450,7 +430,7 @@ _Figure 7. Shows Focuris **after** the execution of the delete command in the co
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Note** <br>
-The commands in the table above make reference to the events in Focuris as seen in Figure 7.
+The commands in the table above make reference to the events in Focuris as seen in the screenshot below _After execution of `delete 7` command:_.
 
 </div>
 
@@ -476,11 +456,10 @@ All events will be cleared from Focuris and this is **irreversible**. Please use
 
 **What you should expect to happen:**
 
-- After typing the command and executing the `clear` command, all events in Focuris are cleared.
-
-![clear command screenshot](./images/user-guide/clear-example-1.png)
-
-_Figure 8. Shows Focuris after a clear command has been executed._
+- Before execution of the `clear` command:
+  ![Before clear](./images/user-guide/beforeClearCommand.png)
+- After execution of the `clear` command:
+  ![After clear](./images/user-guide/afterClearCommand.png)
 
 <a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
 
@@ -510,17 +489,10 @@ find KEYWORD [MORE_KEYWORDS]...
 
 **What you should expect to happen:**
 
-- Before executing the `find` command:
-
-![before find screenshot](./images/user-guide/find-before-execute.png)
-
-_Figure 9. **Before** execution of find command_
-
-- After typing `find cs2101 op1` and executing the command:
-
-![after find screenshot](./images/user-guide/find-after-execute.png)
-
-_Figure 10. **After** execution of sample find command_
+- Before execution of `find cs2040s` command:
+  ![Before find](./images/user-guide/beforeFindExecution.png)
+- After execution of `find cs2040s` command:
+  ![After find](./images/user-guide/afterFindExecution.png)
 
 **More Example Commands:**
 
@@ -554,11 +526,10 @@ list
 
 **What you should expect to happen:**
 
-- After execution of the `list` command:
-
-![list example](./images/user-guide/list-example-1.png)
-
-_Figure 11. Execution of list command after find command in Figure 10_
+- After execution of `find cs2040s` command:
+  ![Before list](./images/user-guide/beforeListExecution.png)
+- After execution of `list` command:
+  ![After list](./images/user-guide/afterListExecution.png)
 
 <div class="page-break-before"></div>
 
@@ -575,8 +546,10 @@ done IDENTIFIER
 **What you should expect to happen:**
 
 - Before the execution of the `done 4` command:
+  ![Before done](./images/user-guide/beforeDoneExecution.png)
 
 - After the execution of `done 4` command:
+  ![After done](./images/user-guide/afterDoneExecution.png)
 
 <a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
 
@@ -595,8 +568,10 @@ switch
 **What you should expect to happen:**
 
 - Before execution of the `switch` command, in `KanBan` view:
+  ![Before switch](./images/user-guide/beforeSwitchExecution.png)
 
-- After execution of the `switch` command, from `KanBan` view:
+- After execution of the `switch` command, from `KanBan` view to `List` view:
+  ![After switch](./images/user-guide/afterSwitchExecution.png)
 
 <a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
 
