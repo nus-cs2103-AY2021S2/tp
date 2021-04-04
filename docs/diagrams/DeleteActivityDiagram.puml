@@ -5,10 +5,11 @@ start
 'Since the beta syntax does not support placing the condition outside the
 'diamond we place it as the true branch instead.
 
-if () then ([valid input])
+if () then ([user input is valid])
     :Parse Command;
-    :Delete item from StoreMando;
+    :Delete item from StoreMando inventory;
 else ([else])
+    :Display parse error message;
 endif
 stop
 @enduml
