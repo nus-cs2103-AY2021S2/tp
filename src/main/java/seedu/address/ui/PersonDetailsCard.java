@@ -9,7 +9,6 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import seedu.address.model.person.Event;
 import seedu.address.model.person.Person;
 
 public class PersonDetailsCard extends UiPart<Region> {
