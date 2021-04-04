@@ -8,7 +8,6 @@ import seedu.weeblingo.commons.core.Messages;
 import seedu.weeblingo.logic.commands.exceptions.CommandException;
 import seedu.weeblingo.model.Mode;
 import seedu.weeblingo.model.Model;
-import seedu.weeblingo.model.flashcard.Flashcard;
 import seedu.weeblingo.model.tag.Tag;
 
 /**
@@ -33,22 +32,16 @@ public class LearnCommand extends Command {
         requireNonNull(model);
         int currentMode = model.getCurrentMode();
         if (currentMode == Mode.MODE_MENU) {
-            model.updateFilteredFlashcardList(flashcard -> checkTags(flashcard, tags));
+            if (tags.isEmpty()) {
+                model.updateFilteredFlashcardList(Model.PREDICATE_SHOW_ALL_FLASHCARDS);
+            } else {
+                model.updateFilteredFlashcardList(flashcard -> flashcard.checkHasTags(tags));
+            }
             model.switchModeLearn();
             return new CommandResult(MESSAGE_SUCCESS, false, false);
         } else {
             throw new CommandException(Messages.MESSAGE_NOT_IN_MENU_MODE);
         }
-    }
-
-    private boolean checkTags(Flashcard flashcard, Set<Tag> tags) {
-        boolean check = true;
-        Set<Tag> weeblingoTags = flashcard.getWeeblingoTags();
-        Set<Tag> userTags = flashcard.getUserTags();
-        for (Tag tag : tags) {
-            check = check && (weeblingoTags.contains(tag) || userTags.contains(tag));
-        }
-        return check;
     }
 
     @Override
