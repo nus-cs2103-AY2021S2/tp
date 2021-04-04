@@ -32,9 +32,9 @@ public class StartCommand extends Command {
             + "be a positive integer!";
 
     public static final String MESSAGE_NUMBER_TOO_LARGE =
-            "The number you specified is larger than the "
+            "The number you specified is much larger than the "
                     + "number of flashcards WeebLingo has!\n"
-                    + "Please enter a smaller number. ";
+                    + "Please enter a much smaller number. ";
 
     public static final String MESSAGE_NUMBER_LARGER_THAN_DATABASE_FLASHCARDS_SIZE =
             "The number you specified is larger than the "
