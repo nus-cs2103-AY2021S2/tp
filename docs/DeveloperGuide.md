@@ -48,6 +48,7 @@ title: Developer Guide
     * [UI improvement](#ui-improvement)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Setting up, getting started**
 
@@ -1056,5 +1057,5 @@ testers are expected to do more *exploratory* testing.
 
 ### UI improvement
 * There is a significant change from the initial UI of AB3 to the final UI to make the application more visually appealing.
-* We considered many color choices and UI design and actively asked for feedback from all members in the team and some of our friends also to reach the finalized design for the UI.
+* We considered many color choices and UI design and actively asked for feedback from all members in the team, and some of our friends also to reach the finalized design for the UI.
 * The `CommandBox` is changed so that the input can be split into multiple line, which increases the readability for the user. Although the code for the custom command box came from an online source, it was extremely difficult to find this source code.

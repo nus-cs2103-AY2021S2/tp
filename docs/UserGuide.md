@@ -129,9 +129,10 @@ Format: `help`
 ### Adding a new flashcard: `add`
 
 Adds a new flashcard to the flashcard list.<br>
-Format: `add q/QUESTION a/ANSWER c/CATEGORY p/PRIORITY [t/TAG]...` <br />
+Format: `add q/QUESTION a/ANSWER c/CATEGORY p/PRIORITY [t/TAG]...` <br>
 <div markdown="span" class="alert alert-primary">:memo: **Note:** <br>
 The `TAG` is optional when adding a new flashcard.<br>
+Tag(s) should be alphanumeric, and there should not be any spacing between characters.<br>
 Priority can only take 1 out of 3 values: `High`, `Mid` or `Low`.
 </div>
 <div style="page-break-after: always;"></div>
@@ -200,7 +201,6 @@ Format: `view INDEX`
 <div style="page-break-after: always;"></div>
 
 Examples:
-
 * `view 2` shows the 2nd flashcard (in the displayed flashcard list). <br><br>
   ![UIView](./images/UiViewResult.png)
 
@@ -230,7 +230,7 @@ Examples:
 <div style="page-break-after: always;"></div>
 
 * `find phy` will return cards with `phy` contained in any of the words in any of its fields.<br><br>
-![result for `find phy`](images/findPhyResult.png) <br><br>
+![result for `find phy`](images/findPhyResult.png) <br>
 
 ### Filtering flashcards: `filter`
 
@@ -263,12 +263,11 @@ Examples:
 * `filter q/charles recursion` will return cards with `charles` or `recursion` contained in its question.<br><br>
   ![result for `filter q/charles recursion`](images/filterCharlesRecursionResult.png) <br><br>
 * `filter p/mid q/formula` will return cards with `formula` contained in its question and `mid` priority.<br><br>
-  ![result for `filter p/mid q/formula`](images/filterMidFormulaResult.png) <br><br>
-  
+  ![result for `filter p/mid q/formula`](images/filterMidFormulaResult.png) <br>
   <div style="page-break-after: always;"></div>
 
 * `filter c/com t/ran` will return cards with `com` contained in its category and `ran`contained in any of its tags.<br><br>
-  ![result for `filter c/com t/ran`](images/filterComRanResult.png) <br><br>
+  ![result for `filter c/com t/ran`](images/filterComRanResult.png) <br>
 
 ### Clearing all entries : `clear`
 
@@ -288,32 +287,32 @@ Format: `undo`
 
 Examples:
 `delete 3` <br><br>
-![UiDeleteBeforeUndo](./images/UiDeleteBeforeUndo.png) <br>
-
+![UiDeleteBeforeUndo](./images/UiDeleteBeforeUndo.png) <br><br>
 `clear`  <br><br>
-![UiClearBeforeUndo](./images/UiClearBeforeUndo.png) <br><br>
+![UiClearBeforeUndo](./images/UiClearBeforeUndo.png) <br>
 <div style="page-break-after: always;"></div>
 
 `undo` will reverse the `clear` command. <br><br>
 ![UiClearAfterUndo](./images/UiClearAfterUndo.png) <br><br>
 `undo` will reverse the `delete 3` command. <br><br>
-![UiDeleteAfterUndo](./images/UiDeleteAfterUndo.png) <br><br>
+![UiDeleteAfterUndo](./images/UiDeleteAfterUndo.png) <br>
 
 ### Redoing a command : `redo`
 
 Restores FlashBack to the state before the previous command was undo.
 
 Format: `redo`
+<div style="page-break-after: always;"></div>
 
 Examples:
 `clear` <br><br>
 ![UiClearBeforeUndoBeforeRedo](./images/UiClearBeforeUndoBeforeRedo.png) <br><br>
+`undo` will reverse the `clear` command. <br><br>
+![UiClearAfterUndoBeforeRedo](./images/UiClearAfterUndoBeforeRedo.png) <br>
 <div style="page-break-after: always;"></div>
 
-`undo` will reverse the `clear` command. <br><br>
-![UiClearAfterUndoBeforeRedo](./images/UiClearAfterUndoBeforeRedo.png) <br><br>
 `redo` will reverse the `undo` command. <br><br>
-![UiClearAfterUndoAfterRedo](./images/UiClearAfterUndoAfterRedo.png) <br><br>
+![UiClearAfterUndoAfterRedo](./images/UiClearAfterUndoAfterRedo.png) <br>
 
 ### Sorting all flashcards: `sort`
 Sorts all flashcards according to a given option.
@@ -377,7 +376,7 @@ Examples:
 
 `stats` shows the overall statistics of the current flashcard list.
 
-![UiStats](./images/UiStatsNoIndex.png) <br><br>
+![UiStats](./images/UiStatsNoIndex.png) <br>
 
 ### Adding an alias: `alias`
 Define an alias for a command in FlashBack.
@@ -394,12 +393,12 @@ Examples:
 
 `alias cmd/delete al/d` creates an alias `d` for command `delete`.
 
-![UiNewDeleteAlias](./images/UiNewDeleteAlias.png) <br><br>
+![UiNewDeleteAlias](./images/UiNewDeleteAlias.png) <br>
 <div style="page-break-after: always;"></div>
 
 `d 1` shows the usage of alias `d`.
 
-![UiUseDeleteAlias](./images/UiUseDeleteAlias.png) <br><br>
+![UiUseDeleteAlias](./images/UiUseDeleteAlias.png) <br>
 
 ### Exiting the program : `exit`
 
@@ -414,14 +413,12 @@ FlashBack data are saved in the hard disk automatically after any command that c
 
 ### Editing the data file
 
-FlashBack data are saved as a JSON file `[JAR file location]/data/flashback.json`. Advanced users are welcome to update
-data directly by editing that data file.
+FlashBack data are saved as a JSON file `[JAR file location]/data/flashback.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">
 
 :exclamation: **Caution:**
-If your changes to the data file makes its format invalid, FlashBack will discard all data and start with an empty data
-file at the next run.
+If your changes to the data file makes its format invalid, FlashBack will discard all data and start with an empty data file at the next run.
 
 </div>
 <div style="page-break-after: always;"></div>
