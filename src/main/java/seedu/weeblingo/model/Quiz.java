@@ -1,6 +1,7 @@
 package seedu.weeblingo.model;
 
 import static seedu.weeblingo.commons.core.Messages.MESSAGE_TAG_NOT_FOUND;
+import static seedu.weeblingo.logic.commands.StartCommand.MESSAGE_NUMBER_LARGER_THAN_DATABASE_FLASHCARDS_SIZE;
 
 import java.time.Duration;
 import java.time.Instant;
@@ -137,7 +138,7 @@ public class Quiz {
 
         // Check if number of questions specified is larger than number of flashcards in database
         if (numberOfQuestions > flashcardsToProcess.size()) {
-            throw new CommandException(StartCommand.MESSAGE_NUMBER_LARGER_THAN_DATABASE_FLASHCARDS_SIZE
+            throw new CommandException(MESSAGE_NUMBER_LARGER_THAN_DATABASE_FLASHCARDS_SIZE
                     + flashcardsToProcess.size() + ".");
         }
 
