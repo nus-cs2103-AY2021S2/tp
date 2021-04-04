@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Task's title in the planner.
  * Guarantees: immutable; is valid as declared in {@link #isValidTitle(String)}
  */
-public class Title {
+public class Title implements Attribute {
     public static final String FIELD_NAME = "Title";
 
     public static final String MESSAGE_CONSTRAINTS =

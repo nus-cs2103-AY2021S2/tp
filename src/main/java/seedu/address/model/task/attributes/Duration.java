@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
  * Represents a Task's Duration in the List.
  * Guarantees: immutable; is valid as declared in {@link #isValidDuration(String)}
  */
-public class Duration {
+public class Duration implements Attribute {
     public static final String FIELD_NAME = "Duration";
 
     public static final String MESSAGE_CONSTRAINTS = "Duration should be numeric, consisting of start time and end time"

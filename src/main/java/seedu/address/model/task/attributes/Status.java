@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Person's status in the address book.
  * Guarantees: immutable; is always valid
  */
-public class Status {
+public class Status implements Attribute {
 
     public static final String DONE_STATE = "done";
 
@@ -42,6 +42,11 @@ public class Status {
     public static boolean isValidStatus(String value) {
         return value.equals(DONE_STATE)
                 || value.equals(NOT_DONE_STATE);
+    }
+
+    @Override
+    public boolean isEmptyValue() {
+        return value.equals("");
     }
 
     @Override
