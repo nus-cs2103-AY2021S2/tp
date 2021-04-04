@@ -159,7 +159,7 @@ Examples:
 
 Displays a list of contacts in the contact list, with optional search criteria.
 
-Format: `list [--exact] [--any] [-n NAME]... [-t TAG]... [-b BIRTHDAY] [-s SORT_FIELD] [-o SORT_ORDER]`
+Format: `list [--exact] [--any] [-n NAME]... [-t TAG]... [-b BIRTHDAY]... [-s SORT_FIELD] [-o SORT_ORDER]`
 1. If no search parameters specified, `list [-s SORT_FIELD] [-o SORT_ORDER]`: List all contacts in contact list
    * `-s` parameter optionally sorts contacts by `SORT_FIELD`:
      * `n`, `name`: names in (case-sensitive) lexicographical order (by default, if `-s` not specified)
@@ -169,7 +169,7 @@ Format: `list [--exact] [--any] [-n NAME]... [-t TAG]... [-b BIRTHDAY] [-s SORT_
      * `a`, `asc`, `ascending`: ascending (by default, if `-o` not specified)
      * `d`, `desc`, `descending`: descending
      * Sorts by upcoming birthday do not accept the `descending` order
-2. If search parameters specified, `list [--exact] [--any] [-n NAME]... [-t TAG]... [-b BIRTHDAY] [-s SORT_FIELD] [-o SORT_ORDER]`: List all contacts matching the search criteria
+2. If search parameters specified, `list [--exact] [--any] [-n NAME]... [-t TAG]... [-b BIRTHDAY]... [-s SORT_FIELD] [-o SORT_ORDER]`: List all contacts matching the search criteria
    * Search criteria, case-insensitive:
      * `-n` filters the contacts by name
      * `-t` filters the contacts by tags
@@ -189,6 +189,8 @@ Examples:
 * `list --any -n alice -t friend` Lists out all contacts whose name is "alice" or who have the "friend" tag
 * `list --exact -n alice -t friend` Lists out all contacts whose name contain "alice" and who have tags that contain "friend"
 * `list --exact --any -n alice -t friend` Lists out all contacts whose name contain "alice" or who have tags that contain "friend"
+* `list --any -n alice -n bob` Lists out all contacts whose name contain either "alice" or "bob"
+* `list --any -b 8 -b 9` Lists out all contacts whose birthdays are either in August or September
 
 ### Event List Commands
 
