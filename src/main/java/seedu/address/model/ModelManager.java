@@ -655,9 +655,6 @@ public class ModelManager implements Model {
     }
 
     public LocalDate getTimeTableDate() {
-        System.out.println("aaa");
-
-        System.out.println(timeTableDateMap.get(0));
         return timeTableDateMap.get(0);
     }
 
