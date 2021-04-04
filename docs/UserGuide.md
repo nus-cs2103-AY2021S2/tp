@@ -163,6 +163,7 @@ The table below gives a detailed summary of the different [parameters](#paramete
 - Identifiers are not meant to be a counter of your events. It is meant to be a unique identifier for your Events in Focuris and may not count in order.
 - Identifiers are automatically generated for you, you do not need to specify an identifier for your Events. 
 - Identifiers will be recalculated every time you run Focuris.
+- Identifiers do not get reset to 1 after a `clear` command.
 - Priority is set to `low` if you do not specify a priority for your event. <br/>
 </div>
 
@@ -429,7 +430,7 @@ delete IDENTIFIER
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Note** <br>
+**:information_source: Note:** <br>
 The commands in the table above make reference to the events in Focuris as seen in the screenshot below _After execution of `delete 7` command:_.
 
 </div>
