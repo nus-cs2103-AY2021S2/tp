@@ -11,7 +11,7 @@ import fooddiary.model.Model;
 import fooddiary.model.entry.Entry;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a entry identified using it's displayed index from the food diary.
  */
 public class DeleteCommand extends Command {
 

@@ -66,7 +66,7 @@ public class DeleteCommandTest {
         CommandTestUtil.showEntryAtIndex(model, INDEX_FIRST_ENTRY);
 
         Index outOfBoundIndex = INDEX_SECOND_ENTRY;
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of food diary list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getFoodDiary().getEntryList().size());
 
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);

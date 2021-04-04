@@ -32,7 +32,7 @@ public class TagCategory extends Tag {
     }
 
     public static boolean isValidTagName(String tagCategory) {
-        return Categories.matches(tagCategory) && !(tagCategory.toUpperCase().equals("INVALID"));
+        return Categories.matches(tagCategory) && !(tagCategory.toUpperCase().equals(Categories.INVALID.name()));
     }
 
     @Override

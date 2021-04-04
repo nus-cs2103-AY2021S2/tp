@@ -11,36 +11,20 @@ Donavan Lim, Marcus Lee Eugene, Chong Sidney, Dinesh S/O Magesvaran, Prabhakaran
 * Table of Contents
 {:toc}
 
-    * Description
-    * Features
-        * add
-        * addon
-        * delete
-        * list
-        * find
-        * findall
-        * help
-        * view
-        * revise
-        * edit
-    * Command Summary
-    * UI mock-up
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## Description
 
-The Food Diary is a desktop app for managing food diary entries, optimized with a Command Line Interface (CLI)
-and packaged with a Graphical User Interface (GUI).
+The Food Diary is a desktop app for managing food diary entries, optimized with a Command Line Interface (CLI) and packaged with a Graphical User Interface (GUI).
 
-The Food Diary caters to food-passionate NUS students who would ideally benefit from keeping records of
-food options tasted in the vicinity of NUS.
+The Food Diary caters to food-passionate NUS students who would ideally benefit from keeping records of food options tasted in the vicinity of NUS.
 
-The Food Diary will allow students to save time and effort when finding places to
-eat around the NUS vicinity. The Food Diary especially caters to students chiefly on 3 aspects:
+The Food Diary will allow students to save time and effort when finding places to eat around the NUS vicinity. The Food Diary especially caters to students mainly on 4 aspects:
+
 1. The ability for users to save food diary entries for future reference.
-2. The ability for users to find entries where food are within a certain price range.
-3. The ability to effortlessly reference food options based on relevant filters in a user-friendly GUI
+2. The ability for users to find entries based on specific fields.
+3. The ability for users to have multiple food reviews for a food place.
+4. The option for users to use Commands / UI to perform some tasks quickly.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -59,13 +43,15 @@ Parameter: none
 Example:
 (Refer to Main Window Ui in Appendix)
 
-### Add an entry: `add`
+### Add a FoodDiary entry: `add`
 
 Adds an entry to the Food Diary.
 
 Format: `add n/<RESTAURANT NAME> ra/RATING p/PRICE re/REVIEW a/ADDRESS [c/CATEGORY]... [s/SCHOOL]...`
 
+Note:
 - A FoodDiary entry can have any number of categories or schools
+- Price range: $0 - 999
 
 Parameters:
 
@@ -74,30 +60,40 @@ Parameters:
 3. `Price`
 3. `Address`
 4. `Review`
-5. `Category`
-6. `School`
+5. `Categories (optional)`
+6. `Schools (optional)`
+
+Schools are limited to the following NUS locations:
+    `BIZ`, `CLB`, `DENT`, `FASS`, `FOE`,`MED`, `NUSS`, `PGP`, `SCIENCE`, `SDE`, `SOC`,
+`USC`, `UTOWN`, `UHALL`, `VENTUS`, `YIH`
+
+Categories are limited to the following:
+    `Chinese`, `Dessert`, `Fastfood`, `Fruits`, `Fusion`, `Halal`, `Indian`, `Japanese`, `Korean`, `Malay`,
+`Vegan`, `Vegetarian` ,`Western`, `Others`
 
 
 Example:
 
-    add  n/Al Amaan Restaurant ra/5 p/8 re/best for Butter Chicken a/12 Clementi Rd, Singapore 129742 c/Indian Muslim s/FOE
+    add  n/Al Amaan Restaurant ra/5 p/8 re/best for Butter Chicken a/12 Clementi Rd, Singapore 129742 c/Indian s/FOE
+    add  n/7 Eleven ra/3 p/4 re/Mac and cheese there is amazing a/NUS c/Halal s/YIH s/SOC
 
-### Addon a review or a price to an entry: `addon`
-Adds-on a review and/or a price to an entry of the Food Diary.
+### Addon a review or a price to a FoodDiary entry: `addon`
+Adds-on a review and/or a price to a FoodDiary entry of the Food Diary.
 
 Format: `addon <INDEX> [re/REVIEW] [p/PRICE]` or `addon <INDEX> [p/PRICE] [re/REVIEW]...`
 
-Parameters: 
+Parameters:
 
 1. `Index`
 2. `Review` or `Price` or both.
 
-- Adds on a review and/or a price to an entry at the specified `INDEX`.
-- Index refers to the index number shown in the displayed entry list. The index must be a
+- Adds on a review and/or a price to a FoodDiary entry at the specified `INDEX`.
+- Multiple reviews with one price can be added on.
+- Index refers to the index number shown in the displayed FoodDiary entry list. The index must be a
   positive integer (e.g. 1,2,3,...)
 - At least one of the optional fields must be provided
 - Existing reviews in the FoodDiary entry (at the specified `INDEX`) will be added on to the input reviews
-- Existing price/price range in the FoodDiary entry (at the specified `INDEX`) will be updated according the 
+- Existing price/price range in the FoodDiary entry (at the specified `INDEX`) will be updated according the
 input price
 
 Examples:
@@ -107,9 +103,9 @@ Examples:
     addon 3 p/6
     addon 3 p/6 re/I like the way the rice is cooked
 
-### Delete an entry: `delete`
+### Delete a FoodDiary entry: `delete`
 
-Deletes an entry from the Food Diary.
+Deletes a FoodDiary entry from the Food Diary.
 
 Format: `delete n/<NAME>` or `delete i/<INDEX>`
 
@@ -121,13 +117,14 @@ Example:
 
     delete n/McDonald’s Clementi Mall
 
-### Find entries generally: `find`
+### Find FoodDiary entries generally: `find`
 
-Finds entries whose names, ratings, price, address, categories and schools match any of the provided keywords.
+Finds FoodDiary entries whose names, ratings, price, address, categories and schools match any of the provided keywords.
 
 - More than one keyword per field can be accepted as parameters.
 - Different fields can also be simultaneously accepted as parameters.
-- For the price field, a price range can also be accepted as a parameter, and any entry that contains at least one of the prices within the specified range will be returned as a search result.
+- For the price field, a price range can also be accepted as a parameter, and any
+ FoodDiary entry that contains at least one of the prices within the specified range will be returned as a search result.
 
 Format: `find <KEYWORD> ...`
 
@@ -149,15 +146,16 @@ Example:
     find fastfood indian $6
     find clementi 5/5 $8-15 western
 
-### Find specific entries: `findall`
+### Find specific FoodDiary entries: `findall`
 
-Finds for entries whose names, ratings, price, address, categories and schools match all of the provided keywords.
+Finds for FoodDiary entries whose names, ratings, price, address, categories and schools match all of the provided keywords.
 
 - More than one keyword per field can be accepted as parameters.
 - Different fields can also be simultaneously accepted as parameters.
-- For the price field, a price range can also be accepted as a parameter, and any entry that contains at least one of the prices within the specified range will be returned as a search result.
-- **Unlike the find feature, the findall feature only returns search results of entries that contain all of
-the provided keywords.**
+- For the price field, a price range can also be accepted as a parameter, and any FoodDiary entry that contains at least
+ one of the prices within the specified range will be returned as a search result.
+- **Unlike the find feature, the findall feature only returns search results of FoodDiary entries that contain all of
+ the provided keywords.**
 
 Format: `findall <KEYWORD> ...`
 
@@ -176,24 +174,36 @@ Example:
 
     findall clementi fastfood 5/5 $9
 
-### View a specific entry: `view`
+### View a specific FoodDiary entry: `view`
 
-Opens up a window, showing the details of a specified entry in a full expanded view. Allows the user to read through
+Opens up a window, showing the details of a specified FoodDiary entry in a full expanded view. Allows the user to read through
  reviews that are too lengthy to be shown in the main UI window.
 
 Format: `view <INDEX>`
 
 Parameter:
 
-1. `Index of entry`
+1. `Index of FoodDiary entry`
 
-Example: 
+Example:
 
     view 1
+
 ![View Window UI](images/ViewWindowUi.png)
 
-### List all the food reviews : `list`
+### List all the FoodDiary entries : `list`
 
+Shows a list of all FoodDiary entries.
+
+Format: `list`
+
+Parameter: none
+
+Example:
+
+    list
+
+### Open Help Window : `help`
 Opens up a window to show a condensed form of all the different commands,
  and parameters of the commands,
  that can be typed by the user in The Food Diary.
@@ -202,19 +212,18 @@ Format: `help`
 
 Parameter: none
 
-Example: (Refer to Help Window in Appendix)
+Example:
 
     help
-    
-### Help Window UI
+
 ![Help Window UI](images/HelpWindowUi.png)
 
-### Revise a specific entry `revise`
+### Revise a specific FoodDiary entry `revise`
 
-Opens up a window, showing the existing details of an entry and allows for quick corrections and updates without 
-requiring the use of prefixes and command syntax in the UI. 
+Opens up a window, showing the existing details of an FoodDiary entry and allows for quick corrections and updates without
+requiring the use of prefixes and command syntax in the UI.
 
-Use `TAB` key to iterate through fields, `Ctrl + S` (Windows) or `Command + S` (Mac) to save, `ESC` key to quickly 
+Use `TAB` key to iterate through fields, `Ctrl + S` (Windows) or `Command + S` (Mac) to save, `ESC` key to quickly
 exit the revise window.
 
 Note:
@@ -226,7 +235,7 @@ Format: `revise <INDEX>`
 
 Parameter:
 
-1. `Index of entry`
+1. `Index of FoodDiary entry`
 
 Example:
 
@@ -234,11 +243,15 @@ Example:
 
 ![Revise Window UI](images/ReviseWindowUi.png)
 
-### Editing a specific entry `edit`
+### Editing a specific FoodDiary entry `edit`
 
-Edits the details of the entry specified. Existing values will be overwritten by the new values.
+Edits the details of the FoodDiary entry specified. Existing values will be overwritten by the new values.
 
 Format: `edit <INDEX> n/<RESTAURANT NAME> ra/<RATING> p/<PRICE> re/<REVIEW> a/<ADDRESS> c/<CATEGORIES> s/<SCHOOLS>`
+
+Note: 
+- Price range: $0 - 999
+- Categories and schools are stated in `add` command
 
 Parameters:
 
@@ -253,8 +266,20 @@ Parameters:
 Example:
 
     edit 1 ra/5 p/7 re/I like this food a lot! a/Science c/Indian c/Halal s/Ventus
--------------------------------------------------------------------------------------
+    edit 1 re/I like the chicken re/ I like the rice
 
+### Clear all entries `clear`
+Clearing all entries from food diary.
+
+Format: `clear`
+
+
+### Exiting food diary `exit`
+Close and exit the program.
+
+Format: `exit`
+
+------------------------------------------------------------------------------------
 ## FAQ
 
 Q: How do I transfer my data to another Computer?
@@ -279,23 +304,25 @@ Action | Format, Examples
 **View** |`view <INDEX>` <br> e.g `view 1`
 **Revise** |`revise <INDEX>` <br> e.g `revise 1`
 **Edit** |`edit <INDEX> n/<RESTAURANT NAME> ra/<RATING> p/<PRICE> re/<REVIEW> a/<ADDRESS> c/<CATEGORIES> s/<SCHOOLS>` <br> e.g `edit 1 ra/5 p/7 re/I like this food a lot! a/Science c/Indian c/Halal s/Ventus`
+**Clear**| `clear` e.g `clear`
+**Exit** | `exit` e.g `exit`
 
 ## Keyboard Shortcuts Summary
 
 Action | Keyboard Shortcut| Windows where Keyboard shortcut is available
 :-------:|:------------------:|:---------------------------------------------:
 **Exit/Close Window** | `ESC` | Main Window, View Window, Revise Window, Help Window
-**Open Help Window** | `F1` | Main Window 
-**Skip through text fields in Revise Window** | `TAB` | Revise Window 
+**Open Help Window** | `F1` | Main Window
+**Skip through text fields in Revise Window** | `TAB` | Revise Window
 **Save Changes in Revise Window** | `Ctrl + S (Windows OS)` or `Command + S (macOS)` | Revise Window
 
-## Glossary 
+## Glossary
 
 - **Main Window:** The Window that appears when the application starts up
 - **View Window:** The Window that appears when viewing a FoodDiary entry through the `view` command
 - **Revise Window** The Window that appears when revising a FoodDairy entry through the `edit` command
 
 
-### UI mock-up
+## UI mock-up
 
 ![Main Window UI](images/Ui.png)
