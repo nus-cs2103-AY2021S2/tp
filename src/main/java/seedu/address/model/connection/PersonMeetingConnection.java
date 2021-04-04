@@ -1,9 +1,5 @@
 package seedu.address.model.connection;
 
-import static java.util.Objects.requireNonNull;
-
-import java.util.HashMap;
-
 import seedu.address.model.connection.exceptions.ConnectionNoFoundException;
 import seedu.address.model.connection.exceptions.DuplicateConnectionException;
 import seedu.address.model.meeting.Meeting;
@@ -11,6 +7,10 @@ import seedu.address.model.meeting.UniqueMeetingList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
+
+import java.util.HashMap;
+
+import static java.util.Objects.requireNonNull;
 
 /**
  * Represents a connection between persons and meetings.
@@ -126,6 +126,18 @@ public class PersonMeetingConnection {
             }
             personsInMeeting.remove(meeting);
         }
+    }
+    /**
+     * This method delete a all connections related to a given meeting.
+     */
+    public HashMap<Person, UniqueMeetingList> getPersonMeetingMap() {
+        return meetingsInPerson;
+    }
+    /**
+     * This method delete a all connections related to a given meeting.
+     */
+    public HashMap<Person, UniqueMeetingList> getMeetingPersonMap() {
+        return meetingsInPerson;
     }
 
     //Util methods

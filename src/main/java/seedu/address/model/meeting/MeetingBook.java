@@ -1,13 +1,13 @@
 package seedu.address.model.meeting;
 
 
-import static java.util.Objects.requireNonNull;
+import javafx.collections.ObservableList;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
-import javafx.collections.ObservableList;
+import static java.util.Objects.requireNonNull;
 
 public class MeetingBook implements ReadOnlyMeetingBook {
     private final UniqueMeetingList meetings;
@@ -93,6 +93,18 @@ public class MeetingBook implements ReadOnlyMeetingBook {
      */
     public void removeMeeting(Meeting key) {
         meetings.remove(key);
+    }
+
+    /**
+     * For storage use @code{JsonAdaptedPersonMeetingConnection}
+     */
+    public Meeting getMeetingByNameAndStartTime(MeetingName name, DateTime start) {
+        for (Meeting meeting : meetings) {
+            if (meeting.getName().equals(name) && meeting.getStart().equals(start)) {
+                return meeting;
+            }
+        }
+        return null;
     }
 
     // ===================== Clashing meetings checks =================================================

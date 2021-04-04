@@ -97,6 +97,18 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * For storage use @code{JsonAdaptedPersonMeetingConnection}
+     */
+    public Person getPersonByName(PersonName name) {
+        for (Person person : persons) {
+            if (person.getName().equals(name)) {
+                return person;
+            }
+        }
+        return null;
+    }
+
+    /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
