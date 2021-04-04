@@ -128,8 +128,8 @@ Format: `find [n/NAME_KEYWORDS] [t/TAG_KEYWORDS] [a/ADDRESS_KEYWORDS] [e/EMAIL_K
 
 * At least one of the parameters must be included as the parameters.
 * Parameters, if provided, may not be empty. In other words, commands such as `find n/` or `find n/abc t/` are invalid.
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* The search is case-insensitive. e.g `hans` will match `Hans`.
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`.
 * For name, tag and address parameters, only full words will be matched e.g. `Han` will not match `Hans`.
 * For email and phone parameters, partial matches are allowed, e.g. for phone number, `8123` will match `81234567`.  
 * Persons matching at least one keyword of each provided attribute will be returned.
@@ -141,8 +141,10 @@ Format: `find [n/NAME_KEYWORDS] [t/TAG_KEYWORDS] [a/ADDRESS_KEYWORDS] [e/EMAIL_K
 Examples:
 * `find n/John` returns `john` and `John Doe`
 * `find n/alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+  ![result for 'find n/alex david'](images/findAlexDavidResult.png)
 * `find n/alex david t/family` returns `David Li`
+* `find n/bernice b/true` returns `Bernice Yu`<br>
+  ![result for 'find n/bernice b/true](images/findBerniceBlistResult.png)
 
 ### Deleting a person : `delete`
 
