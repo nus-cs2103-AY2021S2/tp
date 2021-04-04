@@ -24,7 +24,7 @@ public class AddMeetingCommand extends Command {
             + PREFIX_ON + "DATE TIME "
             + PREFIX_LOCATION + "LOCATION "
             + PREFIX_DESCRIPTION + "DESCRIPTION "
-            + "(optional) " + PREFIX_TAG + "TAG(s) \n"
+            + "[" + PREFIX_TAG + "TAG(s)] \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_CLIENT + "John Doe "
             + PREFIX_ON + "12-10-2021 10:00 "
