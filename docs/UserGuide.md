@@ -144,29 +144,31 @@ Format: `list sessions`
 
 Shows a list of all sessions in the address book.
 
-### Viewing a tutor : `view`
+### Viewing a tutor : `view_person`
 
 Views an existing tutor's details.
 
-Format: `view t/ID`
+Format: `view_person t/ID`
 
 * Views the tutor with the specified tutor ID.
-* Tutor’s name, contact number, existing classes, email and address will be given.
+* Tutor’s information such as name, contact number, address etc will be displayed on the left panel
+* Sessions assigned to the tutor will be displayed on the right panel
 
 Example:
-* `view t/1` views the details of the tutor with tutor ID 1.
+* `view_person t/1` views the details of the tutor with tutor ID 1.
 
-### Viewing a student : `view`
+### Viewing a student : `view_person`
 
 Views an existing student's details.
 
-Format: `view s/ID`
+Format: `view_person s/ID`
 
 * Views the student with the specified student ID.
-* Student’s name, contact number, email and address will be given.
+* Student’s information such as name, contact number, address etc will be displayed on the left panel
+* Sessions assigned to the student will be displayed on the right panel
 
 Example:
-* `view s/1` views the details of the student with student ID 1.
+* `view_person s/1` views the details of the student with student ID 1.
 
 ### Viewing a session : `view_session`
 
@@ -380,5 +382,5 @@ Action | Format, Examples
 **Unassign** | `unassign [s/ID]… [t/ID] c/ID`<br> e.g., `unassign s/1 s/2 t/1 c/1`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | For All Persons: <br>`list persons` <br><br> For All Students: <br>`list students` <br><br> For All Tutors: <br>`list tutors` <br><br> For All Sessions: <br>`list sessions`
-**View** | For Person: <br><br> For Session: <br> `view_session c/ID` <br> e.g., `view_session c/5`
+**View** | For Student: <br>`view_person s/ID`<br> e.g. `view_person s/1` <br> <br> For Tutor: <br> `view_person t/ID`<br> e.g. `view_person t/1` <br> <br>  For Session: <br> `view_session c/ID` <br> e.g., `view_session c/5`
 **Help** | `help`
