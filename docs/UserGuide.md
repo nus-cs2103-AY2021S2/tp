@@ -344,6 +344,13 @@ Reviews the current list of flashcards.<br>
 When the user enters `review` in the command box, this new window will appear. <br><br>
 ![UiReviewMode](./images/UiReviewModeNoAnswer.png) <br><br>
 Format: `review`
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Note:** The flashcards in Review Mode are appeared in random order.
+
+</div>
+
+
 <div style="page-break-after: always;"></div>
 
 ### Viewing statistics of flashcards: `stats`
