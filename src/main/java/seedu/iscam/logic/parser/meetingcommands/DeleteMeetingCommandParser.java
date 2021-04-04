@@ -9,6 +9,7 @@ import seedu.iscam.logic.parser.Parser;
 import seedu.iscam.logic.parser.ParserUtil;
 import seedu.iscam.logic.parser.exceptions.ParseException;
 import seedu.iscam.logic.parser.exceptions.ParseFormatException;
+import seedu.iscam.logic.parser.exceptions.ParseIndexException;
 
 public class DeleteMeetingCommandParser implements Parser<DeleteMeetingCommand> {
     /**
@@ -21,9 +22,12 @@ public class DeleteMeetingCommandParser implements Parser<DeleteMeetingCommand> 
         try {
             Index index = ParserUtil.parseIndex(args);
             return new DeleteMeetingCommand(index);
+        } catch (ParseIndexException pie) {
+            throw pie;
         } catch (ParseException pe) {
-            throw new ParseFormatException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE),
-                    pe);
+            throw new ParseFormatException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                            DeleteMeetingCommand.MESSAGE_USAGE), pe);
         }
     }
 }
