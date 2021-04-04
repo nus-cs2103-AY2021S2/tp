@@ -10,9 +10,7 @@ on ModuleBook3.5.
 
 * Table of Contents
 {:toc}
-
-Current module codes supported: CS1101S, CS1231S, CS2030, CS2040S, CS2101,
-  CS2103T, CS2105, CS2106, CS3230, CS3243, CS3244, IS1103, ST2131
+  
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -44,6 +42,36 @@ Current module codes supported: CS1101S, CS1231S, CS2030, CS2040S, CS2101,
 1. Tasks are colour coded based on done status.
     1. Done tasks are coloured pink.
     1. Tasks that are not done are coloured differently.
+    
+1. You can rate a task's expected workload using the following mapping:
+   
+   Input Parameter | Workload Rating
+   --------|------------------
+   **w/1** | Low
+   **w/2** | Medium
+   **w/3** | High
+   E.g. for a low workload rating, key in `w/1`.
+   
+1. The following module codes are supported 
+   (Note that subject description may differ from actual module name):
+
+    Module Code | Subject Description
+    --------|------------------
+    CS1101S | Basic Programming Course
+    CS1231S | Discrete Mathematics
+    CS2030 | Intermediate Programming Course
+    CS2040 | Introductory Data Structures and Algorithms
+    CS2101 | Effective Communication for Computing Professionals
+    CS2103T | Introductory Software Engineering
+    CS2105 | Introduction to Computer Networks
+    CS2106 | Introduction to Operating Systems
+    CS3230 | Advanced Algorithm Design and Analysis
+    CS3243 | Introduction to Artificial Intelligence
+    CS3244 | Machine Learning
+    IS1103 | Computing Ethics
+    ST2131 | Statistics
+    If your module code does not appear in the above table, 
+    you may use a substitute module code based on the subject description.
   
 <div style="page-break-after: always;"></div>
 
@@ -57,6 +85,9 @@ Current module codes supported: CS1101S, CS1231S, CS2030, CS2040S, CS2101,
 
 * Words in `UPPER_CASE` are the compulsory parameters to be supplied by you.<br>
   e.g. in `add d/DESCRIPTION`, `DESCRIPTION` is a parameter which can be used as `add d/DESCRIPTION`.
+  
+* For commands that take in an `INDEX`, only one index is to be supplied.<br>
+  e.g. `delete 1` will work but `delete 1 3` (2 indices) will not.
 
 * For `MODULE`, the letters in module code should be upper-case.<br>
   e.g. `CS2103T` and not `cs2103t`.
@@ -186,7 +217,7 @@ Format: `done INDEX`
 
 Examples:
 * `list` followed by `done 2` marks the 2nd task as done in the ModuleBook3.5.
-* `find CS2103T` followed by `done 1` marks the 1st task in the results of the `find` command as done.
+* `find Quiz` followed by `done 1` marks the 1st task in the results of the `find` command as done.
 
 
 ### Mark a task as not done : `notdone`
@@ -203,7 +234,7 @@ Format: `notdone INDEX`
 
 Examples:
 * `list` followed by `notdone 2` marks the 2nd task as not done in the ModuleBook3.5.
-* `find CS2103T` followed by `notdone 1` marks the 1st task in the results of the `find` command as not done.
+* `find Quiz` followed by `notdone 1` marks the 1st task in the results of the `find` command as not done.
 
 
 ### Add a tag: `tag`
@@ -212,7 +243,7 @@ Adds a tag to a task.
 
 Application: Used to briefly indicate the nature of the task.
 
-Format: `tag INDEX t/TAG [t/MORETAGS]` 
+Format: `tag INDEX t/TAG [t/MORETAGS]...​` 
 
 * Attaches one or more tags to the task associated with INDEX. Tags can be used to identify related tasks.
 
@@ -238,7 +269,7 @@ Examples:
 
 ### Search tasks with tag: `findTag`
 
-Searches for tasks with an associated tag.
+Searches for tasks with an associated tag. Note that tags are case-sensitive.
 
 Application: Used to find tasks that are similar in nature.
 
@@ -268,7 +299,7 @@ Examples:
 
 ### Delete tag of Task: `deleteTag`
 
-Deletes a tag from its associated task.
+Deletes a tag from its associated task. Note that tags are case-sensitive.
 
 Application: Used to remove a tag without the need to reset all other tags.
 
@@ -302,7 +333,7 @@ Format: `edit INDEX [n/NAME] [m/MODULE] [d/DESCRIPTION] [a/START TIME] [b/DEADLI
 Examples:
 *  `edit 1 d/Eat Biscuits` Edits the description of the 1st task to `Eat Biscuits`.
 *  `edit 2 d/Eat Biscuits b/2021-03-21 10:10` Edits the description of the 2nd task to be `Eat Biscuits` and its deadline to date `2021-03-21 10:10`.
-*  `edit 2 b/2021-03-21` Edits the deadline of the 3rd task to `2021-03-25`
+*  `edit 2 b/2021-03-25` Edits the deadline of the 3rd task to `2021-03-25`
 
 
 ### Sort tasks : `sort`
