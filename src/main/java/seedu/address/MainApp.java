@@ -135,10 +135,12 @@ public class MainApp extends Application {
             }
             initialData = tutorBookOptional.orElseGet(SampleDataUtil::getSampleTutorBook);
         } catch (DataConversionException e) {
-            logger.warning("TutorBook: Data file not in the correct format. Will be starting with an empty TutorBook");
+            logger.warning("TutorBook: Data file not in the correct format. "
+                    + "Will be starting with an empty TutorBook");
             initialData = new TutorBook();
         } catch (IOException e) {
-            logger.warning("TutorBook: Problem while reading from the file. Will be starting with an empty TutorBook");
+            logger.warning("TutorBook: Problem while reading from the file. "
+                    + "Will be starting with an empty TutorBook");
             initialData = new TutorBook();
         }
 
@@ -150,10 +152,12 @@ public class MainApp extends Application {
             initialAppointments =
                     appointmentBookOptional.orElseGet(SampleDataUtil::getSampleAppointmentBook);
         } catch (DataConversionException e) {
-            logger.warning("AppointmentBook: Data file not in the correct format. Will be starting with an empty AppointmentBook");
+            logger.warning("AppointmentBook: Data file not in the correct format. "
+                    + "Will be starting with an empty AppointmentBook");
             initialAppointments = new AppointmentBook();
         } catch (IOException e) {
-            logger.warning("AppointmentBook: Problem while reading from the file. Will be starting with an empty AppointmentBook");
+            logger.warning("AppointmentBook: Problem while reading from the file. "
+                    + "Will be starting with an empty AppointmentBook");
             initialAppointments = new AppointmentBook();
         }
 
@@ -166,10 +170,12 @@ public class MainApp extends Application {
             }
             initialGrades = gradeBookOptional.orElseGet(SampleDataUtil::getSampleGradeBook);
         } catch (DataConversionException e) {
-            logger.warning("GradeBook: Data file not in the correct format. Will be starting with an empty GradeBook");
+            logger.warning("GradeBook: Data file not in the correct format. "
+                    + "Will be starting with an empty GradeBook");
             initialGrades = new GradeBook();
         } catch (IOException e) {
-            logger.warning("GradeBook: Problem while reading from the file. Will be starting with an empty GradeBook");
+            logger.warning("GradeBook: Problem while reading from the file. "
+                    + "Will be starting with an empty GradeBook");
             initialGrades = new GradeBook();
         }
 
@@ -180,10 +186,12 @@ public class MainApp extends Application {
             }
             initialSchedules = scheduleTrackerOptional.orElseGet(SampleDataUtil::getSampleScheduleTracker);
         } catch (DataConversionException e) {
-            logger.warning("ScheduleTracker: Data file not in the correct format. Will be starting with an empty ScheduleTracker");
+            logger.warning("ScheduleTracker: Data file not in the correct format. "
+                    + "Will be starting with an empty ScheduleTracker");
             initialSchedules = new ScheduleTracker();
         } catch (IOException e) {
-            logger.warning("ScheduleTracker: Problem while reading from the file. Will be starting with an empty ScheduleTracker");
+            logger.warning("ScheduleTracker: Problem while reading from the file. "
+                    + "Will be starting with an empty ScheduleTracker");
             initialSchedules = new ScheduleTracker();
         }
 
@@ -194,10 +202,12 @@ public class MainApp extends Application {
             }
             initialReminders = reminderTrackerOptional.orElseGet(SampleDataUtil::getSampleReminderTracker);
         } catch (DataConversionException e) {
-            logger.warning("ReminderTracker: Data file not in the correct format. Will be starting with an empty ReminderTracker");
+            logger.warning("ReminderTracker: Data file not in the correct format. "
+                    + "Will be starting with an empty ReminderTracker");
             initialReminders = new ReminderTracker();
         } catch (IOException e) {
-            logger.warning("ReminderTracker: Problem while reading from the file. Will be starting with an empty ReminderTracker");
+            logger.warning("ReminderTracker: Problem while reading from the file. "
+                    + "Will be starting with an empty ReminderTracker");
             initialReminders = new ReminderTracker();
         }
 
