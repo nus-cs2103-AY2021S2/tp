@@ -12,7 +12,9 @@ import seedu.address.model.util.DateTimeFormat;
  */
 public class Time implements Comparable<Time> {
     public static final String MESSAGE_CONSTRAINTS =
-            "Meeting times should be valid times specified in 24-hour clock in the format HHMM";
+            "Meeting times should be valid times specified in 24-hour clock in the format HHMM.\n"
+            + "E.g. 0930, 2359\n"
+            + "Note: 2400 is not a valid time. Please enter 0000 instead.";
 
     public final LocalTime time;
 

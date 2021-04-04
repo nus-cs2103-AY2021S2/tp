@@ -12,7 +12,8 @@ import seedu.address.model.util.DateTimeFormat;
  */
 public class Deadline implements Comparable<Deadline> {
     public static final String MESSAGE_CONSTRAINTS =
-            "Deadline dates should be valid dates specified in the format DD-MM-YY.";
+            "Deadline dates should be valid dates specified strictly in the format DD-MM-YYYY.\n"
+            + "E.g. 01-01-2021";
 
     public final LocalDate deadline;
 

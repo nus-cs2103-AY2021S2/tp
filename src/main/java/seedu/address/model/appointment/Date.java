@@ -12,7 +12,8 @@ import seedu.address.model.util.DateTimeFormat;
  */
 public class Date implements Comparable<Date> {
     public static final String MESSAGE_CONSTRAINTS =
-            "Meeting dates should be valid dates specified in the format DD-MM-YY.";
+            "Meeting dates should be valid dates specified strictly in the format DD-MM-YYYY.\n"
+            + "E.g. 01-01-2021";
 
     public final LocalDate date;
 
