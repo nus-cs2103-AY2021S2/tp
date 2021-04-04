@@ -19,7 +19,8 @@ public class EDoneCommand extends Command {
 
     public static final String MESSAGE_EVENT_DONE_SUCCESS = "Event(s) marked as completed: %s";
     public static final String MESSAGE_INVALID_EVENT_INDEX = "Invalid/Already completed event index(es): %s";
-    public static final String MESSAGE_NONE_EVENT_INDEX_VALID = "All index(es) provided are invalid/already completed";
+    public static final String MESSAGE_NONE_EVENT_INDEX_VALID =
+            "All index(es) provided are either invalid or references events that are already completed";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Mark the event identified by the index number as done\n"
             + "Parameters: INDEX [INDEX]...\n"
