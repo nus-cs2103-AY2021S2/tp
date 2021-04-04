@@ -46,7 +46,7 @@ public class EditMeetingCommand extends Command {
             + "[" + PREFIX_TAG + "TAG(s)] "
             + "[" + PREFIX_DONE + "IS_DONE (yes/no)]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_LOCATION + "Macdonald, Bedok"
+            + PREFIX_LOCATION + "Macdonald, Bedok "
             + PREFIX_DESCRIPTION + "Client's family will be coming along";
 
     public static final String MESSAGE_EDIT_MEETING_SUCCESS = "Edited Meeting: %1$s";
