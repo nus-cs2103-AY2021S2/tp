@@ -11,6 +11,7 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.weeblingo.commons.core.index.Index;
+import seedu.weeblingo.logic.commands.exceptions.CommandException;
 import seedu.weeblingo.model.FlashcardBook;
 import seedu.weeblingo.model.Model;
 import seedu.weeblingo.model.ModelManager;
@@ -24,7 +25,7 @@ public class DeleteCommandTest {
     private ModelManager modelManager = new ModelManager(getTypicalFlashcardBook(), new UserPrefs());
 
     @Test
-    public void execute_delete_success() {
+    public void execute_delete_success() throws CommandException {
         Index targetIndex = INDEX_FIRST_FLASHCARD;
 
         Set<Tag> oneTag = new HashSet<>();
