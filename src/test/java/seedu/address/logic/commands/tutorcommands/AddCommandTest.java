@@ -262,7 +262,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void removeAppointmentIndex(int indexToRemove) {
+        public Appointment removeAppointmentIndex(int indexToRemove) {
             throw new AssertionError("This method should not be called.");
         }
 

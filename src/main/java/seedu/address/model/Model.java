@@ -219,7 +219,7 @@ public interface Model {
      *
      * @param indexToRemove
      */
-    void removeAppointmentIndex(int indexToRemove);
+    Appointment removeAppointmentIndex(int indexToRemove);
 
     /**
      * Checks if {@code AppointmentDateTime} exists in the appointment list.

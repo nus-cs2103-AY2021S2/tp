@@ -295,8 +295,8 @@ public class ModelManager implements Model {
      * @param indexToRemove Index of appointment to remove
      */
     @Override
-    public void removeAppointmentIndex(int indexToRemove) {
-        appointmentBook.removeAppointment(indexToRemove);
+    public Appointment removeAppointmentIndex(int indexToRemove) {
+        return appointmentBook.removeAppointment(indexToRemove);
     }
 
     /**
