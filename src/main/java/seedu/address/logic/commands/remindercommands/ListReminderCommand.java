@@ -21,6 +21,6 @@ public class ListReminderCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredReminderList(PREDICATE_SHOW_ALL_REMINDER);
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(MESSAGE_SUCCESS, TabName.REMINDER);
     }
 }

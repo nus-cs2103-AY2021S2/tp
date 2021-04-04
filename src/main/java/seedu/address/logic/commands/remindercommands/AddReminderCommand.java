@@ -60,7 +60,7 @@ public class AddReminderCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_REMINDER);
         } else {
             model.addReminder(toAdd);
-            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), TabName.REMINDER);
         }
     }
 }
