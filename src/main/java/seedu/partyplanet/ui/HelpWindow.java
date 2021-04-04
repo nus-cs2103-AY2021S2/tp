@@ -2,9 +2,10 @@ package seedu.partyplanet.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
@@ -26,7 +27,7 @@ public class HelpWindow extends UiPart<Stage> {
     private Button copyButton;
 
     @FXML
-    private Label helpMessage;
+    private ListView<String> helpBox;
 
     /**
      * Creates a new HelpWindow.
@@ -35,7 +36,10 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public HelpWindow(Stage root) {
         super(FXML, root);
-        helpMessage.setText(HELP_MESSAGE);
+
+        helpBox.setMinWidth(1000);
+        helpBox.setMinHeight(500);
+        helpBox.setItems(FXCollections.observableArrayList(HelpCommand.SHOWING_HELP_MESSAGE.split("\n")));
     }
 
     /**
