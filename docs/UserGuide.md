@@ -76,7 +76,7 @@ Vax@NUS is a **one stop management app to efficiently track and schedule COVID-1
 > * RC4 (for Residential College 4)
 > * USP (for University Scholars Programme)
 > * UTR (for Utown Residences)
-
+>
 ----------------------------------------------------------------------
 
 ## Features
@@ -107,7 +107,7 @@ Vax@NUS is a **one stop management app to efficiently track and schedule COVID-1
 
 Adds a student to Vax@NUS records.
 
-Format: `add n/NAME i/MATRICULATION_NUMBER f/FACULTY p/PHONE_NUMBER e/EMAIL a/ADDRESS s/VACCINATION_STATUS m/MEDICAL_DETAILS r/SCHOOL_RESIDENCE[optional]`
+Format: `add n/NAME i/MATRICULATION_NUMBER f/FACULTY p/PHONE_NUMBER e/EMAIL a/ADDRESS s/VACCINATION_STATUS m/MEDICAL_DETAILS [r/SCHOOL_RESIDENCE]`
 
 Examples:
 * `add n/John Doe i/A1234567X f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/RVRC`
@@ -156,9 +156,10 @@ Shows all student records in Vax@NUS that matches the specified vaccination stat
 
 Format: <br>
 `filter VACCINATION_STATUS`
-`filter FACULTY`
-`filter SCHOOL_RESIDENCE`
+<br> `filter FACULTY`
+<br> `filter SCHOOL_RESIDENCE`
 
+* Only one filter condition should be specified at a time. 
 * Please refer to the parameter formats for a list of valid vaccination status, faculty and school residence input. 
 
 Examples:
@@ -172,10 +173,11 @@ Displays the statistics in terms of percentage of student vaccinated for the req
 
 Format: <br>
 `stats FACULTY`
-`stats SCHOOL_RESIDENCE`
-`stats NUS`
-`stats all`
+<br> `stats SCHOOL_RESIDENCE`
+<br> `stats NUS`
+<br> `stats all`
 
+* Only one requested condition should be specified at a time. 
 * If there is no available data for the requested faculty or school residence, a message will be displayed to inform
   users that the requested faculty or School Residence has no available data.
 
@@ -320,18 +322,18 @@ Vax@NUS saves your current date in the hard disk automatically after any command
 
 Action | Format, Examples
 --------|------------------
-**Add Student** | `add n/NAME i/MATRICULATION_NUMBER f/FACULTY p/PHONE_NUMBER e/EMAIL a/ADDRESS s/VACCINATION_STATUS m/MEDICAL_DETAILS r/SCHOOL_RESIDENCE[optional]` <br> e.g., `add n/John Doe i/A1234567X f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/RVRC`
-**Edit Student** | `edit INDEX [n/NAME] [i/MATRICULATION_NUMBER] [f/FACULTY] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/VACCINATION_STATUS] [m/MEDICAL_DETAILS] [r/SCHOOL_RESIDENCE]` <br> e.g., `edit 1 p/91234567 f/MED`
+**Add <br> Student** | `add n/NAME i/MATRICULATION_NUMBER f/FACULTY p/PHONE_NUMBER e/EMAIL a/ADDRESS s/VACCINATION_STATUS m/MEDICAL_DETAILS r/SCHOOL_RESIDENCE[optional]` <br> e.g., `add n/John Doe i/A1234567X f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/RVRC`
+**Edit <br> Student** | `edit INDEX [n/NAME] [i/MATRICULATION_NUMBER] [f/FACULTY] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/VACCINATION_STATUS] [m/MEDICAL_DETAILS] [r/SCHOOL_RESIDENCE]` <br> e.g., `edit 1 p/91234567 f/MED`
 **Delete Student** | `delete MATRICULATION_NUMBER` e.g., `delete A1234567X`
 **Filter Students** | `filter VACCINATION_STATUS`  e.g., `filter vaccinated`, `filter not vaccinated`, <br> `filter FACULTY ` e.g., `filter COM` <br> `filter SCHOOL_RESIDENCE` e.g., `filter RVRC` 
 **View Student Statistics** | `stats FACULTY` e.g., `stats COM` <br> `stats SCHOOL_RESIDENCE` e.g., `stats RC4` <br> `stats NUS` <br> `stats all` 
-**Add Appointment** | `addAppt i/MATRICULATION_NUMBER d/DATE ts/START_TIME` e.g., `addAppt i/A1234567X d/2021-12-13 ts/13:00`
+**Add <br> Appointment** | `addAppt i/MATRICULATION_NUMBER d/DATE ts/START_TIME` e.g., `addAppt i/A1234567X d/2021-12-13 ts/13:00`
 **Edit Appointment** | `editAppt MATRICULATION_NUMBER d/DATE_YYYY-MM-DD ts/START_TIME_HH:MM` e.g.,` editAppt A1234567X d/2021-12-13 ts/14:00`
 **Delete Appointment** | `deleteAppt MATRICULATION_NUMBER` e.g., `deleteAppt A1234567X`
 **View Appointment Statistics** | `statsAppt`
-**List All Data** | `list`
-**Find Student and Appointment** | `find MATRICULATION_NUMBER` e.g., `find A1234567X`
-**View Help** | `help` 
-**Clear All Data** | `clear` 
-**Exit Program** | `exit`
+**List <br> All Data** | `list`
+**Find <br> Student and Appointment** | `find MATRICULATION_NUMBER` e.g., `find A1234567X`
+**View <br> Help** | `help` 
+**Clear <br> All Data** | `clear` 
+**Exit <br> Program** | `exit`
 
