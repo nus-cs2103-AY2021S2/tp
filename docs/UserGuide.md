@@ -312,7 +312,8 @@ Note: Valid INDEX must be used in order for Autocomplete to function.
 
 #### Undoing actions : `undo`
 
-Undoes the most recent action that changed PartyPlanet's Contact or Event List.<br>
+Undoes the most recent action that changed PartyPlanet's Contact or Event List.
+
 Note: This means that only commands such, as `add`, `delete` etc.., can be undoed.<br>
 Other command that only changes display, such as `theme`, `list` etc.., will not be affected.
 
