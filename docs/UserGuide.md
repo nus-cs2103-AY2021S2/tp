@@ -285,10 +285,10 @@ todo n/NAME d/DESCRIPTION [p/PRIORITY]
 **What you should expect to happen:**
 
 - Before executing `todo n/Household Chores d/Cleaning the kitchen p/high`:
-  ![Todo before](./images/user-guide/beforeTodoExecution.png)
+  ![Todo before](./images/user-guide/Annotated/beforeTodoExecutionAnnotated.png)
 
 - After executing `todo n/Household Chores d/Cleaning the kitchen p/high`:
-  ![Todo after](./images/user-guide/afterTodoExecution.png)
+  ![Todo after](./images/user-guide/Annotated/afterTodoExecutionAnnotated.png)
 
 **More Sample Commands:**
 
@@ -316,9 +316,9 @@ log n/NAME d/DESCRIPTION [p/PRIORITY]
 **What you should expect to happen:**
 
 - Before executing `log n/Complete Homework d/Complete weekly quiz and group tasks for CS2103T`:
-  ![Backlog before](./images/user-guide/beforeLogExecution.png)
+  ![Backlog before](./images/user-guide/Annotated/beforeLogExecutionAnnotated.png)
 - After executing `log n/Complete Homework d/Complete weekly quiz and group tasks for CS2103T`:
-  ![Backlog after](./images/user-guide/afterLogExecution.png)
+  ![Backlog after](./images/user-guide/Annotated/afterLogExecutionAnnotated.png)
 
 **More Sample Commands:**
 
@@ -346,9 +346,9 @@ prog n/NAME d/DESCRIPTION [p/PRIORITY]
 **What you should expect to happen:**
 
 - Before executing `prog n/CS2030 Assignment d/Due on 23 May 2021 p/medium`:
-  ![Before Prog](./images/user-guide/beforeProgExecution.png)
+  ![Before Prog](./images/user-guide/Annotated/beforeProgExecutionAnnotated.png)
 - After executing `prog n/CS2030 Assignment d/Due on 23 May 2021 p/medium`:
-  ![After Prog](./images/user-guide/afterProgExecution.png)
+  ![After Prog](./images/user-guide/Annotated/afterProgExecutionAnnotated.png)
 
 **More Sample Commands:**
 
@@ -389,10 +389,10 @@ Existing event will have its data overwritten by the new values taken in by the 
 **What you should expect to happen:**
 
 - Before executing `edit 6 n/CS2040S d/Merge Sort Algorithm p/m`:
-  ![Before edit](./images/user-guide/beforeEditExecution.png)
+  ![Before edit](./images/user-guide/Annotated/beforeEditExecutionAnnotated.png)
 
 - After executing `edit 6 n/CS2040S d/Merge Sort Algorithm p/m`:
-  ![After edit](./images/user-guide/afterEditExecution.png)
+  ![After edit](./images/user-guide/Annotated/afterEditExecutionAnnotated.png)
 
 **More Sample Commands:**
 
@@ -421,9 +421,9 @@ delete IDENTIFIER
 **What you should expect to happen:**
 
 - Before execution of `delete 7` command:
-  ![Before delete](./images/user-guide/beforeDeleteExecution.png)
+  ![Before delete](./images/user-guide/Annotated/beforeDeleteExecutionAnnotated.png)
 - After execution of `delete 7` command:
-  ![After delete](./images/user-guide/afterDeleteExecution.png)
+  ![After delete](./images/user-guide/Annotated/afterDeleteExecutionAnnotated.png)
 
 **More Sample Commands:**
 
@@ -462,9 +462,9 @@ All events will be cleared from Focuris and this is **irreversible**. Please use
 **What you should expect to happen:**
 
 - Before execution of the `clear` command:
-  ![Before clear](./images/user-guide/beforeClearCommand.png)
+  ![Before clear](./images/user-guide/Annotated/beforeClearCommandAnnotated.png)
 - After execution of the `clear` command:
-  ![After clear](./images/user-guide/afterClearCommand.png)
+  ![After clear](./images/user-guide/Annotated/afterClearCommandAnnotated.png)
 
 <a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
 
@@ -495,9 +495,9 @@ find KEYWORD [MORE_KEYWORDS]...
 **What you should expect to happen:**
 
 - Before execution of `find cs2040s` command:
-  ![Before find](./images/user-guide/beforeFindExecution.png)
+  ![Before find](./images/user-guide/Annotated/beforeFindExecutionAnnotated.png)
 - After execution of `find cs2040s` command:
-  ![After find](./images/user-guide/afterFindExecution.png)
+  ![After find](./images/user-guide/Annotated/afterFindExecutionAnnotated.png)
 
 **More Example Commands:**
 
@@ -532,9 +532,9 @@ list
 **What you should expect to happen:**
 
 - After execution of `find cs2040s` command:
-  ![Before list](./images/user-guide/beforeListExecution.png)
+  ![Before list](./images/user-guide/Annotated/beforeListExecutionAnnotated.png)
 - After execution of `list` command:
-  ![After list](./images/user-guide/afterListExecution.png)
+  ![After list](./images/user-guide/Annotated/afterListExecutionAnnotated.png)
 
 <a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
 
@@ -553,10 +553,10 @@ done IDENTIFIER
 **What you should expect to happen:**
 
 - Before the execution of the `done 4` command:
-  ![Before done](./images/user-guide/beforeDoneExecution.png)
+  ![Before done](./images/user-guide/Annotated/beforeDoneExecutionAnnotated.png)
 
 - After the execution of `done 4` command:
-  ![After done](./images/user-guide/afterDoneExecution.png)
+  ![After done](./images/user-guide/Annotated/afterDoneExecutionAnnotated.png)
 
 <a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
 
@@ -575,10 +575,10 @@ switch
 **What you should expect to happen:**
 
 - Before execution of the `switch` command, in `KanBan` view:
-  ![Before switch](./images/user-guide/beforeSwitchExecution.png)
+  ![Before switch](./images/user-guide/Annotated/beforeSwitchExecutionAnnotated.png)
 
 - After execution of the `switch` command, from `KanBan` view to `List` view:
-  ![After switch](./images/user-guide/afterSwitchExecution.png)
+  ![After switch](./images/user-guide/Annotated/afterSwitchExecutionAnnotated.png)
 
 <a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
 
