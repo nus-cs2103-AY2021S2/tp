@@ -17,8 +17,8 @@ users can learn Japanese at a comfortable pace and manage flashcards with this a
   * [Entering learn mode: `learn`](#entering-learn-mode-learn)
   * [Ending the session: `end`](#ending-the-session-end)
   * [Viewing past scores: `history`](#viewing-past-scores-history)
-  * [Tagging a flashcard: `tag INDEX TAGS…`](#tagging-a-flashcard-tag-index-tags)
-  * [Deleting tags from a flashcard: `delete INDEX [TAGS…]`](#deleting-tags-from-a-flashcard-delete-index-tags)
+  * [Tagging a flashcard: `tag INDEX TAGS…`](#tagging-a-flashcard-tag-index-ttags)
+  * [Deleting tags from a flashcard: `deleteTag INDEX [TAGS…]`](#deleting-tags-from-a-flashcard-deletetag-index-ttags)
   * [Exiting the application: `exit`](#exiting-the-application-exit)
   * [Asking for help: `help`](#asking-for-help-help)
 * [FAQ](#faq)
@@ -202,7 +202,7 @@ Examples:
 After successfully adding a tag:
 ![tag successful](images/tag_success.png)
 
-### Deleting tags from a flashcard: `delete INDEX [t/TAGS…]`
+### Deleting tags from a flashcard: `deleteTag INDEX [t/TAGS…]`
 
 Reads in a positive index and zero or more tags, and removes these tags from the flashcard at the desired index.
 If no tags are provided, all user-added tags will be removed from the flashcard.
@@ -214,11 +214,11 @@ The purpose of this command is to allow users to delete tags added by themselves
 
 </div>
 
-Format: `delete INDEX [t/TAGS…]`
+Format: `deleteTag INDEX [t/TAGS…]`
 
 Examples:
-* `delete 3`
-* `delete 1 t/difficult`
+* `deleteTag 3`
+* `deleteTag 1 t/difficult`
 
 After successfully deleting sampleTag from the flashcard at index 3:
 ![delete_successful](images/delete_success.png)
@@ -267,6 +267,6 @@ Action | Format, Examples |
 **End** | `end`
 **History**|`history`
 **Tag**| `tag INDEX t/TAGS…` <br> e.g. `tag 1 t/difficult`
-**Delete**| `delete INDEX [t/TAGS…]` <br> e.g. `delete 1 t/difficult`, `delete 3`
+**DeleteTag**| `deleteTag INDEX [t/TAGS…]` <br> e.g. `deleteTag 1 t/difficult`, `deleteTag 3`
 **Exit** | `exit`
 **Help** | `help`
