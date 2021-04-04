@@ -20,7 +20,7 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.iscam.logic.commands.AddCommand;
 import seedu.iscam.logic.commands.CommandResult;
-import seedu.iscam.logic.commands.ListCommand;
+import seedu.iscam.logic.commands.ClearCommand;
 import seedu.iscam.logic.commands.exceptions.CommandException;
 import seedu.iscam.logic.events.exceptions.EventException;
 import seedu.iscam.logic.parser.exceptions.ParseException;
@@ -70,8 +70,8 @@ public class LogicManagerTest {
 
     @Test
     public void execute_validCommand_success() throws Exception {
-        String listCommand = ListCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
+        String clearCommand = ClearCommand.COMMAND_WORD;
+        assertCommandSuccess(clearCommand, ClearCommand.MESSAGE_SUCCESS, model);
     }
 
     @Test
