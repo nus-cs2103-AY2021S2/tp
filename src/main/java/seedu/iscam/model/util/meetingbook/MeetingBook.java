@@ -61,6 +61,16 @@ public class MeetingBook implements ReadOnlyMeetingBook {
         return meetings.contains(meeting);
     }
 
+    public boolean hasConflictingMeetingWith(Meeting meeting) {
+        requireNonNull(meeting);
+        for(Meeting other : meetings) {
+            if(other.isInConflict(meeting) && !other.getClientName().equals(meeting.getClientName())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     /**
      * Adds a meeting to the iscam book.
      * The meeting must not already exist in the iscam book.

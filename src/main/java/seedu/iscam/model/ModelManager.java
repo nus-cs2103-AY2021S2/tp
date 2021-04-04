@@ -174,6 +174,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasConflictingMeetingWith(Meeting meeting) {
+        requireNonNull(meeting);
+        return meetingBook.hasConflictingMeetingWith(meeting);
+    }
+
+    @Override
     public void deleteMeeting(Meeting target) {
         meetingBook.removeMeeting(target);
     }
