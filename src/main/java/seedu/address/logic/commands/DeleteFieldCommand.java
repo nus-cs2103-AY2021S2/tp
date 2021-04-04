@@ -24,12 +24,12 @@ import seedu.address.logic.conditions.IndexManager;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Task;
 import seedu.address.model.task.attributes.Date;
 import seedu.address.model.task.attributes.Description;
 import seedu.address.model.task.attributes.Duration;
 import seedu.address.model.task.attributes.RecurringSchedule;
 import seedu.address.model.task.attributes.Status;
-import seedu.address.model.task.Task;
 import seedu.address.model.task.attributes.Title;
 
 /**

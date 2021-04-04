@@ -4,12 +4,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Task;
 import seedu.address.model.task.attributes.Date;
 import seedu.address.model.task.attributes.Description;
 import seedu.address.model.task.attributes.Duration;
 import seedu.address.model.task.attributes.RecurringSchedule;
 import seedu.address.model.task.attributes.Status;
-import seedu.address.model.task.Task;
 import seedu.address.model.task.attributes.Title;
 import seedu.address.model.util.SampleDataUtil;
 
