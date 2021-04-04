@@ -3,10 +3,12 @@ package seedu.iscam.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_CLIENT;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.iscam.logic.parser.CliSyntax.PREFIX_DONE;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_ON;
+import static seedu.iscam.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.iscam.model.meeting.CompletionStatus.ARGUMENT_COMPLETE;
+import static seedu.iscam.model.meeting.CompletionStatus.ARGUMENT_INCOMPLETE;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -22,6 +24,7 @@ import seedu.iscam.model.Model;
 import seedu.iscam.model.commons.Location;
 import seedu.iscam.model.commons.Name;
 import seedu.iscam.model.commons.Tag;
+import seedu.iscam.model.meeting.CompletionStatus;
 import seedu.iscam.model.meeting.DateTime;
 import seedu.iscam.model.meeting.Description;
 import seedu.iscam.model.meeting.Meeting;
@@ -44,7 +47,7 @@ public class EditMeetingCommand extends Command {
             + "[" + PREFIX_LOCATION + "LOCATION] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_TAG + "TAG(s)] "
-            + "[" + PREFIX_DONE + "IS_DONE (yes/no)]\n"
+            + "[" + PREFIX_STATUS + "STATUS (" + ARGUMENT_COMPLETE + "/" + ARGUMENT_INCOMPLETE + ")]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_LOCATION + "Macdonald, Bedok "
             + PREFIX_DESCRIPTION + "Client's family will be coming along";
@@ -79,10 +82,10 @@ public class EditMeetingCommand extends Command {
         Location updatedLocation = editMeetingDescriptor.getAddress().orElse(meetingToEdit.getLocation());
         Description updatedDescription = editMeetingDescriptor.getDescription().orElse(meetingToEdit.getDescription());
         Set<Tag> updatedTags = editMeetingDescriptor.getTags().orElse(meetingToEdit.getTags());
-        boolean updatedIsDone = editMeetingDescriptor.getIsDone().orElse(meetingToEdit.getIsDone());
+        CompletionStatus updatedStatus = editMeetingDescriptor.getStatus().orElse(meetingToEdit.getStatus());
 
         return new Meeting(updatedClientName, updatedDateTime, updatedLocation, updatedDescription, updatedTags,
-                updatedIsDone);
+                updatedStatus);
     }
 
     @Override
@@ -124,7 +127,7 @@ public class EditMeetingCommand extends Command {
         private Location location;
         private Description description;
         private Set<Tag> tags;
-        private boolean isDone;
+        private CompletionStatus status;
 
         public EditMeetingDescriptor() {
         }
@@ -138,14 +141,14 @@ public class EditMeetingCommand extends Command {
             setAddress(toCopy.location);
             setDescription(toCopy.description);
             setTags(toCopy.tags);
-            setIsDone(toCopy.isDone);
+            setStatus(toCopy.status);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(clientName, dateTime, location, description, tags, isDone);
+            return CollectionUtil.isAnyNonNull(clientName, dateTime, location, description, tags, status);
         }
 
         public Optional<Name> getClientName() {
@@ -188,12 +191,12 @@ public class EditMeetingCommand extends Command {
             this.tags = tags != null ? new HashSet<>(tags) : null;
         }
 
-        public Optional<Boolean> getIsDone() {
-            return Optional.ofNullable(isDone);
+        public Optional<CompletionStatus> getStatus() {
+            return Optional.ofNullable(status);
         }
 
-        public void setIsDone(boolean isDone) {
-            this.isDone = isDone;
+        public void setStatus(CompletionStatus status) {
+            this.status = status;
         }
 
         @Override
@@ -213,7 +216,7 @@ public class EditMeetingCommand extends Command {
                     && getAddress().equals(e.getAddress())
                     && getDescription().equals(e.getDescription())
                     && getTags().equals(e.getTags())
-                    && getIsDone().equals(e.getIsDone());
+                    && getStatus().equals(e.getStatus());
         }
     }
 }
