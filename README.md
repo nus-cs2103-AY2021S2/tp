@@ -1,8 +1,7 @@
 [![CI Status](https://github.com/AY2021S2-CS2103-W17-3/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S2-CS2103-W17-3/tp/actions)
 
-# BOOKCOIN
+# BookCoin
 
-## About BookCoin
 * **BookCoin (To The Moon)** is a CLI facility management system which allows users to manage bookings and presents users a structured and detailed information on facility availability. If you can type fast, BookCoin can get your facility management tasks done faster than traditional GUI apps!
 <br>
 
