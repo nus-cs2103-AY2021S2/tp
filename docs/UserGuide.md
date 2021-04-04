@@ -23,37 +23,6 @@ PartyPlanet can get the planning of your birthday celebrations done faster than 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
-
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Notes about the command format:**<br>
-
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add -n NAME`, `NAME` is a parameter which can be used as `add -n John Doe`.
-
-* Parameters in square brackets are optional.<br>
-  e.g. `-n NAME [-t TAG]` can be used as `-n John Doe -t friend` or as `-n John Doe`.
-
-* Parameters with `...` after them can be used any number of times.<br>
-  e.g. `[-t TAG]...` can be used as ` `, `-t friend`, `-t friend -t family` etc.
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `-n NAME -p PHONE`, the alternative `-p PHONE -n NAME` is also acceptable.
-
-* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `-p 12341234 -p 56785678`, only `-p 56785678` will be taken.
-
-* Extraneous parameters for commands that do not take in parameters (such as `exit` and `undo`) will be ignored.<br>
-  e.g. if the command specifies `exit 123`, it will be interpreted as `exit`.
-
-* Parameters in `{}` represents mutually-exclusive parameters.<br>
-  Each mutually-exclusve parameter is separated by a `|`.<br>
-  e.g. `command {foo | bar}` means that either `command foo` or `command bar` are valid commands.<br>
-  However `command foo bar` is an invalid command.
-
-</div>
-
 ## Glossary of parameters
 
 | Parameter | Prefix | Applicable to | Description |
@@ -87,7 +56,40 @@ PartyPlanet can get the planning of your birthday celebrations done faster than 
 
 </div>
 
+--------------------------------------------------------------------------------------------------------------------
+
 ## Party Planet Commands
+
+## Command syntax
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about the command format:**<br>
+
+* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+  e.g. in `add -n NAME`, `NAME` is a parameter which can be used as `add -n John Doe`.
+
+* Parameters in square brackets are optional.<br>
+  e.g. `-n NAME [-t TAG]` can be used as `-n John Doe -t friend` or as `-n John Doe`.
+
+* Parameters with `...` after them can be used any number of times.<br>
+  e.g. `[-t TAG]...` can be used as ` `, `-t friend`, `-t friend -t family` etc.
+
+* Parameters can be in any order.<br>
+  e.g. if the command specifies `-n NAME -p PHONE`, the alternative `-p PHONE -n NAME` is also acceptable.
+
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+  e.g. if you specify `-p 12341234 -p 56785678`, only `-p 56785678` will be taken.
+
+* Extraneous parameters for commands that do not take in parameters (such as `exit` and `undo`) will be ignored.<br>
+  e.g. if the command specifies `exit 123`, it will be interpreted as `exit`.
+
+* Parameters in `{}` represents mutually-exclusive parameters.<br>
+  Each mutually-exclusve parameter is separated by a `|`.<br>
+  e.g. `command {foo | bar}` means that either `command foo` or `command bar` are valid commands.<br>
+  However `command foo bar` is an invalid command.
+
+</div>
 
 ### Summary
 
