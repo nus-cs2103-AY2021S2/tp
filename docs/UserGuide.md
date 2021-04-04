@@ -455,6 +455,22 @@ Example:
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Goals
+### How are goal deadlines calculated?
+
+If the ideal frequency to meet a friend is weekly, the deadline to meet will be on the Sunday of every week. 
+To give an example, you met your friend on Wednesday this week. You have completed your goal of meeting your friend every week for this week.
+The deadline for the next meeting will be the next Sunday after the coming Sunday. You can think of it as weekly assignments. 
+If your assignment is due every Sunday and you complete the current week's assignment on Wednesday. The next weekly assignment will be due two Sundays after.   
+
+The same idea goes for deciding the goal deadline for monthly and yearly. A monthly goal's deadline will always fall on the last day of the month. 
+A yearly goal's deadline will always fall on the last day of the year. To give another example, assume that you have a set a monthly goal of meeting your friend. 
+The last time you met your friend was on the 13th March. Since you have already achieved your goal of meeting your friend for the month of March, you have to meet your friend
+again by the 30th April to ensure that you always meet your friend once a month.
+
+## Streaks
+ 
+
 ## Data Storage
 ### Saving the data
 
