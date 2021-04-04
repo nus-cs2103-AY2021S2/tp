@@ -60,8 +60,6 @@ PartyPlanet can get the planning of your birthday celebrations done faster than 
 
 ## Party Planet Commands
 
-## Command syntax
-
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
