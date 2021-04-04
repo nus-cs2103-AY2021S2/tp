@@ -53,12 +53,15 @@ public class ParserUtil {
         if (trimmedIndex.length() == 0) {
             // Throw ParseException if oneBasedIndex is an empty string.
             throw new ParseException(MESSAGE_EMPTY_INDEX);
+
         } else if (params.length > 1) {
             // Throw ParseFormatException if there are parameters more than required parameters.
             throw new ParseFormatException(MESSAGE_INVALID_COMMAND_FORMAT);
+
         } else if (!StringUtil.isSmallerThanIntegerMaxValue(trimmedIndex)) {
             // Throw ParseIndexException if the index specified is larger than Integer.MAX_VALUE.
             throw new ParseIndexException(MESSAGE_INDEX_TOO_LARGE);
+
         } else if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
             // Throw ParseIndexException if the index is invalid.
             throw new ParseIndexException(MESSAGE_INVALID_INDEX);
