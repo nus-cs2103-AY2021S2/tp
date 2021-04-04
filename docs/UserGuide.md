@@ -209,6 +209,9 @@ Examples:
 * `delete 3`
 * `delete 1 t/difficult`
 
+After successfully deleting sampleTag from the flashcard at index 3:
+![delete_successful](images/delete_success.png)
+
 ### Exiting the application: `exit`
 
 Exits the application.
