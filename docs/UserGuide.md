@@ -293,8 +293,8 @@ Do a listmeet command first to switch to Meeting Mode and view the meetings in t
 * The order of the keywords does not matter. e.g. `plans discussion` will match `discuss plans`
 * Both full and partial keywords can match. e.g. `insurance` and `sur` will both match `insurance`
 * The keywords will be match against all parameters of a meeting.
-* Meeting matching at least one keyword will be returned (i.e. `OR` search). e.g. `Johnson Smith` will return 
-  `Sam Smith` and `Johnson Drake`
+* Meeting matching all keywords will be returned (i.e. `AND` search). e.g. `Johnson Smith` will not return 
+  `Sam Smith` and `Johnson Drake` but will return `Johnson Shawn Smith`.
 
 Examples:
 * `findmeet 05-2022` returns a meeting witn `Johnson` on `24-05-2022 12:00` and another meeting with `Sam` on 
