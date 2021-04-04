@@ -74,7 +74,8 @@ Start improving your productivity by following these simple steps:
 1. Double-click the `focuris.jar` file to start Focuris.
    You should be able to see the graphical user interface within a few seconds. Note that the application contains some sample data since you are new to the application. <br/>
    The image below is the interface you will see when you first start up Focuris.
-   <br> ![Ui](images/user-guide/UiWithReference.png)
+   <br> ![Ui](images/user-guide/Annotated/UiWithReferenceAnnotated.png)
+   Check out [2.2 General](#22-general) for more information about the User Interface!
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Here are some commands you can get started with:
@@ -200,10 +201,13 @@ As a new user, the image below should give you a better understanding of what ea
 There are two views in Focuris, which can be toggled between with the [`switch` command](#2310-switch-command):
 
 1. `KanBan` view <br/>
-   ![Ui KanBan](images/user-guide/UiWithReference.png)
+   ![Ui KanBan](images/user-guide/Annotated/UiWithReferenceAnnotated.png)
 
 2. `List` view<br/>
-   ![Ui List](images/user-guide/UiListWithReference.png)
+   ![Ui List](images/user-guide/Annotated/UiListWithReferenceAnnotated.png)
+   
+This is how your events are displayed:
+![Ui Event Card](images/user-guide/Annotated/UiCardAnnotated.png)
 
 <a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
 
@@ -482,7 +486,7 @@ All events will be cleared from Focuris and this is **irreversible**. Please use
 - Before execution of the `clear` command:
   ![Before clear](./images/user-guide/Annotated/beforeClearCommandAnnotated.png)
 - After execution of the `clear` command:
-  ![After clear](./images/user-guide/Annotated/afterClearCommandAnnotated.png)
+  ![After clear](./images/user-guide/Annotated/afterClearCommandAnnotated2.png)
 
 <a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
 
