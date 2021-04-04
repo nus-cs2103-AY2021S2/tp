@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RESIDENCE;
 
 import java.util.stream.Stream;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditBookingCommand;
 import seedu.address.logic.commands.EditBookingCommand.EditBookingDescriptor;
