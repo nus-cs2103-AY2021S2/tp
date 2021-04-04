@@ -27,6 +27,7 @@ import seedu.iscam.logic.parser.MeetingBookParser;
 import seedu.iscam.logic.parser.clientcommands.ClientBookParser;
 import seedu.iscam.logic.parser.exceptions.ParseException;
 import seedu.iscam.logic.parser.exceptions.ParseFormatException;
+import seedu.iscam.logic.parser.exceptions.ParseIndexException;
 import seedu.iscam.model.Model;
 import seedu.iscam.model.client.Client;
 import seedu.iscam.model.meeting.Meeting;
@@ -72,7 +73,7 @@ public class LogicManager implements Logic {
         for (BookParser parser : bookParsers) {
             try {
                 command = parser.parseCommand(commandText);
-            } catch (ParseFormatException e) {
+            } catch (ParseFormatException | ParseIndexException e) {
                 throw e;
             } catch (ParseException e) {
                 continue;

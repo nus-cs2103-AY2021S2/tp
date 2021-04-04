@@ -6,6 +6,7 @@ import java.util.List;
 
 import seedu.iscam.commons.core.Messages;
 import seedu.iscam.commons.core.index.Index;
+import seedu.iscam.commons.util.StringUtil;
 import seedu.iscam.logic.CommandHistory;
 import seedu.iscam.logic.commands.exceptions.CommandException;
 import seedu.iscam.logic.events.Event;
@@ -73,7 +74,6 @@ public class DeleteCommand extends UndoableCommand {
 
         } else if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
-
         } else {
             clientToBeDeleted = lastShownList.get(targetIndex.getZeroBased());
             clientToDelete = clientToBeDeleted;
