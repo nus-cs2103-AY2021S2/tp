@@ -11,7 +11,7 @@ import seedu.weeblingo.commons.util.RegexUtil;
  */
 public class Tag {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tag names should be alphanumeric";
+    public static final String MESSAGE_CONSTRAINTS = "Tag names should be alphanumeric and not contain spaces.";
     public static final String VALIDATION_REGEX = RegexUtil.REGEX_AB3_TAG;
 
     public final String tagName;
