@@ -183,6 +183,14 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Updates the expiring item table.
+     */
+    private void updateExpiringItemTablePanel() {
+        tablePanel = new TablePanel(logic.getFilteredItemList());
+        tablePanelPlaceholder.getChildren().add(tablePanel.getRoot());
+    }
+
+    /**
      * Executes the command and returns the result.
      * @see seedu.storemando.logic.Logic#execute(String)
      */
@@ -192,9 +200,8 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            //Refresh page
-            tablePanel = new TablePanel(logic.getFilteredItemList());
-            tablePanelPlaceholder.getChildren().add(tablePanel.getRoot());
+            updateExpiringItemTablePanel();
+
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
