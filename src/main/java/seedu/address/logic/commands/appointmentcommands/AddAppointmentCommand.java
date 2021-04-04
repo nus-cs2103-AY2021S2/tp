@@ -73,7 +73,7 @@ public class AddAppointmentCommand extends Command {
                     toAdd.getSubject()));
         } else {
             model.addAppointment(toAdd);
-            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), TabName.APPOINTMENT);
         }
 
     }

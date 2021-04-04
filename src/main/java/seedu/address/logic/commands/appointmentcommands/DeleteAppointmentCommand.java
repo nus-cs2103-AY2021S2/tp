@@ -52,7 +52,7 @@ public class DeleteAppointmentCommand extends Command {
         try {
             model.removeAppointmentIndex(targetIndex.getZeroBased());
             return new CommandResult(String.format(MESSAGE_DELETE_APPOINTMENT_SUCCESS,
-                    toDelete));
+                    toDelete), TabName.APPOINTMENT);
         } catch (IndexOutOfBoundsException e) {
             throw new CommandException(MESSAGE_DELETE_APPOINTMENT_FAILURE);
         }
