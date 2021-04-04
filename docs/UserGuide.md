@@ -17,7 +17,7 @@ BookCoin (to the Moon) is a **desktop app for managing bookings and presents use
 1. Copy the file to the folder you want to use as the _home folder_ for BookCoin.
 
 1. Run java -jar bookingapp.jar via your terminal (preferred). Alternatively, double-click the file to start the app. The GUI similar to the below should appear in a few seconds. 
-   Note how the app contains some sample data. This is for you to test our app with, and you may delete them using the `clear` command when you are 
+   Note how the app contains some sample data. This is for you to test out the commands first, and you may delete them using the `clear` command when you are 
    ready to use the app for your own purposes. <br><br>
    ![Ui](images/Ui_Booking_1.3.png) <br><br>
 
