@@ -294,18 +294,18 @@ contains the data of your previous AddressBook home folder.
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/<RESTAURANT NAME> ra/<RATING FROM 0-5> p/<PRICE> re/<REVIEW> a/<ADDRESS> c/<CATEGORIES>` <br> e.g., `add  n/Al Amaan Restaurant ra/4 p/6 re/best for Butter Chicken a/12 Clementi Rd, Singapore 129742 c/Indian Muslim`
-**AddOn** |`addon <INDEX> re/<REVIEW> p/<PRICE>` or `addon <INDEX> p/<PRICE> re/<REVIEW>` <br>e.g,`addon 1 re/I like this food a lot p/5`
-**Delete** | `delete <INDEX>` <br> e.g., `delete 1`
-**List** | `list`
-**Find** | `find <KEYWORD> ...` <br> e.g., `find kfc`
-**FindAll** |`findall <KEYWORD> ...` <br> e.g., `findall clementi fastfood 5/5 $5-10`
-**Help** | `help`
-**View** |`view <INDEX>` <br> e.g `view 1`
-**Revise** |`revise <INDEX>` <br> e.g `revise 1`
+**Add** | `add n/<RESTAURANT NAME> ra/<RATING FROM 0-5> p/<PRICE> re/<REVIEW> a/<ADDRESS> c/<CATEGORIES>` <br> e.g. `add  n/Al Amaan Restaurant ra/4 p/6 re/best for Butter Chicken a/12 Clementi Rd, Singapore 129742 c/Indian Muslim`
+**AddOn** |`addon <INDEX> re/<REVIEW> p/<PRICE>` or `addon <INDEX> p/<PRICE> re/<REVIEW>` <br>e.g.`addon 1 re/I like this food a lot p/5`
+**Delete** | `delete <INDEX>` <br> e.g. `delete 1`
+**List** | `list` <br> e.g. `list`
+**Find** | `find <KEYWORD> ...` <br> e.g. `find kfc`
+**FindAll** |`findall <KEYWORD> ...` <br> e.g. `findall clementi fastfood 5/5 $5-10`
+**Help** | `help` <br> e.g. `help`
+**View** |`view <INDEX>` <br> e.g. `view 1`
+**Revise** |`revise <INDEX>` <br> e.g. `revise 1`
 **Edit** |`edit <INDEX> n/<RESTAURANT NAME> ra/<RATING> p/<PRICE> re/<REVIEW> a/<ADDRESS> c/<CATEGORIES> s/<SCHOOLS>` <br> e.g `edit 1 ra/5 p/7 re/I like this food a lot! a/Science c/Indian c/Halal s/Ventus`
-**Clear**| `clear` e.g `clear`
-**Exit** | `exit` e.g `exit`
+**Clear**| `clear` <br> e.g. `clear`
+**Exit** | `exit` <br> e.g. `exit`
 
 ## Keyboard Shortcuts Summary
 
