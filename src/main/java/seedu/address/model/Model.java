@@ -204,6 +204,18 @@ public interface Model {
      */
     void setIngredient(Ingredient target, Ingredient editedIngredient);
 
+    /**
+     * Decrease the ingredient quantity with the given {@code order}
+     * @param order order added
+     */
+    void decreaseIngredientByOrder(Order order);
+
+    /**
+     * Increase the ingredient quantity with the given {@code order}
+     * @param order order deleted
+     */
+    void increaseIngredientByOrder(Order order);
+
     /** Returns an unmodifiable view of the filtered ingredient list */
     ObservableList<Ingredient> getFilteredIngredientList();
 

@@ -45,6 +45,7 @@ public class OrderDeleteCommand extends Command {
 
         Order orderToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteOrder(orderToDelete);
+        model.increaseIngredientByOrder(orderToDelete);
 
         model.updateFilteredOrderList(order -> order.getState() == Order.State.UNCOMPLETED);
 
