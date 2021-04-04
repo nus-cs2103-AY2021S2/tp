@@ -334,7 +334,7 @@ Format: `add_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE`
 * `DATE` should be the date of the session in `yyyy-mm-dd` format
 * `DURATION` should be in minutes
 * `FEE` should be the total tuition fee for 1 session of the given duration
-    * TutorBuddy only accepts `FEE` within an acceptable range of values between 0 and 9999.99 (both inclusive) as we do not expect a single session to cost more than $999,999.99 or more.
+    * TutorBuddy only accepts `FEE` within an acceptable range of values between 0 and 999999.99 (both inclusive) as we do not expect a single session to cost more than $999,999.99 or more.
     * `FEE` only allows values up to 2 decimal points only
 
 <div markdown="span" class="alert alert-primary">:bulb: Tip:
