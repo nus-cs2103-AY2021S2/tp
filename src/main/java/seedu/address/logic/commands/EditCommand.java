@@ -8,7 +8,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_RECURRINGSCHEDULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
-import static seedu.address.model.task.attributes.RecurringSchedule.INVALID_END_DATE;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -22,6 +21,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.conditions.ConstraintManager;
+import seedu.address.logic.conditions.DateVerifier;
 import seedu.address.logic.conditions.IndexManager;
 import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
@@ -94,8 +94,8 @@ public class EditCommand extends Command {
         Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
 
         checkForDuplicateTask(model, taskToEdit, editedTask);
-        checkInvalidDateRange(editedTask);
-        checkForExpiredDate(editedTask);
+        DateVerifier.checkInvalidDateRange(editedTask);
+        DateVerifier.checkForExpiredDate(editedTask);
         ConstraintManager.enforceAttributeConstraints(editedTask);
 
         editedTask = handleTagUpdates(model, taskToEdit, editedTask);
@@ -114,21 +114,6 @@ public class EditCommand extends Command {
         if (isDuplicateTask) {
             logger.info("Duplicate task detected: " + MESSAGE_DUPLICATE_TASK);
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
-        }
-    }
-
-    private void checkInvalidDateRange(Task editedTask) throws CommandException {
-        if (editedTask.hasInvalidDateRange()) {
-            logger.info(editedTask.getRecurringSchedule().value);
-            logger.info("Invalid date detected: " + MESSAGE_INVALID_DATE_RANGE);
-            throw new CommandException(MESSAGE_INVALID_DATE_RANGE);
-        }
-    }
-
-    private void checkForExpiredDate(Task editedTask) throws CommandException {
-        if (editedTask.hasExpired()) {
-            logger.info("Invalid date detected: " + INVALID_END_DATE);
-            throw new CommandException(INVALID_END_DATE);
         }
     }
 

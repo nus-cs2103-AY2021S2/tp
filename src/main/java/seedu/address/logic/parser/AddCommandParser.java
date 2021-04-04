@@ -20,9 +20,9 @@ import seedu.address.model.task.attributes.Date;
 import seedu.address.model.task.attributes.Description;
 import seedu.address.model.task.attributes.Duration;
 import seedu.address.model.task.attributes.RecurringSchedule;
-import seedu.address.model.task.attributes.Status;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.attributes.Title;
+import seedu.address.model.task.attributes.Status;
 
 /**
  * Parses input arguments and creates a new AddCommand object

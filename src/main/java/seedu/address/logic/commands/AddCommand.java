@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DURATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RECURRINGSCHEDULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
-import static seedu.address.model.task.attributes.RecurringSchedule.INVALID_END_DATE;
 
 import java.util.Set;
 import java.util.logging.Logger;
@@ -15,6 +14,7 @@ import java.util.logging.Logger;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.conditions.ConstraintManager;
+import seedu.address.logic.conditions.DateVerifier;
 import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Task;
@@ -52,8 +52,6 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the planner.";
-    public static final String MESSAGE_INVALID_DATE_RANGE = "Task has invalid date input.\n\nNote: Months of Apr, Jun, "
-            + "Sep, Nov has only 30 days while Feb has only 28 days with leap years (mulitples of 4) having 29 days";
 
     private Task toAdd;
 
@@ -73,8 +71,8 @@ public class AddCommand extends Command {
 
         handleDuplicateTask(model);
         ConstraintManager.enforceAttributeConstraints(toAdd);
-        handleInvalidDate();
-        handleExpiredTask();
+        DateVerifier.checkInvalidDateRange(toAdd);
+        DateVerifier.checkForExpiredDate(toAdd);
         updateTags(model);
         updateModel(model);
 
@@ -86,20 +84,6 @@ public class AddCommand extends Command {
         if (isDuplicateTask) {
             logger.info("Duplicate task detected: " + MESSAGE_DUPLICATE_TASK);
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
-        }
-    }
-
-    private void handleInvalidDate() throws CommandException {
-        if (toAdd.hasInvalidDateRange()) {
-            logger.info("Invalid date detected: " + MESSAGE_INVALID_DATE_RANGE);
-            throw new CommandException(MESSAGE_INVALID_DATE_RANGE);
-        }
-    }
-
-    private void handleExpiredTask() throws CommandException {
-        if (toAdd.hasExpired()) {
-            logger.info("Invalid end date in recurring schedule detected: " + INVALID_END_DATE);
-            throw new CommandException(INVALID_END_DATE);
         }
     }
 
