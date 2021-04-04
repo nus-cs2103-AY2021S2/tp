@@ -323,14 +323,13 @@ Sorts all flashcards according to a given option.
 </div>
 
 Format: `sort OPTION ORDER` <br>
-<div style="page-break-after: always;"></div>
-
 Examples:
 
 `sort priority -a` will sort the flashcards by ascending priority. <br>
 `sort priority -d` will sort the flashcards by descending priority. <br>
 `sort question -a` will sort the flashcards by ascending question. <br>
 `sort question -d` will sort the flashcards by descending question. <br>
+<div style="page-break-after: always;"></div>
 
 Before sort command is executed. <br><br>
 ![UiBeforeSort](./images/UiBeforeSort.png) <br><br>
