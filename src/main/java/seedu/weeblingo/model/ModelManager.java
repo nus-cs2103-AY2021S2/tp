@@ -185,6 +185,7 @@ public class ModelManager implements Model {
 
     @Override
     public void startQuiz(int numberOfQuestions, Set<Tag> tags) throws CommandException {
+        assert filteredFlashcards.size() == flashcardBook.sizeOfFlashcardList();
         this.quizInstance = new Quiz(filteredFlashcards, numberOfQuestions, tags);
         Flashcard next = quizInstance.getNextQuestion();
         updateFilteredFlashcardList(curr -> curr.equals(next));
@@ -225,6 +226,7 @@ public class ModelManager implements Model {
      * Deletes this quiz instance.
      */
     public void clearQuizInstance() {
+        updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
         quizInstance = null;
     }
 
