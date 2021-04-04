@@ -32,7 +32,7 @@ may lie.
 
 ### **2.1 What's in the User Guide**
 
-In [Section 2.2: Reading the User Guide](##22-reading-the-user-guide) you find essential information that enables to read
+In [Section 2.2: Reading the User Guide](#22-reading-the-user-guide), you find essential information that enables to read
 the user guide seamlessly.
 
 ### **2.2 Reading the User Guide**
