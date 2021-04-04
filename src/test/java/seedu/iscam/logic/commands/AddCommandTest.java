@@ -176,6 +176,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasConflictingMeetingWith(Meeting meeting) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableMeeting getDetailedMeeting() {
             throw new AssertionError("This method should not be called.");
         }
