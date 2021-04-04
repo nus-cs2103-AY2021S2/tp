@@ -14,7 +14,6 @@ public class Time implements Comparable<Time> {
     public static final String MESSAGE_CONSTRAINTS =
             "Meeting times should be valid times specified in 24-hour clock in the format HHMM.\n"
             + "E.g. 0930, 2359\n";
-            
 
     public static final String MESSAGE_INVALID_TIME = "Invalid time entered.\n"
             + "Please ensure that the appointment time entered is valid\n"

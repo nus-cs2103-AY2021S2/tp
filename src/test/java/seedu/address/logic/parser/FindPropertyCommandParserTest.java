@@ -218,7 +218,6 @@ public class FindPropertyCommandParserTest {
                 new FindPropertyCommand(new PropertyPredicateList(predicates));
 
         assertParseSuccess(parser, " d/12-09-2021", expected);
-        assertParseSuccess(parser, " d/12-9-2021", expected);
     }
 
     @Test
