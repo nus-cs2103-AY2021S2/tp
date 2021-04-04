@@ -42,13 +42,6 @@ public class AddMeetingCommand extends Command {
             + PREFIX_DESCRIPTION + "We went to the beach!";
 
     public static final String MESSAGE_ADD_MEETING_SUCCESS = "Added meeting for %1$s";
-    public static final String MESSAGE_ADD_MEETING_FAILURE_DATE_AFTER_TODAY = "Failed to add meeting: " +
-            MESSAGE_DATE_AFTER_TODAY;
-    public static final String MESSAGE_ADD_MEETING_FAILURE_TIME_AFTER_NOW = "Failed to add meeting: " +
-            MESSAGE_TIME_AFTER_NOW;
-    public static final String MESSAGE_ADD_MEETING_FAILURE_DATE_BEFORE_BIRTHDAY = "Failed to add meeting: " +
-            MESSAGE_DATE_BEFORE_BIRTHDAY;
-
 
     private final Index index;
     private final Event meeting;
@@ -90,17 +83,17 @@ public class AddMeetingCommand extends Command {
         LocalTime meetingTime = meeting.getTime();
 
         if (person.beforeBirthday(meetingDate)) {
-            throw new CommandException(String.format(MESSAGE_ADD_MEETING_FAILURE_DATE_BEFORE_BIRTHDAY,
+            throw new CommandException(String.format(MESSAGE_DATE_BEFORE_BIRTHDAY,
                     DateUtil.toErrorMessage(meetingDate)));
         }
 
         if (DateUtil.afterToday(meetingDate)) {
-            throw new CommandException(String.format(MESSAGE_ADD_MEETING_FAILURE_DATE_AFTER_TODAY,
+            throw new CommandException(String.format(MESSAGE_DATE_AFTER_TODAY,
                     DateUtil.toErrorMessage(meetingDate)));
         }
 
         if (DateUtil.isToday(meetingDate) && TimeUtil.afterNow(meetingTime)) {
-            throw new CommandException(String.format(MESSAGE_ADD_MEETING_FAILURE_TIME_AFTER_NOW,
+            throw new CommandException(String.format(MESSAGE_TIME_AFTER_NOW,
                     TimeUtil.toErrorMessage(meetingTime)));
         }
 

@@ -1,6 +1,9 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.commons.core.Messages.MESSAGE_DATE_AFTER_TODAY;
+import static seedu.address.commons.core.Messages.MESSAGE_DATE_BEFORE_BIRTHDAY;
+import static seedu.address.commons.core.Messages.MESSAGE_TIME_AFTER_NOW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
@@ -130,11 +133,11 @@ class AddMeetingCommandTest {
         Event meetingTomorrow = new EventBuilder().withDate(LocalDate.now().plusDays(1)).build();
 
         testInvalidMeeting(meetingBeforeBirthDate, String.format(
-                AddMeetingCommand.MESSAGE_ADD_MEETING_FAILURE_DATE_BEFORE_BIRTHDAY, meetingBeforeBirthDate.getDate()));
+                MESSAGE_DATE_BEFORE_BIRTHDAY, meetingBeforeBirthDate.getDate()));
         testInvalidMeeting(meetingTomorrow, String.format(
-                AddMeetingCommand.MESSAGE_ADD_MEETING_FAILURE_DATE_AFTER_TODAY, meetingTomorrow.getDate()));
+                MESSAGE_DATE_AFTER_TODAY, meetingTomorrow.getDate()));
         testInvalidMeeting(meetingTodayAfterNow, String.format(
-                AddMeetingCommand.MESSAGE_ADD_MEETING_FAILURE_TIME_AFTER_NOW, meetingTodayAfterNow.getTime()));
+                MESSAGE_TIME_AFTER_NOW, meetingTodayAfterNow.getTime()));
     }
 
     public void testInvalidMeeting(Event meeting, String errorMessage) {
