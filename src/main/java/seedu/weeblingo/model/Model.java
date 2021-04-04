@@ -134,7 +134,7 @@ public interface Model {
     /** Gets the quiz instance, which is this quiz session */
     Quiz getQuizInstance() throws CommandException;
 
-    void switchModeQuiz();
+    void switchModeQuiz() throws CommandException;
 
     void switchModeLearn() throws CommandException;
 

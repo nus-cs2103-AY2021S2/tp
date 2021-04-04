@@ -252,7 +252,14 @@ public class ModelManager implements Model {
         return this.mode.getCurrentMode();
     }
 
-    public void switchModeQuiz() {
+    /**
+     * Switches the current mode to Quiz Mode.
+     * @throws CommandException if the filtered list of flashcards is empty.
+     */
+    public void switchModeQuiz() throws CommandException {
+        if (filteredFlashcards.isEmpty()) {
+            throw new CommandException(MESSAGE_TAG_NOT_FOUND);
+        }
         this.mode.switchModeQuiz();
     }
 

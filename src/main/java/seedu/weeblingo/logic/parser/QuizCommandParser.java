@@ -1,14 +1,14 @@
 package seedu.weeblingo.logic.parser;
 
-import seedu.weeblingo.logic.commands.QuizCommand;
-import seedu.weeblingo.logic.parser.exceptions.ParseException;
-import seedu.weeblingo.model.tag.Tag;
+import static seedu.weeblingo.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static seedu.weeblingo.logic.parser.CliSyntax.PREFIX_TAG;
+import seedu.weeblingo.logic.commands.QuizCommand;
+import seedu.weeblingo.logic.parser.exceptions.ParseException;
+import seedu.weeblingo.model.tag.Tag;
 
 public class QuizCommandParser implements Parser<QuizCommand> {
 
