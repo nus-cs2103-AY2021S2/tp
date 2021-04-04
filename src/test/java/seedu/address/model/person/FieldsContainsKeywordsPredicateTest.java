@@ -7,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -85,19 +84,5 @@ public class FieldsContainsKeywordsPredicateTest {
         // Non-matching keyword
         predicate = new FieldsContainsKeywordsPredicate(Collections.singletonList("Carolina"));
         assertFalse(predicate.test(testPerson));
-    }
-
-    @Test
-    public void test_nameComparatorSort_compare() {
-        Person testPerson1 = new PersonBuilder().withName("Alice Gordon").withPhone("12345")
-                .withEmail("alice@email.com").withAddress("Main Street").withRemark("User Research Team Manager")
-                .withTags("Marketing", "Research", "Executive").build();
-        Person testPerson2 = new PersonBuilder().withName("Alice Gordon").withPhone("12345")
-                .withEmail("alice@email.com").withAddress("Main Street").withRemark("Market Researcher Team Manager")
-                .withTags("Marketing", "Researcher", "Executive", "Manager").build();
-
-        // Sort by number of matched fields
-        Comparator<Person> comparatorB = new FieldsContainsKeywordsPredicate(Collections.singletonList("Manager"));
-        assertTrue(comparatorB.compare(testPerson1, testPerson2) > 0);
     }
 }

@@ -1,6 +1,5 @@
 package seedu.address.model.person;
 
-import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -11,7 +10,7 @@ import seedu.address.commons.util.StringUtil;
 /**
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
  */
-public class TagContainsKeywordsPredicate implements Predicate<Person>, Comparator<Person> {
+public class TagContainsKeywordsPredicate implements Predicate<Person> {
     private static final int MATCH_PERCENTAGE = 60;
     private final List<String> keywords;
     private final Logger logger = LogsCenter.getLogger(getClass());
@@ -49,21 +48,6 @@ public class TagContainsKeywordsPredicate implements Predicate<Person>, Comparat
     private String extractTagsToString(Person person) {
         return person.getTags().stream().map(tag -> tag.tagName)
                 .reduce("", (t1, t2) -> t1 + " " + t2);
-    }
-
-    @Override
-    public int compare(Person o1, Person o2) {
-        int o1Similarity = keywords
-                .stream()
-                .map(keyword -> matchAllTags(o1, keyword))
-                .max(Integer::compare)
-                .orElse(0);
-        int o2Similarity = keywords
-                .stream()
-                .map(keyword -> matchAllTags(o2, keyword))
-                .max(Integer::compare)
-                .orElse(0);
-        return o2Similarity - o1Similarity;
     }
 
     @Override

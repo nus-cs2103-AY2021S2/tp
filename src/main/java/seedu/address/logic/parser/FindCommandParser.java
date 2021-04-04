@@ -46,33 +46,33 @@ public class FindCommandParser implements Parser<FindCommand> {
 
             Optional<String> nameValue = argMultimap.getValue(PREFIX_NAME);
             if (nameValue.isPresent()) {
-                NameContainsKeywordsPredicate predicateComparator =
+                NameContainsKeywordsPredicate predicate =
                         new NameContainsKeywordsPredicate(Arrays.asList(nameValue.get().split("\\s+").clone()));
-                return new FindCommand(predicateComparator, predicateComparator);
+                return new FindCommand(predicate);
             }
             Optional<String> emailValue = argMultimap.getValue(PREFIX_EMAIL);
             if (emailValue.isPresent()) {
-                EmailContainsKeywordsPredicate predicateComparator =
+                EmailContainsKeywordsPredicate predicate =
                         new EmailContainsKeywordsPredicate(Arrays.asList(emailValue.get().split("\\s+").clone()));
-                return new FindCommand(predicateComparator, predicateComparator);
+                return new FindCommand(predicate);
             }
             Optional<String> tagValue = argMultimap.getValue(PREFIX_TAG);
             if (tagValue.isPresent()) {
-                TagContainsKeywordsPredicate predicateComparator =
+                TagContainsKeywordsPredicate predicate =
                         new TagContainsKeywordsPredicate(Arrays.asList(tagValue.get().split("\\s+").clone()));
-                return new FindCommand(predicateComparator, predicateComparator);
+                return new FindCommand(predicate);
             }
             Optional<String> remarkValue = argMultimap.getValue(PREFIX_REMARK);
             if (remarkValue.isPresent()) {
-                RemarkContainsKeywordsPredicate predicateComparator =
+                RemarkContainsKeywordsPredicate predicate =
                         new RemarkContainsKeywordsPredicate(Arrays.asList(remarkValue.get().split("\\s+").clone()));
-                return new FindCommand(predicateComparator, predicateComparator);
+                return new FindCommand(predicate);
             }
         }
 
-        FieldsContainsKeywordsPredicate predicateComparator =
+        FieldsContainsKeywordsPredicate predicate =
                 new FieldsContainsKeywordsPredicate(Arrays.asList(trimmedArgs.split("\\s+").clone()));
-        return new FindCommand(predicateComparator, predicateComparator);
+        return new FindCommand(predicate);
     }
 
     /**

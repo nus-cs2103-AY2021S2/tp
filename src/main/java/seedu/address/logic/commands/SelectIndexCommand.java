@@ -50,7 +50,7 @@ public class SelectIndexCommand extends SelectCommand {
             return new CommandResult(MESSAGE_SHOWN_SUCCESS);
         }
 
-        List<Person> personList = model.getSortedFilteredPersonList();
+        List<Person> personList = model.getFilteredPersonList();
         List<Person> selectedPersonList = new ArrayList<>();
         for (Index index : selectedIndexes) {
             if (index.getZeroBased() >= personList.size()) {

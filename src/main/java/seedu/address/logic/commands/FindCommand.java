@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Comparator;
 import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
@@ -29,23 +28,19 @@ public class FindCommand extends Command {
             + "Example: " + COMMAND_WORD + " -t friend colleague classmate";
 
     private final Predicate<Person> predicate;
-    private final Comparator<Person> comparator;
 
     /**
-     * Constructs a Find command that takes a predicate for filtering and a comparator to sort the filtered results
+     * Constructs a Find command that takes a predicate for filtering the person list for display.
      * @param predicate filters the person list
-     * @param comparator sorts the resulting filtered list
      */
-    public FindCommand(Predicate<Person> predicate, Comparator<Person> comparator) {
+    public FindCommand(Predicate<Person> predicate) {
         this.predicate = predicate;
-        this.comparator = comparator;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredPersonList(predicate);
-        model.updateSortedFilteredPersonList(comparator);
         return new CommandResult(
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
     }
@@ -54,7 +49,6 @@ public class FindCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
             || (other instanceof FindCommand // instanceof handles nulls
-            && (predicate.equals(((FindCommand) other).predicate)
-                && comparator.equals(((FindCommand) other).comparator))); // state check
+            && (predicate.equals(((FindCommand) other).predicate))); // state check
     }
 }
