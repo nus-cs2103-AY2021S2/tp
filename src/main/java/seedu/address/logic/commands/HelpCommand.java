@@ -27,7 +27,7 @@ public class HelpCommand extends Command {
 
     public static final String SHOWING_HELP_MESSAGE = "Here are some frequently used commands:\n\n"
             + "1. Adding a task: \n" + HELP_MESSAGE_ADD + "\n\n"
-            + "2. Viewing all task:  \n"+ HELP_MESSAGE_LIST + "\n"
+            + "2. Viewing all task:  \n" + HELP_MESSAGE_LIST + "\n"
             + "3. Editing a task: \n" + HELP_MESSAGE_EDIT + "\n"
             + "4. Finding tasks: \n" + HELP_MESSAGE_FIND + "\n"
             + "5. Deleting a task: \n" + HELP_MESSAGE_DELETE_TASK + "\n"
