@@ -196,6 +196,11 @@ public class AddStudentCommandTest {
         }
 
         @Override
+        public Predicate<Student> getFilteredStudentListPredicate() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public double getFee(LocalDateTime startPeriod, LocalDateTime endPeriod) {
             throw new AssertionError("This method should not be called.");
         }
