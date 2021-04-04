@@ -43,7 +43,11 @@ public class EditPersonCommand extends Command {
             + PREFIX_EMAIL + "doe@example.com";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided:\n";
+    public static final String MESSAGE_FIELDS = "[" + PREFIX_NAME + "NAME] "
+            + "[" + PREFIX_PHONE + "PHONE] "
+            + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_TAG + "TAG]\n";
     public static final String MESSAGE_DUPLICATE_EMAIL =
             "The email to be edited to belongs to another person in the booking system.";
     public static final String MESSAGE_DUPLICATE_PHONE =

@@ -1,6 +1,7 @@
 package seedu.booking.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.booking.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -29,7 +30,8 @@ public class FindPersonCommandParser implements Parser<FindPersonCommand> {
 
         List<Predicate<Person>> predicateList = new ArrayList<>();
 
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TAG);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE,
+                PREFIX_EMAIL, PREFIX_TAG);
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             predicateList.add(ParserUtil.parseNameContainsKeywordsPredicate(argMultimap.getValue(PREFIX_NAME).get()));
@@ -44,11 +46,12 @@ public class FindPersonCommandParser implements Parser<FindPersonCommand> {
         }
 
         if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
-            predicateList.add(ParserUtil.parsePersonTagContainsKeywordsPredicate(argMultimap.getValue(PREFIX_TAG).get()));
+            predicateList.add(ParserUtil.parsePersonTagContainsKeywordsPredicate(argMultimap
+                    .getValue(PREFIX_TAG).get()));
         }
 
         if (predicateList.isEmpty()) {
-            throw new ParseException(FindPersonCommand.MESSAGE_USAGE);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPersonCommand.MESSAGE_USAGE));
         }
 
         return new FindPersonCommand(predicateList);

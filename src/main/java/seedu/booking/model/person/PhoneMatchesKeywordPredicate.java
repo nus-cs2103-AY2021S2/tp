@@ -5,12 +5,12 @@ import java.util.function.Predicate;
 /**
  * Tests that a {@code Person}'s {@code Phone} matches the given phone number.
  */
-public class PhoneContainsKeywordsPredicate implements Predicate<Person> {
-    private final String keyword;
-
+public class PhoneMatchesKeywordPredicate implements Predicate<Person> {
     public static final String MESSAGE_CONSTRAINTS = "Phone number cannot be empty.";
 
-    public PhoneContainsKeywordsPredicate(String keyword) {
+    private final String keyword;
+
+    public PhoneMatchesKeywordPredicate(String keyword) {
         this.keyword = keyword;
     }
 
@@ -22,8 +22,8 @@ public class PhoneContainsKeywordsPredicate implements Predicate<Person> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof PhoneContainsKeywordsPredicate // instanceof handles nulls
-                && keyword.equals(((PhoneContainsKeywordsPredicate) other).keyword)); // state check
+                || (other instanceof PhoneMatchesKeywordPredicate // instanceof handles nulls
+                && keyword.equals(((PhoneMatchesKeywordPredicate) other).keyword)); // state check
     }
 
 }

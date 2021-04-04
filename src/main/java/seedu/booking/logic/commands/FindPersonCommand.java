@@ -1,13 +1,10 @@
 package seedu.booking.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.booking.logic.parser.CliSyntax.PREFIX_CAPACITY;
-import static seedu.booking.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.booking.logic.parser.CliSyntax.PREFIX_VENUE;
 import static seedu.booking.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
@@ -25,6 +22,7 @@ public class FindPersonCommand extends Command {
     public static final String COMMAND_WORD = "find_person";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons who match the given fields.\n"
+            + "At least one field must be provided.\n"
             + "Parameters: " + COMMAND_WORD + " "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "

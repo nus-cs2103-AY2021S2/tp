@@ -1,9 +1,9 @@
 package seedu.booking.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.booking.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_CAPACITY;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.booking.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_VENUE;
 
@@ -30,18 +30,22 @@ public class FindVenueCommandParser implements Parser<FindVenueCommand> {
 
         List<Predicate<Venue>> predicates = new ArrayList<>();
 
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_VENUE, PREFIX_CAPACITY, PREFIX_DESCRIPTION, PREFIX_TAG);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_VENUE, PREFIX_CAPACITY,
+                PREFIX_DESCRIPTION, PREFIX_TAG);
 
         if (argMultimap.getValue(PREFIX_VENUE).isPresent()) {
-            predicates.add(ParserUtil.parseVenueNameContainsKeywordsPredicate(argMultimap.getValue(PREFIX_VENUE).get()));
+            predicates.add(ParserUtil.parseVenueNameContainsKeywordsPredicate(argMultimap
+                    .getValue(PREFIX_VENUE).get()));
         }
 
         if (argMultimap.getValue(PREFIX_CAPACITY).isPresent()) {
-            predicates.add(ParserUtil.parseCapacityContainsKeywordsPredicate(argMultimap.getValue(PREFIX_CAPACITY).get()));
+            predicates.add(ParserUtil.parseCapacityContainsKeywordsPredicate(argMultimap
+                    .getValue(PREFIX_CAPACITY).get()));
         }
 
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
-            predicates.add(ParserUtil.parseVenueDescContainsKeywordsPredicate(argMultimap.getValue(PREFIX_DESCRIPTION).get()));
+            predicates.add(ParserUtil.parseVenueDescContainsKeywordsPredicate(argMultimap
+                    .getValue(PREFIX_DESCRIPTION).get()));
         }
 
         if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
@@ -49,7 +53,7 @@ public class FindVenueCommandParser implements Parser<FindVenueCommand> {
         }
 
         if (predicates.isEmpty()) {
-            throw new ParseException(FindVenueCommand.MESSAGE_USAGE);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindVenueCommand.MESSAGE_USAGE));
         }
         return new FindVenueCommand(predicates);
 
