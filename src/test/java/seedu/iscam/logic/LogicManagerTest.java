@@ -26,14 +26,14 @@ import seedu.iscam.logic.events.exceptions.EventException;
 import seedu.iscam.logic.parser.exceptions.ParseException;
 import seedu.iscam.model.Model;
 import seedu.iscam.model.ModelManager;
-import seedu.iscam.model.UserPrefs;
 import seedu.iscam.model.client.Client;
+import seedu.iscam.model.user.UserPrefs;
 import seedu.iscam.model.util.clientbook.ReadOnlyClientBook;
 import seedu.iscam.model.util.meetingbook.ReadOnlyMeetingBook;
-import seedu.iscam.storage.JsonClientBookStorage;
-import seedu.iscam.storage.JsonMeetingBookStorage;
-import seedu.iscam.storage.JsonUserPrefsStorage;
 import seedu.iscam.storage.StorageManager;
+import seedu.iscam.storage.client.JsonClientBookStorage;
+import seedu.iscam.storage.meeting.JsonMeetingBookStorage;
+import seedu.iscam.storage.user.JsonUserPrefsStorage;
 import seedu.iscam.testutil.ClientBuilder;
 
 public class LogicManagerTest {
@@ -106,10 +106,11 @@ public class LogicManagerTest {
      * - no exceptions are thrown <br>
      * - the feedback message is equal to {@code expectedMessage} <br>
      * - the internal model manager state is the same as that in {@code expectedModel} <br>
+     *
      * @see #assertCommandFailure(String, Class, String, Model)
      */
     private void assertCommandSuccess(String inputCommand, String expectedMessage,
-            Model expectedModel) throws CommandException, ParseException, EventException {
+                                      Model expectedModel) throws CommandException, ParseException, EventException {
         CommandResult result = logic.execute(inputCommand);
         assertEquals(expectedMessage, result.getFeedbackToUser());
         assertEquals(expectedModel, model);
@@ -117,6 +118,7 @@ public class LogicManagerTest {
 
     /**
      * Executes the command, confirms that a ParseException is thrown and that the result message is correct.
+     *
      * @see #assertCommandFailure(String, Class, String, Model)
      */
     private void assertParseException(String inputCommand, String expectedMessage) {
@@ -125,6 +127,7 @@ public class LogicManagerTest {
 
     /**
      * Executes the command, confirms that a CommandException is thrown and that the result message is correct.
+     *
      * @see #assertCommandFailure(String, Class, String, Model)
      */
     private void assertCommandException(String inputCommand, String expectedMessage) {
@@ -133,10 +136,11 @@ public class LogicManagerTest {
 
     /**
      * Executes the command, confirms that the exception is thrown and that the result message is correct.
+     *
      * @see #assertCommandFailure(String, Class, String, Model)
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
-            String expectedMessage) {
+                                      String expectedMessage) {
         Model expectedModel = new ModelManager(model.getClientBook(), model.getMeetingBook(), new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
@@ -146,10 +150,11 @@ public class LogicManagerTest {
      * - the {@code expectedException} is thrown <br>
      * - the resulting error message is equal to {@code expectedMessage} <br>
      * - the internal model manager state is the same as that in {@code expectedModel} <br>
+     *
      * @see #assertCommandSuccess(String, String, Model)
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
-            String expectedMessage, Model expectedModel) {
+                                      String expectedMessage, Model expectedModel) {
         assertThrows(expectedException, expectedMessage, () -> logic.execute(inputCommand));
         assertEquals(expectedModel, model);
     }

@@ -9,6 +9,7 @@ import seedu.iscam.commons.core.GuiSettings;
 import seedu.iscam.commons.core.index.Index;
 import seedu.iscam.model.client.Client;
 import seedu.iscam.model.meeting.Meeting;
+import seedu.iscam.model.user.ReadOnlyUserPrefs;
 import seedu.iscam.model.util.clientbook.ObservableClient;
 import seedu.iscam.model.util.clientbook.ReadOnlyClientBook;
 import seedu.iscam.model.util.meetingbook.ObservableMeeting;

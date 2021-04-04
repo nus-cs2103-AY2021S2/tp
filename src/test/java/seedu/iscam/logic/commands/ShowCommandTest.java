@@ -16,8 +16,8 @@ import seedu.iscam.commons.core.Messages;
 import seedu.iscam.commons.core.index.Index;
 import seedu.iscam.model.Model;
 import seedu.iscam.model.ModelManager;
-import seedu.iscam.model.UserPrefs;
 import seedu.iscam.model.client.Client;
+import seedu.iscam.model.user.UserPrefs;
 
 /**
  * Contains integration tests (Interaction with the Model) and unit tests for

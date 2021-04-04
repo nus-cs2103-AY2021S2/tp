@@ -18,8 +18,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.iscam.model.Model;
 import seedu.iscam.model.ModelManager;
-import seedu.iscam.model.UserPrefs;
 import seedu.iscam.model.commons.NameContainsKeywordsPredicate;
+import seedu.iscam.model.user.UserPrefs;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.

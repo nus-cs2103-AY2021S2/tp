@@ -1,4 +1,4 @@
-package seedu.iscam.storage;
+package seedu.iscam.storage.meeting;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -29,7 +29,7 @@ class JsonAdaptedMeeting {
     private final String dateTime;
     private final String location;
     private final String description;
-    private final List<JsonAdaptedTag> tags = new ArrayList<>();
+    private final List<JsonAdaptedMeetingTag> tags = new ArrayList<>();
     private final String isDone;
 
     /**
@@ -39,7 +39,8 @@ class JsonAdaptedMeeting {
     public JsonAdaptedMeeting(@JsonProperty("client") String clientName, @JsonProperty("dateTime") String dateTime,
                               @JsonProperty("location") String location,
                               @JsonProperty("description") String description,
-                              @JsonProperty("tags") List<JsonAdaptedTag> tags, @JsonProperty("isDone") String isDone) {
+                              @JsonProperty("tags") List<JsonAdaptedMeetingTag> tags,
+                              @JsonProperty("isDone") String isDone) {
         this.clientName = clientName;
         this.dateTime = dateTime;
         this.location = location;
@@ -59,7 +60,7 @@ class JsonAdaptedMeeting {
         location = source.getLocation().value;
         description = source.getDescription().value;
         tags.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
+                .map(JsonAdaptedMeetingTag::new)
                 .collect(Collectors.toList()));
         isDone = source.getIsDone() ? "true" : "false";
     }
@@ -71,7 +72,7 @@ class JsonAdaptedMeeting {
      */
     public Meeting toModelType() throws IllegalValueException {
         final List<Tag> meetingTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tags) {
+        for (JsonAdaptedMeetingTag tag : tags) {
             meetingTags.add(tag.toModelType());
         }
 
