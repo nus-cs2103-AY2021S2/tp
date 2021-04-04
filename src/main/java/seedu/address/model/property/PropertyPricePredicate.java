@@ -5,6 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.util.function.Predicate;
 
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.property.client.AskingPrice;
 
 /**
@@ -22,7 +23,7 @@ public class PropertyPricePredicate implements Predicate<Property> {
      *               note that regardless of this value, any askingPrice
      *               that is equals to the given price will return true.
      */
-    public PropertyPricePredicate(String price, boolean isLess) {
+    public PropertyPricePredicate(String price, boolean isLess) throws ParseException {
         requireNonNull(price);
         checkArgument(AskingPrice.isValidAskingPrice(price));
         this.price = AskingPrice.parse(price);
