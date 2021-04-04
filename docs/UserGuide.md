@@ -71,7 +71,7 @@ This section gives an overview of BookCoin’s layout so that you can get starte
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `exit`) will be ignored.<br>
-  e.g. if the command specifies `exit 123`, it will be interpreted as `exit`.
+  e.g. if the command specifies `exit 123`, it will be interpreted as `exit`. 
 
 </div>
 
@@ -146,6 +146,7 @@ Format: `exit_prompt`
 
 * BookCoin stores information about venue bookers which is important for scheduling/ contacting purposes. When bookers are stored, their information can be used for multiple bookings in the future which allows you to access their details easily without having to repeat the same booker details multiple times across bookings.
 * For your convenience, we use the term "person" in the app instead of "booker" to make a distinction between "booker" and "booking", which can be confusing.
+* Persons are identified by their emails, hence all email inputs between persons must be unique. Persons with the same name are allowed.
 
 </div>
 
@@ -181,9 +182,9 @@ Shows a list of all persons in the booking app.
 
 Format: `list_person`
 
-#### 3.3.5. Finding a person : `find_person`
+#### 3.3.5. Finding a person : `find_person` (Edit this Vanessa!)
 
-Shows information about the person corresponding to the given email.
+Shows information about the person corresponding to the given email. Partial matching is not accepted to reduce the number of unrelated search results for greater convenience in searching. 
 
 Format: `find_person e/EMAIL`
 
@@ -226,9 +227,9 @@ Shows a list of all venues in the booking app.
 
 Format: `list_venue`
 
-#### 3.4.5. Finding a venue : `find_venue`
+#### 3.4.5. Finding a venue : `find_venue` (rmb to edit this vanessa!!!)
 
-Shows information about the venue corresponding to the given venue name.
+Shows information about the venue corresponding to the given venue name. Partial matching is not accepted to reduce the number of unrelated search results for greater convenience in searching. 
 
 Format: `find_venue v/VENUE_NAME`
 
@@ -271,9 +272,9 @@ Shows a list of all bookings and their corresponding IDs in the booking app.
 
 Format: `list_booking`
 
-#### 3.5.5. Finding a booking : `find_booking`
+#### 3.5.5. Finding a booking : `find_booking` (Edit this Vanessa!)
 
-Shows information about the booking corresponding to the given booking ID.
+Shows information about the booking corresponding to the given booking ID. Partial matching is not accepted to reduce the number of unrelated search results for greater convenience in searching. 
 
 Format: `find_booking bid/BOOKING_ID`
 
