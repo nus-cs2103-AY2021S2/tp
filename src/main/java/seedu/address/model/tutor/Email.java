@@ -13,7 +13,8 @@ public class Email implements Filterable {
     private static final String SPECIAL_CHARACTERS = "!#$%&'*+/=?`{|}~^.-";
     public static final String MESSAGE_CONSTRAINTS = "Emails should be of the format local-part@domain "
             + "and adhere to the following constraints:\n"
-            + "1. The local-part should not be empty, should only contain alphanumeric characters and these special characters, excluding "
+            + "1. The local-part should not be empty, should only contain alphanumeric characters"
+            + "and these special characters, excluding "
             + "the parentheses, (" + SPECIAL_CHARACTERS + ") .\n"
             + "2. This is followed by a '@' and then a domain name. "
             + "The domain name must:\n"
