@@ -1,4 +1,7 @@
-<h1>BookCoin User Guide</h1>
+---
+layout: page
+title: User Guide
+---
 
 * Table of Contents
 {:toc}
