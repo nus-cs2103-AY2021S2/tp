@@ -268,7 +268,7 @@ public class CheckCommandTest {
         @Override
         public void switchModeCheckSuccess() {
         }
-        
+
         @Override
         public String getQuizStatisticString() {
             return "";
