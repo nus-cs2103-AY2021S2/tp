@@ -209,7 +209,7 @@ The following sequence diagram summarizes what happens when a user executes the 
 ### Add Session Feature
 The add session feature allows users to add individual tuition sessions with specific details of each session.
 
-This section explains the implementation of the add session mechanism and highlights the design considerations
+This section explains the implementation of the add session mechanism and highlights the design considerations 
 taken into account when implementing this feature.
 <!--
 ### Session Feature
@@ -219,9 +219,13 @@ and a `Student` can have multiple `Session`s.
 -->
 
 #### Implementation
+The add attendance mechanism is facilitated by `AddAttendanceCommand` and it extends `Command`. The method,
+`AddSessionCommand#execute()`, performs a validity check on student name input and session details input by the user
+<!--
 The creation of a session is facilitated by `AddSessionCommand` and it extends `Command`. The method,
 `AddSessionCommand#execute()`, performs a validity check on student name input and session details input by the user
 before adding the session.
+-->
 
 The following sequence diagram shows the interactions between the Model and Logic components during the execution of 
 an AddSessionCommand with user input `add_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE`:
@@ -231,7 +235,8 @@ an AddSessionCommand with user input `add_session n/STUDENT_NAME d/DATE t/TIME k
 1. `Logic` uses the `AddressBookParser` class to parse the user command.
 2. A new instance of an `AddSessionCommand` would be created by the `AddSessionCommandParser` and returned to `AddressBookParser`.
 3. `AddressBookParser` encapsulates the `AddSessionCommand` object as a `Command` object which is executed by the `LogicManager`.
-4. The command execution calls `hasStudent(name)` and `hasSession(name, sessionToAdd)` to validate the inputs before calling `addSession(name, sessionToAdd)` which adds the session to the specific student.
+4. The command execution calls `hasStudent(name)` and `hasSession(name, sessionToAdd)` to validate the inputs before calling
+   `addSession(name, sessionToAdd)` which adds the session to the specific student.
 5. The result of the command execution is encapsulated as a CommandResult object which is passed back to the Ui.
 
 The `DeleteSessionCommand` does the opposite -- it calls `Model#deleteSession(studentName, sessionIndex)` instead
