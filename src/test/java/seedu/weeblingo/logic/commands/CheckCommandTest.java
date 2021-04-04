@@ -240,13 +240,17 @@ public class CheckCommandTest {
         }
 
         @Override
+        public void switchModeQuizSession() { this.getMode().switchModeQuizSession();
+        }
+
+        @Override
         public String getQuizStatisticString() {
             return "";
         }
 
         @Override
         public int getCurrentMode() {
-            return Mode.MODE_QUIZ;
+            return Mode.MODE_QUIZ_SESSION;
         }
 
     }
@@ -269,6 +273,7 @@ public class CheckCommandTest {
         public void switchModeCheckSuccess() {
         }
 
+
         @Override
         public String getQuizStatisticString() {
             return "";
@@ -276,7 +281,7 @@ public class CheckCommandTest {
 
         @Override
         public int getCurrentMode() {
-            return Mode.MODE_QUIZ;
+            return Mode.MODE_QUIZ_SESSION;
         }
     }
 }
