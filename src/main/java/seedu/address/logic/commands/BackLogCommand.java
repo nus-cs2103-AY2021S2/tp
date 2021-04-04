@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -16,6 +17,7 @@ public class BackLogCommand extends Command {
             + "Parameters: "
             + PREFIX_NAME + "NAME " + " "
             + PREFIX_DESCRIPTION + "DESCRIPTION " + " "
+            + "[" + PREFIX_PRIORITY + "]" + "PRIORITY " + "\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Household Chores" + " "
             + PREFIX_DESCRIPTION + "Clean my room and wash the dishes";

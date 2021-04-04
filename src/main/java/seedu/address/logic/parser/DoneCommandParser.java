@@ -5,6 +5,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 
 import seedu.address.commons.core.identifier.Identifier;
 import seedu.address.logic.commands.DoneCommand;
+import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 public class DoneCommandParser implements Parser<DoneCommand> {
@@ -16,8 +17,8 @@ public class DoneCommandParser implements Parser<DoneCommand> {
             Identifier identifier = ParserUtil.parseIdentifier(userInput);
             return new DoneCommand(identifier);
         } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DoneCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(pe.getMessage() + "\n\n"
+                    + String.format(MESSAGE_INVALID_COMMAND_FORMAT, DoneCommand.MESSAGE_USAGE), pe);
         }
     }
 }
