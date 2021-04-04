@@ -1,10 +1,10 @@
-<h1>BookCoin User Guide<h1>
+<h1>BookCoin User Guide</h1>
 
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
-<br>
+
 ## 1. About BookCoin
 BookCoin (to the Moon) is a **desktop app for managing bookings and presents users a structured and detailed information on facility availability via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). BookCoin is designed for administrators who need to keep track of booking of multiple facilities. If you can type fast, BookCoin can get your facility management tasks done faster than traditional GUI apps. Enjoy!
 
