@@ -63,37 +63,13 @@ public class EListCommandParser implements Parser<EListCommand> {
     }
 
     /**
-     * Returns a list of parsed name strings from the argument map.
-     */
-    private List<String> getParsedNames(ArgumentMultimap argMap) throws ParseException {
-        List<String> names = argMap.getAllValues(PREFIX_NAME);
-        for (int i = 0; i < names.size(); i++) {
-            String name = names.get(i);
-            names.set(i, ParserUtil.parseName(name).fullName);
-        }
-        return names;
-    }
-
-    /**
-     * Returns a list of parsed tag strings from the argument map.
-     */
-    private List<String> getParsedRemarks(ArgumentMultimap argMap) throws ParseException {
-        List<String> remarks = argMap.getAllValues(PREFIX_REMARK);
-        for (int i = 0; i < remarks.size(); i++) {
-            String remark = remarks.get(i);
-            remarks.set(i, ParserUtil.parseRemark(remark).value);
-        }
-        return remarks;
-    }
-
-    /**
      * Returns a list of filtering predicates depending on whether partial search is disabled.
      */
     private List<Predicate<Event>> getPredicates(ArgumentMultimap argMap) throws ParseException {
         boolean isExactSearch = argMap.contains(FLAG_EXACT);
         List<Predicate<Event>> predicates = new ArrayList<>();
-        List<String> allNames = getParsedNames(argMap);
-        List<String> allRemarks = getParsedRemarks(argMap);
+        List<String> allNames = ListCommandUtil.getParsedNames(argMap);
+        List<String> allRemarks = ListCommandUtil.getParsedRemarks(argMap);
 
         if (isExactSearch) {
             if (!allNames.isEmpty()) {
