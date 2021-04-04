@@ -147,7 +147,10 @@ public class Person {
      */
     public Person withMeetings(List<Event> meetings) {
         return new Person(name, phone, email, birthday, goal, address, picture, debt, tags, dates, meetings);
+    }
 
+    public boolean beforeBirthday(LocalDate date) {
+        return birthday.beforeBirthdate(date);
     }
 
     /**

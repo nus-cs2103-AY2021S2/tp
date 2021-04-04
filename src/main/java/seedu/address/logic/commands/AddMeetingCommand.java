@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_DATE_AFTER_TODAY;
+import static seedu.address.commons.core.Messages.MESSAGE_DATE_BEFORE_BIRTHDAY;
 import static seedu.address.commons.core.Messages.MESSAGE_TIME_AFTER_NOW;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
@@ -45,6 +46,9 @@ public class AddMeetingCommand extends Command {
             MESSAGE_DATE_AFTER_TODAY;
     public static final String MESSAGE_ADD_MEETING_FAILURE_TIME_AFTER_NOW = "Failed to add meeting: " +
             MESSAGE_TIME_AFTER_NOW;
+    public static final String MESSAGE_ADD_MEETING_FAILURE_DATE_BEFORE_BIRTHDAY = "Failed to add meeting: " +
+            MESSAGE_DATE_BEFORE_BIRTHDAY;
+
 
     private final Index index;
     private final Event meeting;
@@ -76,10 +80,18 @@ public class AddMeetingCommand extends Command {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
+        if (index.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
+
+        Person person = lastShownList.get(index.getZeroBased());
+
         LocalDate meetingDate = meeting.getDate();
         LocalTime meetingTime = meeting.getTime();
 
-
+        if (person.beforeBirthday(meetingDate)) {
+            throw new CommandException(String.format(MESSAGE_ADD_MEETING_FAILURE_DATE_BEFORE_BIRTHDAY, meetingDate));
+        }
 
         if (DateUtil.afterToday(meetingDate)) {
             throw new CommandException(String.format(MESSAGE_ADD_MEETING_FAILURE_DATE_AFTER_TODAY, meetingDate));
@@ -89,11 +101,6 @@ public class AddMeetingCommand extends Command {
             throw new CommandException(String.format(MESSAGE_ADD_MEETING_FAILURE_TIME_AFTER_NOW, meetingTime));
         }
 
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-        }
-
-        Person person = lastShownList.get(index.getZeroBased());
         Person editedPerson = createEditedPerson(person, meeting);
 
         model.setPerson(person, editedPerson);

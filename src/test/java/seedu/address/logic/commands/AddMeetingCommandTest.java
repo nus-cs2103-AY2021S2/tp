@@ -89,6 +89,13 @@ class AddMeetingCommandTest {
 
     @Test
     public void execute_validMeetings_success() {
+        // this person needs to match the person used in #testValidMeeting
+        Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        LocalDate birthDate = firstPerson.getBirthday().getDate();
+
+        // Acceptable range of values is from date of birthday to today (before the current time)
+        testValidMeeting(new EventBuilder().withDate(birthDate).build());
+        testValidMeeting(new EventBuilder().withDate(birthDate.plusDays(1)).build());
         testValidMeeting(MEETING_TODAY);
         testValidMeeting(MEETING_NOW);
     }
@@ -111,12 +118,19 @@ class AddMeetingCommandTest {
 
     @Test
     public void execute_invalidMeetings_failure() {
-        Event meetingTomorrow = new EventBuilder().withDate(LocalDate.now().plusDays(1)).build();
+        // this person needs to match the person used in #testInvalidMeetings
+        Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        LocalDate birthDate = firstPerson.getBirthday().getDate();
+
+        Event meetingBeforeBirthDate = new EventBuilder().withDate(birthDate.minusDays(1)).build();
         Event meetingTodayAfterNow = new EventBuilder()
                 .withDate(LocalDate.now())
                 .withTime(LocalTime.now().plusMinutes(1))
                 .build();
+        Event meetingTomorrow = new EventBuilder().withDate(LocalDate.now().plusDays(1)).build();
 
+        testInvalidMeeting(meetingBeforeBirthDate, String.format(
+                AddMeetingCommand.MESSAGE_ADD_MEETING_FAILURE_DATE_BEFORE_BIRTHDAY, meetingBeforeBirthDate.getDate()));
         testInvalidMeeting(meetingTomorrow, String.format(
                 AddMeetingCommand.MESSAGE_ADD_MEETING_FAILURE_DATE_AFTER_TODAY, meetingTomorrow.getDate()));
         testInvalidMeeting(meetingTodayAfterNow, String.format(

@@ -14,7 +14,7 @@ public class Birthday {
             seedu.address.commons.util.DateUtil.MESSAGE_CONSTRAINT;
 
     public static final DateTimeFormatter BIRTHDAY_INPUT_FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-    public final LocalDate date;
+    public final LocalDate birthDate;
 
     /**
      * Constructs a {@code Birthday}.
@@ -24,7 +24,7 @@ public class Birthday {
      */
     public Birthday(LocalDate date) {
         requireNonNull(date);
-        this.date = date;
+        this.birthDate = date;
     }
 
     /**
@@ -37,14 +37,14 @@ public class Birthday {
         requireNonNull(birthday);
         checkArgument(isValidBirthday(birthday), MESSAGE_CONSTRAINTS);
         try {
-            this.date = DateUtil.fromDateInput(birthday);
+            this.birthDate = DateUtil.fromDateInput(birthday);
         } catch (ParseException e) {
             throw new IllegalArgumentException(MESSAGE_CONSTRAINTS);
         }
     }
 
     public LocalDate getDate() {
-        return date;
+        return birthDate;
     }
 
     /**
@@ -58,14 +58,18 @@ public class Birthday {
             return false;
         }
     }
-    
+
+    public boolean beforeBirthdate(LocalDate date) {
+        return date.isBefore(birthDate);
+    }
+
     @Override
     public String toString() {
-        return DateUtil.toString(date, BIRTHDAY_INPUT_FORMAT);
+        return DateUtil.toString(birthDate, BIRTHDAY_INPUT_FORMAT);
     }
 
     public String toUi() {
-        return DateUtil.toUi(date);
+        return DateUtil.toUi(birthDate);
     }
 
     @Override
@@ -77,7 +81,7 @@ public class Birthday {
 
     @Override
     public int hashCode() {
-        return date.hashCode();
+        return birthDate.hashCode();
     }
 
 }
