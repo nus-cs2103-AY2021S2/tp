@@ -22,8 +22,6 @@ public class StartCommand extends Command {
             + "Enter \"check\" to check the answer, "
             + "\"next\" to move to the next question and \"end\" to return to menu.";
 
-    public static final String MESSAGE_TAG_NOT_FOUND = "Oops, no flashcards have that tag!";
-
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": starts a new quiz with the specified number of "
             + "questions, filtered to have only questions that have the specified tag(s). All parameters are"
             + "optional. \n"

@@ -13,4 +13,5 @@ public class Messages {
     public static final String MESSAGE_NOT_IN_MENU_MODE = "Please enter \"end\" to return to menu mode "
             + "before switching between learn, quiz and history modes.";
     public static final String MESSAGE_NOT_IN_QUIZ_SESSION = "You are not currently in a quiz session.";
+    public static final String MESSAGE_TAG_NOT_FOUND = "Oops, no flashcards have that tag!";
 }
