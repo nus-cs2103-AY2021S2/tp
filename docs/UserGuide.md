@@ -244,13 +244,15 @@ Example:
 
 ### Sort entries by name : `sort`
 
-Sort the entries in the contacts list by name in either ascending or descending order.
+Sort the contacts in the address book by name in alphabetical order. The list can be sorted in
+either ascending or descending order.
 
 Format: `sort ASCENDING_OR_DESCENDING`
 
-Example:
+Examples:
 
-`sort ascending`
+* `sort ascending`
+* `sort descending`
 
 ### Changing view type to light mode : `light`
 
@@ -319,7 +321,7 @@ Action | Format, Examples
 **List** | `list`
 **Remark** | `remark INDEX r/REMARK`<br> e.g., `remark 5 r/Currently on Leave of Absence`
 **Tag** | `tag n/NAME t/TAG`<br> e.g., `tag n/Jane Bo t/Student`
-**Sort** | `sort c/CRITERIA d/ASCENDING_OR_DESCENDING`<br> e.g., `sort c/name d/ascending`
+**Sort** | `sort ASCENDING_OR_DESCENDING`<br> e.g., `sort ascending`
 **Light** | `light`
 **Dark** | `dark`
 **Sort** | `sort ASCENDING_OR_DESCENDING`<br> e.g., `sort ascending`
