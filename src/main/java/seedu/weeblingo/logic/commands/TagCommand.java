@@ -65,7 +65,13 @@ public class TagCommand extends Command {
         Flashcard taggedFlashcard = createTaggedFlashcard(flashcardToTag, tags);
 
         for (Tag t : flashcardToTag.getUserTags()) {
-            if (checkUserTagsForDuplicates(t)) {
+            if (checkGivenTagsForDuplicates(t)) {
+                throw new CommandException(MESSAGE_DUPLICATE_TAG);
+            }
+        }
+
+        for (Tag t: flashcardToTag.getWeeblingoTags()) {
+            if (checkGivenTagsForDuplicates(t)) {
                 throw new CommandException(MESSAGE_DUPLICATE_TAG);
             }
         }
@@ -82,7 +88,7 @@ public class TagCommand extends Command {
      * @param tag The tag to be checked.
      * @return true if the tag(s) already exist, false otherwise.
      */
-    private boolean checkUserTagsForDuplicates(Tag tag) {
+    private boolean checkGivenTagsForDuplicates(Tag tag) {
         for (Tag otherTag : tags) {
             if (tag.equals(otherTag)) {
                 return true;
