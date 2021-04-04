@@ -122,8 +122,9 @@ The Home page is split into two views: **Reminder** and **Monthly Fees**.
 ##### Reminder
 The Reminder section displays tuition sessions within 3 days of the current date. Namely today, tomorrow and the day after tomorrow.
 
-##### Monthly Fees
-The Monthly Fees section displays tuition fees for the current and the past two months.
+##### 3 Months Monthly Fee
+The 3 Months Monthly Fees section displays tuition fees for the current month and the past two months.
+Note: The current month and past two months are calculated when the user first opened the application. No other months can be added to this section.
 
 #### 4.1.2 Tuition
 The Tuition page is split into two views: **Student** and **Session**.
