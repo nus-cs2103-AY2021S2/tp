@@ -37,7 +37,9 @@ public class HelpWindow extends UiPart<Stage> {
     public HelpWindow(Stage root) {
         super(FXML, root);
 
-        helpBox.setMinWidth(1000);
+        copyButton.setPrefWidth(910);
+
+        helpBox.setMinWidth(910);
         helpBox.setMinHeight(500);
         helpBox.setItems(FXCollections.observableArrayList(HelpCommand.SHOWING_HELP_MESSAGE.split("\n")));
     }
