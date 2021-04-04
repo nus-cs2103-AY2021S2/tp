@@ -484,10 +484,14 @@ find KEYWORD [MORE_KEYWORDS]...
 **Things you should take note about the `find` command:**
 
 - Your keyword inputs are [case-insensitive](#case-insensitive)
-- The order of your inputs will not matter. e.g. `CS2103T Project` will match `Project CS2103T`
-- Only full words will be matched e.g. `CS2103` will not match `CS2103T`
-- Events matching at least one keyword will be returned (i.e. OR search). e.g. `CS2103T` will return `CS2103T Project`, `CS2103T Submission`
-- Focuris will look for matching keywords only in the `NAME` and `DESCRIPTION` parameters. You can get more information about parameters [here](#212-parameter-summary).
+  - e.g. `cs2103` will match `cs2103`, `cS2103`, `Cs2103` and `CS2103`
+- The order of your inputs will not matter.
+  - e.g. `CS2103T Project` will match `Project CS2103T`
+- Your keywords will only be matched with full words
+  - e.g. `CS2103` will not match `CS2103T`
+- If your keywords match at least one word in an Event's `NAME` or `DESCRIPTION`, you should see it in the output.
+  - e.g. `CS2103T` will match `CS2103T Project`, `CS2103T v1.3 Deadline`, etc.
+- Focuris will try to match your keywords with any Events by their `NAME` and `DESCRIPTION` parameters only. You can get more information about parameters [here](#212-parameter-summary).
 
 **What you should expect to happen:**
 
@@ -505,9 +509,19 @@ _Figure 10. **After** execution of sample find command_
 
 **More Example Commands:**
 
-| No  | Example Command   | Expected events to match                                            |
-| --- | ----------------- | ------------------------------------------------------------------- |
-| 1   | `find cs2101 op1` | Events with either `cs2101` or `op1` in their names will be matched |
+| No  | Example Command      | Expected events to match                                                                    |
+| --- | -------------------- | ------------------------------------------------------------------------------------------- |
+| 1   | `find cs2101 op1`    | Events with either `cs2101` or `op1` in their names or descriptions will be matched         |
+| 2   | `find CS2103T`       | Events with either `cs2103t` in their names or descriptions will be matched                 |
+| 3   | `find one two three` | Events with either `one` or `two` or `three` in their names or descriptions will be matched |
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br>
+
+- The `Expected events to match` column in the table above displays the names in lower-case, but keywords in any case is matched, e.g. `cs2103` will match `Cs2103`, `cS2103`, `CS2103` and `cs2103`.
+
+</div>
 
 <a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
 
