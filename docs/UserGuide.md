@@ -176,7 +176,7 @@ Format: `list [--exact] [--any] [-n NAME]... [-t TAG]... [-b BIRTHDAY]... [-s SO
    * `-o` parameter optionally determines the direction of sort, according to `SORT_ORDER`:
      * `a`, `asc`, `ascending`: ascending (by default, if `-o` not specified)
      * `d`, `desc`, `descending`: descending
-     * Sorts by upcoming birthday only sorts in `ascending` order
+     * Sorts by upcoming birthday ignores the sort order parameter and only sorts in `ascending` order
 2. If search parameters specified, `list [--exact] [--any] [-n NAME]... [-t TAG]... [-b BIRTHDAY]... [-s SORT_FIELD] [-o SORT_ORDER]`: List all contacts matching the search criteria
    * Search criteria, case-insensitive:
      * `-n` filters the contacts by name
@@ -245,7 +245,7 @@ Format: `elist [--exact] [--any] [-n NAME] [-r DETAIL]... [-s SORT] [-o ORDER]`
     * `-o` parameter optionally determines the direction of sort, according to `SORT_ORDER`. Possible values of SORT_ORDER:
       * `a`, `asc`, `ascending`: ascending (by default, if `-o` not specified)
       * `d`, `desc`, `descending`: descending 
-      * Sorts by upcoming event dates only sorts in `ascending` order
+      * Sorts by upcoming birthday ignores the sort order parameter and only sorts in `ascending` order
 2. If search parameters specified, `elist [--exact] [--any] [-n NAME]... [-r DETAIL]... [-s SORT_FIELD] [-o 
    SORT_ORDER]`: List all events matching the search criteria
     * Search criteria, case-insensitive: 
