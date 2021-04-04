@@ -22,10 +22,6 @@ import seedu.weeblingo.model.tag.Tag;
  */
 public class Quiz {
 
-    private static final String MESSAGE_NUMBER_LARGER_THAN_DATABASE_FLASHCARDS_SIZE =
-            "The number you specified is larger than the "
-            + "number of flashcards in the database.\n"
-            + "Please enter a number that is smaller than or equals to ";
     private static Queue<Flashcard> quizSessionQueue;
 
     private Flashcard currentQuiz;
@@ -139,7 +135,7 @@ public class Quiz {
 
         // Check if number of questions specified is larger than number of flashcards in database
         if (numberOfQuestions > flashcardsToProcess.size()) {
-            throw new CommandException(MESSAGE_NUMBER_LARGER_THAN_DATABASE_FLASHCARDS_SIZE
+            throw new CommandException(StartCommand.MESSAGE_NUMBER_LARGER_THAN_DATABASE_FLASHCARDS_SIZE
                     + flashcardsToProcess.size() + ".");
         }
 
