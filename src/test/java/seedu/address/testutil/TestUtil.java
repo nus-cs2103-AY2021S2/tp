@@ -49,7 +49,7 @@ public class TestUtil {
     /**
      * Returns the flashcard in the {@code model}'s flashcard list at {@code index}.
      */
-    public static Flashcard getPerson(Model model, Index index) {
+    public static Flashcard getFlashcard(Model model, Index index) {
         return model.getFilteredFlashcardList().get(index.getZeroBased());
     }
 }

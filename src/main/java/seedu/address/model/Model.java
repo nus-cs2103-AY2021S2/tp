@@ -116,4 +116,29 @@ public interface Model {
      * Restores FlashBack to its state before the undo command
      */
     void redoFlashBack();
+
+    /**
+     * Adds an alias to a command in FlashBack
+     */
+    void addAlias(String command, String alias);
+
+    /**
+     * Returns true if alias can be added
+     */
+    boolean canAddAlias(String command, String alias);
+
+    /**
+     * Parses alias into command
+     */
+    String parseAlias(String input);
+
+    /**
+     * Checks if input is an alias
+     */
+    boolean isAlias(String input);
+
+    /**
+     * Checks if input is a command
+     */
+    boolean isCommand(String input);
 }

@@ -37,14 +37,14 @@ public class FlashBackTest {
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
+    public void resetData_withValidReadOnlyFlashBack_replacesData() {
         FlashBack newData = getTypicalFlashBack();
         flashBack.resetData(newData);
         assertEquals(newData, flashBack);
     }
 
     @Test
-    public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
+    public void resetData_withDuplicateFlashcards_throwsDuplicateFlashcardException() {
         // Two persons with the same identity fields
         Flashcard editedAlice = new FlashcardBuilder(PYTHAGOREAN)
                 .withPriority(VALID_PRIORITY_OCTOPUS).withTags(VALID_TAG_EQUATION).build();
@@ -55,23 +55,23 @@ public class FlashBackTest {
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
+    public void hasFlashcard_nullFlashcard_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> flashBack.hasCard(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
+    public void hasFlashcard_flashcardNotInFlashBack_returnsFalse() {
         assertFalse(flashBack.hasCard(PYTHAGOREAN));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
+    public void hasFlashcard_flashcardInFlashBack_returnsTrue() {
         flashBack.addCard(PYTHAGOREAN);
         assertTrue(flashBack.hasCard(PYTHAGOREAN));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
+    public void hasFlashcard_flashcardWithSameIdentityFieldsInFlashBack_returnsTrue() {
         flashBack.addCard(PYTHAGOREAN);
         Flashcard editedAlice = new FlashcardBuilder(PYTHAGOREAN)
                 .withPriority(VALID_PRIORITY_OCTOPUS).withTags(VALID_TAG_EQUATION).build();
@@ -79,7 +79,7 @@ public class FlashBackTest {
     }
 
     @Test
-    public void getPersonList_modifyList_throwsUnsupportedOperationException() {
+    public void getFlashcardList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> flashBack.getCardList().remove(0));
     }
 

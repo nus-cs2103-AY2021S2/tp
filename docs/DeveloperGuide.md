@@ -18,6 +18,7 @@ title: Developer Guide
     * [Statistics feature](#implemented-statistics-feature)
     * [UndoRedo feature](#implemented-undoredo-feature)  
     * [Filter feature](#implemented-filter-feature)
+    * [Alias feature](#implemented-alias-feature)
 * [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 * [Appendix: Requirements](#appendix-requirements)
     * [Product scope](#product-scope)
@@ -27,11 +28,24 @@ title: Developer Guide
     * [Glossary](#glossary)
 * [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
     * [Launch and shutdown](#launch-and-shutdown)
+    * [Listing all flashcards](#listing-all-flashcards)
+    * [Deleting a flashcard](#deleting-a-flashcard)
+    * [Editing a flashcard](#editing-a-flashcard)
     * [Finding flashcards](#finding-flashcards)
     * [Filtering flashcards](#filtering-flashcards)
+    * [Clearing all flashcards](#clearing-all-flashcards)
+    * [Viewing a flashcard](#viewing-a-flashcard)
+    * [Review mode](#review-mode)
+    * [Displaying statistics](#displaying-statistics)
+    * [Undoing a command](#undoing-a-command)
+    * [Redoing a command](#redoing-a-command)
+    * [Adding an alias](#adding-an-alias)
 * [Appendix: Effort](#appendix-effort)
     * [Find feature](#find-feature)
     * [Filter feature](#filter-feature)
+    * [View feature](#view-feature)
+    * [Review Mode](#review-mode)
+    * [UI improvement](#ui-improvement)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -53,7 +67,7 @@ each component.
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in
-the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML
+the [diagrams](https://github.com/AY2021S2-CS2103T-T13-3/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML
 Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit
 diagrams.
 
@@ -289,7 +303,7 @@ The following sequence diagram illustrates this scenario.
 </div>
 
 ### \[Implemented\] Undo/redo feature
-The proposed undo/redo mechanism is facilitated by `VersionedFlashBack`. It extends `FlashBack` with an undo/redo
+The undo/redo mechanism is facilitated by `VersionedFlashBack`. It extends `FlashBack` with an undo/redo
 history, stored internally as an `flashBackStates` and `currentStatePointer`. Additionally, it implements the
 following operations:
 
@@ -370,12 +384,12 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ##### Aspect: How undo & redo executes
 
-* **Alternative 1 (current choice):** Saves the entire address book.
+* **Alternative 1 (implemented):** Saves the entire FlashBack.
     * Pros: Easy to implement.
     * Cons: May have performance issues in terms of memory usage.
 
 * **Alternative 2:** Individual command knows how to undo/redo by itself.
-    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+    * Pros: Will use less memory (e.g. for `delete`, just save the flashcard being deleted).
     * Cons: We must ensure that the implementation of each individual command are correct.
 
 ### \[Implemented\] Filter feature
@@ -434,6 +448,38 @@ The following sequence diagram shows how the filter operation works:
 The following activity diagram summarizes what happens when a user executes the filter command:
 ![FilterActivityDiagram](images/FilterActivityDiagram.png)
 
+### \[Implemented\] Alias feature
+
+The alias feature is faciliated by `AliasMap`. It is a seperate class that is stored in `UserPrefs` and 
+contains the mapping of aliases, stored internally as an `aliasMap`. 
+Additionally, it implements the following operations:
+
+* `AliasMap#addAlias(String command, String alias)` — Adds an alias to the mapping.
+* `AliasMap#parseAlias(String input)` — Returns the actual command text if the input is an alias.
+
+These operations are exposed in the `Model` interface as `Model#addAlias(String command, String alias)` and `Model#parseAlias(String input)` respectively.
+
+To add an alias, `LogicManager` first calls `FlashBackParser#parseCommand` to parse through user input.
+If user input is recognized as a command to add an alias, `AliasCommandParser#parse` is invoked to 
+create a new `AliasCommand` object.
+
+The `AliasCommand` is then executed:
+* If the alias already exists in FlashBack, a message associating to that error will be generated.
+* If the command contains invalid fields, a message associating to that error will be generated.
+* If all the fields are valid and is not duplicate alias, the alias will be added to the mapping in `AliasMap` 
+by calling `Model#addAlias(String command, String alias)`
+
+A `CommandResult` is created with the generated message. It is then passed to `MainWindow`, where
+the UI is updated to display the retrieved message.
+
+
+![AliasSequenceDiagram](images/AliasSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** The lifeline for `AliasCommandParser` and `AliasCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -648,24 +694,24 @@ Use case ends.
 Use case ends.
 * 3a. User enters invalid command.
     * 3a1. FlashBack shows an error message <br>
-    Use case resumes at step 3
+    Use case resumes at step 3.
 * 3b. User enters `h` command when the answer is currently hidden.
     * 3b1. FlashBack shows an error message <br>
-    Use case resumes at step 3
+    Use case resumes at step 3.
 * 3c. User enters `a` command when the answer is currently shown.
     * 3c1. FlashBack shows an error message <br>
-    Use case resumes at step 3
+    Use case resumes at step 3.
 * 3d. User enters `t` or `f` command when the answer is currently hidden.
     * 3d1. FlashBack shows an error message <br>
-    Use case resumes at step 3
+    Use case resumes at step 3.
     
 **Use case: UC10 - Display flashcard statistics**
 
 **MSS**
 
-1. FlashBack shows a list of flash cards.
-1. User requests to display statistics of a flash card.
-1. FlashBack displays the statistics of the requested flash card.
+1. FlashBack shows a list of flashcards.
+1. User requests to display statistics of a flashcard.
+1. FlashBack displays the statistics of the requested flashcard.
 
     Use case ends
 
@@ -687,14 +733,39 @@ Similar to UC05 except:
 in step 1 and 2 of MSS
 * FlashBack shows error message if given keywords of specified fields are empty instead of given keywords in 1c of Extensions.
 
+**Use case: UC12 - Define an alias**
+
+**MSS**
+
+1. User requests to add an alias to a command.
+1. FlashBack displays alias added successfully.
+
+    Use case ends
+
+**Extensions**
+
+* 1a. The alias already exist in FlashBack.
+    * 1a1. FlashBack shows an error message.
+
+    Use case ends.
+
+* 1b. The given field is invalid.
+    * 1b1. FlashBack shows an error message.
+    
+    Use case ends.
+
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should be able to respond to user commands within 3 seconds for up to 1000 cards.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be
    able to accomplish most of the tasks faster using commands than using the mouse.
+4. A user should be able to use this application even without internet access.
+5. A user should not be required to install this application in order to use it.
+6. A user should be able to manually transfer data files to another user, and the recipient would be able to use
+   existing data created by the sender.
+7. A user that is not used to the command line interface should still be able to use this application.  
 
-*{More to be added}*
 
 ### Glossary
 
@@ -735,17 +806,56 @@ testers are expected to do more *exploratory* testing.
 
     1. Prerequisites: The application is already launched.
     
-    1. Test case: `exit`<br>
+    1. Test case: `exit` <br>
        Expected: The application exits and window closes.
-       
-### Listing flashcards
 
-1. Listing all flashcards stored in FlashBack.
-   
-    1. Prerequisites: There must be at least one flashcard in the list.
+### Listing all flashcards
+
+1. Listing all flashcards in FlashBack.
+
+    1. Prerequisites: There must be at least 1 flashcard that is currently shown in the list.
     
-    1. Test case: `list`<br>
-       Expected: FlashBack will display all flashcards stored in FlashBack. The result display will output "Listed all flashcards".
+    1. Test cases: `list` <br>
+    Expected: `FlashcardListPanel` displays all flashcards stored in `flashback.json` file. The result display shows a message: `Listed all flashcards`.
+    
+### Deleting a flashcard
+
+1. Deleting a flashcard at a specific index.
+
+    1. Prerequisites: There must be at least 1 and at most 2000 flashcards that is currently shown in the list.
+    
+    1. Test case: `delete 1` <br>
+    Expected: First flashcard shown in the list is deleted. Result display shows the detail of the deleted flashcard.
+    
+    1. Test case: `delete -1` <br>
+    Expected: No flashcard is deleted, and the text in `CommandBox` turns red to indicate an error. The result display shows a message: `Invalid command format!`.
+    
+    1. Test case: `delete 2001` <br>
+    Expected: No flashcard is deleted, and the text in `CommandBox` turns red to indicate an error. The result display shows a message: `The flashcard index provided is invalid`
+
+### Editing a flashcard
+
+1. Editing a flashcard in FlashBack
+    
+    1. Prerequisites: There must be at least one flashcard in the list.
+       
+    1. Test case: `edit` <br>
+       Expected: No flashcard will be edited, and an invalid command format error message will be 
+       shown on the result display.
+       
+    1. Test case: `edit 1` <br>
+       Expected: Flashcard identified by index 1 in the list will not be edited, and an error message will be displayed to prompt
+       the user to enter at least one field to edit.
+       
+    1. Test case: `edit 1 p/Low` <br>
+       Expected: The flashcard identified by index 1 in the list will be modified. Its priority is changed to `Low`. If the flashcard already has 
+       `Low` priority, an error message will be displayed, and no modifications will be made to the flashcard.
+       
+    1. Test case: `edit 1 c/CompSci p/Mid t/sorting t/algorithms` <br>
+       Expected: The flash card identified by index 1 will be modified. Its category is changed to `CompSci`, the priority is changed to `Mid`.
+       and it now has tags `sorting` and `algorithms`. If the flashcard already has category `CompSci`, priority
+       `Mid`, as well as tags `sorting` and `algorithms`, an error message will be displayed, and no modifications will be made to the flashcard.
+
 
 ### Finding flashcards
 
@@ -754,14 +864,14 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: There must be at least one flashcard in the list.
        
     1. Test case: `find`<br>
-       Expected: The list will not be updated, and an invalid command format error will be displayed in the result display.
+       Expected: The list will not be updated, and an invalid command format error is shown in the result display.
        
     1. Test case: `find equa`<br>
-       Expected: The list will be updated, listing the flashcards that have `equa` contained any of its fields (e.g. question, answer, category, priority, tags). The result display will state the number of flashcards listed.
+       Expected: The list will be updated, listing the flashcards that have `equa` contained any of its fields (e.g. question, answer, category, priority, tags). The result display states the number of flashcards listed.
        
     1. Test case: `find newton random`<br>
-       Expected: The list will be updated, listing the flashcards that have either `newton` or `random` contained in any of its fields. The result display will state the number of flashcards listed.
-       
+       Expected: The list will be updated, listing the flashcards that have either `newton` or `random` contained in any of its fields. The result display states the number of flashcards listed.
+
 ### Filtering flashcards
 
 1. Filtering flashcards in FlashBack
@@ -769,17 +879,156 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: There must be at least one flashcard in the list.
     
     1. Test case: `filter`<br>
-       Expected: The list will not be updated, and an invalid command format error will be displayed in the result display.
+       Expected: The list will not be updated, and an invalid command format error is shown in the result display.
        
     1. Test case: `filter q/newton`<br>
-       Expected: The list will be updated, listing the flashcards that have `newton` contained in its question. The result display will state the number of flashcards listed.
+       Expected: The list will be updated, listing the flashcards that have `newton` contained in its question. The result display states the number of flashcards listed.
        
     1. Test case: `filter q/new p/mid t/formula`<br>
-       Expected: The list will be updated, listing the flashcards that have `new` contained in its question, `mid` contained in its priority, and `formula` contained in any of its tags. The result display will state the number of flashcards listed.
+       Expected: The list will be updated, listing the flashcards that have `new` contained in its question, `mid` contained in its priority, and `formula` contained in any of its tags. The result display states the number of flashcards listed.
        
     1. Test case: `filter c/math physics p/mid`<br>
-       Expected: The list will be updated, listing the flashcards that have either `math` or `physics` contained in its question, and `mid` contained in its priority. The result display will state the number of flashcards listed.
+       Expected: The list will be updated, listing the flashcards that have either `math` or `physics` contained in its question, and `mid` contained in its priority. The result display states the number of flashcards listed.
+
+### Clearing all flashcards
+
+1. Clearing all flashcards in FlashBack.
+    
+    1. Prerequisites: The application is in Main Window.
+    
+    1. Test case: `clear` <br>
+       Expected: All flashcards shown in `FlashcardListPanel` are deleted. The result display shows the message: `FlashBack has been cleared!`.
+    
+### Viewing a flashcard
+
+1. Viewing a flashcard at a specific index.
+    
+    1. Prerequisites: There must be at least 1 and at most 2000 flashcards that is currently shown in the list.
+    
+    1. Test case: `view 1` <br>
+       Expected: The view pane on the bottom left displays the details of the flashcard at index 1 including the full question and the answer of the flashcard. The result display states the details of the shown flashcard. 
+    
+    1. Test case: `view -1` <br>
+       Expected: The view pane on the bottom left does not display anything, and the text in `CommandBox` turns red to indicate an error. The result display shows a message: `Invalid command format!`.
+    
+    1. Test case: `view 2001` <br>
+       Expected: The view pane on the bottom left does not display anything, and the text in `CommandBox` turns red to indicate an error. The result display shows a message: `The flashcard index provided is invalid`.
+    
+### Review mode
+
+1. Entering the review mode
+    
+    1. Prerequisites: There must be at least 1 flashcard that is currently shown in the list.
+    
+    1. Test case: `review` <br>
+       Expected: The main window switches to review mode, a random flashcard in the list is displayed with its answer hidden. The result display shows the message: `Enter review mode`, followed by the instruction.
+
+1. Showing next flashcard
+    
+    1. Prerequisites: The application is currently in the review mode and there is at least 1 flashcard after the current one to show.
+    
+    1. Test case: `n` <br>
+       Expected: A flashcard that is different from the current one is displayed with its answer hidden. The result display shows the message: `Show next flashcard`, followed by the instruction.
+
+1. Showing previous flashcard
+    
+    1. Prerequisites: The application is currently in the review mode and there is at least 1 flashcard before the current one to show.
+    
+    1. Test case: `p` <br>
+       Expected: A flashcard that is different from the current one is displayed with its answer hidden. The result display shows the message: `Show previous flashcard`, followed by the instruction.
+
+1. Showing answer
+    
+    1. Prerequisites: The application is currently in the review mode, and the answer of the current flashcard is hidden.
+    
+    1. Test case: `a` <br>
+       Expected: The answer of the current flashcard is displayed to the user. The result display shows the message: `The answer is shown, did you get it correct? (t/f)`, followed by the instruction.
+
+1. Hiding answer
+    
+    1. Prerequisites: The application is currently in the review mode, and the answer of the current flashcard is shown.
+    
+    1. Test case: `h` <br>
+       Expected: The answer of the current flashcard is hidden from the user. The result display shows the message: `Hide answer`, followed by the instruction.
+
+1. Reviewing a flashcard as correct
+    
+    1. Prerequisites: The application is currently in the review mode, and the answer of the current flashcard is shown.
+    
+    1. Test case: `t` <br>
+       Expected: The statistics of the current flashcard is updated accordingly (reflected in the `stats` command). The result display shows the message: `The correct answer is provided. Good Job!`, followed by the instruction.
+
+1. Reviewing a flashcard as wrong
+    
+    1. Prerequisites: The application is currently in the review mode, and the answer of the current flashcard is shown.
+    
+    1. Test case: `t` <br>
+       Expected: The statistics of the current flashcard is updated accordingly (reflected in the `stats` command). The result display shows the message: `An incorrect answer is provided. Try harder next time!`, followed by the instruction.
+
+1. Exiting the review mode
+    
+    1. Prerequisites: The application is currently in the review mode.
+    
+    1. Test case: `q` <br>
+       Expected: The application goes back to the main window. The result display shows the message: `Exit review mode`. 
+    
+### Displaying statistics
+
+1. Displaying statistics of flash card(s) in FlashBack
+
+    1. Prerequisites: There must be at least one reviewed flashcard in the list.
+    
+    1. Test case: `stats` <br>
+       Expected: The UI will be updated to display a pie chart representing the overall correct rate of all flashcards in the list.
+       The total review count, total correct count and overall correct rate is also displayed below the pie chart.
        
+    1. Test case: `stats 1` <br>
+       Expected: The UI  will be updated to display a pie chart representing the correct rate of the flash card represented
+       by index 1 in the list. The review count, correct count and correct rate is also displayed below the pie chart. 
+       
+    1. Test case: `stats abc` <br>
+       Expected: No statistics will be displayed. An invalid command format error message will be shown on the result display. 
+        
+### Undoing a command
+
+1. Undoing an undoable command in FlashBack
+
+    1. Prerequisites: There must be at least one undoable command executed.
+    
+    1. Test case: `undo` <br>
+       Expected: FlashBack will be updated to the previous state before the undoable command is executed.
+       The UI will be updated to display all flashcards in FlashBack.
+       The result display shows a message: `FlashBack has been undo!`.
+       
+### Redoing a command
+
+1. Redoing an undone command in FlashBack
+
+   1. Prerequisites: There must be at least one command that is undone.
+   
+   1. Test case: `redo` <br>
+      Expected: FlashBack will be updated to the previous state before `undo` is executed.
+      The UI will be updated to display all flashcards in FlashBack.
+      The result display shows a message: `FlashBack has been redo!`.
+      
+### Adding an alias
+
+1. Defining an alias for a command in FlashBack
+    
+    1. Prerequisites: The application is in Main Window.
+    
+    1. Test case: `alias cmd/add al/a` <br>
+       Expected: The alias `a` will be mapped to `add`. Users will now be able to perform add command using `a`
+       The result display shows a message: `New alias added for "add" command: a`.
+    
+    1. Test case: `alias cmd/add al/delete` <br>
+       Expected: No alias is added, and the text in `CommandBox` turns red to indicate an error.
+       The result display shows a message: `The alias "delete" should not be a command in FlashBack.`.
+    
+    1. Test case: `alias cmd/cleaaar al/c` <br>
+       Expected: No alias is added, and the text in `CommandBox` turns red to indicate an error.
+       The result display shows a message: `The command "cleaaar" does not exist in FlashBack.`.
+
 ------------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Effort**
@@ -797,3 +1046,17 @@ testers are expected to do more *exploratory* testing.
 * AB3 did not have a `filter` feature.
 * Implemented the `filter` feature to allow users to filter flashcards matching the specified fields with multiple keywords.
 * With little reference from the `find` and `add` feature available in AB3, learnt and implemented the feature to match all specified fields.
+
+### View feature
+* The challenge was to redesign the Main Window, from just 3 main components in AB3: `CommandBox`, `ResultDisplay` and `PersonListPanel` to 4 components in `FlashBack`: `CommandBox`, `ResultDisplay` and `FlashcardListPanel` and `FlashcardViewPanel`.
+* We first need to divide the Main Window into 2 columns: The second one is for displaying the flashcard list. The first column is further divided into 3 rows: The first row is the `CommandBox`, the second is the `ResultDisplay` and the last one is `FlashcardViewPanel`.
+
+### Review Mode
+* This is a totally new feature relative to AB3.
+* This feature mostly involved in UI work since a completely new window must be created from the beginning.
+* A new class called `ReviewManager` is created to handle the logic for this mode.
+
+### UI improvement
+* There is a significant change from the initial UI of AB3 to the final UI to make the application more visually appealing.
+* We considered many color choices and UI design and actively asked for feedback from all members in the team and some of our friends also to reach the finalized design for the UI.
+* The `CommandBox` is changed so that the input can be split into multiple line, which increases the readability for the user. Although the code for the custom command box came from an online source, it was extremely difficult to find this source code.

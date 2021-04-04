@@ -90,7 +90,7 @@ public class UniqueFlashcardList implements Iterable<Flashcard> {
      */
     public void setCards(List<Flashcard> flashcards) {
         requireAllNonNull(flashcards);
-        if (!personsAreUnique(flashcards)) {
+        if (!flashcardsAreUnique(flashcards)) {
             throw new DuplicateFlashcardException();
         }
 
@@ -124,7 +124,7 @@ public class UniqueFlashcardList implements Iterable<Flashcard> {
     /**
      * Returns true if {@code flashcards} contains only unique cards.
      */
-    private boolean personsAreUnique(List<Flashcard> flashcards) {
+    private boolean flashcardsAreUnique(List<Flashcard> flashcards) {
         for (int i = 0; i < flashcards.size() - 1; i++) {
             for (int j = i + 1; j < flashcards.size(); j++) {
                 if (flashcards.get(i).isSameCard(flashcards.get(j))) {

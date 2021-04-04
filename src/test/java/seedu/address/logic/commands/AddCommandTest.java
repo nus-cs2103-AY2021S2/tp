@@ -33,20 +33,20 @@ public class AddCommandTest {
 
     @Test
     public void execute_flashcardAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
+        ModelStubAcceptingFlashcardAdded modelStub = new ModelStubAcceptingFlashcardAdded();
         Flashcard validFlashcard = new FlashcardBuilder().build();
 
         CommandResult commandResult = new AddCommand(validFlashcard).execute(modelStub);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validFlashcard), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validFlashcard), modelStub.personsAdded);
+        assertEquals(Arrays.asList(validFlashcard), modelStub.flashcardsAdded);
     }
 
     @Test
     public void execute_duplicateFlashcard_throwsCommandException() {
         Flashcard validFlashcard = new FlashcardBuilder().build();
         AddCommand addCommand = new AddCommand(validFlashcard);
-        ModelStub modelStub = new ModelStubWithPerson(validFlashcard);
+        ModelStub modelStub = new ModelStubWithFlashcard(validFlashcard);
 
         assertThrows(CommandException.class,
                 AddCommand.MESSAGE_DUPLICATE_FLASHCARD, () -> addCommand.execute(modelStub));
@@ -179,15 +179,40 @@ public class AddCommandTest {
         public void sortFilteredFlashcardList(Comparator<Flashcard> comparator) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public boolean isCommand(String input) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean isAlias(String input) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addAlias(String command, String alias) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean canAddAlias(String command, String alias) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public String parseAlias(String alias) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
      * A Model stub that contains a single person.
      */
-    private class ModelStubWithPerson extends ModelStub {
+    private class ModelStubWithFlashcard extends ModelStub {
         private final Flashcard flashcard;
 
-        ModelStubWithPerson(Flashcard flashcard) {
+        ModelStubWithFlashcard(Flashcard flashcard) {
             requireNonNull(flashcard);
             this.flashcard = flashcard;
         }
@@ -202,19 +227,19 @@ public class AddCommandTest {
     /**
      * A Model stub that always accept the person being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Flashcard> personsAdded = new ArrayList<>();
+    private class ModelStubAcceptingFlashcardAdded extends ModelStub {
+        final ArrayList<Flashcard> flashcardsAdded = new ArrayList<>();
 
         @Override
         public boolean hasFlashcard(Flashcard flashcard) {
             requireNonNull(flashcard);
-            return personsAdded.stream().anyMatch(flashcard::isSameCard);
+            return flashcardsAdded.stream().anyMatch(flashcard::isSameCard);
         }
 
         @Override
         public void addFlashcard(Flashcard flashcard) {
             requireNonNull(flashcard);
-            personsAdded.add(flashcard);
+            flashcardsAdded.add(flashcard);
         }
 
         @Override

@@ -18,15 +18,15 @@ public class FlashcardListPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(FlashcardListPanel.class);
 
     @FXML
-    private ListView<Flashcard> personListView;
+    private ListView<Flashcard> flashcardListView;
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
     public FlashcardListPanel(ObservableList<Flashcard> flashcardList) {
         super(FXML);
-        personListView.setItems(flashcardList);
-        personListView.setCellFactory(listView -> new FlashcardListViewCell());
+        flashcardListView.setItems(flashcardList);
+        flashcardListView.setCellFactory(listView -> new FlashcardListViewCell());
     }
 
     /**

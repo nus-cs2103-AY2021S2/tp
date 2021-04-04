@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.FlashBack;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -25,7 +26,7 @@ public class UndoCommandTest {
     }
 
     @Test
-    public void execute_undoAddCommandTest_success() {
+    public void execute_undoDeleteCommandTest_success() {
         Flashcard firstCard = model.getFilteredFlashcardList().get(0);
         ObservableList<Flashcard> originalList = model.getFilteredFlashcardList();
         model.deleteFlashcard(firstCard);
@@ -65,6 +66,21 @@ public class UndoCommandTest {
 
         Flashcard bob = new FlashcardBuilder().withQuestion("Bob").build();
         model.addFlashcard(bob);
+        model.commitFlashBack();
+
+        UndoCommand command = new UndoCommand();
+        try {
+            CommandResult result = command.execute(model);
+            assertArrayEquals(model.getFilteredFlashcardList().toArray(), originalList.toArray());
+        } catch (CommandException ex) {
+            throw new AssertionError("Execution of command should not fail.", ex);
+        }
+    }
+
+    @Test
+    public void execute_undoClearCommand_success() {
+        ObservableList<Flashcard> originalList = model.getFilteredFlashcardList();
+        model.setFlashBack(new FlashBack());
         model.commitFlashBack();
 
         UndoCommand command = new UndoCommand();
