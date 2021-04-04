@@ -15,6 +15,8 @@ Focuris is a **desktop application** for **managing events** with a KanBan board
 Focuris aims to help **university students** like you to keep track of your tasks or events in order to help improve time management
 and organisation.
 
+Get started quickly on your journey with Focuris [here](#1-quick-start)!
+
 ## Here's why you should use Focuris:
 
 - Helps with task management and scheduling with a simple and easy to navigate interface.
