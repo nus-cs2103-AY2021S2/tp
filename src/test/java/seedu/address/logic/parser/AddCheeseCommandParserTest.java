@@ -6,10 +6,8 @@ import static seedu.address.logic.commands.CommandTestUtil.EXPIRY_DATE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_CHEESE_TYPE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EXPIRY_DATE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_MANUFACTURE_DATE_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_MATURITY_DATE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_QUANTITY_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.MANUFACTURE_DATE_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.MATURITY_DATE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.QUANTITY_DESC;
@@ -27,7 +25,6 @@ import seedu.address.model.cheese.Cheese;
 import seedu.address.model.cheese.CheeseType;
 import seedu.address.model.cheese.ExpiryDate;
 import seedu.address.model.cheese.ManufactureDate;
-import seedu.address.model.cheese.MaturityDate;
 import seedu.address.model.order.Quantity;
 import seedu.address.testutil.CheeseBuilder;
 
@@ -40,19 +37,18 @@ public class AddCheeseCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + CHEESE_TYPE_DESC_CAMEMBERT
-                + QUANTITY_DESC + MANUFACTURE_DATE_DESC + MATURITY_DATE_DESC
-                + EXPIRY_DATE_DESC, new AddCheeseCommand(new Cheese[]{expectedCheese}));
+                + QUANTITY_DESC + MANUFACTURE_DATE_DESC + EXPIRY_DATE_DESC,
+                new AddCheeseCommand(new Cheese[]{expectedCheese}));
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
         // no manufacture date provided - default to LocalDate.now()
-        assertParseSuccess(parser, CHEESE_TYPE_DESC_CAMEMBERT + QUANTITY_DESC + MATURITY_DATE_DESC
-                + EXPIRY_DATE_DESC);
+        assertParseSuccess(parser, CHEESE_TYPE_DESC_CAMEMBERT + QUANTITY_DESC + EXPIRY_DATE_DESC);
 
-        // no maturity date and expiry date provided - set to Optional<>()
+        // no expiry date provided - set to Optional<>()
         Cheese expectedCheese = new CheeseBuilder(CAMEMBERT)
-                .withId(CheeseIdStub.getNextId()).withMaturityDate(null).withExpiryDate(null).build();
+                .withId(CheeseIdStub.getNextId()).withExpiryDate(null).build();
         assertParseSuccess(parser, CHEESE_TYPE_DESC_CAMEMBERT + QUANTITY_DESC + MANUFACTURE_DATE_DESC,
                 new AddCheeseCommand(new Cheese[]{expectedCheese}));
     }
@@ -83,10 +79,6 @@ public class AddCheeseCommandParserTest {
         assertParseFailure(parser, CHEESE_TYPE_DESC_CAMEMBERT + QUANTITY_DESC + INVALID_MANUFACTURE_DATE_DESC,
                 ManufactureDate.MESSAGE_CONSTRAINTS);
 
-        // invalid maturity date
-        assertParseFailure(parser, CHEESE_TYPE_DESC_CAMEMBERT + QUANTITY_DESC + MANUFACTURE_DATE_DESC
-                + INVALID_MATURITY_DATE_DESC, MaturityDate.MESSAGE_CONSTRAINTS);
-
         // invalid expiry date
         assertParseFailure(parser, CHEESE_TYPE_DESC_CAMEMBERT + QUANTITY_DESC + MANUFACTURE_DATE_DESC
                 + INVALID_EXPIRY_DATE_DESC, ExpiryDate.MESSAGE_CONSTRAINTS);
@@ -96,8 +88,7 @@ public class AddCheeseCommandParserTest {
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + CHEESE_TYPE_DESC_CAMEMBERT
-                        + QUANTITY_DESC + MANUFACTURE_DATE_DESC + MATURITY_DATE_DESC
-                        + EXPIRY_DATE_DESC,
+                        + QUANTITY_DESC + MANUFACTURE_DATE_DESC + EXPIRY_DATE_DESC,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCheeseCommand.MESSAGE_USAGE));
     }
 }

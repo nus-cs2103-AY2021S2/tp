@@ -3,7 +3,6 @@ package seedu.address.testutil;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CHEESE_TYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EXPIRY_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MANUFACTURE_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MATURITY_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
 
 import seedu.address.logic.commands.AddCheeseCommand;
@@ -29,7 +28,6 @@ public class CheeseUtil {
         sb.append(PREFIX_CHEESE_TYPE + cheese.getCheeseType().value + " ");
         sb.append(PREFIX_QUANTITY + Integer.toString(numberOfCheeses) + " ");
         sb.append(PREFIX_MANUFACTURE_DATE + cheese.getManufactureDate().toJsonString() + " ");
-        cheese.getMaturityDate().ifPresent(x -> sb.append(PREFIX_MATURITY_DATE + x.toJsonString() + " "));
         cheese.getExpiryDate().ifPresent(x -> sb.append(PREFIX_EXPIRY_DATE + x.toJsonString() + " "));
         return sb.toString();
     }

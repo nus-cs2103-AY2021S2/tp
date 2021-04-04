@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CHEESE_TYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EXPIRY_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MANUFACTURE_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MATURITY_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -87,11 +86,6 @@ public class CommandTestUtil {
     public static final String VALID_MANUFACTURE_DATE_3 = "2021-03-10 07:00";
     public static final String VALID_MANUFACTURE_DATE_4 = "2021-03-12 07:00";
     public static final String VALID_MANUFACTURE_DATE_5 = "2021-03-12 07:00";
-    public static final String VALID_MATURITY_DATE_1 = "2021-04-04 07:00";
-    public static final String VALID_MATURITY_DATE_2 = "2021-04-06 07:00";
-    public static final String VALID_MATURITY_DATE_3 = "2021-04-10 07:00";
-    public static final String VALID_MATURITY_DATE_4 = "2021-04-15 07:00";
-    public static final String VALID_MATURITY_DATE_5 = "2021-04-20 08:00";
     public static final String VALID_EXPIRY_DATE_1 = "2022-03-04 06:00";
     public static final String VALID_EXPIRY_DATE_2 = "2023-04-04 06:00";
     public static final String VALID_EXPIRY_DATE_3 = "2024-04-10 06:00";
@@ -106,8 +100,6 @@ public class CommandTestUtil {
     public static final String VALID_ORDER_DATE_5 = "2021-03-11 08:00";
     public static final String VALID_COMPLETED_DATE_1 = "2022-02-10 13:00";
     public static final String VALID_COMPLETED_DATE_2 = "2022-03-06 10:00";
-    public static final String INVALID_MANUFACTURE_DATE_1 = "2000-02-19 08:00";
-    public static final String INVALID_MATURITY_DATE_1 = "2000-04-20 08:00";
     public static final String INVALID_EXPIRY_DATE_1 = "2000-03-04 06:00";
     public static final String INVALID_COMPLETED_DATE_1 = "2020-03-06 10:00"; // Before order date
     public static final String VALID_ORDER_COMPLETE_STATUS = "complete";
@@ -118,7 +110,6 @@ public class CommandTestUtil {
     public static final String QUANTITY_DESC = " " + PREFIX_QUANTITY + VALID_QUANTITY_1;
     public static final String QUANTITY_5_DESC = " " + PREFIX_QUANTITY + VALID_QUANTITY_5;
     public static final String MANUFACTURE_DATE_DESC = " " + PREFIX_MANUFACTURE_DATE + VALID_MANUFACTURE_DATE_1;
-    public static final String MATURITY_DATE_DESC = " " + PREFIX_MATURITY_DATE + VALID_MATURITY_DATE_1;
     public static final String EXPIRY_DATE_DESC = " " + PREFIX_EXPIRY_DATE + VALID_EXPIRY_DATE_1;
     public static final String ORDER_DATE_DESC = " " + PREFIX_ORDER_DATE + VALID_ORDER_DATE_1;
     public static final String ORDER_DATE_DESC_FETA = " " + PREFIX_ORDER_DATE + VALID_ORDER_DATE_2;
@@ -126,14 +117,12 @@ public class CommandTestUtil {
     public static final String CHEESE_TYPE_DESC_MOZZARELLA = " " + PREFIX_CHEESE_TYPE + VALID_CHEESE_TYPE_MOZZARELLA;
     public static final String EXPIRY_DATE_5_DESC = " " + PREFIX_EXPIRY_DATE + VALID_EXPIRY_DATE_5;
     public static final String MANUFACTURE_DATE_5_DESC = " " + PREFIX_MANUFACTURE_DATE + VALID_MANUFACTURE_DATE_5;
-    public static final String MATURITY_DATE_5_DESC = " " + PREFIX_MATURITY_DATE + VALID_MATURITY_DATE_5;
 
 
     public static final String INVALID_CHEESE_TYPE_DESC = " " + PREFIX_CHEESE_TYPE + ""; // Blanks not allowed
     public static final String INVALID_QUANTITY_DESC = " " + PREFIX_QUANTITY + "911a"; // 'a' not allowed in quantity
     public static final String INVALID_ORDER_DATE_DESC = " " + PREFIX_ORDER_DATE + "20-05$-2020";
     public static final String INVALID_MANUFACTURE_DATE_DESC = " " + PREFIX_MANUFACTURE_DATE + "20-05-2020";
-    public static final String INVALID_MATURITY_DATE_DESC = " " + PREFIX_MATURITY_DATE + "2020/12-30";
     public static final String INVALID_EXPIRY_DATE_DESC = " " + PREFIX_EXPIRY_DATE + "12 Feb 2020";
 
 
@@ -146,7 +135,7 @@ public class CommandTestUtil {
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
         DESC_EDIT_CHEESE = new EditCheeseDescriptorBuilder()
                 .withCheeseType(CheeseType.getCheeseType(VALID_CHEESE_TYPE_MOZZARELLA))
-                .withManufactureDate(VALID_MANUFACTURE_DATE_5).withMaturityDate(VALID_MATURITY_DATE_5)
+                .withManufactureDate(VALID_MANUFACTURE_DATE_5)
                 .withExpiryDate(VALID_EXPIRY_DATE_5).build();
     }
 

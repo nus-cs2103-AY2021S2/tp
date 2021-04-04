@@ -18,30 +18,26 @@ public class Cheese {
 
     // Data fields
     private final ManufactureDate manufactureDate;
-    private final Optional<MaturityDate> maturityDate;
     private final Optional<ExpiryDate> expiryDate;
     private final boolean isAssigned;
 
-    public Cheese(CheeseType cheeseType, ManufactureDate manufactureDate, MaturityDate maturityDate,
-                  ExpiryDate expiryDate) {
-        this(cheeseType, manufactureDate, maturityDate, expiryDate, CheeseId.getNextId(), false);
+    public Cheese(CheeseType cheeseType, ManufactureDate manufactureDate, ExpiryDate expiryDate) {
+        this(cheeseType, manufactureDate, expiryDate, CheeseId.getNextId(), false);
     }
 
-    public Cheese(CheeseType cheeseType, ManufactureDate manufactureDate, MaturityDate maturityDate,
-                   ExpiryDate expiryDate, CheeseId cheeseId) {
-        this(cheeseType, manufactureDate, maturityDate, expiryDate, cheeseId, true);
+    public Cheese(CheeseType cheeseType, ManufactureDate manufactureDate, ExpiryDate expiryDate, CheeseId cheeseId) {
+        this(cheeseType, manufactureDate, expiryDate, cheeseId, true);
     }
 
     /**
      * Every compulsory field must be present and not null.
      */
-    public Cheese(CheeseType cheeseType, ManufactureDate manufactureDate, MaturityDate maturityDate,
-                  ExpiryDate expiryDate, CheeseId cheeseId, boolean isAssigned) {
+    public Cheese(CheeseType cheeseType, ManufactureDate manufactureDate, ExpiryDate expiryDate,
+                  CheeseId cheeseId, boolean isAssigned) {
         requireAllNonNull(cheeseType, manufactureDate, cheeseId);
-        checkCheeseArguments(cheeseType, manufactureDate, maturityDate, expiryDate, cheeseId, isAssigned);
+        checkCheeseArguments(cheeseType, manufactureDate, expiryDate, cheeseId, isAssigned);
         this.cheeseType = cheeseType;
         this.manufactureDate = manufactureDate;
-        this.maturityDate = Optional.ofNullable(maturityDate);
         this.expiryDate = Optional.ofNullable(expiryDate);
         this.cheeseId = cheeseId;
         this.isAssigned = isAssigned;
@@ -53,10 +49,6 @@ public class Cheese {
 
     public ManufactureDate getManufactureDate() {
         return manufactureDate;
-    }
-
-    public Optional<MaturityDate> getMaturityDate() {
-        return maturityDate;
     }
 
     public Optional<ExpiryDate> getExpiryDate() {
@@ -75,18 +67,11 @@ public class Cheese {
      * Checks whether the given parameters are valid for an order
      */
     public static void checkCheeseArguments(CheeseType cheeseType, ManufactureDate manufactureDate,
-                                            MaturityDate maturityDate, ExpiryDate expiryDate,
-                                            CheeseId cheeseId, boolean isAssigned) {
-        if (maturityDate != null) {
-            checkArgument(maturityDate.isAfter(manufactureDate),
-                "The maturity date of the cheese should be after the manufacture date.");
-        }
-
+                                            ExpiryDate expiryDate, CheeseId cheeseId,
+                                            boolean isAssigned) {
         if (expiryDate != null) {
             checkArgument(expiryDate.isAfter(manufactureDate),
                 "The expiry date of the cheese should be after the manufacture date.");
-            checkArgument(expiryDate.isAfter(maturityDate),
-                "The expiry date of the cheese should be after the maturity date.");
         }
     }
 
@@ -98,8 +83,7 @@ public class Cheese {
      * Returns a cheese with same fields that is marked assigned.
      */
     public Cheese assignToOrder() {
-        return new Cheese(cheeseType, manufactureDate, maturityDate.orElse(null),
-                expiryDate.orElse(null), cheeseId);
+        return new Cheese(cheeseType, manufactureDate, expiryDate.orElse(null), cheeseId);
     }
 
     /**
@@ -133,7 +117,6 @@ public class Cheese {
         return otherCheese.getCheeseId().equals(getCheeseId())
             && otherCheese.getCheeseType().equals(getCheeseType())
             && otherCheese.getManufactureDate().equals(getManufactureDate())
-            && otherCheese.getMaturityDate().equals(getMaturityDate())
             && otherCheese.getExpiryDate().equals(getExpiryDate());
     }
 
@@ -146,8 +129,6 @@ public class Cheese {
             .append(getCheeseType())
             .append("; Manufacture Date: ")
             .append(getManufactureDate())
-            .append("; Maturity Date: ")
-            .append(getMaturityDate().map(MaturityDate::toString).orElse("-"))
             .append("; Expiry Date: ")
             .append(getExpiryDate().map(ExpiryDate::toString).orElse("-"))
             .append("; Status: ")
