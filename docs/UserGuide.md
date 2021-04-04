@@ -27,7 +27,7 @@ in workload management.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+# Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -55,7 +55,75 @@ in workload management.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+# How to use this guide
+
+Here are some symbols you might need to know:
+ * :information_source: : Helpful information you should take note of.
+ * :bulb: : Useful tips that might help you.
+ * :exclamation: : Important information that might affect your usage of PlanIT.
+ 
+--------------------------------------------------------------------------------------------------------------------
+
+# Features
+## Tasks
+PlanIT contains a list of tasks.
+Tasks can have the following attributes:
+
+### Title: `t/`
+A short description or name for the task. Titles can only contain alphanumeric values.
+
+:information_source:  Every task must have a title.
+
+### Date: `set/`
+A date to represent the deadline of a Task or to represent the day that the task will be carried out.
+
+Dates should be of the format dd/mm/yyyy e.g 02/06/2021
+
+### Duration: `s/`
+The start and end time of a task. You should specify start time and end time in the 24-hour clock format.
+
+Duration should be of the format hh:mm-hh:mm e.g 12:30-13:30
+
+### Recurring Schedule: `r/`
+Represents a task that might repeat weekly or biweekly.
+
+:bulb: You can use this to quickly add weekly tutorials or biweekly lab session for the entire semester.
+
+Recurring Schedule should be of the format [dd/mm/yyyy][DAY][FREQUENCY] e.g [23/10/2021][mon][weekly]
+
+DAY should be either: mon, tue, wed, thu, fri, sat, sun. Days are case-insensitive.
+
+FREQUENCY should be either: weekly or biweekly and is also case-insensitive.
+
+### Description: `d/`
+A text description of the task. Your description should only contain alphanumeric values.
+
+### Tag: `t/`
+A label attached to a task for easy grouping and searching of tasks. Your tag should only contain alphanumeric values.
+
+:bulb: You can use this to group tasks by modules e.g adding a `CS2103` tag to a task.
+
+### Status: 's/'
+Reflects the current status of your task. Status can only be either 'done' or 'not done'.
+
+:information_source:   Your task's status will be set to 'not done' by default.
+
+
+## Constraints
+In order to maximise the efficiency of adding tasks and ensuring that there are no unnecessary attributes, there are
+two constraints to the attributes that can exist on the tasks that you create or edit.
+1. Tasks cannot have Date and Recurring Schedule at the same time.
+2. Tasks cannot have Duration on its own without a Date or Recurring Schedule.
+
+When it comes to Dates and Recurring Schedules, the main purpose of a Date attribute is to give a task a deadline or
+a single day to carry out the task itself. This should not co-exist with a Recurring Schedule, which can also indicate
+a task's deadline or day to carry out the event, except it is being repeated on a weekly or biweekly basis.
+
+As for the Duration of a task, it will be confusing to you as a user when you have multiple tasks with durations but no
+date specified. As such, this might cause you to miss your task or lower the efficiency of utilizing PlanIT when 
+searching for tasks.
+
+## List of Commands
 
 <div markdown="block" class="alert alert-info">
 
@@ -206,6 +274,20 @@ Date should only be in the format of DD/MM/YYYY as specified above.
 Examples:
 *  `edit 1 set/13/05/2021` Adds a date to the 1st task on the list which is to be `13 May 2021`.
 *  `edit 2 set/` Clears the existing date of 2nd task on the list.
+
+### Postpone a task's date : `snooze`
+
+Postpones your task's date by a specified number of days.
+
+Format: `snooze INDEX [DAYS]`
+* Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed list.
+ The index **must be a positive integer** e.g 1, 2, 3, …​
+* The DAYS is optional and it's default value will be 1 if no number is specified in your command.
+* The snooze command will only successfully update the date of the task if the task contains a date.
+
+Examples:
+* `snooze 2` Postpones the date of the task at index 2 in the list by 1 day.
+* `snooze 3 4 ` Postpones the date of the task at index 3 in the list by 4 days.
 
 ### Listing all tasks : `ls`
 
@@ -376,12 +458,12 @@ Exits the program.
 
 Format: `exit`
 
-### Saving the data
+## Saving the data
 
 PlanIT data are saved in the hard disk automatically after any command that changes the data.
 There is no need to save manually.
 
-### Editing the data file
+## Editing the data file
 
 PlanIT data are saved as a JSON file `[JAR file location]/data/planit.json`.
 Advanced users are welcome to update data directly by editing that data file.
