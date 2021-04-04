@@ -265,8 +265,8 @@ public class ReviseWindow extends UiPart<Stage> {
             }
         }
 
-        String commandToSend = String.format("%s %d %s %s %s %s %s %s %s", EditCommand.COMMAND_WORD, index.getOneBased(),
-                name, rating, price, address, reviewsStr, categoriesStr, schoolsStr);
+        String commandToSend = String.format("%s %d %s %s %s %s %s %s %s", EditCommand.COMMAND_WORD,
+                index.getOneBased(), name, rating, price, address, reviewsStr, categoriesStr, schoolsStr);
 
         try {
             mainWindow.executeCommand(commandToSend);
