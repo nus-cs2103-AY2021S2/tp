@@ -205,10 +205,18 @@ The following activity diagram summarizes what happens when a user executes the 
 The following sequence diagram summarizes what happens when a user executes the `emails` command:
 ![EmailCommandSequenceDiagram.png](images/sam/EmailCommandSequenceDiagram.png)
 
+
+### Add Session Feature
+The add session feature allows users to add individual tuition sessions with specific details of each session.
+
+This section explains the implementation of the add session mechanism and highlights the design considerations
+taken into account when implementing this feature.
+<!--
 ### Session Feature
 The session feature is facilitated by the `Session` class which stores specific details of
 a tuition session with one student. Each session is composed within a `Student`,
 and a `Student` can have multiple `Session`s.
+-->
 
 #### Implementation
 The creation of a session is facilitated by `AddSessionCommand` and it extends `Command`. The method,
