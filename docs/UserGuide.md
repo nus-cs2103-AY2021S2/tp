@@ -165,7 +165,7 @@ This section details the format of the commands available in TutorBuddy. We will
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/98765432 p/99999999`, only `p/98765432` will be taken.
+  e.g. if you specify `p/98765432 p/99999999`, only `p/99999999` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `emails`, `help`, `exit`, `clear` and `list`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
