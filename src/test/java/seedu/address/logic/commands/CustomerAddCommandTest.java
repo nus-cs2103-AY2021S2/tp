@@ -265,6 +265,16 @@ public class CustomerAddCommandTest {
         }
 
         @Override
+        public void decreaseIngredientByOrder(Order order) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void increaseIngredientByOrder(Order order) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Ingredient> getFilteredIngredientList() {
             throw new AssertionError("This method should not be called.");
         }

@@ -24,6 +24,15 @@ public class IngredientBook implements ReadOnlyIngredientBook {
         resetData(toBeCopied);
     }
 
+    public Ingredient getIngredientByName(String name) {
+        for (Ingredient ingredient: ingredients) {
+            if (ingredient.getName().equalsIgnoreCase(name)) {
+                return ingredient;
+            }
+        }
+        return null;
+    }
+
     /**
      * Set ingredients from list
      * @param ingredients

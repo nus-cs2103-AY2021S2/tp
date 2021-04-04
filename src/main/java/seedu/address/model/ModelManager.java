@@ -365,6 +365,66 @@ public class ModelManager implements Model {
         ingredientBook.setIngredient(target, editedIngredient);
     }
 
+    /**
+     * Decrease the ingredient quantity by given quantity
+     * @param target ingredient to be decreased
+     * @param decreaseQuantity the number to decrease the ingredient quantity
+     */
+    public void decreaseIngredient(Ingredient target, int decreaseQuantity) {
+        Ingredient decreasedIngredient = new Ingredient(target.getName(), target.getQuantity() - decreaseQuantity);
+        this.setIngredient(target, decreasedIngredient);
+    }
+
+    /**
+     * Decrease the ingredient quantity with the given {@code order}
+     * @param order order added
+     */
+    public void decreaseIngredientByOrder(Order order) {
+        List<Pair<Dish, Integer>> dishQuantityList = order.getDishQuantityList();
+
+        for (Pair<Dish, Integer> dishPair: dishQuantityList) {
+            int dishQuantity = dishPair.getValue();
+            List<Pair<Ingredient, Integer>> ingredientList = dishPair.getKey().getIngredientQuantityList();
+
+            for (Pair<Ingredient, Integer> ingredientPair: ingredientList) {
+                String ingredientName = ingredientPair.getKey().getName();
+                Ingredient ingredientNeeded = ingredientBook.getIngredientByName(ingredientName);
+                int decreaseQuantity = ingredientPair.getValue() * dishQuantity;
+                decreaseIngredient(ingredientNeeded, decreaseQuantity);
+            }
+        }
+    }
+
+    /**
+     * Increase the ingredient quantity by given quantity
+     * @param target ingredient to be increased
+     * @param decreaseQuantity the number to increase the ingredient quantity
+     */
+    public void increaseIngredient(Ingredient target, int decreaseQuantity) {
+        Ingredient increase = new Ingredient(target.getName(), target.getQuantity() + decreaseQuantity);
+        this.setIngredient(target, increase);
+    }
+
+    /**
+     * Increase the ingredient quantity with the given {@code order}
+     * @param order order added
+     */
+    public void increaseIngredientByOrder(Order order) {
+        List<Pair<Dish, Integer>> dishQuantityList = order.getDishQuantityList();
+
+        for (Pair<Dish, Integer> dishPair: dishQuantityList) {
+            int dishQuantity = dishPair.getValue();
+            List<Pair<Ingredient, Integer>> ingredientList = dishPair.getKey().getIngredientQuantityList();
+
+            for (Pair<Ingredient, Integer> ingredientPair: ingredientList) {
+                String ingredientName = ingredientPair.getKey().getName();
+                Ingredient ingredientNeeded = ingredientBook.getIngredientByName(ingredientName);
+                int increaseQuantity = ingredientPair.getValue() * dishQuantity;
+                increaseIngredient(ingredientNeeded, increaseQuantity);
+            }
+        }
+    }
+
     /** Returns an unmodifiable view of the filtered person list */
     public ObservableList<Ingredient> getFilteredIngredientList() {
         return filteredIngredients;
