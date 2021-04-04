@@ -153,7 +153,7 @@ Format: `find PREFIX/KEYWORD` where PREFIX is one of the following: `n`, `a`, `p
 
 Deletes the specific passenger from the GME terminal.
 
-Format: `delete INDEX [INDEX]`
+Format: `delete INDEX [INDEX INDEX...]`
 
 <div markdown="block" class="alert alert-info">
 
@@ -169,7 +169,7 @@ Format: `delete INDEX [INDEX]`
 
 **Examples:**
 * `list` followed by `delete 3` deletes the *3rd* person in the passenger list.
-* `delete 1 2 5` deletes the 1st, 2nd and 4th person in the passenger list. 
+* `delete 1 2 5` deletes the 1st, 2nd and 5th person in the passenger list. 
 
 
 ### 3.7 Select passengers to arrange a carpool: `pool`

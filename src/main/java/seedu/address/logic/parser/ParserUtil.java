@@ -29,6 +29,7 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_NO_ARGS = "No indexes were provided.";
 
     /**
      * Prevents ParserUtil from being instantiated.
@@ -202,6 +203,10 @@ public class ParserUtil {
             }
         }
 
-        return indexes;
+        if (indexes.size() > 0) {
+            return indexes;
+        } else {
+            throw new ParseException(MESSAGE_NO_ARGS);
+        }
     }
 }
