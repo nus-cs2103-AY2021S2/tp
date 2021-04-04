@@ -378,7 +378,7 @@ Action | Format, Examples
 **Relocate Meeting** | `relocate INDEX l/LOCATION` <br> e.g., `relocate 1 l/KFC, Blk 556 Bugis`
 **Reschedule Meeting** | `reschedule INDEX on/DATE_TIME` <br> e.g., `reschedule 2 on/20-10-2021 10:00`
 **Find Meeting** | `findmeet KEYWORD [MORE_KEYWORDS]`<br> e.g., `findmeet 05-2022 Sam`
-**Delete Meeting** | `deletemeet INDEX`<br> e.g., `delete 3`
+**Delete Meeting** | `deletemeet INDEX`<br> e.g., `deletemeet 3`
 **Complete Meeting** | `donemeet INDEX` <br> e.g., `donemeet 3`
 **Clear All** | `clear`
 **Exit** | `exit`
