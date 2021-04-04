@@ -136,7 +136,7 @@ public interface Model {
 
     void switchModeQuiz();
 
-    void switchModeLearn();
+    void switchModeLearn() throws CommandException;
 
     void switchModeMenu();
 

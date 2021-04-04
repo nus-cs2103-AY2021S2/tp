@@ -50,4 +50,14 @@ public class LearnCommand extends Command {
         }
         return check;
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other instanceof LearnCommand) {
+            LearnCommand otherCommand = (LearnCommand) other;
+            return this.tags.containsAll(otherCommand.tags) && otherCommand.tags.containsAll(this.tags);
+        } else {
+            return false;
+        }
+    }
 }
