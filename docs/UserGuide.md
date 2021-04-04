@@ -120,18 +120,19 @@ For our new users, don't be too intimidated! You can use this summary to better 
 the different commands available. We will delve deeper into the specifics at chapters [2.2](#22-general)
 and [2.3](#23-event-commands).
 
-| Command                           | Description                                           | Format, Examples                                                                                           |
-| --------------------------------- | ----------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| [**Clear**](#236-clear-command)   | **Clears** all of your events in Focuris              | `clear`                                                                                                    |
-| [**Delete**](#235-delete-command) | **Deletes** your existing event in Focuris            | `delete IDENTIFIER`<br> e.g., `delete 3`                                                                   |
-| [**Edit**](#234-edit-command)     | **Edits** your existing event's attributes in Focuris | `edit IDENTIFIER [n/NAME] [s/STATUS] [d/DESCRIPTION] [p/PRIORITY]`<br> e.g.,`edit 2 n/CS2030 d/Assignment` |
-| [**Find**](#237-find-command)     | **Finds** your existing event by specific keywords    | `find KEYWORD [KEYWORD]...`<br> e.g., `find James Jake`                                                    |
-| [**Exit**](#222-exit-command)     | **Exits** the application                             | `exit`                                                                                                     |
-| [**Help**](#221-help-command)     | Displays **help menu** pop-up                         | `help`                                                                                                     |
-| [**List**](#232-list-command)     | Clears your previous filters and lists all events     | `list`                                                                                                     |
-| [**Log**](#232-log-command)       | Creates your new event with status **Backlog**        | `log n/NAME d/DESCRIPTION [p/PRIORITY]` <br> e.g., `log n/CS2030 d/Lab`                                    |
-| [**Prog**](#233-prog-command)     | Creates your new event with status **In-Progress**    | `prog n/NAME d/DESCRIPTION [p/PRIORITY]` <br> e.g., `prog n/CS2100 d/Tutorial`                             |
-| [**Todo**](#231-todo-command)     | Creates your new event with status **Todo**           | `todo n/NAME d/DESCRIPTION [p/PRIORITY]` <br> e.g., `todo n/CS2040 d/Assignment`                           |
+| Command                            | Description                                           | Format, Examples                                                                                           |
+| ---------------------------------- | ----------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| [**Clear**](#236-clear-command)    | **Clears** all of your events in Focuris              | `clear`                                                                                                    |
+| [**Done**](#239-done-command)      | Marks an existing event in Focuris as **`DONE`**      | `done IDENTIFIER`<br> e.g., `done 3`                                                                       |
+| [**Edit**](#234-edit-command)      | **Edits** your existing event's attributes in Focuris | `edit IDENTIFIER [n/NAME] [s/STATUS] [d/DESCRIPTION] [p/PRIORITY]`<br> e.g.,`edit 2 n/CS2030 d/Assignment` |
+| [**Find**](#237-find-command)      | **Finds** your existing event by specific keywords    | `find KEYWORD [KEYWORD]...`<br> e.g., `find James Jake`                                                    |
+| [**Exit**](#222-exit-command)      | **Exits** the application                             | `exit`                                                                                                     |
+| [**Help**](#221-help-command)      | Displays **help menu** pop-up                         | `help`                                                                                                     |
+| [**List**](#232-list-command)      | Clears your previous filters and lists all events     | `list`                                                                                                     |
+| [**Log**](#232-log-command)        | Creates your new event with status **Backlog**        | `log n/NAME d/DESCRIPTION [p/PRIORITY]` <br> e.g., `log n/CS2030 d/Lab`                                    |
+| [**Prog**](#233-prog-command)      | Creates your new event with status **In-Progress**    | `prog n/NAME d/DESCRIPTION [p/PRIORITY]` <br> e.g., `prog n/CS2100 d/Tutorial`                             |
+| [**Switch**](#2310-switch-command) | **Switch** between list and kanban view in Focuris    | `prog n/NAME d/DESCRIPTION [p/PRIORITY]` <br> e.g., `prog n/CS2100 d/Tutorial`                             |
+| [**Todo**](#231-todo-command)      | Creates your new event with status **Todo**           | `todo n/NAME d/DESCRIPTION [p/PRIORITY]` <br> e.g., `todo n/CS2040 d/Assignment`                           |
 
 <a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
 
@@ -535,6 +536,46 @@ Lists all of your events in Focuris. Typically used after using [`find`](#237-fi
 
 ```
 list
+```
+
+**What you should expect to happen:**
+
+- After execution of the `list` command:
+
+![list example](./images/user-guide/list-example-1.png)
+
+_Figure 11. Execution of list command after find command in Figure 10_
+
+<div class="page-break-before"></div>
+
+### 2.3.9 `done` Command
+
+Set the status of an Event to `DONE`.
+
+**What you should type into the Command Box:**
+
+```
+done IDENTIFIER
+```
+
+**What you should expect to happen:**
+
+- Before the execution of the `done 4` command:
+
+- After the execution of `done 4` command:
+
+<a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
+
+<div class="page-break-before"></div>
+
+### 2.3.10 `switch` Command
+
+Toggle between `list` and `kanban` views
+
+**What you should type into the Command Box:**
+
+```
+switch
 ```
 
 **What you should expect to happen:**
