@@ -9,7 +9,7 @@ unless specified otherwise)
       2. PartyPlanet displays the new list of contacts with the added contact.
          Use case ends.
     Extensions:
-      1a. PartyPlanet detects an erroneous input (UC11).
+      1a. PartyPlanet <u>detects an erroneous input (UC11)</u>.
           Use case ends.
 
 
@@ -20,7 +20,7 @@ unless specified otherwise)
       2. PartyPlanet displays the list of contacts without the deleted contact.
          Use case ends.
     Extensions:
-      1a. PartyPlanet detects an erroneous input (UC11).
+      1a. PartyPlanet <u>detects an erroneous input (UC11)</u>.
           Use case ends.
 
 
@@ -31,7 +31,7 @@ unless specified otherwise)
       2. PartyPlanet displays the updated details.
          Use case ends.
     Extensions:
-      1a. PartyPlanet detects an erroneous input (UC11).
+      1a. PartyPlanet <u>detects an erroneous input (UC11)</u>.
           Use case ends.
    
 
@@ -48,7 +48,7 @@ unless specified otherwise)
       1b. User chooses a searching criteria from a list of possible criteria.
           1b1. PartyPlanet displays the list of all contacts meeting the given criteria.
                Use case ends.
-      1c. PartyPlanet detects an erroneous input (UC11).
+      1c. PartyPlanet <u>detects an erroneous input (UC11)</u>.
           Use case ends.
 
 
@@ -59,7 +59,7 @@ unless specified otherwise)
       2. PartyPlanet displays the new list of events with the added event.
          Use case ends.
     Extensions:
-      1a. PartyPlanet detects an erroneous input (UC11).
+      1a. PartyPlanet <u>detects an erroneous input (UC11)</u>.
           Use case ends.
 
 
@@ -70,7 +70,7 @@ unless specified otherwise)
       2. PartyPlanet displays the list of events without the deleted event.
          Use case ends.
     Extensions:
-      1a. PartyPlanet detects an erroneous input (UC11).
+      1a. PartyPlanet <u>detects an erroneous input (UC11)</u>.
           Use case ends.
 
 
@@ -81,7 +81,7 @@ unless specified otherwise)
       2. PartyPlanet displays the updated details.
          Use case ends.
     Extensions:
-      1a. PartyPlanet detects an erroneous input (UC11).
+      1a. PartyPlanet <u>detects an erroneous input (UC11)</u>.
           Use case ends.
 
 
@@ -92,7 +92,7 @@ unless specified otherwise)
       2. PartyPlanet displays the updated status.
          Use case ends.
     Extensions:
-      1a. PartyPlanet detects an erroneous input (UC11).
+      1a. PartyPlanet <u>detects an erroneous input (UC11)</u>.
           Use case ends.
 
 
@@ -109,7 +109,7 @@ unless specified otherwise)
       1b. User chooses a searching criteria from a list of possible criteria.
           1b1. PartyPlanet displays the list of all events meeting the given criteria.
                Use case ends.
-      1c. PartyPlanet detects an erroneous input (UC11).
+      1c. PartyPlanet <u>detects an erroneous input (UC11)</u>.
           Use case ends.
 
 
@@ -123,7 +123,7 @@ unless specified otherwise)
       1a. User supplied a specific command as a parameter.
           1a1. PartyPlanet displays help for the specific command supplied.
                Use case ends.
-      1b. PartyPlanet detects an erroneous input (UC11).
+      1b. PartyPlanet <u>detects an erroneous input (UC11)</u>.
           Use case ends.
 
 
@@ -150,7 +150,7 @@ unless specified otherwise)
       2. PartyPlanet displays the details of the action that was undone and the list of contacts/events after the action is undone.
          Use case ends.
     Extensions:
-      1a. PartyPlanet detects an erroneous input (UC11).
+      1a. PartyPlanet <u>detects an erroneous input (UC11)</u>.
           Use case ends.
 
 
@@ -161,5 +161,5 @@ unless specified otherwise)
       2. PartyPlanet displays the details of the action that was redone and the list of contacts/events after the action is redone.
          Use case ends.
     Extensions:
-      1a. PartyPlanet detects an erroneous input (UC11).
+      1a. PartyPlanet <u>detects an erroneous input (UC11)</u>.
           Use case ends.
