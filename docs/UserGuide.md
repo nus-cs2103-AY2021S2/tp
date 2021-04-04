@@ -14,7 +14,7 @@ users can learn Japanese at a comfortable pace and manage flashcards with this a
   * [Starting a quiz session: `start`](#starting-a-quiz-session-start)
   * [Checking flashcard answers: `check`](#checking-flashcard-answers-check)
   * [Going to next flashcard: `next`](#going-to-next-flashcard-next)
-  * [Entering learn mode: `learn`](#listing-out-all-flashcards-learn)
+  * [Entering learn mode: `learn`](#entering-learn-mode-learn)
   * [Ending the session: `end`](#ending-the-session-end)
   * [Viewing past scores: `history`](#viewing-past-scores-history)
   * [Tagging a flashcard: `tag INDEX TAGS…`](#tagging-a-flashcard-tag-index-tags)
