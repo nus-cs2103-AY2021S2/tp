@@ -69,10 +69,10 @@ FlashBack is a **desktop application for managing notes, optimized for use via a
 
 The figures below explain the different components in FlashBack. <br>
 Main window<br>
-![MainWindowComponents](./images/UiMainWindowComponents.png) <br>
+![MainWindowComponents](./images/UiMainWindowComponents.png) <br><br>
 Review mode <br>
 ![ReviewModeComponents](./images/UiReviewModeComponents.png) <br><br>
-Brief explanation of each components:
+Brief explanation of each component:
 
 Components      | Explanation
 ----------------|------------------
@@ -261,11 +261,14 @@ Format: `filter [q/QUESTION] [c/CATEGORY] [p/PRIORITY] [t/TAG]`
 
 Examples:
 * `filter q/charles recursion` will return cards with `charles` or `recursion` contained in its question.<br><br>
-  ![result for `filter q/charles recursion`](images/filterCharlesRecursionResult.png) <br>
-* `filter p/mid q/formula` will return cards with `formula` contained in its question and `mid` priority.<br>
-  ![result for `filter p/mid q/formula`](images/filterMidFormulaResult.png) <br>
-* `filter c/com t/ran` will return cards with `com` contained in its category and `ran`contained in any of its tags.<br>
-  ![result for `filter c/com t/ran`](images/filterComRanResult.png) <br>
+  ![result for `filter q/charles recursion`](images/filterCharlesRecursionResult.png) <br><br>
+* `filter p/mid q/formula` will return cards with `formula` contained in its question and `mid` priority.<br><br>
+  ![result for `filter p/mid q/formula`](images/filterMidFormulaResult.png) <br><br>
+  
+  <div style="page-break-after: always;"></div>
+
+* `filter c/com t/ran` will return cards with `com` contained in its category and `ran`contained in any of its tags.<br><br>
+  ![result for `filter c/com t/ran`](images/filterComRanResult.png) <br><br>
 
 ### Clearing all entries : `clear`
 
@@ -287,10 +290,13 @@ Examples:
 ![UiDeleteBeforeUndo](./images/UiDeleteBeforeUndo.png) <br>
 <div style="page-break-after: always;"></div>
 
-`clear`  <br>
+`clear`  <br><br>
 ![UiClearBeforeUndo](./images/UiClearBeforeUndo.png) <br><br>
-`undo` will reverse the `clear` command. <br>
+`undo` will reverse the `clear` command. <br><br>
 ![UiClearAfterUndo](./images/UiClearAfterUndo.png) <br><br>
+
+<div style="page-break-after: always;"></div>
+
 `undo` will reverse the `delete 3` command. <br>
 ![UiDeleteAfterUndo](./images/UiDeleteAfterUndo.png) <br><br>
 
@@ -303,10 +309,10 @@ Format: `redo`
 Examples:
 `clear` <br><br>
 ![UiClearBeforeUndoBeforeRedo](./images/UiClearBeforeUndoBeforeRedo.png) <br><br>
-`undo` will reverse the `clear` command. <br><br>
-![UiClearAfterUndoBeforeRedo](./images/UiClearAfterUndoBeforeRedo.png) <br><br>
 <div style="page-break-after: always;"></div>
 
+`undo` will reverse the `clear` command. <br><br>
+![UiClearAfterUndoBeforeRedo](./images/UiClearAfterUndoBeforeRedo.png) <br><br>
 `redo` will reverse the `undo` command. <br><br>
 ![UiClearAfterUndoAfterRedo](./images/UiClearAfterUndoAfterRedo.png) <br><br>
 
@@ -350,7 +356,7 @@ The following statistics are displayed:
 * The correct rate of the flashcard(s). i.e The number of correct answer reviews over the total number of reviews.
 * The wrong rate of the flashcard(s). i.e The number of wrong answer reviews over the total number of reviews.
 
-Format: `stats INDEX` <br>
+Format: `stats [INDEX]` <br>
 
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
 If a valid `INDEX` is provided, the statistics of the flashcard identified by the provided index is shown.
@@ -376,12 +382,14 @@ Define an alias for a command in FlashBack.
 </div>
 
 Format: `alias cmd/COMMAND al/ALIAS` <br>
+<div style="page-break-after: always;"></div>
 
 Examples:
 
 `alias cmd/delete al/d` creates an alias `d` for command `delete`.
 
 ![UiNewDeleteAlias](./images/UiNewDeleteAlias.png) <br><br>
+<div style="page-break-after: always;"></div>
 
 `d 1` shows the usage of alias `d`.
 
