@@ -3,6 +3,8 @@ package seedu.weeblingo.logic.commands;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.weeblingo.logic.commands.LearnCommand.MESSAGE_SUCCESS;
 
+import java.util.HashSet;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.weeblingo.model.Model;
@@ -16,7 +18,7 @@ public class LearnCommandTest {
     public void execute_learn_success() {
         CommandResult expectedCommandResult = new CommandResult(
                 MESSAGE_SUCCESS, false, false);
-        assertCommandSuccess(new LearnCommand(), model, expectedCommandResult, expectedModel);
+        assertCommandSuccess(new LearnCommand(new HashSet<>()), model, expectedCommandResult, expectedModel);
     }
 
 }
