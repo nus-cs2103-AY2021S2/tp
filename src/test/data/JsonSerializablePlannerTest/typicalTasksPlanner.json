@@ -2,7 +2,7 @@
   "_comment": "PlanIt save file which contains the same Task values as in TypicalTasks#getTypicalPlanner()",
   "tasks" : [ {
     "title" : "Assignment 79",
-    "deadline" : "",
+    "date" : "",
     "duration": "12:30-13:30",
     "recurringSchedule" : "[10/06/2021][Mon][biweekly]",
     "description": "Build the next Google",
@@ -10,7 +10,7 @@
     "tagged" : [ "priorities" ]
   }, {
     "title" : "Build a gaming PC",
-    "deadline" : "12/12/2021",
+    "date" : "12/12/2021",
     "duration": "",
     "recurringSchedule" : "",
     "description": "buy: coffee, 3080, 40-inch monitor",
@@ -18,7 +18,7 @@
     "tagged" : [ "findMoney", "priorities" ]
   }, {
     "title" : "Countdown to finals",
-    "deadline" : "",
+    "date" : "",
     "duration": "12:30-13:30",
     "recurringSchedule" : "[10/06/2021][Wed][weekly]",
     "description": "aiken doeet",
@@ -26,7 +26,7 @@
     "tagged" : [ ]
   }, {
     "title" : "Demo our amazing product",
-    "deadline" : "",
+    "date" : "",
     "duration": "12:30-13:30",
     "recurringSchedule" : "[05/06/2021][Thu][biweekly]",
     "description": "Number 1 for real",
@@ -34,7 +34,7 @@
     "tagged" : [ "fact" ]
   }, {
     "title" : "Ensure that I eat lunch",
-    "deadline" : "20/10/2021",
+    "date" : "20/10/2021",
     "duration": "",
     "recurringSchedule" : "",
     "description": "budget 3$",
@@ -42,7 +42,7 @@
     "tagged" : [ ]
   }, {
     "title" : "Final project consult again",
-    "deadline" : "",
+    "date" : "",
     "duration": "12:30-13:30",
     "recurringSchedule" : "",
     "description": "at COM2",
@@ -50,9 +50,9 @@
     "tagged" : [ ]
   }, {
     "title" : "Get ready for 2101 presentation",
-    "deadline" : "",
+    "date" : "",
     "duration": "",
-    "recurringSchedule" : "[18/06/2021][Sun][weekly]",
+    "recurringSchedule" : "[18/06/2021][thu][weekly]",
     "description": "remember to shave",
     "status": "done",
     "tagged" : [ ]

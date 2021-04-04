@@ -100,15 +100,15 @@ public class UniqueTaskList implements Iterable<Task> {
     }
 
     /**
-     * Returns the number of days from the current time to the deadline of the specified task.
+     * Returns the number of days from the current time to the date of the specified task.
      * The task must already exist in the list.
      */
     public int countdown(Task task) {
         requireNonNull(task);
 
-        LocalDate deadlineDate = task.getDeadline().getDate();
+        LocalDate date = task.getDate().getDate();
 
-        long daysLeft = LocalDate.now().until(deadlineDate, ChronoUnit.DAYS);
+        long daysLeft = LocalDate.now().until(date, ChronoUnit.DAYS);
 
         return (int) daysLeft;
     }
@@ -153,7 +153,7 @@ public class UniqueTaskList implements Iterable<Task> {
 
         for (Task t : internalList) {
 
-            if (!t.isDeadlineEmpty()) {
+            if (!t.isEmptyDate()) {
                 boolean isWithinSevenDays = t.isWithinSevenDays(LocalDate.now());
                 if (isWithinSevenDays) {
                     totalNumDue++;

@@ -104,6 +104,7 @@ The `Model`,
 * stores a `UserPref` object that represents the user’s preferences.
 * stores the planner data.
 * exposes an unmodifiable `ObservableList<Task>` and `ObservableList<Tag>` that can be 'observed' e.g. the UI can be bound to these lists so that the UI automatically updates when the data in the lists change.
+* exposes an unmodifiable `ObservableCalendarDate` for the calendar to observe.
 * does not depend on any of the other three components.
 
 ### Storage component
@@ -205,7 +206,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### Viewing list of tags
+### Viewing list of tags in the tags panel
 
 Each task may be associated with 0 or more tags that are stored in the `UniqueTagList`. The `UniqueTagList` ensures that
 no 2 tags are duplicate in the program at 1 time, emphasizing the abstraction of tags as an Object.
@@ -228,9 +229,39 @@ below:
 
 As seen, there is a clear separation of responsibilities between the `UI`, `Logic` and `Model`, which complies with
 the Observer pattern where the view in `UI` communicates with the `UniqueTagList` in `Model` through an
-interface, subscribing to the changes in the list.
+interface, subscribing to the changes in the list. Thus, coupling is reduced.
 This interface is actually `<<Logic>>` and `<<Model>>`, implemented by `LogicManager` and `ModelManager`, which are
 abstracted out of the diagram for more concrete representation.
+
+### Viewing tasks on a date and bringing the calendar to the date
+
+The `view` command can get and list all tasks with dates and their recurring schedule's dates on a particular date. The
+next argument for the command is taken as the `DATE` and used in the predicate that filters the task list stored. The
+resulting filtered task list is displayed on the `TaskListPanel` in the app. The following activity diagram illustrates
+the workflow when a user uses the `view` command:
+
+![ViewDateActivityDiagram](images/ViewDateActivityDiagram.png)
+
+The given date argument is used in `TaskOnDatePredicate` which is an aggregation of 2 other predicates:
+`TaskDateOnDatePredicate` and `TaskScheduledOnDatePredicate`. The sequence diagram below shows how the command is parsed
+and executed:
+
+![ViewDateSequenceDiagram](images/ViewDateSequenceDiagram.png)
+
+Updating the filtered task list causes a change in the `ObservableTaskList` encapsulated in a `UniqueTaskList`, in turn
+encapsulated within the model and planner. The `ObservableTaskList` then propagates the changes to the `TaskListPanel`
+to be viewed.
+
+#### Changing the calendar's viewing date
+
+The date given in the view command is also used to update the calendar. This is implemented as an `Observable` object
+called `ObservableCalendarDate`, stored within the model encapsulated by the planner. It is passed to the
+`CalendarPanel` upon instantiation in the `MainWindow` view. The `CalendarPanel` implements an `Observer` interface,
+which subscribes to the `Observable` for notifications whenever there is a change in date caused by the `view` command.
+
+![ObservableCalendarDateDiagram](images/ObservableCalendarDateClassDiagram.png)
+
+Thus, `CalendarPanel` and `ObservableCalendarDate` conforms to the observer pattern, reducing coupling.
 
 ### Mark task as done
 
@@ -372,7 +403,7 @@ This approach was chosen as it is easy to implement, and not too much of refacto
 * Manage tasks faster than a typical mouse/GUI driven app
 * A quick way to view all tasks due on a specified day
 * Able to quickly search for an available timing for a particular task
-* Organising tasks according to projects/modules/deadline so that users can view these tasks with different filters
+* Organising tasks according to projects/modules/date so that users can view these tasks with different filters
 * Able to adjust and edit task according to user needs
 
 
@@ -383,7 +414,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​ | I want to …​ | So that I can…​ |
 | -------- | ---------- | --------------- | ------------------ |
 | `* * *`  | new user | see usage instructions | refer to instructions when I forget how to use the App  |
-| `* * *`  | user | add a deadline to a task | know when to complete it by |
+| `* * *`  | user | add a date to a task | know when to complete it by |
 | `* * *`  | user | mark a task as done | remove tasks from the list after completing them |
 | `* * *`  | user | view when a task is due | understand how much time I have to complete it |
 | `* * *`  | returning user | view all the tasks previously set | avoid resetting all the tasks |
@@ -391,10 +422,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user | search using keywords from the tag(s) of task|  find matching tasks from the same category quickly when I only can remember the tag(s).|
 | `* * *`  | user | search using keywords from the task description | find matching tasks quickly when I only can remember the description |
 | `* * *`  | user | view all my tasks in a list | track tasks I have not done |
-| `* * *`  | user | delete tasks from the list | reduce clutter or remove a mistakenly added task |
-| `* * *`  | user | delete specific fields from a task in the list | manage the details in a task |
-| `* * *`  | user | schedule recurring tasks at a specified frequency | easily set tasks for the future at one go.
-
+| `* * *`  | user | remove tasks from the list | reduce clutter or remove a mistakenly added task |
+| `* * *`  | user | remove specific fields from a task in the list | manage the details in a task |
+| `* * *`  | user | schedule recurring tasks at a specified frequency | easily set tasks for the future at one go |
+| `* * *`  | user | see how many days I have left until a specific task is due/happening | know how much time I have left to work on the task |
+| `* * *`  | user | see all the statistics for the tasks | track my progress |
 
 *{Updated for v1.2}*
 
@@ -429,7 +461,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-#### **Use case: Viewing all tasks**
+#### **Use case: Listing all tasks**
 
 **MSS**
 
@@ -446,14 +478,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-#### **Use case: Add a deadline to a task**
+#### **Use case: Add a date to a task**
 
 **MSS**
 1. User _adds a task_ to the list.
 2. PlanIt shows task added to the list and updates list.
-3. User enters command to add a deadline to a specified task.
-4. PlanIt shows task with updated deadline and updates list.
-5. This task can be viewed in the Calendar User Interface on the day of the deadline.
+3. User enters command to add a date to a specified task.
+4. PlanIt shows task with updated date and updates list.
+5. This task can be viewed in the Calendar User Interface on the day of the date.
 
 **Extensions**
 * 4a. The given index is invalid.
@@ -478,7 +510,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
 #### **Use case: Add a recurring schedule to the task**
 
-**Precondition: The task does not have a deadline, only repeats in weekly or biweekly basis.**
+**Precondition: The task does not have a date, only repeats in weekly or biweekly basis.**
 
 **MSS**
 1. User enters command to _adds a task with recurring schedule_ to the list.
@@ -493,13 +525,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       
       Use case ends.   
     
-#### **Use case: Delete a task**
+#### **Use case: Remove a task**
 
 **MSS**
 1. User _adds a task_ to the list.
 2. PlanIt shows task added to the list and updates list.
-3. User enters command to delete a specified task.
-4. PlanIt shows task that was deleted and updates list.
+3. User enters command to remove a specified task.
+4. PlanIt shows task that was removed and updates list.
 
 **Extensions**
 * 4a. The given index is invalid.
@@ -507,7 +539,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 3.
 
-#### **Use case: Sort tasks according to deadline**
+#### **Use case: Sort tasks according to date**
 
 **MSS**
 1. User _adds a task with a deadline_ to the list.

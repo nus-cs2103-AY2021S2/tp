@@ -1,6 +1,6 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DURATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RECURRINGSCHEDULE;
@@ -34,8 +34,8 @@ public class TaskUtil {
     public static String getTaskDetails(Task task) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_TITLE + task.getTitle().fullTitle + " ");
-        if (!task.isDeadlineEmpty()) {
-            sb.append(PREFIX_DEADLINE + task.getDeadline().toString() + " ");
+        if (!task.isEmptyDate()) {
+            sb.append(PREFIX_DATE + task.getDate().toString() + " ");
         }
         sb.append(PREFIX_DURATION + task.getDuration().toString() + " ");
         sb.append(PREFIX_RECURRINGSCHEDULE + task.getRecurringSchedule().value + " ");
@@ -51,8 +51,8 @@ public class TaskUtil {
     public static String getEditTaskDescriptorDetails(EditTaskDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getTitle().ifPresent(title -> sb.append(PREFIX_TITLE).append(title.fullTitle).append(" "));
-        descriptor.getDeadline().ifPresent(deadline -> sb.append(PREFIX_DEADLINE)
-                .append(deadline.toString()).append(" "));
+        descriptor.getDate().ifPresent(date -> sb.append(PREFIX_DATE)
+                .append(date.toString()).append(" "));
         descriptor.getDuration().ifPresent(duration -> sb.append(PREFIX_DURATION)
                 .append(duration.toString()).append(" "));
         descriptor.getRecurringSchedule().ifPresent(recurringSchedule -> sb.append(PREFIX_RECURRINGSCHEDULE)

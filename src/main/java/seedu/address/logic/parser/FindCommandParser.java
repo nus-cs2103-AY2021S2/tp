@@ -10,9 +10,9 @@ import java.util.logging.Logger;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.task.DescriptionContainsKeywordsPredicate;
-import seedu.address.model.task.TagContainsKeywordsPredicate;
-import seedu.address.model.task.TitleContainsKeywordsPredicate;
+import seedu.address.model.task.predicates.DescriptionContainsKeywordsPredicate;
+import seedu.address.model.task.predicates.TagContainsKeywordsPredicate;
+import seedu.address.model.task.predicates.TitleContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object

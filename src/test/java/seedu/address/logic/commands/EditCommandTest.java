@@ -4,7 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DURATION_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_RECURRINGSCHEDULE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -20,6 +22,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.conditions.ConstraintManager;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.Planner;
@@ -52,16 +55,16 @@ public class EditCommandTest {
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() throws CommandException {
-        Index indexLastTask = Index.fromOneBased(model.getFilteredTaskList().size());
-        Task lastTask = model.getFilteredTaskList().get(indexLastTask.getZeroBased());
+        Index indexThirdLastTask = Index.fromOneBased(model.getFilteredTaskList().size() - 2);
+        Task lastTask = model.getFilteredTaskList().get(indexThirdLastTask.getZeroBased());
 
         TaskBuilder taskInList = new TaskBuilder(lastTask);
-        Task editedTask = taskInList.withTitle(VALID_TITLE_BOB).withDeadline(VALID_DEADLINE_BOB)
+        Task editedTask = taskInList.withTitle(VALID_TITLE_BOB).withDuration(VALID_DURATION_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
 
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withTitle(VALID_TITLE_BOB)
-                .withDeadline(VALID_DEADLINE_BOB).withTags(VALID_TAG_HUSBAND).build();
-        EditCommand editCommand = new EditCommand(indexLastTask, descriptor);
+                .withDuration(VALID_DURATION_BOB).withTags(VALID_TAG_HUSBAND).build();
+        EditCommand editCommand = new EditCommand(indexThirdLastTask, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
 
@@ -73,13 +76,14 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_noFieldSpecifiedUnfilteredList_success() {
+    public void execute_noFieldSpecifiedUnfilteredList_success() throws CommandException {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_TASK, new EditTaskDescriptor());
         Task editedTask = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
 
         Model expectedModel = new ModelManager(new Planner(model.getPlanner()), new UserPrefs());
+        expectedModel.setTask(editedTask, editedTask);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -147,6 +151,37 @@ public class EditCommandTest {
                 new EditTaskDescriptorBuilder().withTitle(VALID_TITLE_BOB).build());
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_editedTaskOnlyHasDuration_failure() {
+        Index indexThirdLastTask = Index.fromOneBased(model.getFilteredTaskList().size() - 2);
+
+        Task editedTask = new TaskBuilder().withTitle(VALID_TITLE_BOB).build();
+
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(editedTask).withTitle(VALID_TITLE_BOB)
+                .withDuration(VALID_DURATION_BOB).withTags(VALID_TAG_HUSBAND).build();
+        EditCommand editCommand = new EditCommand(indexThirdLastTask, descriptor);
+
+        String expectedMessage = ConstraintManager.MESSAGE_DURATION_STANDALONE_ERROR;
+
+        assertCommandFailure(editCommand, model, expectedMessage);
+    }
+
+    @Test
+    public void execute_editedTaskHasDateAndRecurringSchedule_failure() {
+        Index indexThirdLastTask = Index.fromOneBased(model.getFilteredTaskList().size() - 2);
+
+        Task editedTask = new TaskBuilder().withTitle(VALID_TITLE_BOB).build();
+
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(editedTask).withTitle(VALID_TITLE_BOB)
+                .withDate(VALID_DATE_AMY).withRecurringSchedule(VALID_RECURRINGSCHEDULE_AMY)
+                .withTags(VALID_TAG_HUSBAND).build();
+        EditCommand editCommand = new EditCommand(indexThirdLastTask, descriptor);
+
+        String expectedMessage = ConstraintManager.MESSAGE_DATE_RECURRING_SCHEDULE_CONFLICT;
+
+        assertCommandFailure(editCommand, model, expectedMessage);
     }
 
     @Test

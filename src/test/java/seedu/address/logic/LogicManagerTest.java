@@ -9,7 +9,7 @@ import static seedu.address.logic.commands.CommandTestUtil.RECURRINGSCHEDULE_DES
 import static seedu.address.logic.commands.CommandTestUtil.STATUS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.TITLE_DESC_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalTasks.AMY_NO_DEADLINE;
+import static seedu.address.testutil.TypicalTasks.AMY_NO_DATE;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -82,7 +82,7 @@ public class LogicManagerTest {
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + TITLE_DESC_AMY + DURATION_DESC_AMY
                 + RECURRINGSCHEDULE_DESC_AMY + DESCRIPTION_DESC_AMY + STATUS_DESC_AMY;
-        Task expectedTask = new TaskBuilder(AMY_NO_DEADLINE).withTags().build();
+        Task expectedTask = new TaskBuilder(AMY_NO_DATE).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addTask(expectedTask);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;

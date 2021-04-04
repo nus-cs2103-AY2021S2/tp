@@ -4,13 +4,13 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.Deadline;
-import seedu.address.model.task.Description;
-import seedu.address.model.task.Duration;
-import seedu.address.model.task.RecurringSchedule;
-import seedu.address.model.task.Status;
 import seedu.address.model.task.Task;
-import seedu.address.model.task.Title;
+import seedu.address.model.task.attributes.Date;
+import seedu.address.model.task.attributes.Description;
+import seedu.address.model.task.attributes.Duration;
+import seedu.address.model.task.attributes.RecurringSchedule;
+import seedu.address.model.task.attributes.Status;
+import seedu.address.model.task.attributes.Title;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -19,14 +19,14 @@ import seedu.address.model.util.SampleDataUtil;
 public class TaskBuilder {
 
     public static final String DEFAULT_TITLE = "Amy Bee";
-    public static final String DEFAULT_DEADLINE = "";
+    public static final String DEFAULT_DATE = "";
     public static final String DEFAULT_DURATION = "";
     public static final String DEFAULT_RECURRINGSCHEDULE = "";
     public static final String DEFAULT_DESCRIPTION = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_STATUS = "not done";
 
     private Title title;
-    private Deadline deadline;
+    private Date date;
     private Duration duration;
     private RecurringSchedule recurringSchedule;
     private Description description;
@@ -38,7 +38,7 @@ public class TaskBuilder {
      */
     public TaskBuilder() {
         title = new Title(DEFAULT_TITLE);
-        deadline = new Deadline(DEFAULT_DEADLINE);
+        date = new Date(DEFAULT_DATE);
         duration = new Duration(DEFAULT_DURATION);
         recurringSchedule = new RecurringSchedule(DEFAULT_RECURRINGSCHEDULE);
         description = new Description(DEFAULT_DESCRIPTION);
@@ -51,7 +51,7 @@ public class TaskBuilder {
      */
     public TaskBuilder(Task taskToCopy) {
         title = taskToCopy.getTitle();
-        deadline = taskToCopy.getDeadline();
+        date = taskToCopy.getDate();
         duration = taskToCopy.getDuration();
         recurringSchedule = taskToCopy.getRecurringSchedule();
         description = taskToCopy.getDescription();
@@ -84,15 +84,15 @@ public class TaskBuilder {
     }
 
     /**
-     * Sets the {@code Deadline} of the {@code Task} that we are building.
+     * Sets the {@code Date} of the {@code Task} that we are building.
      */
-    public TaskBuilder withDeadline(String deadline) {
-        this.deadline = new Deadline(deadline);
+    public TaskBuilder withDate(String date) {
+        this.date = new Date(date);
         return this;
     }
 
     /**
-     * Sets the {@code Deadline} of the {@code Task} that we are building.
+     * Sets the {@code Date} of the {@code Task} that we are building.
      */
     public TaskBuilder withStatus(String status) {
         this.status = new Status(status);
@@ -116,7 +116,7 @@ public class TaskBuilder {
     }
 
     public Task build() {
-        return new Task(title, deadline, duration, recurringSchedule, description, status, tags);
+        return new Task(title, date, duration, recurringSchedule, description, status, tags);
     }
 
 }

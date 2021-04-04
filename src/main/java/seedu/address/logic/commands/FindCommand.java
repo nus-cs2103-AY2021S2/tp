@@ -25,6 +25,11 @@ public class FindCommand extends Command {
 
     private final Predicate<Task> predicate;
 
+    /**
+     * Creates a FindCommand with a predicate to filter the tasks in the list
+     *
+     * @param predicate Predicate to determine whether a task contains the given keywords
+     */
     public FindCommand(Predicate<Task> predicate) {
         this.predicate = predicate;
     }

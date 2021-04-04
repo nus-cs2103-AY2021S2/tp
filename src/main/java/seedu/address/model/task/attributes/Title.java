@@ -1,4 +1,4 @@
-package seedu.address.model.task;
+package seedu.address.model.task.attributes;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Task's title in the planner.
  * Guarantees: immutable; is valid as declared in {@link #isValidTitle(String)}
  */
-public class Title {
+public class Title implements Attribute {
     public static final String FIELD_NAME = "Title";
 
     public static final String MESSAGE_CONSTRAINTS =
@@ -40,6 +40,9 @@ public class Title {
         return test.matches(VALIDATION_REGEX);
     }
 
+    public boolean isEmptyValue() {
+        return fullTitle.equals("");
+    }
 
     @Override
     public String toString() {

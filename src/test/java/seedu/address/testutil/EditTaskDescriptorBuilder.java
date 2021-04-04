@@ -6,13 +6,13 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.Deadline;
-import seedu.address.model.task.Description;
-import seedu.address.model.task.Duration;
-import seedu.address.model.task.RecurringSchedule;
-import seedu.address.model.task.Status;
 import seedu.address.model.task.Task;
-import seedu.address.model.task.Title;
+import seedu.address.model.task.attributes.Date;
+import seedu.address.model.task.attributes.Description;
+import seedu.address.model.task.attributes.Duration;
+import seedu.address.model.task.attributes.RecurringSchedule;
+import seedu.address.model.task.attributes.Status;
+import seedu.address.model.task.attributes.Title;
 
 /**
  * A utility class to help with building EditTaskDescriptor objects.
@@ -35,7 +35,7 @@ public class EditTaskDescriptorBuilder {
     public EditTaskDescriptorBuilder(Task task) {
         descriptor = new EditTaskDescriptor();
         descriptor.setTitle(task.getTitle());
-        descriptor.setDeadline(task.getDeadline());
+        descriptor.setDate(task.getDate());
         descriptor.setDuration(task.getDuration());
         descriptor.setRecurringSchedule(task.getRecurringSchedule());
         descriptor.setDescription(task.getDescription());
@@ -52,10 +52,10 @@ public class EditTaskDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Deadline} of the {@code EditTaskDescriptor} that we are building.
+     * Sets the {@code Date} of the {@code EditTaskDescriptor} that we are building.
      */
-    public EditTaskDescriptorBuilder withDeadline(String deadline) {
-        descriptor.setDeadline(new Deadline(deadline));
+    public EditTaskDescriptorBuilder withDate(String date) {
+        descriptor.setDate(new Date(date));
         return this;
     }
     /**

@@ -10,13 +10,13 @@ import javafx.scene.control.Separator;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import seedu.address.model.task.Deadline;
-import seedu.address.model.task.Description;
-import seedu.address.model.task.Duration;
-import seedu.address.model.task.RecurringSchedule;
-import seedu.address.model.task.Status;
 import seedu.address.model.task.Task;
-import seedu.address.model.task.Title;
+import seedu.address.model.task.attributes.Date;
+import seedu.address.model.task.attributes.Description;
+import seedu.address.model.task.attributes.Duration;
+import seedu.address.model.task.attributes.RecurringSchedule;
+import seedu.address.model.task.attributes.Status;
+import seedu.address.model.task.attributes.Title;
 
 /**
  * An UI component that displays details of a {@code Task} that belongs in a TaskCard.
@@ -39,14 +39,14 @@ public class TaskCardDetails extends UiPart<Region> {
      * Fields of each task that is to be rendered onto the view (not fields that are compulsory in the add command).
      */
     private final List<String> compulsorilyRenderedFields =
-            List.of(Title.FIELD_NAME, Status.FIELD_NAME, Duration.FIELD_NAME, Deadline.FIELD_NAME);
+            List.of(Title.FIELD_NAME, Status.FIELD_NAME, Duration.FIELD_NAME, Date.FIELD_NAME);
 
     @FXML
     private Label title;
     @FXML
     private Label id;
     @FXML
-    private Label deadline;
+    private Label date;
     @FXML
     private Label status;
     @FXML
@@ -111,7 +111,7 @@ public class TaskCardDetails extends UiPart<Region> {
     private void setStyleClasses() {
         title.getStyleClass().add("cell_big_label");
         id.getStyleClass().add("cell_big_label");
-        deadline.getStyleClass().add("cell_small_label");
+        date.getStyleClass().add("cell_small_label");
         duration.getStyleClass().add("cell_small_label");
         boolean isStatusDone = status.getText().equals("done");
         if (isStatusDone) {

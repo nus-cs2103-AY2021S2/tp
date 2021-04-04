@@ -2,7 +2,7 @@ package seedu.address.model.task;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RECURRINGSCHEDULE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
@@ -32,7 +32,7 @@ public class TaskTest {
         assertFalse(ALICE.isSameTask(null));
 
         // same title, all other attributes different -> returns true
-        Task editedAlice = new TaskBuilder(ALICE).withDeadline(VALID_DEADLINE_BOB)
+        Task editedAlice = new TaskBuilder(ALICE).withDate(VALID_DATE_BOB)
                 .withRecurringSchedule(VALID_RECURRINGSCHEDULE_BOB).withDescription(VALID_DESCRIPTION_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSameTask(editedAlice));
@@ -73,8 +73,8 @@ public class TaskTest {
         Task editedAlice = new TaskBuilder(ALICE).withTitle(VALID_TITLE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different deadline -> returns false
-        editedAlice = new TaskBuilder(ALICE).withDeadline(VALID_DEADLINE_BOB).build();
+        // different date -> returns false
+        editedAlice = new TaskBuilder(ALICE).withDate(VALID_DATE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different recurring schedule -> returns false

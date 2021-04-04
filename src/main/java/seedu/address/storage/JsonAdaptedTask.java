@@ -11,13 +11,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.Deadline;
-import seedu.address.model.task.Description;
-import seedu.address.model.task.Duration;
-import seedu.address.model.task.RecurringSchedule;
-import seedu.address.model.task.Status;
 import seedu.address.model.task.Task;
-import seedu.address.model.task.Title;
+import seedu.address.model.task.attributes.Date;
+import seedu.address.model.task.attributes.Description;
+import seedu.address.model.task.attributes.Duration;
+import seedu.address.model.task.attributes.RecurringSchedule;
+import seedu.address.model.task.attributes.Status;
+import seedu.address.model.task.attributes.Title;
 
 /**
  * Jackson-friendly version of {@link Task}.
@@ -27,7 +27,7 @@ class JsonAdaptedTask {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Task's %s field is missing!";
 
     private final String title;
-    private final String deadline;
+    private final String date;
     private final String duration;
     private final String recurringSchedule;
     private final String description;
@@ -38,13 +38,13 @@ class JsonAdaptedTask {
      * Constructs a {@code JsonAdaptedTask} with the given task details.
      */
     @JsonCreator
-    public JsonAdaptedTask(@JsonProperty("title") String title, @JsonProperty("deadline") String deadline,
+    public JsonAdaptedTask(@JsonProperty("title") String title, @JsonProperty("date") String date,
                            @JsonProperty("duration") String duration,
                            @JsonProperty("recurringSchedule") String recurringSchedule,
                            @JsonProperty("description") String description, @JsonProperty("status") String status,
                            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.title = title;
-        this.deadline = deadline;
+        this.date = date;
         this.duration = duration;
         this.recurringSchedule = recurringSchedule;
         this.description = description;
@@ -59,7 +59,7 @@ class JsonAdaptedTask {
      */
     public JsonAdaptedTask(Task source) {
         title = source.getTitle().fullTitle;
-        deadline = source.getDeadline().toString();
+        date = source.getDate().toString();
         duration = source.getDuration().toString();
         recurringSchedule = source.getRecurringSchedule().value;
         description = source.getDescription().value;
@@ -88,14 +88,14 @@ class JsonAdaptedTask {
         }
         final Title modelTitle = new Title(title);
 
-        if (deadline == null) {
+        if (date == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Deadline.class.getSimpleName()));
+                    Date.class.getSimpleName()));
         }
-        if (!Deadline.isValidDeadline(deadline)) {
-            throw new IllegalValueException(Deadline.MESSAGE_CONSTRAINTS);
+        if (!Date.isValidDate(date)) {
+            throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
         }
-        final Deadline modelDeadline = new Deadline(deadline);
+        final Date modelDate = new Date(date);
 
         if (duration == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -133,7 +133,7 @@ class JsonAdaptedTask {
         final Status modelStatus = new Status(status);
 
         final Set<Tag> modelTags = new HashSet<>(taskTags);
-        return new Task(modelTitle, modelDeadline, modelDuration, modelRecurringSchedule,
+        return new Task(modelTitle, modelDate, modelDuration, modelRecurringSchedule,
                 modelDescription, modelStatus, modelTags);
     }
 

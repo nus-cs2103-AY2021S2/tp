@@ -2,7 +2,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DURATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RECURRINGSCHEDULE;
@@ -19,16 +19,18 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.conditions.ConstraintManager;
+import seedu.address.logic.conditions.IndexManager;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.Deadline;
-import seedu.address.model.task.Description;
-import seedu.address.model.task.Duration;
-import seedu.address.model.task.RecurringSchedule;
-import seedu.address.model.task.Status;
 import seedu.address.model.task.Task;
-import seedu.address.model.task.Title;
+import seedu.address.model.task.attributes.Date;
+import seedu.address.model.task.attributes.Description;
+import seedu.address.model.task.attributes.Duration;
+import seedu.address.model.task.attributes.RecurringSchedule;
+import seedu.address.model.task.attributes.Status;
+import seedu.address.model.task.attributes.Title;
 
 /**
  * Deletes a specific field in a task identified using it's displayed index from the planner.
@@ -40,7 +42,7 @@ public class DeleteFieldCommand extends Command {
             + ": Deletes a field from a task.\n "
             + "Parameters: INDEX (must be a positive integer) FIELD\n"
             + "Field can be: "
-            + PREFIX_DEADLINE + " , "
+            + PREFIX_DATE + " , "
             + PREFIX_DURATION + " , "
             + PREFIX_DESCRIPTION + " , "
             + PREFIX_RECURRINGSCHEDULE + " or "
@@ -79,15 +81,12 @@ public class DeleteFieldCommand extends Command {
         List<Task> lastShownList = model.getFilteredTaskList();
 
         int targetIndexValue = targetIndex.getZeroBased();
-        boolean isInvalidIndex = targetIndexValue >= lastShownList.size();
 
-        if (isInvalidIndex) {
-            logger.info("Invalid index entered:" + targetIndexValue);
-            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
-        }
+        IndexManager.verifyIndex(targetIndex, lastShownList);
 
         Task taskToDeleteFieldFrom = lastShownList.get(targetIndexValue);
         Task taskWithFieldDeleted = deleteFieldFromTask(taskToDeleteFieldFrom, targetField);
+        ConstraintManager.enforceAttributeConstraints(taskWithFieldDeleted);
 
         if (targetField.equals(PREFIX_TAG)) {
             taskToDeleteFieldFrom.getTags().forEach(model::deleteTag);
@@ -105,7 +104,7 @@ public class DeleteFieldCommand extends Command {
         assert taskToDeleteFieldFrom != null;
 
         Title title = taskToDeleteFieldFrom.getTitle();
-        Deadline oldDeadline = taskToDeleteFieldFrom.getDeadline();
+        Date oldDate = taskToDeleteFieldFrom.getDate();
         Duration oldDuration = taskToDeleteFieldFrom.getDuration();
         RecurringSchedule oldRecurringSchedule = taskToDeleteFieldFrom.getRecurringSchedule();
         Description oldDescription = taskToDeleteFieldFrom.getDescription();
@@ -113,7 +112,7 @@ public class DeleteFieldCommand extends Command {
         Set<Tag> oldTags = taskToDeleteFieldFrom.getTags();
 
         boolean isTitleField = field.equals(PREFIX_TITLE);
-        boolean isDeadlineField = field.equals(PREFIX_DEADLINE);
+        boolean isDateField = field.equals(PREFIX_DATE);
         boolean isRecurringScheduleField = field.equals(PREFIX_RECURRINGSCHEDULE);
         boolean isDurationField = field.equals(PREFIX_DURATION);
         boolean isDescriptionField = field.equals(PREFIX_DESCRIPTION);
@@ -123,27 +122,27 @@ public class DeleteFieldCommand extends Command {
         if (isTitleField) {
             logger.info("User tried to delete title");
             throw new CommandException(MESSAGE_INVALID_FIELD_TITLE);
-        } else if (isDeadlineField) {
-            Deadline updatedDeadline = new Deadline("");
-            return new Task(title, updatedDeadline, oldDuration, oldRecurringSchedule,
+        } else if (isDateField) {
+            Date updatedDate = new Date("");
+            return new Task(title, updatedDate, oldDuration, oldRecurringSchedule,
                     oldDescription, oldStatus, oldTags);
         } else if (isDurationField) {
             Duration updatedDuration = new Duration("");
-            return new Task(title, oldDeadline, updatedDuration, oldRecurringSchedule,
+            return new Task(title, oldDate, updatedDuration, oldRecurringSchedule,
                     oldDescription, oldStatus, oldTags);
         } else if (isRecurringScheduleField) {
             RecurringSchedule updatedRecurring = new RecurringSchedule("");
-            return new Task(title, oldDeadline, oldDuration, updatedRecurring, oldDescription, oldStatus, oldTags);
+            return new Task(title, oldDate, oldDuration, updatedRecurring, oldDescription, oldStatus, oldTags);
         } else if (isDescriptionField) {
             Description updatedDescription = new Description("");
-            return new Task(title, oldDeadline, oldDuration, oldRecurringSchedule,
+            return new Task(title, oldDate, oldDuration, oldRecurringSchedule,
                     updatedDescription, oldStatus, oldTags);
         } else if (isStatusField) {
             logger.info("User tried to delete status");
             throw new CommandException(MESSAGE_INVALID_FIELD_STATUS);
         } else if (isTagField) {
             Set<Tag> updatedTags = new HashSet<>();
-            return new Task(title, oldDeadline, oldDuration, oldRecurringSchedule,
+            return new Task(title, oldDate, oldDuration, oldRecurringSchedule,
                     oldDescription, oldStatus, updatedTags);
         } else {
             throw new CommandException(Messages.MESSAGE_UNKNOWN_COMMAND);

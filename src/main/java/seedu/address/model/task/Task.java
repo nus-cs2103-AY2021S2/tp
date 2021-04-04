@@ -10,6 +10,12 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.attributes.Date;
+import seedu.address.model.task.attributes.Description;
+import seedu.address.model.task.attributes.Duration;
+import seedu.address.model.task.attributes.RecurringSchedule;
+import seedu.address.model.task.attributes.Status;
+import seedu.address.model.task.attributes.Title;
 
 /**
  * Represents a Task in the planner.
@@ -19,7 +25,7 @@ public class Task {
 
     // Identity fields
     private final Title title;
-    private final Deadline deadline;
+    private final Date date;
     private final Duration duration;
 
     // Data fields
@@ -31,12 +37,12 @@ public class Task {
     /**
      * Every field must be present and not null.
      */
-    public Task(Title title, Deadline deadline, Duration duration, RecurringSchedule recurringSchedule,
+    public Task(Title title, Date date, Duration duration, RecurringSchedule recurringSchedule,
                 Description description, Status status, Set<Tag> tags) {
         // All fields are not null even if its value is blank.
-        requireAllNonNull(title, deadline, duration, recurringSchedule, description, status, tags);
+        requireAllNonNull(title, date, duration, recurringSchedule, description, status, tags);
         this.title = title;
-        this.deadline = deadline;
+        this.date = date;
         this.duration = duration;
         this.recurringSchedule = recurringSchedule;
         this.description = description;
@@ -48,8 +54,8 @@ public class Task {
         return title;
     }
 
-    public Deadline getDeadline() {
-        return deadline;
+    public Date getDate() {
+        return date;
     }
 
     public Duration getDuration() {
@@ -80,7 +86,7 @@ public class Task {
      * Replaces the task with a new Task with the set of tags provided.
      */
     public Task setTags(Set<Tag> tagSet) {
-        return new Task(title, deadline, duration, recurringSchedule, description, status, tagSet);
+        return new Task(title, date, duration, recurringSchedule, description, status, tagSet);
     }
 
     /**
@@ -94,7 +100,7 @@ public class Task {
         optionalFieldMap.put(Title.FIELD_NAME, title.toString());
         optionalFieldMap.put(Duration.FIELD_NAME, duration.toString());
         optionalFieldMap.put(Status.FIELD_NAME, status.toString());
-        optionalFieldMap.put(Deadline.FIELD_NAME, deadline.toString());
+        optionalFieldMap.put(Date.FIELD_NAME, date.toString());
         optionalFieldMap.put(Description.FIELD_NAME, description.toString());
         optionalFieldMap.put(RecurringSchedule.FIELD_NAME, recurringSchedule.toString());
         return optionalFieldMap;
@@ -114,37 +120,67 @@ public class Task {
     }
 
     public boolean dateOver() {
-        return deadline.over();
+        return date.over();
     }
 
+    /**
+     * Checks if the Recurring schedule end date given by the user has expired.
+     *
+     * @return true if the end date is before the current system date.
+     */
     public boolean hasExpired() {
         return recurringSchedule.isExpired();
     }
 
+    public boolean hasInvalidDateRange() {
+        return recurringSchedule.isInvalidDateRange();
+    }
+
     /**
-     * Checks if the Deadline attribute contains any data.
+     * Checks if the provided date has the same date as this task's date.
      *
-     * @return true if the String of Deadline isEmpty, false otherwise.
+     * @param date Date to check this task's date with.
+     * @return Boolean indicating whether the provided date is on the same day as this task's date.
      */
-    public boolean isDeadlineEmpty() {
-        return deadline.isEmptyValue();
+    public boolean hasSameDate(Date date) {
+        return this.date.value != null && this.date.equals(date);
+    }
+
+    /**
+     * Checks if the provided date string is in the schedule of this task's recurring schedule.
+     * Will return false if there is no dates in the schedule.
+     *
+     * @param dateString Date in string format, to check if it is in this task's schedule.
+     * @return Boolean indicating if the provided date is in the schedule.
+     */
+    public boolean isOnRecurringScheduleDate(String dateString) {
+        return this.recurringSchedule.isInRecurringSchedule(dateString);
+    }
+
+    /**
+     * Checks if the Date attribute contains any data.
+     *
+     * @return true if the String of Date isEmpty, false otherwise.
+     */
+    public boolean isEmptyDate() {
+        return date.isEmptyValue();
     }
 
     /**
      * Checks if the Duration attribute contains any data.
      *
-     * @return true if the String of Duration isEmpty, false otherwise.
+     * @return true if the String of Duration is Empty, false otherwise.
      */
-    public boolean isDurationEmpty() {
+    public boolean isEmptyDuration() {
         return duration.isEmptyValue();
     }
 
     /**
      * Checks if the RecurringSchedule attribute contains any data.
      *
-     * @return true if the String of RecurringSchedule isEmpty, false otherwise.
+     * @return true if the String of RecurringSchedule is Empty, false otherwise.
      */
-    public boolean isRecurringScheduleEmpty() {
+    public boolean isEmptyRecurringSchedule() {
         return recurringSchedule.isEmptyValue();
     }
 
@@ -155,8 +191,12 @@ public class Task {
         return status.isDone();
     }
 
+    public boolean isEmptyTitle() {
+        return title.isEmptyValue();
+    }
+
     public boolean isWithinSevenDays(LocalDate currentDate) {
-        return deadline.isWithinSevenDays(currentDate);
+        return date.isWithinSevenDays(currentDate);
     }
 
     /**
@@ -175,7 +215,7 @@ public class Task {
 
         Task otherTask = (Task) other;
         return otherTask.getTitle().equals(getTitle())
-                && otherTask.getDeadline().equals(getDeadline())
+                && otherTask.getDate().equals(getDate())
                 && otherTask.getDuration().equals(getDuration())
                 && otherTask.getRecurringSchedule().equals(getRecurringSchedule())
                 && otherTask.getDescription().equals(getDescription())
@@ -186,15 +226,15 @@ public class Task {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(title, deadline, duration, recurringSchedule, description, status, tags);
+        return Objects.hash(title, date, duration, recurringSchedule, description, status, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getTitle())
-                .append("; \n").append(Deadline.FIELD_NAME).append(": ")
-                .append(getDeadline())
+                .append("; \n").append(Date.FIELD_NAME).append(": ")
+                .append(getDate())
                 .append("; \n").append(Duration.FIELD_NAME).append(": ")
                 .append(getDuration())
                 .append("; \n").append(RecurringSchedule.FIELD_NAME).append(": ")

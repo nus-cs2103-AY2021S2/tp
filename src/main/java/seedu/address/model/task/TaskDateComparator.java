@@ -16,8 +16,8 @@ public class TaskDateComparator extends TaskComparator implements Comparator<Tas
     public int compare(Task task1, Task task2) {
         assert task1 != null;
         assert task2 != null;
-        LocalDate date1 = task1.getDeadline().getDate();
-        LocalDate date2 = task2.getDeadline().getDate();
+        LocalDate date1 = task1.getDate().getDate();
+        LocalDate date2 = task2.getDate().getDate();
         if (date1 == null && date2 != null) {
             return 1;
         } else if (date1 != null && date2 == null) {

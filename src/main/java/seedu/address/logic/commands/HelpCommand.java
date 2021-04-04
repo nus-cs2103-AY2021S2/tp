@@ -13,7 +13,6 @@ public class HelpCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows program usage instructions.\n"
             + "Example: " + COMMAND_WORD;
 
-
     public static final String HELP_MESSAGE_ADD = AddCommand.SHORT_MESSAGE_USAGE;
 
     public static final String HELP_MESSAGE_LIST = ListCommand.SHORT_MESSAGE_USAGE;
@@ -22,31 +21,21 @@ public class HelpCommand extends Command {
 
     public static final String HELP_MESSAGE_FIND = FindCommand.SHORT_MESSAGE_USAGE;
 
-    public static final String HELP_MESSAGE_COUNTDOWN = CountdownCommand.SHORT_MESSAGE_USAGE;
-
-    public static final String HELP_MESSAGE_CLEAR = ClearCommand.SHORT_MESSAGE_USAGE;
-
     public static final String HELP_MESSAGE_DELETE_TASK = DeleteTaskCommand.SHORT_MESSAGE_USAGE;
 
     public static final String HELP_MESSAGE_DELETE_FIELD = DeleteFieldCommand.SHORT_MESSAGE_USAGE;
 
-    public static final String HELP_MESSAGE_STATS = StatsCommand.SHORT_MESSAGE_USAGE;
-
-
-    public static final String SHOWING_HELP_MESSAGE = "Here is a list of possible instructions:\n\n"
-            + HELP_MESSAGE_ADD + "\n"
-            + HELP_MESSAGE_LIST + "\n"
-            + HELP_MESSAGE_EDIT + "\n"
-            + HELP_MESSAGE_FIND + "\n"
-            + HELP_MESSAGE_DELETE_TASK + "\n"
-            + HELP_MESSAGE_DELETE_FIELD + "\n"
-            + HELP_MESSAGE_CLEAR + "\n"
-            + HELP_MESSAGE_COUNTDOWN + "\n"
-            + HELP_MESSAGE_STATS + "\n"
-            + "For more instructions and a detailed description of the above features, read our user guide.";
+    public static final String SHOWING_HELP_MESSAGE = "Here are some frequently used commands:\n\n"
+            + "1. Adding a task: \n" + HELP_MESSAGE_ADD + "\n\n"
+            + "2. Viewing all task:  \n" + HELP_MESSAGE_LIST + "\n"
+            + "3. Editing a task: \n" + HELP_MESSAGE_EDIT + "\n"
+            + "4. Finding tasks: \n" + HELP_MESSAGE_FIND + "\n"
+            + "5. Deleting a task: \n" + HELP_MESSAGE_DELETE_TASK + "\n"
+            + "6. Deleting a task's attribute: \n" + HELP_MESSAGE_DELETE_FIELD + "\n"
+            + "For more commands, features and a detailed description of the above features, read our user guide.";
 
     @Override
     public CommandResult execute(Model model) {
-        return new CommandResult(SHOWING_HELP_MESSAGE, true, false);
+        return new CommandResult(SHOWING_HELP_MESSAGE);
     }
 }

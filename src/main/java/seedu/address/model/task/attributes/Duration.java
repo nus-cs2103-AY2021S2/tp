@@ -1,4 +1,4 @@
-package seedu.address.model.task;
+package seedu.address.model.task.attributes;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
  * Represents a Task's Duration in the List.
  * Guarantees: immutable; is valid as declared in {@link #isValidDuration(String)}
  */
-public class Duration {
+public class Duration implements Attribute {
     public static final String FIELD_NAME = "Duration";
 
     public static final String MESSAGE_CONSTRAINTS = "Duration should be numeric, consisting of start time and end time"
@@ -25,6 +25,9 @@ public class Duration {
     public final String duration;
     public final String value;
 
+    private String startTime;
+    private String endTime;
+
     /**
      * Constructs an {@code Duration}.
      *
@@ -33,8 +36,8 @@ public class Duration {
     public Duration(String duration) {
         requireNonNull(duration);
         checkArgument(isValidDuration(duration), MESSAGE_CONSTRAINTS);
-        this.duration = parseDuration(duration);
-        value = parseDuration(duration);
+        this.duration = duration;
+        value = duration;
     }
 
     /**
@@ -43,16 +46,24 @@ public class Duration {
     public static boolean isValidDuration(String test) {
         Pattern p = Pattern.compile(VALIDATION_REGEX);
         Matcher m = p.matcher(test);
+
         return m.matches() || test.matches("");
     }
 
     /**
-     * Returns a deadline in the form of a LocalDate.
-     * @param duration the specified deadline.
-     * @return
+     * Parses the given duration into its start and end time.
+     *
+     * @param duration The specified duration.
      */
-    public static String parseDuration(String duration) {
-        return duration;
+    private void parseDuration(String duration) {
+        assert isValidDuration(duration) : "Cannot parse duration that is in an invalid format.";
+        if (duration.isEmpty()) {
+            return;
+        }
+
+        String[] times = duration.split("-");
+        this.startTime = times[0];
+        this.endTime = times[1];
     }
 
     /**
@@ -80,5 +91,4 @@ public class Duration {
     public int hashCode() {
         return this.duration.hashCode();
     }
-
 }

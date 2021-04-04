@@ -1,11 +1,11 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_DEADLINE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_RECURRINGSCHEDULE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TITLE_DESC;
@@ -14,8 +14,8 @@ import static seedu.address.logic.commands.CommandTestUtil.RECURRINGSCHEDULE_DES
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.TITLE_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RECURRINGSCHEDULE_AMY;
@@ -36,9 +36,9 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.Deadline;
-import seedu.address.model.task.RecurringSchedule;
-import seedu.address.model.task.Title;
+import seedu.address.model.task.attributes.Date;
+import seedu.address.model.task.attributes.RecurringSchedule;
+import seedu.address.model.task.attributes.Title;
 import seedu.address.testutil.EditTaskDescriptorBuilder;
 
 public class EditCommandParserTest {
@@ -80,19 +80,19 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, "1" + INVALID_TITLE_DESC, Title.MESSAGE_CONSTRAINTS); // invalid title
-        assertParseFailure(parser, "1" + INVALID_DEADLINE_DESC, Deadline.MESSAGE_CONSTRAINTS); // invalid deadline
+        assertParseFailure(parser, "1" + INVALID_DATE_DESC, Date.MESSAGE_CONSTRAINTS); // invalid date
         assertParseFailure(parser, "1" + INVALID_RECURRINGSCHEDULE_DESC,
                 RecurringSchedule.MESSAGE_CONSTRAINTS); // invalid recurring schedule
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
-        // invalid deadline followed by valid recurring schedule
-        assertParseFailure(parser, "1" + INVALID_DEADLINE_DESC + RECURRINGSCHEDULE_DESC_AMY,
-                Deadline.MESSAGE_CONSTRAINTS);
+        // invalid date followed by valid recurring schedule
+        assertParseFailure(parser, "1" + INVALID_DATE_DESC + RECURRINGSCHEDULE_DESC_AMY,
+                Date.MESSAGE_CONSTRAINTS);
 
-        // valid deadline followed by invalid deadline. The test case for invalid deadline followed by valid deadline
+        // valid date followed by invalid date. The test case for invalid date followed by valid date
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
-        assertParseFailure(parser, "1" + DEADLINE_DESC_BOB + INVALID_DEADLINE_DESC,
-                Deadline.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + DATE_DESC_BOB + INVALID_DATE_DESC,
+                Date.MESSAGE_CONSTRAINTS);
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Task} being edited,
         // parsing it together with a valid tag results in error
@@ -105,17 +105,17 @@ public class EditCommandParserTest {
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_TITLE_DESC + INVALID_RECURRINGSCHEDULE_DESC + VALID_DESCRIPTION_AMY
-                        + VALID_DEADLINE_AMY, Title.MESSAGE_CONSTRAINTS);
+                        + VALID_DATE_AMY, Title.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_TASK;
-        String userInput = targetIndex.getOneBased() + DEADLINE_DESC_BOB + TAG_DESC_HUSBAND
+        String userInput = targetIndex.getOneBased() + DATE_DESC_BOB + TAG_DESC_HUSBAND
                 + RECURRINGSCHEDULE_DESC_AMY + DESCRIPTION_DESC_AMY + TITLE_DESC_AMY + TAG_DESC_FRIEND;
 
         EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withTitle(VALID_TITLE_AMY)
-                .withDeadline(VALID_DEADLINE_BOB).withRecurringSchedule(VALID_RECURRINGSCHEDULE_AMY)
+                .withDate(VALID_DATE_BOB).withRecurringSchedule(VALID_RECURRINGSCHEDULE_AMY)
                 .withDescription(VALID_DESCRIPTION_AMY).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -125,9 +125,9 @@ public class EditCommandParserTest {
     @Test
     public void parse_someFieldsSpecified_success() {
         Index targetIndex = INDEX_FIRST_TASK;
-        String userInput = targetIndex.getOneBased() + DEADLINE_DESC_BOB + RECURRINGSCHEDULE_DESC_AMY;
+        String userInput = targetIndex.getOneBased() + DATE_DESC_BOB + RECURRINGSCHEDULE_DESC_AMY;
 
-        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withDeadline(VALID_DEADLINE_BOB)
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withDate(VALID_DATE_BOB)
                 .withRecurringSchedule(VALID_RECURRINGSCHEDULE_AMY).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -143,9 +143,9 @@ public class EditCommandParserTest {
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // deadline
-        userInput = targetIndex.getOneBased() + DEADLINE_DESC_AMY;
-        descriptor = new EditTaskDescriptorBuilder().withDeadline(VALID_DEADLINE_AMY).build();
+        // date
+        userInput = targetIndex.getOneBased() + DATE_DESC_AMY;
+        descriptor = new EditTaskDescriptorBuilder().withDate(VALID_DATE_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -171,12 +171,12 @@ public class EditCommandParserTest {
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_TASK;
-        String userInput = targetIndex.getOneBased() + DEADLINE_DESC_AMY + DESCRIPTION_DESC_AMY
-                + RECURRINGSCHEDULE_DESC_AMY + TAG_DESC_FRIEND + DEADLINE_DESC_AMY + DESCRIPTION_DESC_AMY
-                + RECURRINGSCHEDULE_DESC_AMY + TAG_DESC_FRIEND + DEADLINE_DESC_BOB + DESCRIPTION_DESC_BOB
+        String userInput = targetIndex.getOneBased() + DATE_DESC_AMY + DESCRIPTION_DESC_AMY
+                + RECURRINGSCHEDULE_DESC_AMY + TAG_DESC_FRIEND + DATE_DESC_AMY + DESCRIPTION_DESC_AMY
+                + RECURRINGSCHEDULE_DESC_AMY + TAG_DESC_FRIEND + DATE_DESC_BOB + DESCRIPTION_DESC_BOB
                 + RECURRINGSCHEDULE_DESC_BOB + TAG_DESC_HUSBAND;
 
-        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withDeadline(VALID_DEADLINE_BOB)
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withDate(VALID_DATE_BOB)
                 .withRecurringSchedule(VALID_RECURRINGSCHEDULE_BOB).withDescription(VALID_DESCRIPTION_BOB)
                 .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
@@ -189,15 +189,15 @@ public class EditCommandParserTest {
     public void parse_invalidValueFollowedByValidValue_success() {
         // no other valid values specified
         Index targetIndex = INDEX_FIRST_TASK;
-        String userInput = targetIndex.getOneBased() + INVALID_DEADLINE_DESC + DEADLINE_DESC_BOB;
-        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withDeadline(VALID_DEADLINE_BOB).build();
+        String userInput = targetIndex.getOneBased() + INVALID_DATE_DESC + DATE_DESC_BOB;
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withDate(VALID_DATE_BOB).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
-        userInput = targetIndex.getOneBased() + RECURRINGSCHEDULE_DESC_BOB + INVALID_DEADLINE_DESC
-                + DESCRIPTION_DESC_BOB + DEADLINE_DESC_BOB;
-        descriptor = new EditTaskDescriptorBuilder().withDeadline(VALID_DEADLINE_BOB)
+        userInput = targetIndex.getOneBased() + RECURRINGSCHEDULE_DESC_BOB + INVALID_DATE_DESC
+                + DESCRIPTION_DESC_BOB + DATE_DESC_BOB;
+        descriptor = new EditTaskDescriptorBuilder().withDate(VALID_DATE_BOB)
                 .withRecurringSchedule(VALID_RECURRINGSCHEDULE_BOB).withDescription(VALID_DESCRIPTION_BOB).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);

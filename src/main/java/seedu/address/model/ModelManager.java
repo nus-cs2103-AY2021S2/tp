@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Set;
@@ -44,6 +45,7 @@ public class ModelManager implements Model {
         filteredTasks = new FilteredList<>(this.planner.getTaskList());
         sortedTask = new SortedList<>(this.planner.getTaskList());
         sortedTags = new SortedList<>(this.planner.getTagList());
+
     }
 
     public ModelManager() {
@@ -234,6 +236,25 @@ public class ModelManager implements Model {
         requireAllNonNull(comparator);
         sortedTags.setComparator(comparator);
         planner.setTags(sortedTags);
+    }
+
+    //=========== Viewing day methods =============================================================
+
+
+    @Override
+    public ObservableCalendarDate getCalendarDate() {
+        return planner.getCalendarDate();
+    }
+
+    @Override
+    public void setCalendarDate(LocalDate date) {
+        requireNonNull(date);
+        planner.setCalendarDate(date);
+    }
+
+    @Override
+    public void resetCalendarDate() {
+        planner.resetCalendarDate();
     }
 
     @Override

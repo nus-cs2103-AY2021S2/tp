@@ -4,9 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DURATION_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_RECURRINGSCHEDULE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STATUS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
@@ -14,6 +13,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -25,7 +25,9 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.conditions.ConstraintManager;
 import seedu.address.model.Model;
+import seedu.address.model.ObservableCalendarDate;
 import seedu.address.model.Planner;
 import seedu.address.model.ReadOnlyPlanner;
 import seedu.address.model.ReadOnlyUserPrefs;
@@ -61,41 +63,15 @@ public class AddCommandTest {
     }
 
     @Test
-    public void execute_deadlineAndRecurringSchedule_throwsCommandException() {
+    public void execute_dateAndRecurringSchedule_throwsCommandException() {
         Task invalidTask = new TaskBuilder().withTitle(VALID_TITLE_AMY)
-                .withDeadline(VALID_DEADLINE_AMY).withRecurringSchedule(VALID_RECURRINGSCHEDULE_AMY)
+                .withDate(VALID_DATE_AMY).withRecurringSchedule(VALID_RECURRINGSCHEDULE_AMY)
                 .withDescription(VALID_DESCRIPTION_AMY).withStatus(VALID_STATUS_AMY).withTags(VALID_TAG_FRIEND).build();
         AddCommand addCommand = new AddCommand(invalidTask);
         ModelStub modelStub = new ModelStubAcceptingTaskAdded();
 
         assertThrows(CommandException.class,
-                AddCommand.MESSAGE_DEADLINE_RECURRING_SCHEDULE_CONFLICT, () -> addCommand.execute(modelStub));
-    }
-
-    @Test
-    public void execute_deadlineAndDuration_throwsCommandException() {
-        Task invalidTask = new TaskBuilder().withTitle(VALID_TITLE_AMY)
-                .withDeadline(VALID_DEADLINE_AMY).withDuration(VALID_DURATION_AMY)
-                .withDescription(VALID_DESCRIPTION_AMY).withStatus(VALID_STATUS_AMY).withTags(VALID_TAG_FRIEND).build();
-
-        AddCommand addCommand = new AddCommand(invalidTask);
-        ModelStub modelStub = new ModelStubAcceptingTaskAdded();
-
-        assertThrows(CommandException.class,
-                AddCommand.MESSAGE_DEADLINE_DURATION_CONFLICT, () -> addCommand.execute(modelStub));
-    }
-
-    @Test
-    public void execute_deadlineAndEvent_throwsCommandException() {
-        Task invalidTask = new TaskBuilder()
-                .withTitle(VALID_TITLE_AMY).withDeadline(VALID_DEADLINE_AMY)
-                .withDuration(VALID_DURATION_AMY).withRecurringSchedule(VALID_RECURRINGSCHEDULE_AMY)
-                .withDescription(VALID_DESCRIPTION_AMY).withStatus(VALID_STATUS_AMY).withTags(VALID_TAG_FRIEND).build();
-        AddCommand addCommand = new AddCommand(invalidTask);
-        ModelStub modelStub = new ModelStubAcceptingTaskAdded();
-
-        assertThrows(CommandException.class,
-                AddCommand.MESSAGE_DEADLINE_EVENT_CONFLICT, () -> addCommand.execute(modelStub));
+                ConstraintManager.MESSAGE_DATE_RECURRING_SCHEDULE_CONFLICT, () -> addCommand.execute(modelStub));
     }
 
     @Test
@@ -269,6 +245,21 @@ public class AddCommandTest {
 
         @Override
         public void updateSortedTagList(Comparator<Tag> comparator) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableCalendarDate getCalendarDate() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setCalendarDate(LocalDate date) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void resetCalendarDate() {
             throw new AssertionError("This method should not be called.");
         }
     }
