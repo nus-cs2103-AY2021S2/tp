@@ -77,6 +77,9 @@ PartyPlanet can get the planning of your birthday celebrations done faster than 
 
 * All parameters will have leading and trailing spaces removed before processing.
 
+* All references to alphanumerics in PartyPlanet specifically refer to ASCII alphanumerics only.
+  The character codes are 48-57 (0-9), 65-90 (A-Z), 97-122 (a-z).
+
 </div>
 
 ## Party Planet Commands
