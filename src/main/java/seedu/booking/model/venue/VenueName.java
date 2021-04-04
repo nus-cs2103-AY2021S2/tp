@@ -28,14 +28,14 @@ public class VenueName {
      */
     public VenueName(String name) {
         requireNonNull(name);
-        checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidVenueName(name), MESSAGE_CONSTRAINTS);
         venueName = name;
     }
 
     /**
      * Returns true if a given string is a valid venue name.
      */
-    public static boolean isValidName(String test) {
+    public static boolean isValidVenueName(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 

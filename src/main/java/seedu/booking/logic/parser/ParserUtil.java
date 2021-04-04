@@ -222,7 +222,7 @@ public class ParserUtil {
     public static Venue parseVenue(String venue) throws ParseException {
         requireNonNull(venue);
         String trimmedVenue = venue.trim();
-        if (!VenueName.isValidName(trimmedVenue)) {
+        if (!VenueName.isValidVenueName(trimmedVenue)) {
             throw new ParseException(VenueName.MESSAGE_CONSTRAINTS);
         }
         return new Venue(new VenueName(trimmedVenue), DEFAULT_CAPACITY, DEFAULT_DESCRIPTION, new HashSet<>());
@@ -372,7 +372,7 @@ public class ParserUtil {
     public static VenueName parseVenueName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        if (!VenueName.isValidName(trimmedName)) {
+        if (!VenueName.isValidVenueName(trimmedName)) {
             throw new ParseException(VenueName.MESSAGE_CONSTRAINTS);
         }
         return new VenueName(trimmedName);
@@ -388,7 +388,7 @@ public class ParserUtil {
             throws ParseException {
         requireNonNull(venueKeywords);
         String trimmedVenueKeywords = venueKeywords.trim();
-        if (!VenueName.isValidName(trimmedVenueKeywords)) {
+        if (!VenueName.isValidVenueName(trimmedVenueKeywords)) {
             throw new ParseException(VenueName.MESSAGE_CONSTRAINTS);
         }
         String[] splitVenueKeywords = trimmedVenueKeywords.split("\\s+");
