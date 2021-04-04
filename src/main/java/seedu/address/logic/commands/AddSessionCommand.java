@@ -18,7 +18,6 @@ import seedu.address.model.student.Name;
 public class AddSessionCommand extends Command {
 
     public static final String COMMAND_WORD = "add_session";
-    public static final String MESSAGE_SUCCESS = "New session added";
     public static final String SESSION_ALREADY_EXIST_ERROR = "Session already exists";
     public static final String SESSION_OVERLAP = "Session overlaps with an existing session";
     public static final String STUDENT_DOES_NOT_EXIST = "Student with such a name does not exists.";
@@ -67,10 +66,8 @@ public class AddSessionCommand extends Command {
             if (model.hasOverlappingSession(recurringSessionToAdd)) {
                 throw new CommandException(SESSION_OVERLAP);
             }
-        } else {
-            if (model.hasOverlappingSession(sessionToAdd)) {
-                throw new CommandException(SESSION_OVERLAP);
-            }
+        } else if (model.hasOverlappingSession(sessionToAdd)) {
+            throw new CommandException(SESSION_OVERLAP);
         }
 
         model.addSession(name, sessionToAdd);

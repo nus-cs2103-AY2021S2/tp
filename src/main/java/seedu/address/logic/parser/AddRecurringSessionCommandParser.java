@@ -19,6 +19,7 @@ import seedu.address.model.session.Duration;
 import seedu.address.model.session.Fee;
 import seedu.address.model.session.Interval;
 import seedu.address.model.session.RecurringSession;
+import seedu.address.model.session.Session;
 import seedu.address.model.session.SessionDate;
 import seedu.address.model.session.Subject;
 import seedu.address.model.student.Name;
@@ -47,6 +48,10 @@ public class AddRecurringSessionCommandParser implements Parser<AddRecurringSess
         Interval interval = ParserUtil.parseInterval(argMultimap.getValue(PREFIX_INTERVAL).get());
         SessionDate lastDateTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_END_DATE).get(),
                 argMultimap.getValue(PREFIX_TIME).get());
+
+        if (!Session.isPossibleEndTime(sessionDate, duration)) {
+            throw new ParseException(Session.MESSAGE_CONSTRAINTS);
+        }
 
         if (!isValidEnd(sessionDate, lastDateTime, interval)) {
             throw new ParseException(
