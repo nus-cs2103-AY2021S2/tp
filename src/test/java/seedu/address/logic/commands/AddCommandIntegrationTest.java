@@ -14,7 +14,7 @@ import static seedu.address.testutil.TypicalTasks.getTypicalPlanner;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.conditions.ConditionManager;
+import seedu.address.logic.conditions.ConstraintManager;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -51,14 +51,14 @@ public class AddCommandIntegrationTest {
                 .withDescription(VALID_DESCRIPTION_AMY).withStatus(VALID_STATUS_AMY).withTags(VALID_TAG_FRIEND).build();
 
         assertCommandFailure(new AddCommand(invalidTask), model,
-                ConditionManager.MESSAGE_DATE_RECURRING_SCHEDULE_CONFLICT);
+                ConstraintManager.MESSAGE_DATE_RECURRING_SCHEDULE_CONFLICT);
     }
 
     @Test
     public void execute_taskWithDurationOnly_throwsCommandException() {
         Task invalidTask = new TaskBuilder().withTitle(VALID_TITLE_AMY).withDuration(VALID_DURATION_AMY).build();
 
-        assertCommandFailure(new AddCommand(invalidTask), model, ConditionManager.MESSAGE_DURATION_STANDALONE_ERROR);
+        assertCommandFailure(new AddCommand(invalidTask), model, ConstraintManager.MESSAGE_DURATION_STANDALONE_ERROR);
     }
 
     @Test

@@ -21,9 +21,6 @@ import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.TITLE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.TITLE_DESC_BOB;
-//import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BOB;
-//import static seedu.address.logic.commands.CommandTestUtil.VALID_RECURRINGSCHEDULE_BOB;
-// import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_BOB;
@@ -36,11 +33,11 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.Date;
-import seedu.address.model.task.Duration;
-import seedu.address.model.task.RecurringSchedule;
 import seedu.address.model.task.Task;
-import seedu.address.model.task.Title;
+import seedu.address.model.task.attributes.Date;
+import seedu.address.model.task.attributes.Duration;
+import seedu.address.model.task.attributes.RecurringSchedule;
+import seedu.address.model.task.attributes.Title;
 import seedu.address.testutil.TaskBuilder;
 
 public class AddCommandParserTest {

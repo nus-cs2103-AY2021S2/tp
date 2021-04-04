@@ -6,13 +6,13 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.Date;
-import seedu.address.model.task.Description;
-import seedu.address.model.task.Duration;
-import seedu.address.model.task.RecurringSchedule;
-import seedu.address.model.task.Status;
 import seedu.address.model.task.Task;
-import seedu.address.model.task.Title;
+import seedu.address.model.task.attributes.Date;
+import seedu.address.model.task.attributes.Description;
+import seedu.address.model.task.attributes.Duration;
+import seedu.address.model.task.attributes.RecurringSchedule;
+import seedu.address.model.task.attributes.Status;
+import seedu.address.model.task.attributes.Title;
 
 /**
  * A utility class to help with building EditTaskDescriptor objects.

@@ -22,7 +22,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.conditions.ConditionManager;
+import seedu.address.logic.conditions.ConstraintManager;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.Planner;
@@ -163,7 +163,7 @@ public class EditCommandTest {
                 .withDuration(VALID_DURATION_BOB).withTags(VALID_TAG_HUSBAND).build();
         EditCommand editCommand = new EditCommand(indexThirdLastTask, descriptor);
 
-        String expectedMessage = ConditionManager.MESSAGE_DURATION_STANDALONE_ERROR;
+        String expectedMessage = ConstraintManager.MESSAGE_DURATION_STANDALONE_ERROR;
 
         assertCommandFailure(editCommand, model, expectedMessage);
     }
@@ -179,7 +179,7 @@ public class EditCommandTest {
                 .withTags(VALID_TAG_HUSBAND).build();
         EditCommand editCommand = new EditCommand(indexThirdLastTask, descriptor);
 
-        String expectedMessage = ConditionManager.MESSAGE_DATE_RECURRING_SCHEDULE_CONFLICT;
+        String expectedMessage = ConstraintManager.MESSAGE_DATE_RECURRING_SCHEDULE_CONFLICT;
 
         assertCommandFailure(editCommand, model, expectedMessage);
     }

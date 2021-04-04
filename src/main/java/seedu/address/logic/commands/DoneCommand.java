@@ -6,18 +6,18 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 import java.util.List;
 import java.util.Set;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.conditions.IndexManager;
 import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.Date;
-import seedu.address.model.task.Description;
-import seedu.address.model.task.Duration;
-import seedu.address.model.task.RecurringSchedule;
-import seedu.address.model.task.Status;
 import seedu.address.model.task.Task;
-import seedu.address.model.task.Title;
+import seedu.address.model.task.attributes.Date;
+import seedu.address.model.task.attributes.Description;
+import seedu.address.model.task.attributes.Duration;
+import seedu.address.model.task.attributes.RecurringSchedule;
+import seedu.address.model.task.attributes.Status;
+import seedu.address.model.task.attributes.Title;
 
 public class DoneCommand extends Command {
     public static final String COMMAND_WORD = "done";
@@ -42,36 +42,27 @@ public class DoneCommand extends Command {
         requireNonNull(model);
         List<Task> lastShownList = model.getFilteredTaskList();
 
-        boolean isInvalidIndex = index.getZeroBased() >= lastShownList.size();
-        if (isInvalidIndex) {
-            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
-        }
+        IndexManager.verifyIndex(index, lastShownList);
 
         Task taskToSetAsDone = retrieveSelectedTask(lastShownList);
-        String taskTitle = retrieveTaskTitle(taskToSetAsDone);
-
-        boolean isTaskStatusDone = checkIsStatusDone(taskToSetAsDone);
-
-        if (isTaskStatusDone) {
-            throw new CommandException(String.format(MESSAGE_TASK_ALREADY_DONE, taskTitle));
-        }
+        verifyTaskStatusNotDone(lastShownList);
 
         Task taskStatusSetToDone = setTaskStatusAsDone(taskToSetAsDone);
         updateModel(model, taskToSetAsDone, taskStatusSetToDone);
         return new CommandResult(String.format(MESSAGE_DONE_TASK_SUCCESS, taskStatusSetToDone));
     }
 
+    private void verifyTaskStatusNotDone(List<Task> list) throws CommandException {
+        Task taskToBeDone = list.get(index.getZeroBased());
+        String taskTitle = taskToBeDone.getTitle().fullTitle;
+
+        if (taskToBeDone.isDone()) {
+            throw new CommandException(String.format(MESSAGE_TASK_ALREADY_DONE, taskTitle));
+        }
+    }
+
     private Task retrieveSelectedTask(List<Task> list) {
         return list.get(index.getZeroBased());
-    }
-
-    private String retrieveTaskTitle(Task task) {
-        return task.getTitle().fullTitle;
-    }
-
-    private boolean checkIsStatusDone(Task task) {
-        String statusValue = task.getStatus().toString();
-        return statusValue.equals("done");
     }
 
     private void updateModel(Model model, Task taskToSetAsDone, Task taskStatusSetToDone) throws CommandException {
@@ -91,7 +82,7 @@ public class DoneCommand extends Command {
         RecurringSchedule previousRecurringSchedule = taskToBeDone.getRecurringSchedule();
         Description previousDescription = taskToBeDone.getDescription();
         Duration previousDuration = taskToBeDone.getDuration();
-        Status doneStatus = new Status("done");
+        Status doneStatus = new Status(Status.DONE_STATE);
         Set<Tag> previousTags = taskToBeDone.getTags();
 
         return new Task(previousTitle, previousDate, previousDuration, previousRecurringSchedule,
