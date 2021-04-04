@@ -26,11 +26,6 @@ public class Quiz {
 
     private static Queue<Flashcard> quizSessionQueue;
 
-    public static final String MESSAGE_NUMBER_LARGER_THAN_DATABASE_FLASHCARDS_SIZE =
-            "The number you specified is larger than the "
-                    + "number of flashcards in the database.\n"
-                    + "Please enter a number that is smaller than or equals to ";
-
     private Flashcard currentQuiz;
     private int currentQuizIndex = 0;
     private Instant startTime;
