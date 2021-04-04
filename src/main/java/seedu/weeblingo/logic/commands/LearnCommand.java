@@ -32,7 +32,11 @@ public class LearnCommand extends Command {
         requireNonNull(model);
         int currentMode = model.getCurrentMode();
         if (currentMode == Mode.MODE_MENU) {
-            model.updateFilteredFlashcardList(flashcard -> flashcard.checkHasTags(tags));
+            if (tags.isEmpty()) {
+                model.updateFilteredFlashcardList(Model.PREDICATE_SHOW_ALL_FLASHCARDS);
+            } else {
+                model.updateFilteredFlashcardList(flashcard -> flashcard.checkHasTags(tags));
+            }
             model.switchModeLearn();
             return new CommandResult(MESSAGE_SUCCESS, false, false);
         } else {

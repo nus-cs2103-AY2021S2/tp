@@ -75,6 +75,9 @@ public class Flashcard {
      * @param tags The specified tags to check for.
      */
     public boolean checkHasTags(Set<Tag> tags) {
+        if (tags.isEmpty()) {
+            return true;
+        }
         boolean check = true;
         Set<Tag> weeblingoTags = getWeeblingoTags();
         Set<Tag> userTags = getUserTags();
