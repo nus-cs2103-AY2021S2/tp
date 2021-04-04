@@ -179,7 +179,7 @@ Format: `history`
 
 ### Tagging a flashcard: `tag INDEX TAGS…`
 
-Reads in an index and one or more tags, and adds these tags to the flashcard at the desired index.
+Reads in a positive index and one or more tags, and adds these tags to the flashcard at the desired index.
 At least one tag must be provided, else the user will be prompted to enter a valid command.
 
 Tagging of flashcards can only be done in Weeblingo's Learn Mode.
@@ -201,7 +201,7 @@ After successfully adding a tag:
 
 ### Deleting tags from a flashcard: `delete INDEX [TAGS…]`
 
-Reads in an index and zero or more tags, and removes these tags from the flashcard at the desired index.
+Reads in a positive index and zero or more tags, and removes these tags from the flashcard at the desired index.
 If no tags are provided, all user-added tags will be removed from the flashcard.
 
 Tagging of flashcards can only be done in Weeblingo's Learn Mode.
