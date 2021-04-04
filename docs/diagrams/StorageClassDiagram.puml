@@ -16,9 +16,12 @@ StorageManager .left.|> Storage
 StorageManager o-right-> "1" UserPrefsStorage
 StorageManager o--> "1" ModuleBookStorage
 
+Storage -|> UserPrefsStorage
+Storage -|> ModuleBookStorage
+
 JsonUserPrefsStorage .left.|> UserPrefsStorage
 JsonModuleBookStorage .left.|> ModuleBookStorage
-JsonModuleBookStorage .down.> JsonSerializableModuleBookStorage
-JsonSerializableModuleBookStorage .right.> JsonSerializableTask
-JsonSerializableTask .right.> JsonAdaptedTag
+JsonModuleBookStorage .down.> JsonSerializableModuleBook
+JsonSerializableModuleBook .right.> JsonAdaptedTask
+JsonAdaptedTask .right.> JsonAdaptedTag
 @enduml

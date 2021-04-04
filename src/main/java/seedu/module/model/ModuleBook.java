@@ -84,7 +84,6 @@ public class ModuleBook implements ReadOnlyModuleBook {
      * @return true if a task with the same identity as {@code task} exists in the module book.
      */
     public boolean hasRecurringTask(Task task) {
-        assert (task.isRecurring());
         requireNonNull(task);
         return tasks.containsRecurringTask(task);
     }
@@ -99,7 +98,7 @@ public class ModuleBook implements ReadOnlyModuleBook {
             assert(ModuleManager.moduleIsValid(p.getModule().toString()));
 
             Task taskToAdd = p;
-            //check the deadline and recurrence of the task
+
             if (p.isRecurring()) {
                 taskToAdd = Task.updateRecurrenceTask(p);
             }

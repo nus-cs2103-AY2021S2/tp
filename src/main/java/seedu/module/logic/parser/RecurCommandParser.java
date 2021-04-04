@@ -12,6 +12,7 @@ import static seedu.module.logic.parser.CliSyntax.PREFIX_TASK_NAME;
 import java.util.Optional;
 
 import seedu.module.commons.core.index.Index;
+import seedu.module.commons.core.optionalfield.OptionalField;
 import seedu.module.commons.exceptions.IllegalValueException;
 import seedu.module.logic.commands.Command;
 import seedu.module.logic.commands.RecurCommand;
@@ -21,31 +22,41 @@ import seedu.module.model.task.Recurrence;
 
 public class RecurCommandParser implements Parser<Command> {
 
+    private static final String RECUR_EXCEPTION_MESSAGE = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+            RecurCommand.MESSAGE_USAGE);
+
     @Override
     public Command parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TASK_NAME,
                 PREFIX_DEADLINE, PREFIX_MODULE, PREFIX_DESCRIPTION, PREFIX_RECURRENCE, PREFIX_TAG);
+
         Index index;
         RecurCommand recurCommand;
+
         try {
             index = ParserUtil.parseIndex(argumentMultimap.getPreamble());
             recurCommand = new RecurCommand(index);
-
-            parseRecurrence(argumentMultimap.getValue(PREFIX_RECURRENCE)).ifPresent(recurCommand::setRecurrence);
-
-        } catch (IllegalValueException e) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RecurCommand.MESSAGE_USAGE), e);
+        } catch (IllegalValueException ive) {
+            throw new ParseException(RECUR_EXCEPTION_MESSAGE, ive);
         }
+
+        String recurValue;
+        recurValue = argumentMultimap.getValue(PREFIX_RECURRENCE)
+                .orElseThrow(() -> new ParseException(RECUR_EXCEPTION_MESSAGE));
+
+        parseRecurrence(recurValue).ifPresent(recurCommand::setRecurrence);
 
         return recurCommand;
     }
 
-    private static Optional<Recurrence> parseRecurrence(Optional<String> recurrenceStr) {
-        if (recurrenceStr.isEmpty()) {
-            return Optional.empty();
+    private Optional<OptionalField<Recurrence>> parseRecurrence(String recurStr) throws ParseException {
+        assert recurStr != null;
+
+        if (recurStr.equals("")) {
+            return Optional.of(new OptionalField<>(null));
         } else {
-            return Optional.of(new Recurrence(recurrenceStr.get().toLowerCase().trim()));
+            return Optional.of(new OptionalField<>(ParserUtil.parseRecurrence(recurStr)));
         }
     }
 }

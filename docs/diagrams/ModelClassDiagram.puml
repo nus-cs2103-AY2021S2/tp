@@ -12,6 +12,7 @@ Class ModuleBook
 Class ReadOnlyModuleBook
 Class Model
 Class ModelManager
+Class ModuleManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
 
@@ -38,11 +39,14 @@ ModuleBook .up.|> ReadOnlyModuleBook
 
 ModelManager .up.|> Model
 Model .right.> ObservableList
+ModuleManager .up.> ObservableList
 ModelManager o--> "1" ModuleBook
 ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 ModuleBook *--> "1" UniqueTaskList
+ModuleManager --> "*" Module
+ModuleManager .left.> Task
 UniqueTaskList o--right> "*" Task
 Task *--> "1" Name
 Task *--> "1" Deadline
@@ -51,7 +55,6 @@ Task *--> "1" Description
 Task *--> "1" Workload
 Task *--> "1" DoneStatus
 Task *--> "*" Tag
-Module ..> Workload
 
 Name -[hidden]right-> Deadline
 Deadline -[hidden]right-> Description
