@@ -28,7 +28,7 @@ public class TagCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Tags the indicated flashcard with the requested tag(s).\n"
             + "Parameters: FLASHCARD_INDEX, TAG...\n"
-            + "Example: " + COMMAND_WORD + " 2 t/very difficult t/revise by tomorrow";
+            + "Example: " + COMMAND_WORD + " 2 t/very difficult t/reviseSoon";
 
     public static final String MESSAGE_DUPLICATE_TAG = "Duplicate tags are not allowed.";
 
