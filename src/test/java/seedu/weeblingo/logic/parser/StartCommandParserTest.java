@@ -37,7 +37,7 @@ public class StartCommandParserTest {
         new StartCommand(Integer.parseInt(VALID_START_INTEGER_MIN), VALID_START_TAGS_SET_GENERIC);
     private static final StartCommand STARTCOMMAND_VALID_INTEGER_MIDDLE =
         new StartCommand(Integer.parseInt(VALID_START_INTEGER_MIDDLE), VALID_START_TAGS_SET_GENERIC);
-    private static final StartCommand STARTCOMMAND_VALID_INTEGER_MAX =
+    private static final StartCommand STARTCOMMAND_INVALID_INTEGER_MAX =
         new StartCommand(Integer.parseInt(VALID_START_INTEGER_MAX), VALID_START_TAGS_SET_GENERIC);
     private static final StartCommand STARTCOMMAND_VALID_TAG_HIRAGANA =
         new StartCommand(VALID_START_INTEGER_GENERIC, new HashSet<>(List.of(new Tag(VALID_START_TAG_HIRAGANA))));
@@ -64,9 +64,11 @@ public class StartCommandParserTest {
         assertEquals(parser.parse(VALID_START_INTEGER_MIDDLE_DESC), STARTCOMMAND_VALID_INTEGER_MIDDLE);
     }
 
+    // validIntegerMax can be parsed as Integer but throws exception in StartCommandParser since it is more than 1000000
     @Test
-    public void parse_validIntegerMax_success() throws ParseException {
-        assertEquals(parser.parse(VALID_START_INTEGER_MAX_DESC), STARTCOMMAND_VALID_INTEGER_MAX);
+    public void parse_validIntegerMax_failure() {
+        assertThrows(ParseException.class, StartCommand.MESSAGE_NUMBER_TOO_LARGE, () -> parser.parse(
+                VALID_START_INTEGER_MAX_DESC));
     }
 
     @Test
