@@ -188,12 +188,10 @@ Format: `add-date INDEX d/DATE desc/DESCRIPTION`
 * Adds a special date with the person at the specified `INDEX`.
 
 <div markdown="block" class="alert alert-info">
-
 :information_source: **Notes: Special dates**<br>
 
 * A special date is a date that repeats annually, e.g. Anniversaries.
 </div>
-
 
 Examples:
 * `add-date 1 d/16-02-2021 desc/Anniversary`

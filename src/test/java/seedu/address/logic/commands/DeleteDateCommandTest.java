@@ -100,4 +100,30 @@ public class DeleteDateCommandTest {
 
         assertCommandFailure(deleteDateCommand, model, Messages.MESSAGE_INVALID_INDEX_ARGUMENT);
     }
+
+    @Test
+    public void execute_noDatesUnfilteredList_failure() {
+        Person personWithoutDates = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+
+        String expectedMessage = String.format(Messages.MESSAGE_NO_DATES, personWithoutDates.getName());
+
+        Index outOfBoundIndex = Index.fromOneBased(1);
+        DeleteDateCommand deleteDateCommand = new DeleteDateCommand(INDEX_FIRST_PERSON, outOfBoundIndex);
+
+        assertCommandFailure(deleteDateCommand, model, expectedMessage);
+    }
+
+    @Test
+    public void execute_noDatesFilteredList_failure() {
+        showPersonAtIndex(model, INDEX_SECOND_PERSON);
+
+        Person personWithoutDates = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+
+        String expectedMessage = String.format(Messages.MESSAGE_NO_DATES, personWithoutDates.getName());
+
+        Index outOfBoundIndex = Index.fromOneBased(1);
+        DeleteDateCommand deleteDateCommand = new DeleteDateCommand(INDEX_FIRST_PERSON, outOfBoundIndex);
+
+        assertCommandFailure(deleteDateCommand, model, expectedMessage);
+    }
 }
