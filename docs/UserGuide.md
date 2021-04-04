@@ -74,29 +74,29 @@ Format: `listcommand`
 
 #### Viewing Command Details
 
-##### Viewing Dictionary Command Details : `listcommandd`
+##### Viewing Dictionary Command Details : `commanddetaild`
 
 Shows a list of available dictionary command with description
 
-Format: `listcommandd`
+Format: `commanddetaild`
 
-##### Viewing note Command Details : `listcommandn`
+##### Viewing note Command Details : `commanddetailn`
 
 Shows a list of available note command with description
 
-Format: `listcommandn`
+Format: `commanddetailn`
 
-##### Viewing Contact Command Details : `listcommandc`
+##### Viewing Contact Command Details : `commanddetailc`
 
 Shows a list of available contact command with description
 
-Format: `listcommandc`
+Format: `commanddetailc`
 
-##### Viewing Ui Command Details : `listcommandu`
+##### Viewing Ui Command Details : `commanddetailu`
 
 Shows a list of available Ui command with description
 
-Format: `listcommandu`
+Format: `commanddetailu`
 
 ### Dictionary Features
 
@@ -429,10 +429,10 @@ Format: `open Option`
 * The following `Option` are supported
     * `-a`: All panel
     * `-c`: Contact panel
-    * `-d`: Dictionary panel
+    * `-d`: Both dictionary list panel and dictionary content panel
     * `-dc`: Dictionary content panel
     * `-dl`: Dictionary list panel
-    * `-n`: Note panel
+    * `-n`: Both note list panel and note content panel
     * `-nc`: Note content panel
     * `-nl`: Note list panel
     * `-l`: Both dictionary list and note list panel
