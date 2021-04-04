@@ -23,32 +23,6 @@ PartyPlanet can get the planning of your birthday celebrations done faster than 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
-
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Notes about the command format:**<br>
-
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add -n NAME`, `NAME` is a parameter which can be used as `add -n John Doe`.
-
-* Items in square brackets are optional.<br>
-  e.g. `-n NAME [-t TAG]` can be used as `-n John Doe -t friend` or as `-n John Doe`.
-
-* Items with `...` after them can be used any number of times.<br>
-  e.g. `[-t TAG]...` can be used as ` `, `-t friend`, `-t friend -t family` etc.
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `-n NAME -p PHONE`, the alternative `-p PHONE -n NAME` is also acceptable.
-
-* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `-p 12341234 -p 56785678`, only `-p 56785678` will be taken.
-
-* Extraneous parameters for commands that do not take in parameters (such as `exit` and `undo`) will be ignored.<br>
-  e.g. if the command specifies `exit 123`, it will be interpreted as `exit`.
-
-</div>
-
 ## Glossary of parameters
 
 | Parameter | Prefix | Applicable to | Description |
@@ -82,7 +56,38 @@ PartyPlanet can get the planning of your birthday celebrations done faster than 
 
 </div>
 
+--------------------------------------------------------------------------------------------------------------------
+
 ## Party Planet Commands
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about the command format:**<br>
+
+* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+  e.g. in `add -n NAME`, `NAME` is a parameter which can be used as `add -n John Doe`.
+
+* Parameters in square brackets are optional.<br>
+  e.g. `-n NAME [-t TAG]` can be used as `-n John Doe -t friend` or as `-n John Doe`.
+
+* Parameters with `...` after them can be used any number of times.<br>
+  e.g. `[-t TAG]...` can be used as ` `, `-t friend`, `-t friend -t family` etc.
+
+* Parameters can be in any order.<br>
+  e.g. if the command specifies `-n NAME -p PHONE`, the alternative `-p PHONE -n NAME` is also acceptable.
+
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+  e.g. if you specify `-p 12341234 -p 56785678`, only `-p 56785678` will be taken.
+
+* Extraneous parameters for commands that do not take in parameters (such as `exit` and `undo`) will be ignored.<br>
+  e.g. if the command specifies `exit 123`, it will be interpreted as `exit`.
+
+* Parameters in `{}` represents mutually-exclusive parameters.<br>
+  Each mutually-exclusve parameter is separated by a `|`.<br>
+  e.g. `command {foo | bar}` means that either `command foo` or `command bar` are valid commands.<br>
+  However `command foo bar` is an invalid command.
+
+</div>
 
 ### Summary
 
@@ -297,9 +302,9 @@ The Autocomplete feature helps autocomplete when editing a Person or an Event to
 
 For any valid and empty prefix that the user inputs, the relevant details will be autocompleted on `TAB` keypress down.
 
-Format: 
+Format:
 
-Edit: `edit INDEX [-n NAME] [-p PHONE] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY] [-r REMARK] TAB` 
+Edit: `edit INDEX [-n NAME] [-p PHONE] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY] [-r REMARK] TAB`
 
 EEdit: `eedit INDEX [-n NAME] [-d DATE] [-r DETAIL] TAB`
 
@@ -308,6 +313,10 @@ Note: Valid INDEX must be used in order for Autocomplete to function.
 #### Undoing actions : `undo`
 
 Undoes the most recent action that changed PartyPlanet's Contact or Event List.
+
+Note: This means that only commands such, as `add`, `delete` etc.., can be undoed.<br>
+Other command that only changes display, such as `theme`, `list` etc.., will not be affected.
+
 Can be invoked repeatedly until there is no more history from the current session.
 
 Format: `undo`
@@ -317,6 +326,7 @@ Shortcut: `CTRL + Z`
 #### Redoing actions : `redo`
 
 Redoes the previous action that changed PartyPlanet's Contact or Event List.
+
 Can be invoked repeatedly until there are no more previously executed actions from the current session.
 
 Format: `redo`
