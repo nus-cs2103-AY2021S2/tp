@@ -44,12 +44,13 @@ public class SampleDataUtil {
         bookingListB.add(bookingC);
 
         return new Residence[]{
-            new Residence(new ResidenceName("HDB"), new ResidenceAddress("Blk 30 Geylang Street 29, #06-40"),
-                    new BookingList(bookingListA), new CleanStatusTag("y"), getTagSet("Booked")),
             new Residence(new ResidenceName("Condo"), new ResidenceAddress("Blk 45 Tampines Street 29, #08-01"),
                     new BookingList(bookingListB), new CleanStatusTag("n"), getTagSet("Reserved")),
             new Residence(new ResidenceName("Melville Park"), new ResidenceAddress("22 Simei Street 1, #10-02"),
-                    new BookingList(), new CleanStatusTag("n"), getTagSet("Available"))
+                    new BookingList(), new CleanStatusTag("n"), getTagSet("Available")),
+            new Residence(new ResidenceName("HDB"), new ResidenceAddress("Blk 30 Geylang Street 29, #06-40"),
+                    new BookingList(bookingListA), new CleanStatusTag("y"), getTagSet("Booked"))
+
         };
     }
 
