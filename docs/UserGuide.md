@@ -6,31 +6,50 @@
 --------------------------------------------------------------------------------------------------------------------
 
 ## 1. About BookCoin
-BookCoin (to the Moon) is a **desktop app for managing bookings and presents users a structured and detailed information on facility availability via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). BookCoin is designed for administrators who need to keep track of booking of multiple facilities. If you can type fast, BookCoin can get your facility management tasks done faster than traditional GUI apps. Enjoy!
+BookCoin (to the Moon) is a **desktop app for managing bookings that presents users with a structured and detailed information on facility availability via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). BookCoin is designed for administrative personnels of schools or organisations who need to manage bookings across a large number of facilities. If you can type fast, BookCoin can get your facility management tasks done faster than traditional GUI apps. Enjoy!
+
 
 ## 2. Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `bookingapp.jar`
+1. Download the latest `bookingapp.jar` [here](https://github.com/AY2021S2-CS2103-W17-3/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for BookCoin.
+1. Copy the file to the folder that you want to use as the _home folder_ for BookCoin.
 
-1. Run java -jar bookingapp.jar via your terminal (preferred). Alternatively, double-click the file to start the app. The GUI similar to the below should appear in a few seconds. 
-   Note how the app contains some sample data. This is for you to test out the commands first, and you may delete them using the `clear` command when you are 
-   ready to use the app for your own purposes. <br><br>
+1. Run `java -jar bookingapp.jar via your terminal` (preferred). As a second alternative, double-click the file to start the app. The GUI similar to the below should appear in a few seconds. <br>
+
    ![Ui](images/Ui_Booking_1.3.png) <br><br>
+   Note how the app contains some sample data. This is for you to test out the commands first, and you may delete them using the `clear` command when you are ready to use the app for your own purposes. <br>
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+
+1. Type the command in the command box and press <kbd>Enter</kbd> to execute it. e.g. typing **`help`** and pressing <kbd>Enter</kbd> will open the help window.<br>
    Some example commands you can try:
 
    * **`list_venue`** : Lists all venues.
 
-   * **`add_venue`**`v/Chua Thian Poh Hall max/40` : Adds a venue named `Chua Thian Poh Hall` with maximum capacity `40` to BookCoin.
+   * **`add_venue`**`v/Chua Thian Poh Hall` : Starts a multi-step command to create a venue named `Chua Thian Poh Hall`. Fill in the prompts as directed.
 
    * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+1. Refer to the [Features](#3.0-Features) below for details of each command.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Using BookCoin:**<br>
+
+* This section gives an overview of BookCoin’s layout so that you can get started quickly.
+
+There are four main segments in BookCoin:
+* Tabs that allow you to navigate between Persons, Venues and Bookings
+
+* A command box as well as a result display box at the top left of the application
+
+* A bookmark list on the left of the screen
+
+* A main viewing area that would display complete information about a person, venue or booking
+
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -97,7 +116,7 @@ Format: `exit`
 **:information_source: More information about multi-step commands:**<br>
 
 * Some commands require multiple input information which can be very tedious to type in one go. 
-Multi-step commands therefore allow such commands to be used with greater ease by users as the system will prompt them for input items one at a time. To skip input for optional fields, you can just press the `Enter` key without typing anything when you are prompted to enter an optional field.
+Multi-step commands therefore allow such commands to be used with greater ease by users as the system will prompt them for input items one at a time. To skip input for optional fields, you can just press the <kbd>Enter</kbd> key without typing anything when you are prompted to enter an optional field.
 * The commands listed in this section are specific to multi-step commands and are only applicable when the user is in the middle of a multi-step command.
 
 </div>
@@ -130,9 +149,9 @@ Format: `exit_prompt`
 #### 3.3.1. Adding a person : `add_person` (Multi step command)
 
 Adds a new person for the booking app. `add_person` is a multi-step command that will prompt you for additional input. Inputting 
-`add_person` will start the command and the app will guide you through the command through prompts for each field. As with other multi step commands, you can exit the command by entering `exit_prompt` at any point. Optional fields can be skipped by pressing the `Enter` key when you are prompted to input an optional field.
+`add_person` will start the command and the app will guide you through the command through prompts for each field. As with other multi step commands, you can exit the command by entering `exit_prompt` at any point. Optional fields can be skipped by pressing the <kbd>Enter</kbd> key when you are prompted to input an optional field.
 
-Email and phone number must be unique. Tags are optional and can be skipped by just pressing the `Enter` key when prompted.
+Email and phone number must be unique. Tags are optional.
 Format: `add_person`
 
 #### 3.3.2. Editing a person : `edit_person`
@@ -213,18 +232,18 @@ Format: `find_venue v/VENUE_NAME`
 Example:
 * `find_venue v/Victoria Hall`
 
-### 3.4. Booking
+### 3.5. Booking
 
-#### 3.4.1. Adding a booking : `add_booking` (Multi step command)
+#### 3.5.1. Adding a booking : `add_booking` (Multi step command)
 
 Adds a new booking into the booking app. `add_booking` is a multi-step command that will prompt you for additional input. Inputting 
-`add_booking` will start the command and the app will guide you through the command through prompts for each field. As with other multi step commands, you can exit the command by entering `exit_prompt` at any point. Optional fields can be skipped by pressing the `Enter` key when you are prompted to input an optional field.
+`add_booking` will start the command and the app will guide you through the command through prompts for each field. As with other multi step commands, you can exit the command by entering `exit_prompt` at any point. Optional fields can be skipped by pressing the <kbd>Enter</kbd> key when you are prompted to input an optional field.
 
 The system will ask for and store the email of the booker, the venue booked, the start and end time of your booking (in the format YYYY-MM-DD HH:MM). You may also choose to add an optional description or tags for your booking.
 
 Format: `add_booking`
 
-#### 3.4.2. Editing a booking : `edit_booking`
+#### 3.5.2. Editing a booking : `edit_booking`
 
 Edits an existing booking in the booking system with the specified booking ID.
 
@@ -234,7 +253,7 @@ Examples:
 * `edit_booking bid/8937936578 b/janetan@gmail.com` 
 * `edit_booking bid/9384720480 v/Field`
 
-#### 3.4.3. Deleting a booking : `delete_booking`
+#### 3.5.3. Deleting a booking : `delete_booking`
 
 Deletes booking corresponding to the booking ID specified.
 
@@ -243,13 +262,13 @@ Format: `delete_booking bid/BOOKING_ID`
 Example:
 * `delete_booking bid/232138762134`
 
-#### 3.4.4. Listing all bookings : `list_booking`
+#### 3.5.4. Listing all bookings : `list_booking`
 
 Shows a list of all bookings and their corresponding IDs in the booking app.
 
 Format: `list_booking`
 
-#### 3.4.5. Finding a booking : `find_booking`
+#### 3.5.5. Finding a booking : `find_booking`
 
 Shows information about the booking corresponding to the given booking ID.
 
@@ -258,7 +277,7 @@ Format: `find_booking bid/BOOKING_ID`
 Example:
 * `find_booking bid/2321837462`
 
-#### 3.4.6. Filtering bookings by date : `filter_booking_by_date`
+#### 3.5.6. Filtering bookings by date : `filter_booking_by_date`
 
 Shows a list of bookings on the specified date.
 
@@ -267,7 +286,7 @@ Format: `filter_booking_by_date date/DATE`
 Example:
 * `filter_booking_by_date date/2020-12-12`
 
-#### 3.4.7. Filtering bookings by booker : `filter_booking_by_booker`
+#### 3.5.7. Filtering bookings by booker : `filter_booking_by_booker`
 
 Shows a list of bookings booked by the booker identified by the email address given.
 
@@ -276,7 +295,7 @@ Format: `filter_booking_by_booker e/EMAIL`
 Example:
 * `filter_booking_by_booker e/JohnRose@abc.com`
 
-#### 3.4.8. Filtering bookings by venue : `filter_booking_by_venue`
+#### 3.5.8. Filtering bookings by venue : `filter_booking_by_venue`
 
 Shows a list of bookings at the specified venue.
 
@@ -285,7 +304,7 @@ Format: `filter_booking_by_venue v/VENUE`
 Example:
 * `filter_booking_by_venue v/Sports Hall`
 
-#### 3.4.9. Filtering bookings by tag : `filter_booking_by_tag`
+#### 3.5.9. Filtering bookings by tag : `filter_booking_by_tag`
 
 Shows a list of bookings with the specified tag.
 
@@ -294,14 +313,14 @@ Format: `filter_booking_by_tag t/TAG`
 Example:
 * `filter_booking_by_tag t/student`
 
-### 3.5. Upcoming
+### 3.6. Upcoming
 
-#### 3.5.1. Undo command for all actions `[coming in v2.0]`
+#### 3.6.1. Undo command for all actions `[coming in v2.0]`
 Undos the effect of a previous command if the command changes the data stored in the system (i.e. adds/ updates/ deletes any data)
 
 Format: `undo`
 
-#### Generate file of booking schedule `[coming in v2.0]`
+#### 3.6.2. Generate file of booking schedule `[coming in v2.0]`
 Generates an .ics file containing a timetable of the bookings for the particular venue given in a command.
 
 Format `generate v/Victoria Hall`
@@ -321,19 +340,19 @@ contains the data of your previous BookCoin home folder.
 Action | Format, Example
 --------|------------------
 **add person** | `add_person` <br> (Note: add_person is a multi-step command)
-**add venue** | `add_venue v/VENUE_NAME` <br> (Note: add_venue is a multi-step command)
-**add booking** | `add_booking` <br> (Note: add_booking is a multi-step command)
 **delete person** | `delete_person e/EMAIL` <br> e.g. `delete_person e/jane@gmail.com`
-**delete venue** | `delete_venue v/VENUE_NAME` <br> e.g. `delete_venue v/Field`
-**delete booking** | `delete_booking bid/BOOKING_ID` <br> e.g. `delete_booking bid/8756948376`
 **edit person** | `edit_person eo/EMAIL [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]` <br> e.g., `edit_person eo/jane@example.com p/94857267`
-**edit venue** | `edit_venue vo/VENUE_NAME [v/VENUE_NAME] [max/CAPACITY] [d/DESCRIPTION] [t/TAG]` <br> e.g., `edit_venue vo/Field v/Sports Field`
-**edit booking** | `edit_booking bid/BOOKING_ID [b/BOOKER_EMAIL] [v/VENUE_NAME] [d/DESCRIPTION] [bs/DATETIME] [be/DATETIME] [t/TAG]` <br> e.g., `edit_booking bid/3984792837 e/doe@gmail.com`
 **find person** | `find_person e/EMAIL` <br> e.g., `find_person e/jane@example.com` 
-**find venue** | `find_venue v/VENUE_NAME` <br> e.g., `find_venue v/Field`
-**find person** | `find_booking bid/BOOKING_ID` <br> e.g., `find_booking bid/8756948376`
 **list person** | `list_person`
+**add venue** | `add_venue v/VENUE_NAME` <br> (Note: add_venue is a multi-step command)
+**delete venue** | `delete_venue v/VENUE_NAME` <br> e.g. `delete_venue v/Field`
+**edit venue** | `edit_venue vo/VENUE_NAME [v/VENUE_NAME] [max/CAPACITY] [d/DESCRIPTION] [t/TAG]` <br> e.g., `edit_venue vo/Field v/Sports Field`
+**find venue** | `find_venue v/VENUE_NAME` <br> e.g., `find_venue v/Field`
 **list venue** | `list_venue`
+**add booking** | `add_booking` <br> (Note: add_booking is a multi-step command)
+**delete booking** | `delete_booking bid/BOOKING_ID` <br> e.g. `delete_booking bid/8756948376`
+**edit booking** | `edit_booking bid/BOOKING_ID [b/BOOKER_EMAIL] [v/VENUE_NAME] [d/DESCRIPTION] [bs/DATETIME] [be/DATETIME] [t/TAG]` <br> e.g., `edit_booking bid/3984792837 e/doe@gmail.com`
+**find person** | `find_booking bid/BOOKING_ID` <br> e.g., `find_booking bid/8756948376`
 **list booking** | `list_booking`
 **help** | `help`
 **clear** | `clear`
