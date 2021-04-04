@@ -124,7 +124,7 @@ The Reminder section displays tuition sessions within 3 days of the current date
 
 ##### 3 Months Monthly Fee
 The 3 Months Monthly Fees section displays tuition fees for the current month and the past two months.
-Note: The current month and past two months are calculated when the user first opened the application. No other months can be added to this section.
+Note: The current month and past two months are calculated when the user first opens the application. No other months can be added to this section.
 
 #### 4.1.2 Tuition
 The Tuition page is split into two views: **Student** and **Session**.
@@ -334,7 +334,7 @@ Format: `add_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE`
 * `DATE` should be the date of the session in `yyyy-mm-dd` format
 * `DURATION` should be in minutes
 * `FEE` should be the total tuition fee for 1 session of the given duration
-    * TutorBuddy only accepts `FEE` within an acceptable range of values between 0 (Voluntary Session) to below 10000 as we do not expect a single session to cost $10,000 or more.
+    * TutorBuddy only accepts `FEE` within an acceptable range of values between 0 and 9999.99 (both inclusive) as we do not expect a single session to cost more than $999,999.99 or more.
     * `FEE` only allows values up to 2 decimal points only
 
 <div markdown="span" class="alert alert-primary">:bulb: Tip:
@@ -415,7 +415,7 @@ Example:
 
 <div markdown="block" class="alert alert-info">
 :information_source: Note that calculation of fee is only guaranteed to be accurate for totaled fees of up to $2,147,483,647. 
-As we do not expect a person to earn more than $2,147,483,647 a month, the fee calculation should be accurate for all actual users.
+We do not expect a person to earn more than $2,147,483,647 a month, hence the fee calculation should be accurate for all actual users.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------

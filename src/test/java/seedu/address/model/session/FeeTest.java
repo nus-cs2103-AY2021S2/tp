@@ -33,11 +33,12 @@ public class FeeTest {
         assertFalse(Fee.isValidFee("005"));
         assertFalse(Fee.isValidFee("005.20"));
         assertFalse(Fee.isValidFee("0.00000001"));
-        assertFalse(Fee.isValidFee("10000"));
+        assertFalse(Fee.isValidFee("1000000"));
         assertFalse(Fee.isValidFee("1000000000000000"));
         assertFalse(Fee.isValidFee("-1000000000000000"));
         assertFalse(Fee.isValidFee("-0"));
         assertFalse(Fee.isValidFee("-100.40"));
+        assertFalse(Fee.isValidFee("999999.9999"));
 
         // valid fee formats
         assertTrue(Fee.isValidFee("12.12"));
@@ -45,6 +46,6 @@ public class FeeTest {
         assertTrue(Fee.isValidFee("0.50"));
         assertTrue(Fee.isValidFee("0"));
         assertTrue(Fee.isValidFee("2.6"));
-        assertTrue(Fee.isValidFee("9999.99"));
+        assertTrue(Fee.isValidFee("999999.99"));
     }
 }
