@@ -29,8 +29,10 @@ import seedu.iscam.model.meeting.Description;
  */
 public class ParserUtil {
 
-    public static final String MESSAGE_INVALID_INDEX = "Index is must be a non-zero positive integer.";
-    public static final String MESSAGE_EMPTY_INDEX  = "Index field is empty";
+    public static final String MESSAGE_INVALID_INDEX = "Index must be a non-zero positive integer.";
+    public static final String MESSAGE_EMPTY_INDEX  = "Index field is empty.";
+    public static final String MESSAGE_INDEX_TOO_LARGE = "Index specified is too big! Please input a "
+            + "number smaller than 2147483647 that is within the displayed list.";
 
 
     /**
@@ -38,6 +40,7 @@ public class ParserUtil {
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseIndexException if the specified index is invalid (not non-zero unsigned integer).
+     * @throws ParseIndexException if the specified index is bigger than the maximum holding value of an int.
      * @throws ParseException if {@code oneBasedIndex} is an empty string (index field is empty).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -45,10 +48,12 @@ public class ParserUtil {
 
         if (trimmedIndex.length() == 0) {
             throw new ParseException(MESSAGE_EMPTY_INDEX);
-        }
-        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+        } else if (!StringUtil.isSmallerThanIntegerMaxValue(trimmedIndex)) {
+            throw new ParseIndexException(MESSAGE_INDEX_TOO_LARGE);
+        } else if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
             throw new ParseIndexException(MESSAGE_INVALID_INDEX);
         }
+
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
 

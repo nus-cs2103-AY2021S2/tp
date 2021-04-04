@@ -92,4 +92,20 @@ public class StringUtil {
             return false;
         }
     }
+
+    /**
+     * Checks whether {@code s} represents a number greater than {@code Integer.MAX_VALUE} <br>
+     * Will return false if {@code s} is larger than {@code Integer.MAX_VALUE}
+     *
+     * @throws NullPointerException if {@code s} is null.
+     */
+    public static boolean isSmallerThanIntegerMaxValue(String s) {
+        requireNonNull(s);
+        try {
+            long value = Long.parseLong(s);
+            return value < Integer.MAX_VALUE;
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+    }
 }

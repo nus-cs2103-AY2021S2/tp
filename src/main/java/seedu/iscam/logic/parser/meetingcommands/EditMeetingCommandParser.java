@@ -15,7 +15,6 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.iscam.commons.core.index.Index;
-import seedu.iscam.logic.commands.DeleteMeetingCommand;
 import seedu.iscam.logic.commands.EditMeetingCommand;
 import seedu.iscam.logic.commands.EditMeetingCommand.EditMeetingDescriptor;
 import seedu.iscam.logic.parser.ArgumentMultimap;
