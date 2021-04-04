@@ -152,17 +152,22 @@ public class Task {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getTitle())
-                .append("; \n").append(Date.FIELD_NAME).append(": ")
-                .append(getDate())
-                .append("; \n").append(Duration.FIELD_NAME).append(": ")
-                .append(getDuration())
-                .append("; \n").append(RecurringSchedule.FIELD_NAME).append(": ")
-                .append(getRecurringSchedule())
-                .append("; \n").append(Description.FIELD_NAME).append(": ")
-                .append(getDescription())
-                .append("; \n").append(Status.FIELD_NAME).append(": ")
-                .append(getStatus());
+        builder.append(getTitle()).append("; \n");
+        if (!date.isEmptyValue()) {
+            builder.append(Date.FIELD_NAME).append(": ").append(getDate()).append("; \n");
+        }
+        if (!duration.isEmptyValue()) {
+            builder.append(Duration.FIELD_NAME).append(": ").append(getDuration()).append("; \n");
+        }
+        if (!recurringSchedule.isEmptyValue()) {
+            builder.append(RecurringSchedule.FIELD_NAME).append(": ").append(getRecurringSchedule()).append("; \n");
+        }
+        if (!description.isEmptyValue()) {
+            builder.append(Description.FIELD_NAME).append(": ").append(getDescription()).append("; \n");
+        }
+        if (!status.isEmptyValue()) {
+            builder.append(Status.FIELD_NAME).append(": ").append(getStatus()).append("; \n");
+        }
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
