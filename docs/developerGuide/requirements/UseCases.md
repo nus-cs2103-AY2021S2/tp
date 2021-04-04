@@ -144,7 +144,7 @@ MSS:
 
 
 
-Use case: UC13 - Undo an action 
+Use case: UC13 - Undo an action
 MSS:
   1. User requests to undo an action.
   2. PartyPlanet displays the details of the action that was undone and the list of contacts/events after the action is undone.
