@@ -18,13 +18,16 @@ public class DateTime {
     public final LocalDateTime dateTime;
 
     /**
-     * Construct a {@code DateTime} with a {@code String dateTime}
+     * Constructs a {@code DateTime} with a {@code String dateTime}
      */
     public DateTime(String dateTime) {
         requireNonNull(dateTime);
         this.dateTime = LocalDateTime.parse(dateTime, DATETIME_PATTERN);
     }
 
+    /**
+     * Checks if {@code string} follows the correct date-time format.
+     */
     public static boolean isStringValidFormat(String str) {
         try {
             LocalDateTime validDateTime = LocalDateTime.parse(str, DATETIME_PATTERN);
@@ -35,7 +38,7 @@ public class DateTime {
     }
 
     /**
-     * Check if {@code string} can be converted into a valid {@code DateTime}
+     * Checks if {@code string} can be converted into a valid {@code DateTime}.
      */
     public static boolean isStringValidDateTime(String str) {
         try {
