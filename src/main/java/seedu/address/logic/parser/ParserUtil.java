@@ -190,10 +190,13 @@ public class ParserUtil {
     public static Deadline parsePropertyDeadline(String deadline) throws ParseException {
         requireNonNull(deadline);
         String trimmedDeadline = deadline.trim();
+        if (!Deadline.isValidDeadline(trimmedDeadline)) {
+            throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
+        }
         try {
             return new Deadline(LocalDate.parse(trimmedDeadline, DateTimeFormat.INPUT_DATE_FORMAT));
         } catch (DateTimeParseException ex) {
-            throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Deadline.MESSAGE_INVALID_DATE);
         }
     }
 
