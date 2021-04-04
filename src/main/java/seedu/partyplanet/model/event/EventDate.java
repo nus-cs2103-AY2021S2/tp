@@ -12,7 +12,7 @@ public class EventDate extends Date {
 
     public static final String MESSAGE_CONSTRAINTS = "Event dates should be in one of the following formats:\n"
             + "[with positive year]\n" + MESSAGE_YEAR_FORMATS;
-    public static final String MESSAGE_YEAR_CONSTRAINTS = "A year is required for the input\n";
+    public static final String MESSAGE_YEAR_CONSTRAINTS = "Event date must contain a year\n";
     public static final EventDate EMPTY_EVENT_DATE = new EventDate();
 
     /**
