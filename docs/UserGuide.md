@@ -91,7 +91,7 @@ To expand.
 
 ##### `NAME`
 * The name of the person who has made the order.
-* The name of the person must not be empty, it can take in numbers, characters or a mix of both.
+* The name of the person must not be empty, it can take in numbers, characters or a mix of both. <br>
 :information_source: _Fun Fact: Elon Musk, the world richest man has a son named X Æ A-12._
 
 ## **3. Quick start**
