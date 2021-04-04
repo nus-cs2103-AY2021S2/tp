@@ -5,6 +5,10 @@ title: User Guide
 
 # Welcome to Focuris User Guide!
 
+Thank you for downloading **Focuris**! As a busy University student, Focuris helps you manage and keep track of all your
+work, deadlines, and projects. We hope this **User Guide** helps you get started with Focuris so you can start making 
+your student  life a little easier! <br/>
+
 Focuris is a **desktop application** for **managing events** with a KanBan board. The KanBan board is a board which
 **displays events according to the level of completion**: Backlog, Todo, In-Progress and Done. <br/>
 
@@ -531,6 +535,8 @@ list
   ![Before list](./images/user-guide/beforeListExecution.png)
 - After execution of `list` command:
   ![After list](./images/user-guide/afterListExecution.png)
+
+<a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
 
 <div class="page-break-before"></div>
 
