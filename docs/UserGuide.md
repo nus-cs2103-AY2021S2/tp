@@ -264,7 +264,7 @@ Action | Format, Examples
 **Delete Booking of Residence** | `deleteb r/RESIDENCE_INDEX b/BOOKING_INDEX`<br> e.g., `delete r/3 b/2`
 **Edit Residence** | `edit INDEX [n/RESIDENCE_NAME] [a/ADDRESS] [c/VALID_CLEAN_STATUS] [t/TAG]`<br> e.g.,`edit 2 c/n`
 **Edit Booking of Residence** | `editb r/RESIDENCE_INDEX b/BOOKING_INDEX [n/TENANT_NAME] [p/PHONE] [s/START_DATE] [e/END_DATE]` <br> e.g., `editb r/1 b/2 p/90069009 s/03-28-2021`
-**Update Multiple Clean Status** | `status clean/unclean INDEX1 INDEX2..`<br> e.g., `status clean 1 3`
+**Update Multiple Clean Status** | `status clean INDEX1 INDEX2..` or `status unclean INDEX1 INDEX2..`<br> e.g., `status clean 1 3`
 **Find Residence** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find Heights`
 **Remind Residences with Upcoming Bookings** | `remind`
 **List All Residences** | `list`
