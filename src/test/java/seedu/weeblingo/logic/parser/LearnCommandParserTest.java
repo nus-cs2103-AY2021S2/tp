@@ -1,9 +1,5 @@
 package seedu.weeblingo.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.weeblingo.logic.commands.LearnCommand;
-import seedu.weeblingo.logic.parser.exceptions.ParseException;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_START_TAGS_SET_GENERIC;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_START_TAG_COMBINATION_DESC;
@@ -12,6 +8,11 @@ import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_START_TAG_HIR
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_TAGS_SET_COMBINATION;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_TAGS_SET_GOJUON;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_TAGS_SET_HIRAGANA;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.weeblingo.logic.commands.LearnCommand;
+import seedu.weeblingo.logic.parser.exceptions.ParseException;
 
 public class LearnCommandParserTest {
 

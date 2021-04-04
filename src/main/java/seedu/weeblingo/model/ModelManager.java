@@ -256,6 +256,10 @@ public class ModelManager implements Model {
         this.mode.switchModeQuiz();
     }
 
+    /**
+     * Switches the current mode to Learn Mode.
+     * @throws CommandException if the filtered list of flashcards is empty.
+     */
     public void switchModeLearn() throws CommandException {
         if (filteredFlashcards.isEmpty()) {
             throw new CommandException(MESSAGE_TAG_NOT_FOUND);

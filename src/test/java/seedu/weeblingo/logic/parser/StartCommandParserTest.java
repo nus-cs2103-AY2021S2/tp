@@ -14,17 +14,12 @@ import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_START_INTEGER
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_START_INTEGER_MIN_DESC;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_START_TAGS_SET_GENERIC;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_START_TAG_COMBINATION_DESC;
-import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_START_TAG_GOJUON;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_START_TAG_GOJUON_DESC;
-import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_START_TAG_HIRAGANA;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_START_TAG_HIRAGANA_DESC;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_TAGS_SET_COMBINATION;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_TAGS_SET_GOJUON;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_TAGS_SET_HIRAGANA;
 import static seedu.weeblingo.testutil.Assert.assertThrows;
-
-import java.util.HashSet;
-import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
