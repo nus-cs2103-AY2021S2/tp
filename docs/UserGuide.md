@@ -245,6 +245,11 @@ Format: `add-picture INDEX FILE_PATH`
 Examples:
 * `add-picture 1 /Users/john/Desktop/jake.png`
 
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+To edit your profile picture, edit the original image and use the `add-picture` command again.
+Editing of pictures directly from the `/data` folder is not supported.
+</div>
+
 ### Clearing all entries : `clear`
 
 Clears all entries from FriendDex.
