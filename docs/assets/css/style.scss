@@ -14,6 +14,28 @@
   page-break-before: always;
 }
 
+.logo-title {
+  margin: 0;
+  font-weight: 600;
+  font-size: 2em;
+}
+
+.logo-subtitle {
+  margin: 0;
+  font-style: italic;
+}
+
+.do-not-decorate {
+  text-decoration: none !important;
+  color: black;
+  &:hover {
+    text-decoration: none !important;
+  }
+  &:visited {
+    text-decoration: none !important;
+  }
+}
+
 $md-btn-color: #2196f3;
 
 .md-btn {
@@ -34,7 +56,6 @@ $md-btn-color: #2196f3;
   border: 0;
   border-radius: 20px;
   background: $md-btn-color;
-  color: #fff;
   outline: 0;
   &:hover {
     background: darken($md-btn-color, 12%);
@@ -61,5 +82,9 @@ $md-btn-color: #2196f3;
   &:active {
     box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14),
       0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.4);
+  }
+  &:visited {
+    text-decoration: none;
+    color: #ffffff;
   }
 }

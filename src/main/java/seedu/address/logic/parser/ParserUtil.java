@@ -25,7 +25,8 @@ import seedu.address.model.tag.Tag;
  */
 public class ParserUtil {
 
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_IDENTIFIER = "Identifier is not a non-zero unsigned integer"
+            + " or the input integer is too large.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Identifier} and returns it. Leading and trailing whitespaces will be
@@ -35,9 +36,16 @@ public class ParserUtil {
     public static Identifier parseIdentifier(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
+            throw new ParseException(MESSAGE_INVALID_IDENTIFIER);
         }
-        return Identifier.fromIdentifier(Integer.parseInt(trimmedIndex));
+        int identifierInt;
+        try {
+            identifierInt = Integer.parseInt(trimmedIndex);
+        } catch (Exception e) {
+            System.err.println("From here");
+            throw new ParseException(MESSAGE_INVALID_IDENTIFIER);
+        }
+        return Identifier.fromIdentifier(identifierInt);
     }
 
     /**

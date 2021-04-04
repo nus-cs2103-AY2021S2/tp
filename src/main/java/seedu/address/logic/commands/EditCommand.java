@@ -29,9 +29,10 @@ public class EditCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the event identified "
             + "by the identifier used in the displayed event list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION]...\n"
+            + "Parameters: IDENTIFIER (must be a positive integer) "
+            + "[" + PREFIX_NAME + "NAME] " + " "
+            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION]" + " "
+            + "[" + PREFIX_PRIORITY + "PRIORITY]" + "\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NAME + "Finish CS2030S Lab 1 "
             + PREFIX_PRIORITY + "high";
