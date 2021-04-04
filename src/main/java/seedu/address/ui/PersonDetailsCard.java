@@ -59,8 +59,7 @@ public class PersonDetailsCard extends UiPart<Region> {
         person.getDates().forEach(date -> datesContainer
                 .getChildren()
                 .add((new EventCard(date)).getRoot()));
-        person.getMeetings().stream().sorted(Comparator.comparing(Event::getDate).reversed())
-                .forEach(meeting -> meetingsContainer
+        person.getMeetings().forEach(meeting -> meetingsContainer
                 .getChildren()
                 .add((new EventCard(meeting)).getRoot()));
 

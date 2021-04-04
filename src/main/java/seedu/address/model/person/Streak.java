@@ -37,9 +37,7 @@ public class Streak implements Comparable<Streak> {
                 .map(Event::getDate)
                 .sorted(LocalDate::compareTo)
                 .collect(Collectors.toList());
-        if (meetings.isEmpty()) {
-            return new Streak(0);
-        }
+
         return calculateToday(goal, dates);
     }
 

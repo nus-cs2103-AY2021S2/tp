@@ -9,7 +9,9 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -55,6 +57,9 @@ public class AddMeetingCommand extends Command {
         assert personToEdit != null;
         List<Event> meetingsToEdit = new ArrayList<>(personToEdit.getMeetings());
         meetingsToEdit.add(meeting);
+        meetingsToEdit = meetingsToEdit.stream()
+                .sorted(Comparator.comparing(Event::getDate).reversed())
+                .collect(Collectors.toList());
 
         return personToEdit.withMeetings(meetingsToEdit);
     }
