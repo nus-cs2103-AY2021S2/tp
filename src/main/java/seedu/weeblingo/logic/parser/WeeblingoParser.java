@@ -51,10 +51,10 @@ public class WeeblingoParser {
             return new EndCommand();
 
         case LearnCommand.COMMAND_WORD:
-            return new LearnCommand();
+            return new LearnCommandParser().parse(arguments);
 
         case QuizCommand.COMMAND_WORD:
-            return new QuizCommand();
+            return new QuizCommandParser().parse(arguments);
 
         case StartCommand.COMMAND_WORD:
             return new StartCommandParser().parse(arguments);
