@@ -63,45 +63,64 @@ public class EListCommandParser implements Parser<EListCommand> {
     }
 
     /**
+     * Returns a list of parsed name strings from the argument map.
+     */
+    private List<String> getParsedNames(ArgumentMultimap argMap) throws ParseException {
+        List<String> names = argMap.getAllValues(PREFIX_NAME);
+        for (int i = 0; i < names.size(); i++) {
+            String name = names.get(i);
+            names.set(i, ParserUtil.parseName(name).fullName);
+        }
+        return names;
+    }
+
+    /**
+     * Returns a list of parsed tag strings from the argument map.
+     */
+    private List<String> getParsedRemarks(ArgumentMultimap argMap) throws ParseException {
+        List<String> remarks = argMap.getAllValues(PREFIX_REMARK);
+        for (int i = 0; i < remarks.size(); i++) {
+            String remark = remarks.get(i);
+            remarks.set(i, ParserUtil.parseRemark(remark).value);
+        }
+        return remarks;
+    }
+
+    /**
      * Returns a list of filtering predicates depending on whether partial search is disabled.
      */
     private List<Predicate<Event>> getPredicates(ArgumentMultimap argMap) throws ParseException {
         boolean isExactSearch = argMap.contains(FLAG_EXACT);
         List<Predicate<Event>> predicates = new ArrayList<>();
-        if (isExactSearch) {
+        List<String> allNames = getParsedNames(argMap);
+        List<String> allRemarks = getParsedRemarks(argMap);
 
-            List<String> allNames = argMap.getAllValues(PREFIX_NAME);
+        if (isExactSearch) {
             if (!allNames.isEmpty()) {
                 stringFind += "\n\u2022 Requires exact event name: " + String.join(", ", allNames);
             }
             for (String name : allNames) {
                 predicates.add(new EventNameContainsExactKeywordsPredicate(name));
             }
-
-            List<String> allDetails = argMap.getAllValues(PREFIX_REMARK);
-            if (!allDetails.isEmpty()) {
-                stringFind += "\n\u2022 Requires exact event detail: " + String.join(", ", allDetails);
+            if (!allRemarks.isEmpty()) {
+                stringFind += "\n\u2022 Requires exact event detail: " + String.join(", ", allRemarks);
             }
-            for (String detail : allDetails) {
-                predicates.add(new EventDetailContainsExactKeywordsPredicate(detail));
+            for (String remark : allRemarks) {
+                predicates.add(new EventDetailContainsExactKeywordsPredicate(remark));
             }
 
         } else {
-
-            List<String> allNames = argMap.getAllValues(PREFIX_NAME);
             if (!allNames.isEmpty()) {
                 stringFind += "\n\u2022 Requires partial event name: " + String.join(", ", allNames);
             }
             for (String name : allNames) {
                 predicates.add(new EventNameContainsKeywordsPredicate(name));
             }
-
-            List<String> allDetails = argMap.getAllValues(PREFIX_REMARK);
-            if (!allDetails.isEmpty()) {
-                stringFind += "\n\u2022 Requires partial event detail: " + String.join(", ", allDetails);
+            if (!allRemarks.isEmpty()) {
+                stringFind += "\n\u2022 Requires partial event detail: " + String.join(", ", allRemarks);
             }
-            for (String detail : allDetails) {
-                predicates.add(new EventDetailContainsKeywordsPredicate(detail));
+            for (String remark : allRemarks) {
+                predicates.add(new EventDetailContainsKeywordsPredicate(remark));
             }
         }
         if (isExactSearch && predicates.isEmpty()) {
