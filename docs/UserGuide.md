@@ -113,6 +113,14 @@ Examples:
 * `add n/John Doe i/A1234567X f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/RVRC`
 * `add n/Betsy Crowe f/ENG i/A7654321J p/91119222 e/betsycrowe@example.com a/212 Orchard Road, #18-08 s/not vaccinated m/nose lift surgery in 2012`
 
+| Before        | 
+| ------------- |
+|![AddStudentBefore](images/addStudentBefore.png)
+
+| After        | 
+| ------------- |
+|![AddStudentAfter](images/addStudentAfter.png)|
+
 ### Editing a student record: `edit`
 
 Edits a student in Vax@NUS records.
@@ -151,6 +159,8 @@ Format: <br>
 `filter FACULTY`
 `filter SCHOOL_RESIDENCE`
 
+* Please refer to the parameter formats for a list of valid vaccination status, faculty and school residence input. 
+
 Examples:
 * `filter vaccinated` or `filter not vaccinated`
 * `filter COM` 
@@ -176,6 +186,11 @@ Examples:
 * `stats NUS` displays the percentage of vaccinated students in NUS.
 * `stats all` displays the list of percentages of vaccinated students in every Faculty and School Residence.
 
+Sample Output for `stats All`:
+![StatsALl](images/statsAll.png)
+
+Sample Output for `stats PGPH`:
+![StatsALl](images/statsResidence.png)
 ### Adding an appointment: `addAppt`
 
 Adds an appointment to Vax@NUS' records. 
@@ -192,9 +207,13 @@ Examples:
 * `addAppt i/A7654321J d/2021-12-13 ts/14:00`
 
 
-| Before        | After         |
-| ------------- |:-------------:|
-|![AddApptBefore](images/AddApptBefore.png)|![AddApptAfter](images/AddApptAfter.png)|
+| Before        | 
+| ------------- |
+|![AddApptBefore](images/AddApptBefore.png)
+
+| After        | 
+| ------------- |
+|![AddApptAfter](images/AddApptAfter.png)|
 
 ### Editing an appointment: `editAppt`
 
@@ -237,7 +256,7 @@ Format: <br>
 
 Shows a list of all students and all appointments in Vax@NUS records.
 
-Format: `list students`
+Format: `list`
 
 ### Finding a student and their appointment : `find`
 
@@ -247,10 +266,12 @@ Format: `find MATRICULATION_NUMBER`
 
 * If the matriculation number does not exist in the records, a message will be shown to inform users that 
   the matriculation number is not found.
+* If the student found does not have an appointment, the appointment list will appear as empty.
   
 Examples:
-* `Find A1234567X` shows John Doe's personal information, and his appointment details if it is present.
+* `find A0175678U` shows Bernice Yu's personal information, and her appointment details if it is present.
 
+![Find](images/find.png)
 ### Viewing help : `help`
 
 Display a pop-up window showing a list of important commands and a link to our User Guide. 
@@ -288,9 +309,11 @@ Vax@NUS saves your current date in the hard disk automatically after any command
 **Q** : Will I be able to add other types of appointments besides vaccination appointments?
 <br>
 **A** : No, the current version only allows you to add vaccination appointments and not any other type of appointments. 
+
 **Q** : Am I able to reassign an appointment to another student?
 <br>
 **A** : No, you will need to add a new appointment for the new student. 
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command Summary
