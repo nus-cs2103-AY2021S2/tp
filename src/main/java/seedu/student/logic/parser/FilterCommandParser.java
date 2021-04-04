@@ -34,8 +34,8 @@ public class FilterCommandParser implements Parser<FilterCommand> {
 
         String condition = args.trim();
 
-       /*
-       if (condition.equals("not_vaccinated")) {
+        /*
+        if (condition.equals("not_vaccinated")) {
             condition = "";
         }
 
@@ -47,6 +47,7 @@ public class FilterCommandParser implements Parser<FilterCommand> {
             return new FilterCommand(new VaccinationStatusContainsKeywords(condition));
         }
         */
+
         if (FACULTY.contains(condition)) {
             return new FilterCommand(new FacultyContainsKeywords(condition));
         } else if (SCHOOL_RESIDENCE.contains(condition) && !condition.equals("DOES_NOT_LIVE_ON_CAMPUS")) {
