@@ -17,7 +17,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ### Architecture
 
-<img src="images/ArchitectureDiagram.png" width="450" />
+![Architecture Diagram](images/ArchitectureDiagram.png)
 
 The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
 
@@ -53,7 +53,7 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+![Architecture Sequence Diagram](images/ArchitectureSequenceDiagram.png)
 
 The sections below give more details of each component.
 
@@ -259,7 +259,7 @@ Step 2. The user executes `delete 5` command to delete the 5th person in the con
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified contact list state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/David …​` to add a new person. This causes another modified contact list state to be saved into the `addressBookStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
@@ -268,11 +268,11 @@ Examples of commands that do not modify the list include <code>find</code>, <cod
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will first call `State#deletePreviousState()` to delete `ab2` and then call `model#setAddressBook` to set the contact list to be the same state as `ab1`.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If there is only one state saved in the <code>addressBookStates</code>, then there are no previous AddressBook states to restore. The `undo` command uses `Model#getPreviousState` to check if this is the case. If so, the method will return <code>null</code>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If there is only one state saved in the <code>addressBookStates</code>, then there are no previous AddressBook states to restore. The `undo` command uses `State#getPreviousState` to check if this is the case. If so, the method will return <code>null</code>
 , causing the command to return an error to the user rather than attempting to perform the undo.
 
 </div>
