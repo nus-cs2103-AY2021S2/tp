@@ -20,6 +20,7 @@ import seedu.address.testutil.EventBuilder;
 
 public class StreakTest {
 
+    private final List<Event> sampleMeetings;
     private final Streak weeklyStreak;
     private final Streak emptyStreak;
 
@@ -34,6 +35,9 @@ public class StreakTest {
         Goal weeklyGoal = new Goal(WEEKLY);
         weeklyStreak = Streak.from(weeklyGoal, meetings);
         emptyStreak = Streak.empty();
+
+        sampleMeetings = new ArrayList<>();
+        sampleMeetings.addAll(meetings);
     }
 
     @Test
@@ -42,9 +46,27 @@ public class StreakTest {
     }
 
     @Test
-    public void from_none() {
+    public void from_noneGoal_returnsEmptyStreak() {
         Goal noneGoal = new Goal(NONE);
-        assertEquals(0, Streak.from(noneGoal, Collections.emptyList()).getValue());
+        assertEquals(0, Streak.from(noneGoal, sampleMeetings).getValue());
+    }
+
+    @Test
+    public void from_emptyMeetings_returnsEmptyStreak() {
+        Goal weeklyGoal = new Goal(WEEKLY);
+        assertEquals(0, Streak.from(weeklyGoal, Collections.emptyList()).getValue());
+    }
+
+    @Test
+    public void from_lateByOneDay_returnsStreakBroken() {
+        Goal weeklyGoal = new Goal(WEEKLY);
+
+        List<Event> meetings = new ArrayList<>();
+        LocalDate now = LocalDate.now().with(TemporalAdjusters.previousOrSame(MONDAY));
+        Event event1 = new EventBuilder().withDate(now.minusWeeks(1).minusDays(1)).build();
+        meetings.add(event1);
+
+        assertEquals(0, Streak.from(weeklyGoal, meetings).getValue());
     }
 
     public void testFrom(List<LocalDate> dates, Goal goal, List<LocalDate> extra) {
