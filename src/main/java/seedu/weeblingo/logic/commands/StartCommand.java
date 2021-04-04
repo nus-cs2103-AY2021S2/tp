@@ -31,12 +31,14 @@ public class StartCommand extends Command {
     public static final String MESSAGE_INVALID_NUMBER_OF_QUESTIONS = "Oops! Number of questions must "
             + "be a positive integer!";
 
-    public static final String MESSAGE_NUMBER_TOO_LARGE = "The number you specified is too large!\n"
-            + "Please enter a number that is smaller than or equals to 1000000.";
+    public static final String MESSAGE_NUMBER_TOO_LARGE =
+            "The number you specified is larger than the "
+                    + "number of flashcards WeebLingo has!\n"
+                    + "Please enter a smaller number. ";
 
     public static final String MESSAGE_NUMBER_LARGER_THAN_DATABASE_FLASHCARDS_SIZE =
             "The number you specified is larger than the "
-                    + "number of flashcards in the database.\n"
+                    + "number of flashcards WeebLingo has!\n"
                     + "Please enter a number that is smaller than or equals to ";
 
     private int numOfQnsForQuizSession;
