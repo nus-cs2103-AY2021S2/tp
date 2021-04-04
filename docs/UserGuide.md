@@ -267,7 +267,7 @@ Examples:
 
 Edits a note in edit mode.
 
-Format: `editmodenote`
+Format: `editmode`
 
 * A note have to be show on the note content panel using `shownote` command.
 * In edit note mode, all others note related command will be disable.
@@ -275,7 +275,7 @@ Format: `editmodenote`
 
 
 Examples:
-* `editmodenote`
+* `editmode`
   * note content will be editable
 
 #### Save and exit edit mode: `save`
