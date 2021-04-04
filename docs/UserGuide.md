@@ -38,8 +38,13 @@ on ModuleBook3.5.
 1. A list of modules for which tasks are available is also shown.
     1. For each module, the number of tasks across each workload rating is displayed.
     1. The distribution of workload across all modules is calculated and displayed on a pie chart.
+    
+<div markdown="span" class="alert alert-warning">:exclamation: **Alert:**
+While each module is guaranteed to have a colour that is different from that of other modules 
+within the workload pie chart, each module's colour may change as a command is executed.
+</div>
 
-1. Tasks are colour coded based on done status.
+4. Tasks are colour coded based on done status.
     1. Done tasks are coloured pink.
     1. Tasks that are not done are coloured differently.
     
