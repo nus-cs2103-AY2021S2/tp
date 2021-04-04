@@ -50,4 +50,8 @@ public interface Logic {
     void setGuiSettings(GuiSettings guiSettings);
 
     public ObservableList<Session> getFilteredSessionList();
+
+    ObservableList<Person> getUnfilteredPersonList();
+
+    ObservableList<Session> getUnfilteredSessionList();
 }

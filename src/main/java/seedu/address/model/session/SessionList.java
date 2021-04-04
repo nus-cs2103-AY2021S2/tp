@@ -4,9 +4,12 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
+import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.SessionNotFoundException;
 
 /**
@@ -75,5 +78,14 @@ public class SessionList {
 
     public Iterator<Session> iterator() {
         return internalList.iterator();
+    }
+
+    /**
+     * Used for clear command.
+     * Replaces the contents of this list with {@code sessions}.
+     */
+    public void setSessions(List<Session> sessions) {
+        requireAllNonNull(sessions);
+        internalList.setAll(sessions);
     }
 }

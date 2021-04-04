@@ -15,6 +15,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.Logic;
+import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ViewPersonCommand;
@@ -146,7 +147,7 @@ public class MainWindow extends UiPart<Stage> {
         personListPanelPlaceholder.setVisible(false);
         personListPanelPlaceholder.toFront();
         personListPanelPlaceholder.getChildren().clear();
-        sessionListPanel = new SessionListPanel(logic.getFilteredSessionList());
+        sessionListPanel = new SessionListPanel(logic.getUnfilteredSessionList());
         sessionListPanelPlaceholder.getChildren().add(sessionListPanel.getRoot());
         viewIndividualPlaceholder.getItems().add(sessionListPanelPlaceholder);
 

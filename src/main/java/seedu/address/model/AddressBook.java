@@ -62,7 +62,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
-        setSessions(newData.getSessions());
+        setAllSessions(newData.getSessionList());
     }
 
     //// person-level operations
@@ -196,6 +196,13 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public void setSessions(SessionList sessions) {
         this.sessions = sessions;
+    }
+
+    /**
+     * Replaces the contents of the session list with {@code sessions}.
+     */
+    public void setAllSessions(List<Session> sessions) {
+        this.sessions.setSessions(sessions);
     }
 
     @Override
