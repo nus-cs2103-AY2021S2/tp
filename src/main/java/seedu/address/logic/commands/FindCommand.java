@@ -13,11 +13,15 @@ import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.AddressContainsKeywordsPredicate;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.PersonTagContainsKeywordsPredicate;
-import seedu.address.model.person.ReturnTruePredicate;
+import seedu.address.model.person.predicates.AddressContainsKeywordsPredicate;
+import seedu.address.model.person.predicates.EmailContainsKeywordsPredicate;
+import seedu.address.model.person.predicates.ModeOfContactPredicate;
+import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
+import seedu.address.model.person.predicates.PersonBlacklistedPredicate;
+import seedu.address.model.person.predicates.PersonTagContainsKeywordsPredicate;
+import seedu.address.model.person.predicates.PhoneContainsNumbersPredicate;
+import seedu.address.model.person.predicates.ReturnTruePredicate;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
@@ -41,20 +45,20 @@ public class FindCommand extends Command {
             + PREFIX_MODE_OF_CONTACT + "phone, email or address. \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "alice bob charlie "
-            + PREFIX_TAG + "friends neighbours"
-            + PREFIX_ADDRESS + "Singapore"
-            + PREFIX_EMAIL + "gmail yahoo"
-            + PREFIX_PHONE + "69 420"
-            + PREFIX_BLACKLIST + "true"
+            + PREFIX_TAG + "friends neighbours "
+            + PREFIX_ADDRESS + "Singapore "
+            + PREFIX_EMAIL + "gmail yahoo "
+            + PREFIX_PHONE + "69 420 "
+            + PREFIX_BLACKLIST + "true "
             + PREFIX_MODE_OF_CONTACT + "phone";
 
-    private final Predicate<Person> namePredicate;
-    private final Predicate<Person> tagPredicate;
-    private final Predicate<Person> addressPredicate;
-    private final Predicate<Person> emailPredicate;
-    private final Predicate<Person> phonePredicate;
-    private final Predicate<Person> blacklistPredicate;
-    private final Predicate<Person> modeOfContactPredicate;
+    private Predicate<Person> namePredicate;
+    private Predicate<Person> tagPredicate;
+    private Predicate<Person> addressPredicate;
+    private Predicate<Person> emailPredicate;
+    private Predicate<Person> phonePredicate;
+    private Predicate<Person> blacklistPredicate;
+    private Predicate<Person> modeOfContactPredicate;
 
     /**
      * Creates a FindCommand to find the {@code Person}s with matching keywords.
@@ -79,13 +83,13 @@ public class FindCommand extends Command {
                 || tagPredicate instanceof ReturnTruePredicate);
         assert (addressPredicate instanceof AddressContainsKeywordsPredicate
                 || addressPredicate instanceof ReturnTruePredicate);
-        assert (emailPredicate instanceof AddressContainsKeywordsPredicate
+        assert (emailPredicate instanceof EmailContainsKeywordsPredicate
                 || emailPredicate instanceof ReturnTruePredicate);
-        assert (phonePredicate instanceof AddressContainsKeywordsPredicate
+        assert (phonePredicate instanceof PhoneContainsNumbersPredicate
                 || phonePredicate instanceof ReturnTruePredicate);
-        assert (blacklistPredicate instanceof AddressContainsKeywordsPredicate
+        assert (blacklistPredicate instanceof PersonBlacklistedPredicate
                 || blacklistPredicate instanceof ReturnTruePredicate);
-        assert (modeOfContactPredicate instanceof AddressContainsKeywordsPredicate
+        assert (modeOfContactPredicate instanceof ModeOfContactPredicate
                 || modeOfContactPredicate instanceof ReturnTruePredicate);
 
         this.namePredicate = namePredicate;
@@ -123,5 +127,37 @@ public class FindCommand extends Command {
                 && phonePredicate.equals(((FindCommand) other).phonePredicate)
                 && blacklistPredicate.equals(((FindCommand) other).blacklistPredicate)
                 && modeOfContactPredicate.equals(((FindCommand) other).modeOfContactPredicate)); // state check
+    }
+
+    // The following methods are solely for testing purposes
+    FindCommand copy() {
+        return new FindCommand(this.namePredicate, this.tagPredicate,
+                this.addressPredicate, this.emailPredicate, this.phonePredicate,
+                this.blacklistPredicate, this.modeOfContactPredicate);
+    }
+
+    static FindCommand returnDummyCommand() {
+        return new FindCommand(new ReturnTruePredicate(), new ReturnTruePredicate(), new ReturnTruePredicate(),
+                new ReturnTruePredicate(), new ReturnTruePredicate(), new ReturnTruePredicate(),
+                new ReturnTruePredicate());
+    }
+
+    FindCommand setPredicate(Predicate<Person> p) {
+        if (p instanceof NameContainsKeywordsPredicate) {
+            this.namePredicate = p;
+        } else if (p instanceof PersonTagContainsKeywordsPredicate) {
+            this.tagPredicate = p;
+        } else if (p instanceof AddressContainsKeywordsPredicate) {
+            this.addressPredicate = p;
+        } else if (p instanceof EmailContainsKeywordsPredicate) {
+            this.emailPredicate = p;
+        } else if (p instanceof PhoneContainsNumbersPredicate) {
+            this.phonePredicate = p;
+        } else if (p instanceof PersonBlacklistedPredicate) {
+            this.blacklistPredicate = p;
+        } else {
+            this.modeOfContactPredicate = p;
+        }
+        return this.copy();
     }
 }

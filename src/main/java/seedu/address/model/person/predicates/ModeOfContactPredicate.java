@@ -1,6 +1,9 @@
-package seedu.address.model.person;
+package seedu.address.model.person.predicates;
 
 import java.util.function.Predicate;
+
+import seedu.address.model.person.ModeOfContact;
+import seedu.address.model.person.Person;
 
 /**
  * Tests that a {@code Person}'s {@code ModeOfContact} matches the mode given.

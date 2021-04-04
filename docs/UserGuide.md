@@ -122,17 +122,21 @@ Examples:
 
 ### Locating persons by name and/or tag: `find`
 
-Finds persons whose names and/or tags contain any of the given keywords.
+Finds persons whose attributes (except remark) contain any of the given keywords.
 
-Format: `find [n/NAME_KEYWORDS] [t/TAG_KEYWORDS]`
+Format: `find [n/NAME_KEYWORDS] [t/TAG_KEYWORDS] [a/ADDRESS_KEYWORDS] [e/EMAIL_KEYWORDS] [p/PHONE_NUMBERS] [b/IS_BLACKLISTED] [m/MODE_OF_CONTACT]`
 
-* At least one of `[n/NAME_KEYWORDS]` or `[t/TAG_KEYWORDS]` must be included as the parameters.
+* At least one of the parameters must be included as the parameters.
+* Parameters, if provided, may not be empty. In other words, commands such as `find n/` or `find n/abc t/` are invalid.
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name and tags are searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
+* For name, tag and address parameters, only full words will be matched e.g. `Han` will not match `Hans`.
+* For email and phone parameters, partial matches are allowed, e.g. for phone number, `8123` will match `81234567`.  
 * Persons matching at least one keyword of each provided attribute will be returned.
-  e.g. `n/Hans Bo` will return `Hans Gruber`, `Bo Yang`, `Bo Hans`, while `n/Hans Bo t/friends` will only return `Hans Gruber` and `Bo Yang` if only `Hans Gruber` and `Bo Yang` are tagged with `friends`. 
+  e.g. `n/Hans Bo` will return `Hans Gruber`, `Bo Yang`, `Bo Hans`, while `n/Hans Bo t/friends` will only return `Hans Gruber` and `Bo Yang` if only `Hans Gruber` and `Bo Yang` are tagged with `friends`.
+* Blacklist parameter (`b/`) only accepts `true` or `false`.
+* Mode of contact parameter (`m/`) only accepts `phone`, `email` or `address`.
+* Blacklist and mode of contact parameters only take in the first keyword. For example, if `b/true blah blah` is inputted, it will be interpreted as `b/true`.
 
 Examples:
 * `find n/John` returns `john` and `John Doe`

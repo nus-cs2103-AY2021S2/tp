@@ -15,16 +15,16 @@ import java.util.function.Predicate;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.AddressContainsKeywordsPredicate;
-import seedu.address.model.person.EmailContainsKeywordsPredicate;
 import seedu.address.model.person.ModeOfContact;
-import seedu.address.model.person.ModeOfContactPredicate;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.PersonBlacklistedPredicate;
-import seedu.address.model.person.PersonTagContainsKeywordsPredicate;
-import seedu.address.model.person.PhoneContainsNumbersPredicate;
-import seedu.address.model.person.ReturnTruePredicate;
+import seedu.address.model.person.predicates.AddressContainsKeywordsPredicate;
+import seedu.address.model.person.predicates.EmailContainsKeywordsPredicate;
+import seedu.address.model.person.predicates.ModeOfContactPredicate;
+import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
+import seedu.address.model.person.predicates.PersonBlacklistedPredicate;
+import seedu.address.model.person.predicates.PersonTagContainsKeywordsPredicate;
+import seedu.address.model.person.predicates.PhoneContainsNumbersPredicate;
+import seedu.address.model.person.predicates.ReturnTruePredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
