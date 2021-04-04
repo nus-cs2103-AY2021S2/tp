@@ -51,9 +51,9 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete_student 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues with any command.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<img src="images/shion/ArchitectureSequenceDiagram.png" width="574" />
 
 The sections below give more details of each component.
 
@@ -86,11 +86,11 @@ The `UI` component,
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete_student 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete_student 1` Command](images/shion/DeleteStudentSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteStudentCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 ### Model component
@@ -205,16 +205,28 @@ The following activity diagram summarizes what happens when a user executes the 
 The following sequence diagram summarizes what happens when a user executes the `emails` command:
 ![EmailCommandSequenceDiagram.png](images/sam/EmailCommandSequenceDiagram.png)
 
+
 ### Add Session Feature
 The add session feature allows users to add individual tuition sessions with specific details of each session.
 
 This section explains the implementation of the add session mechanism and highlights the design considerations
 taken into account when implementing this feature.
+<!--
+### Session Feature
+The session feature is facilitated by the `Session` class which stores specific details of
+a tuition session with one student. Each session is composed within a `Student`,
+and a `Student` can have multiple `Session`s.
+-->
 
 #### Implementation
 The add attendance mechanism is facilitated by `AddAttendanceCommand` and it extends `Command`. The method,
 `AddSessionCommand#execute()`, performs a validity check on student name input and session details input by the user
 before adding the session.
+<!--
+The creation of a session is facilitated by `AddSessionCommand` and it extends `Command`. The method,
+`AddSessionCommand#execute()`, performs a validity check on student name input and session details input by the user
+before adding the session.
+-->
 
 The following sequence diagram shows the interactions between the Model and Logic components during the execution of
 an AddSessionCommand with user input `add_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE`:
@@ -225,7 +237,7 @@ an AddSessionCommand with user input `add_session n/STUDENT_NAME d/DATE t/TIME k
 2. A new instance of an `AddSessionCommand` would be created by the `AddSessionCommandParser` and returned to `AddressBookParser`.
 3. `AddressBookParser` encapsulates the `AddSessionCommand` object as a `Command` object which is executed by the `LogicManager`.
 4. The command execution calls `hasStudent(name)` and `hasSession(name, sessionToAdd)` to validate the inputs before calling
-`addSession(name, sessionToAdd)` which adds the session to the specific student.
+   `addSession(name, sessionToAdd)` which adds the session to the specific student.
 5. The result of the command execution is encapsulated as a CommandResult object which is passed back to the Ui.
 
 #### Design Considerations
@@ -248,6 +260,17 @@ updated student index id. Student name on the other hand, stays constant through
 which he also has knowledge of. Therefore, student name can be easily entered without reference to the AddressBook, saving much more time compared
 to alternative 2.
 
+###Delete Session Feature
+The `DeleteSessionCommand` does the opposite of `AddSessionCommand` -- it calls `Model#deleteSession(studentName, sessionIndex)` instead
+which calls `AddressBook#removeSession(studentName, sessionIndex)` and
+`UniqueStudentList#deleteSession(targetStudent, sessionIndex)`.
+
+The following sequence diagram shows how deleting a session works:
+![DeleteSessionSequenceDiagram](images/shion/DeleteSessionSequenceDiagram.png)
+
+It shares the same design considerations as what is mentioned in Add Session Feature. 
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -266,7 +289,7 @@ Step 1. The user launches the application for the first time. The `VersionedAddr
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete_student 5` command to delete the 5th student in the address book. The `delete_student` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete_student 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th student in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
@@ -323,7 +346,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete_student`, just save the student being deleted).
+  * Pros: Will use less memory (e.g. for `delete`, just save the student being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
@@ -539,13 +562,13 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all students using the `list` command. Multiple students in the list.
 
-   1. Test case: `delete_student 1`<br>
+   1. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete_student 0`<br>
+   1. Test case: `delete 0`<br>
       Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete_student`, `delete_student x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
