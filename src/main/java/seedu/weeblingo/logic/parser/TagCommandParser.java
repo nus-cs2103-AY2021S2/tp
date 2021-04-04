@@ -1,7 +1,6 @@
 package seedu.weeblingo.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.weeblingo.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.weeblingo.commons.core.Messages.MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX;
 import static seedu.weeblingo.logic.parser.CliSyntax.PREFIX_TAG;
 
