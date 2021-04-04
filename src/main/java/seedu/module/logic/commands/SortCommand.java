@@ -3,6 +3,7 @@ package seedu.module.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.module.logic.parser.CliSyntax.PREFIX_DONE_STATUS;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_TASK_NAME;
@@ -24,7 +25,8 @@ public class SortCommand extends Command {
         + PREFIX_DEADLINE + " or "
         + PREFIX_WORKLOAD + " or "
         + PREFIX_TAG + " or "
-        + PREFIX_MODULE + "\n"
+        + PREFIX_MODULE + " or "
+        + PREFIX_DONE_STATUS + "\n"
         + "Example: " + COMMAND_WORD + " "
         + PREFIX_WORKLOAD + " ";
 

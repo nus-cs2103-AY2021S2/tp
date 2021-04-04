@@ -3,6 +3,7 @@ package seedu.module.logic.parser;
 import static seedu.module.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.module.logic.parser.CliSyntax.PREFIX_DONE_STATUS;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.module.logic.parser.CliSyntax.PREFIX_TASK_NAME;
@@ -27,7 +28,7 @@ public class SortCommandParser implements Parser<SortCommand> {
     public SortCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
             ArgumentTokenizer.tokenize(args, PREFIX_TASK_NAME, PREFIX_MODULE,
-                PREFIX_DESCRIPTION, PREFIX_DEADLINE, PREFIX_WORKLOAD, PREFIX_TAG);
+                PREFIX_DESCRIPTION, PREFIX_DEADLINE, PREFIX_WORKLOAD, PREFIX_TAG, PREFIX_DONE_STATUS);
 
         if (!isValidArgument(argMultimap)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -46,6 +47,8 @@ public class SortCommandParser implements Parser<SortCommand> {
             return new SortCommand(new Task.DescriptionComparator());
         } else if (arePrefixesPresent(argMultimap, PREFIX_TAG)) {
             return new SortCommand(new Task.TagComparator());
+        } else if (arePrefixesPresent(argMultimap, PREFIX_DONE_STATUS)) {
+            return new SortCommand(new Task.DoneStatusComparator());
         }
 
         return new SortCommand(new Task.DeadlineComparator());

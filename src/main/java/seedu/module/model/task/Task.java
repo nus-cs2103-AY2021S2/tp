@@ -438,4 +438,20 @@ public class Task {
             return t2.getTags().size() - t1.getTags().size();
         }
     }
+
+    /**
+     * Comparator of tasks using done status as reference
+     */
+    public static class DoneStatusComparator implements Comparator<Task> {
+
+        @Override
+        public String toString() {
+            return "done status";
+        }
+
+        @Override
+        public int compare(Task t1, Task t2) {
+            return t1.getDoneStatus().compareTo(t2.getDoneStatus());
+        }
+    }
 }
