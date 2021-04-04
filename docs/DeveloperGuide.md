@@ -98,6 +98,10 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("sort /w")` API call.
+
+![Interactions Inside the Logic Component for the `sort /w` Command](images/SortSequenceDiagram.png)
+
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
@@ -637,13 +641,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
     
-**Use case 13: Recur tasks**
+**Use case 13: Recur a task**
 
 **MSS**
 
 1.  User <ins>lists tasks (UC01)</ins>.
 
-2. User requests to add a recurrence to a task.
+2. User requests to recur a task.
 
 3. ModuleBook3.5 adds recurrence to the task requested to be recurred by the user.
 
@@ -653,13 +657,13 @@ Use case ends.
 
 * 2a. The given index is out of range.
 
-    * 2a1. ModuleBook3.5 shows an error  message.
+    * 2a1. ModuleBook3.5 shows an error message.
     
         Use case resumes at step 2.
 
 * 2b. The recurrence is not daily, weekly or monthly.
 
-    * 2b1. ModuleBook3.5 shows an error message.
+    * 2b1. No recurrence is entered. <ins>removes recurrence (UC14)<ins>
         
         Use case resumes at step 2.
         
@@ -668,7 +672,39 @@ Use case ends.
     * 2c1. ModuleBook3.5 shows an error message.
     
         Use case resumes at step 2.
+        
 
+**Use case 14: Remove recurrence of a task**
+
+**MSS**
+
+1.  User <ins>lists tasks (UC01)</ins>.
+
+2. User requests to remove recurrence of a task.
+
+3. ModuleBook3.5 removes recurrence of the task.
+
+Use case ends.
+
+**Extensions**
+
+* 2a. The given index is out of range.
+
+    * 2a1. ModuleBook3.5 shows an error message.
+    
+        Use case resumes at step 2.
+
+* 2b. The recurrence input is not empty.
+
+    * 2b1. The recurrence input is daily, monthly or weekly. <ins>add recurrence (UC13)<ins>
+        
+        Use case resumes at step 2.
+        
+* 2c. The task is not recurring.
+    
+    * 2c1. ModuleBook3.5 shows an error message.
+    
+        Use case resumes at step 2.
 <div style="page-break-after: always;"></div>
 
 ### Non-Functional Requirements

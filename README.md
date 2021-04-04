@@ -1,6 +1,6 @@
 [![CI Status](https://github.com/AY2021S2-CS2103T-T13-2/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2021S2-CS2103T-T13-2/tp/actions)
 
-![Ui](docs/images/addTaskUiV1.3.png)
+![Ui](docs/images/addCommand.png)
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 * This is **a task tracker for university students juggling many subjects**.<br>
   Example usages:
