@@ -1,4 +1,4 @@
-package seedu.booking.logic.commands.multiprocessing;
+package seedu.booking.logic.commands.intermediatestate;
 
 import seedu.booking.logic.commands.Command;
 import seedu.booking.logic.parser.exceptions.ParseException;

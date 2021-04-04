@@ -133,15 +133,8 @@ public class BookingSystemParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
-
-        case AddPersonCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
-
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
-
         case EditBookingCommand.COMMAND_WORD:
-            return new EditBookingCommandParser().parse(arguments);
+        return new EditBookingCommandParser().parse(arguments);
 
         case EditPersonCommand.COMMAND_WORD:
             return new EditPersonCommandParser().parse(arguments);
@@ -149,20 +142,17 @@ public class BookingSystemParser {
         case EditVenueCommand.COMMAND_WORD:
             return new EditVenueCommandParser().parse(arguments);
 
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
-
         case DeletePersonCommand.COMMAND_WORD:
             return new DeletePersonCommandParser().parse(arguments);
 
         case DeleteVenueCommand.COMMAND_WORD:
             return new DeleteVenueCommandParser().parse(arguments);
 
+        case DeleteBookingCommand.COMMAND_WORD:
+            return new DeleteBookingCommandParser().parse(arguments);
+
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
-
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
 
         case FindVenueCommand.COMMAND_WORD:
             return new FindVenueCommandParser().parse(arguments);
@@ -182,23 +172,17 @@ public class BookingSystemParser {
         case ListPersonCommand.COMMAND_WORD:
             return new ListPersonCommand();
 
-        case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
-
-        case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
-
-        case AddVenueCommand.COMMAND_WORD:
-            return new AddVenueCommandParser().parse(arguments);
-
-        case DeleteBookingCommand.COMMAND_WORD:
-            return new DeleteBookingCommandParser().parse(arguments);
-
         case ListVenueCommand.COMMAND_WORD:
             return new ListVenueCommand();
 
         case ListBookingCommand.COMMAND_WORD:
             return new ListBookingCommand();
+
+        case ExitCommand.COMMAND_WORD:
+            return new ExitCommand();
+
+        case HelpCommand.COMMAND_WORD:
+            return new HelpCommand();
 
         case FilterBookingByVenueCommand.COMMAND_WORD:
             return new FilterBookingByVenueCommandParser().parse(arguments);

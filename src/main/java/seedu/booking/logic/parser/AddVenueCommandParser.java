@@ -10,6 +10,7 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.booking.logic.commands.AddVenueCommand;
+import seedu.booking.logic.commands.PromptAddVenueCommand;
 import seedu.booking.logic.parser.exceptions.ParseException;
 import seedu.booking.model.Tag;
 import seedu.booking.model.venue.Capacity;
@@ -45,7 +46,7 @@ public class AddVenueCommandParser implements Parser<AddVenueCommand> {
 
         if (!arePrefixesPresent(argMultimap, PREFIX_VENUE, PREFIX_CAPACITY, PREFIX_DESCRIPTION)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddVenueCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, PromptAddVenueCommand.MESSAGE_USAGE));
         }
 
         VenueName name = ParserUtil.parseVenueName(argMultimap.getValue(PREFIX_VENUE).get());

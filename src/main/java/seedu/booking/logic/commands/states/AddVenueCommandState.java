@@ -6,7 +6,7 @@ import static seedu.booking.commons.core.Messages.PROMPT_VENUE_DESC_MESSAGE;
 
 import java.util.Set;
 
-import seedu.booking.logic.commands.multiprocessing.AddVenueIntermediate;
+import seedu.booking.logic.commands.intermediatestate.AddVenueIntermediate;
 import seedu.booking.model.Tag;
 import seedu.booking.model.venue.Capacity;
 import seedu.booking.model.venue.Venue;
