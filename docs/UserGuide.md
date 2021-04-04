@@ -36,7 +36,7 @@ Lists all the restaurants with food reviews.
 
 Format: `list`
 
-Parameter: none
+Parameters: none
 
     list
 
@@ -220,16 +220,23 @@ Example:
 
 ### Revise a specific FoodDiary entry `revise`
 
-Opens up a window, showing the existing details of an FoodDiary entry and allows for quick corrections and updates without
-requiring the use of prefixes and command syntax in the UI.
+Opens up a window, showing the existing details of a FoodDiary entry and allows for quick corrections and updates without
+requiring the use of prefixes and command syntax in the UI. Mainly used to revise entry with many existing reviews as compared
+to using the `edit` command.
 
-Use `TAB` key to iterate through fields, `Ctrl + S` (Windows) or `Command + S` (Mac) to save, `ESC` key to quickly
-exit the revise window.
-
-Note:
+**Available Shortcut keys for fast typists:**
+- `TAB` key to iterate through fields
+- `Ctrl + S` (Windows) or `Command + S` (Mac) to save
+- `ESC` key to quickly exit the revise window
+ 
+**Take note when revising an entry:**
 - Leave a white-space between categories to separate them
 - Leave a white-space between schools to separate them
 - Leave a blank line to differentiate between each reviews
+
+**Expected behaviour: Revise window will close, showing successful edit of entry in Main Window's command box** 
+
+**Unexpected behaviour: Revise window will close, showing error message in Main Window's command box**
 
 Format: `revise <INDEX>`
 
@@ -273,11 +280,14 @@ Clearing all entries from food diary.
 
 Format: `clear`
 
+Parameters: none
 
 ### Exiting food diary `exit`
 Close and exit the program.
 
 Format: `exit`
+
+Parameters: none
 
 ------------------------------------------------------------------------------------
 ## FAQ
@@ -320,7 +330,7 @@ Action | Keyboard Shortcut| Windows where Keyboard shortcut is available
 
 - **Main Window:** The Window that appears when the application starts up
 - **View Window:** The Window that appears when viewing a FoodDiary entry through the `view` command
-- **Revise Window** The Window that appears when revising a FoodDairy entry through the `edit` command
+- **Revise Window** The Window that appears when revising a FoodDairy entry through the `revise` command
 
 
 ## UI mock-up
