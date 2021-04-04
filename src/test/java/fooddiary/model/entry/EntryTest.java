@@ -1,5 +1,6 @@
 package fooddiary.model.entry;
 
+import static fooddiary.logic.commands.CommandTestUtil.VALID_ADDRESS_A;
 import static fooddiary.logic.commands.CommandTestUtil.VALID_ADDRESS_B;
 import static fooddiary.logic.commands.CommandTestUtil.VALID_NAME_B;
 import static fooddiary.logic.commands.CommandTestUtil.VALID_PRICE_B;
@@ -36,7 +37,7 @@ public class EntryTest {
         // same name, all other attributes different -> returns true
         Entry editedA = new EntryBuilder(ENTRY_A).withRating(VALID_RATING_B)
                 .withPrice(VALID_PRICE_B).withReviews(VALID_REVIEW_B)
-                .withAddress(VALID_ADDRESS_B).withTagCategories(VALID_TAG_CATEGORY_WESTERN).build();
+                .withAddress(VALID_ADDRESS_A).withTagCategories(VALID_TAG_CATEGORY_WESTERN).build();
         assertTrue(ENTRY_A.isSameEntry(editedA));
 
         // different name, all other attributes same -> returns false

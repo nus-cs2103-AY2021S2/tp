@@ -91,7 +91,7 @@ public class Entry {
         }
 
         return otherEntry != null
-                && otherEntry.getName().equals(getName());
+                && otherEntry.getName().equals(getName()) && otherEntry.getAddress().equals(getAddress());
     }
 
     /**

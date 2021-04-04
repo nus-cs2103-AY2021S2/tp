@@ -1,5 +1,6 @@
 package fooddiary.model.entry;
 
+import static fooddiary.logic.commands.CommandTestUtil.VALID_ADDRESS_A;
 import static fooddiary.logic.commands.CommandTestUtil.VALID_ADDRESS_B;
 import static fooddiary.logic.commands.CommandTestUtil.VALID_TAG_CATEGORY_WESTERN;
 import static fooddiary.testutil.Assert.assertThrows;
@@ -42,7 +43,7 @@ public class UniqueEntryListTest {
     @Test
     public void contains_entryWithSameIdentityFieldsInList_returnsTrue() {
         uniqueEntryList.add(ENTRY_A);
-        Entry editedA = new EntryBuilder(ENTRY_A).withAddress(VALID_ADDRESS_B)
+        Entry editedA = new EntryBuilder(ENTRY_A).withAddress(VALID_ADDRESS_A)
                 .withTagCategories(VALID_TAG_CATEGORY_WESTERN)
                 .build();
         assertTrue(uniqueEntryList.contains(editedA));
