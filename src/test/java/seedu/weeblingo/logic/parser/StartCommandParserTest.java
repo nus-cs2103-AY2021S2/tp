@@ -14,14 +14,12 @@ import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_START_INTEGER
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_START_INTEGER_MIN_DESC;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_START_TAGS_SET_GENERIC;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_START_TAG_COMBINATION_DESC;
-import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_START_TAG_GOJUON;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_START_TAG_GOJUON_DESC;
-import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_START_TAG_HIRAGANA;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_START_TAG_HIRAGANA_DESC;
+import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_TAGS_SET_COMBINATION;
+import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_TAGS_SET_GOJUON;
+import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_TAGS_SET_HIRAGANA;
 import static seedu.weeblingo.testutil.Assert.assertThrows;
-
-import java.util.HashSet;
-import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -40,12 +38,11 @@ public class StartCommandParserTest {
     private static final StartCommand STARTCOMMAND_VALID_INTEGER_MAX =
         new StartCommand(Integer.parseInt(VALID_START_INTEGER_MAX), VALID_START_TAGS_SET_GENERIC);
     private static final StartCommand STARTCOMMAND_VALID_TAG_HIRAGANA =
-        new StartCommand(VALID_START_INTEGER_GENERIC, new HashSet<>(List.of(new Tag(VALID_START_TAG_HIRAGANA))));
+            new StartCommand(VALID_START_INTEGER_GENERIC, VALID_TAGS_SET_HIRAGANA);
     private static final StartCommand STARTCOMMAND_VALID_TAG_GOJUON =
-        new StartCommand(VALID_START_INTEGER_GENERIC, new HashSet<>(List.of(new Tag(VALID_START_TAG_GOJUON))));
+            new StartCommand(VALID_START_INTEGER_GENERIC, VALID_TAGS_SET_GOJUON);
     private static final StartCommand STARTCOMMAND_VALID_TAG_COMBINATION =
-        new StartCommand(VALID_START_INTEGER_GENERIC,
-            new HashSet<>(List.of(new Tag(VALID_START_TAG_GOJUON), new Tag(VALID_START_TAG_HIRAGANA))));
+            new StartCommand(VALID_START_INTEGER_GENERIC, VALID_TAGS_SET_COMBINATION);
 
     private final StartCommandParser parser = new StartCommandParser();
 

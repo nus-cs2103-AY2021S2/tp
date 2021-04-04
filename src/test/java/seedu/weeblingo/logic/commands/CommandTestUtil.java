@@ -31,8 +31,8 @@ public class CommandTestUtil {
     public static final String VALID_QUESTION_B = "い";
     public static final String VALID_ANSWER_A = "a";
     public static final String VALID_ANSWER_B = "i";
-    public static final String VALID_TAG_HUSBAND = "husband";
-    public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_TAG_DIFFICULT = "difficult";
+    public static final String VALID_TAG_EASY = "easy";
     public static final String VALID_START_INTEGER_MIN = "1";
     public static final String VALID_START_INTEGER_MIDDLE = "10";
     public static final String VALID_START_INTEGER_MAX = String.valueOf(Integer.MAX_VALUE);
@@ -42,8 +42,14 @@ public class CommandTestUtil {
     public static final String VALID_START_TAG_HIRAGANA = "hiragana";
     public static final String VALID_START_TAG_GOJUON = "gojuon";
     public static final String INVALID_START_TAG = "!@#$%";
+    public static final String VALID_NONEXISTENT_TAG = "thisIsANonExistentTag";
     public static final int VALID_START_INTEGER_GENERIC = 0;
     public static final Set<Tag> VALID_START_TAGS_SET_GENERIC = new HashSet<>();
+    public static final Set<Tag> VALID_TAGS_SET_HIRAGANA = new HashSet<>(List.of(new Tag(VALID_START_TAG_HIRAGANA)));
+    public static final Set<Tag> VALID_TAGS_SET_GOJUON = new HashSet<>(List.of(new Tag(VALID_START_TAG_GOJUON)));
+    public static final Set<Tag> VALID_TAGS_SET_COMBINATION = new HashSet<>(
+            List.of(new Tag(VALID_START_TAG_GOJUON), new Tag(VALID_START_TAG_HIRAGANA)));
+    public static final Set<Tag> VALID_NONEXISTENT_TAGS_SET = new HashSet<>(List.of(new Tag(VALID_NONEXISTENT_TAG)));
 
     public static final String VALID_START_INTEGER_MIN_DESC = " " + PREFIX_START_NUMBER + VALID_START_INTEGER_MIN;
     public static final String VALID_START_INTEGER_MIDDLE_DESC = " " + PREFIX_START_NUMBER + VALID_START_INTEGER_MIDDLE;
@@ -57,14 +63,14 @@ public class CommandTestUtil {
     public static final String VALID_START_TAG_COMBINATION_DESC = " " + VALID_START_TAG_GOJUON_DESC + " "
             + VALID_START_TAG_HIRAGANA_DESC;
     public static final String INVALID_START_TAG_DESC = " " + PREFIX_TAG + INVALID_START_TAG;
-
+    public static final String VALID_NONEXISTENT_TAGS_SET_DESC = " " + PREFIX_TAG + VALID_NONEXISTENT_TAG;
 
     public static final String QUESTION_DESC_A = " " + PREFIX_QUESTION + VALID_QUESTION_A;
     public static final String QUESTION_DESC_B = " " + PREFIX_QUESTION + VALID_QUESTION_B;
     public static final String ANSWER_DESC_A = " " + PREFIX_ANSWER + VALID_ANSWER_A;
     public static final String ANSWER_DESC_B = " " + PREFIX_ANSWER + VALID_ANSWER_B;
-    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
-    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_EASY;
+    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_DIFFICULT;
 
     public static final String INVALID_QUESTION_DESC = " " + PREFIX_QUESTION + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ANSWER_DESC = " " + PREFIX_ANSWER; // empty string not allowed for answeres

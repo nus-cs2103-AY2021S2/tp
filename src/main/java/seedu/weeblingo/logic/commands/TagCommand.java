@@ -30,6 +30,8 @@ public class TagCommand extends Command {
             + "Parameters: FLASHCARD_INDEX, TAG...\n"
             + "Example: " + COMMAND_WORD + " 2 t/very difficult t/reviseSoon";
 
+    public static final String MESSAGE_NO_TAGS_PROVIDED = "Please provide a tag for your flashcard!";
+
     public static final String MESSAGE_DUPLICATE_TAG = "Duplicate tags are not allowed.";
 
     private Index index;
@@ -115,6 +117,14 @@ public class TagCommand extends Command {
         userTags.addAll(userTagsToAdd);
 
         return new Flashcard(question, answer, tags, userTags);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof TagCommand // instanceof handles nulls
+                && index.equals(((TagCommand) other).index)
+                && tags.equals(((TagCommand) other).tags));
     }
 
 }

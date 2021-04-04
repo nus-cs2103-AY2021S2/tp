@@ -2,6 +2,7 @@ package seedu.weeblingo.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.weeblingo.commons.core.Messages.MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX;
+import static seedu.weeblingo.logic.commands.TagCommand.MESSAGE_NO_TAGS_PROVIDED;
 import static seedu.weeblingo.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collection;
@@ -34,10 +35,14 @@ public class TagCommandParser implements Parser<TagCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX);
+            throw new ParseException(pe.getMessage());
         }
 
         Set<Tag> tags = parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).orElse(Collections.emptySet());
+
+        if (tags.equals(Collections.emptySet())) {
+            throw new ParseException(MESSAGE_NO_TAGS_PROVIDED);
+        }
 
         return new TagCommand(index, tags);
     }

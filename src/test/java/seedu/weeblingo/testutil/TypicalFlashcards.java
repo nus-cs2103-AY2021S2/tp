@@ -4,8 +4,8 @@ import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_ANSWER_A;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_ANSWER_B;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_QUESTION_A;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_QUESTION_B;
-import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_TAG_DIFFICULT;
+import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_TAG_EASY;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,35 +19,32 @@ import seedu.weeblingo.model.flashcard.Flashcard;
  */
 public class TypicalFlashcards {
 
-    public static final Flashcard ALICE = new FlashcardBuilder()
-            .withAnswer("123, Jurong West Ave 6, #08-111").withQuestion("alice@example.com")
-            .withTags("friends").build();
-    public static final Flashcard BENSON = new FlashcardBuilder()
-            .withAnswer("311, Clementi Ave 2, #02-25")
-            .withQuestion("johnd@example.com")
-            .withTags("owesMoney", "friends").build();
-    public static final Flashcard CARL = new FlashcardBuilder()
-            .withQuestion("heinz@example.com").withAnswer("wall street").build();
-    public static final Flashcard DANIEL = new FlashcardBuilder()
-            .withQuestion("cornelia@example.com").withAnswer("10th street").withTags("friends").build();
-    public static final Flashcard ELLE = new FlashcardBuilder()
-            .withQuestion("werner@example.com").withAnswer("michegan ave").build();
-    public static final Flashcard FIONA = new FlashcardBuilder()
-            .withQuestion("lydia@example.com").withAnswer("little tokyo").build();
-    public static final Flashcard GEORGE = new FlashcardBuilder()
-            .withQuestion("anna@example.com").withAnswer("4th street").build();
+    public static final Flashcard A_CARD = new FlashcardBuilder()
+            .withAnswer("a").withQuestion("あ").withTags("gojuon").build();
+    public static final Flashcard I_CARD = new FlashcardBuilder()
+            .withAnswer("i").withQuestion("い").withTags("gojuon").build();
+    public static final Flashcard U_CARD = new FlashcardBuilder()
+            .withQuestion("う").withAnswer("u").withTags("gojuon").build();
+    public static final Flashcard E_CARD = new FlashcardBuilder()
+            .withQuestion("え").withAnswer("e").withTags("gojuon").build();
+    public static final Flashcard O_CARD = new FlashcardBuilder()
+            .withQuestion("お").withAnswer("o").withTags("gojuon").build();
+    public static final Flashcard KA_CARD = new FlashcardBuilder()
+            .withQuestion("か").withAnswer("ka").withTags("gojuon").build();
+    public static final Flashcard KI_CARD = new FlashcardBuilder()
+            .withQuestion("き").withAnswer("ki").withTags("gojuon").build();
 
-    // Manually added
-    public static final Flashcard HOON = new FlashcardBuilder()
-            .withQuestion("stefan@example.com").withAnswer("little india").build();
-    public static final Flashcard IDA = new FlashcardBuilder()
-            .withQuestion("hans@example.com").withAnswer("chicago ave").build();
+    // Manually added (to be updated later)
+    public static final Flashcard KU_CARD = new FlashcardBuilder()
+            .withQuestion("く").withAnswer("ku").withTags("gojuon").build();
+    public static final Flashcard KE_CARD = new FlashcardBuilder()
+            .withQuestion("け").withAnswer("ke").withTags("gojuon").build();
 
     // Manually added - Flashcard's details found in {@code CommandTestUtil}
     public static final Flashcard AMY = new FlashcardBuilder()
-            .withQuestion(VALID_QUESTION_A).withAnswer(VALID_ANSWER_A).withTags(VALID_TAG_FRIEND).build();
+            .withQuestion(VALID_QUESTION_A).withAnswer(VALID_ANSWER_A).withTags(VALID_TAG_EASY).build();
     public static final Flashcard BOB = new FlashcardBuilder()
-            .withQuestion(VALID_QUESTION_B).withAnswer(VALID_ANSWER_B).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+            .withQuestion(VALID_QUESTION_B).withAnswer(VALID_ANSWER_B).withTags(VALID_TAG_DIFFICULT, VALID_TAG_EASY)
             .build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
@@ -66,6 +63,6 @@ public class TypicalFlashcards {
     }
 
     public static List<Flashcard> getTypicalFlashcards() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+        return new ArrayList<>(Arrays.asList(A_CARD, I_CARD, U_CARD, E_CARD, O_CARD, KA_CARD, KI_CARD));
     }
 }
