@@ -272,10 +272,13 @@ public class ParserUtil {
     public static Date parseAppointmentDate(String date) throws ParseException {
         requireNonNull(date);
         String trimmedDate = date.trim();
+        if (!Date.isValidDate(trimmedDate)) {
+            throw new ParseException(Date.MESSAGE_CONSTRAINTS);
+        }
         try {
             return new Date(LocalDate.parse(trimmedDate, DateTimeFormat.INPUT_DATE_FORMAT));
         } catch (DateTimeParseException ex) {
-            throw new ParseException(Date.MESSAGE_CONSTRAINTS);
+            throw new ParseException(Date.MESSAGE_INVALID_DATE);
         }
     }
 

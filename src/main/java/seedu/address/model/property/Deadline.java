@@ -15,8 +15,8 @@ public class Deadline implements Comparable<Deadline> {
             "Deadline dates should be valid dates specified strictly in the format DD-MM-YYYY.\n"
             + "E.g. 01-01-2021";
 
-    public static final String MESSAGE_INVALID_DATE = "Invalid date entered.\n"
-            + "Please ensure that the date entered is valid";
+    public static final String MESSAGE_INVALID_DATE = "Invalid deadline entered.\n"
+            + "Please ensure that the deadline date entered is valid";
 
     private static final String VALIDATION_REGEX = "\\d{2}-\\d{2}-\\d{4}";
 
