@@ -120,7 +120,7 @@ public class CommandBox extends UiPart<Region> {
      * @param flag to accept user entered flag
      */
     public void setAndAppendFlag(String flag) {
-        String existingText = commandTextField.getText();
+        String existingText = commandTextField.getText().trim();
         this.setTextValue(existingText + " " + flag);
     }
 
