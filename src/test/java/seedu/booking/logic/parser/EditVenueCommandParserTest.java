@@ -40,7 +40,8 @@ public class EditVenueCommandParserTest {
         assertParseFailure(parser, " " + PREFIX_VENUE + VALID_VENUE_NAME_VENUE1, MESSAGE_INVALID_FORMAT);
 
         // no field specified
-        assertParseFailure(parser, ORIGINAL_VENUE_DESC_HALL, EditVenueCommand.MESSAGE_NOT_EDITED);
+        assertParseFailure(parser, ORIGINAL_VENUE_DESC_HALL,
+                EditVenueCommand.MESSAGE_NOT_EDITED + EditVenueCommand.MESSAGE_FIELDS);
 
         // no venue name and no field specified
         assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);

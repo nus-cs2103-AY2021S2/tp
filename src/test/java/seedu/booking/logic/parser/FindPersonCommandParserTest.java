@@ -1,4 +1,4 @@
-package seedu.booking.logic.parser;
+/*package seedu.booking.logic.parser;
 
 import static seedu.booking.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.booking.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -11,7 +11,7 @@ import seedu.booking.model.person.EmailContainsKeywordsPredicate;
 
 public class FindPersonCommandParserTest {
 
-    /*private FindPersonCommandParser parser = new FindPersonCommandParser();
+    private FindPersonCommandParser parser = new FindPersonCommandParser();
 
     @Test
     public void parse_emptyArg_throwsParseException() {
@@ -25,6 +25,7 @@ public class FindPersonCommandParserTest {
         FindPersonCommand expectedFindCommand =
                 new FindPersonCommand(new EmailContainsKeywordsPredicate("jane@gmail.com"));
         assertParseSuccess(parser, " e/jane@gmail.com", expectedFindCommand);
-    }*/
+    }
 
 }
+ */
