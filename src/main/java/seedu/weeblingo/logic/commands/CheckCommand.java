@@ -19,7 +19,7 @@ public class CheckCommand extends Command {
 
     public static final String WRONG_ATTEMPT = " is incorrect.\n";
 
-    public static final String MESSAGE_HELPER = "Enter \"end\" to return to menu mode "
+    public static final String MESSAGE_HELPER = "Enter \"end\" to return to menu "
             + "or \"next\" to move to the next question.";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": checks user answer for displayed flashcard.\n"

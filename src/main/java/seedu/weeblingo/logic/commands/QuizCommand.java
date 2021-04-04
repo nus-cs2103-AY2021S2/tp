@@ -17,13 +17,14 @@ public class QuizCommand extends Command {
 
     public static final String COMMAND_WORD = "quiz";
 
-    public static final String MESSAGE_SUCCESS = "You are now in quiz mode.\n"
-            + "Enter \"start\" to start quiz or \"end\" to return to main menu.";
+    public static final String MESSAGE_SUCCESS = "You are now in quiz mode."
+            + "You can start a quiz session \n"
+            + "Enter \"end\" to return to main menu.";
 
-    public static final String MESSAGE_ALREADY_IN_QUIZ_MODE = "You are already in quiz mode";
+    public static final String MESSAGE_ALREADY_IN_QUIZ_MODE = "You are already in quiz mode.";
 
     public static final String MESSAGE_IN_QUIZ_SESSION = "You are in a quiz session! \n"
-            + "Enter \"end\" to return to menu mode first or complete current quiz session "
+            + "Enter \"end\" to return to menu first or complete current quiz session "
             + "before entering quiz view.";
 
     private Set<Tag> tags;

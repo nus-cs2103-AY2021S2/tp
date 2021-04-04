@@ -14,10 +14,10 @@ import seedu.weeblingo.model.Model;
 public class ViewHistoryCommand extends Command {
     public static final String COMMAND_WORD = "history";
 
-    public static final String MESSAGE_SUCCESS = "These are your past quiz attempts.\n"
+    public static final String MESSAGE_SUCCESS = "You are now in history mode. You can view your past attempts.\n"
             + "Enter \"end\" to go back to main menu.";
 
-    public static final String MESSAGE_ALREADY_IN_HISTORY_MODE = "You are already in history mode";
+    public static final String MESSAGE_ALREADY_IN_HISTORY_MODE = "You are already in history mode.";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {

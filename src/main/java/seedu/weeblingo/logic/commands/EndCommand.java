@@ -16,7 +16,7 @@ public class EndCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Welcome back to the menu.\n"
             + "Enter \"learn\", \"quiz\" or \"history\" to enter different modes.";
 
-    public static final String MESSAGE_END_IN_MENU = "Invalid 'end' command in menu mode";
+    public static final String MESSAGE_END_IN_MENU = "Invalid 'end' command in menu mode.";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {

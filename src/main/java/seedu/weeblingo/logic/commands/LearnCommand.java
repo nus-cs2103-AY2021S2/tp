@@ -18,8 +18,8 @@ public class LearnCommand extends Command {
     public static final String COMMAND_WORD = "learn";
 
     public static final String MESSAGE_SUCCESS = "You are now in learn mode. "
-            + "You can now add or delete tags for the flashcards.\n"
-            + "Enter \"end\" to return to menu mode.";
+            + "You can add or delete tags for the flashcards.\n"
+            + "Enter \"end\" to return to menu.";
 
     public static final String MESSAGE_ALREADY_IN_LEARN_MODE = "You are already in learn mode.";
 
