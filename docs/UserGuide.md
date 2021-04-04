@@ -279,8 +279,6 @@ Format:  `sort n/` or `sort d/` or `sort m/` or `sort w/` or `sort b/` or `sort 
 *  `sort b/` Sorts the tasks by deadline so that the task with closer the deadline in the list, the higher the task.
 *  `sort m/` Sorts the tasks by module code alphabetically in descending order.
 *  `sort t/` Sorts the tasks by number of tags in descending order.
-*  `sort done/` Sorts the tasks by done status, with tasks that are not done coming first. 
-   Note that this is the only time a done status prefix is used.
 
 ![add message](images/sortCommand.png)
 
@@ -356,4 +354,4 @@ Action | Format, Examples
 **mod** | `mod MODULE`<br> e.g. `mod CS2103T`
 **edit** | `edit INDEX [d/DESCRIPTION] [b/DEADLINE]…​`<br> e.g. `edit 2 d/Eat Biscuits b/2021-03-21 10:10`
 **recur** | `recur INDEX r/RECURRENCE`<br> e.g. `recur 1 r/monthly`
-**sort** | `sort n/` or `sort d/` or `sort m/` or `sort w/` or `sort b/` or `sort t/` or `sort done/` <br> e.g. `sort b/`
+**sort** | `sort n/` or `sort d/` or `sort m/` or `sort w/` or `sort b/` or `sort t/` <br> e.g. `sort b/`

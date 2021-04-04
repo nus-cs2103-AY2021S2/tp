@@ -3,7 +3,7 @@ package seedu.module.model.task;
 import static java.util.Objects.requireNonNull;
 import static seedu.module.commons.util.AppUtil.checkArgument;
 
-public class DoneStatus implements Comparable<DoneStatus> {
+public class DoneStatus {
     public static final String MESSAGE_CONSTRAINTS = "Boolean strings should be 'true' or 'false'";
 
     public final Boolean isDone;
@@ -75,11 +75,6 @@ public class DoneStatus implements Comparable<DoneStatus> {
         return other == this // short circuit if same object
                 || (other instanceof DoneStatus // instanceof handles nulls
                 && isDone.equals(((DoneStatus) other).isDone)); // state check
-    }
-
-    @Override
-    public int compareTo(DoneStatus other) {
-        return isDone.compareTo(other.getIsDone());
     }
 
     @Override

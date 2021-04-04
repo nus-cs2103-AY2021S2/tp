@@ -35,27 +35,9 @@ public class DoneStatusTest {
         DoneStatus thirdDoneStatus = new DoneStatus(false);
         String somethingElse = "Not Done Status";
 
-        //EP: Same DoneStatus object
         assertTrue(firstDoneStatus.equals(firstDoneStatus));
-
-        //EP: Different DoneStatus object, same boolean value
         assertTrue(firstDoneStatus.equals(secondDoneStatus));
-
-        //EP: Different DoneStatus object, different boolean value
         assertFalse(firstDoneStatus.equals(thirdDoneStatus));
-
-        //EP: Different object types
         assertFalse(firstDoneStatus.equals(somethingElse));
-    }
-
-    @Test
-    public void compareTo() {
-        DoneStatus firstDoneStatus = new DoneStatus(false);
-        DoneStatus secondDoneStatus = new DoneStatus(true);
-        DoneStatus thirdDoneStatus = new DoneStatus(true);
-        assertTrue(firstDoneStatus.compareTo(secondDoneStatus) < 0);
-        assertTrue(secondDoneStatus.compareTo(firstDoneStatus) > 0);
-        assertTrue(thirdDoneStatus.compareTo(secondDoneStatus) == 0);
-        assertTrue(thirdDoneStatus.compareTo(thirdDoneStatus) == 0);
     }
 }
