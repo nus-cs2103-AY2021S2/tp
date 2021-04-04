@@ -1,6 +1,6 @@
 ---
 layout: page
-title: User Guide
+title: About Us
 ---
 
 Bookcoin to the Moon was developed by the team CS2103-W17-3.
