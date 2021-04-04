@@ -19,10 +19,26 @@ Get started quickly on your journey with Focuris [here](#1-quick-start)!
 
 ## Here's why you should use Focuris:
 
-- Helps with task management and scheduling with a simple and easy to navigate interface.
-- Use of a Command Line Interface (CLI) allows fast typists to manage your event boards faster than applications with a Graphical User Interface (GUI).
-- Prioritize your tasks by looking at their priority level, from **Low** to **High**.
+As a student, have you ever been overwhelmed by work in the middle of the semester? Or have you ever struggled to 
+keep track of all your deadlines and projects? Or perhaps have you ever wondered what work to prioritise when things 
+get hectic? Well, Focuris is here to help! Focuris can:
+
+- Help with task management and scheduling through a simple and easy to navigate interface.
+- Use a Command Line Interface (CLI) which allows fast typists to manage your event boards faster than applications with a Graphical User Interface (GUI).
+- Prioritise your tasks by looking at their priority level, from **Low** to **High**.
 - Get instant overview on the level of completion of each of your tasks.
+
+## How to use our User Guide:
+
+- To get started quickly, head to [1. Quick Start](#1-quick-start)!
+- To learn about conventions in this User Guide, head to [2. Features](#2-features)!
+- To get an overview of all our Commands, head to [2.1.1 Command Summary](#211-command-summary)!
+- To learn about the parameters for our Commands, head to [2.1.2 Parameters](#212-parameter-summary)!
+- To get answers to some FAQs, head to [3. FAQ](#3-faq)!
+- To learn more about some keywords we use, head to [4. Glossary](#4-glossary)!
+
+Feel free to read on or check out our [Table of Contents](#table-of-contents), to learn more about our features 
+and customise your experience with Focuris!
 
 ---
 
