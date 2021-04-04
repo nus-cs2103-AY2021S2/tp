@@ -57,6 +57,8 @@ public class CommandBox extends UiPart<Region> {
             commandTextField.setText("");
         } catch (CommandException | ParseException e) {
             setStyleToIndicateCommandFailure();
+            // As input is not cleared, history begins at 2nd last (which is the current input, instead of blank)
+            history.getPrevious();
         }
     }
 

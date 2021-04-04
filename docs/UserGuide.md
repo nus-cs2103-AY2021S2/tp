@@ -21,33 +21,14 @@ PartyPlanet can get the planning of your birthday celebrations done faster than 
 3. Double-click the file to start the app.<br>
    ![Ui](images/Ui.png)
 
---------------------------------------------------------------------------------------------------------------------
 
-## Features
+<div markdown="block" class="alert-warning">
 
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Notes about the command format:**<br>
-
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add -n NAME`, `NAME` is a parameter which can be used as `add -n John Doe`.
-
-* Items in square brackets are optional.<br>
-  e.g. `-n NAME [-t TAG]` can be used as `-n John Doe -t friend` or as `-n John Doe`.
-
-* Items with `...` after them can be used any number of times.<br>
-  e.g. `[-t TAG]...` can be used as ` `, `-t friend`, `-t friend -t family` etc.
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `-n NAME -p PHONE`, the alternative `-p PHONE -n NAME` is also acceptable.
-
-* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `-p 12341234 -p 56785678`, only `-p 56785678` will be taken.
-
-* Extraneous parameters for commands that do not take in parameters (such as `exit` and `undo`) will be ignored.<br>
-  e.g. if the command specifies `exit 123`, it will be interpreted as `exit`.
+**:warning: PartyPlanet will use its default Address Book and Event Book if it is unable to locate the 
+JSON files. It will start with an empty Address Book and Event Book if there is an error in the JSON files.**
 
 </div>
+--------------------------------------------------------------------------------------------------------------------
 
 ## Glossary of parameters
 
@@ -77,9 +58,43 @@ PartyPlanet can get the planning of your birthday celebrations done faster than 
 
 * All parameters will have leading and trailing spaces removed before processing.
 
+* All references to alphanumerics in PartyPlanet specifically refer to ASCII alphanumerics only.
+  The character codes are 48-57 (0-9), 65-90 (A-Z), 97-122 (a-z).
+
 </div>
 
+--------------------------------------------------------------------------------------------------------------------
+
 ## Party Planet Commands
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about the command format:**<br>
+
+* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+  e.g. in `add -n NAME`, `NAME` is a parameter which can be used as `add -n John Doe`.
+
+* Parameters in square brackets are optional.<br>
+  e.g. `-n NAME [-t TAG]` can be used as `-n John Doe -t friend` or as `-n John Doe`.
+
+* Parameters with `...` after them can be used any number of times.<br>
+  e.g. `[-t TAG]...` can be used as ` `, `-t friend`, `-t friend -t family` etc.
+
+* Parameters can be in any order.<br>
+  e.g. if the command specifies `-n NAME -p PHONE`, the alternative `-p PHONE -n NAME` is also acceptable.
+
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+  e.g. if you specify `-p 12341234 -p 56785678`, only `-p 56785678` will be taken.
+
+* Extraneous parameters for commands that do not take in parameters (such as `exit` and `undo`) will be ignored.<br>
+  e.g. if the command specifies `exit 123`, it will be interpreted as `exit`.
+
+* Parameters in `{}` represents mutually-exclusive parameters.<br>
+  Each mutually-exclusve parameter is separated by a `|`.<br>
+  e.g. `command {foo | bar}` means that either `command foo` or `command bar` are valid commands.<br>
+  However `command foo bar` is an invalid command.
+
+</div>
 
 ### Summary
 
@@ -163,17 +178,21 @@ Format: `list [--exact] [--any] [-n NAME]... [-t TAG]... [-b BIRTHDAY]... [-s SO
 1. If no search parameters specified, `list [-s SORT_FIELD] [-o SORT_ORDER]`: List all contacts in contact list
    * `-s` parameter optionally sorts contacts by `SORT_FIELD`:
      * `n`, `name`: names in (case-sensitive) lexicographical order (by default, if `-s` not specified)
-     * `b`, `birthday`: day of the year of the birthday
+     * `b`, `birthday`: day and month of the birthday (Insensitive to year, will not sort by year)
      * `u`, `upcoming`: days left to next upcoming birthday
    * `-o` parameter optionally determines the direction of sort, according to `SORT_ORDER`:
      * `a`, `asc`, `ascending`: ascending (by default, if `-o` not specified)
      * `d`, `desc`, `descending`: descending
-     * Sorts by upcoming birthday do not accept the `descending` order
+<<<<<<< HEAD
+     * Sorts by upcoming birthday ignores the sort order parameter and only sorts in `ascending` order
+=======
+     * Sorts by upcoming birthday only sorts in `ascending` order
+>>>>>>> b8ff70187f2b9dbb5580bf47141e72086093ffa0
 2. If search parameters specified, `list [--exact] [--any] [-n NAME]... [-t TAG]... [-b BIRTHDAY]... [-s SORT_FIELD] [-o SORT_ORDER]`: List all contacts matching the search criteria
    * Search criteria, case-insensitive:
-     * `-n` filters the contacts by name
-     * `-t` filters the contacts by tags
-     * `-b` filters contacts by birthday month
+     * `-n`, `--name` filters the contacts by name
+     * `-t`, `--tag` filters the contacts by tags
+     * `-b`, `--birthday` filters contacts by birthday month
        * If `BIRTHDAY` is "0" or unspecified, filtered contacts do not have a birthday.
        * Otherwise `BIRTHDAY` must be one of the 12 months, represented either by the month value or string,
          i.e. `12`, `Dec`, `December` filters contacts with a birthday in December.
@@ -183,12 +202,16 @@ Format: `list [--exact] [--any] [-n NAME]... [-t TAG]... [-b BIRTHDAY]... [-s SO
 
 Examples:
 * `list` Lists out all the contacts in the contact list.
-* `list -s asc` Lists out all the contacts in ascending lexicographical order.
-* `list -t friend` Lists out all contacts containing the tag "friend"
-* `list -n alice -t friend` Lists out all contacts whose name is "alice" and have the "friend" tag
-* `list --any -n alice -t friend` Lists out all contacts whose name is "alice" or who have the "friend" tag
-* `list --exact -n alice -t friend` Lists out all contacts whose name contain "alice" and who have tags that contain "friend"
-* `list --exact --any -n alice -t friend` Lists out all contacts whose name contain "alice" or who have tags that contain "friend"
+* `list -s n -o desc` Lists out all the contacts in descending lexicographical order.
+* `list -t friend` Lists out all contacts who has tags containing the word "friend"
+* `list -n alice -t friend` Lists out all contacts whose name contains the word "alice" and tag contains the word 
+  "friend"
+* `list --any -n alice -t friend` Lists out all contacts whose name contains "alice" or tag contains the word 
+  "friend"
+* `list --exact -n alice -t friend` Lists out all contacts whose name is exactly "alice" and who have tags that is 
+  exactly "friend"
+* `list --exact --any -n alice -t friend` Lists out all contacts whose name is "alice" or who have tags that is exactly 
+  "friend"
 * `list --any -n alice -n bob` Lists out all contacts whose name contain either "alice" or "bob"
 * `list --any -b 8 -b 9` Lists out all contacts whose birthdays are either in August or September
 
@@ -224,23 +247,32 @@ Shows a list of all events in PartyPlanet's Event List. Similar to `list`.
 
 Format: `elist [--exact] [--any] [-n NAME] [-r DETAIL]... [-s SORT] [-o ORDER]`
 
-* List out all events by default if no arguments specified.
-* `-n` and `-r` can be specified to filer the list by name and/or detail.
-  * Search is case-insensitive, e.g. `cHriStmAs` will match `Christmas`.
-  * Partial matches to names and details are performed by default, e.g. `key` will match `turkey`.
-  * If exact match is desired, specify an additional `--exact` flag.
-  * If multiple names/tags are specified, specifying `--any` filters contacts that fulfill any prefix match.
-* -s list out all events sorted according to SORT_FIELD. Possible values of SORT_FIELD:
-  * n: names in ascending lexicographical order
-  * d: event dates from past to present
-* -o list out all events sorted according to SORT_ORDER. Possible values of SORT_ORDER:
-  * asc: ascending lexicographical order
-  * desc: descending lexicographical order
+1. If no search parameters specified, `elist [-s SORT_FIELD] [-o SORT_ORDER]`: List out all events in event list.
+    * `-s` parameter optionally sorts events by `SORT_FIELD`. Possible values of 
+      `SORT_FIELD`:
+      * `n`, `name`: names (case-sensitive) in lexicographical order (by default, if `-s` not specified)
+      * `d`, `date`: event dates (Sensitive to year, will sort according to date with respect to year)
+      * `u`, `upcoming`: days left to next upcoming event (All events marked as `done` will appear at the bottom of the list regardless of the date)
+    * `-o` parameter optionally determines the direction of sort, according to `SORT_ORDER`. Possible values of SORT_ORDER:
+      * `a`, `asc`, `ascending`: ascending (by default, if `-o` not specified)
+      * `d`, `desc`, `descending`: descending
+      * Sorts by upcoming birthday ignores the sort order parameter and only sorts in `ascending` order
+2. If search parameters specified, `elist [--exact] [--any] [-n NAME]... [-r DETAIL]... [-s SORT_FIELD] [-o 
+   SORT_ORDER]`: List all events matching the search criteria
+    * Search criteria, case-insensitive: 
+        * `-n`, `--name` filters the events by event name
+        * `-r`, `--remark` filters the events by event details
+    * Search is case-insensitive, e.g. `cHriStmAs` will match `Christmas`.
+    * Partial matches to event names and details are performed by default, e.g. `key` will match `turkey`.
+    * If exact match is desired, specify an additional `--exact` flag.
+    * If multiple names/tags are specified, all specified search criteria must be fulfilled by each event by 
+      default, unless `--any` is specified for any match. 
+    * The filtered events can be additionally sorted using the `-s` and `-o` prefixes, as above.
 
 Examples:
 * `elist --exact -n Graduation party -r Get job` Lists out all events whose name is exactly "Graduation party" and remark is exactly "Get job"
 * `elist --any -n Christmas -r tarts` Lists out all events whose name contains "Christmas" or whose remarks contain "tarts"
-* `elist -s d` Lists out all events in chronological order
+* `elist -s d` Lists out all events in chronological order (ascending event date)
 
 #### Marking events as done : `edone`
 
@@ -270,7 +302,7 @@ Examples:
 * `edelete` deletes all events in the current Events List.
 * `edelete 1 2 3` deletes events at 1st, 2nd and 3rd indexes.
 
-### General Commmands
+### General Commands
 
 #### Showing help : `help`
 
@@ -292,9 +324,9 @@ The Autocomplete feature helps autocomplete when editing a Person or an Event to
 
 For any valid and empty prefix that the user inputs, the relevant details will be autocompleted on `TAB` keypress down.
 
-Format: 
+Format:
 
-Edit: `edit INDEX [-n NAME] [-p PHONE] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY] [-r REMARK] TAB` 
+Edit: `edit INDEX [-n NAME] [-p PHONE] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY] [-r REMARK] TAB`
 
 EEdit: `eedit INDEX [-n NAME] [-d DATE] [-r DETAIL] TAB`
 
@@ -303,6 +335,10 @@ Note: Valid INDEX must be used in order for Autocomplete to function.
 #### Undoing actions : `undo`
 
 Undoes the most recent action that changed PartyPlanet's Contact or Event List.
+
+Note: This means that only commands such, as `add`, `delete` etc.., can be undoed.<br>
+Other command that only changes display, such as `theme`, `list` etc.., will not be affected.
+
 Can be invoked repeatedly until there is no more history from the current session.
 
 Format: `undo`
@@ -312,6 +348,7 @@ Shortcut: `CTRL + Z`
 #### Redoing actions : `redo`
 
 Redoes the previous action that changed PartyPlanet's Contact or Event List.
+
 Can be invoked repeatedly until there are no more previously executed actions from the current session.
 
 Format: `redo`
@@ -342,6 +379,18 @@ Retrieves previously entered input.
 * `ESC` key clears the text box.
 * `CTRL + Z` key combination undoes the last change to the address or event books.
 * `CTRL + SHIFT + Z` or `CTRL + Y` key combinations redo the last undone change to the address or event books.
+
+<<<<<<< HEAD
+=======
+<div markdown="block" class="alert-warning">
+
+
+**:warning: PartyPlanet will use its default Address Book and Event Book JSON file if it is unable to locate the 
+JSON file. It will start with an empty JSON file if there is an error in the JSON file.**
+
+
+</div>
+>>>>>>> b8ff70187f2b9dbb5580bf47141e72086093ffa0
 
 ### Coming Soon (Additional Features)
 * Archiving of Data Files
