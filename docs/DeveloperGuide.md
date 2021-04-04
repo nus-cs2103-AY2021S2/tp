@@ -3,7 +3,7 @@ layout: page
 title: Developer Guide
 ---
 * Table of Contents
-  {:toc}
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -249,7 +249,7 @@ Aspect 1: Type of input for AddSessionCommand and DeleteSessionCommand
         * Allows fast entering of input.
     * Cons:
         * User has to constantly refer to the application for student index id.
-
+    
 Alternative 1 was chosen because the cons of implementing alternative 2 outweighs the benefits derived from it. Student index id may change when
 a user adds a new student into the AddressBook. If the AddressBook contains many students, it may take some time for the user to find the 
 updated student index id. Student name on the other hand, stays constant throughout the application lifetime unless the user edits this information,
@@ -402,14 +402,14 @@ MSS:
 2. TutorBuddy creates the profile in the background.
 3. TutorBuddy displays the success message.
 
-   Use case ends.
+    Use case ends.
 
 Extensions:
 
 * 1a. TutorBuddy detects an error in the entered data.
     * 1a1. TutorBuddy displays an error message.
 
-  Use case ends.
+    Use case ends.
 
 **Use case: UC02 - Delete a student profile**
 
@@ -529,13 +529,13 @@ testers are expected to do more *exploratory* testing.
 ### Launch and shutdown
 
 1. Initial launch
-    
+
    1. Download the jar file and copy into an empty folder
 
    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
-    
+
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
    1. Re-launch the app by double-clicking the jar file.<br>
