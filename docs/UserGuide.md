@@ -149,7 +149,17 @@ Commands that do not take in parameters (such as `help` and `exit`) ignore extra
 For example: If you input `help 123`, RemindMe will return the result of the `help` function.
 </div>
 
+<div markdown="span" class="alert alert-warning">:exclamation: **Warning:**<br>
+If you have the [calendar window](#39-viewing-calendar-calendar-c) 
+when adding/editing/deleting/clearing events, it will not be automatically reflected on the calendar window.
+You would need to press on the **refresh button** to refresh the calendar. 
+</div>
+
+![refreshButton](images/refreshbutton.png)
+*[refresh button to refresh calendar]*
+
 [Back to Table of Contents](#table-of-contents)
+
 
 ### 3.1 Viewing Help: `help`
 The help function shows the URL to the user guide for RemindMe, which is this current document!
@@ -699,7 +709,8 @@ The calendar window as shown below will be displayed.
 <br>
 You may browse through the calendar over the months by clicking the 
 left arrow button `<` and right arrow button `>` on the top right of the calendar window.
-Additionally, you may click on the `today` button to browse back to the month of the current day's date.
+Additionally, you may click on the `today` button to browse back to the month of the current day's date,
+and refresh the calendar with the `refresh` button.
 
 [Back to Table of Contents](#table-of-contents)
 
