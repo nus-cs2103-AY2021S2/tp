@@ -2,6 +2,9 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLEAN_STATUS_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RESIDENCE_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_RESIDENCES;
 
 import java.util.Collections;
@@ -33,8 +36,11 @@ public class EditCommand extends Command {
             + "by the index number used in the displayed residence list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: RESIDENCE_INDEX (must be a positive integer) "
-            + "[" + PREFIX_CLEAN_STATUS_TAG + "n]\n"
-            + "Example: " + COMMAND_WORD + "1 "
+            + "[" + PREFIX_NAME + "RESIDENCE_NAME]"
+            + "[" + PREFIX_RESIDENCE_ADDRESS + "ADDRESS]"
+            + "[" + PREFIX_CLEAN_STATUS_TAG + "y or n] "
+            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_CLEAN_STATUS_TAG + "y";
 
     public static final String MESSAGE_EDIT_RESIDENCE_SUCCESS = "Edited Residence: %1$s";
