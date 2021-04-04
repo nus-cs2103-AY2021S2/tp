@@ -16,8 +16,8 @@ public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all events whose names or descriptions "
-            + "contain any of the specified keywords (case-insensitive) and displays them as a list with "
-            + "index numbers.\n"
+            + "contain any of the specified keywords (case-insensitive) and displays them on "
+            + "the KanBan board or List view.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " cs2030 assignment 2";
 

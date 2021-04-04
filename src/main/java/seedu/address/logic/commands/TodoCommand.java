@@ -18,7 +18,7 @@ public class TodoCommand extends Command {
             + "Parameters: "
             + PREFIX_NAME + "NAME " + " "
             + PREFIX_DESCRIPTION + "DESCRIPTION " + " "
-            + "[" + PREFIX_PRIORITY + "]" + "PRIORITY " + "\n"
+            + "[" + PREFIX_PRIORITY + "PRIORITY]" + "\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Household Chores" + " "
             + PREFIX_DESCRIPTION + "Clean my room and wash the dishes";
