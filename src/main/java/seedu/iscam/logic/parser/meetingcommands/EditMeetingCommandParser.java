@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.iscam.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_CLIENT;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.iscam.logic.parser.CliSyntax.PREFIX_DONE;
+import static seedu.iscam.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_ON;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_TAG;
@@ -24,6 +24,7 @@ import seedu.iscam.logic.parser.ParserUtil;
 import seedu.iscam.logic.parser.exceptions.ParseException;
 import seedu.iscam.logic.parser.exceptions.ParseFormatException;
 import seedu.iscam.model.commons.Tag;
+import seedu.iscam.model.meeting.CompletionStatus;
 
 /**
  * Parses input arguments and creates a new EditMeetingCommand object.
@@ -39,10 +40,9 @@ public class EditMeetingCommandParser implements Parser<EditMeetingCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_CLIENT, PREFIX_ON, PREFIX_LOCATION, PREFIX_DESCRIPTION,
-                        PREFIX_TAG, PREFIX_DONE);
+                        PREFIX_TAG, PREFIX_STATUS);
 
         Index index;
-
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
@@ -55,25 +55,32 @@ public class EditMeetingCommandParser implements Parser<EditMeetingCommand> {
             // Parse client ID and retrieve client from Model to set in descriptor
             editMeetingDescriptor.setClientName(ParserUtil.parseName(argMultimap.getValue(PREFIX_CLIENT).get()));
         }
+
         if (argMultimap.getValue(PREFIX_ON).isPresent()) {
             // Parse string to date and time to set in descriptor
             editMeetingDescriptor.setDateTime(ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_ON).get()));
         }
+
         if (argMultimap.getValue(PREFIX_LOCATION).isPresent()) {
             editMeetingDescriptor.setAddress(ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get()));
         }
+
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
             // Parse string to Description to set in descriptor
             editMeetingDescriptor.setDescription(ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION)
                     .get()));
         }
+
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editMeetingDescriptor::setTags);
-        if (argMultimap.getValue(PREFIX_DONE).isPresent()) {
-            editMeetingDescriptor.setIsDone(ParserUtil.parseIsDone(argMultimap.getValue(PREFIX_DONE).get()));
+
+        if (argMultimap.getValue(PREFIX_STATUS).isPresent()) {
+            String argument = argMultimap.getValue(PREFIX_STATUS).get();
+            CompletionStatus status = ParserUtil.parseCompletionStatus(argMultimap.getValue(PREFIX_STATUS).get());
+            editMeetingDescriptor.setStatus(status);
         }
 
         if (!editMeetingDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditMeetingCommand.MESSAGE_NOT_EDITED);
+            throw new ParseFormatException(EditMeetingCommand.MESSAGE_NOT_EDITED);
         }
 
         return new EditMeetingCommand(index, editMeetingDescriptor);

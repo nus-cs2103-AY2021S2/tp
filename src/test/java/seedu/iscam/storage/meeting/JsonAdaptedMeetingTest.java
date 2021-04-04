@@ -33,7 +33,7 @@ public class JsonAdaptedMeetingTest {
     private static final List<JsonAdaptedMeetingTag> VALID_TAGS = BENSON_1.getTags().stream()
             .map(JsonAdaptedMeetingTag::new)
             .collect(Collectors.toList());
-    private static final String VALID_ISDONE = valueOf(BENSON_1.getIsDone());
+    private static final String VALID_ISDONE = valueOf(BENSON_1.getStatus().toString());
 
 
 

@@ -1,6 +1,8 @@
 package seedu.iscam.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.iscam.model.meeting.CompletionStatus.ARGUMENT_COMPLETE;
+import static seedu.iscam.model.meeting.CompletionStatus.ARGUMENT_INCOMPLETE;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -8,7 +10,6 @@ import java.util.Set;
 
 import seedu.iscam.commons.core.index.Index;
 import seedu.iscam.commons.util.StringUtil;
-import seedu.iscam.logic.commands.EditMeetingCommand;
 import seedu.iscam.logic.parser.exceptions.ParseException;
 import seedu.iscam.logic.parser.exceptions.ParseFormatException;
 import seedu.iscam.model.client.Email;
@@ -18,6 +19,7 @@ import seedu.iscam.model.client.Phone;
 import seedu.iscam.model.commons.Location;
 import seedu.iscam.model.commons.Name;
 import seedu.iscam.model.commons.Tag;
+import seedu.iscam.model.meeting.CompletionStatus;
 import seedu.iscam.model.meeting.DateTime;
 import seedu.iscam.model.meeting.Description;
 
@@ -176,13 +178,13 @@ public class ParserUtil {
      *
      * @throws ParseException if given {@code isDone} is not compliant to what is declared in EditMeetingCommand
      */
-    public static boolean parseIsDone(String isDone) throws ParseException {
-        requireNonNull(isDone);
-        if (!isDone.equals(EditMeetingCommand.PARAMETER_DONE)
-                && !isDone.equals(EditMeetingCommand.PARAMETER_NOT_DONE)) {
-            throw new ParseFormatException(EditMeetingCommand.MESSAGE_USAGE);
+    public static CompletionStatus parseCompletionStatus(String status) throws ParseException {
+        requireNonNull(status);
+        if (!status.equals(ARGUMENT_COMPLETE)
+                && !status.equals(ARGUMENT_INCOMPLETE)) {
+            throw new ParseFormatException(CompletionStatus.MESSAGE_CONSTRAINTS);
         }
-        return isDone.equals(EditMeetingCommand.PARAMETER_DONE);
+        return new CompletionStatus(status);
     }
 
     /**

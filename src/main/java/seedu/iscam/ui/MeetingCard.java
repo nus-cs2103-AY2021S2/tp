@@ -57,7 +57,7 @@ public class MeetingCard extends UiPart<Region> {
         dateTime.setText(dateTimeString.substring(0, dateTimeString.length() - 3));
         meetingLocation.setText(meeting.getLocation().value);
         description.setText(meeting.getDescription().value);
-        if (meeting.getIsDone()) {
+        if (meeting.getStatus().isComplete()) {
             isDone.setText("Completed");
         } else {
             isDone.setText("Not Completed");

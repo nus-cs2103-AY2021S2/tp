@@ -14,6 +14,7 @@ import seedu.iscam.model.client.Client;
 import seedu.iscam.model.commons.Location;
 import seedu.iscam.model.commons.Name;
 import seedu.iscam.model.commons.Tag;
+import seedu.iscam.model.meeting.CompletionStatus;
 import seedu.iscam.model.meeting.DateTime;
 import seedu.iscam.model.meeting.Description;
 import seedu.iscam.model.meeting.Meeting;
@@ -30,7 +31,7 @@ class JsonAdaptedMeeting {
     private final String location;
     private final String description;
     private final List<JsonAdaptedMeetingTag> tags = new ArrayList<>();
-    private final String isDone;
+    private final String status;
 
     /**
      * Constructs a {@code JsonAdaptedClient} with the given client details.
@@ -40,7 +41,7 @@ class JsonAdaptedMeeting {
                               @JsonProperty("location") String location,
                               @JsonProperty("description") String description,
                               @JsonProperty("tags") List<JsonAdaptedMeetingTag> tags,
-                              @JsonProperty("isDone") String isDone) {
+                              @JsonProperty("isDone") String status) {
         this.clientName = clientName;
         this.dateTime = dateTime;
         this.location = location;
@@ -48,7 +49,7 @@ class JsonAdaptedMeeting {
         if (tags != null) {
             this.tags.addAll(tags);
         }
-        this.isDone = isDone;
+        this.status = status;
     }
 
     /**
@@ -62,7 +63,7 @@ class JsonAdaptedMeeting {
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedMeetingTag::new)
                 .collect(Collectors.toList()));
-        isDone = source.getIsDone() ? "true" : "false";
+        status = source.getStatus().toString();
     }
 
     /**
@@ -117,9 +118,9 @@ class JsonAdaptedMeeting {
         }
         final Set<Tag> modelTags = new HashSet<>(meetingTags);
 
-        final boolean isDone = this.isDone.equals("true");
+        final CompletionStatus status = new CompletionStatus(this.status);
 
-        return new Meeting(modelClient, modelDateTime, modelLocation, modelDescription, modelTags, isDone);
+        return new Meeting(modelClient, modelDateTime, modelLocation, modelDescription, modelTags, status);
     }
 
 }

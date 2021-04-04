@@ -43,7 +43,7 @@ public class RelocateMeetingCommand extends Command {
 
     private Meeting relocateMeeting(Meeting meeting, Location newLocation) {
         return new Meeting(meeting.getClientName(), meeting.getDateTime(), newLocation,
-                meeting.getDescription(), meeting.getTags(), meeting.getIsDone());
+                meeting.getDescription(), meeting.getTags(), meeting.getStatus());
     }
 
     @Override

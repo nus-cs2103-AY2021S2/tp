@@ -6,10 +6,12 @@ import java.util.Set;
 import seedu.iscam.model.commons.Location;
 import seedu.iscam.model.commons.Name;
 import seedu.iscam.model.commons.Tag;
+import seedu.iscam.model.meeting.CompletionStatus;
 import seedu.iscam.model.meeting.DateTime;
 import seedu.iscam.model.meeting.Description;
 import seedu.iscam.model.meeting.Meeting;
 import seedu.iscam.model.util.SampleDataUtil;
+import seedu.iscam.model.meeting.CompletionStatus.Status;
 
 /**
  * A utility class to help with building Meeting objects.
@@ -26,7 +28,7 @@ public class MeetingBuilder {
     private Location location;
     private Description description;
     private Set<Tag> tags = new HashSet<>();
-    private boolean isDone = false;
+    private CompletionStatus status = new CompletionStatus(Status.INCOMPLETE);
 
     /**
      * Creates a {@code MeetingBuilder} with the default details.
@@ -37,7 +39,7 @@ public class MeetingBuilder {
         location = new Location(DEFAULT_LOCATION);
         description = new Description(DEFAULT_DESCRIPTION);
         tags = new HashSet<>();
-        isDone = false;
+        status = new CompletionStatus(Status.INCOMPLETE);
     }
 
     /**
@@ -49,7 +51,7 @@ public class MeetingBuilder {
         location = toCopy.getLocation();
         description = toCopy.getDescription();
         tags = toCopy.getTags();
-        isDone = toCopy.getIsDone();
+        status = toCopy.getStatus();
     }
 
     /**
@@ -95,12 +97,12 @@ public class MeetingBuilder {
     /**
      * Sets the {@code isDone} of the {@code Meeting} that we are building.
      */
-    public MeetingBuilder withIsDone(boolean isDone) {
-        this.isDone = isDone;
+    public MeetingBuilder withStatus(String status) {
+        this.status = new CompletionStatus(status);
         return this;
     }
 
     public Meeting build() {
-        return new Meeting(name, dateTime, location, description, tags, isDone);
+        return new Meeting(name, dateTime, location, description, tags, status);
     }
 }
