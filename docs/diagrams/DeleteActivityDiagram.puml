@@ -1,13 +1,13 @@
 @startuml
 start
-:User executes command;
+:User enters delete command;
 
-'Since the beta syntax does not support placing the condition outside the
-'diamond we place it as the true branch instead.
+:Parse user input;
 
 if () then ([user input is valid])
     :Create and execute Delete command;
     :Delete item from StoreMando inventory;
+    :Display command success message;
 else ([else])
     :Display parse error message;
 endif
