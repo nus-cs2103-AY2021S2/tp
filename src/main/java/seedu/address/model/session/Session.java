@@ -1,13 +1,18 @@
 package seedu.address.model.session;
 
+import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
  * Represents an individual tuition session at one time slot for one student
  */
 public class Session {
+
+    public static final String MESSAGE_CONSTRAINTS = "The start time + duration should not exceed "
+        + "the current date.";
 
     private SessionDate sessionDate;
     private Duration duration;
@@ -41,6 +46,21 @@ public class Session {
 
     public Fee getFee() {
         return fee;
+    }
+
+    public static void checkPossibleEndTime(SessionDate sessionDate, Duration duration) {
+        checkArgument(isPossibleEndTime(sessionDate, duration), MESSAGE_CONSTRAINTS);
+    }
+
+    /**
+     * Checks if the duration + start time is possible.
+     * @return true if the duration + start time does not exceeds the start day itself.
+     */
+    public static boolean isPossibleEndTime(SessionDate sessionDate, Duration duration) {
+        LocalDateTime startDateTime = sessionDate.getDateTime();
+        LocalDateTime endDateTime = startDateTime.plusMinutes(duration.getValue());
+        return endDateTime.getYear() == startDateTime.getYear() && endDateTime.getMonth() == startDateTime.getMonth()
+            && endDateTime.getDayOfYear() == startDateTime.getDayOfYear();
     }
 
     /**

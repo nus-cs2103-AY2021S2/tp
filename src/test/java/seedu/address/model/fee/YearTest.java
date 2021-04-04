@@ -17,8 +17,20 @@ public class YearTest {
     @Test
     public void equalsYear() {
         Year year2021 = new Year(2021);
+        Year year2020 = new Year(2020);
+
+        // same object -> returns true
+        assertEquals(year2021, year2021);
+
+        // same values -> returns true
         assertEquals(year2021, new Year(2021));
         assertEquals(year2021.toString(), String.valueOf(year2021.getYear()));
+
+        // different type -> returns false
+        assertFalse(year2021.equals(year2021.getYear()));
+
+        // different object -> returns false
+        assertFalse(year2021.equals(year2020));
     }
 
     @Test

@@ -50,7 +50,15 @@ public class TypicalStudents {
             .withEmail("heinz@example.com").withAddress("wall street")
             .withStudyLevel("University CS1101S").withGuardianPhone("98621032").withRelationship("Mother")
             .addSessions(
-                new RecurringSessionBuilder().build()
+                new RecurringSessionBuilder().build(),
+                new RecurringSessionBuilder().withInterval("3").withFee("25.30")
+                    .withSessionDate("2021-02-28", "14:00")
+                    .withLastSessionDate("2021-03-06", "14:00")
+                    .build(),
+                new RecurringSessionBuilder().withInterval("7").withFee("30.20")
+                    .withSessionDate("2021-03-05", "12:00")
+                    .withLastSessionDate("2021-04-02", "12:00")
+                    .build()
             )
             .build();
     public static final Student DANIEL = new StudentBuilder().withName("Daniel Meier").withPhone("87652533")
