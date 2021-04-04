@@ -1,7 +1,20 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_NAME;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_EMAIL;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_PHONE;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_ROLE;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TASK_ASSIGNEE;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TASK_DEADLINE;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TASK_DEADLINE_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TASK_DESCRIPTION;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TASK_PRIORITY;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TASK_STATUS;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TASK_TITLE;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -51,7 +64,7 @@ public class ParserUtil {
         requireNonNull(name);
         String trimmedName = name.trim();
         if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            throw new ParseException(MESSAGE_INVALID_PERSON_DISPLAYED_NAME + Name.MESSAGE_CONSTRAINTS);
         }
         return new Name(trimmedName);
     }
@@ -66,7 +79,7 @@ public class ParserUtil {
         requireNonNull(phone);
         String trimmedPhone = phone.trim();
         if (!Phone.isValidPhone(trimmedPhone)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+            throw new ParseException(MESSAGE_INVALID_PERSON_PHONE + Phone.MESSAGE_CONSTRAINTS);
         }
         return new Phone(trimmedPhone);
     }
@@ -81,7 +94,7 @@ public class ParserUtil {
         requireNonNull(email);
         String trimmedEmail = email.trim();
         if (!Email.isValidEmail(trimmedEmail)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+            throw new ParseException(MESSAGE_INVALID_PERSON_EMAIL + Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
     }
@@ -96,7 +109,7 @@ public class ParserUtil {
         requireNonNull(role);
         String trimmedRole = role.trim();
         if (!Role.isValidRole(trimmedRole)) {
-            throw new ParseException(Role.MESSAGE_CONSTRAINTS);
+            throw new ParseException(MESSAGE_INVALID_PERSON_ROLE + Role.MESSAGE_CONSTRAINTS);
         }
         return new Role(trimmedRole);
     }
@@ -111,7 +124,7 @@ public class ParserUtil {
         requireNonNull(assignee);
         String trimmedAssignee = assignee.trim();
         if (!Assignee.isValidAssigneeName(trimmedAssignee)) {
-            throw new ParseException(Assignee.MESSAGE_CONSTRAINTS);
+            throw new ParseException(MESSAGE_INVALID_TASK_ASSIGNEE + Assignee.MESSAGE_CONSTRAINTS);
         }
         return new Assignee(trimmedAssignee);
     }
@@ -145,7 +158,7 @@ public class ParserUtil {
         }
 
         if (!Title.isValidTitle(trimmedTitle)) {
-            throw new ParseException(Title.MESSAGE_CONSTRAINTS);
+            throw new ParseException(MESSAGE_INVALID_TASK_TITLE + Title.MESSAGE_CONSTRAINTS);
         }
         return new Title(trimmedTitle);
     }
@@ -167,7 +180,7 @@ public class ParserUtil {
         }
 
         if (!Description.isValidDescription(trimmedDesc)) {
-            throw new ParseException(Description.MESSAGE_CONSTRAINTS);
+            throw new ParseException(MESSAGE_INVALID_TASK_DESCRIPTION + Description.MESSAGE_CONSTRAINTS);
         }
         return new Description(trimmedDesc);
     }
@@ -189,7 +202,7 @@ public class ParserUtil {
         }
 
         if (!TaskStatus.isValidValue(trimmedStatus)) {
-            throw new ParseException(TaskStatus.MESSAGE_CONSTRAINTS);
+            throw new ParseException(MESSAGE_INVALID_TASK_STATUS + TaskStatus.MESSAGE_CONSTRAINTS);
         }
         return TaskStatus.valueOf(trimmedStatus.toUpperCase());
     }
@@ -203,15 +216,18 @@ public class ParserUtil {
     public static Deadline parseDeadline(String deadline) throws ParseException {
         requireNonNull(deadline);
         String trimmedDeadline = deadline.trim();
-
+        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        sdf.setLenient(false);
         try {
             assert Deadline.isValidDeadline(trimmedDeadline) : "You have to input a valid deadline!";
         } catch (AssertionError e) {
             throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
         }
-
+        if (!Deadline.isValidFormat(trimmedDeadline)) {
+            throw new ParseException(MESSAGE_INVALID_TASK_DEADLINE_FORMAT + Deadline.MESSAGE_CONSTRAINTS);
+        }
         if (!Deadline.isValidDeadline(trimmedDeadline)) {
-            throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
+            throw new ParseException(MESSAGE_INVALID_TASK_DEADLINE + Deadline.MESSAGE_CONSTRAINTS);
         }
         return new Deadline(trimmedDeadline);
     }
@@ -227,7 +243,7 @@ public class ParserUtil {
         String trimmedPriority = priority.trim();
 
         if (!Priority.isValidValue(trimmedPriority)) {
-            throw new ParseException(Priority.MESSAGE_CONSTRAINTS);
+            throw new ParseException(MESSAGE_INVALID_TASK_PRIORITY + Priority.MESSAGE_CONSTRAINTS);
         }
         return Priority.valueOf(trimmedPriority.toUpperCase());
     }

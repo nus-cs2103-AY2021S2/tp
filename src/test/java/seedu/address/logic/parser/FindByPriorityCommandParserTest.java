@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TASK_PRIORITY;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -54,7 +55,7 @@ public class FindByPriorityCommandParserTest {
         assertParseFailure(parser, "low high", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 FindByPriorityCommand.MESSAGE_USAGE));
 
-        assertParseFailure(parser, "extreme", String.format(Priority.MESSAGE_CONSTRAINTS,
-                FindByPriorityCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "extreme", MESSAGE_INVALID_TASK_PRIORITY
+                + Priority.MESSAGE_CONSTRAINTS);
     }
 }
