@@ -19,6 +19,8 @@ import seedu.partyplanet.commons.core.index.Index;
 import seedu.partyplanet.logic.commands.exceptions.CommandException;
 import seedu.partyplanet.model.AddressBook;
 import seedu.partyplanet.model.Model;
+import seedu.partyplanet.model.event.Event;
+import seedu.partyplanet.model.event.predicates.EventNameContainsKeywordsPredicate;
 import seedu.partyplanet.model.person.Person;
 import seedu.partyplanet.model.person.predicates.NameContainsKeywordsPredicate;
 import seedu.partyplanet.testutil.EditPersonDescriptorBuilder;
@@ -178,4 +180,43 @@ public class CommandTestUtil {
         assertEquals(targetIndexes.length, model.getFilteredPersonList().size());
     }
 
+    /**
+     * Updates {@code model}'s filtered list to show only the event at the given {@code targetIndex} in the
+     * {@code model}'s event book.
+     */
+    public static void showEventAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredEventList().size());
+
+        Event event = model.getFilteredEventList().get(targetIndex.getZeroBased());
+        final String[] splitName = event.getName().fullName.split("\\s+");
+        model.updateFilteredEventList(new EventNameContainsKeywordsPredicate(splitName[0]));
+
+        assertEquals(1, model.getFilteredEventList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the event at the given {@code targetIndex} in the
+     * {@code model}'s event book.
+     * Multiple targetIndexes can be provided.
+     * Every targetIndex has to be valid.
+     */
+    public static void showEventAtMultipleIndex(Model model, Index... targetIndexes) {
+        assertTrue(targetIndexes.length >= 1);
+
+        List<String> eventNames = new ArrayList<>();
+        for (Index i : targetIndexes) {
+            assertTrue(i.getZeroBased() < model.getFilteredEventList().size());
+            eventNames.add(model.getFilteredEventList().get(i.getZeroBased()).getName().fullName);
+        }
+
+        Predicate<Event> allEvents = new EventNameContainsKeywordsPredicate(eventNames.get(0));
+
+        for (int c = 1; c < eventNames.size(); c++) {
+            allEvents = allEvents.or(new EventNameContainsKeywordsPredicate(eventNames.get(c)));
+        }
+
+        model.updateFilteredEventList(allEvents);
+
+        assertEquals(targetIndexes.length, model.getFilteredEventList().size());
+    }
 }
