@@ -1,11 +1,7 @@
 package seedu.address.ui;
 
-import static javafx.collections.FXCollections.*;
 import java.util.Comparator;
-import java.util.stream.Collectors;
 
-import javafx.beans.binding.Bindings;
-import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
@@ -57,8 +53,8 @@ public class PersonDetailsCard extends UiPart<Region> {
         debt.setText("Debt: " + person.getDebt().value.toString());
         birthday.setText(person.getBirthday().toUi());
         person.getTags().stream()
-            .sorted(Comparator.comparing(tag -> tag.tagName))
-            .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
 
         person.getDates().forEach(date -> datesContainer
                 .getChildren()
