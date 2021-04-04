@@ -544,7 +544,7 @@ it will be changed to vertical and vice versa.
 Format: `toggledividerd`
 
 Examples:
-* `togglerdividerd`
+* `toggledividerd`
 
 ##### Toggle note divider orientation: `toggledividern`
 
