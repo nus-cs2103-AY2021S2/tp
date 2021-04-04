@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
+import seedu.address.commons.core.DetailsPanelTab;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -41,6 +42,13 @@ public class DeleteCommand extends Command {
 
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deletePerson(personToDelete);
+
+        // TODO: check current tab and only switch if user is on PersonDetailsTab
+        if (model.getDetailedPerson().contains(personToDelete)) {
+            return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete),
+                    DetailsPanelTab.UPCOMING_EVENTS);
+        }
+
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
     }
 
