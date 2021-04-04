@@ -40,11 +40,11 @@ on ModuleBook3.5.
     1. The distribution of workload across all modules is calculated and displayed on a pie chart.
     
 <div markdown="span" class="alert alert-warning">:exclamation: **Alert:**
-While each module is guaranteed to have a colour that is different from that of other modules 
-within the workload pie chart, each module's colour may change as a command is executed.
+Within the workload pie chart, each module's colour may change as a command is executed. 
+However, the colours will be arranged such that no two modules with the same colour will be next to each other.
 </div>
 
-4. Tasks are colour coded based on done status.
+4. Tasks in the task list are colour coded based on done status.
     1. Done tasks are coloured pink.
     1. Tasks that are not done are coloured differently.
     
@@ -343,7 +343,7 @@ Examples:
 
 ### Sort tasks : `sort`
 
-Sorts the list of all tasks by workload/deadline/module.
+Sorts the list of all tasks by workload/deadline/module. If no prefix is supplied, the tasks will be sorted by deadline.
 
 Application: Used to group and prioritise tasks based on a certain criteria.
 
