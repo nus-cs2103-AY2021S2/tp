@@ -15,7 +15,6 @@ import seedu.address.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.AttributeManager;
 import seedu.address.model.task.Task;
-import seedu.address.model.task.attributes.Attribute;
 
 
 /**

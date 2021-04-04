@@ -3,8 +3,6 @@ package seedu.address.logic.conditions;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.w3c.dom.Attr;
-
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.attributes.Attribute;

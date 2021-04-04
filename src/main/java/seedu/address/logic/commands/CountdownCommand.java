@@ -12,7 +12,6 @@ import seedu.address.logic.conditions.IndexManager;
 import seedu.address.model.Model;
 import seedu.address.model.task.AttributeManager;
 import seedu.address.model.task.Task;
-import seedu.address.model.task.attributes.Attribute;
 
 /**
  *

@@ -18,6 +18,11 @@ public class AttributeManager {
     private final Status status;
     private final Title title;
 
+    /**
+     * AttributeManager provides access to the Task's attributes functionalities.
+     *
+     * @param task The task's attribute we are interested to access.
+     */
     public AttributeManager(Task task) {
         this.task = task;
         this.date = task.getDate();
