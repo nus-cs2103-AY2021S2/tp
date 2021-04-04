@@ -7,11 +7,11 @@ import seedu.iscam.model.commons.Location;
 import seedu.iscam.model.commons.Name;
 import seedu.iscam.model.commons.Tag;
 import seedu.iscam.model.meeting.CompletionStatus;
+import seedu.iscam.model.meeting.CompletionStatus.Status;
 import seedu.iscam.model.meeting.DateTime;
 import seedu.iscam.model.meeting.Description;
 import seedu.iscam.model.meeting.Meeting;
 import seedu.iscam.model.util.SampleDataUtil;
-import seedu.iscam.model.meeting.CompletionStatus.Status;
 
 /**
  * A utility class to help with building Meeting objects.
