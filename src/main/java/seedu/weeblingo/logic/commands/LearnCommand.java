@@ -8,7 +8,6 @@ import seedu.weeblingo.commons.core.Messages;
 import seedu.weeblingo.logic.commands.exceptions.CommandException;
 import seedu.weeblingo.model.Mode;
 import seedu.weeblingo.model.Model;
-import seedu.weeblingo.model.flashcard.Flashcard;
 import seedu.weeblingo.model.tag.Tag;
 
 /**
@@ -38,6 +37,16 @@ public class LearnCommand extends Command {
             return new CommandResult(MESSAGE_SUCCESS, false, false);
         } else {
             throw new CommandException(Messages.MESSAGE_NOT_IN_MENU_MODE);
+        }
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other instanceof LearnCommand) {
+            LearnCommand otherCommand = (LearnCommand) other;
+            return this.tags.containsAll(otherCommand.tags) && otherCommand.tags.containsAll(this.tags);
+        } else {
+            return false;
         }
     }
 }

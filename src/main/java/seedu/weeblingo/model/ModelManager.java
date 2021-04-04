@@ -1,6 +1,7 @@
 package seedu.weeblingo.model;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.weeblingo.commons.core.Messages.MESSAGE_TAG_NOT_FOUND;
 import static seedu.weeblingo.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
@@ -255,7 +256,14 @@ public class ModelManager implements Model {
         this.mode.switchModeQuiz();
     }
 
-    public void switchModeLearn() {
+    /**
+     * Switches the current mode to Learn Mode.
+     * @throws CommandException if the filtered list of flashcards is empty.
+     */
+    public void switchModeLearn() throws CommandException {
+        if (filteredFlashcards.isEmpty()) {
+            throw new CommandException(MESSAGE_TAG_NOT_FOUND);
+        }
         this.mode.switchModeLearn();
     }
 
