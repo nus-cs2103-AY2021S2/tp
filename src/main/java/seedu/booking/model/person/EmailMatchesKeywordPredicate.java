@@ -7,10 +7,10 @@ import seedu.booking.commons.util.StringUtil;
 /**
  * Tests that a {@code Person}'s {@code Email} matches the keyword.
  */
-public class EmailContainsKeywordsPredicate implements Predicate<Person> {
+public class EmailMatchesKeywordPredicate implements Predicate<Person> {
     private final String keyword;
 
-    public EmailContainsKeywordsPredicate(String keyword) {
+    public EmailMatchesKeywordPredicate(String keyword) {
         this.keyword = keyword;
     }
 
@@ -22,8 +22,8 @@ public class EmailContainsKeywordsPredicate implements Predicate<Person> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof EmailContainsKeywordsPredicate // instanceof handles nulls
-                && keyword.equals(((EmailContainsKeywordsPredicate) other).keyword)); // state check
+                || (other instanceof EmailMatchesKeywordPredicate // instanceof handles nulls
+                && keyword.equals(((EmailMatchesKeywordPredicate) other).keyword)); // state check
     }
 
 }

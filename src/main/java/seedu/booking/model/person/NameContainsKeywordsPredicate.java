@@ -9,6 +9,8 @@ import seedu.booking.commons.util.StringUtil;
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
  */
 public class NameContainsKeywordsPredicate implements Predicate<Person> {
+    public static final String MESSAGE_CONSTRAINTS = "Keyword(s) for name should not be empty";
+
     private final List<String> keywords;
 
     public NameContainsKeywordsPredicate(List<String> keywords) {
@@ -17,8 +19,11 @@ public class NameContainsKeywordsPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
+        if (keywords.isEmpty()) {
+            return false;
+        }
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getName().fullName, keyword));
+                .allMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getName().fullName, keyword));
     }
 
     @Override

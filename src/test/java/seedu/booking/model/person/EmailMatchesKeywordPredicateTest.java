@@ -7,21 +7,21 @@ import org.junit.jupiter.api.Test;
 
 import seedu.booking.testutil.PersonBuilder;
 
-public class EmailContainsKeywordsPredicateTest {
+public class EmailMatchesKeywordPredicateTest {
 
     @Test
     public void equals() {
         String firstPredicateKeyword = "amy@gmail.com";
         String secondPredicateKeyword = "jon@gmail.com";
 
-        EmailContainsKeywordsPredicate firstPredicate = new EmailContainsKeywordsPredicate(firstPredicateKeyword);
-        EmailContainsKeywordsPredicate secondPredicate = new EmailContainsKeywordsPredicate(secondPredicateKeyword);
+        EmailMatchesKeywordPredicate firstPredicate = new EmailMatchesKeywordPredicate(firstPredicateKeyword);
+        EmailMatchesKeywordPredicate secondPredicate = new EmailMatchesKeywordPredicate(secondPredicateKeyword);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        EmailContainsKeywordsPredicate firstPredicateCopy = new EmailContainsKeywordsPredicate(firstPredicateKeyword);
+        EmailMatchesKeywordPredicate firstPredicateCopy = new EmailMatchesKeywordPredicate(firstPredicateKeyword);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -37,22 +37,22 @@ public class EmailContainsKeywordsPredicateTest {
     @Test
     public void test_emailContainsKeywords_returnsTrue() {
         // One keyword
-        EmailContainsKeywordsPredicate predicate = new EmailContainsKeywordsPredicate("amy@gmail.com");
+        EmailMatchesKeywordPredicate predicate = new EmailMatchesKeywordPredicate("amy@gmail.com");
         assertTrue(predicate.test(new PersonBuilder().withEmail("amy@gmail.com").build()));
 
         // Mixed-case keywords
-        predicate = new EmailContainsKeywordsPredicate("AmY@gmAil.cOm");
+        predicate = new EmailMatchesKeywordPredicate("AmY@gmAil.cOm");
         assertTrue(predicate.test(new PersonBuilder().withEmail("amy@gmail.com").build()));
     }
 
     @Test
     public void test_emailDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
-        EmailContainsKeywordsPredicate predicate = new EmailContainsKeywordsPredicate(" ");
+        EmailMatchesKeywordPredicate predicate = new EmailMatchesKeywordPredicate(" ");
         assertFalse(predicate.test(new PersonBuilder().withEmail("amy@gmail.com").build()));
 
         // Non-matching keyword
-        predicate = new EmailContainsKeywordsPredicate("Amy");
+        predicate = new EmailMatchesKeywordPredicate("Amy");
         assertFalse(predicate.test(new PersonBuilder().withEmail("amy@gmail.com").build()));
     }
 }
