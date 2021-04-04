@@ -4,6 +4,8 @@ import static seedu.iscam.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.iscam.model.user.UserPrefs;
+
 public class UserPrefsTest {
 
     @Test

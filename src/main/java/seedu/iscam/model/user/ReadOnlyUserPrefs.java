@@ -1,4 +1,4 @@
-package seedu.iscam.model;
+package seedu.iscam.model.user;
 
 import java.nio.file.Path;
 

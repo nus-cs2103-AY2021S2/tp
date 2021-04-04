@@ -1,15 +1,15 @@
-package seedu.iscam.storage;
+package seedu.iscam.storage.user;
 
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.iscam.commons.exceptions.DataConversionException;
-import seedu.iscam.model.ReadOnlyUserPrefs;
-import seedu.iscam.model.UserPrefs;
+import seedu.iscam.model.user.ReadOnlyUserPrefs;
+import seedu.iscam.model.user.UserPrefs;
 
 /**
- * Represents a storage for {@link seedu.iscam.model.UserPrefs}.
+ * Represents a storage for {@link UserPrefs}.
  */
 public interface UserPrefsStorage {
 
@@ -28,7 +28,7 @@ public interface UserPrefsStorage {
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
 
     /**
-     * Saves the given {@link seedu.iscam.model.ReadOnlyUserPrefs} to the storage.
+     * Saves the given {@link ReadOnlyUserPrefs} to the storage.
      *
      * @param userPrefs cannot be null.
      * @throws IOException if there was any problem writing to the file.

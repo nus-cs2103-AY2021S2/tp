@@ -1,12 +1,10 @@
-package seedu.iscam.model;
+package seedu.iscam.model.meeting;
 
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.iscam.model.meeting.Meeting;
-import seedu.iscam.model.meeting.UniqueMeetingList;
 
 /**
  * Wraps all data at the address-book level

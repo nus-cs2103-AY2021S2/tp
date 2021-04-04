@@ -1,4 +1,4 @@
-package seedu.iscam.model;
+package seedu.iscam.model.user;
 
 import static java.util.Objects.requireNonNull;
 
