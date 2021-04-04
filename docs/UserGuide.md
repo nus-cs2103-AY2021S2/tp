@@ -12,7 +12,7 @@ https://ay2021s2-cs2103t-t11-2.github.io/tp/UserGuide.html#1-introduction
 </div>
 
 ## **1. Introduction**
-Welcome to our **User Guide** and thank you for using CakeCollate! Are you a home baker searching for a reliable tool to keep track of your orders? 
+Welcome to our User Guide and thank you for using CakeCollate! Are you a home baker searching for a reliable tool to keep track of your orders? 
 While there may be other modern applications such as Microsoft Excel that may be able to help you keep track of your data, they may not be the most efficient or simplest
 way for you to manage your data. 
 
@@ -25,6 +25,17 @@ CakeCollate promises to be an efficient desktop application that allows you to e
 It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you're a small-time cake seller that can type fast, CakeCollate can get your order management tasks done faster than traditional GUI apps.
 
 --------------------------------------------------------------------------------------------------------------------
+## **2. Using the User Guide**
+In this section, you can learn more about the different terminologies and what to expect from each section of the User Guide.
+This allows you to better comprehend the terms that are used and quickly navigate to sections where the solution to your questions
+may lie.
+
+### **2.1 What's in the User Guide**
+
+In [Section 2.2: Reading this Document](##22-reading-this-document) you find essential information that enables to read
+the user guide seamlessly.
+
+### **2.2 Reading the User Guide**
 
 ## **3. Quick start**
 
@@ -57,8 +68,8 @@ You can use the sample data pre-loaded in the application to get play around and
 
 1. Refer to the [Features](#features) below for details of each command.
 
-<div markdown="span" class="alert alert-info">
-:information_source: **Tip:** You can remove all the sample data using the `clear` command once you are ready to use CakeCollate.<br>
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:** You can remove all the sample data using the `clear` command once you are ready to use CakeCollate.<br>
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -72,7 +83,7 @@ You can use the sample data pre-loaded in the application to get play around and
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
-* Items in square brackets are optional.<br>
+* Items in square brackets are optional fields that the user can choose to include or not as an input.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times. <br>  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc. <!-- order desc? --> 
