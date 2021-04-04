@@ -11,7 +11,6 @@ import seedu.student.model.student.FacultyContainsKeywords;
 import seedu.student.model.student.SchoolResidence;
 import seedu.student.model.student.SchoolResidenceContainsKeywords;
 import seedu.student.model.student.VaccinationStatus;
-import seedu.student.model.student.VaccinationStatusContainsKeywords;
 
 /**
  * Parses input arguments and creates a new FilterCommand object
@@ -23,6 +22,7 @@ public class FilterCommandParser implements Parser<FilterCommand> {
     private static final List<String> FACULTY = Faculty.getFacultyAbbreviation();
     private static final List<String> SCHOOL_RESIDENCE = SchoolResidence.getResidenceAbbreviation();
     private static final String UNVACCINATED_STATUS = "not_vaccinated";
+    private static final String DOES_NOT_LIVE_ON_CAMPUS_STATUS = "DOES NOT LIVE ON CAMPUS";
 
     /**
      * Parses the given {@code String} of arguments in the context of the FilterCommand
@@ -34,7 +34,8 @@ public class FilterCommandParser implements Parser<FilterCommand> {
 
         String condition = args.trim();
 
-        if (condition.equals("not_vaccinated")) {
+       /*
+       if (condition.equals("not_vaccinated")) {
             condition = "";
         }
 
@@ -44,10 +45,14 @@ public class FilterCommandParser implements Parser<FilterCommand> {
 
         if (VACCINATED_STATUS.contains(condition)) {
             return new FilterCommand(new VaccinationStatusContainsKeywords(condition));
-        } else if (FACULTY.contains(condition)) {
+        }
+        */
+        if (FACULTY.contains(condition)) {
             return new FilterCommand(new FacultyContainsKeywords(condition));
-        } else if (SCHOOL_RESIDENCE.contains(condition)) {
+        } else if (SCHOOL_RESIDENCE.contains(condition) && !condition.equals("DOES_NOT_LIVE_ON_CAMPUS")) {
             return new FilterCommand(new SchoolResidenceContainsKeywords(condition));
+        } else if (SCHOOL_RESIDENCE.contains(condition) && condition.equals("DOES_NOT_LIVE_ON_CAMPUS")) {
+            return new FilterCommand(new SchoolResidenceContainsKeywords(DOES_NOT_LIVE_ON_CAMPUS_STATUS));
         } else {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));

@@ -44,6 +44,7 @@ public class VaccinationStatus {
      */
     public static boolean isValidStatus(String test) {
         test = test.replaceAll(" ", "_").toUpperCase();
+        System.out.println(test);
         try {
             boolean result = VaccinationStatusAbbreviation.valueOf(test) == VaccinationStatusAbbreviation.NOT_VACCINATED
                     || VaccinationStatusAbbreviation.valueOf(test) == VaccinationStatusAbbreviation.VACCINATED;

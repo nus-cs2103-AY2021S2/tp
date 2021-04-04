@@ -14,6 +14,10 @@ public class SchoolResidenceContainsKeywords implements Predicate<Student> {
 
     @Override
     public boolean test(Student student) {
+
+        System.out.println(keyword);
+        System.out.println(student.getSchoolResidence().toString());
+
         return keyword.equals((student.getSchoolResidence().toString()));
     }
 
