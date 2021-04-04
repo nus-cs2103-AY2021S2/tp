@@ -30,11 +30,16 @@ public class UniqueGarmentList implements Iterable<Garment> {
     private final ObservableList<Garment> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
+    public void sort() {
+        internalList.sort(new GarmentComparator());
+    }
+
     /**
      * Returns true if the list contains an equivalent garment as the given argument.
      */
     public boolean contains(Garment toCheck) {
         requireNonNull(toCheck);
+        this.sort();
         return internalList.stream().anyMatch(toCheck::isSameGarment);
     }
 
@@ -48,6 +53,7 @@ public class UniqueGarmentList implements Iterable<Garment> {
             throw new DuplicateGarmentException();
         }
         internalList.add(toAdd);
+        this.sort();
     }
 
     /**
@@ -68,6 +74,7 @@ public class UniqueGarmentList implements Iterable<Garment> {
         }
 
         internalList.set(index, editedGarment);
+        this.sort();
     }
 
     /**
@@ -76,6 +83,7 @@ public class UniqueGarmentList implements Iterable<Garment> {
      */
     public void remove(Garment toRemove) {
         requireNonNull(toRemove);
+        this.sort();
         if (!internalList.remove(toRemove)) {
             throw new GarmentNotFoundException();
         }
@@ -84,6 +92,7 @@ public class UniqueGarmentList implements Iterable<Garment> {
     public void setGarments(UniqueGarmentList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
+        this.sort();
     }
 
     /**
@@ -97,6 +106,7 @@ public class UniqueGarmentList implements Iterable<Garment> {
         }
 
         internalList.setAll(garments);
+        this.sort();
     }
 
     /**
