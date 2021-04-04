@@ -34,6 +34,7 @@ You can use the sample data pre-loaded in the application to get play around and
  to remove all sample data when you are used to the commands and want to begin inputting your own data.<br><br>
    ![Ui](images/Ui.png)
 
+
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will display the help window.<br>
    Some example commands you can try:
 
@@ -92,14 +93,16 @@ You can use the sample data pre-loaded in the application to get play around and
 
 ### Viewing help : `help`
 
-Gives instructions on how to enter orders into the CLI.
-Displays a message with a list of all available commands and their format.
+* Gives instructions on how to enter orders into the CLI.
+* Displays a message with a list of all available commands and their format.
+* To return to the main order list click on the `Return to the main order list` button. 
+* Help can also be accessed by clicking the `help` button in the top left corner of the application or by clicking the `F1` keyboard key.
 
 Format: `help`
 
 ### Adding an order: `add`
 
-Adds an order to the CakeCollate database.
+Adds an order to the CakeCollate database. The order will be initialised as undelivered, but can be modified with the `delivered` and `cancelled` commands found below.
 
 #### Simple format
 
@@ -294,9 +297,9 @@ Format: `addItem ORDER_ITEM_DESCRIPTION`
 * The `ORDER_ITEM_DESCRIPTION` can only contain alphanumeric characters and ".
 
 Examples:
-* `addItem 2 x Chocolate Cake` adds an order item with the specified description to the order items table.
+* `addItem 2 x Red Velvet` adds an order item with the specified description to the order items table.
 
-### Deleting order items: 'deleteItem'
+### Deleting order items: `deleteItem`
 
 Deletes order items from the order items table based on the specified list of indices.
 
@@ -307,8 +310,8 @@ Format: `deleteItem ORDER_ITEM_INDEXES`
 * The `ORDER_ITEM_INDEXES` **must be valid**.
 
 Examples:
-*  delete 2 deletes the order items with `ORDER_ITEM_INDEX` 2 from the order items table.
-* `delete 2 3` deletes the order items with `ORDER_ITEM_INDEXES` 2 and 3 from the order items table.
+* `deleteItem 2` deletes the order items with `ORDER_ITEM_INDEX` 2 from the order items table.
+* `deleteItem 2 3` deletes the order items with `ORDER_ITEM_INDEXES` 2 and 3 from the order items table.
 
 ### Exiting the program : `exit`
 
@@ -332,6 +335,12 @@ If your changes to the data file makes its format invalid, CakeCollate will disc
 
 _Details coming soon ..._
 
+### Keyboard shortcuts you can use
+
+* Click the `up` arrow in the keyboard to traverse up the previously inputted commands if they exist. 
+* Click the `down` arrow in the keyboard to traverse down the previously inputted commands if they exist. 
+* Click the `Shift`Button followed by the `backspace` button on the keyboard to delete all the text in the conmand box in one go. 
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -348,7 +357,7 @@ Action  | Format, Examples
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS d/DELIVERY_DATE o/ORDER_DESCRIPTION... [t/TAG]...` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/13-05-2021 o/strawberry cake 3` <br><br> `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS d/DELIVERY_DATE oi/ORDER_ITEM_INDEXES [o/ORDER_DESCRIPTION]... [t/TAG]...` <br> e.g. `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/13-05-2021 o/strawberry cake oi/1` <br>
 **Clear** | `clear`
 **Delete** | `delete INDEXES`<br> e.g., `delete 3 4`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [o/ORDER_DESCRIPTION]... [t/TAG]...`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find** | `find [n/KEYWORD_NAME]... [p/KEYWORD_PHONE]... [e/KEYWORD_EMAIL]... [a/KEYWORD_ADDRESS]... [o/KEYWORD_ORDER_DESCRIPTION]... [t/KEYWORD_TAG]... [d/KEYWORD_DELIVERY_DATE]... [s/KEYWORD_DELIVERY_STATUS]... [r/KEYWORD_REQUEST]... `<br> e.g., `find James Jake`, `find n/Alex o/Chocolate`, `find n/Bernice d/march s/undelivered` 
 **List** | `list`
 **Help** | `help`
@@ -357,8 +366,9 @@ Action  | Format, Examples
 **Undelivered** | `undelivered INDEXES`<br> e.g., `undelivered 3 4`
 **Delivered** | `delivered INDEXES`<br> e.g., `delivered 3 4`
 **Cancelled** | `cancelled INDEXES`<br> e.g., `cancelled 3 4`
-**Add Order Item** | `addItem ORDER_ITEM_DESCRIPTION`<br> e.g., `addItem 2 x Chocolate Cake`
+**Add Order Item** | `addItem ORDER_ITEM_DESCRIPTION`<br> e.g., `addItem 2 x Red Velvet`
 **Delete Order Item** | `deleteItem ORDER_ITEM_INDEXES`<br> e.g., `deleteItem 2 3`
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Acknowledgements
