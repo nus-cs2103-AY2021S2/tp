@@ -24,14 +24,22 @@ import seedu.address.logic.commands.resident.EditResidentCommand;
 import seedu.address.logic.commands.resident.EditResidentCommand.EditResidentDescriptor;
 import seedu.address.logic.commands.resident.FindResidentCommand;
 import seedu.address.logic.commands.resident.ListResidentCommand;
+import seedu.address.logic.commands.resident.ListUnallocatedResidentsCommand;
+import seedu.address.logic.commands.residentroom.AllocateResidentRoomCommand;
+import seedu.address.logic.commands.residentroom.DeallocateResidentRoomCommand;
+import seedu.address.logic.commands.room.EditRoomCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.resident.NameContainsKeywordsPredicate;
 import seedu.address.model.resident.Resident;
+import seedu.address.model.residentroom.ResidentRoom;
+import seedu.address.model.room.IsOccupied;
 import seedu.address.testutil.resident.EditResidentDescriptorBuilder;
 import seedu.address.testutil.resident.ResidentBuilder;
 import seedu.address.testutil.resident.ResidentUtil;
+import seedu.address.testutil.residentroom.ResidentRoomBuilder;
+import seedu.address.testutil.room.EditRoomDescriptorBuilder;
 
 public class AddressBookParserTest {
 
@@ -48,7 +56,7 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_add() throws Exception {
+    public void parseCommand_residentAdd() throws Exception {
         Resident resident = new ResidentBuilder().build();
         AddResidentCommand command = (AddResidentCommand) parser.parseCommand(ResidentUtil.getAddCommand(resident),
                 readOnlyUserPrefs);
@@ -64,7 +72,7 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_delete() throws Exception {
+    public void parseCommand_residentDelete() throws Exception {
         DeleteResidentCommand command = (DeleteResidentCommand) parser.parseCommand(
                 DeleteResidentCommand.COMMAND_WORD + " "
                         + INDEX_FIRST.getOneBased(), readOnlyUserPrefs);
@@ -72,7 +80,7 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_edit() throws Exception {
+    public void parseCommand_residentEdit() throws Exception {
         Resident resident = new ResidentBuilder().build();
         EditResidentDescriptor descriptor = new EditResidentDescriptorBuilder(resident).build();
         EditResidentCommand command = (EditResidentCommand) parser.parseCommand(EditResidentCommand.COMMAND_WORD + " "
@@ -90,7 +98,7 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_find() throws Exception {
+    public void parseCommand_residentFind() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindResidentCommand command = (FindResidentCommand) parser.parseCommand(
                 FindResidentCommand.COMMAND_WORD + " "
@@ -107,7 +115,7 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_list() throws Exception {
+    public void parseCommand_residentList() throws Exception {
         assertTrue(parser.parseCommand(ListResidentCommand.COMMAND_WORD, readOnlyUserPrefs)
                 instanceof ListResidentCommand);
         assertTrue(parser.parseCommand(ListResidentCommand.COMMAND_WORD + " 3", readOnlyUserPrefs)
@@ -121,6 +129,36 @@ public class AddressBookParserTest {
         assertTrue(parser.parseCommand(ViewHistoryCommand.COMMAND_WORD + " 3", readOnlyUserPrefs)
                 instanceof ViewHistoryCommand);
     }
+
+    @Test
+    public void parseCommand_residentUnallocatedList() throws Exception {
+        assertTrue(parser.parseCommand(ListUnallocatedResidentsCommand.COMMAND_WORD, readOnlyUserPrefs)
+                instanceof ListUnallocatedResidentsCommand);
+        assertTrue(parser.parseCommand(ListUnallocatedResidentsCommand.COMMAND_WORD + " 3", readOnlyUserPrefs)
+                instanceof ListUnallocatedResidentsCommand);
+    }
+
+    @Test
+    public void parseCommand_residentAllocate() throws Exception {
+        ResidentRoom residentRoom = new ResidentRoomBuilder().build();
+        EditResidentDescriptor editResidentDescriptor =
+                new EditResidentDescriptorBuilder().withRoom(residentRoom.getRoomNumber().toString()).build();
+        EditRoomCommand.EditRoomDescriptor editRoomDescriptor =
+                new EditRoomDescriptorBuilder().withOccupancy(IsOccupied.OCCUPIED).build();
+        AllocateResidentRoomCommand command = (AllocateResidentRoomCommand)
+                parser.parseCommand(ResidentUtil.getAllocateResidentRoomCommand(residentRoom), readOnlyUserPrefs);
+        assertEquals(new AllocateResidentRoomCommand(residentRoom, editResidentDescriptor, editRoomDescriptor),
+                command);
+    }
+
+    @Test
+    public void parseCommand_residentDeallocate() throws Exception {
+        DeallocateResidentRoomCommand command = (DeallocateResidentRoomCommand) parser.parseCommand(
+                DeallocateResidentRoomCommand.COMMAND_WORD + " "
+                        + INDEX_FIRST.getOneBased(), readOnlyUserPrefs);
+        assertEquals(new DeallocateResidentRoomCommand(INDEX_FIRST), command);
+    }
+
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {

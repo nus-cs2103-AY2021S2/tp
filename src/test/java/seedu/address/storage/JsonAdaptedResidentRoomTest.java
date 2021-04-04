@@ -5,22 +5,27 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ROOM_NUMBER_BOB;
 import static seedu.address.storage.JsonAdaptedResident.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.resident.TypicalResidents.BOB;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.resident.Name;
 import seedu.address.model.room.RoomNumber;
+import seedu.address.testutil.resident.TypicalResidents;
 import seedu.address.testutil.residentroom.TypicalResidentRooms;
 
 public class JsonAdaptedResidentRoomTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_ROOM_NUMBER = "03145";
 
-    private static final String VALID_NAME = BOB.getName().toString();
-    private static final String VALID_ROOM_NUMBER = BOB.getRoom().toString();
+    private static final String VALID_NAME = TypicalResidents.BOB.getName().toString();
+    private static final String VALID_ROOM_NUMBER = TypicalResidents.BOB.getRoom().toString();
 
+    @Test
+    public void toModelType_validResidentRoom_returnsResidentRoom() throws Exception {
+        JsonAdaptedResidentRoom residentRoom = new JsonAdaptedResidentRoom(TypicalResidentRooms.BOB);
+        assertEquals(TypicalResidentRooms.BOB, residentRoom.toModelType());
+    }
 
     @Test
     public void toModelType_validResidentRoomDetails_returnsResidentRoom() throws Exception {

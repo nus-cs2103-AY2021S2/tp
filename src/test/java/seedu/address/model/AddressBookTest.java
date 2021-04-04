@@ -18,11 +18,14 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.issue.Issue;
+import seedu.address.model.resident.Name;
 import seedu.address.model.resident.Resident;
 import seedu.address.model.resident.exceptions.DuplicateResidentException;
 import seedu.address.model.residentroom.ResidentRoom;
 import seedu.address.model.room.Room;
 import seedu.address.testutil.resident.ResidentBuilder;
+import seedu.address.testutil.residentroom.TypicalResidentRooms;
+
 
 public class AddressBookTest {
 
@@ -80,6 +83,36 @@ public class AddressBookTest {
         Resident editedAlice = new ResidentBuilder(ALICE)
                 .build();
         assertTrue(addressBook.hasResident(editedAlice));
+    }
+
+    @Test
+    public void hasResident_nullName_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.hasResident((Name) null));
+    }
+
+    @Test
+    public void hasResident_nameNotInAddressBook_returnsFalse() {
+        assertFalse(addressBook.hasResident(ALICE.getName()));
+    }
+
+    @Test
+    public void hasResident_nameInAddressBook_returnsTrue() {
+        addressBook.addResident(ALICE);
+        assertTrue(addressBook.hasResident(ALICE.getName()));
+    }
+
+    @Test
+    public void hasBothResidentRoom_residentRoomInAddressBook_returnsTrue() {
+        addressBook.addResidentRoom(TypicalResidentRooms.ALICE);
+        assertTrue(addressBook.hasBothResidentRoom(TypicalResidentRooms.ALICE));
+    }
+
+    @Test
+    public void removeResidentRoom_residentRoomInAddressBook_returnsEqual() {
+        addressBook.addResidentRoom(TypicalResidentRooms.ALICE);
+        addressBook.removeResidentRoom(TypicalResidentRooms.ALICE);
+        AddressBook removedAddressBook = new AddressBook();
+        assertEquals(addressBook, removedAddressBook);
     }
 
     @Test

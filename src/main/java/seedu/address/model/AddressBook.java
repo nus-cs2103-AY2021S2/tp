@@ -296,9 +296,4 @@ public class AddressBook implements ReadOnlyAddressBook {
                         && rooms.equals(((AddressBook) other).rooms)
                         && issues.equals(((AddressBook) other).issues));
     }
-
-    @Override
-    public int hashCode() {
-        return residents.hashCode();
-    }
 }
