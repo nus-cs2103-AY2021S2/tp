@@ -38,7 +38,9 @@ public class EditAutocompleteUtil {
     private static String getTagsAsAutocompletedString(Set<Tag> tags) {
         return tags
             .stream()
-            .map(t -> "-t " + t.tagName)
+            .map(t -> t.tagName)
+            .sorted()
+            .map(t -> "-t " + t)
             .collect(Collectors.joining(" "));
     }
 
