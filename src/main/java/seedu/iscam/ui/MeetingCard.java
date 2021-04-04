@@ -40,7 +40,7 @@ public class MeetingCard extends UiPart<Region> {
     @FXML
     private Label description;
     @FXML
-    private Label isDone;
+    private Label status;
     @FXML
     private FlowPane tags;
 
@@ -58,9 +58,9 @@ public class MeetingCard extends UiPart<Region> {
         meetingLocation.setText(meeting.getLocation().value);
         description.setText(meeting.getDescription().value);
         if (meeting.getStatus().isComplete()) {
-            isDone.setText("Completed");
+            status.setText("Completed");
         } else {
-            isDone.setText("Not Completed");
+            status.setText("Not Completed");
         }
         meeting.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

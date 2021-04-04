@@ -95,7 +95,7 @@ public class MeetingBuilder {
     }
 
     /**
-     * Sets the {@code isDone} of the {@code Meeting} that we are building.
+     * Sets the {@code status} of the {@code Meeting} that we are building.
      */
     public MeetingBuilder withStatus(String status) {
         this.status = new CompletionStatus(status);

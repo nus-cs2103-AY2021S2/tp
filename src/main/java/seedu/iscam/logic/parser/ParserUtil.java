@@ -174,9 +174,9 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code String isDone} into a boolean.
+     * Parses {@code String status} into a CompletionStatus.
      *
-     * @throws ParseException if given {@code isDone} is not compliant to what is declared in EditMeetingCommand
+     * @throws ParseException if given {@code status} is not compliant to what is declared in EditMeetingCommand
      */
     public static CompletionStatus parseCompletionStatus(String status) throws ParseException {
         requireNonNull(status);

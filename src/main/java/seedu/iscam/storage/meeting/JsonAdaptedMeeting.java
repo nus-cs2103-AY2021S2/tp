@@ -41,7 +41,7 @@ class JsonAdaptedMeeting {
                               @JsonProperty("location") String location,
                               @JsonProperty("description") String description,
                               @JsonProperty("tags") List<JsonAdaptedMeetingTag> tags,
-                              @JsonProperty("isDone") String status) {
+                              @JsonProperty("status") String status) {
         this.clientName = clientName;
         this.dateTime = dateTime;
         this.location = location;
