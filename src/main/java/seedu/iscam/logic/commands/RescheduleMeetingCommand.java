@@ -45,7 +45,7 @@ public class RescheduleMeetingCommand extends Command {
 
     private Meeting rescheduleMeeting(Meeting meeting, DateTime newDateTime) {
         return new Meeting(meeting.getClientName(), newDateTime, meeting.getLocation(),
-                meeting.getDescription(), meeting.getTags(), meeting.getIsDone());
+                meeting.getDescription(), meeting.getTags(), meeting.getStatus());
     }
 
     @Override
