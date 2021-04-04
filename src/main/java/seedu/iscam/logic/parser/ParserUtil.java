@@ -1,6 +1,7 @@
 package seedu.iscam.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.iscam.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.iscam.model.meeting.CompletionStatus.ARGUMENT_COMPLETE;
 import static seedu.iscam.model.meeting.CompletionStatus.ARGUMENT_INCOMPLETE;
 
@@ -32,7 +33,7 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index must be a non-zero positive integer.";
     public static final String MESSAGE_EMPTY_INDEX  = "Index field is empty.";
     public static final String MESSAGE_INDEX_TOO_LARGE = "Index specified is too big! Please input a "
-            + "number smaller than 2147483647 that is within the displayed list.";
+            + "number smaller than 2147483647.";
 
 
     /**
@@ -46,11 +47,20 @@ public class ParserUtil {
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
 
+        // Split the trimmedIndex by space to detect the presence of additional parameters.
+        String[] params = trimmedIndex.split(" ", 2);
+
         if (trimmedIndex.length() == 0) {
+            // Throw ParseException if oneBasedIndex is an empty string.
             throw new ParseException(MESSAGE_EMPTY_INDEX);
+        } else if (params.length > 1) {
+            // Throw ParseFormatException if there are parameters more than required parameters.
+            throw new ParseFormatException(MESSAGE_INVALID_COMMAND_FORMAT);
         } else if (!StringUtil.isSmallerThanIntegerMaxValue(trimmedIndex)) {
+            // Throw ParseIndexException if the index specified is larger than Integer.MAX_VALUE.
             throw new ParseIndexException(MESSAGE_INDEX_TOO_LARGE);
         } else if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+            // Throw ParseIndexException if the index is invalid.
             throw new ParseIndexException(MESSAGE_INVALID_INDEX);
         }
 

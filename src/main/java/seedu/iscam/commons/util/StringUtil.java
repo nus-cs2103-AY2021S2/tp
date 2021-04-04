@@ -95,7 +95,9 @@ public class StringUtil {
 
     /**
      * Checks whether {@code s} represents a number greater than {@code Integer.MAX_VALUE} <br>
-     * Will return false if {@code s} is larger than {@code Integer.MAX_VALUE}
+     * Will return false if {@code s} is larger than {@code Integer.MAX_VALUE}.
+     * Will ignore NumberFormatException and return true.
+     * NumberFormatException will be handled by {@code isNonZeroUnsignedInteger}.
      *
      * @throws NullPointerException if {@code s} is null.
      */
@@ -105,7 +107,7 @@ public class StringUtil {
             long value = Long.parseLong(s);
             return value < Integer.MAX_VALUE;
         } catch (NumberFormatException nfe) {
-            return false;
+            return true;
         }
     }
 }
