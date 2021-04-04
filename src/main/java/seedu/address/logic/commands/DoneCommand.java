@@ -11,6 +11,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.conditions.IndexManager;
 import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.AttributeManager;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.attributes.Date;
 import seedu.address.model.task.attributes.Description;
@@ -55,8 +56,9 @@ public class DoneCommand extends Command {
     private void verifyTaskStatusNotDone(List<Task> list) throws CommandException {
         Task taskToBeDone = list.get(index.getZeroBased());
         String taskTitle = taskToBeDone.getTitle().fullTitle;
+        AttributeManager attributeManager = new AttributeManager(taskToBeDone);
 
-        if (taskToBeDone.isDone()) {
+        if (attributeManager.isDone()) {
             throw new CommandException(String.format(MESSAGE_TASK_ALREADY_DONE, taskTitle));
         }
     }

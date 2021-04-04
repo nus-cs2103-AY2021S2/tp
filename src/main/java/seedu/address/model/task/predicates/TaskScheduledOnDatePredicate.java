@@ -2,6 +2,7 @@ package seedu.address.model.task.predicates;
 
 import java.util.function.Predicate;
 
+import seedu.address.model.task.AttributeManager;
 import seedu.address.model.task.Task;
 
 /**
@@ -22,6 +23,6 @@ public class TaskScheduledOnDatePredicate implements Predicate<Task> {
      */
     @Override
     public boolean test(Task task) {
-        return task.isOnRecurringScheduleDate(dateString);
+        return new AttributeManager(task).isOnRecurringScheduleDate(dateString);
     }
 }

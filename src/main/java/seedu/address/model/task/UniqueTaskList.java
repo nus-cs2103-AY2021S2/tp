@@ -135,7 +135,8 @@ public class UniqueTaskList implements Iterable<Task> {
         double totalDone = 0;
 
         for (Task t : internalList) {
-            if (t.isDone()) {
+
+            if (new AttributeManager(t).isDone()) {
                 totalDone++;
             }
         }
@@ -152,9 +153,10 @@ public class UniqueTaskList implements Iterable<Task> {
         int totalNumDue = 0;
 
         for (Task t : internalList) {
+            AttributeManager attributeManager = new AttributeManager(t);
 
-            if (!t.isEmptyDate()) {
-                boolean isWithinSevenDays = t.isWithinSevenDays(LocalDate.now());
+            if (!attributeManager.isEmptyDate()) {
+                boolean isWithinSevenDays = attributeManager.isWithinSevenDays(LocalDate.now());
                 if (isWithinSevenDays) {
                     totalNumDue++;
                 }

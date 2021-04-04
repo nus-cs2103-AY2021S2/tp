@@ -12,6 +12,7 @@ import java.util.Set;
 import javafx.collections.ObservableList;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
+import seedu.address.model.task.AttributeManager;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.UniqueTaskList;
 
@@ -111,7 +112,7 @@ public class Planner implements ReadOnlyPlanner {
      */
     public boolean dateOver(Task task) {
         requireNonNull(task);
-        return task.dateOver();
+        return new AttributeManager(task).dateOver();
     }
 
     /**
