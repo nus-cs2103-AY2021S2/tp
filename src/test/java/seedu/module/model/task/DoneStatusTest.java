@@ -22,9 +22,12 @@ public class DoneStatusTest {
 
     @Test
     public void getIsDone() {
+        //EP: true
         DoneStatus trueDoneStatus = new DoneStatus(true);
-        DoneStatus falseDoneStatus = new DoneStatus(false);
         assertEquals(trueDoneStatus.getIsDone(), true);
+
+        //EP: false
+        DoneStatus falseDoneStatus = new DoneStatus(false);
         assertEquals(falseDoneStatus.getIsDone(), false);
     }
 
@@ -35,9 +38,16 @@ public class DoneStatusTest {
         DoneStatus thirdDoneStatus = new DoneStatus(false);
         String somethingElse = "Not Done Status";
 
+        //EP: Same DoneStatus object
         assertTrue(firstDoneStatus.equals(firstDoneStatus));
+
+        //EP: Different DoneStatus object, same boolean
         assertTrue(firstDoneStatus.equals(secondDoneStatus));
+
+        //EP: Different DoneStatus object, different boolean
         assertFalse(firstDoneStatus.equals(thirdDoneStatus));
+
+        //EP: Different object types
         assertFalse(firstDoneStatus.equals(somethingElse));
     }
 }
