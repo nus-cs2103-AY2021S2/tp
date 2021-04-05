@@ -45,9 +45,13 @@ Within the workload pie chart, each module's colour may change as a command is e
 However, the colours will be arranged such that no two modules with the same colour will be next to each other.
 </div>
 
-4. Tasks in the task list are colour coded based on done status.
-    1. Done tasks are coloured pink.
-    1. Tasks that are not done are coloured differently.
+1. Tasks are colour coded based on done status. 
+   1. Done tasks are coloured green. 
+   1. Tasks that are not done are coloured pink.
+   
+1. The pie chart is used to show workload distribution.
+   1. The color of pie chart is randomly assigned.
+   2. The workload of each module is counted using the tasks of such module inclunding those that are already done and those that are not finished yet.
     
 1. You can rate a task's expected workload using the following mapping:
    
@@ -359,16 +363,16 @@ Examples:
 
 ### Sort tasks : `sort`
 
-Sorts the list of all tasks by workload/deadline/module. If no prefix is supplied, the tasks will be sorted by deadline.
+Sorts the list of all tasks by one attribute of the tasks. If no prefix is supplied, the tasks will be sorted by deadline.
 
 Application: Used to group and prioritise tasks based on a certain criteria.
 
-Format:  `sort n/` or `sort d/` or `sort m/` or `sort w/` or `sort b/` or `sort t/` 
+Format:  `sort` or `sort n/` or `sort d/` or `sort m/` or `sort w/` or `sort b/` or `sort t/` 
 
 *  `sort n/` Sorts the tasks by name alphabetically in ascending order.
 *  `sort d/` Sorts the tasks by description alphabetically in ascending order.
 *  `sort w/` Sorts the tasks by workload in descending order.
-*  `sort b/` Sorts the tasks by deadline so that a task with a closer deadline is positioned at the top of the list.
+*  `sort` or `sort b/` Sorts the tasks by deadline so that the the task with closer the deadline in the list, the higher the task.
 *  `sort m/` Sorts the tasks by module code alphabetically in descending order.
 *  `sort t/` Sorts the tasks by number of tags in descending order.
 
