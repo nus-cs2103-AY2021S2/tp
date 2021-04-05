@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.task.Task;
@@ -138,6 +139,13 @@ public class HeyMatez implements ReadOnlyHeyMatez {
      */
     public void removeTask(Task key) {
         tasks.remove(key);
+    }
+
+    /**
+     * Removes the Assignee with the given name from the Assignee sets of the current task list
+     */
+    public void removeAssignee(Name name) {
+        tasks.removeAssignee(name);
     }
 
     @Override

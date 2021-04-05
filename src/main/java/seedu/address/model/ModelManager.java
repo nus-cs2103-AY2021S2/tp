@@ -157,6 +157,12 @@ public class ModelManager implements Model {
         return true;
     }
 
+    @Override
+    public void removeAssignee(Person target) {
+        heyMatez.removeAssignee(target.getName());
+        updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**

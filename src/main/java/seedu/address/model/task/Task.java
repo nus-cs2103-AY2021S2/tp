@@ -104,6 +104,20 @@ public class Task {
         return assignees.contains(assignee);
     }
 
+    /**
+     * Returns an updated task with the assignee specified removed from the set of
+     * assignees assignes to this task
+     * @param assignee that is about to be removed
+     * @return Task that is updated without the specified assignee
+     */
+    public Task removeAssignee(Assignee assignee) {
+        Set<Assignee> copyAssignees = new HashSet<>();
+        copyAssignees.addAll(this.assignees);
+        copyAssignees.remove(assignee);
+
+        return new Task(title, description, deadline, taskStatus, priority, copyAssignees);
+    }
+
     public boolean isUnassigned() {
         return assignees.isEmpty();
     }

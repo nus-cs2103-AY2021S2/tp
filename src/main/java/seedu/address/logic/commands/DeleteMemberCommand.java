@@ -50,6 +50,7 @@ public class DeleteMemberCommand extends Command {
         }
 
         model.deletePerson(personToDelete);
+        model.removeAssignee(personToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
     }
 
