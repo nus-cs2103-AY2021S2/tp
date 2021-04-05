@@ -135,10 +135,14 @@ DESCRIPTION OF PARAMETER
 
 
 #### `TAG`
-DESCRIPTION OF PARAMETER
-* FORMAT AND RESTRICTIONS WITH JUSTIFICATION
-* (if applicable) For best usage, ...
-* (if applicable) Valid examples (if not clear from above)
+The tag associated with a room or issue.
+* Tags must be non-blank and alphanumeric (spaces are not allowed).
+* Tags are limited to 25 characters.
+* Tags are case-sensitive: e.g. `SHN`,`shn` and `Shn` are each considered separate tags.
+* Duplicate tags will be accepted as input, but only one instance will be recorded.
+* For the best experience, we recommend keeping tags short and having fewer than 20 of them per entry. There is no 
+  theoretical limit to the number of tags an entry can have, but SunRez may slow down or run into unexpected problems 
+  for a huge number of tags.
 
 
 #### `TIMESTAMP`
