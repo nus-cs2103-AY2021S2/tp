@@ -234,13 +234,14 @@ Examples:
 
 Edits the existing resident record at a specified index.
 
-Format: `redit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [y/YEAR}]`
+Format: `redit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [y/YEAR]`
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * `redit` will be blocked if the resident has an active room allocation. Run `dealloc` before making further edits.
   See [Deallocate a resident](#deallocate-resident-from-room--dealloc).
 
 Parameters:
+* [INDEX](#index) The index of the displayed resident.
 * [NAME](#name) The name of the resident.
 * [PHONE_NUMBER](#phone_number) The phone number of the resident.
 * [EMAIL](#email) The email of the resident.
