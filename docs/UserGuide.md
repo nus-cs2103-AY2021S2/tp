@@ -29,6 +29,7 @@ users can learn Japanese at a comfortable pace and manage flashcards with this a
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
 * [Note for Testers](#note-for-testers)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Introduction
@@ -295,3 +296,4 @@ knowledge of Japanese to test our application.
 
 Therefore, to facilitate testers, we have provided a list of flashcards which reside in the database
 of the current version of application for your reference. The link is [here](Flashcards.html).
+--------------------------------------------------------------------------------------------------------------------
