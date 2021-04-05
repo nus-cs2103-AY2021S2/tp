@@ -30,18 +30,30 @@ The Food Diary will allow students to save time and effort when finding places t
 
 ## Features
 
-### View all the food reviews : `list`
+ℹ️ Note about Command Format
 
-Lists all the restaurants with food reviews.
+* Words in UPPER_CASE are the parameters to be supplied by the user.
+e.g. in add n/NAME, NAME is a parameter which can be used as add n/Frontier.
+  
+* Items in angle brackets "<...>" are compulsory.
 
-Format: `list`
+* Items in square brackets "[...]" are optional.
+e.g n/NAME [s/SCHOOL] can be used as n/Subway t/UTOWN or as n/Subway.
 
-Parameters: none
+* Items with …​ after them can be used multiple times including zero times.
+e.g. [c/CATEGORY]…​ can be used as   (i.e. 0 times), c/Fastfood, c/Western c/Fastfood etc.
 
-    list
+* Parameters can be in any order.
+e.g. if the command specifies n/NAME p/PRICE, p/PRICE n/NAME is also acceptable.
 
-Example:
-(Refer to Main Window Ui in Appendix)
+* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.
+e.g. if you specify p/5 p/6, only p/6 will be taken.
+
+* Extraneous parameters for commands that do not take in parameters (such as help, list, exit and clear) will be ignored.
+e.g. if the command specifies help 123, it will be interpreted as help.
+  
+* [c/CATEGORY] needs to be titled case, [s/SCHOOL] can be lower or upper case
+
 
 ### Add a FoodDiary entry: `add`
 
@@ -52,6 +64,7 @@ Format: `add n/<RESTAURANT NAME> ra/RATING p/PRICE re/REVIEW a/ADDRESS [c/CATEGO
 Note:
 - A FoodDiary entry can have any number of categories or schools
 - Price range: $0 - 999
+- Names can only be alphanumeric characters
 
 Parameters:
 
@@ -60,8 +73,8 @@ Parameters:
 3. `Price`
 3. `Address`
 4. `Review`
-5. `Categories (optional)`
-6. `Schools (optional)`
+5. `[Categories]`
+6. `[Schools]`
 
 Schools are limited to the following NUS locations:
     `BIZ`, `CLB`, `DENT`, `FASS`, `FOE`,`MED`, `NUSS`, `PGP`, `SCIENCE`, `SDE`, `SOC`,
@@ -78,7 +91,7 @@ Example:
     add  n/7 Eleven ra/3 p/4 re/Mac and cheese there is amazing a/NUS c/Halal s/YIH s/SOC
 
 ### Addon a review or a price to a FoodDiary entry: `addon`
-Adds-on a review and/or a price to a FoodDiary entry of the Food Diary.
+Adds-on additional review and/or a price to a FoodDiary entry of the Food Diary quickly.
 
 Format: `addon <INDEX> [re/REVIEW] [p/PRICE]` or `addon <INDEX> [p/PRICE] [re/REVIEW]...`
 
@@ -90,11 +103,11 @@ Parameters:
 - Adds on a review and/or a price to a FoodDiary entry at the specified `INDEX`.
 - Multiple reviews with one price can be added on.
 - Index refers to the index number shown in the displayed FoodDiary entry list. The index must be a
-  positive integer (e.g. 1,2,3,...)
-- At least one of the optional fields must be provided
-- Existing reviews in the FoodDiary entry (at the specified `INDEX`) will be added on to the input reviews
-- Existing price/price range in the FoodDiary entry (at the specified `INDEX`) will be updated according the
-input price
+  positive integer (e.g. 1,2,3,...).
+- At least one of the optional fields must be provided.
+- Existing reviews in the FoodDiary entry (at the specified `INDEX`) will be added on to the input reviews.
+- Existing price in the FoodDiary entry (at the specified `INDEX`) will be updated according to the
+input price only if price added is beyond current range.
 
 Examples:
 
@@ -126,18 +139,18 @@ Finds FoodDiary entries whose names, ratings, price, address, categories and sch
 - For the price field, a price range can also be accepted as a parameter, and any
  FoodDiary entry that contains at least one of the prices within the specified range will be returned as a search result.
 
-Format: `find <KEYWORD> ...`
+Format: `find <PARAMETERS> ...`
 
 Parameters:
 
-Keyword(s) of any number and sequence:
-1. `Restaurant Name`
-2. `Rating/5`
-3. `$Price`
-4. `$Price-Price`
-5. `Address`
-6. `Categories`
-7. `Schools`
+PARAMETER(s) of any number and sequence:
+1. To search by food place name: `<Name>`
+2. To search by rating: `<Rating>/5`
+3. To search by price: `$<Price>`
+4. To search by price range: `$<Price-Price>`
+5. To search by address: `<Address>`
+6. To search by categories: `<Categories>`
+7. To search by schools: `<Schools>`
 
 Example:
 
@@ -148,7 +161,7 @@ Example:
 
 ### Find specific FoodDiary entries: `findall`
 
-Finds for FoodDiary entries whose names, ratings, price, address, categories and schools match all of the provided keywords.
+Finds FoodDiary entries whose names, ratings, price, address, categories and schools matches all of the provided keywords.
 
 - More than one keyword per field can be accepted as parameters.
 - Different fields can also be simultaneously accepted as parameters.
@@ -157,18 +170,18 @@ Finds for FoodDiary entries whose names, ratings, price, address, categories and
 - **Unlike the find feature, the findall feature only returns search results of FoodDiary entries that contain all of
  the provided keywords.**
 
-Format: `findall <KEYWORD> ...`
+Format: `find <PARAMETERS> ...`
 
 Parameters:
 
-Keyword(s) of any number and sequence:
-1. `Restaurant Name`
-2. `Rating/5`
-3. `$Price`
-4. `$Price-Price`
-5. `Address`
-6. `Categories`
-7. `Schools`
+PARAMETER(s) of any number and sequence:
+1. To search by food place name: `<Name>`
+2. To search by rating: `<Rating>/5`
+3. To search by price: `$<Price>`
+4. To search by price range: `$<Price-Price>`
+5. To search by address: `<Address>`
+6. To search by categories: `<Categories>`
+7. To search by schools: `<Schools>`
 
 Example:
 
