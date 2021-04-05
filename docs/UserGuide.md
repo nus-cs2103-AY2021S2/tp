@@ -1,6 +1,6 @@
 <img width="960" alt="docboblogo" src="https://user-images.githubusercontent.com/59093518/113546749-2db63300-961f-11eb-979d-128c9fd10ee6.png">
 
-**DocBob** is a lightweight patient management system built to help small clinics better manage the appointments & medical information of their beloved patients. With DocBob, you will never have to go through the hassle of manually keeping track of your patients' medical information and appointments ever again. Leave the pen and paper in the past and let Bob take you to an automated future.
+**DocBob** is a lightweight patient management system built to help small clinics better manage the appointments & medical information of their beloved patients. With DocBob, you will never have to go through the hassle of manually keeping track of your patients' medical information and appointments ever again. Leave the pen and paper in the past and let Bob take you to an automated future. In the event of any issues, please feel free to contact the team via the email provided below under the **Issues** section
 
 * Table of Contents
 {:toc}
@@ -286,13 +286,14 @@ DocBob will open up a help window with command information.
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous DocBob home folder.<br>
 
+--------------------------------------------------------------------------------------------------------------------
 
-**Q**: What does parameter(s) mean?<br>
-**A**: A parameter, generally, is any characteristic that can help in defining or classifying a particular system. For example, how fast a car can go is a parameter for us to judge how good a car is.  In this case, the words in UPPER_CASE are what we should key in.
+## Glossary 
 
-
-**Q**: What does index refer to?<br>
-**A**: In this case, index refers to the position of the patient in the patient list.  For example, if the patient list is {Alice,Bob,Charlie} then Alice's index is 1, Bob's is 2 and Charlie's is 3.
+Terminology | Definition | Examples
+------------|------------|----------
+**parameter(s)** | Any characteristic that can help in defining or classifying a particular system | How fast a car can go is a parameter for us to judge how good that car is.  In this case (DocBob), the words in UPPER_CASE are what we should key in 
+**index** | Index refers to the position of the patient in the patient list | If the patient list is {Alice,Bob,Charlie} then Alice's index is 1, Bob's is 2 and Charlie's is 3
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -302,7 +303,7 @@ Action | Format, Examples
 --------|------------------
 **help** | `help`
 **add** | `add n/Name p/phoneNumber e/Email a/Address h/Height w/Weight [t/TAGS]` <br> e.g., `add n/Shrek p/66666666 e/shrek@swampmail.com a/Swamp h/243cm w/94kg`
-**delete** | `delete INDEX` <br> e.g., `delete 1`
+**delete** | `delete INDEX` <br> e.g., `delete 1`7
 **list** | `list`
 **appt** | `appt INDEX /dDATE` <br> e.g., `appt 1 d/010120211200`
 **listappt** | `listappt`
@@ -316,4 +317,7 @@ Action | Format, Examples
 
 ## Issues
 In the event of any issues while using the app and or UG, please contact the team at the emails below <br>
-e0406660@u.nus.edu.com
+e0406660@u.nus.edu.com<br>
+e0407819@u.nus.edu.com<br>
+e0407867@u.nus.edu.com<br>
+e0415569@u.nus.edu.com<br>
