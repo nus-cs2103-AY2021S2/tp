@@ -156,7 +156,7 @@ With new members joining the club, you can add a new member along with his/ her 
 Format: `addMember NAME -p PHONE_NUMBER -e EMAIL [-r ROLE]`
 
 * NAME field can take on any values with alphanumeric characters.
-* If role field is not specified, person will be assigned a default role of member.
+* If ROLE field is not specified, person will be assigned a default role of member.
 
 Examples: 
 * `addMember Dylan -p 64529356 -e dylan@gmail.com`
@@ -169,8 +169,10 @@ As members leave the club, you can delete a member along with all of his/her con
 
 Format: `deleteMember NAME`
 
+* The name specified must match the member's name in the list exactly, case-sensitive. 
+
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-The name you specify must belong to an exisitng Member in the Application
+The name you specify must belong to an existing Member in the Application.
 </div>
 
 Examples:
@@ -199,22 +201,30 @@ Format: `editMember NAME_IN_LIST [-n NEW_NAME] [-p NEW_PHONE_NUMBER] [-e NEW_EMA
 * NEW_NAME field can take on any values with alphanumeric characters.
 
 Examples: 
-* `editMember Alice -e newAlice@gmail.com -r Events head`
+* `editMember Alice -n Alice Tan`
+* `editMember Alice -n Alice Tan -p 98154155 -e aliceTan@gmail.com`
+* `editMember Alice -n Alice Tan -p 98154155 -e aliceTan@gmail.com -r Events head`
 
 <a name="findMember"></a>
 ### 5. Find Members by Keywords: `findMembers`
 
 With so many members in the club, you may want to find a particular member's details quickly. 
-This feature allows you to find all members whose details contain any of the specified keywords.
+This feature allows you to find all members whose NAME, PHONE_NUMBER, EMAIL or ROLE contain
+any of the specified keywords.
 
-Format: `findMembers KEYWORD [MORE_KEYWORDS]`
+Format: `findMembers KEYWORD [MORE_KEYWORDS]...`
+
+* KEYWORD must match an entire word exactly in order for the particular member to be found. 
+  * E.g. A member whose name is `Rachel` will not be found with `findMembers Rach`.
 
 <div markdown="span" class="alert alert-primary"> :bulb: **Tip:**
 Keywords are case-insensitive.
 </div>
 
 Examples: 
+* `findMembers Rachel`
 * `findMembers Rachel 98562154 john@gmail.com`
+* `findMembers Rachel 98562154 john@gmail.com President`
 
 -------------------------------------------------------------------------------------------------------------
 <a name="tasks"></a>
@@ -264,7 +274,7 @@ Examples:
 With ever-changing task requirements, you can edit a task at the task index that is specified with the new details 
 you key in.
 
-Format: `editTask INDEX [-n NEW_TITLE] [-d NEW_DESCRIPTION] [-b NEW_DEADLINE] [-s NEW_STATUS] [-p NEW_PRIORITY] [-a NEW_ASSIGNEE]`
+Format: `editTask INDEX [-n NEW_TITLE] [-d NEW_DESCRIPTION] [-b NEW_DEADLINE] [-s NEW_STATUS] [-p NEW_PRIORITY] [-a NEW_ASSIGNEE]...`
 
 * Edits the Task at the specified index.
 * At least one of the optional fields must be provided.
@@ -305,10 +315,13 @@ Examples:
 ### 7. Find Tasks by Keywords: `findTasks`
 
 With so many tasks, you may want to find tasks with given keywords quickly.
-This feature allows you to find all tasks containing any of the specified keywords in its title or description.
+This feature allows you to find all tasks with its TITLE or DESCRIPTION containing any of the specified keywords.
 
-Format: `findTasks [KEYWORD]...`
+Format: `findTasks KEYWORD [MORE_KEYWORDS]...`
 
+* KEYWORD must match an entire word exactly in order for the particular task to be found.
+  * E.g. A task with title `Proposal` will not be found with `findTasks Prop`.
+  
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Keywords are case-insensitive. 
 </div>
