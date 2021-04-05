@@ -48,7 +48,7 @@ public class TablePanel extends UiPart<Region> implements Initializable {
      */
     private ObservableList<ExpiringItem> getExpiringItems(ObservableList<Item> itemList) {
         ObservableList<ExpiringItem> tableRows = FXCollections.observableArrayList();
-        for (int i = 1; i <= 7; i++) {
+        for (int i = 1; i <= 14; i++) {
             tableRows.add(new ExpiringItem(i, itemList));
         }
         return tableRows;
