@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Map;
 
 import javafx.collections.ObservableList;
-import seedu.partyplanet.commons.core.Messages;
 import seedu.partyplanet.commons.core.index.Index;
 import seedu.partyplanet.logic.commands.exceptions.CommandException;
 import seedu.partyplanet.logic.parser.ArgumentMultimap;
@@ -46,7 +45,7 @@ public class EEditAutocompleteUtil {
 
         ObservableList<Event> filteredEventsList = model.getFilteredEventList();
         if (index.getZeroBased() >= filteredEventsList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
+            throw new CommandException(INDEX_NOT_SPECIFIED_OR_INVALID_MESSAGE);
         }
 
         Event event = filteredEventsList.get(index.getZeroBased());

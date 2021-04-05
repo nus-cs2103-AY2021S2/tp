@@ -16,7 +16,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
-import seedu.partyplanet.commons.core.Messages;
 import seedu.partyplanet.commons.core.index.Index;
 import seedu.partyplanet.logic.commands.exceptions.CommandException;
 import seedu.partyplanet.logic.parser.ArgumentMultimap;
@@ -65,7 +64,7 @@ public class EditAutocompleteUtil {
 
         ObservableList<Person> filteredPersonList = model.getFilteredPersonList();
         if (index.getZeroBased() >= filteredPersonList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(INDEX_NOT_SPECIFIED_OR_INVALID_MESSAGE);
         }
 
         Person person = filteredPersonList.get(index.getZeroBased());
