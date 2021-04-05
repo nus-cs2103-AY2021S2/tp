@@ -441,6 +441,6 @@ Action | Format, Examples
 ​ | **Appointment Book Commands**
 **Add** | `addAppt n/NAME a/ADDRESS d/DATE [c/CONTACT_INDEX]…​ [tc/CHILDTAG]…​` <br> e.g., `addAppt n/PTM a/ABC Primary School d/21/03/2021 10:00 c/2`
 **Delete** | `deleteAppt INDEX` <br> e.g., `deleteAppt 2`
-**Edit** | `editAppt INDEX [n/NAME] [a/ADDRESS] [d/DATE] [c/CONTACT_INDEX]…​ [tc/CHILDTAG]…​` <br> e.g., `edit 1 n/PSG meeting a/ABC Secondary School c/1`
+**Edit** | `editAppt INDEX [n/NAME] [a/ADDRESS] [d/DATE] [c/CONTACT_INDEX]…​ [tc/CHILDTAG]…​` <br> e.g., `editAppt 1 n/PSG meeting a/ABC Secondary School c/1`
 **Find** | `findAppt [o/OPTION] KEYWORD [MORE_KEYWORDS]…​` <br> e.g., `findAppt PTM`
 **List** | `listAppt`
