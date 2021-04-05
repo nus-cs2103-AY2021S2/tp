@@ -6,6 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 
 public class Meeting implements Comparable<Meeting> {
     public static final String MESSAGE_CONSTRAINTS = "Meetings should be of the format "
@@ -52,7 +53,8 @@ public class Meeting implements Comparable<Meeting> {
      */
     public static LocalDateTime generateDateTime(String datetime, String errorMessage) {
         try {
-            return LocalDateTime.parse(datetime, DateTimeFormatter.ofPattern("yyyy-MM-d H:m"));
+            return LocalDateTime.parse(datetime, DateTimeFormatter.ofPattern("uuuu-MM-d H:m")
+                    .withResolverStyle(ResolverStyle.STRICT));
         } catch (DateTimeParseException ex) {
             throw new IllegalArgumentException(errorMessage);
         }
