@@ -257,7 +257,7 @@ public class EAddCommandTest {
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a single event.
      */
     private class ModelStubWithEvent extends ModelStub {
         private final Event event;
@@ -275,7 +275,7 @@ public class EAddCommandTest {
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the event being added.
      */
     private class ModelStubAcceptingEventAdded extends ModelStub {
         final ArrayList<Event> eventsAdded = new ArrayList<>();
