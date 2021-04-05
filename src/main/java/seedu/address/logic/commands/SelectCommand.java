@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
@@ -9,6 +10,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.garment.Garment;
+import seedu.address.model.garment.LastUse;
 
 /**
  * Updates the selected garment's lastuse attribute
@@ -36,12 +38,14 @@ public class SelectCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_GARMENT_DISPLAYED_INDEX);
         }
         Garment garmentToSelect = lastShownList.get(targetIndex.getZeroBased());
-        Garment garmentChanged = new Garment(garmentToSelect.getName(),
+        Garment garmentChanged = new Garment(
+                garmentToSelect.getName(),
                 garmentToSelect.getSize(),
                 garmentToSelect.getColour(),
                 garmentToSelect.getDressCode(),
                 garmentToSelect.getType(),
-                garmentToSelect.getDescriptions());
+                garmentToSelect.getDescriptions(),
+                new LastUse(LocalDate.now()));
         //delete the original garment
         DeleteCommand deleteCommand = new DeleteCommand(targetIndex);
         AddCommand addCommand = new AddCommand(garmentChanged);

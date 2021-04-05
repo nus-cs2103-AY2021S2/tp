@@ -39,7 +39,7 @@ public class Garment {
         this.dresscode = dresscode;
         this.type = type;
         this.descriptions.addAll(descriptions);
-        this.lastuse = new LastUse("2021-01-01");
+        this.lastuse = new LastUse("Never");
     }
 
     /**

@@ -14,7 +14,7 @@ public class LastUse {
 
     public static final String MESSAGE_CONSTRAINTS = "LastUse must take in a valid date: YYYY-MM-DD";
 
-    public static final String VALIDATION_REGEX = "\\d{4}-[01]\\d-[0-3]\\d";
+    public static final String VALIDATION_REGEX = "Never|(\\d{4}-[01]\\d-[0-3]\\d)";
 
     public final String value;
 
@@ -51,6 +51,8 @@ public class LastUse {
     public static boolean isValidLastUse(String test) {
         if (test.matches(VALIDATION_REGEX) == false) {
             return false;
+        } else if (test.equals("Never")) {
+            return true;
         } else {
             try {
                 String[] date = test.split("-");
