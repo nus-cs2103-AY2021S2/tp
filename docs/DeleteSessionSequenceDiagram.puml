@@ -46,14 +46,8 @@ deactivate DeleteSessionCommandParser
 AddressBookParser --> LogicManager :
 deactivate AddressBookParser
 
-create DeleteSessionCommand
 LogicManager -> DeleteSessionCommand : execute
 activate DeleteSessionCommand
-
-DeleteSessionCommand -> Model : getUnfilteredSessionList()
-activate Model
-Model --> DeleteSessionCommand : lastShownList
-deactivate Model
 
 DeleteSessionCommand -> Model : deleteSession(sessionToDelete)
 activate Model
@@ -70,7 +64,7 @@ activate CommandResult
 CommandResult --> DeleteSessionCommand
 deactivate CommandResult
 
-DeleteSessionCommand --> LogicManager : result
+DeleteSessionCommand --> LogicManager : commandResult
 deactivate DeleteSessionCommand
 <-- LogicManager
 deactivate LogicManager
