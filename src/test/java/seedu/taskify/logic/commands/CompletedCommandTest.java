@@ -35,12 +35,6 @@ public class CompletedCommandTest {
         assert firstTaskList.equals(secondTaskList) == true;
     }
 
-    @Test
-    public void sameTask() {
-        Task firstTaskInModel = model.getCompletedFilteredTaskList().get(0);
-        Task firstTaskInExpectedModel = expectedModel.getCompletedFilteredTaskList().get(0);
-        assert firstTaskInModel.equals(firstTaskInExpectedModel) == true;
-    }
 
     @Test
     public void equals() {

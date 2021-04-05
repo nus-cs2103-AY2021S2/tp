@@ -31,7 +31,7 @@ public class TaskTest {
 
         // same name, all other attributes different -> returns true
         Task editedAlice = new TaskBuilder(TASK_1).withDescription(VALID_DESCRIPTION_CS2103T_TP)
-                .withStatus(StatusType.NOT_DONE).withTags(VALID_TAG_DEBUGGING).build();
+                .withStatus(StatusType.UNCOMPLETED).withTags(VALID_TAG_DEBUGGING).build();
         assertTrue(TASK_1.isSameTask(editedAlice));
 
         // different name, all other attributes same -> returns false
