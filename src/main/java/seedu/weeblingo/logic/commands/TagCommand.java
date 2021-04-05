@@ -27,7 +27,7 @@ public class TagCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Tags the indicated flashcard with the requested tag(s).\n"
             + "Parameters: FLASHCARD_INDEX, TAG...\n"
-            + "Example: " + COMMAND_WORD + " 2 t/very difficult t/revise by tomorrow";
+            + "Example: " + COMMAND_WORD + " 2 t/very difficult t/revise soon";
 
     public static final String MESSAGE_NO_TAGS_PROVIDED = "Please provide a tag for your flashcard!";
 
@@ -66,7 +66,13 @@ public class TagCommand extends Command {
         Flashcard taggedFlashcard = createTaggedFlashcard(flashcardToTag, tags);
 
         for (Tag t : flashcardToTag.getUserTags()) {
-            if (checkUserTagsForDuplicates(t)) {
+            if (checkGivenTagsForDuplicates(t)) {
+                throw new CommandException(MESSAGE_DUPLICATE_TAG);
+            }
+        }
+
+        for (Tag t: flashcardToTag.getWeeblingoTags()) {
+            if (checkGivenTagsForDuplicates(t)) {
                 throw new CommandException(MESSAGE_DUPLICATE_TAG);
             }
         }
@@ -81,7 +87,7 @@ public class TagCommand extends Command {
      * @param tag The tag to be checked.
      * @return true if the tag(s) already exist, false otherwise.
      */
-    private boolean checkUserTagsForDuplicates(Tag tag) {
+    private boolean checkGivenTagsForDuplicates(Tag tag) {
         for (Tag otherTag : tags) {
             if (tag.equals(otherTag)) {
                 return true;

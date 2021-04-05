@@ -1,6 +1,7 @@
 package seedu.weeblingo.logic.parser;
 
 import static seedu.weeblingo.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.weeblingo.commons.core.Messages.MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_START_INTEGER_MIN;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_TAG_DIFFICULT;
 import static seedu.weeblingo.logic.commands.CommandTestUtil.VALID_TAG_EASY;
@@ -39,10 +40,10 @@ public class TagCommandParserTest {
     @Test
     public void parse_invalidPreamble_failure() {
         //negative index
-        assertParseFailure(parser, "-69" + VALID_TAG_EASY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "-69 t/" + VALID_TAG_EASY, MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX);
 
         //zero index
-        assertParseFailure(parser, "0" + VALID_TAG_EASY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "0 t/" + VALID_TAG_EASY, MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX);
 
         //invalid arguments being parsed as preamble
         assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
