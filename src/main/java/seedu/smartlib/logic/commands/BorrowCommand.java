@@ -30,7 +30,7 @@ public class BorrowCommand extends Command {
             + "book which you have specified. Please check if you have spelled correctly.";
     public static final String NO_READER_FOUND = "Sorry, we could not find the "
             + "reader which you have specified. Please check if you have spelled correctly.";
-    public static final String BOOK_ALREADY_BORROWED = "Sorry, the book is already borrowed by another reader.";
+    public static final String BOOK_ALREADY_BORROWED = "Sorry, the book is already borrowed.";
     public static final String READER_DISABLE_BORROWING = "Sorry, the reader has either reached the quota of books"
             + " that he/she can borrow, or is holding on to an overdue book.";
     public static final String UNABLE_TO_UPDATE_CODEBASE = "Sorry, an error has occurred with the codebase and we are"

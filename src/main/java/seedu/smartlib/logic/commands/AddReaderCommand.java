@@ -30,7 +30,7 @@ public class AddReaderCommand extends Command {
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_TAG + "1-year-membership "
+            + PREFIX_TAG + "OneYearMembership "
             + PREFIX_TAG + "vip";
 
     public static final String MESSAGE_SUCCESS = "New reader added: %1$s";

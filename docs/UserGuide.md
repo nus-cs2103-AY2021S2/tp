@@ -49,10 +49,10 @@ contains some sample data.<br>
 list all the current books in store.<br>
    Some example commands you can try:
 
-   * **`addreader`**`r/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a reader named
+   * **`addreader`** `r/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a reader named
    `John Doe` to SmartLib.
 
-   * **`deletereader`**`3` : Deletes the 3rd contact shown in the current list.
+   * **`deletereader`** `3` : Deletes the 3rd contact shown in the current list.
 
    * **`listbook`** : Lists all contacts.
 
@@ -296,11 +296,11 @@ Format: `findbook KEYWORD [MORE_KEYWORDS]`
 * Refer to [Books' Command Parameters](#books-command-parameters) for more details about each parameter.
 
 Examples:
-*`findbook Suspense` returns books under the genre Suspense.
-*`findbook American History` returns books related to history, especially American history.
-*`findbook Brandon Sanderson` returns books by the author Brandon Sanderson.
-*`findbook Bloomsbury` returns books published by Bloomsbury.
-*`findbook 1234567890123` returns books with the corresponding ISBN.
+* `findbook Suspense` returns books under the genre Suspense.
+* `findbook American History` returns books related to history, especially American history.
+* `findbook Brandon Sanderson` returns books by the author Brandon Sanderson.
+* `findbook Bloomsbury` returns books published by Bloomsbury.
+* `findbook 1234567890123` returns books with the corresponding ISBN.
 
 #### Listing all books : `listbook`
 
@@ -436,6 +436,8 @@ the data of your previous SmartLib home folder.
     lowercase letters from 'a' to 'z', and
     numbers from '0` to '9'.
 
+* **Barcode**:
+
 * **Command Box**: The _Command Box_ is the component of the GUI where you will be entering your user input.
 
 * **Result Display**: The _Result Display_ is the component of the GUI where you will be notified whether your command
@@ -460,7 +462,7 @@ Action | Format, Examples
 **Delete book** | `deletebook INDEX`<br> e.g., `deletebook 3`
 **Find book** | `findbook KEYWORD [MORE_KEYWORDS]`<br> e.g., `findbook Thomas the Tank Engine`
 **List books** | `listbook`
-**Return book** | `return b/BOOKNAME r/READERNAME`<br> e.g., `return b/The Old Man and the Sea r/Alex Yeoh`
+**Return book** | `return bc/BARCODE`<br> e.g., `return bc/1202179131`
 **Clear** | `clear`
 **Help** | `help`
 **Exit** | `exit`
