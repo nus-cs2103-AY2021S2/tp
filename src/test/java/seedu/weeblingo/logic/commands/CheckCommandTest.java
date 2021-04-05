@@ -136,6 +136,11 @@ public class CheckCommandTest {
         }
 
         @Override
+        public void showAttemptedQuestions() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void clearQuizInstance() {
             throw new AssertionError("This method should not be called.");
         }
@@ -246,7 +251,7 @@ public class CheckCommandTest {
 
         @Override
         public int getCurrentMode() {
-            return Mode.MODE_QUIZ;
+            return Mode.MODE_QUIZ_SESSION;
         }
 
     }
@@ -276,7 +281,7 @@ public class CheckCommandTest {
 
         @Override
         public int getCurrentMode() {
-            return Mode.MODE_QUIZ;
+            return Mode.MODE_QUIZ_SESSION;
         }
     }
 }

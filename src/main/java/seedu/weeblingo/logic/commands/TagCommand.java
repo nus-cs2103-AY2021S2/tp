@@ -74,7 +74,6 @@ public class TagCommand extends Command {
 
         model.setFlashcard(flashcardToTag, taggedFlashcard);
         model.updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
-
         return new CommandResult(MESSAGE_SUCCESS, false, false);
     }
 
