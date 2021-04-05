@@ -5,8 +5,8 @@ title: Samuel's Project Portfolio Page
 
 ## Project: TutorBuddy
 
-TutorBuddy is a desktop application made for freelance tutors who give one-to-one tuition to efficiently manage their students’ contacts, 
-provide a quick overview of scheduled tuition sessions, and handle monthly tuition fees calculation. 
+TutorBuddy is a desktop application made for freelance tutors who give one-to-one tuition to efficiently manage their students’ contacts,
+provide a quick overview of scheduled tuition sessions, and handle monthly tuition fees calculation.
 TutorBuddy is also optimized for fast typing users to handle their day-to-day administrative responsibilities effectively.
 
 ## Summary of Contributions
@@ -17,7 +17,7 @@ Given below is a summary of my contributions to the development of TutorBuddy.
 
 - Email Command
     - **What it does**: This feature allows tutors to retrieve a concatenated string of student's email addresses, delimited by a semi-colon `;`.
-    - **Justification**: This feature provides a quick way for tutors to send mass emails to all their students using their preferred email client (e.g. Microsoft Outlook). 
+    - **Justification**: This feature provides a quick way for tutors to send mass emails to all their students using their preferred email client (e.g. Microsoft Outlook).
     All they have to do is simply input the command, and copy the string of email addresses (e.g.`sam@gmail.com;tom@gmail.com`).
     This saves them the trouble of finding every student's email address.
     - **Highlights**: As this feature involves the use of command, a new command class EmailCommand was created. The logic behind this command is relatively simple:
@@ -28,13 +28,13 @@ Given below is a summary of my contributions to the development of TutorBuddy.
 
 - Calendar Component (UI + Feature)
     - **What it does**: Calendar exist as a standalone tab in TutorBuddy. It provides an intuitive all-in-one experience for tutors to view their tuition sessions throughout the weeks.
-    - **Justification**: Initially, TutorBuddy was displaying tuition sessions in a list format. While this is sufficient enough to provide tutors with the approriate information about 
+    - **Justification**: Initially, TutorBuddy was displaying tuition sessions in a list format. While this is sufficient enough to provide tutors with the approriate information about
     the tuition sessions, it might counter-intuitive when there is a long list of tuition sessions, or when the tutor wants to view the tuition session he/she has for the particular day or week.
     Therefore, Calendar was introduced to solve this problem.
     - **Highlights**: The Calendar component involved two areas: the creation of the user interface (UI) and the logic of the component for others to interface with. The UI is kept simple: it makes use of Labels
     to indicate dates, Buttons for users to toggle between weeks and ListViews to display the tuition session for the particular day. This involved creation of new FXMLs, CalendarView.fxml and CalendarCard.fxml.
-    The former contains the design of the "main frame" while the latter contains the design of each ListView item. 
-    The logic of the Calendar largely bases itself on the "start date" variable. The start date (Monday) would indicate which week the Calendar has to be on, which allows it to 
+    The former contains the design of the "main frame" while the latter contains the design of each ListView item.
+    The logic of the Calendar largely bases itself on the "start date" variable. The start date (Monday) would indicate which week the Calendar has to be on, which allows it to
     populate the relevant dates, as well as the tuition sessions associated with it. Therefore, to view another week, it's as simple as changing the start date. This makes the Calendar Component
     really easy to interface with.
     - **Related PR**: [PR #142](https://github.com/AY2021S2-CS2103T-T11-1/tp/pull/142)

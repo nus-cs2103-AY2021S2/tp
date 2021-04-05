@@ -113,7 +113,7 @@ Refer to the [Commands](#commands) below for details of each command.
 
 TutorBuddy allows the user to take full control of managing their students and tuition sessions with the following 3 views:
 1. Home
-2. Tuition 
+2. Tuition
 3. Calendar
 
 #### 4.1.1 Home
@@ -137,7 +137,7 @@ The Session section displays sessions corresponding to each student.
 #### 4.1.3 Calendar
 The Calendar section provides a weekly view of all tuition sessions in TutorBuddy.
 ![calendar](images/CalendarPage.png)
-The left and right arrow allows you to view past and future tuition sessions. 
+The left and right arrow allows you to view past and future tuition sessions.
 Click the 'Today' button to be brought back to this week's view.
 
 ### 4.2 Commands
@@ -178,7 +178,7 @@ This section details the format of the commands available in TutorBuddy. We will
 
 * Time must be input in the format, `hh:mm`.
   e.g. `13:00` is allowed, but not `1300`.
-  
+
 * Date must be input in the format, `yyyy-mm-dd`.
   e.g. `2021-01-01` is allowed, but not `01-01-2021`.
 
@@ -385,7 +385,7 @@ Arguments similar to `delete_session` command except the following:
 </div>
 
 Example:
-* `delete_rec_session n/John Doe i/1 d/2021-03-31 t/18:00` deletes a valid single session dated 2021-03-31 18:00 
+* `delete_rec_session n/John Doe i/1 d/2021-03-31 t/18:00` deletes a valid single session dated 2021-03-31 18:00
 from an existing recurring session. This will spawn two recurring sessions that will span the period exclusively
 before and after 2021-03-31 18:00
 
