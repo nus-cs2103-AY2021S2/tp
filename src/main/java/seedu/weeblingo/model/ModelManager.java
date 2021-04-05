@@ -251,6 +251,16 @@ public class ModelManager implements Model {
         return quizInstance.getStatisticString();
     }
 
+    @Override
+    public String getCorrectAttemptsString() {
+        if (quizInstance.getCorrectAttemptIndexes().isEmpty()) {
+            return "You did not answer any questions correctly.";
+        } else {
+            return "You answered the following question(s) correctly: "
+                    +  quizInstance.getCorrectAttemptIndexes().toString();
+        }
+    }
+
     //=========== Mode Related =============================================================
 
     public Mode getMode() {
