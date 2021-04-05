@@ -34,7 +34,7 @@ public class ContactListPanel extends UiPart<Region> {
         contactListView.setCellFactory(listView -> new ContactListViewCell());
 
         if (contactListView.getItems().isEmpty()) {
-            noContactsLabel.setText("You have no contacts!");
+            noContactsLabel.setText("No contacts to display!");
             contactListViewPlaceholder.getChildren().add(noContactsLabel);
         } else {
             contactListViewPlaceholder.getChildren().add(contactListView);
