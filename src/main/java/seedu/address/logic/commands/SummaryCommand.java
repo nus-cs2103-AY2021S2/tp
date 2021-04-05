@@ -17,7 +17,7 @@ public class SummaryCommand extends Command {
             + "%d task(s) completed out of %d task(s).\n"
             + "%d task(s) is/are overdue.\n"
             + "%d tasks(s) to be completed before deadline.\n"
-            + "Events\n"
+            + "Event\n"
             + "%d event(s) happening in the next 7 days";
 
 
