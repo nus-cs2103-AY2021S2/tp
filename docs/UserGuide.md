@@ -7,6 +7,9 @@ title: User Guide
 SOChedule is a one-stop solution for managing tasks and events, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
 ## Feature List
+
+### General Commands
+* Viewing help: [`help`]()
   
 ### Task-Specific Commands
 * Adding a task: [`add_task`](#adding-a-task-add_task)
@@ -94,6 +97,10 @@ As listed below are the attributes to be specified for Tasks and Events. All par
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
+
+### Viewing help: `help`
+Shows a message explaining how to access the help page.
+![helpMessage](images/helpMessage.png)
 
 ### Adding a task: `add_task`
 Adds a task to SOChedule Task List.
