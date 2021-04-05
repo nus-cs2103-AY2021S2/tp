@@ -4,6 +4,7 @@ import static java.time.temporal.ChronoUnit.DAYS;
 
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.logging.Logger;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
@@ -14,12 +15,14 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
+import seedu.storemando.commons.core.LogsCenter;
 import seedu.storemando.model.item.Item;
 
 /**
  * Table displaying all items expiring in a week
  */
 public class TablePanel extends UiPart<Region> implements Initializable {
+    private final Logger logger = LogsCenter.getLogger(getClass());
     private static final String FXML = "TablePanel.fxml";
     private ObservableList<Item> itemList;
 
@@ -59,6 +62,11 @@ public class TablePanel extends UiPart<Region> implements Initializable {
         daysBeforeExpiryCol.setCellValueFactory(new PropertyValueFactory<ExpiringItem, String>("daysBeforeExpiry"));
         numberOfItems.setCellValueFactory(new PropertyValueFactory<ExpiringItem, String>("numberOfItems"));
         tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        try {
+            tableView.setSelectionModel(null);
+        } catch (NullPointerException ex) {
+            logger.info("User tried to click on the expiring item's table");
+        }
     }
 
     /**
