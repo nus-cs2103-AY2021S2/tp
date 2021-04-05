@@ -81,7 +81,7 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### 3.2 Add passengers: `add`
+### 3.2 Adding passengers: `add`
 
 Adds a new passenger in the GME terminal.
 
@@ -149,7 +149,7 @@ Format: `find PREFIX/KEYWORD` where PREFIX is one of the following: `n`, `a`, `p
 * `find d/Monday d/Tuesday` returns `Alex Yeoh`, `Irfan Ibrahim` and `Roy Balakrishnan`
   ![result for 'find d/Monday d/Tuesday'](images/findCommandExampleDay.png)
 
-### 3.6 Delete passengers: `delete`
+### 3.6 Deleting passengers: `delete`
 
 Deletes the specific passenger from the GME terminal.
 
@@ -172,7 +172,7 @@ Format: `delete INDEX [INDEX INDEX...]`
 * `delete 1 2 5` deletes the 1st, 2nd and 5th person in the passenger list. 
 
 
-### 3.7 Select passengers to arrange a carpool: `pool`
+### 3.7 Selecting passengers to arrange a carpool: `pool`
 
 Selects passengers from the current view in the GME terminal to arrange a carpool.
 
@@ -194,7 +194,7 @@ Format: `pool n/DRIVER_NAME p/DRIVER_PHONE c/INDEX d/DAY t/TIME [c/INDEX c/INDEX
   results of `find tag/female` command, and assigns *Alice* with number *91234567* to be the driver of the passengers specified by the indices.
 
 
-### 3.8 Remove pools: `unpool`
+### 3.8 Removing pools: `unpool`
 
 Removes the pool specified by an index from the GME terminal.
 
