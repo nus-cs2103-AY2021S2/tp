@@ -191,10 +191,9 @@ Starts a quiz session.
 Format: `start [n/NUMBER] [t/TAG]...`
 
 * NUMBER specifies the number of questions for the quiz session.
-* TAG specifies the type of questions for the quiz session.
+* TAG specifies the categories of questions for the quiz session.
 * NUMBER specified should be positive.
-* There are currently four tags available, gojuon, hiragana, katakana and numbers.
-* You can specify one or two tags.
+* There are currently four default tags, gojuon, hiragana, katakana and numbers.
 
 Examples:
 * `start n/10`

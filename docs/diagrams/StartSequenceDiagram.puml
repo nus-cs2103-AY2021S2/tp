@@ -1,0 +1,87 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":WeeblingoParser" as WeeblingoParser LOGIC_COLOR
+participant ":StartCommandParser" as StartCommandParser LOGIC_COLOR
+participant "command:StartCommand" as StartCommand LOGIC_COLOR
+participant "commandResult:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":ModelManager" as ModelManager MODEL_COLOR
+end box
+
+[-> LogicManager : execute("start n/5 t/numbers")
+activate LogicManager
+
+LogicManager -> WeeblingoParser : parseCommand("start n/5 t/numbers")
+activate WeeblingoParser
+
+create StartCommandParser
+WeeblingoParser -> StartCommandParser
+activate StartCommandParser
+
+StartCommandParser --> WeeblingoParser
+deactivate StartCommandParser
+
+WeeblingoParser -> StartCommandParser : parse(" n/5 t/numbers")
+activate StartCommandParser
+
+create StartCommand
+StartCommandParser -> StartCommand
+activate StartCommand
+
+StartCommand --> StartCommandParser : command
+deactivate StartCommand
+
+StartCommandParser --> WeeblingoParser : command
+deactivate StartCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+StartCommandParser -[hidden]-> WeeblingoParser
+destroy StartCommandParser
+
+WeeblingoParser --> LogicManager : command
+deactivate WeeblingoParser
+
+LogicManager -> StartCommand : execute(model)
+activate StartCommand
+
+StartCommand -> ModelManager : getCurrentMode()
+activate ModelManager
+
+ModelManager --> StartCommand : currentMode
+deactivate ModelManager
+
+StartCommand -> ModelManager : startQuiz(5, Set<Tag> [numbers])
+activate ModelManager
+
+ModelManager --> StartCommand
+deactivate ModelManager
+
+StartCommand -> ModelManager : switchModeQuizSession()
+activate ModelManager
+
+ModelManager --> StartCommand
+deactivate ModelManager
+
+create CommandResult
+StartCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> StartCommand : commandResult
+deactivate CommandResult
+
+CommandResult -[hidden]-> StartCommand
+destroy CommandResult
+
+StartCommand --> LogicManager : commandResult
+deactivate StartCommand
+
+StartCommand -[hidden]-> LogicManager : result
+destroy StartCommand
+
+[<--LogicManager : commandResult
+deactivate LogicManager
+@enduml
