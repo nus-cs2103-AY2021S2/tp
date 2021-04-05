@@ -118,7 +118,7 @@ Format: `add-fr d/FR_DESCRIPTION a/FR_AMOUNT [t/DATE] [c/CATEGORY]…`
 
 - You must replace `FR_DESCRIPTION` with the description of your financial record.
 - You must replace `FR_AMOUNT` with a **positive number** containing up to **two decimal places**.
-- The date you input must follow the format `DD-MM-YYYY` (e.g. 31-12-2020)
+- The date you input must follow the format `DD-MM-YYYY` and it should be between 01-01-1970 and 31-12-2100. (e.g. 31-12-2020)
 - `DD` is the numeric value of the date, `MM` is the numeric value of the month and `YYYY` is the numeric value of the year
 - You must use a date number with 2 digits, a month number with 2 digits, and a year number with 4 digits
 
