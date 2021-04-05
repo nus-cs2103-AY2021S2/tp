@@ -439,7 +439,7 @@ A quick overview of all supported commands, their formats and examples are given
 | **JSON** | JSON is short for **JavaScript Object Notation** which is a lightweight format for data storage (a more detailed explanation can be found [here](#85-json-format)) |
 | **CURL** | <a name="glossary-curl"></a> CURL is short for **Client URL** and is a command-line tool used in the transfer of data via different network protocols |
 | **Index** | Index in this guide refers to the position of the endpoint in the endpoint list (represented by the number beside the endpoint) |
-| **Protocol** | A protocol is a system of rules that define how data is exchanged within or between systems |
+| **Protocol** | <a name="glossary-protocol"></a> A protocol is a system of rules that define how data is exchanged within or between systems |
 
 <div style="page-break-after: always;"></div>
 
