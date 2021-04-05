@@ -362,20 +362,7 @@ public class ModelManager implements Model {
      */
     @Override
     public Record markRecordAsReturned(Record record) {
-        Record foundRecord = null;
-        for (Record r : smartLib.getRecordList()) {
-            if (r.equals(record)) {
-                foundRecord = r;
-            }
-        }
-        if (foundRecord != null) {
-            foundRecord.setDateReturned(record.getDateReturned());
-        }
-        updateFilteredRecordList(PREDICATE_SHOW_ALL_RECORDS);
-
-        assert foundRecord != null : "The record must exist in this step of execution";
-
-        return foundRecord;
+        return smartLib.markRecordAsReturned(record);
     }
 
     /**
