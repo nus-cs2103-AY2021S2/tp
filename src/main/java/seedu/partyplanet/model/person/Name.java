@@ -11,6 +11,7 @@ public class Name {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Names should only contain alphanumeric characters and spaces, and it should not be blank";
+    public static final String MESSAGE_CHARACTER_LIMIT = "Names should not be longer than 29 characters.";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -36,6 +37,13 @@ public class Name {
      */
     public static boolean isValidName(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if a given name is longer than 29 characters.
+     */
+    public static boolean isTooLong(String test) {
+        return test.length() > 29;
     }
 
 

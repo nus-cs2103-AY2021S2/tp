@@ -90,6 +90,9 @@ public class ParserUtil {
         if (!Name.isValidName(trimmedName)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
+        if (Name.isTooLong(name)) {
+            throw new ParseException((Name.MESSAGE_CHARACTER_LIMIT));
+        }
         return new Name(trimmedName);
     }
 
@@ -220,6 +223,9 @@ public class ParserUtil {
         String trimmedTag = tag.trim();
         if (!Tag.isValidTagName(trimmedTag)) {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        }
+        if (Tag.isTooLong(tag)) {
+            throw new ParseException(Tag.MESSAGE_CHARACTER_LIMIT);
         }
         return new Tag(trimmedTag);
     }
