@@ -129,7 +129,6 @@ public class PersonTest {
                 .withGoal(new Goal(Goal.Frequency.MONTHLY))
                 .withMeetings(Collections.singletonList(new Event(
                         LocalDate.of(2024, 1, 15),
-                        LocalTime.of(10, 0),
                         "Some meeting"
                 )));
         assertEquals(LocalDate.of(
