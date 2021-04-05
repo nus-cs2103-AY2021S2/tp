@@ -186,8 +186,21 @@ public class Endpoint {
 
         Set<Header> headers = getHeaders();
         if (!headers.isEmpty()) {
-            builder.append("\nHeaders:\n");
-            headers.forEach(builder::append);
+            if (headers.size() > 1) {
+                builder.append("\nHeaders:\n");
+                int index = 1;
+                for (Object h :headers.toArray()) {
+                    if (index == headers.size()) {
+                        builder.append((Header) h);
+                        break;
+                    }
+                    builder.append(h + "\n");
+                    index++;
+                }
+            } else {
+                builder.append("\nHeaders:\n");
+                headers.forEach(builder::append);
+            }
         }
 
         Set<Tag> tags = getTags();
