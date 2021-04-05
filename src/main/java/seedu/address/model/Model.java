@@ -67,20 +67,20 @@ public interface Model {
 
     /**
      * Deletes the given event.
-     * The person must exist in the event book.
+     * The event must exist in the event book.
      */
     void deleteEvent(Event target);
 
     /**
      * Adds the given event.
-     * {@code person} must not already exist in the event book.
+     * {@code event} must not already exist in the event book.
      */
     void addEvent(Event event);
 
     /**
      * Replaces the given event {@code target} with {@code editedEvent}.
      * {@code target} must exist in the event book.
-     * The person identity of {@code editedEvent} must not be the same as another existing event in the event book.
+     * The event identity of {@code editedEvent} must not be the same as another existing event in the event book.
      */
     void setEvent(Event target, Event editedEvent);
 

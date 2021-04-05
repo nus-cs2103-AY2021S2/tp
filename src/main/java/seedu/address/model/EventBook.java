@@ -26,7 +26,7 @@ public class EventBook implements ReadOnlyEventBook {
     public EventBook() {}
 
     /**
-     * Creates an EventBook using the Persons in the {@code toBeCopied}
+     * Creates an EventBook using the Events in the {@code toBeCopied}
      */
     public EventBook(ReadOnlyEventBook toBeCopied) {
         this();

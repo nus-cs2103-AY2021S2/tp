@@ -7,7 +7,7 @@ title: User Guide
 
 Thank you for downloading **Focuris**! As a busy University student, Focuris helps you manage and keep track of all your
 work, deadlines, and projects. We hope this **User Guide** helps you get started with Focuris so you can start making 
-your student  life a little easier! <br/>
+your student life a little easier! <br/>
 
 Focuris is a **desktop application** for **managing events** with a KanBan board. The KanBan board is a board which
 **displays events according to the level of completion**: Backlog, Todo, In-Progress and Done. <br/>
@@ -198,7 +198,7 @@ The table below gives a detailed summary of the different [parameters](#paramete
 
 As a new user, the image below should give you a better understanding of what each part of our graphical user interface means!
 
-There are two views in Focuris, which can be toggled between with the [`switch` command](#2310-switch-command):
+There are two views in Focuris, which can be toggled with the [`switch` command](#2310-switch-command):
 
 1. `KanBan` view <br/>
    ![Ui KanBan](images/user-guide/Annotated/UiWithReferenceAnnotated.png)
