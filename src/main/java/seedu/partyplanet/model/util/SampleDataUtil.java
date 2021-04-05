@@ -10,13 +10,13 @@ import seedu.partyplanet.model.ReadOnlyAddressBook;
 import seedu.partyplanet.model.ReadOnlyEventBook;
 import seedu.partyplanet.model.event.Event;
 import seedu.partyplanet.model.event.EventDate;
+import seedu.partyplanet.model.name.Name;
 import seedu.partyplanet.model.person.Address;
 import seedu.partyplanet.model.person.Birthday;
 import seedu.partyplanet.model.person.Email;
-import seedu.partyplanet.model.person.Name;
 import seedu.partyplanet.model.person.Person;
 import seedu.partyplanet.model.person.Phone;
-import seedu.partyplanet.model.person.Remark;
+import seedu.partyplanet.model.remark.Remark;
 import seedu.partyplanet.model.tag.Tag;
 
 /**

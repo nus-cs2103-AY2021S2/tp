@@ -55,7 +55,7 @@ public class EEditAutocompleteUtil {
         Map<Prefix, String> prefixMethodMap = Map.of(
             PREFIX_DATE, event.getEventDate().value,
             PREFIX_NAME, event.getName().fullName,
-            PREFIX_REMARK, event.getDetails().value
+            PREFIX_REMARK, event.getRemark().value
         );
 
         String output = "eedit " + argMultimap.getPreamble();

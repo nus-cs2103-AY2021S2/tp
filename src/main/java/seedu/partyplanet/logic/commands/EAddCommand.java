@@ -20,13 +20,13 @@ public class EAddCommand extends Command {
             + "Parameters: "
             + PREFIX_NAME + " NAME "
             + "[" + PREFIX_DATE + " DATE] "
-            + "[" + PREFIX_REMARK + " DETAIL] \n"
+            + "[" + PREFIX_REMARK + " REMARK] \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + " Jan Celebration "
             + PREFIX_DATE + " 2020-01-01 "
             + PREFIX_REMARK + " 1. Check everyone's availability";
 
-    public static final String MESSAGE_USAGE_CONCISE = COMMAND_WORD + " -n NAME [-d DATE] [-r DETAIL]";
+    public static final String MESSAGE_USAGE_CONCISE = COMMAND_WORD + " -n NAME [-d DATE] [-r REMARK]";
 
     public static final String MESSAGE_SUCCESS = "New event added: %1$s";
     public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in PartyPlanet";

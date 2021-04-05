@@ -15,8 +15,8 @@ import seedu.partyplanet.logic.commands.exceptions.CommandException;
 import seedu.partyplanet.model.Model;
 import seedu.partyplanet.model.event.Event;
 import seedu.partyplanet.model.event.EventDate;
-import seedu.partyplanet.model.person.Name;
-import seedu.partyplanet.model.person.Remark;
+import seedu.partyplanet.model.name.Name;
+import seedu.partyplanet.model.remark.Remark;
 
 /**
  * Edits the details of an existing event in PartyPlanet.
@@ -31,12 +31,12 @@ public class EEditCommand extends Command {
             + "Parameters: INDEX "
             + "[" + PREFIX_NAME + " NAME] "
             + "[" + PREFIX_DATE + " DATE] "
-            + "[" + PREFIX_REMARK + " DETAIL]\n"
+            + "[" + PREFIX_REMARK + " REMARK]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_DATE + " 01 Apr 2019 "
             + PREFIX_REMARK + " Prank the april babies ;)";
 
-    public static final String MESSAGE_USAGE_CONCISE = COMMAND_WORD + " INDEX [-n NAME] [-d DATE] [-r DETAIL]";
+    public static final String MESSAGE_USAGE_CONCISE = COMMAND_WORD + " INDEX [-n NAME] [-d DATE] [-r REMARK]";
 
     public static final String MESSAGE_EDIT_EVENT_SUCCESS = "Edited event: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -89,10 +89,10 @@ public class EEditCommand extends Command {
 
         Name updatedName = editEventDescriptor.getName().orElse(eventToEdit.getName());
         EventDate updatedDate = editEventDescriptor.getDate().orElse(eventToEdit.getEventDate());
-        Remark updatedDetail = editEventDescriptor.getDetail().orElse(eventToEdit.getDetails());
+        Remark updatedRemark = editEventDescriptor.getRemark().orElse(eventToEdit.getRemark());
         boolean isDone = eventToEdit.isDone();
 
-        return new Event(updatedName, updatedDate, updatedDetail, isDone);
+        return new Event(updatedName, updatedDate, updatedRemark, isDone);
     }
 
     @Override
@@ -120,7 +120,7 @@ public class EEditCommand extends Command {
     public static class EditEventDescriptor {
         private Name name;
         private EventDate date;
-        private Remark details;
+        private Remark remark;
 
         public EditEventDescriptor() {}
 
@@ -131,14 +131,14 @@ public class EEditCommand extends Command {
         public EditEventDescriptor(EditEventDescriptor toCopy) {
             setName(toCopy.name);
             setDate(toCopy.date);
-            setDetail(toCopy.details);
+            setRemark(toCopy.remark);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, date, details);
+            return CollectionUtil.isAnyNonNull(name, date, remark);
         }
 
         public void setName(Name name) {
@@ -159,12 +159,12 @@ public class EEditCommand extends Command {
         }
 
 
-        public void setDetail(Remark details) {
-            this.details = details;
+        public void setRemark(Remark remark) {
+            this.remark = remark;
         }
 
-        public Optional<Remark> getDetail() {
-            return Optional.ofNullable(details);
+        public Optional<Remark> getRemark() {
+            return Optional.ofNullable(remark);
         }
 
         @Override
@@ -184,7 +184,7 @@ public class EEditCommand extends Command {
 
             return getName().equals(e.getName())
                     && getDate().equals(e.getDate())
-                    && getDetail().equals(e.getDetail());
+                    && getRemark().equals(e.getRemark());
         }
     }
 }

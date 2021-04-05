@@ -1,10 +1,10 @@
-package seedu.partyplanet.model.person;
+package seedu.partyplanet.model.name;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.partyplanet.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Person's name in PartyPlanet.
+ * Represents a name in PartyPlanet.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
 public class Name {

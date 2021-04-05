@@ -3,22 +3,22 @@
   "events" : [ {
     "name" : "Jan Celebration",
     "eventDate" : "2022-01-01",
-    "detail" : "10 people",
+    "remark" : "10 people",
     "isDone" : "0"
   }, {
     "name" : "Feb Celebration",
     "eventDate" : "2022-02-01",
-    "detail" : "10 people",
+    "remark" : "10 people",
     "isDone" : "0"
   }, {
     "name" : "Mar Celebration",
     "eventDate" : "2022-03-01",
-    "detail" : "PLAN NOW!",
+    "remark" : "PLAN NOW!",
     "isDone" : "0"
   }, {
     "name" : "Apr Celebration",
     "eventDate" : "2022-04-01",
-    "detail" : "in school",
+    "remark" : "in school",
     "isDone" : "0"
   } ]
 }
