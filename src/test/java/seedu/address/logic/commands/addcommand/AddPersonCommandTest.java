@@ -219,6 +219,11 @@ public class AddPersonCommandTest {
         }
 
         @Override
+        public void toggleDoneStatusForAssignment(Module module, int index) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addAssignment(Module module, Assignment assignment) {
             throw new AssertionError("This method should not be called.");
         }
