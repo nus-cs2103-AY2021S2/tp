@@ -144,6 +144,11 @@ public class NextCommandTest {
         }
 
         @Override
+        public void showAttemptedQuestions() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void clearQuizInstance() {
             throw new AssertionError("This method should not be called.");
         }

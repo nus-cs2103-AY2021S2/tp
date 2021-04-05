@@ -4,6 +4,7 @@ import static seedu.weeblingo.commons.core.Messages.MESSAGE_TAG_NOT_FOUND;
 
 import java.time.Duration;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -31,6 +32,7 @@ public class Quiz {
     private Flashcard currentQuiz;
     private int currentQuizIndex = 0;
     private Instant startTime;
+    private List<Flashcard> attemptedFlashcards = new ArrayList<>();
 
     // Support for storing the quiz attempt history
     private int numberOfQuestionsAttempted;
@@ -79,6 +81,7 @@ public class Quiz {
             return null;
         } else {
             currentQuiz = quizSessionQueue.poll();
+            attemptedFlashcards.add(currentQuiz);
             currentQuizIndex++;
             return currentQuiz;
         }
@@ -192,5 +195,9 @@ public class Quiz {
     public Score giveScore() {
         return Score.of(numberOfQuestionsAttempted, numberOfQuestionsCorrect,
                 optionalDurationString.orElse(getQuizSessionDuration()));
+    }
+
+    public List<Flashcard> getAttemptedFlashcards() {
+        return attemptedFlashcards;
     }
 }
