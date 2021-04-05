@@ -85,11 +85,11 @@ public class MainApp extends Application {
             initialData = flashcardOptional.orElseGet(LocalDatabasePopulator::getDatabaseOfWeeblingo);
             logger.info(String.format("Weeblingo database succesfully populated: %s", initialData.toString()));
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty FlashcardBook");
-            initialData = new FlashcardBook();
+            logger.warning("Data file not in the correct format. Will be starting with the default FlashcardBook");
+            initialData = new FlashcardBook(LocalDatabasePopulator.getDatabaseOfWeeblingo());
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty FlashcardBook");
-            initialData = new FlashcardBook();
+            logger.warning("Problem while reading from the file. Will be starting with the default FlashcardBook");
+            initialData = new FlashcardBook(LocalDatabasePopulator.getDatabaseOfWeeblingo());
         }
 
         return new ModelManager(initialData, userPrefs);

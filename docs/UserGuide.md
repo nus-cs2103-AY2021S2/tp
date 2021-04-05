@@ -268,7 +268,9 @@ that contains the data of your previous WeebLingo home folder.
 
 **Q**: Can I add my customized flashcards?<br>
 **A**: Sorry, the current version of the application does not allow self-defined flashcards to be added. However, if you
-are advanced and know how to manipulate the storage files, you can do so if you want.
+are advanced and know how to manipulate the storage files, you can do so if you want. However, the application assumes
+a certain format for each data field, thus if you modified the data wrongly, the app will use the fallback option, which
+is to load the storage file with built-in default flashcards and tags.
 
 --------------------------------------------------------------------------------------------------------------------
 
