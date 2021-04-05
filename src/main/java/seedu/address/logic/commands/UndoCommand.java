@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.predicates.ReturnTruePredicate;
 import seedu.address.model.state.State;
 
 /**
@@ -29,6 +30,7 @@ public class UndoCommand extends Command {
         }
         this.state.deleteCurrentState();
         model.setAddressBook(state.getCurrentState());
+        model.updateFilteredPersonList(new ReturnTruePredicate());
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
