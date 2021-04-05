@@ -35,7 +35,7 @@ public class TypicalTasks {
     public static final Task MIDTERM = new TaskBuilder().withName("Midterm").withStartTime("2021-12-12 06:30")
             .withDescription("Not include CSP.").withWorkload("2")
             .withModule("CS3243").withDeadline("2021-12-12 08:30").withDoneStatus(NOT_DONE_STRING)
-            .withRecurrence("monthly").withTags("highPriority").build();
+            .withRecurrence("biweekly").withTags("highPriority").build();
     public static final Task TP = new TaskBuilder().withName("TP")
             .withDeadline("2021-03-14 14:00").withWorkload("3")
             .withModule("CS2103T").withDescription("Wrap up v1.2.").withDoneStatus(DONE_STRING).build();

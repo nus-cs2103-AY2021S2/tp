@@ -55,14 +55,7 @@ public class AddCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        /*
-        if (!toAdd.isRecurring() && model.hasTask(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_TASK);
-        }
-        if (toAdd.isRecurring() && model.hasRecurringTask(toAdd)) {
-            throw new CommandException(RecurCommand.MESSAGE_DUPLICATE_RECURRENCE);
-        }
-        */
+
         if (model.hasTask(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }

@@ -1,11 +1,14 @@
 package seedu.module.model.task;
 
 import static java.time.format.DateTimeFormatter.ISO_LOCAL_DATE;
+import static java.time.format.DateTimeFormatter.ISO_LOCAL_TIME;
 import static java.util.Objects.requireNonNull;
 import static seedu.module.commons.util.AppUtil.checkArgument;
 
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
@@ -18,8 +21,6 @@ public class Time implements Comparable<Time> {
     public static final String MESSAGE_CONSTRAINTS = "Time should be formatted as yyyy-MM-dd or yyyy-MM-dd HH:mm";
     private static final String yearMonthDayString = "yyyy-MM-dd";
     private static final String timeString = "HH:mm";
-    public static final DateTimeFormatter DATE_TIME_FORMATTER_WITHOUT_TIME = DateTimeFormatter.ofPattern(
-            yearMonthDayString);
 
     public static final DateTimeFormatter DATE_TIME_FORMATTER_WITH_TIME = DateTimeFormatter.ofPattern(
             yearMonthDayString + " " + timeString);
@@ -36,27 +37,51 @@ public class Time implements Comparable<Time> {
     public Time(String timeString) {
         requireNonNull(timeString);
         checkArgument(isValidTime(timeString), MESSAGE_CONSTRAINTS);
+
+        String[] timeStringArray = timeString.split(" ");
+        String dateString = timeStringArray[0];
+
+        date = parseDate(dateString, ISO_LOCAL_DATE);
         value = timeString;
-        String dateString = value.split(" ")[0];
-        if (value.length() == dateString.length()) {
-            date = parseDate(dateString, ISO_LOCAL_DATE);
+
+        // only yyyy-MM-dd fields present
+        if (!hasHoursMinutes(timeString)) {
             time = date.atTime(0, 0);
         } else {
-            time = parseDateAndTime(value, DATE_TIME_FORMATTER_WITH_TIME);
-            date = time.toLocalDate();
+            String hourMinutesString = timeStringArray[1];
+            LocalTime hourMinutesField = parseHoursMinutes(hourMinutesString, ISO_LOCAL_TIME);
+            time = date.atTime(hourMinutesField);
         }
     }
 
     /**
      * Method to make new Deadline using LocalDateTime object instead
      *
-     * @param deadlineTime a valid LocalDateTime that is used to construct Deadline object.
+     * @param time a valid LocalDateTime that is used to construct {@code Time}.
      */
-    public static Time makeDeadlineWithTime(LocalDateTime deadlineTime) {
-        requireNonNull(deadlineTime);
-        String deadlineString = deadlineTime.format(DATE_TIME_FORMATTER_WITH_TIME);
-
+    public static Time makeTimeObject(LocalDateTime time) {
+        requireNonNull(time);
+        String deadlineString = time.format(DATE_TIME_FORMATTER_WITH_TIME);
         return new Time(deadlineString);
+    }
+
+    /**
+     * Creates a new, correctly formatted time String
+     * @param oldTime Time object to be incremented.
+     * @param increment number of days to be added.
+     * @return String representing the value of incremented time.
+     */
+    public static String makeNextTimeString(Time oldTime, long increment) {
+        LocalDate newDate = oldTime.getDate().plusDays(increment);
+
+        String dateString = newDate.format(ISO_LOCAL_DATE);
+        String hourMinuteFieldString = "";
+
+        if (hasHoursMinutes(oldTime.value)) {
+            LocalTime hourMinuteField = oldTime.getTime().toLocalTime();
+            hourMinuteFieldString = hourMinuteField.format(ISO_LOCAL_TIME);
+        }
+        return dateString + " " + hourMinuteFieldString;
     }
 
     public LocalDate getDate() {
@@ -68,11 +93,33 @@ public class Time implements Comparable<Time> {
     }
 
     /**
+     * Checks for {@code timeString} containing HH:mm field
+     * @param timeString String to be checked.
+     * @return true if HH:mm substring present. False otherwise.
+     */
+    public static boolean hasHoursMinutes(String timeString) {
+        assert timeString != null;
+        String[] timeStringArray = timeString.split(" ");
+
+        return timeStringArray.length > 1;
+    }
+
+
+    /**
      * Returns true if a given string is a valid time.
      * A valid time can either be in yyyy-MM-dd or yyyy-MM-dd HH:mm format.
      */
     public static boolean isValidTime(String test) {
-        return isValidDate(test) || isValidDateAndTime(test);
+        requireNonNull(test);
+        if (!hasHoursMinutes(test)) {
+            return isValidDate(test);
+        } else {
+            String[] testStringArr = test.split(" ");
+            String yearMonthDaySubstring = testStringArr[0];
+            String hourMinutesSubstring = testStringArr[1];
+
+            return isValidDate(yearMonthDaySubstring) && isValidHoursMinutes(hourMinutesSubstring);
+        }
     }
 
     private static LocalDate parseDate(String dateString, DateTimeFormatter formatter) throws DateTimeParseException {
@@ -81,23 +128,27 @@ public class Time implements Comparable<Time> {
 
     private static boolean isValidDate(String dateString) {
         try {
-            parseDate(dateString, DATE_TIME_FORMATTER_WITHOUT_TIME);
+            parseDate(dateString, ISO_LOCAL_DATE);
         } catch (DateTimeParseException e) {
+            return false;
+        } catch (DateTimeException e) {
             return false;
         }
         return true;
     }
 
-    private static LocalDateTime parseDateAndTime(String dateTimeString, DateTimeFormatter formatter)
+    private static LocalTime parseHoursMinutes(String hoursMinutesString, DateTimeFormatter formatter)
             throws DateTimeParseException {
 
-        return LocalDateTime.parse(dateTimeString, formatter);
+        return LocalTime.parse(hoursMinutesString, formatter);
     }
 
-    private static boolean isValidDateAndTime(String dateTimeString) {
+    private static boolean isValidHoursMinutes(String hoursMinutesString) {
         try {
-            parseDateAndTime(dateTimeString, DATE_TIME_FORMATTER_WITH_TIME);
+            parseHoursMinutes(hoursMinutesString, ISO_LOCAL_TIME);
         } catch (DateTimeParseException e) {
+            return false;
+        } catch (DateTimeException e) {
             return false;
         }
         return true;
