@@ -10,7 +10,10 @@ import seedu.heymatez.model.person.Person;
 import seedu.heymatez.model.person.UniquePersonList;
 import seedu.heymatez.model.task.Task;
 import seedu.heymatez.model.task.UniqueTaskList;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2ea79714dea37ef46f5f7c3b992d2be3e1474321
 
 /**
  * Wraps all data at Hey Matez level.
