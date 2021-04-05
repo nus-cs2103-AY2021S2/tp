@@ -28,6 +28,7 @@ import seedu.iscam.model.meeting.Meeting;
 import seedu.iscam.model.meeting.MeetingContainsKeywordsPredicate;
 import seedu.iscam.model.util.clientbook.ClientBook;
 import seedu.iscam.testutil.EditClientDescriptorBuilder;
+import seedu.iscam.testutil.EditMeetingDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -118,9 +119,20 @@ public class CommandTestUtil {
         DESC_AMY = new EditClientDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withLocation(VALID_LOCATION_AMY)
                 .withPlan(VALID_PLAN_AMY).withImage(VALID_IMAGE).withTags(VALID_TAG_FRIEND).build();
+
         DESC_BOB = new EditClientDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withLocation(VALID_LOCATION_BOB)
                 .withPlan(VALID_PLAN_BOB).withImage(VALID_IMAGE).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+
+        DESC_CLEO = new EditMeetingDescriptorBuilder().withClientName(VALID_CLIENT_NAME_CLEO)
+                .withDateTime(VALID_DATETIME_CLEO).withLocation(VALID_LOCATION_CLEO)
+                .withDescription(VALID_DESCRIPTION_CLEO).withTags(VALID_TAG_PREMIUM)
+                .withStatus(VALID_STATUS_CLEO);
+
+        DESC_DAN = new EditMeetingDescriptorBuilder().withClientName(VALID_CLIENT_NAME_DAN)
+                .withDateTime(VALID_DATETIME_DAN).withLocation(VALID_LOCATION_DAN)
+                .withDescription(VALID_DESCRIPTION_DAN).withTags(VALID_TAG_URGENT)
+                .withStatus(VALID_STATUS_DAN);
     }
 
     /**
