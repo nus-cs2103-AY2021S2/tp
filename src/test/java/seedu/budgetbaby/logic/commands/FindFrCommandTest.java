@@ -2,6 +2,8 @@ package seedu.budgetbaby.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -26,6 +28,8 @@ import seedu.budgetbaby.model.record.FinancialRecord;
 public class FindFrCommandTest {
     private BudgetBabyModel model = new BudgetBabyModelManager(new BudgetTracker(), new UserPrefs());
     private FindFrCommandParser find = new FindFrCommandParser();
+    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    LocalDate currDate = LocalDate.now();
 
     private final Description description = new Description("Breakfast");
     private final Amount amount = new Amount("5");
@@ -49,7 +53,7 @@ public class FindFrCommandTest {
     public void execute_findD() throws ParseException, CommandException {
         model.addFinancialRecord(new FinancialRecord(description, amount, categories));
         model.addFinancialRecord(new FinancialRecord(description2, amount2, categories2));
-        String expectedOutput = "[01-04-2021 | Lunch | 6.0; Categories: [Food]]";
+        String expectedOutput = "[" + dtf.format(currDate) + " | Lunch | 6.00; Categories: [Food]]";
         find.parse(" d/Lunch").execute(model);
         assertEquals(expectedOutput, model.getFilteredFinancialRecordList().toString());
     }
@@ -58,7 +62,7 @@ public class FindFrCommandTest {
     public void execute_findA() throws ParseException, CommandException {
         model.addFinancialRecord(new FinancialRecord(description, amount, categories));
         model.addFinancialRecord(new FinancialRecord(description2, amount2, categories2));
-        String expectedOutput = "[01-04-2021 | Lunch | 6.0; Categories: [Food]]";
+        String expectedOutput = "[" + dtf.format(currDate) + " | Lunch | 6.00; Categories: [Food]]";
         find.parse(" a/6").execute(model);
         assertEquals(expectedOutput, model.getFilteredFinancialRecordList().toString());
     }
@@ -67,8 +71,8 @@ public class FindFrCommandTest {
     public void execute_findC() throws ParseException, CommandException {
         model.addFinancialRecord(new FinancialRecord(description, amount, categories));
         model.addFinancialRecord(new FinancialRecord(description2, amount2, categories2));
-        String expectedOutput = "[01-04-2021 | Breakfast | 5.0; Categories: "
-                + "[Food], 01-04-2021 | Lunch | 6.0; Categories: [Food]]";
+        String expectedOutput = "[" + dtf.format(currDate) + " | Breakfast | 5.00; Categories: "
+                + "[Food], " + dtf.format(currDate) + " | Lunch | 6.00; Categories: [Food]]";
         find.parse(" c/Food").execute(model);
         assertEquals(expectedOutput, model.getFilteredFinancialRecordList().toString());
     }
@@ -77,7 +81,7 @@ public class FindFrCommandTest {
     public void execute_findDA() throws ParseException, CommandException {
         model.addFinancialRecord(new FinancialRecord(description, amount, categories));
         model.addFinancialRecord(new FinancialRecord(description2, amount2, categories2));
-        String expectedOutput = "[01-04-2021 | Lunch | 6.0; Categories: [Food]]";
+        String expectedOutput = "[" + dtf.format(currDate) + " | Lunch | 6.00; Categories: [Food]]";
         find.parse(" d/Lunch a/6").execute(model);
         assertEquals(expectedOutput, model.getFilteredFinancialRecordList().toString());
     }
@@ -86,7 +90,7 @@ public class FindFrCommandTest {
     public void execute_findDC() throws ParseException, CommandException {
         model.addFinancialRecord(new FinancialRecord(description, amount, categories));
         model.addFinancialRecord(new FinancialRecord(description2, amount2, categories2));
-        String expectedOutput = "[01-04-2021 | Lunch | 6.0; Categories: [Food]]";
+        String expectedOutput = "[" + dtf.format(currDate) + " | Lunch | 6.00; Categories: [Food]]";
         find.parse(" d/Lunch c/Food").execute(model);
         assertEquals(expectedOutput, model.getFilteredFinancialRecordList().toString());
     }
@@ -95,7 +99,7 @@ public class FindFrCommandTest {
     public void execute_findAC() throws ParseException, CommandException {
         model.addFinancialRecord(new FinancialRecord(description, amount, categories));
         model.addFinancialRecord(new FinancialRecord(description2, amount2, categories2));
-        String expectedOutput = "[01-04-2021 | Lunch | 6.0; Categories: [Food]]";
+        String expectedOutput = "[" + dtf.format(currDate) + " | Lunch | 6.00; Categories: [Food]]";
         find.parse(" a/6 c/Food").execute(model);
         assertEquals(expectedOutput, model.getFilteredFinancialRecordList().toString());
     }
@@ -104,7 +108,7 @@ public class FindFrCommandTest {
     public void execute_findAll() throws ParseException, CommandException {
         model.addFinancialRecord(new FinancialRecord(description, amount, categories));
         model.addFinancialRecord(new FinancialRecord(description2, amount2, categories2));
-        String expectedOutput = "[01-04-2021 | Lunch | 6.0; Categories: [Food]]";
+        String expectedOutput = "[" + dtf.format(currDate) + " | Lunch | 6.00; Categories: [Food]]";
         find.parse(" d/Lunch a/6 c/Food").execute(model);
         assertEquals(expectedOutput, model.getFilteredFinancialRecordList().toString());
     }
