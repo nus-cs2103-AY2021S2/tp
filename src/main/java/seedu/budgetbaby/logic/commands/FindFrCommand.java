@@ -20,7 +20,7 @@ public class FindFrCommand extends BudgetBabyCommand {
 
     public static final String COMMAND_WORD = "find-fr";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds financial records"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds financial records "
             + "by description, amount and/or category.\n"
             + "Parameters: "
             + PREFIX_DESCRIPTION + "FR_DESCRIPTION "
