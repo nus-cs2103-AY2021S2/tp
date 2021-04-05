@@ -115,10 +115,10 @@ DESCRIPTION OF PARAMETER
 
 #### `ROOM_NUMBER`
 Room number for a room
-* Format: `XY-YYY`, where `X` is an integer from 1-9 inclusive, while `Y` is an integer from 0-9 inclusive. The hyphen is necessary.
-    * Valid examples: 01-000, 11-100, 12-345
-    * Invalid examples: 00-000, 00-100
-* Room numbers are unique within the SunRez
+* Format: `XY-ABC`, where XY can be any pair of digits except 00, and ABC can be any 3 digits.
+    * Valid examples: 01-000, 11-100, 12-345.
+    * Invalid examples: 00-000, 00-100.
+* Room numbers are unique within the SunRez.
 * We disallow floor numbers being 00, as that is not a common practice in Singapore. However, unit numbers can be 000.
 
 
