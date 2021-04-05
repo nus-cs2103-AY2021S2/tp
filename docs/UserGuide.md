@@ -309,6 +309,7 @@ Format: `oedit INDEX [r/ROOM_NUMBER] [t/ROOM_TYPE] [g/TAG]`
 * Existing values will be updated to the input values.
 * Room occupancy status can only be changed through the `alloc` or `dealloc` command when a resident is allocated or deallocated. The occupancy status is not controllable through the `oedit` command. 
 * `oedit` will be blocked if the room is occupied. Run `dealloc` to deallocate the room before making further edits.
+  See [Deallocate a resident](#deallocate-resident-from-room--dealloc).
 
 Example:
 * `oedit 1 g/SHN g/Blue` Edits the 1st room's tags to `SHN` and `Blue`.
@@ -321,6 +322,7 @@ Deletes the room at a specified index.
 Format: `odel INDEX`
 * `INDEX` refers to the index number shown in the displayed resident list. `INDEX` **must be a positive integer 1,2,3, ...**.
 * `odel` will be blocked if the room is occupied. Run `dealloc` to deallocate the room before attempting to delete the room.
+  See [Deallocate a resident](#deallocate-resident-from-room--dealloc).
 
 Example:
 * `odel 1` Deletes the 1st room in the room list.
