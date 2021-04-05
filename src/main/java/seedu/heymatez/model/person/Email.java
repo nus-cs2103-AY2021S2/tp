@@ -12,21 +12,36 @@ public class Email {
 
     private static final String SPECIAL_CHARACTERS = "!#$%&'*+/=?`{|}~^.-";
     public static final String MESSAGE_CONSTRAINTS = "Emails should be of the format local-part@domain "
-            + "and adhere to the following constraints:\n"
-            + "1. The local-part should only contain alphanumeric characters and these special characters, excluding "
-            + "the parentheses, (" + SPECIAL_CHARACTERS + ") .\n"
-            + "2. This is followed by a '@' and then a domain name. "
+            + "and adhere to the following constraints:\n\n"
+
+            + "1. The entire email address should have a maximum length of 254 characters.\n\n"
+
+            + "2. The local-part should: \n"
+            + "    - be at least 2 character long \n"
+            + "    - only contain alphanumeric characters and these special characters, excluding "
+            + "the parentheses, (" + SPECIAL_CHARACTERS + ").\n\n"
+
+            + "3. This is followed by a '@' and then a domain name. "
             + "The domain name must:\n"
-            + "    - be at least 2 characters long\n"
+            + "    - be at least 2 characters long \n"
             + "    - start and end with alphanumeric characters\n"
-            + "    - consist of alphanumeric characters, a period or a hyphen for the characters in between, if any.";
+            + "    - consist of alphanumeric characters, a period or a hyphen for the characters in between, if any.\n\n"
+
+            + "4. Lastly, a top-level domain (e.g. '.com') follows after the domain name. "
+            + "The top-level domain must: \n"
+            + "    - be at least 2 character long with a maximum length of 24 characters\n"
+            + "    - start with a period and consist of alphanumeric character only. ";
+
     // alphanumeric and special characters
-    private static final String LOCAL_PART_REGEX = "^[\\w" + SPECIAL_CHARACTERS + "]+";
+    private static final String LOCAL_PART_REGEX = "^[\\w" + SPECIAL_CHARACTERS + "]{2,}+";
     private static final String DOMAIN_FIRST_CHARACTER_REGEX = "[^\\W_]"; // alphanumeric characters except underscore
     private static final String DOMAIN_MIDDLE_REGEX = "[a-zA-Z0-9.-]*"; // alphanumeric, period and hyphen
-    private static final String DOMAIN_LAST_CHARACTER_REGEX = "[^\\W_]$";
+    private static final String DOMAIN_LAST_CHARACTER_REGEX = "[^\\W_]";
+    private static final String TOP_LEVEL_DOMAIN_REGEX = "[^\\W]{2,24}$";
+
     public static final String VALIDATION_REGEX = LOCAL_PART_REGEX + "@"
-            + DOMAIN_FIRST_CHARACTER_REGEX + DOMAIN_MIDDLE_REGEX + DOMAIN_LAST_CHARACTER_REGEX;
+            + DOMAIN_FIRST_CHARACTER_REGEX + DOMAIN_MIDDLE_REGEX + DOMAIN_LAST_CHARACTER_REGEX
+            + "\\." + TOP_LEVEL_DOMAIN_REGEX;
 
     public final String value;
 
@@ -46,6 +61,13 @@ public class Email {
      */
     public static boolean isValidEmail(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns if a given string is within the maximum length of .
+     */
+    public static boolean isValidLength(String test) {
+        return test.length() <= 254;
     }
 
     @Override
