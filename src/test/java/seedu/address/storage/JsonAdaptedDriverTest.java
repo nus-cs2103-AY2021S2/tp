@@ -21,15 +21,15 @@ public class JsonAdaptedDriverTest {
     private static final String VALID_PHONE = DRIVER_BENSON.getPhone().toString();
 
     @Test
-    public void toModelType_validPassengerDetails_returnsPassenger() throws Exception {
+    public void toModelType_validDriver_returnsDriver() throws Exception {
         JsonAdaptedDriver driver = new JsonAdaptedDriver(DRIVER_BENSON);
         assertEquals(DRIVER_BENSON, driver.toModelType());
     }
 
     @Test
-    public void toModelType_validPersonDetailsWithDriver_returnsPerson() throws Exception {
+    public void toModelType_validNameAndPhone_returnsDriver() throws Exception {
         Driver driver = new DriverBuilder(DRIVER_BENSON).build();
-        JsonAdaptedDriver jsonAdaptedDriver = new JsonAdaptedDriver(driver);
+        JsonAdaptedDriver jsonAdaptedDriver = new JsonAdaptedDriver(VALID_NAME, VALID_PHONE);
         assertEquals(driver, jsonAdaptedDriver.toModelType());
     }
 
