@@ -198,12 +198,13 @@ Examples:
 
 [coming in v1.3 subject to changes]
 
-If you would like to take a look at how you managed your budget for a pericular month, you may use the `view-month` command to display the data associated with a specific month.
+If you would like to take a look at how you managed your budget for a particular month, you may use the `view-month` command to display the data associated with a specific month.
 
 Data associated with a month includes:
 
 - The budget set by you for that month
-- Your remaining budget for that month
+- Your total expense for that month
+- The amount you have spent in relation to the total budget for that month (in term of percentage)
 - Your list of financial records for that month
 
 <img src="images/features/view-month.png" width="600px">
@@ -313,7 +314,7 @@ _Details coming soon ..._
 | **Edit a Financial Record**   | `edit-fr FR_INDEX [d/FR_DESCRIPTION] [a/FR_AMOUNT] [t/DATE] [c/CATEGORY]…` <br> e.g., `edit-fr 1 d/new description` |
 | **Find a Financial Record**   | `find-fr c/FR_CATEGORY` <br> e.g., `find-fr c/Food`                                                                 |
 | **Set Monthly Budget**        | `set-bg BG_AMOUNT​` <br> e.g., `set-bg 100`                                                                         |
-| **View a Particular Month**   | `view MM-YYYY` <br> e.g., `view 01-2021`                                                                            |
+| **View a Particular Month**   | `view-month MM-YYYY` <br> e.g., `view-month 01-2021`                                                                            |
 | **Reset Filter**              | `reset-filter`                                                                                                      |
 | **Help**                      | `help`                                                                                                              |
 | **Exit**                      | `exit`                                                                                                              |
