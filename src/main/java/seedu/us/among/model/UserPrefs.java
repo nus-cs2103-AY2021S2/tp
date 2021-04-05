@@ -36,6 +36,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
         setEndpointListFilePath(newUserPrefs.getEndpointListFilePath());
+        GuiSettings.setLoadedTheme(guiSettings.getApplicationTheme());
     }
 
     public GuiSettings getGuiSettings() {
