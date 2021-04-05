@@ -63,7 +63,7 @@ These are symbols used throughout the User Guide you might want to take note of.
 
    * **`tag 1 t/easy`** : Tags the first flashcard shown as easy.
 
-   * **`end`** : Returns to menu. 
+   * **`end`** : Returns to menu.
 
    * **`exit`** : Exits the app.
 
@@ -104,7 +104,7 @@ Prematurely ends the current quiz session. Quiz progress will not be saved if th
 The end command is only applicable while the user is in Quiz mode.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If you want to end your current quiz
-session but want to see the statistics of the questions answered so far, consider skipping all questions until the 
+session but want to see the statistics of the questions answered so far, consider skipping all questions until the
 end using next instead. The end command is meant as a way to quickly discard and close the current quiz session.
 
 </div>
@@ -223,7 +223,7 @@ After executing start command:
 Reads in user attempt and check if it matches the answer of currently shown flashcard question.<br>
 Each time a check command is executed, number of attempts increment by one.
 If attempt is correct, answer to the current flashcard will be displayed and number of correct attempt is displayed.
-Else user may choose to try again, skip the question though `next` or end the session through `end`. 
+Else user may choose to try again, skip the question though `next` or end the session through `end`.
 
 Format: `check ATTEMPT`
 
