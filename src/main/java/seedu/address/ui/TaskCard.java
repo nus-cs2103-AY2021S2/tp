@@ -49,10 +49,15 @@ public class TaskCard extends UiPart<Region> {
         name.setText(task.getName().fullName);
         deadline.setText("Deadline: " + task.getDeadline().toString());
         priority.setText("Priority: " + task.getPriority().toString());
-        category.setText("Category: " + task.getCategories().toString());
         task.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        if (task.getCategories().isEmpty()) {
+            category.setVisible(true);
+        } else {
+            category.setText("Category: " + task.getCategories().toString());
+        }
+
         if (task.isComplete()) {
             tickImageView.setVisible(true);
         } else {

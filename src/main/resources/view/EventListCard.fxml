@@ -32,7 +32,7 @@
             <Label fx:id="startTime" styleClass="cell_small_label" text="\$startTime" />
             <Label fx:id="endDate" styleClass="cell_small_label" text="\$endDate" />
             <Label fx:id="endTime" styleClass="cell_small_label" text="\$endTime" />
-            <Label fx:id="category" styleClass="cell_small_label" text="\$category" />
+            <Label fx:id="category" styleClass="cell_small_label" />
         </VBox>
     </GridPane>
 </HBox>

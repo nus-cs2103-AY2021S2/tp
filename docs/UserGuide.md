@@ -51,7 +51,7 @@ SOChedule is a one-stop solution for managing tasks and events, optimized for us
 
    * **`list_task`** : Lists all tasks.
 
-   * **`add_task`**`n/CS2103 assignment d/2021-02-27 p/1 c/school work t/urgent` : Adds a task named `CS2103 assignment` to the SOChedule with its respective attributes.
+   * **`add_task`**`n/CS2103 assignment d/2021-02-27 p/1 c/schoolwork t/urgent` : Adds a task named `CS2103 assignment` to the SOChedule with its respective attributes.
 
    * **`delete_task`**`3` : Deletes the 3rd task shown in the current list.
 
@@ -294,15 +294,16 @@ Format: `free_time DATE`
 Examples:
 * `free_time 2021-06-01` finds all free time slots on the given date `1st June 2021`.
 
-### Summarising tasks and events completion status: `summary`
-Displays a summary of tasks and events completion status.
+### Summarising tasks and events statistics: `summary`
+Displays a summary of tasks completion status and events upcoming in the next 7 days.
 
 Format: `summary`
-* **Completed tasks** refer to tasks that are done regardless of when the deadline is
-* **Overdue tasks** refer to tasks that are incomplete and the current date now has passed the deadline
-  i.e., `completionStatus == INCOMPLETE` && `deadline < current date`
-* **Tasks to be completed before deadline** refer to tasks that are incomplete and the current date now has not passed the deadline
-  i.e., `completionStatus == INCOMPLETE` && `deadline > current date`
+* **Completed tasks** refer to tasks that are done regardless of when the deadline is.
+* **Overdue tasks** refer to tasks that are incomplete and the current date now has passed the deadline,
+  i.e., `completionStatus is INCOMPLETE` and `deadline is before current date`
+* **Tasks to be completed before deadline** refer to tasks that are incomplete and the current date now has not passed the deadline,
+  i.e., `completionStatus is INCOMPLETE` and `deadline is after current date`
+* **Events upcoming in the next 7 days** refer to events that are going to happen in the next 7 days. Events that are happening today are not included.
 
 
 ### Clearing Sochedule: `clear`
