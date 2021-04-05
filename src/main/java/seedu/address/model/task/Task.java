@@ -2,7 +2,6 @@ package seedu.address.model.task;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.time.LocalDate;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -119,86 +118,6 @@ public class Task {
                 && otherTask.getTitle().equals(getTitle());
     }
 
-    public boolean dateOver() {
-        return date.over();
-    }
-
-    /**
-     * Checks if the Recurring schedule end date given by the user has expired.
-     *
-     * @return true if the end date is before the current system date.
-     */
-    public boolean hasExpired() {
-        return recurringSchedule.isExpired();
-    }
-
-    public boolean hasInvalidDateRange() {
-        return recurringSchedule.isInvalidDateRange();
-    }
-
-    /**
-     * Checks if the provided date has the same date as this task's date.
-     *
-     * @param date Date to check this task's date with.
-     * @return Boolean indicating whether the provided date is on the same day as this task's date.
-     */
-    public boolean hasSameDate(Date date) {
-        return this.date.value != null && this.date.equals(date);
-    }
-
-    /**
-     * Checks if the provided date string is in the schedule of this task's recurring schedule.
-     * Will return false if there is no dates in the schedule.
-     *
-     * @param dateString Date in string format, to check if it is in this task's schedule.
-     * @return Boolean indicating if the provided date is in the schedule.
-     */
-    public boolean isOnRecurringScheduleDate(String dateString) {
-        return this.recurringSchedule.isInRecurringSchedule(dateString);
-    }
-
-    /**
-     * Checks if the Date attribute contains any data.
-     *
-     * @return true if the String of Date isEmpty, false otherwise.
-     */
-    public boolean isEmptyDate() {
-        return date.isEmptyValue();
-    }
-
-    /**
-     * Checks if the Duration attribute contains any data.
-     *
-     * @return true if the String of Duration is Empty, false otherwise.
-     */
-    public boolean isEmptyDuration() {
-        return duration.isEmptyValue();
-    }
-
-    /**
-     * Checks if the RecurringSchedule attribute contains any data.
-     *
-     * @return true if the String of RecurringSchedule is Empty, false otherwise.
-     */
-    public boolean isEmptyRecurringSchedule() {
-        return recurringSchedule.isEmptyValue();
-    }
-
-    /**
-     * Returns true if this task is already done.
-     */
-    public boolean isDone() {
-        return status.isDone();
-    }
-
-    public boolean isEmptyTitle() {
-        return title.isEmptyValue();
-    }
-
-    public boolean isWithinSevenDays(LocalDate currentDate) {
-        return date.isWithinSevenDays(currentDate);
-    }
-
     /**
      * Returns true if both tasks have the same identity and data fields.
      * This defines a stronger notion of equality between two tasks.
@@ -232,17 +151,22 @@ public class Task {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getTitle())
-                .append("; \n").append(Date.FIELD_NAME).append(": ")
-                .append(getDate())
-                .append("; \n").append(Duration.FIELD_NAME).append(": ")
-                .append(getDuration())
-                .append("; \n").append(RecurringSchedule.FIELD_NAME).append(": ")
-                .append(getRecurringSchedule())
-                .append("; \n").append(Description.FIELD_NAME).append(": ")
-                .append(getDescription())
-                .append("; \n").append(Status.FIELD_NAME).append(": ")
-                .append(getStatus());
+        builder.append(getTitle()).append("; \n");
+        if (!date.isEmptyValue()) {
+            builder.append(Date.FIELD_NAME).append(": ").append(getDate()).append("; \n");
+        }
+        if (!duration.isEmptyValue()) {
+            builder.append(Duration.FIELD_NAME).append(": ").append(getDuration()).append("; \n");
+        }
+        if (!recurringSchedule.isEmptyValue()) {
+            builder.append(RecurringSchedule.FIELD_NAME).append(": ").append(getRecurringSchedule()).append("; \n");
+        }
+        if (!description.isEmptyValue()) {
+            builder.append(Description.FIELD_NAME).append(": ").append(getDescription()).append("; \n");
+        }
+        if (!status.isEmptyValue()) {
+            builder.append(Status.FIELD_NAME).append(": ").append(getStatus()).append("; \n");
+        }
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

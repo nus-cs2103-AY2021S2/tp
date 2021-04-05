@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.attributes.Attribute;
 
 /**
  * ConstraintManager checks that the necessary constraints on the attributes of Tasks are abided by.
@@ -30,10 +31,15 @@ public class ConstraintManager {
      * @throws CommandException If a task has both Date as well as Duration or RecurringSchedule.
      */
     public static void enforceAttributeConstraints(Task task) throws CommandException {
-        boolean hasDateValue = !task.isEmptyDate();
-        boolean hasDurationValue = !task.isEmptyDuration();
-        boolean hasRecurringScheduleValue = !task.isEmptyRecurringSchedule();
-        boolean hasNoTitle = task.isEmptyTitle();
+        Attribute date = task.getDate();
+        Attribute duration = task.getDuration();
+        Attribute recurringSchedule = task.getRecurringSchedule();
+        Attribute title = task.getTitle();
+
+        boolean hasDateValue = !date.isEmptyValue();
+        boolean hasDurationValue = !duration.isEmptyValue();
+        boolean hasRecurringScheduleValue = !recurringSchedule.isEmptyValue();
+        boolean hasNoTitle = title.isEmptyValue();
 
         // Duration cannot exist on its own without Deadline or RecurringSchedule.
         if (hasDurationValue && !(hasRecurringScheduleValue || hasDateValue)) {
