@@ -13,7 +13,12 @@ public class RepeatableComparator implements Comparator<Repeatable> {
     public int compare(Repeatable r1, Repeatable r2) {
         int compareDays = Integer.compare(daysTo(r1), daysTo(r2));
 
-        return compareDays == 0 ? r1.getDescription().compareTo(r2.getDescription()) : compareDays;
+        if (compareDays != 0) {
+            return compareDays;
+        } else {
+            int compareTime = r1.getTime().compareTo(r2.getTime());
+            return compareTime != 0 ? compareTime : r1.getDescription().compareTo(r2.getDescription());
+        }
     }
 
     private int daysTo(Repeatable repeatable) {
