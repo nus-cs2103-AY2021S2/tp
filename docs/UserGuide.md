@@ -159,8 +159,8 @@ Format: `addMember NAME -p PHONE_NUMBER -e EMAIL [-r ROLE]`
 * If role field is not specified, person will be assigned a default role of member.
 
 Assumptions:
-* Every member in the CCA has different names where you are not allowed 
-  to add with the same name with different details. An error will be prompted.
+* Every member in the CCA has different a name. An error will be prompted when you add a member with the same name but with
+different a phone number, email or role.
 
 Examples: 
 * `addMember Dylan -p 64529356 -e dylan@gmail.com`
