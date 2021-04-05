@@ -2,8 +2,8 @@ package seedu.heymatez.commons.util;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.heymatez.testutil.Assert.assertThrows;
 import static seedu.heymatez.commons.util.StringUtil.VALID_INTEGER;
+import static seedu.heymatez.testutil.Assert.assertThrows;
 
 import java.io.FileNotFoundException;
 
