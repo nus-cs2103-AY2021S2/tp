@@ -2,6 +2,7 @@ package seedu.address.model.cheese;
 
 import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.commons.util.DateUtil.isBeforeToday;
 
 import java.util.Optional;
 
@@ -69,6 +70,8 @@ public class Cheese {
     public static void checkCheeseArguments(CheeseType cheeseType, ManufactureDate manufactureDate,
                                             ExpiryDate expiryDate, CheeseId cheeseId,
                                             boolean isAssigned) {
+        checkArgument(isBeforeToday(manufactureDate), "The manufacture date cannot be after today.");
+
         if (expiryDate != null) {
             checkArgument(expiryDate.isAfter(manufactureDate),
                 "The expiry date of the cheese should be after the manufacture date.");

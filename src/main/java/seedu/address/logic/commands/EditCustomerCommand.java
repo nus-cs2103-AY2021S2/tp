@@ -105,13 +105,7 @@ public class EditCustomerCommand extends EditCommand {
         Set<Tag> updatedTags = editCustomerDescriptor.getTags().orElse(customerToEdit.getTags());
         CustomerId id = customerToEdit.getId();
 
-        Customer retCustomer;
-        try {
-            retCustomer = new Customer(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, id);
-        } catch (IllegalArgumentException e) {
-            throw new CommandException(e.getMessage());
-        }
-        return retCustomer;
+        return new Customer(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, id);
     }
 
     @Override

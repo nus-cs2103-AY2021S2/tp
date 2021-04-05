@@ -2,6 +2,7 @@ package seedu.address.model.order;
 
 import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.commons.util.DateUtil.isBeforeToday;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -128,6 +129,8 @@ public class Order {
     public static void checkOrderArguments(CheeseType cheeseType, Quantity quantity, OrderDate orderDate,
                                            CompletedDate completedDate, Set<CheeseId> cheeses, OrderId orderId,
                                            CustomerId customerId) {
+        checkArgument(isBeforeToday(orderDate), "The order date cannot be after today.");
+
         if (completedDate == null) {
             // Checks for incomplete orders
             checkArgument(cheeses.size() == 0, "The cheese set for an incomplete order should be empty.");

@@ -27,7 +27,8 @@ public class AddCheeseCommandParser implements Parser<AddCheeseCommand> {
      */
     public AddCheeseCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_CHEESE_TYPE, PREFIX_QUANTITY, PREFIX_MANUFACTURE_DATE, PREFIX_EXPIRY_DATE);
+                ArgumentTokenizer.tokenize(args, PREFIX_CHEESE_TYPE, PREFIX_QUANTITY, PREFIX_MANUFACTURE_DATE,
+                    PREFIX_EXPIRY_DATE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_CHEESE_TYPE, PREFIX_QUANTITY)
                 || !argMultimap.getPreamble().isEmpty()) {

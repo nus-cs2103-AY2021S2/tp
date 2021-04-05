@@ -25,7 +25,7 @@ public class Messages {
     public static final String MESSAGE_CHEESES_FOUND_OVERVIEW = "%1$d cheeses with parameters of %2$s has been found";
     public static final String MESSAGE_CHEESES_NOT_FOUND_OVERVIEW = "No cheeses with parameters of %1$s has been found";
     public static final String MESSAGE_INSUFFICIENT_CHEESES_FOR_ORDER = "There is insufficient cheese "
-            + "to complete the order.";
+            + "to complete the order.\nMake sure that the cheeses have not expired.";
     public static final String MESSAGE_INVALID_CHEESE_ASSIGNED_TO_COMPLETED_ORDER = "The cheese is assigned to "
             + "a completed order and cannot be deleted.";
     public static final String MESSAGE_INVALID_ORDER_CUSTOMER_ID = "Order %1$d's customer ID does not exist.";
@@ -38,5 +38,9 @@ public class Messages {
             + "match Order %2$d's cheese type.";
     public static final String MESSAGE_INVALID_ASSIGNED_CHEESE = "Cheese %1$d is marked assigned but not "
             + "assigned to any order.";
+    public static final String MESSAGE_INVALID_MANUFACTURE_DATE_COMPLETED_DATE = "Cheese %2$d's manufacture date must "
+            + "be before order %1$d completed date.";
+    public static final String MESSAGE_INVALID_EXPIRY_DATE_COMPLETED_DATE = "Cheese %2$d's expiry date must be after "
+            + "Order %1$d's completed date.";
 
 }
