@@ -40,7 +40,7 @@ purposes, these steps are split into a few categories.
 
 1. Add in all members in the CCA to easily track who and when to plan birthday celebrations for. All fields are 
    optional except name so that the Welfare IC can decide what information has to be stored and what information is 
-   not important.
+   not important. For instance, the Welfare IC might want to store the address of a member to hold a surprise party.
    
 2. Add in vendors that are commonly contacted during party planning to allow for ease of reference when planning for 
    further parties. All fields are optional except name as it does not make sense for the welfare IC be forced to 
