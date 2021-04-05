@@ -112,6 +112,7 @@ public class DeleteContactWithTagCommand extends DeleteCommand {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DeleteContactWithTagCommand // instanceof handles nulls
-                && targetTags.equals(((DeleteContactWithTagCommand) other).targetTags)); // state check
+                && targetTags.equals(((DeleteContactWithTagCommand) other).targetTags)) // state check
+                && isAny == (((DeleteContactWithTagCommand) other).isAny); // state check
     }
 }

@@ -13,6 +13,7 @@ import static seedu.partyplanet.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 import seedu.partyplanet.commons.core.index.Index;
 import seedu.partyplanet.logic.commands.exceptions.CommandException;
@@ -136,6 +137,7 @@ public class CommandTestUtil {
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
     }
+
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
      * {@code model}'s address book.
@@ -148,6 +150,32 @@ public class CommandTestUtil {
         model.updateFilteredPersonList(new NameContainsKeywordsPredicate(splitName[0]));
 
         assertEquals(1, model.getFilteredPersonList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     * Multiple targetIndexes can be provided.
+     * Every targetIndex has to be valid.
+     */
+    public static void showPersonAtMultipleIndex(Model model, Index... targetIndexes) {
+        assertTrue(targetIndexes.length >= 1);
+
+        List<String> personNames = new ArrayList<>();
+        for (Index i : targetIndexes) {
+            assertTrue(i.getZeroBased() < model.getFilteredPersonList().size());
+            personNames.add(model.getFilteredPersonList().get(i.getZeroBased()).getName().fullName);
+        }
+
+        Predicate<Person> allPersons = new NameContainsKeywordsPredicate(personNames.get(0));
+
+        for (int c = 1; c < personNames.size(); c++) {
+            allPersons = allPersons.or(new NameContainsKeywordsPredicate(personNames.get(c)));
+        }
+
+        model.updateFilteredPersonList(allPersons);
+
+        assertEquals(targetIndexes.length, model.getFilteredPersonList().size());
     }
 
 }
