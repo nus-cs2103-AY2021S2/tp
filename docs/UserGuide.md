@@ -18,7 +18,7 @@ users can learn Japanese at a comfortable pace and manage flashcards with this a
   * [**Learn Mode Commands**](#learn-mode-commands)
      * [Entering learn mode: `learn`](#entering-learn-mode-learn)
      * [Tagging a flashcard: `tag`](#tagging-a-flashcard-tag)
-     * [Deleting tags from a flashcard: `delete`](#deleting-tags-from-a-flashcard-delete)
+     * [Deleting tags from a flashcard: `delete`](#deleting-tags-from-a-flashcard-deletetag)
   * [**Quiz Mode Commands**](#quiz-mode-commands)
      * [Entering quiz mode: `quiz`](#entering-quiz-mode-quiz)
      * [Starting a quiz session: `start`](#starting-a-quiz-session-start)
@@ -99,7 +99,15 @@ Commands listed in this section can be run in all modes of the app.
 
 ### Ending the session: `end`
 
-Returns to the menu page. Will not save progress if user was in a quiz session.
+Prematurely ends the current quiz session. Quiz progress will not be saved if this is done.
+
+The end command is only applicable while the user is in Quiz mode.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If you want to end your current quiz
+session but want to see the statistics of the questions answered so far, consider skipping all questions until the 
+end using next instead. The end command is meant as a way to quickly discard and close the current quiz session.
+
+</div>
 
 Format: `end`
 
@@ -134,10 +142,9 @@ Format: `learn`
 Learn Mode:
 ![learn mode](images/learn_mode.png)
 
-
 ### Tagging a flashcard: `tag`
 
-Reads in an index and one or more tags, and adds these tags to the flashcard at the desired index.
+Reads in a positive index and one or more tags, and adds these tags to the flashcard at the desired index.
 At least one tag must be provided, else the user will be prompted to enter a valid command.
 
 Tagging of flashcards can only be done in Weeblingo's Learn Mode.
@@ -148,7 +155,7 @@ The purpose of this command is to allow users to add their own tags as well to a
 
 </div>
 
-Format: `tag INDEX TAGS…`
+Format: `tag INDEX t/TAGS…`
 
 Examples:
 * `tag 1 t/difficult`
@@ -157,9 +164,9 @@ Examples:
 After successfully adding a tag:
 ![tag successful](images/tag_success.png)
 
-### Deleting tags from a flashcard: `delete`
+### Deleting tags from a flashcard: `deleteTag`
 
-Reads in an index and zero or more tags, and removes these tags from the flashcard at the desired index.
+Reads in a positive index and zero or more tags, and removes these tags from the flashcard at the desired index.
 If no tags are provided, all user-added tags will be removed from the flashcard.
 
 Tagging of flashcards can only be done in Weeblingo's Learn Mode.
@@ -169,11 +176,14 @@ The purpose of this command is to allow users to delete tags added by themselves
 
 </div>
 
-Format: `delete INDEX [TAGS…]`
+Format: `deleteTag INDEX [t/TAGS…]`
 
 Examples:
-* `delete 3`
-* `delete 1 t/difficult`
+* `deleteTag 3`
+* `deleteTag 1 t/difficult`
+
+After successfully deleting sampleTag from the flashcard at index 3:
+![delete_successful](images/delete_success.png)
 
 
 ## Quiz Mode Commands
@@ -272,7 +282,7 @@ Action | Format, Examples |
 **Learn** | `learn`
 **End** | `end`
 **History**|`history`
-**Tag**| `tag INDEX TAGS…` <br> e.g. `tag 1 t/difficult`
-**Delete**| `delete INDEX [TAGS…]` <br> e.g. `delete 1 t/difficult`
+**Tag**| `tag INDEX t/TAGS…` <br> e.g. `tag 1 t/difficult`
+**DeleteTag**| `deleteTag INDEX [t/TAGS…]` <br> e.g. `deleteTag 1 t/difficult`, `deleteTag 3`
 **Exit** | `exit`
 **Help** | `help`
