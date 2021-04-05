@@ -363,6 +363,7 @@ Format: `find KEYWORD [MORE_KEYWORDS] [p/]`
 * If the `p/` flag is set, then the argument(s) `KEYWORD [MORE KEYWORDS]` will be treated as a
   [regular expression](https://pubs.opengroup.org/onlinepubs/7908799/xbd/re.html).
 </div>
+
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
