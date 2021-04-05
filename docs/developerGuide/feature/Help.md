@@ -1,6 +1,6 @@
 ### [Feature] Help
 
-#### Current Implementation
+#### Implementation
 
 When called as `help`, the user will be given the concise command-line syntax of all implemented commands and their arguments following the conventions listed in https://developers.google.com/style/code-syntax
 
