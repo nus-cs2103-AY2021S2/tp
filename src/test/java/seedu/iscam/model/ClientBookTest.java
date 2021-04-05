@@ -7,7 +7,7 @@ import static seedu.iscam.logic.commands.CommandTestUtil.VALID_LOCATION_BOB;
 import static seedu.iscam.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.iscam.testutil.Assert.assertThrows;
 import static seedu.iscam.testutil.TypicalClients.ALICE;
-import static seedu.iscam.testutil.TypicalClients.getTypicalLocationBook;
+import static seedu.iscam.testutil.TypicalClients.getTypicalClientBook;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -41,7 +41,7 @@ public class ClientBookTest {
 
     @Test
     public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        ClientBook newData = getTypicalLocationBook();
+        ClientBook newData = getTypicalClientBook();
         clientBook.resetData(newData);
         assertEquals(newData, clientBook);
     }

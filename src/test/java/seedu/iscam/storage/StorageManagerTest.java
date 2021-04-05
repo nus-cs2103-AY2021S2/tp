@@ -2,7 +2,7 @@ package seedu.iscam.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.iscam.testutil.TypicalClients.getTypicalLocationBook;
+import static seedu.iscam.testutil.TypicalClients.getTypicalClientBook;
 
 import java.nio.file.Path;
 
@@ -58,7 +58,7 @@ public class StorageManagerTest {
          * {@link JsonClientBookStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonClientBookStorageTest} class.
          */
-        ClientBook original = getTypicalLocationBook();
+        ClientBook original = getTypicalClientBook();
         storageManager.saveClientBook(original);
         ReadOnlyClientBook retrieved = storageManager.readClientBook().get();
         assertEquals(original, new ClientBook(retrieved));
