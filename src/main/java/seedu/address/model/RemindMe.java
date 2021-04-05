@@ -172,14 +172,7 @@ public class RemindMe implements ReadOnlyRemindMe {
         return mod.hasExam(index);
     }
 
-    /**
-     * Edits the date of the exam at {@code index} in the {@code module} with the given {@code edit}.
-     */
-    public void editExam(Module module, int index, LocalDateTime edit) {
-        requireAllNonNull(module, edit);
-        Module mod = modules.getModule(module);
-        mod.editExam(index - 1, edit);
-    }
+
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the RemindMe.
@@ -288,6 +281,15 @@ public class RemindMe implements ReadOnlyRemindMe {
     public void toggleDoneStatusForAssignment(Module module, int index) {
         Module edited = modules.getModule(module);
         edited.toggleAssignmentDoneStatus(index);
+        modules.setModule(module, edited);
+    }
+
+    /**
+     * Edits the date of the exam at {@code index} in the {@code module} with the given {@code edit}.
+     */
+    public void editExam(Module module, int index, LocalDateTime edit) {
+        Module edited = modules.getModule(module);
+        edited.editExam(index - 1, edit);
         modules.setModule(module, edited);
     }
 
