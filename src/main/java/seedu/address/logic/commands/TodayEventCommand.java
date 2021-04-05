@@ -27,7 +27,7 @@ public class TodayEventCommand extends Command {
         requireNonNull(model);
         model.updateFilteredEventList(predicate);
         return new CommandResult(MESSAGE_TODAY_EVENT_SUCCESS
-                + String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, model.getFilteredEventList().size()));
+                + String.format(Messages.MESSAGE_EVENTS_LISTED_OVERVIEW, model.getFilteredEventList().size()));
     }
 
     @Override
