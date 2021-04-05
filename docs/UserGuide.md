@@ -93,15 +93,18 @@ Format: `clear-patient`
 ### Deleting a patient : `delete-patient`
 Deletes the specified patient from the patient records.<br>
 
-Format: `delete-patient INDEX`
+Format: `delete-patient [--force] INDEX`
 
 * Deletes the patient at the specified `INDEX`.
 * The index refers to the index number shown in the displayed patient records.
 * The index **must be a positive integer** 1, 2, 3, …​
+* The specified patient can only be deleted if there are no existing appointments associated with him/her in the appointment schedule.
+  Otherwise, `--force` must be included to force delete the specified patient, along with all associated appointments in the appointment schedule.
 
 Examples:
-* `list-patient` followed by `delete-patient 2` deletes the 2nd patient in the patient records.
-* `find-patient Bernice` followed by `delete-patient 1` deletes the 1st patient in the results of the `find-patient` command.
+* `list-patient` followed by `delete-patient 3` deletes the 3rd patient in the patient records.
+* `list-patient` followed by `delete-patient --force 1` force deletes the 1st patient in the patient records and all associated appointments in the appointment schedule.
+* `find-patient David` followed by `delete-patient 1` deletes the 1st patient in the results of the `find-patient` command.
 
 ### Editing a patient : `edit-patient`
 Edits an existing patient in the patient records.<br>
@@ -173,15 +176,18 @@ Format: `clear-doctor`
 ### Deleting a doctor : `delete-doctor`
 Deletes the specified doctor from the doctor records.<br>
 
-Format: `delete-doctor INDEX`
+Format: `delete-doctor [--force] INDEX`
 
 * Deletes the doctor at the specified `INDEX`.
 * The index refers to the index number shown in the displayed doctor records.
 * The index **must be a positive integer** 1, 2, 3, …​
+* The specified doctor can only be deleted if there are no existing appointments associated with him/her in the appointment schedule.
+Otherwise, `--force` must be included to force delete the specified doctor, along with all associated appointments in the appointment schedule. 
 
 Examples:
-* `list-doctor` followed by `delete-doctor 2` deletes the 2nd patient in the patient records.
-* `find-doctor Strange` followed by `delete-doctor 1` deletes the 1st patient in the results of the `find-doctor` command.
+* `list-doctor` followed by `delete-doctor 3` deletes the 3rd doctor in the doctor records.
+* `list-doctor` followed by 'delete-doctor --force 1' force deletes the 1st doctor in the doctor records, along with all associated appointments in the appointment schedule.
+* `find-doctor Drake` followed by `delete-doctor 1` deletes the 1st doctor in the results of the `find-doctor` command.
 
 
 ### Editing a doctor : `edit-doctor`
@@ -257,7 +263,7 @@ Examples:
 
 * `add-appt pt/3 dr/1 at/NEXT MONDAY dur/1H 30M`
 
-### Cleaning all entries in appointment schedule: `clear-appt`
+### Clearing all entries in appointment schedule: `clear-appt`
 Clears all entries from the appointment schedule.<br>
 
 Format: `clear-appt`
