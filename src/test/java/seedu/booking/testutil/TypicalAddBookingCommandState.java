@@ -7,7 +7,7 @@ import static seedu.booking.logic.commands.states.AddBookingCommandState.STATE_T
 import static seedu.booking.testutil.TypicalBookingIntermediate.BK_INTER3;
 import static seedu.booking.testutil.TypicalBookingIntermediate.BK_INTER4;
 
-import seedu.booking.logic.commands.multiprocessing.AddBookingIntermediate;
+import seedu.booking.logic.commands.intermediatestate.AddBookingIntermediate;
 import seedu.booking.logic.commands.states.AddBookingCommandState;
 
 public class TypicalAddBookingCommandState {

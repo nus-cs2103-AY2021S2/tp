@@ -7,7 +7,7 @@ import static seedu.booking.commons.core.Messages.PROMPT_TAG_MESSAGE;
 
 import java.util.Set;
 
-import seedu.booking.logic.commands.multiprocessing.AddPersonIntermediate;
+import seedu.booking.logic.commands.intermediatestate.AddPersonIntermediate;
 import seedu.booking.model.Tag;
 import seedu.booking.model.person.Email;
 import seedu.booking.model.person.Name;

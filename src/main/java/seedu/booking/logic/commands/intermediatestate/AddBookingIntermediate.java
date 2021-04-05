@@ -1,4 +1,4 @@
-package seedu.booking.logic.commands.multiprocessing;
+package seedu.booking.logic.commands.intermediatestate;
 
 import java.util.Set;
 import java.util.logging.Logger;
