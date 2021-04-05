@@ -377,13 +377,6 @@ Retrieves previously entered input.
 * `CTRL + Z` key combination undoes the last change to the address or event books.
 * `CTRL + SHIFT + Z` or `CTRL + Y` key combinations redo the last undone change to the address or event books.
 
-<div markdown="block" class="alert-warning">
-
-**:warning: PartyPlanet will use its default Address Book and Event Book JSON file if it is unable to locate the 
-JSON file. It will start with an empty JSON file if there is an error in the JSON file.**
-
-</div>
-
 ### Coming Soon (Additional Features)
 * Archiving of Data Files
 * Custom fonts
