@@ -40,14 +40,14 @@ public class DeleteMultipleCommandParserTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {" in progress  -all", " completed   -all", "not done -all    "})
+    @ValueSource(strings = {" expired  -all", " completed   -all", "uncompleted -all    "})
     public void parse_deleteByStatusAndArgsValid_returnsDeleteMultipleCommand(String input) {
-        assertParseSuccess(parser, input, new DeleteMultipleCommand(new Status(StatusType.IN_PROGRESS)));
+        assertParseSuccess(parser, input, new DeleteMultipleCommand(new Status(StatusType.EXPIRED)));
     }
 
     // need to extend testing for this for more rogue inputs like "... ---all", in v1.4
     @ParameterizedTest
-    @ValueSource(strings = {" in progress all", "Not done all", "Completed -all"})
+    @ValueSource(strings = {" Expired all", "Uncompleted all", "Completed -all"})
     public void parse_deleteByStatusAndArgsInvalid_throwsParseException(String input) {
         switch (input) {
         case "Completed -all":

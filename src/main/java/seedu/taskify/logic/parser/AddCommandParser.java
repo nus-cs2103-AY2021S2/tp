@@ -47,7 +47,7 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
-        Status status = new Status(StatusType.NOT_DONE); // New task default StatusType is NOT_DONE.
+        Status status = new Status(StatusType.UNCOMPLETED); // New task default StatusType is NOT_DONE.
         Date date = generateDate(argMultimap);
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 

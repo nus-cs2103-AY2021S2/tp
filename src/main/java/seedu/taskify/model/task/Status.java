@@ -10,16 +10,16 @@ import seedu.taskify.logic.parser.exceptions.ParseException;
  */
 public class Status {
 
-    public static final String MESSAGE_CONSTRAINTS = "Status should be 'not done', 'in progress' or 'completed'";
+    public static final String MESSAGE_CONSTRAINTS = "Status should be 'uncompleted', 'completed' or 'expired'";
     public static final String INVALID_STATUS_STRING = "Invalid status!";
 
-    private static final String NOT_DONE_STRING = "Not done";
-    private static final String IN_PROGRESS_STRING = "In progress";
+    private static final String EXPIRED_STRING = "Expired";
+    private static final String UNCOMPLETED_STRING = "Uncompleted";
     private static final String COMPLETED_STRING = "Completed";
 
-    private static final String NOT_DONE_VALID_INPUT = "not done";
-    private static final String IN_PROGRESS_VALID_INPUT = "in progress";
+    private static final String EXPIRED_VALID_INPUT = "expired";
     private static final String COMPLETED_VALID_INPUT = "completed";
+    private static final String UNCOMPLETED_VALID_INPUT = "uncompleted";
 
     private static final String NULL_STATUS_TYPE = "Error, status does not have a status type!";
 
@@ -41,16 +41,16 @@ public class Status {
      * Constructs a {@code Status} with default StatusType.NOT_DONE.
      */
     public Status() {
-        status = StatusType.NOT_DONE;
+        status = StatusType.UNCOMPLETED;
     }
 
     @Override
     public String toString() {
         switch (this.status) {
-        case NOT_DONE:
-            return NOT_DONE_STRING;
-        case IN_PROGRESS:
-            return IN_PROGRESS_STRING;
+        case UNCOMPLETED:
+            return UNCOMPLETED_STRING;
+        case EXPIRED:
+            return EXPIRED_STRING;
         case COMPLETED:
             return COMPLETED_STRING;
         default:
@@ -62,7 +62,7 @@ public class Status {
      * Returns true if a given String is a valid status.
      */
     public static boolean isValidStatus(String statusString) {
-        return (statusString.equals(NOT_DONE_VALID_INPUT)) || (statusString.equals(IN_PROGRESS_VALID_INPUT))
+        return (statusString.equals(UNCOMPLETED_VALID_INPUT)) || (statusString.equals(EXPIRED_VALID_INPUT))
                 || (statusString.equals(COMPLETED_VALID_INPUT));
     }
 
@@ -72,10 +72,10 @@ public class Status {
     public static StatusType getStatusType(String statusString) throws ParseException {
         statusString = statusString.toLowerCase();
         switch (statusString) {
-        case NOT_DONE_VALID_INPUT:
-            return StatusType.NOT_DONE;
-        case IN_PROGRESS_VALID_INPUT:
-            return StatusType.IN_PROGRESS;
+        case UNCOMPLETED_VALID_INPUT:
+            return StatusType.UNCOMPLETED;
+        case EXPIRED_VALID_INPUT:
+            return StatusType.EXPIRED;
         case COMPLETED_VALID_INPUT:
             return StatusType.COMPLETED;
         default:

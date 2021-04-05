@@ -31,9 +31,6 @@ public class CommandTestUtil {
     public static final String VALID_NAME_CS2103T_TP = "Bob Choo";
     public static final String VALID_DESCRIPTION_CS2103T_IP = "crazy workload for 6 weeks";
     public static final String VALID_DESCRIPTION_CS2103T_TP = "save me lord";
-    public static final String VALID_STATUS_NOT_DONE = "not done";
-    public static final String VALID_STATUS_IN_PROGRESS = "in progress";
-    public static final String VALID_STATUS_COMPLETED = "completed";
     public static final String VALID_DATE_CS2103T_IP = "2020-12-25 22:30";
     public static final String VALID_DATE_CS2103T_TP = "2019-12-25 22:30";
     public static final String VALID_TAG_DEBUGGING = "debugging";
@@ -62,10 +59,10 @@ public class CommandTestUtil {
 
     static {
         DESC_AMY = new EditTaskDescriptorBuilder().withName(VALID_NAME_CS2103T_IP)
-                .withDescription(VALID_DESCRIPTION_CS2103T_IP).withStatus(StatusType.NOT_DONE)
+                .withDescription(VALID_DESCRIPTION_CS2103T_IP).withStatus(StatusType.UNCOMPLETED)
                 .withDate(VALID_DATE_CS2103T_IP).withTags(VALID_TAG_CS2103T_TP).build();
         DESC_BOB = new EditTaskDescriptorBuilder().withName(VALID_NAME_CS2103T_TP)
-                .withDescription(VALID_DESCRIPTION_CS2103T_TP).withStatus(StatusType.NOT_DONE)
+                .withDescription(VALID_DESCRIPTION_CS2103T_TP).withStatus(StatusType.UNCOMPLETED)
                 .withDate(VALID_DATE_CS2103T_TP).withTags(VALID_TAG_DEBUGGING, VALID_TAG_CS2103T_TP).build();
     }
 

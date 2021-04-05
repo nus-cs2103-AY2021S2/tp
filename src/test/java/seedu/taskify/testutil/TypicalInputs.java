@@ -7,7 +7,8 @@ import seedu.taskify.logic.commands.DeleteMultipleCommand;
  */
 public class TypicalInputs {
     public static final String DELETE_ALL_COMPLETED_INPUT = DeleteMultipleCommand.COMMAND_WORD + " " + "completed -all";
-    public static final String DELETE_ALL_IN_PROGRESS_INPUT = DeleteMultipleCommand.COMMAND_WORD + " " + "in progress"
+    public static final String DELETE_ALL_EXPIRED_INPUT = DeleteMultipleCommand.COMMAND_WORD + " " + "expired"
             + " -all";
-    public static final String DELETE_ALL_NOT_DONE_INPUT = DeleteMultipleCommand.COMMAND_WORD + " " + "not done -all";
+    public static final String DELETE_ALL_UNCOMPLETED_INPUT = DeleteMultipleCommand.COMMAND_WORD
+            + " " + "uncompleted -all";
 }

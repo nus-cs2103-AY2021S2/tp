@@ -81,9 +81,9 @@ public class ParserUtilTest {
 
     @Test
     public void parseInputToStatus_validArgs_returnsCorrectStatus() throws ParseException {
-        assertEquals(new Status(StatusType.NOT_DONE), parseInputToStatus(" not done -all"));
+        assertEquals(new Status(StatusType.UNCOMPLETED), parseInputToStatus(" uncompleted -all"));
         assertEquals(new Status(StatusType.COMPLETED), parseInputToStatus(" completed -all"));
-        assertEquals(new Status(StatusType.IN_PROGRESS), parseInputToStatus(" in progress  -all"));
+        assertEquals(new Status(StatusType.EXPIRED), parseInputToStatus(" expired  -all"));
     }
 
 

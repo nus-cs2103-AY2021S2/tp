@@ -20,7 +20,7 @@ public class Task {
     // Identity fields
     private final Name name;
     private final Description description;
-    private final Status status;
+    private Status status;
 
     // Data fields
     private final Date date;
@@ -60,7 +60,11 @@ public class Task {
 
     public boolean isTaskExpired() {
         LocalDateTime timeNow = LocalDateTime.now();
-        return this.date.getLocateDateTime().isBefore(timeNow);
+        if (this.date.getLocateDateTime().isBefore(timeNow)) {
+            this.status = new Status(StatusType.EXPIRED);
+            return true;
+        }
+        return false;
     }
 
     public boolean isTaskCompleted() {
@@ -68,7 +72,7 @@ public class Task {
     }
 
     public boolean isTaskUncompleted() {
-        return !this.getStatus().toString().equals("Completed");
+        return !this.getStatus().toString().equals("Uncompleted");
     }
 
     /**

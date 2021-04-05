@@ -1,5 +1,6 @@
 package seedu.taskify.logic.commands;
 
+/*
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.taskify.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -29,12 +30,15 @@ import seedu.taskify.model.task.Status;
 import seedu.taskify.model.task.StatusType;
 import seedu.taskify.model.task.Task;
 
+ */
+
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
  * {@code DeleteMultipleCommand}.
  */
 public class DeleteMultipleCommandTest {
 
+    /*
     private static final String MESSAGE_DELETE_FIRST_TO_THIRD_TASK_SUCCESS =
             "Deleted Tasks: " + TASK_1.toString() + TASK_2.toString() + TASK_3.toString();
     private static final String MESSAGE_DELETE_COMPLETED_TASKS_SUCCESS =
@@ -162,12 +166,17 @@ public class DeleteMultipleCommandTest {
         assertFalse(firstCommand.equals(secondCommand));
     }
 
+
+
     /**
      * Updates {@code model}'s filtered list to show no one.
      */
+
+    /*
     private void showNoTask(Model model) {
         model.updateFilteredTaskList(p -> false);
 
         assertTrue(model.getFilteredTaskList().isEmpty());
     }
+     */
 }

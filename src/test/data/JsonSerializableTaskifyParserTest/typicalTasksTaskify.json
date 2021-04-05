@@ -4,7 +4,7 @@
     {
       "name": "firstTask",
       "description": "my first task",
-      "status" : "Not done",
+      "status" : "Uncompleted",
       "date": "2014-09-13 01:30",
       "tagged": [
         "friends"
@@ -13,7 +13,7 @@
     {
       "name": "secondTask",
       "description": "my second task",
-      "status" : "Not done",
+      "status" : "Uncompleted",
       "date": "2015-01-23 23:30",
       "tagged": [
         "owesMoney",
@@ -30,7 +30,7 @@
     {
       "name": "fourthTask",
       "description": "my fourth task",
-      "status" : "In progress",
+      "status" : "Expired",
       "date": "1995-11-09 15:46",
       "tagged": [
         "friends"
@@ -46,14 +46,14 @@
     {
       "name": "sixthTask",
       "description": "my sixth task",
-      "status" : "Not done",
+      "status" : "Uncompleted",
       "date": "1998-07-30 22:13",
       "tagged": []
     },
     {
       "name": "seventhTask",
       "description": "my seventh task",
-      "status" : "In progress",
+      "status" : "Expired",
       "date": "1998-07-30 22:13",
       "tagged": []
     }
