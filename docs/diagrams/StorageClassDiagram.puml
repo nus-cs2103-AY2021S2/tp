@@ -20,8 +20,9 @@ Storage -|> UserPrefsStorage
 Storage -|> AddressBookStorage
 
 JsonUserPrefsStorage .left.|> UserPrefsStorage
-JsonAddressBookStorage .left.|> AddressBookStorage
-JsonAddressBookStorage .down.> JsonSerializableAddressBook
-JsonSerializableAddressBook .right.> JsonAdaptedPerson
-JsonAdaptedPerson .right.> JsonAdaptedTag
+JsonEndpointListStorage .left.|> EndpointListStorage
+JsonEndpointListStorage .down.> JsonSerializableEndpointList
+JsonSerializableEndpointList .right.> JsonAdaptedEndpoint
+JsonAdaptedEndpoint .right.> JsonAdaptedTag
 @enduml
+
