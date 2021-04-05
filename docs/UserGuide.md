@@ -54,7 +54,8 @@ purposes, these steps are split into a few categories.
 
 4. Add in upcoming events to plan for. Welfare ICs can add in events that are upcoming so that they can be reminded 
    to plan for these events. All fields are optional except name so that the Welfare IC can decide what information 
-   has to be stored for each event.
+   has to be stored for each event. 
+   For instance, a farewell party for the graduating batch needs to be planned in the next month, but the date is unconfirmed. The welfare IC can add this as `eadd -n Party for graduating seniors -r Confirm availability of seniors to fix date`
 
 #### Marking events as done
 
@@ -70,12 +71,12 @@ purposes, these steps are split into a few categories.
 6. Welfare ICs can search and sort people by criteria. This allows them to search for people by name, birthday month 
    and tag to allow for ease of searching for specific people even with lots of contacts. The sorting allows Welfare 
    ICs an easy way of organising the people. For example, they can sort by upcoming birthdays (according to day and 
-   month only) so that they can plan for the parties accordingly.
+   month only) with `list -s u` so that they can plan for the parties accordingly.
    
 7. Welfare ICs can search and sort events by criteria. This allows them to search for events by event name and 
    remark to allow for ease of searching for specific events even with lots of events. The sorting allows Welfare
    ICs an easy way of organising the events. For example, they can sort by upcoming event dates (according to day, 
-   month and year) so that they can refer and plan for the upcoming parties accordingly.
+   month and year) with `elist -s u` so that they can refer and plan for the upcoming parties accordingly.
 
 #### Deleting contacts and events
 
