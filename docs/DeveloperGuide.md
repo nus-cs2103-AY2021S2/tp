@@ -52,8 +52,6 @@ This section describes some noteworthy details on how certain features are imple
 
 {% include_relative developerGuide/feature/Autocomplete.md %}
 
-{% include_relative developerGuide/feature/DataArchiving.md %}
-
 {% include_relative developerGuide/feature/SortByDate.md %}
 
 --------------------------------------------------------------------------------------------------------------------
