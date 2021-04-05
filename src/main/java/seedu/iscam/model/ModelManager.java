@@ -235,7 +235,6 @@ public class ModelManager implements Model {
         return filteredMeetings;
     }
 
-    //TODO: header
     @Override
     public void updateFilteredMeetingList(Predicate<Meeting> predicate) {
         requireNonNull(predicate);

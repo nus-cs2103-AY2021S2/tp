@@ -120,7 +120,13 @@ public class UniqueMeetingList implements Iterable<Meeting> {
     private class MeetingComparator implements Comparator<Meeting> {
         @Override
         public int compare(Meeting m1, Meeting m2) {
-            return m1.getDateTime().get().compareTo(m2.getDateTime().get());
+            if (m1.getStatus().isComplete() && !m2.getStatus().isComplete()) {
+                return 1;
+            } else if (!m1.getStatus().isComplete() && m2.getStatus().isComplete()) {
+                return -1;
+            } else {
+                return m1.getDateTime().get().compareTo(m2.getDateTime().get());
+            }
         }
     }
 }
