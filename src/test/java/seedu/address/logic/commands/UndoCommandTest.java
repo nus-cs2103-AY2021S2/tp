@@ -34,7 +34,7 @@ public class UndoCommandTest {
 
     @Test
     public void execute_oneState_failure() {
-        assertCommandFailure(new UndoCommand(state), model, UndoCommand.MESSAGE_FAILED);
+        assertCommandFailure(new UndoCommand(state), model, UndoCommand.MESSAGE_NOTHING_TO_UNDO);
     }
 
     @Test

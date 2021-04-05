@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SORT_DIRECTION_ASCENDING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -131,8 +132,10 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_sort() throws Exception {
-        String validInput = SortCommand.COMMAND_WORD + " ascending";
-        assertTrue(parser.parseCommand(validInput) instanceof SortCommand);
+        assertTrue(parser.parseCommand(SortCommand.COMMAND_WORD + " "
+                + VALID_SORT_DIRECTION_ASCENDING) instanceof SortCommand);
+        assertTrue(parser.parseCommand(SortCommand.COMMAND_WORD + " "
+                + VALID_SORT_DIRECTION_ASCENDING) instanceof SortCommand);
     }
 
     @Test

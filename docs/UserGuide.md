@@ -30,16 +30,10 @@ If you can type fast, SpamEZ can get your contact management tasks done faster t
    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the contacts list.
 
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
-   
-   * **`tag`**`tag n/John Doe t/small` : Adds tag to contact John Doe.
 
    * **`clear`** : Deletes all contacts.
    
    * **`blist`** `2` : Blacklists the 2nd contact shown in the current list.
-   
-   * **`name`** `3 [n/John]` : Adds an optional nickname to the 3rd contact.
-   
-   * **`filter`** `[Computing, Student]` : Filters shown contact based on given keywords.
 
    * **`exit`** : Exits the app.
 1. Refer to the [Features](#features) below for details of each command.
@@ -76,7 +70,7 @@ If you can type fast, SpamEZ can get your contact management tasks done faster t
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -87,15 +81,15 @@ Format: `help`
 
 Adds a person to the contacts list.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS m/MODE_OF_CONTACT [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 m/phone`
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 m/address t/criminal`
 
 ### Listing all persons : `list`
 
@@ -128,8 +122,8 @@ Format: `find [n/NAME_KEYWORDS] [t/TAG_KEYWORDS] [a/ADDRESS_KEYWORDS] [e/EMAIL_K
 
 * At least one of the parameters must be included as the parameters.
 * Parameters, if provided, may not be empty. In other words, commands such as `find n/` or `find n/abc t/` are invalid.
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* The search is case-insensitive. e.g `hans` will match `Hans`.
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`.
 * For name, tag and address parameters, only full words will be matched e.g. `Han` will not match `Hans`.
 * For email and phone parameters, partial matches are allowed, e.g. for phone number, `8123` will match `81234567`.  
 * Persons matching at least one keyword of each provided attribute will be returned.
@@ -141,8 +135,10 @@ Format: `find [n/NAME_KEYWORDS] [t/TAG_KEYWORDS] [a/ADDRESS_KEYWORDS] [e/EMAIL_K
 Examples:
 * `find n/John` returns `john` and `John Doe`
 * `find n/alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+  ![result for 'find n/alex david'](images/findAlexDavidResult.png)
 * `find n/alex david t/family` returns `David Li`
+* `find n/bernice b/true` returns `Bernice Yu`<br>
+  ![result for 'find n/bernice b/true](images/findBerniceBlistResult.png)
 
 ### Deleting a person : `delete`
 
@@ -158,36 +154,31 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the contacts list.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-###Deleting multiple contacts : `massdelete`
+### Deleting multiple contacts : `massdelete`
 
-Deletes all contacts within the specified index range.
+Deletes all contacts within the specified index range (inclusive).
 
 Format: `massdelete START-END`
 * The index refers to the index number shown in the displayed person list.
-* Both the Start Index and End Index **must be a valid positive integer** 1, 2, …​, 2147483647
-* Start Index < End Index and End Index cannot be larger than the number of contacts in the list.
+* Both the start index and end index must be a valid positive integer 1, 2, 3, ...
+* Start index must be strictly smaller than the end index.
+* End index cannot be larger than the number of contacts in the list.
 
 Example:
-`massdelete 2-41`
-
-### Adding tags to a contact : `tag`
-
-Labels a contact based on his or her attributes.
-
-Format: tag n/NAME t/TAG
+`massdelete 7-34`
 
 ### Blacklist a contact : `blist`
 
 Blocks specific contacts, to specify that they do not want to be contacted.
 If the contact is already blacklisted, they will be un-blacklisted. 
 
-Format: blist INDEX
+Format: `blist INDEX`
 
 * Changes the blacklist status of the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a valid positive integer** 1, 2, …​, 2147483647
 
-### Blacklist or unblacklist multiple contacts : `massblist`
+### Blacklisting or unblacklisting multiple contacts : `massblist`
 
 Blacklists or unblacklists all contacts within the specified index range (inclusive).
 
@@ -199,7 +190,8 @@ Format: `massblist START-END b/BLACKLIST_OR_UNBLACKLIST`
 * End index cannot be larger than the number of contacts in the list.
 
 Example:
-`massblist 15-42 b/blacklist`
+* `massblist 15-42 b/blacklist`
+* `massblist 25-39 b/unblacklist`
 
 ### Collect details from contacts : `collect`
 
@@ -207,7 +199,7 @@ Collects the specified details of all contacts in the displayed person list.
 The type of detail is specified by the prefix provided. Details will be separated
 by the given separator, or by a semicolon if unspecified.
 
-Format: collect [n/] or [p/] or [e/] or [a/] [s/SEPARATOR]
+Format: `collect [n/] or [p/] or [e/] or [a/] [s/SEPARATOR]`
 
 * Exactly one of the type of detail prefix must be provided.
   The corresponding fields are as follows.
@@ -244,13 +236,15 @@ Example:
 
 ### Sort entries by name : `sort`
 
-Sort the entries in the contacts list by name in either ascending or descending order.
+Sort the contacts in the address book by name in alphabetical order. The list can be sorted in
+either ascending or descending order.
 
 Format: `sort ASCENDING_OR_DESCENDING`
 
-Example:
+Examples:
 
-`sort ascending`
+* `sort ascending`
+* `sort descending`
 
 ### Changing view type to light mode : `light`
 
@@ -291,7 +285,7 @@ If you edit the data file and make its format invalid, SpamEZ will discard all d
 Undo the changes done to the list of contacts.
 
 Format: `undo`
-* This command only applies to the commands that make changes to the list of contacts, e.g. `add`, `edit`, `delete`, `undo` etc.
+* This command only applies to the commands that make changes to the list of contacts, e.g. `add`, `edit`, `delete` etc.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -306,9 +300,9 @@ Format: `undo`
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS m/MODE_OF_CONTACT [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 m/email t/friend t/colleague`
 **Blacklist** | `blist INDEX`<br> e.g., `blist 2`
-**Mass blacklist** | `massblist START-END`<br> e.g., `massblist 13-67 b/blacklist`
+**Mass blacklist** | `massblist START-END b/BLACKLIST_OR_UNBLACKLIST`<br> e.g., `massblist 13-67 b/blacklist`
 **Clear** | `clear`
 **Collect** | `collect [n/] or [p/] or [e/] or [a/] [s/SEPARATOR]`<br> e.g., `collect e/ s/,`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
@@ -319,7 +313,7 @@ Action | Format, Examples
 **List** | `list`
 **Remark** | `remark INDEX r/REMARK`<br> e.g., `remark 5 r/Currently on Leave of Absence`
 **Tag** | `tag n/NAME t/TAG`<br> e.g., `tag n/Jane Bo t/Student`
-**Sort** | `sort c/CRITERIA d/ASCENDING_OR_DESCENDING`<br> e.g., `sort c/name d/ascending`
+**Sort** | `sort ASCENDING_OR_DESCENDING`<br> e.g., `sort ascending`
 **Light** | `light`
 **Dark** | `dark`
 **Sort** | `sort ASCENDING_OR_DESCENDING`<br> e.g., `sort ascending`

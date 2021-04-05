@@ -126,10 +126,10 @@ public class LogicManagerTest {
         Logic logic = new LogicManager(model, storage, state);
 
         logic.execute("find n/alex");
-        CommandTestUtil.assertCommandFailure(new UndoCommand(state), model, UndoCommand.MESSAGE_FAILED);
+        CommandTestUtil.assertCommandFailure(new UndoCommand(state), model, UndoCommand.MESSAGE_NOTHING_TO_UNDO);
 
         logic.execute("list");
-        CommandTestUtil.assertCommandFailure(new UndoCommand(state), model, UndoCommand.MESSAGE_FAILED);
+        CommandTestUtil.assertCommandFailure(new UndoCommand(state), model, UndoCommand.MESSAGE_NOTHING_TO_UNDO);
     }
 
     @Test

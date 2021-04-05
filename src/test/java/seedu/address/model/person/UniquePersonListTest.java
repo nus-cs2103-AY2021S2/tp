@@ -3,6 +3,8 @@ package seedu.address.model.person;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.SORT_ASCENDING;
+import static seedu.address.logic.commands.CommandTestUtil.SORT_DESCENDING;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -163,11 +165,21 @@ public class UniquePersonListTest {
     }
 
     @Test
-    public void sortByNameAscending() {
+    public void sortByName_ascendingOrder_success() {
         uniquePersonList.add(BOB);
         uniquePersonList.add(ALICE);
-        uniquePersonList.sortByName(true);
+        uniquePersonList.sortByName(SORT_ASCENDING);
         assertEquals(ALICE, uniquePersonList.asUnmodifiableObservableList().get(0));
+        assertEquals(BOB, uniquePersonList.asUnmodifiableObservableList().get(1));
+    }
+
+    @Test
+    public void sortByName_descendingOrder_success() {
+        uniquePersonList.add(ALICE);
+        uniquePersonList.add(BOB);
+        uniquePersonList.sortByName(SORT_DESCENDING);
+        assertEquals(ALICE, uniquePersonList.asUnmodifiableObservableList().get(1));
+        assertEquals(BOB, uniquePersonList.asUnmodifiableObservableList().get(0));
     }
 
     @Test
