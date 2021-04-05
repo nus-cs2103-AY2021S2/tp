@@ -34,11 +34,11 @@ public class ModuleCard extends UiPart<Region> {
     /**
      * Creates a {@code ModuleCard} with the given {@code Module} and index to display.
      */
-    public ModuleCard(Module module) {
+    public ModuleCard(Module module, int displayIndex) {
         super(FXML);
         requireNonNull(module);
         this.module = module;
-        title.setText(module.getTitle().modTitle + ": ");
+        title.setText(displayIndex + ". " + module.getTitle().modTitle + ": ");
         assignments.setWrapText(true);
         assignments.setText(module.getAssignments().toString());
         exams.setWrapText(true);
