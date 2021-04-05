@@ -22,7 +22,8 @@ public class FindTagCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Find tasks associated with "
             + "the tag provided and displays them as a list with index numbers.\n"
             + "If multiple tags are found, only the first one will be used.\n"
-            + "Parameters: TAG \n"
+            + "Only alphanumericals allowed in input. \n"
+            + "Parameter(s): TAG \n"
             + "Example: " + COMMAND_WORD + " midterm";
 
     public static final String MESSAGE_FIND_TAG_TASK_SUCCESS = "Tagged Task: %1$s";
