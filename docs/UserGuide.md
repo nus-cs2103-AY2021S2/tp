@@ -159,9 +159,14 @@ and [2.3](#23-event-commands).
 | [**Todo**](#231-todo-command)      | Creates your new event with status **Todo**                          | `todo n/NAME d/DESCRIPTION [p/PRIORITY]` <br> e.g., `todo n/CS2040 d/Assignment`                           |
 
 <div markdown="block" class="alert alert-info">
-**:information_source: Please take note of the following with regards to Events in Focuris:** <br/>
-- You will not be allowed to add Events with the same name into Focuris, regardless of their description, priority or status. <br/>
-- Events of the same name are treated as case-insensitive. E.g `CS2030` is the same name as `cs2030`
+
+**:information_source: Please take note of the following with regards to Events in Focuris:** <br>
+
+- You will not be allowed to add Events with the same name into Focuris, regardless of their description, priority or status. <br>
+  
+- Events of the same name are treated as case-insensitive. <br/> 
+  e.g. `CS2030` is the same name as `cs2030`.
+
 </div>
 
 <a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
