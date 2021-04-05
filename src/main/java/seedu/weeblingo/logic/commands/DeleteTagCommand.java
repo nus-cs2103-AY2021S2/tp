@@ -2,7 +2,6 @@ package seedu.weeblingo.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.weeblingo.model.Mode.MODE_LEARN;
-import static seedu.weeblingo.model.Model.PREDICATE_SHOW_ALL_FLASHCARDS;
 
 import java.util.Collections;
 import java.util.List;
@@ -79,7 +78,6 @@ public class DeleteTagCommand extends Command {
         Flashcard flashcardWithDeletedTags = createDeletedTagFlashcard(flashcardToDeleteTags, tags);
 
         model.setFlashcard(flashcardToDeleteTags, flashcardWithDeletedTags);
-        model.updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
         return new CommandResult(MESSAGE_SUCCESS, false, false);
     }
 

@@ -2,7 +2,6 @@ package seedu.weeblingo.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.weeblingo.model.Mode.MODE_LEARN;
-import static seedu.weeblingo.model.Model.PREDICATE_SHOW_ALL_FLASHCARDS;
 
 import java.util.List;
 import java.util.Set;
@@ -73,7 +72,6 @@ public class TagCommand extends Command {
         }
 
         model.setFlashcard(flashcardToTag, taggedFlashcard);
-        model.updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
         return new CommandResult(MESSAGE_SUCCESS, false, false);
     }
 
