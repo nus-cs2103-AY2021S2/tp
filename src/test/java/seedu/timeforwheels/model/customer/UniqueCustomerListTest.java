@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.timeforwheels.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.timeforwheels.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.timeforwheels.logic.commands.CommandTestUtil.VALID_TAG_HEAVY;
 import static seedu.timeforwheels.testutil.Assert.assertThrows;
 import static seedu.timeforwheels.testutil.TypicalCustomers.ALICE;
 import static seedu.timeforwheels.testutil.TypicalCustomers.BOB;
@@ -42,7 +42,7 @@ public class UniqueCustomerListTest {
     @Test
     public void contains_customerWithSameIdentityFieldsInList_returnsTrue() {
         uniqueCustomerList.add(ALICE);
-        Customer editedAlice = new CustomerBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Customer editedAlice = new CustomerBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HEAVY)
                 .build();
         assertTrue(uniqueCustomerList.contains(editedAlice));
     }
@@ -85,7 +85,7 @@ public class UniqueCustomerListTest {
     @Test
     public void setCustomer_editedCustomerHasSameIdentity_success() {
         uniqueCustomerList.add(ALICE);
-        Customer editedAlice = new CustomerBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Customer editedAlice = new CustomerBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HEAVY)
                 .build();
         uniqueCustomerList.setCustomer(ALICE, editedAlice);
         UniqueCustomerList expectedUniqueCustomerList = new UniqueCustomerList();

@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.timeforwheels.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.timeforwheels.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.timeforwheels.logic.commands.CommandTestUtil.VALID_TAG_HEAVY;
 import static seedu.timeforwheels.testutil.Assert.assertThrows;
 import static seedu.timeforwheels.testutil.TypicalCustomers.ALICE;
 import static seedu.timeforwheels.testutil.TypicalCustomers.getTypicalDeliveryList;
@@ -46,7 +46,7 @@ public class DeliveryListTest {
     @Test
     public void resetData_withDuplicateCustomers_throwsDuplicateCustomerException() {
         // Two customers with the same identity fields
-        Customer editedAlice = new CustomerBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Customer editedAlice = new CustomerBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HEAVY)
                 .build();
         List<Customer> newCustomers = Arrays.asList(ALICE, editedAlice);
         DeliveryListStub newData = new DeliveryListStub(newCustomers);
@@ -73,7 +73,7 @@ public class DeliveryListTest {
     @Test
     public void hasCustomer_customerWithSameIdentityFieldsInDeliveryList_returnsTrue() {
         deliveryList.addCustomer(ALICE);
-        Customer editedAlice = new CustomerBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Customer editedAlice = new CustomerBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HEAVY)
                 .build();
         assertTrue(deliveryList.hasCustomer(editedAlice));
     }

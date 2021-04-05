@@ -18,6 +18,7 @@ import seedu.timeforwheels.logic.commands.FindCommand;
 import seedu.timeforwheels.logic.commands.HelpCommand;
 import seedu.timeforwheels.logic.commands.ListCommand;
 import seedu.timeforwheels.logic.commands.RemarkCommand;
+import seedu.timeforwheels.logic.commands.SortCommand;
 import seedu.timeforwheels.logic.commands.StatsCommand;
 import seedu.timeforwheels.logic.commands.UncompletedCommand;
 import seedu.timeforwheels.logic.parser.exceptions.ParseException;
@@ -88,6 +89,9 @@ public class DeliveryListParser {
 
         case StatsCommand.COMMAND_WORD:
             return new StatsCommand();
+
+        case SortCommand.COMMAND_WORD:
+            return new SortCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
