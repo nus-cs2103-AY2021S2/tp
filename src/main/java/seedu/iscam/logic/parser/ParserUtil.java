@@ -169,7 +169,7 @@ public class ParserUtil {
         requireNonNull(dateTimeStr);
         if (!DateTime.isStringValidFormat(dateTimeStr)) {
             throw new ParseFormatException(DateTime.MESSAGE_INVALID_FORMAT);
-        } else if(!DateTime.isStringValidDateTime(dateTimeStr)) {
+        } else if (!DateTime.isStringValidDateTime(dateTimeStr)) {
             throw new ParseFormatException(DateTime.MESSAGE_IN_PAST);
         }
         return new DateTime(dateTimeStr);
