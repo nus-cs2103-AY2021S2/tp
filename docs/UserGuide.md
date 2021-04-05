@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-App-Ointment is a desktop app for for managing and scheduling patient appointments, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, App-Ointment can get your contact management tasks done faster than traditional GUI apps.
+App-Ointment is a **desktop app for managing and scheduling patient appointments, optimized for use via a Command Line Interface (CLI)**, while still having the benefits of a Graphical User Interface (GUI). If you can type fast, App-Ointment can get your contact management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -14,27 +14,27 @@ App-Ointment is a desktop app for for managing and scheduling patient appointmen
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `App-Ointment.jar` from [here](https://github.com/AY2021S2-CS2103-W17-2/tp/releases).
+2. Download the latest `App-Ointment.jar` from [here](https://github.com/AY2021S2-CS2103-W17-2/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your App-Ointment App.
+3. Copy the file to the folder you want to use as the _home folder_ for your App-Ointment App.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. The GUI, similar to the image shown below, should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list=appt`** : Lists all appointments in the appointment schedule.
+   * **`list-appt`** : Lists all the appointments in the appointment schedule.
 
-   * **`add-patient`** `n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a patient.
+   * <code><b>add-patient</b> n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01</code> : Adds a patient to the patient records.
 
-   * **`delete-appt`** `3` : Deletes the 3rd displayed appointment.
+   * <code><b>delete-appt</b> 3</code> : Deletes the 3rd appointment from the displayed appointment schedule.
 
    * **`clear-appt`** : Clears all appointments in the appointment schedule
 
    * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -47,19 +47,19 @@ App-Ointment is a desktop app for for managing and scheduling patient appointmen
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
-* Items in square brackets are optional.<br>
+* Parameters in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
+* Parameters with `…`​ after them can be used multiple times (including zero times).<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command format specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `clear`, `exit`, `help`, `list-appt`, `list-doctor` and `list-patient`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
@@ -81,74 +81,63 @@ Format: `add-patient n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]…​`
 </div><br>
 
 Examples:
-
 * `add-patient n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 
-### Cleaning all entries in patient records: `clear-patient`
+### Clearing all entries in patient records: `clear-patient`
 Clears all entries from the patient records. <br>
-If any appointments exist in the appointment schedule, then this command will not work. 
-`clear-appt` will have to be done first to clear the appointment schedule.
-
+* Entries in the patient records can only be cleared if there are no existing appointments in the appointment schedule. <br>
+* Otherwise, `clear-appt` have to called first. <br>
 
 Format: `clear-patient`
 
 ### Deleting a patient : `delete-patient`
-Deletes the specified patient from the patient records.
+Deletes the specified patient from the patient records.<br>
 
 Format: `delete-patient INDEX`
 
-* Deletes the person at the specified `INDEX`.
+* Deletes the patient at the specified `INDEX`.
 * The index refers to the index number shown in the displayed patient records.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `list-patient` followed by `delete-patient 2` deletes the 2nd patient in the patient records.
-* `find-patient Betsy` followed by `delete-patient 1` deletes the 1st patient in the results of the `find-patient` command.
+* `find-patient Bernice` followed by `delete-patient 1` deletes the 1st patient in the results of the `find-patient` command.
 
 ### Editing a patient : `edit-patient`
-Edits an existing patient in the schedule.<br>
+Edits an existing patient in the patient records.<br>
 
 Format: `edit-patient INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
-* Edits the patient at the specified INDEX. The index refers to the index number shown in the displayed appointment schedule list. The index must be a <strong>positive integer</strong> 1, 2, 3, …​<br>
-
+* Edits the patient at the specified `INDEX`. The index refers to the index number shown in the displayed patient records. The index **must be a positive integer** 1, 2, 3, …​<br>
 * At least one of the optional fields must be provided.<br>
-
 * Existing values will be updated to the input values.<br>
-
 * When editing tags, the existing tags of the patient will be removed i.e adding of tags is not cumulative.<br>
-
-* You can remove all the patient’s tags by typing t/ without specifying any tags after it.<br>
-
-* Raises an exception if there are conflicts in the new schedule for the patient and the doctor.<br>
+* You can remove all the patient’s tags by typing `t/` without specifying any tags after it.<br>
+* Raises an exception if there are conflicts in the new appointment schedule for the patient and the doctor.<br>
 
 Examples:
-
-* `edit-patient 1 e/newEmail@example.com` Edits the 1st patient's email to newEmail@example.com.
-
-* `edit-patient 2 n/Betsy Crower t/` Edits the name of patient under the 2nd appointment to be Betsy Crower and clears all existing tags.
+* `edit 1 p/91234567 e/newEmail@example.com` Edits the phone umber and email address of the 1st patient to `91234567` and `newEmail@example.com` respectively.
+* `edit-patient 2 n/Betsy Crower t/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing tags.
 
 ### Locating patients by name: `find-patient`
-
-Finds patients whose names contain any of the given keywords.
+Finds patients whose names contain any of the given keywords.<br>
 
 Format: `find-patient KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* The search is case-insensitive. e.g `edward` will match `Edward`.
+* The order of the keywords does not matter. e.g. `Edward Charlotte` will match `Charlotte Edward`.
 * Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* Only full words will be matched e.g. `Edwar` will not match `Edward`.
+* Patients matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Edward Charlotte` will return `Edward Hyde` and `Charlotte Oliveiro`.
 
 Examples:
-* `find-patient John` returns `john` and `John Doe`
-* `find-patient bernice david` returns `Bernice Yu`, `David Li`<br>
+* `find-patient John` returns `john` and `John Doe` 
+* `find-patient bernice david` returns `Bernice Yu` and `David Li`<br>
   ![result for 'find bernice david'](images/findPatientBerniceDavidResult.png)
 
 
 ### Listing all patients : `list-patient`
-
 Changes the displayed patient records to show all patients in the patient records.<br>
 
 Format: `list-patient`
@@ -170,48 +159,62 @@ Format: `add-doctor n/NAME [t/TAG]…​`
 </div><br>
 
 Examples:
-
 * `add-doctor n/Dr Meredith Grey`
-
 * `add-doctor n/Dr Strange t/Dormammu t/IveComeToBargain`
 
 
-### Cleaning all entries in doctor records: `clear-doctor`
+### Clearing all entries in doctor records: `clear-doctor`
 Clears all entries from the doctor records. <br>
-If any appointments exist in the appointment schedule, then this command will not work. 
-`clear-appt` will have to be done first to clear the appointment schedule.
+* Entries in the doctor records can only be cleared if there are no existing appointments in the appointment schedule.
+* Otherwise, `clear-appt` have to called first.
 
 Format: `clear-doctor`
 
 ### Deleting a doctor : `delete-doctor`
-Deletes the specified doctor from the doctor records.
+Deletes the specified doctor from the doctor records.<br>
 
 Format: `delete-doctor INDEX`
 
-Similar to `delete-patient`
+* Deletes the doctor at the specified `INDEX`.
+* The index refers to the index number shown in the displayed doctor records.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `list-doctor` followed by `delete-doctor 2` deletes the 2nd patient in the patient records.
+* `find-doctor Strange` followed by `delete-doctor 1` deletes the 1st patient in the results of the `find-doctor` command.
+
 
 ### Editing a doctor : `edit-doctor`
 Edits an existing doctor in the doctor records.<br>
 
 Format: `edit-doctor INDEX [n/NAME] [t/TAG]…​`
 
-* Edits the doctor at the specified INDEX. The index refers to the index number shown in the displayed doctor records. The index must be a <strong>positive integer</strong> 1, 2, 3, …​<br>
-
-Similar to `edit-patient`, except that there are less fields that are editable.
+* Edits the doctor at the specified `INDEX`. The index refers to the index number shown in the displayed doctor records. The index must be a **positive integer** 1, 2, 3, …​<br>
+* At least one of the optional fields must be provided.<br>
+* Existing values will be updated to the input values.<br>
+* When editing tags, the existing tags of the doctor will be removed i.e adding of tags is not cumulative.<br>
+* You can remove all the doctor’s tags by typing `t/` without specifying any tags after it.<br>
+* Raises an exception if there are conflicts in the new appointment schedule for the patient and the doctor.<br>
 
 Examples:
-
 * `edit-doctor 1 n/Dr Amy` Edits the 1st doctor's name to Dr Amy.
-
 * `edit-doctor 2 n/Dr Betsy Crower t/` Edits the name of doctor under the 2nd displayed doctor record to be Betsy Crower and clears all existing tags.
 
 ### Locating doctors by name: `find-doctor`
-
-Finds doctors in the doctor records whose names contain any of the given keywords.
+Finds doctors in the doctor records whose names contain any of the given keywords.<br>
 
 Format: `find-doctor KEYWORD [MORE_KEYWORDS]`
 
-Similar to `find-patient`
+* The search is case-insensitive. e.g `strange` will match `Strange`.
+* The order of the keywords does not matter. e.g. `Strange Meredith` will match `Meredith Strange`.
+* Only the name is searched.
+* Only full words will be matched e.g. `Jekyl` will not match `Jekyll`.
+* Doctors matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Strange Meredith` will return `Dr Strange` and `Dr Meredith`.
+
+Examples:
+* `find-doctor murphy who` returns `Dr Murphy` and `Dr Who`<br>
+
 
 ### Listing all doctors : `list-doctor`
 Changes the displayed doctor records to show all doctors in the doctor records.<br>
@@ -260,23 +263,17 @@ Clears all entries from the appointment schedule.<br>
 Format: `clear-appt`
 
 
-### Deleting an appointment : `delete=appt`
-
+### Deleting an appointment : `delete-appt`
 Deletes the specified appointment from the schedule.
 
 Format: `delete-appt INDEX`
-
-* Deletes the appointment at the specified INDEX.
-
+* Deletes the appointment at the specified `INDEX`.
 * The index refers to the index number shown in the displayed appointment list.
-
-* The index must be a <strong>positive integer</strong> 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-
 * `list-appt` followed by `delete-appt 2` deletes the 2nd appointment in the entire appointment schedule.
-
-* `find-appt Betsy` followed by `delete-appt 1 ` deletes the 1st appointment in the results of the `find` command.
+* `find-appt Alex` followed by `delete-appt 1` deletes the 1st appointment in the results of the `find` command.
 
 
 ### Editing an appointment : `edit-appt`
