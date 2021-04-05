@@ -11,7 +11,7 @@ public class LightCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
-        return new CommandResult(MESSAGE_SUCCESS, false, false, true, false);
+        return new CommandResult(MESSAGE_SUCCESS, false, false, true, false, false);
     }
 }
 

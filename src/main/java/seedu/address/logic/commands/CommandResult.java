@@ -21,15 +21,19 @@ public class CommandResult {
 
     private final boolean dark;
 
+    private final boolean undo;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean light, boolean dark) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit,
+                         boolean light, boolean dark, boolean undo) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
         this.light = light;
         this.dark = dark;
+        this.undo = undo;
     }
 
     /**
@@ -38,7 +42,7 @@ public class CommandResult {
      */
     public CommandResult(String feedbackToUser) {
         this(feedbackToUser, false, false,
-                false, false);
+                false, false, false);
     }
 
     public String getFeedbackToUser() {
@@ -61,6 +65,10 @@ public class CommandResult {
         return dark;
     }
 
+    public boolean isUndo() {
+        return undo;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -75,12 +83,15 @@ public class CommandResult {
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit;
+                && exit == otherCommandResult.exit
+                && light == otherCommandResult.light
+                && dark == otherCommandResult.dark
+                && undo == otherCommandResult.undo;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+        return Objects.hash(feedbackToUser, showHelp, exit, light, dark, undo);
     }
 
 }
