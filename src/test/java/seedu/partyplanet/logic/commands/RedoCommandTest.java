@@ -1,12 +1,5 @@
 package seedu.partyplanet.logic.commands;
 
-import seedu.partyplanet.model.Model;
-import seedu.partyplanet.model.ModelManager;
-import seedu.partyplanet.model.UserPrefs;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
 import static seedu.partyplanet.logic.commands.CommandTestUtil.addDefaultEvent;
 import static seedu.partyplanet.logic.commands.CommandTestUtil.addDefaultPerson;
 import static seedu.partyplanet.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -15,6 +8,13 @@ import static seedu.partyplanet.logic.commands.CommandTestUtil.deleteFirstEvent;
 import static seedu.partyplanet.logic.commands.CommandTestUtil.deleteFirstPerson;
 import static seedu.partyplanet.testutil.TypicalEvents.getTypicalEventBook;
 import static seedu.partyplanet.testutil.TypicalPersons.getTypicalAddressBook;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import seedu.partyplanet.model.Model;
+import seedu.partyplanet.model.ModelManager;
+import seedu.partyplanet.model.UserPrefs;
 
 
 /**
