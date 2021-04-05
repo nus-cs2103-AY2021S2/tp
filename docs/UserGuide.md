@@ -79,8 +79,10 @@ Vax@NUS is a **one stop management app to efficiently track and schedule COVID-1
 
 ### Conditions for valid appointments
 > `DATE` must be of the format `YYYY-MM-DD`. `START_TIME` must be of the format `HH:00` or `HH:30`. The duration of each appointment is fixed at 30 minutes.
+
 * No appointment should clash with any other appointments.
 * The student that the appointment is for must exist in the records.
+
 ----------------------------------------------------------------------
 
 ## Features
