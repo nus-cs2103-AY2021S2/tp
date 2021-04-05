@@ -1,10 +1,10 @@
 package seedu.heymatez.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.heymatez.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_NAME;
 
 import java.util.List;
 
-import seedu.heymatez.commons.core.Messages;
 import seedu.heymatez.logic.commands.exceptions.CommandException;
 import seedu.heymatez.model.Model;
 import seedu.heymatez.model.person.Name;
@@ -46,7 +46,7 @@ public class DeleteMemberCommand extends Command {
         }
 
         if (personToDelete == null) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_NAME);
+            throw new CommandException(MESSAGE_INVALID_PERSON_DISPLAYED_NAME);
         }
 
         model.deletePerson(personToDelete);
