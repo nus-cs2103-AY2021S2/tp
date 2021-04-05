@@ -296,4 +296,5 @@ knowledge of Japanese to test our application.
 
 Therefore, to facilitate testers, we have provided a list of flashcards which reside in the database
 of the current version of application for your reference. The link is [here](Flashcards.html).
+
 --------------------------------------------------------------------------------------------------------------------
