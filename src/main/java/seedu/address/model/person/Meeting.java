@@ -11,6 +11,9 @@ public class Meeting extends Event {
 
     public static final String DESCRIPTION_VALIDATION_REGEX = Event.DESCRIPTION_VALIDATION_REGEX;
     public static final String DESCRIPTION_MESSAGE_CONSTRAINTS = Event.DESCRIPTION_MESSAGE_CONSTRAINTS;
+    public static final String MESSAGE_CONSTRAINTS = "Meeting must have occurred already " +
+            "and meeting description cannot be empty";
+
 
     public Meeting(LocalDate date, LocalTime time, String description) {
         super(date, time, description);

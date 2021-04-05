@@ -18,10 +18,12 @@ import seedu.address.model.person.Debt;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Event;
 import seedu.address.model.person.Goal;
+import seedu.address.model.person.Meeting;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Picture;
+import seedu.address.model.person.SpecialDate;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -40,8 +42,8 @@ class JsonAdaptedPerson {
     private final String address;
     private final JsonAdaptedPicture picture;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
-    private final List<JsonAdaptedEvent> dates = new ArrayList<>();
-    private final List<JsonAdaptedEvent> meetings = new ArrayList<>();
+    private final List<JsonAdaptedSpecialDate> dates = new ArrayList<>();
+    private final List<JsonAdaptedMeeting> meetings = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -52,8 +54,8 @@ class JsonAdaptedPerson {
             @JsonProperty("goal") String goal, @JsonProperty("address") String address,
             @JsonProperty("picture") JsonAdaptedPicture picture,
             @JsonProperty("debt") String debt, @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-            @JsonProperty("dates") List<JsonAdaptedEvent> dates,
-            @JsonProperty("meetings") List<JsonAdaptedEvent> meetings) {
+            @JsonProperty("dates") List<JsonAdaptedSpecialDate> dates,
+            @JsonProperty("meetings") List<JsonAdaptedMeeting> meetings) {
 
         this.name = name;
         this.phone = phone;
@@ -91,10 +93,10 @@ class JsonAdaptedPerson {
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
         dates.addAll(source.getDates().stream()
-                .map(JsonAdaptedEvent::new)
+                .map(JsonAdaptedSpecialDate::new)
                 .collect(Collectors.toList()));
         meetings.addAll(source.getMeetings().stream()
-                .map(JsonAdaptedEvent::new)
+                .map(JsonAdaptedMeeting::new)
                 .collect(Collectors.toList()));
     }
 
@@ -169,15 +171,17 @@ class JsonAdaptedPerson {
         }
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        final List<Event> modelDates = new ArrayList<>();
-        for (JsonAdaptedEvent date : dates) {
+        final List<SpecialDate> modelDates = new ArrayList<>();
+        for (JsonAdaptedSpecialDate date : dates) {
             modelDates.add(date.toModelType());
         }
 
-        final List<Event> modelMeetings = new ArrayList<>();
-        for (JsonAdaptedEvent meeting : meetings) {
+        final List<Meeting> modelMeetings = new ArrayList<>();
+        for (JsonAdaptedMeeting meeting : meetings) {
             modelMeetings.add(meeting.toModelType());
         }
+
+        // TODO: Run another check for specialDates and meetings with birthdays
 
         return new Person(modelName, modelPhone, modelEmail, modelBirthday, modelGoal, modelAddress, modelPicture,
                 modelDebt, modelTags, modelDates, modelMeetings);

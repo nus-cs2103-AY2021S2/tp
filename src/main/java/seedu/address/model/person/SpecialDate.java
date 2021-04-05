@@ -11,6 +11,8 @@ public class SpecialDate extends Event {
 
     public static final String DESCRIPTION_VALIDATION_REGEX = Event.DESCRIPTION_VALIDATION_REGEX;
     public static final String DESCRIPTION_MESSAGE_CONSTRAINTS = Event.DESCRIPTION_MESSAGE_CONSTRAINTS;
+    public static final String MESSAGE_CONSTRAINTS = "Special Date's event must have occurred already " +
+            "and its description cannot be empty";
 
     public SpecialDate(LocalDate date, String description) {
         super(date, description);
