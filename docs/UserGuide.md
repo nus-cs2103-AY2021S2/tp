@@ -154,10 +154,10 @@ Sorts SOChedule Task List.
 Format: `sort_task ARGUMENT`
 * Sorts task list and updates UI based on supplied argument.
 * Accepted arguments (case-sensitive):
-   * `name`: Sorts by task name, in increasing order
-   * `deadline`: Sorts by task deadline, in increasing order
+   * `name`: Sorts by task name, in increasing lexicographical order
+   * `deadline`: Sorts by task deadline, in increasing date order
    * `completion`: Sorts by task completion status, with completed tasks at the bottom
-   * `priority`: Sorts by task priority, in decreasing order
+   * `priority`: Sorts by task priority, in decreasing order, from priority 0 on top, to priority 9 at the bottom
 
 Examples:
 * `sort_task completion` sorts the task list by completion status.
