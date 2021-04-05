@@ -419,13 +419,13 @@ As of the latest version of our application, we support 7 commonly used request 
 
 | Method      | Description                                                                                                 |
 | ----------- | ----------------------------------------------------------------------------------------------------------- |
-| **GET**     | Retrieves information from a server through a specified URI                  |
+| **GET**     | Retrieves information from a server through a specified URL                  |
 | **POST**    | Sends data to a server, commonly in JSON/html form format           |
 | **PUT**     | Sends data to a server, commonly in JSON/html form format      |
-| **DELETE**  | Removes information from a server through a specified URI             |
+| **DELETE**  | Removes information from a server through a specified URL             |
 | **HEAD**    | Similar to GET, but returns only the header section of the response                                         |
 | **PATCH**   | Sends data to a server, commonly in JSON/html form format |
-| **OPTIONS** | Retrieves the allowed communication options (methods) for a specified URI                                   |
+| **OPTIONS** | Retrieves the allowed communication options (methods) for a specified URL                                   |
 
 ### 8.5 JSON Format
 JSON is short for JavaScript Object Notation and is a common lightweight format for data storage (in the form of key/value pairs). In an API call, the JSON format is also commonly used to send data between two systems. For the current version of our application, JSON is the only format supported for sending data. The following are some examples of data in JSON format:
