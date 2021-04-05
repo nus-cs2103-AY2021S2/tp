@@ -70,9 +70,9 @@ the functions and intended usage of the application.
   the argument is used.<br>
   For example, if you specify `d/Lunch d/Dinner`, only `d/Dinner` will be used.
 
-- If you key in extraneous arguments for commands that do not take in arguments (such as `help`, `view-bg` and `exit`),
+- If you key in extraneous arguments for commands that do not take in arguments (such as `reset-filter`, `help` and `exit`),
   they will be ignored.<br>
-  For example, if you specify `help 123`, it will be interpreted as `help`.
+  For example, if you specify `reset-filter 123`, it will be interpreted as `reset-filter`.
 
 </div>
 
