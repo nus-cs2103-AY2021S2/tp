@@ -93,7 +93,7 @@ public class AppointmentBook implements ReadOnlyAppointmentBook {
     public boolean doesAppointmentClash(Name name, AppointmentDateTime timeFrom,
                                         AppointmentDateTime timeTo) {
 
-        List<Appointment> existingAppointments = findAllAppointmentOfTutor(name);
+        List<Appointment> existingAppointments = findAllAppointmentsOfTutor(name);
 
         for (Appointment appointment : existingAppointments) {
             if (timeFrom.isTimeAfter(appointment.getTimeTo())
@@ -117,9 +117,9 @@ public class AppointmentBook implements ReadOnlyAppointmentBook {
      * @param name Name of tutor to match.
      * @return A list of appointments booked with tutor
      */
-    public List<Appointment> findAllAppointmentOfTutor(Name name) {
+    public List<Appointment> findAllAppointmentsOfTutor(Name name) {
         return this.appointments.asUnmodifiableObservableList().stream().filter(
-                appointment -> appointment.getName().equals(name)).collect(Collectors.toList());
+            appointment -> appointment.getName().equals(name)).collect(Collectors.toList());
     }
 
 
