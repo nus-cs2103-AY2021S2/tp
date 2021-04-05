@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersonIds.FIRST_PERSON_ID;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -7,6 +8,7 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -32,8 +34,7 @@ public class ViewPersonCommandTest {
 
     @Test
     public void execute_viewPerson_showNotFoundMessage() {
-        expectedModel.updateFilteredPersonList(new PersonIdPredicate(new PersonId("t/-1")));
-        assertCommandSuccess(new ViewPersonCommand(new PersonIdPredicate(new PersonId("t/-1"))),
-                model, ViewPersonCommand.MESSAGE_NO_PERSON_FOUND, expectedModel);
+        assertCommandFailure(new ViewPersonCommand(new PersonIdPredicate(new PersonId("t/-1"))),
+                model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 }
