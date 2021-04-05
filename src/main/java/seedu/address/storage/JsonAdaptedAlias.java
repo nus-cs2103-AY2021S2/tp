@@ -41,7 +41,7 @@ public class JsonAdaptedAlias {
      * Converts this Jackson-friendly adapted alias object into the model's {@code Alias} object.
      *
      * @return An Alias object.
-     * @throws IllegalValueException
+     * @throws IllegalValueException If any field value is invalid.
      */
     public Alias toModelType() throws IllegalValueException {
         if (aliasName == null) {
