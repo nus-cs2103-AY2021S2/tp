@@ -18,12 +18,7 @@ public class DeleteRoomCommandParser implements Parser<DeleteRoomCommand> {
      */
     @Override
     public DeleteRoomCommand parse(String userInput) throws ParseException {
-        Index index;
-        try {
-            index = ParserUtil.parseIndex(userInput);
-        } catch (ParseException pe) {
-            throw pe;
-        }
+        Index index = ParserUtil.parseIndex(userInput);
         return new DeleteRoomCommand(index);
     }
 }

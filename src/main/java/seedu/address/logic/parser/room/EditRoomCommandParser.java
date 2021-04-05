@@ -38,11 +38,8 @@ public class EditRoomCommandParser implements Parser<EditRoomCommand> {
 
         Index index;
 
-        try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (ParseException pe) {
-            throw pe;
-        }
+        index = ParserUtil.parseIndex(argMultimap.getPreamble());
+
 
         EditRoomDescriptor editRoomDescriptor = new EditRoomDescriptor();
         if (argMultimap.getValue(PREFIX_ROOM_NUMBER).isPresent()) {
