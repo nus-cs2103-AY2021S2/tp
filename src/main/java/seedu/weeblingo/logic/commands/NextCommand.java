@@ -41,7 +41,7 @@ public class NextCommand extends Command {
         if (model.getNextFlashcard() == null) {
             String quizStatistics = model.getQuizStatisticString() + "\n";
             model.addScore();
-            model.clearQuizInstance();
+            model.showAttemptedQuestions();
             model.switchModeQuizSessionEnded();
             return new CommandResult(MESSAGE_QUIZ_ENDED + quizStatistics + MESSAGE_QUIZ_END_ACTIONS);
         }
