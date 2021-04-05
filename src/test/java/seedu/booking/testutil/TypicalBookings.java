@@ -118,6 +118,6 @@ public class TypicalBookings {
     }
 
     public static List<Booking> getTypicalBookings() {
-        return new ArrayList<>(Arrays.asList(BOOKING1, BOOKING4));
+        return new ArrayList<>(Arrays.asList(BOOKING1, BOOKING2, BOOKING3, BOOKING4));
     }
 }

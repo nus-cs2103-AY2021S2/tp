@@ -30,7 +30,6 @@ public class PromptBookingEmailCommand extends Command {
                     + PROMPT_MESSAGE_TRY_AGAIN);
         }
 
-
         ModelManager.processStateInput(email);
         ModelManager.setNextState();
         return new CommandResult(ModelManager.getNextPromptMessage());

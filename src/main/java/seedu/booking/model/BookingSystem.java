@@ -7,7 +7,6 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.booking.model.booking.Booking;
-import seedu.booking.model.booking.Id;
 import seedu.booking.model.booking.NonOverlappingBookingList;
 import seedu.booking.model.person.Email;
 import seedu.booking.model.person.Person;
@@ -125,7 +124,7 @@ public class BookingSystem implements ReadOnlyBookingSystem {
      */
     public boolean hasBooking(Booking booking) {
         requireNonNull(booking);
-        return bookings.contains(booking) || bookings.containsId(booking.getId());
+        return bookings.contains(booking);
     }
 
     /**
@@ -138,11 +137,11 @@ public class BookingSystem implements ReadOnlyBookingSystem {
 
     //// booking-level operations
     /**
-     * Removes {@code bookingId} from this {@code BookingSystem}.
-     * {@code bookingId} must exist in the booking system.
+     * Removes {@code key} from this {@code BookingSystem}.
+     * {@code key} must exist in the booking system.
      */
-    public void removeBooking(Id bookingId) {
-        bookings.removeById(bookingId);
+    public void removeBooking(Booking key) {
+        bookings.remove(key);
     }
 
     /**
@@ -287,5 +286,9 @@ public class BookingSystem implements ReadOnlyBookingSystem {
      */
     public boolean hasOverlappedBooking(Booking toAdd) {
         return bookings.overlaps(toAdd);
+    }
+
+    public boolean hasMoreThanOneOverlappedBooking(Booking toAdd) {
+        return bookings.countOverlaps(toAdd) > 1;
     }
 }

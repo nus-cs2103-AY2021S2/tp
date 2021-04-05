@@ -9,7 +9,7 @@ import static seedu.booking.commons.core.Messages.PROMPT_TAG_MESSAGE;
 
 import java.util.Set;
 
-import seedu.booking.logic.commands.multiprocessing.AddBookingIntermediate;
+import seedu.booking.logic.commands.intermediatestate.AddBookingIntermediate;
 import seedu.booking.model.Tag;
 import seedu.booking.model.booking.Booking;
 import seedu.booking.model.booking.Description;
