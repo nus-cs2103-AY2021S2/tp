@@ -3,14 +3,14 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalEvents.DATE_ONE;
+import static seedu.address.testutil.TypicalSpecialDates.DATE_ONE;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.DateUtil;
 import seedu.address.logic.commands.AddDateCommand;
-import seedu.address.model.person.Event;
+import seedu.address.model.person.SpecialDate;
 
 public class AddDateCommandParserTest {
 
@@ -42,6 +42,6 @@ public class AddDateCommandParserTest {
         assertParseFailure(parser, "1 d/10 Oct 2019 desc/Anniversary", DateUtil.MESSAGE_CONSTRAINT);
 
         // empty description
-        assertParseFailure(parser, "1 d/10-10-2019 desc/", Event.DESCRIPTION_MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1 d/10-10-2019 desc/", SpecialDate.DESCRIPTION_MESSAGE_CONSTRAINTS);
     }
 }

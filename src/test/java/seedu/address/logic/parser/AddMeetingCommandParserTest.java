@@ -13,13 +13,13 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.DateUtil;
 import seedu.address.commons.util.TimeUtil;
 import seedu.address.logic.commands.AddMeetingCommand;
-import seedu.address.model.person.Event;
-import seedu.address.testutil.EventBuilder;
+import seedu.address.model.person.Meeting;
+import seedu.address.testutil.MeetingBuilder;
 
 public class AddMeetingCommandParserTest {
     private final AddMeetingCommandParser parser = new AddMeetingCommandParser();
 
-    private final Event meeting1 = new EventBuilder()
+    private final Meeting meeting1 = new MeetingBuilder()
             .withDate(LocalDate.of(2020, 12, 24))
             .withTime(LocalTime.of(12, 15))
             .withDescription("sample description")
@@ -59,6 +59,6 @@ public class AddMeetingCommandParserTest {
                 TimeUtil.MESSAGE_CONSTRAINT);
 
         // empty description
-        assertParseFailure(parser, "1 d/24-12-2020 t/1215 desc/", Event.DESCRIPTION_MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1 d/24-12-2020 t/1215 desc/", Meeting.DESCRIPTION_MESSAGE_CONSTRAINTS);
     }
 }

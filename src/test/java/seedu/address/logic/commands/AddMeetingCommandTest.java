@@ -7,9 +7,9 @@ import static seedu.address.commons.core.Messages.MESSAGE_TIME_AFTER_NOW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.address.testutil.TypicalEvents.MEETING_NOW;
-import static seedu.address.testutil.TypicalEvents.MEETING_ONE;
-import static seedu.address.testutil.TypicalEvents.MEETING_TODAY;
+import static seedu.address.testutil.TypicalMeetings.MEETING_NOW;
+import static seedu.address.testutil.TypicalMeetings.MEETING_ONE;
+import static seedu.address.testutil.TypicalMeetings.MEETING_TODAY;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -25,14 +25,14 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.Event;
+import seedu.address.model.person.Meeting;
 import seedu.address.model.person.Person;
-import seedu.address.testutil.EventBuilder;
+import seedu.address.testutil.MeetingBuilder;
 import seedu.address.testutil.PersonBuilder;
 
 class AddMeetingCommandTest {
 
-    private static final Event VALID_MEETING = MEETING_ONE;
+    private static final Meeting VALID_MEETING = MEETING_ONE;
 
     private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
@@ -97,13 +97,13 @@ class AddMeetingCommandTest {
         LocalDate birthDate = firstPerson.getBirthday().getDate();
 
         // Acceptable range of values is from date of birthday to today (before the current time)
-        testValidMeeting(new EventBuilder().withDate(birthDate).build());
-        testValidMeeting(new EventBuilder().withDate(birthDate.plusDays(1)).build());
+        testValidMeeting(new MeetingBuilder().withDate(birthDate).build());
+        testValidMeeting(new MeetingBuilder().withDate(birthDate.plusDays(1)).build());
         testValidMeeting(MEETING_TODAY);
         testValidMeeting(MEETING_NOW);
     }
 
-    public void testValidMeeting(Event meeting) {
+    public void testValidMeeting(Meeting meeting) {
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person editedPerson = new PersonBuilder(firstPerson).withMeetings(meeting).build();
 
@@ -125,12 +125,12 @@ class AddMeetingCommandTest {
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         LocalDate birthDate = firstPerson.getBirthday().getDate();
 
-        Event meetingBeforeBirthDate = new EventBuilder().withDate(birthDate.minusDays(1)).build();
-        Event meetingTodayAfterNow = new EventBuilder()
+        Meeting meetingBeforeBirthDate = new MeetingBuilder().withDate(birthDate.minusDays(1)).build();
+        Meeting meetingTodayAfterNow = new MeetingBuilder()
                 .withDate(LocalDate.now())
                 .withTime(LocalTime.now().plusMinutes(1))
                 .build();
-        Event meetingTomorrow = new EventBuilder().withDate(LocalDate.now().plusDays(1)).build();
+        Meeting meetingTomorrow = new MeetingBuilder().withDate(LocalDate.now().plusDays(1)).build();
 
         testInvalidMeeting(meetingBeforeBirthDate, String.format(
                 MESSAGE_DATE_BEFORE_BIRTHDAY, meetingBeforeBirthDate.getDate()));
@@ -140,7 +140,7 @@ class AddMeetingCommandTest {
                 MESSAGE_TIME_AFTER_NOW, meetingTodayAfterNow.getTime()));
     }
 
-    public void testInvalidMeeting(Event meeting, String errorMessage) {
+    public void testInvalidMeeting(Meeting meeting, String errorMessage) {
         AddMeetingCommand cmd = new AddMeetingCommand(INDEX_FIRST_PERSON, meeting);
         assertCommandFailure(cmd, model, errorMessage);
     }
