@@ -18,11 +18,11 @@ Green Mileage Efforts(GME) is a holistic carpooling management solution designed
 GME is a platform that follows a Command-Line Interface (CLI) such that power users that are familiar can efficiently navigate the program.
 
 ### 1.2 Navigating the User Guide
-For help regarding the set up of GME, refer to the [“Quick Start"](#quickstart) section.
+For help regarding the set up of GME, refer to the [“Quick Start"](#2-quick-start-) section.
 
-For a full list and more information about GME's features and commands, use the [“Features”](#features) section.
+For a full list and more information about GME's features and commands, use the [“Features”](#3-features-) section.
 
-For a quick overview of GME’s commands, refer to the [“Command Summary”](#summary) section.
+For a quick overview of GME’s commands, refer to the [“Command Summary”](#5-command-summary-) section.
 
 Please note the following symbols used in the User Guide which may serve as points of interests:
 
@@ -42,7 +42,7 @@ Please note the following symbols used in the User Guide which may serve as poin
 3. Copy the file to the folder you want to use as the *home* folder for your **GreenMileageEfforts**.
 4. Double click the file to start the app.
 5. Type the command in the command box and press `Enter` to execute it
-6. Refer to the [Features](#features) below for the details on each command.
+6. Refer to the [Features](#3-features-) below for the details on each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
