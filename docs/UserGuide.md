@@ -100,7 +100,8 @@ This section discusses the main semantics and purpose of the design of The Food 
  more information.
  
 * An entry with multiple prices shows a price range, ranging from the minimum to the maximum price
- among the prices added for the corresponding entry,
+ among the prices added for the corresponding entry.
+
 
 ### Status Bar
 * Displays the path directory information for the local storage file of The Food Diary.
@@ -166,6 +167,9 @@ Note:
 - Names can only be alphanumeric characters. We justify that the sole use of alphanumeric characters suffices –
  users will still be able to know which restaurant the entry is referring to despite
  not using non-alphanumeric characters, such as apostrophe(') etc.
+- Address will not be checked if it is a valid location, this is left for the user to input any address they deem
+ as legitimate.
+- Multiple entries can exist with the same name but different locations, and vice versa.
 
 Parameters:
 
