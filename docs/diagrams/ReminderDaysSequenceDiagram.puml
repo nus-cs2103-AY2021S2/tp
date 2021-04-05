@@ -60,7 +60,7 @@ destroy ReminderCommandParser
 StoreMandoParser --> LogicManager : r
 deactivate StoreMandoParser
 
-LogicManager -> ReminderCommand : execute()
+LogicManager -> ReminderCommand : execute(model)
 activate ReminderCommand
 
 ReminderCommand -> Model : updateCurrentPredicate(p)
