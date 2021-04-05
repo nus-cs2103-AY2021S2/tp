@@ -36,9 +36,9 @@ import static seedu.partyplanet.testutil.TypicalPersons.BOB;
 import org.junit.jupiter.api.Test;
 
 import seedu.partyplanet.logic.commands.AddCommand;
+import seedu.partyplanet.model.name.Name;
 import seedu.partyplanet.model.person.Address;
 import seedu.partyplanet.model.person.Email;
-import seedu.partyplanet.model.person.Name;
 import seedu.partyplanet.model.person.Person;
 import seedu.partyplanet.model.person.Phone;
 import seedu.partyplanet.model.tag.Tag;
