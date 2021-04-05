@@ -149,7 +149,7 @@ public class Person {
         return new Person(name, phone, email, birthday, goal, address, picture, debt, tags, dates, meetings);
     }
 
-    public boolean beforeBirthday(LocalDate date) {
+    public boolean isBeforeBirthday(LocalDate date) {
         return birthday.beforeBirthdate(date);
     }
 

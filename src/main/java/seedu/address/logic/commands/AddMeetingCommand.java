@@ -1,9 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_DATE_AFTER_TODAY;
 import static seedu.address.commons.core.Messages.MESSAGE_DATE_BEFORE_BIRTHDAY;
-import static seedu.address.commons.core.Messages.MESSAGE_TIME_AFTER_NOW;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
@@ -11,7 +9,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -20,7 +17,6 @@ import java.util.stream.Collectors;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.DateUtil;
-import seedu.address.commons.util.TimeUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Meeting;
@@ -81,29 +77,18 @@ public class AddMeetingCommand extends Command {
         }
 
         Person person = lastShownList.get(index.getZeroBased());
-
         LocalDate meetingDate = meeting.getDate();
-        LocalTime meetingTime = meeting.getTime();
 
-        if (person.beforeBirthday(meetingDate)) {
+        if (person.isBeforeBirthday(meetingDate)) {
             throw new CommandException(String.format(MESSAGE_DATE_BEFORE_BIRTHDAY,
                     DateUtil.toErrorMessage(meetingDate)));
         }
-
-        // if (DateUtil.afterToday(meetingDate)) {
-        //     throw new CommandException(String.format(MESSAGE_DATE_AFTER_TODAY,
-        //             DateUtil.toErrorMessage(meetingDate)));
-        // }
-        //
-        // if (DateUtil.isToday(meetingDate) && TimeUtil.afterNow(meetingTime)) {
-        //     throw new CommandException(String.format(MESSAGE_TIME_AFTER_NOW,
-        //             TimeUtil.toErrorMessage(meetingTime)));
-        // }
 
         Person editedPerson = createEditedPerson(person, meeting);
 
         model.setPerson(person, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+
         return new CommandResult(String.format(MESSAGE_ADD_MEETING_SUCCESS, editedPerson.getName()));
     }
 
