@@ -338,18 +338,15 @@ Format: `rulist`
 #### Allocate resident to room : `alloc`
 Allocates an existing resident to an existing room.
 
-Format: `alloc n/NAME r/ROOM_NUMBER`
-* `NAME` and `ROOM_NUMBER` must already exist.
-* Exact match for `NAME` is required.
-* `NAME` is case-sensitive.
+Format: `alloc ri/RESIDENT_INDEX oi/ROOM_INDEX`
 * Both fields must be provided.
 
 Parameters:
-* [NAME](#name) The name of the resident.
-* [ROOM_NUMBER](#room_number) The room number to be allocated to the resident.
+* [RESIDENT_INDEX](#index) The index of the displayed resident.
+* [ROOM_INDEX](#index) The index of the displayed room.
 
 Example:
-* `alloc r/John Tan n/03-100` Allocates resident named John Tan to room 03-100.
+* `alloc ri/1 oi/2` Allocates the 1st resident in the resident list to the 2nd room in the room list.
 
 #### Deallocate resident from room : `dealloc`
 Deallocates an existing resident from an existing room.
@@ -630,7 +627,7 @@ Action | Format, Examples
 **Find rooms** |  `ofind KEYWORD [MORE_KEYWORDS]` <br> e.g. `ofind 10- 15-`
 **Edit a room record** |  `oedit INDEX [r/ROOM_NUMBER] [t/ROOM_TYPE] [g/TAG]` <br> e.g. `oedit 1 g/SHN`
 **Delete a room** | `odel INDEX` <br> e.g. `odel 1`
-**Allocate a Resident to Room** | `alloc n/NAME r/ROOM_NUMBER` <br> e.g. `alloc n/John Tan r/03-100`
+**Allocate a Resident to Room** | `alloc ri/RESIDENT_INDEX oi/ROOM_INDEX` <br> e.g. `alloc ri/1 oi/2`
 **Deallocate a Resident from Room** | `dealloc INDEX` <br> e.g. `dealloc 1`
 **Add an open issue** | `iadd r/ROOM_NUMBER d/DESCRIPTION [t/TIMESTAMP] [s/STATUS] [c/CATEGORY] [g/TAG]` <br> e.g. `iadd r/10-100 d/Broken light c/Furniture g/HIGH`
 **List all issues** | `ilist`
