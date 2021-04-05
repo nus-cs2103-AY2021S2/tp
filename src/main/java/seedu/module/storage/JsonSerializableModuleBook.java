@@ -60,6 +60,7 @@ class JsonSerializableModuleBook {
             }
             moduleBook.addTask(task);
         }
+
         return moduleBook;
     }
 

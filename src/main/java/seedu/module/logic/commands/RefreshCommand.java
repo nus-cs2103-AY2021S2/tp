@@ -23,7 +23,7 @@ public class RefreshCommand extends Command {
         for (Task taskToCheck : taskList) {
             Task taskToBeReplaced = taskToCheck;
             boolean isUpdated = false;
-            while (taskToCheck.isRecurring() && !taskToCheck.isUpToDate()) {
+            while (taskToCheck.isRecurring() && taskToCheck.isBehind()) {
                 taskToCheck = Task.updateRecurrenceTask(taskToCheck);
                 isUpdated = true;
             }

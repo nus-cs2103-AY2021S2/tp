@@ -43,7 +43,7 @@ public class CommandTestUtil {
     public static final String VALID_TAG_PRIORITY_LOW = "priorityLow";
     public static final String VALID_WORKLOAD_1 = "1";
     public static final String VALID_WORKLOAD_2 = "2";
-    public static final String VALID_RECURRENCE_LAB = "monthly";
+    public static final String VALID_RECURRENCE_LAB = "daily";
     public static final String VALID_RECURRENCE_PRACTICAL = "weekly";
 
     public static final String TASK_NAME_DESC_LAB = " " + PREFIX_TASK_NAME + VALID_TASK_NAME_LAB;

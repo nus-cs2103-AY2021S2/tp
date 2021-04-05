@@ -17,7 +17,7 @@
     "description" : "Not include CSP.",
     "workload": "2",
     "doneStatus": "false",
-    "recurrence": "monthly",
+    "recurrence": "biweekly",
     "tagged" : [ "highPriority" ]
   }, {
     "name" : "TP",

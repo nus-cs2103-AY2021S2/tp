@@ -195,10 +195,10 @@ public class Task {
     /**
      * Returns true if the deadline is later than the current time.
      */
-    public boolean isUpToDate() {
+    public boolean isBehind() {
         assert this.isRecurring();
         Time currTime = Time.makeDeadlineWithTime(LocalDateTime.now());
-        return deadline.compareTo(currTime) >= 0;
+        return deadline.compareTo(currTime) < 0;
     }
 
     /**
@@ -236,9 +236,9 @@ public class Task {
                 nextRecurringDeadlineStr = oldTime.getTime().plusDays(7)
                         .format(formatter);
                 break;
-            case monthly:
+            case biweekly:
                 //change date to month + 1
-                nextRecurringDeadlineStr = oldTime.getTime().plusMonths(1)
+                nextRecurringDeadlineStr = oldTime.getTime().plusDays(14)
                         .format(formatter);
                 break;
             default:
