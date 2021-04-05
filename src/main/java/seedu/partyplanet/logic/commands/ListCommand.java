@@ -43,7 +43,6 @@ public class ListCommand extends Command {
     private final Comparator<Person> comparator;
     private final Predicate<Person> predicate;
     private String parseArguments;
-    private String parseCriteria;
 
     /**
      * Default empty ListCommand.
