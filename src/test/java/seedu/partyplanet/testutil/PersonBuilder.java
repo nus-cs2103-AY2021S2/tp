@@ -3,13 +3,13 @@ package seedu.partyplanet.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.partyplanet.model.name.Name;
 import seedu.partyplanet.model.person.Address;
 import seedu.partyplanet.model.person.Birthday;
 import seedu.partyplanet.model.person.Email;
-import seedu.partyplanet.model.person.Name;
 import seedu.partyplanet.model.person.Person;
 import seedu.partyplanet.model.person.Phone;
-import seedu.partyplanet.model.person.Remark;
+import seedu.partyplanet.model.remark.Remark;
 import seedu.partyplanet.model.tag.Tag;
 import seedu.partyplanet.model.util.SampleDataUtil;
 
@@ -43,6 +43,19 @@ public class PersonBuilder {
         birthday = new Birthday(DEFAULT_BIRTHDAY);
         address = new Address(DEFAULT_ADDRESS);
         remark = new Remark(DEFAULT_REMARK);
+        tags = new HashSet<>();
+    }
+
+    /**
+     * Creates a {@code PersonBuilder} with only name specified.
+     */
+    public PersonBuilder(String nameString) {
+        name = new Name(nameString);
+        phone = Phone.EMPTY_PHONE;
+        email = Email.EMPTY_EMAIL;
+        birthday = Birthday.EMPTY_BIRTHDAY;
+        address = Address.EMPTY_ADDRESS;
+        remark = Remark.EMPTY_REMARK;
         tags = new HashSet<>();
     }
 

@@ -2,8 +2,8 @@ package seedu.partyplanet.testutil;
 
 import seedu.partyplanet.model.event.Event;
 import seedu.partyplanet.model.event.EventDate;
-import seedu.partyplanet.model.person.Name;
-import seedu.partyplanet.model.person.Remark;
+import seedu.partyplanet.model.name.Name;
+import seedu.partyplanet.model.remark.Remark;
 
 /**
  * A utility class to help with building Person objects.
@@ -33,7 +33,7 @@ public class EventBuilder {
     public EventBuilder(Event eventToCopy) {
         name = eventToCopy.getName();
         eventDate = eventToCopy.getEventDate();
-        remark = eventToCopy.getDetails();
+        remark = eventToCopy.getRemark();
     }
 
     /**
@@ -56,8 +56,8 @@ public class EventBuilder {
     /**
      * Sets the {@code Remark} of the {@code Event} that we are building.
      */
-    public EventBuilder withDetail(String detail) {
-        this.remark = new Remark(detail);
+    public EventBuilder withRemark(String remark) {
+        this.remark = new Remark(remark);
         return this;
     }
 

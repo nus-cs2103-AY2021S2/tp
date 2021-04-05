@@ -1,10 +1,10 @@
-package seedu.partyplanet.model.person;
+package seedu.partyplanet.model.remark;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.partyplanet.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Person's remark in PartyPlanet.
+ * Represents a remark in PartyPlanet.
  * Guarantees: immutable; is valid as declared in {@link #isValidRemark(String)}
  */
 public class Remark {

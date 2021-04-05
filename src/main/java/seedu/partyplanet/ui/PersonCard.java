@@ -13,7 +13,7 @@ import seedu.partyplanet.model.person.Birthday;
 import seedu.partyplanet.model.person.Email;
 import seedu.partyplanet.model.person.Person;
 import seedu.partyplanet.model.person.Phone;
-import seedu.partyplanet.model.person.Remark;
+import seedu.partyplanet.model.remark.Remark;
 
 /**
  * An UI component that displays information of a {@code Person}.
