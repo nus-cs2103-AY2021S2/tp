@@ -190,9 +190,6 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.show();
     }
 
-    /**
-     * There is two tab for now.
-     */
 
     @FXML
     private void handleHomeTab() {
