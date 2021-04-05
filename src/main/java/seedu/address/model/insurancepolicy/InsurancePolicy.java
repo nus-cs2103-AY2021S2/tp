@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 /**
  * Represents an InsurancePolicy in the address book.
@@ -13,9 +14,14 @@ public class InsurancePolicy {
 
     public static final String MESSAGE_CONSTRAINTS = "PolicyIDs should not contain '>'!. URLs should be "
             + "preceded by '>' after the PolicyID.";
+    public static final String INVALID_POLICY_URL = "This is an invalid policy URL!";
     public static final String MESSAGE_NO_POLICY = "Currently does not have an active policy";
+    public static final Pattern URL_REGEX = Pattern.compile("((ftp|http|https):\\/\\/)?(www.)?(?!.*(ftp|http"
+            + "|https|www.))[a-zA-Z0-9_-]+(\\.[a-zA-Z]+)+((\\/)[\\w#]+)*(\\/\\w+\\?[a-zA-Z0-9_]+=\\"
+            + "w+(&[a-zA-Z0-9_]+=\\w+)*)?", Pattern.CASE_INSENSITIVE);
+
     public final String policyId;
-    private String policyUrl;
+    private final String policyUrl;
 
     /**
      * Constructs an {@code InsurancePolicy} without URL.
@@ -127,5 +133,15 @@ public class InsurancePolicy {
      */
     public static boolean hasPolicyUrl(String[] test) {
         return test.length == 2;
+    }
+
+    /**
+     * Checks if a policy input by a user contains a valid URL.
+     *
+     * @param policyUrl policy URL entered by the user.
+     * @return true if the URL is valid.
+     */
+    public static boolean isValidPolicyUrl(String policyUrl) {
+        return URL_REGEX.matcher(policyUrl).find();
     }
 }

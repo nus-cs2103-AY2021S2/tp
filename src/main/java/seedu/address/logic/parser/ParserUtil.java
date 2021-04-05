@@ -221,6 +221,13 @@ public class ParserUtil {
         // Else contains URL too
         String policyId = idAndUrl[0];
         String policyUrl = idAndUrl[1];
+
+        System.out.println(policyUrl);
+
+        if (!InsurancePolicy.isValidPolicyUrl(policyUrl)) {
+            throw new ParseException(InsurancePolicy.INVALID_POLICY_URL);
+        }
+
         return new InsurancePolicy(policyId, policyUrl);
     }
 
