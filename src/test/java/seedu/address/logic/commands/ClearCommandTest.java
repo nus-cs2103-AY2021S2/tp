@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalEvents.getTypicalEventBook;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -23,9 +22,8 @@ public class ClearCommandTest {
 
     @Test
     public void execute_nonEmptyEventBook_success() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalEventBook());
-        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalEventBook());
-        //expectedModel.setAddressBook(new AddressBook());
+        Model model = new ModelManager(new UserPrefs(), getTypicalEventBook());
+        Model expectedModel = new ModelManager(new UserPrefs(), getTypicalEventBook());
         expectedModel.setEventBook(new EventBook());
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);

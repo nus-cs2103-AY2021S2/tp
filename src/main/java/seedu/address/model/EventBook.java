@@ -26,7 +26,7 @@ public class EventBook implements ReadOnlyEventBook {
     public EventBook() {}
 
     /**
-     * Creates an EventBook using the Persons in the {@code toBeCopied}
+     * Creates an EventBook using the Events in the {@code toBeCopied}
      */
     public EventBook(ReadOnlyEventBook toBeCopied) {
         this();
@@ -80,12 +80,12 @@ public class EventBook implements ReadOnlyEventBook {
     /**
      * Replaces the given event {@code target} in the list with {@code editedPerson}.
      * {@code target} must exist in the event book.
-     * The event identity of {@code editedPerson} must not be the same as another existing event in the event book.
+     * The event identity of {@code editedEvent} must not be the same as another existing event in the event book.
      */
-    public void setEvent(Event target, Event editedPerson) {
-        requireNonNull(editedPerson);
+    public void setEvent(Event target, Event editedEvent) {
+        requireNonNull(editedEvent);
 
-        events.setEvent(target, editedPerson);
+        events.setEvent(target, editedEvent);
     }
 
     /**

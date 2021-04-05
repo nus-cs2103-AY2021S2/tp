@@ -4,7 +4,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.model.event.Event;
 
@@ -13,9 +12,11 @@ public class EventUtil {
     /**
      * Returns an add command string for adding the {@code event}.
      */
+    /*
     public static String getAddCommand(Event event) {
         return AddCommand.COMMAND_WORD + " " + getEventDetails(event);
     }
+    */
 
     public static String getEventDetails(Event event) {
         StringBuilder sb = new StringBuilder();

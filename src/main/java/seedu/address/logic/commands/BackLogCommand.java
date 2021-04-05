@@ -28,7 +28,7 @@ public class BackLogCommand extends Command {
     private final Event toAdd;
 
     /**
-     * Creates an TodoCommand to add the specified Todo Event {@code Event}
+     * Creates an BackLogCommand to add the specified BackLog Event {@code Event}
      */
     public BackLogCommand(Event event) {
         requireNonNull(event);

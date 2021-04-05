@@ -7,24 +7,23 @@ import static seedu.address.logic.commands.CommandTestUtil.EVENTNAME_DESC_CS2030
 import static seedu.address.logic.commands.CommandTestUtil.EVENTNAME_DESC_CS2107;
 import static seedu.address.logic.commands.CommandTestUtil.EVENTSTATUS_DESC_CS2030;
 import static seedu.address.logic.commands.CommandTestUtil.EVENTSTATUS_DESC_CS2107;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
+//import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EVENTSTATUS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
+//import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+//import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_CS2030;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_CS2107;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_CS2030;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_CS2107;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
+//import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STATUS_CS2030;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_STATUS_CS2107;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalIdentifiers.IDENTIFIER_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIdentifiers.IDENTIFIER_SECOND_PERSON;
-import static seedu.address.testutil.TypicalIdentifiers.IDENTIFIER_THIRD_PERSON;
+import static seedu.address.testutil.TypicalIdentifiers.IDENTIFIER_FIRST_EVENT;
+import static seedu.address.testutil.TypicalIdentifiers.IDENTIFIER_SECOND_EVENT;
+import static seedu.address.testutil.TypicalIdentifiers.IDENTIFIER_THIRD_EVENT;
 
 import org.junit.jupiter.api.Test;
 
@@ -36,8 +35,6 @@ import seedu.address.model.event.EventStatus;
 import seedu.address.testutil.EditEventDescriptorBuilder;
 
 public class EditCommandParserTest {
-
-    private static final String TAG_EMPTY = " " + PREFIX_TAG;
 
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
@@ -61,11 +58,11 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidPreamble_failure() {
         // negative index
-        assertParseFailure(parser, "-5" + NAME_DESC_AMY, ParserUtil.MESSAGE_INVALID_IDENTIFIER + "\n\n"
+        assertParseFailure(parser, "-5" + EVENTNAME_DESC_CS2030, ParserUtil.MESSAGE_INVALID_IDENTIFIER + "\n\n"
                 + MESSAGE_INVALID_FORMAT);
 
         // zero index
-        assertParseFailure(parser, "0" + NAME_DESC_AMY, ParserUtil.MESSAGE_INVALID_IDENTIFIER + "\n\n"
+        assertParseFailure(parser, "0" + EVENTNAME_DESC_CS2030, ParserUtil.MESSAGE_INVALID_IDENTIFIER + "\n\n"
                 + MESSAGE_INVALID_FORMAT);
 
         // invalid arguments being parsed as preamble
@@ -103,13 +100,13 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_EVENTSTATUS_DESC, EventStatus.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_ADDRESS_AMY + VALID_PHONE_AMY,
+        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EVENTSTATUS_DESC + VALID_DESCRIPTION_CS2030,
                 EventName.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_allFieldsSpecified_success() {
-        Identifier targetIndex = IDENTIFIER_SECOND_PERSON;
+        Identifier targetIndex = IDENTIFIER_SECOND_EVENT;
         String userInput = targetIndex.getOneBased() + DESCRIPTION_DESC_CS2107 + EVENTNAME_DESC_CS2107
                 + EVENTSTATUS_DESC_CS2107;
 
@@ -123,7 +120,7 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_someFieldsSpecified_success() {
-        Identifier targetIndex = IDENTIFIER_FIRST_PERSON;
+        Identifier targetIndex = IDENTIFIER_FIRST_EVENT;
         String userInput = targetIndex.getOneBased() + DESCRIPTION_DESC_CS2030 + EVENTNAME_DESC_CS2030;
 
         EditEventDescriptor descriptor = new EditEventDescriptorBuilder().withDescription(VALID_DESCRIPTION_CS2030)
@@ -136,7 +133,7 @@ public class EditCommandParserTest {
     @Test
     public void parse_oneFieldSpecified_success() {
         // eventname
-        Identifier targetIndex = IDENTIFIER_THIRD_PERSON;
+        Identifier targetIndex = IDENTIFIER_THIRD_EVENT;
         String userInput = targetIndex.getOneBased() + EVENTNAME_DESC_CS2030;
         EditEventDescriptor descriptor = new EditEventDescriptorBuilder().withName(VALID_NAME_CS2030).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
@@ -157,7 +154,7 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
-        Identifier targetIndex = IDENTIFIER_FIRST_PERSON;
+        Identifier targetIndex = IDENTIFIER_FIRST_EVENT;
         String userInput = targetIndex.getOneBased() + DESCRIPTION_DESC_CS2030 + EVENTNAME_DESC_CS2030
                 + EVENTSTATUS_DESC_CS2030 + DESCRIPTION_DESC_CS2030 + EVENTNAME_DESC_CS2030;
 
@@ -171,30 +168,18 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidValueFollowedByValidValue_success() {
         // no other valid values specified
-        Identifier targetIndex = IDENTIFIER_FIRST_PERSON;
-        String userInput = targetIndex.getOneBased() + INVALID_NAME_DESC + EVENTNAME_DESC_CS2107;
+        Identifier targetIdentifier = IDENTIFIER_FIRST_EVENT;
+        String userInput = targetIdentifier.getOneBased() + INVALID_NAME_DESC + EVENTNAME_DESC_CS2107;
         EditEventDescriptor descriptor = new EditEventDescriptorBuilder().withName(VALID_NAME_CS2107).build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        EditCommand expectedCommand = new EditCommand(targetIdentifier, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
-        userInput = targetIndex.getOneBased() + DESCRIPTION_DESC_CS2107 + INVALID_NAME_DESC + EVENTNAME_DESC_CS2107
+        userInput = targetIdentifier.getOneBased() + DESCRIPTION_DESC_CS2107 + INVALID_NAME_DESC + EVENTNAME_DESC_CS2107
                 + EVENTSTATUS_DESC_CS2107;
         descriptor = new EditEventDescriptorBuilder().withDescription(VALID_DESCRIPTION_CS2107)
                 .withName(VALID_NAME_CS2107).withEventStatus(VALID_STATUS_CS2107).build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
+        expectedCommand = new EditCommand(targetIdentifier, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
-
-    // Commented out for v1.2
-    //    @Test
-    //    public void parse_resetTags_success() {
-    //        Index targetIndex = INDEX_THIRD_PERSON;
-    //        String userInput = targetIndex.getOneBased() + TAG_EMPTY;
-    //
-    //        EditEventDescriptor descriptor = new EditEventDescriptorBuilder().withTags().build();
-    //        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
-    //
-    //        assertParseSuccess(parser, userInput, expectedCommand);
-    //    }
 }

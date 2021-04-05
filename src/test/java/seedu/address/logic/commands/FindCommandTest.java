@@ -9,7 +9,6 @@ import static seedu.address.testutil.TypicalEvents.COMPLETE_ASSIGNMENT;
 import static seedu.address.testutil.TypicalEvents.CS2030;
 import static seedu.address.testutil.TypicalEvents.CS2107;
 import static seedu.address.testutil.TypicalEvents.getTypicalEventBook;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -25,8 +24,8 @@ import seedu.address.model.event.EventContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalEventBook());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalEventBook());
+    private Model model = new ModelManager(new UserPrefs(), getTypicalEventBook());
+    private Model expectedModel = new ModelManager(new UserPrefs(), getTypicalEventBook());
 
     @Test
     public void equals() {

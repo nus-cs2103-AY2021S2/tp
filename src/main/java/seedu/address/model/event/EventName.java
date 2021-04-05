@@ -48,7 +48,7 @@ public class EventName {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof EventName // instanceof handles nulls
-                && this.eventName.equals(((EventName) other).eventName)); // state check
+                && this.eventName.equalsIgnoreCase(((EventName) other).eventName)); // state check
     }
 
     @Override

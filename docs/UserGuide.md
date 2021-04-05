@@ -7,7 +7,7 @@ title: User Guide
 
 Thank you for downloading **Focuris**! As a busy University student, Focuris helps you manage and keep track of all your
 work, deadlines, and projects. We hope this **User Guide** helps you get started with Focuris so you can start making 
-your student  life a little easier! <br/>
+your student life a little easier! <br/>
 
 Focuris is a **desktop application** for **managing events** with a KanBan board. The KanBan board is a board which
 **displays events according to the level of completion**: Backlog, Todo, In-Progress and Done. <br/>
@@ -159,8 +159,14 @@ and [2.3](#23-event-commands).
 | [**Todo**](#231-todo-command)      | Creates your new event with status **Todo**                          | `todo n/NAME d/DESCRIPTION [p/PRIORITY]` <br> e.g., `todo n/CS2040 d/Assignment`                           |
 
 <div markdown="block" class="alert alert-info">
-**:information_source: Please take note of the following with regards to Events in Focuris:** <br/>
+
+**:information_source: Please take note of the following with regards to Events in Focuris:** <br>
+
 - You will not be allowed to add Events with the same name into Focuris, regardless of their description, priority or status.
+  
+- Events of the same name are treated as case-insensitive. <br> 
+  e.g. `CS2030` is the same name as `cs2030`.
+
 </div>
 
 <a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
@@ -198,7 +204,7 @@ The table below gives a detailed summary of the different [parameters](#paramete
 
 As a new user, the image below should give you a better understanding of what each part of our graphical user interface means!
 
-There are two views in Focuris, which can be toggled between with the [`switch` command](#2310-switch-command):
+There are two views in Focuris, which can be toggled with the [`switch` command](#2310-switch-command):
 
 1. `KanBan` view <br/>
    ![Ui KanBan](images/user-guide/Annotated/UiWithReferenceAnnotated.png)
@@ -208,6 +214,8 @@ There are two views in Focuris, which can be toggled between with the [`switch` 
    
 This is how your events are displayed:
 ![Ui Event Card](images/user-guide/Annotated/UiCardAnnotated.png)
+
+**:information_source: Please take note that Events are not sorted by their Priority in Focuris (Coming soon!)** <br/>
 
 <a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
 
