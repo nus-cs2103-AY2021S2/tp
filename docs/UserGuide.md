@@ -144,7 +144,8 @@ Format: `delete [{INDEX [INDEX]... | [--any] -t TAG [-t TAG]...}]`
 2. If indices supplied, `delete INDEX [INDEX]...`: Deletes the contacts associated with each specified `INDEX`
    * Invalid indices are ignored.
 3. If tags supplied, `delete [--any] -t TAG [-t TAG]...`: Delete the contacts containing all specified tags
-   * If the `--any` flag is supplied, contacts need only match with any specified tag.
+   * If the `--any` flag is supplied, contacts only need to match with any of the specified tags.
+   * Tags specified are case-sensitive.
 
 Examples:
 * `delete` deletes all contacts in current filtered list
@@ -164,6 +165,7 @@ Format: `edit {INDEX [-n NAME] [-p PHONE] [-e EMAIL] [-a ADDRESS] [-t TAG]…​
    * Tags can be removed from a contact by specifying a standalone `-t` without parameters.
 2. If `--remove` flag specified, `edit --remove -t TAG [-t TAG]...`: Removes all specified tags from every contact in the displayed list
    * All specified tags will be removed from every contact in the displayed list.
+   * Tags specified are case-sensitive.
 
 Examples:
 * `edit 2 -n James Lee -e jameslee@example.com` Edits the contact name to be "James Lee" and email address to be “jameslee@example.com”.
