@@ -319,8 +319,6 @@ Examples:
 
 The Autocomplete feature helps autocomplete when editing a Person or an Event to save the user time from retyping details. Currently, the feature only works for commands `edit` and `eedit`.
 
-For any valid and empty prefix that the user inputs, the relevant details will be autocompleted on `TAB` keypress down.
-
 Format:
 
 Edit: `edit INDEX [-n NAME] [-p PHONE] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY] [-r REMARK] TAB`
@@ -328,6 +326,25 @@ Edit: `edit INDEX [-n NAME] [-p PHONE] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-
 EEdit: `eedit INDEX [-n NAME] [-d DATE] [-r DETAIL] TAB`
 
 Note: Valid INDEX must be used in order for Autocomplete to function.
+
+Below are the respective behaviors of Autocomplete for various prefixes.
+
+All Prefixes except Tag: For any valid and empty prefix that the user inputs, the relevant details will be autocompleted on `TAB` keypress down.
+
+Tags: Due to the plural nature of Tags, the Tag Autocomplete will always add all remaining existing tags belonging to the user. 
+
+Below are some examples for example Person 1 with Tags "Hello" and "World".
+1. Empty Tag Prefix, e.g. `edit 1 -t`
+      * Expected Behavior: Autocompletes all tags from Person 1.
+      * Example Output: `edit 1 -t Hello -t World`
+2. Tag Prefix(es) containing valid existing Tags, e.g. `edit 1 -t World`
+      * Expected Behavior: Autocompletes remaining valid tags from Person 1.
+      * Example Output: `edit 1 -t World -t Hello`
+3. Tag Prefix(es) that do not currently belong to Person, `edit 1 -t Foo`
+      * Expected Behavior: Autocompletes and adds all tags from Person 1.
+      * Example Output: `edit 1 -t Foo -t Hello -t World`
+
+Note: Autocompleted Tags will be returned in alphabetical order and is case-sensitive.
 
 #### Undoing actions : `undo`
 
