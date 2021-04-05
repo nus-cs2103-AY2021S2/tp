@@ -7,6 +7,8 @@ title: He Xinyue's Project Portfolio Page
 
 BudgetBaby is a desktop budget tracking application used to manage finances. The user interacts with it using a Command Line Interface (CLI), and it has a Graphical User Interface (GUI) created with JavaFX. It is written in Java, and has about 10 kLoC.
 
+### Summary of Contribution
+
 Given below are my contributions to the project.
 
 - **New Feature**: Added financial records related commands
