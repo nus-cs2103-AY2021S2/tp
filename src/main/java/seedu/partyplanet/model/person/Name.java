@@ -10,7 +10,8 @@ import static seedu.partyplanet.commons.util.AppUtil.checkArgument;
 public class Name {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain alphanumeric characters and spaces. It should not be blank nor longer than 22 characters";
+            "Names should only contain alphanumeric characters and spaces."
+                    + "It should not be blank nor longer than 22 characters";
 
     /*
      * The first character of the address must not be a whitespace,
