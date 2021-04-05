@@ -9,8 +9,8 @@ import static seedu.partyplanet.commons.util.AppUtil.checkArgument;
  */
 public class Tag {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
-    public static final String MESSAGE_CHARACTER_LIMIT = "Tags names should not be longer than 44 characters";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Tags names should be alphanumeric and should not be longer than 35 characters";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     public final String tagName;
@@ -23,7 +23,6 @@ public class Tag {
     public Tag(String tagName) {
         requireNonNull(tagName);
         checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
-        checkArgument(!isTooLong(tagName), MESSAGE_CHARACTER_LIMIT);
         this.tagName = tagName;
     }
 
@@ -31,14 +30,21 @@ public class Tag {
      * Returns true if a given string is a valid tag name.
      */
     public static boolean isValidTagName(String test) {
+        return isValidTagFormat(test) && !isTooLong(test);
+    }
+
+    /**
+     * Returns true if a given string is a valid tag name.
+     */
+    public static boolean isValidTagFormat(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
     /**
-     * Returns true if a given tag name is longer than 44 characters.
+     * Returns true if a given tag name is longer than 35 characters.
      */
     public static boolean isTooLong(String test) {
-        return test.length() > 44;
+        return test.length() > 35;
     }
 
     @Override
