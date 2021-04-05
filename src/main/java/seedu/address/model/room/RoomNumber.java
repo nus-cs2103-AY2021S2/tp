@@ -9,7 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class RoomNumber {
     public static final String MESSAGE_CONSTRAINTS =
-            "Room numbers should be formatted as such: XY-ABC, where XY cannot be 00, and ABC can be any 3 digits.";
+            "Room numbers should be formatted as such: XY-ABC, "
+                    + "where XY can be any pair of digits except 00, and ABC can be any 3 digits.";
 
     public static final String VALIDATION_REGEX = "(?!00)\\d{2}(-\\d{3})";
 
