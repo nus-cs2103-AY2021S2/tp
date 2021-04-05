@@ -65,11 +65,11 @@ As listed below are the attributes to be specified for Tasks and Events. All par
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `SOChedule.jar` from [link coming soon].
+1. Download the latest `SOChedule.jar` from ![here](https://github.com/AY2021S2-CS2103-W16-1/tp/releases/download/v1.3.1/SOChedule.jar).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your SOChedule.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. A sample SOChedule is given below. There would not be pre-entered data on first launch so that users can immediately jump in and use.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -77,7 +77,7 @@ As listed below are the attributes to be specified for Tasks and Events. All par
 
    * **`list_task`** : Lists all tasks.
 
-   * **`add_task`**`n/CS2103 assignment d/2021-02-27 p/1 c/schoolwork t/urgent` : Adds a task named `CS2103 assignment` to the SOChedule with its respective attributes.
+   * **`add_task`**`n/CS2103 assignment d/2021-04-07 p/1 c/schoolwork t/urgent` : Adds a task named `CS2103 assignment` to the SOChedule with its respective attributes. Please verify the validity of the date parameter.
 
    * **`delete_task`**`3` : Deletes the 3rd task shown in the current list.
 
