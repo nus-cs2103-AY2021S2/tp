@@ -170,7 +170,7 @@ As members leave the club, you can delete a member along with all of his/her con
 Format: `deleteMember NAME`
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-The name you specify must belong to an exisitng Member in the Application
+The name you specify must belong to an existing Member in the Application
 </div>
 
 Examples:
