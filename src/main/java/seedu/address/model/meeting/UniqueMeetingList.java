@@ -35,7 +35,10 @@ public class UniqueMeetingList implements Iterable<Person> {
      */
     public Optional<Meeting> clash(Person toCheck) {
         requireNonNull(toCheck);
-        return toCheck.getMeeting().map(meetingMap::get).flatMap(Person::getMeeting);
+        return toCheck.getMeeting()
+                .map(meetingMap::get)
+                .filter(person -> !person.equals(toCheck))
+                .flatMap(Person::getMeeting);
     }
 
     /**
