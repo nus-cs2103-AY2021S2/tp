@@ -12,7 +12,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Event;
+import seedu.address.model.person.Meeting;
 import seedu.address.model.person.Person;
 
 /**
@@ -55,7 +55,7 @@ public class DeleteMeetingCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
-        List<Event> meetings = new ArrayList<>(personToEdit.getMeetings());
+        List<Meeting> meetings = new ArrayList<>(personToEdit.getMeetings());
         if (meetingIndex.getZeroBased() >= meetings.size()) {
             throw new CommandException((Messages.MESSAGE_INVALID_INDEX_ARGUMENT));
         }

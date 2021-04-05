@@ -16,6 +16,8 @@ public class DateUtil {
 
     public static final LocalDate ZERO_DAY = LocalDate.ofInstant(Instant.ofEpochMilli(0), ZoneId.systemDefault());
 
+    public static final DateTimeFormatter DATE_INPUT_FORMATTER; // used to create user inputs for testing
+
     private static final DateTimeFormatter DATE_PARSER;
 
     private static final DateTimeFormatter DEFAULT_FORMATTER = DateTimeFormatter.ofPattern("dd MMM yyyy");
@@ -24,23 +26,25 @@ public class DateUtil {
     private static final DateTimeFormatter NO_YEAR_FORMATTER = DateTimeFormatter.ofPattern("dd MMM");
 
     private static final String[] patterns;
-    private static final String[] toShowPatterns;
-    private static final String[] examples;
+    private static final String[] toShowPatterns; // patterns to present to users in help text
+    private static final String[] toShowExamples;
 
     static {
         patterns = new String[]{"d-M-yyyy", "d-MM-yyyy", "dd-M-yyyy", "dd-MM-yyyy"};
         toShowPatterns = new String[]{"dd-MM-yyyy"};
-        examples = new String[]{"12-12-2020"};
+        toShowExamples = new String[]{"12-12-2020"};
 
         DateTimeFormatterBuilder builder = new DateTimeFormatterBuilder();
 
         Arrays.stream(patterns).map(DateTimeFormatter::ofPattern).forEach(builder::appendOptional);
         DATE_PARSER = builder.toFormatter();
+
+        DATE_INPUT_FORMATTER = DateTimeFormatter.ofPattern(toShowPatterns[0]);
     }
 
     public static final String MESSAGE_CONSTRAINT = MESSAGE_INVALID_DATE_FORMAT + "Format given should be one of "
         + String.join(", ", toShowPatterns) + "\n"
-        + "Some examples are " + String.join(", ", examples);
+        + "Some examples are " + String.join(", ", toShowExamples);
 
     /**
      * Takes a string and parses it into a LocalDate

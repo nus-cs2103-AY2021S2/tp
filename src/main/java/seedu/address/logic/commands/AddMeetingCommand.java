@@ -90,15 +90,15 @@ public class AddMeetingCommand extends Command {
                     DateUtil.toErrorMessage(meetingDate)));
         }
 
-        if (DateUtil.afterToday(meetingDate)) {
-            throw new CommandException(String.format(MESSAGE_DATE_AFTER_TODAY,
-                    DateUtil.toErrorMessage(meetingDate)));
-        }
-
-        if (DateUtil.isToday(meetingDate) && TimeUtil.afterNow(meetingTime)) {
-            throw new CommandException(String.format(MESSAGE_TIME_AFTER_NOW,
-                    TimeUtil.toErrorMessage(meetingTime)));
-        }
+        // if (DateUtil.afterToday(meetingDate)) {
+        //     throw new CommandException(String.format(MESSAGE_DATE_AFTER_TODAY,
+        //             DateUtil.toErrorMessage(meetingDate)));
+        // }
+        //
+        // if (DateUtil.isToday(meetingDate) && TimeUtil.afterNow(meetingTime)) {
+        //     throw new CommandException(String.format(MESSAGE_TIME_AFTER_NOW,
+        //             TimeUtil.toErrorMessage(meetingTime)));
+        // }
 
         Person editedPerson = createEditedPerson(person, meeting);
 
@@ -119,5 +119,13 @@ public class AddMeetingCommand extends Command {
 
         AddMeetingCommand e = (AddMeetingCommand) other;
         return index.equals(e.index) && meeting.equals(e.meeting);
+    }
+
+    @Override
+    public String toString() {
+        return "AddMeetingCommand{"
+                + "index=" + index
+                + ", meeting=" + meeting
+                + "}";
     }
 }

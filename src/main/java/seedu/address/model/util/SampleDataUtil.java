@@ -16,10 +16,12 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Event;
 import seedu.address.model.person.Goal;
 import seedu.address.model.person.Goal.Frequency;
+import seedu.address.model.person.Meeting;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Picture;
+import seedu.address.model.person.SpecialDate;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -90,20 +92,20 @@ public class SampleDataUtil {
         return new Debt("0");
     }
 
-    public static List<Event> getMeetingList() {
+    public static List<Meeting> getMeetingList() {
         return Collections.emptyList();
     }
 
-    public static List<Event> getMeetingList(Event... meetings) {
+    public static List<Meeting> getMeetingList(Meeting... meetings) {
         return Arrays.stream(meetings)
                 .collect(Collectors.toList());
     }
 
-    public static List<Event> getDateList() {
+    public static List<SpecialDate> getDateList() {
         return Collections.emptyList();
     }
 
-    public static List<Event> getDateList(Event... dates) {
+    public static List<SpecialDate> getDateList(SpecialDate... dates) {
         return Arrays.stream(dates)
                 .collect(Collectors.toList());
     }

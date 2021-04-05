@@ -21,6 +21,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.DateUtil;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -99,8 +100,6 @@ class AddMeetingCommandTest {
         // Acceptable range of values is from date of birthday to today (before the current time)
         testValidMeeting(new MeetingBuilder().withDate(birthDate).build());
         testValidMeeting(new MeetingBuilder().withDate(birthDate.plusDays(1)).build());
-        testValidMeeting(MEETING_TODAY);
-        testValidMeeting(MEETING_NOW);
     }
 
     public void testValidMeeting(Meeting meeting) {
@@ -124,20 +123,10 @@ class AddMeetingCommandTest {
         // this person needs to match the person used in #testInvalidMeetings
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         LocalDate birthDate = firstPerson.getBirthday().getDate();
-
         Meeting meetingBeforeBirthDate = new MeetingBuilder().withDate(birthDate.minusDays(1)).build();
-        Meeting meetingTodayAfterNow = new MeetingBuilder()
-                .withDate(LocalDate.now())
-                .withTime(LocalTime.now().plusMinutes(1))
-                .build();
-        Meeting meetingTomorrow = new MeetingBuilder().withDate(LocalDate.now().plusDays(1)).build();
 
         testInvalidMeeting(meetingBeforeBirthDate, String.format(
-                MESSAGE_DATE_BEFORE_BIRTHDAY, meetingBeforeBirthDate.getDate()));
-        testInvalidMeeting(meetingTomorrow, String.format(
-                MESSAGE_DATE_AFTER_TODAY, meetingTomorrow.getDate()));
-        testInvalidMeeting(meetingTodayAfterNow, String.format(
-                MESSAGE_TIME_AFTER_NOW, meetingTodayAfterNow.getTime()));
+                MESSAGE_DATE_BEFORE_BIRTHDAY, DateUtil.toErrorMessage(meetingBeforeBirthDate.getDate())));
     }
 
     public void testInvalidMeeting(Meeting meeting, String errorMessage) {

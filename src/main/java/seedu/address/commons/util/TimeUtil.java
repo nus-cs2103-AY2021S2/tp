@@ -12,6 +12,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 
 public class TimeUtil {
 
+    public static final DateTimeFormatter TIME_INPUT_FORMATTER;
+
     private static final DateTimeFormatter TIME_PARSER;
 
     private static final DateTimeFormatter DEFAULT_FORMATTER = DateTimeFormatter.ofPattern("hh:mm a");
@@ -27,6 +29,8 @@ public class TimeUtil {
         DateTimeFormatterBuilder builder = new DateTimeFormatterBuilder();
         Arrays.stream(patterns).map(DateTimeFormatter::ofPattern).forEach(builder::appendOptional);
         TIME_PARSER = builder.toFormatter();
+
+        TIME_INPUT_FORMATTER = DateTimeFormatter.ofPattern(patterns[0]);
     }
 
     public static final String MESSAGE_CONSTRAINT = MESSAGE_INVALID_TIME_FORMAT + "Format given should be one of "
