@@ -16,19 +16,19 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.testutil.EventBuilder;
+import seedu.address.testutil.MeetingBuilder;
 
 public class StreakTest {
 
-    private final List<Event> sampleMeetings;
+    private final List<Meeting> sampleMeetings;
     private final Streak weeklyStreak;
     private final Streak emptyStreak;
 
     {
-        List<Event> meetings = new ArrayList<>();
+        List<Meeting> meetings = new ArrayList<>();
         LocalDate now = LocalDate.now();
-        Event event1 = new EventBuilder().withDate(now).build();
-        Event event2 = new EventBuilder().withDate(now.minusWeeks(1)).build();
+        Meeting event1 = new MeetingBuilder().withDate(now).build();
+        Meeting event2 = new MeetingBuilder().withDate(now.minusWeeks(1)).build();
         meetings.add(event1);
         meetings.add(event2);
 
@@ -61,21 +61,21 @@ public class StreakTest {
     public void from_lateByOneDay_returnsStreakBroken() {
         Goal weeklyGoal = new Goal(WEEKLY);
 
-        List<Event> meetings = new ArrayList<>();
+        List<Meeting> meetings = new ArrayList<>();
         LocalDate now = LocalDate.now().with(TemporalAdjusters.previousOrSame(MONDAY));
-        Event event1 = new EventBuilder().withDate(now.minusWeeks(1).minusDays(1)).build();
+        Meeting event1 = new MeetingBuilder().withDate(now.minusWeeks(1).minusDays(1)).build();
         meetings.add(event1);
 
         assertEquals(0, Streak.from(weeklyGoal, meetings).getValue());
     }
 
     public void testFrom(List<LocalDate> dates, Goal goal, List<LocalDate> extra) {
-        Event onePeriodBefore = new EventBuilder().withDate(dates.get(0)).build();
-        Event twoPeriodsBefore = new EventBuilder().withDate(dates.get(1)).build();
-        Event threePeriodsBefore = new EventBuilder().withDate(dates.get(2)).build();
-        Event fourPeriodsBefore = new EventBuilder().withDate(dates.get(3)).build();
+        Meeting onePeriodBefore = new MeetingBuilder().withDate(dates.get(0)).build();
+        Meeting twoPeriodsBefore = new MeetingBuilder().withDate(dates.get(1)).build();
+        Meeting threePeriodsBefore = new MeetingBuilder().withDate(dates.get(2)).build();
+        Meeting fourPeriodsBefore = new MeetingBuilder().withDate(dates.get(3)).build();
 
-        List<Event> meetings = new ArrayList<>();
+        List<Meeting> meetings = new ArrayList<>();
         meetings.add(onePeriodBefore);
         meetings.add(twoPeriodsBefore);
         meetings.add(threePeriodsBefore);
@@ -85,8 +85,8 @@ public class StreakTest {
         assertEquals(4, Streak.from(goal, meetings).getValue());
 
         // Meet more on some time periods
-        Event extra1 = new EventBuilder().withDate(extra.get(0)).build();
-        Event extra2 = new EventBuilder().withDate(extra.get(1)).build();
+        Meeting extra1 = new MeetingBuilder().withDate(extra.get(0)).build();
+        Meeting extra2 = new MeetingBuilder().withDate(extra.get(1)).build();
         meetings.add(extra1);
         meetings.add(extra2);
 

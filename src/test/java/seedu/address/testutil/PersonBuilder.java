@@ -12,13 +12,14 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Debt;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.Event;
 import seedu.address.model.person.Goal;
 import seedu.address.model.person.Goal.Frequency;
+import seedu.address.model.person.Meeting;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Picture;
+import seedu.address.model.person.SpecialDate;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -43,8 +44,8 @@ public class PersonBuilder {
     private Picture picture;
     private Debt debt;
     private Set<Tag> tags;
-    private List<Event> dates;
-    private List<Event> meetings;
+    private List<SpecialDate> dates;
+    private List<Meeting> meetings;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -158,17 +159,17 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code meetings} into a {@code List<Event>} and set it to the {@code Person} that we are building.
+     * Parses the {@code meetings} into a {@code List<Meeting>} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withMeetings(Event... meetings) {
+    public PersonBuilder withMeetings(Meeting... meetings) {
         this.meetings = SampleDataUtil.getMeetingList(meetings);
         return this;
     }
 
     /**
-     * Parses the {@code dates} into a {@code List<Event>} and set it to the {@code Person} that we are building.
+     * Parses the {@code dates} into a {@code List<SpecialDate>} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withDates(Event... dates) {
+    public PersonBuilder withDates(SpecialDate... dates) {
         this.dates = SampleDataUtil.getDateList(dates);
         return this;
     }

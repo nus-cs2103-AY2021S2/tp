@@ -12,8 +12,8 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Event;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.SpecialDate;
 
 /**
  * Deletes an existing special date from an existing person in the FriendDex.
@@ -35,7 +35,7 @@ public class DeleteDateCommand extends Command {
     private final Index dateIndex;
 
     /**
-     * @param index of the person in the filtered person list to delete date from
+     * @param index     of the person in the filtered person list to delete date from
      * @param dateIndex of the date to be deleted
      */
     public DeleteDateCommand(Index index, Index dateIndex) {
@@ -55,7 +55,7 @@ public class DeleteDateCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
-        List<Event> dates = new ArrayList<>(personToEdit.getDates());
+        List<SpecialDate> dates = new ArrayList<>(personToEdit.getDates());
 
         if (dates.size() == 0) {
             throw new CommandException(String.format(Messages.MESSAGE_NO_DATES, personToEdit.getName()));
