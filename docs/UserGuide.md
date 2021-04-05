@@ -7,7 +7,7 @@ Weeblingo is a desktop application for **learning Japanese, optimized for use vi
 still having the benefits of a Graphical User Interface (GUI). With a nice and friendly interface,
 users can learn Japanese at a comfortable pace and manage flashcards with this application.
 
-##Table of contents
+## Table of contents
 * [Introduction](#introduction)
 * [Quick Start](#quick-start)
 * [Features](#features)
@@ -28,6 +28,7 @@ users can learn Japanese at a comfortable pace and manage flashcards with this a
      * [Entering history mode: `history`](#entering-history-mode-history)
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
+* [Note for Testers](#note-for-testers)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -49,7 +50,7 @@ These are symbols used throughout the User Guide you might want to take note of.
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `weeblingo.jar` from [here](https/linkhere-tbc).
+1. Download the latest `weeblingo.jar` from [here](https://github.com/AY2021S2-CS2103T-T13-1/tp/releases/tag/v1.3).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your WeebLingo application.
 
@@ -267,7 +268,9 @@ that contains the data of your previous WeebLingo home folder.
 
 **Q**: Can I add my customized flashcards?<br>
 **A**: Sorry, the current version of the application does not allow self-defined flashcards to be added. However, if you
-are advanced and know how to manipulate the storage files, you can do so if you want.
+are advanced and know how to manipulate the storage files, you can do so if you want. However, the application assumes
+a certain format for each data field, thus if you modified the data wrongly, the app will use the fallback option, which
+is to load the storage file with built-in default flashcards and tags.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -286,3 +289,14 @@ Action | Format, Examples |
 **DeleteTag**| `deleteTag INDEX [t/TAGS…]` <br> e.g. `deleteTag 1 t/difficult`, `deleteTag 3`
 **Exit** | `exit`
 **Help** | `help`
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Note for Testers
+By the nature of the type of application Weeblingo is, it is inconvenient for testers who do not possess some elementary
+knowledge of Japanese to test our application.
+
+Therefore, to facilitate testers, we have provided a list of flashcards which reside in the database
+of the current version of application for your reference. The link is [here](Flashcards.html).
+
+--------------------------------------------------------------------------------------------------------------------
