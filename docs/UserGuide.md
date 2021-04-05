@@ -144,8 +144,16 @@ In this section, you will learn about the commands available in Pawbook and how 
 **Function**: Adds a **dog/owner/program** to Pawbook.<br>
 **Usage**: When you want to add an entity into Pawbook, you can simply use the add command. The add command adds the new entity at the end of the current list. 
 For instance, when a new dog arrives at the school with its owner, you will need to add the owner profile and the dog profile and store it in Pawbook. 
-Note that the date-time format used for sessions is d-M-yyyy HH:mm.
 
+Note: 
+
+- Date-time format used for sessions is d-M-yyyy HH:mm. Same applies to the day format of date of birth which follows d-M-yyyy.<br>
+  d -> Day: From 1-31 (Please take note that months like February does not have 29 days in certain years)<br>
+  M -> Month: From 1-12<br>
+  yyyy -> Valid year<br>
+  HH -> From 1-12<br>
+  mm -> From 0-59<br>
+  
 Format:
 
 ```
@@ -212,7 +220,16 @@ of each entity in the list.
 **Function**: Edits a dog/owner/program from Pawbook.<br>
 **Usage**: This command allows you to edit the information of the entity (dog/owner/program) in your Pawbook. Let's say 
 you just added an entry for a dog but you realised that you filled in the owner information wrongly. The edit command 
-allows you to quickly correct that mistake. Note that the date-time format used for sessions is dd-mm-yyyy hh:mm.
+allows you to quickly correct that mistake. 
+
+Note:
+
+- Date-time format used for sessions is d-M-yyyy HH:mm. Same applies to the day format of date of birth which follows d-M-yyyy.<br>
+  d -> Day: From 1-31 (Please take note that months like February does not have 29 days in certain years)<br>
+  M -> Month: From 1-12<br>
+  yyyy -> Valid year<br>
+  HH -> From 1-12<br>
+  mm -> From 0-59<br>
 
 Format:
 
