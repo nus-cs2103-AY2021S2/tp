@@ -22,7 +22,7 @@ public class InputHistoryTest {
     }
 
     @Test
-    public void execute_previousTest_success() {
+    public void getPrevious_previousTest_success() {
         assertEquals("c", inputHistory.getPrevious());
         assertEquals("b", inputHistory.getPrevious());
         assertEquals("a", inputHistory.getPrevious());
@@ -32,7 +32,7 @@ public class InputHistoryTest {
     }
 
     @Test
-    public void execute_nextTest_success() {
+    public void getNext_nextTest_success() {
         inputHistory.getPrevious();
         inputHistory.getPrevious();
         inputHistory.getPrevious();
@@ -46,19 +46,19 @@ public class InputHistoryTest {
     }
 
     @Test
-    public void execute_previousTestEmptyList_success() {
+    public void getPrevious_previousTestEmptyList_success() {
         inputHistory = new InputHistory();
         assertEquals("", inputHistory.getPrevious());
     }
 
     @Test
-    public void execute_nextTestEmptyList_success() {
+    public void getNext_nextTestEmptyList_success() {
         inputHistory = new InputHistory();
         assertEquals("", inputHistory.getNext());
     }
 
     @Test
-    public void check_doNotAddIfSameAsMostRecent() {
+    public void add_doNotAddIfSameAsMostRecent() {
         assertEquals(3, inputHistory.size());
 
         inputHistory.add("duplicate");
