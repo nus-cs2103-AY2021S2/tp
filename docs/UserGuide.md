@@ -39,7 +39,7 @@ JSON files. It will start with an empty Address Book and Event Book if there is 
 | `BIRTHDAY` | `-b`, `--birthday` | Contact | Valid date, with or without a year:{::nomarkdown}<ul><li>Year must be a positive integer between 0001 and 9999 if specified, and birthday must be in the past</li><li>If the day is incompatible with the month and year, the closest valid date may be matched<br>e.g. <code>29 Feb 2021</code> is mapped to <code>28 Feb 2021</code></li><li>Accepted date formats are listed below, case-insensitive:<ul><li>ISO format: <code>--01-09</code> / <code>1997-01-09</code></li><li>Dot delimited: <code>9.1</code> / <code>9.1.1997</code></li><li>Slash delimited: <code>9/1</code> / <code>9/1/1997</code></li><li>Long DMY format: <code>9 Jan</code> / <code>9 Jan 1997</code></li><li>Full DMY format: <code>9 January</code> / <code>9 January 1997</code></li><li>Long YMD format: <code>Jan 9</code> / <code>Jan 9 1997</code></li><li>Full YMD format: <code>January 9</code> / <code>January 9 1997</code></li></ul></li></ul>{:/} |
 | `COMMAND` | - | - | Any valid command listed [below](#party-planet-commands) |
 | `DATE` | `-d`, `--date` | Event | Valid date with a year:{::nomarkdown}<ul><li>Year must be present and a positive integer between 0001 and 9999</li><li>See <code>BIRTHDAY</code> parameter above for available date formats</li></ul>{:/} |
-| `DETAIL` | `-r`, `--remark` | Event | Any value |
+| `REMARK` | `-r`, `--remark` | Event | Any value |
 | `EMAIL` | `-e`, `--email` | Contact | In the format `USER@DOMAIN`:{::nomarkdown}<ul><li><code>USER</code> can only contain alphanumerics and any of <code>!#$%&'*+/=?`{&#124;}~^.-</code></li><li><code>DOMAIN</code> must be at least two characters long, start and end with two alphanumerics, and consist only of alphanumerics, periods or hyphens</li></ul>{:/} |
 | `INDEX` | - | any | Positive integer representing the ID present in the filtered list |
 | `NAME` | `-n`, `--name` | any | Any value containing only alphanumerics and spaces, unique to the contact/event list (case-sensitive) |
@@ -218,7 +218,7 @@ Examples:
 
 Adds an event to PartyPlanet's Events list. Similar to `add` for person contacts.
 
-Format: `eadd -n NAME [-d DATE] [-r DETAIL]`
+Format: `eadd -n NAME [-d DATE] [-r REMARK]`
 
 * The date must be in a valid date format with year, e.g. 2022-05-07, 2 feb 2021
 
@@ -229,7 +229,7 @@ Examples:
 
 Edits an existing event in PartyPlanet's Events List. Similar to `edit`.
 
-Format: `eedit INDEX [-n NAME] [-d DATE] [-r DETAIL]`
+Format: `eedit INDEX [-n NAME] [-d DATE] [-r REMARK]`
 
 * Edits the event at the specified `INDEX`.
   * The index refers to the index number shown in the displayed events list.
@@ -242,7 +242,7 @@ Examples:
 
 Shows a list of all events in PartyPlanet's Event List. Similar to `list`.
 
-Format: `elist [--exact] [--any] [-n NAME] [-r DETAIL]... [-s SORT] [-o ORDER]`
+Format: `elist [--exact] [--any] [-n NAME] [-r REMARK]... [-s SORT] [-o ORDER]`
 
 1. If no search parameters specified, `elist [-s SORT_FIELD] [-o SORT_ORDER]`: List out all events in event list.
     * `-s` parameter optionally sorts events by `SORT_FIELD`. Possible values of 
@@ -254,13 +254,13 @@ Format: `elist [--exact] [--any] [-n NAME] [-r DETAIL]... [-s SORT] [-o ORDER]`
       * `a`, `asc`, `ascending`: ascending (by default, if `-o` not specified)
       * `d`, `desc`, `descending`: descending
       * Sorts by upcoming birthday ignores the sort order parameter and only sorts in `ascending` order
-2. If search parameters specified, `elist [--exact] [--any] [-n NAME]... [-r DETAIL]... [-s SORT_FIELD] [-o 
+2. If search parameters specified, `elist [--exact] [--any] [-n NAME]... [-r REMARK]... [-s SORT_FIELD] [-o 
    SORT_ORDER]`: List all events matching the search criteria
     * Search criteria, case-insensitive: 
         * `-n`, `--name` filters the events by event name
-        * `-r`, `--remark` filters the events by event details
+        * `-r`, `--remark` filters the events by event remarks
     * Search is case-insensitive, e.g. `cHriStmAs` will match `Christmas`.
-    * Partial matches to event names and details are performed by default, e.g. `key` will match `turkey`.
+    * Partial matches to event names and remarks are performed by default, e.g. `key` will match `turkey`.
     * If exact match is desired, specify an additional `--exact` flag.
     * If multiple names/tags are specified, all specified search criteria must be fulfilled by each event by 
       default, unless `--any` is specified for any match. 
@@ -323,7 +323,7 @@ Format:
 
 Edit: `edit INDEX [-n NAME] [-p PHONE] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY] [-r REMARK] TAB`
 
-EEdit: `eedit INDEX [-n NAME] [-d DATE] [-r DETAIL] TAB`
+EEdit: `eedit INDEX [-n NAME] [-d DATE] [-r REMARK] TAB`
 
 Note: Valid INDEX must be used in order for Autocomplete to function.
 
@@ -427,10 +427,10 @@ Action | Format, Examples
 **Delete** | `delete [{INDEX [INDEX]…​ | [--any] -t TAG [-t TAG]...}]`<br> e.g. `delete` <br> e.g. `delete 3 4 5` <br> e.g., `delete -t colleague`
 **EDelete** | `edelete [INDEX [INDEX]...]` <br> e.g. `edelete 1 2 3`
 **EDone** | `edone INDEX [INDEX]…​` <br> e.g. `edone 2 3 5`
-**Edit** | `edit {INDEX [-n NAME] [-p PHONE] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY] [-r DETAIL] | --remove -t TAG [-t TAG]…​}`<br> e.g.,`edit 2 -n James Lee -e jameslee@example.com`<br> e.g., `edit --remove -t colleague`
-**EEdit** | `eedit INDEX [-n NAME] [-d DATE] [-r DETAIL]` <br> e.g. `eedit 3 -r Celebrate during first combined practice`
+**Edit** | `edit {INDEX [-n NAME] [-p PHONE] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY] [-r REMARK] | --remove -t TAG [-t TAG]…​}`<br> e.g.,`edit 2 -n James Lee -e jameslee@example.com`<br> e.g., `edit --remove -t colleague`
+**EEdit** | `eedit INDEX [-n NAME] [-d DATE] [-r REMARK]` <br> e.g. `eedit 3 -r Celebrate during first combined practice`
 **List** | `list [--exact] [--any] [-n NAME]... [-t TAG]... [-b BIRTHDAY] [-s SORT_FIELD] [-o SORT_ORDER]`<br> e.g., `list`<br> e.g., `list -s asc`
-**EList** | `elist [--exact] [--any] [-n NAME] [-r DETAIL] ... [-s SORT] [-o ORDER]` <br> e.g. `elist --any -n Christmas -r tarts`
+**EList** | `elist [--exact] [--any] [-n NAME] [-r REMARK] ... [-s SORT] [-o ORDER]` <br> e.g. `elist --any -n Christmas -r tarts`
 **Undo** | `undo`
 **Redo** | `redo`
 **Help** | `help [COMMAND]`<br> e.g., `help`<br> e.g.,`help list`
