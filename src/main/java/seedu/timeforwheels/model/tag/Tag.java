@@ -29,9 +29,6 @@ public class Tag {
      * Returns true if a given string is a valid tag name.
      */
     public static boolean isValidTagName(String inputTag) {
-        if (inputTag == null) {
-            return true;
-        }
         for (String validTag : VALID_TAGS) {
             if (validTag.matches(inputTag)) {
                 return true;
