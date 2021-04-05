@@ -21,10 +21,9 @@ public class ViewPersonCommand extends Command {
             + "Parameters: PERSON_ID\n"
             + "Example: " + COMMAND_WORD + " s/1";
 
-    public static final String MESSAGE_SUCCESS = "Displayed the relevant session.\n"
+    public static final String MESSAGE_SUCCESS = "Displayed the relevant person.\n"
                                                 + "Left Panel shows the student/tutor information.\n"
                                                 + "Right Panel shows all the sessions the student/tutor currently has.";
-    public static final String MESSAGE_NO_PERSON_FOUND = "There is no person found under the specified parameter!";
     private final PersonIdPredicate predicate;
 
     public ViewPersonCommand(PersonIdPredicate predicate) {
@@ -39,13 +38,13 @@ public class ViewPersonCommand extends Command {
         }
 
         List<Person> lastShownList = model.getUnfilteredPersonList();
-
         Optional<Person> personToView = lastShownList.stream()
                 .filter(x-> x.getPersonId().equals(predicate.getPersonId())).findAny();
 
         if (personToView.isPresent()) {
             List<SessionId> sessionList = personToView.get().getSessions();
             SessionStudentPredicate sessionStudentPredicate = new SessionStudentPredicate(sessionList);
+            model.updateFilteredPersonList(predicate);
             model.updateFilteredSessionList(sessionStudentPredicate);
             model.updateFilteredPersonList(predicate);
             return new CommandResult(MESSAGE_SUCCESS);
