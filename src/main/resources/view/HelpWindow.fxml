@@ -17,7 +17,7 @@
   </icons>
   <scene>
     <Scene>
-        <GridPane prefHeight="421.0" prefWidth="589.0">
+        <GridPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="421.0" prefWidth="589.0">
             <HBox alignment="BASELINE_RIGHT" GridPane.rowIndex="0">
                 <opaqueInsets>
                     <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
@@ -39,7 +39,7 @@
                   <Insets />
                </GridPane.margin>
             </HBox>
-            <HBox alignment="BASELINE_RIGHT" GridPane.rowIndex="1">
+            <HBox alignment="BASELINE_RIGHT" minHeight="-Infinity" minWidth="-Infinity" GridPane.rowIndex="1">
                 <opaqueInsets>
                     <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
                 </opaqueInsets>
@@ -64,7 +64,7 @@
                <font>
                   <Font name="System Bold" size="17.0" />
                </font></Label>
-            <TableView fx:id="tableView" prefHeight="315.0" prefWidth="589.0" GridPane.rowIndex="3">
+            <TableView fx:id="tableView" minHeight="-Infinity" minWidth="-Infinity" prefHeight="315.0" prefWidth="589.0" GridPane.rowIndex="3">
                 <columns>
                     <TableColumn prefWidth="88.0" text="Action">
                         <cellValueFactory><PropertyValueFactory property="action" />
