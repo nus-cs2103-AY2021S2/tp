@@ -198,8 +198,9 @@
                                     <Tab closable="false" text="Budget">
                                         <content>
                                             <VBox>
-                                                <VBox fx:id="gradeList"
-                                                      prefWidth="100.0" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+                                                <VBox fx:id="budgetcard"
+                                                      prefWidth="75.0"
+                                                      styleClass="pane-with-border" VBox.vgrow="ALWAYS">
                                                     <padding>
                                                         <Insets bottom="10" left="10" right="10" top="10" />
                                                     </padding>

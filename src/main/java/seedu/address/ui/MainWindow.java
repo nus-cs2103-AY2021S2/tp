@@ -17,7 +17,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.ui.budgetpanel.BudgetCardPanel;
+import seedu.address.ui.budgetpanel.BudgetCard;
 import seedu.address.ui.reminderpanel.ReminderListPanel;
 import seedu.address.ui.schedulepanel.ScheduleListPanel;
 import seedu.address.ui.timetablepanel.TimeTableWindow;
@@ -46,7 +46,7 @@ public class MainWindow extends UiPart<Stage> {
     private ReminderListPanel reminderListPanel;
     private FiltersPanel filtersPanel;
     private ScheduleListPanel scheduleListPanel;
-    private BudgetCardPanel budgetCardPanel;
+    private BudgetCard budgetCard;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -156,8 +156,8 @@ public class MainWindow extends UiPart<Stage> {
         appointmentListPanelPlaceholder.getChildren().add(appointmentListPanel.getRoot());
 
         System.out.println(logic.getBudgetList());
-        budgetCardPanel = new BudgetCardPanel(logic.getBudgetList());
-        budgetPanelPlaceholder.getChildren().add(budgetCardPanel.getRoot());
+        budgetCard = new BudgetCard(logic.getBudgetList().get(0), 1);
+        budgetPanelPlaceholder.getChildren().add(budgetCard.getRoot());
 
         scheduleListPanel = new ScheduleListPanel(logic.getFilteredScheduleList());
         scheduleListPanelPlaceholder.getChildren().add(scheduleListPanel.getRoot());

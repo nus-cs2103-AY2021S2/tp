@@ -25,10 +25,8 @@
                         <Region fx:constant="USE_PREF_SIZE" />
                     </minWidth>
                 </Label>
-                <Label fx:id="title" styleClass="cell_big_label" text="\$description" />
+                <Label fx:id="title" styleClass="cell_big_label" text="Budget" />
             </HBox>
-            <Label fx:id="date" styleClass="cell_small_label" text="\$date" />
-            <Label fx:id="time" styleClass="cell_small_label" text="\$time" />
             <Label fx:id="description" styleClass="cell_small_label" text="\$description" />
         </VBox>
         <rowConstraints>
