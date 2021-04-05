@@ -6,19 +6,32 @@ skinparam classBackgroundColor STORAGE_COLOR
 
 Interface Storage <<Interface>>
 Interface UserPrefsStorage <<Interface>>
-Interface AddressBookStorage <<Interface>>
+Interface ClientBookStorage <<Interface>>
+Interface MeetingBookStorage <<Interface>>
 
 Class StorageManager
 Class JsonUserPrefsStorage
-Class JsonAddressBookStorage
+Class JsonClientBookStorage
+Class JsonMeetingBookStorage
 
 StorageManager .left.|> Storage
 StorageManager o-right-> UserPrefsStorage
-StorageManager o--> AddressBookStorage
+StorageManager o--> ClientBookStorage
+StorageManager o-up-> MeetingBookStorage
+
+Storage -|> UserPrefsStorage
+Storage -|> ClientBookStorage
+Storage -|> MeetingBookStorage
 
 JsonUserPrefsStorage .left.|> UserPrefsStorage
-JsonAddressBookStorage .left.|> AddressBookStorage
-JsonAddressBookStorage .down.> JsonSerializableAddressBookStorage
-JsonSerializableAddressBookStorage .right.> JsonSerializablePerson
-JsonSerializablePerson .right.> JsonAdaptedTag
+
+JsonClientBookStorage .left.|> ClientBookStorage
+JsonClientBookStorage .down.> JsonSerializableClientBook
+JsonSerializableClientBook .right.> JsonAdaptedClient
+JsonAdaptedClient .right.> JsonAdaptedClientTag
+
+JsonMeetingBookStorage .left.|> MeetingBookStorage
+JsonMeetingBookStorage .up.> JsonSerializableMeetingBook
+JsonSerializableMeetingBook .right.> JsonAdaptedMeeting
+JsonAdaptedMeeting .right.> JsonAdaptedMeetingTag
 @enduml

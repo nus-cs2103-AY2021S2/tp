@@ -28,7 +28,7 @@ public class AddCommand extends UndoableCommand {
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_LOCATION + "LOCATION "
             + "[" + PREFIX_PLAN + "INSURANCE_PLAN] "
-            + "[" + PREFIX_IMAGE + "IMAGE_FIlE] "
+            + "[" + PREFIX_IMAGE + "IMAGE_FILE] "
             + "[" + PREFIX_TAG + "TAG(s)]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "

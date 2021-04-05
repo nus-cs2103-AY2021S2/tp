@@ -48,7 +48,7 @@ public class JsonAdaptedClientTest {
         JsonAdaptedClient client =
                 new JsonAdaptedClient(INVALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_LOCATION, VALID_PLAN, VALID_TAGS,
                         VALID_IMAGE);
-        String expectedMessage = Name.MESSAGE_CONSTRAINTS;
+        String expectedMessage = Name.MESSAGE_TYPE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, client::toModelType);
     }
 
@@ -65,7 +65,7 @@ public class JsonAdaptedClientTest {
         JsonAdaptedClient client =
                 new JsonAdaptedClient(VALID_NAME, INVALID_PHONE, VALID_EMAIL, VALID_LOCATION, VALID_PLAN, VALID_TAGS,
                         VALID_IMAGE);
-        String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
+        String expectedMessage = Phone.MESSAGE_LENGTH_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, client::toModelType);
     }
 
