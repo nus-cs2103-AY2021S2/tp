@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.booking.commons.util.StringUtil;
 import seedu.booking.model.booking.exceptions.BookingNotFoundException;
 import seedu.booking.model.booking.exceptions.DuplicateBookingException;
 import seedu.booking.model.booking.exceptions.OverlappingBookingException;
@@ -174,15 +175,28 @@ public class NonOverlappingBookingList implements Iterable<Booking> {
      * Replaces the old venue name {@code oldVenueName} in the booking with {@code newVenueName}.
      */
     public void updateVenueInBookings(VenueName oldVenueName, VenueName newVenueName) {
-        internalList.stream().filter(x -> x.getVenueName().equals(oldVenueName))
+        internalList.stream()
+                .filter(x -> StringUtil.containsWordIgnoreCase(x.getVenueName().venueName, oldVenueName.venueName))
                 .forEach(x -> x.setVenueName(newVenueName));
     }
+
+
 
     /**
      * Replaces the old person email {@code oldEmail} in the booking with {@code newEmail}.
      */
     public void updatePersonInBookings(Email oldEmail, Email newEmail) {
-        internalList.stream().filter(x -> x.getBookerEmail().equals(oldEmail))
+        internalList.stream()
+                .filter(x -> StringUtil.containsWordIgnoreCase(x.getBookerEmail().value, oldEmail.value))
                 .forEach(x -> x.setEmail(newEmail));
+    }
+
+
+    /**
+     * Returns the number of overlapped booking with {@code toAdd} in the booking.
+     */
+    public long countOverlaps(Booking toAdd) {
+        requireNonNull(toAdd);
+        return internalList.stream().filter(toAdd::isOverlapping).count();
     }
 }

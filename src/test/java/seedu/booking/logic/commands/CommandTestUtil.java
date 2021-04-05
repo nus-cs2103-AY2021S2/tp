@@ -3,7 +3,6 @@ package seedu.booking.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKER;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_END;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_ID;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_START;
@@ -154,9 +153,9 @@ public class CommandTestUtil {
     public static final String BOOKING_VENUE_NAME_DESC_HALL = " " + PREFIX_VENUE + VALID_VENUE_NAME_HALL;
     public static final String BOOKING_VENUE_NAME_DESC_FIELD = " " + PREFIX_VENUE + VALID_VENUE_NAME_FIELD;
     public static final String BOOKING_BOOKER_EMAIL_AMY_DESC_HALL =
-            " " + PREFIX_BOOKER + VALID_BOOKING_BOOKER_EMAIL_AMY;
+            " " + PREFIX_EMAIL + VALID_BOOKING_BOOKER_EMAIL_AMY;
     public static final String BOOKING_BOOKER_EMAIL_BOB_DESC_FIELD =
-            " " + PREFIX_BOOKER + VALID_BOOKING_BOOKER_EMAIL_BOB;
+            " " + PREFIX_EMAIL + VALID_BOOKING_BOOKER_EMAIL_BOB;
     public static final String BOOKING_DESCRIPTION_DESC_HALL =
             " " + PREFIX_DESCRIPTION + VALID_BOOKING_DESCRIPTION_HALL;
     public static final String BOOKING_DESCRIPTION_DESC_FIELD =
@@ -268,7 +267,7 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredBookingList().size());
 
         Booking booking = model.getFilteredBookingList().get(targetIndex.getZeroBased());
-        final String splitName = booking.getId().toString();
+        final String splitName = String.valueOf(booking.getId());
         model.updateFilteredBookingList(new BookingIdContainsKeywordsPredicate(splitName));
         assertEquals(1, model.getFilteredBookingList().size());
     }

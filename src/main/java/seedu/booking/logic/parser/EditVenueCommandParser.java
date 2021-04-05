@@ -39,7 +39,11 @@ public class EditVenueCommandParser implements Parser<EditVenueCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditVenueCommand.MESSAGE_USAGE));
         }
 
-        venueName = ParserUtil.parseVenueName(argMultimap.getValue(PREFIX_VENUE_ORIGINAL).get());
+        try {
+            venueName = ParserUtil.parseVenueName(argMultimap.getValue(PREFIX_VENUE_ORIGINAL).get());
+        } catch (ParseException pe) {
+            throw new ParseException(VenueName.MESSAGE_CONSTRAINTS);
+        }
 
         EditVenueDescriptor editVenueDescriptor = new EditVenueDescriptor();
         if (argMultimap.getValue(PREFIX_VENUE).isPresent()) {
@@ -60,7 +64,7 @@ public class EditVenueCommandParser implements Parser<EditVenueCommand> {
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editVenueDescriptor::setTags);
 
         if (!editVenueDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditVenueCommand.MESSAGE_NOT_EDITED);
+            throw new ParseException(EditVenueCommand.MESSAGE_NOT_EDITED + EditVenueCommand.MESSAGE_FIELDS);
         }
 
         return new EditVenueCommand(venueName, editVenueDescriptor);

@@ -27,14 +27,19 @@ public class PhoneTest {
         // invalid phone numbers
         assertFalse(Phone.isValidPhone("")); // empty string
         assertFalse(Phone.isValidPhone(" ")); // spaces only
-        assertFalse(Phone.isValidPhone("91")); // less than 3 numbers
+
+        assertFalse(Phone.isValidPhone("111111")); // exactly 6 digits (testing around the boundary)
+        assertFalse(Phone.isValidPhone("9111111111111111")); // exactly 16 digits (testing around the boundary)
         assertFalse(Phone.isValidPhone("phone")); // non-numeric
         assertFalse(Phone.isValidPhone("9011p041")); // alphabets within digits
         assertFalse(Phone.isValidPhone("9312 1534")); // spaces within digits
 
         // valid phone numbers
-        assertTrue(Phone.isValidPhone("911")); // exactly 3 numbers
+        assertTrue(Phone.isValidPhone("9111111")); // exactly 7 digits (boundary value)
+        assertTrue(Phone.isValidPhone("91111111")); // exactly 8 digits (testing around the boundary)
         assertTrue(Phone.isValidPhone("93121534"));
+        assertTrue(Phone.isValidPhone("91111111111111")); // exactly 14 digits (testing around the boundary)
+        assertTrue(Phone.isValidPhone("911111111111111")); // exactly 15 digits (boundary value)
         assertTrue(Phone.isValidPhone("124293842033123")); // long phone numbers
     }
 }

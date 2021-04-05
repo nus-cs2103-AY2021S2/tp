@@ -21,7 +21,6 @@ import seedu.booking.model.Model;
 import seedu.booking.model.ReadOnlyBookingSystem;
 import seedu.booking.model.ReadOnlyUserPrefs;
 import seedu.booking.model.booking.Booking;
-import seedu.booking.model.booking.Id;
 import seedu.booking.model.person.Email;
 import seedu.booking.model.person.Person;
 import seedu.booking.model.person.Phone;
@@ -146,6 +145,11 @@ public class AddVenueCommandTest {
         }
 
         @Override
+        public boolean hasMoreThanOneOverlappedBooking(Booking toAdd) {
+            return false;
+        }
+
+        @Override
         public void setBookingSystem(ReadOnlyBookingSystem newData) {
             throw new AssertionError("This method should not be called.");
         }
@@ -211,6 +215,11 @@ public class AddVenueCommandTest {
         }
 
         @Override
+        public void deleteBooking(Booking target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Person> getFilteredPersonList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -232,11 +241,6 @@ public class AddVenueCommandTest {
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void deleteBooking(Id bookingId) {
             throw new AssertionError("This method should not be called.");
         }
 
