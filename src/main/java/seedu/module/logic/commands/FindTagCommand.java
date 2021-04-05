@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import seedu.module.commons.core.Messages;
@@ -61,9 +62,33 @@ public class FindTagCommand extends Command {
             }
         }
 
-        model.updateFilteredTaskList(predicate);
+        Predicate<Task> newPred = (Task x) -> containsIgnoreCase(x, tag); //predicate for one task
+
+        model.updateFilteredTaskList(newPred);
         return new CommandResult(String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW,
                 model.getFilteredTaskList().size()));
+    }
+
+    /**
+     * Returns true if tag exists in the task's tags, ignoring case (ie. case-insensitive).
+     *
+     * @param task
+     * @param tag
+     * @return boolean
+     */
+    public boolean containsIgnoreCase(Task task, Tag tag) {
+        List<String> strTagsInLower = new ArrayList<String>();
+        Set<Tag> tags = task.getTags();
+        //convert tags of Task into strings
+        for (Tag t : tags) {
+            strTagsInLower.add(t.tagName.toLowerCase());
+        }
+        String target = tag.tagName.toLowerCase();
+        if (strTagsInLower.contains(target)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override

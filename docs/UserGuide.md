@@ -294,7 +294,9 @@ Examples:
 
 ### Search tasks with tag: `findTag`
 
-Searches for tasks with an associated tag. Note that tags are case-sensitive.
+Searches for tasks with an associated tag. Tag is case-insensitive for your convenience.
+
+One Tag allowed. Tag provided mut be alphanumerical.
 
 Application: Used to find tasks that are similar in nature.
 
