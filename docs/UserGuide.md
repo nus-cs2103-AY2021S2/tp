@@ -5,18 +5,40 @@ title: User Guide
 
 # Welcome to Focuris User Guide!
 
-Focuris is a **desktop application** for **managing events** with a KanBan board. The KanBan board is a board which 
+Thank you for downloading **Focuris**! As a busy University student, Focuris helps you manage and keep track of all your
+work, deadlines, and projects. We hope this **User Guide** helps you get started with Focuris so you can start making 
+your student  life a little easier! <br/>
+
+Focuris is a **desktop application** for **managing events** with a KanBan board. The KanBan board is a board which
 **displays events according to the level of completion**: Backlog, Todo, In-Progress and Done. <br/>
 
-Focuris aims to help **university students** like you to keep track of your tasks or events in order to help improve time management 
+Focuris aims to help **university students** like you to keep track of your tasks or events in order to help improve time management
 and organisation.
+
+Get started quickly on your journey with Focuris [here](#1-quick-start)!
 
 ## Here's why you should use Focuris:
 
-- Helps with task management and scheduling with a simple and easy to navigate interface.
-- Use of a Command Line Interface (CLI) allows fast typists to manage your event boards faster than applications with a Graphical User Interface (GUI).
-- Prioritize your tasks by looking at their priority level, from **Low** to **High**.
+As a student, have you ever been overwhelmed by work in the middle of the semester? Or have you ever struggled to 
+keep track of all your deadlines and projects? Or perhaps have you ever wondered what work to prioritise when things 
+get hectic? Well, Focuris is here to help! Focuris can:
+
+- Help with task management and scheduling through a simple and easy to navigate interface.
+- Use a Command Line Interface (CLI) which allows fast typists to manage your event boards faster than applications with a Graphical User Interface (GUI).
+- Prioritise your tasks by looking at their priority level, from **Low** to **High**.
 - Get instant overview on the level of completion of each of your tasks.
+
+## How to use our User Guide:
+
+- To get started quickly, head to [1. Quick Start](#1-quick-start)!
+- To learn about conventions in this User Guide, head to [2. Features](#2-features)!
+- To get an overview of all our Commands, head to [2.1.1 Command Summary](#211-command-summary)!
+- To learn about the parameters for our Commands, head to [2.1.2 Parameters](#212-parameter-summary)!
+- To get answers to some FAQs, head to [3. FAQ](#3-faq)!
+- To learn more about some keywords we use, head to [4. Glossary](#4-glossary)!
+
+Feel free to read on or check out our [Table of Contents](#table-of-contents), to learn more about our features 
+and customise your experience with Focuris!
 
 ---
 
@@ -49,19 +71,20 @@ Start improving your productivity by following these simple steps:
 
 1. Copy the `focuris.jar` file to the folder you want to use as the _home folder_ for your installation of Focuris.
 
-1. Double-click the `focuris.jar` file to start Focuris. 
+1. Double-click the `focuris.jar` file to start Focuris.
    You should be able to see the graphical user interface within a few seconds. Note that the application contains some sample data since you are new to the application. <br/>
    The image below is the interface you will see when you first start up Focuris.
-   <br> ![Ui](images/Ui.png)
+   <br> ![Ui](images/user-guide/Annotated/UiWithReferenceAnnotated.png)
+   Check out [2.2 General](#22-general) for more information about the User Interface!
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Here are some commands you can get started with:
 
-   - **`todo`**`n/CS2030 Lab 1 d/Lab 1 to complete` : Adds an event named `CS2030 Lab 1` to the application with status `TODO`.
+   - **`todo`**`n/CS2030 Lab 2 d/Lab 2 to complete` : Adds an event named `CS2030 Lab 2` to the application with status `TODO`.
 
-   - **`log`**`n/CS2107 Finals d/Finals on 3rd May 2021` : Adds an event named `CS2107 Finals` to the application with status `BACKLOG`.
+   - **`log`**`n/CS2107 Mid Terms d/Mid terms on 2nd Mar 2021` : Adds an event named `CS2107 Mid Terms` to the application with status `BACKLOG`.
 
-   - **`prog`**`n/CS2100 d/Lab` : Adds an event named `CS2100` to the application with status `IN PROGRESS`.
+   - **`prog`**`n/CS2100 Lab 3 d/Lab homework` : Adds an event named `CS2100 Lab 3` to the application with status `IN PROGRESS`.
 
    - **`delete`**`3` : Deletes the event with the identifier of 3 shown on the KanBan board.
 
@@ -69,7 +92,7 @@ Start improving your productivity by following these simple steps:
 
 1. Refer to the [Features](#2-features) below for how you can utilise each command.
 
-<a class="md-btn md-btn-raised" href="#table-of-contents">Return to Table of Contents</a>
+<a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
 
 <div class="page-break-before"></div>
 
@@ -100,7 +123,7 @@ Continue reading for more ways to improve your productivity with Focuris!
 
 </div>
 
-<a class="md-btn md-btn-raised" href="#table-of-contents">Return to Table of Contents</a>
+<a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
 
 <div class="page-break-before"></div>
 
@@ -108,7 +131,7 @@ Continue reading for more ways to improve your productivity with Focuris!
 
 The summary chapter gives you an overview of what the available commands are and what the parameters you should type into the Command Box of Focuris are.
 
-<a class="md-btn md-btn-raised" href="#table-of-contents">Return to Table of Contents</a>
+<a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
 
 <div class="page-break-before"></div>
 
@@ -120,20 +143,27 @@ For our new users, don't be too intimidated! You can use this summary to better 
 the different commands available. We will delve deeper into the specifics at chapters [2.2](#22-general)
 and [2.3](#23-event-commands).
 
-| Command                           | Description                                           | Format, Examples                                                                                           |
-| --------------------------------- | ----------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| [**Clear**](#236-clear-command)   | **Clears** all of your events in Focuris              | `clear`                                                                                                    |
-| [**Delete**](#235-delete-command) | **Deletes** your existing event in Focuris            | `delete IDENTIFIER`<br> e.g., `delete 3`                                                                   |
-| [**Edit**](#234-edit-command)     | **Edits** your existing event's attributes in Focuris | `edit IDENTIFIER [n/NAME] [s/STATUS] [d/DESCRIPTION] [p/PRIORITY]`<br> e.g.,`edit 2 n/CS2030 d/Assignment` |
-| [**Find**](#237-find-command)     | **Finds** your existing event by specific keywords    | `find KEYWORD [KEYWORD]...`<br> e.g., `find James Jake`                                                    |
-| [**Exit**](#222-exit-command)     | **Exits** the application                             | `exit`                                                                                                     |
-| [**Help**](#221-help-command)     | Displays **help menu** pop-up                         | `help`                                                                                                     |
-| [**List**](#232-list-command)     | Clears your previous filters and lists all events     | `list`                                                                                                     |
-| [**Log**](#232-log-command)       | Creates your new event with status **Backlog**        | `log n/NAME d/DESCRIPTION [p/PRIORITY]` <br> e.g., `log n/CS2030 d/Lab`                                    |
-| [**Prog**](#233-prog-command)     | Creates your new event with status **In-Progress**    | `prog n/NAME d/DESCRIPTION [p/PRIORITY]` <br> e.g., `prog n/CS2100 d/Tutorial`                             |
-| [**Todo**](#231-todo-command)     | Creates your new event with status **Todo**           | `todo n/NAME d/DESCRIPTION [p/PRIORITY]` <br> e.g., `todo n/CS2040 d/Assignment`                           |
+| Command                            | Description                                                          | Format, Examples                                                                                           |
+| ---------------------------------- | -------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| [**Clear**](#236-clear-command)    | **Clears** all of your events in Focuris                             | `clear`                                                                                                    |
+| [**Delete**](#235-delete-command)  | **Deletes** an existing event in Focuris                             | `delete IDENTIFIER`<br> e.g., `delete 2`                                                                   |
+| [**Done**](#239-done-command)      | Marks an existing event in Focuris as **`DONE`**                     | `done IDENTIFIER`<br> e.g., `done 3`                                                                       |
+| [**Edit**](#234-edit-command)      | **Edits** your existing event's [parameters](#parameters) in Focuris | `edit IDENTIFIER [n/NAME] [s/STATUS] [d/DESCRIPTION] [p/PRIORITY]`<br> e.g.,`edit 2 n/CS2030 d/Assignment` |
+| [**Find**](#237-find-command)      | **Finds** your existing event by specific keywords                   | `find KEYWORD [KEYWORD]...`<br> e.g., `find James Jake`                                                    |
+| [**Exit**](#222-exit-command)      | **Exits** the application                                            | `exit`                                                                                                     |
+| [**Help**](#221-help-command)      | Displays **help menu** pop-up                                        | `help`                                                                                                     |
+| [**List**](#238-list-command)      | Clears your previous filters and **lists** all events                | `list`                                                                                                     |
+| [**Log**](#232-log-command)        | Creates your new event with status **Backlog**                       | `log n/NAME d/DESCRIPTION [p/PRIORITY]` <br> e.g., `log n/CS2030 d/Lab`                                    |
+| [**Prog**](#233-prog-command)      | Creates your new event with status **In-Progress**                   | `prog n/NAME d/DESCRIPTION [p/PRIORITY]` <br> e.g., `prog n/CS2100 d/Tutorial`                             |
+| [**Switch**](#2310-switch-command) | **Switch** between list and kanban view in Focuris                   | `prog n/NAME d/DESCRIPTION [p/PRIORITY]` <br> e.g., `prog n/CS2100 d/Tutorial`                             |
+| [**Todo**](#231-todo-command)      | Creates your new event with status **Todo**                          | `todo n/NAME d/DESCRIPTION [p/PRIORITY]` <br> e.g., `todo n/CS2040 d/Assignment`                           |
 
-<a class="md-btn md-btn-raised" href="#table-of-contents">Return to Table of Contents</a>
+<div markdown="block" class="alert alert-info">
+**:information_source: Please take note of the following with regards to Events in Focuris:** <br/>
+- You will not be allowed to add Events with the same name into Focuris, regardless of their description, priority or status.
+</div>
+
+<a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
 
 <div class="page-break-before"></div>
 
@@ -152,12 +182,15 @@ The table below gives a detailed summary of the different [parameters](#paramete
 | KEYWORD     | No Prefix | Keywords for searching Events in Focuris | No Constraints                                                                                                                                                                                                                                                                             |
 
 <div markdown="block" class="alert alert-info">
-**:information_source: Please take note of the following parameters** <br/>
+**:information_source: Please take note of the following with regards to parameters in Focuris:** <br/>
+- Identifiers are not meant to be a counter of your events. It is meant to be a unique identifier for your Events in Focuris and may not count in order.
+- Identifiers are automatically generated for you, you do not need to specify an identifier for your Events. 
+- Identifiers will be recalculated every time you run Focuris.
+- Identifiers do not get reset to 1 after a `clear` command.
 - Priority is set to `low` if you do not specify a priority for your event. <br/>
-- Identifiers are automatically generated for you, you do not need to specify an identifier for your Events
 </div>
 
-<a class="md-btn md-btn-raised" href="#table-of-contents">Return to Table of Contents</a>
+<a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
 
 <div class="page-break-before"></div>
 
@@ -165,9 +198,18 @@ The table below gives a detailed summary of the different [parameters](#paramete
 
 As a new user, the image below should give you a better understanding of what each part of our graphical user interface means!
 
-![Ui](images/UiWithReference.png)
+There are two views in Focuris, which can be toggled between with the [`switch` command](#2310-switch-command):
 
-<a class="md-btn md-btn-raised" href="#table-of-contents">Return to Table of Contents</a>
+1. `KanBan` view <br/>
+   ![Ui KanBan](images/user-guide/Annotated/UiWithReferenceAnnotated.png)
+
+2. `List` view<br/>
+   ![Ui List](images/user-guide/Annotated/UiListWithReferenceAnnotated.png)
+   
+This is how your events are displayed:
+![Ui Event Card](images/user-guide/Annotated/UiCardAnnotated.png)
+
+<a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
 
 <div class="page-break-before"></div>
 
@@ -185,9 +227,9 @@ help
 
 - Pop-up shows you the link to Focuris' user guide.
 
-![help message](images/helpMessageNew.png)
+![help message](images/user-guide/helpMessageNew.png)
 
-<a class="md-btn md-btn-raised" href="#table-of-contents">Return to Table of Contents</a>
+<a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
 
 <div class="page-break-before"></div>
 
@@ -205,7 +247,7 @@ exit
 
 - Your Focuris application window closes.
 
-<a class="md-btn md-btn-raised" href="#table-of-contents">Return to Table of Contents</a>
+<a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
 
 <div class="page-break-before"></div>
 
@@ -215,7 +257,7 @@ Your Event data in Focuris is saved **automatically** whenever you execute any c
 
 You can be assured that **your data is safe** and there is no need for you to save your data manually through executing a command.
 
-<a class="md-btn md-btn-raised" href="#table-of-contents">Return to Table of Contents</a>
+<a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
 
 ### 2.2.4 Editing your data file
 
@@ -232,7 +274,7 @@ If you are an advanced user, you are welcome to update the data file by editing 
 If your changes to the data file makes its format invalid, Focuris will discard all your existing data and start with an empty data file on the next run.
 </div>
 
-<a class="md-btn md-btn-raised" href="#table-of-contents">Return to Table of Contents</a>
+<a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
 
 <div class="page-break-before"></div>
 
@@ -246,9 +288,9 @@ For the majority of event commands, you can simply execute them via these simple
 
 Start discovering and using the Commands now by going to the Command Summary!
 
-<a class="md-btn-outline" href="#211-command-summary">Bring me to the Command Summary</a>
+<a class="md-btn md-btn-raised" href="#211-command-summary">Bring me to the Command Summary</a>
 
-<a class="md-btn md-btn-raised" href="#table-of-contents">Return to Table of Contents</a>
+<a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
 
 <div class="page-break-before"></div>
 
@@ -264,25 +306,22 @@ todo n/NAME d/DESCRIPTION [p/PRIORITY]
 
 **What you should expect to happen:**
 
-- After typing
-  `todo n/Household Chores d/Cleaning the kitchen p/high`
-  and pressing enter:
+- Before executing `todo n/Household Chores d/Cleaning the kitchen p/high`:
+  ![Todo before](./images/user-guide/Annotated/beforeTodoExecutionAnnotated.png)
 
-![Todo Sample Screenshot](./images/user-guide/todo-example-1.png)
-
-_Figure 1. Shows the result **after** execution of Example Command 1 in the table below._
+- After executing `todo n/Household Chores d/Cleaning the kitchen p/high`:
+  ![Todo after](./images/user-guide/Annotated/afterTodoExecutionAnnotated.png)
 
 **More Sample Commands:**
 
-| No  | Example Command                                                               | Expected Command Result                                                                                                        |
-| --- | ----------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| 1   | `todo n/Household Chores d/Cleaning the kitchen p/high`                       | New Todo added: Household Chores; Priority: HIGH; Description: Cleaning the kitchen; Status: TODO;                             |
-| 2   | `todo n/CS2030 Assignment 1 d/Due on 23 Mar 2021 p/high`                      | New Todo added: CS2030 Assignment 1; Priority: HIGH; Description: Due on 23 Mar 2021; Status: TODO;                            |
-| 3   | `todo n/Lunch with John d/At VivoCity on Friday p/medium`                     | New Todo added: Lunch with John; Priority: MEDIUM; Description: At VivoCity on Friday; Status: TODO;                           |
-| 4   | `todo n/Complete Homework d/Complete weekly quiz and group tasks for CS2103T` | New Todo added: Complete Homework; Priority: LOW; Description: Complete weekly quiz and group tasks for CS2103T; Status: TODO; |
-| 5   | `todo n/Run d/Exercise p/h`                                                   | New Todo added: Run; Priority: HIGH; Description: Exercise; Status: TODO;                                                      |
+| No  | Example Command                                                                        | Expected Command Result                                                                                                          |
+| --- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | `todo n/CS2030 Assignment 1 d/Due on 23 Mar 2021 p/h`                                  | New Todo added: CS2030 Assignment 1; Priority: HIGH; Description: Due on 23 Mar 2021; Status: TODO                               |
+| 2   | `todo n/Lunch with John d/At VivoCity on Friday p/m`                                   | New Todo added: Lunch with John; Priority: MEDIUM; Description: At VivoCity on Friday; Status: TODO                              |
+| 3   | `todo n/Complete Homework d/Complete weekly quiz and group tasks for CS2103T p/medium` | New Todo added: Complete Homework; Priority: MEDIUM; Description: Complete weekly quiz and group tasks for CS2103T; Status: TODO |
+| 4   | `todo n/Run d/Exercise p/h`                                                            | New Todo added: Run; Priority: HIGH; Description: Exercise; Status: TODO                                                         |
 
-<a class="md-btn md-btn-raised" href="#table-of-contents">Return to Table of Contents</a>
+<a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
 
 <div class="page-break-before"></div>
 
@@ -298,23 +337,21 @@ log n/NAME d/DESCRIPTION [p/PRIORITY]
 
 **What you should expect to happen:**
 
-- After typing `log n/Complete Homework d/Complete weekly quiz and group tasks for CS2103T` and pressing enter:
-
-![Backlog sample screenshot](./images/user-guide/log-example-1.png)
-
-_Figure 2. Shows the result after execution of Example Command 1 in the table below._
+- Before executing `log n/Complete Homework d/Complete weekly quiz and group tasks for CS2103T`:
+  ![Backlog before](./images/user-guide/Annotated/beforeLogExecutionAnnotated.png)
+- After executing `log n/Complete Homework d/Complete weekly quiz and group tasks for CS2103T`:
+  ![Backlog after](./images/user-guide/Annotated/afterLogExecutionAnnotated.png)
 
 **More Sample Commands:**
 
-| No  | Example Command                                                              | Expected Command Result                                                                                                              |
-| --- | ---------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| 1   | `log n/Complete Homework d/Complete weekly quiz and group tasks for CS2103T` | New BackLog added: Complete Homework; Priority: LOW; Description: Complete weekly quiz and group tasks for CS2103T; Status: BACKLOG; |
-| 2   | `log n/Household Chores d/Cleaning the kitchen p/high`                       | New BackLog added: Household Chores; Priority: HIGH; Description: Cleaning the kitchen; Status: BACKLOG;                             |
-| 3   | `log n/CS2030 Assignment 1 d/Due on 23 Mar 2021 p/high`                      | New BackLog added: CS2030 Assignment 1; Priority: HIGH; Description: Due on 23 Mar 2021; Status: BACKLOG;                            |
-| 4   | `log n/Lunch with John d/At VivoCity on Friday p/medium`                     | New BackLog added: Lunch with John; Priority: MEDIUM; Description: At VivoCity on Friday; Status: BACKLOG;                           |
-| 5   | `log n/Run d/Exercise p/h`                                                   | New BackLog added: Run; Priority: HIGH; Description: Exercise; Status: BACKLOG;                                                      |
+| No  | Example Command                                          | Expected Command Result                                                                                    |
+| --- | -------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| 1   | `log n/Household Chores d/Cleaning the kitchen p/h`      | New BackLog added: Household Chores; Priority: HIGH; Description: Cleaning the kitchen; Status: BACKLOG    |
+| 2   | `log n/CS2030 Assignment 1 d/Due on 23 Mar 2021 p/m`     | New BackLog added: CS2030 Assignment 1; Priority: MEDIUM; Description: Due on 23 Mar 2021; Status: BACKLOG |
+| 3   | `log n/Lunch with John d/At VivoCity on Friday p/medium` | New BackLog added: Lunch with John; Priority: MEDIUM; Description: At VivoCity on Friday; Status: BACKLOG  |
+| 4   | `log n/Run d/Exercise p/high`                            | New BackLog added: Run; Priority: HIGH; Description: Exercise; Status: BACKLOG                             |
 
-<a class="md-btn md-btn-raised" href="#table-of-contents">Return to Table of Contents</a>
+<a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
 
 <div class="page-break-before"></div>
 
@@ -330,23 +367,21 @@ prog n/NAME d/DESCRIPTION [p/PRIORITY]
 
 **What you should expect to happen:**
 
-- After typing `prog n/CS2030 Assignment d/Due on 23 May 2021 p/medium` and pressing enter:
-
-![Prog sample screenshot](./images/user-guide/prog-example-1.png)
-
-_Figure 3. Shows the result **after** execution of Example Command 1 below._
+- Before executing `prog n/CS2030 Assignment d/Due on 23 May 2021 p/medium`:
+  ![Before Prog](./images/user-guide/Annotated/beforeProgExecutionAnnotated.png)
+- After executing `prog n/CS2030 Assignment d/Due on 23 May 2021 p/medium`:
+  ![After Prog](./images/user-guide/Annotated/afterProgExecutionAnnotated.png)
 
 **More Sample Commands:**
 
-| No  | Example Command                                                               | Expected Command Result                                                                                                                      |
-| --- | ----------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1   | `prog n/CS2030 Assignment d/Due on 23 May 2021 p/medium`                      | New In-Progress added: CS2030 Assignment 1; Priority: MEDIUM; Description: Due on 23 Mar 2021; ; Status: IN_PROGRESS;                        |
-| 2   | `prog n/Complete Homework d/Complete weekly quiz and group tasks for CS2103T` | New In-Progress added: Complete Homework; Priority: LOW; Description: Complete weekly quiz and group tasks for CS2103T; Status: IN_PROGRESS; |
-| 3   | `prog n/Household Chores d/Cleaning the kitchen p/high`                       | New In-Progress added: Household Chores; Priority: HIGH; Description: Cleaning the kitchen; Status: IN_PROGRESS;                             |
-| 4   | `prog n/Lunch with John d/At VivoCity on Friday p/medium`                     | New In-Progress added: Lunch with John; Priority: MEDIUM; Description: At VivoCity on Friday; Status: IN_PROGRESS;                           |
-| 5   | `prog n/Run d/Exercise p/h`                                                   | New In-Progress added: Run; Priority: HIGH; Description: Exercise; Status: IN_PROGRESS;                                                      |
+| No  | Example Command                                                               | Expected Command Result                                                                                                                     |
+| --- | ----------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | `prog n/Complete Homework d/Complete weekly quiz and group tasks for CS2103T` | New In-Progress added: Complete Homework; Priority: LOW; Description: Complete weekly quiz and group tasks for CS2103T; Status: IN_PROGRESS |
+| 2   | `prog n/Household Chores d/Cleaning the kitchen p/high`                       | New In-Progress added: Household Chores; Priority: HIGH; Description: Cleaning the kitchen; Status: IN_PROGRESS                             |
+| 3   | `prog n/Lunch with John d/At VivoCity on Friday p/medium`                     | New In-Progress added: Lunch with John; Priority: MEDIUM; Description: At VivoCity on Friday; Status: IN_PROGRESS                           |
+| 4   | `prog n/Run d/Exercise p/h`                                                   | New In-Progress added: Run; Priority: HIGH; Description: Exercise; Status: IN_PROGRESS                                                      |
 
-<a class="md-btn md-btn-raised" href="#table-of-contents">Return to Table of Contents</a>
+<a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
 
 <div class="page-break-before"></div>
 
@@ -363,38 +398,32 @@ edit IDENTIFIER [n/NAME] [d/DESCRIPTION] [s/STATUS] [p/PRIORITY]
 **Things you should take note about the `edit` command:**
 
 - The identifier refers to the index number shown in the respective displayed event list.
-- The identifier **must be a positive integer** 1, 2, 3, …​
+- The identifier **must be a positive integer** 1, 2, 3, …​.
 - At least one of the optional fields must be provided.
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-warning">
 :exclamation: **Caution**
 
-Existing event will have its data overwritten by the new values taken in by the `edit` command
+Existing event will have its data overwritten by the new values taken in by the `edit` command.
 
 </div>
 
 **What you should expect to happen:**
 
-- Before you execute the command:
+- Before executing `edit 6 n/CS2040S d/Merge Sort Algorithm p/m`:
+  ![Before edit](./images/user-guide/Annotated/beforeEditExecutionAnnotated.png)
 
-![Edit command screenshot before](./images/user-guide/edit-example-1.png)
-
-_Figure 4. Shows Focuris **before** execution of the edit command in the command box._
-
-- After typing in `edit 5 n/CS2105 Assignment 2 p/high` and pressing enter:
-
-![Edit command screenshot after](./images/user-guide/edit-example-2.png)
-
-_Figure 5. Shows Focuris **after** execution of the edit command in the command box._
+- After executing `edit 6 n/CS2040S d/Merge Sort Algorithm p/m`:
+  ![After edit](./images/user-guide/Annotated/afterEditExecutionAnnotated.png)
 
 **More Sample Commands:**
 
 - `edit 1 n/CS2030 d/Assignment` Edits the event name and event description of the event with identifier `#1` to be `CS2030` and `Assignment` respectively.
-- `edit 2 s/backlog` Edits the status of the event with identifier `#2` to be `BACKLOG`
+- `edit 2 s/backlog` Edits the status of the event with identifier `#2` to be `BACKLOG`.
 - `edit 3 n/CS1101S d/Streams assignment s/in_progress p/high` Edits event the event name, description, status and priority of the event with identifier `#3` to be `CS1101S`, `Streams assignment`, `IN_PROGRESS`, `HIGH` respectively.
 - `edit 4 s/d p/l` Edits the status and the priority of the event with identifier `#4` to be `DONE` and `LOW` respectively.
 
-<a class="md-btn md-btn-raised" href="#table-of-contents">Return to Table of Contents</a>
+<a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
 
 <div class="page-break-before"></div>
 
@@ -409,37 +438,30 @@ delete IDENTIFIER
 ```
 
 - The identifier refers to the number beside the hex symbol, e.g. `#10` has an identifier of 10.
-- The identifier **must be a positive integer** 1, 2, 3, …​
+- The identifier **must be a positive integer** 1, 2, 3, …​.
 
 **What you should expect to happen:**
 
-- Before executing the command:
-
-![delete command screenshot](./images/user-guide/delete-example-1.png)
-
-_Figure 6. Shows Focuris **before** the execution of the delete command in the command box._
-
-- After typing `delete 2` and pressing enter:
-
-![deleted command screenshot](./images/user-guide/delete-example-2.png)
-
-_Figure 7. Shows Focuris **after** the execution of the delete command in the command box._
+- Before execution of `delete 7` command:
+  ![Before delete](./images/user-guide/Annotated/beforeDeleteExecutionAnnotated.png)
+- After execution of `delete 7` command:
+  ![After delete](./images/user-guide/Annotated/afterDeleteExecutionAnnotated.png)
 
 **More Sample Commands:**
 
 | No  | Example Command | Expected Command Result                                                                  |
 | --- | --------------- | ---------------------------------------------------------------------------------------- |
-| 1   | `delete 1`      | Deleted Event: CS2030 Lab 1; Status: TODO; Description: Lab 1 to complete;               |
+| 1   | `delete 1`      | Deleted Event: CS2030 Lab 1; Status: TODO; Description: Lab 1 to complete                |
 | 2   | `delete 5`      | Deleted Event: CS2105 Assignment 2; Status: IN_PROGRESS; Description: Due on 28 Mar 2021 |
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Note** <br>
-The commands in the table above make reference to the events in Focuris as seen in Figure 7.
+**:information_source: Note:** <br>
+The commands in the table above make reference to the events in Focuris as seen in the screenshot below _After execution of `delete 7` command:_.
 
 </div>
 
-<a class="md-btn md-btn-raised" href="#table-of-contents">Return to Table of Contents</a>
+<a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
 
 <div class="page-break-before"></div>
 
@@ -453,7 +475,7 @@ Clears all events in Focuris.
 clear
 ```
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-warning">
 :exclamation: **Caution:**
 All events will be cleared from Focuris and this is **irreversible**. Please use this command with care.
 
@@ -461,13 +483,12 @@ All events will be cleared from Focuris and this is **irreversible**. Please use
 
 **What you should expect to happen:**
 
-- After typing the command and executing the `clear` command, all events in Focuris are cleared.
+- Before execution of the `clear` command:
+  ![Before clear](./images/user-guide/Annotated/beforeClearCommandAnnotated.png)
+- After execution of the `clear` command:
+  ![After clear](./images/user-guide/Annotated/afterClearCommandAnnotated2.png)
 
-![clear command screenshot](./images/user-guide/clear-example-1.png)
-
-_Figure 8. Shows Focuris after a clear command has been executed._
-
-<a class="md-btn md-btn-raised" href="#table-of-contents">Return to Table of Contents</a>
+<a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
 
 <div class="page-break-before"></div>
 
@@ -483,31 +504,40 @@ find KEYWORD [MORE_KEYWORDS]...
 
 **Things you should take note about the `find` command:**
 
-- The order of the keywords does not matter. e.g. `Household Chores` will match `Chores Household`
-- Only the name and description is searched.
-- Only full words will be matched e.g. `Chor` will not match `Chore`
-- Events matching at least one keyword will be returned (i.e. OR search). e.g. `Household` will return `Household Tidy`, `Household Clean`
+- Your keyword inputs are [case-insensitive](#case-insensitive).
+  - e.g. `cs2103` will match `cs2103`, `cS2103`, `Cs2103` and `CS2103`
+- The order of your inputs will not matter.
+  - e.g. `CS2103T Project` will match `Project CS2103T`
+- Your keywords will only be matched with full words.
+  - e.g. `CS2103` will not match `CS2103T`
+- If your keywords match at least one word in an Event's `NAME` or `DESCRIPTION`, you should see it in the output.
+  - e.g. `CS2103T` will match `CS2103T Project`, `CS2103T v1.3 Deadline`, etc.
+- Focuris will try to match your keywords with any Events by their `NAME` and `DESCRIPTION` parameters only. You can get more information about parameters [here](#212-parameter-summary).
 
 **What you should expect to happen:**
 
-- Before executing the `find` command:
-
-![before find screenshot](./images/user-guide/find-before-execute.png)
-
-_Figure 9. **Before** execution of find command_
-
-- After typing `find cs2101 op1` and executing the command:
-
-![after find screenshot](./images/user-guide/find-after-execute.png)
-
-_Figure 10. **After** execution of sample find command_
+- Before execution of `find cs2040s` command:
+  ![Before find](./images/user-guide/Annotated/beforeFindExecutionAnnotated.png)
+- After execution of `find cs2040s` command:
+  ![After find](./images/user-guide/Annotated/afterFindExecutionAnnotated.png)
 
 **More Example Commands:**
 
-- `find CS2103` returns `CS2103` and `CS2103T`
-- `find assignment` returns `CS2101 assignment`, `CS2103 assignment`
+| No  | Example Command      | Expected events to match                                                                    |
+| --- | -------------------- | ------------------------------------------------------------------------------------------- |
+| 1   | `find cs2101 op1`    | Events with either `cs2101` or `op1` in their names or descriptions will be matched         |
+| 2   | `find CS2103T`       | Events with either `cs2103t` in their names or descriptions will be matched                 |
+| 3   | `find one two three` | Events with either `one` or `two` or `three` in their names or descriptions will be matched |
 
-<a class="md-btn md-btn-raised" href="#table-of-contents">Return to Table of Contents</a>
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br>
+
+- The `Expected events to match` column in the table above displays the names in lower-case, but keywords in any case is matched, e.g. `cs2103` will match `Cs2103`, `cS2103`, `CS2103` and `cs2103`.
+
+</div>
+
+<a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
 
 <div class="page-break-before"></div>
 
@@ -523,17 +553,60 @@ list
 
 **What you should expect to happen:**
 
-- After execution of the `list` command:
+- After execution of `find cs2040s` command:
+  ![Before list](./images/user-guide/Annotated/beforeListExecutionAnnotated.png)
+- After execution of `list` command:
+  ![After list](./images/user-guide/Annotated/afterListExecutionAnnotated.png)
 
-![list example](./images/user-guide/list-example-1.png)
-
-_Figure 11. Execution of list command after find command in Figure 10_
-
-<a class="md-btn md-btn-raised" href="#table-of-contents">Return to Table of Contents</a>
+<a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
 
 <div class="page-break-before"></div>
 
-## 3. FAQ
+### 2.3.9 `done` Command
+
+Set the status of an Event to `DONE`.
+
+**What you should type into the Command Box:**
+
+```
+done IDENTIFIER
+```
+
+**What you should expect to happen:**
+
+- Before the execution of the `done 4` command:
+  ![Before done](./images/user-guide/Annotated/beforeDoneExecutionAnnotated.png)
+
+- After the execution of `done 4` command:
+  ![After done](./images/user-guide/Annotated/afterDoneExecutionAnnotated.png)
+
+<a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
+
+<div class="page-break-before"></div>
+
+### 2.3.10 `switch` Command
+
+Toggle between `list` and `kanban` views
+
+**What you should type into the Command Box:**
+
+```
+switch
+```
+
+**What you should expect to happen:**
+
+- Before execution of the `switch` command, in `KanBan` view:
+  ![Before switch](./images/user-guide/Annotated/beforeSwitchExecutionAnnotated.png)
+
+- After execution of the `switch` command, from `KanBan` view to `List` view:
+  ![After switch](./images/user-guide/Annotated/afterSwitchExecutionAnnotated.png)
+
+<a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
+
+<div class="page-break-before"></div>
+
+# 3. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Focuris home folder.
@@ -550,16 +623,16 @@ and thus we recommend keeping the text under **20 characters** for the event nam
 **A**: Your data is stored locally on your own computer. Focuris does not use any Internet connection so no data can be
 sent to any online servers.
 
-<a class="md-btn md-btn-raised" href="#table-of-contents">Return to Table of Contents</a>
+<a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
 
 <div class="page-break-before"></div>
 
-## 4. Glossary
+# 4. Glossary
 
-<a name="case-insensitive"><bold>Case Insensitive</bold>: Case Insensitive means that a word input in upper case and lower case will be taken the same way.</a>
+<a name="case-insensitive" class="do-not-decorate"><bold>Case Insensitive</bold>: Case Insensitive means that a word input in upper case and lower case will be taken the same way.</a>
 
-<a name="parameters"><bold>Parameters</bold>: Parameters are the input given to commands behind prefixes such as `n/`.</a>
+<a name="parameters" class="do-not-decorate"><bold>Parameters</bold>: Parameters are the input given to commands behind prefixes such as `n/`.</a>
 
-<a name="special-characters"><bold>Special Characters</bold>: Characters that are neither alphabets, from A to Z, nor digits, from 0 to 9.</a>
+<a name="special-characters" class="do-not-decorate"><bold>Special Characters</bold>: Characters that are neither alphabets, from A to Z, nor digits, from 0 to 9.</a>
 
-<a class="md-btn md-btn-raised" href="#table-of-contents">Return to Table of Contents</a>
+<a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>

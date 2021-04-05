@@ -1,7 +1,8 @@
 package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_IDENTIFIER;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIdentifiers.IDENTIFIER_FIRST_EVENT;
 
@@ -29,8 +30,8 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseIdentifier_outOfRangeInput_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
+    public void parseIndex_outOfRangeInput_throwsParseException() {
+        assertThrows(ParseException.class, MESSAGE_INVALID_IDENTIFIER, ()
             -> ParserUtil.parseIdentifier(Long.toString(Integer.MAX_VALUE + 1)));
     }
 
