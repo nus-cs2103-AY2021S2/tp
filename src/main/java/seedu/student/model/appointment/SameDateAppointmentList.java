@@ -77,9 +77,7 @@ public class SameDateAppointmentList implements Iterable<Appointment>, Comparabl
      */
     public void add(Appointment toAdd) {
         requireNonNull(toAdd);
-        if (contains(toAdd)) {
-            throw new DuplicateAppointmentException();
-        } else if (hasOverlappingAppointment(toAdd)) {
+        if (hasOverlappingAppointment(toAdd)) {
             throw new OverlappingAppointmentException();
         } else if (!date.isEqual(toAdd.getDate())) {
             throw new DifferentDateAppointmentException();
