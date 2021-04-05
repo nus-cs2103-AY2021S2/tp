@@ -51,13 +51,18 @@ public class DeleteDateCommand extends Command {
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException((Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX));
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
         List<Event> dates = new ArrayList<>(personToEdit.getDates());
+
+        if (dates.size() == 0) {
+            throw new CommandException(String.format(Messages.MESSAGE_NO_DATES, personToEdit.getName()));
+        }
+
         if (dateIndex.getZeroBased() >= dates.size()) {
-            throw new CommandException((Messages.MESSAGE_INVALID_INDEX_ARGUMENT));
+            throw new CommandException(Messages.MESSAGE_INVALID_INDEX_ARGUMENT);
         }
         dates.remove(dateIndex.getZeroBased());
 
