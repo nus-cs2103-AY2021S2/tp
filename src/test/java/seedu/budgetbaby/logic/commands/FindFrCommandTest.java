@@ -28,8 +28,8 @@ import seedu.budgetbaby.model.record.FinancialRecord;
 public class FindFrCommandTest {
     private BudgetBabyModel model = new BudgetBabyModelManager(new BudgetTracker(), new UserPrefs());
     private FindFrCommandParser find = new FindFrCommandParser();
-    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-    LocalDate currDate = LocalDate.now();
+    private DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    private LocalDate currDate = LocalDate.now();
 
     private final Description description = new Description("Breakfast");
     private final Amount amount = new Amount("5");
