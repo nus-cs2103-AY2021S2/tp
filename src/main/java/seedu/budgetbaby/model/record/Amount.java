@@ -10,7 +10,7 @@ import static seedu.budgetbaby.commons.util.AppUtil.checkArgument;
 public class Amount {
 
     public static final String MESSAGE_CONSTRAINTS =
-        "Amount should be a number, and it should not be blank";
+        "Amount should be a positive number, and the upper limit for amount is 1,000,000.";
     public final Double value;
 
     /**
@@ -28,12 +28,17 @@ public class Amount {
      * Returns true if a given string is a valid phone number.
      */
     public static boolean isValidAmount(String test) {
+        Boolean isValid = false;
         try {
-            Double.parseDouble(test);
+            Double amount = Double.parseDouble(test);
+
+            if (amount > 0 && amount <= 1000000) {
+                isValid = true;
+            }
         } catch (NumberFormatException e) {
             return false;
         }
-        return true;
+        return isValid;
     }
 
     /**
@@ -52,7 +57,7 @@ public class Amount {
 
     @Override
     public String toString() {
-        return value.toString();
+        return String.format("%.2f", value);
     }
 
     @Override
