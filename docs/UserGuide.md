@@ -210,8 +210,9 @@ Examples:
    Command: `delete program 3`
    
 :bulb: Deleting using ID instead of name? Yes, all commands other than `add` and `find` uses the entity's ID. 
-When a new entity is added to Pawbook, the system assigns a unique ID to each entity and is given by the first number
-of each entity in the list.
+When a new entity is added to Pawbook, the system assigns a unique ID to each entity.
+
+![ID](images/DeleteCommandIDScreenshot.png)
 
 ![Delete Command](images/DeleteCommandScreenshot1.png) ![Delete Command Result](images/DeleteCommandScreenshot2.png)
 
