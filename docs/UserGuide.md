@@ -416,7 +416,7 @@ _Details coming soon ..._
 **A**: Child Tags are meant to represent your children, useful especially 
 if you have multiple children. Child Tags will always appear at the front of the list of Tags
 in the Address Book and are displayed in a different color to differentiate them. Any command
-that works with regular tags such as 'Find' or 'Sort' will also work with Child Tags.
+that works with regular tags such as 'Find' will also work with Child Tags.
 
 --------------------------------------------------------------------------------------------------------------------
 
