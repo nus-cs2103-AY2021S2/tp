@@ -155,12 +155,26 @@ public class AppointmentDateTime {
         return this.value.isBefore(other);
     }
 
+    /**
+     * Returns {@code LocalDate} portion of {@code AppointmentDateTime}.
+     */
     public LocalDate toDate() {
         return this.value.toLocalDate();
     }
 
+    /**
+     * Returns {@code LocalTime} portion of {@code AppointmentDateTime}.
+     */
     public LocalTime toTime() {
         return this.value.toLocalTime();
+    }
+
+    /**
+     * Returns true if {@code AppointmentDateTime} is in blocks of 30 or 60 minutes.
+     */
+    public boolean isValidMinutes() {
+        int minutes = this.value.getMinute();
+        return minutes == 0 || minutes == 30;
     }
 
     @Override

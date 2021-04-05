@@ -37,4 +37,7 @@ public class Messages {
             + "Please add a new appointment instead.";
     public static final String MESSAGE_UNABLE_TO_EDIT_PAST_SCHEDULE = "Past schedules cannot be edited! "
             + "Please add a new schedule instead.";
+    public static final String MESSAGE_INVALID_TIME_MINUTES = "TIME_FROM and TIME_TO must be in blocks of 30 or 60 minutes. "
+            + "Please check your input again.";
+
 }
