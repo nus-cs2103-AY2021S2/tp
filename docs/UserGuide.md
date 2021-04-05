@@ -162,9 +162,9 @@ and [2.3](#23-event-commands).
 
 **:information_source: Please take note of the following with regards to Events in Focuris:** <br>
 
-- You will not be allowed to add Events with the same name into Focuris, regardless of their description, priority or status. <br>
+- You will not be allowed to add Events with the same name into Focuris, regardless of their description, priority or status.
   
-- Events of the same name are treated as case-insensitive. <br/> 
+- Events of the same name are treated as case-insensitive. <br> 
   e.g. `CS2030` is the same name as `cs2030`.
 
 </div>
