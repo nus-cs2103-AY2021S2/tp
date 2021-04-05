@@ -4,12 +4,22 @@ title: User Guide
 ---
 
 <a name="introduction"></a>
-## Introduction
-HEY MATEz is a desktop application to get rid of CCA leaders' woes by allowing them to track 
-members and tasks within the CCA efficiently. It is
-a Command Line Interface (CLI) application while still retaining a Graphical User Interface (GUI)
-as this application is catered to students who are used to typing on the keyboard frequently. With HEY MATEz, planning 
-and distributing tasks will never give you a headache again! :smile:
+## Welcome to HEY MATEz
+As a Club leader, are you struggling to **keep track of the ever-changing members** of your club as well as **manage 
+the mountain of tasks** that have to be completed? Or perhaps it is a challenge to **keep track of the increasing 
+number of tasks** and be able to **assign these tasks to members efficiently**. 
+
+HEY MATEz is a desktop application to get rid of your woes by allowing you to **track 
+members** and **tasks** within the club **efficiently and easily**! It is
+a Command Line Interface (CLI) application which handles user requests that are typed into the input box as commands.
+
+With HEY MATEz, managing and distributing tasks will never be a headache again! :smile:
+
+## About this User Guide
+This user guide includes information on the **features** of HEY MAYEz as well as a walkthrough on how to use them. The features 
+are further divided into 3 sections which include the **General features**, **Member related features** as well as the **Task related features**.
+Member related features allow you to manage a list of members and find members. On the other hand, Task related features allow you
+to manage tasks which can be identified by their unique deadlines or priorities.
 
 * [Introduction](#introduction)  
 * [Quick Start](#quick-start)  
@@ -34,15 +44,15 @@ and distributing tasks will never give you a headache again! :smile:
     - [7. Find Tasks by Keywords: `findTasks`](#findTask)
     - [8. Find Tasks due before certain date: `findBefore`](#findBefore)
     - [9. Find Tasks by Priority: `findPriority`](#findPriority)
-    - [10. Remove all Members Assigned to a Task: `removeAssignees`](#removeAssignees)
-    - [11. View List of Unassigned Tasks: `viewUnassignedTasks`](#viewUnassignedTasks)
-    - [12. View List of Uncompleted Tasks: `viewUncompletedTasks`](#viewUncompletedTasks)
-    - [13. Find Tasks Assigned to a Single Member: `findMembers`](#findMembers)
+    - [10. Remove all Members Assigned to a Task: `clearAssignees`](#clearAssignees)
+    - [11. View List of Unassigned Tasks: `viewUnassignedTasks`](#findUnassigned)
+    - [12. View List of Uncompleted Tasks: `viewUncompletedTasks`](#findUncompleted)
+    - [13. Find Tasks Assigned to a Single Member: `findTasksFor`](#findTasksFor)
 * [Data Storage](#dataStorage)
   + [Saving the data](#savingData)
   + [Editing the data file](#editData)
 * [FAQ](#faq)
-* [Summary](#summary)
+* [Command Summary](#summary)
 
 --------------------------------------------------------------------------------------------------------------------
 <a name="quick-start"></a>
@@ -54,7 +64,7 @@ and distributing tasks will never give you a headache again! :smile:
 
 1. Copy the file to the folder you want to use as the _home folder_ for your HEY MATEz.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample tasks and members.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -141,7 +151,7 @@ Example: `help`
 <a name="addMember"></a>
 ### 1. Add Member: `addMember`
 
-Adds a member along with his/ her contract number to contact list.
+With new members joining the club, you can add a new member along with his/ her contact number to the contact list.
 
 Format: `addMember NAME -p PHONE_NUMBER -e EMAIL [-r ROLE]`
 
@@ -155,7 +165,7 @@ Examples:
 <a name="deleteMember"></a>
 ### 2. Delete Member: `deleteMember`
 
-Delete a member along with all of his/her contact details from the members list.
+As members leave the club, you can delete a member along with all of his/her contact details from the members list.
 
 Format: `deleteMember NAME`
 
@@ -169,7 +179,7 @@ Examples:
 <a name="viewMembers"></a>
 ### 3. View Members: `viewMembers`
 
-View the list of members you have added.
+Display the list of members you have added.
 
 Format: `viewMembers `
 
@@ -178,7 +188,8 @@ Examples:
 
 <a name="editMember"></a>
 ### 4. Edit Member: `editMember`
-Edits the existing Member in the application with the name you specified.
+Club members may change their emails or phone numbers after a while. This feature allows you to edit the details of the 
+existing Member in the application with the name you specify.
 
 Format: `editMember NAME_IN_LIST [-n NEW_NAME] [-p NEW_PHONE_NUMBER] [-e NEW_EMAIL] [-r ROLE]`
 
@@ -190,17 +201,16 @@ Format: `editMember NAME_IN_LIST [-n NEW_NAME] [-p NEW_PHONE_NUMBER] [-e NEW_EMA
 Examples: 
 * `editMember Alice -e newAlice@gmail.com -r Events head`
 
-<a name="findmember"></a>
+<a name="findMember"></a>
 ### 5. Find Members by Keywords: `findMembers`
 
-Find all members whose details contain any of the specified keywords.
+With so many members in the club, you may want to find a particular member's details quickly. 
+This feature allows you to find all members whose details contain any of the specified keywords.
 
 Format: `findMembers KEYWORD [MORE_KEYWORDS]`
 
-* Mem 
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-* Keywords are case-insensitive.
+<div markdown="span" class="alert alert-primary"> :bulb: **Tip:**
+Keywords are case-insensitive.
 </div>
 
 Examples: 
@@ -213,7 +223,8 @@ Examples:
 <a name="addTask"></a>
 ### 1. Add Task: `addTask`
 
-Adds a task, with its description and deadline to the list.
+With new tasks that need to be completed within the club every week, you can add a task, with its description and 
+deadline to the list.
 
 Format: `addTask TITLE -d DESCRIPTION -b DEADLINE [-s STATUS] [-p PRIORITY] [-a ASSIGNEE]...`
 
@@ -222,10 +233,8 @@ Format: `addTask TITLE -d DESCRIPTION -b DEADLINE [-s STATUS] [-p PRIORITY] [-a 
 * If you did not specify a value for PRIORITY, the Task will be assigned a default priority of **unassigned**.
 * PRIORITY field can only take on the values **high**, **medium**, **low** or **unassigned**.
 
-<div markdown="span" class="alert alert-primary">
-:bulb: **Tip:**
-* A task can have any number of assignees (including 0).   
-* To add multiple assignees, simply use multiple assignees prefix. 
+<div markdown="span" class="alert alert-primary"> :bulb: **Tip:**
+A task can have any number of assignees (including 0). To add multiple assignees, simply use multiple assignees prefix. 
 </div>
 
 Examples: 
@@ -234,7 +243,7 @@ Examples:
 
 <a name="deleteTask"></a>
 ### 2. Delete Task: `deleteTask`
-Deletes a task from the list by with task INDEX you specified.
+Deletes a task from the list with task INDEX you specified.
 
 Format: `deleteTask INDEX`
 
@@ -243,7 +252,7 @@ Examples:
 
 <a name="viewTasks"></a>
 ### 3. View Tasks: `viewTasks`
-Views the list of tasks that the user has added into HEY MATEz.
+Displays the list of tasks that you have added into HEY MATEz.
 
 Format: `viewTasks`
 
@@ -252,7 +261,8 @@ Examples:
 
 <a name="editTask"></a>
 ###     4. Edit Task: `editTask`
-Edits the task at the task index that is specified with the new details you have keyed in.
+With ever-changing task requirements, you can edit a task at the task index that is specified with the new details 
+you key in.
 
 Format: `editTask INDEX [-n NEW_TITLE] [-d NEW_DESCRIPTION] [-b NEW_DEADLINE] [-s NEW_STATUS] [-p NEW_PRIORITY] [-a NEW_ASSIGNEE]`
 
@@ -261,7 +271,7 @@ Format: `editTask INDEX [-n NEW_TITLE] [-d NEW_DESCRIPTION] [-b NEW_DEADLINE] [-
 * Existing values will be updated to the input values.
 * If the assignee field is being edited, the previous assignees will be overwritten. 
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Any number of assignees can be specified here (including 0).    
 </div>
 
@@ -273,7 +283,8 @@ Examples:
 <a name="doneTask"></a>
 ### 5. Mark Task as Completed: `done`
 
-Change the status of a task with the task index you specify from **uncompleted** to **completed**.
+Upon completion of a task, you can change the status of a task with the task index you specify from **uncompleted** 
+to **completed**.
 
 Format: `done INDEX`
 
@@ -293,7 +304,8 @@ Examples:
 <a name="findTask"></a>
 ### 7. Find Tasks by Keywords: `findTasks`
 
-Find all tasks containing any of the specified keywords in its title or description.
+With so many tasks, you may want to find tasks with given keywords quickly.
+This feature allows you to find all tasks containing any of the specified keywords in its title or description.
 
 Format: `findTasks [KEYWORD]...`
 
@@ -308,7 +320,8 @@ Examples:
 <a name="findBefore"></a>
 ### 8. Find Tasks due before certain date: `findBefore`
 
-Find all tasks with deadlines before the date you have specified.
+With so many tasks that need to be completed at different times, you may want to find tasks which are due before a certain date.
+This feature allows you to find all tasks with deadlines before the date you have specified.
 
 Format: `findBefore DATE`
 
@@ -322,7 +335,8 @@ Examples:
 <a name="findPriority"></a>
 ### 9. Find Tasks by Priority: `findPriority`
 
-Find all tasks containing the priority that you have specified.
+With so many tasks that are of different priority, this feature allows you to find all tasks containing the priority that 
+you have specified.
 
 * The valid input values for `findPriority` are **high**, **medium**, **low** and **unassigned**.
 
@@ -335,20 +349,21 @@ Format: `findPriority PRIORITY`
 Examples:
 * `findPriority high`
 
-<a name="removeAssignees"></a>
-### 10. Remove all Members Assigned to a Task: `removeAssignees`
+<a name="clearAssignees"></a>
+### 10. Remove all Members Assigned to a Task: `clearAssignees`
 
 Remove all members assigned to a task with the task INDEX you specified.
 
-Format: `removeAssignees INDEX`
+Format: `clearAssignees INDEX`
 
 Examples: 
-* `removeAssignees 2`
+* `clearAssignees 2`
 
 <a name="findUnassigned"></a>
 ### 11. View List of Unassigned Tasks: `viewUnassignedTasks`
 
-View the list of unassigned tasks.
+In order to efficiently distribute tasks to members, you may want to view tasks which have yet to be assigned to a member.
+This feature allows you to view the list of unassigned tasks.
 
 Format: `viewUnassignedTasks`
 
@@ -366,16 +381,15 @@ Examples:
 * `viewUncompletedTasks`
 
 <a name="findTasksFor"></a>
-### 13. Find Tasks Assigned to a Single Member: `findMembers`
+### 13. Find Tasks Assigned to a Single Member: `findTasksFor`
 
-Find all tasks assigned to a single Member
+In order to manage members efficiently, you may want to track the tasks that are assigned to each member.
+This feature allows you to find all tasks assigned to a single Member.
 
 Format: `findTasksFor NAME`
 
-<div markdown="span" class="alert alert-primary">
-:bulb: **Tip:**
-* The NAME specified can only belong to 1 Member. 
-* A NAME that does not exist in the Member List will return 0 tasks listed
+<div markdown="span" class="alert alert-primary"> :bulb: **Tip:**
+The NAME specified can only belong to 1 Member while a NAME that does not exist in the Member List will return 0 tasks listed
 </div>
 
 Examples: 
@@ -434,7 +448,7 @@ Action | Format, Examples
 **Find Tasks by Keywords** | `findTasks KEYWORD [MORE_KEYWORDS]`<br> e.g., `findTasks Meeting Proposal Draft`
 **Find Tasks by Priority** | `findPriority PRIORITY`<br> e.g., `findPriority high`
 **Find Tasks by Deadline** | `findBefore DATE`<br> e.g., `findBefore 2021-04-05`
-**Remove all Members Assigned to a Task** | `removeAssignees INDEX`<br> e.g., `removeAssignees 2`
+**Clear all Members Assigned to a Task** | `clearAssignees INDEX`<br> e.g., `clearAssignees 2`
 **View Unassigned Tasks** | `viewUnassignedTasks`<br> e.g., `viewUnassignedTasks`
 **View Uncompleted Tasks** | `viewUncompletedTasks`<br> e.g., `viewUncompletedTasks`
 **Find Member's Tasks** | `findTasksFor NAME` <br> e.g., `findTasksFor Alice Tay`

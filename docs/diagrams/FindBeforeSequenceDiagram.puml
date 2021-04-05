@@ -1,0 +1,78 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":HeyMatezParser" as HeyMatezParser LOGIC_COLOR
+participant ":FindTaskBeforeCommandParser" as FindTaskBeforeCommandParser LOGIC_COLOR
+participant "p:DeadlineBeforeDatePredicate" as DeadlineBeforeDatePredicate LOGIC_COLOR
+participant "f:FindTaskBeforeCommand" as FindTaskBeforeCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("findBefore 2021-04-04")
+activate LogicManager
+
+LogicManager -> HeyMatezParser : parseCommand("findBefore 2021-04-04")
+activate HeyMatezParser
+
+create FindTaskBeforeCommandParser
+HeyMatezParser -> FindTaskBeforeCommandParser
+activate FindTaskBeforeCommandParser
+
+FindTaskBeforeCommandParser --> HeyMatezParser
+deactivate FindTaskBeforeCommandParser
+
+HeyMatezParser -> FindTaskBeforeCommandParser : parse("findBefore 2021-04-04")
+activate FindTaskBeforeCommandParser
+
+create DeadlineBeforeDatePredicate
+FindTaskBeforeCommandParser -> DeadlineBeforeDatePredicate : DeadlineBeforeDatePredicate("2021-04-04")
+activate DeadlineBeforeDatePredicate
+
+
+DeadlineBeforeDatePredicate --> FindTaskBeforeCommandParser : p
+deactivate DeadlineBeforeDatePredicate
+create FindTaskBeforeCommand
+FindTaskBeforeCommandParser -> FindTaskBeforeCommand
+activate FindTaskBeforeCommand
+
+FindTaskBeforeCommand --> FindTaskBeforeCommandParser : f
+
+deactivate FindTaskBeforeCommand
+
+FindTaskBeforeCommandParser --> HeyMatezParser : f
+deactivate FindTaskBeforeCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FindTaskBeforeCommandParser -[hidden]-> HeyMatezParser
+destroy FindTaskBeforeCommandParser
+
+HeyMatezParser --> LogicManager : f
+deactivate HeyMatezParser
+
+LogicManager -> FindTaskBeforeCommand : execute()
+activate FindTaskBeforeCommand
+
+FindTaskBeforeCommand -> Model : updateFilteredTaskList(p)
+activate Model
+
+Model --> FindTaskBeforeCommand
+deactivate Model
+
+create CommandResult
+FindTaskBeforeCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FindTaskBeforeCommand
+deactivate CommandResult
+
+FindTaskBeforeCommand --> LogicManager : result
+deactivate FindTaskBeforeCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
