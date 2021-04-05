@@ -13,6 +13,12 @@ public class UserPrefsTest {
     }
 
     @Test
+    public void setCssSettings_nullCssSettings_throwsNullPointerException() {
+        UserPrefs userPref = new UserPrefs();
+        assertThrows(NullPointerException.class, () -> userPref.setCssSettings(null));
+    }
+
+    @Test
     public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
         UserPrefs userPrefs = new UserPrefs();
         assertThrows(NullPointerException.class, () -> userPrefs.setAddressBookFilePath(null));
