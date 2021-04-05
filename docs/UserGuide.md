@@ -37,6 +37,9 @@ Current module codes supported: CS1101S, CS1231S, CS2030, CS2040S, CS2101,
 1. Tasks are colour coded based on done status. 
    1. Done tasks are coloured green. 
    1. Tasks that are not done are coloured pink.
+2. The pie chart is used to show workload distribution.
+   1. The color of pie chart is randomly assigned.
+   2. The workload of each module is counted using the tasks of such module inclunding those that are already done and those that are not finished yet.
   
 <div style="page-break-after: always;"></div>
 
