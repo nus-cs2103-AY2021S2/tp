@@ -7,7 +7,7 @@ import java.util.stream.Stream;
 
 import seedu.booking.logic.commands.FindVenueByTagCommand;
 import seedu.booking.logic.parser.exceptions.ParseException;
-import seedu.booking.model.booking.VenueContainsTagPredicate;
+import seedu.booking.model.venue.VenueContainsTagPredicate;
 
 /**
  * Parses input arguments and creates a new FindVenueByTagCommand object.

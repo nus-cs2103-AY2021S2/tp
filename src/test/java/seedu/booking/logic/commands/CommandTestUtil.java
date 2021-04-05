@@ -24,13 +24,12 @@ import seedu.booking.commons.core.index.Index;
 import seedu.booking.logic.commands.exceptions.CommandException;
 import seedu.booking.model.BookingSystem;
 import seedu.booking.model.Model;
-import seedu.booking.model.booking.VenueNameContainsKeywordsPredicate;
 import seedu.booking.model.person.NameContainsKeywordsPredicate;
 import seedu.booking.model.person.Person;
 import seedu.booking.model.venue.Venue;
 import seedu.booking.testutil.EditBookingCommandDescriptorBuilder;
+import seedu.booking.model.venue.VenueNameContainsKeywordsPredicate;
 import seedu.booking.testutil.EditPersonCommandDescriptorBuilder;
-import seedu.booking.testutil.EditPersonDescriptorBuilder;
 import seedu.booking.testutil.EditVenueDescriptorBuilder;
 
 /**
@@ -114,9 +113,6 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditPersonDescriptor DESC_AMY;
-    public static final EditCommand.EditPersonDescriptor DESC_BOB;
-
     public static final EditPersonCommand.EditPersonDescriptor VALID_PERSON_COMMAND_DESCRIPTOR_AMY;
     public static final EditPersonCommand.EditPersonDescriptor VALID_PERSON_COMMAND_DESCRIPTOR_BOB;
 
@@ -158,10 +154,6 @@ public class CommandTestUtil {
 
 
     static {
-        DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).build();
-        DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).build();
 
         VALID_PERSON_COMMAND_DESCRIPTOR_AMY = new EditPersonCommandDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).build();

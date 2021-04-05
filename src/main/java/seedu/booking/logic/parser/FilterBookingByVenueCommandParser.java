@@ -3,6 +3,7 @@ package seedu.booking.logic.parser;
 import static seedu.booking.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_VENUE;
 
+import java.util.Arrays;
 import java.util.stream.Stream;
 
 import seedu.booking.logic.commands.FilterBookingByVenueCommand;
@@ -31,7 +32,7 @@ public class FilterBookingByVenueCommandParser implements Parser<FilterBookingBy
         String venueName = argMultimap.getValue(PREFIX_VENUE).get();
         assert venueName == "" : "venueName should not be empty";
 
-        return new FilterBookingByVenueCommand(new BookingContainsVenuePredicate(venueName));
+        return new FilterBookingByVenueCommand(new BookingContainsVenuePredicate(Arrays.asList(venueName)));
     }
 
     /**

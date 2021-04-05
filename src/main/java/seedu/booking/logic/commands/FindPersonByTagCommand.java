@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.booking.commons.core.Messages;
 import seedu.booking.model.Model;
-import seedu.booking.model.booking.PersonContainsTagPredicate;
+import seedu.booking.model.person.PersonContainsTagPredicate;
 
 /**
  * Finds and lists persons in the system whose venue corresponds to the tag name given as argument

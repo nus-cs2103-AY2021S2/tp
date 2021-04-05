@@ -21,7 +21,7 @@ public class VenueDescContainsKeywordsPredicate implements Predicate<Venue> {
     @Override
     public boolean test(Venue venue) {
         return keywords.stream()
-                .allMatch(keyword -> StringUtil.containsWordIgnoreCase(venue.getDescription(), keyword));
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(venue.getDescription(), keyword));
     }
 
     @Override
