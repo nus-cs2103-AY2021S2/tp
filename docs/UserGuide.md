@@ -191,9 +191,9 @@ We do not allow dogs in Pawbook to not have an owner tagged to it!
 Format:
 
 ```
-delete dog [DOG ID]
-delete owner [OWNER ID]
-delete program [PROGRAM ID]
+delete dog d/[DOG ID]
+delete owner o/[OWNER ID]
+delete program p/[PROGRAM ID]
 ```
 
 Note: 
