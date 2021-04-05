@@ -306,12 +306,11 @@ Examples:
 2. Display the schedule for 1st April 2021:
    Command: `schedule 1-4-2021`
 
-
 ### List Command
 
 **Function**: Display entities filtered by type.
 **Usage**: To see the three different types of entities (dog/owner/program), you can simply use this command. Let's say
-you want to see all the dogs that you are in-charge of. Simply list them and this command will provide you the full list. 
+you want to see all the dogs that you are in-charge of. Simply list them and this command will provide you the full list.
 
 Format:
 ```
@@ -320,8 +319,7 @@ list [dog/owner/program]
 
 Note:
 
-- At most one keyword needs to be provided
-- If no keyword is provided, i.e. `list`, then all dogs/owner/program will be displayed
+- If no keyword is provided, i.e. `list`, then all entities will be displayed.
 
 Examples:
 
@@ -329,7 +327,11 @@ Examples:
    Command: `list dog`
 2. List all owners.<br>
    Command: `list owner`
-  
+3. List all programs.<br>
+   Command: `list program`
+4. List all entities.<br>
+   Command: `list`
+
 ![List Command](images/ListCommandScreenshot1.png) ![List Command Result](images/ListCommandScreenshot2.png)
 
 ### Find Command 
