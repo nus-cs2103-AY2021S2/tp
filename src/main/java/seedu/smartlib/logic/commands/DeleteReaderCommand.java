@@ -23,6 +23,8 @@ public class DeleteReaderCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_READER_SUCCESS = "Deleted Reader: %1$s";
+    public static final String HAS_UNRETURNED_BOOKS = "The Reader specified cannot be deleted because "
+            + "he/she has unreturned books.\nPlease manually return those records and then delete again.";
 
     private final Index targetIndex;
 
@@ -52,6 +54,10 @@ public class DeleteReaderCommand extends Command {
         }
 
         Reader readerToDelete = lastShownList.get(targetIndex.getZeroBased());
+
+        if (!model.canDeleteReader(readerToDelete)) {
+            throw new CommandException(HAS_UNRETURNED_BOOKS);
+        }
         model.deleteReader(readerToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_READER_SUCCESS, readerToDelete));
     }
