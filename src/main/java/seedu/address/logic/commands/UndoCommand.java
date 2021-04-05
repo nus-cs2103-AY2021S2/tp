@@ -42,7 +42,7 @@ public class UndoCommand extends Command {
             case ClearAppointmentCommand.COMMAND_WORD:
             case ClearPropertyCommand.COMMAND_WORD:
             case ClearAllCommand.COMMAND_WORD:
-                    commandHistory.push(commandString);
+                commandHistory.push(commandString);
                 break;
             default:
                 // do nothing

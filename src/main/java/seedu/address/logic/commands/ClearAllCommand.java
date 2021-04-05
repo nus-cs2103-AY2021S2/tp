@@ -2,9 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.address.model.AppointmentBook;
 import seedu.address.model.Model;
-import seedu.address.model.PropertyBook;
 
 /**
  * Clears all of the data in both the property and appointment book.
