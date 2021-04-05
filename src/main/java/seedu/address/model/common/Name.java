@@ -37,7 +37,7 @@ public class Name implements Comparable<Name> {
      * Returns true if a given string is a valid name.
      */
     public static boolean isValidName(String test) {
-        return test.matches(VALIDATION_REGEX) && test.length() < MAX_LENGTH;
+        return test.matches(VALIDATION_REGEX) && test.length() <= MAX_LENGTH;
     }
 
 
