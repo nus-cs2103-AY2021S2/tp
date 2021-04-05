@@ -53,8 +53,8 @@ public class ResultDisplay extends UiPart<Region> {
     public ResultDisplay() {
         super(FXML);
 
-        if (GuiSettings.DEFAULT_THEME.equalsIgnoreCase("light")
-            || GuiSettings.DEFAULT_THEME.equalsIgnoreCase("material")) {
+        if (GuiSettings.getLoadedTheme().equalsIgnoreCase("light")
+            || GuiSettings.getLoadedTheme().equalsIgnoreCase("material")) {
             this.errorGifType = "error-black.gif";
             this.loadingSpinnerPlaceholder.setImage(loadingSpinnerForLight);
         } else {
