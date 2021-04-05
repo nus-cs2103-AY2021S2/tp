@@ -26,7 +26,6 @@ import seedu.booking.model.booking.Description;
 import seedu.booking.model.booking.EndTime;
 import seedu.booking.model.booking.Id;
 import seedu.booking.model.booking.StartTime;
-import seedu.booking.model.venue.VenueNameContainsKeywordsPredicate;
 import seedu.booking.model.person.Email;
 import seedu.booking.model.person.EmailMatchesKeywordPredicate;
 import seedu.booking.model.person.Name;
@@ -39,6 +38,7 @@ import seedu.booking.model.venue.CapacityMatchesKeywordPredicate;
 import seedu.booking.model.venue.Venue;
 import seedu.booking.model.venue.VenueDescContainsKeywordsPredicate;
 import seedu.booking.model.venue.VenueName;
+import seedu.booking.model.venue.VenueNameContainsKeywordsPredicate;
 import seedu.booking.model.venue.VenueTagContainsKeywordsPredicate;
 
 /**

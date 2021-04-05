@@ -4,18 +4,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.booking.commons.core.Messages.MESSAGE_BOOKING_DISPLAYED;
-import static seedu.booking.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
-import static seedu.booking.commons.core.Messages.MESSAGE_VENUE_DISPLAYED;
 import static seedu.booking.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
-import static seedu.booking.logic.commands.CommandTestUtil.VALID_EMAIL_AMY_GMAIL;
 import static seedu.booking.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.booking.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.booking.model.Model.PREDICATE_SHOW_ALL_BOOKINGS;
-import static seedu.booking.testutil.TypicalPersons.CARL;
 import static seedu.booking.testutil.TypicalPersons.getTypicalBookingSystem;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
@@ -28,7 +23,6 @@ import seedu.booking.model.UserPrefs;
 import seedu.booking.model.booking.Booking;
 import seedu.booking.model.booking.BookingContainsBookerPredicate;
 import seedu.booking.model.person.Email;
-import seedu.booking.model.person.NameContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindBookingCommand}.

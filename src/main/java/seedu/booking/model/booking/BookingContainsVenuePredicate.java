@@ -17,8 +17,8 @@ public class BookingContainsVenuePredicate implements Predicate<Booking> {
 
     @Override
     public boolean test(Booking booking) {
-        return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(String.valueOf(booking.getVenueName()), keyword));
+        return keywords.stream().anyMatch(keyword -> StringUtil.containsWordIgnoreCase(String.valueOf(booking
+                .getVenueName()), keyword));
     }
 
     @Override

@@ -43,7 +43,8 @@ public class Messages {
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_EMAIL = "Email address "
             + "provided does not exist in the system.\n";
     public static final String MESSAGE_INVALID_VENUE_NAME = "The venue name provided is invalid.\n";
-    public static final String MESSAGE_NON_EXISTENT_VENUE_NAME = "The venue name provided does not exist in the system.\n";
+    public static final String MESSAGE_NON_EXISTENT_VENUE_NAME =
+            "The venue name provided does not exist in the system.\n";
     public static final String MESSAGE_VENUE_DISPLAYED = "%1$d Venue(s) displayed!";
     public static final String MESSAGE_INVALID_BOOKING_ID = "The booking id provided does not exist.";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";

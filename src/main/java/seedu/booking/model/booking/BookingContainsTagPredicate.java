@@ -3,8 +3,6 @@ package seedu.booking.model.booking;
 import java.util.function.Predicate;
 
 import seedu.booking.model.Tag;
-import seedu.booking.model.person.Person;
-import seedu.booking.model.person.PersonTagContainsKeywordsPredicate;
 
 /**
  * Tests that a {@code Bookings}'s {@code tags} contains the tag given

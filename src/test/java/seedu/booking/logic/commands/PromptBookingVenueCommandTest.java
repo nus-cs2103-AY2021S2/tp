@@ -2,7 +2,7 @@ package seedu.booking.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.booking.commons.core.Messages.MESSAGE_INVALID_VENUE_NAME;
+import static seedu.booking.commons.core.Messages.MESSAGE_NON_EXISTENT_VENUE_NAME;
 import static seedu.booking.commons.core.Messages.PROMPT_BOOKING_DESC_MESSAGE;
 import static seedu.booking.commons.core.Messages.PROMPT_MESSAGE_TRY_AGAIN;
 import static seedu.booking.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -55,7 +55,7 @@ public class PromptBookingVenueCommandTest {
     @Test
     void execute_invalidVenueName_failure() {
         PromptBookingVenueCommand command = new PromptBookingVenueCommand(new VenueName("Nonexistent venue"));
-        String expectedMessage = MESSAGE_INVALID_VENUE_NAME + PROMPT_MESSAGE_TRY_AGAIN;
+        String expectedMessage = MESSAGE_NON_EXISTENT_VENUE_NAME + PROMPT_MESSAGE_TRY_AGAIN;
         assertCommandFailure(command, model, expectedMessage);
 
         String state = ModelManager.getState();

@@ -52,7 +52,8 @@ public class FindBookingCommandParser implements Parser<FindBookingCommand> {
         }
 
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
-            predicateList.add(ParserUtil.parseBookingContainsDescriptionPredicate(argMultimap.getValue(PREFIX_DESCRIPTION).get()));
+            predicateList.add(ParserUtil
+                    .parseBookingContainsDescriptionPredicate(argMultimap.getValue(PREFIX_DESCRIPTION).get()));
         }
 
         if (predicateList.isEmpty()) {
