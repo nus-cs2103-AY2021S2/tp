@@ -1,7 +1,5 @@
 package seedu.address.logic;
 
-import static java.util.Objects.requireNonNull;
-
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.function.Predicate;
