@@ -12,7 +12,7 @@ public class Email {
     public static final String EMPTY_EMAIL_STRING = "";
     public static final Email EMPTY_EMAIL = new Email();
 
-    private static final String SPECIAL_CHARACTERS = "!#$%&'*+/=?`{|}~^.-";
+    private static final String SPECIAL_CHARACTERS = "!#$%&'*+/=?`{|}~^.-_";
     public static final String MESSAGE_CONSTRAINTS = "Emails should be of the format USER@DOMAIN "
             + "and adhere to the following constraints:\n"
             + "1. USER can only contain alphanumerics and any of these special characters, excluding "
