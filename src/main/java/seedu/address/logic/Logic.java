@@ -3,6 +3,7 @@ package seedu.address.logic;
 import java.nio.file.Path;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.CssSettings;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -44,7 +45,17 @@ public interface Logic {
     GuiSettings getGuiSettings();
 
     /**
+     * Return the user prefs' CSS settings.
+     */
+    CssSettings getCssSettings();
+
+    /**
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Set the user prefs' CSS settings.
+     */
+    void setCssSettings(CssSettings cssSettings);
 }

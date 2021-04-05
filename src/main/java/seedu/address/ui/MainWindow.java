@@ -10,6 +10,7 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import seedu.address.commons.core.CssSettings;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
@@ -29,6 +30,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private Stage primaryStage;
     private Logic logic;
+    private String CurrentCss;
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
@@ -62,6 +64,9 @@ public class MainWindow extends UiPart<Stage> {
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
+
+        // Configure the Style Sheet
+        setCss(logic.getCssSettings());
 
         setAccelerators();
 
@@ -135,6 +140,10 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    public void setCss(CssSettings cssSettings) {
+        loadFxmlFile(getFxmlFileUrl(cssSettings.getCssSettings()), primaryStage);
+    }
+
     /**
      * Opens the help window or focuses on it if it's already opened.
      */
@@ -153,6 +162,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     public void handleLightChange() {
         loadFxmlFile(getFxmlFileUrl("MainWindowLight.fxml"), primaryStage);
+        this.CurrentCss = "MainWindowLight.fxml";
         fillInnerParts();
     }
 
@@ -168,6 +178,8 @@ public class MainWindow extends UiPart<Stage> {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
+        CssSettings cssSettings = new CssSettings(this.CurrentCss);
+        logic.setCssSettings(cssSettings);
         helpWindow.hide();
         primaryStage.hide();
     }
@@ -178,6 +190,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleDarkChange() {
         loadFxmlFile(getFxmlFileUrl("MainWindow.fxml"), primaryStage);
+        this.CurrentCss = "MainWindow.fxml";
         fillInnerParts();
 
     }

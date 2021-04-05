@@ -4,6 +4,7 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.CssSettings;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
 
@@ -107,4 +108,14 @@ public interface Model {
      * Unblacklists the given person.
      */
     void unblacklistPerson(Person target);
+
+    /**
+     * Sets the user prefs' CSS settings.
+     */
+    CssSettings getCssSettings();
+
+    /**
+     * Sets the user prefs' CSS settings.
+     */
+    void setCssSettings(CssSettings cssSettings);
 }

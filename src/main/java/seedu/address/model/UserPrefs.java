@@ -6,6 +6,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Objects;
 
+import seedu.address.commons.core.CssSettings;
 import seedu.address.commons.core.GuiSettings;
 
 /**
@@ -13,6 +14,7 @@ import seedu.address.commons.core.GuiSettings;
  */
 public class UserPrefs implements ReadOnlyUserPrefs {
 
+    private CssSettings cssSettings = new CssSettings();
     private GuiSettings guiSettings = new GuiSettings();
     private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
 
@@ -36,6 +38,15 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
         setAddressBookFilePath(newUserPrefs.getAddressBookFilePath());
+    }
+
+    public CssSettings getCssSettings() {
+        return cssSettings;
+    }
+
+    public void setCssSettings(CssSettings cssSettings) {
+        requireNonNull(cssSettings);
+        this.cssSettings = cssSettings;
     }
 
     public GuiSettings getGuiSettings() {
