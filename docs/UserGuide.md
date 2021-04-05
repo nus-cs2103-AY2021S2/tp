@@ -148,10 +148,10 @@ Delete multiple tasks at once by either:
         * `delete 2-2` does not delete the 2nd task. Use `delete 2` instead
 * Indicating the `Status` to delete by
     * Format: `delete STATUS -all`
-    * Examples: `delete in progress -all` deletes **all** tasks that are in progress as their `Status`.
+    * Examples: `delete in expired -all` deletes **all** tasks that are in expired as their `Status`.
     * Notes:
-        * All tasks have one of the 3 `Status`: `in progress`, `completed`, `expired`
-        * Newly created tasks have `In progress` as their `Status`
+        * All tasks have one of the 3 `Status`: `uncompleted`, `completed`, `expired`
+        * Newly created tasks have `uncompleted` as their `Status`
     
     
 
@@ -208,17 +208,17 @@ Sets a task's status.
 
 Format: `edit INDEX s/STATUS`
 
-* A task can have 3 types of status: `in progress`, `completed`, `expired`
-* A task's default status is `In progress`
+* A task can have 3 types of status: `uncompleted`, `completed`, `expired`
+* A task's default status is `uncompleted`
 
 Examples:
-* `edit 2 s/in progress` sets the status of the 2nd task in the list to `in progress`.
+* `edit 2 s/completed` sets the status of the 2nd task in the list to `completed`.
 
-### Switching between tabs :`home` / `inProgress` / `completed` / `expired`
+### Switching between tabs :`home` / `uncompleted` / `completed` / `expired`
 
 Switch between the tabs in Taskify. Each tab displays tasks with the corresponding status.
 
-Format: `home` / `inProgress` / `completed` / `expired`
+Format: `home` / `uncompleted` / `completed` / `expired`
 
 Examples: `completed` (change to the completed tab)
 
@@ -250,7 +250,7 @@ Format: `exit`
 the data of your previous Taskify home folder.
 
 **Q**: Can I specify a status when adding a new task to Taskify?<br>
-**A**: All newly added tasks have an "In progress" status by default. However, you can change the status of a task using the`edit` command. <br>
+**A**: All newly added tasks have an "uncompleted" status by default. However, you can change the status of a task using the`edit` command. <br>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -268,7 +268,7 @@ Command | Format | Examples
 **View** | `view DATE` | `view 2021-05-21`, `view today`
 **Sort** | `sort` | `sort`
 **Home** | `home` | `home`
-**In Progress** | `inProgress` | `inProgress`
+**Uncompleted** | `uncompleted` | `uncompleted`
 **Completed** | `completed` | `completed`
 **Expired** | `expired` | `expired`
 **Clear** | `clear` | `clear`
