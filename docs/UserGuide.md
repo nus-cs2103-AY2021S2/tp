@@ -186,6 +186,7 @@ Adds a special date for an existing person in FriendDex.
 Format: `add-date INDEX d/DATE desc/DESCRIPTION`
 
 * Adds a special date with the person at the specified `INDEX`.
+* The event that the special date is commemorating should have already occurred.
 
 <div markdown="block" class="alert alert-info">
 :information_source: **Notes: Special dates**<br>
@@ -235,6 +236,7 @@ Records a meeting with an existing person in FriendDex.
 Format: `add-meeting INDEX d/DATE t/TIME desc/DESCRIPTION`
 
 * Records a meeting with the person at the specified `INDEX`.
+* The meeting should have already occurred before it is recorded into FriendDex.
 
 Examples:
 * `add-meeting 1 d/16-02-2021 t/1130 desc/We had lunch together!`
