@@ -2,20 +2,15 @@
 layout: page
 title: User Guide
 ---
-Have you ever been overwhelmed by the number of assignments given by your module instructors? How amazing would it be 
-if you just have a helper, to note down those things for you, and remind you as the deadline gets closer. If 
-this is you, then ModuleBook3.5 is the right fit for you.
-
 ModuleBook3.5 is the go-to tool for busy students/professionals who are confident that typing can save them time. 
 Using ModuleBook3.5, one can organise and keep track of tasks and their deadlines without the need for consistent 
-internet connection.
+internet connection. Even if your online learning portal fails, you can still see your task details
+on ModuleBook3.5.
 
 
 * Table of Contents
 {:toc}
-
-Current module codes supported: CS1101S, CS1231S, CS2030, CS2040S, CS2101,
-  CS2103T, CS2105, CS2106, CS3230, CS3243, CS3244, IS1103, ST2131
+  
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -23,20 +18,65 @@ Current module codes supported: CS1101S, CS1231S, CS2030, CS2040S, CS2101,
 
 1. ModuleBook3.5 can run on a computer installed with a major operating system (e.g. Windows/Mac/Linux) and Java 11.
 
-2. First, download the jar file for the latest release from [github](https://github.com/AY2021S2-CS2103T-T13-2/tp/releases)
+1. First, download the jar file for the latest release from [github](https://github.com/AY2021S2-CS2103T-T13-2/tp/releases)
 
-3. Once the jar file is ready, simply double-click the file in the download section.
+1. Once the jar file is ready, simply double-click the file in the download section.
 
-4. Refer to the [Commands](#commands) below for details of each command.
+1. Refer to the [Commands](#commands) below for details of each command.
 
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
+![add message](images/addCommand.png)
+1. At the top of the display is a toolbar to either exit the app (under `File`) 
+   or access this user guide (under `Help`).
+   
+1. Below the toolbar is a command line to key in any of the below commands. 
+   The result is displayed in a box underneath this command line.
+   
+1. A list of modules for which tasks are available is also shown.
+    1. For each module, the number of tasks across each workload rating is displayed.
+    1. The distribution of workload across all modules is calculated and displayed on a pie chart.
+    
+<div markdown="span" class="alert alert-warning">:exclamation: **Alert:**
+Within the workload pie chart, each module's colour may change as a command is executed. 
+However, the colours will be arranged such that no two modules with the same colour will be next to each other.
+</div>
 
-1. Tasks are colour coded based on done status. 
-   1. Done tasks are coloured green. 
-   1. Tasks that are not done are coloured pink.
+4. Tasks in the task list are colour coded based on done status.
+    1. Done tasks are coloured pink.
+    1. Tasks that are not done are coloured differently.
+    
+1. You can rate a task's expected workload using the following mapping:
+   
+   Input Parameter | Workload Rating
+   --------|------------------
+   **w/1** | Low
+   **w/2** | Medium
+   **w/3** | High
+   E.g. for a low workload rating, key in `w/1`.
+   
+1. The following module codes are supported 
+   (Note that subject description may differ from actual module name):
+
+    Module Code | Subject Description
+    --------|------------------
+    CS1101S | Basic Programming Course
+    CS1231S | Discrete Mathematics
+    CS2030 | Intermediate Programming Course
+    CS2040 | Introductory Data Structures and Algorithms
+    CS2101 | Effective Communication for Computing Professionals
+    CS2103T | Introductory Software Engineering
+    CS2105 | Introduction to Computer Networks
+    CS2106 | Introduction to Operating Systems
+    CS3230 | Advanced Algorithm Design and Analysis
+    CS3243 | Introduction to Artificial Intelligence
+    CS3244 | Machine Learning
+    IS1103 | Computing Ethics
+    ST2131 | Statistics
+    If your module code does not appear in the above table, 
+    you may use a substitute module code based on the subject description.
   
 <div style="page-break-after: always;"></div>
 
@@ -48,17 +88,20 @@ Current module codes supported: CS1101S, CS1231S, CS2030, CS2040S, CS2101,
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the compulsory parameters to be supplied by you.<br>
+* Words in `UPPER_CASE` are parameters to be supplied by you.<br>
   e.g. in `add d/DESCRIPTION`, `DESCRIPTION` is a parameter which can be used as `add d/DESCRIPTION`.
+
+* Parameters in square brackets are optional. Parameters without square brackets are compulsory. <br>
+  e.g. `d/DESCRIPTION [t/TAG]` can be used as `d/CS3243 Assignment4 t/Minimax` or as `d/CS3243 Assignment4`.
+  
+* For commands that take in an `INDEX`, only one index is to be supplied.<br>
+  e.g. `delete 1` will work but `delete 1 3` (2 indices) will not.
 
 * For `MODULE`, the letters in module code should be upper-case.<br>
   e.g. `CS2103T` and not `cs2103t`.
   
 * For `START TIME` and `DEADLINE`, the accepted date-time formats are: yyyy-MM-dd HH:mm or yyyy-MM-dd (HH:mm taken as current time).<br>
   e.g. `2021-03-21 10:10` or `2021-03-21`.
-
-* Items in square brackets are optional.<br>
-  e.g. `d/DESCRIPTION [t/TAG]` can be used as `d/CS3243 Assignment4 t/Minimax` or as `d/CS3243 Assignment4`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/Minimax`, `t/Minimax t/CSP` etc.
@@ -67,7 +110,7 @@ Current module codes supported: CS1101S, CS1231S, CS2030, CS2040S, CS2101,
   e.g. if the command specifies `d/DESCRIPTION t/TAG`, `t/TAG d/DESCRIPTION` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `d/CS2103T team project for week7 d/CS3243 Assignment 4`, only `d/CS2103T team project for week7` will be taken.
+  e.g. if you specify `d/CS2103T team project for week7 d/CS3243 Assignment 4`, only `d/CS3243 Assignment 4` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as`list`) will be ignored.<br>
   e.g. if the command specifies `list 123`, it will be interpreted as `list`.
@@ -77,6 +120,8 @@ Current module codes supported: CS1101S, CS1231S, CS2030, CS2040S, CS2101,
    * **`list`** : List out tasks
 
    * **`add`** : Add a task
+
+   * **`clear`** : Delete all tasks
 
    * **`delete`** : Delete a task
 
@@ -100,6 +145,8 @@ Current module codes supported: CS1101S, CS1231S, CS2030, CS2040S, CS2101,
    
    * **`recur`** :  Recur tasks
 
+   * **`exit`** : Close the app
+
 <div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -116,6 +163,8 @@ Format: `list`
 ### Add a task: `add`
 
 Adds a task to ModuleBook3.5. All newly added tasks are not done by default.
+
+Application: Used to add new tasks for tracking purposes.
 
 Format: `add n/TASK NAME m/MODULE d/DESCRIPTION [a/START TIME] b/DEADLINE w/WORKLOAD [r/RECURRENCE] [t/TAG]…​`
 
@@ -137,6 +186,8 @@ Examples:
 
 Deletes the specified task from the module book.
 
+Application: Used to remove tasks when tracking them is no longer necessary.
+
 Format: `delete INDEX`
 
 * Deletes the task at the specified `INDEX`.
@@ -147,10 +198,19 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd task in the ModuleBook3.5.
 * `find CS2103T` followed by `delete 1` deletes the 1st task in the results of the `find` command.
 
+### Delete all tasks: `clear`
+
+Deletes all tasks from the module book.
+
+Application: Used to clear out module book after a school term ends.
+
+Format: `clear`
 
 ### Mark a task as done : `done`
 
 Mark an existing task as done. Done tasks are coloured green.
+
+Application: Used to indicate task is completed and does not need any attention at the moment.
 
 Format: `done INDEX`
 
@@ -162,12 +222,14 @@ Format: `done INDEX`
 
 Examples:
 * `list` followed by `done 2` marks the 2nd task as done in the ModuleBook3.5.
-* `find CS2103T` followed by `done 1` marks the 1st task in the results of the `find` command as done.
+* `find Quiz` followed by `done 1` marks the 1st task in the results of the `find` command as done.
 
 
 ### Mark a task as not done : `notdone`
 
 Mark an existing task as not done. Not done tasks are coloured pink.
+
+Application: Used to indicate task may need to be re-attempted.
 
 Format: `notdone INDEX`
 
@@ -177,14 +239,16 @@ Format: `notdone INDEX`
 
 Examples:
 * `list` followed by `notdone 2` marks the 2nd task as not done in the ModuleBook3.5.
-* `find CS2103T` followed by `notdone 1` marks the 1st task in the results of the `find` command as not done.
+* `find Quiz` followed by `notdone 1` marks the 1st task in the results of the `find` command as not done.
 
 
 ### Add a tag: `tag`
 
 Adds a tag to a task.
 
-Format: `tag INDEX t/TAG [t/MORETAGS]` 
+Application: Used to briefly indicate the nature of the task.
+
+Format: `tag INDEX t/TAG [t/MORETAGS]...​` 
 
 * Attaches one or more tags to the task associated with INDEX. Tags can be used to identify related tasks.
 
@@ -198,6 +262,8 @@ Examples:
 
 Searches for tasks with a name of task  provided.
 
+Application: Used to find a certain task that may be further down the list.
+
 Format: `find KEYWORD`
 
 * Searches through ModuleBook3.5 for tasks whose names contain `KEYWORD`.
@@ -208,7 +274,9 @@ Examples:
 
 ### Search tasks with tag: `findTag`
 
-Searches for tasks with an associated tag.
+Searches for tasks with an associated tag. Note that tags are case-sensitive.
+
+Application: Used to find tasks that are similar in nature.
 
 Format: `findTag KEYWORD`
 
@@ -222,6 +290,8 @@ Examples:
 
 Searches for tasks of a specific Module.
 
+Application: Used to find tasks from one Module.
+
 Format: `mod MODULE`
 
 * Searches through ModuleBook3.5 for tasks which belong to `MODULE`.
@@ -234,7 +304,9 @@ Examples:
 
 ### Delete tag of Task: `deleteTag`
 
-Deletes a tag from its associated task.
+Deletes a tag from its associated task. Note that tags are case-sensitive.
+
+Application: Used to remove a tag without the need to reset all other tags.
 
 Format: `deleteTag INDEX [t/TAG]`
 
@@ -250,6 +322,8 @@ Examples:
 
 Edits an existing task in the module book.
 
+Application: Used to change details of a task without the need to delete them.
+
 Format: `edit INDEX [n/NAME] [m/MODULE] [d/DESCRIPTION] [a/START TIME] [b/DEADLINE] [w/WORKLOAD] [r/RECURRENCE] [t/TAG] …​`
 
 * Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
@@ -264,19 +338,21 @@ Format: `edit INDEX [n/NAME] [m/MODULE] [d/DESCRIPTION] [a/START TIME] [b/DEADLI
 Examples:
 *  `edit 1 d/Eat Biscuits` Edits the description of the 1st task to `Eat Biscuits`.
 *  `edit 2 d/Eat Biscuits b/2021-03-21 10:10` Edits the description of the 2nd task to be `Eat Biscuits` and its deadline to date `2021-03-21 10:10`.
-*  `edit 2 b/2021-03-21` Edits the deadline of the 3rd task to `2021-03-25`
+*  `edit 2 b/2021-03-25` Edits the deadline of the 3rd task to `2021-03-25`
 
 
 ### Sort tasks : `sort`
 
-Sorts the list of all tasks by workload/deadline/module.
+Sorts the list of all tasks by workload/deadline/module. If no prefix is supplied, the tasks will be sorted by deadline.
+
+Application: Used to group and prioritise tasks based on a certain criteria.
 
 Format:  `sort n/` or `sort d/` or `sort m/` or `sort w/` or `sort b/` or `sort t/` 
 
 *  `sort n/` Sorts the tasks by name alphabetically in ascending order.
 *  `sort d/` Sorts the tasks by description alphabetically in ascending order.
 *  `sort w/` Sorts the tasks by workload in descending order.
-*  `sort b/` Sorts the tasks by deadline so that the task with closer the deadline in the list, the higher the task.
+*  `sort b/` Sorts the tasks by deadline so that a task with a closer deadline is positioned at the top of the list.
 *  `sort m/` Sorts the tasks by module code alphabetically in descending order.
 *  `sort t/` Sorts the tasks by number of tags in descending order.
 
@@ -288,6 +364,8 @@ Examples:
 ### Recur tasks: `recur`
 
 Recurs a task either daily, monthly or weekly or removes the recurrence of the task.
+
+Application: Used to reset the recurring task deadline and done status when appropriate without having to manually edit the task.
 
 Format: `recur INDEX r/RECURRENCE`
 
@@ -309,6 +387,14 @@ Examples:
 * `recur 4 r/` Removes the recurrence of the 4th task in ModuleBook3.5.
 
 <div style="page-break-after: always;"></div>
+
+### Close app: `exit`
+
+Closes the app.
+
+Application: Used to exit the app. You may also click the close button or the `Exit` button under `File` in the toolbar.
+
+Format: `exit`
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -345,6 +431,7 @@ Action | Format, Examples
 **list** | `list`
 **add** | `add n/TASK NAME m/MODULE d/DESCRIPTION [a/START TIME] b/DEADLINE w/WORKLOAD [r/RECURRENCE] [t/TAG]…​` <br> e.g. `add n/TP m/CS2103T d/Team tasks b/2021-01-20 20:00 w/3 t/tagname`
 **delete** | `delete INDEX`<br> e.g. `delete 3`
+**clear** | `clear`
 **deleteTag** | `deleteTag INDEX [t/TAG NAME]`<br> e.g. `delete 3 [t/SoftwareEng]`
 **done** | `done INDEX`<br> e.g. `done 1`
 **notdone** | `notdone INDEX`<br> e.g. `notdone 1`
@@ -355,3 +442,4 @@ Action | Format, Examples
 **edit** | `edit INDEX [d/DESCRIPTION] [b/DEADLINE]…​`<br> e.g. `edit 2 d/Eat Biscuits b/2021-03-21 10:10`
 **recur** | `recur INDEX r/RECURRENCE`<br> e.g. `recur 1 r/monthly`
 **sort** | `sort n/` or `sort d/` or `sort m/` or `sort w/` or `sort b/` or `sort t/` <br> e.g. `sort b/`
+**exit** | `exit`
