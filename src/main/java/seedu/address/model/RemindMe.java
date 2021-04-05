@@ -321,7 +321,7 @@ public class RemindMe implements ReadOnlyRemindMe {
     public void removeAssignment(Module module, Assignment key) {
         Module editedModule = modules.getModule(module);
         editedModule.deleteAssignment(key);
-        setModule(module, editedModule);
+        modules.setModule(module, editedModule);
     }
 
     /**
@@ -344,7 +344,7 @@ public class RemindMe implements ReadOnlyRemindMe {
     public void removeExam(Module module, Exam key) {
         Module editedModule = modules.getModule(module);
         editedModule.deleteExam(key);
-        setModule(module, editedModule);
+        modules.setModule(module, editedModule);
     }
 
     public void addEvent(GeneralEvent toAdd) {
