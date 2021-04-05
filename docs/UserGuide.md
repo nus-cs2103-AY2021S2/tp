@@ -105,7 +105,8 @@ DESCRIPTION OF PARAMETER
 
 #### `NAME`
 The identifier of a resident.
-* Accepts all characters. 
+* Accepts only alphanumeric characters and spaces.
+* Must not be blank.
 * Must be unique.
 * For best usage, use English characters only.
 
