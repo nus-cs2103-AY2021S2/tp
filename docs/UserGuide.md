@@ -293,7 +293,7 @@ If you edit the data file and make its format invalid, SpamEZ will discard all d
 Undo the changes done to the list of contacts.
 
 Format: `undo`
-* This command only applies to the commands that make changes to the list of contacts, e.g. `add`, `edit`, `delete`, `undo` etc.
+* This command only applies to the commands that make changes to the list of contacts, e.g. `add`, `edit`, `delete` etc.
 
 --------------------------------------------------------------------------------------------------------------------
 
