@@ -126,10 +126,15 @@ Here are some general rules to follow when entering prefixes and parameters:
   
 * To add multiple parameters of the same prefix, add the prefix multiple times before each parameter.<br>
   e.g. To add two TAGs, enter `-t tagOne -t tagTwo`.<br>
-  e.g. To add three HEADERSs, enter `-h "header: one" -h "header: two" -h "header: three"`.<br>
+  e.g. To add three HEADERS, enter `-h "header: one" -h "header: two" -h "header: three"`.<br>
   
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. If the command specifies `help 123`, it will be interpreted as `help`.<br>
+
+About the URL Parameter:
+* We do not check the validity of the URLs during input as it is impossible to verify if it exists without sending a request to the server. We will instead prevent impossible URL from being keyed in. e.g. `abc.com\go` (`\` cannot exist in a valid URL)
+
+* If no website [protocol](#glossary-protocol) is specified, we enforce a HTTP protocol as a protocol needs to be specified for an API request to be carried out.For instance, if a user enters `google.com` as a URL, we will prepend the URL with `http://`, making it `http://google.com`
 
 <div markdown="span" class="alert alert-warning">:bulb: **Tip:**
 Check out the screenshot of each command for an idea of the expected output in the application's **Result Display**!
@@ -187,12 +192,6 @@ Check out the screenshot of each command for an idea of the expected output in t
   <img width="450px" src="images/commands/add.png" >
 </p>
 
-<div markdown="span" class="alert alert-warning">:bulb: **Tip:**
-For URL, we do not check if your URL actually exists<br>
-If no website [protocol](#glossary-protocol) is specified, we enforce a HTTP protocol as a protocol needs to be specified for an API request to be carried out<br>
-For instance, if a user enters `google.com` as a URL, we will prepend the URL with `http://`, making it `http://google.com`
-</div>
-
 <div markdown="span" class="alert alert-danger">:exclamation: **Caution**
 Multiple headers/tags must be unique and duplicates will be ignored
 </div>
@@ -203,21 +202,15 @@ Multiple headers/tags must be unique and duplicates will be ignored
 
 **Format:** <span class="main-command">edit</span> <span class="compulsory-param">INDEX</span> <span class="optional-param">-x METHOD</span> <span class="optional-param">-u URL</span> <span class="optional-param">-d DATA</span> <span class="optional-param">[-h HEADER]</span> <span class="optional-param">[-t TAG]</span>
 
-**Example & Output:** <span class="main-command">edit</span> <span class="compulsory-param">1</span> <span class="optional-param">-x POST</span> <span class="optional-param">-u https://reqres.in/api/users</span> <span class="optional-param">-d {"name": "john doe", "job": "developer"}</span> <span class="optional-param">-t common</span> <span class="optional-param">-t important</span>
+**Example & Output:** <span class="main-command">edit</span> <span class="compulsory-param">1</span> <span class="optional-param">-x POST</span> <span class="optional-param">-u https://reqres.in/api/users</span> <span class="optional-param">-d {\"name\": \"john doe\", \"job\": \"developer\"}</span> <span class="optional-param">-t common</span> <span class="optional-param">-t important</span>
 
 <p align="center">
   <img width="450px" src="images/commands/edit.png" >
 </p>
 
 <div markdown="span" class="alert alert-warning">:bulb: **Tip:**
-When editing tags, the existing tags of the endpoint will be removed i.e adding of tags is not cumulative <br>
-You can remove all the endpoint’s tags by typing ` -t` without specifying any tags after it
-</div>
-
-<div markdown="span" class="alert alert-warning">:bulb: **Tip:**
-For URL, we do not check if your URL actually exists<br>
-If no website [protocol](#glossary-protocol) is specified, we enforce a HTTP protocol as a protocol needs to be specified for an API request to be carried out<br>
-For instance, if a user enters `google.com` as a URL, we will prepend the URL with `http://`, making it `http://google.com`
+When editing tags, the existing tags of the endpoint will be removed. i.e adding of tags is not cumulative <br>
+You may remove all the endpoint’s tags by typing ` -t` without specifying any tags after it
 </div>
 
 <div markdown="span" class="alert alert-danger">:exclamation: **Caution:**
@@ -263,17 +256,19 @@ be a positive integer).
   <img width="450px" src="images/commands/find.png" >
 </p>
 
-to-do format this junxiong
-<div markdown="span" class="alert alert-warning">:bulb: **Tip:**
-* The search is case-insensitive.<br>
-* The order of the keywords does not matter<br>
-* Partial Words will be matched e.g. `appl` will match `Apple`
-* Endpoints matching at least one keyword will be returned (i.e. `OR` search). e.g. `Apple Google` will return endpoints with `ApplePear` and `google.com`
+<div markdown="span" class="alert alert-warning">:bulb: **Tip:**<br>
+* The search is case-insensitive and the order of the keywords do not matter.<br>
+* Partial Words will be matched. e.g. `appl` will match `Apple`<br>
+* This is a **OR** search and all Endpoints matching either keywords will be returned.
 </div>
 
 <div markdown="span" class="alert alert-warning">:bulb: **Tip:**
-You may include [prefixes](#prefix-table) to scope your search terms!
+You may include [prefixes](#prefix-table) to scope your search terms!<br>
+* **Example**: <span class="main-command">find</span> <span class="optional-param">-x get</span> <span class="optional-param">-u google</span> (will match `get` from the Method field **and** `google` from the URL field)<br>
+* **Example**: <span class="main-command">find</span> <span class="optional-param">-x get post</span> (will match `get OR post` from the Method field)<br>
+* This is a **AND** search and only Endpoints matching all [prefixes](#prefix-table) will be returned.
 </div>
+
 <div style="page-break-after: always;"></div>
 
 #### 4.2.6 List all saved API endpoints: <span class="main-command">list</span>
