@@ -61,9 +61,9 @@ As listed below are the attributes to be specified for Tasks and Events. All par
 | Attribute   | Identifier | Restriction(s) |
 | ----------- | ---------- | ---------------------------------  |
 | `Start Date`| `sd/`      | <ul><li>Follows the format YYYY-MM-DD</li><li>Date earlier than date of creation allowed (for ongoing events)</li></ul> |
-| `End Date`  | `ed/`      | <ul><li>Follows the format YYYY-MM-DD</li><li>Must be a date later than the date of creation</li></ul>   |
+| `End Date`  | `ed/`      | <ul><li>Follows the format YYYY-MM-DD</li><li>Must be a date later than the date of creation</li><li>Must be a date after start date</li></ul>   |
 | `Start Time`| `st/`      | <ul><li>Follows the format of hh:mm, in a 24-hour format</li></ul>            |
-| `End Time`  | `et/`      | <ul><li>Follows the format of hh:mm, in a 24-hour format</li></ul> |
+| `End Time`  | `et/`      | <ul><li>Follows the format of hh:mm, in a 24-hour format</li><li>If start date is the same as end date, end time must be a time after start time</li></ul> |
 
 --------------------------------------------------------------------------------------------------------------------
 
