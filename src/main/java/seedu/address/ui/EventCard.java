@@ -53,7 +53,7 @@ public class EventCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         if (event.getCategories().isEmpty()) {
-            category.setVisible(true);
+            category.setVisible(false);
         } else {
             category.setText("Category: " + event.getCategories().toString());
         }
