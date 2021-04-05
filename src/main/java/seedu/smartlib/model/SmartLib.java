@@ -183,6 +183,16 @@ public class SmartLib implements ReadOnlySmartLib {
     }
 
     /**
+     * Checks if a reader has borrowed any books.
+     *
+     * @param reader reader to check, non null.
+     * @return true if the reader has borrowed at least one books, and false otherwise.
+     */
+    public boolean hasReaderBorrowedBooks(Reader reader) {
+        return reader.hasBorrowedBooks();
+    }
+
+    /**
      * Returns true if a record with the same identity as {@code record} exists in the registered record base.
      *
      * @param record record to be checked.
