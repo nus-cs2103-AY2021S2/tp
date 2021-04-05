@@ -46,7 +46,7 @@ class UniqueMeetingListTest {
     public void clash_personInList_returnsTrue() {
         Person editedBob = new PersonBuilder(BOB).withMeeting(MEETING_DESC_CLASH_PRANK).build();
         uniqueMeetingList.add(editedAlice);
-        assertEquals(uniqueMeetingList.clash(editedBob), editedAlice.getMeeting());
+        assertEquals(uniqueMeetingList.clash(editedBob), Optional.of(editedAlice));
     }
 
     @Test
@@ -59,6 +59,7 @@ class UniqueMeetingListTest {
         uniqueMeetingList.add(editedAlice);
         Person editedAliceDuplicate = new PersonBuilder(ALICE).withMeeting(MEETING_DESC_STH).build();
         assertThrows(DuplicatePersonException.class, () -> uniqueMeetingList.add(editedAliceDuplicate));
+        assertThrows(DuplicatePersonException.class, () -> uniqueMeetingList.add(editedAlice));
     }
 
     @Test
@@ -66,7 +67,6 @@ class UniqueMeetingListTest {
         Person editedBob = new PersonBuilder(BOB).withMeeting(MEETING_DESC_CLASH_PRANK).build();
         uniqueMeetingList.add(editedAlice);
         assertThrows(MeetingClashException.class, () -> uniqueMeetingList.add(editedBob));
-        assertThrows(MeetingClashException.class, () -> uniqueMeetingList.add(editedAlice));
     }
 
     @Test

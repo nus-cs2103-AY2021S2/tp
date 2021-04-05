@@ -131,7 +131,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public Optional<Meeting> clash(Person person) {
+        public Optional<Person> clash(Person person) {
             throw new AssertionError("This method should not be called.");
         }
 
