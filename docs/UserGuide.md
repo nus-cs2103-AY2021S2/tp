@@ -91,6 +91,8 @@ Adds a task to Taskify.
 
 Format: `add n/NAME desc/DESCRIPTION [date/DATE] [t/TAG]…`
 
+* The name of the task that is inputted is case-sensitive
+
 * If a date is not specified in the command, the newly added Task will have its date set to the end of today (Today's date, 2359hrs).
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
