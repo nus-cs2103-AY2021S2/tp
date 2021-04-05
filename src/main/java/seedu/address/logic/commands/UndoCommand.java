@@ -39,7 +39,8 @@ public class UndoCommand extends Command {
             case EditAppointmentCommand.COMMAND_WORD:
             case DeleteAppointmentCommand.COMMAND_WORD:
             case DeletePropertyCommand.COMMAND_WORD:
-                commandHistory.push(commandString);
+            case ClearAppointmentCommand.COMMAND_WORD:
+                    commandHistory.push(commandString);
                 break;
             default:
                 // do nothing
@@ -67,7 +68,8 @@ public class UndoCommand extends Command {
             case AddAppointmentCommand.COMMAND_WORD:
             case EditAppointmentCommand.COMMAND_WORD:
             case DeleteAppointmentCommand.COMMAND_WORD:
-                model.undoAppointmentBook();
+            case ClearAppointmentCommand.COMMAND_WORD:
+                    model.undoAppointmentBook();
                 break;
             case AddPropertyCommand.COMMAND_WORD:
             case EditPropertyCommand.COMMAND_WORD:
