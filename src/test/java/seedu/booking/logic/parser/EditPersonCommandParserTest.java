@@ -43,7 +43,8 @@ public class EditPersonCommandParserTest {
         assertParseFailure(parser, " " + PREFIX_NAME + VALID_NAME_AMY, MESSAGE_INVALID_FORMAT);
 
         // no field specified
-        assertParseFailure(parser, ORIGINAL_EMAIL_DESC_AMY, EditPersonCommand.MESSAGE_NOT_EDITED);
+        assertParseFailure(parser, ORIGINAL_EMAIL_DESC_AMY,
+                EditPersonCommand.MESSAGE_NOT_EDITED + EditPersonCommand.MESSAGE_FIELDS);
 
         // no email and no field specified
         assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);

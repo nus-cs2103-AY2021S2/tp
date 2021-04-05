@@ -267,7 +267,7 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredBookingList().size());
 
         Booking booking = model.getFilteredBookingList().get(targetIndex.getZeroBased());
-        final String splitName = booking.getId().toString();
+        final String splitName = String.valueOf(booking.getId());
         model.updateFilteredBookingList(new BookingIdContainsKeywordsPredicate(splitName));
         assertEquals(1, model.getFilteredBookingList().size());
     }

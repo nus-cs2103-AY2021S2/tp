@@ -3,12 +3,17 @@ package seedu.booking.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.booking.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.stream.Stream;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Predicate;
 
 import seedu.booking.logic.commands.FindPersonCommand;
 import seedu.booking.logic.parser.exceptions.ParseException;
-import seedu.booking.model.person.EmailContainsKeywordsPredicate;
+import seedu.booking.model.person.Person;
 
 /**
  * Parses input arguments and creates a new FindPersonCommand object
@@ -22,26 +27,34 @@ public class FindPersonCommandParser implements Parser<FindPersonCommand> {
      */
     public FindPersonCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_EMAIL);
 
-        String email;
-        if (!arePrefixesPresent(argMultimap, PREFIX_EMAIL) || argMultimap.getValue(PREFIX_EMAIL).isEmpty()) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPersonCommand.MESSAGE_USAGE));
+        List<Predicate<Person>> predicateList = new ArrayList<>();
+
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE,
+                PREFIX_EMAIL, PREFIX_TAG);
+
+        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+            predicateList.add(ParserUtil.parseNameContainsKeywordsPredicate(argMultimap.getValue(PREFIX_NAME).get()));
         }
 
-        email = String.valueOf(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
+        if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
+            predicateList.add(ParserUtil.parsePhoneContainsKeywordsPredicate(argMultimap.getValue(PREFIX_PHONE).get()));
+        }
 
-        return new FindPersonCommand(new EmailContainsKeywordsPredicate(email));
+        if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
+            predicateList.add(ParserUtil.parseEmailContainsKeywordsPredicate(argMultimap.getValue(PREFIX_EMAIL).get()));
+        }
 
-    }
+        if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
+            predicateList.add(ParserUtil.parsePersonTagContainsKeywordsPredicate(argMultimap
+                    .getValue(PREFIX_TAG).get()));
+        }
 
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+        if (predicateList.isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPersonCommand.MESSAGE_USAGE));
+        }
+
+        return new FindPersonCommand(predicateList);
     }
 
 }

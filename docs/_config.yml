@@ -1,5 +1,5 @@
 title: "BookCoin To The Moon"
-theme: minima
+theme: jekyll-theme-cayman
 
 header_pages:
   - UserGuide.md

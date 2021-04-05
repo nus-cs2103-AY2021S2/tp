@@ -22,19 +22,19 @@ public class VenueNameTest {
     @Test
     public void isValidVenueName() {
         // null venue name
-        assertThrows(NullPointerException.class, () -> VenueName.isValidName(null));
+        assertThrows(NullPointerException.class, () -> VenueName.isValidVenueName(null));
 
         // invalid venue name
-        assertFalse(VenueName.isValidName("")); // empty string
-        assertFalse(VenueName.isValidName(" ")); // spaces only
-        assertFalse(VenueName.isValidName("^")); // only non-alphanumeric characters
-        assertFalse(VenueName.isValidName("peter*")); // contains non-alphanumeric characters
+        assertFalse(VenueName.isValidVenueName("")); // empty string
+        assertFalse(VenueName.isValidVenueName(" ")); // spaces only
+        assertFalse(VenueName.isValidVenueName("^")); // only non-alphanumeric characters
+        assertFalse(VenueName.isValidVenueName("peter*")); // contains non-alphanumeric characters
 
         // valid venue name
-        assertTrue(VenueName.isValidName("peter jack")); // alphabets only
-        assertTrue(VenueName.isValidName("12345")); // numbers only
-        assertTrue(VenueName.isValidName("peter the 2nd")); // alphanumeric characters
-        assertTrue(VenueName.isValidName("Capital Tan")); // with capital letters
-        assertTrue(VenueName.isValidName("David Roger Jackson Ray Jr 2nd")); // long names
+        assertTrue(VenueName.isValidVenueName("peter jack")); // alphabets only
+        assertTrue(VenueName.isValidVenueName("12345")); // numbers only
+        assertTrue(VenueName.isValidVenueName("peter the 2nd")); // alphanumeric characters
+        assertTrue(VenueName.isValidVenueName("Capital Tan")); // with capital letters
+        assertTrue(VenueName.isValidVenueName("David Roger Jackson Ray Jr 2nd")); // long names
     }
 }

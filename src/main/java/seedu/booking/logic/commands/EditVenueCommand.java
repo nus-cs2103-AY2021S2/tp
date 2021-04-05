@@ -34,7 +34,7 @@ public class EditVenueCommand extends Command {
             + "by the venue name used in the displayed venue list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: vo/VENUE "
-            + "[" + PREFIX_VENUE + "VENUE NAME] "
+            + "[" + PREFIX_VENUE + "VENUE_NAME] "
             + "[" + PREFIX_CAPACITY + "CAPACITY] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_TAG + "TAG] \n"
@@ -45,7 +45,11 @@ public class EditVenueCommand extends Command {
             + PREFIX_TAG + "Central";
 
     public static final String MESSAGE_EDIT_VENUE_SUCCESS = "Edited Venue: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.\n";
+    public static final String MESSAGE_FIELDS = "[" + PREFIX_VENUE + "VENUE_NAME] "
+            + "[" + PREFIX_CAPACITY + "CAPACITY] "
+            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
+            + "[" + PREFIX_TAG + "TAG] \n";
     public static final String MESSAGE_DUPLICATE_VENUE = "This venue already exists in the booking system.";
 
     private final VenueName venueName;

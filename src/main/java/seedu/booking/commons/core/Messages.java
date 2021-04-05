@@ -13,9 +13,9 @@ public class Messages {
             + "Please provide another name\n";
     public static final String MESSAGE_INVALID_NAME_FORMAT = "Invalid name format, please try again.\n";
     public static final String MESSAGE_INVALID_PHONE_FORMAT = "Invalid phone format, please try again.\n";
-    public static final String PROMPT_PHONE_MESSAGE = "Please enter the booker's phone number.\n";
-    public static final String PROMPT_EMAIL_PERSON_MESSAGE = "Please enter the booker's email address.\n";
-    public static final String PROMPT_NAME_MESSAGE = "Please enter the booker's name.\n";
+    public static final String PROMPT_PHONE_MESSAGE = "Please enter the phone number of the booker.\n";
+    public static final String PROMPT_EMAIL_PERSON_MESSAGE = "Please enter the email address of the booker.\n";
+    public static final String PROMPT_NAME_MESSAGE = "Please enter the name of the booker.\n";
 
     // Venue related messages
     public static final String PROMPT_CAPACITY_MESSAGE = "Please enter the capacity of the venue.\n"
