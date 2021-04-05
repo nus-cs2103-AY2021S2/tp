@@ -37,6 +37,15 @@ public class EventBuilder {
     }
 
     /**
+     * Creates an {@code EventBuilder} with only name specified.
+     */
+    public EventBuilder(String nameString) {
+        name = new Name(nameString);
+        eventDate = EventDate.EMPTY_EVENT_DATE;
+        remark = Remark.EMPTY_REMARK;
+    }
+
+    /**
      * Sets the {@code Name} of the {@code Event} that we are building.
      */
     public EventBuilder withName(String name) {
