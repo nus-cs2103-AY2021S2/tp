@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTOR_ID;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.HashSet;
 import java.util.List;
@@ -170,6 +171,7 @@ public class AssignCommand extends Command {
         }
 
         assignStudents(students, session);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, assignment));
     }
 
