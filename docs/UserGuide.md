@@ -211,6 +211,11 @@ Example:
 Finds all articles of clothing that match the colour and dress code,
 but do not match the type(s) of a specified garment, or two specified
 garments of different types.<br>
+
+<img src="https://raw.githubusercontent.com/AY2021S2-CS2103T-T12-1/tp/master/docs/images/MatchGarment.png" alt="alt 
+text" width="790">
+
+
 Current Supported Format: `match INDEX`<br>
 To be Implemented Format: `match INDEX [INDEX]`
 
