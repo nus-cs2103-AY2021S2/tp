@@ -394,7 +394,6 @@ Format: `deleteP PROJECT_INDEX`
 Parameters:
 
 * [`PROJECT_INDEX`](#index) The index of the project.
-* [`TODO_INDEX`](#index) The index of the todo.
 
 Example:
 
