@@ -255,7 +255,7 @@ Example:
 
 Adds a room to the housing management system.
 
-Format: `oadd r/ROOM_NO t/TYPE [g/TAG]`
+Format: `oadd r/ROOM_NO t/ROOM_TYPE [g/TAG]`
 * Room is initialised with default occupancy status of "No".
 * Room occupancy status can only be changed through the `alloc` or `dealloc` command when a resident is allocated or deallocated. The occupancy status cannot be defaulted to "Yes" during room addition.
 
@@ -293,7 +293,7 @@ Examples:
 
 Edits the existing room record at a specified index.
 
-Format: `oedit INDEX [r/ROOM_NO] [t/TYPE] [g/TAG]`
+Format: `oedit INDEX [r/ROOM_NO] [t/ROOM_TYPE] [g/TAG]`
 * `INDEX` refers to the index number shown in the displayed room list. `INDEX` **must be a positive integer 1, 2, 3, …**.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
@@ -606,10 +606,10 @@ Action | Format, Examples
 **Find residents** | `rfind KEYWORD [MORE_KEYWORDS]` <br> e.g. `rfind bob bobby`
 **Edit a resident record** | `redit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/ROOM]` <br> e.g. `redit 1 p/91234567 e/e0123456@u.nus.edu`
 **Delete a resident** |  `rdel INDEX` <br> e.g. `rdel 1`
-**Add a room** |  `oadd r/ROOM_NO t/TYPE [g/TAG]` <br> e.g. `oadd n/17-101 t/corridor_ac g/SHN`
+**Add a room** |  `oadd r/ROOM_NO t/ROOM_TYPE [g/TAG]` <br> e.g. `oadd n/17-101 t/corridor_ac g/SHN`
 **List all rooms** |  `olist`
 **Find rooms** |  `ofind KEYWORD [MORE_KEYWORDS]` <br> e.g. `ofind 10- 15-`
-**Edit a room record** |  `oedit INDEX [r/ROOM_NO] [t/TYPE] [g/TAG]` <br> e.g. `oedit 1 g/SHN`
+**Edit a room record** |  `oedit INDEX [r/ROOM_NO] [t/ROOM_TYPE] [g/TAG]` <br> e.g. `oedit 1 g/SHN`
 **Delete a room** | `odel INDEX` <br> e.g. `odel 1`
 **Allocate a Resident to Room** | `alloc n/NAME r/ROOM_NO` <br> e.g. `alloc n/John Tan r/03-100`
 **Deallocate a Resident from Room** | `dealloc n/NAME r/ROOM_NO` <br> e.g. `dealloc n/John Tan r/03-100`
