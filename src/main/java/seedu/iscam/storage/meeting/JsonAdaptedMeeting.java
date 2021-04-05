@@ -87,7 +87,7 @@ class JsonAdaptedMeeting {
                     DateTime.class.getSimpleName()));
         }
         if (!DateTime.isStringValidFormat(dateTime)) {
-            throw new IllegalValueException(DateTime.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(DateTime.MESSAGE_INVALID_FORMAT);
         }
         final DateTime modelDateTime = new DateTime(dateTime);
 

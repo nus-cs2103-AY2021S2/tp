@@ -65,7 +65,7 @@ public class JsonAdaptedMeetingTest {
         JsonAdaptedMeeting meeting =
                 new JsonAdaptedMeeting(VALID_NAME, INVALID_DATETIME, VALID_LOCATION,
                         VALID_DESCRIPTION, VALID_TAGS, VALID_STATUS);
-        String expectedMessage = DateTime.MESSAGE_CONSTRAINTS;
+        String expectedMessage = DateTime.MESSAGE_INVALID_FORMAT;
         assertThrows(IllegalValueException.class, expectedMessage, meeting::toModelType);
     }
 
