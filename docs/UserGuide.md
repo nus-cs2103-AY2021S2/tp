@@ -111,7 +111,7 @@ In the example above, <span class="main-command">add</span> is the command word 
 | METHOD       |   -x   | The [request method](#84-request-methods) to use for an endpoint      |
 | ADDRESS      |   -u   | The URL to use for an endpoint                                        |
 | HEADER       |   -h   | The header to use for an endpoint **(must be enclosed with \"\")**      |
-| DATA         |   -d   | The data to use for an endpoint **(must be in JSON format)**          |
+| DATA         |   -d   | The data to use for an endpoint **(must be in [JSON](#85-json-format) format)**          |
 | TAG          |   -t   | The tag to label an endpoint                 |
 
 <div markdown="span" class="alert alert-warning">:bulb: **Tip:**
@@ -334,9 +334,7 @@ command box with the last command.
 
 **Q**: How do I transfer my data to another Computer?
 <br/><br/> 
-**A**: Install the
-application in the other computer and overwrite the empty data file it creates
-with the file that contains the data of your previous imPoster home folder.
+**A**: Install the application in the other computer and place your current data folder in the same directory as the newly installed application (overwrite the data folder of the new application if applicable).
 
 **Q**: How can I send non-JSON data in the request body?
 <br/><br/>
@@ -345,7 +343,7 @@ with the file that contains the data of your previous imPoster home folder.
 <a name="data-file"></a>
 **Q**: Where are the data of imPoster saved?
 <br/><br/>
-**A**: imPoster data are saved automatically into a JSON file named `<JAR file location>/data/imposter.json` after any command that changes the data.
+**A**: imPoster data are saved automatically after every command into a JSON file named `imposter.json`. This file is stored within the `data` folder in the same location as the application `JAR` file and is created after the initial launch (and a command execution) of a fresh installation.
 
 <div style="page-break-after: always;"></div>
 
@@ -421,19 +419,19 @@ As of the latest version of our application, we support 7 commonly used request 
 
 | Method      | Description                                                                                                 |
 | ----------- | ----------------------------------------------------------------------------------------------------------- |
-| **GET**     | Retrieves information from a server through a specified URI                  |
+| **GET**     | Retrieves information from a server through a specified URL                  |
 | **POST**    | Sends data to a server, commonly in JSON/html form format           |
 | **PUT**     | Sends data to a server, commonly in JSON/html form format      |
-| **DELETE**  | Removes information from a server through a specified URI             |
+| **DELETE**  | Removes information from a server through a specified URL             |
 | **HEAD**    | Similar to GET, but returns only the header section of the response                                         |
 | **PATCH**   | Sends data to a server, commonly in JSON/html form format |
-| **OPTIONS** | Retrieves the allowed communication options (methods) for a specified URI                                   |
+| **OPTIONS** | Retrieves the allowed communication options (methods) for a specified URL                                   |
 
 ### 8.5 JSON Format
 JSON is short for JavaScript Object Notation and is a common lightweight format for data storage (in the form of key/value pairs). In an API call, the JSON format is also commonly used to send data between two systems. For the current version of our application, JSON is the only format supported for sending data. The following are some examples of data in JSON format:
-- `{}`
-- `{"name": "john doe"}`
-- `{"persons": {"name": "john doe"}}`
+- `{}` - represents an empty JSON data
+- `{"name": "john doe"}` - represents a single level JSON data 
+- `{"persons": {"name": "john doe"}}` - represents a nested JSON data
 
 ### 8.6 Sample Endpoints
 
