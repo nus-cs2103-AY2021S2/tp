@@ -66,36 +66,34 @@ Output:
 
 `New patient added: Shrek; Phone: 66666666; Email: shrek@swampmail.com; Address: Swamp; Height: 243cm; Weight: 94kg; Tags: [smelly]`
 
-### Adding an appointment to a patient : `appt`
+### Listing out all patients : `list`
 
-Adds a scheduled upcoming appointment to DocBob's list.  An appointment can be added to a patient.  This appointment is specified by it's date and time.  And the patient is identified by their index.  So basically, we can add an appointment (of a date and time) to a patient (identified by index).
+Shows the main list of all your patients' information, with their next scheduled appointment beside their name.
 
-Format: `appt INDEX /dDATE`
-where INDEX must be a positive integer (1,2,3,...)
-and DATE is DDMMYYYYhhmm or DDMMhhmm
+Format: `list`
+
+Example: `list`
+
+Output:
+
+![image](https://user-images.githubusercontent.com/48408342/112432500-f7092e80-8d7b-11eb-85b9-2aaab776d47d.png)
+
+### Editing a patient information : `edit`
+
+Edits an existing patient in the list.
+
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [h/HEIGHT] [w/WEIGHT] [t/TAG]…​`
+
+* Edits the patient at the specified `INDEX`. The index refers to the index number shown in the displayed patient list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing tags, the existing tags of the patient will be removed i.e adding of tags is not cumulative.
+* You can remove all the patient’s tags by typing `t/` without
+    specifying any tags after it.
 
 Examples:
-* `appt 3 d/25120800`
-
-Output:
-
-`Appointment added: Sat, 25 Dec, 08:00`
-
-### Archiving a patient : `archive`
-
-Archives a patient from DocBob's patient list, identified by the index number shown in the displayed patient list.
-
-Format : `archive INDEX`
-where INDEX must be a positive integer (1,2,3,...)
-
-* Remember to be on the main list when archiving a patient using the `list` command.
-
-Example:
-* `archive 1`
-
-Output:
-
-`Archived Person: Shrek; Phone: 66666666; Email: shrek@swampmail.com; Address: Swamp; Height: 243cm; Weight: 94kg; Tags: [smelly]`
+*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing tags.
 
 ### View all information regarding a patient : `view`
 
@@ -111,17 +109,51 @@ Output:
 
 ![image](https://user-images.githubusercontent.com/48408342/113469180-3ae7ec00-947e-11eb-8a80-a35a17daa1e8.png)
 
-### Listing out all patients : `list`
+### Locating patient by name : `find`
 
-Shows the main list of all your patients' information, with their next scheduled appointment beside their name.
+Finds patients whose names contain any of the given keywords.
 
-Format: `list`
+Format: `find KEYWORD [MORE_KEYWORDS]`
 
-Example: `list`
+* The search is case-insensitive. e.g `hans` will match `Hans`
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* Only the name is searched.
+* Only full words will be matched e.g. `Han` will not match `Hans`
+* Persons matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+
+Examples:
+* `find John` returns `john` and `John Doe`
+* `find alex david` returns `Alex Yeoh`, `David Li`<br>
+
+### Deleting a patients' contact : `delete`
+
+Deletes a patient from DocBob's patient list, identified by the index number shown in the displayed patient list.
+
+Format : `delete INDEX`
+where INDEX must be a positive integer (1,2,3,...)
+
+Example:
+* `delete 1`
 
 Output:
 
-![image](https://user-images.githubusercontent.com/48408342/112432500-f7092e80-8d7b-11eb-85b9-2aaab776d47d.png)
+`Deleted Person: Shrek; Phone: 66666666; Email: shrek@swampmail.com; Address: Swamp; Height: 243cm; Weight: 94kg; Tags: [smelly]`
+
+### Adding an appointment to a patient : `appt`
+
+Adds a scheduled upcoming appointment to DocBob's list.  An appointment can be added to a patient.  This appointment is specified by it's date and time.  And the patient is identified by their index.  So basically, we can add an appointment (of a date and time) to a patient (identified by index).
+
+Format: `appt INDEX /dDATE`
+where INDEX must be a positive integer (1,2,3,...)
+and DATE is DDMMYYYYhhmm or DDMMhhmm
+
+Examples:
+* `appt 3 d/25120800`
+
+Output:
+
+`Appointment added: Sat, 25 Dec, 08:00`
 
 ### Listing out your upcoming appointments : `listappt`
 
@@ -142,76 +174,6 @@ Output:
 `Sun, 12 Dec, 12:12 - Charlotte Oliveiro`<br>
 
 ![image](https://user-images.githubusercontent.com/59093518/113469628-a2536b00-9481-11eb-95e0-19607d43db7c.png)
-
-### Listing out all archived patients : `archivelist`
-
-Shows the list of all your archived patients information, with their next scheduled appointment beside their name.
-
-Format: `archivelist`
-
-### Editing a patient information : `edit`
-
-Edits an existing patient in the list.
-
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [h/HEIGHT] [w/WEIGHT] [t/TAG]…​`
-
-* Edits the patient at the specified `INDEX`. The index refers to the index number shown in the displayed patient list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the patient will be removed i.e adding of tags is not cumulative.
-* You can remove all the patient’s tags by typing `t/` without
-    specifying any tags after it.
-
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing tags.
-
-### Deleting a patients' contact : `delete`
-
-Deletes a patient from DocBob's patient list, identified by the index number shown in the displayed patient list.
-
-Format : `delete INDEX`
-where INDEX must be a positive integer (1,2,3,...)
-
-Example:
-* `delete 1`
-
-Output:
-
-`Deleted Person: Shrek; Phone: 66666666; Email: shrek@swampmail.com; Address: Swamp; Height: 243cm; Weight: 94kg; Tags: [smelly]`
-
-### Unarchiving a patient : `unarchive`
-
-Unarchives a patient from DocBob's archived patient list, identified by the index number shown in the displayed archived patient list.
-
-Format : `unarchive INDEX`
-where INDEX must be a positive integer (1,2,3,...)
-
-* Remember to be on the archive list when archiving a patient using the `archivelist` command.
-
-Example:
-* `unarchive 1`
-
-Output:
-
-`Unarchived Person: Shrek; Phone: 66666666; Email: shrek@swampmail.com; Address: Swamp; Height: 243cm; Weight: 94kg; Tags: [smelly]`
-
-### Locating patient by name : `find`
-
-Finds patients whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
 
 ### Create a new medical record for a patient : `mrec`
 
@@ -240,6 +202,44 @@ Examples:
 Output:
 
 ![image](https://user-images.githubusercontent.com/59093518/113469578-2f49f480-9481-11eb-9d42-46d6260417a8.png)
+
+### Archiving a patient : `archive`
+
+Archives a patient from DocBob's patient list, identified by the index number shown in the displayed patient list.
+
+Format : `archive INDEX`
+where INDEX must be a positive integer (1,2,3,...)
+
+* Remember to be on the main list when archiving a patient using the `list` command.
+
+Example:
+* `archive 1`
+
+Output:
+
+`Archived Person: Shrek; Phone: 66666666; Email: shrek@swampmail.com; Address: Swamp; Height: 243cm; Weight: 94kg; Tags: [smelly]`
+
+### Listing out all archived patients : `archivelist`
+
+Shows the list of all your archived patients information, with their next scheduled appointment beside their name.
+
+Format: `archivelist`
+
+### Unarchiving a patient : `unarchive`
+
+Unarchives a patient from DocBob's archived patient list, identified by the index number shown in the displayed archived patient list.
+
+Format : `unarchive INDEX`
+where INDEX must be a positive integer (1,2,3,...)
+
+* Remember to be on the archive list when archiving a patient using the `archivelist` command.
+
+Example:
+* `unarchive 1`
+
+Output:
+
+`Unarchived Person: Shrek; Phone: 66666666; Email: shrek@swampmail.com; Address: Swamp; Height: 243cm; Weight: 94kg; Tags: [smelly]`
 
 ### Clearing all entries : `clear`
 
