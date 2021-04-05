@@ -40,19 +40,19 @@ imPoster is a desktop application for beginners of API development to easily gra
 
 - **Enhancements**:
 
-  - Added `response` attribute to `endpoint` to store API call responses
+  - Added `response` attribute to `endpoint` to store API call responses.
   - Added `project icon` to dock/taskbar when the application is launched.
-  - Added an `orange outline` on the focused component of the UI for clarity to users.
+  - Added an `outline` on the focused component of the UI for clarity to users.
   - Added the `general template`, `light theme` and `dark theme` for the UI.
   - Added `GIFs` to represent ongoing API call and error message.
 
 #### Project management
 
   - Added the team self-initiated [main project website](https://imposter-dev.tk).
-  - Managed releases `v1.1`, `v1.2`, `v1.2b`, `v1.3` (4 releases) on GitHub.
+  - Managed releases `v1.1`, `v1.2`, `v1.2b`, `1.2.1`, `v1.3` (5 releases) on GitHub.
   - Maintained [gantt chart](https://docs.google.com/spreadsheets/d/10HzmFh2pCHIu-8VpJSCRy0jzpVehnYpm/edit#gid=577662797) and [project development board](https://github.com/AY2021S2-CS2103T-T12-4/tp/projects/1).
   - Setup the GitHub team organisation/repository and added favicon to project page.
-  - Setup [tools](#tools) and [workflow guide](../WorkflowGuide.md) to ease project workflow.
+  - Setup [tools](#tools) and [workflow guide](../WorkflowGuide.md) to ease project workflow ([\#66](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/66)).
 
 #### Community
 
@@ -62,15 +62,15 @@ imPoster is a desktop application for beginners of API development to easily gra
 #### Tools
 
   - Integrated the third party library [Apache HttpComponents](http://hc.apache.org/index.html) to the project ([\#125](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/125)).
-  - Added a [pre-commit githook](https://github.com/AY2021S2-CS2103T-T12-4/tp/blob/master/.githooks/pre-commit) to the repository to improve CI ([\#66](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/66)).
+  - Added a [pre-commit githook](https://github.com/AY2021S2-CS2103T-T12-4/tp/blob/master/.githooks/pre-commit) to the repository to improve CI ([\#98](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/98)).
   - Added a [script](https://github.com/AY2021S2-CS2103T-T12-4/tp/blob/master/scripts/sync.sh) to easily sync local, remote individual and team repositories ([\#45](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/45)).
 
 #### Documentation
 
   - User Guide:
     - Added documentation for `send` command ([\#52](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/52)).
-    - Added cover page and significantly improved styling/formatting ([\#296](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/296), [\#314](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/314), [\#382](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/382)).
-    - Added appendix for additional information on API, Requests and JSON ([\#353](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/353)).
+    - Added cover page, heavy styling and formatting ([\#296](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/296), [\#314](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/314), [\#382](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/382), [\#463](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/463)).
+    - Added the entire appendix section with additional information for users ([\#353](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/353), [\#446](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/446)).
   - Developer Guide:
     - Added implementation details of the `request` feature ([\#351](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/351)).
     - Added cover page ([\#351](https://github.com/AY2021S2-CS2103T-T12-4/tp/pull/351)).
