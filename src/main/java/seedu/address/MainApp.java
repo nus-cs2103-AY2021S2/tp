@@ -66,7 +66,7 @@ public class MainApp extends Application {
         model = initModelManager(storage, userPrefs);
 
         state = new State();
-        state.addState(new AddressBook(model.getAddressBook()));
+        state.addState(new AddressBook(model.getAddressBook()), "");
 
         logic = new LogicManager(model, storage, state);
 
