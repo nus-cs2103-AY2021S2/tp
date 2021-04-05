@@ -7,7 +7,7 @@
     "height" : "172cm",
     "weight" : "58kg",
     "isArchived" : false,
-    "tagged" : [ "asidjoajc" ],
+    "tagged" : [ "bronchitis", "fever", "cough" ],
     "appointments" : [ ],
     "records" : [ {
       "dateString" : "1/4/21 2:44",
@@ -24,7 +24,7 @@
     "height" : "175cm",
     "weight" : "69kg",
     "isArchived" : false,
-    "tagged" : [ "friends" ],
+    "tagged" : [ "bronchitis", "fever", "cough" ],
     "appointments" : [ "14/4/21 14:00" ],
     "records" : [ {
       "dateString" : "31/3/21 18:18",
@@ -35,11 +35,17 @@
     }, {
       "dateString" : "31/3/21 19:41",
       "sections" : [ {
-        "title" : "main",
-        "body" : ""
+        "title" : "Synopsis",
+        "body" : "On February 27, patient was admitted for labor for her second child that had to be emergently converted to a caesarean section due to fetal distress. Follow this surgery, she started to complain of unbearable pain in her suprapubic region which would not abate regardless of all modalities tried.\n"
       }, {
-        "title" : "New Section",
-        "body" : ""
+        "title" : "Medical History",
+        "body" : "Patient is a healthy young woman G2P2A0, with no real medical problems. She had a normal spontaneous delivery with her first daughter who is now 2 years old. There were no complications at that time.\n"
+      }, {
+        "title" : "Social History",
+        "body" : "Non smoker, alcohol 6 oz per week, occasional wine"
+      }, {
+        "title" : "Current medications",
+        "body" : "Proventil Nebulizer Solution, Uroxatral, Calcium-Vitamin D 500-125, Nexium, Proscar"
       } ]
     }, {
       "dateString" : "1/4/21 13:15",
@@ -53,6 +59,33 @@
         "title" : "rthnsrtbsr",
         "body" : "tbrstnrtnj"
       } ]
+    }, {
+      "dateString" : "1/4/21 16:34",
+      "sections" : [ {
+        "title" : "Synopsis",
+        "body" : "On February 27, patient was admitted for labor for her second child that had to be emergently converted to a caesarean section due to fetal distress. Follow this surgery, she started to complain of unbearable pain in her suprapubic region which would not abate regardless of all modalities tried.\n"
+      }, {
+        "title" : "Medical History",
+        "body" : "Patient is a healthy young woman G2P2A0, with no real medical problems. She had a normal spontaneous delivery with her first daughter who is now 2 years old. There were no complications at that time.\n"
+      }, {
+        "title" : "Social History",
+        "body" : "Non smoker, alcohol 6 oz per week, occasional wine"
+      }, {
+        "title" : "Current medications",
+        "body" : "Proventil Nebulizer Solution, Uroxatral, Calcium-Vitamin D 500-125, Nexium, Proscar"
+      } ]
+    }, {
+      "dateString" : "4/4/21 19:04",
+      "sections" : [ {
+        "title" : "Synopsis",
+        "body" : "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+      }, {
+        "title" : "Medical History",
+        "body" : "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+      }, {
+        "title" : "Social History",
+        "body" : "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+      } ]
     } ]
   }, {
     "name" : "Andreea Hanna",
@@ -62,13 +95,13 @@
     "height" : "172cm",
     "weight" : "58kg",
     "isArchived" : false,
-    "tagged" : [ "asidjoajc" ],
+    "tagged" : [ "bronchitis", "fever", "cough" ],
     "appointments" : [ "18/9/21 15:00" ],
     "records" : [ {
       "dateString" : "1/4/21 3:55",
       "sections" : [ {
         "title" : "dswafghbnj",
-        "body" : "sdfghjk"
+        "body" : "sdfghjkw"
       } ]
     } ]
   }, {
@@ -79,7 +112,7 @@
     "height" : "172cm",
     "weight" : "58kg",
     "isArchived" : false,
-    "tagged" : [ "asidjoajc" ],
+    "tagged" : [ "allergy", "flu" ],
     "appointments" : [ ],
     "records" : [ ]
   }, {
@@ -90,325 +123,8 @@
     "height" : "168cm",
     "weight" : "50kg",
     "isArchived" : false,
-    "tagged" : [ "colleagues", "friends" ],
+    "tagged" : [ "stragulation" ],
     "appointments" : [ "14/5/21 14:00" ],
-    "records" : [ ]
-  }, {
-    "name" : "Breanna Frye",
-    "phone" : "92624417",
-    "email" : "royb@example.com",
-    "address" : "Blk 45 Aljunied Street 85, #11-31",
-    "height" : "172cm",
-    "weight" : "58kg",
-    "isArchived" : false,
-    "tagged" : [ "asidjoajc" ],
-    "appointments" : [ "19/6/21 19:00", "19/9/21 19:00" ],
-    "records" : [ {
-      "dateString" : "1/4/21 3:58",
-      "sections" : [ {
-        "title" : "weqrtyhj",
-        "body" : "wqedrfghnjmk,"
-      } ]
-    } ]
-  }, {
-    "name" : "Charlotte Oliveiro",
-    "phone" : "93210283",
-    "email" : "charlotte@example.com",
-    "address" : "Blk 11 Ang Mo Kio Street 74, #11-04",
-    "height" : "170cm",
-    "weight" : "53kg",
-    "isArchived" : false,
-    "tagged" : [ "neighbours" ],
-    "appointments" : [ "14/5/21 14:00" ],
-    "records" : [ {
-      "dateString" : "29/3/21 23:49",
-      "sections" : [ {
-        "title" : "asfsdbdbfasfsdbdbf",
-        "body" : "sdvdsthbrdthtynsdvdsthbrdthtyn"
-      } ]
-    }, {
-      "dateString" : "31/3/21 22:57",
-      "sections" : [ {
-        "title" : "asfsdbdbf",
-        "body" : "sdvdsthbrdthtyn"
-      }, {
-        "title" : "esrbrdtndty",
-        "body" : "dgndgthyn"
-      }, {
-        "title" : "dn dthyn",
-        "body" : "tfyndtyndtyn"
-      }, {
-        "title" : "d",
-        "body" : "fgbdntdyn"
-      } ]
-    }, {
-      "dateString" : "31/3/21 23:35",
-      "sections" : [ {
-        "title" : "dorubhsiderubh",
-        "body" : "odifhgvilsueogiherth"
-      }, {
-        "title" : "sdrvslirutjbhlistrh",
-        "body" : "dfihblisutrhboiaurehob"
-      } ]
-    }, {
-      "dateString" : "31/3/21 23:59",
-      "sections" : [ ]
-    }, {
-      "dateString" : "1/4/21 0:04",
-      "sections" : [ ]
-    }, {
-      "dateString" : "1/4/21 0:19",
-      "sections" : [ {
-        "title" : "ewferh",
-        "body" : "ergertbt"
-      } ]
-    }, {
-      "dateString" : "1/4/21 4:20",
-      "sections" : [ ]
-    } ]
-  }, {
-    "name" : "David Li",
-    "phone" : "91031282",
-    "email" : "lidavid@example.com",
-    "address" : "Blk 436 Serangoon Gardens Street 26, #16-43",
-    "height" : "163cm",
-    "weight" : "63kg",
-    "isArchived" : false,
-    "tagged" : [ "family" ],
-    "appointments" : [ "19/9/21 19:00" ],
-    "records" : [ ]
-  }, {
-    "name" : "Gene Lyons",
-    "phone" : "92624417",
-    "email" : "royb@example.com",
-    "address" : "Blk 45 Aljunied Street 85, #11-31",
-    "height" : "172cm",
-    "weight" : "58kg",
-    "isArchived" : false,
-    "tagged" : [ "asidjoajc" ],
-    "appointments" : [ ],
-    "records" : [ ]
-  }, {
-    "name" : "Geoffrey Huber",
-    "phone" : "92624417",
-    "email" : "royb@example.com",
-    "address" : "Blk 45 Aljunied Street 85, #11-31",
-    "height" : "172cm",
-    "weight" : "58kg",
-    "isArchived" : false,
-    "tagged" : [ "asidjoajc" ],
-    "appointments" : [ "19/9/21 19:00" ],
-    "records" : [ ]
-  }, {
-    "name" : "Gurdeep Dejesus",
-    "phone" : "92624417",
-    "email" : "royb@example.com",
-    "address" : "Blk 45 Aljunied Street 85, #11-31",
-    "height" : "172cm",
-    "weight" : "58kg",
-    "isArchived" : false,
-    "tagged" : [ "asidjoajc" ],
-    "appointments" : [ ],
-    "records" : [ ]
-  }, {
-    "name" : "Irfan Ibrahim",
-    "phone" : "92492021",
-    "email" : "irfan@example.com",
-    "address" : "Blk 47 Tampines Street 20, #17-35",
-    "height" : "179cm",
-    "weight" : "66kg",
-    "isArchived" : true,
-    "tagged" : [ "classmates" ],
-    "appointments" : [ ],
-    "records" : [ {
-      "dateString" : "1/4/21 0:19",
-      "sections" : [ ]
-    }, {
-      "dateString" : "1/4/21 12:59",
-      "sections" : [ {
-        "title" : "ewqrtyujkil",
-        "body" : "sfgd"
-      }, {
-        "title" : "ergvrv",
-        "body" : "ergrehreh"
-      } ]
-    } ]
-  }, {
-    "name" : "Kaia Metcalfe",
-    "phone" : "92624417",
-    "email" : "royb@example.com",
-    "address" : "Blk 45 Aljunied Street 85, #11-31",
-    "height" : "172cm",
-    "weight" : "58kg",
-    "isArchived" : false,
-    "tagged" : [ "asidjoajc" ],
-    "appointments" : [ "19/9/21 19:00" ],
-    "records" : [ {
-      "dateString" : "1/4/21 4:03",
-      "sections" : [ {
-        "title" : "wasdefrgthyjuiklo;p'[",
-        "body" : "wedrftgyhujikol8p"
-      } ]
-    } ]
-  }, {
-    "name" : "Kimora Green",
-    "phone" : "92624417",
-    "email" : "royb@example.com",
-    "address" : "Blk 45 Aljunied Street 85, #11-31",
-    "height" : "172cm",
-    "weight" : "58kg",
-    "isArchived" : false,
-    "tagged" : [ "asidjoajc" ],
-    "appointments" : [ ],
-    "records" : [ {
-      "dateString" : "1/4/21 4:05",
-      "sections" : [ {
-        "title" : "23435",
-        "body" : "23143546"
-      } ]
-    } ]
-  }, {
-    "name" : "Lacy Cline",
-    "phone" : "92624417",
-    "email" : "royb@example.com",
-    "address" : "Blk 45 Aljunied Street 85, #11-31",
-    "height" : "172cm",
-    "weight" : "58kg",
-    "isArchived" : false,
-    "tagged" : [ "asidjoajc" ],
-    "appointments" : [ ],
-    "records" : [ ]
-  }, {
-    "name" : "Maisey Walmsley",
-    "phone" : "92624417",
-    "email" : "royb@example.com",
-    "address" : "Blk 45 Aljunied Street 85, #11-31",
-    "height" : "172cm",
-    "weight" : "58kg",
-    "isArchived" : false,
-    "tagged" : [ "asidjoajc" ],
-    "appointments" : [ ],
-    "records" : [ ]
-  }, {
-    "name" : "Maksim Decker",
-    "phone" : "92624417",
-    "email" : "royb@example.com",
-    "address" : "Blk 45 Aljunied Street 85, #11-31",
-    "height" : "172cm",
-    "weight" : "58kg",
-    "isArchived" : false,
-    "tagged" : [ "asidjoajc" ],
-    "appointments" : [ ],
-    "records" : [ ]
-  }, {
-    "name" : "Myron Wagner",
-    "phone" : "92624417",
-    "email" : "royb@example.com",
-    "address" : "Blk 45 Aljunied Street 85, #11-31",
-    "height" : "172cm",
-    "weight" : "58kg",
-    "isArchived" : false,
-    "tagged" : [ "asidjoajc" ],
-    "appointments" : [ ],
-    "records" : [ ]
-  }, {
-    "name" : "Naya Young",
-    "phone" : "92624417",
-    "email" : "royb@example.com",
-    "address" : "Blk 45 Aljunied Street 85, #11-31",
-    "height" : "172cm",
-    "weight" : "58kg",
-    "isArchived" : false,
-    "tagged" : [ "asidjoajc" ],
-    "appointments" : [ ],
-    "records" : [ ]
-  }, {
-    "name" : "Patsy Delgado",
-    "phone" : "92624417",
-    "email" : "royb@example.com",
-    "address" : "Blk 45 Aljunied Street 85, #11-31",
-    "height" : "172cm",
-    "weight" : "58kg",
-    "isArchived" : false,
-    "tagged" : [ "asidjoajc" ],
-    "appointments" : [ ],
-    "records" : [ ]
-  }, {
-    "name" : "Reilly Esparza",
-    "phone" : "92624417",
-    "email" : "royb@example.com",
-    "address" : "Blk 45 Aljunied Street 85, #11-31",
-    "height" : "172cm",
-    "weight" : "58kg",
-    "isArchived" : false,
-    "tagged" : [ "asidjoajc" ],
-    "appointments" : [ ],
-    "records" : [ ]
-  }, {
-    "name" : "Robert Vance",
-    "phone" : "92624417",
-    "email" : "royb@example.com",
-    "address" : "Blk 45 Aljunied Street 85, #11-31",
-    "height" : "172cm",
-    "weight" : "58kg",
-    "isArchived" : false,
-    "tagged" : [ "asidjoajc" ],
-    "appointments" : [ ],
-    "records" : [ ]
-  }, {
-    "name" : "Roy Balakrishnan",
-    "phone" : "92624417",
-    "email" : "royb@example.com",
-    "address" : "Blk 45 Aljunied Street 85, #11-31",
-    "height" : "172cm",
-    "weight" : "58kg",
-    "isArchived" : false,
-    "tagged" : [ "asidjoajc" ],
-    "appointments" : [ ],
-    "records" : [ ]
-  }, {
-    "name" : "Sommer Frost",
-    "phone" : "92624417",
-    "email" : "royb@example.com",
-    "address" : "Blk 45 Aljunied Street 85, #11-31",
-    "height" : "172cm",
-    "weight" : "58kg",
-    "isArchived" : false,
-    "tagged" : [ "bronchitis", "cough" ],
-    "appointments" : [ ],
-    "records" : [ ]
-  }, {
-    "name" : "Tala Lawson",
-    "phone" : "92624417",
-    "email" : "royb@example.com",
-    "address" : "Blk 45 Aljunied Street 85, #11-31",
-    "height" : "172cm",
-    "weight" : "58kg",
-    "isArchived" : false,
-    "tagged" : [ "asidjoajc" ],
-    "appointments" : [ ],
-    "records" : [ ]
-  }, {
-    "name" : "Tate Britton",
-    "phone" : "92624417",
-    "email" : "royb@example.com",
-    "address" : "Blk 45 Aljunied Street 85, #11-31",
-    "height" : "172cm",
-    "weight" : "58kg",
-    "isArchived" : false,
-    "tagged" : [ "asidjoajc" ],
-    "appointments" : [ ],
-    "records" : [ ]
-  }, {
-    "name" : "Teri Guy",
-    "phone" : "92624417",
-    "email" : "royb@example.com",
-    "address" : "Blk 45 Aljunied Street 85, #11-31",
-    "height" : "172cm",
-    "weight" : "58kg",
-    "isArchived" : false,
-    "tagged" : [ "asidjoajc" ],
-    "appointments" : [ ],
     "records" : [ ]
   } ]
 }
