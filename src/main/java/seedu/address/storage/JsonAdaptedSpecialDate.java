@@ -13,6 +13,8 @@ import seedu.address.model.person.SpecialDate;
  */
 public class JsonAdaptedSpecialDate {
 
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "A special date's %s field is missing!";
+
     private final LocalDate date;
     private final String description;
 
@@ -38,6 +40,14 @@ public class JsonAdaptedSpecialDate {
      * Converts this Jackson-friendly adapted event object into the model's {@code SpecialDate} object.
      */
     public SpecialDate toModelType() throws IllegalValueException {
+        if (date == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "date"));
+        }
+
+        if (description == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "description"));
+        }
+
         if (!SpecialDate.isValidSpecialDate(date, description)) {
             throw new IllegalValueException(SpecialDate.MESSAGE_CONSTRAINTS);
         }

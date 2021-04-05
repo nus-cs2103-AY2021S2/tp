@@ -8,11 +8,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Meeting;
+import seedu.address.model.person.Name;
 
 /**
  * Jackson-friendly version of {@link Meeting}.
  */
 public class JsonAdaptedMeeting {
+
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "A meeting's %s field is missing!";
 
     private final LocalDate date;
     private final LocalTime time;
@@ -42,6 +45,18 @@ public class JsonAdaptedMeeting {
      * Converts this Jackson-friendly adapted event object into the model's {@code Meeting} object.
      */
     public Meeting toModelType() throws IllegalValueException {
+        if (date == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "date"));
+        }
+
+        if (time == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "time"));
+        }
+
+        if (description == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "description"));
+        }
+
         if (!Meeting.isValidMeeting(date, time, description)) {
             throw new IllegalValueException(Meeting.MESSAGE_CONSTRAINTS);
         }

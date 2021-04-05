@@ -42,9 +42,9 @@ public class DateUtil {
         DATE_INPUT_FORMATTER = DateTimeFormatter.ofPattern(toShowPatterns[0]);
     }
 
-    public static final String MESSAGE_CONSTRAINT = MESSAGE_INVALID_DATE_FORMAT + "Format given should be one of "
-        + String.join(", ", toShowPatterns) + ".\n"
-        + "Some examples are " + String.join(", ", toShowExamples) + ".";
+    public static final String MESSAGE_CONSTRAINT = MESSAGE_INVALID_DATE_FORMAT
+            + "Format given should be one of " + String.join(", ", toShowPatterns) + "."
+            + " Some examples are " + String.join(", ", toShowExamples) + ".";
 
     /**
      * Takes a string and parses it into a LocalDate

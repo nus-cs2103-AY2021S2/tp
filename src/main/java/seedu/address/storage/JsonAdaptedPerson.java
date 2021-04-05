@@ -17,6 +17,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.commons.util.DateUtil;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Debt;
@@ -105,19 +106,12 @@ class JsonAdaptedPerson {
                 .collect(Collectors.toList()));
     }
 
-    private String errorMsgForDateBeforeBirthday(Name name, Meeting meeting) {
+    private String errorMsgForEventBeforeBirthday(Name name, Event event, String eventType) {
         StringBuilder sb = new StringBuilder();
         sb.append(String.format("Error deserializing %s. ", name))
-                .append(String.format("Problem with one of the meetings %s. ", meeting.getDescription()))
-                .append(String.format(MESSAGE_DATE_BEFORE_BIRTHDAY, meeting.getDate()));
-        return sb.toString();
-    }
-
-    private String errorMsgForDateBeforeBirthday(Name name, SpecialDate specialDate) {
-        StringBuilder sb = new StringBuilder();
-        sb.append(String.format("Error deserializing %s. ", name))
-                .append(String.format("Problem with one of the special dates %s. ", specialDate.getDescription()))
-                .append(String.format(MESSAGE_DATE_BEFORE_BIRTHDAY, specialDate.getDate()));
+                .append(String.format("Problem with one of the %s.\n", eventType))
+                .append(String.format("%s: %s\n", eventType, event.toString()))
+                .append(String.format(MESSAGE_DATE_BEFORE_BIRTHDAY, DateUtil.toErrorMessage(event.getDate())));
         return sb.toString();
     }
 
@@ -198,7 +192,8 @@ class JsonAdaptedPerson {
             LocalDate dateToCheck = dateModel.getDate();
 
             if (dateToCheck.isBefore(modelBirthday.getDate())) {
-                throw new IllegalValueException(errorMsgForDateBeforeBirthday(modelName, dateModel));
+                throw new IllegalValueException(
+                        errorMsgForEventBeforeBirthday(modelName, dateModel, "Special Date"));
             }
 
             modelDates.add(dateModel);
@@ -210,7 +205,8 @@ class JsonAdaptedPerson {
             LocalDate dateToCheck = modelMeeting.getDate();
 
             if (dateToCheck.isBefore(modelBirthday.getDate())) {
-                throw new IllegalValueException(errorMsgForDateBeforeBirthday(modelName, modelMeeting));
+                throw new IllegalValueException(
+                        errorMsgForEventBeforeBirthday(modelName, modelMeeting, "Meeting"));
             }
 
             modelMeetings.add(modelMeeting);
