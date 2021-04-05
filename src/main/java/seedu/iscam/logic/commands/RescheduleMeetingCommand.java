@@ -32,8 +32,8 @@ public class RescheduleMeetingCommand extends Command {
             + "original.";
     public static final String MESSAGE_CONFLICT = "There is another meeting with the same date and time, consider "
             + "scheduling to another time.";
-    public static final String MESSAGE_ALREADY_COMPLETE = "This meeting was already completed, it cannot be " +
-            "rescheduled.";
+    public static final String MESSAGE_ALREADY_COMPLETE = "This meeting was already completed, it cannot be "
+            + "rescheduled.";
 
     private final Index index;
     private final DateTime dateTime;

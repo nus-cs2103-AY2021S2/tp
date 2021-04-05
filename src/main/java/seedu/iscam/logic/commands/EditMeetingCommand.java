@@ -105,7 +105,7 @@ public class EditMeetingCommand extends Command {
 
         if (meeting.getStatus().isComplete() && editedStatus.isEmpty()) {
             throw new CommandException(MESSAGE_NOT_ALLOWED);
-        } else if(meeting.getStatus().isComplete() && editedStatus.get().isComplete()) {
+        } else if (meeting.getStatus().isComplete() && editedStatus.get().isComplete()) {
             throw new CommandException(MESSAGE_ALREADY_COMPLETE);
         }
 
