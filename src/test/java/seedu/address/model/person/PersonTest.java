@@ -15,6 +15,7 @@ import static seedu.address.testutil.TypicalPersons.BOB;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -135,5 +136,10 @@ public class PersonTest {
                 2024, 2, 29),
                 editedAlice.getGoalDeadline(LocalDate.of(2024, 1, 20)));
 
+        // no prior meetings
+        editedAlice = new PersonBuilder(aliceCopy).build()
+                .withGoal(new Goal(Goal.Frequency.WEEKLY))
+                .withMeetings(new ArrayList<Event>());
+        assertEquals(ZERO_DAY, editedAlice.getGoalDeadline(date));
     }
 }
