@@ -11,8 +11,8 @@ import seedu.partyplanet.model.date.Date;
  */
 public class Birthday extends Date {
 
-    public static final String MESSAGE_CONSTRAINTS = "Birthdays should be in one of the following formats:\n"
-            + MESSAGE_YEAR_FORMATS + "\n" + MESSAGE_NOYEAR_FORMATS;
+    public static final String MESSAGE_CONSTRAINTS = "Birthdays should be valid and in one of the following formats:\n"
+            + "[with positive year]\n" + MESSAGE_YEAR_FORMATS + "\n[without year]\n" + MESSAGE_NOYEAR_FORMATS;
     public static final String MESSAGE_BIRTHDAY_CONSTRAINTS = "Birthday should not be a date in the future";
     public static final Birthday EMPTY_BIRTHDAY = new Birthday();
 
