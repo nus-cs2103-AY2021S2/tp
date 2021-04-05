@@ -818,6 +818,10 @@ Format: `findC KEYWORD [KEYWORD]…​`
 * Contacts matching at least one keyword will be returned (i.e. `OR` search). e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 </div>
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Once the `findC` command is executed, only the relevant contacts will be shown. To view all contacts again, simply enter the `contacts` command or click on the contacts button in the side panel.
+</div>
+
 Parameter:
 
 * [`KEYWORD`](#keyword) The keyword used to search for contacts.
