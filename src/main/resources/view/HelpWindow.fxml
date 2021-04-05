@@ -77,7 +77,7 @@
                             <UG action="Edit" format="edit owner n/OWNERNAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]..." />
                             <UG action="Edit Dog" format="edit dog n/DOGNAME b/BREED d/DATEOFBIRTH s/SEX o/OWNERID [t/TAG]..." />
                             <UG action="Edit Program" format="edit program n/NAME [s/DATEOFSESSION]... [t/TAG]..." />
-                            <UG action="Enrol" format="d/DOGID p/PROGRAMID" />
+                            <UG action="Enrol" format="enrol d/DOGID p/PROGRAMID" />
                             <UG action="Drop" format="drop d/DOGID p/PROGRAMID" />
                             <UG action="Find" format="find KEYWORD [MORE_KEYWORDS]…" />
                             <UG action="List" format="list" />
