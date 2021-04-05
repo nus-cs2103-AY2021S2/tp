@@ -60,7 +60,7 @@ destroy EditCommandParser
 StoreMandoParser --> LogicManager : e
 deactivate StoreMandoParser
 
-LogicManager -> EditCommand : execute()
+LogicManager -> EditCommand : execute(model)
 activate EditCommand
 
 EditCommand -> Model : getFilteredList()
