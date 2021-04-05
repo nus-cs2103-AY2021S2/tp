@@ -126,7 +126,7 @@ Here are some general rules to follow when entering prefixes and parameters:
   
 * To add multiple parameters of the same prefix, add the prefix multiple times before each parameter.<br>
   e.g. To add two TAGs, enter `-t tagOne -t tagTwo`.<br>
-  e.g. To add three HEADERSs, enter `-h "header:one" -h "header:two" -h "header:three"`.<br>
+  e.g. To add three HEADERSs, enter `-h \"header:one\" -h \"header:two\" -h \"header:three\"`.<br>
   
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. If the command specifies `help 123`, it will be interpreted as `help`.<br>
