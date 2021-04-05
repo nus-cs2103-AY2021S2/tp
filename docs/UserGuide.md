@@ -66,7 +66,7 @@ JSON files. It will start with an empty Address Book and Event Book if there is 
    ICs an easy way of organising the events. For example, they can sort by upcoming event dates (according to day, 
    month and year) so that they can refer and plan for the upcoming parties accordingly.
    
-8. Welfare ICs can delete people by the tags they contain (eg. `AY20/21`). This can allow for Welfare ICs to stop 
+8. Welfare ICs can delete people by the tags they contain (eg. `AY1920`). This can allow for Welfare ICs to stop 
    storing information about members who contain that tag (eg. graduated members).
 
 
