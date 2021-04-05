@@ -85,11 +85,11 @@ public class UpdateDeadlineCommand extends Command {
         }
 
         if (deadlineList.checkIsDone(targetDeadlineIndex.getZeroBased())) {
-            deadlineList.setDeadline(targetDeadlineIndex.getZeroBased(), updatedDeadline);
-            deadlineList.markAsDone(targetDeadlineIndex.getZeroBased());
-        } else {
-            projectToUpdate.getDeadlines().setDeadline(targetDeadlineIndex.getZeroBased(), updatedDeadline);
+            updatedDeadline.markAsDone();
         }
+
+        deadlineList.setDeadline(targetDeadlineIndex.getZeroBased(), updatedDeadline);
+
         model.updateFilteredProjectList(Model.PREDICATE_SHOW_ALL_PROJECTS);
         return new CommandResult(String.format(MESSAGE_UPDATE_DEADLINE_SUCCESS, updatedDeadline),
                 new ViewProjectAndOverviewUiCommand(projectIndex));

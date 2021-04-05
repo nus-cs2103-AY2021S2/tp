@@ -75,11 +75,11 @@ public class UpdateTodoCommand extends Command {
         }
 
         if (todos.checkIsDone(targetTodoIndex.getZeroBased())) {
-            todos.setTodo(targetTodoIndex.getZeroBased(), todo);
-            todos.markAsDone(targetTodoIndex.getZeroBased());
-        } else {
-            todos.setTodo(targetTodoIndex.getZeroBased(), todo);
+            todo.markAsDone();
         }
+
+        todos.setTodo(targetTodoIndex.getZeroBased(), todo);
+
         model.updateFilteredProjectList(Model.PREDICATE_SHOW_ALL_PROJECTS);
         return new CommandResult(String.format(MESSAGE_UPDATE_TODO_SUCCESS, todo),
                 new ViewProjectAndTodosUiCommand(projectIndex));
