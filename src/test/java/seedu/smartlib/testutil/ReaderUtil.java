@@ -6,12 +6,8 @@ import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_READER;
 import static seedu.smartlib.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.Set;
-
 import seedu.smartlib.logic.commands.AddReaderCommand;
-import seedu.smartlib.logic.commands.EditCommand.EditReaderDescriptor;
 import seedu.smartlib.model.reader.Reader;
-import seedu.smartlib.model.tag.Tag;
 
 /**
  * A utility class for Reader.
@@ -43,29 +39,6 @@ public class ReaderUtil {
         reader.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.getTagName() + " ")
         );
-        return sb.toString();
-    }
-
-    /**
-     * Returns the part of command string for the given {@code EditReaderDescriptor}'s details.
-     *
-     * @param descriptor edit reader descriptor to be examined.
-     * @return command string for the given EditReaderDescriptor's details.
-     */
-    public static String getEditReaderDescriptorDetails(EditReaderDescriptor descriptor) {
-        StringBuilder sb = new StringBuilder();
-        descriptor.getName().ifPresent(name -> sb.append(PREFIX_READER).append(name.toString()).append(" "));
-        descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.toString()).append(" "));
-        descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.toString()).append(" "));
-        descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.toString()).append(" "));
-        if (descriptor.getTags().isPresent()) {
-            Set<Tag> tags = descriptor.getTags().get();
-            if (tags.isEmpty()) {
-                sb.append(PREFIX_TAG);
-            } else {
-                tags.forEach(s -> sb.append(PREFIX_TAG).append(s.getTagName()).append(" "));
-            }
-        }
         return sb.toString();
     }
 
