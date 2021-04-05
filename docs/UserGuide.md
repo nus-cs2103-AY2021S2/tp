@@ -32,6 +32,32 @@ SOChedule is a one-stop solution for managing tasks and events, optimized for us
 * Finding free time slots: `free_time`
 * Summarising tasks and events completion status: `summary`
 
+## Public Parameters for Tasks and Events
+As listed below are the attributes to be specified for Tasks and Events. All parameters are mandatory unless otherwise stated.
+
+### Common to both Task and Event
+
+| Attribute | Identifier | Restriction(s) |
+| --------- | ---------- | ---------------------------------  |
+| `Name`    | `n/`       | <ul><li>Maximum 50 characters in length</li></ul> |
+| `Category`| `c/`       | <ul><li>Maximum 20 characters in length each</li> <li>None, single or multiple Categories can be assigned to a single element </li> <li>No spaces are allowed</li></ul>            |
+| `Tag`     | `t/`       | <ul><li>Maximum 20 characters in length each</li> <li>None, single or multiple Tags can be assigned to a single element </li> <li>No spaces are allowed</li></ul>   |
+
+### Task-Specific
+
+| Attribute | Identifier | Restriction(s) |
+| --------- | ---------- | ---------------------------------  |
+| `Deadline`    | `d/`       | <ul><li>Follows the format YYYY-MM-DD</li> <li>Must be a date later than the date of creation</li></ul> |
+| `Priority`    | `p/`       | <ul><li>Single digit integer ranging from 0 to 9 inclusive</li><li>0 is highest in priority, while 9 is lowest</li></ul> |
+
+### Event-Specific
+
+| Attribute   | Identifier | Restriction(s) |
+| ----------- | ---------- | ---------------------------------  |
+| `Start Date`| `sd/`      | <ul><li>Follows the format YYYY-MM-DD</li><li>Date earlier than date of creation allowed (for ongoing events)</li></ul> |
+| `End Date`  | `ed/`      | <ul><li>Follows the format YYYY-MM-DD</li><li>Must be a date later than the date of creation</li></ul>   |
+| `Start Time`| `st/`      | <ul><li>Follows the format of hh:mm, in a 24-hour format</li></ul>            |
+| `End Time`  | `et/`      | <ul><li>Follows the format of hh:mm, in a 24-hour format</li></ul> |
 
 --------------------------------------------------------------------------------------------------------------------
 
