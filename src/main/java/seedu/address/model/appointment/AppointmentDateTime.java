@@ -22,6 +22,10 @@ public class AppointmentDateTime {
 
     public static final String MESSAGE_CONSTRAINTS = "AppointmentDateTime should be in "
             + "YYYY-MM-DD HH:MM AM/PM format";
+    public static final String DATE_FORMAT = "MMM dd yyyy";
+    public static final String TIME_FORMAT = "hh:mm a";
+    public static final String DATE_TIME_FORMAT = DATE_FORMAT + " " + TIME_FORMAT;
+    public static final String DATE_TIME_STORAGE_FORMAT = "yyyy-MM-dd hh:mm a";
 
     /*
      * DateTime make use of formatter to validate instead of Regex for DateTime accuracy.
@@ -83,6 +87,7 @@ public class AppointmentDateTime {
 
     /**
      * Getter method to retrieve value of AppointmentDateTime.
+     *
      * @return LocalDateTime stored
      */
     public LocalDateTime getValue() {
@@ -100,6 +105,7 @@ public class AppointmentDateTime {
 
     /**
      * Checks whether time from to time to is valid.
+     *
      * @return True if time of current {@code AppointmentDateTime} object is smaller
      * than given {@code AppointmentDateTime} in params
      */
@@ -109,7 +115,7 @@ public class AppointmentDateTime {
 
     @Override
     public String toString() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy hh:mma");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_TIME_FORMAT);
         return value.format(formatter);
     }
 
@@ -117,7 +123,7 @@ public class AppointmentDateTime {
      * Returns a date only string for display purpose.
      */
     public String toDateString() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMAT);
         return value.format(formatter);
     }
 
@@ -125,7 +131,7 @@ public class AppointmentDateTime {
      * Returns a time only string for display purpose.
      */
     public String toTimeString() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm a");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(TIME_FORMAT);
         return value.format(formatter);
     }
 
@@ -133,7 +139,7 @@ public class AppointmentDateTime {
      * Returns a date time string for storage purpose.
      */
     public String toStorageString() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm a");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_TIME_STORAGE_FORMAT);
         return value.format(formatter);
     }
 
@@ -143,6 +149,18 @@ public class AppointmentDateTime {
 
     public boolean isBefore(AppointmentDateTime other) {
         return this.value.isBefore(other.value);
+    }
+
+    public boolean isBefore(LocalDateTime other) {
+        return this.value.isBefore(other);
+    }
+
+    public LocalDate toDate() {
+        return this.value.toLocalDate();
+    }
+
+    public LocalTime toTime() {
+        return this.value.toLocalTime();
     }
 
     @Override
