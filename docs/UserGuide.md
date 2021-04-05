@@ -16,7 +16,7 @@ a Command Line Interface (CLI) application which handles user requests that are 
 With HEY MATEz, managing and distributing tasks will never be a headache again! :smile:
 
 ## About this User Guide
-This user guide includes information on the **features** of HEY MAYEz as well as a walkthrough on how to use them. The features 
+This user guide includes information on the **features** of HEY MATEz as well as a walkthrough on how to use them. The features 
 are further divided into 3 sections which include the **General features**, **Member related features** as well as the **Task related features**.
 Member related features allow you to manage a list of members and find members. On the other hand, Task related features allow you
 to manage tasks which can be identified by their unique deadlines or priorities.
@@ -158,6 +158,10 @@ Format: `addMember NAME -p PHONE_NUMBER -e EMAIL [-r ROLE]`
 * The field ROLE is optional
 * If role field is not specified, person will be assigned a default role of member.
 
+Assumptions:
+* Every member in the CCA has different names where you are not allowed 
+  to add with the same name with different details. An error will be prompted.
+
 Examples: 
 * `addMember Dylan -p 64529356 -e dylan@gmail.com`
 * `addMember Dylan -p 64529356 -e dylan@gmail.com -r President`
@@ -191,7 +195,7 @@ Examples:
 Club members may change their emails or phone numbers after a while. This feature allows you to edit the details of the 
 existing Member in the application with the name you specify.
 
-Format: `editMember NAME_IN_LIST [-n NEW_NAME] [-p NEW_PHONE_NUMBER] [-e NEW_EMAIL] [-r ROLE]`
+Format: `editMember NAME_IN_LIST [-n NEW_NAME] [-p NEW_PHONE_NUMBER] [-e NEW_EMAIL] [-r NEW_ROLE]`
 
 * Edits the member at the specified NAME_IN_LIST.
 * The fields NEW_NAME, NEW_PHONE_NUMBER, NEW_EMAIL, NEW_ROLE are all optional
