@@ -1,5 +1,7 @@
 package seedu.address.logic.parser;
 
+import java.util.StringJoiner;
+
 /**
  * Contains Command Line Interface (CLI) syntax definitions common to multiple commands
  */
@@ -14,6 +16,8 @@ public class CliSyntax {
     public static final String PREFIX_TRIPDAY_STRING = "d/";
     public static final String PREFIX_PRICE_STRING = "pr/";
     public static final String PREFIX_COMMUTER_STRING = "c/";
+
+    public static final String PREFIX_STRING_LIST = joinPrefixes();
 
     /* Prefix definitions */
     public static final Prefix PREFIX_NAME = new Prefix(PREFIX_NAME_STRING);
@@ -30,4 +34,19 @@ public class CliSyntax {
      * Prevents CliSyntax from being instantiated.
      */
     private CliSyntax() {}
+
+    private static String joinPrefixes() {
+        StringJoiner sj = new StringJoiner(", ");
+        sj.add(PREFIX_NAME_STRING);
+        sj.add(PREFIX_PHONE_STRING);
+        sj.add(PREFIX_ADDRESS_STRING);
+        sj.add(PREFIX_TAG_STRING);
+        sj.add(PREFIX_ALL_STRING);
+        sj.add(PREFIX_TRIPTIME_STRING);
+        sj.add(PREFIX_TRIPDAY_STRING);
+        sj.add(PREFIX_PRICE_STRING);
+        sj.add(PREFIX_COMMUTER_STRING);
+
+        return sj.toString();
+    }
 }

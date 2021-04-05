@@ -122,11 +122,11 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [d/DAY] [t/TIME] [tag/TAG]…
 * `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 * `edit 2 n/Betsy Crower tag/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
-### 3.5 Locating passengers by name: `find`
+### 3.5 Locating passengers by prefixes: `find`
 
 Finds passengers whose names contain any of the given keywords.
 
-Format: `find PREFIX/KEYWORD` where PREFIX is one of the following: `n`, `a`, `p`, `tag`
+Format: `find PREFIX/KEYWORD` where PREFIX is one of the following: `n`, `a`, `p`, `tag`, `pr`, `all`, `d`, `t`
 
 <div markdown="block" class="alert alert-info">
 
@@ -135,21 +135,25 @@ Format: `find PREFIX/KEYWORD` where PREFIX is one of the following: `n`, `a`, `p
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * Only full words will be matched e.g. `Han` will not match `Hans`
 * Only **one type of prefix** can be specified
+* More than 1 keyword can be specified for a single prefix
 * Keywords separated by space will require both keywords to be matched.
   e.g. `Hans Yang` will only return `Hans Gruber Yang` instead of `Bo Yang`
-* Prefixes for searching name `n/`, address `a/`, tag `tag/`, phone number `p/`
+* Prefixes for searching name `n/`, address `a/`, tag `tag/`, phone number `p/`, price `pr/`, day `d/` and time `t/`
+* `all` prefix for searching across names, addresses, tags and phone numbers quickly 
 </div>
 
 **Examples:**
 * `find n/John` returns `john` and `John Doe`
 * `find a/serangoon` returns `Bernice Yu`, `David Li`<br>
   ![result for 'find serangoon'](images/findAddress.png)
+* `find d/Monday d/Tuesday` returns `Alex Yeoh`, `Irfan Ibrahim` and `Roy Balakrishnan`
+  ![result for 'find d/Monday d/Tuesday'](images/findCommandExampleDay.png)
 
 ### 3.6 Delete passengers: `delete`
 
 Deletes the specific passenger from the GME terminal.
 
-Format: `delete INDEX [INDEX]`
+Format: `delete INDEX [INDEX INDEX...]`
 
 <div markdown="block" class="alert alert-info">
 
@@ -165,7 +169,7 @@ Format: `delete INDEX [INDEX]`
 
 **Examples:**
 * `list` followed by `delete 3` deletes the *3rd* person in the passenger list.
-* `delete 1 2 5` deletes the 1st, 2nd and 4th person in the passenger list. 
+* `delete 1 2 5` deletes the 1st, 2nd and 5th person in the passenger list. 
 
 
 ### 3.7 Select passengers to arrange a carpool: `pool`

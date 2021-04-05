@@ -10,6 +10,8 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.StringJoiner;
 
+import seedu.address.model.TripDay;
+import seedu.address.model.TripTime;
 import seedu.address.model.person.driver.Driver;
 import seedu.address.model.person.passenger.Passenger;
 import seedu.address.model.tag.Tag;
