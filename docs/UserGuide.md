@@ -299,13 +299,13 @@ Examples:
 
 #### 3.8.1 Undoing : `undo`
 
-Undoes the last add, delete or edit commands in the command history.
+Undoes the last add, delete, edit or clear commands in the command history.
 
 Format:
 * `undo`
 
 Description:
-* Undoes the last add, delete or edit commands in the command history.
+* Undoes the last add, delete, edit, or clear commands in the command history.
 
 Examples:
 *  `undo` after command `delete appointment 1` adds the deleted appointment back to the app.
