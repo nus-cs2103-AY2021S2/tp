@@ -175,9 +175,10 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [tc/CHILDTAG]…​
 * The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the contact will be removed i.e adding of tags is not cumulative.
-* You can remove all the contact’s tags by typing `t/` without
-    specifying any tags after it. Note: all ChildTags will also be removed.
+* When editing tags, the existing tags of the contact will be removed i.e. adding of tags is not cumulative.
+* You can remove all the contact’s tags by typing `t/` or `tc/` without
+    specifying any tags after it. Note: both regular Tags and ChildTags will be removed in both situations.
+  
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st contact to be `91234567` and `johndoe@example.com` respectively.
@@ -188,7 +189,7 @@ Examples:
 Find contacts based on the given option. If no option specified, all of a contact's
 fields will be searched and any keyword matches in any one of the fields will return that contact.
 
-Format: `findAppt [o/OPTION] KEYWORD [MORE_KEYWORDS]…​`
+Format: `find [o/OPTION] KEYWORD [MORE_KEYWORDS]…​`
 
 Currently available options for the `[OPTION]` field include:
 * `name` Find by name of the contact
@@ -203,17 +204,13 @@ you are searching for. Also, please note that only exact matches will be returne
 Example: find o/tag t/first t/second
 </div>
 
-* The search is case-insensitive. e.g `ptm` will match `PTM`
-* The order of the keywords does not matter. e.g. `Teacher meeting` will match `Meeting teacher`
-* Only the name is searched.
-* Incomplete words will also be matched e.g. `PT` will match `PTM`
-* Appointments with any field matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Teacher meeting` will return `Speak to ballet teacher`, `PSG meeting`
-* If *n* appointments can be found, message “*n* appointments listed!” will be displayed
-  e.g. when 0 results, "0 appointments listed!" is displayed
-
-Examples:
-* `findAppt ptm` returns `PTM`
+* The search is case-insensitive. e.g `alex` will match `ALEX`
+* The order of the keywords does not matter. e.g. `john doe` will match `doe john`
+* Incomplete words will also be matched e.g. `Ale` will match `Alex`
+* Contacts with any field matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Alex David` will return `Alex Yeoh`, `David Li`
+* If *n* contacts can be found, message “*n* Contact(s) listed!” will be displayed
+  e.g. when 0 results are found, "0 Contact(s) listed!" is displayed
   
 Examples:
 * `find John` returns `john` and `John Doe`
@@ -306,7 +303,7 @@ Format: `addAppt n/NAME a/ADDRESS d/DATE [c/CONTACT_INDEX]…​ [tc/CHILDTAG]�
 * `DATE` has to be in the format "`dd`/`MM`/`yyyy` `HH`:`mm`".
 
 Examples:
-* `addAppt n/PTM a/ABC Primary School d/21/03/2021 10:00 c/2 ct/amy`
+* `addAppt n/PTM a/ABC Primary School d/21/03/2021 10:00 c/2 tc/amy`
 
 #### Deleting an appointment : `deleteAppt`
 
@@ -340,7 +337,7 @@ Format: `editAppt INDEX [n/NAME] [a/ADDRESS] [d/DATE] [c/CONTACT_INDEX]…​ [t
   
 Examples:
 
-* `edit 1 n/PSG meeting a/ABC Secondary School c/1` Edits the name and address of the 1st appointment to
+* `editAppt 1 n/PSG meeting a/ABC Secondary School c/1` Edits the name and address of the 1st appointment to
 be `PSG meeting` and `ABC Secondary School` respectively and replaces all related contacts with the 1st contact 
 on the contact list.
 
@@ -360,12 +357,11 @@ Currently available options for the `[OPTION]` field include:
 
 * The search is case-insensitive. e.g `ptm` will match `PTM`
 * The order of the keywords does not matter. e.g. `Teacher meeting` will match `Meeting teacher`
-* Only the name is searched.
 * Incomplete words will also be matched e.g. `PT` will match `PTM`
 * Appointments with any field matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Teacher meeting` will return `Speak to ballet teacher`, `PSG meeting`
-* If *n* appointments can be found, message “*n* appointments listed!” will be displayed
-  e.g. when 0 results, "0 appointments listed!" is displayed
+* If *n* appointments can be found, message “*n* Appointment(s) listed!” will be displayed
+  e.g. when 0 results are found, "0 Appointment(s) listed!" is displayed
 
 Examples:
 * `findAppt ptm` returns `PTM`
@@ -420,7 +416,7 @@ _Details coming soon ..._
 **A**: Child Tags are meant to represent your children, useful especially 
 if you have multiple children. Child Tags will always appear at the front of the list of Tags
 in the Address Book and are displayed in a different color to differentiate them. Any command
-that works with regular tags such as 'Find' or 'Sort' will also work with Child Tags.
+that works with regular tags such as 'Find' will also work with Child Tags.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -438,13 +434,13 @@ Action | Format, Examples
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [tc/CHILDTAG]…​ [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Fav** | `fav INDEX [o/OPTION]` <br> e.g., `fav 3 o/remove`
-**Find** | `find [o/OPTION] KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
+**Find** | `find [o/OPTION] KEYWORD [MORE_KEYWORDS]`<br> e.g., `find John`
 **List** | `list [o/OPTION]`
 **Tag** | `tag INDEX [o/OPTION] [tc/CHILDTAG]…​ [t/TAG]…​`<br> e.g., `tag 4 t/School t/English`
 **Sort** | `sort o/OPTION` <br> e.g., `sort o/name`
 ​ | **Appointment Book Commands**
 **Add** | `addAppt n/NAME a/ADDRESS d/DATE [c/CONTACT_INDEX]…​ [tc/CHILDTAG]…​` <br> e.g., `addAppt n/PTM a/ABC Primary School d/21/03/2021 10:00 c/2`
-**Delete** | `deleteAppt INDEX` <br> e.g., `delete 2`
-**Edit** | `editAppt INDEX [n/NAME] [a/ADDRESS] [d/DATE] [c/CONTACT_INDEX]…​ [tc/CHILDTAG]…​` <br> e.g., `edit 1 n/PSG meeting a/ABC Secondary School c/1`
-**Find** | `findAppt [o/OPTION] KEYWORD [MORE_KEYWORDS]…​` <br> e.g., `find PTM`
+**Delete** | `deleteAppt INDEX` <br> e.g., `deleteAppt 2`
+**Edit** | `editAppt INDEX [n/NAME] [a/ADDRESS] [d/DATE] [c/CONTACT_INDEX]…​ [tc/CHILDTAG]…​` <br> e.g., `editAppt 1 n/PSG meeting a/ABC Secondary School c/1`
+**Find** | `findAppt [o/OPTION] KEYWORD [MORE_KEYWORDS]…​` <br> e.g., `findAppt PTM`
 **List** | `listAppt`
