@@ -14,7 +14,7 @@ import java.util.function.Predicate;
 import org.junit.jupiter.api.Test;
 
 import seedu.booking.logic.commands.FindVenueCommand;
-import seedu.booking.model.booking.VenueNameContainsKeywordsPredicate;
+import seedu.booking.model.venue.VenueNameContainsKeywordsPredicate;
 import seedu.booking.model.venue.Venue;
 
 public class FindVenueCommandParserTest {

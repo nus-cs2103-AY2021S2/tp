@@ -2,14 +2,22 @@ package seedu.booking.logic.parser;
 
 import static seedu.booking.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.booking.logic.commands.CommandTestUtil.VALID_BOOKING_ID_DESC;
+import static seedu.booking.logic.commands.CommandTestUtil.VENUE_NAME_DESC_HALL;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_ID;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_VENUE;
 import static seedu.booking.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.booking.logic.parser.CommandParserTestUtil.assertParseSuccess;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.booking.logic.commands.FindBookingCommand;
-import seedu.booking.model.booking.BookingIdContainsKeywordsPredicate;
+import seedu.booking.model.booking.Booking;
+import seedu.booking.model.booking.BookingContainsVenuePredicate;
 
 public class FindBookingCommandParserTest {
 
@@ -23,13 +31,18 @@ public class FindBookingCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsFindBookingCommand() {
-        // no leading and trailing whitespaces
-        FindBookingCommand expectedFindBookingCommand =
-                new FindBookingCommand(new BookingIdContainsKeywordsPredicate("1"));
-        assertParseSuccess(parser, VALID_BOOKING_ID_DESC, expectedFindBookingCommand);
+        List<Predicate<Booking>> predicateList = new ArrayList<>();
+        BookingContainsVenuePredicate venueNamePredicate =
+                new BookingContainsVenuePredicate(Arrays.asList("Victoria", "Hall"));
+        predicateList.add(venueNamePredicate);
 
-        // multiple whitespaces between keywords
-        assertParseSuccess(parser, " " + PREFIX_BOOKING_ID + "\n 1 \n ", expectedFindBookingCommand);
+        FindBookingCommand expectedFindBookingCommand = new FindBookingCommand(predicateList);
+
+        // no leading and trailing whitespaces
+        assertParseSuccess(parser, VENUE_NAME_DESC_HALL, expectedFindBookingCommand);
+
+        // multiple whitespaces before and after keywords
+        assertParseSuccess(parser, " " + PREFIX_VENUE + "\n Victoria Hall \n ", expectedFindBookingCommand);
     }
 
 }
