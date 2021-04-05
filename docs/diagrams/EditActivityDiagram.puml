@@ -7,11 +7,11 @@ start
 if () then ([Index > number of items in StoreMando])
     : Display command error message;
 else ([else])
-    if () then ([Input matches the edit command format])
+    if () then ([else])
         :Item's attributes update accordingly;
         :A success message is displayed to the user;
-    else ([else])
-        : Display parse error message;
+    else ([Edited item has the same fields as original item])
+        : Display item remains unchanged error message;
     endif
 endif
 stop
