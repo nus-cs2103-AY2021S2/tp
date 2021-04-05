@@ -44,12 +44,13 @@ public class SortCommand extends Command {
 
         String message;
 
+        model.sortContactList(option);
 
         if (option.equals(OPTION_NAME)) {
-            model.sortContactList(new NameComparator());
+//            model.sortContactList(new NameComparator());
             message = MESSAGE_SORT_ALPHABETICAL_SUCCESS;
         } else { // order.equals(OPTION_DATE)
-            model.sortContactList(new DateComparator());
+//            model.sortContactList(new DateComparator());
             message = MESSAGE_SORT_CHRONOLOGICAL_SUCCESS;
         }
 
