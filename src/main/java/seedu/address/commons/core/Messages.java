@@ -30,6 +30,9 @@ public class Messages {
     public static final String MESSAGE_INVALID_FILE_EXTENSION = "File \"%1$s\" does not have the required extension. "
         + "Accepted file extensions: \"%2$s\"";
 
+    // Special Dates
+    public static final String MESSAGE_NO_DATES = "%1$s has no special dates to delete.";
+
     // Tabs
     public static final String MESSAGE_INVALID_TAB = "To view this tab, use the following command instead: \n%1$s";
 }

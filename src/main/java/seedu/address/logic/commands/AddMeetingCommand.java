@@ -37,8 +37,8 @@ public class AddMeetingCommand extends Command {
             + PREFIX_TIME + "1240 "
             + PREFIX_DESCRIPTION + "We went to the beach!";
 
-    public static final String MESSAGE_CONSTRAINTS =
-            "Meetings are records of past events, and should not be in the future. Meeting description should not be empty";
+    public static final String MESSAGE_CONSTRAINTS = "Meetings are records of past events, "
+            + "and should not be in the future. Meeting description should not be empty";
 
     public static final String MESSAGE_ADD_MEETING_SUCCESS = "Added meeting for %1$s";
 
