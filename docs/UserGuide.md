@@ -357,7 +357,9 @@ Can be invoked repeatedly until there is no more history from the current sessio
 
 Format: `undo`
 
-Shortcut: `CTRL + Z`
+Shortcuts: 
+PC: `CTRL + Z` 
+Mac: `CMD + Z`
 
 #### Redoing actions : `redo`
 
@@ -367,7 +369,9 @@ Can be invoked repeatedly until there are no more previously executed actions fr
 
 Format: `redo`
 
-Shortcut: `CTRL + SHIFT + Z` or `CTRL + Y`
+Shortcut: 
+PC: `CTRL + SHIFT + Z` or `CTRL + Y` 
+Mac: `CMD + SHIFT + Z` or `CMD + Y`
 
 #### Toggle theme : `theme`
 
@@ -391,8 +395,8 @@ Retrieves previously entered input.
 * Pressing `Down` arrow key undoes the history revert.
 * At the most recent input, pressing `Down` arrow key once more clears the text box.
 * `ESC` key clears the text box.
-* `CTRL + Z` key combination undoes the last change to the address or event books.
-* `CTRL + SHIFT + Z` or `CTRL + Y` key combinations redo the last undone change to the address or event books.
+* `CTRL + Z`(PC) or `CMD + Z` (Mac) key combination undoes the last change to the address or event books.
+* `CTRL + SHIFT + Z` or `CTRL + Y` (PC) or `CMD + SHIFT + Z` or `CMD + Y` (Mac) key combinations redo the last undone change to the address or event books.
 
 ### Coming Soon (Additional Features)
 * Archiving of Data Files
