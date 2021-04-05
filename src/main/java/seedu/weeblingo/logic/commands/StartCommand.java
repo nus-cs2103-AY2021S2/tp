@@ -64,7 +64,7 @@ public class StartCommand extends Command {
         if (currentMode != Mode.MODE_QUIZ && currentMode != Mode.MODE_QUIZ_SESSION_ENDED) {
             throw new CommandException(MESSAGE_NOT_IN_QUIZ_MODE);
         }
-
+        model.clearQuizInstance();
         model.startQuiz(numOfQnsForQuizSession, tags);
         model.switchModeQuizSession();
         return new CommandResult(MESSAGE_SUCCESS, false, false);

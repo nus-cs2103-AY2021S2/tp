@@ -40,9 +40,9 @@ public class NextCommand extends Command {
 
         if (model.getNextFlashcard() == null) {
             String quizStatistics = model.getQuizStatisticString() + "\n";
-            String correctAttempts = model.getCorrectAttemptsString() + "\n";
             model.addScore();
             model.showAttemptedQuestions();
+            String correctAttempts = model.getCorrectAttemptsString() + "\n";
             model.switchModeQuizSessionEnded();
             return new CommandResult(MESSAGE_QUIZ_ENDED + quizStatistics + correctAttempts);
         }

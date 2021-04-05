@@ -5,6 +5,7 @@ import static seedu.weeblingo.commons.core.Messages.MESSAGE_TAG_NOT_FOUND;
 import static seedu.weeblingo.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
@@ -253,11 +254,18 @@ public class ModelManager implements Model {
 
     @Override
     public String getCorrectAttemptsString() {
-        if (quizInstance.getCorrectAttemptIndexes().isEmpty()) {
+        if (quizInstance.getCorrectlyAnsweredFlashcards().isEmpty()) {
             return "You did not answer any questions correctly.";
         } else {
+            List<Integer> correctAttemptDisplayIndexes = new ArrayList<>();
+            for (int i = 0; i < quizInstance.getAttemptedFlashcards().size(); i++) {
+                if (quizInstance.getCorrectlyAnsweredFlashcards()
+                        .contains(filteredFlashcards.get(i))) {
+                    correctAttemptDisplayIndexes.add(i + 1);
+                }
+            }
             return "You answered the following question(s) correctly: "
-                    + quizInstance.getCorrectAttemptIndexes().toString();
+                    + correctAttemptDisplayIndexes.toString();
         }
     }
 
