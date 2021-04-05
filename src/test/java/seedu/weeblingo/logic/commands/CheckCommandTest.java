@@ -224,6 +224,11 @@ public class CheckCommandTest {
         public String getQuizStatisticString() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public String getCorrectAttemptsString() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
@@ -254,6 +259,11 @@ public class CheckCommandTest {
             return Mode.MODE_QUIZ_SESSION;
         }
 
+        @Override
+        public String getCorrectAttemptsString() {
+            return "";
+        }
+
     }
 
     /**
@@ -282,6 +292,11 @@ public class CheckCommandTest {
         @Override
         public int getCurrentMode() {
             return Mode.MODE_QUIZ_SESSION;
+        }
+
+        @Override
+        public String getCorrectAttemptsString() {
+            return "";
         }
     }
 }
