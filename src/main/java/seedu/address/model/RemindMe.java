@@ -171,7 +171,6 @@ public class RemindMe implements ReadOnlyRemindMe {
         Module mod = modules.getModule(module);
         return mod.hasExam(index);
     }
-    
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the RemindMe.
