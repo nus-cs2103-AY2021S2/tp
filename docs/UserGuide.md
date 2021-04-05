@@ -577,7 +577,7 @@ If FriendDex is still not working, you can reinstall the app by deleting `friend
 
 ## Where to get additional help
 
-If you are still facing an issue that is not addressed in the guide, you submit it issue on Github page [here](https://github.com/AY2021S2-CS2103T-W14-1/tp/issues).
+If you are still facing an issue that is not addressed in the guide, you can submit an issue on our Github page [here](https://github.com/AY2021S2-CS2103T-W14-1/tp/issues).
 
 --------------------------------------------------------------------------------------------------------------------
 
