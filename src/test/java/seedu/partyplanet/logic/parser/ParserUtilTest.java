@@ -14,9 +14,9 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.partyplanet.logic.parser.exceptions.ParseException;
+import seedu.partyplanet.model.name.Name;
 import seedu.partyplanet.model.person.Address;
 import seedu.partyplanet.model.person.Email;
-import seedu.partyplanet.model.name.Name;
 import seedu.partyplanet.model.person.Phone;
 import seedu.partyplanet.model.tag.Tag;
 

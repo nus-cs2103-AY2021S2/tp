@@ -12,9 +12,9 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.partyplanet.commons.exceptions.IllegalValueException;
+import seedu.partyplanet.model.name.Name;
 import seedu.partyplanet.model.person.Address;
 import seedu.partyplanet.model.person.Email;
-import seedu.partyplanet.model.name.Name;
 import seedu.partyplanet.model.person.Phone;
 import seedu.partyplanet.model.remark.Remark;
 

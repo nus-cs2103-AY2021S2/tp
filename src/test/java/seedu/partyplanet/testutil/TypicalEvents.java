@@ -2,10 +2,10 @@ package seedu.partyplanet.testutil;
 
 import static seedu.partyplanet.logic.commands.CommandTestUtil.VALID_DATE_CNY;
 import static seedu.partyplanet.logic.commands.CommandTestUtil.VALID_DATE_EASTER;
-import static seedu.partyplanet.logic.commands.CommandTestUtil.VALID_REMARK_CNY;
-import static seedu.partyplanet.logic.commands.CommandTestUtil.VALID_REMARK_EASTER;
 import static seedu.partyplanet.logic.commands.CommandTestUtil.VALID_NAME_CNY;
 import static seedu.partyplanet.logic.commands.CommandTestUtil.VALID_NAME_EASTER;
+import static seedu.partyplanet.logic.commands.CommandTestUtil.VALID_REMARK_CNY;
+import static seedu.partyplanet.logic.commands.CommandTestUtil.VALID_REMARK_EASTER;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -21,10 +21,10 @@ import java.util.function.Predicate;
 import seedu.partyplanet.logic.commands.EListCommand;
 import seedu.partyplanet.logic.parser.exceptions.ParseException;
 import seedu.partyplanet.model.event.Event;
-import seedu.partyplanet.model.event.predicates.EventRemarkContainsExactKeywordsPredicate;
-import seedu.partyplanet.model.event.predicates.EventRemarkContainsKeywordsPredicate;
 import seedu.partyplanet.model.event.predicates.EventNameContainsExactKeywordsPredicate;
 import seedu.partyplanet.model.event.predicates.EventNameContainsKeywordsPredicate;
+import seedu.partyplanet.model.event.predicates.EventRemarkContainsExactKeywordsPredicate;
+import seedu.partyplanet.model.event.predicates.EventRemarkContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new ListCommand object

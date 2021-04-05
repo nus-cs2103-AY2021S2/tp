@@ -1,6 +1,4 @@
-package seedu.partyplanet.model.person;
-
-import seedu.partyplanet.model.name.Name;
+package seedu.partyplanet.model.name;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
