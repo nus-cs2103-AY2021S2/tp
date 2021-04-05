@@ -23,11 +23,6 @@ public class EDoneCommandParserTest {
 
     private EDoneCommandParser parser = new EDoneCommandParser();
 
-    // @Test
-    // public void parse_emptyArgs_returnsEDoneClearCommand() {
-    //     assertParseSuccess(parser, "", new EDoneClearCommand());
-    // }
-
     @Test
     public void parse_singleValidIndex_returnsEDoneCommand() {
         assertParseSuccess(parser, " 1", new EDoneCommand(List.of(INDEX_FIRST_EVENT), List.of()));
