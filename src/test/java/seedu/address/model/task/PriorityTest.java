@@ -33,6 +33,6 @@ public class PriorityTest {
     @Test
     public void compareTest() {
         assertEquals(ASSIGNMENT.getPriority().compareTo(EXERCISE.getPriority()),
-                Integer.compare(ASSIGNMENT.getPriority().getPriority(), EXERCISE.getPriority().getPriority()));
+                Integer.compare(EXERCISE.getPriority().getPriority(), ASSIGNMENT.getPriority().getPriority()));
     }
 }
