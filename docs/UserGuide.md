@@ -370,10 +370,7 @@ Examples:
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 * `find ^a.*h$ p/` returns contacts with names that starts with `a` and ends with `h`: `Alex Yeoh`
 
-<div markdown="span" class="alert alert-primary">
-:bulb: **Tip:**
 Note that the [Java regex engine](https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html) conforms to PERL5 Regex specification.
-</div>
 
 ### Viewing help : `help`
 
