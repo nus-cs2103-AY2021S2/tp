@@ -55,7 +55,7 @@ public class RescheduleMeetingCommand extends Command {
         requireNonNull(model);
 
         ObservableList<Meeting> meetings = model.getFilteredMeetingList();
-        if (index.getZeroBased() >= meetings.size() || index.getZeroBased() < 0) {
+        if (index.getZeroBased() >= meetings.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);
         }
 
