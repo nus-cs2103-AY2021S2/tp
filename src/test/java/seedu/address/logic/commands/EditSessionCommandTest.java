@@ -41,7 +41,8 @@ public class EditSessionCommandTest {
         EditSessionCommand.EditSessionDescriptor descriptor = new EditSessionDescriptorBuilder(editedSession).build();
         EditSessionCommand editSessionCommand = new EditSessionCommand(SESSION_ID_FIRST_CLASS, descriptor);
 
-        String expectedMessage = String.format(EditSessionCommand.MESSAGE_EDIT_SESSION_SUCCESS, editedSession);
+        String expectedMessage = EditSessionCommand.MESSAGE_EDIT_SESSION_SUCCESS + String.format(Messages
+                            .MESSAGE_SESSION_PLACEHOLDER, editedSession);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         List<Session> lastShownList = model.getFilteredSessionList();
@@ -71,7 +72,8 @@ public class EditSessionCommandTest {
                 .withTags(VALID_TAG_SESSION).build();
         EditSessionCommand editSessionCommand = new EditSessionCommand(lastSessionId, descriptor);
 
-        String expectedMessage = String.format(EditSessionCommand.MESSAGE_EDIT_SESSION_SUCCESS, editedSession);
+        String expectedMessage = EditSessionCommand.MESSAGE_EDIT_SESSION_SUCCESS + String.format(Messages
+                                .MESSAGE_SESSION_PLACEHOLDER, editedSession);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         expectedModel.setSession(lastSession, editedSession);
@@ -90,7 +92,8 @@ public class EditSessionCommandTest {
 
         Session sessionToEdit = optSessionToEdit.get();
 
-        String expectedMessage = String.format(EditSessionCommand.MESSAGE_EDIT_SESSION_SUCCESS, sessionToEdit);
+        String expectedMessage = EditSessionCommand.MESSAGE_EDIT_SESSION_SUCCESS + String.format(Messages
+                                .MESSAGE_SESSION_PLACEHOLDER, sessionToEdit);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
 

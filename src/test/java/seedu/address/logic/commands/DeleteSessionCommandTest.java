@@ -34,8 +34,8 @@ public class DeleteSessionCommandTest {
 
         DeleteSessionCommand deleteSessionCommand = new DeleteSessionCommand(SESSION_ID_FIRST_CLASS);
 
-        String expectedMessage = String.format(DeleteSessionCommand.MESSAGE_DELETE_SESSION_SUCCESS,
-                sessionToDelete.get());
+        String expectedMessage = DeleteSessionCommand.MESSAGE_DELETE_SESSION_SUCCESS + String.format(Messages
+                        .MESSAGE_SESSION_PLACEHOLDER, sessionToDelete.get());
 
         Optional<Session> expectedSessionToDelete = expectedModel.getFilteredSessionList().stream()
                 .filter(x-> x.getClassId().equals(SESSION_ID_FIRST_CLASS)).findAny();
