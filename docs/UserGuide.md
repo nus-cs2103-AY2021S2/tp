@@ -45,9 +45,13 @@ Within the workload pie chart, each module's colour may change as a command is e
 However, the colours will be arranged such that no two modules with the same colour will be next to each other.
 </div>
 
-4. Tasks in the task list are colour coded based on done status.
-    1. Done tasks are coloured pink.
-    1. Tasks that are not done are coloured differently.
+1. Tasks are colour coded based on done status. 
+   1. Done tasks are coloured green. 
+   1. Tasks that are not done are coloured pink.
+   
+1. The pie chart is used to show workload distribution.
+   1. The color of pie chart is randomly assigned.
+   2. The workload of each module is counted using the tasks of such module inclunding those that are already done and those that are not finished yet.
     
 1. You can rate a task's expected workload using the following mapping:
    
