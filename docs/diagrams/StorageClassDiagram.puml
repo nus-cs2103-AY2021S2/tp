@@ -6,19 +6,22 @@ skinparam classBackgroundColor STORAGE_COLOR
 
 Interface Storage <<Interface>>
 Interface UserPrefsStorage <<Interface>>
-Interface StudentBookStorage <<Interface>>
+Interface AddressBookStorage <<Interface>>
 
 Class StorageManager
 Class JsonUserPrefsStorage
-Class JsonStudentBookStorage
+Class JsonAddressBookStorage
 
 StorageManager .left.|> Storage
 StorageManager o-right-> UserPrefsStorage
-StorageManager o--> StudentBookStorage
+StorageManager o--> AddressBookStorage
+
+Storage -|> UserPrefsStorage
+Storage -|> AddressBookStorage
 
 JsonUserPrefsStorage .left.|> UserPrefsStorage
-JsonStudentBookStorage .left.|>StudentBookStorage
-JsonStudentBookStorage .down.> JsonSerializableStudentBookStorage
-JsonSerializableStudentBookStorage .right.> JsonSerializableStudent
-JsonSerializableStudent .right.> JsonAdaptedTag
+JsonAddressBookStorage .left.|> AddressBookStorage
+JsonAddressBookStorage .down.> JsonSerializableAddressBook
+JsonSerializableAddressBook .right.> JsonAdaptedPerson
+JsonAdaptedPerson .right.> JsonAdaptedTag
 @enduml
