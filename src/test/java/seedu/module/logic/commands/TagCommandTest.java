@@ -28,8 +28,6 @@ import seedu.module.model.tag.Tag;
 import seedu.module.model.task.Task;
 import seedu.module.testutil.TaskBuilder;
 
-
-
 class TagCommandTest {
 
     private static final String TAG_STUB = "TagA";
@@ -161,7 +159,7 @@ class TagCommandTest {
     }
 
     @Test
-    public void execute_DuplicateTagUnfilteredList_failure() {
+    public void execute_duplicateTagUnfilteredList_failure() {
         Task firstTask = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
         TagCommand tagCommand = new TagCommand(INDEX_FIRST_TASK);
         Set<Tag> existingTags = firstTask.getTags();
@@ -170,7 +168,7 @@ class TagCommandTest {
     }
 
     @Test
-    public void execute_DuplicateTagFilteredList_failure() {
+    public void execute_duplicateTagFilteredList_failure() {
         showTaskAtIndex(model, INDEX_FIRST_TASK);
         Task firstTask = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
         TagCommand tagCommand = new TagCommand(INDEX_FIRST_TASK);
