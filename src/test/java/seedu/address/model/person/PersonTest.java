@@ -14,7 +14,11 @@ import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
@@ -118,5 +122,18 @@ public class PersonTest {
                 .withGoal(new Goal(Goal.Frequency.YEARLY))
                 .withMeetings(Arrays.asList(SampleDataUtil.getSampleEvents().clone()));
         assertEquals(LocalDate.of(2022, 12, 31), editedAlice.getGoalDeadline(date));
+
+        // leap day
+        editedAlice = new PersonBuilder(aliceCopy).build()
+                .withGoal(new Goal(Goal.Frequency.MONTHLY))
+                .withMeetings(Collections.singletonList(new Event(
+                        LocalDate.of(2024, 1, 15),
+                        LocalTime.of(10, 0),
+                        "Some meeting"
+                )));
+        assertEquals(LocalDate.of(
+                2024, 2, 29),
+                editedAlice.getGoalDeadline(LocalDate.of(2024, 1, 20)));
+
     }
 }
