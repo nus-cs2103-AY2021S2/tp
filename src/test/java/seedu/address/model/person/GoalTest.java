@@ -1,22 +1,29 @@
 package seedu.address.model.person;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.logic.parser.exceptions.ParseException;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.parser.exceptions.ParseException;
 
 public class GoalTest {
 
-    private static final List<String> VALID_WEEK_INPUTS = Arrays.stream(new String[] {
+    private static final List<String> VALID_WEEK_INPUTS = Arrays.stream(new String[]{
             "w", "week", "weekly"}).collect(Collectors.toList());
-    private static final List<String> VALID_MONTH_INPUTS = Arrays.stream(new String[] {
+    private static final List<String> VALID_MONTH_INPUTS = Arrays.stream(new String[]{
             "m", "month", "monthly"}).collect(Collectors.toList());
-    private static final List<String> VALID_YEAR_INPUTS = Arrays.stream(new String[] {
+    private static final List<String> VALID_YEAR_INPUTS = Arrays.stream(new String[]{
             "y", "year", "yearly"}).collect(Collectors.toList());
 
     @Test
