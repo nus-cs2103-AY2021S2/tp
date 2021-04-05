@@ -110,7 +110,8 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        resetListView();
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -181,14 +182,6 @@ public class MainWindow extends UiPart<Stage> {
 
     }
 
-    /**
-     * Resets the list view.
-     */
-    private void resetListView() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
-    }
-
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
     }
@@ -220,11 +213,7 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isDark()) {
                 handleDarkChange();
                 resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-            }
 
-            if (commandResult.isUndo()) {
-                resetListView();
-                resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             }
 
             return commandResult;

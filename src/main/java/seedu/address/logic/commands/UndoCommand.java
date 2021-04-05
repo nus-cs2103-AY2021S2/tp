@@ -29,6 +29,6 @@ public class UndoCommand extends Command {
         }
         this.state.deleteCurrentState();
         model.setAddressBook(state.getCurrentState());
-        return new CommandResult(MESSAGE_SUCCESS, false, false, false, false, true);
+        return new CommandResult(MESSAGE_SUCCESS);
     }
 }
