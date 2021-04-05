@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_DATE_BEFORE_BIRTHDAY;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
@@ -15,9 +16,10 @@ import java.util.stream.Collectors;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.DateUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Event;
+import seedu.address.model.person.Meeting;
 import seedu.address.model.person.Person;
 
 public class AddMeetingCommand extends Command {
@@ -35,30 +37,31 @@ public class AddMeetingCommand extends Command {
             + PREFIX_TIME + "1240 "
             + PREFIX_DESCRIPTION + "We went to the beach!";
 
+    public static final String MESSAGE_CONSTRAINTS = "Meetings are records of past events, "
+            + "and should not be in the future. Meeting description should not be empty";
+
     public static final String MESSAGE_ADD_MEETING_SUCCESS = "Added meeting for %1$s";
-    public static final String MESSAGE_ADD_MEETING_FAILURE = "Failed to add meeting: Meeting "
-            + "date %1$s is after current date.";
 
     private final Index index;
-    private final Event meeting;
+    private final Meeting meeting;
 
     /**
      * @param index of the person in the filtered person list to add the meeting to
      * @param meeting the meeting to add
      */
-    public AddMeetingCommand(Index index, Event meeting) {
+    public AddMeetingCommand(Index index, Meeting meeting) {
         requireAllNonNull(index, meeting);
 
         this.index = index;
         this.meeting = meeting;
     }
 
-    private static Person createEditedPerson(Person personToEdit, Event meeting) {
+    private static Person createEditedPerson(Person personToEdit, Meeting meeting) {
         assert personToEdit != null;
-        List<Event> meetingsToEdit = new ArrayList<>(personToEdit.getMeetings());
+        List<Meeting> meetingsToEdit = new ArrayList<>(personToEdit.getMeetings());
         meetingsToEdit.add(meeting);
         meetingsToEdit = meetingsToEdit.stream()
-                .sorted(Comparator.comparing(Event::getDate).reversed())
+                .sorted(Comparator.comparing(Meeting::getDate).reversed())
                 .collect(Collectors.toList());
 
         return personToEdit.withMeetings(meetingsToEdit);
@@ -69,20 +72,23 @@ public class AddMeetingCommand extends Command {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
-        // ignore time comparisons for leniency
-        if (meeting.getDate().isAfter(LocalDate.now())) {
-            throw new CommandException(String.format(MESSAGE_ADD_MEETING_FAILURE, meeting.getDate()));
-        }
-
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
         Person person = lastShownList.get(index.getZeroBased());
+        LocalDate meetingDate = meeting.getDate();
+
+        if (person.isBeforeBirthday(meetingDate)) {
+            throw new CommandException(String.format(MESSAGE_DATE_BEFORE_BIRTHDAY,
+                    DateUtil.toErrorMessage(meetingDate)));
+        }
+
         Person editedPerson = createEditedPerson(person, meeting);
 
         model.setPerson(person, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+
         return new CommandResult(String.format(MESSAGE_ADD_MEETING_SUCCESS, editedPerson.getName()));
     }
 
@@ -98,5 +104,13 @@ public class AddMeetingCommand extends Command {
 
         AddMeetingCommand e = (AddMeetingCommand) other;
         return index.equals(e.index) && meeting.equals(e.meeting);
+    }
+
+    @Override
+    public String toString() {
+        return "AddMeetingCommand{"
+                + "index=" + index
+                + ", meeting=" + meeting
+                + "}";
     }
 }

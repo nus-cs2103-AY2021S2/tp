@@ -24,9 +24,9 @@ public class Streak implements Comparable<Streak> {
     }
 
     /**
-     * Returns a Streak created from the given {@code goal} and {@code List<Event>}
+     * Returns a Streak created from the given {@code goal} and {@code List<Meeting>}
      */
-    public static Streak from(Goal goal, List<Event> meetings) {
+    public static Streak from(Goal goal, List<Meeting> meetings) {
         requireAllNonNull(goal, meetings);
 
         if (goal.isNoneFrequency() || meetings.isEmpty()) {
