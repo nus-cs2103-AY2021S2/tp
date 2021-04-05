@@ -28,10 +28,13 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalPersons.AMY;
 import static seedu.address.testutil.TypicalPersons.BOB;
+
+import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
@@ -107,7 +110,7 @@ public class AddCommandParserTest {
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + VALID_ADDRESS_BOB
                 + BIRTHDAY_DESC_BOB, expectedMessage);
 
-        // missing address prefix
+        // missing birthday prefix
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + VALID_ADDRESS_BOB
                 + BIRTHDAY_DESC_BOB, expectedMessage);
 
@@ -138,6 +141,13 @@ public class AddCommandParserTest {
         // invalid birthday
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + INVALID_BIRTHDAY_DESC + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Birthday.MESSAGE_CONSTRAINTS);
+
+        // invalid birthday after today
+        LocalDate afterToday = LocalDate.now().plusDays(1);
+        String afterTodayStr = Birthday.BIRTHDAY_INPUT_FORMAT.format(afterToday);
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+                + " " + PREFIX_BIRTHDAY + afterTodayStr + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+                Birthday.MESSAGE_CONSTRAINTS);
 
         // invalid tag
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB

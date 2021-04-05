@@ -42,7 +42,7 @@ public class JsonAdaptedMeeting {
      * Converts this Jackson-friendly adapted event object into the model's {@code Meeting} object.
      */
     public Meeting toModelType() throws IllegalValueException {
-        if (Meeting.isValidMeeting(date, time, description)) {
+        if (!Meeting.isValidMeeting(date, time, description)) {
             throw new IllegalValueException(Meeting.MESSAGE_CONSTRAINTS);
         }
         return new Meeting(date, time, description);

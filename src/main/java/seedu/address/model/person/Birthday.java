@@ -11,7 +11,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 
 public class Birthday {
     public static final String MESSAGE_CONSTRAINTS = seedu.address.commons.util.DateUtil.MESSAGE_CONSTRAINT
-            + "\n Birthday should also be before today.";
+            + "\nBirthday should also be before today.";
 
     public static final DateTimeFormatter BIRTHDAY_INPUT_FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     public final LocalDate birthDate;

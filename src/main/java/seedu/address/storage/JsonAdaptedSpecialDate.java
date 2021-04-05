@@ -38,7 +38,7 @@ public class JsonAdaptedSpecialDate {
      * Converts this Jackson-friendly adapted event object into the model's {@code SpecialDate} object.
      */
     public SpecialDate toModelType() throws IllegalValueException {
-        if (SpecialDate.isValidSpecialDate(date, description)) {
+        if (!SpecialDate.isValidSpecialDate(date, description)) {
             throw new IllegalValueException(SpecialDate.MESSAGE_CONSTRAINTS);
         }
         return new SpecialDate(date, description);

@@ -113,14 +113,10 @@ public class ParserUtil {
     public static Birthday parseBirthday(String birthday) throws ParseException {
         requireNonNull(birthday);
         String trimmedBirthday = birthday.trim();
-        LocalDate birthdayDate = DateUtil.fromDateInput(trimmedBirthday);
-
-        if (DateUtil.afterToday(birthdayDate)) {
-            throw new ParseException(String.format(MESSAGE_BIRTHDAY_AFTER_TODAY,
-                    DateUtil.toErrorMessage(birthdayDate)));
+        if (!Birthday.isValidBirthday(trimmedBirthday)) {
+            throw new ParseException(Birthday.MESSAGE_CONSTRAINTS);
         }
-
-        return new Birthday(birthdayDate);
+        return new Birthday(trimmedBirthday);
     }
 
     /**
