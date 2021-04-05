@@ -102,7 +102,7 @@ Format: `clear`
 
 </div>
 
-#### 3.1.3. Saving the data
+#### 3.1.3. Saving data
 
 BookCoin data is saved in the hard disk automatically after any command which results in changes the data. There is no need to save manually.
 
@@ -119,21 +119,21 @@ Format: `exit`
 **:information_source: More information about multi-step commands:**<br>
 
 * Some commands require multiple input information which can be very tedious to type in one go. 
-Multi-step commands therefore allow such commands to be used with greater ease by users as the system will prompt them for input items one at a time. To skip input for optional fields, you can just press the <kbd>Enter</kbd> key without typing anything when you are prompted to enter an optional field.
+Multi-step commands therefore allow such commands to be used with greater ease by users as the system will prompt them to input items one at a time. To skip input for optional fields, you can just press the <kbd>Enter</kbd> key without typing anything when prompted to enter an optional field.
+* The multi-step commands currently supported in v1.4 are `add_person`, `add_venue` and `add_booking`.
 * The commands listed in this section are specific to multi-step commands and are only applicable when the user is in the middle of a multi-step command.
 
 </div>
 
 #### 3.2.1. Undo previous input : `undo`
 
-Brings the prompt of the multi-step command back to the previous step if users made a typo and wish to re-enter
-their input for the previous field.
+Brings the prompt of the multi-step command back to the previous step if users made a typo and wish to re-enter their input for the previous field.
 
 Format: `undo`
 
 #### 3.2.2. Exiting prompting : `exit_prompt`
 
-Exits the multi-step prompting under add_booking or add_venue. After exiting prompting, you would be able to give command
+Exits the multi-step prompting for multi-step commands. After exiting prompting, you would be able to give command
 inputs again. Other commands would not work if you do not exit the multi-step command.
 
 Format: `exit_prompt`
@@ -193,14 +193,14 @@ Format: `find_person e/EMAIL`
 #### 3.4.1. Adding a venue : `add_venue` (Multi step command)
 
 Adds a new venue for the booking app. `add_venue` is a multi-step command that will prompt you for additional input. Inputting 
-`add_venue v/VENUE_NAME` will start the command and the app will guide you through the command through prompts for each field. As with other multi step commands, you can exit the command by entering `exit_prompt` at any point. Optional fields can be skipped by pressing the `Enter` key when you are prompted to input an optional field.
+`add_venue v/VENUE_NAME` will start the command and the app will guide you through the command through prompts for each field. As with other multi step commands, you can exit the command by entering `exit_prompt` at any point. Optional fields can be skipped by pressing the <kbd>Enter</kbd> key when you are prompted to input an optional field.
 
-Capacity, description and tags are optional. Default capacity without an input will be set to 10.
+After keying in a valid initial input, the multi-step prompting will prompt you to enter details for the fields capacity, description and tags, which are all optional. Capacity should be entered as a digit, with the maximum limit being 500000. Default capacity without an input will be set to 10.
 
 Format: `add_venue v/VENUE_NAME`
 
 Example:
-* `add_venue v/Chua Thian Poh Hall max/40` adds a venue with venue name Chua Thian Poh Hall and a maximum capacity of 40.
+* `add_venue v/Chua Thian Poh Hall` adds a venue with venue name Chua Thian Poh Hall and a maximum capacity of 40.
 
 #### 3.4.2. Editing a venue : `edit_venue`
 
@@ -219,7 +219,7 @@ Deletes a venue corresponding to the venue name specified.
 Format: `delete_venue v/VENUE_NAME`
 
 Example:
-* `delete_venue v/Volleyball Court`
+* `delete_venue v/Volleyball Court` deletes the venue with the name "Volleyball Court".
 
 #### 3.4.4. Listing all venues : `list_venue`
 
@@ -279,7 +279,7 @@ Shows information about the booking corresponding to the given booking ID. Parti
 Format: `find_booking bid/BOOKING_ID`
 
 Example:
-* `find_booking bid/2321837462`
+* `find_booking bid/2321` will return the booking with the booking id 2321.
 
 #### 3.5.6. Filtering bookings by date : `filter_booking_by_date`
 

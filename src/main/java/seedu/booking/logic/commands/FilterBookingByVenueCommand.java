@@ -33,7 +33,7 @@ public class FilterBookingByVenueCommand extends Command {
             return new CommandResult(Messages.MESSAGE_BOOKING_FILTER_FAILED);
         } else {
             return new CommandResult(
-                    Messages.MESSAGE_BOOKING_VENUE_FILTERED + predicate.getVenueName());
+                    Messages.MESSAGE_BOOKING_VENUE_FILTERED);
         }
     }
 
