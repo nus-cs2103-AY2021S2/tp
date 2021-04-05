@@ -8,7 +8,10 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.heymatez.model.assignee.Assignee;
+import seedu.heymatez.model.person.Name;
 import seedu.heymatez.model.task.exceptions.TaskNotFoundException;
+
 
 /**
  * A list of task that enforces uniqueness between its elements and does not allow nulls.
@@ -83,6 +86,22 @@ public class UniqueTaskList implements Iterable<Task> {
         }
     }
 
+    /**
+     * Removes the Assignees from tasks in the current task list
+     */
+    public void removeAssignee(Name name) {
+        requireNonNull(name);
+        Assignee assignee = new Assignee(name.fullName);
+
+        for (int i = 0; i < internalList.size(); i++) {
+            Task task = internalList.get(i);
+            if (task.hasAssignee(assignee)) {
+                Task updated = task.removeAssignee(assignee);
+                internalList.set(i, updated);
+            }
+        }
+
+    }
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */

@@ -115,6 +115,12 @@ public interface Model {
     ObservableList<Task> getFilteredTaskList();
 
     /**
+     * Deletes the given Person if he is the Assignee of any task.
+     * The person must exist in Hey Matez.
+     */
+    void removeAssignee(Person target);
+
+    /**
      * Updates the filter of the filtered task list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
