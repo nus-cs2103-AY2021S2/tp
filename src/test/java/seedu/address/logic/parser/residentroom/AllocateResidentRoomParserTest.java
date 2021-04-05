@@ -3,56 +3,43 @@ package seedu.address.logic.parser.residentroom;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ROOM_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
-import static seedu.address.logic.commands.CommandTestUtil.ROOM_NUMBER_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.ROOM_NUMBER_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ROOM_NUMBER_BOB;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RESIDENT_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM_INDEX;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.resident.EditResidentCommand;
 import seedu.address.logic.commands.residentroom.AllocateResidentRoomCommand;
-import seedu.address.logic.commands.room.EditRoomCommand;
-import seedu.address.model.resident.Name;
-import seedu.address.model.residentroom.ResidentRoom;
-import seedu.address.model.room.IsOccupied;
-import seedu.address.model.room.RoomNumber;
-import seedu.address.testutil.resident.EditResidentDescriptorBuilder;
-import seedu.address.testutil.room.EditRoomDescriptorBuilder;
 
 public class AllocateResidentRoomParserTest {
+    private static final String VALID_RESIDENT_INDEX_DESC = " " + PREFIX_RESIDENT_INDEX + " " + "1";
+    private static final String VALID_RESIDENT_INDEX_DESC_2 = " " + PREFIX_RESIDENT_INDEX + " " + "2";
+    private static final String VALID_ROOM_INDEX_DESC = " " + PREFIX_ROOM_INDEX + " " + "1";
+    private static final String VALID_ROOM_INDEX_DESC_2 = " " + PREFIX_ROOM_INDEX + " " + "2";
+    private static final String INVALID_RESIDENT_INDEX_DESC = " " + PREFIX_RESIDENT_INDEX + " " + "a";
+    private static final String INVALID_ROOM_INDEX_DESC = " " + PREFIX_ROOM_INDEX + " " + "a";
+
+
     private AllocateResidentRoomCommandParser parser = new AllocateResidentRoomCommandParser();
+
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Name name = new Name(VALID_NAME_BOB);
-        RoomNumber roomNumber = new RoomNumber(VALID_ROOM_NUMBER_BOB);
-        ResidentRoom expectedResidentRoom = new ResidentRoom(name, roomNumber);
-
-        EditResidentCommand.EditResidentDescriptor residentDescriptor =
-                new EditResidentDescriptorBuilder().withRoom(VALID_ROOM_NUMBER_BOB).build();
-        EditRoomCommand.EditRoomDescriptor roomDescriptor =
-                new EditRoomDescriptorBuilder().withOccupancy(IsOccupied.OCCUPIED).build();
-
-        // whitespace only preamble
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + ROOM_NUMBER_DESC_BOB,
-                new AllocateResidentRoomCommand(expectedResidentRoom, residentDescriptor, roomDescriptor));
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + VALID_RESIDENT_INDEX_DESC + VALID_ROOM_INDEX_DESC,
+                new AllocateResidentRoomCommand(INDEX_FIRST, INDEX_FIRST));
 
 
-        // multiple names - last name accepted
-        assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + ROOM_NUMBER_DESC_BOB,
-                new AllocateResidentRoomCommand(expectedResidentRoom, residentDescriptor, roomDescriptor));
+        // multiple resident index - last index accepted
+        assertParseSuccess(parser, VALID_RESIDENT_INDEX_DESC_2 + VALID_RESIDENT_INDEX_DESC
+                        + VALID_ROOM_INDEX_DESC, new AllocateResidentRoomCommand(INDEX_FIRST, INDEX_FIRST));
 
-        // multiple roomNumber - last roomNumber accepted
-        assertParseSuccess(parser, NAME_DESC_BOB + ROOM_NUMBER_DESC_AMY
-                + ROOM_NUMBER_DESC_BOB,
-                new AllocateResidentRoomCommand(expectedResidentRoom, residentDescriptor, roomDescriptor));
+        // multiple room index - last index accepted
+        assertParseSuccess(parser, VALID_RESIDENT_INDEX_DESC + VALID_ROOM_INDEX_DESC_2 + VALID_ROOM_INDEX_DESC,
+                new AllocateResidentRoomCommand(INDEX_FIRST, INDEX_FIRST));
     }
 
     @Test
@@ -60,29 +47,32 @@ public class AllocateResidentRoomParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 AllocateResidentRoomCommand.MESSAGE_USAGE);
 
-        // missing name prefix
-        assertParseFailure(parser, VALID_NAME_BOB + ROOM_NUMBER_DESC_BOB, expectedMessage);
+        // missing resident index prefix
+        assertParseFailure(parser, INDEX_FIRST + VALID_ROOM_INDEX_DESC, expectedMessage);
 
-        // missing roomNumber prefix
-        assertParseFailure(parser, NAME_DESC_BOB + VALID_ROOM_NUMBER_BOB, expectedMessage);
+        // missing room index prefix
+        assertParseFailure(parser, VALID_RESIDENT_INDEX_DESC + " " + INDEX_FIRST, expectedMessage);
 
         // all prefixes missing
-        assertParseFailure(parser, VALID_NAME_BOB + VALID_ROOM_NUMBER_BOB, expectedMessage);
+        assertParseFailure(parser, INDEX_FIRST + " " + INDEX_FIRST, expectedMessage);
     }
 
     @Test
     public void parse_invalidValue_failure() {
-        // invalid name
-        assertParseFailure(parser, INVALID_NAME_DESC + ROOM_NUMBER_DESC_BOB, Name.MESSAGE_CONSTRAINTS);
+        // invalid resident index
+        assertParseFailure(parser, INVALID_RESIDENT_INDEX_DESC + VALID_ROOM_INDEX_DESC,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AllocateResidentRoomCommand.MESSAGE_USAGE));
 
-        // invalid roomNumber
-        assertParseFailure(parser, NAME_DESC_BOB + INVALID_ROOM_DESC, RoomNumber.MESSAGE_CONSTRAINTS);
+        // invalid room index
+        assertParseFailure(parser, VALID_RESIDENT_INDEX_DESC + INVALID_ROOM_INDEX_DESC,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AllocateResidentRoomCommand.MESSAGE_USAGE));
 
-        // two invalid values, only first invalid value reported
-        assertParseFailure(parser, INVALID_NAME_DESC + INVALID_ROOM_DESC, Name.MESSAGE_CONSTRAINTS);
+        // two invalid values, invalid command error
+        assertParseFailure(parser, INVALID_NAME_DESC + INVALID_ROOM_DESC,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AllocateResidentRoomCommand.MESSAGE_USAGE));
 
         // non-empty preamble
-        assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + ROOM_NUMBER_DESC_BOB,
+        assertParseFailure(parser, PREAMBLE_NON_EMPTY + VALID_RESIDENT_INDEX_DESC + VALID_ROOM_INDEX_DESC,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AllocateResidentRoomCommand.MESSAGE_USAGE));
     }
 }

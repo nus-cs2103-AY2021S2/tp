@@ -20,7 +20,7 @@ public class DeallocateResidentRoomParserTest {
     private DeallocateResidentRoomCommandParser parser = new DeallocateResidentRoomCommandParser();
 
     @Test
-    public void parse_validArgs_returnsDeleteCommand() {
+    public void parse_validArgs_returnsDeallocateCommand() {
         assertParseSuccess(parser, "1", new DeallocateResidentRoomCommand(INDEX_FIRST));
     }
 

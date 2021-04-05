@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RESIDENT_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 
@@ -27,19 +29,14 @@ import seedu.address.logic.commands.resident.ListResidentCommand;
 import seedu.address.logic.commands.resident.ListUnallocatedResidentsCommand;
 import seedu.address.logic.commands.residentroom.AllocateResidentRoomCommand;
 import seedu.address.logic.commands.residentroom.DeallocateResidentRoomCommand;
-import seedu.address.logic.commands.room.EditRoomCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.resident.NameContainsKeywordsPredicate;
 import seedu.address.model.resident.Resident;
-import seedu.address.model.residentroom.ResidentRoom;
-import seedu.address.model.room.IsOccupied;
 import seedu.address.testutil.resident.EditResidentDescriptorBuilder;
 import seedu.address.testutil.resident.ResidentBuilder;
 import seedu.address.testutil.resident.ResidentUtil;
-import seedu.address.testutil.residentroom.ResidentRoomBuilder;
-import seedu.address.testutil.room.EditRoomDescriptorBuilder;
 
 public class AddressBookParserTest {
 
@@ -140,15 +137,12 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_residentAllocate() throws Exception {
-        ResidentRoom residentRoom = new ResidentRoomBuilder().build();
-        EditResidentDescriptor editResidentDescriptor =
-                new EditResidentDescriptorBuilder().withRoom(residentRoom.getRoomNumber().toString()).build();
-        EditRoomCommand.EditRoomDescriptor editRoomDescriptor =
-                new EditRoomDescriptorBuilder().withOccupancy(IsOccupied.OCCUPIED).build();
-        AllocateResidentRoomCommand command = (AllocateResidentRoomCommand)
-                parser.parseCommand(ResidentUtil.getAllocateResidentRoomCommand(residentRoom), readOnlyUserPrefs);
-        assertEquals(new AllocateResidentRoomCommand(residentRoom, editResidentDescriptor, editRoomDescriptor),
-                command);
+        AllocateResidentRoomCommand command = (AllocateResidentRoomCommand) parser.parseCommand(
+                AllocateResidentRoomCommand.COMMAND_WORD + " "
+                        + PREFIX_RESIDENT_INDEX + INDEX_FIRST.getOneBased() + " "
+                        + PREFIX_ROOM_INDEX + INDEX_FIRST.getOneBased(), readOnlyUserPrefs);
+        assertEquals(new AllocateResidentRoomCommand(INDEX_FIRST, INDEX_FIRST), command);
+
     }
 
     @Test
