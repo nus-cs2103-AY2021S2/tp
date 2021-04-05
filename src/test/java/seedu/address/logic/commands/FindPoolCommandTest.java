@@ -1,14 +1,5 @@
 package seedu.address.logic.commands;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.pool.PooledPassengerContainsKeywordsPredicate;
-
-import java.util.Arrays;
-import java.util.Collections;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -18,6 +9,16 @@ import static seedu.address.testutil.TypicalPools.HOMEPOOL;
 import static seedu.address.testutil.TypicalPools.OFFICEPOOL;
 import static seedu.address.testutil.TypicalPools.WORKPOOL;
 import static seedu.address.testutil.TypicalPools.getTypicalAddressBookPools;
+
+import java.util.Arrays;
+import java.util.Collections;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.pool.PooledPassengerContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for {@code FindPoolCommand}.
