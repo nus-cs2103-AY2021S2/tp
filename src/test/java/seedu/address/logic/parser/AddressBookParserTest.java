@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SORT_DIRECTION_ASCENDING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -30,11 +31,11 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RemarkCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.AddressContainsKeywordsPredicate;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.PersonTagContainsKeywordsPredicate;
-import seedu.address.model.person.ReturnTruePredicate;
+import seedu.address.model.person.predicates.AddressContainsKeywordsPredicate;
+import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
+import seedu.address.model.person.predicates.PersonTagContainsKeywordsPredicate;
+import seedu.address.model.person.predicates.ReturnTruePredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
@@ -105,7 +106,9 @@ public class AddressBookParserTest {
                         + PREFIX_ADDRESS + addressKeywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindCommand(new NameContainsKeywordsPredicate(nameKeywords),
                         new PersonTagContainsKeywordsPredicate(tagKeywords),
-                        new AddressContainsKeywordsPredicate(addressKeywords)),
+                        new AddressContainsKeywordsPredicate(addressKeywords),
+                        returnTruePredicate,
+                        returnTruePredicate, returnTruePredicate, returnTruePredicate),
                 command);
     }
 
@@ -129,8 +132,10 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_sort() throws Exception {
-        String validInput = SortCommand.COMMAND_WORD + " ascending";
-        assertTrue(parser.parseCommand(validInput) instanceof SortCommand);
+        assertTrue(parser.parseCommand(SortCommand.COMMAND_WORD + " "
+                + VALID_SORT_DIRECTION_ASCENDING) instanceof SortCommand);
+        assertTrue(parser.parseCommand(SortCommand.COMMAND_WORD + " "
+                + VALID_SORT_DIRECTION_ASCENDING) instanceof SortCommand);
     }
 
     @Test

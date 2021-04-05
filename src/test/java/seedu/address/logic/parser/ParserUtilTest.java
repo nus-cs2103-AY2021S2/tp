@@ -28,6 +28,7 @@ public class ParserUtilTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_REMARK = "";
     private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_SORT_DIRECTION = "???????";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -36,8 +37,10 @@ public class ParserUtilTest {
     private static final String VALID_REMARK = "Hospitalised";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_SORT_DIRECTION = "ascending";
 
     private static final String WHITESPACE = " \t\r\n";
+    private static final boolean VALID_SORT_DIRECTION_RESULT = true;
 
     @Test
     public void parseIndex_invalidInput_throwsParseException() {
@@ -161,6 +164,31 @@ public class ParserUtilTest {
         Remark expectedRemark = new Remark(VALID_REMARK);
         assertEquals(expectedRemark, ParserUtil.parseRemark(VALID_REMARK));
     }
+
+    @Test
+    public void parseSortDirection_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseSortDirection((String) null));
+    }
+
+    @Test
+    public void parseSortDirection_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseSortDirection(INVALID_SORT_DIRECTION));
+    }
+
+    @Test
+    public void parseSortDirection_validValueWithoutWhitespace_returnsBoolean() throws Exception {
+        assertEquals(VALID_SORT_DIRECTION_RESULT,
+                ParserUtil.parseSortDirection(VALID_SORT_DIRECTION));
+    }
+
+    @Test
+    public void parseSortDirection_validValueWithWhitespace_returnsBoolean() throws Exception {
+        String sortDirectionWithWhitespace = WHITESPACE + VALID_SORT_DIRECTION + WHITESPACE;
+        assertEquals(VALID_SORT_DIRECTION_RESULT,
+                ParserUtil.parseSortDirection(sortDirectionWithWhitespace));
+    }
+
+
 
     @Test
     public void parseTag_null_throwsNullPointerException() {

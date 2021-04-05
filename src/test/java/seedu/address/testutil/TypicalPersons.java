@@ -91,7 +91,23 @@ public class TypicalPersons {
         return ab;
     }
 
+    /**
+     * Returns an {@code AddressBook} with all the typical persons. The address book
+     * is not sorted in alphabetical order to test the sort commands.
+     */
+    public static AddressBook getUnsortedTypicalAddressBook() {
+        AddressBook ab = new AddressBook();
+        for (Person person : getUnsortedTypicalPersons()) {
+            ab.addPerson(person);
+        }
+        return ab;
+    }
+
     public static List<Person> getTypicalPersons() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE, JANE));
+    }
+
+    public static List<Person> getUnsortedTypicalPersons() {
+        return new ArrayList<>(Arrays.asList(BENSON, ELLE, CARL, ALICE, JANE, GEORGE, FIONA, DANIEL));
     }
 }

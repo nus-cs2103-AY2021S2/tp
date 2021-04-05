@@ -40,6 +40,10 @@ public class Name implements Comparable<Name> {
 
     @Override
     public int compareTo(Name otherName) {
+        int caseInsensitiveComparison = this.fullName.compareToIgnoreCase(otherName.fullName);
+        if (caseInsensitiveComparison != 0) {
+            return caseInsensitiveComparison;
+        }
         return this.fullName.compareTo(otherName.fullName);
     }
 

@@ -3,11 +3,12 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import java.util.NoSuchElementException;
-
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses input arguments and creates a new SortCommand object.
+ */
 public class SortCommandParser implements Parser<SortCommand> {
 
     /**
@@ -19,11 +20,11 @@ public class SortCommandParser implements Parser<SortCommand> {
     public SortCommand parse(String args) throws ParseException {
         requireNonNull(args);
         try {
-            boolean isAscending = ParserUtil.parseIsAscending(args);
+            boolean isAscending = ParserUtil.parseSortDirection(args);
             return new SortCommand(isAscending);
-        } catch (NoSuchElementException ive) {
+        } catch (ParseException parseException) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    SortCommand.MESSAGE_USAGE), ive);
+                    SortCommand.MESSAGE_USAGE), parseException);
         }
     }
 }

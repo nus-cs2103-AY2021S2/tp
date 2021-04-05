@@ -30,16 +30,10 @@ If you can type fast, SpamEZ can get your contact management tasks done faster t
    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the contacts list.
 
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
-   
-   * **`tag`**`tag n/John Doe t/small` : Adds tag to contact John Doe.
 
    * **`clear`** : Deletes all contacts.
    
    * **`blist`** `2` : Blacklists the 2nd contact shown in the current list.
-   
-   * **`name`** `3 [n/John]` : Adds an optional nickname to the 3rd contact.
-   
-   * **`filter`** `[Computing, Student]` : Filters shown contact based on given keywords.
 
    * **`exit`** : Exits the app.
 1. Refer to the [Features](#features) below for details of each command.
@@ -67,7 +61,7 @@ If you can type fast, SpamEZ can get your contact management tasks done faster t
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`, `dark`, `light` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 * Commands will only handle `INDEX` values from 1 to 2147483647 (inclusive).
@@ -122,17 +116,21 @@ Examples:
 
 ### Locating persons by name and/or tag: `find`
 
-Finds persons whose names and/or tags contain any of the given keywords.
+Finds persons whose attributes (except remark) contain any of the given keywords.
 
-Format: `find [n/NAME_KEYWORDS] [t/TAG_KEYWORDS]`
+Format: `find [n/NAME_KEYWORDS] [t/TAG_KEYWORDS] [a/ADDRESS_KEYWORDS] [e/EMAIL_KEYWORDS] [p/PHONE_NUMBERS] [b/IS_BLACKLISTED] [m/MODE_OF_CONTACT]`
 
-* At least one of `[n/NAME_KEYWORDS]` or `[t/TAG_KEYWORDS]` must be included as the parameters.
+* At least one of the parameters must be included as the parameters.
+* Parameters, if provided, may not be empty. In other words, commands such as `find n/` or `find n/abc t/` are invalid.
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name and tags are searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
+* For name, tag and address parameters, only full words will be matched e.g. `Han` will not match `Hans`.
+* For email and phone parameters, partial matches are allowed, e.g. for phone number, `8123` will match `81234567`.  
 * Persons matching at least one keyword of each provided attribute will be returned.
-  e.g. `n/Hans Bo` will return `Hans Gruber`, `Bo Yang`, `Bo Hans`, while `n/Hans Bo t/friends` will only return `Hans Gruber` and `Bo Yang` if only `Hans Gruber` and `Bo Yang` are tagged with `friends`. 
+  e.g. `n/Hans Bo` will return `Hans Gruber`, `Bo Yang`, `Bo Hans`, while `n/Hans Bo t/friends` will only return `Hans Gruber` and `Bo Yang` if only `Hans Gruber` and `Bo Yang` are tagged with `friends`.
+* Blacklist parameter (`b/`) only accepts `true` or `false`.
+* Mode of contact parameter (`m/`) only accepts `phone`, `email` or `address`.
+* Blacklist and mode of contact parameters only take in the first keyword. For example, if `b/true blah blah` is inputted, it will be interpreted as `b/true`.
 
 Examples:
 * `find n/John` returns `john` and `John Doe`
@@ -166,12 +164,6 @@ Format: `massdelete START-END`
 Example:
 `massdelete 2-41`
 
-### Adding tags to a contact : `tag`
-
-Labels a contact based on his or her attributes.
-
-Format: tag n/NAME t/TAG
-
 ### Blacklist a contact : `blist`
 
 Blocks specific contacts, to specify that they do not want to be contacted.
@@ -182,6 +174,20 @@ Format: blist INDEX
 * Changes the blacklist status of the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a valid positive integer** 1, 2, …​, 2147483647
+
+### Blacklist or unblacklist multiple contacts : `massblist`
+
+Blacklists or unblacklists all contacts within the specified index range (inclusive).
+
+Format: `massblist START-END b/BLACKLIST_OR_UNBLACKLIST`
+
+* The index refers to the index number shown in the displayed person list.
+* Both the start index and end index **must be valid positive integers** positive integers 1, 2, …​, 2147483647
+* Start index must be strictly smaller than the end index. 
+* End index cannot be larger than the number of contacts in the list.
+
+Example:
+`massblist 15-42 b/blacklist`
 
 ### Collect details from contacts : `collect`
 
@@ -201,19 +207,6 @@ Format: collect [n/] or [p/] or [e/] or [a/] [s/SEPARATOR]
   As such, it is not possible to start or end the separator with a space.   
 * Words following any prefix other than `s/` will be ignored.
 * Unrelated prefixes will be ignored.
-
-###Blacklist or unblacklist multiple contacts : `massblist`
-
-Blacklists all contacts within the specified index range.
-
-Format: `massblist START-END b/BLACKLIST_OR_UNBLACKLIST`
-* Blacklists or unblacklists all contacts within the specified index range(inclusive).
-* The index refers to the index number shown in the displayed person list.
-* Both the start index and end index must be a positive integer 1,2,3, ...
-* Start Index < End Index and End Index cannot be larger than the number of contacts in the list.
-
-Example:
-`massblist 15-42 b/blacklist`
 
 ### Clearing all entries : `clear`
 
@@ -239,13 +232,27 @@ Example:
 
 ### Sort entries by name : `sort`
 
-Sort the entries in the contacts list by name in either ascending or descending order.
+Sort the contacts in the address book by name in alphabetical order. The list can be sorted in
+either ascending or descending order.
 
 Format: `sort ASCENDING_OR_DESCENDING`
 
-Example:
+Examples:
 
-`sort ascending`
+* `sort ascending`
+* `sort descending`
+
+### Changing view type to light mode : `light`
+
+Changes the color theme to a light theme.
+
+Format: `light`
+
+### Changing view type to dark mode : `dark`
+
+Changes the color theme to a dark theme.
+
+Format: `dark`
 
 ### Review previous commands
 Users can view the commands they have inserted previously using up and down arrow keys.
@@ -274,7 +281,7 @@ If you edit the data file and make its format invalid, SpamEZ will discard all d
 Undo the changes done to the list of contacts.
 
 Format: `undo`
-* This command only applies to the commands that make changes to the list of contacts, e.g. `add`, `edit`, `delete`, `undo` etc.
+* This command only applies to the commands that make changes to the list of contacts, e.g. `add`, `edit`, `delete` etc.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -302,5 +309,8 @@ Action | Format, Examples
 **List** | `list`
 **Remark** | `remark INDEX r/REMARK`<br> e.g., `remark 5 r/Currently on Leave of Absence`
 **Tag** | `tag n/NAME t/TAG`<br> e.g., `tag n/Jane Bo t/Student`
+**Sort** | `sort ASCENDING_OR_DESCENDING`<br> e.g., `sort ascending`
+**Light** | `light`
+**Dark** | `dark`
 **Sort** | `sort ASCENDING_OR_DESCENDING`<br> e.g., `sort ascending`
 **Undo** | `undo`
