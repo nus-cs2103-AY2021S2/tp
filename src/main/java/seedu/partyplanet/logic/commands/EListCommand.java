@@ -55,7 +55,6 @@ public class EListCommand extends Command {
     private final Comparator<Event> comparator;
     private final Predicate<Event> predicate;
     private String parseArguments;
-    private String parseCriteria;
 
     /**
      * Default empty EListCommand.
