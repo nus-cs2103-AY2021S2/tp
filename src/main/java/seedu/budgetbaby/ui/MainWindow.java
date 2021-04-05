@@ -49,6 +49,12 @@ public class MainWindow extends UiPart<Stage> {
     private CheckMenuItem cliVisibilityCheckMenuItem;
 
     @FXML
+    private MenuItem categoryStatsCheckMenuItem;
+
+    @FXML
+    private MenuItem monthStatsCheckMenuItem;
+
+    @FXML
     private MenuItem helpMenuItem;
 
     @FXML
@@ -83,6 +89,9 @@ public class MainWindow extends UiPart<Stage> {
 
     private void setAccelerators() {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
+        setAccelerator(cliVisibilityCheckMenuItem, KeyCombination.valueOf("F5"));
+        setAccelerator(categoryStatsCheckMenuItem, KeyCombination.valueOf("F6"));
+        setAccelerator(monthStatsCheckMenuItem, KeyCombination.valueOf("F7"));
     }
 
     /**
