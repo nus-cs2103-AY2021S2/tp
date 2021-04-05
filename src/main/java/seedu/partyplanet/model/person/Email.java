@@ -12,16 +12,17 @@ public class Email {
     public static final String EMPTY_EMAIL_STRING = "";
     public static final Email EMPTY_EMAIL = new Email();
 
-    private static final String SPECIAL_CHARACTERS = "!#$%&'*+/=?`{|}~^.-_";
+    private static final String SPECIAL_CHARACTERS = "_!#$%&'*+/=?`{|}~^.-";
     public static final String MESSAGE_CONSTRAINTS = "Emails should be of the format USER@DOMAIN "
             + "and adhere to the following constraints:\n"
             + "1. USER can only contain alphanumerics and any of these special characters, excluding "
             + "the parentheses, (" + SPECIAL_CHARACTERS + ") .\n"
             + "2. DOMAIN must comprise at least one non-empty label with an optional trailing period.\n"
-            + "3. A label contains at least one of alphanumerics, hyphens or underscores.";
+            + "3. A label contains at least one of alphanumerics or underscores, with optional hyphens. "
+            + "Labels cannot start with a hyphen.";
     // alphanumeric and special characters
     private static final String LOCAL_PART_REGEX = "^[\\w" + SPECIAL_CHARACTERS + "]+";
-    private static final String DOMAIN_REGEX = "([\\w_-]+\\.?)+$";
+    private static final String DOMAIN_REGEX = "(\\w[\\w-]*\\.?)+$";
     public static final String VALIDATION_REGEX = LOCAL_PART_REGEX + "@" + DOMAIN_REGEX;
 
     public final String value;

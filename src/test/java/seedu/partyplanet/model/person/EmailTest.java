@@ -43,19 +43,22 @@ public class EmailTest {
         assertFalse(Email.isValidEmail("peterjack@example@com")); // '@' symbol in domain name
         assertFalse(Email.isValidEmail("peterjack@.example.com")); // domain name starts with a period
 
-        // valid email
+        // valid email - user test
         assertTrue(Email.isValidEmail("PeterJack_1190@example.com"));
-        assertTrue(Email.isValidEmail("peterjack@-")); // valid domain name
-        assertTrue(Email.isValidEmail("peterjack@exam_ple.com")); // underscore in domain name
-        assertTrue(Email.isValidEmail("peterjack@-example.com")); // domain name starts with a hyphen
-        assertTrue(Email.isValidEmail("peterjack@example.com-")); // domain name ends with a hyphen
-        assertTrue(Email.isValidEmail("peterjack@example.com.")); // domain name ends with a period
-        assertTrue(Email.isValidEmail("a@b.c")); // minimal
-        assertTrue(Email.isValidEmail("test@localhost")); // alphabets only
-        assertTrue(Email.isValidEmail("!#$%&'*+/=?`{|}~^.-@example.org")); // special characters local part
-        assertTrue(Email.isValidEmail("123@145")); // numeric local part and domain name
+        assertTrue(Email.isValidEmail("!#$%&'*+/=?`{|}~^.-_@example.org")); // special characters local part
         assertTrue(Email.isValidEmail("a1+be!@example1.com")); // mixture of alphanumeric and special characters
-        assertTrue(Email.isValidEmail("peter_jack@very-very-very-long-example.com")); // long domain name
+        assertTrue(Email.isValidEmail("peter_jack@very-very-very-long-example.com")); // long domain name, with dash
         assertTrue(Email.isValidEmail("if.you.dream.it_you.can.do.it@example.com")); // long local part
+
+        // domain test
+        assertTrue(Email.isValidEmail("peterjack@a")); // minimal
+        assertTrue(Email.isValidEmail("peterjack@0")); // minimal
+        assertTrue(Email.isValidEmail("peterjack@a-")); // minimal with dash
+        assertTrue(Email.isValidEmail("peterjack@_")); // start with underscore
+        assertTrue(Email.isValidEmail("peterjack@a.")); // ends in period
+        assertTrue(Email.isValidEmail("peterjack@localhost")); // all text
+        assertTrue(Email.isValidEmail("peterjack@192.168.1.23")); // IP address (IPv4)
+        assertTrue(Email.isValidEmail("peterjack@web.example.com.")); // multiple periods
+        assertFalse(Email.isValidEmail("peterjack@-")); // cannot start with dash
     }
 }
