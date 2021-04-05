@@ -124,7 +124,7 @@ Format: `delete <INDEX>`
 
 Parameters:
 
-1. `Index`.
+1. `Index of FoodDiary entry`
 
 Example:
 
@@ -210,7 +210,7 @@ Shows a list of all FoodDiary entries.
 
 Format: `list`
 
-Parameter: none
+Parameters: none
 
 Example:
 
@@ -223,7 +223,7 @@ Opens up a window to show a condensed form of all the different commands,
 
 Format: `help`
 
-Parameter: none
+Parameters: none
 
 Example:
 
@@ -233,16 +233,24 @@ Example:
 
 ### Revise a specific FoodDiary entry `revise`
 
-Opens up a window, showing the existing details of an FoodDiary entry and allows for quick corrections and updates without
-requiring the use of prefixes and command syntax in the UI.
+Opens up a window, showing the existing details of a FoodDiary entry and allows for quick corrections and updates without
+requiring the use of prefixes and command syntax in the UI. Mainly used to revise entry with many existing reviews as compared
+to using the `edit` command.
 
-Use `TAB` key to iterate through fields, `Ctrl + S` (Windows) or `Command + S` (Mac) to save, `ESC` key to quickly
-exit the revise window.
-
-Note:
+**Available Shortcut keys for fast typists:**
+- `TAB` key to iterate through fields
+- `Ctrl + S` (Windows) or `Command + S` (Mac) to save
+- `ESC` key to quickly exit the revise window
+ 
+**Note:**
+- Price can be a value or range e.g. `5` or `5-9`
 - Leave a white-space between categories to separate them
 - Leave a white-space between schools to separate them
-- Leave a blank line to differentiate between each reviews
+- Leave a blank line to differentiate between each review
+
+**Expected behaviour: Revise window will close, showing successful edit of entry in Main Window's command box** 
+
+**Unexpected behaviour: Revise window will close, showing error message in Main Window's command box**
 
 Format: `revise <INDEX>`
 
@@ -258,13 +266,14 @@ Example:
 
 ### Editing a specific FoodDiary entry `edit`
 
-Edits the details of the FoodDiary entry specified quickly. Existing values will be overwritten by the new values.
+Edits the details of the FoodDiary entry specified. Existing values will be overwritten by the new values.
+Mainly used if previous entry values do not matter in new edit.
 
 Format: `edit <INDEX> n/<RESTAURANT NAME> ra/<RATING> p/<PRICE> re/<REVIEW> a/<ADDRESS> c/<CATEGORIES> s/<SCHOOLS>`
 
 Note: 
-- Price range: $0 - 999
-- Categories and schools are stated in `add` command
+- Price can be a value or range e.g. `5` or `5-9`
+- Categories and schools tags are stated in `add` command
 
 Parameters:
 
@@ -286,11 +295,14 @@ Clearing all entries from food diary.
 
 Format: `clear`
 
+Parameters: none
 
 ### Exiting food diary `exit`
 Close and exit the program.
 
 Format: `exit`
+
+Parameters: none
 
 ------------------------------------------------------------------------------------
 ## FAQ
@@ -307,18 +319,18 @@ contains the data of your previous AddressBook home folder.
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/<RESTAURANT NAME> ra/<RATING FROM 0-5> p/<PRICE> re/<REVIEW> a/<ADDRESS> c/<CATEGORIES>` <br> e.g., `add  n/Al Amaan Restaurant ra/4 p/6 re/best for Butter Chicken a/12 Clementi Rd, Singapore 129742 c/Indian Muslim`
-**AddOn** |`addon <INDEX> re/<REVIEW> p/<PRICE>` or `addon <INDEX> p/<PRICE> re/<REVIEW>` <br>e.g,`addon 1 re/I like this food a lot p/5`
-**Delete** | `delete <INDEX>` <br> e.g., `delete 1`
-**List** | `list`
-**Find** | `find <KEYWORD> ...` <br> e.g., `find kfc`
-**FindAll** |`findall <KEYWORD> ...` <br> e.g., `findall clementi fastfood 5/5 $5-10`
-**Help** | `help`
-**View** |`view <INDEX>` <br> e.g `view 1`
-**Revise** |`revise <INDEX>` <br> e.g `revise 1`
+**Add** | `add n/<RESTAURANT NAME> ra/<RATING FROM 0-5> p/<PRICE> re/<REVIEW> a/<ADDRESS> c/<CATEGORIES>` <br> e.g. `add  n/Al Amaan Restaurant ra/4 p/6 re/best for Butter Chicken a/12 Clementi Rd, Singapore 129742 c/Indian Muslim`
+**AddOn** |`addon <INDEX> re/<REVIEW> p/<PRICE>` or `addon <INDEX> p/<PRICE> re/<REVIEW>` <br>e.g.`addon 1 re/I like this food a lot p/5`
+**Delete** | `delete <INDEX>` <br> e.g. `delete 1`
+**List** | `list` <br> e.g. `list`
+**Find** | `find <KEYWORD> ...` <br> e.g. `find kfc`
+**FindAll** |`findall <KEYWORD> ...` <br> e.g. `findall clementi fastfood 5/5 $5-10`
+**Help** | `help` <br> e.g. `help`
+**View** |`view <INDEX>` <br> e.g. `view 1`
+**Revise** |`revise <INDEX>` <br> e.g. `revise 1`
 **Edit** |`edit <INDEX> n/<RESTAURANT NAME> ra/<RATING> p/<PRICE> re/<REVIEW> a/<ADDRESS> c/<CATEGORIES> s/<SCHOOLS>` <br> e.g `edit 1 ra/5 p/7 re/I like this food a lot! a/Science c/Indian c/Halal s/Ventus`
-**Clear**| `clear` e.g `clear`
-**Exit** | `exit` e.g `exit`
+**Clear**| `clear` <br> e.g. `clear`
+**Exit** | `exit` <br> e.g. `exit`
 
 ## Keyboard Shortcuts Summary
 
@@ -333,7 +345,7 @@ Action | Keyboard Shortcut| Windows where Keyboard shortcut is available
 
 - **Main Window:** The Window that appears when the application starts up
 - **View Window:** The Window that appears when viewing a FoodDiary entry through the `view` command
-- **Revise Window** The Window that appears when revising a FoodDairy entry through the `edit` command
+- **Revise Window** The Window that appears when revising a FoodDairy entry through the `revise` command
 
 
 ## UI mock-up
