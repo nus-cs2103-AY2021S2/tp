@@ -71,4 +71,4 @@ deactivate EditSessionCommand
 <-- LogicManager
 deactivate LogicManager
 
-@endumlml
+@enduml
