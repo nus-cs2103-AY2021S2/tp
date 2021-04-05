@@ -4,25 +4,65 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.pool.PooledPassengerContainsKeywordsPredicate;
 
 import java.util.Arrays;
 import java.util.Collections;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_POOLS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPassengers.*;
-import static seedu.address.testutil.TypicalPools.*;
-import static seedu.address.testutil.TypicalPools.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPools.HOMEPOOL;
+import static seedu.address.testutil.TypicalPools.OFFICEPOOL;
+import static seedu.address.testutil.TypicalPools.WORKPOOL;
+import static seedu.address.testutil.TypicalPools.getTypicalAddressBookPools;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code FindCommand}.
+ * Contains integration tests (interaction with the Model) and unit tests for {@code FindPoolCommand}.
  */
 public class FindPoolCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBookPools(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalAddressBookPools(), new UserPrefs());
+
+    @Test
+    public void execute_zeroKeywords_noPoolFound() {
+        String expectedMessage = String.format(MESSAGE_POOLS_LISTED_OVERVIEW, 0);
+        PooledPassengerContainsKeywordsPredicate predicate = prepareNamePredicate(" ");
+        FindPoolCommand command = new FindPoolCommand(predicate);
+        expectedModel.updateFilteredPoolList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getFilteredPoolList());
+    }
+
+    @Test
+    public void execute_oneUnmatchedKeyword_noPoolFound() {
+        String expectedMessage = String.format(MESSAGE_POOLS_LISTED_OVERVIEW, 0);
+        PooledPassengerContainsKeywordsPredicate predicate = prepareNamePredicate("Alices");
+        FindPoolCommand command = new FindPoolCommand(predicate);
+        expectedModel.updateFilteredPoolList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getFilteredPoolList());
+    }
+
+    @Test
+    public void execute_multipleMatchedKeywords_multiplePoolsFound() {
+        String expectedMessage = String.format(MESSAGE_POOLS_LISTED_OVERVIEW, 3);
+        PooledPassengerContainsKeywordsPredicate predicate = prepareNamePredicate("Alice Bob Daniel");
+        FindPoolCommand command = new FindPoolCommand(predicate);
+        expectedModel.updateFilteredPoolList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(HOMEPOOL, OFFICEPOOL, WORKPOOL), model.getFilteredPoolList());
+    }
+
+    /**
+     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
+     */
+    private PooledPassengerContainsKeywordsPredicate prepareNamePredicate(String userInput) {
+        return new PooledPassengerContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    }
+
 
     @Test
     public void equals() {
@@ -49,32 +89,5 @@ public class FindPoolCommandTest {
 
         // different passenger -> returns false
         assertFalse(findPoolFirstCommand.equals(findPoolSecondCommand));
-    }
-
-    @Test
-    public void execute_zeroKeywords_noPoolFound() {
-        String expectedMessage = String.format(MESSAGE_POOLS_LISTED_OVERVIEW, 0);
-        PooledPassengerContainsKeywordsPredicate predicate = prepareNamePredicate(" ");
-        FindPoolCommand command = new FindPoolCommand(predicate);
-        expectedModel.updateFilteredPoolList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredPoolList());
-    }
-
-    @Test
-    public void execute_multipleNameKeywords_multiplePoolsFound() {
-        String expectedMessage = String.format(MESSAGE_POOLS_LISTED_OVERVIEW, 3);
-        PooledPassengerContainsKeywordsPredicate predicate = prepareNamePredicate("Alice Bob Carl");
-        FindPoolCommand command = new FindPoolCommand(predicate);
-        expectedModel.updateFilteredPoolList(predicate);
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(HOMEPOOL, OFFICEPOOL, WORKPOOL), model.getFilteredPoolList());
-    }
-
-    /**
-     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
-     */
-    private PooledPassengerContainsKeywordsPredicate prepareNamePredicate(String userInput) {
-        return new PooledPassengerContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 }
