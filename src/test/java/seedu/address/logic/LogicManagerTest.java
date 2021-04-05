@@ -25,6 +25,7 @@ import seedu.address.logic.commands.tutorcommands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.ReadOnlyGradeBook;
 import seedu.address.model.ReadOnlyTutorBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.tutor.Tutor;
@@ -126,6 +127,11 @@ public class LogicManagerTest {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
     }
 
+    @Test
+    public void getFilteredGradeList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredGradeList().remove(0));
+    }
+
     /**
      * Executes the command and confirms that
      * - no exceptions are thrown <br>
@@ -196,6 +202,20 @@ public class LogicManagerTest {
 
         @Override
         public void saveTutorBook(ReadOnlyTutorBook tutorBook, Path filePath) throws IOException {
+            throw DUMMY_IO_EXCEPTION;
+        }
+    }
+
+    /**
+     * A stub class to throw an {@code IOException} when the save method is called.
+     */
+    private static class JsonGradeBookIoExceptionThrowingStub extends JsonGradeBookStorage {
+        private JsonGradeBookIoExceptionThrowingStub(Path filePath) {
+            super(filePath);
+        }
+
+        @Override
+        public void saveGradeBook(ReadOnlyGradeBook gradeBook, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

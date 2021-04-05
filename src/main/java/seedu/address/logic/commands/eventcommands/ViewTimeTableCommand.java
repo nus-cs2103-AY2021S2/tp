@@ -1,5 +1,7 @@
 package seedu.address.logic.commands.eventcommands;
 
+import java.time.LocalDate;
+
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
@@ -12,12 +14,19 @@ public class ViewTimeTableCommand extends Command {
     public static final String COMMAND_WORD = "timetable";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows tutee's timetable events.\n"
-            + "Example: " + COMMAND_WORD;
+            + "Example: " + COMMAND_WORD + " [DATE]";
 
     public static final String SHOWING_OPEN_MESSAGE = "Opened timetable window.";
 
+    private final LocalDate queryDate;
+
+    public ViewTimeTableCommand(LocalDate queryDate) {
+        this.queryDate = queryDate;
+    }
+
     @Override
     public CommandResult execute(Model model) {
+        model.setTimeTableDate(queryDate);
         return new CommandResult(SHOWING_OPEN_MESSAGE, false, false, true);
     }
 }

@@ -31,7 +31,7 @@ public class EditScheduleCommandParser implements Parser<EditScheduleCommand> {
     public EditScheduleCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_DATE,
-                        PREFIX_TIME_FROM, PREFIX_TIME_TO, PREFIX_DESCRIPTION);
+                PREFIX_TIME_FROM, PREFIX_TIME_TO, PREFIX_DESCRIPTION);
 
         Index index;
         try {
@@ -46,17 +46,29 @@ public class EditScheduleCommandParser implements Parser<EditScheduleCommand> {
             editScheduleDescriptor.setTitle(ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get()));
         }
 
-        // TODO: Implement better handling of date and times (and combinations)
-        if (argMultimap.getValue(PREFIX_DATE).isPresent() && argMultimap.getValue(PREFIX_TIME_FROM).isPresent()) {
+        if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
             String dateString = argMultimap.getValue(PREFIX_DATE).get();
-            String timeFromString = argMultimap.getValue(PREFIX_TIME_FROM).get();
-            editScheduleDescriptor.setTimeFrom(ParserUtil.parseDateTime(dateString + " " + timeFromString));
-        }
+            if (argMultimap.getValue(PREFIX_TIME_FROM).isPresent()) {
+                String timeFromString = argMultimap.getValue(PREFIX_TIME_FROM).get();
+                editScheduleDescriptor.setTimeFrom(ParserUtil.parseDateTime(dateString + " " + timeFromString));
+            }
+            if (argMultimap.getValue(PREFIX_TIME_TO).isPresent()) {
+                String timeToString = argMultimap.getValue(PREFIX_TIME_TO).get();
+                editScheduleDescriptor.setTimeTo(ParserUtil.parseDateTime(dateString + " " + timeToString));
+            }
 
-        if (argMultimap.getValue(PREFIX_DATE).isPresent() && argMultimap.getValue(PREFIX_TIME_TO).isPresent()) {
-            String dateString = argMultimap.getValue(PREFIX_DATE).get();
-            String timeToString = argMultimap.getValue(PREFIX_TIME_TO).get();
-            editScheduleDescriptor.setTimeTo(ParserUtil.parseDateTime(dateString + " " + timeToString));
+            if (argMultimap.getValue(PREFIX_TIME_FROM).isEmpty() && argMultimap.getValue(PREFIX_TIME_TO).isEmpty()) {
+                editScheduleDescriptor.setDateOnly(ParserUtil.parseLocalDate(dateString));
+            }
+        } else {
+            if (argMultimap.getValue(PREFIX_TIME_FROM).isPresent()) {
+                String timeFromString = argMultimap.getValue(PREFIX_TIME_FROM).get();
+                editScheduleDescriptor.setTimeFromOnly(ParserUtil.parseLocalTime(timeFromString));
+            }
+            if (argMultimap.getValue(PREFIX_TIME_TO).isPresent()) {
+                String timeToString = argMultimap.getValue(PREFIX_TIME_TO).get();
+                editScheduleDescriptor.setTimeToOnly(ParserUtil.parseLocalTime(timeToString));
+            }
         }
 
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {

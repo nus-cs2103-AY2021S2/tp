@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -24,8 +25,6 @@ public class DeleteGradeCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_GRADE_SUCCESS = "Deleted Grade: %1$s";
-    public static final String MESSAGE_DELETE_GRADE_FAILURE = "Grade does"
-            + " not exists in grade list.";
 
     private final Index targetIndex;
     private final Grade toDelete;
@@ -52,14 +51,13 @@ public class DeleteGradeCommand extends Command {
         requireNonNull(model);
         List<Grade> lastShownList = model.getFilteredGradeList();
 
-        // Delete by index
-        try {
-            Grade toDelete = lastShownList.get(targetIndex.getZeroBased());
-            model.removeGradeIndex(targetIndex.getZeroBased());
-            return new CommandResult(String.format(MESSAGE_DELETE_GRADE_SUCCESS, toDelete));
-        } catch (IndexOutOfBoundsException e) {
-            return new CommandResult(MESSAGE_DELETE_GRADE_FAILURE);
+        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_GRADE_DISPLAYED_INDEX);
         }
+
+        Grade gradeToDelete = lastShownList.get(targetIndex.getZeroBased());
+        model.deleteGrade(gradeToDelete);
+        return new CommandResult(String.format(MESSAGE_DELETE_GRADE_SUCCESS, gradeToDelete));
     }
 
     @Override

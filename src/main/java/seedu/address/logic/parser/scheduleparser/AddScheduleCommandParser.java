@@ -46,6 +46,7 @@ public class AddScheduleCommandParser implements Parser<AddScheduleCommand> {
         String timeToString = argMultimap.getValue(PREFIX_TIME_TO).get();
         AppointmentDateTime timeFrom = ParserUtil.parseDateTime(dateString + " " + timeFromString);
         AppointmentDateTime timeTo = ParserUtil.parseDateTime(dateString + " " + timeToString);
+
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
 
         Schedule schedule = new Schedule(title, timeFrom, timeTo, description);

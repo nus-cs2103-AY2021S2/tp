@@ -105,7 +105,6 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
-        timetableWindow = new TimeTableWindow();
     }
 
     public Stage getPrimaryStage() {
@@ -151,6 +150,8 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+        timetableWindow = new TimeTableWindow(logic.getFilteredEventList());
+
         tutorListPanel = new TutorListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(tutorListPanel.getRoot());
 
@@ -224,7 +225,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     public void handleTimetable() {
         if (!timetableWindow.isShowing()) {
-            timetableWindow.show(logic.getFilteredEventList());
+            timetableWindow.show(logic.getTimeTableDate());
         } else {
             timetableWindow.focus();
         }

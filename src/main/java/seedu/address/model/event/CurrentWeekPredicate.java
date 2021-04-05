@@ -38,7 +38,7 @@ public class CurrentWeekPredicate implements Predicate<Event> {
 
     @Override
     public String toString() {
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("hh:mm a");
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("MMM dd yyyy");
         return mondayDate.format(format) + " to " + sundayDate.format(format);
     }
 }

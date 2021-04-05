@@ -130,7 +130,6 @@ public class TutorBook implements ReadOnlyTutorBook {
     }
 
     //// util methods
-
     @Override
     public String toString() {
         return tutors.asUnmodifiableObservableList().size() + " tutors";
