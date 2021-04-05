@@ -5,10 +5,12 @@ import static seedu.budgetbaby.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Category in the budget tracker.
+ * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
  */
 public class Category {
 
-    public static final String MESSAGE_CONSTRAINTS = "Categories should be alphanumeric";
+    public static final String MESSAGE_CONSTRAINTS = "Category labels should not exceed beyond 20 characters";
+    public static final String VALIDATION_REGEX = "^.{1,20}$";
 
     public final String category;
 
@@ -19,6 +21,7 @@ public class Category {
      */
     public Category(String tagName) {
         requireNonNull(tagName);
+        checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
         this.category = tagName;
     }
 
@@ -27,6 +30,13 @@ public class Category {
      */
     public String getCategory() {
         return this.category;
+    }
+
+    /**
+     * Returns true if a given string is a valid tag name.
+     */
+    public static boolean isValidTagName(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 
     @Override
