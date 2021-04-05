@@ -21,6 +21,7 @@ import java.util.List;
 import seedu.address.model.AddressBook;
 import seedu.address.model.person.Event;
 import seedu.address.model.person.Person;
+
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
  */
@@ -76,7 +77,7 @@ public class TypicalPersons {
         return ab;
     }
 
-    public static seedu.address.model.person.Event[] getSampleEvents() {
+    public static Event[] getSampleEvents() {
         return new Event[] {
                 new EventBuilder().withDate(LocalDate.of(2021, 1, 30)).withDescription("e1").build(),
                 new EventBuilder().withDate(LocalDate.of(2021, 1, 24)).withDescription("e2").build(),
