@@ -11,9 +11,12 @@ import java.time.format.DateTimeParseException;
  * Guarantees: immutable; is valid as declared in {@link #isStringValidDateTime(String)}
  */
 public class DateTime {
+    public static final DateTimeFormatter DATETIME_PATTERN = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
     public static final String MESSAGE_INVALID_FORMAT = "Date and time should be of the format of dd-MM-yyyy HH:mm.";
     public static final String MESSAGE_IN_PAST = "Date and time cannot be in the past.";
-    public static final DateTimeFormatter DATETIME_PATTERN = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+
+    private static final DateTimeFormatter DAY_OF_WEEK_FORMAT = DateTimeFormatter.ofPattern("EEE");
+    private static final DateTimeFormatter DAY_OF_WEEK_FORMAT_FULL = DateTimeFormatter.ofPattern("EEEE");
 
     public final LocalDateTime dateTime;
 
@@ -52,6 +55,14 @@ public class DateTime {
 
     public LocalDateTime get() {
         return this.dateTime;
+    }
+
+    public String getDayOfWeek() {
+        return this.dateTime.format(DAY_OF_WEEK_FORMAT).toLowerCase();
+    }
+
+    public String getDayOfWeekFull() {
+        return this.dateTime.format(DAY_OF_WEEK_FORMAT_FULL).toLowerCase();
     }
 
     @Override
