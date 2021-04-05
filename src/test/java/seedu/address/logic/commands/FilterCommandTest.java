@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.commons.core.Messages.MESSAGE_FLASHCARDS_LISTED_OVERVIEW;
+import static seedu.address.commons.core.Messages.MESSAGE_FLASHCARDS_FILTERED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalFlashcards.ACID;
@@ -65,7 +65,7 @@ public class FilterCommandTest {
 
     @Test
     public void execute_zeroKeywords_allFlashcardFound() {
-        String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 7);
+        String expectedMessage = String.format(MESSAGE_FLASHCARDS_FILTERED_OVERVIEW, 7);
         FlashcardFilterPredicate predicate = new FlashcardFilterPredicate(new ArrayList<>(), new ArrayList<>(),
                 new ArrayList<>(), new ArrayList<>());
         FilterCommand command = new FilterCommand(predicate);
@@ -77,7 +77,7 @@ public class FilterCommandTest {
 
     @Test
     public void execute_oneFieldKeyword_noFlashcardFound() {
-        String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 0);
+        String expectedMessage = String.format(MESSAGE_FLASHCARDS_FILTERED_OVERVIEW, 0);
         FlashcardFilterPredicate predicate = new FlashcardFilterPredicate(Arrays.asList("pythagoreans"),
                 Arrays.asList("testing"), Arrays.asList("Low"), new ArrayList<>());
         FilterCommand command = new FilterCommand(predicate);
@@ -88,7 +88,7 @@ public class FilterCommandTest {
 
     @Test
     public void execute_multipleFieldKeyword_noFlashcardFound() {
-        String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 0);
+        String expectedMessage = String.format(MESSAGE_FLASHCARDS_FILTERED_OVERVIEW, 0);
         FlashcardFilterPredicate predicate = new FlashcardFilterPredicate(Arrays.asList("pythagorean"),
                 Arrays.asList("testing"), Arrays.asList("Low"), new ArrayList<>());
         FilterCommand command = new FilterCommand(predicate);
@@ -99,7 +99,7 @@ public class FilterCommandTest {
 
     @Test
     public void execute_multipleKeywords_multipleFlashcardFound() {
-        String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 2);
+        String expectedMessage = String.format(MESSAGE_FLASHCARDS_FILTERED_OVERVIEW, 2);
         FlashcardFilterPredicate predicate = new FlashcardFilterPredicate(Arrays.asList("pythagorean", "newton"),
                 new ArrayList<>(), Arrays.asList("Low"), new ArrayList<>());
         FilterCommand command = new FilterCommand(predicate);
@@ -110,7 +110,7 @@ public class FilterCommandTest {
 
     @Test
     public void execute_multipleKeywords_oneFlashcardFound() {
-        String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 1);
+        String expectedMessage = String.format(MESSAGE_FLASHCARDS_FILTERED_OVERVIEW, 1);
         FlashcardFilterPredicate predicate = new FlashcardFilterPredicate(Arrays.asList("pythagorean", "newton"),
                 Arrays.asList("math"), Arrays.asList("Low"), new ArrayList<>());
         FilterCommand command = new FilterCommand(predicate);
@@ -121,7 +121,7 @@ public class FilterCommandTest {
 
     @Test
     public void execute_multiplePartialKeywords_multipleFlashcardFound() {
-        String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 2);
+        String expectedMessage = String.format(MESSAGE_FLASHCARDS_FILTERED_OVERVIEW, 2);
         FlashcardFilterPredicate predicate = new FlashcardFilterPredicate(Arrays.asList("pythago", "ewton"),
                 new ArrayList<>(), Arrays.asList("ow"), new ArrayList<>());
         FilterCommand command = new FilterCommand(predicate);
@@ -132,7 +132,7 @@ public class FilterCommandTest {
 
     @Test
     public void execute_multiplePartialKeywords_oneFlashcardFound() {
-        String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 1);
+        String expectedMessage = String.format(MESSAGE_FLASHCARDS_FILTERED_OVERVIEW, 1);
         FlashcardFilterPredicate predicate = new FlashcardFilterPredicate(Arrays.asList("pythago", "ton"),
                 Arrays.asList("ma"), Arrays.asList("L"), new ArrayList<>());
         FilterCommand command = new FilterCommand(predicate);
