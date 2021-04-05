@@ -72,5 +72,6 @@ public class EventDateTest {
         assertTrue(EventDate.isValidEventDate("2025-06-06"));
         assertTrue(EventDate.isValidEventDate("9999-06-07"));
     }
+
 }
 
