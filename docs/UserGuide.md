@@ -156,6 +156,7 @@ With new members joining the club, you can add a new member along with his/ her 
 Format: `addMember NAME -p PHONE_NUMBER -e EMAIL [-r ROLE]`
 
 * The field ROLE is optional
+* ROLE field can take on any values with alphanumeric characters
 * If role field is not specified, person will be assigned a default role of member.
 
 Examples: 
@@ -191,11 +192,12 @@ Examples:
 Club members may change their emails or phone numbers after a while. This feature allows you to edit the details of the 
 existing Member in the application with the name you specify.
 
-Format: `editMember NAME_IN_LIST [-n NEW_NAME] [-p NEW_PHONE_NUMBER] [-e NEW_EMAIL] [-r ROLE]`
+Format: `editMember NAME_IN_LIST [-n NEW_NAME] [-p NEW_PHONE_NUMBER] [-e NEW_EMAIL] [-r NEW_ROLE]`
 
 * Edits the member at the specified NAME_IN_LIST.
 * The fields NEW_NAME, NEW_PHONE_NUMBER, NEW_EMAIL, NEW_ROLE are all optional
 * At least one of the optional fields must be provided.
+* ROLE field can take on any values with alphanumeric characters
 * Existing values will be updated to the input values.
 
 Examples: 
@@ -295,7 +297,7 @@ Examples:
 <a name="undoTask"></a>
 ### 6. Mark Task as Uncompleted: `undo`
 
-Change the status of a task with the task index you specify from **completed** to **uncompleted**.
+Changes the status of a task with the task index you specify from **completed** to **uncompleted**.
 
 Format: `undo INDEX`
 
@@ -353,7 +355,7 @@ Examples:
 <a name="clearAssignees"></a>
 ### 10. Remove all Members Assigned to a Task: `clearAssignees`
 
-Remove all members assigned to a task with the task INDEX you specified.
+Removes all members assigned to a task with the task INDEX you specified.
 
 Format: `clearAssignees INDEX`
 
@@ -374,7 +376,7 @@ Examples:
 <a name="findUncompleted"></a>
 ### 12. View List of Uncompleted Tasks: `viewUncompletedTasks`
 
-View the list of uncompleted tasks.
+Displays the list of uncompleted tasks.
 
 Format: `viewUncompletedTasks`
 
@@ -404,7 +406,7 @@ Examples:
 <a name="savingData"></a>
 ### Saving the data
 
-HEY MATEz data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+HEY MATEz data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 <a name="editData"></a>
 ### Editing the data file

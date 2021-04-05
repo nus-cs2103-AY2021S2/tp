@@ -12,7 +12,6 @@ import seedu.heymatez.model.assignee.Assignee;
 import seedu.heymatez.model.person.Name;
 import seedu.heymatez.model.task.exceptions.TaskNotFoundException;
 
-
 /**
  * A list of task that enforces uniqueness between its elements and does not allow nulls.
  * A Task is considered unique by comparing using {@code Task#isSameTask(Task)}. As such, adding and updating of
