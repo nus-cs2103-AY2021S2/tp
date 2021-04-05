@@ -17,7 +17,7 @@
   </icons>
   <scene>
     <Scene>
-        <GridPane prefHeight="421.0" prefWidth="589.0">
+        <GridPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="421.0" prefWidth="589.0">
             <HBox alignment="BASELINE_RIGHT" GridPane.rowIndex="0">
                 <opaqueInsets>
                     <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
@@ -39,7 +39,7 @@
                   <Insets />
                </GridPane.margin>
             </HBox>
-            <HBox alignment="BASELINE_RIGHT" GridPane.rowIndex="1">
+            <HBox alignment="BASELINE_RIGHT" minHeight="-Infinity" minWidth="-Infinity" GridPane.rowIndex="1">
                 <opaqueInsets>
                     <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
                 </opaqueInsets>
@@ -64,31 +64,34 @@
                <font>
                   <Font name="System Bold" size="17.0" />
                </font></Label>
-            <TableView fx:id="tableView" prefHeight="315.0" prefWidth="589.0" GridPane.rowIndex="3">
+            <TableView fx:id="tableView" minHeight="-Infinity" minWidth="-Infinity" prefHeight="315.0" prefWidth="589.0" GridPane.rowIndex="3">
                 <columns>
-                    <TableColumn prefWidth="88.0" text="Action">
-                        <cellValueFactory><PropertyValueFactory property="action" />
+                    <TableColumn prefWidth="88.0" resizable="false" text="Command">
+                        <cellValueFactory><PropertyValueFactory property="command" />
                         </cellValueFactory>
                     </TableColumn>
-                    <TableColumn prefWidth="499.0" text="Format">
-                        <cellValueFactory><PropertyValueFactory property="format" />
+                    <TableColumn prefWidth="499.0" resizable="false" text="Example">
+                        <cellValueFactory><PropertyValueFactory property="example" />
                         </cellValueFactory>
                     </TableColumn>
                 </columns>
                 <items>
                     <FXCollections fx:factory="observableArrayList">
-                        <UserGuide action="Help" format="help" />
-                        <UserGuide action="Toggle" format="toggle THEME" />
-                        <UserGuide action="Exit" format="exit" />
-                        <UserGuide action="Add" format="add -x METHOD -u URL [-d DATA] [-h HEADER]… [-t TAG]…" />
-                        <UserGuide action="Edit" format="edit INDEX [-x METHOD] [-u URL] [-d DATA] [-h HEADER]… [-t TAG]…" />
-                        <UserGuide action="Show" format="show INDEX" />
-                        <UserGuide action="Remove" format="remove INDEX" />
-                        <UserGuide action="Find" format="find KEYWORD [MORE_KEYWORDS]…" />
-                        <UserGuide action="List" format="list" />
-                        <UserGuide action="Clear" format="clear" />
-                        <UserGuide action="Send" format="send INDEX" />
-                        <UserGuide action="Run" format="run -x METHOD -u URL [-d DATA] [-h HEADER]…" />
+                        <UserGuide command="Help" example="help" />
+                        <UserGuide command="Toggle" example="toggle material" />
+                        <UserGuide command="Exit" example="exit" />
+                        <UserGuide command="Add"
+                                   example="add -x GET -u https://api.data.gov.sg/v1/technology/ipos/patents -t singapore" />
+                        <UserGuide command="Edit"
+                                   example="edit 1 -t tutorial " />
+                        <UserGuide command="Show" example="show 1" />
+                        <UserGuide command="Remove" example="remove 1" />
+                        <UserGuide command="Find" example="find singapore" />
+                        <UserGuide command="List" example="list" />
+                        <UserGuide command="Clear" example="clear" />
+                        <UserGuide command="Send" example="send 1" />
+                        <UserGuide command="Run"
+                                   example="run -x get -u https://api.data.gov.sg/v1/environment/psi" />
                     </FXCollections>
                 </items>
             </TableView>
