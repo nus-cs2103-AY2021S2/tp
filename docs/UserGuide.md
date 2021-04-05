@@ -1,42 +1,29 @@
 <img width="960" alt="docboblogo" src="https://user-images.githubusercontent.com/59093518/113546749-2db63300-961f-11eb-979d-128c9fd10ee6.png">
-![background start](https://user-images.githubusercontent.com/59093518/113469865-9668a880-9483-11eb-9e23-f5d0ff034cda.png)
 
-**DocBob** is a **desktop app for managing patient medical information and appointments, optimised for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). DocBob is targeted at Doctors and Nurses like you! If you can type fast, DocBob can help you keep track of your patient's **medical information** and **scheduled appointments** more efficiently than any other patient information management app in the market. With DocBob, you will never have to go through the hassle of manually keeping track of your patients' medical information and appointments ever again. Leave the pen and paper in the past and let Bob take you to an automated future.
-
-The **purpose of this User Guide(UG)** is to help new users understand how to get the app running by following the **Quick Start** guide. The **Features** section will help you learn the basic commands, their formatting and usages. You can easily navigate through this guide with the provided **Table of Contents** below.
-
-## Issues
-In the event of any issues while using the app and or UG, please contact the team at the emails below <br>
-prerthanmunireternam@yahoo.com
+**DocBob** is a lightweight patient management system built to help small clinics better manage the appointments & medical information of their beloved patients. With DocBob, you will never have to go through the hassle of manually keeping track of your patients' medical information and appointments ever again. Leave the pen and paper in the past and let Bob take you to an automated future.
 
 * Table of Contents
-{:toc}
+{:toc:}
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed on your computer.
 
-1. Download the latest `bob.jar` from [here](https://github.com/AY2021S2-CS2103T-W12-1/tp/releases).
+1. Download the latest `docbob.jar` from [here](https://github.com/AY2021S2-CS2103T-W12-1/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for Doc Bob.
+1. Double-click the file to start the app. ![img_1.png](img_1.png)
+   > **First Startup**: DocBob comes with some sample patient data. Try out the example commands below with the sample data and when you are ready, use the `clear` command to remove all sample data and start adding your own data!
 
-1. Double-click the file to start the app. The GUI similar to the mock-up below should appear in a few seconds. Note how the app contains some sample data. To learn how to use the Command Line Interface (CLI), try out the example commands given below with the sample data. The purpose of the sample data is for you to see how things should look like once everything is all set up.  Once you are familiar with the CLI, you can use the `clear` command to remove all sample data and start adding your own data!<br>
-   ![Ui](images/Ui.png)
-   
-1. This should work for you regardless of your operating system (OS).
-
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will list out all available commands.<br>
-   Some example commands you can try:
-
+1. Execute commands by typing them in the command box and pressing **Enter** to execute them. See [Features](#features) for details of each command.<br>
+   Example commands:
    * **`list`** : List out all patients in DocBob's contact list.
 
-   * **`add n/Shrek p/66666666 e/shrek@swampmail.com a/Swamp h/243cm w/94kg`** : Adds a patient named `Shrek` to DocBob's contact list.
+   * **`add n/Breanna Frye p/97890525 e/example@gmail.com a/4340 Monroe Street h/163cm w/54kg`** : Adds a patient named `Breanna Frye` with the given information to the patient book.
 
-   * **`appt 1 d/010120301200`** : Adds a scheduled upcoming appointment with the patient at index 1 in DocBob's contact list, on 1st January 2030 12pm.
-
-1. Refer to the [Features](#features) below for details of each command.
+   * **`appt 1 d/010120301200`** : Adds a scheduled appointment with the patient at index 1 in DocBob's contact list, on 1st January 2030 12pm.
+> **Quick tip**: typing **`help`** and pressing Enter will list out all available commands!
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -50,7 +37,7 @@ prerthanmunireternam@yahoo.com
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/cough` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
@@ -327,3 +314,6 @@ Action | Format, Examples
 **unarchive** | `unarchive INDEX` <br> e.g., `unarchive 2`
 **exit** | `exit`
 
+## Issues
+In the event of any issues while using the app and or UG, please contact the team at the emails below <br>
+e0406660@u.nus.edu.com
