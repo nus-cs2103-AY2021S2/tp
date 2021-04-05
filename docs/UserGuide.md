@@ -474,14 +474,14 @@ You should have a good understanding of how goal deadlines are calculated before
 
 ### The dashboard
 
+![StreaksDashboard](images/StreaksDashboard.png)
+
 You will be rewarded if you managed to stick to your goal consistently. You can maintain a streak (think of it as Snapchat's Streak feature) with a friend if you have been meeting him/her regularly.
 To ensure that you are able to see your friend's name on the Streaks dashboard, they need to have a goal set to them. More information on setting goal [here](#setting-meeting-goal-set-goal). 
 To reiterate, your friend will only appear on the dashboard if you explicitly set a goal. Just recording meetings with them will not work.
 
 The dashboard can be viewed by running the `view streaks` command. The Streaks dashboard will show up on the details panel on the right of FriendDex. 
 It will contain a list of friends and their streak indicated by a number beside the friend's name. The dashboard will be sorted in descending order with the friend that has the highest streak right at the top.
-
-// Please insert an image here probably
 
 ### How are streaks calculated?
 
