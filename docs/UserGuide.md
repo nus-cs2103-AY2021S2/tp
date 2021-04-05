@@ -69,7 +69,7 @@ Here are some symbols you might need to know:
 PlanIT contains a list of tasks.
 Tasks can have the following attributes:
 
-### Title: `t/`
+### Title: `n/`
 A short description or name for the task. Titles can only contain alphanumeric values.
 
 :information_source:  Every task must have a title.
@@ -103,7 +103,7 @@ A label attached to a task for easy grouping and searching of tasks. Your tag sh
 
 :bulb: You can use this to group tasks by modules e.g adding a `CS2103` tag to a task.
 
-### Status: 's/'
+### Status: `st/`
 Reflects the current status of your task. Status can only be either 'done' or 'not done'.
 
 :information_source:   Your task's status will be set to 'not done' by default.
@@ -113,7 +113,7 @@ Reflects the current status of your task. Status can only be either 'done' or 'n
 In order to maximise the efficiency of adding tasks and ensuring that there are no unnecessary attributes, there are
 two constraints to the attributes that can exist on the tasks that you create or edit.
 1. Tasks cannot have Date and Recurring Schedule at the same time.
-2. Tasks cannot have Duration on its own without a Date or Recurring Schedule.
+2. Tasks cannot have Duration on its own without a Date or Reclcurring Schedule.
 
 When it comes to Dates and Recurring Schedules, the main purpose of a Date attribute is to give a task a deadline or
 a single day to carry out the task itself. This should not co-exist with a Recurring Schedule, which can also indicate
@@ -388,9 +388,9 @@ Format: `rmf INDEX FIELD`
 * Removes the specified field of task at `INDEX`.
 * The index refers to the index number shown in the displayed planner.
 * The index **must be a positive integer** 1, 2, 3, …​
-* Fields are specified in the format of `d/` `t/`.
+* Fields are specified in the format their respective attributes: `set/`, `s/`, `r/`, `d/`, `t/`.
 * Exactly one field must be specified.
-* Title field cannot be removed.
+* Title and status fields cannot be removed.
 
 Examples:
 * `ls` followed by `rmf 2 d/` removes the description from the 2nd task in the planner.
@@ -400,7 +400,7 @@ Examples:
 ### Counting down to a task : `count`
 
 Displays the number of days left to a task's date if it exists
-so that you can know how much time left to work on the task.
+so that you know how much time you have left to work on the task.
 
 Format: `count INDEX`
 
@@ -421,7 +421,9 @@ so that you can check the current task progression and determine your own work e
 
 Statistics include:
 1) The total number of tasks in the planner.
+   
 2) The percentage of tasks completed (marked as done).
+   
 3) The number of tasks due in the next 7 days from the system's current time.
 
 Format: `stat`
