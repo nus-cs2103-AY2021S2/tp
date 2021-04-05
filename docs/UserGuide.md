@@ -231,8 +231,8 @@ Format: `add-meeting INDEX d/DATE t/TIME desc/DESCRIPTION`
 * Records a meeting with the person at the specified `INDEX`.
 
 Examples:
-* `meeting 1 d/16-02-2021 t/1130 desc/We had lunch together!`
-* `meeting 2 d/17-02-2021 t/1930 desc/We went to see the sunset!`
+* `add-meeting 1 d/16-02-2021 t/1130 desc/We had lunch together!`
+* `add-meeting 2 d/17-02-2021 t/1930 desc/We went to see the sunset!`
 
 See also:
 * [Goals](#goals) and [Streaks](#streaks) to learn how FriendDex uses your meeting data to motivate you to meet your friends more!  
