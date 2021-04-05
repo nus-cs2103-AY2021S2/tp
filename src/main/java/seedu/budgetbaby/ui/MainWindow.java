@@ -238,6 +238,8 @@ public class MainWindow extends UiPart<Stage> {
             (int) primaryStage.getX(), (int) primaryStage.getY(), cliVisibilityCheckMenuItem.isSelected());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
+        categoryStatsWindow.hide();
+        monthStatsWindow.hide();
         primaryStage.hide();
     }
 
