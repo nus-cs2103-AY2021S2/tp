@@ -1,12 +1,16 @@
 package seedu.budgetbaby.testutil;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import seedu.budgetbaby.model.BudgetTracker;
 import seedu.budgetbaby.model.record.Amount;
 import seedu.budgetbaby.model.record.Category;
 import seedu.budgetbaby.model.record.Description;
 import seedu.budgetbaby.model.record.FinancialRecord;
-
-import java.util.*;
 
 /**
  * A utility class containing a list of {@code Financial Record} objects to be used in tests.

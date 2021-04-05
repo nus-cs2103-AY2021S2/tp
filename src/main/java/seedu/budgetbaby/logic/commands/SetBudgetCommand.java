@@ -3,8 +3,8 @@ package seedu.budgetbaby.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import seedu.budgetbaby.logic.commands.exceptions.CommandException;
-import seedu.budgetbaby.model.BudgetBabyModel;
 import seedu.budgetbaby.model.Budget;
+import seedu.budgetbaby.model.BudgetBabyModel;
 
 /**
  * Sets a budget for the following months.

@@ -1,12 +1,10 @@
 package seedu.budgetbaby.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.budgetbaby.testutil.TypicalBudgetTracker.getTypicalBudgetTracker;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
@@ -16,12 +14,6 @@ import seedu.budgetbaby.logic.parser.exceptions.ParseException;
 import seedu.budgetbaby.model.BudgetBabyModel;
 import seedu.budgetbaby.model.BudgetBabyModelManager;
 import seedu.budgetbaby.model.UserPrefs;
-import seedu.budgetbaby.model.record.Amount;
-import seedu.budgetbaby.model.record.Category;
-import seedu.budgetbaby.model.record.Description;
-import seedu.budgetbaby.model.record.FinancialRecord;
-
-import static seedu.budgetbaby.testutil.TypicalBudgetTracker.getTypicalBudgetTracker;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindFrCommand}.

@@ -3,6 +3,7 @@ package seedu.budgetbaby.model.budget;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.budgetbaby.model.Budget;
 
 public class BudgetTest {

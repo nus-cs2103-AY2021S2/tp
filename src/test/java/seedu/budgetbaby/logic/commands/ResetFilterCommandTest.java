@@ -13,12 +13,7 @@ import seedu.budgetbaby.logic.parser.FindFrCommandParser;
 import seedu.budgetbaby.logic.parser.exceptions.ParseException;
 import seedu.budgetbaby.model.BudgetBabyModel;
 import seedu.budgetbaby.model.BudgetBabyModelManager;
-import seedu.budgetbaby.model.BudgetTracker;
 import seedu.budgetbaby.model.UserPrefs;
-import seedu.budgetbaby.model.record.Amount;
-import seedu.budgetbaby.model.record.Category;
-import seedu.budgetbaby.model.record.Description;
-import seedu.budgetbaby.model.record.FinancialRecord;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code ResetFilterCommand}.
