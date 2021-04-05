@@ -9,6 +9,7 @@ import java.util.Set;
 import javafx.util.Pair;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -25,7 +26,7 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_RANGE = "Invalid range format.";
-    public static final String MESSAGE_INVALID_START = "Start index must be positive and start index < end index";
+    public static final String MESSAGE_INVALID_START = "Start index must be positive and start index < end index.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -116,22 +117,23 @@ public class ParserUtil {
     }
 
     /**
-     * Parses  a {@code String isAscending} into a {@code boolean}.
-     * Leading and trailing whitespaces will be trimmed.
+     * Parses a {@code String sortDirection} into a {@code boolean}. Returns true if the
+     * direction is ascending and false if the direction is descending. Leading and trailing
+     * whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code isAscending} is invalid.
+     * @throws ParseException if the given {@code sortDirection} is invalid.
      */
-    public static boolean parseIsAscending(String isAscending) throws ParseException {
-        requireNonNull(isAscending);
-        String trimmedIsAscending = isAscending.trim();
-        if (!trimmedIsAscending.equals("ascending") && !trimmedIsAscending.equals("descending")) {
-            throw new ParseException("Input should either be ascending or descending");
+    public static boolean parseSortDirection(String sortDirection) throws ParseException {
+        requireNonNull(sortDirection);
+        String trimmedSortDirection = sortDirection.trim();
+        if (!SortCommand.isValidSortDirection(trimmedSortDirection)) {
+            throw new ParseException(SortCommand.MESSAGE_USAGE);
         }
-        return trimmedIsAscending.equals("ascending");
+        return trimmedSortDirection.equals("ascending");
     }
 
     /**
-     * Parses  a {@code String isBlacklist} into a {@code boolean}.
+     * Parses a {@code String isBlacklist} into a {@code boolean}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code isBlacklist} is invalid.

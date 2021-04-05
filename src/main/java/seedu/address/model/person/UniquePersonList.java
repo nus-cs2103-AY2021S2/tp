@@ -100,7 +100,8 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
-     * Sorts the list by name.
+     * Sorts the contacts in the address book by name in alphabetical order.
+     *
      * @param isAscending The list will be sorted by ascending order if true and descending
      * order otherwise.
      */

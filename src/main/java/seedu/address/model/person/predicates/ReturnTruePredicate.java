@@ -1,6 +1,8 @@
-package seedu.address.model.person;
+package seedu.address.model.person.predicates;
 
 import java.util.function.Predicate;
+
+import seedu.address.model.person.Person;
 
 /**
  * A dummy predicate that returns true all the time.

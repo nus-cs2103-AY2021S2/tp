@@ -1,6 +1,7 @@
-package seedu.address.model.person;
+package seedu.address.model.person.predicates;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
@@ -30,6 +31,7 @@ public class NameContainsKeywordsPredicateTest {
 
         // different types -> returns false
         assertFalse(firstPredicate.equals(1));
+        assertNotEquals(firstPredicate, new PersonBlacklistedPredicate(true));
 
         // null -> returns false
         assertFalse(firstPredicate.equals(null));

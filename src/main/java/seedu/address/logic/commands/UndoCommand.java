@@ -14,7 +14,7 @@ public class UndoCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Undo operation successful.";
 
-    public static final String MESSAGE_FAILED = "Cannot undo.";
+    public static final String MESSAGE_NOTHING_TO_UNDO = "There is nothing to undo.";
 
     private final State state;
 
@@ -25,7 +25,7 @@ public class UndoCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         if (this.state.getPreviousState() == null) {
-            throw new CommandException(MESSAGE_FAILED);
+            throw new CommandException(MESSAGE_NOTHING_TO_UNDO);
         }
         this.state.deleteCurrentState();
         model.setAddressBook(state.getCurrentState());
