@@ -61,11 +61,11 @@ public class TagCommand extends Command {
         Set<Tag> oldTags = taskToTag.getTags();
         Set<Tag> newTags = addTags(oldTags, this.tags);
 
-        Task editedTask = Task.setTags(taskToTag, newTags);
-
-        if (!taskToTag.isSameTask(editedTask) && model.hasTask(editedTask)) {
+        if (newTags.equals(oldTags)) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
+
+        Task editedTask = Task.setTags(taskToTag, newTags);
 
         model.setTask(taskToTag, editedTask);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
