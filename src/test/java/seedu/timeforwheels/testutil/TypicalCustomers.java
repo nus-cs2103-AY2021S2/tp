@@ -9,8 +9,8 @@ import static seedu.timeforwheels.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.timeforwheels.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.timeforwheels.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.timeforwheels.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.timeforwheels.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.timeforwheels.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.timeforwheels.logic.commands.CommandTestUtil.VALID_TAG_FRAGILE;
+import static seedu.timeforwheels.logic.commands.CommandTestUtil.VALID_TAG_HEAVY;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -51,10 +51,10 @@ public class TypicalCustomers {
 
     // Manually added - Customer's details found in {@code CommandTestUtil}
     public static final Customer AMY = new CustomerBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
-            .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND)
+            .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRAGILE)
             .withDone(VALID_DONE).build();
     public static final Customer BOB = new CustomerBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-            .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+            .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HEAVY, VALID_TAG_FRAGILE)
             .withDone(VALID_DONE).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
