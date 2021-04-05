@@ -3,8 +3,9 @@ layout: page
 title: User Guide
 ---
 ModuleBook3.5 is the go-to tool for busy students/professionals who are confident that typing can save them time. 
-Using ModuleBook3.5, one can organise and keep track of tasks and their deadlines without the need for consistent 
-internet connection. Even if your online learning portal fails, you can still see your task details
+Using ModuleBook3.5, one can organise and keep track of tasks and their deadlines in an 
+Easy, Seamless and Straightforward manner, all without the need for consistent internet connection. 
+Even if your online learning portal fails, you can still see your task details
 on ModuleBook3.5.
 
 
@@ -146,6 +147,21 @@ However, the colours will be arranged such that no two modules with the same col
    * **`recur`** :  Recur tasks
 
    * **`exit`** : Close the app
+
+
+### Parameter Prefixes
+Below is a table of prefixes mapped to the respective parameters:<br>
+
+ Prefix | Parameter | How to Remember 
+--------|----------|-------------
+n/ | NAME | 
+m/ | MODULE | 
+d/ | DESCRIPTION | 
+a/ | START TIME | "start AT"
+b/ | DEADLINE | "finish BY"
+w/ | WORKLOAD |
+r/ | RECURRENCE |
+t/ | TAG | 
 
 <div style="page-break-after: always;"></div>
 
