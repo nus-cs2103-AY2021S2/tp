@@ -5,7 +5,7 @@ import seedu.booking.logic.parser.Parser;
 import seedu.booking.logic.parser.exceptions.ParseException;
 import seedu.booking.model.booking.Description;
 
-public class BookingDescPromptParser implements Parser<PromptBookingDescCommand> {
+public class PromptBookingDescParser implements Parser<PromptBookingDescCommand> {
 
     /**
      * Parses user input for booking description

@@ -18,9 +18,9 @@ import seedu.booking.model.person.Person;
 import seedu.booking.model.person.Phone;
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new AddPersonCommand object
  */
-public class AddCommandParser implements Parser<AddPersonCommand> {
+public class AddPersonCommandParser implements Parser<AddPersonCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand

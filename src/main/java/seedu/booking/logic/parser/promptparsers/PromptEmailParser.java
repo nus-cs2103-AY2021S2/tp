@@ -8,7 +8,7 @@ import seedu.booking.logic.parser.Parser;
 import seedu.booking.logic.parser.exceptions.ParseException;
 import seedu.booking.model.person.Email;
 
-public class EmailPromptParser implements Parser<PromptBookingEmailCommand> {
+public class PromptEmailParser implements Parser<PromptBookingEmailCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the email

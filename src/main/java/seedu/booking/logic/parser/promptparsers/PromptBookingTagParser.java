@@ -7,7 +7,7 @@ import seedu.booking.logic.commands.PromptBookingTagsCommand;
 import seedu.booking.logic.parser.exceptions.ParseException;
 import seedu.booking.model.Tag;
 
-public class BookingTagPromptParser {
+public class PromptBookingTagParser {
 
     /**
      * Parses user input for booking tags
