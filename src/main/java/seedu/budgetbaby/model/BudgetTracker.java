@@ -8,7 +8,6 @@ import java.util.List;
 import javafx.beans.InvalidationListener;
 import javafx.collections.ObservableList;
 import seedu.budgetbaby.commons.util.InvalidationListenerManager;
-import seedu.budgetbaby.model.budget.Budget;
 import seedu.budgetbaby.model.month.Month;
 import seedu.budgetbaby.model.month.UniqueMonthList;
 import seedu.budgetbaby.model.record.FinancialRecord;

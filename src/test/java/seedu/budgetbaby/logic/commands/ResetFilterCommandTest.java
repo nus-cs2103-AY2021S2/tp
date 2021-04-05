@@ -1,12 +1,10 @@
 package seedu.budgetbaby.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.budgetbaby.testutil.TypicalBudgetTracker.getTypicalBudgetTracker;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
@@ -26,29 +24,20 @@ import seedu.budgetbaby.model.record.FinancialRecord;
  * Contains integration tests (interaction with the Model) for {@code ResetFilterCommand}.
  */
 public class ResetFilterCommandTest {
-    private BudgetBabyModel model = new BudgetBabyModelManager(new BudgetTracker(), new UserPrefs());
+    private BudgetBabyModel model = new BudgetBabyModelManager(getTypicalBudgetTracker(), new UserPrefs());
     private FindFrCommandParser find = new FindFrCommandParser();
     private ResetFilterCommand reset = new ResetFilterCommand();
     private DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     private LocalDate currDate = LocalDate.now();
 
-    private final Description description = new Description("Breakfast");
-    private final Amount amount = new Amount("5");
-    private final Set<Category> categories = new HashSet<>(Arrays.asList(new Category("Food")));
-
-    private final Description description2 = new Description("Lunch");
-    private final Amount amount2 = new Amount("6");
-    private final Set<Category> categories2 = new HashSet<>(Arrays.asList(new Category("Food")));
-
     @Test
     public void execute() throws ParseException, CommandException {
-        model.addFinancialRecord(new FinancialRecord(description, amount, categories));
-        model.addFinancialRecord(new FinancialRecord(description2, amount2, categories2));
         String expectedOutput = "[" + dtf.format(currDate) + " | Breakfast | 5.00; Categories: "
                 + "[Food], " + dtf.format(currDate) + " | Lunch | 6.00; Categories: [Food]]";
         find.parse(" d/Breakfast").execute(model);
         reset.execute(model);
-        assertEquals(expectedOutput, model.getFilteredFinancialRecordList().toString());
+        String actualOutput = model.getFilteredFinancialRecordList().toString();
+        assertEquals(expectedOutput, actualOutput);
     }
 
 }

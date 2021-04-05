@@ -3,6 +3,7 @@ package seedu.budgetbaby.model.budget;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
+import seedu.budgetbaby.model.Budget;
 
 public class BudgetTest {
     private static final double THRESHOLD = 0.0001;
@@ -18,7 +19,7 @@ public class BudgetTest {
     public void setAmountTest() {
         Budget budget = new Budget();
         budget.setAmount(200.0);
-        double amount = budget.amount;
+        double amount = budget.getAmount();
         assertEquals(amount, 200, THRESHOLD);
     }
 
