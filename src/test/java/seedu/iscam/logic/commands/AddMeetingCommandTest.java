@@ -177,7 +177,7 @@ public class AddMeetingCommandTest {
         }
 
         @Override
-        public boolean hasConflictingMeetingWith(Meeting meeting) {
+        public boolean hasConflictingMeetingWith(Meeting meeting, Meeting... exclusions) {
             throw new AssertionError("This method should not be called.");
         }
 
