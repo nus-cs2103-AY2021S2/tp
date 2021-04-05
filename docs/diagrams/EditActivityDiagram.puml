@@ -5,9 +5,9 @@ start
 :User enters edit command;
 :Parse user input;
 if () then ([Index > number of items in StoreMando])
-    : Display parse error message;
+    : Display command error message;
 else ([else])
-    if () then ([Input matches the edit command format)
+    if () then ([Input matches the edit command format])
         :Item's attributes update accordingly;
         :A success message is displayed to the user;
     else ([else])
