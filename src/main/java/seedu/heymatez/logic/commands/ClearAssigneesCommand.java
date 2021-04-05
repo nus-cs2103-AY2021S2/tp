@@ -32,6 +32,8 @@ public class ClearAssigneesCommand extends Command {
 
     public static final String MESSAGE_CLEARED_ASSIGNEES_SUCCESS = "Cleared all Members Assigned to Task: %1$s";
 
+    public static final String MESSAGE_LIST_IS_EMPTY = "There is nothing to clear. The task list is empty!";
+
     private final Index targetIndex;
 
     public ClearAssigneesCommand(Index targetIndex) {
@@ -42,6 +44,10 @@ public class ClearAssigneesCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Task> lastShownList = model.getFilteredTaskList();
+
+        if (lastShownList.size() == 0) {
+            throw new CommandException(MESSAGE_LIST_IS_EMPTY);
+        }
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(MESSAGE_INVALID_TASK_DISPLAYED_INDEX);

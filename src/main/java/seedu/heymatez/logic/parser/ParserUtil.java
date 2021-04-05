@@ -12,6 +12,8 @@ import static seedu.heymatez.commons.core.Messages.MESSAGE_INVALID_TASK_DESCRIPT
 import static seedu.heymatez.commons.core.Messages.MESSAGE_INVALID_TASK_PRIORITY;
 import static seedu.heymatez.commons.core.Messages.MESSAGE_INVALID_TASK_STATUS;
 import static seedu.heymatez.commons.core.Messages.MESSAGE_INVALID_TASK_TITLE;
+import static seedu.heymatez.commons.util.StringUtil.INVALID_INPUT;
+import static seedu.heymatez.commons.util.StringUtil.INVALID_INTEGER;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -40,6 +42,8 @@ public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
+    public static final String MESSAGE_NON_POSITIVE_INDEX = "Index is a non positive integer.";
+
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
@@ -48,10 +52,13 @@ public class ParserUtil {
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
         System.out.println(trimmedIndex);
-        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+        if (StringUtil.isNonZeroUnsignedInteger(trimmedIndex) == INVALID_INPUT) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
+        } else if (StringUtil.isNonZeroUnsignedInteger(trimmedIndex) == INVALID_INTEGER) {
+            throw new ParseException(MESSAGE_NON_POSITIVE_INDEX);
+        } else {
+            return Index.fromOneBased(Integer.parseInt(trimmedIndex));
         }
-        return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
 
     /**
