@@ -28,12 +28,12 @@ public class TagTest {
         assertFalse(Tag.isValidTagName("^")); // only non-alphanumeric characters
         assertFalse(Tag.isValidTagName("alien*")); // contains non-alphanumeric characters
         assertFalse(Tag.isValidTagName("tom jerry")); // contains space
-        assertFalse(Tag.isValidTagName("dolphinhorsemonkeyzebrahipposlothpig")); // longer than 35 characters
+        assertFalse(Tag.isValidTagName("dolphinhorsemonkeyzebrahipposlothpiglions")); // longer than 40 characters
 
         // valid tag name
         assertTrue(Tag.isValidTagName("12345")); // numbers only
         assertTrue(Tag.isValidTagName("CapitalAmerica")); // with capital letters
-        assertTrue(Tag.isValidTagName("dolphinhorsemonkeyzebrahipposlothes")); // max length names
+        assertTrue(Tag.isValidTagName("dolphinhorsemonkeyzebrahipposlotheslions")); // max length names: 40
     }
 
 }

@@ -10,7 +10,7 @@ import static seedu.partyplanet.commons.util.AppUtil.checkArgument;
 public class Tag {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Tags names should be alphanumeric and should not be longer than 35 characters";
+            "Tags names should be alphanumeric and should not be longer than 40 characters";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     public final String tagName;
@@ -41,10 +41,10 @@ public class Tag {
     }
 
     /**
-     * Returns true if a given tag name is longer than 35 characters.
+     * Returns true if a given tag name is longer than 40 characters.
      */
     public static boolean isTooLong(String test) {
-        return test.length() > 35;
+        return test.length() > 40;
     }
 
     @Override

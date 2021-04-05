@@ -10,8 +10,8 @@ import static seedu.partyplanet.commons.util.AppUtil.checkArgument;
 public class Name {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain alphanumeric characters and spaces."
-                    + "It should not be blank nor longer than 22 characters";
+            "Names should only contain alphanumeric characters and spaces. "
+                    + "It should not be blank nor longer than 25 characters";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -46,10 +46,10 @@ public class Name {
     }
 
     /**
-     * Returns true if a given name is longer than 22 characters.
+     * Returns true if a given name is longer than 25 characters.
      */
     public static boolean isTooLong(String test) {
-        return test.length() > 22;
+        return test.length() > 25;
     }
 
 
