@@ -93,7 +93,7 @@ This section discusses the main semantics and purpose of the design of The Food 
 * As such, multiple reviews and prices pertaining to an entry can be added using the `addon` command. Refer to the
 `addon` feature below for more information.
 
-* An entry with multiple reviews only shows the first review, truncated with an elipsis (...).
+* An entry with multiple reviews only shows the first review, truncated with an ellipsis (...).
 
 * This is done to keep each entry's window height short for the user to view more entries
  in within the main window.
@@ -142,7 +142,7 @@ e.g. in add n/NAME, NAME is a parameter which can be used as add n/Frontier.
 * Items in square brackets `[...]` are optional.
 e.g `<n/NAME> [s/SCHOOL LOCATION]` can be used as `n/Subway t/UTOWN` or as `n/Subway` only.
 
-* Items with `…​` (i.e an elipsis) after them can be used multiple times including zero times.
+* Items with `…​` (i.e an ellipsis) after them can be used multiple times including zero times.
 e.g. `[c/CATEGORY] …​` can be used as `c/Fastfood c/Western c/Fastfood`, or 0 times etc.
 e.g. `<KEYWORD> ...` means that there must be one keyword present in the command, and each keyword can take on
  any part of the entry as specified by the command (i.e. price, review etc.). See features for more understanding.
