@@ -262,7 +262,7 @@ GME data is saved as a JSON file `[JAR file location]/data/GreenMileageEfforts.j
 
 **Q:** Where can I find the data stored by GME terminal?
 
-**A:** The json file containing the data stored is named `GreenMileageEfforts.json` and can be found in the `../data` folder, where `..` is the path to your `GreenMileageEfforts.jar` file.
+**A:** The json file containing the data stored is named `GreenMileageEfforts.json` and can be found in the `data` folder in the same directory where `GreenMileageEfforts.jar` file is saved.
 
 --------------------------------------------------------------------------------------------------------------------
 
