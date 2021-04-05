@@ -11,8 +11,7 @@ public class Tag {
 
     public static final String MESSAGE_CONSTRAINTS = "Tags names should be \"urgent\", \"fragile\", \"bulky\", "
         + "\"food\", \"liquid\", \"hot\", \"cold\", or \"heavy\".";
-    public static final String[] VALID_TAGS = {"urgent", "fragile", "bulky", "food", "liquid", "hot", "cold", "heavy",
-        null};
+    public static final String[] VALID_TAGS = {"urgent", "fragile", "bulky", "food", "liquid", "hot", "cold", "heavy"};
     public final String tagName;
 
     /**
@@ -30,6 +29,9 @@ public class Tag {
      * Returns true if a given string is a valid tag name.
      */
     public static boolean isValidTagName(String inputTag) {
+        if (inputTag == null) {
+            return true;
+        }
         for (String validTag : VALID_TAGS) {
             if (validTag.matches(inputTag)) {
                 return true;
