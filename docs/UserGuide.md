@@ -9,8 +9,8 @@ TutorsPet is a **desktop app designed for private tutors to manage students’ i
 {:toc}
 --------------------------------------------------------------------------------------------------------------------
 ## About
-This document can be thought of as a manual and a reference guide for FriendDex. It will guide you on how to use FriendDex and will provide complete information on each available command.
-Furthermore, the guide gives information on the User Interface (UI) and the other useful features of FriendDex. Each section of the guide can be read independently.
+This document can be thought of as a manual and a reference guide for TutorPets. It will guide you on how to use TutorPets and will provide complete information on each available command.
+Furthermore, the guide gives information on the User Interface (UI) and the other useful features of TutorPets. Each section of the guide can be read independently.
 You can view the full list of content using the Table of Contents above. You can also use your document viewer’s Find function to quickly navigate to the content you want to know more about.
 
 It is generally advised for new users to at least read through the [Quick Start](#quick-start) section to familiarise themselves with FriendDex.
