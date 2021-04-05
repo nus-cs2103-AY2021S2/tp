@@ -346,6 +346,8 @@ Parameters:
 * [RESIDENT_INDEX](#index) The index of the displayed resident.
 * [ROOM_INDEX](#index) The index of the displayed room.
 
+Note that RESIDENT_INDEX and ROOM_INDEX both conform to [INDEX](#index). 
+
 Example:
 * `alloc ri/1 oi/2` Allocates the 1st resident in the resident list to the 2nd room in the room list.
 
