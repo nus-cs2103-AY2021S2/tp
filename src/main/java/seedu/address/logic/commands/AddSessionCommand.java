@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_SESSIONS;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
@@ -44,6 +45,7 @@ public class AddSessionCommand extends Command {
         requireNonNull(model);
 
         model.addSession(toAdd);
+        model.updateFilteredSessionList(PREDICATE_SHOW_ALL_SESSIONS);
         return new CommandResult(MESSAGE_SUCCESS + String.format(Messages.MESSAGE_SESSION_PLACEHOLDER,
                 toAdd));
     }
