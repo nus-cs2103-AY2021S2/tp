@@ -12,6 +12,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddDateCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Event;
+import seedu.address.model.person.SpecialDate;
 
 /**
  * Parses input arguments and creates a new DateCommand object
@@ -44,6 +45,8 @@ public class AddDateCommandParser implements Parser<AddDateCommand> {
         LocalDate date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
         String description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
 
-        return new AddDateCommand(index, new Event(date, description));
+        SpecialDate specialDate = ParserUtil.parseSpecialDate(date, description);
+
+        return new AddDateCommand(index, specialDate);
     }
 }

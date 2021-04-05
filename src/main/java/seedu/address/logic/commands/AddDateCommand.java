@@ -13,8 +13,9 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Event;
+import seedu.address.model.person.SpecialDate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.SpecialDate;
 
 /**
  * Adds a special date to an existing person in the FriendDex.
@@ -35,17 +36,17 @@ public class AddDateCommand extends Command {
     public static final String MESSAGE_ADD_DATE_SUCCESS = "Added date for %1$s";
 
     private final Index index;
-    private final Event event;
+    private final SpecialDate specialDate;
 
     /**
      * @param index of the person in the filtered person list to add date to
-     * @param event details of the date to add
+     * @param specialDate details of the date to add
      */
-    public AddDateCommand(Index index, Event event) {
-        requireAllNonNull(index, event);
+    public AddDateCommand(Index index, SpecialDate specialDate) {
+        requireAllNonNull(index, specialDate);
 
         this.index = index;
-        this.event = event;
+        this.specialDate = specialDate;
     }
 
     @Override
@@ -58,8 +59,8 @@ public class AddDateCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
-        List<Event> datesToEdit = new ArrayList<>(personToEdit.getDates());
-        datesToEdit.add(event);
+        List<SpecialDate> datesToEdit = new ArrayList<>(personToEdit.getDates());
+        datesToEdit.add(specialDate);
 
         Person editedPerson = personToEdit.withDates(datesToEdit);
 
@@ -81,6 +82,6 @@ public class AddDateCommand extends Command {
         }
 
         AddDateCommand e = (AddDateCommand) other;
-        return index.equals(e.index) && event.equals(e.event);
+        return index.equals(e.index) && specialDate.equals(e.specialDate);
     }
 }

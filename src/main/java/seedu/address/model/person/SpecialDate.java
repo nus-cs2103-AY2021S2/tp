@@ -7,28 +7,23 @@ import java.util.Objects;
 import seedu.address.commons.util.DateUtil;
 import seedu.address.commons.util.TimeUtil;
 
-public class Meeting extends Event {
+public class SpecialDate extends Event {
 
     public static final String DESCRIPTION_VALIDATION_REGEX = Event.DESCRIPTION_VALIDATION_REGEX;
     public static final String DESCRIPTION_MESSAGE_CONSTRAINTS = Event.DESCRIPTION_MESSAGE_CONSTRAINTS;
 
-    public Meeting(LocalDate date, LocalTime time, String description) {
-        super(date, time, description);
+    public SpecialDate(LocalDate date, String description) {
+        super(date, description);
     }
 
-    public static boolean isValidMeeting(LocalDate date, LocalTime time, String description) {
-        // Checks for
-        // 1. date is before today
-        // 2. if date is today, time is before current time
-        // 3. description matches the validation regex
+    public static boolean isValidSpecialDate(LocalDate date, String description) {
         return !DateUtil.afterToday(date)
-                && !(DateUtil.isToday(date) && TimeUtil.afterNow(time))
                 && description.matches(DESCRIPTION_VALIDATION_REGEX);
     }
 
     @Override
     public String toUi() {
-        return String.format("%s %s %s\n", DateUtil.toUi(date), TimeUtil.toUi(time), description);
+        return String.format("%s %s\n", DateUtil.toUi(date), description);
     }
 
     @Override
@@ -37,19 +32,18 @@ public class Meeting extends Event {
             return true;
         }
 
-        if (!(other instanceof Meeting)) {
+        if (!(other instanceof SpecialDate)) {
             return false;
         }
 
-        Meeting otherMeeting = (Meeting)other;
-        return otherMeeting.getDate().equals(getDate())
-                && otherMeeting.getTime().equals(getTime())
-                && otherMeeting.getDescription().equals(getDescription());
+        SpecialDate otherSpecialDate = (SpecialDate)other;
+        return otherSpecialDate.getDate().equals(getDate())
+                && otherSpecialDate.getDescription().equals(getDescription());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(date, time, description);
+        return Objects.hash(date, description);
     }
 
     @Override
@@ -57,9 +51,8 @@ public class Meeting extends Event {
         final StringBuilder builder = new StringBuilder();
         builder.append(date)
                 .append("; ")
-                .append(time)
-                .append("; ")
                 .append(description);
         return builder.toString();
     }
+    
 }
