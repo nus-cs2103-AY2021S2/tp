@@ -31,7 +31,7 @@ import seedu.iscam.model.meeting.Description;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index must be a non-zero positive integer.";
-    public static final String MESSAGE_EMPTY_INDEX  = "Index field is empty.";
+    public static final String MESSAGE_EMPTY_INDEX = "Index field is empty.";
     public static final String MESSAGE_INDEX_TOO_LARGE = "Index specified is too big! Please input a "
             + "number smaller than 2147483647.";
 

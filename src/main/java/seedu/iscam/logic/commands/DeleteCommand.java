@@ -6,7 +6,6 @@ import java.util.List;
 
 import seedu.iscam.commons.core.Messages;
 import seedu.iscam.commons.core.index.Index;
-import seedu.iscam.commons.util.StringUtil;
 import seedu.iscam.logic.CommandHistory;
 import seedu.iscam.logic.commands.exceptions.CommandException;
 import seedu.iscam.logic.events.Event;
