@@ -247,6 +247,10 @@ to delete all the sample entries and start using your very own ClientBook.
          <ul><li>Should be of the form <code>PolicyId>URL</code> or <code>PolicyId</code></li></ul> 
          <ul><li><code>PolicyId</code> part should not contain the <code>></code> character</li></ul>
          <ul><li><code>URL</code> part should not contain the <code>></code> character (not a valid website link if it contains <code>></code>)</li></ul> 
+         <ul><li><code>URL</code> part should be of the form minimally be of the form <code>xxx.yyy</code>
+            <ul><li>Other basic URL formats will also be accepted, e.g. <code>https://www.xxx.yyy/page/?q=query</code></li></ul>
+            <ul><li>Due to the huge range of possibilities for the <code>www.xxx.yyy</code> portion of the URL, we will have made the acceptable URL formats flexible rather than restrictive. <b>Do check your URL before entering the input!</b></li></ul>
+         </li></ul> 
     </td>
   </tr>
 </table>
