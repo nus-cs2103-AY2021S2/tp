@@ -99,9 +99,9 @@ Format: `add-fr d/FR_DESCRIPTION a/FR_AMOUNT [t/DATE] [c/CATEGORY]…`
 
 **:bulb: Tips:** <br>
 
-- You must replace `FR_DESCRIPTION` with the description of your financial record.
-- You must replace `FR_AMOUNT` with a **positive number** containing up to **two decimal places**.
-- The date you input must follow the format `DD-MM-YYYY` (e.g. 31-12-2020)
+- You must replace `FR_DESCRIPTION` with the description of your financial record. The description should not exceed 100 characters.
+- You must replace `FR_AMOUNT` with a **positive number** containing up to **two decimal places** (additional decimal places will be rounded to two decimal places). The upper limit for `FR_AMOUNT`is 1,000,000.
+- The date you input must follow the format `DD-MM-YYYY` and it should be between 01-01-1970 and 31-12-2100. (e.g. 31-12-2020)
 - `DD` is the numeric value of the date, `MM` is the numeric value of the month and `YYYY` is the numeric value of the year
 - You must use a date number with 2 digits, a month number with 2 digits, and a year number with 4 digits
 
@@ -181,12 +181,13 @@ Examples:
 
 [coming in v1.3 subject to changes]
 
-If you would like to take a look at how you managed your budget for a pericular month, you may use the `view-month` command to display the data associated with a specific month.
+If you would like to take a look at how you managed your budget for a particular month, you may use the `view-month` command to display the data associated with a specific month.
 
 Data associated with a month includes:
 
 - The budget set by you for that month
-- Your remaining budget for that month
+- Your total expense for that month
+- The amount you have spent in relation to the total budget for that month (in term of percentage)
 - Your list of financial records for that month
 
 <img src="images/features/view-month.png" width="600px">
@@ -208,7 +209,7 @@ Examples:
 
 ### Finding financial records : `find-fr`
 
-If you would like to find financial records which fall within a particular category, you may use the `find-fr` command to filter the list of financial records based on that specified category.
+If you would like to find financial records matching description, amount and/or categories, you may use the `find-fr` command to filter the list of financial records based on specified fields.
 
 <img src="images/features/find-fr.png" width="600px">
 
@@ -305,7 +306,7 @@ _Details coming soon ..._
 | **Edit a Financial Record**   | `edit-fr FR_INDEX [d/FR_DESCRIPTION] [a/FR_AMOUNT] [t/DATE] [c/CATEGORY]…` <br> e.g., `edit-fr 1 d/new description` |
 | **Find a Financial Record**   | `find-fr c/FR_CATEGORY` <br> e.g., `find-fr c/Food`                                                                 |
 | **Set Monthly Budget**        | `set-bg BG_AMOUNT​` <br> e.g., `set-bg 100`                                                                         |
-| **View a Particular Month**   | `view MM-YYYY` <br> e.g., `view 01-2021`                                                                            |
+| **View a Particular Month**   | `view-month MM-YYYY` <br> e.g., `view-month 01-2021`                                                                            |
 | **Reset Filter**              | `reset-filter`                                                                                                      |
 | **Help**                      | `help`                                                                                                              |
 | **Exit**                      | `exit`                                                                                                              |

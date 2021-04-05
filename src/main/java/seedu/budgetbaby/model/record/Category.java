@@ -9,8 +9,8 @@ import static seedu.budgetbaby.commons.util.AppUtil.checkArgument;
  */
 public class Category {
 
-    public static final String MESSAGE_CONSTRAINTS = "Categories should be alphanumeric";
-    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    public static final String MESSAGE_CONSTRAINTS = "Category labels should not exceed beyond 15 characters";
+    public static final String VALIDATION_REGEX = "^.{1,15}$";
 
     public final String category;
 
