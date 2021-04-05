@@ -53,11 +53,11 @@ the functions and intended usage of the application.
 
 - Words in `UPPER_CASE` are arguments which must be supplied by you when you type in a command.<br>
   For example, in the command `add-fr d/FR_DESCRIPTION a/FR_AMOUNT`, `FR_DESCRIPTION` and `FR_AMOUNT` are arguments
-  which must be supplied by you. An example of supplied arguments look like this `add-fr n/Lunch a/10`.
+  which must be supplied by you. An example of supplied arguments look like this `add-fr d/Lunch a/10`.
 
 - You may choose to omit items in square brackets as they are optional.<br>
   For example, with the command `add-fr d/FR_DESCRIPTION a/FR_AMOUNT [t/DATE] [c/CATEGORY]…`, you may omit the category and
-  use `add-fr n/Lunch a/10 t/01-01-2021 c/food` or `add-fr n/Lunch a/10`.
+  use `add-fr d/Lunch a/10 t/01-01-2021 c/food` or `add-fr d/Lunch a/10`.
 
 - For items suffixed with `…`​ you may repeat it multiple times within the command.<br>
   For example, with the command `add-fr d/FR_DESCRIPTION a/FR_AMOUNT [t/DATE] [c/CATEGORY]…`, you may repeat `[c/FR_CATEGORY]…​` multiple
