@@ -53,7 +53,7 @@ public class TaskCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         if (task.getCategories().isEmpty()) {
-            category.setVisible(true);
+            category.setVisible(false);
         } else {
             category.setText("Category: " + task.getCategories().toString());
         }

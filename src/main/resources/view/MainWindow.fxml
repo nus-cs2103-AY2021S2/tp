@@ -14,7 +14,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.text.Font?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="SOChedule" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
+         title="SOChedule" minWidth="800" maxWidth="800" minHeight="450" maxHeight="680" onCloseRequest="#handleExit">
     <icons>
         <Image url="@/images/calendar.png" />
     </icons>
@@ -42,7 +42,7 @@
                 </StackPane>
 
                 <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
-                           minHeight="100" prefHeight="100" maxHeight="100">
+                           minHeight="150" prefHeight="150" maxHeight="150">
                     <padding>
                         <Insets top="5" right="10" bottom="5" left="10" />
                     </padding>
