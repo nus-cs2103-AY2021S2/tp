@@ -11,10 +11,8 @@ Given below are my contributions to the project.
 
 - **New Feature**: Added financial records related commands
 
-  - What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-  - Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-  - Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-  - Credits: _{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}_
+  - What it does: allows the user to add, edit and delete financial records from the budget tracker.
+  - Justification: These features are fundamental to the product, as financial records are the main items stored in the budget tracker. The management of financial records are tasks which are likely to be carried out by users on a daily basis.
 
 - **New Feature**: Added `view-month` command
 
