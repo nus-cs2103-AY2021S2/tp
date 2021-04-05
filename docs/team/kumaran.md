@@ -1,5 +1,6 @@
 ---
-layout: page title: Kumaran's Project Portfolio Page
+layout: page 
+title: Kumaran's Project Portfolio Page
 ---
 
 ## Project: StoreMando
@@ -21,8 +22,7 @@ Given below are my contributions to the project.
     * Highlights: It required an in-depth analysis of design alternatives. The implementation was challenging as I did
       not know how to constantly update the list while keeping its attribute final. I also had to update the list being
       displayed which took in a predicate to update unlike sort which required a comparator to be updated.
-
-
+      
 * **Code
   contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=kumsssss&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-02-19)
 
@@ -47,6 +47,7 @@ Given below are my contributions to the project.
       methods. [\#159](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/159)
     * Modified list feature to make the search
       case-sensitive [\#201](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/201)
+
 * **Documentation**:
     * User Guide:
         * Added the documentation for the features `add` [\#75](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/75)
