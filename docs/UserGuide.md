@@ -98,7 +98,9 @@ Current module codes supported: CS1101S, CS1231S, CS2030, CS2040S, CS2101,
 
    * **`sort`** : Sort tasks
    
-   * **`recur`** :  Recur tasks
+   * **`recur`** : Recur tasks
+   
+   * **`refresh`** : Refresh all showing tasks
 
 <div style="page-break-after: always;"></div>
 
@@ -111,7 +113,6 @@ Shows a list of all tasks you have added.
 Format: `list`
 
 ![add message](images/listCommand.png)
-
 
 ### Add a task: `add`
 
@@ -308,6 +309,12 @@ Examples:
 * `recur 3 r/daily` Recurs the 3rd task in ModuleBook3.5 every day.
 * `recur 4 r/` Removes the recurrence of the 4th task in ModuleBook3.5.
 
+### Refresh all tasks: `refresh`
+
+Refreshes the current list that is showing, updates the deadline if necessary.
+
+Format: `refresh`
+
 <div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -354,4 +361,5 @@ Action | Format, Examples
 **mod** | `mod MODULE`<br> e.g. `mod CS2103T`
 **edit** | `edit INDEX [d/DESCRIPTION] [b/DEADLINE]…​`<br> e.g. `edit 2 d/Eat Biscuits b/2021-03-21 10:10`
 **recur** | `recur INDEX r/RECURRENCE`<br> e.g. `recur 1 r/biweekly`
+**refresh** | `refresh`
 **sort** | `sort n/` or `sort d/` or `sort m/` or `sort w/` or `sort b/` or `sort t/` <br> e.g. `sort b/`

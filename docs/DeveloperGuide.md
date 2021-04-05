@@ -705,6 +705,15 @@ Use case ends.
     * 2c1. ModuleBook3.5 shows an error message.
     
         Use case resumes at step 2.
+        
+**Use case 15: Refresh all tasks**
+
+**MSS**
+
+1.  User requests to refresh all tasks in the list.
+
+2.  ModuleBook3.5 refreshes all tasks in the list.
+
 <div style="page-break-after: always;"></div>
 
 ### Non-Functional Requirements
