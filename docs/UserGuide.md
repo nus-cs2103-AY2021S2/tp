@@ -262,15 +262,17 @@ Examples:
 * `find Quiz` followed by `notdone 1` marks the 1st task in the results of the `find` command as not done.
 
 
-### Add a tag: `tag`
+### Add tag(s): `tag`
 
-Adds a tag to a task.
+Adds a tag or multiple tags to a task.
 
 Application: Used to briefly indicate the nature of the task.
 
 Format: `tag INDEX t/TAG [t/MORETAGS]...​` 
 
 * Attaches one or more tags to the task associated with INDEX. Tags can be used to identify related tasks.
+* If only `/t` is provided without preceding value, no tag will be added but MB3.5 will show you the existing tags
+associated to the task you tried to tag.
 
 ![add message](images/tagCommand.png)
 
