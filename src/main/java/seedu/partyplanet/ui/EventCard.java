@@ -8,7 +8,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.partyplanet.model.event.Event;
 import seedu.partyplanet.model.event.EventDate;
-import seedu.partyplanet.model.person.Remark;
+import seedu.partyplanet.model.remark.Remark;
 
 /**
  * An UI component that displays information of a {@code Event}.

@@ -14,10 +14,10 @@ import seedu.partyplanet.commons.exceptions.IllegalValueException;
 import seedu.partyplanet.model.person.Address;
 import seedu.partyplanet.model.person.Birthday;
 import seedu.partyplanet.model.person.Email;
-import seedu.partyplanet.model.person.Name;
+import seedu.partyplanet.model.name.Name;
 import seedu.partyplanet.model.person.Person;
 import seedu.partyplanet.model.person.Phone;
-import seedu.partyplanet.model.person.Remark;
+import seedu.partyplanet.model.remark.Remark;
 import seedu.partyplanet.model.tag.Tag;
 
 /**

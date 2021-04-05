@@ -1,7 +1,7 @@
 package seedu.partyplanet.model.event;
 
-import seedu.partyplanet.model.person.Name;
-import seedu.partyplanet.model.person.Remark;
+import seedu.partyplanet.model.name.Name;
+import seedu.partyplanet.model.remark.Remark;
 
 /**
  * Represents a Event in PartyPlanet.
