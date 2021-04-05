@@ -212,9 +212,9 @@ Format: `start [n/NUMBER] [t/TAG]…​`
 
 * `NUMBER` specifies the number of questions for the quiz session.
 * `NUMBER` specified should be strictly a positive integer and less than number of available flashcards.
-* When used without a number, either all flashcards (if no tag is specified) or flashcards with specified tags could be tested.
+* When used without a number, either all existing flashcards (if no tag is specified) or flashcards with specified tags will be tested.
 * When used with tags, only flashcards that posses all specified tags will be tested.
-* When used without tags, all flashcards could be tested.
+* When used without tags, all existing flashcards could be tested.
 
 Examples:
 * `start`
@@ -230,13 +230,13 @@ After executing start command:
 
 #### Checking flashcard answers: `check`
 
-Checks if user attempt matches the answer of currently displayed flashcard.
+Checks if user attempt matches the answer of the currently displayed flashcard.
 
 Format: `check ATTEMPT`
 
 * `ATTEMPT` is case-insensitive and ignores leading and trailing white spaces.
 * Each time the user checks an attempt, number of attempts increment by one.
-* If attempt is correct, answer to the current flashcard will be displayed and number of correct attempt increment by one.
+* If attempt is correct, answer to the current flashcard will be displayed and number of correct attempts increment by one.
 * If attempt is incorrect, user may choose to try again through `check`, skip the question though `next` or end the session through `end`.
 
 Examples:
