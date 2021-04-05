@@ -182,7 +182,7 @@ Marks one or more task from SOChedule Task List as completed.
 Format: `done_task INDEX1 [INDEX2] ...`
 * Marks the task(s) at the specified INDEX(es) as complete.
 * When multiple indexes are provided, they should be separated by a whitespace, e.g. `1 2`.
-* All specified tasks must be uncompleted before calling this command.
+* All specified tasks must be uncompleted and existing before calling this command.
 * The index refers to the index number shown in the displayed task list.
 * The index must be a positive and valid integer 1, 2, 3, ...
 
