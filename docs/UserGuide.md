@@ -49,7 +49,7 @@ purposes, these steps are split into a few categories.
 
 #### Adding events
 
-3. Add in past events to store for reference in future events. As most parties in CCAs are repetitive, it would be 
+3. Add in past events to store for reference when planning future events. As most parties in CCAs are repetitive, it would be 
    useful for Welfare ICs to store past events for ease of reference in planning future events that are similar.
 
 4. Add in upcoming events to plan for. Welfare ICs can add in events that are upcoming so that they can be reminded 
