@@ -28,7 +28,7 @@ import seedu.booking.model.BookingSystem;
 import seedu.booking.model.Model;
 import seedu.booking.model.booking.Booking;
 import seedu.booking.model.booking.BookingIdContainsKeywordsPredicate;
-import seedu.booking.model.booking.VenueNameContainsKeywordsPredicate;
+import seedu.booking.model.venue.VenueNameContainsKeywordsPredicate;
 import seedu.booking.model.person.NameContainsKeywordsPredicate;
 import seedu.booking.model.person.Person;
 import seedu.booking.model.venue.Venue;

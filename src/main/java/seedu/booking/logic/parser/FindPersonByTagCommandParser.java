@@ -7,7 +7,7 @@ import java.util.stream.Stream;
 
 import seedu.booking.logic.commands.FindPersonByTagCommand;
 import seedu.booking.logic.parser.exceptions.ParseException;
-import seedu.booking.model.booking.PersonContainsTagPredicate;
+import seedu.booking.model.person.PersonContainsTagPredicate;
 
 /**
  * Parses input arguments and creates a new FindPersonByTagCommand object.
