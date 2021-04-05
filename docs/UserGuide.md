@@ -4,7 +4,9 @@ title: User Guide
 ---
 ## User Guide
 
-SOChedule is a one-stop solution for managing tasks and events, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
+SOChedule is a one-stop solution for NUS School of Computing (SoC) students to manage their tasks and events effectively.
+Targeted at users who can type fast and prefer typing over mouse input, SOChedule is optimized for use via a Command Line Interface (CLI) 
+while still having the benefits of a Graphical User Interface (GUI).
 
 ## Feature List
   
