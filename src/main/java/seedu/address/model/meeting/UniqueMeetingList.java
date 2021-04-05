@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
@@ -139,8 +140,10 @@ public class UniqueMeetingList implements Iterable<Person> {
                     .filter(datetime -> datetime.toLocalDate().equals(LocalDate.now()))
                     .filter(datetime -> datetime.toLocalTime().compareTo(LocalTime.now()) > 0)
                     .map(datetime ->
-                            sb.append(String.format(template, person.getName().fullName, datetime.toLocalTime())));
+                            sb.append(String.format(template, person.getName().fullName,
+                                    datetime.toLocalTime().format(DateTimeFormatter.ofPattern("h:mm a")))));
         }
+        sb.append("\n");
         return sb.toString();
     }
 

@@ -127,6 +127,7 @@ public class UniquePersonList implements Iterable<Person> {
                         sb.append(String.format(template, pair.getKey().getName().fullName, pair.getValue()));
                     }
                 });
+        sb.append("\n");
         return sb.toString();
     }
 
