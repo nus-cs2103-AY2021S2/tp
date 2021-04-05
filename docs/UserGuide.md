@@ -3,7 +3,7 @@
 **DocBob** is a lightweight patient management system built to help small clinics better manage the appointments & medical information of their beloved patients. With DocBob, you will never have to go through the hassle of manually keeping track of your patients' medical information and appointments ever again. Leave the pen and paper in the past and let Bob take you to an automated future.
 
 * Table of Contents
-{:toc:}
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
