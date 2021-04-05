@@ -37,6 +37,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void resetData(ReadOnlyUserPrefs newUserPrefs) {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
+        setCssSettings(newUserPrefs.getCssSettings());
         setAddressBookFilePath(newUserPrefs.getAddressBookFilePath());
     }
 
@@ -91,6 +92,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
+        sb.append("CSS Settings : " + cssSettings);
         sb.append("\nLocal data file location : " + addressBookFilePath);
         return sb.toString();
     }

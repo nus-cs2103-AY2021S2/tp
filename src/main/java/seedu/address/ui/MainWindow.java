@@ -67,6 +67,7 @@ public class MainWindow extends UiPart<Stage> {
 
         // Configure the Style Sheet
         setCss(logic.getCssSettings());
+        this.CurrentCss = logic.getCssSettings().getCssSettings();
 
         setAccelerators();
 
@@ -140,7 +141,8 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-    public void setCss(CssSettings cssSettings) {
+    @FXML
+    private void setCss(CssSettings cssSettings) {
         loadFxmlFile(getFxmlFileUrl(cssSettings.getCssSettings()), primaryStage);
     }
 
