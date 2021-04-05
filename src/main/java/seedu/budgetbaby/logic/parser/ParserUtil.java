@@ -187,9 +187,6 @@ public class ParserUtil {
     public static Category parseTag(String tag) throws ParseException {
         requireNonNull(tag);
         String trimmedTag = tag.trim();
-        if (!Category.isValidTagName(trimmedTag)) {
-            throw new ParseException(Category.MESSAGE_CONSTRAINTS);
-        }
         return new Category(trimmedTag);
     }
 
