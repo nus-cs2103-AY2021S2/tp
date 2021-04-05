@@ -34,7 +34,6 @@ public class ViewPersonCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        model.updateFilteredPersonList(predicate);
         if (model.emptyPersonList()) {
             return new CommandResult(MESSAGE_NO_PERSON_FOUND);
         }
@@ -48,6 +47,7 @@ public class ViewPersonCommand extends Command {
             List<SessionId> sessionList = personToView.get().getSessions();
             SessionStudentPredicate sessionStudentPredicate = new SessionStudentPredicate(sessionList);
             model.updateFilteredSessionList(sessionStudentPredicate);
+            model.updateFilteredPersonList(predicate);
             return new CommandResult(MESSAGE_SUCCESS);
         } else {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);

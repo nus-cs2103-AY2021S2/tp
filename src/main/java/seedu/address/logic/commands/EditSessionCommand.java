@@ -42,7 +42,7 @@ public class EditSessionCommand extends Command {
             + PREFIX_DAY + "MONDAY "
             + PREFIX_SUBJECT + "Biology";
 
-    public static final String MESSAGE_EDIT_SESSION_SUCCESS = "Edited Session: %1$s";
+    public static final String MESSAGE_EDIT_SESSION_SUCCESS = "Edited Session: ";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
     private final SessionId sessionId;
@@ -79,7 +79,8 @@ public class EditSessionCommand extends Command {
             Session editedSession = createEditedSession(sessionToEdit, editSessionDescriptor);
             model.setSession(sessionToEdit, editedSession);
             model.updateFilteredSessionList(PREDICATE_SHOW_ALL_SESSIONS);
-            return new CommandResult(String.format(MESSAGE_EDIT_SESSION_SUCCESS, editedSession));
+            return new CommandResult(MESSAGE_EDIT_SESSION_SUCCESS + String.format(Messages
+                                .MESSAGE_SESSION_PLACEHOLDER, editedSession));
         } else {
             throw new CommandException(Messages.MESSAGE_INVALID_SESSION_DISPLAYED_INDEX);
         }

@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.session.Session;
 
@@ -26,7 +27,7 @@ public class AddSessionCommand extends Command {
             + PREFIX_TIMESLOT + "12:30 to 14:30 "
             + PREFIX_SUBJECT + "Piano "
             + PREFIX_TAG + "music";
-    public static final String MESSAGE_SUCCESS = "New session added: %1$s";
+    public static final String MESSAGE_SUCCESS = "New session added: ";
 
     private final Session toAdd;
 
@@ -43,7 +44,8 @@ public class AddSessionCommand extends Command {
         requireNonNull(model);
 
         model.addSession(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(MESSAGE_SUCCESS + String.format(Messages.MESSAGE_SESSION_PLACEHOLDER,
+                toAdd));
     }
 
     @Override
