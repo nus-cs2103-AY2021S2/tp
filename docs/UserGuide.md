@@ -220,16 +220,7 @@ of each entity in the list.
 **Function**: Edits a dog/owner/program from Pawbook.<br>
 **Usage**: This command allows you to edit the information of the entity (dog/owner/program) in your Pawbook. Let's say 
 you just added an entry for a dog but you realised that you filled in the owner information wrongly. The edit command 
-allows you to quickly correct that mistake. 
-
-Note:
-
-- Date-time format used for sessions is d-M-yyyy HH:mm. Same applies to the day format of date of birth which follows d-M-yyyy.<br>
-  d -> Day: From 1-31 (Please take note that months like February does not have 29 days in certain years)<br>
-  M -> Month: From 1-12<br>
-  yyyy -> Valid year<br>
-  HH -> From 1-12<br>
-  mm -> From 0-59<br>
+allows you to quickly correct that mistake. More details about the formatting of date of birth and session available _[here](#add-command)_
 
 Format:
 
