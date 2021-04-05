@@ -79,7 +79,7 @@ public class EListCommandParser implements Parser<EListCommand> {
                 predicates.add(new EventNameContainsExactKeywordsPredicate(name));
             }
             if (!allRemarks.isEmpty()) {
-                stringFind += "\n\u2022 Requires exact event detail: " + String.join(", ", allRemarks);
+                stringFind += "\n\u2022 Requires exact event remark: " + String.join(", ", allRemarks);
             }
             for (String remark : allRemarks) {
                 predicates.add(new EventDetailContainsExactKeywordsPredicate(remark));
@@ -93,7 +93,7 @@ public class EListCommandParser implements Parser<EListCommand> {
                 predicates.add(new EventNameContainsKeywordsPredicate(name));
             }
             if (!allRemarks.isEmpty()) {
-                stringFind += "\n\u2022 Requires partial event detail: " + String.join(", ", allRemarks);
+                stringFind += "\n\u2022 Requires partial event remark: " + String.join(", ", allRemarks);
             }
             for (String remark : allRemarks) {
                 predicates.add(new EventDetailContainsKeywordsPredicate(remark));
