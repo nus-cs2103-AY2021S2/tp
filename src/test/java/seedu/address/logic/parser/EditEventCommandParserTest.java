@@ -117,7 +117,7 @@ public class EditEventCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_STARTDATE_DESC + ENDDATE_DESC_EVENTONE,
                 Date.MESSAGE_CONSTRAINTS);
 
-        // valid start date followed by start date.
+        // valid start date followed by invalid start date.
         assertParseFailure(parser, "1" + STARTDATE_DESC_EVENTONE + INVALID_STARTDATE_DESC,
                 Date.MESSAGE_CONSTRAINTS);
 

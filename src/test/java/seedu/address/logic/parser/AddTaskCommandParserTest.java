@@ -21,13 +21,13 @@ import static seedu.address.logic.commands.CommandTestUtil.PRIORITY_DESC_TASKONE
 import static seedu.address.logic.commands.CommandTestUtil.PRIORITY_DESC_TASKTWO;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_DIFFICULT;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_IMPORTANT;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_CATEGORY_HOMEWORK;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_CATEGORY_PROJECT;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_TASKTWO;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_TASKTWO;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PRIORITY_TASKTWO;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_DIFFICULT;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_IMPORTANT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_CATEGORY_HOMEWORK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_CATEGORY_PROJECT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_DEADLINE_TASKTWO;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_NAME_TASKTWO;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_PRIORITY_TASKTWO;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_TAG_DIFFICULT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_TAG_IMPORTANT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalTasks.TASKONE;
@@ -50,7 +50,7 @@ public class AddTaskCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Task expectedTask = new TaskBuilder(TASKTWO).withTags(VALID_TAG_DIFFICULT).build();
+        Task expectedTask = new TaskBuilder(TASKTWO).withTags(VALID_TASK_TAG_DIFFICULT).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_TASKTWO + DEADLINE_DESC_TASKTWO
@@ -70,14 +70,15 @@ public class AddTaskCommandParserTest {
 
         // multiple categories - all accepted
         Task expectedTaskMultipleCategories = new TaskBuilder(TASKTWO)
-                .withCategories(VALID_CATEGORY_HOMEWORK, VALID_CATEGORY_PROJECT)
+                .withCategories(VALID_TASK_CATEGORY_HOMEWORK, VALID_TASK_CATEGORY_PROJECT)
                 .build();
         assertParseSuccess(parser, NAME_DESC_TASKTWO + DEADLINE_DESC_TASKTWO + PRIORITY_DESC_TASKTWO
                 + CATEGORY_DESC_PROJECT + CATEGORY_DESC_HOMEWORK + TAG_DESC_IMPORTANT + TAG_DESC_DIFFICULT,
                 new AddTaskCommand(expectedTaskMultipleCategories));
 
         // multiple tags - all accepted
-        Task expectedTaskMultipleTags = new TaskBuilder(TASKTWO).withTags(VALID_TAG_IMPORTANT, VALID_TAG_DIFFICULT)
+        Task expectedTaskMultipleTags = new TaskBuilder(TASKTWO)
+                .withTags(VALID_TASK_TAG_IMPORTANT, VALID_TASK_TAG_DIFFICULT)
                 .build();
         assertParseSuccess(parser, NAME_DESC_TASKTWO + DEADLINE_DESC_TASKTWO + PRIORITY_DESC_TASKTWO
                 + CATEGORY_DESC_PROJECT + TAG_DESC_IMPORTANT + TAG_DESC_DIFFICULT,
@@ -104,20 +105,20 @@ public class AddTaskCommandParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE);
 
         // missing name prefix
-        assertParseFailure(parser, VALID_NAME_TASKTWO + DEADLINE_DESC_TASKTWO + PRIORITY_DESC_TASKTWO
+        assertParseFailure(parser, VALID_TASK_NAME_TASKTWO + DEADLINE_DESC_TASKTWO + PRIORITY_DESC_TASKTWO
                         + CATEGORY_DESC_HOMEWORK, expectedMessage);
 
         // missing deadline prefix
-        assertParseFailure(parser, NAME_DESC_TASKTWO + VALID_DEADLINE_TASKTWO + PRIORITY_DESC_TASKTWO
+        assertParseFailure(parser, NAME_DESC_TASKTWO + VALID_TASK_DEADLINE_TASKTWO + PRIORITY_DESC_TASKTWO
                         + CATEGORY_DESC_HOMEWORK, expectedMessage);
 
         // missing priority prefix
-        assertParseFailure(parser, NAME_DESC_TASKTWO + DEADLINE_DESC_TASKTWO + VALID_PRIORITY_TASKTWO
+        assertParseFailure(parser, NAME_DESC_TASKTWO + DEADLINE_DESC_TASKTWO + VALID_TASK_PRIORITY_TASKTWO
                         + CATEGORY_DESC_HOMEWORK, expectedMessage);
 
         // all prefixes missing
-        assertParseFailure(parser, VALID_NAME_TASKTWO + VALID_DEADLINE_TASKTWO + VALID_PRIORITY_TASKTWO
-                        + VALID_CATEGORY_HOMEWORK, expectedMessage);
+        assertParseFailure(parser, VALID_TASK_NAME_TASKTWO + VALID_TASK_DEADLINE_TASKTWO
+                + VALID_TASK_PRIORITY_TASKTWO + VALID_TASK_CATEGORY_HOMEWORK, expectedMessage);
     }
 
     @Test
@@ -140,7 +141,7 @@ public class AddTaskCommandParserTest {
 
         // invalid tag
         assertParseFailure(parser, NAME_DESC_TASKTWO + DEADLINE_DESC_TASKTWO + PRIORITY_DESC_TASKTWO
-                + CATEGORY_DESC_HOMEWORK + INVALID_TAG_DESC + VALID_TAG_IMPORTANT, Tag.MESSAGE_CONSTRAINTS);
+                + CATEGORY_DESC_HOMEWORK + INVALID_TAG_DESC + VALID_TASK_TAG_IMPORTANT, Tag.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + DEADLINE_DESC_TASKTWO + INVALID_PRIORITY_DESC
