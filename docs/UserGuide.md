@@ -103,8 +103,9 @@ DESCRIPTION OF PARAMETER
 
 
 #### `NAME`
-The unique identifier of a resident.
+The identifier of a resident.
 * Accepts all characters. 
+* Must be unique.
 * For best usage, use English characters only.
 
 
