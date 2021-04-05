@@ -33,11 +33,12 @@ public class Messages {
             + "Please check your input for TIME_FROM and TIME_TO again.";
     public static final String MESSAGE_INVALID_DATE = "The new date must not be in the past. "
             + "Please check your input again.";
-    public static final String MESSAGE_UNABLE_TO_EDIT_PAST_APPOINTMENT = "Past appointments cannot be edited! "
+    public static final String MESSAGE_UNABLE_TO_EDIT_PAST_APPOINTMENT = "Past appointment cannot be edited! "
             + "Please add a new appointment instead.";
-    public static final String MESSAGE_UNABLE_TO_EDIT_PAST_SCHEDULE = "Past schedules cannot be edited! "
+    public static final String MESSAGE_UNABLE_TO_EDIT_PAST_SCHEDULE = "Past schedule cannot be edited! "
             + "Please add a new schedule instead.";
+    public static final String MESSAGE_UNABLE_TO_EDIT_PAST_REMINDER = "Past reminder cannot be edited! "
+            + "Please add a new reminder instead.";
     public static final String MESSAGE_INVALID_TIME_MINUTES = "TIME_FROM and TIME_TO must be in blocks of 30 or 60 minutes. "
             + "Please check your input again.";
-
 }
