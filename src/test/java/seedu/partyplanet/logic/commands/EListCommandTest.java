@@ -67,7 +67,7 @@ public class EListCommandTest {
         EListCommand elistFirstCommandCopy = new EListCommand(firstPredicate);
         assertEquals(elistFirstCommand, elistFirstCommandCopy);
 
-        // different person -> returns false
+        // different event -> returns false
         assertNotEquals(elistFirstCommand, elistSecondCommand);
     }
 
