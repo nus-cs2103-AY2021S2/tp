@@ -19,7 +19,7 @@ public class FindModuleCommandParser implements Parser<FindModuleCommand> {
      */
     public FindModuleCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty())  {
+        if (trimmedArgs.isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindModuleCommand.MESSAGE_USAGE));
         }

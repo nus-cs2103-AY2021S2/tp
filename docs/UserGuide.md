@@ -70,7 +70,7 @@ However, the colours will be arranged such that no two modules with the same col
     CS1101S | Basic Programming Course
     CS1231S | Discrete Mathematics
     CS2030 | Intermediate Programming Course
-    CS2040 | Introductory Data Structures and Algorithms
+    CS2040S | Introductory Data Structures and Algorithms
     CS2101 | Effective Communication for Computing Professionals
     CS2103T | Introductory Software Engineering
     CS2105 | Introduction to Computer Networks
