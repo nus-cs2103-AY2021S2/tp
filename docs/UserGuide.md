@@ -13,7 +13,7 @@ This document can be thought of as a manual and a reference guide for TutorPets.
 Furthermore, the guide gives information on the User Interface (UI) and the other useful features of TutorPets. Each section of the guide can be read independently.
 You can view the full list of content using the Table of Contents above. You can also use your document viewer’s Find function to quickly navigate to the content you want to know more about.
 
-It is generally advised for new users to at least read through the [Quick Start](#quick-start) section to familiarise themselves with FriendDex.
+It is generally advised for new users to at least read through the [Quick Start](#quick-start) section to familiarise themselves with TutorPets.
 
 Note the following symbols and formatting used in this document:
 
