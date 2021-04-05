@@ -86,9 +86,9 @@ The `UI` component,
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete-task 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("rmt 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete-task 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `rmt 1` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteTaskCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -201,7 +201,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete-task`, just save the task being deleted).
+  * Pros: Will use less memory (e.g. for `rmt`, just save the task being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
@@ -351,12 +351,12 @@ or just use a single command `find` in addition with command line prefix to perf
           if the user keeps forgetting the various commands.
 
 
-### Deleting a field from a task
+### Removing a field from a task
 
-A task in the planner's task list can contain multiple fields. Some of these fields can be deleted without deleting
-the entire task, while other fields are compulsory and cannot be deleted. 
-- Deletable fields: `Deadline`, `RecurringSchedule`, `Description`, `Tag`, `Duration`
-- Non-deletable fields: `Title`, `Status` 
+A task in the planner's task list can contain multiple fields. Some of these fields can be removed without deleting
+the entire task, while other fields are compulsory and cannot be removed. 
+- Removable fields: `Deadline`, `RecurringSchedule`, `Description`, `Tag`, `Duration`
+- Non-removable fields: `Title`, `Status` 
 
 An example of how a user might use this command is shown in the activity diagram below.
 
@@ -370,10 +370,9 @@ Alternatives:
 1) Delete field by setting it to an empty string. (Current choice) 
 This approach was chosen as it is easy to implement, and not too much of refactoring of code is needed.
    
-2) Delete field by setting it to null.
-    
-    This approach was not chosen as it would require more refactoring of code - if anything is missed out,
-    it will result in undesirable runtime exceptions.
+2) Delete field by setting it to null. 
+This approach was not chosen as it would require more refactoring of code - if anything is missed out, 
+it will result in undesirable runtime exceptions.
 
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -404,7 +403,7 @@ This approach was chosen as it is easy to implement, and not too much of refacto
 * A quick way to view all tasks due on a specified day
 * Able to quickly search for an available timing for a particular task
 * Organising tasks according to projects/modules/date so that users can view these tasks with different filters
-* Able to adjust and edit task according to user needs
+* Able to adjust and edit tasks according to user needs
 
 
 ### User stories
@@ -538,6 +537,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 4a1. PlanIt shows error message.
 
       Use case resumes at step 3.
+    
+    
+#### **Use case: Remove a field from a task**
+
+**MSS**
+1. User _adds a task with removable field_ to the list.
+2. PlanIT shows task added to the list and updates list.
+3. User enters command to remove the removable field from the task.
+4. PlanIT shows task with field removed and updates list.
+   
+**Extensions**
+* 4a. The given index is invalid.
+    * 4a1. PlanIT shows error message for invalid index.
+    
+        Use case resumes at step 3.
+    
+* 4b. The given prefix is invalid. 
+    * 4b1. PlanIT shows error message for invalid prefix.
+    
+        Use case resumes at step 3.
+    
+* 4c. The field in the task is already removed.
+    * 4c1. PlanIT shows error message detailing field is already removed.
+    
+        Use case ends.
+        
 
 #### **Use case: Sort tasks according to date**
 
@@ -610,6 +635,33 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+#### **Use case: Counting down to a task's date**
+
+**MSS**
+1. User _adds a task with a date_ to the list. 
+2. PlanIT shows task added to the list and updates list.
+3. User enters command to display number of days left to task's date.
+4. PlanIT displays number of days left to task's date.
+
+**Extensions** 
+* 3a. The task selected does not have a date.
+    * 3a1. PlanIT shows error message detailing that task does not have a date. 
+    * 3a2. User adds a date to the task. 
+      
+        Use case resumes from step 3.
+
+* 3b. The task's date is already over. 
+    * 3b1. PlanIT shows error message detailing that task's date is already over.
+    
+        Use case ends.
+    
+#### **Use case: Displaying statistics of PlanIT**
+
+Preconditions: There is at least one task in PlanIT.
+
+**MSS**
+1. User enters command to display statistics of PlanIT.
+2. PlanIT displays its statistics.
 
 ### Non-Functional Requirements
 
@@ -683,15 +735,15 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a task while all tasks are being shown
 
-   1. Prerequisites: List all existing tasks using the `list` command. Multiple tasks in the list.
+   1. Prerequisites: List all existing tasks using the `ls` command. Multiple tasks in the list.
 
-   1. Test case: `delete-task 1`<br>
+   1. Test case: `rmt 1`<br>
       Expected: First task is deleted from the list. Details of the deleted task shown in the status message.
 
-   1. Test case: `delete-task 0`<br>
+   1. Test case: `rmt 0`<br>
       Expected: No task is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete-task x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `rmt`, `rmt x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
