@@ -179,7 +179,7 @@ user of the error.
 
 Step 4. The overridden `execute` method of `DeleteCommand` will be called, deleting the item from the list. An instance 
 of `CommandResult` will be created, generating the result of the execution. The `LogicManager` class will receive the 
-command result object of the execution. The item is deleted from `StoreMando`.
+`CommandResult` object of the execution. The item is deleted from `StoreMando`.
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
