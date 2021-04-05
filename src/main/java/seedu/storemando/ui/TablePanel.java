@@ -4,8 +4,8 @@ import static java.time.temporal.ChronoUnit.DAYS;
 
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.logging.Logger;
 import java.util.ResourceBundle;
+import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,8 +22,8 @@ import seedu.storemando.model.item.Item;
  * Table displaying all items expiring in a week
  */
 public class TablePanel extends UiPart<Region> implements Initializable {
-    private final Logger logger = LogsCenter.getLogger(getClass());
     private static final String FXML = "TablePanel.fxml";
+    private final Logger logger = LogsCenter.getLogger(getClass());
     private ObservableList<Item> itemList;
 
     @FXML
@@ -82,8 +82,36 @@ public class TablePanel extends UiPart<Region> implements Initializable {
          * @param itemList   The list of items in StoreMando.
          */
         public ExpiringItem(int daysBeforeExpiry, ObservableList<Item> itemList) {
-            this.daysBeforeExpiry = String.valueOf(daysBeforeExpiry) + " days from expiring";
-            this.numberOfItems = Long.toString(getExpiringItemWithinDays(daysBeforeExpiry, itemList)) + " items";
+            this.daysBeforeExpiry = convertDaysInIntToString(daysBeforeExpiry);
+            long numberOfItems = getExpiringItemWithinDays(daysBeforeExpiry, itemList);
+            this.numberOfItems = convertNumOfItemInIntToString(numberOfItems);
+
+        }
+
+        /**
+         * Convert days that is a integer type to a string.
+         * @param daysBeforeExpiry The days in integer that will be converted to String.
+         * @return The string representation of days.
+         */
+        private String convertDaysInIntToString(int daysBeforeExpiry) {
+            if (daysBeforeExpiry == 1) {
+                return String.valueOf(daysBeforeExpiry) + " day";
+            } else {
+                return String.valueOf(daysBeforeExpiry) + " days";
+            }
+        }
+
+        /**
+         * Convert number of items that is a integer to a string
+         * @param numberOfItems The number of items in integer that will be converted to string
+         * @return The string representation of number of items.
+         */
+        private String convertNumOfItemInIntToString(long numberOfItems) {
+            if (numberOfItems <= 1) {
+                return Long.toString(numberOfItems) + " item";
+            } else {
+                return Long.toString(numberOfItems) + " items";
+            }
         }
 
         /**
