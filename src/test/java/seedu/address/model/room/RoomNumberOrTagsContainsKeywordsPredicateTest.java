@@ -2,6 +2,7 @@ package seedu.address.model.room;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.room.TypicalRooms.ROOM_SUITE_AC_NOT_OCCUPIED;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -76,10 +77,7 @@ public class RoomNumberOrTagsContainsKeywordsPredicateTest {
 
         // Keywords match occupancy and room type, but does not match room number
         predicate = new RoomNumberOrTagsContainsKeywordsPredicate(Arrays.asList("suite_ac", "n"));
-        assertFalse(predicate.test(new RoomBuilder()
-                .withRoomNumber("03-345")
-                .withRoomType("suite_ac")
-                .withOccupancyStatus("N")
+        assertFalse(predicate.test(new RoomBuilder(ROOM_SUITE_AC_NOT_OCCUPIED)
                 .build()));
     }
 
@@ -113,10 +111,7 @@ public class RoomNumberOrTagsContainsKeywordsPredicateTest {
 
         // Keywords match occupancy and room type, but does not match room number
         predicate = new RoomNumberOrTagsContainsKeywordsPredicate(Arrays.asList("suite_ac", "n"));
-        assertFalse(predicate.test(new RoomBuilder()
-                .withRoomNumber("03-345")
-                .withRoomType("suite_ac")
-                .withOccupancyStatus("N")
+        assertFalse(predicate.test(new RoomBuilder(ROOM_SUITE_AC_NOT_OCCUPIED)
                 .withTags("LOW") // Tag "Low" does not contain any of the characters in "suite_ac" and "N"
                 .build()));
     }
