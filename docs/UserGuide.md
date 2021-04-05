@@ -28,7 +28,7 @@ users can learn Japanese at a comfortable pace and manage flashcards with this a
      * [Entering history mode: `history`](#entering-history-mode-history)
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
-
+* [Note for Testers](#note-for-testers)
 --------------------------------------------------------------------------------------------------------------------
 
 ## Introduction
@@ -276,3 +276,12 @@ Action | Format, Examples |
 **Delete**| `delete INDEX [TAGS…]` <br> e.g. `delete 1 t/difficult`
 **Exit** | `exit`
 **Help** | `help`
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Note for Testers
+By the nature of the type of application Weeblingo is, it is inconvenient for testers who do not possess some elementary
+knowledge of Japanese to test our application.
+
+Therefore, to facilitate testers, we have provided a list of flashcards which reside in the database
+of the current version of application for your reference. The link is [here](Flashcards.html).
