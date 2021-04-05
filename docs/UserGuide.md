@@ -28,6 +28,7 @@ PartyPlanet can get the planning of your birthday celebrations done faster than 
 JSON files. It will start with an empty Address Book and Event Book if there is an error in the JSON files.**
 
 </div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Glossary of parameters
@@ -185,11 +186,7 @@ Format: `list [--exact] [--any] [-n NAME]... [-t TAG]... [-b BIRTHDAY]... [-s SO
    * `-o` parameter optionally determines the direction of sort, according to `SORT_ORDER`:
      * `a`, `asc`, `ascending`: ascending (by default, if `-o` not specified)
      * `d`, `desc`, `descending`: descending
-<<<<<<< HEAD
      * Sorts by upcoming birthday ignores the sort order parameter and only sorts in `ascending` order
-=======
-     * Sorts by upcoming birthday only sorts in `ascending` order
->>>>>>> b8ff70187f2b9dbb5580bf47141e72086093ffa0
 2. If search parameters specified, `list [--exact] [--any] [-n NAME]... [-t TAG]... [-b BIRTHDAY]... [-s SORT_FIELD] [-o SORT_ORDER]`: List all contacts matching the search criteria
    * Search criteria, case-insensitive:
      * `-n`, `--name` filters the contacts by name
@@ -254,7 +251,7 @@ Format: `elist [--exact] [--any] [-n NAME] [-r DETAIL]... [-s SORT] [-o ORDER]`
       `SORT_FIELD`:
       * `n`, `name`: names (case-sensitive) in lexicographical order (by default, if `-s` not specified)
       * `d`, `date`: event dates (Sensitive to year, will sort according to date with respect to year)
-      * `u`, `upcoming`: days left to next upcoming event
+      * `u`, `upcoming`: days left to next upcoming event (All events marked as `done` will appear at the bottom of the list regardless of the date)
     * `-o` parameter optionally determines the direction of sort, according to `SORT_ORDER`. Possible values of SORT_ORDER:
       * `a`, `asc`, `ascending`: ascending (by default, if `-o` not specified)
       * `d`, `desc`, `descending`: descending
@@ -381,18 +378,6 @@ Retrieves previously entered input.
 * `ESC` key clears the text box.
 * `CTRL + Z` key combination undoes the last change to the address or event books.
 * `CTRL + SHIFT + Z` or `CTRL + Y` key combinations redo the last undone change to the address or event books.
-
-<<<<<<< HEAD
-=======
-<div markdown="block" class="alert-warning">
-
-
-**:warning: PartyPlanet will use its default Address Book and Event Book JSON file if it is unable to locate the 
-JSON file. It will start with an empty JSON file if there is an error in the JSON file.**
-
-
-</div>
->>>>>>> b8ff70187f2b9dbb5580bf47141e72086093ffa0
 
 ### Coming Soon (Additional Features)
 * Archiving of Data Files

@@ -34,7 +34,7 @@ public class ListCommand extends Command {
     public static final String MESSAGE_USAGE_CONCISE =
             COMMAND_WORD + " [--exact] [--any] [-n NAME]... [-t TAG]... [-b MONTH]... [-s SORT_FIELD] [-o SORT_ORDER]";
 
-    public static final Comparator<Person> SORT_NAME = Comparator.comparing(x -> x.getName().fullName);
+    public static final Comparator<Person> SORT_NAME = Comparator.comparing(x -> x.getName().fullName.toLowerCase());
     public static final Comparator<Person> SORT_BIRTHDAY =
             Comparator.comparing(x -> Date.getDateWithoutYear(x.getBirthday()));
     public static final Comparator<Person> SORT_BIRTHDAY_UPCOMING =

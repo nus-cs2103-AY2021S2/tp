@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import java.util.ArrayList;
 import java.util.List;
 
-import seedu.partyplanet.commons.core.Messages;
 import seedu.partyplanet.commons.core.index.Index;
 import seedu.partyplanet.logic.commands.exceptions.CommandException;
 import seedu.partyplanet.model.Model;
@@ -19,7 +18,9 @@ public class EDoneCommand extends Command {
     public static final String COMMAND_WORD = "edone";
 
     public static final String MESSAGE_EVENT_DONE_SUCCESS = "Event(s) marked as completed: %s";
-    public static final String MESSAGE_INVALID_EVENT_INDEX = "Invalid event index(es): %s";
+    public static final String MESSAGE_INVALID_EVENT_INDEX = "Invalid/Already completed event index(es): %s";
+    public static final String MESSAGE_NONE_EVENT_INDEX_VALID =
+            "All indexes provided are either invalid or references events that are already completed";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Mark the event identified by the index number as done\n"
             + "Parameters: INDEX [INDEX]...\n"
@@ -65,7 +66,7 @@ public class EDoneCommand extends Command {
         String output;
 
         if (doneEvents.isEmpty()) {
-            throw new CommandException(Messages.MESSAGE_NONE_INDEX_VALID);
+            throw new CommandException(MESSAGE_NONE_EVENT_INDEX_VALID);
         } else if (invalidIndexes.isEmpty()) {
             output = String.format(MESSAGE_EVENT_DONE_SUCCESS, displayEvents(doneEvents));
 

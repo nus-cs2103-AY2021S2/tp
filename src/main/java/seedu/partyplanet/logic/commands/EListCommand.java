@@ -29,7 +29,7 @@ public class EListCommand extends Command {
     public static final String MESSAGE_USAGE_CONCISE = COMMAND_WORD
             + " [--exact] [--any] [-n NAME] [-r DETAIL] ... [-s SORT] [-o ORDER]";
 
-    public static final Comparator<Event> SORT_NAME = Comparator.comparing(x -> x.getName().fullName);
+    public static final Comparator<Event> SORT_NAME = Comparator.comparing(x -> x.getName().fullName.toLowerCase());
     public static final Comparator<Event> SORT_EVENTDATE = Comparator.comparing(Event::getEventDate);
     public static final Comparator<Event> SORT_EVENTDATE_UPCOMING = (Event x, Event y) -> {
         Long xDaysLeft = x.getEventDate().getDaysLeft();
