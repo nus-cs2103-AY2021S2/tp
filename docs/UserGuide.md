@@ -9,7 +9,8 @@ title: User Guide
 --------------------------------------------------------------------------------------------------------------------
 
 ## Introduction
-**SunRez** is a desktop app designed for college residential staff to efficiently manage student housing services. It is optimized for use via a Command Line Interface (CLI).
+**SunRez** is a desktop app designed for college residential staff to efficiently manage student housing services. It 
+features a Graphical User Interface (GUI) but is optimized for use via a Command Line Interface (CLI).
 
 **SunRez** has the following features:
 * Keeps track of maintenance issues
