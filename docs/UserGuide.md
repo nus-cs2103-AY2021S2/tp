@@ -40,7 +40,7 @@ JSON files. It will start with an empty Address Book and Event Book if there is 
 | `COMMAND` | - | - | Any valid command listed [below](#party-planet-commands) |
 | `DATE` | `-d`, `--date` | Event | Valid date with a year:{::nomarkdown}<ul><li>Year must be present and a positive integer between 0001 and 9999</li><li>See <code>BIRTHDAY</code> parameter above for available date formats</li></ul>{:/} |
 | `REMARK` | `-r`, `--remark` | Event | Any value |
-| `EMAIL` | `-e`, `--email` | Contact | In the format `USER@DOMAIN`:{::nomarkdown}<ul><li><code>USER</code> can only contain alphanumerics and any of <code>!#$%&'*+/=?`{&#124;}~^.-</code></li><li><code>DOMAIN</code> must be at least two characters long, start and end with two alphanumerics, and consist only of alphanumerics, periods or hyphens</li></ul>{:/} |
+| `EMAIL` | `-e`, `--email` | Contact | In the format `USER@DOMAIN`:{::nomarkdown}<ul><li><code>USER</code> can only contain alphanumerics and any of <code>!#$%&'*+/=?`{&#124;}~^.-</code></li><li><code>DOMAIN</code> must comprise at least one non-empty label with an optional trailing period.</li><li>A label contains at least one of alphanumerics or underscores, with optional hyphens. Labels cannot start with a hyphen.</li></ul>{:/} |
 | `INDEX` | - | any | Positive integer representing the ID present in the filtered list |
 | `NAME` | `-n`, `--name` | any | Any value containing only alphanumerics and spaces, unique to the contact/event list (case-sensitive) |
 | `PHONE` | `-p`, `--phone` | Contact | Any number at least three digits long |
@@ -145,7 +145,8 @@ Format: `delete [{INDEX [INDEX]... | [--any] -t TAG [-t TAG]...}]`
 2. If indices supplied, `delete INDEX [INDEX]...`: Deletes the contacts associated with each specified `INDEX`
    * Invalid indices are ignored.
 3. If tags supplied, `delete [--any] -t TAG [-t TAG]...`: Delete the contacts containing all specified tags
-   * If the `--any` flag is supplied, contacts need only match with any specified tag.
+   * If the `--any` flag is supplied, contacts only need to match with any of the specified tags.
+   * Tags specified are case-sensitive.
 
 Examples:
 * `delete` deletes all contacts in current filtered list
@@ -165,6 +166,7 @@ Format: `edit {INDEX [-n NAME] [-p PHONE] [-e EMAIL] [-a ADDRESS] [-t TAG]…​
    * Tags can be removed from a contact by specifying a standalone `-t` without parameters.
 2. If `--remove` flag specified, `edit --remove -t TAG [-t TAG]...`: Removes all specified tags from every contact in the displayed list
    * All specified tags will be removed from every contact in the displayed list.
+   * Tags specified are case-sensitive.
 
 Examples:
 * `edit 2 -n James Lee -e jameslee@example.com` Edits the contact name to be "James Lee" and email address to be “jameslee@example.com”.
