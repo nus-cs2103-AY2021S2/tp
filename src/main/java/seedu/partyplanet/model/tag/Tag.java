@@ -23,6 +23,7 @@ public class Tag {
     public Tag(String tagName) {
         requireNonNull(tagName);
         checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
+        checkArgument(!isTooLong(tagName), MESSAGE_CHARACTER_LIMIT);
         this.tagName = tagName;
     }
 

@@ -29,6 +29,7 @@ public class Name {
     public Name(String name) {
         requireNonNull(name);
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
+        checkArgument(!isTooLong(name), MESSAGE_CHARACTER_LIMIT);
         fullName = name;
     }
 
