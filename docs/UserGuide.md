@@ -172,6 +172,8 @@ Format: `pin_task INDEX`
 * The index refers to the index number shown in the displayed task list.
 * The index must be a positive and valid integer 1, 2, 3, ...
 * After pinning, the Task List will be sorted either according to previously entered `sort_task` command, or name (by default).
+    * Should there be two or more pinned tasks, the pinned tasks will be sorted as well.
+    * Only the fact that pinned tasks will appear over the unpinned tasks is guaranteed. Internal order of pinned tasks is not persistent over `sort_task`.
 * Pinned tasks are persistent over instances of SOChedule.
 
 Examples:
