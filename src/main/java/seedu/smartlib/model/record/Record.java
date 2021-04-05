@@ -17,7 +17,7 @@ public class Record {
     // null when creating an returning record to mark existing record as returned
     protected final DateBorrowed dateBorrowed;
     // null when creating an borrowing record, is a returned record when dateReturned non-null
-    protected DateReturned dateReturned;
+    protected final DateReturned dateReturned;
 
     /**
      * Creates a borrowing record.
@@ -120,15 +120,6 @@ public class Record {
      */
     public DateReturned getDateReturned() {
         return dateReturned;
-    }
-
-    /**
-     * Updates the return date noted in this record.
-     *
-     * @param dateReturned the new return date noted in this record.
-     */
-    public void setDateReturned(DateReturned dateReturned) {
-        this.dateReturned = dateReturned;
     }
 
     /**

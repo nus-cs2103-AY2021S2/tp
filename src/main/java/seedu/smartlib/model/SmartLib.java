@@ -253,6 +253,20 @@ public class SmartLib implements ReadOnlySmartLib {
     }
 
     /**
+     * Replaces the given record {@code target} in the list with {@code editedRecord}.
+     * {@code target} must exist in SmartLib.
+     * The record identity of {@code editedBook} must not be the same as another existing record in SmartLib.
+     *
+     * @param target record to be replaced.
+     * @param editedRecord the new book.
+     */
+    public void setRecord(Record target, Record editedRecord) {
+        requireNonNull(editedRecord);
+
+        records.setRecord(target, editedRecord);
+    }
+
+    /**
      * Removes {@code key} from this {@code SmartLib}.
      * {@code key} must exist in the SmartLib registered reader base.
      *
@@ -530,4 +544,27 @@ public class SmartLib implements ReadOnlySmartLib {
         return true;
     }
 
+    /**
+     * Mark the particular record returned in code base
+     * Set Record to a new Record object with the dateReturned field filled
+     * @param record new record carrying dateReturned field
+     * @return the complete record
+     */
+    public Record markRecordAsReturned(Record record) {
+        assert record != null;
+        Record foundRecord = null;
+        for (Record r : this.getRecordList()) {
+            if (r.getBookBarcode().equals(record.getBookBarcode()) && !r.isReturned()) {
+                foundRecord = r;
+                break;
+            }
+        }
+        assert foundRecord != null;
+        Record updatedRecord = new Record(foundRecord.getBookName(), foundRecord.getBookBarcode(),
+                foundRecord.getReaderName(), foundRecord.getDateBorrowed(),
+                record.getDateReturned());
+        setRecord(foundRecord, updatedRecord);
+
+        return updatedRecord;
+    }
 }
