@@ -223,7 +223,7 @@ Examples:
 <a name="addTask"></a>
 ### 1. Add Task: `addTask`
 
-With new tasks that need to be completed within the club every week, you can adds a task, with its description and 
+With new tasks that need to be completed within the club every week, you can add a task, with its description and 
 deadline to the list.
 
 Format: `addTask TITLE -d DESCRIPTION -b DEADLINE [-s STATUS] [-p PRIORITY] [-a ASSIGNEE]...`
