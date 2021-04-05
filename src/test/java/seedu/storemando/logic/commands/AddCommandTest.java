@@ -24,6 +24,7 @@ import seedu.storemando.model.ReadOnlyStoreMando;
 import seedu.storemando.model.ReadOnlyUserPrefs;
 import seedu.storemando.model.StoreMando;
 import seedu.storemando.model.item.Item;
+import seedu.storemando.model.item.Location;
 import seedu.storemando.testutil.ItemBuilder;
 
 public class AddCommandTest {
@@ -238,6 +239,11 @@ public class AddCommandTest {
 
         @Override
         public ObservableList<Item> getSortedItemList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Location> getLocationList() {
             throw new AssertionError("This method should not be called.");
         }
 

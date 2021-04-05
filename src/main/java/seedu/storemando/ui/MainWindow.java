@@ -37,6 +37,8 @@ public class MainWindow extends UiPart<Stage> {
     private ItemListPanel itemListPanel;
     private ResultDisplay resultDisplay;
     private final HelpWindow helpWindow;
+    private LocationListPanel locationListPanel;
+
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -52,6 +54,13 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane resultDisplayPlaceholder;
+
+    @FXML
+    private StackPane chartPanelPlaceholder;
+
+    @FXML
+    private StackPane locationPanelPlaceholder;
+
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -117,6 +126,9 @@ public class MainWindow extends UiPart<Stage> {
         itemListPanel = new ItemListPanel(logic.getFilteredItemList());
         itemListPanelPlaceholder.getChildren().add(itemListPanel.getRoot());
 
+        locationListPanel = new LocationListPanel(logic.getLocationList());
+        locationPanelPlaceholder.getChildren().add(locationListPanel.getRoot());
+
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
@@ -173,6 +185,14 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Updates the list of unique locations of items stored in the inventory.
+     */
+    private void updateLocationPanel() {
+        locationListPanel = new LocationListPanel(logic.getLocationList());
+        locationPanelPlaceholder.getChildren().add(locationListPanel.getRoot());
+    }
+
+    /**
      * Executes the command and returns the result.
      * @see seedu.storemando.logic.Logic#execute(String)
      */
@@ -181,6 +201,7 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            updateLocationPanel();
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }

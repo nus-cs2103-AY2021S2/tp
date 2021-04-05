@@ -15,6 +15,7 @@ import javafx.collections.transformation.SortedList;
 import seedu.storemando.commons.core.GuiSettings;
 import seedu.storemando.commons.core.LogsCenter;
 import seedu.storemando.model.item.Item;
+import seedu.storemando.model.item.Location;
 
 /**
  * Represents the in-memory model of the storemando data.
@@ -93,6 +94,11 @@ public class ModelManager implements Model {
     @Override
     public ReadOnlyStoreMando getStoreMando() {
         return storeMando;
+    }
+
+    @Override
+    public ObservableList<Location> getLocationList() {
+        return storeMando.getLocationList();
     }
 
     @Override
