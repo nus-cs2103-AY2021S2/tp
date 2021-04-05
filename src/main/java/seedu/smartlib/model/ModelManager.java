@@ -388,6 +388,27 @@ public class ModelManager implements Model {
         return null;
     }
 
+
+
+    /**
+     * Returns the barcode of the first available (i.e. not borrowed) copy of the book in SmartLib.
+     *
+     * @param bookName name of the book to be borrowed
+     * @return the barcode of the first available copy of the book in SmartLib
+     */
+    public Barcode getFirstAvailableBookBarcode(Name bookName) {
+        requireNonNull(bookName);
+
+        ArrayList<Book> books = smartLib.getBooksByName(bookName);
+
+        for (Book b : books) {
+            if (!b.isBorrowed()) {
+                return b.getBarcode();
+            }
+        }
+        return null;
+    }
+
     /**
      * Returns the book name of the book with the corresponding barcode borrowed by the reader in SmartLib.
      *

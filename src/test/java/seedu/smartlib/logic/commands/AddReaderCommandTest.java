@@ -134,6 +134,11 @@ public class AddReaderCommandTest {
         }
 
         @Override
+        public Barcode getFirstAvailableBookBarcode(Name bookName) {
+            return null;
+        }
+
+        @Override
         public Name getBookNameForReturn(Barcode barcode) {
             return null;
         }
