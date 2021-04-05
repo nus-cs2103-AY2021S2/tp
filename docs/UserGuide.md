@@ -16,7 +16,7 @@ a Command Line Interface (CLI) application which handles user requests that are 
 With HEY MATEz, managing and distributing tasks will never be a headache again! :smile:
 
 ## About this User Guide
-This user guide includes information on the **features** of HEY MAYEz as well as a walkthrough on how to use them. The features 
+This user guide includes information on the **features** of HEY MATEz as well as a walkthrough on how to use them. The features 
 are further divided into 3 sections which include the **General features**, **Member related features** as well as the **Task related features**.
 Member related features allow you to manage a list of members and find members. On the other hand, Task related features allow you
 to manage tasks which can be identified by their unique deadlines or priorities.
@@ -157,6 +157,10 @@ Format: `addMember NAME -p PHONE_NUMBER -e EMAIL [-r ROLE]`
 
 * NAME and ROLE fields can take on any values with alphanumeric characters.
 * If ROLE field is not specified, person will be assigned a default role of member.
+
+Assumptions:
+* Every member in the CCA has a different name. An error will be prompted when you add a member with the same name but with
+a different phone number, email or role.
 
 Examples: 
 * `addMember Dylan -p 64529356 -e dylan@gmail.com`
