@@ -6,8 +6,6 @@ import static seedu.partyplanet.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.partyplanet.model.person.Name;
-
 public class TagTest {
 
     @Test
