@@ -150,25 +150,36 @@ Classes used by multiple components are in the `seedu.storemando.commons` packag
 This section describes some noteworthy details on how certain features are implemented.
 
 
-#### Reminder Feature
+### Reminder Feature
 
-##### Implementation
+
+The Sequence Diagram below shows how the components interact with each other for the scenario where the user
+issues the command `reminder 1 week`.
+
+![ReminderSequenceDiagram](images/ReminderWeeksSequenceDiagram.png)
+
+The Sequence Diagram below shows how the components interact with each other for the scenario where the user
+issues the command `reminder 3 days`.
+
+![ReminderSequenceDiagram](images/ReminderDaysSequenceDiagram.png)
+
+#### Implementation
 
 This portion describes the implementation of the reminder feature which allows users to view items that are expiring 
-a certain number of days which will be given by the user in the command.
+within a certain number of days as specified by the user.
 
 1. When the user keys in a command string, `execute` command of the `LogicManager` is called with the given string as input. 
-2. In the method, `LogicManager` calls on the `parseCommand` method of StoreMandoParser to parse the given command.
-3. `StoreMandoParser` parses the string and determines the command given is a `ReminderCommand`. 
+2. In the method, `LogicManager` calls on the `parseCommand` method of `StoreMandoParser` to parse the given command.
+3. `StoreMandoParser` parses the command and determines that the command given is a `ReminderCommand`. 
     Then, a `ReminderCommandParser` object is created to further parse the command.
 4. `StoreMandoParser` then calls on the `parse` method of `ReminderCommandParser` to parse the arguments provided.
-5. `ReminderCommandParser` calls on its own timeConversion method to convert the string into an integer. A 
+5. `ReminderCommandParser` calls on its own `timeConversion` method to convert the string into an integer. A 
     `CommandParseException` will be thrown if this is not possible. 
 6. `ReminderCommandParser` then calls on the constructor of `ItemExpiringPredicate` with the integer as parameter to 
     create an `ItemExpiringPredicate` object and then calls on the constructor of `ReminderCommand` with the `ItemExpiringPredicate` object as 
     a parameter. 
 7. The `ReminderCommand` object will be created and returned to `StoreMandoParser` which returns it to `LogicManager` 
-    which then calls on the `execute` method of `ReminderCommand` with a `model` as argument.
+8. `LogicManager` then calls on the `execute` method of `ReminderCommand` with `model` as argument.
 9. `ReminderCommand` calls the `updateCurrentPredicate` method of `model` and passes its own `ItemExpiringPredicate`
     as argument.
 10. `ReminderCommand` calls the `getCurrentPredicate` method of `model` to obtain the current predicate and uses it
@@ -178,18 +189,13 @@ a certain number of days which will be given by the user in the command.
 12. Finally, a `CommandResult` object is created and returned to `LogicManager`.    
     
 
-The following sequence diagram shows how the reminder feature works:
-
-![ReminderSequenceDiagram](images/ReminderWeeksSequenceDiagram.png)
-
-
-The following activity diagram summarizes what happens when a user executes a new command:
+The following activity diagram summarizes what happens when a user executes a new `reminder` command:
 
 ![ReminderActivityDiagram](images/ReminderActivityDiagram.png)
 
 #### Design consideration:
 
-##### Aspect: How `reminder` executes
+#### Aspect: How `reminder` executes
 
 **Alternative 1 (current choice)** : provide integer as an input argument
     * Pros: Faster to type as compared to date in a particular format.
@@ -202,43 +208,45 @@ The following activity diagram summarizes what happens when a user executes a ne
             find a particular date and key it in. This is more taxing on the user.
 
 
-#### Clear Feature
-
-##### Implementation
+### Clear Feature
 
 This portion describes the implementation of the clear feature which allows users to clear items that are either in
 a particular location or clear all items in the list.
 
-1. When the user keys in a command string, `execute` command of the `LogicManager` is called with the given string as input.
-2. In the method, `LogicManager` calls on the `parseCommand` method of StoreMandoParser to parse the given command.
-3. `StoreMandoParser` parses the string and determines the command given is a `ClearCommand`.
-    Then, a `ClearCommandParser` object is created to further parse the command.
-4. `StoreMandoParser` then calls on the `parse` method of `ClearCommandParser` to parse the arguments provided.
-5. `ClearCommandParser` checks if the argument provided is an empty string. If so, the constructor of `ClearCommand` 
-    without any parameters is called. Else, a `LocationContainsPredicate` object will be created with the arguments 
-    as parameter.`CommandParseException` will be thrown if this is not possible.
-6. `ClearCommand` object will be returned to `ClearCommandParser` which then returns it to `LogicManager`. `LogicManager`
-    then calls the `execute` method of `ClearCommand` with a `Model` object, model, as parameter.
-7. `ClearCommand` calls on the `clearLocation` method of model with the `ClearCommand`'s attribute predicate as parameter. 
-    Subsequently, it calls on model's `updateFilteredItemList`.
-8. Finally, a `CommandResult` object is created and is returned to `LogicManager`.   
-
-
-The following sequence diagram shows how clear feature works:
+The Sequence Diagram below shows how the components interact with each other for the scenario where the user
+keys in the command `clear`
 
 ![ClearSequenceDiagram](images/ClearSequenceDiagram.png)
 
-The following sequence diagram shows how a clear by location feature works:
+The Sequence Diagram below shows how the components interact with each other for the scenario where the user
+keys in the command `clear l/Kitchen`
 
 ![ClearLocationSequenceDiagram](images/ClearLocationSequenceDiagram.png)
 
-The following activity diagram summarizes what happens when a user executes a new command:
+#### Implementation 
+
+1. When the user keys in a command string, `execute` command of the `LogicManager` is called with the given string as input.
+2. In the method, `LogicManager` calls on the `parseCommand` method of `StoreMandoParser` to parse the given command.
+3. `StoreMandoParser` parses the string and determines the command given is a `ClearCommand`.
+    Then, a `ClearCommandParser` object is created to further parse the command.
+4. `StoreMandoParser` then calls on the `parse` method of `ClearCommandParser` to parse the arguments provided.
+5. `ClearCommandParser` checks if the argument provided is an empty string. If so, the constructor of `ClearCommand`
+    without any parameters is called. Else, a `LocationContainsPredicate` object will be created with the arguments
+    as parameter.`CommandParseException` will be thrown if this is not possible.
+6. `ClearCommand` object will be returned to `ClearCommandParser` which then returns it to `LogicManager`. `LogicManager`
+    then calls the `execute` method of `ClearCommand` with a `Model` object, model, as parameter.
+7. `ClearCommand` calls on the `clearLocation` method of model with the `ClearCommand`'s attribute predicate as parameter.
+    Subsequently, it calls on model's `updateFilteredItemList`.
+8. Finally, a `CommandResult` object is created and is returned to `LogicManager`.
+
+
+The following activity diagram summarizes what happens when a user executes a clear by location command:
 
 ![ClearActivityDiagram](images/ClearLocationActivityDiagram.png)
 
 #### Design consideration:
 
-##### Aspect: How `clear` executes
+#### Aspect: How `clear` executes
 
 **Alternative 1 (current choice)** : 
 * Pros: 
