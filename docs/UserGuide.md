@@ -120,7 +120,7 @@ The available dashboards are detailed below.
 By default, FriendDex displays your upcoming events on the details panel, such as upcoming birthdays and special dates.
 
 #### Streaks Dashboard
-The Streaks dashboard shows how consistent you stick to your goal of meeting your friends up till the current day. More information [here](#streaks).
+The Streaks dashboard shows how consistent you stick to your goal of meeting your friends up till the current day. More information can be found [here](#streaks).
 
 #### Full Details of a Person
 As a person in the FriendDex can contain a lot of information, not all of it is displayed in the main list of persons.
@@ -233,6 +233,9 @@ Format: `add-meeting INDEX d/DATE t/TIME desc/DESCRIPTION`
 Examples:
 * `meeting 1 d/16-02-2021 t/1130 desc/We had lunch together!`
 * `meeting 2 d/17-02-2021 t/1930 desc/We went to see the sunset!`
+
+See also:
+* [Goals](#goals) and [Streaks](#streaks) to learn how FriendDex uses your meeting data to motivate you to meet your friends more!  
 
 ### Adding a profile picture : `add-picture`
 
@@ -390,12 +393,13 @@ Example:
 Format: `set-goal INDEX f/FREQUENCY`
 
 * Sets a goal to achieve an ideal frequency for meeting a contact
-* FriendDex will give reminders based on the frequency specified and the latest meeting the user had with that person.
+* FriendDex will set a deadline to meet the contact based on the frequency specified and the latest meeting the user had with that person.
 * Accepts the following as FREQUENCY: weekly (`w`, `week`, `weekly`), monthly (`m`, `month`, `monthly`), yearly (`y`, `year`, `yearly`), and none (`n`, `none`).
+* See [Goals](#goals) to learn more about how deadlines are calculated. 
 
 Example:
 * `set-goal 1 f/w`, `set-goal 1 f/week` and `set-goal 1 f/weekly` will do the same thing by setting the goal to meet the person at index 1 every week.
-* `set-goal 1 f/n` and `set-goal 1 f/none` will remove the goal set with the person at the specified index. 
+* `set-goal 1 f/n` and `set-goal 1 f/none` will remove the goal set with the person at the specified index.
 
 ### Subtracting debt: `subtract-debt`
 
@@ -450,6 +454,8 @@ Select a details panel to display. Available panels:
 
 Format: `view (upcoming events | streaks)`
 
+* You can find more information on the Streaks dashboard [here](#streaks-dashboard)
+
 Example:
 * `view streaks` will switch the details panel to show the Streaks dashboard.
 
@@ -458,7 +464,7 @@ Example:
 ## Goals
 ### How are goal deadlines calculated?
 
-If the ideal frequency to meet a friend is weekly, the deadline to meet will be on the Sunday of every week. 
+If the ideal frequency to meet a friend is weekly, the deadline to meet will always be on the Sunday of every week. 
 To give an example, you met your friend on Wednesday this week. You have completed your goal of meeting your friend every week for this week.
 The deadline for the next meeting will be the next Sunday after the coming Sunday. You can think of it as weekly assignments. 
 If your assignment is due every Sunday and you complete the current week's assignment on Wednesday. The next weekly assignment will be due two Sundays after.   
@@ -470,30 +476,31 @@ again by the 30th April to ensure that you always meet your friend once a month.
 
 ## Streaks
 
-You should have a good understanding of how goal deadlines are calculated before reading this section. The section for goal deadlines is [here](#how-are-goal-deadlines-calculated).
+You should have a good understanding of how goal deadlines are calculated before reading this section. The section for it is [here](#how-are-goal-deadlines-calculated).
 
 ### The dashboard
 
 ![StreaksDashboard](images/StreaksDashboard.png)
 
 You will be rewarded if you managed to stick to your goal consistently. You can maintain a streak (think of it as Snapchat's Streak feature) with a friend if you have been meeting him/her regularly.
-To ensure that you are able to see your friend's name on the Streaks dashboard, they need to have a goal set to them. More information on setting goal [here](#setting-meeting-goal-set-goal). 
+To ensure that you are able to see your friend's name on the Streaks dashboard, they need to have a goal set to them first. More information on setting goal can be found [here](#setting-meeting-goal-set-goal). 
 To reiterate, your friend will only appear on the dashboard if you explicitly set a goal. Just recording meetings with them will not work.
 
 The dashboard can be viewed by running the `view streaks` command. The Streaks dashboard will show up on the details panel on the right of FriendDex. 
-It will contain a list of friends and their streak indicated by a number beside the friend's name. The dashboard will be sorted in descending order with the friend that has the highest streak right at the top.
+It will contain a list of friends and their streak indicated by a number beside their name. The dashboard will be sorted in descending order with the friend that has the highest streak right at the top.
 
 ### How are streaks calculated?
 
 For those who have not used Snapchat before, do not fear. We will try our best to give a detailed explanation here. 
 
-Streaks are calculated relative to the date today. A year has approximately 52 weeks. Assume that a friend, lets name him John, has a weekly meeting goal set and the current week is week 10, 
-you started to meet your friend on week 7 and you consistently met him for week 8, 9 but not on yet on week 10. John's streak will be 3 on week 10. 
+Streaks are calculated relative to the date today. A year has approximately 52 weeks. Assume that your friend, John, has a weekly meeting goal set and the current week is week 10, 
+you started to meet your friend on week 7 and you consistently met him for weeks 8 and 9 but not yet on week 10. John's streak will be 3 on week 10. 
 If you managed to meet him on week 10, his streak will be incremented by 1, to 4. However, once the Monday of week 11 reaches, John's streak will 
 be reset back to 0. The goal deadline for weekly goals is 11:59pm on Sundays, and you did not manage to meet John for the whole of week 10. 
 Because of that, you failed to keep to your goal of meeting John weekly and so the streak resets. 
 
-Streaks for monthly and yearly goals are calculated the same way. Just switch the week numbers to months or years.
+Streaks for monthly and yearly goals are calculated the same way. You can switch the week numbers to months or years. Another thing to note is if you have already achieved the goal
+for that time period (e.g. week) for a particular friend, any additional meetings with that friend during the same period will be added to his/her streak.   
 
 ## Data Storage
 ### Saving the data
