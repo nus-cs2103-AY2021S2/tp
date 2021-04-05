@@ -70,7 +70,7 @@ If you can type fast, SpamEZ can get your contact management tasks done faster t
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -81,15 +81,15 @@ Format: `help`
 
 Adds a person to the contacts list.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS m/MODE_OF_CONTACT [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 m/phone`
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 m/address t/criminal`
 
 ### Listing all persons : `list`
 
@@ -171,7 +171,7 @@ Example:
 Blocks specific contacts, to specify that they do not want to be contacted.
 If the contact is already blacklisted, they will be un-blacklisted. 
 
-Format: blist INDEX
+Format: `blist INDEX`
 
 * Changes the blacklist status of the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
@@ -197,7 +197,7 @@ Collects the specified details of all contacts in the displayed person list.
 The type of detail is specified by the prefix provided. Details will be separated
 by the given separator, or by a semicolon if unspecified.
 
-Format: collect [n/] or [p/] or [e/] or [a/] [s/SEPARATOR]
+Format: `collect [n/] or [p/] or [e/] or [a/] [s/SEPARATOR]`
 
 * Exactly one of the type of detail prefix must be provided.
   The corresponding fields are as follows.
@@ -298,7 +298,7 @@ Format: `undo`
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS m/MODE_OF_CONTACT [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 m/email t/friend t/colleague`
 **Blacklist** | `blist INDEX`<br> e.g., `blist 2`
 **Mass blacklist** | `massblist START-END`<br> e.g., `massblist 13-67 b/blacklist`
 **Clear** | `clear`
