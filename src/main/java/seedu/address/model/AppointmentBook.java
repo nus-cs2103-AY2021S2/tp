@@ -114,8 +114,11 @@ public class AppointmentBook implements ReadOnlyAppointmentBook {
      * Removes {@code key} from this {@code AppointmentBook}.
      * {@code key} must exist in the appointment book.
      */
-    public void removeAppointment(int key) {
+    public Appointment removeAppointment(int key) {
+        Appointment removedAppointment =
+                appointments.getInternalUnmodifiableList().get(key);
         appointments.remove(key);
+        return removedAppointment;
     }
     //// util methods
 

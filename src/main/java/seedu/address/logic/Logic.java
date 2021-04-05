@@ -10,6 +10,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyTutorBook;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.model.budget.Budget;
 import seedu.address.model.event.Event;
 import seedu.address.model.grade.Grade;
 import seedu.address.model.reminder.Reminder;
@@ -76,6 +77,11 @@ public interface Logic {
      * Returns an unmodifiable view of the appointment filter string list.
      */
     ObservableList<Reminder> getFilteredReminderList();
+
+    /**
+     * @return An unmodifiable view of the budget list.
+     */
+    ObservableList<Budget> getBudgetList();
 
     /**
      * Returns the user prefs' address book file path.

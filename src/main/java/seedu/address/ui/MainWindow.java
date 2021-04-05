@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -17,6 +18,8 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.budget.Budget;
+import seedu.address.ui.budgetpanel.BudgetCard;
 import seedu.address.ui.reminderpanel.ReminderListPanel;
 import seedu.address.ui.schedulepanel.ScheduleListPanel;
 import seedu.address.ui.timetablepanel.TimeTableWindow;
@@ -45,6 +48,7 @@ public class MainWindow extends UiPart<Stage> {
     private ReminderListPanel reminderListPanel;
     private FiltersPanel filtersPanel;
     private ScheduleListPanel scheduleListPanel;
+    private BudgetCard budgetCard;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -75,6 +79,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane reminderListPanelPlaceholder;
+
+    @FXML
+    private StackPane budgetPanelPlaceholder;
 
     @FXML
     private TabPane tabPanePlaceHolder;
@@ -150,6 +157,18 @@ public class MainWindow extends UiPart<Stage> {
 
         appointmentListPanel = new AppointmentListPanel(logic.getFilteredAppointmentList());
         appointmentListPanelPlaceholder.getChildren().add(appointmentListPanel.getRoot());
+
+        /* Budget */
+        ObservableList<Budget> budgetList = logic.getBudgetList();
+
+        if (budgetList.size() == 0) {
+            budgetList.add(new Budget("0"));
+            budgetCard = new BudgetCard(budgetList.get(0), 1);
+        } else {
+            budgetCard = new BudgetCard(budgetList.get(0), 1);
+        }
+        budgetPanelPlaceholder.getChildren().add(budgetCard.getRoot());
+
 
         scheduleListPanel = new ScheduleListPanel(logic.getFilteredScheduleList());
         scheduleListPanelPlaceholder.getChildren().add(scheduleListPanel.getRoot());
