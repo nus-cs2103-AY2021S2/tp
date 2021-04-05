@@ -203,6 +203,43 @@ public class MainWindow extends UiPart<Stage> {
         return displayPanel;
     }
 
+    private void switchTabBySuccessfulFeedback(String feedback) {
+        boolean isPersons = feedback.contains("person");
+        boolean isModules = feedback.contains("module") || feedback.contains("exam")
+            || feedback.contains("assignment");
+        boolean isEvents = feedback.contains("event");
+
+        if (isPersons) {
+            displayPanel.showContacts();
+        } else if (isModules) {
+            displayPanel.showModules();
+        } else if (isEvents) {
+            displayPanel.showEvents();
+        } else {
+            logger.info("No switching of tabs");
+        }
+
+    }
+
+    private void switchTabByErrorCommandText(String commandText) {
+        boolean isPersons = commandText.contains("n/");
+        boolean isModules = commandText.contains("m/") || commandText.contains("a/")
+            || commandText.contains("e/");
+        boolean isEvents = commandText.contains("g/");
+
+        if (isPersons) {
+            displayPanel.showContacts();
+        } else if (isModules) {
+            displayPanel.showModules();
+        } else if (isEvents) {
+            displayPanel.showEvents();
+        } else {
+            logger.info("No switching of tabs");
+        }
+
+    }
+
+
     /**
      * Executes the command and returns the result.
      *
@@ -213,8 +250,9 @@ public class MainWindow extends UiPart<Stage> {
 
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
-            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-
+            String feedback = commandResult.getFeedbackToUser();
+            resultDisplay.setFeedbackToUser(feedback);
+            switchTabBySuccessfulFeedback(feedback.toLowerCase());
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
@@ -231,6 +269,7 @@ public class MainWindow extends UiPart<Stage> {
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
+            switchTabByErrorCommandText(commandText.toLowerCase());
             throw e;
         }
     }
