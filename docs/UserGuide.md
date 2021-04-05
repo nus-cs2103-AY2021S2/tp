@@ -144,7 +144,7 @@ In this section, you will learn about the commands available in Pawbook and how 
 **Function**: Adds a **dog/owner/program** to Pawbook.<br>
 **Usage**: When you want to add an entity into Pawbook, you can simply use the add command. The add command adds the new entity at the end of the current list. 
 For instance, when a new dog arrives at the school with its owner, you will need to add the owner profile and the dog profile and store it in Pawbook. 
-Note that the date-time format used for sessions is dd-mm-yyyy hh:mm.
+Note that the date-time format used for sessions is d-M-yyyy HH:mm.
 
 Format:
 
