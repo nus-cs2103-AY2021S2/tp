@@ -147,6 +147,21 @@ However, the colours will be arranged such that no two modules with the same col
 
    * **`exit`** : Close the app
 
+
+### Parameter Prefixes
+Below is a table of prefixes mapped to the respective parameters:<br>
+
+ Prefix | Parameter | How to Remember 
+--------|----------|-------------
+n/ | NAME | 
+m/ | MODULE | 
+d/ | DESCRIPTION | 
+a/ | START TIME | "start AT"
+b/ | DEADLINE | "finish BY"
+w/ | WORKLOAD |
+r/ | RECURRENCE |
+t/ | TAG | 
+
 <div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
