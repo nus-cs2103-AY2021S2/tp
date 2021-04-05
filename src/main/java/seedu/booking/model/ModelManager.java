@@ -13,7 +13,6 @@ import seedu.booking.commons.core.GuiSettings;
 import seedu.booking.commons.core.LogsCenter;
 import seedu.booking.logic.commands.states.CommandState;
 import seedu.booking.model.booking.Booking;
-import seedu.booking.model.booking.Id;
 import seedu.booking.model.person.Email;
 import seedu.booking.model.person.Person;
 import seedu.booking.model.person.Phone;
@@ -204,6 +203,7 @@ public class ModelManager implements Model {
     public void updateVenueInBookings(VenueName oldVenueName, VenueName newVenueName) {
         requireAllNonNull(oldVenueName, newVenueName);
         bookingSystem.updateVenueInBookings(oldVenueName, newVenueName);
+        updateFilteredBookingList(PREDICATE_SHOW_ALL_BOOKINGS);
     }
 
     @Override
@@ -216,6 +216,12 @@ public class ModelManager implements Model {
     public boolean hasOverlappedBooking(Booking toAdd) {
         requireAllNonNull(toAdd);
         return bookingSystem.hasOverlappedBooking(toAdd);
+    }
+
+    @Override
+    public boolean hasMoreThanOneOverlappedBooking(Booking toAdd) {
+        requireAllNonNull(toAdd);
+        return bookingSystem.hasMoreThanOneOverlappedBooking(toAdd);
     }
 
     @Override
@@ -245,7 +251,6 @@ public class ModelManager implements Model {
     @Override
     public void setVenue(Venue target, Venue editedVenue) {
         requireAllNonNull(target, editedVenue);
-
         bookingSystem.setVenue(target, editedVenue);
     }
 
@@ -321,8 +326,8 @@ public class ModelManager implements Model {
     //=========== Bookings ================================================================================
 
     @Override
-    public void deleteBooking(Id bookingId) {
-        bookingSystem.removeBooking(bookingId);
+    public void deleteBooking(Booking target) {
+        bookingSystem.removeBooking(target);
     }
 
     //=========== Filtered Booking List Accessors =============================================================

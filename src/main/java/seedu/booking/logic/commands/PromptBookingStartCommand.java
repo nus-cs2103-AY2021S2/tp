@@ -18,7 +18,6 @@ public class PromptBookingStartCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
         ModelManager.processStateInput(startTime);
         ModelManager.setNextState();
         return new CommandResult(ModelManager.getNextPromptMessage());

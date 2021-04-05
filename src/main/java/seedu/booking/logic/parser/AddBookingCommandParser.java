@@ -1,10 +1,10 @@
 package seedu.booking.logic.parser;
 
 import static seedu.booking.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKER;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_END;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_START;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_VENUE;
 
@@ -33,17 +33,17 @@ public class AddBookingCommandParser implements Parser<AddBookingCommand> {
      */
     public AddBookingCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_BOOKER, PREFIX_VENUE,
+                ArgumentTokenizer.tokenize(args, PREFIX_EMAIL, PREFIX_VENUE,
                         PREFIX_DESCRIPTION, PREFIX_BOOKING_START, PREFIX_BOOKING_END, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_BOOKER, PREFIX_VENUE,
+        if (!arePrefixesPresent(argMultimap, PREFIX_EMAIL, PREFIX_VENUE,
                 PREFIX_DESCRIPTION, PREFIX_BOOKING_START, PREFIX_BOOKING_END)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddBookingCommand.MESSAGE_USAGE));
         }
 
-        Email bookerEmail = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_BOOKER).get());
+        Email bookerEmail = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         VenueName venueName = ParserUtil.parseVenueName(argMultimap.getValue(PREFIX_VENUE).get());
         Description description = ParserUtil.parseBookingDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         StartTime bookingStart = ParserUtil.parseBookingStart(argMultimap.getValue(PREFIX_BOOKING_START).get());
