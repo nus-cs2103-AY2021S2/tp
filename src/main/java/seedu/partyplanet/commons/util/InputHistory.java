@@ -76,4 +76,11 @@ public class InputHistory {
             return lst.get(++current);
         }
     }
+
+    /**
+     * Return currrent number of input in InputHistory
+     */
+    public int size() {
+        return lst.size();
+    }
 }
