@@ -11,18 +11,21 @@ public class Meeting extends Event {
 
     public static final String DESCRIPTION_VALIDATION_REGEX = Event.DESCRIPTION_VALIDATION_REGEX;
     public static final String DESCRIPTION_MESSAGE_CONSTRAINTS = Event.DESCRIPTION_MESSAGE_CONSTRAINTS;
-    public static final String MESSAGE_CONSTRAINTS = "Meeting must have occurred already " +
-            "and meeting description cannot be empty";
+    public static final String MESSAGE_CONSTRAINTS = "Meeting must have occurred already "
+            + "and meeting description cannot be empty";
 
     public Meeting(LocalDate date, LocalTime time, String description) {
         super(date, time, description);
     }
 
+    /**
+     * Returns true if the given parameters can construct a valid {@code Meeting}
+     */
     public static boolean isValidMeeting(LocalDate date, LocalTime time, String description) {
         // Checks for
         // 1. date is before today
         // 2. if date is today, time is before current time
-        // 3. description matches the validation regex
+        // 3. description is not empty
         return !DateUtil.afterToday(date)
                 && !(DateUtil.isToday(date) && TimeUtil.afterNow(time))
                 && description.matches(DESCRIPTION_VALIDATION_REGEX);
@@ -43,7 +46,7 @@ public class Meeting extends Event {
             return false;
         }
 
-        Meeting otherMeeting = (Meeting)other;
+        Meeting otherMeeting = (Meeting) other;
         return otherMeeting.getDate().equals(getDate())
                 && otherMeeting.getTime().equals(getTime())
                 && otherMeeting.getDescription().equals(getDescription());

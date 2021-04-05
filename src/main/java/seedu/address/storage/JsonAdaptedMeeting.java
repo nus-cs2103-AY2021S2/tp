@@ -8,7 +8,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Meeting;
-import seedu.address.model.person.Name;
 
 /**
  * Jackson-friendly version of {@link Meeting}.

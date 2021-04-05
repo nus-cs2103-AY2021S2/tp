@@ -1,7 +1,5 @@
 package seedu.address.storage;
 
-import static seedu.address.commons.core.Messages.MESSAGE_BIRTHDAY_AFTER_TODAY;
-import static seedu.address.commons.core.Messages.MESSAGE_DATE_AFTER_TODAY;
 import static seedu.address.commons.core.Messages.MESSAGE_DATE_BEFORE_BIRTHDAY;
 
 import java.time.LocalDate;

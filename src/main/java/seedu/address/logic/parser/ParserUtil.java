@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_BIRTHDAY_AFTER_TODAY;
 import static seedu.address.commons.core.Messages.MESSAGE_DATE_AFTER_TODAY;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_FILE;
 import static seedu.address.commons.core.Messages.MESSAGE_TIME_AFTER_NOW;
@@ -22,7 +21,6 @@ import seedu.address.commons.util.DateUtil;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.commons.util.TimeUtil;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Birthday;
@@ -251,6 +249,11 @@ public class ParserUtil {
         return new Debt(debt);
     }
 
+    /**
+     * Parses the given parameters into a {@code Meeting}
+     *
+     * @throws ParseException if the given parameters are not valid
+     */
     public static Meeting parseMeeting(LocalDate date, LocalTime time, String description) throws ParseException {
         requireAllNonNull(date, time, description);
         String trimmedDescription = description.trim();
@@ -273,6 +276,11 @@ public class ParserUtil {
         return new Meeting(date, time, description);
     }
 
+    /**
+     * Parses the given parameters into a {@code SpecialDate}
+     *
+     * @throws ParseException if the given parameters are not valid
+     */
     public static SpecialDate parseSpecialDate(LocalDate date, String description) throws ParseException {
         requireAllNonNull(date, description);
         String trimmedDescription = description.trim();

@@ -1,23 +1,24 @@
 package seedu.address.model.person;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.Objects;
 
 import seedu.address.commons.util.DateUtil;
-import seedu.address.commons.util.TimeUtil;
 
 public class SpecialDate extends Event {
 
     public static final String DESCRIPTION_VALIDATION_REGEX = Event.DESCRIPTION_VALIDATION_REGEX;
     public static final String DESCRIPTION_MESSAGE_CONSTRAINTS = Event.DESCRIPTION_MESSAGE_CONSTRAINTS;
-    public static final String MESSAGE_CONSTRAINTS = "Special Date's event must have occurred already " +
-            "and its description cannot be empty";
+    public static final String MESSAGE_CONSTRAINTS = "Special Date's event must have occurred already "
+            + "and its description cannot be empty";
 
     public SpecialDate(LocalDate date, String description) {
         super(date, description);
     }
 
+    /**
+     * Returns true if the given parameters can construct a valid {@code SpecialDate}
+     */
     public static boolean isValidSpecialDate(LocalDate date, String description) {
         return !DateUtil.afterToday(date)
                 && description.matches(DESCRIPTION_VALIDATION_REGEX);
@@ -38,7 +39,7 @@ public class SpecialDate extends Event {
             return false;
         }
 
-        SpecialDate otherSpecialDate = (SpecialDate)other;
+        SpecialDate otherSpecialDate = (SpecialDate) other;
         return otherSpecialDate.getDate().equals(getDate())
                 && otherSpecialDate.getDescription().equals(getDescription());
     }
@@ -56,5 +57,4 @@ public class SpecialDate extends Event {
                 .append(description);
         return builder.toString();
     }
-    
 }

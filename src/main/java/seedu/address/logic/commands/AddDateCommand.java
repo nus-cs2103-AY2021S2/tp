@@ -16,8 +16,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.DateUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.SpecialDate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.SpecialDate;
 
 /**
  * Adds a special date to an existing person in the FriendDex.
@@ -41,7 +41,7 @@ public class AddDateCommand extends Command {
     private final SpecialDate specialDate;
 
     /**
-     * @param index of the person in the filtered person list to add date to
+     * @param index       of the person in the filtered person list to add date to
      * @param specialDate details of the date to add
      */
     public AddDateCommand(Index index, SpecialDate specialDate) {

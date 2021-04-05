@@ -13,7 +13,6 @@ import java.time.LocalTime;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddMeetingCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Event;
 import seedu.address.model.person.Meeting;
 
 public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
