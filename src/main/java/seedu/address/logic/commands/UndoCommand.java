@@ -40,6 +40,7 @@ public class UndoCommand extends Command {
             case DeleteAppointmentCommand.COMMAND_WORD:
             case DeletePropertyCommand.COMMAND_WORD:
             case ClearAppointmentCommand.COMMAND_WORD:
+            case ClearPropertyCommand.COMMAND_WORD:
                     commandHistory.push(commandString);
                 break;
             default:
@@ -74,7 +75,8 @@ public class UndoCommand extends Command {
             case AddPropertyCommand.COMMAND_WORD:
             case EditPropertyCommand.COMMAND_WORD:
             case DeletePropertyCommand.COMMAND_WORD:
-                model.undoPropertyBook();
+            case ClearPropertyCommand.COMMAND_WORD:
+                    model.undoPropertyBook();
                 break;
             default:
                 throw new CommandException(String.format(MESSAGE_UNKNOWN_COMMAND, commandString));
