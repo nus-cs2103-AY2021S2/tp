@@ -5,7 +5,6 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
 import java.util.Collections;
 import java.util.Date;
@@ -22,7 +21,8 @@ import seedu.budgetbaby.logic.parser.YearMonthParser;
 public class FinancialRecord {
 
     public static final String TIMESTAMP_CONSTRAINTS =
-        "Date should follow the format of dd-mm-yyyy, and it should be between 01-01-1970 and 31-12-2100. Example: 31-12-2020.";
+        "Date should follow the format of dd-mm-yyyy, and it should be between 01-01-1970 and 31-12-2100. "
+            + "Example: 31-12-2020.";
     private static final String FINANCIAL_RECORD_DETAILS_DELIMITER = " | ";
     private static final SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 
@@ -106,8 +106,8 @@ public class FinancialRecord {
             Date timestampLowerBound = formatter.parse("01-01-1970");
             Date timestampUpperBound = formatter.parse("31-12-2100");
 
-            if (timestamp.getTime() >= timestampLowerBound.getTime() &&
-                timestamp.getTime() <= timestampUpperBound.getTime()) {
+            if (timestamp.getTime() >= timestampLowerBound.getTime()
+                && timestamp.getTime() <= timestampUpperBound.getTime()) {
                 isValid = true;
             }
         } catch (Exception e) {
