@@ -57,6 +57,8 @@ public class DeleteFieldCommand extends Command {
     public static final String MESSAGE_INVALID_FIELD_STATUS = "Cannot delete status field.";
     public static final String MESSAGE_INVALID_FIELD_TITLE = "Cannot delete title field.";
 
+    public static final String MESSAGE_FIELD_ALREADY_EMPTY = "Field is already empty.";
+
     private final Index targetIndex;
 
     private final Prefix targetField;
@@ -103,47 +105,65 @@ public class DeleteFieldCommand extends Command {
     private Task deleteFieldFromTask(Task taskToDeleteFieldFrom, Prefix field) throws CommandException {
         assert taskToDeleteFieldFrom != null;
 
+        if (!field.isValidPrefix()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PREFIX);
+        }
+
         Title title = taskToDeleteFieldFrom.getTitle();
         Date oldDate = taskToDeleteFieldFrom.getDate();
         Duration oldDuration = taskToDeleteFieldFrom.getDuration();
         RecurringSchedule oldRecurringSchedule = taskToDeleteFieldFrom.getRecurringSchedule();
         Description oldDescription = taskToDeleteFieldFrom.getDescription();
-        Status oldStatus = taskToDeleteFieldFrom.getStatus();
+        Status status = taskToDeleteFieldFrom.getStatus();
         Set<Tag> oldTags = taskToDeleteFieldFrom.getTags();
 
         boolean isTitleField = field.equals(PREFIX_TITLE);
+        boolean isStatusField = field.equals(PREFIX_STATUS);
         boolean isDateField = field.equals(PREFIX_DATE);
         boolean isRecurringScheduleField = field.equals(PREFIX_RECURRINGSCHEDULE);
         boolean isDurationField = field.equals(PREFIX_DURATION);
         boolean isDescriptionField = field.equals(PREFIX_DESCRIPTION);
-        boolean isStatusField = field.equals(PREFIX_STATUS);
         boolean isTagField = field.equals(PREFIX_TAG);
+
+        boolean fieldAlreadyDeleted = (isDateField && oldDate.isEmptyValue()) ||
+                (isRecurringScheduleField && oldRecurringSchedule.isEmptyValue()) ||
+                (isDurationField && oldDuration.isEmptyValue()) ||
+                (isDescriptionField && oldDescription.isEmptyValue()) ||
+                (isTagField && oldTags.isEmpty());
 
         if (isTitleField) {
             logger.info("User tried to delete title");
             throw new CommandException(MESSAGE_INVALID_FIELD_TITLE);
-        } else if (isDateField) {
+        }
+
+        if (isStatusField) {
+            logger.info("User tried to delete status");
+            throw new CommandException(MESSAGE_INVALID_FIELD_STATUS);
+        }
+
+        if (fieldAlreadyDeleted) {
+            throw new CommandException(MESSAGE_FIELD_ALREADY_EMPTY);
+        }
+
+        if (isDateField) {
             Date updatedDate = new Date("");
             return new Task(title, updatedDate, oldDuration, oldRecurringSchedule,
-                    oldDescription, oldStatus, oldTags);
+                    oldDescription, status, oldTags);
         } else if (isDurationField) {
             Duration updatedDuration = new Duration("");
             return new Task(title, oldDate, updatedDuration, oldRecurringSchedule,
-                    oldDescription, oldStatus, oldTags);
+                    oldDescription, status, oldTags);
         } else if (isRecurringScheduleField) {
             RecurringSchedule updatedRecurring = new RecurringSchedule("");
-            return new Task(title, oldDate, oldDuration, updatedRecurring, oldDescription, oldStatus, oldTags);
+            return new Task(title, oldDate, oldDuration, updatedRecurring, oldDescription, status, oldTags);
         } else if (isDescriptionField) {
             Description updatedDescription = new Description("");
             return new Task(title, oldDate, oldDuration, oldRecurringSchedule,
-                    updatedDescription, oldStatus, oldTags);
-        } else if (isStatusField) {
-            logger.info("User tried to delete status");
-            throw new CommandException(MESSAGE_INVALID_FIELD_STATUS);
+                    updatedDescription, status, oldTags);
         } else if (isTagField) {
             Set<Tag> updatedTags = new HashSet<>();
             return new Task(title, oldDate, oldDuration, oldRecurringSchedule,
-                    oldDescription, oldStatus, updatedTags);
+                    oldDescription, status, updatedTags);
         } else {
             throw new CommandException(Messages.MESSAGE_UNKNOWN_COMMAND);
         }

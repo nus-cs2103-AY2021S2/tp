@@ -1,5 +1,7 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.logic.parser.CliSyntax.*;
+
 /**
  * A prefix that marks the beginning of an argument in an arguments string.
  * E.g. 't/' in 'add James t/ friend'.
@@ -17,6 +19,17 @@ public class Prefix {
 
     public String toString() {
         return getPrefix();
+    }
+
+    public boolean isValidPrefix() {
+        return this.equals(PREFIX_TITLE) ||
+                this.equals(PREFIX_DATE) ||
+                this.equals(PREFIX_STATUS) ||
+                this.equals(PREFIX_TAG) ||
+                this.equals(PREFIX_DESCRIPTION) ||
+                this.equals(PREFIX_DURATION) ||
+                this.equals(PREFIX_RECURRINGSCHEDULE) ||
+                this.equals(PREFIX_SORT);
     }
 
     @Override
