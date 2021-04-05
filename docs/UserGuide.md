@@ -77,6 +77,10 @@ Vax@NUS is a **one stop management app to efficiently track and schedule COVID-1
 > * USP (for University Scholars Programme)
 > * UTR (for Utown Residences)
 
+### Conditions for valid appointments
+> `DATE` must be of the format `YYYY-MM-DD`. `START_TIME` must be of the format `HH:00` or `HH:30`. The duration of each appointment is fixed at 30 minutes.
+* No appointment should clash with any other appointments.
+* The student that the appointment is for must exist in the records.
 ----------------------------------------------------------------------
 
 ## Features
@@ -197,12 +201,7 @@ Adds an appointment to Vax@NUS' records.
 
 Format: `addAppt i/MATRICULATION_NUMBER d/DATE ts/START_TIME`
 
-* Date must be of the format `YYYY-MM-DD`.
-* Time must be of the format `HH:00` or `HH:30`.
-* The duration of each appointment is 30 minutes.
-* The newly created appointment must not clash with an existing appointment.
-* The student that the appointment is for must exist in the records before the appointment can be created.
-
+[Conditions for valid appointments](#conditions-for-valid-appointments)
 
 Examples:
 * `addAppt i/A1234567X d/2021-12-13 ts/13:00`
@@ -223,10 +222,7 @@ Edits an appointment present in Vax@NUS records by referencing the student's mat
 
 Format: `editAppt MATRICULATION_NUMBER d/DATE ts/START_TIME`
 
-* Date must be of the format `YYYY-MM-DD`.
-* Time must be of the format `HH:00` or `HH:30`.
-* The duration of each appointment is 30 minutes.
-* The edited appointment must not clash with an existing appointment.
+[Conditions for valid appointments](#conditions-for-valid-appointments)
 
 Examples:
 * `editAppt A1234567X d/2021-12-13 ts/14:00`
