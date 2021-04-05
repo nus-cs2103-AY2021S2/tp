@@ -23,7 +23,7 @@ public class DeleteTagCommand extends Command {
     public static final String COMMAND_WORD = "deleteTag";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a tag from task identified "
-            + "by the index number used in the last person listing. "
+            + "by the index number used in the last task listing. "
             + "Only one tag deletion per command.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "t/[TAG]\n"
