@@ -41,7 +41,7 @@ public class UniqueEventListTest {
     public void contains_eventWithSameIdentityFieldsInList_returnsTrue() {
         uniqueEventList.add(JAN);
         Event editedJan = new EventBuilder(JAN).withName("Jan Celebration").withDate("2022-01-01")
-            .withDetail("10 people").build();
+            .withRemark("10 people").build();
         assertTrue(uniqueEventList.contains(editedJan));
     }
 
@@ -84,7 +84,7 @@ public class UniqueEventListTest {
     public void setEvent_editedEventHasSameIdentity_success() {
         uniqueEventList.add(JAN);
         Event editedJan = new EventBuilder(JAN).withName("Jan Celebration").withDate("2022-01-01")
-            .withDetail("10 people").build();
+            .withRemark("10 people").build();
         uniqueEventList.setEvent(JAN, editedJan);
         UniqueEventList expectedUniqueEventList = new UniqueEventList();
         expectedUniqueEventList.add(editedJan);
