@@ -181,6 +181,10 @@
     -fx-background-color: derive(#daded4, 30%);
 }
 
+.context-menu > .left-container {
+    -fx-background-color: derive(#daded4, 30%);
+}
+
 .context-menu .label {
     -fx-text-fill: #3c403d;
 }
@@ -194,10 +198,6 @@
     -fx-font-family: "Segoe UI Light";
     -fx-text-fill: #3c403d;
     -fx-opacity: 0.9;
-}
-
-.menu .left-container {
-    -fx-background-color: derive(#daded4, 50%);
 }
 
 /*
