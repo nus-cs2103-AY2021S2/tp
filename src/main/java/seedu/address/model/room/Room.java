@@ -14,7 +14,8 @@ import seedu.address.model.tag.Tag;
  * Represents a Room in the hostel management system.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Room {
+
+public class Room implements Comparable<Room> {
     // Rooms have a default occupancy status of "No". Occupancy
     // can only be edited through the allocation/deallocation commands
     // or through the reading of the model from a JSON file (which isn't
@@ -125,4 +126,8 @@ public class Room {
         return builder.toString();
     }
 
+    @Override
+    public int compareTo(Room room) {
+        return this.roomNumber.compareTo(room.getRoomNumber());
+    }
 }
