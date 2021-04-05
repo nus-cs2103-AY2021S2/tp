@@ -250,12 +250,13 @@ Adds a profile picture to an existing person in FriendDex.
 Format: `add-picture INDEX FILE_PATH`
 
 * The image of the friend should be at the `FILE_PATH` you provided.
+* Supported image file extensions: `.png`, `.jpeg` and `.jpg`
 
 Examples:
 * `add-picture 1 /Users/john/Desktop/jake.png`
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-To edit your profile picture, edit the original image and use the `add-picture` command again.
+To edit your profile picture, use the `add-picture` command again.
 Editing of pictures directly from the `/data` folder is not supported.
 </div>
 
