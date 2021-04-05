@@ -50,11 +50,11 @@ public class Birthday {
     /**
      * Returns true if a given string is a valid birthday.
      */
-    public static boolean isValidBirthday(String test) {
+    public static boolean isValidBirthday(String birthdayStr) {
         LocalDate date;
 
         try {
-            date = DateUtil.fromDateInput(test);
+            date = DateUtil.fromDateInput(birthdayStr);
         } catch (ParseException e) {
             return false;
         }
