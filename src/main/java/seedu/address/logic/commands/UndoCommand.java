@@ -12,14 +12,14 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 
 /**
- * Undos the previous add, delete or edit command
+ * Undos the previous add, delete, edit, or clear command
  */
 public class UndoCommand extends Command {
     public static final String COMMAND_WORD = "undo";
 
     public static final String MESSAGE_SUCCESS = "Undid %s command";
 
-    public static final String MESSAGE_NO_COMMAND_TO_UNDO = "No add, delete or edit commands in the"
+    public static final String MESSAGE_NO_COMMAND_TO_UNDO = "No add, delete, edit, or clear commands in the"
             + " command history to undo";
 
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command in command history: %s";
