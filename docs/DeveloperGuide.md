@@ -174,13 +174,12 @@ Step 8: `HelpCommand` will create a `CommandResult` and pass to `LogicManager` w
 ![HelpActivityDiagram](images/HelpActivityDiagram.png)
 
 #### Design Considerations
-- Alternative 1 (Current choice): 
-    - Pros:
-    - Cons:
+- Alternative 1 (Current choice): Automatically open a browser to StoreMando's User Guide when there is internet access.
+    - Pros: User don't have to manually copy and paste the link on their browser.
 
-- Alternative 2:
-    - Pros:
-    - Cons:
+- Alternative 2: Provide user the link to StoreMando's user guide.
+    - Pros: Easier to implement.
+    - Cons: User has to copy and paste their link manually on their browser to get to the User guide.
 
 
 ### Edit feature
