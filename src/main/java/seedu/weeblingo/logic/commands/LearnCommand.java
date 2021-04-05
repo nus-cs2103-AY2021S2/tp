@@ -21,8 +21,6 @@ public class LearnCommand extends Command {
             + "You can add or delete tags for the flashcards.\n"
             + "Enter \"end\" to return to menu.";
 
-    public static final String MESSAGE_ALREADY_IN_LEARN_MODE = "You are already in learn mode.";
-
     private Set<Tag> tags;
 
     public LearnCommand(Set<Tag> tagsSet) {
@@ -34,11 +32,8 @@ public class LearnCommand extends Command {
         requireNonNull(model);
 
         int currentMode = model.getCurrentMode();
-        if (currentMode == Mode.MODE_LEARN) {
-            throw new CommandException(MESSAGE_ALREADY_IN_LEARN_MODE);
-        }
 
-        if (currentMode != Mode.MODE_MENU) {
+        if (currentMode != Mode.MODE_MENU && currentMode != Mode.MODE_LEARN) {
             throw new CommandException(Messages.MESSAGE_NOT_IN_MENU_MODE);
         }
 
