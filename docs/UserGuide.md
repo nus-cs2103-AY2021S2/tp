@@ -126,7 +126,7 @@ Here are some general rules to follow when entering prefixes and parameters:
   
 * To add multiple parameters of the same prefix, add the prefix multiple times before each parameter.<br>
   e.g. To add two TAGs, enter `-t tagOne -t tagTwo`.<br>
-  e.g. To add three HEADERSs, enter `-h \"header:one\" -h \"header:two\" -h \"header:three\"`.<br>
+  e.g. To add three HEADERSs, enter `-h "header: one" -h "header: two" -h "header: three"`.<br>
   
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. If the command specifies `help 123`, it will be interpreted as `help`.<br>
@@ -190,8 +190,8 @@ Check out the screenshot of each command for an idea of the expected output in t
 <div markdown="span" class="alert alert-warning">:bulb: **Tip:**
 For URL, we do not check if your URL actually exists<br>
 If no website [protocol](#glossary-protocol) is specified, we enforce a HTTP protocol as a protocol needs to be specified for an API request to be carried out<br>
-For instance, if a user's enters `google.com` as a URL, we will prepend the URL with `http://`, making it `http://google.com`
-</div><br>
+For instance, if a user enters `google.com` as a URL, we will prepend the URL with `http://`, making it `http://google.com`
+</div>
 
 <div markdown="span" class="alert alert-danger">:exclamation: **Caution**
 Multiple headers/tags must be unique and duplicates will be ignored
@@ -210,15 +210,15 @@ Multiple headers/tags must be unique and duplicates will be ignored
 </p>
 
 <div markdown="span" class="alert alert-warning">:bulb: **Tip:**
-When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative <br>
-You can remove all the person’s tags by typing `t/` without specifying any tags after it
-</div><br>
+When editing tags, the existing tags of the endpoint will be removed i.e adding of tags is not cumulative <br>
+You can remove all the endpoint’s tags by typing ` -t` without specifying any tags after it
+</div>
 
 <div markdown="span" class="alert alert-warning">:bulb: **Tip:**
 For URL, we do not check if your URL actually exists<br>
 If no website [protocol](#glossary-protocol) is specified, we enforce a HTTP protocol as a protocol needs to be specified for an API request to be carried out<br>
-For instance, if a user's enters `google.com` as a URL, we will prepend the URL with `http://`, making it `http://google.com`
-</div><br>
+For instance, if a user enters `google.com` as a URL, we will prepend the URL with `http://`, making it `http://google.com`
+</div>
 
 <div markdown="span" class="alert alert-danger">:exclamation: **Caution:**
 Multiple headers/tags must be unique and duplicates will be ignored
@@ -265,11 +265,11 @@ be a positive integer).
 
 to-do format this junxiong
 <div markdown="span" class="alert alert-warning">:bulb: **Tip:**
-The search is case-insensitive.<br>
-The order of the keywords does not matter<br>
-Partial Words will be matched e.g. `appl` will match `Apple`
-Endpoints matching at least one keyword will be returned (i.e. `OR` search). e.g. `Apple Google` will return endpoints with `ApplePear` and `google.com`
-<div style="page-break-after: always;"></div><br>
+* The search is case-insensitive.<br>
+* The order of the keywords does not matter<br>
+* Partial Words will be matched e.g. `appl` will match `Apple`
+* Endpoints matching at least one keyword will be returned (i.e. `OR` search). e.g. `Apple Google` will return endpoints with `ApplePear` and `google.com`
+</div>
 
 <div markdown="span" class="alert alert-warning">:bulb: **Tip:**
 You may include [prefixes](#prefix-table) to scope your search terms!
@@ -333,13 +333,13 @@ If you wish to generate a set of sample endpoints, you may delete the **imposter
 <div markdown="span" class="alert alert-warning">:bulb: **Tip:**
 A shorthand for <span class="optional-param">GET</span> requests can be done without specifying <span class="optional-param">-x</span> and <span class="optional-param">-u</span> 
 (for example: <span class="main-command">run</span> <span class="optional-param">https://api.data.gov.sg/v1/environment/pm25</span>).
-</div><br>
+</div>
 
 <div markdown="span" class="alert alert-warning">:bulb: **Tip:**
 For URL, we do not check if your URL actually exists<br>
 If no website [protocol](#glossary-protocol) is specified, we enforce a HTTP protocol as a protocol needs to be specified for an API request to be carried out<br>
-For instance, if a user's enters `google.com` as a URL, we will prepend the URL with `http://`, making it `http://google.com`
-</div><br>
+For instance, if a user enters `google.com` as a URL, we will prepend the URL with `http://`, making it `http://google.com`
+</div>
 
 <div markdown="span" class="alert alert-danger">:exclamation: **Caution:**
 Multiple headers/tags must be unique and duplicates will be ignored
@@ -439,7 +439,7 @@ A quick overview of all supported commands, their formats and examples are given
 | **JSON** | JSON is short for **JavaScript Object Notation** which is a lightweight format for data storage (a more detailed explanation can be found [here](#85-json-format)) |
 | **CURL** | <a name="glossary-curl"></a> CURL is short for **Client URL** and is a command-line tool used in the transfer of data via different network protocols |
 | **Index** | Index in this guide refers to the position of the endpoint in the endpoint list (represented by the number beside the endpoint) |
-| **Protocol** | A protocol is a system of rules that define how data is exchanged within or between systems |
+| **Protocol** | <a name="glossary-protocol"></a> A protocol is a system of rules that define how data is exchanged within or between systems |
 
 <div style="page-break-after: always;"></div>
 
