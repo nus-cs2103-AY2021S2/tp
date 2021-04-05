@@ -66,11 +66,11 @@
                </font></Label>
             <TableView fx:id="tableView" minHeight="-Infinity" minWidth="-Infinity" prefHeight="315.0" prefWidth="589.0" GridPane.rowIndex="3">
                 <columns>
-                    <TableColumn prefWidth="88.0" text="Action">
+                    <TableColumn prefWidth="88.0" resizable="false" text="Action">
                         <cellValueFactory><PropertyValueFactory property="action" />
                         </cellValueFactory>
                     </TableColumn>
-                    <TableColumn prefWidth="499.0" text="Format">
+                    <TableColumn prefWidth="499.0" resizable="false" text="Format">
                         <cellValueFactory><PropertyValueFactory property="format" />
                         </cellValueFactory>
                     </TableColumn>
