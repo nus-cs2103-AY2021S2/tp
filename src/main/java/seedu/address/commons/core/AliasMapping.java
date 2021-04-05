@@ -63,6 +63,24 @@ public class AliasMapping implements Serializable {
     }
 
     /**
+     * Sets the mapping to the mapping of the specified AliasMapping object.
+     *
+     * @param aliasMapping The specified AliasMapping object.
+     */
+    public void setAliasMapping(AliasMapping aliasMapping) {
+        this.mapping = aliasMapping.mapping;
+    }
+
+    /**
+     * Returns the map object.
+     *
+     * @return The map object.
+     */
+    public Map<String, Alias> getMapping() {
+        return this.mapping;
+    }
+
+    /**
      * Returns an Alias object from alias name.
      *
      * @param aliasName Name of the alias.

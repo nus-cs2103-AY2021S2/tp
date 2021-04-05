@@ -13,7 +13,6 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.AliasMapping;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
@@ -25,8 +24,7 @@ import seedu.address.logic.commands.resident.EditResidentCommand.EditResidentDes
 import seedu.address.logic.commands.resident.FindResidentCommand;
 import seedu.address.logic.commands.resident.ListResidentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.UserPrefs;
+import seedu.address.model.AddressBook;
 import seedu.address.model.resident.NameContainsKeywordsPredicate;
 import seedu.address.model.resident.Resident;
 import seedu.address.testutil.resident.EditResidentDescriptorBuilder;
@@ -35,31 +33,21 @@ import seedu.address.testutil.resident.ResidentUtil;
 
 public class AddressBookParserTest {
 
-    private final AddressBookParser parser;
-
-    private final ReadOnlyUserPrefs readOnlyUserPrefs;
-
-    public AddressBookParserTest() {
-        parser = new AddressBookParser();
-
-        UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setAliasMapping(new AliasMapping());
-        readOnlyUserPrefs = userPrefs;
-    }
+    private final AddressBookParser parser = new AddressBookParser();
 
     @Test
     public void parseCommand_add() throws Exception {
         Resident resident = new ResidentBuilder().build();
         AddResidentCommand command = (AddResidentCommand) parser.parseCommand(ResidentUtil.getAddCommand(resident),
-                readOnlyUserPrefs);
+                new AddressBook());
         assertEquals(new AddResidentCommand(resident), command);
     }
 
     @Test
     public void parseCommand_clear() throws Exception {
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD, readOnlyUserPrefs)
+        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD, new AddressBook())
                 instanceof ClearCommand);
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3", readOnlyUserPrefs)
+        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3", new AddressBook())
                 instanceof ClearCommand);
     }
 
@@ -67,7 +55,7 @@ public class AddressBookParserTest {
     public void parseCommand_delete() throws Exception {
         DeleteResidentCommand command = (DeleteResidentCommand) parser.parseCommand(
                 DeleteResidentCommand.COMMAND_WORD + " "
-                        + INDEX_FIRST.getOneBased(), readOnlyUserPrefs);
+                        + INDEX_FIRST.getOneBased(), new AddressBook());
         assertEquals(new DeleteResidentCommand(INDEX_FIRST), command);
     }
 
@@ -77,15 +65,15 @@ public class AddressBookParserTest {
         EditResidentDescriptor descriptor = new EditResidentDescriptorBuilder(resident).build();
         EditResidentCommand command = (EditResidentCommand) parser.parseCommand(EditResidentCommand.COMMAND_WORD + " "
                 + INDEX_FIRST.getOneBased() + " "
-                + ResidentUtil.getEditResidentDescriptorDetails(descriptor), readOnlyUserPrefs);
+                + ResidentUtil.getEditResidentDescriptorDetails(descriptor), new AddressBook());
         assertEquals(new EditResidentCommand(INDEX_FIRST, descriptor), command);
     }
 
     @Test
     public void parseCommand_exit() throws Exception {
-        assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD, readOnlyUserPrefs)
+        assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD, new AddressBook())
                 instanceof ExitCommand);
-        assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3", readOnlyUserPrefs)
+        assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3", new AddressBook())
                 instanceof ExitCommand);
     }
 
@@ -94,43 +82,43 @@ public class AddressBookParserTest {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindResidentCommand command = (FindResidentCommand) parser.parseCommand(
                 FindResidentCommand.COMMAND_WORD + " "
-                        + keywords.stream().collect(Collectors.joining(" ")), readOnlyUserPrefs);
+                        + keywords.stream().collect(Collectors.joining(" ")), new AddressBook());
         assertEquals(new FindResidentCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test
     public void parseCommand_help() throws Exception {
-        assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD, readOnlyUserPrefs)
+        assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD, new AddressBook())
                 instanceof HelpCommand);
-        assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3", readOnlyUserPrefs)
+        assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3", new AddressBook())
                 instanceof HelpCommand);
     }
 
     @Test
     public void parseCommand_list() throws Exception {
-        assertTrue(parser.parseCommand(ListResidentCommand.COMMAND_WORD, readOnlyUserPrefs)
+        assertTrue(parser.parseCommand(ListResidentCommand.COMMAND_WORD, new AddressBook())
                 instanceof ListResidentCommand);
-        assertTrue(parser.parseCommand(ListResidentCommand.COMMAND_WORD + " 3", readOnlyUserPrefs)
+        assertTrue(parser.parseCommand(ListResidentCommand.COMMAND_WORD + " 3", new AddressBook())
                 instanceof ListResidentCommand);
     }
 
     @Test
     public void parseCommand_history() throws Exception {
-        assertTrue(parser.parseCommand(ViewHistoryCommand.COMMAND_WORD, readOnlyUserPrefs)
+        assertTrue(parser.parseCommand(ViewHistoryCommand.COMMAND_WORD, new AddressBook())
                 instanceof ViewHistoryCommand);
-        assertTrue(parser.parseCommand(ViewHistoryCommand.COMMAND_WORD + " 3", readOnlyUserPrefs)
+        assertTrue(parser.parseCommand(ViewHistoryCommand.COMMAND_WORD + " 3", new AddressBook())
                 instanceof ViewHistoryCommand);
     }
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
-            -> parser.parseCommand("", readOnlyUserPrefs));
+            -> parser.parseCommand("", new AddressBook()));
     }
 
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, ()
-            -> parser.parseCommand("unknownCommand", readOnlyUserPrefs));
+            -> parser.parseCommand("unknownCommand", new AddressBook()));
     }
 }
