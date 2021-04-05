@@ -874,7 +874,7 @@ Format: `help`
 
 Restores CoLAB to the state before the previous undoable command was executed.
 
-Format: `undo'
+Format: `undo`
 
 <div markdown="block" class="alert alert-info">:information_source: **Info:**
 * Only commands that modify data are undoable. These commands include all commands that start with `add`, `update`, `delete` or `mark` as well as the `clear` command.
@@ -890,7 +890,7 @@ Example:
 
 Reverses the most recent undo command.
 
-Format: `redo'
+Format: `redo`
 
 * Requires an undo command to have been performed prior to a redo command.
 
