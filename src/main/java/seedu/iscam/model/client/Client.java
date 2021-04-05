@@ -26,18 +26,22 @@ public class Client {
     private InsurancePlan insurancePlan;
     private Location location;
     private Set<Tag> tags = new HashSet<>();
+    private Image imageRes;
 
     /**
-     * Every field must be present and not null.
+     * Every field must be present and not null except for imageRes.
+     * If insurance plan is not present, it will be a String of "No plans yet"
      */
-    public Client(Name name, Phone phone, Email email, Location location, InsurancePlan plan, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, location, tags);
+    public Client(Name name, Phone phone, Email email, Location location, InsurancePlan plan, Set<Tag> tags,
+                  Image imageRes) {
+        requireAllNonNull(name, phone, email, location, plan, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.insurancePlan = plan;
         this.location = location;
         this.tags.addAll(tags);
+        this.imageRes = imageRes;
     }
 
     public Name getName() {
@@ -66,6 +70,13 @@ public class Client {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Returns an optional containing the imageRes String. May return an empty optional.
+     */
+    public Image getImageRes() {
+        return imageRes;
     }
 
     /**
@@ -101,7 +112,8 @@ public class Client {
                 && otherClient.getEmail().equals(getEmail())
                 && otherClient.getPlan().equals(getPlan())
                 && otherClient.getLocation().equals(getLocation())
-                && otherClient.getTags().equals(getTags());
+                && otherClient.getTags().equals(getTags())
+                && otherClient.getImageRes().equals(getImageRes());
     }
 
     @Override
@@ -119,15 +131,24 @@ public class Client {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Location: ")
-                .append(getLocation())
-                .append("; Insurance Plan: ")
-                .append(getPlan());
+                .append(getLocation());
+
+        // If insurance plan is present, display it
+        InsurancePlan plan = getPlan();
+        if (!plan.toString().equals("No plans yet")) {
+            builder.append("; Insurance Plan: ")
+                    .append(getPlan());
+        }
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+
+        builder.append("; Image: ")
+                .append(imageRes);
+
         return builder.toString();
     }
 

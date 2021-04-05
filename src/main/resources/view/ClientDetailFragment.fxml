@@ -1,27 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.FlowPane?>
-<HBox xmlns:fx="http://javafx.com/fxml/1" id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8">
-    <GridPane HBox.hgrow="ALWAYS">
-        <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="300" prefWidth="300"/>
-        </columnConstraints>
-        <VBox alignment="CENTER_LEFT" minHeight="300" GridPane.columnIndex="0">
-            <padding>
-                <Insets top="10" right="10" bottom="10" left="10"/>
-            </padding>
-            <Label fx:id="name" text="Use show command to display a user here" styleClass="details_large_label"/>
-            <FlowPane fx:id="tags"/>
-            <Label fx:id="phone" styleClass="details_small_label" />
-            <Label fx:id="clientLocation" styleClass="details_small_label" />
-            <Label fx:id="email" styleClass="details_small_label" />
-            <Label fx:id="remark" styleClass="details_small_label" />
-        </VBox>
-    </GridPane>
-</HBox>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.ListView?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1" id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8">
+        <HBox alignment="TOP_LEFT" minHeight="160">
+            <VBox alignment="CENTER" maxWidth="120">
+                <ImageView fx:id="profileImage" fitHeight="120" />
+                <Label fx:id="profileImageRef" styleClass="details_small_label" textAlignment="CENTER" />
+            </VBox>
+            <VBox alignment="CENTER_LEFT" >
+                <padding>
+                    <Insets top="10" right="10" bottom="10" left="10"/>
+                </padding>
+                <Label fx:id="name" text="Use 'show' command to display a client here" styleClass="details_large_label"/>
+                <FlowPane fx:id="tags"/>
+                <Label fx:id="phone" styleClass="details_small_label" />
+                <Label fx:id="clientLocation" styleClass="details_small_label" />
+                <Label fx:id="email" styleClass="details_small_label" />
+                <Label fx:id="remark" styleClass="details_small_label" />
+            </VBox>
+        </HBox>
+        <HBox alignment="TOP_LEFT" minHeight="100" VBox.vgrow="ALWAYS" spacing="10">
+            <VBox alignment="TOP_LEFT">
+                <ListView fx:id="clientMeetingListView" VBox.vgrow="ALWAYS"/>
+            </VBox>
+            <VBox alignment="TOP_LEFT" fx:id="insurancePlanBox" styleClass="insurance-pane" HBox.hgrow="ALWAYS">
+                <padding>
+                    <Insets top="10" right="10" bottom="10" left="10"/>
+                </padding>
+                <Label text="Insurance Plan" styleClass="details_large_label"/>
+                <Label fx:id="insurancePlanName" text="/$insuranceName" styleClass="details_small_label"/>
+            </VBox>
+        </HBox>
+</VBox>

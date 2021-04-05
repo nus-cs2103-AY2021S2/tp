@@ -2,6 +2,7 @@ package seedu.iscam.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.iscam.logic.parser.CliSyntax.PREFIX_IMAGE;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -22,6 +23,7 @@ import seedu.iscam.logic.commands.exceptions.CommandException;
 import seedu.iscam.model.Model;
 import seedu.iscam.model.client.Client;
 import seedu.iscam.model.client.Email;
+import seedu.iscam.model.client.Image;
 import seedu.iscam.model.client.InsurancePlan;
 import seedu.iscam.model.client.Phone;
 import seedu.iscam.model.commons.Location;
@@ -29,9 +31,9 @@ import seedu.iscam.model.commons.Name;
 import seedu.iscam.model.commons.Tag;
 
 /**
- * Edits the details of an existing client in the iscam book.
+ * Edits the details of an existing client in the iScam book.
  */
-public class EditCommand extends Command {
+public class EditCommand extends UndoableCommand {
 
     public static final String COMMAND_WORD = "edit";
 
@@ -43,7 +45,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_LOCATION + "LOCATION] "
-            + "[" + PREFIX_PLAN + "INSURANCE PLAN] "
+            + "[" + PREFIX_PLAN + "INSURANCE_PLAN] "
+            + "[" + PREFIX_IMAGE + "IMAGE_FILE] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -51,7 +54,7 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_CLIENT_SUCCESS = "Edited Client: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_CLIENT = "This client already exists in the iscam book.";
+    public static final String MESSAGE_DUPLICATE_CLIENT = "This client already exists in the iScam book.";
 
     private final Index index;
     private final EditClientDescriptor editClientDescriptor;
@@ -68,6 +71,15 @@ public class EditCommand extends Command {
         this.editClientDescriptor = new EditClientDescriptor(editClientDescriptor);
     }
 
+    public Index getIndex() {
+        return index;
+    }
+
+    @Override
+    public String getCommandWord() {
+        return COMMAND_WORD;
+    }
+
     /**
      * Creates and returns a {@code Client} with the details of {@code clientToEdit}
      * edited with {@code editClientDescriptor}.
@@ -81,8 +93,9 @@ public class EditCommand extends Command {
         Location updatedLocation = editClientDescriptor.getLocation().orElse(clientToEdit.getLocation());
         InsurancePlan updatedPlan = editClientDescriptor.getPlan().orElse(clientToEdit.getPlan());
         Set<Tag> updatedTags = editClientDescriptor.getTags().orElse(clientToEdit.getTags());
-
-        return new Client(updatedName, updatedPhone, updatedEmail, updatedLocation, updatedPlan, updatedTags);
+        Image updatedImageRes = editClientDescriptor.getImageRes().orElse(clientToEdit.getImageRes());
+        return new Client(updatedName, updatedPhone, updatedEmail, updatedLocation, updatedPlan, updatedTags,
+                updatedImageRes);
     }
 
     @Override
@@ -103,6 +116,13 @@ public class EditCommand extends Command {
 
         model.setClient(clientToEdit, editedClient);
         model.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
+
+        // Causes the ClientDetailFragment to update if was displaying the edited client
+        Client displayedClient = model.getDetailedClient().getValue();
+        if (clientToEdit.equals(displayedClient)) {
+            model.setDetailedClient(editedClient);
+        }
+
         return new CommandResult(String.format(MESSAGE_EDIT_CLIENT_SUCCESS, editedClient));
     }
 
@@ -124,6 +144,10 @@ public class EditCommand extends Command {
                 && editClientDescriptor.equals(e.editClientDescriptor);
     }
 
+    public EditClientDescriptor getEditClientDescriptor() {
+        return editClientDescriptor;
+    }
+
     /**
      * Stores the details to edit the client with. Each non-empty field value will replace the
      * corresponding field value of the client.
@@ -135,6 +159,7 @@ public class EditCommand extends Command {
         private InsurancePlan plan;
         private Location location;
         private Set<Tag> tags;
+        private Image imageRes;
 
         public EditClientDescriptor() {
         }
@@ -150,13 +175,14 @@ public class EditCommand extends Command {
             setPlan(toCopy.plan);
             setLocation(toCopy.location);
             setTags(toCopy.tags);
+            setImageRes(toCopy.imageRes);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, location, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, location, plan, tags, imageRes);
         }
 
         public Optional<Name> getName() {
@@ -187,12 +213,16 @@ public class EditCommand extends Command {
             return Optional.ofNullable(location);
         }
 
-        public void setPlan(InsurancePlan plan) {
-            this.plan = plan;
+        public void setLocation(Location location) {
+            this.location = location;
         }
 
         public Optional<InsurancePlan> getPlan() {
             return Optional.ofNullable(plan);
+        }
+
+        public void setPlan(InsurancePlan plan) {
+            this.plan = plan;
         }
 
         /**
@@ -203,10 +233,6 @@ public class EditCommand extends Command {
             this.tags = (tags != null) ? new HashSet<>(tags) : null;
         }
 
-        public void setLocation(Location location) {
-            this.location = location;
-        }
-
         /**
          * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
@@ -214,6 +240,14 @@ public class EditCommand extends Command {
          */
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        }
+
+        public Optional<Image> getImageRes() {
+            return Optional.ofNullable(imageRes);
+        }
+
+        public void setImageRes(Image imageRes) {
+            this.imageRes = imageRes;
         }
 
         @Override
@@ -236,7 +270,8 @@ public class EditCommand extends Command {
                     && getEmail().equals(e.getEmail())
                     && getPlan().equals(e.getPlan())
                     && getLocation().equals(e.getLocation())
-                    && getTags().equals(e.getTags());
+                    && getTags().equals(e.getTags())
+                    && getImageRes().equals(e.getImageRes());
         }
     }
 }

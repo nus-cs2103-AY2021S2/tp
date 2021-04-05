@@ -3,6 +3,7 @@ package seedu.iscam.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.iscam.logic.parser.CliSyntax.PREFIX_IMAGE;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -37,10 +38,9 @@ public class CommandTestUtil {
     public static final String VALID_LOCATION_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_PLAN_AMY = "Plan A";
     public static final String VALID_PLAN_BOB = "Plan B";
-    public static final String VALID_REMARK_AMY = "Likes to swim";
-    public static final String VALID_REMARK_BOB = "Hates corn";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_IMAGE = "default.png";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -54,6 +54,7 @@ public class CommandTestUtil {
     public static final String PLAN_DESC_BOB = " " + PREFIX_PLAN + VALID_PLAN_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String IMAGE_DESC = " " + PREFIX_IMAGE + VALID_IMAGE;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -61,6 +62,7 @@ public class CommandTestUtil {
     public static final String INVALID_LOCATION_DESC = " " + PREFIX_LOCATION; // empty string not allowed for locations
     public static final String INVALID_PLAN_DESC = " " + PREFIX_PLAN + "Plan $"; // '$" no allowed in insurance plans
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_IMAGE_DESC = " " + PREFIX_IMAGE + "morgan.jp"; // File extension not allowed
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

@@ -32,7 +32,7 @@ public class MeetingListPanel extends UiPart<Region> {
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code meeting} using a {@code meetingCard}.
      */
-    class MeetingListViewCell extends ListCell<Meeting> {
+    static class MeetingListViewCell extends ListCell<Meeting> {
         @Override
         protected void updateItem(Meeting meeting, boolean empty) {
             super.updateItem(meeting, empty);

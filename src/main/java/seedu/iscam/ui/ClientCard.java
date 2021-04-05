@@ -40,8 +40,6 @@ public class ClientCard extends UiPart<Region> {
     private Label email;
     @FXML
     private FlowPane tags;
-    @FXML
-    private Label remark;
 
     /**
      * Creates a {@code ClientCode} with the given {@code Client} and index to display.

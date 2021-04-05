@@ -14,7 +14,7 @@ public class InsurancePlan {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
     public static final String MESSAGE_CONSTRAINTS =
-            "Insurance Plan should not start with a space and only contain alphanumeric characters";
+            "Insurance Plan should only contain alphanumeric characters";
 
     public final String planName;
 

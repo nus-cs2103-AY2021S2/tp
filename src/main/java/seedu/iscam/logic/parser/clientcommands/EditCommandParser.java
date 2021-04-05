@@ -3,6 +3,7 @@ package seedu.iscam.logic.parser.clientcommands;
 import static java.util.Objects.requireNonNull;
 import static seedu.iscam.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.iscam.logic.parser.CliSyntax.PREFIX_IMAGE;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -23,6 +24,7 @@ import seedu.iscam.logic.parser.Parser;
 import seedu.iscam.logic.parser.ParserUtil;
 import seedu.iscam.logic.parser.exceptions.ParseException;
 import seedu.iscam.logic.parser.exceptions.ParseFormatException;
+import seedu.iscam.logic.parser.exceptions.ParseIndexException;
 import seedu.iscam.model.commons.Tag;
 
 /**
@@ -39,12 +41,14 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(
-                args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_LOCATION, PREFIX_PLAN, PREFIX_TAG);
+                args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_LOCATION, PREFIX_PLAN, PREFIX_TAG, PREFIX_IMAGE);
 
         Index index;
 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
+        } catch (ParseIndexException pie) {
+            throw pie;
         } catch (ParseException pe) {
             throw new ParseFormatException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE),
                     pe);
@@ -64,12 +68,23 @@ public class EditCommandParser implements Parser<EditCommand> {
             editClientDescriptor.setLocation(ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get()));
         }
         if (argMultimap.getValue(PREFIX_PLAN).isPresent()) {
-            editClientDescriptor.setPlan(ParserUtil.parsePlan(argMultimap.getValue(PREFIX_PLAN).get()));
+            String planName = argMultimap.getValue(PREFIX_PLAN).get();
+
+            // If user input "ip/", Insurance Plan changes to "No plans yet"
+            if (planName.equals("")) {
+                planName = "No plans yet";
+            }
+
+            editClientDescriptor.setPlan(ParserUtil.parsePlan(planName));
         }
+        if (argMultimap.getValue(PREFIX_IMAGE).isPresent()) {
+            editClientDescriptor.setImageRes(ParserUtil.parseImageRes(argMultimap.getValue(PREFIX_IMAGE).get()));
+        }
+
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editClientDescriptor::setTags);
 
         if (!editClientDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
+            throw new ParseFormatException(EditCommand.MESSAGE_NOT_EDITED);
         }
 
         return new EditCommand(index, editClientDescriptor);

@@ -13,13 +13,16 @@ import seedu.iscam.logic.commands.DeleteCommand;
 import seedu.iscam.logic.commands.EditCommand;
 import seedu.iscam.logic.commands.ExitCommand;
 import seedu.iscam.logic.commands.FindCommand;
+import seedu.iscam.logic.commands.FindPlansCommand;
 import seedu.iscam.logic.commands.HelpCommand;
 import seedu.iscam.logic.commands.ListCommand;
+import seedu.iscam.logic.commands.RedoCommand;
 import seedu.iscam.logic.commands.ShowCommand;
+import seedu.iscam.logic.commands.UndoCommand;
 import seedu.iscam.logic.parser.BookParser;
+import seedu.iscam.logic.parser.ShowCommandParser;
 import seedu.iscam.logic.parser.exceptions.ParseException;
 import seedu.iscam.logic.parser.exceptions.ParseFormatException;
-import seedu.iscam.logic.parser.exceptions.ShowCommandParser;
 
 /**
  * Parses user input.
@@ -63,6 +66,9 @@ public class ClientBookParser implements BookParser {
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
+        case FindPlansCommand.COMMAND_WORD:
+            return new FindPlansCommandParser().parse(arguments);
+
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
 
@@ -74,6 +80,12 @@ public class ClientBookParser implements BookParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case UndoCommand.COMMAND_WORD:
+            return new UndoCommand();
+
+        case RedoCommand.COMMAND_WORD:
+            return new RedoCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

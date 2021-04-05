@@ -17,6 +17,7 @@ import seedu.iscam.commons.core.LogsCenter;
 import seedu.iscam.logic.Logic;
 import seedu.iscam.logic.commands.CommandResult;
 import seedu.iscam.logic.commands.exceptions.CommandException;
+import seedu.iscam.logic.events.exceptions.EventException;
 import seedu.iscam.logic.parser.exceptions.ParseException;
 
 /**
@@ -135,7 +136,8 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        ClientDetailFragment clientDetailFragment = new ClientDetailFragment(logic.getDetailedClient());
+        ClientDetailFragment clientDetailFragment =
+                new ClientDetailFragment(logic.getDetailedClient(), logic.getFilteredMeetingList());
         clientDetailFragmentPlaceholder.getChildren().add(clientDetailFragment.getRoot());
     }
 
@@ -187,7 +189,7 @@ public class MainWindow extends UiPart<Stage> {
      *
      * @see seedu.iscam.logic.Logic#execute(String)
      */
-    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+    private CommandResult executeCommand(String commandText) throws CommandException, ParseException, EventException {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
@@ -213,7 +215,8 @@ public class MainWindow extends UiPart<Stage> {
         public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
             clientDetailFragmentPlaceholder.getChildren().clear();
             if (newValue) {
-                ClientDetailFragment clientDetailFragment = new ClientDetailFragment(logic.getDetailedClient());
+                ClientDetailFragment clientDetailFragment =
+                        new ClientDetailFragment(logic.getDetailedClient(), logic.getFilteredMeetingList());
                 clientDetailFragmentPlaceholder.getChildren().add(clientDetailFragment.getRoot());
             } else {
                 meetingListPanel = new MeetingListPanel(logic.getFilteredMeetingList());

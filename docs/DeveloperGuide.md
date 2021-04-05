@@ -59,7 +59,7 @@ The sections below give more details of each component.
 
 ### UI component
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+![Structure of the UI Component](images/UiClassDiagram.jpg)
 
 **API** :
 [`Ui.java`](https://github.com/se-edu/ClientBook-level3/tree/master/src/main/java/seedu/location/ui/Ui.java)
@@ -126,11 +126,21 @@ The `Meeting` object,
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
-* can save the location book data in json format and read it back.
+* can save the `ClientBook` data in json format and read it back.
+* can save the `MeetingBook` data in json format and read it back.
+
+The `ClientBook` object,
+* stores the data of clients
+* retrieves stored data of clients
+
+The `MeetingBook` object,
+* stores the data of meetings
+* retrieves stored data of meetings
+
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.ClientBook.commons` package.
+Classes used by multiple components are in the `seedu.iscam.storage` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
