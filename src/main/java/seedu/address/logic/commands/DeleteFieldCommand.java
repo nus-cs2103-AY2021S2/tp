@@ -39,7 +39,7 @@ public class DeleteFieldCommand extends Command {
     public static final String COMMAND_WORD = "rmf";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes a field from a task.\n "
+            + ": Removes a field from a task.\n "
             + "Parameters: INDEX (must be a positive integer) FIELD\n"
             + "Field can be: "
             + PREFIX_DATE + " , "
@@ -48,7 +48,7 @@ public class DeleteFieldCommand extends Command {
             + PREFIX_RECURRINGSCHEDULE + " or "
             + PREFIX_TAG + " \n"
             + "Exactly one field is to be specified.\n"
-            + "Example: " + COMMAND_WORD + " 1" + PREFIX_TAG;
+            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_TAG;
 
     public static final String SHORT_MESSAGE_USAGE = COMMAND_WORD + " INDEX FIELD\n";
 

@@ -17,7 +17,7 @@ public class DeleteTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "rmt";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes a task from the planner.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Removes a task from the planner.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
