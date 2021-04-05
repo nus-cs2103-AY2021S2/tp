@@ -28,6 +28,7 @@ PartyPlanet can get the planning of your birthday celebrations done faster than 
 JSON files. It will start with an empty Address Book and Event Book if there is an error in the JSON files.**
 
 </div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Glossary of parameters
@@ -35,11 +36,11 @@ JSON files. It will start with an empty Address Book and Event Book if there is 
 | Parameter | Prefix | Applicable to | Description |
 |---|---|---|---|
 | `ADDRESS` | `-a`, `--address` | Contact | Any value |
-| `BIRTHDAY` | `-b`, `--birthday` | Contact | Valid date, with or without a year:{::nomarkdown}<ul><li>Year must be non-negative if specified, and birthday must be in the past</li><li>If the day is incompatible with the month and year, the closest valid date may be matched<br>e.g. <code>29 Feb 2021</code> is mapped to <code>28 Feb 2021</code></li><li>Accepted date formats are listed below, case-insensitive:<ul><li>ISO format: <code>--01-09</code> / <code>1997-01-09</code></li><li>Dot delimited: <code>9.1</code> / <code>9.1.1997</code></li><li>Slash delimited: <code>9/1</code> / <code>9/1/1997</code></li><li>Long DMY format: <code>9 Jan</code> / <code>9 Jan 1997</code></li><li>Full DMY format: <code>9 January</code> / <code>9 January 1997</code></li><li>Long YMD format: <code>Jan 9</code> / <code>Jan 9 1997</code></li><li>Full YMD format: <code>January 9</code> / <code>January 9 1997</code></li></ul></li></ul>{:/} |
+| `BIRTHDAY` | `-b`, `--birthday` | Contact | Valid date, with or without a year:{::nomarkdown}<ul><li>Year must be a positive integer between 0001 and 9999 if specified, and birthday must be in the past</li><li>If the day is incompatible with the month and year, the closest valid date may be matched<br>e.g. <code>29 Feb 2021</code> is mapped to <code>28 Feb 2021</code></li><li>Accepted date formats are listed below, case-insensitive:<ul><li>ISO format: <code>--01-09</code> / <code>1997-01-09</code></li><li>Dot delimited: <code>9.1</code> / <code>9.1.1997</code></li><li>Slash delimited: <code>9/1</code> / <code>9/1/1997</code></li><li>Long DMY format: <code>9 Jan</code> / <code>9 Jan 1997</code></li><li>Full DMY format: <code>9 January</code> / <code>9 January 1997</code></li><li>Long YMD format: <code>Jan 9</code> / <code>Jan 9 1997</code></li><li>Full YMD format: <code>January 9</code> / <code>January 9 1997</code></li></ul></li></ul>{:/} |
 | `COMMAND` | - | - | Any valid command listed [below](#party-planet-commands) |
-| `DATE` | `-d`, `--date` | Event | Valid date with a year:{::nomarkdown}<ul><li>Year must be present and non-negative</li><li>See <code>BIRTHDAY</code> parameter above for available date formats</li></ul>{:/} |
+| `DATE` | `-d`, `--date` | Event | Valid date with a year:{::nomarkdown}<ul><li>Year must be present and a positive integer between 0001 and 9999</li><li>See <code>BIRTHDAY</code> parameter above for available date formats</li></ul>{:/} |
 | `DETAIL` | `-r`, `--remark` | Event | Any value |
-| `EMAIL` | `-e`, `--email` | Contact | In the format `USER@DOMAIN`:{::nomarkdown}<ul><li><code>USER</code> can only contain alphanumerics and any of <code>!#$%&'*+/=?`{&#124;}~^.-</code></li><li><code>DOMAIN</code> must be at least two characters long, start and end with two alphanumerics, and consist only of alphanumerics, periods or hyphens</li></ul>{:/} |
+| `EMAIL` | `-e`, `--email` | Contact | In the format `USER@DOMAIN`:{::nomarkdown}<ul><li><code>USER</code> can only contain alphanumerics and any of <code>!#$%&'*+/=?`{&#124;}~^.-</code></li><li><code>DOMAIN</code> must comprise at least one non-empty label with an optional trailing period.</li><li>A label contains at least one of alphanumerics or underscores, with optional hyphens. Labels cannot start with a hyphen.</li></ul>{:/} |
 | `INDEX` | - | any | Positive integer representing the ID present in the filtered list |
 | `NAME` | `-n`, `--name` | any | Any value containing only alphanumerics and spaces, unique to the contact/event list (case-sensitive) |
 | `PHONE` | `-p`, `--phone` | Contact | Any number at least three digits long |
@@ -144,7 +145,8 @@ Format: `delete [{INDEX [INDEX]... | [--any] -t TAG [-t TAG]...}]`
 2. If indices supplied, `delete INDEX [INDEX]...`: Deletes the contacts associated with each specified `INDEX`
    * Invalid indices are ignored.
 3. If tags supplied, `delete [--any] -t TAG [-t TAG]...`: Delete the contacts containing all specified tags
-   * If the `--any` flag is supplied, contacts need only match with any specified tag.
+   * If the `--any` flag is supplied, contacts only need to match with any of the specified tags.
+   * Tags specified are case-sensitive.
 
 Examples:
 * `delete` deletes all contacts in current filtered list
@@ -164,6 +166,7 @@ Format: `edit {INDEX [-n NAME] [-p PHONE] [-e EMAIL] [-a ADDRESS] [-t TAG]…​
    * Tags can be removed from a contact by specifying a standalone `-t` without parameters.
 2. If `--remove` flag specified, `edit --remove -t TAG [-t TAG]...`: Removes all specified tags from every contact in the displayed list
    * All specified tags will be removed from every contact in the displayed list.
+   * Tags specified are case-sensitive.
 
 Examples:
 * `edit 2 -n James Lee -e jameslee@example.com` Edits the contact name to be "James Lee" and email address to be “jameslee@example.com”.
@@ -183,11 +186,7 @@ Format: `list [--exact] [--any] [-n NAME]... [-t TAG]... [-b BIRTHDAY]... [-s SO
    * `-o` parameter optionally determines the direction of sort, according to `SORT_ORDER`:
      * `a`, `asc`, `ascending`: ascending (by default, if `-o` not specified)
      * `d`, `desc`, `descending`: descending
-<<<<<<< HEAD
      * Sorts by upcoming birthday ignores the sort order parameter and only sorts in `ascending` order
-=======
-     * Sorts by upcoming birthday only sorts in `ascending` order
->>>>>>> b8ff70187f2b9dbb5580bf47141e72086093ffa0
 2. If search parameters specified, `list [--exact] [--any] [-n NAME]... [-t TAG]... [-b BIRTHDAY]... [-s SORT_FIELD] [-o SORT_ORDER]`: List all contacts matching the search criteria
    * Search criteria, case-insensitive:
      * `-n`, `--name` filters the contacts by name
@@ -322,8 +321,6 @@ Examples:
 
 The Autocomplete feature helps autocomplete when editing a Person or an Event to save the user time from retyping details. Currently, the feature only works for commands `edit` and `eedit`.
 
-For any valid and empty prefix that the user inputs, the relevant details will be autocompleted on `TAB` keypress down.
-
 Format:
 
 Edit: `edit INDEX [-n NAME] [-p PHONE] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY] [-r REMARK] TAB`
@@ -331,6 +328,25 @@ Edit: `edit INDEX [-n NAME] [-p PHONE] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-
 EEdit: `eedit INDEX [-n NAME] [-d DATE] [-r DETAIL] TAB`
 
 Note: Valid INDEX must be used in order for Autocomplete to function.
+
+Below are the respective behaviors of Autocomplete for various prefixes.
+
+All Prefixes except Tag: For any valid and empty prefix that the user inputs, the relevant details will be autocompleted on `TAB` keypress down.
+
+Tags: Due to the plural nature of Tags, the Tag Autocomplete will always add all remaining existing tags belonging to the user. 
+
+Below are some examples for example Person 1 with Tags "Hello" and "World".
+1. Empty Tag Prefix, e.g. `edit 1 -t`
+      * Expected Behavior: Autocompletes all tags from Person 1.
+      * Example Output: `edit 1 -t Hello -t World`
+2. Tag Prefix(es) containing valid existing Tags, e.g. `edit 1 -t World`
+      * Expected Behavior: Autocompletes remaining valid tags from Person 1.
+      * Example Output: `edit 1 -t World -t Hello`
+3. Tag Prefix(es) that do not currently belong to Person, `edit 1 -t Foo`
+      * Expected Behavior: Autocompletes and adds all tags from Person 1.
+      * Example Output: `edit 1 -t Foo -t Hello -t World`
+
+Note: Autocompleted Tags will be returned in alphabetical order and is case-sensitive.
 
 #### Undoing actions : `undo`
 
@@ -343,7 +359,9 @@ Can be invoked repeatedly until there is no more history from the current sessio
 
 Format: `undo`
 
-Shortcut: `CTRL + Z`
+Shortcuts: 
+PC: `CTRL + Z` 
+Mac: `CMD + Z`
 
 #### Redoing actions : `redo`
 
@@ -353,7 +371,9 @@ Can be invoked repeatedly until there are no more previously executed actions fr
 
 Format: `redo`
 
-Shortcut: `CTRL + SHIFT + Z` or `CTRL + Y`
+Shortcut: 
+PC: `CTRL + SHIFT + Z` or `CTRL + Y` 
+Mac: `CMD + SHIFT + Z` or `CMD + Y`
 
 #### Toggle theme : `theme`
 
@@ -377,20 +397,8 @@ Retrieves previously entered input.
 * Pressing `Down` arrow key undoes the history revert.
 * At the most recent input, pressing `Down` arrow key once more clears the text box.
 * `ESC` key clears the text box.
-* `CTRL + Z` key combination undoes the last change to the address or event books.
-* `CTRL + SHIFT + Z` or `CTRL + Y` key combinations redo the last undone change to the address or event books.
-
-<<<<<<< HEAD
-=======
-<div markdown="block" class="alert-warning">
-
-
-**:warning: PartyPlanet will use its default Address Book and Event Book JSON file if it is unable to locate the 
-JSON file. It will start with an empty JSON file if there is an error in the JSON file.**
-
-
-</div>
->>>>>>> b8ff70187f2b9dbb5580bf47141e72086093ffa0
+* `CTRL + Z`(PC) or `CMD + Z` (Mac) key combination undoes the last change to the address or event books.
+* `CTRL + SHIFT + Z` or `CTRL + Y` (PC) or `CMD + SHIFT + Z` or `CMD + Y` (Mac) key combinations redo the last undone change to the address or event books.
 
 ### Coming Soon (Additional Features)
 * Archiving of Data Files

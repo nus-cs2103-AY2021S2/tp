@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.partyplanet.testutil.Assert.assertThrows;
 
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.Arrays;
 
@@ -19,9 +20,9 @@ public class EventDateTest {
     }
 
     @Test
-    public void constructor_invalidEventDate_throwsIllegalArgumentException() {
+    public void constructor_invalidEventDate_throwsDateTimeException() {
         String invalidEventDate = "";
-        assertThrows(IllegalArgumentException.class, () -> new EventDate(invalidEventDate));
+        assertThrows(DateTimeException.class, () -> new EventDate(invalidEventDate));
     }
 
     @Test
