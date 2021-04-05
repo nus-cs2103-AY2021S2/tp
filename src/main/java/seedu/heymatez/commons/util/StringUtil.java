@@ -12,11 +12,11 @@ import java.util.Arrays;
  */
 public class StringUtil {
 
-    public static int VALID = 1;
+    public static final int VALID_INTEGER = 1;
 
-    public static int INVALID_INTEGER = 2;
+    public static final int INVALID_INTEGER = 2;
 
-    public static int INVALID_INPUT = 3;
+    public static final int INVALID_INPUT = 3;
 
     /**
      * Returns true if the {@code sentence} contains the {@code word}.
@@ -67,7 +67,7 @@ public class StringUtil {
         try {
             int value = Integer.parseInt(s);
             if (value > 0 && !s.startsWith("+")) { // "+1" is successfully parsed by Integer#parseInt(String)
-                return VALID;
+                return VALID_INTEGER;
             } else if (value <= 0) {
                 return INVALID_INTEGER;
             }

@@ -3,7 +3,7 @@ package seedu.heymatez.commons.util;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.heymatez.testutil.Assert.assertThrows;
-import static seedu.heymatez.commons.util.StringUtil.VALID;
+import static seedu.heymatez.commons.util.StringUtil.VALID_INTEGER;
 
 import java.io.FileNotFoundException;
 
@@ -17,33 +17,33 @@ public class StringUtilTest {
     public void isNonZeroUnsignedInteger() {
 
         // EP: empty strings
-        assertFalse(StringUtil.isNonZeroUnsignedInteger("") == VALID); // Boundary value
-        assertFalse(StringUtil.isNonZeroUnsignedInteger("  ") == VALID);
+        assertFalse(StringUtil.isNonZeroUnsignedInteger("") == VALID_INTEGER); // Boundary value
+        assertFalse(StringUtil.isNonZeroUnsignedInteger("  ") == VALID_INTEGER);
 
         // EP: not a number
-        assertFalse(StringUtil.isNonZeroUnsignedInteger("a") == VALID);
-        assertFalse(StringUtil.isNonZeroUnsignedInteger("aaa") == VALID);
+        assertFalse(StringUtil.isNonZeroUnsignedInteger("a") == VALID_INTEGER);
+        assertFalse(StringUtil.isNonZeroUnsignedInteger("aaa") == VALID_INTEGER);
 
         // EP: zero
-        assertFalse(StringUtil.isNonZeroUnsignedInteger("0") == VALID);
+        assertFalse(StringUtil.isNonZeroUnsignedInteger("0") == VALID_INTEGER);
 
         // EP: zero as prefix
-        assertTrue(StringUtil.isNonZeroUnsignedInteger("01") == VALID);
+        assertTrue(StringUtil.isNonZeroUnsignedInteger("01") == VALID_INTEGER);
 
         // EP: signed numbers
-        assertFalse(StringUtil.isNonZeroUnsignedInteger("-1") == VALID);
-        assertFalse(StringUtil.isNonZeroUnsignedInteger("+1") == VALID);
+        assertFalse(StringUtil.isNonZeroUnsignedInteger("-1") == VALID_INTEGER);
+        assertFalse(StringUtil.isNonZeroUnsignedInteger("+1") == VALID_INTEGER);
 
         // EP: numbers with white space
-        assertFalse(StringUtil.isNonZeroUnsignedInteger(" 10 ") == VALID); // Leading/trailing spaces
-        assertFalse(StringUtil.isNonZeroUnsignedInteger("1 0") == VALID); // Spaces in the middle
+        assertFalse(StringUtil.isNonZeroUnsignedInteger(" 10 ") == VALID_INTEGER); // Leading/trailing spaces
+        assertFalse(StringUtil.isNonZeroUnsignedInteger("1 0") == VALID_INTEGER); // Spaces in the middle
 
         // EP: number larger than Integer.MAX_VALUE
-        assertFalse(StringUtil.isNonZeroUnsignedInteger(Long.toString(Integer.MAX_VALUE + 1)) == VALID);
+        assertFalse(StringUtil.isNonZeroUnsignedInteger(Long.toString(Integer.MAX_VALUE + 1)) == VALID_INTEGER);
 
         // EP: valid numbers, should return true
-        assertTrue(StringUtil.isNonZeroUnsignedInteger("1") == VALID); // Boundary value
-        assertTrue(StringUtil.isNonZeroUnsignedInteger("10") == VALID);
+        assertTrue(StringUtil.isNonZeroUnsignedInteger("1") == VALID_INTEGER); // Boundary value
+        assertTrue(StringUtil.isNonZeroUnsignedInteger("10") == VALID_INTEGER);
     }
 
 
