@@ -27,8 +27,8 @@ import seedu.booking.model.Model;
 import seedu.booking.model.person.NameContainsKeywordsPredicate;
 import seedu.booking.model.person.Person;
 import seedu.booking.model.venue.Venue;
-import seedu.booking.testutil.EditBookingCommandDescriptorBuilder;
 import seedu.booking.model.venue.VenueNameContainsKeywordsPredicate;
+import seedu.booking.testutil.EditBookingCommandDescriptorBuilder;
 import seedu.booking.testutil.EditPersonCommandDescriptorBuilder;
 import seedu.booking.testutil.EditVenueDescriptorBuilder;
 

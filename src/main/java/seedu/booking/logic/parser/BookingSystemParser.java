@@ -20,7 +20,6 @@ import seedu.booking.logic.commands.FilterBookingByBookerCommand;
 import seedu.booking.logic.commands.FilterBookingByDateCommand;
 import seedu.booking.logic.commands.FilterBookingByTagCommand;
 import seedu.booking.logic.commands.FilterBookingByVenueCommand;
-import seedu.booking.logic.commands.FindBookingCommand;
 import seedu.booking.logic.commands.FindPersonByTagCommand;
 import seedu.booking.logic.commands.FindPersonCommand;
 import seedu.booking.logic.commands.FindVenueByTagCommand;
