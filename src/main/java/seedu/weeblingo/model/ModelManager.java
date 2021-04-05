@@ -257,7 +257,7 @@ public class ModelManager implements Model {
             return "You did not answer any questions correctly.";
         } else {
             return "You answered the following question(s) correctly: "
-                    +  quizInstance.getCorrectAttemptIndexes().toString();
+                    + quizInstance.getCorrectAttemptIndexes().toString();
         }
     }
 
