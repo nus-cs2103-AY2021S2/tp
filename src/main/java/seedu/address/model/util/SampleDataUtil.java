@@ -57,15 +57,6 @@ public class SampleDataUtil {
         };
     }
 
-    public static seedu.address.model.person.Event[] getSampleEvents() {
-        return new seedu.address.model.person.Event[] {
-                new Event(LocalDate.of(2021, 1, 30), "e1"),
-                new Event(LocalDate.of(2021, 1, 24), "e2"),
-                new Event(LocalDate.of(2020, 12, 30), "e3"),
-                new Event(LocalDate.of(2021, 4, 1), "e4")
-        };
-    }
-
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Person samplePerson : getSamplePersons()) {

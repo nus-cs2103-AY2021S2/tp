@@ -13,11 +13,13 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.person.Event;
 import seedu.address.model.person.Person;
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
@@ -72,6 +74,15 @@ public class TypicalPersons {
         }
 
         return ab;
+    }
+
+    public static seedu.address.model.person.Event[] getSampleEvents() {
+        return new Event[] {
+                new EventBuilder().withDate(LocalDate.of(2021, 1, 30)).withDescription("e1").build(),
+                new EventBuilder().withDate(LocalDate.of(2021, 1, 24)).withDescription("e2").build(),
+                new EventBuilder().withDate(LocalDate.of(2020, 12, 30)).withDescription("e3").build(),
+                new EventBuilder().withDate(LocalDate.of(2021, 4, 1)).withDescription("e4").build()
+        };
     }
 
     public static List<Person> getTypicalPersons() {

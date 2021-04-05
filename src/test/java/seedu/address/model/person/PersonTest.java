@@ -14,17 +14,15 @@ import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.util.SampleDataUtil;
+import seedu.address.testutil.EventBuilder;
 import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.TypicalPersons;
 
 public class PersonTest {
 
@@ -111,26 +109,26 @@ public class PersonTest {
 
         editedAlice = new PersonBuilder(aliceCopy).build()
                 .withGoal(new Goal(Goal.Frequency.WEEKLY))
-                .withMeetings(Arrays.asList(SampleDataUtil.getSampleEvents().clone()));
+                .withMeetings(Arrays.asList(TypicalPersons.getSampleEvents().clone()));
         assertEquals(LocalDate.of(2021, 2, 7), editedAlice.getGoalDeadline(date));
 
         editedAlice = new PersonBuilder(aliceCopy).build()
                 .withGoal(new Goal(Goal.Frequency.MONTHLY))
-                .withMeetings(Arrays.asList(SampleDataUtil.getSampleEvents().clone()));
+                .withMeetings(Arrays.asList(TypicalPersons.getSampleEvents().clone()));
         assertEquals(LocalDate.of(2021, 2, 28), editedAlice.getGoalDeadline(date));
 
         editedAlice = new PersonBuilder(aliceCopy).build()
                 .withGoal(new Goal(Goal.Frequency.YEARLY))
-                .withMeetings(Arrays.asList(SampleDataUtil.getSampleEvents().clone()));
+                .withMeetings(Arrays.asList(TypicalPersons.getSampleEvents().clone()));
         assertEquals(LocalDate.of(2022, 12, 31), editedAlice.getGoalDeadline(date));
 
         // leap day
         editedAlice = new PersonBuilder(aliceCopy).build()
                 .withGoal(new Goal(Goal.Frequency.MONTHLY))
-                .withMeetings(Collections.singletonList(new Event(
-                        LocalDate.of(2024, 1, 15),
-                        "Some meeting"
-                )));
+                .withMeetings(Collections.singletonList(new EventBuilder()
+                        .withDate(LocalDate.of(2024, 1, 15))
+                        .withDescription("Some meeting")
+                        .build()));
         assertEquals(LocalDate.of(
                 2024, 2, 29),
                 editedAlice.getGoalDeadline(LocalDate.of(2024, 1, 20)));
@@ -138,7 +136,7 @@ public class PersonTest {
         // no prior meetings
         editedAlice = new PersonBuilder(aliceCopy).build()
                 .withGoal(new Goal(Goal.Frequency.WEEKLY))
-                .withMeetings(new ArrayList<Event>());
+                .withMeetings(new ArrayList<>());
         assertEquals(ZERO_DAY, editedAlice.getGoalDeadline(date));
     }
 }
