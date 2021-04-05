@@ -16,7 +16,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.partyplanet.commons.core.Messages;
 import seedu.partyplanet.commons.core.index.Index;
 import seedu.partyplanet.logic.commands.exceptions.CommandException;
 import seedu.partyplanet.model.Model;
@@ -112,7 +111,7 @@ public class EDoneCommandTest {
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), model.getEventBook(), new UserPrefs());
 
         assertThrows(CommandException.class,
-                Messages.MESSAGE_NONE_INDEX_VALID, () -> eDoneCommand.execute(expectedModel));
+                EDoneCommand.MESSAGE_NONE_EVENT_INDEX_VALID, () -> eDoneCommand.execute(expectedModel));
     }
 
     @Test
@@ -125,7 +124,7 @@ public class EDoneCommandTest {
         EDoneCommand eDoneCommand = new EDoneCommand(List.of(INDEX_FIRST_EVENT), new ArrayList<>());
 
         assertThrows(CommandException.class,
-                Messages.MESSAGE_NONE_INDEX_VALID, () -> eDoneCommand.execute(modelCopy));
+                EDoneCommand.MESSAGE_NONE_EVENT_INDEX_VALID, () -> eDoneCommand.execute(modelCopy));
     }
 
     @Test
