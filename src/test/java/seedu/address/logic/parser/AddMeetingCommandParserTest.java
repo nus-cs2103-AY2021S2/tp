@@ -33,7 +33,10 @@ public class AddMeetingCommandParserTest {
     public void parse_allFieldsPresent_success() {
         assertParseSuccess(parser, "1 d/24-12-2020 t/1215 desc/sample description",
                 new AddMeetingCommand(Index.fromOneBased(1), meeting1));
+    }
 
+    @Test
+    public void parse_boundaryDateTime_success() {
         LocalDate dateYesterday = LocalDate.now().minusDays(1);
         LocalDate dateToday = LocalDate.now();
 
@@ -81,16 +84,6 @@ public class AddMeetingCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        LocalDate dateTomorrow = LocalDate.now().plusDays(1);
-        LocalDate dateToday = LocalDate.now();
-
-        LocalTime timeAfterNow = LocalTime.now().withSecond(0).withNano(0).plusMinutes(1);
-
-        String dateTomorrowStr = DATE_INPUT_FORMATTER.format(dateTomorrow);
-        String dateTodayStr = DATE_INPUT_FORMATTER.format(dateToday);
-
-        String timeAfterNowStr = TIME_INPUT_FORMATTER.format(timeAfterNow);
-
         // wrong date format
         assertParseFailure(parser, "1 d/24 Dec 2020 t/1215 desc/sample description",
                 DateUtil.MESSAGE_CONSTRAINT);
@@ -101,6 +94,19 @@ public class AddMeetingCommandParserTest {
 
         // empty description
         assertParseFailure(parser, "1 d/24-12-2020 t/1215 desc/", Meeting.DESCRIPTION_MESSAGE_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_boundaryDateTime_failure() {
+        LocalDate dateTomorrow = LocalDate.now().plusDays(1);
+        LocalDate dateToday = LocalDate.now();
+
+        LocalTime timeAfterNow = LocalTime.now().withSecond(0).withNano(0).plusMinutes(1);
+
+        String dateTomorrowStr = DATE_INPUT_FORMATTER.format(dateTomorrow);
+        String dateTodayStr = DATE_INPUT_FORMATTER.format(dateToday);
+
+        String timeAfterNowStr = TIME_INPUT_FORMATTER.format(timeAfterNow);
 
         // dateTomorrow
         assertParseFailure(parser, "1 d/" + dateTomorrowStr + " t/1215 desc/sample description",

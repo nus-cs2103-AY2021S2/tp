@@ -15,7 +15,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.SpecialDate;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.SpecialDate;
 
 /**
  * Adds a special date to an existing person in the FriendDex.
