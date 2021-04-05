@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.commons.core.Messages.MESSAGE_FLASHCARDS_LISTED_OVERVIEW;
+import static seedu.address.commons.core.Messages.MESSAGE_FLASHCARDS_FOUND_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalFlashcards.ATP;
@@ -63,7 +63,7 @@ public class FindCommandTest {
 
     @Test
     public void execute_zeroKeywords_noFlashcardFound() {
-        String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 0);
+        String expectedMessage = String.format(MESSAGE_FLASHCARDS_FOUND_OVERVIEW, 0);
         FlashcardContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredFlashcardList(predicate);
@@ -73,7 +73,7 @@ public class FindCommandTest {
 
     @Test
     public void execute_multipleKeywords_noFlashcardFound() {
-        String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 0);
+        String expectedMessage = String.format(MESSAGE_FLASHCARDS_FOUND_OVERVIEW, 0);
         FlashcardContainsKeywordsPredicate predicate = preparePredicate("123 test testing");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredFlashcardList(predicate);
@@ -83,7 +83,7 @@ public class FindCommandTest {
 
     @Test
     public void execute_multipleKeywords_multipleFlashcardFound() {
-        String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 5);
+        String expectedMessage = String.format(MESSAGE_FLASHCARDS_FOUND_OVERVIEW, 5);
         FlashcardContainsKeywordsPredicate predicate = preparePredicate("newton biology equation random");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredFlashcardList(predicate);
@@ -93,7 +93,7 @@ public class FindCommandTest {
 
     @Test
     public void execute_multiplePartialKeywords_multipleFlashcardFound() {
-        String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 5);
+        String expectedMessage = String.format(MESSAGE_FLASHCARDS_FOUND_OVERVIEW, 5);
         FlashcardContainsKeywordsPredicate predicate = preparePredicate("new bio equa ran");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredFlashcardList(predicate);
