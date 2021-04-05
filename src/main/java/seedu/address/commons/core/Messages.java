@@ -7,8 +7,8 @@ import seedu.address.logic.commands.ViewProjectCommand;
  */
 public class Messages {
 
-    public static final String MESSAGE_WELCOME = "Welcome to CoLAB!\nIf you are lost type `help` in the "
-            + "command box below or press the help menu button near the top of your screen.";
+    public static final String MESSAGE_WELCOME = "Welcome to CoLAB!\nIf you are lost type \"help\" "
+            + "in the command box below or press the help menu button near the top of your screen.";
 
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
 
