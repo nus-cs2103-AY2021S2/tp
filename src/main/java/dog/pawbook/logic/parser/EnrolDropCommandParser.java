@@ -45,7 +45,7 @@ public class EnrolDropCommandParser extends CommandWithCompulsoryPrefixNoPreambl
      * Returns the help message for the add command.
      */
     protected String getUsageText() {
-        return EnrolCommand.MESSAGE_USAGE;
+        return enrol ? EnrolCommand.MESSAGE_USAGE : DropCommand.MESSAGE_USAGE;
     }
 
     /**
