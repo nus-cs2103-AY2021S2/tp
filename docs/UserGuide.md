@@ -28,9 +28,108 @@ The Food Diary will allow students to save time and effort when finding places t
 
 --------------------------------------------------------------------------------------------------------------------
 
+## User Interface
+
+This section discusses the main semantics and purpose of the design of The Food Diary.
+
+ℹ️ Notes about the User Interface
+
+* On start up of The Food Diary, users are greeted with the main window display.
+ The main window displays all entries of the in The Food Diary on start up,
+ in the order that the entries were added in.
+ 
+### Main Window
+
+* The main window features 5 components. From top to bottom, they are:
+    1. A menu bar
+    2. A command box text field
+    3. A result display
+    4. A list of entries
+    5. A status bar
+    
+### Menu Bar
+* The menu bar features 2 buttons: File, and Help.
+
+* The File menu contains Exit, which when pressed, exits the app.
+
+* The Help menu contains Help, which when pressed, opens a new Help window displaying all the a help guide for users.
+
+### Command Box
+* The command box is the text field users will type their commands in their in to use The Food Diary.
+
+### Result Display
+* The result display displays necessary logging information to the user.
+
+* Information shown generally include the status of whether the command was written correctly syntactically,
+ which would then allow for the app to perform the user's desired request.
+ 
+* If the command cannot be interpreted by the app, the appropriate error message and corresponding rectification
+ is displayed for the user to rectify their input command.
+ 
+* The text field is also text-selectable.
+
+### List of Entries
+* This component features a list of entries currently stored in The Food Diary.
+
+* A list of entries is autopopulated on start up, or when there is no existing data. To start afresh, use the `clear`
+ function as stated below.
+ 
+* Each entry displayed contains 5 compulsory fields, and 2 optional fields:
+    1. Name of Restaurant
+    2. Rating of Restaurant
+    3. Price (an estimate) of the Restaurant's Food
+    4. Address of Restaurant
+    5. User's Review of the Restaurant
+    6. (Optional) Food Categories (i.e. Cuisine, Restaurant/Food Characteristic etc.)
+    7. (Optional) NUS School Location Categories
+
+#### Consolidation of Entries
+* Users need not add an extra entry if they wish to add on an extra review, or price pertaining to the same restaurant
+ and location. A common situation involves users wanting to document their experience visiting the same restaurant
+ more than once. 
+
+* As such, multiple reviews and prices pertaining to an entry can be added using the `addon` command. Refer to the
+`addon` feature below for more information.
+
+* An entry with multiple reviews only shows the first review, truncated with an elipsis (...).
+
+* This is done to keep each entry's window height short for the user to view more entries
+ in within the main window.
+ 
+* To view all the reviews pertaining to that entry, use the `view` command. Refer to the `view` feature below for
+ more information.
+ 
+* An entry with multiple prices shows a price range, ranging from the minimum to the maximum price
+ among the prices added for the corresponding entry,
+
+### Status Bar
+* Displays the path directory information for the local storage file of The Food Diary.
+
+### Help Window
+* The help window shows a help guide for users on a separate window.
+
+* The help guide has 3 main sections:
+    1. A list of Commands
+    2. A list of Food Categories
+    3. A list of School Location Categories
+
+* A list of commands gives a succint, convenient overview of all the commands executable
+ in The Food Diary for the user.
+
+* The Food and School Location categories aid users in learning what possible options they can tag their
+ entries as in their commands.
+ 
+* Users can copy the link with the `Copy URL` button, and view this User Guide for more information.
+
+* Refer to the `help` feature below for more information.
+
+### View & Revise Window
+* These windows are described in detail in the `view` and `revise` features below respectively.
+--------------------------------------------------------------------------------------------------------------------
+
 ## Features
 
-ℹ️ Note about Command Format
+ℹ️ Notes about the Command Format
 
 * Words in UPPER_CASE are the parameters to be supplied by the user.
 e.g. in add n/NAME, NAME is a parameter which can be used as add n/Frontier.
@@ -40,7 +139,7 @@ e.g. in add n/NAME, NAME is a parameter which can be used as add n/Frontier.
 * Items in square brackets "[...]" are optional.
 e.g n/NAME [s/SCHOOL] can be used as n/Subway t/UTOWN or as n/Subway.
 
-* Items with …​ after them can be used multiple times including zero times.
+* Items with …​ (i.e an elipsis) after them can be used multiple times including zero times.
 e.g. [c/CATEGORY]…​ can be used as   (i.e. 0 times), c/Fastfood, c/Western c/Fastfood etc.
 
 * Parameters can be in any order.
@@ -62,9 +161,11 @@ Adds an entry to the Food Diary.
 Format: `add n/<RESTAURANT NAME> ra/RATING p/PRICE re/REVIEW a/ADDRESS [c/CATEGORY]... [s/SCHOOL]...`
 
 Note:
-- A FoodDiary entry can have any number of categories or schools
+- A FoodDiary entry can have any number of categories or schools.
 - Price range: $0 - 999
-- Names can only be alphanumeric characters
+- Names can only be alphanumeric characters. We justify that the sole use of alphanumeric characters suffices –
+ users will still be able to know which restaurant the entry is referring to despite
+ not using non-alphanumeric characters, such as apostrophe(') etc.
 
 Parameters:
 
