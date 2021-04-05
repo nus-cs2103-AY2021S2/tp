@@ -1,4 +1,4 @@
-package seedu.budgetbaby.model.budget;
+package seedu.budgetbaby.model;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.budgetbaby.commons.util.AppUtil.checkArgument;

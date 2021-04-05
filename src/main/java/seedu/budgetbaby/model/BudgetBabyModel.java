@@ -7,7 +7,6 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.budgetbaby.commons.core.GuiSettings;
-import seedu.budgetbaby.model.budget.Budget;
 import seedu.budgetbaby.model.month.Month;
 import seedu.budgetbaby.model.record.Amount;
 import seedu.budgetbaby.model.record.Category;

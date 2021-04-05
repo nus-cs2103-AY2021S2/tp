@@ -13,7 +13,6 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.budgetbaby.commons.core.GuiSettings;
 import seedu.budgetbaby.commons.core.LogsCenter;
-import seedu.budgetbaby.model.budget.Budget;
 import seedu.budgetbaby.model.month.Month;
 import seedu.budgetbaby.model.record.Amount;
 import seedu.budgetbaby.model.record.Category;
@@ -149,8 +148,6 @@ public class BudgetBabyModelManager implements BudgetBabyModel {
 
     @Override
     public boolean findFinancialRecord(Description description, Amount amount, Set<Category> categories) {
-        assert true;
-
         boolean result;
 
         Predicate<FinancialRecord> findD = fr -> fr.getDescription().description.contains(description.description);
@@ -177,8 +174,10 @@ public class BudgetBabyModelManager implements BudgetBabyModel {
                 result = updateFilteredFinancialRecordList(findC);
             } else if (amount != null && categories == null) {
                 result = updateFilteredFinancialRecordList(findA);
-            } else {
+            } else if (amount != null && categories != null) {
                 result = updateFilteredFinancialRecordList(findAC);
+            } else {
+                result = false;
             }
         } else if (amount == null) {
             if (categories == null) {
