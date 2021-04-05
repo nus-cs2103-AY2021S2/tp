@@ -8,9 +8,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; categoryName is valid as declared in {@link #isValidCategoryName(String)}.
  */
 public class Category {
-
-
-    public static final String MESSAGE_CONSTRAINTS = "Category names should be alphanumeric, without any spaces and be no longer than 20 characters";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Category names should be alphanumeric, without any spaces and be no longer than 20 characters";
 
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
     public static final int MAX_LENGTH = 20;

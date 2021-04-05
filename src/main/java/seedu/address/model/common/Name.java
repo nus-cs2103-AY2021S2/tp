@@ -9,9 +9,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
 public class Name implements Comparable<Name> {
-
     public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain alphanumeric characters and spaces, should not be blank \n  and be no longer than 50 characters";
+            "Names should only contain alphanumeric characters and spaces, should not be blank \n"
+                    + "and be no longer than 50 characters";
 
     /*
      * The first character of the address must not be a whitespace,
