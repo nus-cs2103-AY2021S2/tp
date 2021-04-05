@@ -10,7 +10,7 @@ import java.time.format.ResolverStyle;
 import java.util.Objects;
 
 import javafx.collections.ObservableList;
-import seedu.budgetbaby.model.budget.Budget;
+import seedu.budgetbaby.model.Budget;
 import seedu.budgetbaby.model.month.exception.MonthMismatchException;
 import seedu.budgetbaby.model.record.Category;
 import seedu.budgetbaby.model.record.FinancialRecord;

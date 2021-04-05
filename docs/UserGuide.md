@@ -8,7 +8,8 @@ title: User Guide
 **BudgetBaby** is a **budget and expenses tracking desktop app for University students and/or those who are looking to
 better manage their finances**. It is **optimized for use via a Command Line Interface** (CLI) so that entering and
 editing financial records and budgets can be done faster by typing in commands while still having the benefits of a
-Graphical User Interface (GUI).
+Graphical User Interface (GUI). This document aims to guide users in using BudgetBaby, providing a complete summary of
+the functions and intended usage of the application.
 
 - [Quick Start](#quick-start)
 - [Features](#features)
@@ -43,24 +44,6 @@ Graphical User Interface (GUI).
    that the app contains some sample data for you when it starts that may differ from what is shown below.<br>
 
    <img src="images/Ui.png" width="600px">
-
-5. You can type a command in the command box and press the enter key on your keyboard to execute it. For example, typing
-   the **`help`** command and pressing the enter key will open the help window.<br>
-   Some example commands you can try:
-
-   - **`add-fr`** `d/Lunch a/10` : Add a financial record for `lunch` which cost `10` dollars.
-
-   - **`delete-fr`** `3` : Deletes the 3rd financial record shown in the current list.
-
-   - **`set-bg`** `500` : Sets the current month's budget at `500` dollars.
-
-   - **`view-month`** `01-2021` : Displays the financial records and budget of the month `January 2021`.
-
-   - **`exit`** : Exits the app.
-
-6. You may refer to the [features](#features) below for details of each command.
-
----
 
 ## Features
 
@@ -230,7 +213,7 @@ If you would like to find financial records matching description, amount and/or 
 
 <img src="images/features/find-fr.png" width="600px">
 
-Format: `find-fr d/FR_DESCRIPTION a/FR_AMOUNT c/FR_CATEGORY`
+Format: `find-fr [d/FR_DESCRIPTION] [a/FR_AMOUNT] [c/FR_CATEGORY]`
 
 **:bulb: Tips:**
 
@@ -249,9 +232,18 @@ If you currently have a filter set, such as a particular month or category, and 
 
 Format: `reset-filter`
 
-Examples:
+### Undoing commands : `undo`
 
-- `reset-filter`
+If you made a mistake from executing any commands, `undo` allows you to revert multiple latest changes made.
+
+Format: `undo`
+
+### Redoing commands : `redo`
+
+If you made a mistake from executing any commands, `redo` allows you to advance multiple latest changes made.
+It works in the opposite way from `undo`,
+
+Format: `redo`
 
 ### Exiting the program : `exit`
 

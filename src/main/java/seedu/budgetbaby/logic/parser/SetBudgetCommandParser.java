@@ -2,7 +2,7 @@ package seedu.budgetbaby.logic.parser;
 
 import seedu.budgetbaby.logic.commands.SetBudgetCommand;
 import seedu.budgetbaby.logic.parser.exceptions.ParseException;
-import seedu.budgetbaby.model.budget.Budget;
+import seedu.budgetbaby.model.Budget;
 
 /**
  * Parses input arguments and creates a new SetBudgetCommand object.
