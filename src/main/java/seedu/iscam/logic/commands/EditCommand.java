@@ -103,7 +103,7 @@ public class EditCommand extends UndoableCommand {
         requireNonNull(model);
         List<Client> lastShownList = model.getFilteredClientList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
+            if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
         }
 

@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.iscam.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.iscam.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.iscam.logic.commands.CommandTestUtil.showClientAtIndex;
-import static seedu.iscam.testutil.TypicalClients.getTypicalLocationBook;
+import static seedu.iscam.testutil.TypicalClients.getTypicalClientBook;
 import static seedu.iscam.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
 import static seedu.iscam.testutil.TypicalIndexes.INDEX_SECOND_CLIENT;
 import static seedu.iscam.testutil.TypicalMeetings.getTypicalMeetingBook;
@@ -24,7 +24,7 @@ import seedu.iscam.model.user.UserPrefs;
  * {@code ShowCommand}.
  */
 public class ShowCommandTest {
-    private Model model = new ModelManager(getTypicalLocationBook(), getTypicalMeetingBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalClientBook(), getTypicalMeetingBook(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {

@@ -34,15 +34,15 @@ public class TypicalClients {
             .withEmail("johnd@example.com").withPhone("98765432").withPlan("Plan B")
             .withTags("owesMoney", "friends").withImage("default.png").build();
     public static final Client CARL = new ClientBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withEmail("heinz@example.com").withLocation("wall street").withPlan("Plan C").build();
+            .withEmail("heinz@example.com").withLocation("wall street").withPlan("Life").build();
     public static final Client DANIEL = new ClientBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withLocation("10th street")
             .withPlan("Plan A").withTags("friends").withImage("default.png").build();
     public static final Client ELLE = new ClientBuilder().withName("Elle Meyer").withPhone("9482224")
-            .withEmail("werner@example.com").withLocation("michegan ave").withPlan("Plan C").withImage("default.png")
+            .withEmail("werner@example.com").withLocation("michegan ave").withPlan("Protect").withImage("default.png")
             .build();
     public static final Client FIONA = new ClientBuilder().withName("Fiona Kunz").withPhone("9482427")
-            .withEmail("lydia@example.com").withLocation("little tokyo").withPlan("Plan B").withImage("default.png")
+            .withEmail("lydia@example.com").withLocation("little tokyo").withPlan("MediShield").withImage("default.png")
             .build();
     public static final Client GEORGE = new ClientBuilder().withName("George Best").withPhone("9482442")
             .withEmail("anna@example.com").withLocation("4th street").withPlan("Plan A").withImage("default.png")
@@ -71,7 +71,7 @@ public class TypicalClients {
     /**
      * Returns an {@code ClientBook} with all the typical clients.
      */
-    public static ClientBook getTypicalLocationBook() {
+    public static ClientBook getTypicalClientBook() {
         ClientBook ab = new ClientBook();
         for (Client client : getTypicalClients()) {
             ab.addClient(client);
