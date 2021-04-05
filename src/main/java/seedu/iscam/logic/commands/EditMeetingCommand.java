@@ -53,6 +53,10 @@ public class EditMeetingCommand extends Command {
     public static final String MESSAGE_DUPLICATE_MEETING = "No changes found in any field.";
     public static final String MESSAGE_CONFLICT = "There is another meeting with the same date and time, consider "
             + "changing to another time.";
+    public static final String MESSAGE_NOT_ALLOWED = "This meeting was already completed, no modification can be made "
+            + "unless it is set back to incomplete.";
+    public static final String MESSAGE_ALREADY_COMPLETE = "This meeting was already completed, it cannot be complete "
+            + "again.";
 
     private final Index index;
     private final EditMeetingDescriptor editMeetingDescriptor;
@@ -90,21 +94,21 @@ public class EditMeetingCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        // Get a list of Meetings from model
         ObservableList<Meeting> meetings = model.getFilteredMeetingList();
-
-        // Throw exception if specified index is out of range
         if (index.getZeroBased() >= meetings.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);
         }
 
-        // Get Meeting specified by the index
         Meeting meeting = meetings.get(index.getZeroBased());
-
-        // Create an editing Meeting based on that Meeting
         Meeting editedMeeting = createEditedMeeting(meeting, editMeetingDescriptor);
+        Optional<CompletionStatus> editedStatus = editMeetingDescriptor.getStatus();
 
-        // Throw exception if that edited Meeting is a duplicate of the original
+        if (meeting.getStatus().isComplete() && editedStatus.isEmpty()) {
+            throw new CommandException(MESSAGE_NOT_ALLOWED);
+        } else if (meeting.getStatus().isComplete() && editedStatus.get().isComplete()) {
+            throw new CommandException(MESSAGE_ALREADY_COMPLETE);
+        }
+
         if (meeting.equals(editedMeeting)) {
             throw new CommandException(MESSAGE_DUPLICATE_MEETING);
         }
@@ -113,7 +117,6 @@ public class EditMeetingCommand extends Command {
             throw new CommandException(MESSAGE_CONFLICT);
         }
 
-        // Update Model and Meeting list
         model.setMeeting(meeting, editedMeeting);
         model.updateFilteredMeetingList(Model.PREDICATE_SHOW_ALL_MEETINGS);
         return new CommandResult(String.format(MESSAGE_EDIT_MEETING_SUCCESS, editedMeeting));
