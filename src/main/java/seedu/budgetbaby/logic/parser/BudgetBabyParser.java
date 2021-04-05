@@ -64,7 +64,7 @@ public class BudgetBabyParser {
             return new FindFrCommandParser().parse(arguments);
 
         case ResetFilterCommand.COMMAND_WORD:
-            return new ResetFilterCommandParser().parse(arguments);
+            return new ResetFilterCommand();
 
         case ViewMonthCommand.COMMAND_WORD:
             return new ViewMonthCommandParser().parse(arguments);

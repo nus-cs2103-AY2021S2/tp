@@ -153,22 +153,22 @@ public class BudgetBabyModelManager implements BudgetBabyModel {
 
         boolean result;
 
-        Predicate<FinancialRecord> findD = fr -> fr.getDescription().description.equals(description.description);
+        Predicate<FinancialRecord> findD = fr -> fr.getDescription().description.contains(description.description);
 
         Predicate<FinancialRecord> findA = fr -> fr.getAmount().getValue().equals(amount.getValue());
 
         Predicate<FinancialRecord> findC = fr -> fr.getCategories().containsAll(categories);
 
-        Predicate<FinancialRecord> findDA = fr -> fr.getDescription().description.equals(description.description)
+        Predicate<FinancialRecord> findDA = fr -> fr.getDescription().description.contains(description.description)
             && fr.getAmount().getValue().equals(amount.getValue());
 
-        Predicate<FinancialRecord> findDC = fr -> fr.getDescription().description.equals(description.description)
+        Predicate<FinancialRecord> findDC = fr -> fr.getDescription().description.contains(description.description)
             && fr.getCategories().containsAll(categories);
 
         Predicate<FinancialRecord> findAC = fr -> fr.getAmount().getValue().equals(amount.getValue())
             && fr.getCategories().containsAll(categories);
 
-        Predicate<FinancialRecord> findAll = fr -> fr.getDescription().description.equals(description.description)
+        Predicate<FinancialRecord> findAll = fr -> fr.getDescription().description.contains(description.description)
             && fr.getAmount().getValue().equals(amount.getValue())
             && fr.getCategories().containsAll(categories);
 
@@ -198,6 +198,7 @@ public class BudgetBabyModelManager implements BudgetBabyModel {
     @Override
     public void resetFilter() {
         assert true;
+        setCurrentDisplayMonth(YearMonth.now());
         updateFilteredFinancialRecordList(fr -> true);
     }
 
@@ -236,8 +237,8 @@ public class BudgetBabyModelManager implements BudgetBabyModel {
         requireNonNull(predicate);
         FilteredList<FinancialRecord> tempFilteredList = new FilteredList<>(filteredFinancialRecords);
         tempFilteredList.setPredicate(predicate);
+        filteredFinancialRecords.setPredicate(predicate);
         if (!tempFilteredList.isEmpty()) {
-            filteredFinancialRecords.setPredicate(predicate);
             return true;
         } else {
             return false;

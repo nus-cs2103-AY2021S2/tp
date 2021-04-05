@@ -226,7 +226,7 @@ Examples:
 
 ### Finding financial records : `find-fr`
 
-If you would like to find financial records which fall within a particular category, you may use the `find-fr` command to filter the list of financial records based on that specified category.
+If you would like to find financial records matching description, amount and/or categories, you may use the `find-fr` command to filter the list of financial records based on specified fields.
 
 <img src="images/features/find-fr.png" width="600px">
 
