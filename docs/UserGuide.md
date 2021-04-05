@@ -39,7 +39,7 @@ This section discusses the main semantics and purpose of the design of The Food 
 * On start up of The Food Diary, users are greeted with the main window display.
  The main window displays all entries of the in The Food Diary on start up,
  in the order that the entries were added in.
- 
+
 ### Main Window
 
 * The main window features 5 components. From top to bottom, they are:
@@ -48,7 +48,7 @@ This section discusses the main semantics and purpose of the design of The Food 
     3. A result display
     4. A list of entries
     5. A status bar
-    
+
 ### Menu Bar
 * The menu bar features 2 buttons: File, and Help.
 
@@ -64,10 +64,10 @@ This section discusses the main semantics and purpose of the design of The Food 
 
 * Information shown generally include the status of whether the command was written correctly syntactically,
  which would then allow for the app to perform the user's desired request.
- 
+
 * If the command cannot be interpreted by the app, the appropriate error message and corresponding rectification
  is displayed for the user to rectify their input command.
- 
+
 * The text field is also text-selectable.
 
 ### List of Entries
@@ -75,7 +75,7 @@ This section discusses the main semantics and purpose of the design of The Food 
 
 * A list of entries is autopopulated on start up, or when there is no existing data. To start afresh, use the `clear`
  function as stated below.
- 
+
 * Each entry displayed contains 5 compulsory fields, and 2 optional fields:
     1. Name of Restaurant
     2. Rating of Restaurant
@@ -88,7 +88,7 @@ This section discusses the main semantics and purpose of the design of The Food 
 #### Consolidation of Entries
 * Users need not add an extra entry if they wish to add on an extra review, or price pertaining to the same restaurant
  and location. A common situation involves users wanting to document their experience visiting the same restaurant
- more than once. 
+ more than once.
 
 * As such, multiple reviews and prices pertaining to an entry can be added using the `addon` command. Refer to the
 `addon` feature below for more information.
@@ -97,10 +97,10 @@ This section discusses the main semantics and purpose of the design of The Food 
 
 * This is done to keep each entry's window height short for the user to view more entries
  in within the main window.
- 
+
 * To view all the reviews pertaining to that entry, use the `view` command. Refer to the `view` feature below for
  more information.
- 
+
 * An entry with multiple prices shows a price range, ranging from the minimum to the maximum price
  among the prices added for the corresponding entry.
 
@@ -121,7 +121,7 @@ This section discusses the main semantics and purpose of the design of The Food 
 
 * The Food and School Location categories aid users in learning what possible options they can tag their
  entries as in their commands.
- 
+
 * Users can copy the link with the `Copy URL` button, and view this User Guide for more information.
 
 * Refer to the `help` feature below for more information.
@@ -136,7 +136,7 @@ This section discusses the main semantics and purpose of the design of The Food 
 
 * Words in UPPER_CASE are the parameters to be supplied by the user.
 e.g. in add n/NAME, NAME is a parameter which can be used as add n/Frontier.
-  
+
 * Items in angle brackets `<...>` are compulsory.
 
 * Items in square brackets `[...]` are optional.
@@ -155,7 +155,7 @@ e.g. if you specify `p/5 p/6`, only `p/6` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.
 e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-  
+
 * `[c/CATEGORY]`needs to be titled-cased, `[s/SCHOOL]` can be lower or upper-cased.
 
 
@@ -365,7 +365,7 @@ Available Shortcut keys for fast typists:
 - `TAB` key to iterate through fields.
 - `Ctrl + S` (Windows) or `Command + S` (Mac) to save.
 - `ESC` key to quickly exit the revise window.
- 
+
 Note:
 - Price can be a value or a range e.g. `5` or `5-9`.
 - Leave a white-space between categories to separate them.
