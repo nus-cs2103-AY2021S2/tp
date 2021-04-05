@@ -329,6 +329,14 @@
     -fx-background-color: #6a8883;
     -fx-background-radius: 0;
     -fx-padding: 2 2 2 2;
+
+    -fx-min-width: 8;
+    -fx-pref-width: 8;
+    -fx-max-width: 10;
+
+    -fx-min-height: 8;
+    -fx-pref-height: 8;
+    -fx-max-height: 10;
 }
 
 .scroll-bar .thumb {
@@ -351,4 +359,37 @@
 
 .scroll-bar:horizontal .increment-arrow, .scroll-bar:horizontal .decrement-arrow {
     -fx-padding: 6 1 6 1;
+}
+
+/* Table View*/
+.table-view {
+    -fx-background-color: #162447;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #1F4068;
+    -fx-background-insets: 0 0 10 0;
+    -fx-padding: 0 0 10 0;
+}
+
+.table-view .column-header .table-view .filler{
+    -fx-size: 36;
+    -fx-border-width: 0 0 10 0;
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: white;
+    -fx-font-size: 14;
+}
+
+.table-row-cell {
+    -fx-cell-size: 46;
+    -fx-font-size: 14;
+    -fx-font-weight: bold;
+    -fx-background-color: transparent;
+}
+
+.black-column.table-row-cell {
+    -fx-text-fill: black;
 }
