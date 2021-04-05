@@ -1,6 +1,7 @@
 package seedu.budgetbaby.storage;
 
 import java.time.YearMonth;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -76,7 +77,14 @@ class JsonAdaptedMonth {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                 YearMonth.class.getSimpleName()));
         }
-        final YearMonth modelYearMonth = YearMonth.parse(month);
+        final YearMonth modelYearMonth;
+        try {
+            modelYearMonth = YearMonth.parse(month);
+        } catch (DateTimeParseException e) {
+            // TODO: throw meaningful msg (acceptable Month range)
+            throw new IllegalValueException(Month.MESSAGE_CONSTRAINTS);
+        }
+
 
         return new Month(modelFinancialRecordList, modelBudget, modelYearMonth);
     }
