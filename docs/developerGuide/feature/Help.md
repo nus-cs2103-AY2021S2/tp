@@ -1,4 +1,4 @@
-### Help feature
+### [Feature] Help
 
 #### Current Implementation
 
@@ -34,5 +34,3 @@ Step 3. The user executes `help add`. `AddressBookParser#ParseCommand()` instant
 * **Alternative 2:** Maintain a list of Commands, which `HelpCommand` will iterate over to print the concise syntax for each command when printing the help message.
     * Pros: Need not hard code the possible commands, only have to update the list of commands
     * Cons: Possible reduced performance, especially later if a large number of commands is added.
-
-_{more aspects and alternatives to be added}_
