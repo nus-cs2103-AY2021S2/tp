@@ -79,17 +79,20 @@ DESCRIPTION OF PARAMETER
 
 
 #### `EMAIL`
-DESCRIPTION OF PARAMETER
-* FORMAT AND RESTRICTIONS WITH JUSTIFICATION
-* (if applicable) For best usage, ...
-* (if applicable) Valid examples (if not clear from above)
+The email of a resident.
+* Format: local-part@domain.
+* Local-part should only contain alphanumeric characters, and these
+  special characters, excluding the parenthesis (!#$%&'*+/=?`{|}~^.-). 
+* Must contain @. 
+* Domain must be at least 2 characters long, start and end with alphanumeric characters,
+  and consist of alphanumeric characters, a period or a hyphen for the characters in between, 
+  if any.
+* e.g. e0123456@u.nus.edu
 
 
 #### `INDEX`
-DESCRIPTION OF PARAMETER
-* FORMAT AND RESTRICTIONS WITH JUSTIFICATION
-* (if applicable) For best usage, ...
-* (if applicable) Valid examples (if not clear from above)
+The index number shown in the displayed list.
+* Must be a positive integer: 1, 2, 3, ...
 
 
 #### `KEYWORD`
@@ -100,17 +103,15 @@ DESCRIPTION OF PARAMETER
 
 
 #### `NAME`
-DESCRIPTION OF PARAMETER
-* FORMAT AND RESTRICTIONS WITH JUSTIFICATION
-* (if applicable) For best usage, ...
-* (if applicable) Valid examples (if not clear from above)
+The unique identifier of a resident.
+* Accepts all characters. 
+* For best usage, use English characters only.
 
 
 #### `PHONE_NUMBER`
-DESCRIPTION OF PARAMETER
-* FORMAT AND RESTRICTIONS WITH JUSTIFICATION
-* (if applicable) For best usage, ...
-* (if applicable) Valid examples (if not clear from above)
+The phone number of a resident.
+* Must contain only numbers.
+* Must be at least 3 digits long.
 
 
 #### `ROOM_NUMBER`
@@ -149,12 +150,8 @@ DESCRIPTION OF PARAMETER
 
 
 #### `YEAR`
-DESCRIPTION OF PARAMETER
-* FORMAT AND RESTRICTIONS WITH JUSTIFICATION
-* (if applicable) For best usage, ...
-* (if applicable) Valid examples (if not clear from above)
-
-
+The year of study of a resident.
+* Must be a single digit numeric character from 1 to 5 inclusive.
 
 ## Quick start
 
@@ -193,7 +190,12 @@ This section contains the details on SunRez commands and features.
 Adds a resident to the housing management system.
 
 Format: `radd n/NAME p/PHONE_NUMBER e/EMAIL y/YEAR`
-* `NAME` is the unique identifier of a resident.
+
+Parameters:
+* [NAME](#name) The name of the resident.
+* [PHONE_NUMBER](#phone_number) The phone number of the resident.
+* [EMAIL](#email) The email of the resident.
+* [YEAR](#year) The year of the resident.
 
 Examples:
 * `radd n/John Doe p/91234567 e/e0123456@u.nus.edu y/3` Adds a resident named `John Doe` with phone number `91234567`, email `e0123456@u.nus.edu`, and as a 3rd year student, without any room allocated.
@@ -219,22 +221,28 @@ Format: `rfind KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 * `rfind john` returns `john` and `John Doe`.
-* `rfind alex david` returns `Alex Yeoh`, `Alexander Graham`, and `David Li`.
+* `rfind alex david` returns `Alex Yeoh`, and `David Li`.
 
 
 #### Edit a resident record : `redit`
 
 Edits the existing resident record at a specified index.
 
-Format: `redit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL]`
-* `INDEX` refers to the index number shown in the displayed resident list. `INDEX` **must be a positive integer: 1, 2, 3, …**.
+Format: `redit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [y/YEAR}]`
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * `redit` will be blocked if the resident has an active room allocation. Run `dealloc` before making further edits.
-e.g. `dealloc n/John Tan r/03-100`.
+  See [Deallocate a resident](#deallocate-resident-from-room--dealloc).
+
+Parameters:
+* [NAME](#name) The name of the resident.
+* [PHONE_NUMBER](#phone_number) The phone number of the resident.
+* [EMAIL](#email) The email of the resident.
+* [YEAR](#year) The year of the resident.
 
 Example:
 * `redit 1 p/91234567 e/e0123456@u.nus.edu` Edits the phone number and email address of the 1st resident to be `91234567` and `e0123456@u.nus.edu` respectively.
+  
 
 
 #### Delete a resident : `rdel`
@@ -242,9 +250,11 @@ Example:
 Deletes the resident record at a specified index.
 
 Format: `rdel INDEX`
-* `INDEX` refers to the index number shown in the displayed resident list. `INDEX` **must be a positive integer 1,2,3, ...**.
-*  A resident allocated to a room cannot be deleted until it is first deallocated. Run `dealloc` commmand before deletion.
-e.g. `dealloc n/John Tan r/03-100`.
+*  A resident allocated to a room cannot be deleted until it is first deallocated. Run `dealloc` commmand before deletion. 
+   See [Deallocate a resident](#deallocate-resident-from-room--dealloc).
+
+Parameters: 
+* [INDEX](#index) The index of the displayed resident.
 
 Example:
 * `rdel 1` deletes the 1st resident in the resident list.
@@ -323,7 +333,7 @@ Shows a list of all unallocated residents in the system sorted by alphabetical o
 
 Format: `rulist`
 
-#### Allocate resident to room: `alloc`
+#### Allocate resident to room : `alloc`
 Allocates an existing resident to an existing room.
 
 Format: `alloc n/NAME r/ROOM_NUMBER`
@@ -332,15 +342,22 @@ Format: `alloc n/NAME r/ROOM_NUMBER`
 * `NAME` is case-sensitive.
 * Both fields must be provided.
 
+Parameters:
+* [NAME](#name) The name of the resident.
+* [ROOM_NUMBER](#room_number) The room number to be allocated to the resident.
+
 Example:
 * `alloc r/John Tan n/03-100` Allocates resident named John Tan to room 03-100.
 
-#### Deallocate resident from room: `dealloc`
+#### Deallocate resident from room : `dealloc`
 Deallocates an existing resident from an existing room.
 
 Format: `dealloc INDEX`
-* `INDEX` refers to the index number shown in the displayed resident list. `INDEX` **must be a positive integer 1,2,3, ...**.
 * The resident at the `INDEX` must already be allocated.
+
+Parameters:
+* [INDEX](#index) The index of the displayed resident.
+
 
 Example:
 * `dealloc 1` Deallocates the 1st resident in the resident list from its allocated room.
@@ -604,7 +621,7 @@ Action | Format, Examples
 **List all residents** | `rlist`
 **List all unallocated residents** | `rulist`
 **Find residents** | `rfind KEYWORD [MORE_KEYWORDS]` <br> e.g. `rfind bob bobby`
-**Edit a resident record** | `redit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/ROOM_NUMBER]` <br> e.g. `redit 1 p/91234567 e/e0123456@u.nus.edu`
+**Edit a resident record** | `redit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [y/YEAR]` <br> e.g. `redit 1 p/91234567 e/e0123456@u.nus.edu`
 **Delete a resident** |  `rdel INDEX` <br> e.g. `rdel 1`
 **Add a room** |  `oadd r/ROOM_NUMBER t/ROOM_TYPE [g/TAG]` <br> e.g. `oadd n/17-101 t/corridor_ac g/SHN`
 **List all rooms** |  `olist`
@@ -612,7 +629,7 @@ Action | Format, Examples
 **Edit a room record** |  `oedit INDEX [r/ROOM_NUMBER] [t/ROOM_TYPE] [g/TAG]` <br> e.g. `oedit 1 g/SHN`
 **Delete a room** | `odel INDEX` <br> e.g. `odel 1`
 **Allocate a Resident to Room** | `alloc n/NAME r/ROOM_NUMBER` <br> e.g. `alloc n/John Tan r/03-100`
-**Deallocate a Resident from Room** | `dealloc n/NAME r/ROOM_NUMBER` <br> e.g. `dealloc n/John Tan r/03-100`
+**Deallocate a Resident from Room** | `dealloc INDEX` <br> e.g. `dealloc 1`
 **Add an open issue** | `iadd r/ROOM_NUMBER d/DESCRIPTION [t/TIMESTAMP] [s/STATUS] [c/CATEGORY] [g/TAG]` <br> e.g. `iadd r/10-100 d/Broken light c/Furniture g/HIGH`
 **List all issues** | `ilist`
 **Find issues** | `ifind KEYWORD [MORE_KEYWORDS]` <br> e.g. `ifind wardrobe table`
