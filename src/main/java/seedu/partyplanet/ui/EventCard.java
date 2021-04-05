@@ -48,8 +48,8 @@ public class EventCard extends UiPart<Region> {
         if (!EventDate.isEmptyDate(event.getEventDate())) {
             addDetail(event.getEventDate().value);
         }
-        if (!Remark.isEmptyRemark(event.getDetails())) {
-            addDetail(event.getDetails().value);
+        if (!Remark.isEmptyRemark(event.getRemark())) {
+            addDetail(event.getRemark().value);
         }
     }
 

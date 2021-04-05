@@ -21,8 +21,8 @@ import java.util.function.Predicate;
 import seedu.partyplanet.logic.commands.EListCommand;
 import seedu.partyplanet.logic.parser.exceptions.ParseException;
 import seedu.partyplanet.model.event.Event;
-import seedu.partyplanet.model.event.predicates.EventDetailContainsExactKeywordsPredicate;
-import seedu.partyplanet.model.event.predicates.EventDetailContainsKeywordsPredicate;
+import seedu.partyplanet.model.event.predicates.EventRemarkContainsExactKeywordsPredicate;
+import seedu.partyplanet.model.event.predicates.EventRemarkContainsKeywordsPredicate;
 import seedu.partyplanet.model.event.predicates.EventNameContainsExactKeywordsPredicate;
 import seedu.partyplanet.model.event.predicates.EventNameContainsKeywordsPredicate;
 
@@ -82,7 +82,7 @@ public class EListCommandParser implements Parser<EListCommand> {
                 stringFind += "\n\u2022 Requires exact event remark: " + String.join(", ", allRemarks);
             }
             for (String remark : allRemarks) {
-                predicates.add(new EventDetailContainsExactKeywordsPredicate(remark));
+                predicates.add(new EventRemarkContainsExactKeywordsPredicate(remark));
             }
 
         } else {
@@ -96,7 +96,7 @@ public class EListCommandParser implements Parser<EListCommand> {
                 stringFind += "\n\u2022 Requires partial event remark: " + String.join(", ", allRemarks);
             }
             for (String remark : allRemarks) {
-                predicates.add(new EventDetailContainsKeywordsPredicate(remark));
+                predicates.add(new EventRemarkContainsKeywordsPredicate(remark));
             }
         }
         if (isExactSearch && predicates.isEmpty()) {
