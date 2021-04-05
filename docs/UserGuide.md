@@ -187,6 +187,12 @@ Format: `add-date INDEX d/DATE desc/DESCRIPTION`
 
 * Adds a special date with the person at the specified `INDEX`.
 
+<div markdown="block" class="alert alert-info">
+:information_source: **Notes: Special dates**<br>
+
+* A special date is a date that repeats annually, e.g. Anniversaries.
+</div>
+
 Examples:
 * `add-date 1 d/16-02-2021 desc/Anniversary`
 * `add-date 2 d/17-02-2021 desc/Dog's birthday`
@@ -247,6 +253,11 @@ Format: `add-picture INDEX FILE_PATH`
 
 Examples:
 * `add-picture 1 /Users/john/Desktop/jake.png`
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+To edit your profile picture, edit the original image and use the `add-picture` command again.
+Editing of pictures directly from the `/data` folder is not supported.
+</div>
 
 ### Clearing all entries : `clear`
 
@@ -358,13 +369,17 @@ Format: `find KEYWORD [MORE_KEYWORDS] [p/]`
 * Only full words will be matched e.g. `Han` will not match `Hans`
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-* If the `p/` flag is set, then the argument(s) `KEYWORD [MORE KEYWORDS]` will be treated as a regular expression.
+* If the `p/` flag is set, then the argument(s) `KEYWORD [MORE KEYWORDS]` will be treated as a
+  [regular expression](https://pubs.opengroup.org/onlinepubs/7908799/xbd/re.html).
 </div>
+
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
-* `find ^a.*h$ p/` returns `Alex Yeoh`
+* `find ^a.*h$ p/` returns contacts with names that starts with `a` and ends with `h`: `Alex Yeoh`
+
+Note that the [Java regex engine](https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html) conforms to PERL5 regex specification and thus PERL5 regex should be used.
 
 ### Viewing help : `help`
 

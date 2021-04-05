@@ -2,7 +2,9 @@ package seedu.address.commons.util;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DATE_FORMAT;
 
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.DateTimeParseException;
@@ -12,7 +14,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 
 public class DateUtil {
 
-    public static final LocalDate ZERO_DAY = LocalDate.ofEpochDay(0);
+    public static final LocalDate ZERO_DAY = LocalDate.ofInstant(Instant.ofEpochMilli(0), ZoneId.systemDefault());
 
     private static final DateTimeFormatter DATE_PARSER;
 
