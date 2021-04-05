@@ -74,4 +74,28 @@ public class WorkloadTest {
         //EP: Not a Workload object
         assertFalse(firstWorkload.equals(somethingElse));
     }
+
+    @Test
+    public void compareTo() {
+        Workload firstWorkload = new Workload("1");
+        Workload secondWorkload = new Workload("1");
+        Workload thirdWorkload = new Workload("2");
+        Workload fourthWorkload = new Workload("3");
+
+        //EP: Same Workload object
+        assertTrue(firstWorkload.compareTo(firstWorkload) == 0);
+
+        //EP: Different Workload object, same value
+        assertTrue(firstWorkload.compareTo(secondWorkload) == 0);
+
+        //EP: Different Workload object, different values
+        assertTrue(firstWorkload.compareTo(thirdWorkload) > 0);
+        assertTrue(firstWorkload.compareTo(fourthWorkload) > 0);
+
+        assertTrue(thirdWorkload.compareTo(firstWorkload) < 0);
+        assertTrue(fourthWorkload.compareTo(firstWorkload) < 0);
+
+        assertTrue(thirdWorkload.compareTo(fourthWorkload) > 0);
+        assertTrue(fourthWorkload.compareTo(thirdWorkload) < 0);
+    }
 }
