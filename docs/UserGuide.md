@@ -95,6 +95,9 @@ Format: `add n/NAME desc/DESCRIPTION [date/DATE] [t/TAG]â€¦`
 
 * If a date is not specified in the command, the newly added Task will have its date set to the end of today (Today's date, 2359hrs).
 
+* If you add more than 2 add commands in the command box, only need the last add command is recognized.
+
+
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A Task can have any number of tags (including 0)
 </div>
@@ -125,6 +128,7 @@ Format: `edit INDEX [n/NAME] [desc/DESCRIPTION] [date/DATE] [s/STATUS] [t/TAG]â€
 Examples:
 *  `edit 1 desc/my typical description` Edits the description of the 1st task to be `my typical description`.
 *  `edit 2 n/Important Task t/` Edits the name of the 2nd task to be `Important Task` and clears all existing tags.
+* `edit 2 s/completed` sets the status of the 2nd task in the list to `completed`.
 
 ### Deleting multiple tasks : `delete`
 
@@ -202,17 +206,7 @@ Sort tasks in ascending order of their dates.
 
 Format: `sort`
 
-### Setting a task's status : `edit`
 
-Sets a task's status.
-
-Format: `edit INDEX s/STATUS`
-
-* A task can have 3 types of status: `uncompleted`, `completed`, `expired`
-* A task's default status is `uncompleted`
-
-Examples:
-* `edit 2 s/completed` sets the status of the 2nd task in the list to `completed`.
 
 ### Switching between tabs :`home` / `uncompleted` / `completed` / `expired`
 
