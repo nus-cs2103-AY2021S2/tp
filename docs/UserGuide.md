@@ -235,6 +235,8 @@ Note:
 - The ID must be a positive integer 1, 2, 3, ...
 - Only include the variables that need to be edited after the integer
 
+:heavy_exclamation_mark: Take note that editing tags for an entity will automatically override **all** its current tags!
+
 Examples:
 
 1. Edits the owner with ID 1 in Pawbook.<br>
