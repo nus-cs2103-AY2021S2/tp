@@ -8,7 +8,7 @@ import java.util.Objects;
  * Represents a Resident in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Resident {
+public class Resident implements Comparable<Resident> {
 
     // Identity fields
     private final Name name;
@@ -106,4 +106,8 @@ public class Resident {
         return builder.toString();
     }
 
+    @Override
+    public int compareTo(Resident r) {
+        return name.compareTo(r.name);
+    }
 }
