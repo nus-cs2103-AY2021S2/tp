@@ -195,5 +195,4 @@ public class ParserUtilTest {
 
         assertEquals(expectedCategorySet, actualCategorySet);
     }
-}
-*/
+} */
