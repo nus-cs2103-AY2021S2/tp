@@ -7,6 +7,34 @@ TutorsPet is a **desktop app designed for private tutors to manage students’ i
 
 * Table of Contents
 {:toc}
+--------------------------------------------------------------------------------------------------------------------
+## About
+This document can be thought of as a manual and a reference guide for FriendDex. It will guide you on how to use FriendDex and will provide complete information on each available command.
+Furthermore, the guide gives information on the User Interface (UI) and the other useful features of FriendDex. Each section of the guide can be read independently.
+You can view the full list of content using the Table of Contents above. You can also use your document viewer’s Find function to quickly navigate to the content you want to know more about.
+
+It is generally advised for new users to at least read through the [Quick Start](#quick-start) section to familiarise themselves with FriendDex.
+
+Note the following symbols and formatting used in this document:
+
+`list` <br>
+The grey highlight, also called a mark-up, indicates that the text in it can be typed into the command line and executed by the application.
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Notes:**<br>
+
+* This block is used for detailing information about formatting, handling exceptional cases or special keywords used in the corresponding section.
+</div>
+
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:**
+This block is used to provide you extra details about the feature that will enable you to use it more effectively.
+</div>
+
+<div markdown="span" class="alert alert-warning">
+:exclamation: **Caution:** This block is used to point out any dangerous actions that may result in the loss of data or the app crashing.
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -111,7 +139,11 @@ Format: `add n/NAME p/PHONE [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] 
 * Lesson day must take on one of the values: **Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday**.
 
 * Lesson time must be in **HHmm** format e.g. **1300**
+</div>
 
+<div markdown="span" class="alert alert-warning">
+:exclamation: **Caution:** If TutorPets detects a conflicting lesson being added, a confirmation message will be shown. You
+will need to type in either y/n for confirmation to add conflicted schedule.
 </div>
 
 Examples:
@@ -129,7 +161,7 @@ Format: `list`
 
 Edits an existing student in TutorsPet.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] [gp/GUARDIAN_PHONE] [t/SUBJECT] [le/LESSON]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] [gp/GUARDIAN_PHONE] [t/SUBJECT]... [le/LESSON]…​`
 
 * Edits the student at the specified `INDEX`.
 * The index refers to the index number shown in the displayed student list.
@@ -380,6 +412,9 @@ _Details coming soon ..._
 
 _Details coming soon ..._
 
+### Add profile picture for each contact`[coming in v2.0]`
+_Format: `add-profile INDEX FILE_PATH` <br> Add a profile picture to the contact of the specified index
+by providing the file path to the picture._
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
