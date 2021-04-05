@@ -155,8 +155,7 @@ With new members joining the club, you can add a new member along with his/ her 
 
 Format: `addMember NAME -p PHONE_NUMBER -e EMAIL [-r ROLE]`
 
-* The field ROLE is optional.
-* ROLE and NAME field can take on any values with alphanumeric characters.
+* NAME and ROLE fields can take on any values with alphanumeric characters.
 * If ROLE field is not specified, person will be assigned a default role of member.
 
 Examples: 
