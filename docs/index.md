@@ -4,7 +4,7 @@ title: BookingSystem Level-3
 ---
 
 [![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
-[![codecov](https://codecov.io/gh/AY2021S2-CS2103-W17-3/tp/settings/badge)](https://codecov.io/gh/AY2021S2-CS2103-W17-3/tp)
+[![codecov](https://codecov.io/gh/AY2021S2-CS2103-W17-3/tp/branch/master/graph/badge.svg)](https://codecov.io/gh/AY2021S2-CS2103-W17-3/tp)
 
 ![Ui](images/Ui.png)
 
