@@ -217,6 +217,11 @@ class ModelStub implements Model {
         return false;
     }
 
+    @Override
+    public boolean canDeleteReader(Reader reader) {
+        return false;
+    }
+
     /**
      * Returns true if a reader with the same identity as {@code reader} exists in the registered reader base.
      *

@@ -86,6 +86,12 @@ public interface Model {
     boolean isBookWithBarcodeBorrowed(Barcode barcode);
 
     /**
+     * Returns true if the reader can be delete.
+     * Condition: currently does not borrow any books
+     */
+    boolean canDeleteReader(Reader reader);
+
+    /**
      * Returns true if a reader with the same identity as {@code reader} exists in the registered reader base.
      */
     boolean hasReader(Reader reader);

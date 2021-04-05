@@ -179,6 +179,11 @@ public class AddReaderCommandTest {
         }
 
         @Override
+        public boolean canDeleteReader(Reader reader) {
+            return false;
+        }
+
+        @Override
         public boolean hasReader(Reader reader) {
             throw new AssertionError("This method should not be called.");
         }

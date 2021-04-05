@@ -197,6 +197,15 @@ public class ModelManager implements Model {
     }
 
     /**
+     * Returns true if the reader can be delete.
+     * Condition: currently does not borrow any books
+     */
+    @Override
+    public boolean canDeleteReader(Reader reader) {
+        return !smartLib.hasReaderBorrowedBooks(reader);
+    }
+
+    /**
      * Returns true if a reader with the same identity as {@code reader} exists in the registered reader base.
      *
      * @param reader reader to be checked.
