@@ -134,6 +134,11 @@ public class AddReaderCommandTest {
         }
 
         @Override
+        public Barcode getFirstAvailableBookBarcode(Name bookName) {
+            return null;
+        }
+
+        @Override
         public Name getBookNameForReturn(Barcode barcode) {
             return null;
         }
@@ -170,6 +175,11 @@ public class AddReaderCommandTest {
 
         @Override
         public boolean isBookWithBarcodeBorrowed(Barcode barcode) {
+            return false;
+        }
+
+        @Override
+        public boolean canDeleteReader(Reader reader) {
             return false;
         }
 

@@ -86,6 +86,12 @@ public interface Model {
     boolean isBookWithBarcodeBorrowed(Barcode barcode);
 
     /**
+     * Returns true if the reader can be delete.
+     * Condition: currently does not borrow any books
+     */
+    boolean canDeleteReader(Reader reader);
+
+    /**
      * Returns true if a reader with the same identity as {@code reader} exists in the registered reader base.
      */
     boolean hasReader(Reader reader);
@@ -155,6 +161,11 @@ public interface Model {
      * Returns the barcode of the first available (i.e. not borrowed) copy of the book in SmartLib.
      */
     Barcode getBookBarcode(Name bookName);
+
+    /**
+     * Returns the barcode of the first available (i.e. not borrowed) copy of the book in SmartLib.
+     */
+    Barcode getFirstAvailableBookBarcode(Name bookName);
 
     /**
      * Returns the book name of the book with the corresponding barcode borrowed by the reader in SmartLib.

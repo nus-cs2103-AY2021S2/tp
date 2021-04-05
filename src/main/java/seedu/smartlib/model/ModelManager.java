@@ -197,6 +197,15 @@ public class ModelManager implements Model {
     }
 
     /**
+     * Returns true if the reader can be delete.
+     * Condition: currently does not borrow any books
+     */
+    @Override
+    public boolean canDeleteReader(Reader reader) {
+        return !smartLib.hasReaderBorrowedBooks(reader);
+    }
+
+    /**
      * Returns true if a reader with the same identity as {@code reader} exists in the registered reader base.
      *
      * @param reader reader to be checked.
@@ -385,6 +394,27 @@ public class ModelManager implements Model {
             return b.getBarcode();
         }
 
+        return null;
+    }
+
+
+
+    /**
+     * Returns the barcode of the first available (i.e. not borrowed) copy of the book in SmartLib.
+     *
+     * @param bookName name of the book to be borrowed
+     * @return the barcode of the first available copy of the book in SmartLib
+     */
+    public Barcode getFirstAvailableBookBarcode(Name bookName) {
+        requireNonNull(bookName);
+
+        ArrayList<Book> books = smartLib.getBooksByName(bookName);
+
+        for (Book b : books) {
+            if (!b.isBorrowed()) {
+                return b.getBarcode();
+            }
+        }
         return null;
     }
 

@@ -63,7 +63,7 @@ public class BorrowCommand extends Command {
     }
 
     private Record createProperRecord(Model model) {
-        Barcode bookBarcode = model.getBookBarcode(incompleteRecord.getBookName());
+        Barcode bookBarcode = model.getFirstAvailableBookBarcode(incompleteRecord.getBookName());
         return new Record(incompleteRecord.getBookName(), bookBarcode, incompleteRecord.getReaderName(),
                 incompleteRecord.getDateBorrowed());
     }

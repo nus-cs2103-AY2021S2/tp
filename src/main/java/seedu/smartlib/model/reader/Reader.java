@@ -124,6 +124,14 @@ public class Reader {
     }
 
     /**
+     * Checks if a reader has borrowed any book
+     * @return true if the reader has any book
+     */
+    public boolean hasBorrowedBooks() {
+        return this.getBorrows().size() > 0;
+    }
+
+    /**
      * Returns true if both readers have the same name.
      * This defines a weaker notion of equality between two readers.
      *
@@ -198,5 +206,4 @@ public class Reader {
         }
         return builder.toString();
     }
-
 }
