@@ -162,14 +162,15 @@ Adds an entry to the Food Diary.
 Format: `add n/<RESTAURANT NAME> ra/RATING p/PRICE re/REVIEW a/ADDRESS [c/CATEGORY]... [s/SCHOOL]...`
 
 Note:
-- A FoodDiary entry can have any number of categories or schools.
-- Price range: $0 - 999
 - Names can only be alphanumeric characters. We justify that the sole use of alphanumeric characters suffices –
  users will still be able to know which restaurant the entry is referring to despite
  not using non-alphanumeric characters, such as apostrophe(') etc.
+- Raing should be an integer between 0 and 5.
+- Price range: $0 - 999.
 - Address will not be checked if it is a valid location, this is left for the user to input any address they deem
  as legitimate.
 - Multiple entries can exist with the same name but different locations, and vice versa.
+- A FoodDiary entry can have any number of categories or schools.
 
 Parameters:
 
@@ -239,10 +240,12 @@ Example:
 
 Finds FoodDiary entries whose names, ratings, price, address, categories and schools match any of the provided keywords.
 
-- More than one keyword per field can be accepted as parameters.
+- More than one keyword per field can be accepted as a parameter.
 - Different fields can also be simultaneously accepted as parameters.
+- Rating should be an integer between 0 and 5. Note the syntax.
 - For the price field, a price range can also be accepted as a parameter, and any
- FoodDiary entry that contains at least one of the prices within the specified range will be returned as a search result.
+ FoodDiary entry that contains at least one of the prices within the specified range
+ will be returned as a search result. Note the syntax.
 
 Format: `find <PARAMETERS> ...`
 
@@ -376,9 +379,11 @@ Mainly used if previous entry values do not matter in new edit.
 
 Format: `edit <INDEX> n/<RESTAURANT NAME> ra/<RATING> p/<PRICE> re/<REVIEW> a/<ADDRESS> c/<CATEGORIES> s/<SCHOOLS>`
 
-Note: 
-- Price can be a value or range e.g. `5` or `5-9`
-- Categories and schools tags are stated in `add` command
+Note:
+- Rating should be an integer between 0 and 5.
+- Price can be a value or range e.g. `5` or `5-9`.
+- Address will not be checked if it is a valid location.
+- Categories and schools tags are stated in `add` command.
 
 Parameters:
 
