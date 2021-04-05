@@ -116,8 +116,16 @@ public class EditOrderCommand extends EditCommand {
         CompletedDate completedDate = orderToEdit.getCompletedDate().orElse(null);
         OrderId orderId = orderToEdit.getOrderId();
 
-        return new Order(updatedCheeseType, updatedQuantity, updatedOrderDate,
+        Order retOrder;
+
+        try {
+            retOrder = new Order(updatedCheeseType, updatedQuantity, updatedOrderDate,
                 completedDate, orderId, updatedCustomerId);
+        } catch (IllegalArgumentException e) {
+            throw new CommandException(e.getMessage());
+        }
+
+        return retOrder;
     }
 
     @Override

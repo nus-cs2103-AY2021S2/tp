@@ -84,7 +84,7 @@ public class EditCheeseCommand extends EditCommand {
      * edited with {@code editCheeseDescriptor}.
      */
     private static Cheese createEditedCheese(Cheese cheeseToEdit,
-                                                 EditCheeseDescriptor editCheeseDescriptor) {
+                                                 EditCheeseDescriptor editCheeseDescriptor) throws CommandException {
         assert cheeseToEdit != null;
 
         CheeseType updatedCheeseType =
@@ -96,7 +96,14 @@ public class EditCheeseCommand extends EditCommand {
         CheeseId id = cheeseToEdit.getCheeseId();
         boolean isAssigned = cheeseToEdit.isCheeseAssigned();
 
-        return new Cheese(updatedCheeseType, updatedManufactureDate, updatedExpiryDate, id, isAssigned);
+        Cheese retCheese;
+        try {
+            retCheese = new Cheese(updatedCheeseType, updatedManufactureDate, updatedExpiryDate, id, isAssigned);
+        } catch (IllegalArgumentException e) {
+            throw new CommandException(e.getMessage());
+        }
+
+        return retCheese;
     }
 
     @Override

@@ -51,8 +51,12 @@ public class AddCheeseCommandParser implements Parser<AddCheeseCommand> {
         }
 
         Cheese[] cheeses = new Cheese[quantity];
-        for (int i = 0; i < quantity; i++) {
-            cheeses[i] = new Cheese(cheeseType, manufactureDate, expiryDate);
+        try {
+            for (int i = 0; i < quantity; i++) {
+                cheeses[i] = new Cheese(cheeseType, manufactureDate, expiryDate);
+            }
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(e.getMessage());
         }
 
         return new AddCheeseCommand(cheeses);

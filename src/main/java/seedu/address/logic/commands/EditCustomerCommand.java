@@ -94,7 +94,8 @@ public class EditCustomerCommand extends EditCommand {
      * edited with {@code editCustomerDescriptor}.
      */
     private static Customer createEditedCustomer(Customer customerToEdit,
-                                                 EditCustomerDescriptor editCustomerDescriptor) {
+                                                 EditCustomerDescriptor editCustomerDescriptor)
+        throws CommandException {
         assert customerToEdit != null;
 
         Name updatedName = editCustomerDescriptor.getName().orElse(customerToEdit.getName());
@@ -104,7 +105,13 @@ public class EditCustomerCommand extends EditCommand {
         Set<Tag> updatedTags = editCustomerDescriptor.getTags().orElse(customerToEdit.getTags());
         CustomerId id = customerToEdit.getId();
 
-        return new Customer(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, id);
+        Customer retCustomer;
+        try {
+            retCustomer = new Customer(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, id);
+        } catch (IllegalArgumentException e) {
+            throw new CommandException(e.getMessage());
+        }
+        return retCustomer;
     }
 
     @Override
