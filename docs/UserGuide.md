@@ -198,7 +198,7 @@ Examples:
 
 [coming in v1.3 subject to changes]
 
-If you would like to take a look at how you managed your budget for a pericular month, you may use the `view-month` command to display the data associated with a specific month.
+If you would like to take a look at how you managed your budget for a particular month, you may use the `view-month` command to display the data associated with a specific month.
 
 Data associated with a month includes:
 
