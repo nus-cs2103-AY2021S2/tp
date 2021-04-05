@@ -126,7 +126,7 @@ Here are some general rules to follow when entering prefixes and parameters:
   
 * To add multiple parameters of the same prefix, add the prefix multiple times before each parameter.<br>
   e.g. To add two TAGs, enter `-t tagOne -t tagTwo`.<br>
-  e.g. To add three HEADERSs, enter `-h "header:one" -h "header:two" -h "header:three"`.<br>
+  e.g. To add three HEADERSs, enter `-h "header: one" -h "header: two" -h "header: three"`.<br>
   
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. If the command specifies `help 123`, it will be interpreted as `help`.<br>
@@ -190,7 +190,7 @@ Check out the screenshot of each command for an idea of the expected output in t
 <div markdown="span" class="alert alert-warning">:bulb: **Tip:**
 For URL, we do not check if your URL actually exists<br>
 If no website [protocol](#glossary-protocol) is specified, we enforce a HTTP protocol as a protocol needs to be specified for an API request to be carried out<br>
-For instance, if a user's enters `google.com` as a URL, we will prepend the URL with `http://`, making it `http://google.com`
+For instance, if a user enters `google.com` as a URL, we will prepend the URL with `http://`, making it `http://google.com`
 </div>
 
 <div markdown="span" class="alert alert-danger">:exclamation: **Caution**
@@ -210,14 +210,14 @@ Multiple headers/tags must be unique and duplicates will be ignored
 </p>
 
 <div markdown="span" class="alert alert-warning">:bulb: **Tip:**
-When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative <br>
-You can remove all the person’s tags by typing ` -t` without specifying any tags after it
+When editing tags, the existing tags of the endpoint will be removed i.e adding of tags is not cumulative <br>
+You can remove all the endpoint’s tags by typing ` -t` without specifying any tags after it
 </div>
 
 <div markdown="span" class="alert alert-warning">:bulb: **Tip:**
 For URL, we do not check if your URL actually exists<br>
 If no website [protocol](#glossary-protocol) is specified, we enforce a HTTP protocol as a protocol needs to be specified for an API request to be carried out<br>
-For instance, if a user's enters `google.com` as a URL, we will prepend the URL with `http://`, making it `http://google.com`
+For instance, if a user enters `google.com` as a URL, we will prepend the URL with `http://`, making it `http://google.com`
 </div>
 
 <div markdown="span" class="alert alert-danger">:exclamation: **Caution:**
@@ -338,7 +338,7 @@ A shorthand for <span class="optional-param">GET</span> requests can be done wit
 <div markdown="span" class="alert alert-warning">:bulb: **Tip:**
 For URL, we do not check if your URL actually exists<br>
 If no website [protocol](#glossary-protocol) is specified, we enforce a HTTP protocol as a protocol needs to be specified for an API request to be carried out<br>
-For instance, if a user's enters `google.com` as a URL, we will prepend the URL with `http://`, making it `http://google.com`
+For instance, if a user enters `google.com` as a URL, we will prepend the URL with `http://`, making it `http://google.com`
 </div>
 
 <div markdown="span" class="alert alert-danger">:exclamation: **Caution:**
