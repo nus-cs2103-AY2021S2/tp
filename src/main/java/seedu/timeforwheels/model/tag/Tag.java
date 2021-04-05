@@ -12,7 +12,7 @@ public class Tag {
     public static final String MESSAGE_CONSTRAINTS = "Tags names should be \"urgent\", \"fragile\", \"bulky\", "
         + "\"food\", \"liquid\", \"hot\", \"cold\", or \"heavy\".";
     public static final String[] VALID_TAGS = {"urgent", "fragile", "bulky", "food", "liquid", "hot", "cold", "heavy",
-    null};
+        null};
     public final String tagName;
 
     /**
