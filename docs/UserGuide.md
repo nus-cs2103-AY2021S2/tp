@@ -94,10 +94,9 @@ DESCRIPTION OF PARAMETER
 
 
 #### `KEYWORD`
-DESCRIPTION OF PARAMETER
-* FORMAT AND RESTRICTIONS WITH JUSTIFICATION
-* (if applicable) For best usage, ...
-* (if applicable) Valid examples (if not clear from above)
+Keyword used in commands such as find
+* Format: Single word consisting of any character except spaces.
+* For best usage: Use English characters only.
 
 
 #### `NAME`
