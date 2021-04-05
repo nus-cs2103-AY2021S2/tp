@@ -189,6 +189,18 @@
     -fx-background-color: derive(-fx-focus-color, 30%);
 }
 
+/* LOCATION HEADER */
+
+.cell_location_header {
+    -fx-font-family: "Helveticish";
+    -fx-font-weight: bold;
+    -fx-font-size: 20px;
+    -fx-text-fill: #e9e2db;
+}
+
+.location_box {
+    -fx-background-color: #6a8883;
+}
 /* LIST VIEW BACKGROUND */
 .list-view {
     -fx-background-insets: 0;

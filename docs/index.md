@@ -15,8 +15,7 @@ reminder feature to help users keep track of items that are expiring. All items'
 our simple and clean Graphical User Interface (GUI). Our application is optimised for use via the Command Line
 Interface (CLI) and if users have quick fingers, StoreMando can help users manage their items in the blink of an eye.
 
-* If you are interested in using StoreMando, head over to the [_Quick Start_ section of the **User
-  Guide**](https://ay2021s2-cs2103t-w10-2.github.io/tp/UserGuide.html#2-quick-start-).
+* If you are interested in using StoreMando, head over to the [**User Guide**](UserGuide.md).
 * If you are interested about developing StoreMando, the [**Developer Guide**](DeveloperGuide.md) is a good place to
   start.
 

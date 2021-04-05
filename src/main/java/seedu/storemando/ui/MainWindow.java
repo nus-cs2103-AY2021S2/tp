@@ -38,6 +38,7 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private final HelpWindow helpWindow;
     private TablePanel tablePanel;
+    private LocationListPanel locationListPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -124,6 +125,9 @@ public class MainWindow extends UiPart<Stage> {
         itemListPanel = new ItemListPanel(logic.getFilteredItemList());
         itemListPanelPlaceholder.getChildren().add(itemListPanel.getRoot());
 
+        locationListPanel = new LocationListPanel(logic.getLocationList());
+        locationPanelPlaceholder.getChildren().add(locationListPanel.getRoot());
+
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
@@ -189,6 +193,13 @@ public class MainWindow extends UiPart<Stage> {
         tablePanel = new TablePanel(logic.getFilteredItemList());
         tablePanelPlaceholder.getChildren().add(tablePanel.getRoot());
     }
+    /**
+     * Updates the list of unique locations of items stored in the inventory.
+     */
+    private void updateLocationPanel() {
+        locationListPanel = new LocationListPanel(logic.getLocationList());
+        locationPanelPlaceholder.getChildren().add(locationListPanel.getRoot());
+    }
 
     /**
      * Executes the command and returns the result.
@@ -199,8 +210,8 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-
             updateExpiringItemTablePanel();
+            updateLocationPanel();
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

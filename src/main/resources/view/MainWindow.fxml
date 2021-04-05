@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.RowConstraints?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="STOREMANDO" minWidth="450" minHeight="620" onCloseRequest="#handleExit">
+         title="STOREMANDO" minWidth="400" minHeight="600" fullScreen="true" resizable="true" onCloseRequest="#handleExit">
     <scene>
         <Scene>
             <stylesheets>
@@ -51,14 +51,14 @@
                         <rowConstraints>
                             <RowConstraints percentHeight="100" />
                         </rowConstraints>
-                        <VBox GridPane.columnIndex="0" fx:id="itemList" styleClass="pane-with-border" minWidth="340" prefWidth="340"
+                        <VBox GridPane.columnIndex="0" fx:id="itemList" styleClass="pane-with-border"
                               VBox.vgrow="ALWAYS">
                             <padding>
                                 <Insets top="5" right="10" bottom="10" left="10"/>
                             </padding>
                             <StackPane fx:id="itemListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
                         </VBox>
-                        <VBox GridPane.columnIndex="1" styleClass="pane-with-border" minWidth="360" prefWidth="340"
+                        <VBox GridPane.columnIndex="1" styleClass="pane-with-border"
                               VBox.vgrow="ALWAYS">
                             <padding>
                                 <Insets top="5" right="10" bottom="10" left="10"/>
@@ -66,15 +66,13 @@
                             <StackPane fx:id="tablePanelPlaceholder" VBox.vgrow="ALWAYS"/>
                         </VBox>
 
-                        <VBox GridPane.columnIndex="2" styleClass="pane-with-border" minWidth="340" prefWidth="340"
+                        <VBox GridPane.columnIndex="2" styleClass="pane-with-border"
                               VBox.vgrow="ALWAYS">
                             <padding>
                                 <Insets top="5" right="10" bottom="10" left="10"/>
                             </padding>
                             <StackPane fx:id="locationPanelPlaceholder" VBox.vgrow="ALWAYS"/>
                         </VBox>
-
-
                     </GridPane>
                 </VBox>
 
