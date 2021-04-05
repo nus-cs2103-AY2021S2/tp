@@ -11,13 +11,6 @@ import javafx.collections.ObservableList;
 import seedu.heymatez.model.assignee.Assignee;
 import seedu.heymatez.model.person.Name;
 import seedu.heymatez.model.task.exceptions.TaskNotFoundException;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
->>>>>>> 2ea79714dea37ef46f5f7c3b992d2be3e1474321
-=======
->>>>>>> d571a7e652c1b23dbcee494c79a96e1ba141ce38
 
 /**
  * A list of task that enforces uniqueness between its elements and does not allow nulls.
