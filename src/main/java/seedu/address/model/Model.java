@@ -236,6 +236,13 @@ public interface Model {
     boolean hasAppointmentContainingTutor(Name name);
 
     /**
+     * @param name Name of tutor to match.
+     * @return True is new appointment to be added clashes.
+     */
+    boolean doesAppointmentClash(Name name, AppointmentDateTime timeFrom,
+                                 AppointmentDateTime timeTo);
+
+    /**
      * @return Budget Book
      */
     BudgetBook getBudgetBook();
