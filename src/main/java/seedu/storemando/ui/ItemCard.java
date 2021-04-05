@@ -78,7 +78,7 @@ public class ItemCard extends UiPart<Region> {
             return new Color(1, 0, 0, 1);
         }
         if (itemExpireInThreeDaysPredicate.test(item)) {
-            return Color.DARKORANGE;
+            return Color.ORANGERED;
         }
         return Color.BLACK;
     }

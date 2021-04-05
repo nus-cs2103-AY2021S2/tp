@@ -363,13 +363,13 @@
 
 /* Table View*/
 .table-view {
-    -fx-background-color: #162447;
+    -fx-background-color: #e1beb2;
 }
 
 .table-view .column-header-background {
-    -fx-background-color: #1F4068;
-    -fx-background-insets: 0 0 10 0;
-    -fx-padding: 0 0 10 0;
+    -fx-background-color: #e1beb2;
+    -fx-background-insets: 0 0 0 0;
+    -fx-padding: 0 0 0 0;
 }
 
 .table-view .column-header .table-view .filler{
