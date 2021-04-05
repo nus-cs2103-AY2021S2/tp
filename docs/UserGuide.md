@@ -120,7 +120,7 @@ The available dashboards are detailed below.
 By default, FriendDex displays your upcoming events on the details panel, such as upcoming birthdays and special dates.
 
 #### Streaks Dashboard
-The Streaks dashboard shows how consistent you stick to your goal of meeting your friends up till the current day.    
+The Streaks dashboard shows how consistent you stick to your goal of meeting your friends up till the current day. More information [here](#streaks).
 
 #### Full Details of a Person
 As a person in the FriendDex can contain a lot of information, not all of it is displayed in the main list of persons.
@@ -469,7 +469,31 @@ The last time you met your friend was on the 13th March. Since you have already 
 again by the 30th April to ensure that you always meet your friend once a month.
 
 ## Streaks
- 
+
+You should have a good understanding of how goal deadlines are calculated before reading this section. The section for goal deadlines is [here](#how-are-goal-deadlines-calculated).
+
+### The dashboard
+
+You will be rewarded if you managed to stick to your goal consistently. You can maintain a streak (think of it as Snapchat's Streak feature) with a friend if you have been meeting him/her regularly.
+To ensure that you are able to see your friend's name on the Streaks dashboard, they need to have a goal set to them. More information on setting goal [here](#setting-meeting-goal-set-goal). 
+To reiterate, your friend will only appear on the dashboard if you explicitly set a goal. Just recording meetings with them will not work.
+
+The dashboard can be viewed by running the `view streaks` command. The Streaks dashboard will show up on the details panel on the right of FriendDex. 
+It will contain a list of friends and their streak indicated by a number beside the friend's name. The dashboard will be sorted in descending order with the friend that has the highest streak right at the top.
+
+// Please insert an image here probably
+
+### How are streaks calculated?
+
+For those who have not used Snapchat before, do not fear. We will try our best to give a detailed explanation here. 
+
+Streaks are calculated relative to the date today. A year has approximately 52 weeks. Assume that a friend, lets name him John, has a weekly meeting goal set and the current week is week 10, 
+you started to meet your friend on week 7 and you consistently met him for week 8, 9 but not on yet on week 10. John's streak will be 3 on week 10. 
+If you managed to meet him on week 10, his streak will be incremented by 1, to 4. However, once the Monday of week 11 reaches, John's streak will 
+be reset back to 0. The goal deadline for weekly goals is 11:59pm on Sundays, and you did not manage to meet John for the whole of week 10. 
+Because of that, you failed to keep to your goal of meeting John weekly and so the streak resets. 
+
+Streaks for monthly and yearly goals are calculated the same way. Just switch the week numbers to months or years.
 
 ## Data Storage
 ### Saving the data
