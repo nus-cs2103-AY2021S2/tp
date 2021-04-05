@@ -45,6 +45,7 @@ public class ParserUtil {
      * @throws ParseException if {@code oneBasedIndex} is an empty string (index field is empty).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
+        // Remove the trailing white spaces at the beginning and ending of oneBasedIndex.
         String trimmedIndex = oneBasedIndex.trim();
 
         // Split the trimmedIndex by space to detect the presence of additional parameters.
