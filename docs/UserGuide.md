@@ -232,7 +232,7 @@ Format: `findPool n/KEYWORD [n/KEYWORD c/KEYWORD...]`
 
 ### 3.10 Clearing all entries : `clear`
 
-Clears all entries from the passenger list.
+Clears all entries from the passenger list and pool list.
 
 Format: `clear`
 
