@@ -153,7 +153,7 @@ Format: `list_task`
 [Return to Feature List](#feature-list)
 
 
-### Marking a task as done: `done_task`
+### Marking one or more tasks as done: `done_task`
 Marks one or more task from SOChedule Task List as completed.
 
 Format: `done_task INDEX1 [INDEX2] ...`
