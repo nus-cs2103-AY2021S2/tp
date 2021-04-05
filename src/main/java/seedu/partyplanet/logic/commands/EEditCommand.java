@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.partyplanet.logic.parser.CliSyntax.PREFIX_REMARK;
-import static seedu.partyplanet.model.Model.PREDICATE_SHOW_ALL_EVENTS;
 
 import java.util.List;
 import java.util.Optional;
@@ -78,7 +77,6 @@ public class EEditCommand extends Command {
 
         model.setEvent(eventToEdit, editedEvent);
         model.addState(String.format(MESSAGE_EDIT_EVENT_SUCCESS, editedEvent));
-        model.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
         return new CommandResult(String.format(MESSAGE_EDIT_EVENT_SUCCESS, editedEvent));
     }
 

@@ -21,6 +21,14 @@ PartyPlanet can get the planning of your birthday celebrations done faster than 
 3. Double-click the file to start the app.<br>
    ![Ui](images/Ui.png)
 
+
+<div markdown="block" class="alert-warning">
+
+**:warning: PartyPlanet will use its default Address Book and Event Book if it is unable to locate the 
+JSON files. It will start with an empty Address Book and Event Book if there is an error in the JSON files.**
+
+</div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Glossary of parameters
@@ -28,11 +36,11 @@ PartyPlanet can get the planning of your birthday celebrations done faster than 
 | Parameter | Prefix | Applicable to | Description |
 |---|---|---|---|
 | `ADDRESS` | `-a`, `--address` | Contact | Any value |
-| `BIRTHDAY` | `-b`, `--birthday` | Contact | Valid date, with or without a year:{::nomarkdown}<ul><li>Year must be non-negative if specified, and birthday must be in the past</li><li>If the day is incompatible with the month and year, the closest valid date may be matched<br>e.g. <code>29 Feb 2021</code> is mapped to <code>28 Feb 2021</code></li><li>Accepted date formats are listed below, case-insensitive:<ul><li>ISO format: <code>--01-09</code> / <code>1997-01-09</code></li><li>Dot delimited: <code>9.1</code> / <code>9.1.1997</code></li><li>Slash delimited: <code>9/1</code> / <code>9/1/1997</code></li><li>Long DMY format: <code>9 Jan</code> / <code>9 Jan 1997</code></li><li>Full DMY format: <code>9 January</code> / <code>9 January 1997</code></li><li>Long YMD format: <code>Jan 9</code> / <code>Jan 9 1997</code></li><li>Full YMD format: <code>January 9</code> / <code>January 9 1997</code></li></ul></li></ul>{:/} |
+| `BIRTHDAY` | `-b`, `--birthday` | Contact | Valid date, with or without a year:{::nomarkdown}<ul><li>Year must be a positive integer between 0001 and 9999 if specified, and birthday must be in the past</li><li>If the day is incompatible with the month and year, the closest valid date may be matched<br>e.g. <code>29 Feb 2021</code> is mapped to <code>28 Feb 2021</code></li><li>Accepted date formats are listed below, case-insensitive:<ul><li>ISO format: <code>--01-09</code> / <code>1997-01-09</code></li><li>Dot delimited: <code>9.1</code> / <code>9.1.1997</code></li><li>Slash delimited: <code>9/1</code> / <code>9/1/1997</code></li><li>Long DMY format: <code>9 Jan</code> / <code>9 Jan 1997</code></li><li>Full DMY format: <code>9 January</code> / <code>9 January 1997</code></li><li>Long YMD format: <code>Jan 9</code> / <code>Jan 9 1997</code></li><li>Full YMD format: <code>January 9</code> / <code>January 9 1997</code></li></ul></li></ul>{:/} |
 | `COMMAND` | - | - | Any valid command listed [below](#party-planet-commands) |
-| `DATE` | `-d`, `--date` | Event | Valid date with a year:{::nomarkdown}<ul><li>Year must be present and non-negative</li><li>See <code>BIRTHDAY</code> parameter above for available date formats</li></ul>{:/} |
+| `DATE` | `-d`, `--date` | Event | Valid date with a year:{::nomarkdown}<ul><li>Year must be present and a positive integer between 0001 and 9999</li><li>See <code>BIRTHDAY</code> parameter above for available date formats</li></ul>{:/} |
 | `DETAIL` | `-r`, `--remark` | Event | Any value |
-| `EMAIL` | `-e`, `--email` | Contact | In the format `USER@DOMAIN`:{::nomarkdown}<ul><li><code>USER</code> can only contain alphanumerics and any of <code>!#$%&'*+/=?`{&#124;}~^.-</code></li><li><code>DOMAIN</code> must be at least two characters long, start and end with two alphanumerics, and consist only of alphanumerics, periods or hyphens</li></ul>{:/} |
+| `EMAIL` | `-e`, `--email` | Contact | In the format `USER@DOMAIN`:{::nomarkdown}<ul><li><code>USER</code> can only contain alphanumerics and any of <code>!#$%&'*+/=?`{&#124;}~^.-</code></li><li><code>DOMAIN</code> must comprise at least one non-empty label with an optional trailing period.</li><li>A label contains at least one of alphanumerics or underscores, with optional hyphens. Labels cannot start with a hyphen.</li></ul>{:/} |
 | `INDEX` | - | any | Positive integer representing the ID present in the filtered list |
 | `NAME` | `-n`, `--name` | any | Any value containing only alphanumerics and spaces, unique to the contact/event list (case-sensitive) |
 | `PHONE` | `-p`, `--phone` | Contact | Any number at least three digits long |
@@ -173,17 +181,17 @@ Format: `list [--exact] [--any] [-n NAME]... [-t TAG]... [-b BIRTHDAY]... [-s SO
 1. If no search parameters specified, `list [-s SORT_FIELD] [-o SORT_ORDER]`: List all contacts in contact list
    * `-s` parameter optionally sorts contacts by `SORT_FIELD`:
      * `n`, `name`: names in (case-sensitive) lexicographical order (by default, if `-s` not specified)
-     * `b`, `birthday`: day of the year of the birthday
+     * `b`, `birthday`: day and month of the birthday (Insensitive to year, will not sort by year)
      * `u`, `upcoming`: days left to next upcoming birthday
    * `-o` parameter optionally determines the direction of sort, according to `SORT_ORDER`:
      * `a`, `asc`, `ascending`: ascending (by default, if `-o` not specified)
      * `d`, `desc`, `descending`: descending
-     * Sorts by upcoming birthday do not accept the `descending` order
+     * Sorts by upcoming birthday ignores the sort order parameter and only sorts in `ascending` order
 2. If search parameters specified, `list [--exact] [--any] [-n NAME]... [-t TAG]... [-b BIRTHDAY]... [-s SORT_FIELD] [-o SORT_ORDER]`: List all contacts matching the search criteria
    * Search criteria, case-insensitive:
-     * `-n` filters the contacts by name
-     * `-t` filters the contacts by tags
-     * `-b` filters contacts by birthday month
+     * `-n`, `--name` filters the contacts by name
+     * `-t`, `--tag` filters the contacts by tags
+     * `-b`, `--birthday` filters contacts by birthday month
        * If `BIRTHDAY` is "0" or unspecified, filtered contacts do not have a birthday.
        * Otherwise `BIRTHDAY` must be one of the 12 months, represented either by the month value or string,
          i.e. `12`, `Dec`, `December` filters contacts with a birthday in December.
@@ -193,12 +201,16 @@ Format: `list [--exact] [--any] [-n NAME]... [-t TAG]... [-b BIRTHDAY]... [-s SO
 
 Examples:
 * `list` Lists out all the contacts in the contact list.
-* `list -s asc` Lists out all the contacts in ascending lexicographical order.
-* `list -t friend` Lists out all contacts containing the tag "friend"
-* `list -n alice -t friend` Lists out all contacts whose name is "alice" and have the "friend" tag
-* `list --any -n alice -t friend` Lists out all contacts whose name is "alice" or who have the "friend" tag
-* `list --exact -n alice -t friend` Lists out all contacts whose name contain "alice" and who have tags that contain "friend"
-* `list --exact --any -n alice -t friend` Lists out all contacts whose name contain "alice" or who have tags that contain "friend"
+* `list -s n -o desc` Lists out all the contacts in descending lexicographical order.
+* `list -t friend` Lists out all contacts who has tags containing the word "friend"
+* `list -n alice -t friend` Lists out all contacts whose name contains the word "alice" and tag contains the word 
+  "friend"
+* `list --any -n alice -t friend` Lists out all contacts whose name contains "alice" or tag contains the word 
+  "friend"
+* `list --exact -n alice -t friend` Lists out all contacts whose name is exactly "alice" and who have tags that is 
+  exactly "friend"
+* `list --exact --any -n alice -t friend` Lists out all contacts whose name is "alice" or who have tags that is exactly 
+  "friend"
 * `list --any -n alice -n bob` Lists out all contacts whose name contain either "alice" or "bob"
 * `list --any -b 8 -b 9` Lists out all contacts whose birthdays are either in August or September
 
@@ -234,23 +246,32 @@ Shows a list of all events in PartyPlanet's Event List. Similar to `list`.
 
 Format: `elist [--exact] [--any] [-n NAME] [-r DETAIL]... [-s SORT] [-o ORDER]`
 
-* List out all events by default if no arguments specified.
-* `-n` and `-r` can be specified to filer the list by name and/or detail.
-  * Search is case-insensitive, e.g. `cHriStmAs` will match `Christmas`.
-  * Partial matches to names and details are performed by default, e.g. `key` will match `turkey`.
-  * If exact match is desired, specify an additional `--exact` flag.
-  * If multiple names/tags are specified, specifying `--any` filters contacts that fulfill any prefix match.
-* -s list out all events sorted according to SORT_FIELD. Possible values of SORT_FIELD:
-  * n: names in ascending lexicographical order
-  * d: event dates from past to present
-* -o list out all events sorted according to SORT_ORDER. Possible values of SORT_ORDER:
-  * asc: ascending lexicographical order
-  * desc: descending lexicographical order
+1. If no search parameters specified, `elist [-s SORT_FIELD] [-o SORT_ORDER]`: List out all events in event list.
+    * `-s` parameter optionally sorts events by `SORT_FIELD`. Possible values of 
+      `SORT_FIELD`:
+      * `n`, `name`: names (case-sensitive) in lexicographical order (by default, if `-s` not specified)
+      * `d`, `date`: event dates (Sensitive to year, will sort according to date with respect to year)
+      * `u`, `upcoming`: days left to next upcoming event (All events marked as `done` will appear at the bottom of the list regardless of the date)
+    * `-o` parameter optionally determines the direction of sort, according to `SORT_ORDER`. Possible values of SORT_ORDER:
+      * `a`, `asc`, `ascending`: ascending (by default, if `-o` not specified)
+      * `d`, `desc`, `descending`: descending
+      * Sorts by upcoming birthday ignores the sort order parameter and only sorts in `ascending` order
+2. If search parameters specified, `elist [--exact] [--any] [-n NAME]... [-r DETAIL]... [-s SORT_FIELD] [-o 
+   SORT_ORDER]`: List all events matching the search criteria
+    * Search criteria, case-insensitive: 
+        * `-n`, `--name` filters the events by event name
+        * `-r`, `--remark` filters the events by event details
+    * Search is case-insensitive, e.g. `cHriStmAs` will match `Christmas`.
+    * Partial matches to event names and details are performed by default, e.g. `key` will match `turkey`.
+    * If exact match is desired, specify an additional `--exact` flag.
+    * If multiple names/tags are specified, all specified search criteria must be fulfilled by each event by 
+      default, unless `--any` is specified for any match. 
+    * The filtered events can be additionally sorted using the `-s` and `-o` prefixes, as above.
 
 Examples:
 * `elist --exact -n Graduation party -r Get job` Lists out all events whose name is exactly "Graduation party" and remark is exactly "Get job"
 * `elist --any -n Christmas -r tarts` Lists out all events whose name contains "Christmas" or whose remarks contain "tarts"
-* `elist -s d` Lists out all events in chronological order
+* `elist -s d` Lists out all events in chronological order (ascending event date)
 
 #### Marking events as done : `edone`
 
@@ -280,7 +301,7 @@ Examples:
 * `edelete` deletes all events in the current Events List.
 * `edelete 1 2 3` deletes events at 1st, 2nd and 3rd indexes.
 
-### General Commmands
+### General Commands
 
 #### Showing help : `help`
 
@@ -300,8 +321,6 @@ Examples:
 
 The Autocomplete feature helps autocomplete when editing a Person or an Event to save the user time from retyping details. Currently, the feature only works for commands `edit` and `eedit`.
 
-For any valid and empty prefix that the user inputs, the relevant details will be autocompleted on `TAB` keypress down.
-
 Format:
 
 Edit: `edit INDEX [-n NAME] [-p PHONE] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY] [-r REMARK] TAB`
@@ -309,6 +328,25 @@ Edit: `edit INDEX [-n NAME] [-p PHONE] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-
 EEdit: `eedit INDEX [-n NAME] [-d DATE] [-r DETAIL] TAB`
 
 Note: Valid INDEX must be used in order for Autocomplete to function.
+
+Below are the respective behaviors of Autocomplete for various prefixes.
+
+All Prefixes except Tag: For any valid and empty prefix that the user inputs, the relevant details will be autocompleted on `TAB` keypress down.
+
+Tags: Due to the plural nature of Tags, the Tag Autocomplete will always add all remaining existing tags belonging to the user. 
+
+Below are some examples for example Person 1 with Tags "Hello" and "World".
+1. Empty Tag Prefix, e.g. `edit 1 -t`
+      * Expected Behavior: Autocompletes all tags from Person 1.
+      * Example Output: `edit 1 -t Hello -t World`
+2. Tag Prefix(es) containing valid existing Tags, e.g. `edit 1 -t World`
+      * Expected Behavior: Autocompletes remaining valid tags from Person 1.
+      * Example Output: `edit 1 -t World -t Hello`
+3. Tag Prefix(es) that do not currently belong to Person, `edit 1 -t Foo`
+      * Expected Behavior: Autocompletes and adds all tags from Person 1.
+      * Example Output: `edit 1 -t Foo -t Hello -t World`
+
+Note: Autocompleted Tags will be returned in alphabetical order and is case-sensitive.
 
 #### Undoing actions : `undo`
 
@@ -321,7 +359,9 @@ Can be invoked repeatedly until there is no more history from the current sessio
 
 Format: `undo`
 
-Shortcut: `CTRL + Z`
+Shortcuts: 
+PC: `CTRL + Z` 
+Mac: `CMD + Z`
 
 #### Redoing actions : `redo`
 
@@ -331,7 +371,9 @@ Can be invoked repeatedly until there are no more previously executed actions fr
 
 Format: `redo`
 
-Shortcut: `CTRL + SHIFT + Z` or `CTRL + Y`
+Shortcut: 
+PC: `CTRL + SHIFT + Z` or `CTRL + Y` 
+Mac: `CMD + SHIFT + Z` or `CMD + Y`
 
 #### Toggle theme : `theme`
 
@@ -355,8 +397,8 @@ Retrieves previously entered input.
 * Pressing `Down` arrow key undoes the history revert.
 * At the most recent input, pressing `Down` arrow key once more clears the text box.
 * `ESC` key clears the text box.
-* `CTRL + Z` key combination undoes the last change to the address or event books.
-* `CTRL + SHIFT + Z` or `CTRL + Y` key combinations redo the last undone change to the address or event books.
+* `CTRL + Z`(PC) or `CMD + Z` (Mac) key combination undoes the last change to the address or event books.
+* `CTRL + SHIFT + Z` or `CTRL + Y` (PC) or `CMD + SHIFT + Z` or `CMD + Y` (Mac) key combinations redo the last undone change to the address or event books.
 
 ### Coming Soon (Additional Features)
 * Archiving of Data Files

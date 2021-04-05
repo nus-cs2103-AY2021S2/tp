@@ -100,6 +100,7 @@ public class EditCommandTest {
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()),
                 new EventBook(model.getEventBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
+        showNoPerson(expectedModel);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -171,6 +172,15 @@ public class EditCommandTest {
 
         // different descriptor -> returns false
         assertFalse(standardCommand.equals(new EditFieldCommand(INDEX_FIRST_PERSON, DESC_BOB)));
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show no one.
+     */
+    private void showNoPerson(Model model) {
+        model.updateFilteredPersonList(p -> false);
+
+        assertTrue(model.getFilteredPersonList().isEmpty());
     }
 
 }

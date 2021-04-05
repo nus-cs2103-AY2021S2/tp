@@ -68,40 +68,35 @@ public class EListCommandParser implements Parser<EListCommand> {
     private List<Predicate<Event>> getPredicates(ArgumentMultimap argMap) throws ParseException {
         boolean isExactSearch = argMap.contains(FLAG_EXACT);
         List<Predicate<Event>> predicates = new ArrayList<>();
-        if (isExactSearch) {
+        List<String> allNames = ListCommandUtil.getParsedNames(argMap);
+        List<String> allRemarks = ListCommandUtil.getParsedRemarks(argMap);
 
-            List<String> allNames = argMap.getAllValues(PREFIX_NAME);
+        if (isExactSearch) {
             if (!allNames.isEmpty()) {
                 stringFind += "\n\u2022 Requires exact event name: " + String.join(", ", allNames);
             }
             for (String name : allNames) {
                 predicates.add(new EventNameContainsExactKeywordsPredicate(name));
             }
-
-            List<String> allDetails = argMap.getAllValues(PREFIX_REMARK);
-            if (!allDetails.isEmpty()) {
-                stringFind += "\n\u2022 Requires exact event detail: " + String.join(", ", allDetails);
+            if (!allRemarks.isEmpty()) {
+                stringFind += "\n\u2022 Requires exact event remark: " + String.join(", ", allRemarks);
             }
-            for (String detail : allDetails) {
-                predicates.add(new EventDetailContainsExactKeywordsPredicate(detail));
+            for (String remark : allRemarks) {
+                predicates.add(new EventDetailContainsExactKeywordsPredicate(remark));
             }
 
         } else {
-
-            List<String> allNames = argMap.getAllValues(PREFIX_NAME);
             if (!allNames.isEmpty()) {
                 stringFind += "\n\u2022 Requires partial event name: " + String.join(", ", allNames);
             }
             for (String name : allNames) {
                 predicates.add(new EventNameContainsKeywordsPredicate(name));
             }
-
-            List<String> allDetails = argMap.getAllValues(PREFIX_REMARK);
-            if (!allDetails.isEmpty()) {
-                stringFind += "\n\u2022 Requires partial event detail: " + String.join(", ", allDetails);
+            if (!allRemarks.isEmpty()) {
+                stringFind += "\n\u2022 Requires partial event remark: " + String.join(", ", allRemarks);
             }
-            for (String detail : allDetails) {
-                predicates.add(new EventDetailContainsKeywordsPredicate(detail));
+            for (String remark : allRemarks) {
+                predicates.add(new EventDetailContainsKeywordsPredicate(remark));
             }
         }
         if (isExactSearch && predicates.isEmpty()) {

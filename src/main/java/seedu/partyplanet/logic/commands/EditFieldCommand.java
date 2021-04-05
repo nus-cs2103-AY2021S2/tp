@@ -1,7 +1,6 @@
 package seedu.partyplanet.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.partyplanet.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -59,7 +58,6 @@ public class EditFieldCommand extends EditCommand {
         }
 
         model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         String output = String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
         model.addState(output);
