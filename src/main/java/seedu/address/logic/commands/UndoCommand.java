@@ -15,7 +15,7 @@ import seedu.address.model.colabfolderhistory.exceptions.NoUndoableStateExceptio
 public class UndoCommand extends Command {
 
     public static final String COMMAND_WORD = "undo";
-    public static final String MESSAGE_SUCCESS = "Undo successful!\n%s";
+    public static final String MESSAGE_SUCCESS = "Undo successful!\n";
     public static final String MESSAGE_FAILURE = "No more commands to undo.";
 
     @Override
@@ -32,8 +32,14 @@ public class UndoCommand extends Command {
                         new ShowTodayUiCommand()).setIgnoreHistory(true);
             }
 
-            return new CommandResult(String.format(MESSAGE_SUCCESS, result.getFeedbackToUser()),
-                    result.getUiCommand()).setIgnoreHistory(true);
+            /*
+             * TODO: Fix in v2.
+             * Originally, feedback to user was meant to show more detailed feedback message.
+             * However, the current message was found to be unintuitive for users.
+             * Changing this would require a large modification which is not possible in v1.4 due to module guidelines.
+             * I have changed the message to show a generic "Undo Successful" for now.
+             */
+            return new CommandResult(MESSAGE_SUCCESS, result.getUiCommand()).setIgnoreHistory(true);
         } catch (NoUndoableStateException e) {
             throw new CommandException(MESSAGE_FAILURE);
         }
