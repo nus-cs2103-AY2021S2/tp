@@ -11,6 +11,7 @@ import java.util.Objects;
 public class GuiSettings implements Serializable {
 
     public static final String DEFAULT_THEME = "material";
+    private static String loadedTheme;
 
     private static final double DEFAULT_HEIGHT = 600;
     private static final double DEFAULT_WIDTH = 740;
@@ -54,6 +55,14 @@ public class GuiSettings implements Serializable {
 
     public String getApplicationTheme() {
         return applicationTheme;
+    }
+
+    public static String getLoadedTheme() {
+        return loadedTheme;
+    }
+
+    public static void setLoadedTheme(String themeToLoad) {
+        loadedTheme = themeToLoad;
     }
 
     @Override
