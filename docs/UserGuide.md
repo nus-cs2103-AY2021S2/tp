@@ -145,7 +145,7 @@ Adds a member along with his/ her contract number to contact list.
 
 Format: `addMember NAME -p PHONE_NUMBER -e EMAIL [-r ROLE]`
 
-* The field ROLE is optional
+* NAME field can take on any values with alphanumeric characters.
 * If role field is not specified, person will be assigned a default role of member.
 
 Examples: 
@@ -183,9 +183,9 @@ Edits the existing Member in the application with the name you specified.
 Format: `editMember NAME_IN_LIST [-n NEW_NAME] [-p NEW_PHONE_NUMBER] [-e NEW_EMAIL] [-r ROLE]`
 
 * Edits the member at the specified NAME_IN_LIST.
-* The fields NEW_NAME, NEW_PHONE_NUMBER, NEW_EMAIL, NEW_ROLE are all optional
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+* NEW_NAME field can take on any values with alphanumeric characters.
 
 Examples: 
 * `editMember Alice -e newAlice@gmail.com -r Events head`
@@ -196,6 +196,8 @@ Examples:
 Find all members whose details contain any of the specified keywords.
 
 Format: `findMembers KEYWORD [MORE_KEYWORDS]`
+
+* Mem 
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 * Keywords are case-insensitive.
@@ -255,7 +257,6 @@ Edits the task at the task index that is specified with the new details you have
 Format: `editTask INDEX [-n NEW_TITLE] [-d NEW_DESCRIPTION] [-b NEW_DEADLINE] [-s NEW_STATUS] [-p NEW_PRIORITY] [-a NEW_ASSIGNEE]`
 
 * Edits the Task at the specified index.
-* The fields NEW_TITLE, NEW_DESCRIPTION, NEW_DEADLINE, NEW_STATUS, NEW_PRIORITY, NEW_ASSIGNEE are all optional
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * If the assignee field is being edited, the previous assignees will be overwritten. 
