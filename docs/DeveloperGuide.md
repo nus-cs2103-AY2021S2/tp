@@ -196,23 +196,36 @@ and only changes the specified attribute.
 #### Implementation
 ![EditSequenceDiagram](images/EditSequenceDiagram.png)
 
-Step 1: The user inputs `edit 1 n/apple` wanting to change the first item's name. <br> 
-Step 2: The input is passed to `LogicManager` in a form of a String. <br>
-Step 3: The input string is passed to `StoreMandoParser` for it to be parsed. <br>
+Step 1: The user inputs `edit 1 n/apple` wanting to change the first item's name.
+
+Step 2: The input is passed to `LogicManager` in a form of a String.
+
+Step 3: The input string is passed to `StoreMandoParser` for it to be parsed.
+
 Step 4: The input string is separated into command keyword and arguments containing the prefixes with the updated item's
-attribute. <br>
-Step 5: The argument is passed to `EditCommandParser` to check if the user input follows the edit command format. <br>
-Step 6: `EditCommandParser` creates `EditItemDescriptor` through `EditCommand`. <br>
-Step 7: Based on the user input string, the `EditItemDescriptor` updates it's own attributes. <br>
-Step 8: `EditCommandParser` creates an `EditCommand` with the item index and `EditItemDescriptor`. <br>
-Step 9: The new `EditCommand` is pass from `EditCommandParser` back to `LogicManager`.<br>
-Step 10: `LogicManager` then calls the **execute** method of `EditCommand`. <br>
+attribute.
+
+Step 5: The argument is passed to `EditCommandParser` to check if the user input follows the edit command format.
+
+Step 6: `EditCommandParser` creates `EditItemDescriptor` through `EditCommand`.
+
+Step 7: Based on the user input string, the `EditItemDescriptor` updates it's own attributes.
+
+Step 8: `EditCommandParser` creates an `EditCommand` with the item index and `EditItemDescriptor`.
+
+Step 9: The new `EditCommand` is pass from `EditCommandParser` back to `LogicManager`.
+
+Step 10: `LogicManager` then calls the **execute** method of `EditCommand`.
+
 Step 11: `EditCommand` calls **getFilteredList** method to get the list of item from `Model`. It also calls the 
-**createEditedItem** method to create the edited item. <br>
+**createEditedItem** method to create the edited item.
+
 Step 12: From the index argument of `EditCommand`, it gets the targetted item from the list of items and set it to the
-edit item.<br>
+edit item.
+
 Step 13: `EditCommand` will create a `CommandResult` and pass to `LogicManager` with message containing the edited 
-item's description and possibly some warning. <br>
+item's description and possibly some warning.
+
 Step 14: Depending on the entire execution, the `LogicManager` either receive an exception or the `CommandResult`. The 
 GUI proceeds to show it on the result display.
 
