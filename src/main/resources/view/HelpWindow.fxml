@@ -70,25 +70,28 @@
                         <cellValueFactory><PropertyValueFactory property="action" />
                         </cellValueFactory>
                     </TableColumn>
-                    <TableColumn prefWidth="499.0" resizable="false" text="Format">
-                        <cellValueFactory><PropertyValueFactory property="format" />
+                    <TableColumn prefWidth="499.0" resizable="false" text="Example">
+                        <cellValueFactory><PropertyValueFactory property="example" />
                         </cellValueFactory>
                     </TableColumn>
                 </columns>
                 <items>
                     <FXCollections fx:factory="observableArrayList">
-                        <UserGuide action="Help" format="help" />
-                        <UserGuide action="Toggle" format="toggle THEME" />
-                        <UserGuide action="Exit" format="exit" />
-                        <UserGuide action="Add" format="add -x METHOD -u URL [-d DATA] [-h HEADER]… [-t TAG]…" />
-                        <UserGuide action="Edit" format="edit INDEX [-x METHOD] [-u URL] [-d DATA] [-h HEADER]… [-t TAG]…" />
-                        <UserGuide action="Show" format="show INDEX" />
-                        <UserGuide action="Remove" format="remove INDEX" />
-                        <UserGuide action="Find" format="find KEYWORD [MORE_KEYWORDS]…" />
-                        <UserGuide action="List" format="list" />
-                        <UserGuide action="Clear" format="clear" />
-                        <UserGuide action="Send" format="send INDEX" />
-                        <UserGuide action="Run" format="run -x METHOD -u URL [-d DATA] [-h HEADER]…" />
+                        <UserGuide action="Help" example="help" />
+                        <UserGuide action="Toggle" example="toggle material" />
+                        <UserGuide action="Exit" example="exit" />
+                        <UserGuide action="Add"
+                                   example="add -x GET -u https://api.data.gov.sg/v1/technology/ipos/patents -t singapore" />
+                        <UserGuide action="Edit"
+                                   example="edit 1 -t tutorial " />
+                        <UserGuide action="Show" example="show 1" />
+                        <UserGuide action="Remove" example="remove 1" />
+                        <UserGuide action="Find" example="find singapore" />
+                        <UserGuide action="List" example="list" />
+                        <UserGuide action="Clear" example="clear" />
+                        <UserGuide action="Send" example="send 1" />
+                        <UserGuide action="Run"
+                                   example="run -x get -u https://api.data.gov.sg/v1/environment/psi" />
                     </FXCollections>
                 </items>
             </TableView>

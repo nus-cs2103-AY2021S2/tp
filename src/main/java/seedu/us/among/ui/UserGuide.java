@@ -5,7 +5,7 @@ package seedu.us.among.ui;
  */
 public class UserGuide {
     private String action = "";
-    private String format = "";
+    private String example = "";
 
     public UserGuide() {
         this("", "");
@@ -13,11 +13,11 @@ public class UserGuide {
 
     /**
      * @param action description of the action
-     * @param format description of the format
+     * @param example description of the example
      */
-    public UserGuide(String action, String format) {
+    public UserGuide(String action, String example) {
         setAction(action);
-        setFormat(format);
+        setExample(example);
     }
 
     public String getAction() {
@@ -28,11 +28,11 @@ public class UserGuide {
         this.action = action;
     }
 
-    public String getFormat() {
-        return format;
+    public String getExample() {
+        return example;
     }
 
-    public void setFormat(String format) {
-        this.format = format;
+    public void setExample(String example) {
+        this.example = example;
     }
 }

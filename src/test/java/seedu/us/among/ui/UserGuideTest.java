@@ -20,14 +20,14 @@ class UserGuideTest {
     }
 
     @Test
-    void getFormat() {
-        assertEquals(userGuide.getFormat(), "");
+    void getExample() {
+        assertEquals(userGuide.getExample(), "");
     }
 
     @Test
     void setFormat() {
-        userGuide.setFormat("Hello");
-        assertEquals(userGuide.getFormat(), "Hello");
-        userGuide.setFormat("");
+        userGuide.setExample("Hello");
+        assertEquals(userGuide.getExample(), "Hello");
+        userGuide.setExample("");
     }
 }
