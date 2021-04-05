@@ -163,6 +163,14 @@ public class ModelManager implements Model {
         updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
     }
 
+    @Override
+    public void editAssignee(Person target, Person editedPerson) {
+        CollectionUtil.requireAllNonNull(target, editedPerson);
+
+        heyMatez.editAssignee(target.getName(), editedPerson.getName());
+        updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**

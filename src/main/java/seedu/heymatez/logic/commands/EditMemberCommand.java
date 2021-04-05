@@ -33,8 +33,8 @@ public class EditMemberCommand extends Command {
             + "Parameters: NAME_IN_LIST "
             + "[" + PREFIX_NEW_NAME + " NEW_NAME] "
             + "[" + PREFIX_PHONE + " NEW_PHONE] "
-            + "[" + PREFIX_EMAIL + " EMAIL] "
-            + "[" + PREFIX_ROLE + " ROLE] "
+            + "[" + PREFIX_EMAIL + " NEW_EMAIL] "
+            + "[" + PREFIX_ROLE + " NEW_ROLE] "
             + "Example: " + COMMAND_WORD + " John "
             + PREFIX_NEW_NAME + " John Lim "
             + PREFIX_PHONE + " 91234567 "
@@ -86,6 +86,7 @@ public class EditMemberCommand extends Command {
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.editAssignee(personToEdit, editedPerson);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }
 

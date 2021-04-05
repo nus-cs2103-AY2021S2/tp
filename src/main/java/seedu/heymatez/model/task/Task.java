@@ -106,9 +106,10 @@ public class Task {
 
     /**
      * Returns an updated task with the assignee specified removed from the set of
-     * assignees assignes to this task
-     * @param assignee that is about to be removed
-     * @return Task that is updated without the specified assignee
+     * assignees assignees to this task.
+     *
+     * @param assignee that is about to be removed.
+     * @return Task that is updated without the specified assignee.
      */
     public Task removeAssignee(Assignee assignee) {
         Set<Assignee> copyAssignees = new HashSet<>();
@@ -116,6 +117,21 @@ public class Task {
         copyAssignees.remove(assignee);
 
         return new Task(title, description, deadline, taskStatus, priority, copyAssignees);
+    }
+
+    /**
+     * Returns an updated task with {@code assignee} edited from the set of assignees to this task.
+     *
+     * @param targetAssignee Assignee that is to be edited.
+     * @param editedAssignee Edited assignee.
+     * @return Task that is updated with the edited assignee.
+     */
+    public Task editAssignee(Assignee targetAssignee, Assignee editedAssignee) {
+        Set<Assignee> newAssignees = new HashSet<>(this.assignees);
+        newAssignees.remove(targetAssignee);
+        newAssignees.add(editedAssignee);
+
+        return new Task(title, description, deadline, taskStatus, priority, newAssignees);
     }
 
     public boolean isUnassigned() {

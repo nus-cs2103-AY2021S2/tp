@@ -102,6 +102,25 @@ public class UniqueTaskList implements Iterable<Task> {
         }
 
     }
+
+    /**
+     * Replaces the given Assignee {@code targetName} with {@code editedName} in tasks from the task list.
+     */
+    public void editAssignee(Name targetName, Name editedName) {
+        requireAllNonNull(targetName, editedName);
+        Assignee targetAssignee = new Assignee(targetName.fullName);
+        Assignee editedAssignee = new Assignee(editedName.fullName);
+
+        for (int i = 0; i < internalList.size(); i++) {
+            Task task = internalList.get(i);
+
+            if (task.hasAssignee(targetAssignee)) {
+                Task updatedTask = task.editAssignee(targetAssignee, editedAssignee);
+                internalList.set(i, updatedTask);
+            }
+        }
+    }
+
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
