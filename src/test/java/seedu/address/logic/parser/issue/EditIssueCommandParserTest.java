@@ -3,7 +3,7 @@ package seedu.address.logic.parser.issue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.issue.IssueCommandTestUtil.CATEGORY_DESC_10_100;
 import static seedu.address.logic.commands.issue.IssueCommandTestUtil.DESCRIPTION_DESC_10_100;
-import static seedu.address.logic.commands.issue.IssueCommandTestUtil.DESCRIPTION_DESC_20_109;
+import static seedu.address.logic.commands.issue.IssueCommandTestUtil.DESCRIPTION_DESC_11_110;
 import static seedu.address.logic.commands.issue.IssueCommandTestUtil.INVALID_CATEGORY_DESC;
 import static seedu.address.logic.commands.issue.IssueCommandTestUtil.INVALID_DESCRIPTION_DESC;
 import static seedu.address.logic.commands.issue.IssueCommandTestUtil.INVALID_ROOM_NUMBER_DESC;
@@ -12,14 +12,14 @@ import static seedu.address.logic.commands.issue.IssueCommandTestUtil.INVALID_TI
 import static seedu.address.logic.commands.issue.IssueCommandTestUtil.ROOM_NUMBER_DESC_10_100;
 import static seedu.address.logic.commands.issue.IssueCommandTestUtil.STATUS_DESC_10_100;
 import static seedu.address.logic.commands.issue.IssueCommandTestUtil.TIMESTAMP_DESC_10_100;
-import static seedu.address.logic.commands.issue.IssueCommandTestUtil.TIMESTAMP_DESC_20_109;
+import static seedu.address.logic.commands.issue.IssueCommandTestUtil.TIMESTAMP_DESC_11_110;
 import static seedu.address.logic.commands.issue.IssueCommandTestUtil.VALID_ISSUE_CATEGORY_10_100;
 import static seedu.address.logic.commands.issue.IssueCommandTestUtil.VALID_ISSUE_DESCRIPTION_10_100;
-import static seedu.address.logic.commands.issue.IssueCommandTestUtil.VALID_ISSUE_DESCRIPTION_20_109;
+import static seedu.address.logic.commands.issue.IssueCommandTestUtil.VALID_ISSUE_DESCRIPTION_11_110;
 import static seedu.address.logic.commands.issue.IssueCommandTestUtil.VALID_ISSUE_ROOM_NUMBER_10_100;
 import static seedu.address.logic.commands.issue.IssueCommandTestUtil.VALID_ISSUE_STATUS_10_100;
 import static seedu.address.logic.commands.issue.IssueCommandTestUtil.VALID_ISSUE_TIMESTAMP_10_100;
-import static seedu.address.logic.commands.issue.IssueCommandTestUtil.VALID_ISSUE_TIMESTAMP_20_109;
+import static seedu.address.logic.commands.issue.IssueCommandTestUtil.VALID_ISSUE_TIMESTAMP_11_110;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
@@ -185,12 +185,12 @@ public class EditIssueCommandParserTest {
                 + TIMESTAMP_DESC_10_100
                 + DESCRIPTION_DESC_10_100
                 + TIMESTAMP_DESC_10_100
-                + DESCRIPTION_DESC_20_109
-                + TIMESTAMP_DESC_20_109;
+                + DESCRIPTION_DESC_11_110
+                + TIMESTAMP_DESC_11_110;
 
         EditIssueDescriptor descriptor = new EditIssueDescriptorBuilder()
-                .withDescription(VALID_ISSUE_DESCRIPTION_20_109)
-                .withTimestamp(VALID_ISSUE_TIMESTAMP_20_109)
+                .withDescription(VALID_ISSUE_DESCRIPTION_11_110)
+                .withTimestamp(VALID_ISSUE_TIMESTAMP_11_110)
                 .build();
         EditIssueCommand expectedCommand = new EditIssueCommand(targetIndex, descriptor);
 

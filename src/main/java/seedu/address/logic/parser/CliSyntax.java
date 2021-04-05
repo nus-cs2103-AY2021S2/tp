@@ -25,4 +25,7 @@ public class CliSyntax {
 
     public static final Prefix PREFIX_ALIAS = new Prefix("a/");
     public static final Prefix PREFIX_COMMAND = new Prefix("cmd/");
+
+    public static final Prefix PREFIX_RESIDENT_INDEX = new Prefix("ri/");
+    public static final Prefix PREFIX_ROOM_INDEX = new Prefix("oi/");
 }

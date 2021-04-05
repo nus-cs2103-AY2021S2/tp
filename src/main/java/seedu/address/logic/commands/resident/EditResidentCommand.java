@@ -47,7 +47,7 @@ public class EditResidentCommand extends Command {
 
     public static final String MESSAGE_EDIT_RESIDENT_SUCCESS = "Edited Resident: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_RESIDENT = "This resident already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_RESIDENT = "This resident already exists in SunRez.";
     public static final String MESSAGE_RESIDENT_ALLOCATED_FAILURE =
             "The resident has been allocated to a room. Please deallocate the resident before editing.";
 

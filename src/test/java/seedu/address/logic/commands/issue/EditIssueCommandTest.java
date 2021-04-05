@@ -6,12 +6,12 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.issue.EditIssueCommand.EditIssueDescriptor;
 import static seedu.address.logic.commands.issue.IssueCommandTestUtil.DESC_10_100;
-import static seedu.address.logic.commands.issue.IssueCommandTestUtil.DESC_20_109;
-import static seedu.address.logic.commands.issue.IssueCommandTestUtil.VALID_ISSUE_CATEGORY_20_109;
-import static seedu.address.logic.commands.issue.IssueCommandTestUtil.VALID_ISSUE_DESCRIPTION_20_109;
-import static seedu.address.logic.commands.issue.IssueCommandTestUtil.VALID_ISSUE_ROOM_NUMBER_20_109;
-import static seedu.address.logic.commands.issue.IssueCommandTestUtil.VALID_ISSUE_STATUS_20_109;
-import static seedu.address.logic.commands.issue.IssueCommandTestUtil.VALID_ISSUE_TIMESTAMP_20_109;
+import static seedu.address.logic.commands.issue.IssueCommandTestUtil.DESC_11_110;
+import static seedu.address.logic.commands.issue.IssueCommandTestUtil.VALID_ISSUE_CATEGORY_11_110;
+import static seedu.address.logic.commands.issue.IssueCommandTestUtil.VALID_ISSUE_DESCRIPTION_11_110;
+import static seedu.address.logic.commands.issue.IssueCommandTestUtil.VALID_ISSUE_ROOM_NUMBER_11_110;
+import static seedu.address.logic.commands.issue.IssueCommandTestUtil.VALID_ISSUE_STATUS_11_110;
+import static seedu.address.logic.commands.issue.IssueCommandTestUtil.VALID_ISSUE_TIMESTAMP_11_110;
 import static seedu.address.logic.commands.issue.IssueCommandTestUtil.showIssueAtIndex;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
@@ -41,25 +41,27 @@ public class EditIssueCommandTest {
         Issue issueToEdit = model.getFilteredIssueList().get(0);
 
         Issue editedIssue = new IssueBuilder(issueToEdit)
-                .withRoomNumber("11-111") // not using 20-109 as it will result in duplicate
-                .withDescription(VALID_ISSUE_DESCRIPTION_20_109)
-                .withTimestamp(VALID_ISSUE_TIMESTAMP_20_109)
-                .withStatus(VALID_ISSUE_STATUS_20_109)
-                .withCategory(VALID_ISSUE_CATEGORY_20_109)
+                .withRoomNumber("09-100") // not using 11-110 as it will result in duplicate
+                .withDescription(VALID_ISSUE_DESCRIPTION_11_110)
+                .withTimestamp(VALID_ISSUE_TIMESTAMP_11_110)
+                .withStatus(VALID_ISSUE_STATUS_11_110)
+                .withCategory(VALID_ISSUE_CATEGORY_11_110)
                 .build();
 
         EditIssueDescriptor descriptor = new EditIssueDescriptorBuilder()
-                .withRoomNumber("11-111")
-                .withDescription(VALID_ISSUE_DESCRIPTION_20_109)
-                .withTimestamp(VALID_ISSUE_TIMESTAMP_20_109)
-                .withStatus(VALID_ISSUE_STATUS_20_109)
-                .withCategory(VALID_ISSUE_CATEGORY_20_109)
+                .withRoomNumber("09-100")
+                .withDescription(VALID_ISSUE_DESCRIPTION_11_110)
+                .withTimestamp(VALID_ISSUE_TIMESTAMP_11_110)
+                .withStatus(VALID_ISSUE_STATUS_11_110)
+                .withCategory(VALID_ISSUE_CATEGORY_11_110)
                 .build();
         EditIssueCommand editIssueCommand = new EditIssueCommand(INDEX_FIRST, descriptor);
 
         String expectedMessage = String.format(EditIssueCommand.MESSAGE_EDIT_ISSUE_SUCCESS, editedIssue);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(
+                new AddressBook(model.getAddressBook()),
+                new UserPrefs());
         expectedModel.setIssue(issueToEdit, editedIssue);
 
         assertCommandSuccess(editIssueCommand, model, expectedMessage, expectedModel);
@@ -72,13 +74,13 @@ public class EditIssueCommandTest {
 
         IssueBuilder issueInList = new IssueBuilder(lastIssue);
         Issue editedIssue = issueInList
-                .withDescription(VALID_ISSUE_DESCRIPTION_20_109)
-                .withCategory(VALID_ISSUE_CATEGORY_20_109)
+                .withDescription(VALID_ISSUE_DESCRIPTION_11_110)
+                .withCategory(VALID_ISSUE_CATEGORY_11_110)
                 .build();
 
         EditIssueDescriptor descriptor = new EditIssueDescriptorBuilder(editedIssue)
-                .withDescription(VALID_ISSUE_DESCRIPTION_20_109)
-                .withCategory(VALID_ISSUE_CATEGORY_20_109)
+                .withDescription(VALID_ISSUE_DESCRIPTION_11_110)
+                .withCategory(VALID_ISSUE_CATEGORY_11_110)
                 .build();
 
         EditIssueCommand editIssueCommand = new EditIssueCommand(indexLastIssue, descriptor);
@@ -110,16 +112,17 @@ public class EditIssueCommandTest {
         Issue issueInFilteredList = model.getFilteredIssueList()
                 .get(INDEX_FIRST.getZeroBased());
         Issue editedIssue = new IssueBuilder(issueInFilteredList)
-                .withRoomNumber(VALID_ISSUE_ROOM_NUMBER_20_109)
+                .withRoomNumber(VALID_ISSUE_ROOM_NUMBER_11_110)
                 .build();
         EditIssueDescriptor descriptor = new EditIssueDescriptorBuilder()
-                .withRoomNumber(VALID_ISSUE_ROOM_NUMBER_20_109)
+                .withRoomNumber(VALID_ISSUE_ROOM_NUMBER_11_110)
                 .build();
         EditIssueCommand editIssueCommand = new EditIssueCommand(INDEX_FIRST, descriptor);
 
         String expectedMessage = String.format(EditIssueCommand.MESSAGE_EDIT_ISSUE_SUCCESS, editedIssue);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManagerWithExistingRoom(new AddressBook(model.getAddressBook()),
+                new UserPrefs());
         expectedModel.setIssue(model.getFilteredIssueList().get(0), editedIssue);
 
         assertCommandSuccess(editIssueCommand, model, expectedMessage, expectedModel);
@@ -141,7 +144,7 @@ public class EditIssueCommandTest {
     public void execute_invalidIssueIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredIssueList().size() + 1);
         EditIssueDescriptor descriptor = new EditIssueDescriptorBuilder()
-                .withRoomNumber(VALID_ISSUE_ROOM_NUMBER_20_109)
+                .withRoomNumber(VALID_ISSUE_ROOM_NUMBER_11_110)
                 .build();
 
         EditIssueCommand editIssueCommand = new EditIssueCommand(outOfBoundIndex, descriptor);
@@ -161,7 +164,7 @@ public class EditIssueCommandTest {
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getIssueList().size());
 
         EditIssueDescriptor descriptor = new EditIssueDescriptorBuilder()
-                .withRoomNumber(VALID_ISSUE_ROOM_NUMBER_20_109)
+                .withRoomNumber(VALID_ISSUE_ROOM_NUMBER_11_110)
                 .build();
         EditIssueCommand editIssueCommand = new EditIssueCommand(outOfBoundIndex, descriptor);
 
@@ -170,10 +173,10 @@ public class EditIssueCommandTest {
 
     @Test
     public void equals() {
-        final EditIssueCommand standardCommand = new EditIssueCommand(INDEX_FIRST, DESC_20_109);
+        final EditIssueCommand standardCommand = new EditIssueCommand(INDEX_FIRST, DESC_11_110);
 
         // same values -> returns true
-        EditIssueDescriptor copyDescriptor = new EditIssueDescriptor(DESC_20_109);
+        EditIssueDescriptor copyDescriptor = new EditIssueDescriptor(DESC_11_110);
         EditIssueCommand commandWithSameValues = new EditIssueCommand(INDEX_FIRST, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
@@ -187,10 +190,42 @@ public class EditIssueCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> return false
-        assertFalse(standardCommand.equals(new EditIssueCommand(INDEX_SECOND, DESC_20_109)));
+        assertFalse(standardCommand.equals(new EditIssueCommand(INDEX_SECOND, DESC_11_110)));
 
         // different index -> return false
         assertFalse(standardCommand.equals(new EditIssueCommand(INDEX_FIRST, DESC_10_100)));
+    }
+
+    /**
+     * A Model stub that definitely has the room the issue is being edited to
+     */
+    private class ModelManagerWithExistingRoom extends ModelManager {
+
+        public ModelManagerWithExistingRoom(AddressBook addressBook, UserPrefs userPrefs) {
+            super(addressBook, userPrefs);
+        }
+
+        @Override
+        public boolean hasRoom(seedu.address.model.room.RoomNumber roomNumber) {
+            return true;
+        }
+
+    }
+
+    /**
+     * A Model stub that definitely DOES NOT has the room the issue is being edited to
+     */
+    private class ModelManagerWithNoExistingRoom extends ModelManager {
+
+        public ModelManagerWithNoExistingRoom(AddressBook addressBook, UserPrefs userPrefs) {
+            super(addressBook, userPrefs);
+        }
+
+        @Override
+        public boolean hasRoom(seedu.address.model.room.RoomNumber roomNumber) {
+            return false;
+        }
+
     }
 
 }
