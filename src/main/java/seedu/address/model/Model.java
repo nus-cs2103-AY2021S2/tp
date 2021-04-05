@@ -182,6 +182,12 @@ public interface Model {
     void editAssignment(Module module, int index, LocalDateTime edit);
 
     /**
+     * Toggles the done status of the assignemnt at {@code index} in the {@code module}.
+     * {@code module} must already exist in the remindMe and {@code index} must be a valid index.
+     */
+    void toggleDoneStatusForAssignment(Module module, int index);
+
+    /**
      * Returns true if an exam with the same date and time as {@code module} exists in the
      * RemindMe.
      */

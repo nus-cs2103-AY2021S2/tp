@@ -294,6 +294,13 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void toggleDoneStatusForAssignment(Module module, int index) {
+        requireNonNull(module);
+        remindMe.toggleDoneStatusForAssignment(module, index);
+
+    }
+
+    @Override
     public boolean hasExam(Module module, Exam exam) {
         requireAllNonNull(module, exam);
         return remindMe.hasExam(module, exam);

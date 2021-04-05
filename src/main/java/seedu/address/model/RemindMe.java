@@ -282,6 +282,16 @@ public class RemindMe implements ReadOnlyRemindMe {
     }
 
     /**
+     * Toggles the done status of the assignment in {@code module} at {@code index}.
+     * {@code module} must already exist in the RemindMe and {@code index} must be a valid index.
+     */
+    public void toggleDoneStatusForAssignment(Module module, int index) {
+        Module edited = modules.getModule(module);
+        edited.toggleAssignmentDoneStatus(index);
+        modules.setModule(module, edited);
+    }
+
+    /**
      * Edits the description of the assignment in {@code module} at {@code index} with the given {@code edit}.
      * {@code module} must already exist in the remindMe and {@code index} must be a valid index.
      */
