@@ -48,7 +48,9 @@ public class LogicManagerTest {
                 new JsonSmartLibStorage(temporaryFolder.resolve("smartLib.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage = new StorageManager(smartLibStorage, userPrefsStorage);
-        logic = new LogicManager(model, storage);
+        ModelManager modelManager = new ModelManager();
+        logic = new LogicManager(modelManager, storage);
+
     }
 
     @Test
@@ -160,5 +162,4 @@ public class LogicManagerTest {
             throw DUMMY_IO_EXCEPTION;
         }
     }
-
 }
