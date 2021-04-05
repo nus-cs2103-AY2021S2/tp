@@ -57,12 +57,12 @@ public class UniqueEventListTest {
     }
 
     @Test
-    public void setPerson_nullTargetEvent_throwsNullPointerException() {
+    public void setEvent_nullTargetEvent_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueEventList.setEvent(null, JAN));
     }
 
     @Test
-    public void setPerson_nullEditedEvent_throwsNullPointerException() {
+    public void setEvent_nullEditedEvent_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueEventList.setEvent(JAN, null));
     }
 
@@ -113,7 +113,7 @@ public class UniqueEventListTest {
     }
 
     @Test
-    public void remove_eventDoesNotExist_throwsPersonNotFoundException() {
+    public void remove_eventDoesNotExist_throwsEventNotFoundException() {
         assertThrows(EventNotFoundException.class, () -> uniqueEventList.remove(JAN));
     }
 
