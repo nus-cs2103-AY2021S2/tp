@@ -3,11 +3,9 @@ package seedu.address.ui.budgetpanel;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import seedu.address.model.budget.Budget;
 import seedu.address.ui.UiPart;
-import seedu.address.ui.reminderpanel.ReminderCard;
 
 public class BudgetCard extends UiPart<Region> {
 
@@ -30,8 +28,6 @@ public class BudgetCard extends UiPart<Region> {
     private Label title;
     @FXML
     private Label description;
-    @FXML
-    private Label time;
 
     /**
      * Creates a {@code BudgetCard} with the given {@code Reminder} and index to
@@ -41,8 +37,9 @@ public class BudgetCard extends UiPart<Region> {
         super(FXML);
         this.budget = budget;
         id.setText(displayedIndex + ". ");
+
         description.setText(String.format("Budget: %d\nTotal Cost of Appointments: %d",
-        this.budget.getValue(), this.budget.getTotalCost()));
+            this.budget.getValue(), this.budget.getTotalCost()));
     }
 
 
@@ -54,7 +51,7 @@ public class BudgetCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof ReminderCard)) {
+        if (!(other instanceof BudgetCard)) {
             return false;
         }
 

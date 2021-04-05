@@ -304,6 +304,11 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public ObservableList<Budget> getBudgetList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
         public void deleteGrade(Grade grade) {
             throw new AssertionError("This method should not be called.");
         }
