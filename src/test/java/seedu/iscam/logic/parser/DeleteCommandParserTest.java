@@ -1,8 +1,8 @@
 package seedu.iscam.logic.parser;
 
-import static seedu.iscam.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.iscam.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.iscam.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.iscam.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.iscam.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
 
 import org.junit.jupiter.api.Test;
@@ -27,7 +27,8 @@ public class DeleteCommandParserTest {
     }
 
     @Test
-    public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+    public void parse_indexNotANumber_throwsParseException() {
+        assertParseFailure(parser, "a",
+                String.format(MESSAGE_INVALID_INDEX, DeleteCommand.MESSAGE_USAGE));
     }
 }
