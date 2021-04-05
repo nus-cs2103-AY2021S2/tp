@@ -236,9 +236,11 @@ public class ReviseWindow extends UiPart<Stage> {
         String name = String.format("%s%s", CliSyntax.PREFIX_NAME.toString(), nameText.getText());
         String rating = String.format("%s%s", CliSyntax.PREFIX_RATING.toString(), ratingText.getText());
         String price = String.format("%s%s", CliSyntax.PREFIX_PRICE.toString(), priceText.getText());
+        String address = String.format("%s%s", CliSyntax.PREFIX_ADDRESS.toString(), addressText.getText());
 
         String[] reviewsArr = reviewsText.getText().split("\\r?\\n|\\r");
-        String reviewsStr = "";
+        String reviewsStr = reviewsArr.length == 1
+                && reviewsArr[0].equals("") ? String.format("%s", CliSyntax.PREFIX_REVIEW) : "";
         for (String review : reviewsArr) {
             if (!review.isEmpty()) {
                 reviewsStr += String.format(" %s%s", CliSyntax.PREFIX_REVIEW, review);
@@ -246,7 +248,8 @@ public class ReviseWindow extends UiPart<Stage> {
         }
 
         String[] categoriesArr = categoriesText.getText().split(" ");
-        String categoriesStr = "";
+        String categoriesStr = categoriesArr.length == 1
+                && categoriesArr[0].equals("") ? String.format("%s", CliSyntax.PREFIX_TAG_CATEGORY) : "";
         for (String category : categoriesArr) {
             if (!category.isEmpty()) {
                 categoriesStr += String.format(" %s%s", CliSyntax.PREFIX_TAG_CATEGORY, category);
@@ -254,15 +257,17 @@ public class ReviseWindow extends UiPart<Stage> {
         }
 
         String[] schoolsArr = schoolsText.getText().split(" ");
-        String schoolsStr = "";
+        String schoolsStr = categoriesArr.length == 1
+                && schoolsArr[0].equals("") ? String.format("%s", CliSyntax.PREFIX_TAG_SCHOOL) : "";
         for (String school : schoolsArr) {
             if (!school.isEmpty()) {
                 schoolsStr += String.format(" %s%s", CliSyntax.PREFIX_TAG_SCHOOL, school);
             }
         }
 
-        String commandToSend = String.format("%s %d %s %s %s %s%s%s", EditCommand.COMMAND_WORD, index.getOneBased(),
-                name, rating, price, reviewsStr, categoriesStr, schoolsStr);
+        String commandToSend = String.format("%s %d %s %s %s %s %s %s %s", EditCommand.COMMAND_WORD,
+                index.getOneBased(), name, rating, price, address, reviewsStr, categoriesStr, schoolsStr);
+
         try {
             mainWindow.executeCommand(commandToSend);
         } catch (CommandException | ParseException e) {
