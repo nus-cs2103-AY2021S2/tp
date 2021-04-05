@@ -222,6 +222,11 @@ public class NextCommandTest {
         public String getQuizStatisticString() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public String getCorrectAttemptsString() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

@@ -33,6 +33,7 @@ public class Quiz {
     private int currentQuizIndex = 0;
     private Instant startTime;
     private List<Flashcard> attemptedFlashcards = new ArrayList<>();
+    private List<Flashcard> correctlyAnsweredFlashcards = new ArrayList<>();
 
     // Support for storing the quiz attempt history
     private int numberOfQuestionsAttempted;
@@ -107,6 +108,7 @@ public class Quiz {
         boolean result = currentQuiz.getAnswer().equals(attempt);
         if (result) {
             numberOfQuestionsCorrect++;
+            correctlyAnsweredFlashcards.add(currentQuiz);
         }
         return result;
     }
@@ -199,5 +201,9 @@ public class Quiz {
 
     public List<Flashcard> getAttemptedFlashcards() {
         return attemptedFlashcards;
+    }
+
+    public List<Flashcard> getCorrectlyAnsweredFlashcards() {
+        return correctlyAnsweredFlashcards;
     }
 }

@@ -42,8 +42,9 @@ public class NextCommand extends Command {
             String quizStatistics = model.getQuizStatisticString() + "\n";
             model.addScore();
             model.showAttemptedQuestions();
+            String correctAttempts = model.getCorrectAttemptsString() + "\n";
             model.switchModeQuizSessionEnded();
-            return new CommandResult(MESSAGE_QUIZ_ENDED + quizStatistics + MESSAGE_QUIZ_END_ACTIONS);
+            return new CommandResult(MESSAGE_QUIZ_ENDED + quizStatistics + correctAttempts);
         }
 
         model.switchModeQuizSession();

@@ -154,6 +154,8 @@ public interface Model {
     /** Gets the statistics information as a string for display purposes */
     String getQuizStatisticString();
 
+    String getCorrectAttemptsString();
+
     /** Add a score to the FlashcardBook */
     void addScore();
 }
