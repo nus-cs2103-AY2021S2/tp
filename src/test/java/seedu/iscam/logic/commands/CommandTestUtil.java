@@ -20,6 +20,9 @@ import seedu.iscam.logic.commands.exceptions.CommandException;
 import seedu.iscam.model.Model;
 import seedu.iscam.model.client.Client;
 import seedu.iscam.model.commons.NameContainsKeywordsPredicate;
+import seedu.iscam.model.meeting.DateTime;
+import seedu.iscam.model.meeting.Meeting;
+import seedu.iscam.model.meeting.MeetingContainsKeywordsPredicate;
 import seedu.iscam.model.util.clientbook.ClientBook;
 import seedu.iscam.testutil.EditClientDescriptorBuilder;
 
@@ -73,10 +76,10 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditClientDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withLocation(VALID_LOCATION_AMY)
-                .withPlan(VALID_PLAN_AMY).withTags(VALID_TAG_FRIEND).build();
+                .withPlan(VALID_PLAN_AMY).withImage(VALID_IMAGE).withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditClientDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withLocation(VALID_LOCATION_BOB)
-                .withPlan(VALID_PLAN_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withPlan(VALID_PLAN_BOB).withImage(VALID_IMAGE).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 
     /**
@@ -109,11 +112,11 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the iscam book, filtered client list and selected client in {@code actualModel} remain unchanged
+     * - the iScam book, filtered client list and selected client in {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
-        // we are unable to defensively copy the model for comparison later, so we can
-        // only do so by copying its components.
+        // We are unable to defensively copy the model for comparison later,
+        // so we can only do so by copying its components.
         ClientBook expectedClientBook = new ClientBook(actualModel.getClientBook());
         List<Client> expectedFilteredList = new ArrayList<>(actualModel.getFilteredClientList());
 
@@ -121,9 +124,10 @@ public class CommandTestUtil {
         assertEquals(expectedClientBook, actualModel.getClientBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredClientList());
     }
+
     /**
      * Updates {@code model}'s filtered list to show only the client at the given {@code targetIndex} in the
-     * {@code model}'s iscam book.
+     * {@code model}'s iScam book.
      */
     public static void showClientAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredClientList().size());
@@ -133,6 +137,20 @@ public class CommandTestUtil {
         model.updateFilteredClientList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredClientList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the meeting at the given {@code targetIndex} in the
+     * {@code model}'s iScam book.
+     */
+    public static void showMeetingAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredMeetingList().size());
+
+        Meeting meeting = model.getFilteredMeetingList().get(targetIndex.getZeroBased());
+        final String[] time = meeting.getDateTime().toString().split("\\s+");
+        model.updateFilteredMeetingList(new MeetingContainsKeywordsPredicate(Arrays.asList(time[0])));
+
+        assertEquals(1, model.getFilteredMeetingList().size());
     }
 
 }

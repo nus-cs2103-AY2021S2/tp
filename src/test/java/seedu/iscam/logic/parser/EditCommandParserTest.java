@@ -30,7 +30,7 @@ import static seedu.iscam.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.iscam.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.iscam.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
 import static seedu.iscam.testutil.TypicalIndexes.INDEX_SECOND_ITEM;
-import static seedu.iscam.testutil.TypicalIndexes.INDEX_THIRD_CLIENT;
+import static seedu.iscam.testutil.TypicalIndexes.INDEX_THIRD_ITEM;
 
 import org.junit.jupiter.api.Test;
 
@@ -136,7 +136,7 @@ public class EditCommandParserTest {
     @Test
     public void parse_oneFieldSpecified_success() {
         // name
-        Index targetIndex = INDEX_THIRD_CLIENT;
+        Index targetIndex = INDEX_THIRD_ITEM;
         String userInput = targetIndex.getOneBased() + NAME_DESC_AMY;
         EditClientDescriptor descriptor = new EditClientDescriptorBuilder().withName(VALID_NAME_AMY).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
@@ -202,7 +202,7 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_resetTags_success() {
-        Index targetIndex = INDEX_THIRD_CLIENT;
+        Index targetIndex = INDEX_THIRD_ITEM;
         String userInput = targetIndex.getOneBased() + TAG_EMPTY;
 
         EditClientDescriptor descriptor = new EditClientDescriptorBuilder().withTags().build();
