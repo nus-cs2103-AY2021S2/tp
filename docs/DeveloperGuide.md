@@ -104,7 +104,7 @@ The `UI` component,
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying
    help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("list")` API
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API
 calls respectively.
 
 ![Interactions Inside the Logic Component for the `list` Command](images/ListStoreMandoSequenceDiagram.png)
@@ -206,6 +206,9 @@ The `find KEYWORD [MORE_KEYWORDS]` and `find */KEYWORD [MORE_KEYWORDS]` features
 contain any of the given keywords, either in full or partially respectively.
 
 Given below is an example usage scenario and how the find operation behaves at each step.
+
+![Interactions Inside the Logic Component for the `find KEYWORD [MORE_KEYWORDS]` Command](images/FindFullSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `find */KEYWORD [MORE_KEYWORDS]` Command](images/FindPartialSequenceDiagram.png)
 
 Step 1. The user execute `find Chocolate` to find all the items in the inventory whose names fully match the keyword. 
 `StoreMandoParser` takes in the user input and determines the command word (find) and argument ("Chocolate") respectively.
