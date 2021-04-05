@@ -22,6 +22,7 @@ import seedu.us.among.model.endpoint.Endpoint;
 public class ResultDisplay extends UiPart<Region> {
 
     private static final String FXML = "ResultDisplay.fxml";
+    private static final int MAX_TEXT_LENGTH = 100000;
 
     @FXML
     private TextArea resultDisplay;
@@ -168,6 +169,9 @@ public class ResultDisplay extends UiPart<Region> {
      * @param endpoint endpoint to give feedback for
      */
     public void apiFeedbackHelper(String textFeedback, Endpoint endpoint) {
+        if (textFeedback.length() > MAX_TEXT_LENGTH) {
+            textFeedback = textFeedback.substring(0, MAX_TEXT_LENGTH);
+        }
         Label method = new Label(String.format("Method: %s", endpoint.getMethod().toString()));
         Label statusCodeAndPhrase = new Label(String.format("Status: %s %s", endpoint.getResponse().getStatusCode(),
                 endpoint.getReasonPhrase()));

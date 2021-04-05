@@ -4,7 +4,6 @@ import static seedu.us.among.commons.core.Messages.MESSAGE_CALL_CANCELLED;
 import static seedu.us.among.commons.core.Messages.MESSAGE_CONNECTION_ERROR;
 import static seedu.us.among.commons.core.Messages.MESSAGE_GENERAL_ERROR;
 import static seedu.us.among.commons.core.Messages.MESSAGE_INVALID_JSON;
-import static seedu.us.among.commons.core.Messages.MESSAGE_UNKNOWN_HOST;
 
 import java.io.IOException;
 import java.io.InterruptedIOException;
@@ -64,16 +63,14 @@ public class EndpointCaller {
 
         try {
             response = sendRequest();
-        } catch (UnknownHostException e) {
-            logger.warning(StringUtil.getDetails(e));
-            throw new RequestException(MESSAGE_UNKNOWN_HOST);
         } catch (ClientProtocolException | SocketTimeoutException | SocketException e) {
             logger.warning(StringUtil.getDetails(e));
             throw new RequestException(MESSAGE_CONNECTION_ERROR);
         } catch (JsonParseException e) {
             logger.warning(StringUtil.getDetails(e));
             throw new RequestException(MESSAGE_INVALID_JSON);
-        } catch (IllegalStateException | SSLException | NoHttpResponseException | InterruptedIOException e) {
+        } catch (IllegalStateException | SSLException | NoHttpResponseException | InterruptedIOException
+                | UnknownHostException e) {
             logger.warning(StringUtil.getDetails(e));
             if (requestAborted) {
                 throw new AbortRequestException(MESSAGE_CALL_CANCELLED);

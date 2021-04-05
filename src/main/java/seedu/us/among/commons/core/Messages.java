@@ -10,8 +10,6 @@ public class Messages {
     public static final String MESSAGE_INVALID_ENDPOINT_DISPLAYED_INDEX =
              "The API endpoint index provided is invalid or out of bounds.";
     public static final String MESSAGE_ENDPOINTS_LISTED_OVERVIEW = "%1$d API endpoints listed!";
-    public static final String MESSAGE_UNKNOWN_HOST = "The host name could not be resolved. Check your"
-            + " internet connection and endpoint URL.";
     public static final String MESSAGE_INVALID_JSON = "The request was not performed successfully. Check"
             + " that your data is added in the correct JSON format.";
     public static final String MESSAGE_CONNECTION_ERROR = "Connection was lost or could not be established."
