@@ -14,9 +14,10 @@ public class Meeting implements Comparable<Meeting> {
     public static final String DATETIME_CONSTRAINTS = "The input date and time must be existent.";
     // alphanumeric and special characters
     private static final String DESCRIPTION_REGEX = ".+";
+    private static final String BLANK_SPACE = "\\s*";
     private static final String FOUR_DIGIT_REGEX = "[0-9]{4}";
     private static final String TWO_DIGIT_REGEX = "[0-9]{2}";
-    public static final String VALIDATION_REGEX = DESCRIPTION_REGEX + " @ "
+    public static final String VALIDATION_REGEX = DESCRIPTION_REGEX + "@" + BLANK_SPACE
             + FOUR_DIGIT_REGEX + "-" + TWO_DIGIT_REGEX + "-" + TWO_DIGIT_REGEX + " "
             + TWO_DIGIT_REGEX + ":" + TWO_DIGIT_REGEX;
     public final String original;
@@ -31,7 +32,10 @@ public class Meeting implements Comparable<Meeting> {
     public Meeting(String meeting) throws IllegalArgumentException {
         requireNonNull(meeting);
         checkArgument(isValidMeeting(meeting), MESSAGE_CONSTRAINTS);
-        String[] fragments = meeting.split(" @ ", 2);
+        int lastIndexOf = meeting.lastIndexOf("@");
+        String[] fragments = new String[2];
+        fragments[0] = meeting.substring(0, lastIndexOf).trim();
+        fragments[1] = meeting.substring(lastIndexOf+1).trim();
         LocalDateTime parsedDt = generateDateTime(fragments[1], DATETIME_CONSTRAINTS);
         original = meeting;
         value = fragments[0];
