@@ -251,7 +251,7 @@ Format: `add_booking`
 
 Edits an existing booking in the booking system with the specified booking ID.
 
-Format: `edit_booking bid/BOOKING_ID [b/BOOKER_EMAIL] [v/VENUE_NAME] [d/DESCRIPTION] [bs/DATETIME] [be/DATETIME] [t/TAG]`
+Format: `edit_booking INDEX [b/BOOKER_EMAIL] [v/VENUE_NAME] [d/DESCRIPTION] [bs/DATETIME] [be/DATETIME] [t/TAG]`
 
 Examples:
 * `edit_booking bid/8937936578 b/janetan@gmail.com` 
@@ -261,7 +261,7 @@ Examples:
 
 Deletes booking corresponding to the booking ID specified.
 
-Format: `delete_booking bid/BOOKING_ID`
+Format: `delete_booking INDEX`
 
 Example:
 * `delete_booking bid/232138762134`
@@ -276,10 +276,10 @@ Format: `list_booking`
 
 Shows information about the booking corresponding to the given booking ID. Partial matching is not accepted to reduce the number of unrelated search results for greater convenience in searching. 
 
-Format: `find_booking bid/BOOKING_ID`
+Format: `find_booking INDEX`
 
 Example:
-* `find_booking bid/2321837462`
+* `find_booking 1`
 
 #### 3.5.6. Filtering bookings by date : `filter_booking_by_date`
 
@@ -354,9 +354,9 @@ Action | Format, Example
 **find venue** | `find_venue v/VENUE_NAME` <br> e.g., `find_venue v/Field`
 **list venue** | `list_venue`
 **add booking** | `add_booking` <br> (Note: add_booking is a multi-step command)
-**delete booking** | `delete_booking bid/BOOKING_ID` <br> e.g. `delete_booking bid/8756948376`
-**edit booking** | `edit_booking bid/BOOKING_ID [b/BOOKER_EMAIL] [v/VENUE_NAME] [d/DESCRIPTION] [bs/DATETIME] [be/DATETIME] [t/TAG]` <br> e.g., `edit_booking bid/3984792837 e/doe@gmail.com`
-**find person** | `find_booking bid/BOOKING_ID` <br> e.g., `find_booking bid/8756948376`
+**delete booking** | `delete_booking INDEX` <br> e.g. `delete_booking 1`
+**edit booking** | `edit_booking INDEX [b/BOOKER_EMAIL] [v/VENUE_NAME] [d/DESCRIPTION] [bs/DATETIME] [be/DATETIME] [t/TAG]` <br> e.g., `edit_booking 1 e/doe@gmail.com`
+**find person** | `find_booking INDEX` <br> e.g., `find_booking 1`
 **list booking** | `list_booking`
 **help** | `help`
 **clear** | `clear`

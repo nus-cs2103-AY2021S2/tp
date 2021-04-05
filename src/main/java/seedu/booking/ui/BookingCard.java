@@ -41,8 +41,6 @@ public class BookingCard extends UiPart<Region> {
     @FXML
     private Label description;
     @FXML
-    private Label bookingId;
-    @FXML
     private FlowPane tags;
 
     /**
@@ -57,7 +55,6 @@ public class BookingCard extends UiPart<Region> {
         startTime.setText(booking.getBookingStart().toString());
         endTime.setText(booking.getBookingEnd().toString());
         description.setText(booking.getDescription().value);
-        bookingId.setText("ID: " + booking.getId().toString());
         booking.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

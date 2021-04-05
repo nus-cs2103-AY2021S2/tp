@@ -6,8 +6,6 @@ import static seedu.booking.logic.commands.CommandTestUtil.VALID_BOOKING_DESCRIP
 import static seedu.booking.logic.commands.CommandTestUtil.VALID_BOOKING_DESCRIPTION_HALL;
 import static seedu.booking.logic.commands.CommandTestUtil.VALID_BOOKING_END_FIELD;
 import static seedu.booking.logic.commands.CommandTestUtil.VALID_BOOKING_END_HALL;
-import static seedu.booking.logic.commands.CommandTestUtil.VALID_BOOKING_ID_FIELD;
-import static seedu.booking.logic.commands.CommandTestUtil.VALID_BOOKING_ID_HALL;
 import static seedu.booking.logic.commands.CommandTestUtil.VALID_BOOKING_START_FIELD;
 import static seedu.booking.logic.commands.CommandTestUtil.VALID_BOOKING_START_HALL;
 import static seedu.booking.logic.commands.CommandTestUtil.VALID_BOOKING_TAGS_HALL;
@@ -26,7 +24,6 @@ import seedu.booking.model.BookingSystem;
 import seedu.booking.model.booking.Booking;
 import seedu.booking.model.booking.Description;
 import seedu.booking.model.booking.EndTime;
-import seedu.booking.model.booking.Id;
 import seedu.booking.model.booking.StartTime;
 import seedu.booking.model.person.Email;
 
@@ -39,24 +36,21 @@ public class TypicalBookings {
             new Description("description"),
             new StartTime(LocalDateTime.of(2021, 03, 01, 12, 30)),
             new EndTime(LocalDateTime.of(2021, 03, 01, 13, 30)),
-            new HashSet<>(),
-            new Id("0")
+            new HashSet<>()
     );
 
     public static final Booking BOOKING2 = new Booking(new Email("example2@gamil.com"), VENUE1.getVenueName(),
             new Description("description"),
             new StartTime(LocalDateTime.of(2022, 03, 01, 13, 00)),
             new EndTime(LocalDateTime.of(2022, 03, 01, 14, 00)),
-            new HashSet<>(),
-            new Id("1")
+            new HashSet<>()
     );
 
     public static final Booking BOOKING3 = new Booking(new Email("example2@gamil.com"), VENUE2.getVenueName(),
             new Description("description"),
             new StartTime(LocalDateTime.of(2021, 03, 01, 12, 30)),
             new EndTime(LocalDateTime.of(2021, 03, 01, 13, 30)),
-            new HashSet<>(),
-            new Id("2")
+            new HashSet<>()
     );
 
 
@@ -64,16 +58,14 @@ public class TypicalBookings {
             new Description("description"),
             new StartTime(LocalDateTime.of(2022, 03, 01, 14, 30)),
             new EndTime(LocalDateTime.of(2022, 03, 01, 15, 30)),
-            new HashSet<>(),
-            new Id("3")
+            new HashSet<>()
     );
 
     public static final Booking BOOKING_HOON = new Booking(new Email("stefan@example.com"), VENUE1.getVenueName(),
             new Description("description"),
             new StartTime(LocalDateTime.of(2022, 03, 01, 14, 30)),
             new EndTime(LocalDateTime.of(2022, 03, 01, 15, 30)),
-            new HashSet<>(),
-            new Id("4")
+            new HashSet<>()
     );
 
     public static final Booking BOOKING_HALL = new BookingBuilder()
@@ -82,7 +74,6 @@ public class TypicalBookings {
             .withBookingStart(VALID_BOOKING_START_HALL)
             .withBookingEnd(VALID_BOOKING_END_HALL)
             .withTags(VALID_BOOKING_TAGS_HALL)
-            .withId(VALID_BOOKING_ID_HALL)
             .build();
 
     public static final Booking BOOKING_FIELD = new BookingBuilder()
@@ -91,7 +82,6 @@ public class TypicalBookings {
             .withBookingStart(VALID_BOOKING_START_FIELD)
             .withBookingEnd(VALID_BOOKING_END_FIELD)
             .withTags(VALID_BOOKING_TAGS_HALL)
-            .withId(VALID_BOOKING_ID_FIELD)
             .build();
 
     public static final Booking CURRENT_BOOKING = new BookingBuilder()
@@ -100,7 +90,6 @@ public class TypicalBookings {
             .withBookingStart("2012-01-31 22:59")
             .withBookingEnd("2012-01-31 23:59")
             .withTags("meeting")
-            .withId("182273586")
             .build();
 
 

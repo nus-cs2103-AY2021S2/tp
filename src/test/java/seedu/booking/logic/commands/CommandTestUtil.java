@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_END;
-import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_ID;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_START;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_CAPACITY;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
@@ -25,8 +24,6 @@ import seedu.booking.commons.core.index.Index;
 import seedu.booking.logic.commands.exceptions.CommandException;
 import seedu.booking.model.BookingSystem;
 import seedu.booking.model.Model;
-import seedu.booking.model.booking.Booking;
-import seedu.booking.model.booking.BookingIdContainsKeywordsPredicate;
 import seedu.booking.model.booking.VenueNameContainsKeywordsPredicate;
 import seedu.booking.model.person.NameContainsKeywordsPredicate;
 import seedu.booking.model.person.Person;
@@ -75,13 +72,6 @@ public class CommandTestUtil {
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
-    public static final String VALID_BOOKING_ID_1 = "0";
-    public static final String VALID_BOOKING_ID_2 = "1";
-
-    public static final String BOOKING_ID_INPUT_BOOKING_1 = DeleteBookingCommand.COMMAND_WORD
-            + " " + PREFIX_BOOKING_ID + VALID_BOOKING_ID_1;
-    public static final String BOOKING_ID_INPUT_BOOKING_2 = DeleteBookingCommand.COMMAND_WORD
-            + " " + PREFIX_BOOKING_ID + VALID_BOOKING_ID_2;
 
     public static final String VALID_VENUE_NAME_COURT = "Court";
     public static final String VALID_VENUE_NAME_HALL = "Victoria Hall";
@@ -119,8 +109,6 @@ public class CommandTestUtil {
 
     public static final String VALID_VENUE_CAPACITY_DESC = " " + PREFIX_CAPACITY + "30";
 
-    public static final String VALID_BOOKING_ID_DESC = " " + PREFIX_BOOKING_ID + "1";
-
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -146,9 +134,6 @@ public class CommandTestUtil {
     public static final String VALID_BOOKING_END_HALL = "2021-02-02 08:00";
     public static final String VALID_BOOKING_END_FIELD = "2021-02-02 08:00";
     public static final String VALID_BOOKING_TAGS_HALL = "Indoors";
-    public static final String VALID_BOOKING_ID_HALL = "111111111";
-    public static final String VALID_BOOKING_ID_FIELD = "222222222";
-
 
     public static final String BOOKING_VENUE_NAME_DESC_HALL = " " + PREFIX_VENUE + VALID_VENUE_NAME_HALL;
     public static final String BOOKING_VENUE_NAME_DESC_FIELD = " " + PREFIX_VENUE + VALID_VENUE_NAME_FIELD;
@@ -165,8 +150,6 @@ public class CommandTestUtil {
     public static final String BOOKING_END_DESC_HALL = " " + PREFIX_BOOKING_END + VALID_BOOKING_END_HALL;
     public static final String BOOKING_END_DESC_FIELD = " " + PREFIX_BOOKING_END + VALID_BOOKING_END_FIELD;
     public static final String BOOKING_TAGS_DESC_HALL = " " + PREFIX_TAG + VALID_BOOKING_TAGS_HALL;
-    public static final String BOOKING_ID_DESC_HALL = " " + PREFIX_BOOKING_ID + VALID_BOOKING_ID_HALL;
-    public static final String BOOKING_ID_DESC_FIELD = " " + PREFIX_BOOKING_ID + VALID_BOOKING_ID_FIELD;
     public static final String INVALID_BOOKER_EMAIL = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
 
 
@@ -257,20 +240,6 @@ public class CommandTestUtil {
         assertEquals(1, model.getFilteredVenueList().size());
     }
 
-
-    /**
-     * Updates {@code model}'s filtered list to show only the booking at the given {@code targetIndex} in the
-     * {@code model}'s booking system.
-     */
-
-    public static void showBookingAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredBookingList().size());
-
-        Booking booking = model.getFilteredBookingList().get(targetIndex.getZeroBased());
-        final String splitName = String.valueOf(booking.getId());
-        model.updateFilteredBookingList(new BookingIdContainsKeywordsPredicate(splitName));
-        assertEquals(1, model.getFilteredBookingList().size());
-    }
 
 
 }

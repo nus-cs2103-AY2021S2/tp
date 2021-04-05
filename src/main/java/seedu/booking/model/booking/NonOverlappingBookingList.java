@@ -41,12 +41,6 @@ public class NonOverlappingBookingList implements Iterable<Booking> {
         return internalList.stream().anyMatch(toCheck::equals);
     }
 
-    /**
-     * Returns true if the list contains a booking with the id.
-     */
-    public boolean containsId(Id toCheck) {
-        return internalList.stream().anyMatch(x -> x.isId(toCheck));
-    }
 
     /**
      * Returns true if the list contains an overlapping booking as the given argument.
@@ -106,14 +100,6 @@ public class NonOverlappingBookingList implements Iterable<Booking> {
         }
     }
 
-    /**
-     * Removes the equivalent booking from the list by bookingId.
-     * The booking must exist in the list.
-     */
-    public void removeById(Id bookingId) {
-        requireNonNull(bookingId);
-        internalList.removeIf(x -> x.isId(bookingId));
-    }
 
     public void setBookings(NonOverlappingBookingList replacement) {
         requireNonNull(replacement);
