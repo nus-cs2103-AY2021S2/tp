@@ -28,8 +28,9 @@ public class ScheduleCommand extends Command {
             + PREFIX_MEETING + "MEETING_DESCRIPTION @ yyyy-mm-dd HH:MM\n"
             + "Example: " + COMMAND_WORD + " 1 m/ Insurance Plan @ 2021-03-05 14:50";
 
-    public static final String MESSAGE_SCHEDULE_PERSON_SUCCESS = "Scheduled Meeting with Person: %1$s at %2$s";
-    public static final String MESSAGE_SCHEDULE_CONFLICT_FAILURE = "Scheduling Conflict in Found at this Meeting: %1$s";
+    public static final String MESSAGE_SCHEDULE_PERSON_SUCCESS = "Scheduled meeting with person %1$s at %2$s";
+    public static final String MESSAGE_SCHEDULE_CONFLICT_FAILURE =
+            "Scheduling conflict found at this meeting %1$s with %2$s";
 
     private final Index targetIndex;
 
@@ -57,7 +58,9 @@ public class ScheduleCommand extends Command {
         if (!personToSchedule.getMeeting().equals(meeting)) {
             Optional<String> errorMsg = model
                     .clash(updatedPerson)
-                    .map(meeting -> String.format(MESSAGE_SCHEDULE_CONFLICT_FAILURE, meeting.original));
+                    .map(person ->
+                            String.format(MESSAGE_SCHEDULE_CONFLICT_FAILURE,
+                                    person.getMeeting().get().original, person.getName().fullName));
             if (errorMsg.isPresent()) {
                 throw new CommandException(errorMsg.get());
             }

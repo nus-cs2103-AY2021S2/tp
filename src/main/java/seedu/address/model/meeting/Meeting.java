@@ -19,7 +19,7 @@ public class Meeting implements Comparable<Meeting> {
     private static final String TWO_DIGIT_REGEX = "[0-9]{2}";
     public static final String VALIDATION_REGEX = DESCRIPTION_REGEX + "@" + BLANK_SPACE
             + FOUR_DIGIT_REGEX + "-" + TWO_DIGIT_REGEX + "-" + TWO_DIGIT_REGEX + " "
-            + TWO_DIGIT_REGEX + ":" + TWO_DIGIT_REGEX;
+            + TWO_DIGIT_REGEX + ":" + TWO_DIGIT_REGEX + BLANK_SPACE;
     public final String original;
     public final String value;
     public final LocalDateTime dateTime;
@@ -37,7 +37,7 @@ public class Meeting implements Comparable<Meeting> {
         fragments[0] = meeting.substring(0, lastIndexOf).trim();
         fragments[1] = meeting.substring(lastIndexOf+1).trim();
         LocalDateTime parsedDt = generateDateTime(fragments[1], DATETIME_CONSTRAINTS);
-        original = meeting;
+        original = fragments[0] + " @ " + fragments[1];
         value = fragments[0];
         dateTime = parsedDt;
     }

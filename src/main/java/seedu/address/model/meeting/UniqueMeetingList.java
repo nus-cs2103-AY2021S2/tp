@@ -33,12 +33,11 @@ public class UniqueMeetingList implements Iterable<Person> {
     /**
      * Checks if the added Person's meeting has any clashes, and returns the clashed meeting.
      */
-    public Optional<Meeting> clash(Person toCheck) {
+    public Optional<Person> clash(Person toCheck) {
         requireNonNull(toCheck);
         return toCheck.getMeeting()
                 .map(meetingMap::get)
-                .filter(person -> !person.equals(toCheck))
-                .flatMap(Person::getMeeting);
+                .filter(person -> !person.equals(toCheck));
     }
 
     /**

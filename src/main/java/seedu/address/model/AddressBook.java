@@ -75,7 +75,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Returns the clashed meeting if a person's meeting time clashes with another meeting in the address book.
      */
-    public Optional<Meeting> clash(Person person) {
+    public Optional<Person> clash(Person person) {
         requireNonNull(person);
         return meetings.clash(person);
     }
