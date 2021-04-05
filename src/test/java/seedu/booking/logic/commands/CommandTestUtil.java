@@ -28,6 +28,7 @@ import seedu.booking.model.booking.VenueNameContainsKeywordsPredicate;
 import seedu.booking.model.person.NameContainsKeywordsPredicate;
 import seedu.booking.model.person.Person;
 import seedu.booking.model.venue.Venue;
+import seedu.booking.testutil.EditBookingCommandDescriptorBuilder;
 import seedu.booking.testutil.EditPersonCommandDescriptorBuilder;
 import seedu.booking.testutil.EditPersonDescriptorBuilder;
 import seedu.booking.testutil.EditVenueDescriptorBuilder;
@@ -122,6 +123,8 @@ public class CommandTestUtil {
     public static final EditVenueCommand.EditVenueDescriptor DESC_COURT;
     public static final EditVenueCommand.EditVenueDescriptor DESC_HALL;
 
+    public static final EditBookingCommand.EditBookingDescriptor VALID_BOOKING_COMMAND_DESCRIPTOR_HALL;
+    public static final EditBookingCommand.EditBookingDescriptor VALID_BOOKING_COMMAND_DESCRIPTOR_FIELD;
 
     public static final String VALID_BOOKING_VENUE_NAME_HALL = "Victoria Hall";
     public static final String VALID_BOOKING_VENUE_NAME_FIELD = "Town Green";
@@ -130,10 +133,11 @@ public class CommandTestUtil {
     public static final String VALID_BOOKING_DESCRIPTION_HALL = "For FYP meeting";
     public static final String VALID_BOOKING_DESCRIPTION_FIELD = "For sports meeting";
     public static final String VALID_BOOKING_START_HALL = "2021-02-02 07:00";
-    public static final String VALID_BOOKING_START_FIELD = "2021-02-02 07:00";
+    public static final String VALID_BOOKING_START_FIELD = "2021-02-03 07:00";
     public static final String VALID_BOOKING_END_HALL = "2021-02-02 08:00";
-    public static final String VALID_BOOKING_END_FIELD = "2021-02-02 08:00";
+    public static final String VALID_BOOKING_END_FIELD = "2021-02-03 08:00";
     public static final String VALID_BOOKING_TAGS_HALL = "Indoors";
+    public static final String VALID_BOOKING_TAGS_FIELD = "Outdoors";
 
     public static final String BOOKING_VENUE_NAME_DESC_HALL = " " + PREFIX_VENUE + VALID_VENUE_NAME_HALL;
     public static final String BOOKING_VENUE_NAME_DESC_FIELD = " " + PREFIX_VENUE + VALID_VENUE_NAME_FIELD;
@@ -168,6 +172,15 @@ public class CommandTestUtil {
                 .withCapacity(50).build();
         DESC_COURT = new EditVenueDescriptorBuilder().withVenueName("Court")
                 .withCapacity(20).build();
+
+        VALID_BOOKING_COMMAND_DESCRIPTOR_HALL = new EditBookingCommandDescriptorBuilder()
+                .withBookerEmail(VALID_BOOKING_BOOKER_EMAIL_AMY).withVenueName(VALID_BOOKING_VENUE_NAME_HALL)
+                .withDescription(VALID_BOOKING_DESCRIPTION_HALL).withBookingStart(VALID_BOOKING_START_HALL)
+                .withBookingEnd(VALID_BOOKING_END_HALL).withTags(VALID_BOOKING_TAGS_HALL).build();
+        VALID_BOOKING_COMMAND_DESCRIPTOR_FIELD = new EditBookingCommandDescriptorBuilder()
+                .withBookerEmail(VALID_BOOKING_BOOKER_EMAIL_BOB).withVenueName(VALID_BOOKING_VENUE_NAME_FIELD)
+                .withDescription(VALID_BOOKING_DESCRIPTION_FIELD).withBookingStart(VALID_BOOKING_START_FIELD)
+                .withBookingEnd(VALID_BOOKING_END_FIELD).withTags(VALID_BOOKING_TAGS_FIELD).build();
     }
 
     /**
