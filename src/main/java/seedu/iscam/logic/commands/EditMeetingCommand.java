@@ -30,7 +30,7 @@ import seedu.iscam.model.meeting.Description;
 import seedu.iscam.model.meeting.Meeting;
 
 /**
- * Edits the details of an existing Meeting in the iscam book.
+ * Edits the details of an existing Meeting in the iScam book.
  */
 public class EditMeetingCommand extends Command {
 

@@ -23,6 +23,7 @@ import seedu.iscam.logic.parser.Parser;
 import seedu.iscam.logic.parser.ParserUtil;
 import seedu.iscam.logic.parser.exceptions.ParseException;
 import seedu.iscam.logic.parser.exceptions.ParseFormatException;
+import seedu.iscam.logic.parser.exceptions.ParseIndexException;
 import seedu.iscam.model.commons.Tag;
 import seedu.iscam.model.meeting.CompletionStatus;
 
@@ -45,9 +46,12 @@ public class EditMeetingCommandParser implements Parser<EditMeetingCommand> {
         Index index;
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
+        } catch (ParseIndexException pie) {
+            throw pie;
         } catch (ParseException pe) {
-            throw new ParseFormatException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    EditMeetingCommand.MESSAGE_USAGE), pe);
+            throw new ParseFormatException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                            EditMeetingCommand.MESSAGE_USAGE), pe);
         }
 
         EditMeetingDescriptor editMeetingDescriptor = new EditMeetingDescriptor();
