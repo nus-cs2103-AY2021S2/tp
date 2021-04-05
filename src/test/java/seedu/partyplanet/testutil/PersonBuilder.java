@@ -47,6 +47,19 @@ public class PersonBuilder {
     }
 
     /**
+     * Creates a {@code PersonBuilder} with only name specified.
+     */
+    public PersonBuilder(String nameString) {
+        name = new Name(nameString);
+        phone = Phone.EMPTY_PHONE;
+        email = Email.EMPTY_EMAIL;
+        birthday = Birthday.EMPTY_BIRTHDAY;
+        address = Address.EMPTY_ADDRESS;
+        remark = Remark.EMPTY_REMARK;
+        tags = new HashSet<>();
+    }
+
+    /**
      * Initializes the PersonBuilder with the data of {@code personToCopy}.
      */
     public PersonBuilder(Person personToCopy) {
