@@ -30,16 +30,10 @@ If you can type fast, SpamEZ can get your contact management tasks done faster t
    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the contacts list.
 
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
-   
-   * **`tag`**`tag n/John Doe t/small` : Adds tag to contact John Doe.
 
    * **`clear`** : Deletes all contacts.
    
    * **`blist`** `2` : Blacklists the 2nd contact shown in the current list.
-   
-   * **`name`** `3 [n/John]` : Adds an optional nickname to the 3rd contact.
-   
-   * **`filter`** `[Computing, Student]` : Filters shown contact based on given keywords.
 
    * **`exit`** : Exits the app.
 1. Refer to the [Features](#features) below for details of each command.
@@ -169,12 +163,6 @@ Format: `massdelete START-END`
 
 Example:
 `massdelete 2-41`
-
-### Adding tags to a contact : `tag`
-
-Labels a contact based on his or her attributes.
-
-Format: tag n/NAME t/TAG
 
 ### Blacklist a contact : `blist`
 
