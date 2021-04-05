@@ -6,8 +6,10 @@ import java.util.function.Predicate;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import seedu.iscam.commons.core.GuiSettings;
+import seedu.iscam.commons.core.index.Index;
 import seedu.iscam.model.client.Client;
 import seedu.iscam.model.meeting.Meeting;
+import seedu.iscam.model.user.ReadOnlyUserPrefs;
 import seedu.iscam.model.util.clientbook.ObservableClient;
 import seedu.iscam.model.util.clientbook.ReadOnlyClientBook;
 import seedu.iscam.model.util.meetingbook.ObservableMeeting;
@@ -85,6 +87,12 @@ public interface Model {
     void addClient(Client client);
 
     /**
+     * Adds a given client at a specific index.
+     * {@code client} must not already exist in the iscam book.
+     */
+    void addClientAtIndex(Index index, Client client);
+
+    /**
      * Replaces the given client {@code target} with {@code editedClient}.
      * {@code target} must exist in the iscam book.
      * The client identity of {@code editedClient} must not be the same as another existing client in the iscam book.
@@ -132,6 +140,12 @@ public interface Model {
      * Returns true if a meeting with the same identity as {@code meeting} exists in the iscam book.
      */
     boolean hasMeeting(Meeting meeting);
+
+    /**
+     * Returns true if any meeting except the ones in {@code exclusions} has conflicting date-time with {@code
+     * meeting}.
+     */
+    boolean hasConflictingMeetingWith(Meeting meeting, Meeting... exclusions);
 
     /**
      * Deletes the given meeting.
@@ -193,4 +207,9 @@ public interface Model {
      * Return iScam's current mode.
      */
     ObservableValue<Boolean> getIsClientMode();
+
+    /**
+     * Returns index of given {@code Client}.
+     */
+    Index getIndexOfClient(Client client);
 }

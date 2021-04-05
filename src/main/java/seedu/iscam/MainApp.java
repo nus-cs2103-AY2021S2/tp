@@ -17,21 +17,21 @@ import seedu.iscam.logic.Logic;
 import seedu.iscam.logic.LogicManager;
 import seedu.iscam.model.Model;
 import seedu.iscam.model.ModelManager;
-import seedu.iscam.model.ReadOnlyUserPrefs;
-import seedu.iscam.model.UserPrefs;
+import seedu.iscam.model.user.ReadOnlyUserPrefs;
+import seedu.iscam.model.user.UserPrefs;
 import seedu.iscam.model.util.SampleDataUtil;
 import seedu.iscam.model.util.clientbook.ClientBook;
 import seedu.iscam.model.util.clientbook.ReadOnlyClientBook;
 import seedu.iscam.model.util.meetingbook.MeetingBook;
 import seedu.iscam.model.util.meetingbook.ReadOnlyMeetingBook;
-import seedu.iscam.storage.ClientBookStorage;
-import seedu.iscam.storage.JsonClientBookStorage;
-import seedu.iscam.storage.JsonMeetingBookStorage;
-import seedu.iscam.storage.JsonUserPrefsStorage;
-import seedu.iscam.storage.MeetingBookStorage;
 import seedu.iscam.storage.Storage;
 import seedu.iscam.storage.StorageManager;
-import seedu.iscam.storage.UserPrefsStorage;
+import seedu.iscam.storage.client.ClientBookStorage;
+import seedu.iscam.storage.client.JsonClientBookStorage;
+import seedu.iscam.storage.meeting.JsonMeetingBookStorage;
+import seedu.iscam.storage.meeting.MeetingBookStorage;
+import seedu.iscam.storage.user.JsonUserPrefsStorage;
+import seedu.iscam.storage.user.UserPrefsStorage;
 import seedu.iscam.ui.Ui;
 import seedu.iscam.ui.UiManager;
 
@@ -40,7 +40,7 @@ import seedu.iscam.ui.UiManager;
  */
 public class MainApp extends Application {
 
-    public static final Version VERSION = new Version(0, 6, 0, true);
+    public static final Version VERSION = new Version(1, 3, 0, true);
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 

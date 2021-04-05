@@ -24,6 +24,7 @@ import seedu.iscam.logic.parser.Parser;
 import seedu.iscam.logic.parser.ParserUtil;
 import seedu.iscam.logic.parser.exceptions.ParseException;
 import seedu.iscam.logic.parser.exceptions.ParseFormatException;
+import seedu.iscam.logic.parser.exceptions.ParseIndexException;
 import seedu.iscam.model.commons.Tag;
 
 /**
@@ -46,6 +47,8 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
+        } catch (ParseIndexException pie) {
+            throw pie;
         } catch (ParseException pe) {
             throw new ParseFormatException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE),
                     pe);

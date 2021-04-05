@@ -31,9 +31,9 @@ import seedu.iscam.model.commons.Name;
 import seedu.iscam.model.commons.Tag;
 
 /**
- * Edits the details of an existing client in the iscam book.
+ * Edits the details of an existing client in the iScam book.
  */
-public class EditCommand extends Command {
+public class EditCommand extends UndoableCommand {
 
     public static final String COMMAND_WORD = "edit";
 
@@ -54,7 +54,7 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_CLIENT_SUCCESS = "Edited Client: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_CLIENT = "This client already exists in the iscam book.";
+    public static final String MESSAGE_DUPLICATE_CLIENT = "This client already exists in the iScam book.";
 
     private final Index index;
     private final EditClientDescriptor editClientDescriptor;
@@ -69,6 +69,15 @@ public class EditCommand extends Command {
 
         this.index = index;
         this.editClientDescriptor = new EditClientDescriptor(editClientDescriptor);
+    }
+
+    public Index getIndex() {
+        return index;
+    }
+
+    @Override
+    public String getCommandWord() {
+        return COMMAND_WORD;
     }
 
     /**
@@ -133,6 +142,10 @@ public class EditCommand extends Command {
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
                 && editClientDescriptor.equals(e.editClientDescriptor);
+    }
+
+    public EditClientDescriptor getEditClientDescriptor() {
+        return editClientDescriptor;
     }
 
     /**

@@ -30,6 +30,8 @@ public class RescheduleMeetingCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Rescheduled meeting: %1$s";
     public static final String MESSAGE_DUPLICATE_DATETIME = "The new date and time must be different from the "
             + "original.";
+    public static final String MESSAGE_CONFLICT = "There is another meeting with the same date and time, consider "
+            + "scheduling to another time.";
 
     private final Index index;
     private final DateTime dateTime;
@@ -45,7 +47,7 @@ public class RescheduleMeetingCommand extends Command {
 
     private Meeting rescheduleMeeting(Meeting meeting, DateTime newDateTime) {
         return new Meeting(meeting.getClientName(), newDateTime, meeting.getLocation(),
-                meeting.getDescription(), meeting.getTags(), meeting.getIsDone());
+                meeting.getDescription(), meeting.getTags(), meeting.getStatus());
     }
 
     @Override
@@ -59,8 +61,13 @@ public class RescheduleMeetingCommand extends Command {
 
         Meeting meeting = meetings.get(index.getZeroBased());
         Meeting rescheduledMeeting = rescheduleMeeting(meeting, dateTime);
+
         if (meeting.equals(rescheduledMeeting)) {
             throw new CommandException(MESSAGE_DUPLICATE_DATETIME);
+        }
+
+        if (model.hasConflictingMeetingWith(rescheduledMeeting)) {
+            throw new CommandException(MESSAGE_CONFLICT);
         }
 
         model.setMeeting(meeting, rescheduledMeeting);

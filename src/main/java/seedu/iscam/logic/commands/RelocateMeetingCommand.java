@@ -29,6 +29,7 @@ public class RelocateMeetingCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Relocated meeting: %1$s";
     public static final String MESSAGE_DUPLICATE_LOCATION = "The new location must be different from the one in the "
             + "iscam book";
+    public static final String MESSAGE_ALREADY_COMPLETE = "This meeting was already completed, it cannot be relocated.";
 
     private final Index index;
     private final Location location;
@@ -43,7 +44,7 @@ public class RelocateMeetingCommand extends Command {
 
     private Meeting relocateMeeting(Meeting meeting, Location newLocation) {
         return new Meeting(meeting.getClientName(), meeting.getDateTime(), newLocation,
-                meeting.getDescription(), meeting.getTags(), meeting.getIsDone());
+                meeting.getDescription(), meeting.getTags(), meeting.getStatus());
     }
 
     @Override
@@ -56,6 +57,10 @@ public class RelocateMeetingCommand extends Command {
         }
 
         Meeting meeting = meetings.get(index.getZeroBased());
+        if (meeting.getStatus().isComplete()) {
+            throw new CommandException(MESSAGE_ALREADY_COMPLETE);
+        }
+
         Meeting relocatedMeeting = relocateMeeting(meeting, location);
         if (meeting.equals(relocatedMeeting)) {
             throw new CommandException(MESSAGE_DUPLICATE_LOCATION);

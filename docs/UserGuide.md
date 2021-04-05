@@ -293,8 +293,8 @@ Do a listmeet command first to switch to Meeting Mode and view the meetings in t
 * The order of the keywords does not matter. e.g. `plans discussion` will match `discuss plans`
 * Both full and partial keywords can match. e.g. `insurance` and `sur` will both match `insurance`
 * The keywords will be match against all parameters of a meeting.
-* Meeting matching at least one keyword will be returned (i.e. `OR` search). e.g. `Johnson Smith` will return 
-  `Sam Smith` and `Johnson Drake`
+* Meeting matching all keywords will be returned (i.e. `AND` search). e.g. `Johnson Smith` will not return 
+  `Sam Smith` and `Johnson Drake` but will return `Johnson Shawn Smith`.
 
 Examples:
 * `findmeet 05-2022` returns a meeting witn `Johnson` on `24-05-2022 12:00` and another meeting with `Sam` on 
@@ -337,8 +337,9 @@ iScam data are saved in the hard disk automatically after any command that chang
 
 ### Editing the data files
 
-iScam data are saved as JSON files. Client data are saved in `[JAR file location]/data/clientbook.json`. 
-Meeting data are saved in `[JAR file location]/data/meetingbook.json`. Advanced users are welcome to update data directly by editing those data files.
+iScam data are saved as JSON files. Advanced users are welcome to update data directly by editing those data files.
+Client data are saved in `[JAR file location]/data/clientbook.json`. 
+Meeting data are saved in `[JAR file location]/data/meetingbook.json`. 
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, iScam will discard all data and start with an empty data file at the next run.
@@ -349,10 +350,6 @@ If your changes to the data file makes its format invalid, iScam will discard al
 Images for clients can be added by placing an image in the `/data` folder, with the
 `clientbook.json` and `meetingbook.json` files. Any image file used must be of file
 type `.jpg`, `.jpeg` or `.png`.
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -381,7 +378,7 @@ Action | Format, Examples
 **Relocate Meeting** | `relocate INDEX l/LOCATION` <br> e.g., `relocate 1 l/KFC, Blk 556 Bugis`
 **Reschedule Meeting** | `reschedule INDEX on/DATE_TIME` <br> e.g., `reschedule 2 on/20-10-2021 10:00`
 **Find Meeting** | `findmeet KEYWORD [MORE_KEYWORDS]`<br> e.g., `findmeet 05-2022 Sam`
-**Delete Meeting** | `deletemeet INDEX`<br> e.g., `delete 3`
+**Delete Meeting** | `deletemeet INDEX`<br> e.g., `deletemeet 3`
 **Complete Meeting** | `donemeet INDEX` <br> e.g., `donemeet 3`
 **Clear All** | `clear`
 **Exit** | `exit`
