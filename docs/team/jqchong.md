@@ -5,7 +5,7 @@ title: Chong Jing Quan's Project Portfolio Page
 
 ## Project: SpamEZ
 
-SpamEZ is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+SpamEZ is a desktop application aim to help user classify contacts' information based on the relevant parties and the required means of communication (direct messages, emails, etc.). This will provide users an automated alternative to manually deciding the target group and method for sending specific information.
 
 Given below are my contributions to the project.
 
