@@ -55,7 +55,8 @@ purposes, these steps are split into a few categories.
 4. Add in upcoming events to plan for. Welfare ICs can add in events that are upcoming so that they can be reminded 
    to plan for these events. All fields are optional except name so that the Welfare IC can decide what information 
    has to be stored for each event. 
-   For instance, a farewell party for the graduating batch needs to be planned in the next month, but the date is unconfirmed. The welfare IC can add this as `eadd -n Party for graduating seniors -r Confirm availability of seniors to fix date`
+   For instance, a farewell party for the graduating batch needs to be planned in the next month, but the date is unconfirmed. 
+   The welfare IC can add this as `eadd -n Party for graduating seniors -r Confirm availability of seniors to fix date`
 
 #### Marking events as done
 
