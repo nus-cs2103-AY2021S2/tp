@@ -66,13 +66,27 @@ Current module codes supported: CS1101S, CS1231S, CS2030, CS2040S, CS2101,
 * Parameters can be in any order.<br>
   e.g. if the command specifies `d/DESCRIPTION t/TAG`, `t/TAG d/DESCRIPTION` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter is expected only once in the command but you specified it multiple times, 
+  only the last occurrence of the parameter will be taken. Please refer to [Duplicate Parameters](#Duplicate Parameters).<br>
   e.g. if you specify `d/CS2103T team project for week7 d/CS3243 Assignment 4`, only `d/CS2103T team project for week7` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as`list`) will be ignored.<br>
   e.g. if the command specifies `list 123`, it will be interpreted as `list`.
 
 </div>
+
+### Duplicate Parameters
+1. Most commands take in only one instance of a unique parameter. In such cases, the last instance of the parameter is accepted.
+
+1. E.g. For `edit 1 m/CS2103T m/CS2101`, `m/CS2101` is taken as the argument for `MODULE`.
+
+1. All other preceding arguments of the same parameter (including invalid ones) will be ignored.
+In the above example, `m/CS2103T` is ignored.
+   
+1. However, if the last argument happens to be invalid, the command will not execute.<br>
+E.g. for `edit 1 m/CS2101 m/Invalid`, `m/Invalid` will be taken as the module argument, which is invalid. Even though m/CS2101 is valid, it is ignored entirely.
+
+### Command list
 
    * **`list`** : List out tasks
 
@@ -236,7 +250,7 @@ Examples:
 
 Deletes a tag from its associated task.
 
-Format: `deleteTag INDEX [t/TAG]`
+Format: `deleteTag INDEX t/TAG`
 
 * Deletes the task at the specified `INDEX`. 
   The index refers to the index number shown in the displayed task list. 
