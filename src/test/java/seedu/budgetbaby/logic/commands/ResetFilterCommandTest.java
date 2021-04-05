@@ -1,10 +1,8 @@
 package seedu.budgetbaby.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.budgetbaby.commons.core.Messages.MESSAGE_TYPICAL_BUDGET_TRACKER_ORIGINAL_LIST;
 import static seedu.budgetbaby.testutil.TypicalBudgetTracker.getTypicalBudgetTracker;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 import org.junit.jupiter.api.Test;
 
@@ -22,17 +20,13 @@ public class ResetFilterCommandTest {
     private BudgetBabyModel model = new BudgetBabyModelManager(getTypicalBudgetTracker(), new UserPrefs());
     private FindFrCommandParser find = new FindFrCommandParser();
     private ResetFilterCommand reset = new ResetFilterCommand();
-    private DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-    private LocalDate currDate = LocalDate.now();
 
     @Test
     public void execute() throws ParseException, CommandException {
-        String expectedOutput = "[" + dtf.format(currDate) + " | Breakfast | 5.00; Categories: "
-                + "[Food], " + dtf.format(currDate) + " | Lunch | 6.00; Categories: [Food]]";
         find.parse(" d/Breakfast").execute(model);
         reset.execute(model);
         String actualOutput = model.getFilteredFinancialRecordList().toString();
-        assertEquals(expectedOutput, actualOutput);
+        assertEquals(MESSAGE_TYPICAL_BUDGET_TRACKER_ORIGINAL_LIST, actualOutput);
     }
 
 }
