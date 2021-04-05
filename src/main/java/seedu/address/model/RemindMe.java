@@ -172,8 +172,6 @@ public class RemindMe implements ReadOnlyRemindMe {
         return mod.hasExam(index);
     }
 
-
-
     /**
      * Returns true if a person with the same identity as {@code person} exists in the RemindMe.
      */
@@ -322,7 +320,7 @@ public class RemindMe implements ReadOnlyRemindMe {
     public void removeAssignment(Module module, Assignment key) {
         Module editedModule = modules.getModule(module);
         editedModule.deleteAssignment(key);
-        setModule(module, editedModule);
+        modules.setModule(module, editedModule);
     }
 
     /**
@@ -345,7 +343,7 @@ public class RemindMe implements ReadOnlyRemindMe {
     public void removeExam(Module module, Exam key) {
         Module editedModule = modules.getModule(module);
         editedModule.deleteExam(key);
-        setModule(module, editedModule);
+        modules.setModule(module, editedModule);
     }
 
     public void addEvent(GeneralEvent toAdd) {
