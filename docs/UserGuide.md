@@ -16,6 +16,146 @@ title: User Guide
 * Keeps track of student records
 * Keeps track of room records
 
+## About this Guide
+
+### User Interface
+
+### Command Format
+
+Commands in this user guide follow this format:
+
+* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+  e.g. in `radd n/NAME ...`, `NAME` is a parameter which can be used as `radd n/John Doe ...`.
+
+* Items in square brackets are optional.<br>
+  e.g. `d/DESCRIPTION [t/TIMESTAMP]` can be used as `d/Broken chair t/2020/3/23 11:59pm` or as `d/Broken chair`.
+
+* Parameters can be in any order.<br>
+  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+  e.g. if you specify `n/John Doe n/Jane Doe`, only `n/Jane Doe` will be taken.
+
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `ilist`, `exit` and `clear`) will be ignored.<br>
+  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+
+
+### Command Parameters
+
+Many SunRez commands use various parameters. Their formats, constraints and rationale are provided in this subsection.
+
+#### `ALIAS_NAME`
+DESCRIPTION OF PARAMETER
+* FORMAT AND RESTRICTIONS WITH JUSTIFICATION
+* (if applicable) For best usage, ...
+* (if applicable) Valid examples (if not clear from above)
+
+
+#### `CATEGORY`
+DESCRIPTION OF PARAMETER
+* FORMAT AND RESTRICTIONS WITH JUSTIFICATION
+* (if applicable) For best usage, ...
+* (if applicable) Valid examples (if not clear from above)
+
+
+#### `COMMAND`
+DESCRIPTION OF PARAMETER
+* FORMAT AND RESTRICTIONS WITH JUSTIFICATION
+* (if applicable) For best usage, ...
+* (if applicable) Valid examples (if not clear from above)
+
+
+#### `COUNT`
+The number of items wanted (from some collection).
+* Must be a positive integer: 1, 2, 3, ...
+* Must be at most the size of the collection of items (this number depends on the relevant collection).
+
+
+#### `DESCRIPTION`
+DESCRIPTION OF PARAMETER
+* FORMAT AND RESTRICTIONS WITH JUSTIFICATION
+* (if applicable) For best usage, ...
+* (if applicable) Valid examples (if not clear from above)
+
+
+#### `EMAIL`
+DESCRIPTION OF PARAMETER
+* FORMAT AND RESTRICTIONS WITH JUSTIFICATION
+* (if applicable) For best usage, ...
+* (if applicable) Valid examples (if not clear from above)
+
+
+#### `INDEX`
+DESCRIPTION OF PARAMETER
+* FORMAT AND RESTRICTIONS WITH JUSTIFICATION
+* (if applicable) For best usage, ...
+* (if applicable) Valid examples (if not clear from above)
+
+
+#### `KEYWORD`
+DESCRIPTION OF PARAMETER
+* FORMAT AND RESTRICTIONS WITH JUSTIFICATION
+* (if applicable) For best usage, ...
+* (if applicable) Valid examples (if not clear from above)
+
+
+#### `NAME`
+DESCRIPTION OF PARAMETER
+* FORMAT AND RESTRICTIONS WITH JUSTIFICATION
+* (if applicable) For best usage, ...
+* (if applicable) Valid examples (if not clear from above)
+
+
+#### `PHONE_NUMBER`
+DESCRIPTION OF PARAMETER
+* FORMAT AND RESTRICTIONS WITH JUSTIFICATION
+* (if applicable) For best usage, ...
+* (if applicable) Valid examples (if not clear from above)
+
+
+#### `ROOM_NUMBER`
+DESCRIPTION OF PARAMETER
+* FORMAT AND RESTRICTIONS WITH JUSTIFICATION
+* (if applicable) For best usage, ...
+* (if applicable) Valid examples (if not clear from above)
+
+
+#### `ROOM_TYPE`
+DESCRIPTION OF PARAMETER
+* FORMAT AND RESTRICTIONS WITH JUSTIFICATION
+* (if applicable) For best usage, ...
+* (if applicable) Valid examples (if not clear from above)
+
+
+#### `STATUS`
+DESCRIPTION OF PARAMETER
+* FORMAT AND RESTRICTIONS WITH JUSTIFICATION
+* (if applicable) For best usage, ...
+* (if applicable) Valid examples (if not clear from above)
+
+
+#### `TAG`
+DESCRIPTION OF PARAMETER
+* FORMAT AND RESTRICTIONS WITH JUSTIFICATION
+* (if applicable) For best usage, ...
+* (if applicable) Valid examples (if not clear from above)
+
+
+#### `TIMESTAMP`
+DESCRIPTION OF PARAMETER
+* FORMAT AND RESTRICTIONS WITH JUSTIFICATION
+* (if applicable) For best usage, ...
+* (if applicable) Valid examples (if not clear from above)
+
+
+#### `YEAR`
+DESCRIPTION OF PARAMETER
+* FORMAT AND RESTRICTIONS WITH JUSTIFICATION
+* (if applicable) For best usage, ...
+* (if applicable) Valid examples (if not clear from above)
+
+
+
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -44,26 +184,7 @@ title: User Guide
 
 ## Features
 
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Notes about the command format:**<br>
-
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
-
-* Items in square brackets are optional.<br>
-  e.g. `d/DESCRIPTION [t/TIMESTAMP]` can be used as `d/Broken chair t/2020/3/23 11:59pm` or as `d/Broken chair`.
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
-* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `n/John Doe n/Jane Doe`, only `n/Jane Doe` will be taken.
-
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `ilist`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
-</div>
+This section contains the details on SunRez commands and features. 
 
 ### Resident Management
 
@@ -72,7 +193,7 @@ title: User Guide
 Adds a resident to the housing management system.
 
 Format: `radd n/NAME p/PHONE_NUMBER e/EMAIL y/YEAR`
-* `NAME` is the unique identifier of a resident.  
+* `NAME` is the unique identifier of a resident.
 
 Examples:
 * `radd n/John Doe p/91234567 e/e0123456@u.nus.edu y/3` Adds a resident named `John Doe` with phone number `91234567`, email `e0123456@u.nus.edu`, and as a 3rd year student, without any room allocated.
@@ -134,7 +255,7 @@ Example:
 
 Adds a room to the housing management system.
 
-Format: `oadd r/ROOM_NO t/TYPE [g/TAG]`
+Format: `oadd r/ROOM_NUMBER t/ROOM_TYPE [g/TAG]`
 * Room is initialised with default occupancy status of "No".
 * Room occupancy status can only be changed through the `alloc` or `dealloc` command when a resident is allocated or deallocated. The occupancy status cannot be defaulted to "Yes" during room addition.
 
@@ -172,7 +293,7 @@ Examples:
 
 Edits the existing room record at a specified index.
 
-Format: `oedit INDEX [r/ROOM_NO] [t/TYPE] [g/TAG]`
+Format: `oedit INDEX [r/ROOM_NUMBER] [t/ROOM_TYPE] [g/TAG]`
 * `INDEX` refers to the index number shown in the displayed room list. `INDEX` **must be a positive integer 1, 2, 3, …**.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
@@ -205,8 +326,8 @@ Format: `rulist`
 #### Allocate resident to room: `alloc`
 Allocates an existing resident to an existing room.
 
-Format: `alloc n/NAME r/ROOM_NO`
-* `NAME` and `ROOM_NO` must already exist.
+Format: `alloc n/NAME r/ROOM_NUMBER`
+* `NAME` and `ROOM_NUMBER` must already exist.
 * Exact match for `NAME` is required.
 * `NAME` is case-sensitive.
 * Both fields must be provided.
@@ -230,7 +351,7 @@ Example:
 
 Adds an issue to the housing management system.
 
-Format: `iadd r/ROOM_NO d/DESCRIPTION [t/TIMESTAMP] [s/STATUS] [c/CATEGORY] [g/TAG]`
+Format: `iadd r/ROOM_NUMBER d/DESCRIPTION [t/TIMESTAMP] [s/STATUS] [c/CATEGORY] [g/TAG]`
 
 Example:
 * `iadd r/10-100 d/Broken light c/Furniture` Creates an issue for room number `10-100` with description `Broken light` under the category `Furniture`.
@@ -265,7 +386,7 @@ Examples:
 
 Edits the existing issue record at a specified index.
 
-Format: `iedit INDEX [r/ROOM] [d/DESCRIPTION] [t/TIMESTAMP] [s/STATUS] [c/CATEGORY] [g/TAG]`
+Format: `iedit INDEX [r/ROOM_NUMBER] [d/DESCRIPTION] [t/TIMESTAMP] [s/STATUS] [c/CATEGORY] [g/TAG]`
 * `INDEX` refers to the index number shown in the displayed issue list. `INDEX` **must be a positive integer 1, 2, 3, …**.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
@@ -408,7 +529,10 @@ Format: `aliases`
 Displays the user's valid command history, sorted from most to least recent.
 
 Format: `history [COUNT]`
-* `COUNT` refers to the number of most recent command entries to display. `COUNT` **must be a positive integer 1,2,3, ...**.
+* Displays the `COUNT` most recent command entries, if `COUNT` is specified. Otherwise, displays all command entries.
+
+Parameters:
+* [`COUNT`](#count) The number of most recent command entries to display.
 
 Examples:
 * `history` Displays all command entries.
@@ -480,19 +604,19 @@ Action | Format, Examples
 **List all residents** | `rlist`
 **List all unallocated residents** | `rulist`
 **Find residents** | `rfind KEYWORD [MORE_KEYWORDS]` <br> e.g. `rfind bob bobby`
-**Edit a resident record** | `redit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/ROOM]` <br> e.g. `redit 1 p/91234567 e/e0123456@u.nus.edu`
+**Edit a resident record** | `redit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/ROOM_NUMBER]` <br> e.g. `redit 1 p/91234567 e/e0123456@u.nus.edu`
 **Delete a resident** |  `rdel INDEX` <br> e.g. `rdel 1`
-**Add a room** |  `oadd r/ROOM_NO t/TYPE [g/TAG]` <br> e.g. `oadd n/17-101 t/corridor_ac g/SHN`
+**Add a room** |  `oadd r/ROOM_NUMBER t/ROOM_TYPE [g/TAG]` <br> e.g. `oadd n/17-101 t/corridor_ac g/SHN`
 **List all rooms** |  `olist`
 **Find rooms** |  `ofind KEYWORD [MORE_KEYWORDS]` <br> e.g. `ofind 10- 15-`
-**Edit a room record** |  `oedit INDEX [r/ROOM_NO] [t/TYPE] [g/TAG]` <br> e.g. `oedit 1 g/SHN`
+**Edit a room record** |  `oedit INDEX [r/ROOM_NUMBER] [t/ROOM_TYPE] [g/TAG]` <br> e.g. `oedit 1 g/SHN`
 **Delete a room** | `odel INDEX` <br> e.g. `odel 1`
-**Allocate a Resident to Room** | `alloc n/NAME r/ROOM_NO` <br> e.g. `alloc n/John Tan r/03-100`
-**Deallocate a Resident from Room** | `dealloc n/NAME r/ROOM_NO` <br> e.g. `dealloc n/John Tan r/03-100`
-**Add an open issue** | `iadd r/ROOM_NO d/DESCRIPTION [t/TIMESTAMP] [s/STATUS] [c/CATEGORY] [g/TAG]` <br> e.g. `iadd r/10-100 d/Broken light c/Furniture g/HIGH`
+**Allocate a Resident to Room** | `alloc n/NAME r/ROOM_NUMBER` <br> e.g. `alloc n/John Tan r/03-100`
+**Deallocate a Resident from Room** | `dealloc n/NAME r/ROOM_NUMBER` <br> e.g. `dealloc n/John Tan r/03-100`
+**Add an open issue** | `iadd r/ROOM_NUMBER d/DESCRIPTION [t/TIMESTAMP] [s/STATUS] [c/CATEGORY] [g/TAG]` <br> e.g. `iadd r/10-100 d/Broken light c/Furniture g/HIGH`
 **List all issues** | `ilist`
 **Find issues** | `ifind KEYWORD [MORE_KEYWORDS]` <br> e.g. `ifind wardrobe table`
-**Edit an issue record** | `iedit INDEX [r/ROOM] [d/DESCRIPTION] [t/TIMESTAMP] [s/STATUS] [c/CATEGORY] [g/TAG]` <br> e.g. `iedit 1 r/20-109 s/Closed`
+**Edit an issue record** | `iedit INDEX [r/ROOM_NUMBER] [d/DESCRIPTION] [t/TIMESTAMP] [s/STATUS] [c/CATEGORY] [g/TAG]` <br> e.g. `iedit 1 r/20-109 s/Closed`
 **Close an issue** | `iclo INDEX` <br> e.g. `iclo 1`
 **Delete an issue** | `idel INDEX` <br> e.g. `idel 1`
 **View command history** | `history [COUNT]` <br> e.g. `history 5`
