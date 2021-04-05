@@ -18,48 +18,48 @@ import org.junit.jupiter.api.Test;
 
 import seedu.iscam.model.Model;
 import seedu.iscam.model.ModelManager;
-import seedu.iscam.model.commons.NameContainsKeywordsPredicate;
+import seedu.iscam.model.client.PlanContainsKeywordsPredicate;
 import seedu.iscam.model.user.UserPrefs;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
-public class FindCommandTest {
+public class FindPlansCommandTest {
     private Model model = new ModelManager(getTypicalClientBook(), getTypicalMeetingBook(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalClientBook(), getTypicalMeetingBook(), new UserPrefs());
 
     @Test
     public void equals() {
-        NameContainsKeywordsPredicate firstPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("first"));
-        NameContainsKeywordsPredicate secondPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("second"));
+        PlanContainsKeywordsPredicate firstPredicate =
+                new PlanContainsKeywordsPredicate(Collections.singletonList("first"));
+        PlanContainsKeywordsPredicate secondPredicate =
+                new PlanContainsKeywordsPredicate(Collections.singletonList("second"));
 
-        FindCommand findFirstCommand = new FindCommand(firstPredicate);
-        FindCommand findSecondCommand = new FindCommand(secondPredicate);
+        FindPlansCommand findFirstPlanCommand = new FindPlansCommand(firstPredicate);
+        FindPlansCommand findSecondPlanCommand = new FindPlansCommand(secondPredicate);
 
         // same object -> returns true
-        assertTrue(findFirstCommand.equals(findFirstCommand));
+        assertTrue(findFirstPlanCommand.equals(findFirstPlanCommand));
 
         // same values -> returns true
-        FindCommand findFirstCommandCopy = new FindCommand(firstPredicate);
-        assertTrue(findFirstCommand.equals(findFirstCommandCopy));
+        FindPlansCommand findFirstPlanCommandCopy = new FindPlansCommand(firstPredicate);
+        assertTrue(findFirstPlanCommand.equals(findFirstPlanCommandCopy));
 
         // different types -> returns false
-        assertFalse(findFirstCommand.equals(1));
+        assertFalse(findFirstPlanCommand.equals(1));
 
         // null -> returns false
-        assertFalse(findFirstCommand.equals(null));
+        assertFalse(findFirstPlanCommand.equals(null));
 
         // different client -> returns false
-        assertFalse(findFirstCommand.equals(findSecondCommand));
+        assertFalse(findFirstPlanCommand.equals(findSecondPlanCommand));
     }
 
     @Test
     public void execute_zeroKeywords_noClientFound() {
         String expectedMessage = String.format(MESSAGE_CLIENTS_LISTED_OVERVIEW, 0);
-        NameContainsKeywordsPredicate predicate = preparePredicate(" ");
-        FindCommand command = new FindCommand(predicate);
+        PlanContainsKeywordsPredicate predicate = preparePlanPredicate(" ");
+        FindPlansCommand command = new FindPlansCommand(predicate);
         expectedModel.updateFilteredClientList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredClientList());
@@ -68,17 +68,20 @@ public class FindCommandTest {
     @Test
     public void execute_multipleKeywords_multipleClientsFound() {
         String expectedMessage = String.format(MESSAGE_CLIENTS_LISTED_OVERVIEW, 3);
-        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
-        FindCommand command = new FindCommand(predicate);
+        PlanContainsKeywordsPredicate predicate = preparePlanPredicate("Life Protect MediShield");
+        FindPlansCommand command = new FindPlansCommand(predicate);
         expectedModel.updateFilteredClientList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
+
+        // Returns true if CARL, ELLE, FIONA are displayed
+        // because they contain the plans with the search keyword.
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredClientList());
     }
 
     /**
-     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
+     * Parses {@code userInput} into a {@code PlanContainsKeywordsPredicate}.
      */
-    private NameContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    private PlanContainsKeywordsPredicate preparePlanPredicate(String userInput) {
+        return new PlanContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 }

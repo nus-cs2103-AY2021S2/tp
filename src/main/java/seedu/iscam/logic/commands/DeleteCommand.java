@@ -73,7 +73,6 @@ public class DeleteCommand extends UndoableCommand {
 
         } else if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
-
         } else {
             clientToBeDeleted = lastShownList.get(targetIndex.getZeroBased());
             clientToDelete = clientToBeDeleted;

@@ -1,6 +1,7 @@
 package seedu.iscam.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.iscam.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.iscam.model.meeting.CompletionStatus.ARGUMENT_COMPLETE;
 import static seedu.iscam.model.meeting.CompletionStatus.ARGUMENT_INCOMPLETE;
 
@@ -12,6 +13,7 @@ import seedu.iscam.commons.core.index.Index;
 import seedu.iscam.commons.util.StringUtil;
 import seedu.iscam.logic.parser.exceptions.ParseException;
 import seedu.iscam.logic.parser.exceptions.ParseFormatException;
+import seedu.iscam.logic.parser.exceptions.ParseIndexException;
 import seedu.iscam.model.client.Email;
 import seedu.iscam.model.client.Image;
 import seedu.iscam.model.client.InsurancePlan;
@@ -28,20 +30,44 @@ import seedu.iscam.model.meeting.Description;
  */
 public class ParserUtil {
 
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_INDEX = "Index must be a non-zero positive integer.";
+    public static final String MESSAGE_EMPTY_INDEX = "Index field is empty.";
+    public static final String MESSAGE_INDEX_TOO_LARGE = "Index specified is too big! Please input a "
+            + "number smaller than 2147483647.";
 
 
     /**
-     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
-     * trimmed.
+     * Parses {@code oneBasedIndex} into an {@code Index} and returns it.
+     * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     * @throws ParseIndexException if the specified index is invalid (not non-zero unsigned integer).
+     * @throws ParseIndexException if the specified index is bigger than the maximum holding value of an int.
+     * @throws ParseException if {@code oneBasedIndex} is an empty string (index field is empty).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
+        // Remove the trailing white spaces at the beginning and ending of oneBasedIndex.
         String trimmedIndex = oneBasedIndex.trim();
-        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
+
+        // Split the trimmedIndex by space to detect the presence of additional parameters.
+        String[] params = trimmedIndex.split(" ", 2);
+
+        if (trimmedIndex.length() == 0) {
+            // Throw ParseException if oneBasedIndex is an empty string.
+            throw new ParseException(MESSAGE_EMPTY_INDEX);
+
+        } else if (params.length > 1) {
+            // Throw ParseFormatException if there are parameters more than required parameters.
+            throw new ParseFormatException(MESSAGE_INVALID_COMMAND_FORMAT);
+
+        } else if (!StringUtil.isSmallerThanIntegerMaxValue(trimmedIndex)) {
+            // Throw ParseIndexException if the index specified is larger than Integer.MAX_VALUE.
+            throw new ParseIndexException(MESSAGE_INDEX_TOO_LARGE);
+
+        } else if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+            // Throw ParseIndexException if the index is invalid.
+            throw new ParseIndexException(MESSAGE_INVALID_INDEX);
         }
+
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
 
@@ -76,10 +102,10 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String iscam} into an {@code Location}.
+     * Parses a {@code String location} into an {@code Location}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code iscam} is invalid.
+     * @throws ParseException if the given {@code location} is invalid.
      */
     public static Location parseLocation(String location) throws ParseException {
         requireNonNull(location);

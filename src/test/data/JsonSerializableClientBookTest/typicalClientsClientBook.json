@@ -21,7 +21,7 @@
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "location" : "wall street",
-    "plan" : "Plan C",
+    "plan" : "Life",
     "tagged" : [ ],
     "image" : "default.png"
   }, {
@@ -37,7 +37,7 @@
     "phone" : "9482224",
     "email" : "werner@example.com",
     "location" : "michegan ave",
-    "plan" : "Plan C",
+    "plan" : "Protect",
     "tagged" : [ ],
     "image" : "default.png"
   }, {
@@ -45,7 +45,7 @@
     "phone" : "9482427",
     "email" : "lydia@example.com",
     "location" : "little tokyo",
-    "plan" : "Plan B",
+    "plan" : "MediShield",
     "tagged" : [ ],
     "image" : "default.png"
   }, {
