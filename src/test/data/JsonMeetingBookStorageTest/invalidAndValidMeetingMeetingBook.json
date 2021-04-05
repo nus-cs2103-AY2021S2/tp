@@ -1,0 +1,17 @@
+{
+  "meetings" : [ {
+    "dateTime" : "12-10-2021 10:00",
+    "location" : "Starbucks, Tampines Hub",
+    "description" : "Sell insurance plan",
+    "tags" : [ ],
+    "status" : "incomplete",
+    "clientName" : "Valid client"
+  }, {
+    "dateTime" : "12-10-2021 10:00",
+    "location" : "Starbucks, Tampines Hub",
+    "description" : "Sell insurance plan",
+    "tags" : [ ],
+    "status" : "incomplete",
+    "clientName" : "Invalid client name @@@"
+  } ]
+}

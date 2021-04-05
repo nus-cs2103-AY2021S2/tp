@@ -1,0 +1,17 @@
+{
+  "meetings" : [ {
+    "dateTime" : "12-10-2021 10:00",
+    "location" : "Starbucks, Tampines Hub",
+    "description" : "Discuss insurance pol",
+    "tags" : [ ],
+    "status" : "incomplete",
+    "clientName" : "John Doe"
+  }, {
+    "dateTime" : "12-10-2021 10:00",
+    "location" : "Starbucks, Tampines Hub",
+    "description" : "Discuss insurance pol",
+    "tags" : [ ],
+    "status" : "incomplete",
+    "clientName" : "John Doe"
+  } ]
+}

@@ -37,7 +37,7 @@ class JsonAdaptedMeeting {
      * Constructs a {@code JsonAdaptedClient} with the given client details.
      */
     @JsonCreator
-    public JsonAdaptedMeeting(@JsonProperty("client") String clientName, @JsonProperty("dateTime") String dateTime,
+    public JsonAdaptedMeeting(@JsonProperty("name") String clientName, @JsonProperty("dateTime") String dateTime,
                               @JsonProperty("location") String location,
                               @JsonProperty("description") String description,
                               @JsonProperty("tags") List<JsonAdaptedMeetingTag> tags,
