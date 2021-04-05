@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.budgetbaby.logic.commands.exceptions.CommandException;
 import seedu.budgetbaby.logic.parser.FindFrCommandParser;
-import seedu.budgetbaby.logic.parser.ResetFilterCommandParser;
 import seedu.budgetbaby.logic.parser.exceptions.ParseException;
 import seedu.budgetbaby.model.BudgetBabyModel;
 import seedu.budgetbaby.model.BudgetBabyModelManager;
@@ -27,7 +26,7 @@ import seedu.budgetbaby.model.record.FinancialRecord;
 public class ResetFilterCommandTest {
     private BudgetBabyModel model = new BudgetBabyModelManager(new BudgetTracker(), new UserPrefs());
     private FindFrCommandParser find = new FindFrCommandParser();
-    private ResetFilterCommandParser reset = new ResetFilterCommandParser();
+    private ResetFilterCommand reset = new ResetFilterCommand();
 
     private final Description description = new Description("Breakfast");
     private final Amount amount = new Amount("5");
@@ -44,7 +43,7 @@ public class ResetFilterCommandTest {
         String expectedOutput = "[01-04-2021 | Breakfast | 5.0; Categories: "
                 + "[Food], 01-04-2021 | Lunch | 6.0; Categories: [Food]]";
         find.parse(" d/Breakfast").execute(model);
-        reset.parse("").execute(model);
+        reset.execute(model);
         assertEquals(expectedOutput, model.getFilteredFinancialRecordList().toString());
     }
 
