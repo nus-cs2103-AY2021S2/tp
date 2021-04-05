@@ -11,4 +11,5 @@ public class Messages {
     public static final String MESSAGE_TASKS_LISTED_OVERVIEW = "%1$d tasks listed!";
 
     public static final String MESSAGE_NO_TASK_WITH_TAG = "No task associated with this tag";
+    public static final String MESSAGE_NO_SUCH_MODULE = "Module code provided does not exist";
 }
