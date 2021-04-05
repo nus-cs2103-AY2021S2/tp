@@ -24,7 +24,6 @@ public class BudgetListPanel extends UiPart<Region> {
         super(FXML);
         assert budgetList.size() > 0;
         budgetListView = new ListView<>(budgetList);
-        System.out.println(budgetList);
         budgetListView.setCellFactory(listview -> new BudgetListViewCell());
     }
 
