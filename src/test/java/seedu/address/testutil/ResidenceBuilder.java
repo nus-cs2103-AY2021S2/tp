@@ -17,8 +17,8 @@ import seedu.address.model.util.SampleDataUtil;
  * A utility class to help with building Residence objects.
  */
 public class ResidenceBuilder {
-    public static final String DEFAULT_RESIDENCE_NAME = "Amber Park";
-    public static final String DEFAULT_RESIDENCE_ADDRESS = "14 Amber Gardens, 439960";
+    public static final String DEFAULT_RESIDENCE_NAME = "Olive Park";
+    public static final String DEFAULT_RESIDENCE_ADDRESS = "122 Olive Gardens, 652260";
     public static final String DEFAULT_CLEAN_STATUS = "y";
 
     private ResidenceName name;
@@ -34,6 +34,7 @@ public class ResidenceBuilder {
         name = new ResidenceName(DEFAULT_RESIDENCE_NAME);
         address = new ResidenceAddress(DEFAULT_RESIDENCE_ADDRESS);
         cleanStatusTag = new CleanStatusTag(DEFAULT_CLEAN_STATUS);
+        bookingList = new BookingList();
         tags = new HashSet<>();
     }
 

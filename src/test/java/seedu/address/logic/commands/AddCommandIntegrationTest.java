@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_RESIDENCES;
 import static seedu.address.testutil.TypicalResidences.getTypicalResidenceTracker;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -31,6 +32,7 @@ public class AddCommandIntegrationTest {
 
         Model expectedModel = new ModelManager(model.getResidenceTracker(), new UserPrefs());
         expectedModel.addResidence(validResidence);
+        expectedModel.updateFilteredResidenceList(PREDICATE_SHOW_ALL_RESIDENCES);
 
         assertCommandSuccess(new AddCommand(validResidence), model,
                 String.format(AddCommand.MESSAGE_SUCCESS, validResidence), expectedModel);

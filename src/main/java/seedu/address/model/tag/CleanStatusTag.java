@@ -58,8 +58,8 @@ public class CleanStatusTag {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Tag // instanceof handles nulls
-                && cleanStatus.equals(((Tag) other).tagName)); // state check
+                || (other instanceof CleanStatusTag // instanceof handles nulls
+                && cleanStatus.equals(((CleanStatusTag) other).cleanStatus)); // state check
     }
 
     @Override

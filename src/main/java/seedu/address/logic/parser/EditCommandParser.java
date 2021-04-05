@@ -34,7 +34,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_RESIDENCE_ADDRESS,
-                        PREFIX_BOOKING, PREFIX_CLEAN_STATUS_TAG, PREFIX_TAG);
+                        PREFIX_CLEAN_STATUS_TAG, PREFIX_TAG);
 
         Index index;
         if (argMultimap.getPreamble().isEmpty()) {
@@ -59,6 +59,11 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editResidenceDescriptor::setTags);
+
+        if (argMultimap.getValue(PREFIX_CLEAN_STATUS_TAG).isPresent()) {
+            editResidenceDescriptor.setCleanStatusTag(
+                    ParserUtil.parseCleanStatusTag(argMultimap.getValue(PREFIX_CLEAN_STATUS_TAG).get()));
+        }
 
         if (!editResidenceDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
