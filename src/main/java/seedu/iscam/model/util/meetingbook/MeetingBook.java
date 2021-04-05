@@ -2,6 +2,7 @@ package seedu.iscam.model.util.meetingbook;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Arrays;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -62,13 +63,15 @@ public class MeetingBook implements ReadOnlyMeetingBook {
     }
 
     /**
-     * Returns true if the meeting shares the same date and time with any meeting in the iscam book.
+     * Returns true if any meeting except the ones in {@code exclusions} has conflicting date-time with {@code
+     * meeting}.
      */
-    public boolean hasConflictingMeetingWith(Meeting meeting) {
+    public boolean hasConflictingMeetingWith(Meeting meeting, Meeting... exclusions) {
         requireNonNull(meeting);
+
         for (Meeting other : meetings) {
             if (other.isInConflict(meeting) && !other.getClientName().equals(meeting.getClientName())) {
-                return true;
+                return Arrays.stream(exclusions).noneMatch(e -> other.getClientName().equals(e.getClientName()));
             }
         }
         return false;

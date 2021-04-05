@@ -141,7 +141,11 @@ public interface Model {
      */
     boolean hasMeeting(Meeting meeting);
 
-    boolean hasConflictingMeetingWith(Meeting meeting);
+    /**
+     * Returns true if any meeting except the ones in {@code exclusions} has conflicting date-time with {@code
+     * meeting}.
+     */
+    boolean hasConflictingMeetingWith(Meeting meeting, Meeting... exclusions);
 
     /**
      * Deletes the given meeting.

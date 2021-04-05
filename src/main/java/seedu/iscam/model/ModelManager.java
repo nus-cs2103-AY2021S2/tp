@@ -174,9 +174,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasConflictingMeetingWith(Meeting meeting) {
+    public boolean hasConflictingMeetingWith(Meeting meeting, Meeting... exclusions) {
         requireNonNull(meeting);
-        return meetingBook.hasConflictingMeetingWith(meeting);
+        return meetingBook.hasConflictingMeetingWith(meeting, exclusions);
     }
 
     @Override

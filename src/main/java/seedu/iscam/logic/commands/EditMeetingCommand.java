@@ -35,9 +35,6 @@ import seedu.iscam.model.meeting.Meeting;
 public class EditMeetingCommand extends Command {
 
     public static final String COMMAND_WORD = "editmeet";
-    public static final String PARAMETER_DONE = "yes";
-    public static final String PARAMETER_NOT_DONE = "no";
-
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the meeting identified "
             + "by the index number used in the displayed meeting list. "
             + "Existing values will be overwritten by the input values.\n"
@@ -51,7 +48,6 @@ public class EditMeetingCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_LOCATION + "Macdonald, Bedok "
             + PREFIX_DESCRIPTION + "Client's family will be coming along";
-
     public static final String MESSAGE_EDIT_MEETING_SUCCESS = "Edited Meeting: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_MEETING = "No changes found in any field.";
@@ -113,7 +109,7 @@ public class EditMeetingCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_MEETING);
         }
 
-        if (model.hasConflictingMeetingWith(editedMeeting)) {
+        if (model.hasConflictingMeetingWith(editedMeeting, meeting)) {
             throw new CommandException(MESSAGE_CONFLICT);
         }
 
