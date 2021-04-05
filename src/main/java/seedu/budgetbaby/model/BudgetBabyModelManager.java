@@ -236,8 +236,8 @@ public class BudgetBabyModelManager implements BudgetBabyModel {
         requireNonNull(predicate);
         FilteredList<FinancialRecord> tempFilteredList = new FilteredList<>(filteredFinancialRecords);
         tempFilteredList.setPredicate(predicate);
+        filteredFinancialRecords.setPredicate(predicate);
         if (!tempFilteredList.isEmpty()) {
-            filteredFinancialRecords.setPredicate(predicate);
             return true;
         } else {
             return false;
