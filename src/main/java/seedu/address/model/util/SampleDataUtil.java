@@ -57,15 +57,15 @@ public class SampleDataUtil {
         };
     }
 
-    public static Event[] getSampleEvents() {
-        return new Event[] {
-                new Event(LocalDate.of(2021, 1, 30),
+    public static seedu.address.model.person.Event[] getSampleEvents() {
+        return new seedu.address.model.person.Event[] {
+                new seedu.address.model.person.Event(LocalDate.of(2021, 1, 30),
                         LocalTime.of(12, 0), "e1"),
-                new Event(LocalDate.of(2021, 1, 24),
+                new seedu.address.model.person.Event(LocalDate.of(2021, 1, 24),
                         LocalTime.of(12, 0), "e2"),
-                new Event(LocalDate.of(2020, 12, 30),
+                new seedu.address.model.person.Event(LocalDate.of(2020, 12, 30),
                         LocalTime.of(12, 0), "e3"),
-                new Event(LocalDate.of(2021, 4, 1),
+                new seedu.address.model.person.Event(LocalDate.of(2021, 4, 1),
                         LocalTime.of(13, 40), "e4")
         };
     }
