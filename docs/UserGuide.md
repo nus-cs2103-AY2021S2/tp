@@ -9,7 +9,8 @@ title: User Guide
 --------------------------------------------------------------------------------------------------------------------
 
 ## Introduction
-**SunRez** is a desktop app designed for college residential staff to efficiently manage student housing services. It is optimized for use via a Command Line Interface (CLI).
+**SunRez** is a desktop app designed for college residential staff to efficiently manage student housing services. It 
+features a Graphical User Interface (GUI) but is optimized for use via a Command Line Interface (CLI).
 
 **SunRez** has the following features:
 * Keeps track of maintenance issues
@@ -137,10 +138,14 @@ DESCRIPTION OF PARAMETER
 
 
 #### `TAG`
-DESCRIPTION OF PARAMETER
-* FORMAT AND RESTRICTIONS WITH JUSTIFICATION
-* (if applicable) For best usage, ...
-* (if applicable) Valid examples (if not clear from above)
+The tag associated with a room or issue.
+* Tags must be non-blank and alphanumeric (spaces are not allowed).
+* Tags are limited to 25 characters.
+* Tags are case-sensitive: e.g. `SHN`,`shn` and `Shn` are each considered separate tags.
+* Duplicate tags will be accepted as input, but only one instance will be recorded.
+* For the best experience, we recommend keeping tags short and having fewer than 20 of them per entry. There is no 
+  theoretical limit to the number of tags an entry can have, but SunRez may slow down or run into unexpected problems 
+  for a huge number of tags.
 
 
 #### `TIMESTAMP`
@@ -619,10 +624,11 @@ If your changes to the data file makes its format invalid, SunRez will discard a
 Action | Format, Examples
 --------|------------------
 **Show help** | `help`
-**Add a resident** | `radd n/NAME p/PHONE_NUMBER e/EMAIL y/YEAR` <br> e.g. `radd n/Joseph Tan p/84666774 e/e0103994@u.nus.edu y/2 r/01-234`
+**Add a resident** | `radd n/NAME p/PHONE_NUMBER e/EMAIL y/YEAR` <br> e.g. `radd n/Joseph Tan p/84666774 e/e0103994@u.nus.edu y/2`
 **List all residents** | `rlist`
 **List all unallocated residents** | `rulist`
 **Find residents** | `rfind KEYWORD [MORE_KEYWORDS]` <br> e.g. `rfind bob bobby`
+**Edit a resident record** | `redit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [y/YEAR]` <br> e.g. `redit 1 p/91234567 e/e0123456@u.nus.edu`
 **Edit a resident record** | `redit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [y/YEAR]` <br> e.g. `redit 1 p/91234567 e/e0123456@u.nus.edu`
 **Delete a resident** |  `rdel INDEX` <br> e.g. `rdel 1`
 **Add a room** |  `oadd r/ROOM_NUMBER t/ROOM_TYPE [g/TAG]` <br> e.g. `oadd n/17-101 t/corridor_ac g/SHN`
