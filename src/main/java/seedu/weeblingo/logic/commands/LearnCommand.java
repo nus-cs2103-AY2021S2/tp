@@ -43,7 +43,8 @@ public class LearnCommand extends Command {
 
         model.updateFilteredFlashcardList(flashcard -> flashcard.checkHasTags(tags));
         model.switchModeLearn();
-        if (tags.isEmpty() ) {
+
+        if (tags.isEmpty()) {
             return new CommandResult(MESSAGE_SUCCESS + MESSAGE_NO_TAGS, false, false);
         } else {
             return new CommandResult(MESSAGE_SUCCESS + MESSAGE_HAVE_TAGS + tags.toString(), false, false);
