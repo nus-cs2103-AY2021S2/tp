@@ -280,7 +280,6 @@
 }
 
 .dialog-pane > *.button-bar > *.container {
-    /*-fx-background-color: #1d1d1d;*/
     -fx-background-color: derive(#62959C, 20%);
 }
 
@@ -291,7 +290,6 @@
 }
 
 .dialog-pane:header *.header-panel {
-    /*-fx-background-color: derive(#1d1d1d, 25%);*/
     -fx-background-color: derive(#62959C, 20%);
 }
 
