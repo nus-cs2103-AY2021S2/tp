@@ -181,7 +181,7 @@ An `Endpoint`,
 
 An `Endpoint` contains the following attributes:
 1. a `Method`, which represents the type of request an API endpoint will send to the server
-2. an `Address`, which represents the address to which the API request is made
+2. an `Address`, which represents the URL address to which the API request is made
 3. a `Data`, which represents the data that is to be sent to the server when an API request is made
 4. a Headers Set, which encapsulates a list of zero or more `Header` objects, where each `Header` represents a header that is to be sent to the server
 5. a Tags Set, which encapsulates a list of zero or more `Tags` objects
@@ -253,6 +253,7 @@ Step 3. `Model#updateFilteredEndpointList` will be called and model will be upda
 </div>
 
 The following activity diagram summarizes what happens when a user executes a find command:
+
 ![FindActivityDiagram](images/FindActivityDiagram.png)
 
 ### Send/run command feature
@@ -267,7 +268,7 @@ The send/run mechanism is very involved in the invocation of an actual outbound 
 
 Given below is an example usage scenario and how the send command behaves at each step.
 
-Step 1. The user launches the application and executes `add -x get -u https://api.data.gov.sg/v1/environment/air-temperature` to save an endpoint (a `get` request to the API URL above).
+Step 1. The user launches the application and executes `add -x get -u https://api.data.gov.sg/v1/environment/air-temperature` to save an endpoint (a `get` request to the API URL address above).
 
 Step 2. The user executes `send 1` command to first retrieve the endpoint stored at index 1. The endpoint at that index will then be used to generate an `EndpointCaller` object.
 
@@ -294,12 +295,12 @@ The following activity diagram summarizes what happens when a user executes a ru
 
 ##### Aspect: How send & run executes
 
-* **Alternative 1 (current choice):** The Send and Run command parsers verify the validity of endpoint/url before generating the respective commands.
+* **Alternative 1 (current choice):** The Send and Run command parsers verify the validity of endpoint/url address before generating the respective commands.
     * Pros: Keep the checking logic within the same place.
     * Cons: It may not be clear if the command contains a valid endpoint.
 
-* **Alternative 2:** Individual command checks if the endpoint/url is valid by itself.
-    * Pros: Checking of url validity right before execution will ensure proper request is processed.
+* **Alternative 2:** Individual command checks if the endpoint/url address is valid by itself.
+    * Pros: Checking of url address validity right before execution will ensure proper request is processed.
     * Cons: Duplication of code across Send and Run commands.
 
 ### Request feature

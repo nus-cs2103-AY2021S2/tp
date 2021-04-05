@@ -2,10 +2,8 @@
 start
 :User executes add command;
 :Parse command arguments;
-:Create Method object based on parsed command;
-:Create Address object based on parsed command;
-:Create Header objects based on parsed command and add them to Headers Set;
-:Create Tag objects based on parsed command and add them to Tags Set;
+:Create Method object;
+:Create Address object;
 
 if () then ([else])
     :Create empty Data Object;
@@ -13,8 +11,20 @@ else ([Data arguments exist])
     :Create Data object based on parsed command;
 endif
 
-:Create Endpoint object from the Method, Address, Header Set, Tag Set and Data attributes
-(Note: Reponse will be empty when an Endpoint is first created);
+if () then ([else])
+:Create empty Headers Set;
+else ([Header arguments exist])
+:Create Header objects and add them to Headers Set;
+endif
+
+if () then ([else])
+:Create empty Tags Set;
+else ([Tag arguments exist])
+:Create Tag objects and add them to Tags Set;
+endif
+
+:Create Endpoint object from the Method, Address, Data, Header Set and Tag Set attributes;
+
 
 :Add the newly created endpoint to model's API endpoint list;
 stop
