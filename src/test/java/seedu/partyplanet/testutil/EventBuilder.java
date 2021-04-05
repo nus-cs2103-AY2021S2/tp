@@ -12,11 +12,11 @@ public class EventBuilder {
 
     public static final String DEFAULT_NAME = "CNY";
     public static final String DEFAULT_DATE = "2021-02-01";
-    public static final String DEFAULT_DETAIL = "buy food";
+    public static final String DEFAULT_REMARK = "buy food";
 
     private Name name;
     private EventDate eventDate;
-    private Remark detail;
+    private Remark remark;
 
     /**
      * Creates a {@code EventBuilder} with the default details.
@@ -24,7 +24,7 @@ public class EventBuilder {
     public EventBuilder() {
         name = new Name(DEFAULT_NAME);
         eventDate = new EventDate(DEFAULT_DATE);
-        detail = new Remark(DEFAULT_DETAIL);
+        remark = new Remark(DEFAULT_REMARK);
     }
 
     /**
@@ -33,7 +33,16 @@ public class EventBuilder {
     public EventBuilder(Event eventToCopy) {
         name = eventToCopy.getName();
         eventDate = eventToCopy.getEventDate();
-        detail = eventToCopy.getDetails();
+        remark = eventToCopy.getDetails();
+    }
+
+    /**
+     * Creates an {@code EventBuilder} with only name specified.
+     */
+    public EventBuilder(String nameString) {
+        name = new Name(nameString);
+        eventDate = EventDate.EMPTY_EVENT_DATE;
+        remark = Remark.EMPTY_REMARK;
     }
 
     /**
@@ -48,7 +57,7 @@ public class EventBuilder {
      * Sets the {@code Remark} of the {@code Event} that we are building.
      */
     public EventBuilder withDetail(String detail) {
-        this.detail = new Remark(detail);
+        this.remark = new Remark(detail);
         return this;
     }
 
@@ -61,7 +70,7 @@ public class EventBuilder {
     }
 
     public Event build() {
-        return new Event(name, eventDate, detail);
+        return new Event(name, eventDate, remark);
     }
 
 }

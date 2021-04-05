@@ -49,6 +49,19 @@ public class EAddCommandTest {
     }
 
     @Test
+    public void execute_eventOnlyNameAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingEventAdded modelStub = new ModelStubAcceptingEventAdded();
+        Event validEventWithNameOnly =
+            new EventBuilder("April").build();
+
+        CommandResult commandResult = new EAddCommand(validEventWithNameOnly).execute(modelStub);
+
+        assertEquals(String.format(EAddCommand.MESSAGE_SUCCESS, validEventWithNameOnly),
+            commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validEventWithNameOnly), modelStub.eventsAdded);
+    }
+
+    @Test
     public void execute_duplicateEvent_throwsCommandException() {
         Event validEvent = new EventBuilder().build();
         EAddCommand eAddCommand = new EAddCommand(validEvent);
