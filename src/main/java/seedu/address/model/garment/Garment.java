@@ -2,7 +2,6 @@ package seedu.address.model.garment;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.time.LocalDate;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -40,7 +39,7 @@ public class Garment {
         this.dresscode = dresscode;
         this.type = type;
         this.descriptions.addAll(descriptions);
-        this.lastuse = new LastUse(LocalDate.now());
+        this.lastuse = new LastUse("Never");
     }
 
     /**

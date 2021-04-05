@@ -24,7 +24,9 @@ public class Wardrobe implements ReadOnlyWardrobe {
      *   among constructors.
      */
     {
-        garments = new UniqueGarmentList();
+        UniqueGarmentList garmentList = new UniqueGarmentList();
+        garmentList.sort();
+        garments = garmentList;
     }
 
     public Wardrobe() {}
