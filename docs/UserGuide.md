@@ -45,7 +45,7 @@ purposes, these steps are split into a few categories.
 2. Add in vendors that are commonly contacted during party planning to allow for ease of reference when planning for 
    further parties. All fields are optional except name as it does not make sense for the welfare IC be forced to 
    store information such as Birthdays. This gives the Welfare IC flexibility to decide on what information needs to 
-   be stored.
+   be stored. For instance, the Welfare IC might want to store the email of a catering company, or the address of a bakery for cake pickups.
 
 #### Adding events
 
