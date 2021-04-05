@@ -1,7 +1,7 @@
 package seedu.address.model.person;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
+import static seedu.address.commons.util.DateUtil.ZERO_DAY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
@@ -13,7 +13,11 @@ import static seedu.address.testutil.TypicalPersons.BOB;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.util.SampleDataUtil;
 import seedu.address.testutil.PersonBuilder;
+
+import java.time.LocalDate;
+import java.util.Arrays;
 
 public class PersonTest {
 
@@ -87,5 +91,30 @@ public class PersonTest {
         // different tags -> returns false
         editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
+    }
+
+    @Test
+    public void person_getGoalDeadline() {
+        Person aliceCopy = new PersonBuilder(ALICE).build();
+        LocalDate date = LocalDate.of(2021, 3, 30);
+
+        Person editedAlice = new PersonBuilder(aliceCopy).build()
+                .withGoal(new Goal(Goal.Frequency.WEEKLY));
+        assertEquals(ZERO_DAY, editedAlice.getGoalDeadline(date));
+
+        editedAlice = new PersonBuilder(aliceCopy).build()
+                .withGoal(new Goal(Goal.Frequency.WEEKLY))
+                .withMeetings(Arrays.asList(SampleDataUtil.getSampleEvents().clone()));
+        assertEquals(LocalDate.of(2021, 2, 7), editedAlice.getGoalDeadline(date));
+
+        editedAlice = new PersonBuilder(aliceCopy).build()
+                .withGoal(new Goal(Goal.Frequency.MONTHLY))
+                .withMeetings(Arrays.asList(SampleDataUtil.getSampleEvents().clone()));
+        assertEquals(LocalDate.of(2021, 2, 28), editedAlice.getGoalDeadline(date));
+
+        editedAlice = new PersonBuilder(aliceCopy).build()
+                .withGoal(new Goal(Goal.Frequency.YEARLY))
+                .withMeetings(Arrays.asList(SampleDataUtil.getSampleEvents().clone()));
+        assertEquals(LocalDate.of(2022, 12, 31), editedAlice.getGoalDeadline(date));
     }
 }

@@ -1,5 +1,7 @@
 package seedu.address.model.util;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -52,6 +54,19 @@ public class SampleDataUtil {
                     new Birthday("05-02-1998"), new Goal(Frequency.NONE),
                     new Address("Blk 45 Aljunied Street 85, #11-31"), getPicture(), getDebt(),
                     getTagSet("colleagues"), getDateList(), getMeetingList())
+        };
+    }
+
+    public static Event[] getSampleEvents() {
+        return new Event[] {
+                new Event(LocalDate.of(2021, 1, 30),
+                        LocalTime.of(12, 0), "e1"),
+                new Event(LocalDate.of(2021, 1, 24),
+                        LocalTime.of(12, 0), "e2"),
+                new Event(LocalDate.of(2020, 12, 30),
+                        LocalTime.of(12, 0), "e3"),
+                new Event(LocalDate.of(2021, 4, 1),
+                        LocalTime.of(13, 40), "e4")
         };
     }
 
