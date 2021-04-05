@@ -16,7 +16,6 @@ import seedu.booking.logic.commands.exceptions.CommandException;
 import seedu.booking.logic.commands.states.AddBookingCommandState;
 import seedu.booking.logic.commands.states.CommandState;
 import seedu.booking.model.ModelManager;
-import seedu.booking.model.Tag;
 import seedu.booking.model.UserPrefs;
 
 public class PromptBookingTagCommandTest {
@@ -33,7 +32,7 @@ public class PromptBookingTagCommandTest {
 
     @Test
     void execute() {
-        PromptBookingTagsCommand command = new PromptBookingTagsCommand(new HashSet<Tag>());
+        PromptBookingTagsCommand command = new PromptBookingTagsCommand(new HashSet<>());
         CommandResult expectedResult = new CommandResult(PROMPT_START_MESSAGE);
         CommandResult result;
         try {
