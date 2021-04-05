@@ -132,7 +132,7 @@ Here are some general rules to follow when entering prefixes and parameters:
   e.g. If the command specifies `help 123`, it will be interpreted as `help`.<br>
 
 About the URL Parameter:
-* We do not check the validity of the URLs during input as it is impossible to verify if it exists without sending a request to the server. We will instead prevent impossible address from being keyed in. e.g. `abc.com\go` (`\` cannot exist in a valid address)
+* We do not check the validity of the URLs during input as it is impossible to verify if it exists without sending a request to the server. We will instead prevent impossible URL from being keyed in. e.g. `abc.com\go` (`\` cannot exist in a valid URL)
 
 * If no website [protocol](#glossary-protocol) is specified, we enforce a HTTP protocol as a protocol needs to be specified for an API request to be carried out.For instance, if a user enters `google.com` as a URL, we will prepend the URL with `http://`, making it `http://google.com`
 
@@ -264,7 +264,7 @@ be a positive integer).
 
 <div markdown="span" class="alert alert-warning">:bulb: **Tip:**
 You may include [prefixes](#prefix-table) to scope your search terms!<br>
-* **Example**: <span class="main-command">find</span> <span class="optional-param">-x get</span> <span class="optional-param">-u google</span> (will match `get` from the Method field **and** `google` from the Address(URL) field)<br>
+* **Example**: <span class="main-command">find</span> <span class="optional-param">-x get</span> <span class="optional-param">-u google</span> (will match `get` from the Method field **and** `google` from the URL field)<br>
 * **Example**: <span class="main-command">find</span> <span class="optional-param">-x get post</span> (will match `get OR post` from the Method field)<br>
 * This is a **AND** search and only Endpoints matching all [prefixes](#prefix-table) will be returned.
 </div>
