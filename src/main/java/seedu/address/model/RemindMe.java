@@ -179,6 +179,7 @@ public class RemindMe implements ReadOnlyRemindMe {
         requireAllNonNull(module, edit);
         Module mod = modules.getModule(module);
         mod.editExam(index - 1, edit);
+        modules.setModule(module, mod);
     }
 
     /**
