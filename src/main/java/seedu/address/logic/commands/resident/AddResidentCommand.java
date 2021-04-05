@@ -19,7 +19,7 @@ public class AddResidentCommand extends Command {
 
     public static final String COMMAND_WORD = "radd";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a resident to the address book.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a resident to SunRez.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
@@ -32,7 +32,7 @@ public class AddResidentCommand extends Command {
             + PREFIX_YEAR + "1";
 
     public static final String MESSAGE_SUCCESS = "New resident added: %1$s";
-    public static final String MESSAGE_DUPLICATE_RESIDENT = "This resident already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_RESIDENT = "This resident already exists in SunRez.";
 
     private final Resident toAdd;
 

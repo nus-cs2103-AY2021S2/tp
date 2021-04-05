@@ -45,7 +45,7 @@ public class EditRoomCommand extends Command {
 
     public static final String MESSAGE_EDIT_ROOM_SUCCESS = "Edited Room: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_ROOM = "This room already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_ROOM = "This room already exists in SunRez.";
     public static final String MESSAGE_ROOM_ALLOCATED_FAILURE =
             "The room has already been allocated to another resident. Please deallocate the room before editing.";
 
