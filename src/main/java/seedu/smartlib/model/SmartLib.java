@@ -544,7 +544,14 @@ public class SmartLib implements ReadOnlySmartLib {
         return true;
     }
 
+    /**
+     * Mark the particular record returned in code base
+     * Set Record to a new Record object with the dateReturned field filled
+     * @param record new record carrying dateReturned field
+     * @return the complete record
+     */
     public Record markRecordAsReturned(Record record) {
+        assert record != null;
         Record foundRecord = null;
         for (Record r : this.getRecordList()) {
             if (r.getBookBarcode().equals(record.getBookBarcode()) && !r.isReturned()) {
@@ -552,12 +559,11 @@ public class SmartLib implements ReadOnlySmartLib {
                 break;
             }
         }
+        assert foundRecord != null;
         Record updatedRecord = new Record(foundRecord.getBookName(), foundRecord.getBookBarcode(),
                 foundRecord.getReaderName(), foundRecord.getDateBorrowed(),
                 record.getDateReturned());
         setRecord(foundRecord, updatedRecord);
-
-        assert foundRecord != null : "The record must exist in this step of execution";
 
         return updatedRecord;
     }
