@@ -74,14 +74,14 @@ public class ScoreTest {
             Score t1 = Score.of(1, 1, "0:03:04");
             TimeUnit.SECONDS.sleep(1);
             Score t2 = Score.of(1, 1, "0:03:04");
-            assertEquals(-1, t1.compareTo(t2));
-            assertEquals(1, t2.compareTo(t1));
+            assertEquals(1, t1.compareTo(t2));
+            assertEquals(-1, t2.compareTo(t1));
             ArrayList<Score> scores = new ArrayList<>();
             scores.add(t1);
             scores.add(t2);
             Collections.sort(scores);
-            assertEquals(t1, scores.get(0));
-            assertEquals(t2, scores.get(1));
+            assertEquals(t2, scores.get(0));
+            assertEquals(t1, scores.get(1));
         } catch (InterruptedException e) {
             assertTrue(false); // the test fails
         }
