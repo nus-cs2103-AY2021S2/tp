@@ -6,7 +6,7 @@ plugins {
     id 'jacoco'
 }
 
-mainClassName = 'seedu.address.Main'
+mainClassName = 'seedu.student.Main'
 
 sourceCompatibility = JavaVersion.VERSION_11
 targetCompatibility = JavaVersion.VERSION_11
@@ -23,6 +23,10 @@ checkstyle {
 test {
     useJUnitPlatform()
     finalizedBy jacocoTestReport
+}
+
+run {
+    enableAssertions = true
 }
 
 task coverage(type: JacocoReport) {
@@ -63,6 +67,9 @@ dependencies {
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: jUnitVersion
 
     testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: jUnitVersion
+
+    implementation group: 'org.kordamp.ikonli', name: 'ikonli-javafx', version: '12.2.0'
+    implementation group: 'org.kordamp.ikonli', name: 'ikonli-fontawesome5-pack', version: '12.2.0'
 }
 
 shadowJar {
