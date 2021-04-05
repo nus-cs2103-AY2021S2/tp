@@ -160,7 +160,8 @@ and [2.3](#23-event-commands).
 
 <div markdown="block" class="alert alert-info">
 **:information_source: Please take note of the following with regards to Events in Focuris:** <br/>
-- You will not be allowed to add Events with the same name into Focuris, regardless of their description, priority or status.
+- You will not be allowed to add Events with the same name into Focuris, regardless of their description, priority or status. <br/>
+- Events of the same name are treated as case-insensitive. E.g `CS2030` is the same name as `cs2030`
 </div>
 
 <a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
@@ -208,6 +209,8 @@ There are two views in Focuris, which can be toggled with the [`switch` command]
    
 This is how your events are displayed:
 ![Ui Event Card](images/user-guide/Annotated/UiCardAnnotated.png)
+
+**:information_source: Please take note that Events are not sorted by their Priority in Focuris (Coming soon!)** <br/>
 
 <a class="md-btn md-btn-outline" href="#table-of-contents">Return to Table of Contents</a>
 
