@@ -25,7 +25,8 @@ public class Email {
             + "The domain name must:\n"
             + "    - be at least 2 characters long \n"
             + "    - start and end with alphanumeric characters\n"
-            + "    - consist of alphanumeric characters, a period or a hyphen for the characters in between, if any.\n\n"
+            + "    - consist of alphanumeric characters, a period or a hyphen for the characters in between, "
+            + "if any.\n\n"
 
             + "4. Lastly, a top-level domain (e.g. '.com') follows after the domain name. "
             + "The top-level domain must: \n"
