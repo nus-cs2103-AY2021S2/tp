@@ -17,7 +17,6 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.MeetingBuilder;
-import seedu.address.testutil.MeetingBuilder;
 
 public class StreakTest {
 
