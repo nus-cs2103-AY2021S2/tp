@@ -273,7 +273,7 @@ Format: `delete-appt INDEX`
 
 Examples:
 * `list-appt` followed by `delete-appt 2` deletes the 2nd appointment in the entire appointment schedule.
-* `find-appt Alex` followed by `delete-appt 1` deletes the 1st appointment in the results of the `find` command.
+* `find-appt n/Alex` followed by `delete-appt 1` deletes the 1st appointment in the results of the `find-appt` command.
 
 
 ### Editing an appointment : `edit-appt`
@@ -282,7 +282,7 @@ Edits an existing appointment in the appointment schedule.<br>
 
 Format: `edit-appt APPOINTMENT_INDEX [pt/PATIENT_INDEX] [dr/DOCTOR_INDEX] [at/TIMESLOT START] [to/TIMESLOT END] [dur/TIMESLOT DURATION] [t/TAG]…​`
 
-* Edits the appointment for the patient specified by the `APPOINTMENT_INDEX`.  The `APPOINTMENT_INDEX` refers to the index number shown in the displayed appointment schedule. The index must be a <strong>positive integer</strong> 1, 2, 3, …​<br>
+* Edits the appointment for the patient specified by the `APPOINTMENT_INDEX`. The `APPOINTMENT_INDEX` refers to the index number shown in the displayed appointment schedule. The index **must be a positive integer** 1, 2, 3, …​<br>
 
 * At least one of the optional fields must be provided <br>
 
@@ -307,22 +307,20 @@ Format: `find-appt [n/PATIENT KEYWORDS] [dr/DOCTOR_KEYWORDS] [d/DATETIME] [p/PHO
 
 * At least one of the optional fields must be provided.<br>
 
-* The search is case-insensitive. e.g `hans` will match `Hans`<br>
+* The search is case-insensitive. e.g `n/alex` will match `n/Alex`<br>
 
-* Only full words will be matched. e.g. `han` will not match `Hans`<br>
+* Only full words will be matched. e.g. `n/freddi` will not match `n/freddie`<br>
 
-* Search fields require at least one keyword to be matched in the field description for the search condition of that field to be satisfied. e.g. `find n/Hans Bo` will match both patients `Hans Gruber` and `Bo Young`.
+* Search fields require at least one keyword to be matched in the field description for the search condition of that field to be satisfied. e.g. `find n/Alex Edward` will match both appointments with patients `Alex Karev` and `Edward Hyde`.
 
 * Certain fields such as datetime, phone number and email do not support a search by keywords and require a match with the entire field description for the search condition to be satisfied.
 
-* Where multiple search fields are specified, the search is conditioned on the satisfaction of <strong>all</strong> of the search fields' subconditions. e.g. `find n/Hans Bo dr/Grey` will match appointments that satisfy both:
-  - Grey in the assigned doctor's name; and
-  - Either Hans or Bo in the patient's name.
+* Where multiple search fields are specified, the search is conditioned on the satisfaction of <strong>all</strong> of the search fields' subconditions. e.g. `find n/Alex Edward dr/Jekyll` will match appointments that satisfy both:
+  - Jekyll in the assigned doctor's name; and
+  - Either Alex or Edward in the patient's name.
 
 Examples:
-
 * `find-appt n/john alex` returns appointments with patients `john`, `John`, `John Doe`, `alex`, `Alex` and `Alex Anderson`.
-
 * `find-appt dr/Grey Who t/BrainSurgery` returns appointments with doctors `grey` or `who` and are tagged as `BrainSurgery`.
 
 
