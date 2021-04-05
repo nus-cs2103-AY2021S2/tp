@@ -111,7 +111,7 @@ In the example above, <span class="main-command">add</span> is the command word 
 | METHOD       |   -x   | The [request method](#84-request-methods) to use for an endpoint      |
 | ADDRESS      |   -u   | The URL to use for an endpoint                                        |
 | HEADER       |   -h   | The header to use for an endpoint **(must be enclosed with \"\")**      |
-| DATA         |   -d   | The data to use for an endpoint **(must be in JSON format)**          |
+| DATA         |   -d   | The data to use for an endpoint **(must be in [JSON](#85-json-format) format)**          |
 | TAG          |   -t   | The tag to label an endpoint                 |
 
 <div markdown="span" class="alert alert-warning">:bulb: **Tip:**
