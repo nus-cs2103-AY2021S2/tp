@@ -212,6 +212,40 @@ The sequence for the example scenerio can be found below:
 
 ![DeletePersonSequenceDiagram](images/DeletePersonSequenceDiagram.png)
 
+The sequence for the example scenario can be found below:
+
+### Delete session feature
+
+#### Current Implementation
+
+The delete session feature is facilitated by `SessionList`. It is stored internally in `AddressBook` as `sessions`. It implements the following relevant operations:
+
+* `SessionList#remove(Session toRemove)` - Removes the given session from the current list of sessions.
+
+This operation is exposed in the `Model` interface as `Model#deleteSession(Session sessionToDelete)`.
+
+Given below is an example usage scenario and how the delete session mechanism behaves at each step.
+
+Step 1: The user launches the application for the first time. The `AddressBook` will contain a `SessionList`.
+
+<img src="images/DeletePersonObjectDiagram1.png" alt="DeletePersonObjectDiagram1" width="400"/>
+
+Step 2: The user executes `delete_session c/1` command to remove the specified session. The `LogicManager` calls `AddressBookParser#parseCommand(String userInput)`.
+
+Step 3: The `parseCommand` method passes the user input to `DeleteSessionCommandParser#parse(String args)` which returns a `DeleteSessionCommand` object.
+
+Step 4: The `LogicManager` then executes the `DeleteSessionCommand` which calls the `Model#deleteSession(Session sessionToDelete)` method.
+
+Step 5: The `Model` calls `AddressBook#removeSession(Session key)`.
+
+Step 6: The `Model` removes the specified session from `sessions` in `AddressBook` and returns a `CommandResult`.
+
+Step 7: A `CommandResult` object is returned and displayed on the UI.
+
+The sequence for the example scenario can be found below:
+
+![DeleteSessionSequenceDiagram](images/DeleteSessionSequenceDiagram.png)
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
