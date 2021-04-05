@@ -9,6 +9,8 @@ import static seedu.iscam.commons.util.AppUtil.checkArgument;
  */
 public class Email {
 
+    public static final String MESSAGE_LENGTH_CONSTRAINTS = "Email address should not be longer than 254 characters.";
+    private static final int MESSAGE_MAX_LENGTH = 254;
     private static final String SPECIAL_CHARACTERS = "!#$%&'*+/=?`{|}~^.-";
     public static final String MESSAGE_CONSTRAINTS = "Emails should be of the format local-part@domain "
             + "and adhere to the following constraints:\n"
@@ -26,7 +28,6 @@ public class Email {
     private static final String DOMAIN_LAST_CHARACTER_REGEX = "[^\\W_]$";
     public static final String VALIDATION_REGEX = LOCAL_PART_REGEX + "@"
             + DOMAIN_FIRST_CHARACTER_REGEX + DOMAIN_MIDDLE_REGEX + DOMAIN_LAST_CHARACTER_REGEX;
-
     public final String value;
 
     /**
@@ -37,6 +38,7 @@ public class Email {
     public Email(String email) {
         requireNonNull(email);
         checkArgument(isValidEmail(email), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidLength(email), MESSAGE_LENGTH_CONSTRAINTS);
         value = email;
     }
 
@@ -45,6 +47,13 @@ public class Email {
      */
     public static boolean isValidEmail(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if a given email has valid length.
+     */
+    public static boolean isValidLength(String test) {
+        return test.length() <= MESSAGE_MAX_LENGTH;
     }
 
     @Override
