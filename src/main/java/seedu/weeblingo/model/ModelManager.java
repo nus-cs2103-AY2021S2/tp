@@ -1,9 +1,11 @@
 package seedu.weeblingo.model;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.weeblingo.commons.core.Messages.MESSAGE_TAG_NOT_FOUND;
 import static seedu.weeblingo.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,9 +13,11 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.weeblingo.commons.core.GuiSettings;
 import seedu.weeblingo.commons.core.LogsCenter;
+import seedu.weeblingo.logic.commands.exceptions.CommandException;
 import seedu.weeblingo.model.flashcard.Answer;
 import seedu.weeblingo.model.flashcard.Flashcard;
 import seedu.weeblingo.model.score.Score;
+import seedu.weeblingo.model.tag.Tag;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -27,8 +31,6 @@ public class ModelManager implements Model {
     private final FilteredList<Score> filteredHistoryScores;
     private final Mode mode;
     private Quiz quizInstance;
-    private int numOfQnsForQuizSession;
-
 
     /**
      * Initializes a ModelManager with the given flashcardBook and userPrefs.
@@ -126,6 +128,11 @@ public class ModelManager implements Model {
 
     }
 
+    @Override
+    public void addScore() {
+        flashcardBook.addScore(quizInstance.giveScore());
+    }
+
     //=========== Filtered Flashcard List Accessors =============================================================
 
     /**
@@ -177,17 +184,11 @@ public class ModelManager implements Model {
     //=========== Quiz Related =============================================================
 
     @Override
-    public void startQuiz() {
-        if (numOfQnsForQuizSession == 0) {
-            this.quizInstance = new Quiz(filteredFlashcards);
-            Flashcard next = quizInstance.getNextQuestion();
-            updateFilteredFlashcardList(curr -> curr.equals(next));
-        } else {
-            this.quizInstance = new Quiz(filteredFlashcards, numOfQnsForQuizSession);
-            Flashcard next = quizInstance.getNextQuestion();
-            updateFilteredFlashcardList(curr -> curr.equals(next));
-        }
-
+    public void startQuiz(int numberOfQuestions, Set<Tag> tags) throws CommandException {
+        assert filteredFlashcards.size() == flashcardBook.sizeOfFlashcardList();
+        this.quizInstance = new Quiz(filteredFlashcards, numberOfQuestions, tags);
+        Flashcard next = quizInstance.getNextQuestion();
+        updateFilteredFlashcardList(curr -> curr.equals(next));
     }
 
     @Override
@@ -221,16 +222,26 @@ public class ModelManager implements Model {
         return quizInstance.isCorrectAttempt(attempt);
     }
 
+    /**
+     * Deletes this quiz instance.
+     */
     public void clearQuizInstance() {
+        updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
         quizInstance = null;
     }
 
-    public void setNumOfQnsForQuizSession(int n) {
-        numOfQnsForQuizSession = n;
-    }
-
+    /**
+     * Gets this quiz instance.
+     *
+     * @return this quiz instance.
+     */
     public Quiz getQuizInstance() {
         return quizInstance;
+    }
+
+    @Override
+    public String getQuizStatisticString() {
+        return quizInstance.getStatisticString();
     }
 
     //=========== Mode Related =============================================================
@@ -240,14 +251,29 @@ public class ModelManager implements Model {
     }
 
     public int getCurrentMode() {
+        assert this.mode.isValidMode();
         return this.mode.getCurrentMode();
     }
 
-    public void switchModeQuiz() {
+    /**
+     * Switches the current mode to Quiz Mode.
+     * @throws CommandException if the filtered list of flashcards is empty.
+     */
+    public void switchModeQuiz() throws CommandException {
+        if (filteredFlashcards.isEmpty()) {
+            throw new CommandException(MESSAGE_TAG_NOT_FOUND);
+        }
         this.mode.switchModeQuiz();
     }
 
-    public void switchModeLearn() {
+    /**
+     * Switches the current mode to Learn Mode.
+     * @throws CommandException if the filtered list of flashcards is empty.
+     */
+    public void switchModeLearn() throws CommandException {
+        if (filteredFlashcards.isEmpty()) {
+            throw new CommandException(MESSAGE_TAG_NOT_FOUND);
+        }
         this.mode.switchModeLearn();
     }
 
@@ -265,5 +291,9 @@ public class ModelManager implements Model {
 
     public void switchModeCheckSuccess() {
         this.mode.switchModeCheckSuccess();
+    }
+
+    public void switchModeQuizSessionEnded() {
+        this.mode.switchModeQuizSessionEnded();
     }
 }

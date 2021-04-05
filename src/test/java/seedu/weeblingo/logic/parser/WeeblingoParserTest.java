@@ -7,22 +7,29 @@ import static seedu.weeblingo.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.weeblingo.logic.commands.EndCommand;
 import seedu.weeblingo.logic.commands.ExitCommand;
 import seedu.weeblingo.logic.commands.HelpCommand;
 import seedu.weeblingo.logic.commands.LearnCommand;
+import seedu.weeblingo.logic.commands.QuizCommand;
+import seedu.weeblingo.logic.commands.StartCommand;
 import seedu.weeblingo.logic.parser.exceptions.ParseException;
 
 public class WeeblingoParserTest {
 
     private final WeeblingoParser parser = new WeeblingoParser();
 
+    @Test
+    public void parseCommand_end() throws Exception {
+        assertTrue(parser.parseCommand(EndCommand.COMMAND_WORD) instanceof EndCommand);
+        assertTrue(parser.parseCommand(EndCommand.COMMAND_WORD + " 3") instanceof EndCommand);
+    }
 
     @Test
     public void parseCommand_exit() throws Exception {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
     }
-
 
     @Test
     public void parseCommand_help() throws Exception {
@@ -34,6 +41,17 @@ public class WeeblingoParserTest {
     public void parseCommand_learn() throws Exception {
         assertTrue(parser.parseCommand(LearnCommand.COMMAND_WORD) instanceof LearnCommand);
         assertTrue(parser.parseCommand(LearnCommand.COMMAND_WORD + " 3") instanceof LearnCommand);
+    }
+
+    @Test
+    public void parseCommand_quiz() throws Exception {
+        assertTrue(parser.parseCommand(QuizCommand.COMMAND_WORD) instanceof QuizCommand);
+        assertTrue(parser.parseCommand(QuizCommand.COMMAND_WORD + " 3") instanceof QuizCommand);
+    }
+
+    @Test
+    public void parseCommand_start() throws Exception {
+        assertTrue(parser.parseCommand(StartCommand.COMMAND_WORD) instanceof StartCommand);
     }
 
     @Test

@@ -17,7 +17,7 @@ public class Answer {
      * The first character of the answer must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = RegexUtil.REGEX_ENG_WORD;
+    public static final String VALIDATION_REGEX = RegexUtil.REGEX_ENG_WORDS;
     public final String value;
 
     /**
@@ -47,7 +47,7 @@ public class Answer {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Answer // instanceof handles nulls
-                && value.equals(((Answer) other).value)); // state check
+                && value.equalsIgnoreCase(((Answer) other).value)); // state check
     }
 
     @Override

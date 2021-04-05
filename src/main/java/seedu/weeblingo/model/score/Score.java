@@ -4,8 +4,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.logging.Logger;
 
-import org.json.simple.JSONObject;
-
 import seedu.weeblingo.MainApp;
 import seedu.weeblingo.commons.core.LogsCenter;
 import seedu.weeblingo.model.exceptions.NullInputException;
@@ -25,11 +23,27 @@ public class Score implements Comparable<Score> {
     private Integer questionAttempted;
     /** The number of questions that were attempted correctly */
     private Integer questionCorrect;
+    /** The duration string spent for the specific score */
+    private String durationString;
 
-    private Score(LocalDateTime datetime, Integer questionAttempted, Integer questionCorrect) {
+    private Score(LocalDateTime datetime, Integer questionAttempted, Integer questionCorrect, String durationString) {
+        if (questionAttempted == null || questionCorrect == null || durationString == null) {
+            throw new NullInputException("Null value supplied to Score object");
+        }
+        if (questionAttempted < 0 || questionCorrect < 0) {
+            throw new NullInputException("Non-positive value supplied to the number of questions attempted, or "
+                    + "negative value supplied to number of questions attempted correctly.");
+        }
+        if (questionAttempted < questionCorrect) {
+            throw new NullInputException("Questions attempted must be larger or equal to questions correct.");
+        }
+        if (durationString.equals("")) {
+            throw new NullInputException("Duration string cannot be empty.");
+        }
         this.datetime = datetime;
         this.questionAttempted = questionAttempted;
         this.questionCorrect = questionCorrect;
+        this.durationString = durationString;
     }
 
     /**
@@ -41,18 +55,8 @@ public class Score implements Comparable<Score> {
      * @return A score object containing necessary information including the attributes supplied and
      * the time when the Score object is created.
      */
-    public static Score of(Integer questionAttempted, Integer questionCorrect) {
-        if (questionAttempted == null || questionCorrect == null) {
-            throw new NullInputException("Null value supplied to Score object");
-        }
-        if (questionAttempted <= 0 || questionCorrect < 0) {
-            throw new NullInputException("Non-positive value supplied to the number of questions attempted, or "
-                + "negative value supplied to number of questions attempted correctly");
-        }
-        if (questionAttempted < questionCorrect) {
-            throw new NullInputException("Questions attempted must be larger or equal to questions correct");
-        }
-        Score result = new Score(LocalDateTime.now(), questionAttempted, questionCorrect);
+    public static Score of(Integer questionAttempted, Integer questionCorrect, String durationString) {
+        Score result = new Score(LocalDateTime.now(), questionAttempted, questionCorrect, durationString);
         logger.info(String.format("Attempt record generated: %s.", result.toString()));
         return result;
     }
@@ -68,18 +72,12 @@ public class Score implements Comparable<Score> {
      * @return A score object containing necessary information including the attributes supplied and
      * the time when the Score object is created.
      */
-    public static Score of(LocalDateTime datetime, Integer questionAttempted, Integer questionCorrect) {
-        if (datetime == null || questionAttempted == null || questionCorrect == null) {
+    public static Score of(LocalDateTime datetime, Integer questionAttempted, Integer questionCorrect,
+                           String durationString) {
+        if (datetime == null) {
             throw new NullInputException("Null value supplied to Score object");
         }
-        if (questionAttempted <= 0 || questionCorrect < 0) {
-            throw new NullInputException("Non-positive value supplied to the number of questions attempted, or "
-                    + "negative value supplied to number of questions attempted correctly");
-        }
-        if (questionAttempted < questionCorrect) {
-            throw new NullInputException("Questions attempted must be larger or equal to questions correct");
-        }
-        Score result = new Score(datetime, questionAttempted, questionCorrect);
+        Score result = new Score(datetime, questionAttempted, questionCorrect, durationString);
         logger.info(String.format("Attempt record stored: %s.", result.toString()));
         return result;
     }
@@ -89,7 +87,11 @@ public class Score implements Comparable<Score> {
         assert questionAttempted > 0;
         assert questionCorrect != null;
         assert questionCorrect >= 0;
-        return questionCorrect * 1.0 / questionAttempted;
+        if (questionAttempted == 0) {
+            return 0.0;
+        } else {
+            return questionCorrect * 1.0 / questionAttempted;
+        }
     }
 
     /**
@@ -102,19 +104,6 @@ public class Score implements Comparable<Score> {
         return String.format("%.3f", getCorrectRatio() * 100) + "%";
     }
 
-    /**
-     * Transforms the Score object to a Json object to facilitate storage in the database.
-     *
-     * @return The json object representation of the Score object/
-     */
-    public JSONObject toJsonObject() {
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("time", DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss").format(datetime).toString());
-        jsonObject.put("question_attempted", questionAttempted.toString());
-        jsonObject.put("question_correct", questionCorrect.toString());
-        jsonObject.put("ratio", getCorrectRatioString());
-        return jsonObject;
-    }
 
     /**
      * Checks whether the two attempts encapsulated by the two Score object represents the same attempt.
@@ -128,16 +117,6 @@ public class Score implements Comparable<Score> {
             throw new NullInputException("Receiving Score object of Score::isSameAttempt cannot be null");
         }
         return this.datetime.equals(o.datetime);
-    }
-
-    /**
-     * Overriden toString() method of Score object.
-     *
-     * @return The string representation of Score object. In Json String format.
-     */
-    @Override
-    public String toString() {
-        return toJsonObject().toString();
     }
 
     /**
@@ -159,9 +138,9 @@ public class Score implements Comparable<Score> {
     }
 
     /**
-     * A getter that wraps the number of questions attempted fields in a string as return value.
+     * A getter that wraps the date and time when the score is awarded field in a string as return value.
      *
-     * @return The String representation of the number of questions attempted in this Score object.
+     * @return The String representation of the the date and time when the score is awarded in this Score object.
      */
     public String getCompletedTime() {
         return DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss").format(datetime).toString();
@@ -177,5 +156,14 @@ public class Score implements Comparable<Score> {
     @Override
     public int compareTo(Score o) {
         return datetime.compareTo(o.datetime);
+    }
+
+    /**
+     * Gets the string representing the time spent for the score representing an attempt.
+     *
+     * @return The string representation of the time spent for the score representing an attempt.
+     */
+    public String getTimeSpent() {
+        return durationString;
     }
 }
