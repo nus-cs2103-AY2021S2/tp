@@ -552,7 +552,7 @@ Parameters:
 
 Example:
 
-* `markD 1 i/1 marks the first deadline of the first project as done.
+* `markD` 1 i/1 marks the first deadline of the first project as done.
 
 ##### Deleting a deadline from a project: `deleteD`
 
