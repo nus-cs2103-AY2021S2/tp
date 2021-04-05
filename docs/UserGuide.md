@@ -239,9 +239,11 @@ Format: `exit`
 **Q**: Does Taskify only work for university Students? <br>
 **A**: No, although Taskify is catered to university students, we welcome everyone interested in Taskify to use it.<br>
 
+**Q**: Is Taskify free?<br>
+**A**: Yes! Taskify is totally free to use.
+
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains 
-the data of your previous Taskify home folder.
+**A**: Install Taskify by downloading the taskify.jar file in the other computer and replace the default data file it creates with the file that contains the data from your previous taskify home folder.
 
 **Q**: Can I specify a status when adding a new task to Taskify?<br>
 **A**: All newly added tasks have an "uncompleted" status by default. However, you can change the status of a task using the`edit` command. <br>
