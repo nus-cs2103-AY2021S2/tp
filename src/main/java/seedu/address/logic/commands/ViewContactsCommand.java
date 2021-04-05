@@ -13,7 +13,7 @@ public class ViewContactsCommand extends Command {
 
     public static final String COMMAND_WORD = "contacts";
 
-    public static final String MESSAGE_SUCCESS = "Viewing All Contacts.";
+    public static final String MESSAGE_SUCCESS = "Viewing Contacts.";
 
 
     @Override
