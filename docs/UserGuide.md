@@ -154,17 +154,18 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the contacts list.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-###Deleting multiple contacts : `massdelete`
+### Deleting multiple contacts : `massdelete`
 
-Deletes all contacts within the specified index range.
+Deletes all contacts within the specified index range (inclusive).
 
 Format: `massdelete START-END`
 * The index refers to the index number shown in the displayed person list.
-* Both the Start Index and End Index **must be a valid positive integer** 1, 2, …​, 2147483647
-* Start Index < End Index and End Index cannot be larger than the number of contacts in the list.
+* Both the start index and end index must be a valid positive integer 1, 2, 3, ...
+* Start index must be strictly smaller than the end index.
+* End index cannot be larger than the number of contacts in the list.
 
 Example:
-`massdelete 2-41`
+`massdelete 7-34`
 
 ### Blacklist a contact : `blist`
 
@@ -177,7 +178,7 @@ Format: `blist INDEX`
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a valid positive integer** 1, 2, …​, 2147483647
 
-### Blacklist or unblacklist multiple contacts : `massblist`
+### Blacklisting or unblacklisting multiple contacts : `massblist`
 
 Blacklists or unblacklists all contacts within the specified index range (inclusive).
 
@@ -189,7 +190,8 @@ Format: `massblist START-END b/BLACKLIST_OR_UNBLACKLIST`
 * End index cannot be larger than the number of contacts in the list.
 
 Example:
-`massblist 15-42 b/blacklist`
+* `massblist 15-42 b/blacklist`
+* `massblist 25-39 b/unblacklist`
 
 ### Collect details from contacts : `collect`
 
@@ -300,7 +302,7 @@ Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS m/MODE_OF_CONTACT [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 m/email t/friend t/colleague`
 **Blacklist** | `blist INDEX`<br> e.g., `blist 2`
-**Mass blacklist** | `massblist START-END`<br> e.g., `massblist 13-67 b/blacklist`
+**Mass blacklist** | `massblist START-END b/BLACKLIST_OR_UNBLACKLIST`<br> e.g., `massblist 13-67 b/blacklist`
 **Clear** | `clear`
 **Collect** | `collect [n/] or [p/] or [e/] or [a/] [s/SEPARATOR]`<br> e.g., `collect e/ s/,`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
