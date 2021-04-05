@@ -119,17 +119,6 @@ However, the colours will be arranged such that no two modules with the same col
 
 </div>
 
-### Duplicate Parameters
-1. Most commands take in only one instance of a unique parameter. In such cases, the last instance of the parameter is accepted.
-
-1. E.g. For `edit 1 m/CS2103T m/CS2101`, `m/CS2101` is taken as the argument for `MODULE`.
-
-1. All other preceding arguments of the same parameter (including invalid ones) will be ignored.
-In the above example, `m/CS2103T` is ignored.
-   
-1. However, if the last argument happens to be invalid, the command will not execute.<br>
-E.g. for `edit 1 m/CS2101 m/Invalid`, `m/Invalid` will be taken as the module argument, which is invalid. Even though m/CS2101 is valid, it is ignored entirely.
-
 ### Command list
 
    * **`list`** : List out tasks
@@ -175,7 +164,18 @@ a/ | START TIME | "start AT"
 b/ | DEADLINE | "finish BY"
 w/ | WORKLOAD |
 r/ | RECURRENCE |
-t/ | TAG | 
+t/ | TAG |
+
+### Duplicate Parameters
+1. Most commands take in only one instance of a unique parameter. In such cases, the last instance of the parameter is accepted.
+
+1. E.g. For `edit 1 m/CS2103T m/CS2101`, `m/CS2101` is taken as the argument for `MODULE`.
+
+1. All other preceding arguments of the same parameter (including invalid ones) will be ignored.
+   In the above example, `m/CS2103T` is ignored.
+
+1. However, if the last argument happens to be invalid, the command will not execute.<br>
+   E.g. for `edit 1 m/CS2101 m/Invalid`, `m/Invalid` will be taken as the module argument, which is invalid. Even though m/CS2101 is valid, it is ignored entirely.
 
 <div style="page-break-after: always;"></div>
 
