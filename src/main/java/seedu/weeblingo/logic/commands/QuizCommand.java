@@ -19,11 +19,15 @@ public class QuizCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "You are now in quiz mode."
             + "You can start a quiz session \n"
-            + "Enter \"end\" to return to main menu.";
+            + "Enter \"end\" to return to main menu.\n";
 
     public static final String MESSAGE_IN_QUIZ_SESSION = "You are in a quiz session! \n"
             + "Enter \"end\" to return to menu first or complete current quiz session "
             + "before entering quiz view.";
+
+    public static final String MESSAGE_NO_TAGS = "All flashcards are shown.";
+
+    public static final String MESSAGE_HAVE_TAGS = "Flashcards with the following tag(s) are shown: ";
 
     private Set<Tag> tags;
 
@@ -50,6 +54,10 @@ public class QuizCommand extends Command {
 
         model.updateFilteredFlashcardList(flashcard -> flashcard.checkHasTags(tags));
         model.switchModeQuiz();
-        return new CommandResult(MESSAGE_SUCCESS, false, false);
+        if (tags.isEmpty()) {
+            return new CommandResult(MESSAGE_SUCCESS + MESSAGE_NO_TAGS, false, false);
+        } else {
+            return new CommandResult(MESSAGE_SUCCESS + MESSAGE_HAVE_TAGS + tags.toString(), false, false);
+        }
     }
 }

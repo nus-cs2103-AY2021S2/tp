@@ -19,7 +19,11 @@ public class LearnCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "You are now in learn mode. "
             + "You can add or delete tags for the flashcards.\n"
-            + "Enter \"end\" to return to menu.";
+            + "Enter \"end\" to return to menu.\n";
+
+    public static final String MESSAGE_NO_TAGS = "All flashcards are shown.";
+
+    public static final String MESSAGE_HAVE_TAGS = "Flashcards with the following tag(s) are shown: ";
 
     private Set<Tag> tags;
 
@@ -37,14 +41,13 @@ public class LearnCommand extends Command {
             throw new CommandException(Messages.MESSAGE_NOT_IN_MENU_MODE);
         }
 
-        if (tags.isEmpty()) {
-            model.updateFilteredFlashcardList(Model.PREDICATE_SHOW_ALL_FLASHCARDS);
-        } else {
-            model.updateFilteredFlashcardList(flashcard -> flashcard.checkHasTags(tags));
-        }
-
+        model.updateFilteredFlashcardList(flashcard -> flashcard.checkHasTags(tags));
         model.switchModeLearn();
-        return new CommandResult(MESSAGE_SUCCESS, false, false);
+        if (tags.isEmpty() ) {
+            return new CommandResult(MESSAGE_SUCCESS + MESSAGE_NO_TAGS, false, false);
+        } else {
+            return new CommandResult(MESSAGE_SUCCESS + MESSAGE_HAVE_TAGS + tags.toString(), false, false);
+        }
     }
 
     @Override
