@@ -122,6 +122,11 @@ class ModelStub implements Model {
         return null;
     }
 
+    @Override
+    public Barcode getFirstAvailableBookBarcode(Name bookName) {
+        return null;
+    }
+
     /**
      * Returns the book name of the book with the corresponding barcode borrowed by the reader in SmartLib.
      *

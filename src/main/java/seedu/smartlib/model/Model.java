@@ -157,6 +157,11 @@ public interface Model {
     Barcode getBookBarcode(Name bookName);
 
     /**
+     * Returns the barcode of the first available (i.e. not borrowed) copy of the book in SmartLib.
+     */
+    Barcode getFirstAvailableBookBarcode(Name bookName);
+
+    /**
      * Returns the book name of the book with the corresponding barcode borrowed by the reader in SmartLib.
      */
     Name getBookNameForReturn(Barcode barcode);
