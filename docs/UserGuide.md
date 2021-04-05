@@ -317,7 +317,6 @@ Format: `donemeet INDEX`
 
 * `INDEX` refer to the meeting's index number shown in the displayed meeting list from `listmeet`. The index **must be a 
   positive integer 1, 2, 3, …**
-* Meetings that are already completed will remain completed.
 
 ### Clearing all entries : `clear`
 
