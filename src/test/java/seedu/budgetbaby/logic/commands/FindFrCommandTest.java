@@ -49,10 +49,22 @@ public class FindFrCommandTest {
     //        assertEquals(expectedOutput, model.getFilteredFinancialRecordList().toString());
     //    }
 
-    @Test
-    public void execute_findD() throws ParseException, CommandException {
+    public void init() {
         model.addFinancialRecord(new FinancialRecord(description, amount, categories));
         model.addFinancialRecord(new FinancialRecord(description2, amount2, categories2));
+    }
+
+    @Test
+    public void result_none() throws ParseException, CommandException {
+        init();
+        String expectedOutput = "[]";
+        find.parse(" d/Dinner").execute(model);
+        assertEquals(expectedOutput, model.getFilteredFinancialRecordList().toString());
+    }
+
+    @Test
+    public void execute_findD() throws ParseException, CommandException {
+        init();
         String expectedOutput = "[" + dtf.format(currDate) + " | Lunch | 6.00; Categories: [Food]]";
         find.parse(" d/Lunch").execute(model);
         assertEquals(expectedOutput, model.getFilteredFinancialRecordList().toString());
@@ -60,8 +72,7 @@ public class FindFrCommandTest {
 
     @Test
     public void execute_findA() throws ParseException, CommandException {
-        model.addFinancialRecord(new FinancialRecord(description, amount, categories));
-        model.addFinancialRecord(new FinancialRecord(description2, amount2, categories2));
+        init();
         String expectedOutput = "[" + dtf.format(currDate) + " | Lunch | 6.00; Categories: [Food]]";
         find.parse(" a/6").execute(model);
         assertEquals(expectedOutput, model.getFilteredFinancialRecordList().toString());
@@ -69,8 +80,7 @@ public class FindFrCommandTest {
 
     @Test
     public void execute_findC() throws ParseException, CommandException {
-        model.addFinancialRecord(new FinancialRecord(description, amount, categories));
-        model.addFinancialRecord(new FinancialRecord(description2, amount2, categories2));
+        init();
         String expectedOutput = "[" + dtf.format(currDate) + " | Breakfast | 5.00; Categories: "
                 + "[Food], " + dtf.format(currDate) + " | Lunch | 6.00; Categories: [Food]]";
         find.parse(" c/Food").execute(model);
@@ -79,8 +89,7 @@ public class FindFrCommandTest {
 
     @Test
     public void execute_findDA() throws ParseException, CommandException {
-        model.addFinancialRecord(new FinancialRecord(description, amount, categories));
-        model.addFinancialRecord(new FinancialRecord(description2, amount2, categories2));
+        init();
         String expectedOutput = "[" + dtf.format(currDate) + " | Lunch | 6.00; Categories: [Food]]";
         find.parse(" d/Lunch a/6").execute(model);
         assertEquals(expectedOutput, model.getFilteredFinancialRecordList().toString());
@@ -88,8 +97,7 @@ public class FindFrCommandTest {
 
     @Test
     public void execute_findDC() throws ParseException, CommandException {
-        model.addFinancialRecord(new FinancialRecord(description, amount, categories));
-        model.addFinancialRecord(new FinancialRecord(description2, amount2, categories2));
+        init();
         String expectedOutput = "[" + dtf.format(currDate) + " | Lunch | 6.00; Categories: [Food]]";
         find.parse(" d/Lunch c/Food").execute(model);
         assertEquals(expectedOutput, model.getFilteredFinancialRecordList().toString());
@@ -97,8 +105,7 @@ public class FindFrCommandTest {
 
     @Test
     public void execute_findAC() throws ParseException, CommandException {
-        model.addFinancialRecord(new FinancialRecord(description, amount, categories));
-        model.addFinancialRecord(new FinancialRecord(description2, amount2, categories2));
+        init();
         String expectedOutput = "[" + dtf.format(currDate) + " | Lunch | 6.00; Categories: [Food]]";
         find.parse(" a/6 c/Food").execute(model);
         assertEquals(expectedOutput, model.getFilteredFinancialRecordList().toString());
@@ -106,8 +113,7 @@ public class FindFrCommandTest {
 
     @Test
     public void execute_findAll() throws ParseException, CommandException {
-        model.addFinancialRecord(new FinancialRecord(description, amount, categories));
-        model.addFinancialRecord(new FinancialRecord(description2, amount2, categories2));
+        init();
         String expectedOutput = "[" + dtf.format(currDate) + " | Lunch | 6.00; Categories: [Food]]";
         find.parse(" d/Lunch a/6 c/Food").execute(model);
         assertEquals(expectedOutput, model.getFilteredFinancialRecordList().toString());
