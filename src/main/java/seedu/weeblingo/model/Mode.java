@@ -52,7 +52,14 @@ public class Mode {
      * @return an integer representing current mode of the app
      */
     public int getCurrentMode() {
-        return this.currentMode;
+        int modeCopy = this.currentMode;
+        return modeCopy;
+    }
+
+    public boolean isValidMode() {
+        return currentMode == MODE_MENU || currentMode == MODE_QUIZ || currentMode == MODE_LEARN
+                || currentMode == MODE_QUIZ_SESSION || currentMode == MODE_CHECK_SUCCESS || currentMode == MODE_HISTORY
+                || currentMode == MODE_QUIZ_SESSION_ENDED;
     }
 
 }

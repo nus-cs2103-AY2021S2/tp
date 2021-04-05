@@ -28,7 +28,7 @@ public class TagCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Tags the indicated flashcard with the requested tag(s).\n"
             + "Parameters: FLASHCARD_INDEX, TAG...\n"
-            + "Example: " + COMMAND_WORD + " 2 t/very difficult t/reviseSoon";
+            + "Example: " + COMMAND_WORD + " 2 t/very difficult t/revise soon";
 
     public static final String MESSAGE_NO_TAGS_PROVIDED = "Please provide a tag for your flashcard!";
 
@@ -80,7 +80,6 @@ public class TagCommand extends Command {
 
         model.setFlashcard(flashcardToTag, taggedFlashcard);
         model.updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
-
         return new CommandResult(MESSAGE_SUCCESS, false, false);
     }
 

@@ -10,9 +10,9 @@ import seedu.weeblingo.commons.util.RegexUtil;
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
  */
 public class Tag {
-
-    public static final String MESSAGE_CONSTRAINTS = "Tag names should be alphanumeric and not contain spaces.";
-    public static final String VALIDATION_REGEX = RegexUtil.REGEX_AB3_TAG;
+    
+    public static final String MESSAGE_CONSTRAINTS = "Tag names should be alphanumeric";
+    public static final String VALIDATION_REGEX = RegexUtil.REGEX_WEEBLINGO_TAG;
 
     public final String tagName;
 
