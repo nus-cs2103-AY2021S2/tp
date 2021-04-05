@@ -121,7 +121,7 @@ This help page provides a short summary list of commands that you can use, as we
 If this is your first time using Pawbook, follow these simple steps to jump straight into the action:
 
 1. Ensure you have **Java 11 or above** installed in your Computer.
-2. Download the **latest** pawbook.jar [here][insertlinkhere].
+2. Download the **latest** pawbook.jar [here](https://github.com/AY2021S2-CS2103T-T10-1/tp/releases/tag/v1.3.1)
 3. Copy the _pawbook.jar_ file to the folder you want to use as the root directory for Pawbook.
 4. Double-click the file to start the app. The GUI should appear in a few seconds.
 5. Congratulations, you have successfully launched Pawbook! For new users, type `help` in the command box to view the instruction list
