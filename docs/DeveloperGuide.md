@@ -587,7 +587,7 @@ the `user`, unless specified otherwise)
 
 - 2b. The given search result is empty
 
-  - 2b1. imPoster shows a friendly message about mistyped keywords to the user
+  - 2b1. imPoster shows a message informing the user that there are no endpoints found
 
     Use case resumes at step 1.
 
@@ -608,6 +608,12 @@ the `user`, unless specified otherwise)
   - 2a1. imPoster shows an error message to the user
 
     Use case resumes at step 2.
+    
+- 3a.The API endpoint list is empty
+
+  - 3a1. imPoster shows an additional message to inform the user that the endpoint list is empty
+
+    Use case ends.
 
 **Use case E06 - Clear all saved API endpoints**
 
