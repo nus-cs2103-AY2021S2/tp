@@ -259,11 +259,6 @@ public class CheckCommandTest {
             return Mode.MODE_QUIZ_SESSION;
         }
 
-        @Override
-        public String getCorrectAttemptsString() {
-            return "";
-        }
-
     }
 
     /**
@@ -294,9 +289,5 @@ public class CheckCommandTest {
             return Mode.MODE_QUIZ_SESSION;
         }
 
-        @Override
-        public String getCorrectAttemptsString() {
-            return "";
-        }
     }
 }
