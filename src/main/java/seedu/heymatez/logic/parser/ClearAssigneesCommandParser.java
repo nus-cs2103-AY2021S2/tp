@@ -1,9 +1,11 @@
 package seedu.heymatez.logic.parser;
 
-import seedu.heymatez.commons.core.Messages;
+import static seedu.heymatez.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import seedu.heymatez.commons.core.index.Index;
 import seedu.heymatez.logic.commands.ClearAssigneesCommand;
 import seedu.heymatez.logic.parser.exceptions.ParseException;
+
 
 /**
  * Parses input arguments and creates a new ClearAssigneesCommand object
@@ -22,7 +24,7 @@ public class ClearAssigneesCommandParser implements Parser<ClearAssigneesCommand
             return new ClearAssigneesCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, ClearAssigneesCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ClearAssigneesCommand.MESSAGE_USAGE), pe);
         }
     }
 }

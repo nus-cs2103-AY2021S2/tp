@@ -1,11 +1,11 @@
 package seedu.heymatez.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.heymatez.commons.core.Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
 
 import java.util.List;
 import java.util.Set;
 
-import seedu.heymatez.commons.core.Messages;
 import seedu.heymatez.commons.core.index.Index;
 import seedu.heymatez.logic.commands.exceptions.CommandException;
 import seedu.heymatez.model.Model;
@@ -49,7 +49,7 @@ public class UndoTaskCommand extends Command {
         List<Task> lastShownList = model.getFilteredTaskList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+            throw new CommandException(MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
         Task taskToMarkUndo = lastShownList.get(index.getZeroBased());

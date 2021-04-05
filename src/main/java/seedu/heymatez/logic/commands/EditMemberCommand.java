@@ -1,6 +1,7 @@
 package seedu.heymatez.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.heymatez.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_NAME;
 import static seedu.heymatez.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.heymatez.logic.parser.CliSyntax.PREFIX_NEW_NAME;
 import static seedu.heymatez.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -10,7 +11,6 @@ import static seedu.heymatez.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import java.util.List;
 import java.util.Optional;
 
-import seedu.heymatez.commons.core.Messages;
 import seedu.heymatez.commons.util.CollectionUtil;
 import seedu.heymatez.logic.commands.exceptions.CommandException;
 import seedu.heymatez.model.Model;
@@ -75,7 +75,7 @@ public class EditMemberCommand extends Command {
         }
 
         if (personToEdit == null) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_NAME);
+            throw new CommandException(MESSAGE_INVALID_PERSON_DISPLAYED_NAME);
         }
 
         Person editedPerson = createEditedPerson(personToEdit, editMemberDescriptor);

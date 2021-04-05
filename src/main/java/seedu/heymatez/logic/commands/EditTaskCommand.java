@@ -1,6 +1,7 @@
 package seedu.heymatez.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.heymatez.commons.core.Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
 import static seedu.heymatez.logic.parser.CliSyntax.PREFIX_ASSIGNEE;
 import static seedu.heymatez.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.heymatez.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
@@ -15,7 +16,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.heymatez.commons.core.Messages;
 import seedu.heymatez.commons.core.index.Index;
 import seedu.heymatez.commons.util.CollectionUtil;
 import seedu.heymatez.logic.commands.exceptions.CommandException;
@@ -72,7 +72,7 @@ public class EditTaskCommand extends Command {
         List<Task> lastShownList = model.getFilteredTaskList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+            throw new CommandException(MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
         Task taskToEdit = lastShownList.get(index.getZeroBased());

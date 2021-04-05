@@ -1,8 +1,8 @@
 package seedu.heymatez.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.heymatez.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
-import seedu.heymatez.commons.core.Messages;
 import seedu.heymatez.commons.core.index.Index;
 import seedu.heymatez.logic.commands.DoneTaskCommand;
 import seedu.heymatez.logic.parser.exceptions.ParseException;
@@ -25,7 +25,7 @@ public class DoneTaskCommandParser implements Parser<DoneTaskCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     DoneTaskCommand.MESSAGE_USAGE), pe);
         }
 

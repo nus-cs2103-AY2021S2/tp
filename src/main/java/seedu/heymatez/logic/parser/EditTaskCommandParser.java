@@ -1,6 +1,7 @@
 package seedu.heymatez.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.heymatez.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.heymatez.logic.parser.CliSyntax.PREFIX_ASSIGNEE;
 import static seedu.heymatez.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.heymatez.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
@@ -12,7 +13,6 @@ import java.util.Collection;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.heymatez.commons.core.Messages;
 import seedu.heymatez.commons.core.index.Index;
 import seedu.heymatez.logic.commands.EditTaskCommand;
 import seedu.heymatez.logic.parser.exceptions.ParseException;
@@ -38,7 +38,7 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     EditTaskCommand.MESSAGE_USAGE), pe);
         }
 

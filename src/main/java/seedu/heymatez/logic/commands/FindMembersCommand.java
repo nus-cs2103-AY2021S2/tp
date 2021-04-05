@@ -1,8 +1,8 @@
 package seedu.heymatez.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.heymatez.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 
-import seedu.heymatez.commons.core.Messages;
 import seedu.heymatez.model.Model;
 import seedu.heymatez.model.person.DetailsContainsKeywordsPredicate;
 
@@ -30,7 +30,7 @@ public class FindMembersCommand extends Command {
         requireNonNull(model);
         model.updateFilteredPersonList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+                String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
     }
 
     @Override
