@@ -15,7 +15,7 @@ public class DateTime {
 
     public static final String MESSAGE_INVALID_FORMAT = "The given date-time is invalid. Possibly due to: \n"
             + ". Incorrect format (Should be of the format of dd-MM-yyyy HH:mm)\n"
-            + ". Invalid date (e.g. 29-02-2021, a date only valid in a leap year)";
+            + ". Invalid date (e.g. 29-02-2021, because 29-02 is not a valid date in a non-leap year)";
     public static final String MESSAGE_IN_PAST = "Date and time cannot be in the past.";
     public static final DateTimeFormatter DATETIME_PATTERN = DateTimeFormatter.ofPattern("dd-MM-uuuu HH:mm")
             .withResolverStyle(ResolverStyle.STRICT);
