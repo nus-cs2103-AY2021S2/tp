@@ -6,7 +6,7 @@ import static seedu.timeforwheels.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.timeforwheels.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.timeforwheels.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.timeforwheels.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.timeforwheels.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.timeforwheels.logic.commands.CommandTestUtil.VALID_TAG_HEAVY;
 import static seedu.timeforwheels.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.timeforwheels.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.timeforwheels.logic.commands.CommandTestUtil.showCustomerAtIndex;
@@ -55,10 +55,10 @@ public class EditCommandTest {
 
         CustomerBuilder customerInList = new CustomerBuilder(lastCustomer);
         Customer editedCustomer = customerInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
+                .withTags(VALID_TAG_HEAVY).build();
 
         EditCustomerDescriptor descriptor = new EditCustomerDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
+                .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HEAVY).build();
         EditCommand editCommand = new EditCommand(indexLastCustomer, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_CUSTOMER_SUCCESS, editedCustomer);
