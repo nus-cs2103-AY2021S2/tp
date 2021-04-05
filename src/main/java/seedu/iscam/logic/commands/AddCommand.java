@@ -41,7 +41,7 @@ public class AddCommand extends UndoableCommand {
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New client added: %1$s";
-    public static final String MESSAGE_DUPLICATE_CLIENT = "This client already exists in the iscam book";
+    public static final String MESSAGE_DUPLICATE_CLIENT = "This client already exists in the iScam book";
 
     private final Index index;
     private final Client toAdd;
