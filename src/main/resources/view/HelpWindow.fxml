@@ -66,8 +66,8 @@
                </font></Label>
             <TableView fx:id="tableView" minHeight="-Infinity" minWidth="-Infinity" prefHeight="315.0" prefWidth="589.0" GridPane.rowIndex="3">
                 <columns>
-                    <TableColumn prefWidth="88.0" resizable="false" text="Action">
-                        <cellValueFactory><PropertyValueFactory property="action" />
+                    <TableColumn prefWidth="88.0" resizable="false" text="Command">
+                        <cellValueFactory><PropertyValueFactory property="command" />
                         </cellValueFactory>
                     </TableColumn>
                     <TableColumn prefWidth="499.0" resizable="false" text="Example">
@@ -77,20 +77,20 @@
                 </columns>
                 <items>
                     <FXCollections fx:factory="observableArrayList">
-                        <UserGuide action="Help" example="help" />
-                        <UserGuide action="Toggle" example="toggle material" />
-                        <UserGuide action="Exit" example="exit" />
-                        <UserGuide action="Add"
+                        <UserGuide command="Help" example="help" />
+                        <UserGuide command="Toggle" example="toggle material" />
+                        <UserGuide command="Exit" example="exit" />
+                        <UserGuide command="Add"
                                    example="add -x GET -u https://api.data.gov.sg/v1/technology/ipos/patents -t singapore" />
-                        <UserGuide action="Edit"
+                        <UserGuide command="Edit"
                                    example="edit 1 -t tutorial " />
-                        <UserGuide action="Show" example="show 1" />
-                        <UserGuide action="Remove" example="remove 1" />
-                        <UserGuide action="Find" example="find singapore" />
-                        <UserGuide action="List" example="list" />
-                        <UserGuide action="Clear" example="clear" />
-                        <UserGuide action="Send" example="send 1" />
-                        <UserGuide action="Run"
+                        <UserGuide command="Show" example="show 1" />
+                        <UserGuide command="Remove" example="remove 1" />
+                        <UserGuide command="Find" example="find singapore" />
+                        <UserGuide command="List" example="list" />
+                        <UserGuide command="Clear" example="clear" />
+                        <UserGuide command="Send" example="send 1" />
+                        <UserGuide command="Run"
                                    example="run -x get -u https://api.data.gov.sg/v1/environment/psi" />
                     </FXCollections>
                 </items>
