@@ -81,6 +81,7 @@ public class DeleteContactCommand extends DeleteCommand {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DeleteContactCommand // instanceof handles nulls
-                && targetIndexes.equals(((DeleteContactCommand) other).targetIndexes)); // state check
+                && targetIndexes.equals(((DeleteContactCommand) other).targetIndexes) // state check
+                && invalidIndexes.equals(((DeleteContactCommand) other).invalidIndexes)); // state check
     }
 }
