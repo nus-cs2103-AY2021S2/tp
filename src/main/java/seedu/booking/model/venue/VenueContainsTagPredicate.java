@@ -1,9 +1,8 @@
-package seedu.booking.model.booking;
+package seedu.booking.model.venue;
 
 import java.util.function.Predicate;
 
 import seedu.booking.model.Tag;
-import seedu.booking.model.venue.Venue;
 
 /**
  * Tests that a {@code Venue}'s {@code tags} contains the tag given

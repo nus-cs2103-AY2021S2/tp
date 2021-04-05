@@ -10,17 +10,17 @@ import seedu.booking.model.Tag;
 public class BookingContainsTagPredicate implements Predicate<Booking> {
     private final Tag tag;
 
-    public BookingContainsTagPredicate(String tagName) {
-        this.tag = new Tag(tagName);
+    public BookingContainsTagPredicate(String tag) {
+        this.tag = new Tag(tag);
     }
 
     public String getTagName() {
-        return this.tag.getTagName();
+        return tag.getTagName();
     }
 
     @Override
     public boolean test(Booking booking) {
-        return booking.getTags().contains(this.tag);
+        return booking.getTags().stream().anyMatch(tag -> tag.isSameTag(this.tag));
     }
 
     @Override

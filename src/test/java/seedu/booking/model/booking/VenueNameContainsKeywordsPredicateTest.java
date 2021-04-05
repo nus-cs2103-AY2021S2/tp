@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.booking.model.venue.VenueNameContainsKeywordsPredicate;
 import seedu.booking.testutil.VenueBuilder;
 
 public class VenueNameContainsKeywordsPredicateTest {
