@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.iscam.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.iscam.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.iscam.testutil.Assert.assertThrows;
-import static seedu.iscam.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
+import static seedu.iscam.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
 
 import java.util.Arrays;
 import java.util.List;
@@ -51,8 +51,8 @@ public class ClientBookParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_CLIENT.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_CLIENT), command);
+                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_ITEM.getOneBased());
+        assertEquals(new DeleteCommand(INDEX_FIRST_ITEM), command);
     }
 
     @Test
@@ -60,8 +60,8 @@ public class ClientBookParserTest {
         Client client = new ClientBuilder().build();
         EditClientDescriptor descriptor = new EditClientDescriptorBuilder(client).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_CLIENT.getOneBased() + " " + ClientUtil.getEditClientDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_CLIENT, descriptor), command);
+                + INDEX_FIRST_ITEM.getOneBased() + " " + ClientUtil.getEditClientDescriptorDetails(descriptor));
+        assertEquals(new EditCommand(INDEX_FIRST_ITEM, descriptor), command);
     }
 
     @Test

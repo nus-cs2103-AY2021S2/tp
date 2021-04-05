@@ -3,7 +3,7 @@ package seedu.iscam.logic.parser;
 import static seedu.iscam.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.iscam.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.iscam.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
-import static seedu.iscam.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
+import static seedu.iscam.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
 
 import org.junit.jupiter.api.Test;
 
@@ -23,7 +23,7 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, "1", new DeleteCommand(INDEX_FIRST_CLIENT));
+        assertParseSuccess(parser, "1", new DeleteCommand(INDEX_FIRST_ITEM));
     }
 
     @Test

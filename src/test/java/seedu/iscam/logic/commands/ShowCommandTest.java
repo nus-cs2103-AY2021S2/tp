@@ -6,8 +6,8 @@ import static seedu.iscam.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.iscam.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.iscam.logic.commands.CommandTestUtil.showClientAtIndex;
 import static seedu.iscam.testutil.TypicalClients.getTypicalClientBook;
-import static seedu.iscam.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
-import static seedu.iscam.testutil.TypicalIndexes.INDEX_SECOND_CLIENT;
+import static seedu.iscam.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
+import static seedu.iscam.testutil.TypicalIndexes.INDEX_SECOND_ITEM;
 import static seedu.iscam.testutil.TypicalMeetings.getTypicalMeetingBook;
 
 import org.junit.jupiter.api.Test;
@@ -28,8 +28,8 @@ public class ShowCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Client clientToShow = model.getFilteredClientList().get(INDEX_FIRST_CLIENT.getZeroBased());
-        ShowCommand showCommand = new ShowCommand(INDEX_FIRST_CLIENT);
+        Client clientToShow = model.getFilteredClientList().get(INDEX_FIRST_ITEM.getZeroBased());
+        ShowCommand showCommand = new ShowCommand(INDEX_FIRST_ITEM);
 
         String expectedMessage = String.format(ShowCommand.MESSAGE_SHOW_CLIENT_SUCCESS, clientToShow);
 
@@ -49,25 +49,25 @@ public class ShowCommandTest {
 
     @Test
     public void execute_validIndexFilteredList_success() {
-        showClientAtIndex(model, INDEX_FIRST_CLIENT);
+        showClientAtIndex(model, INDEX_FIRST_ITEM);
 
-        Client clientToShow = model.getFilteredClientList().get(INDEX_FIRST_CLIENT.getZeroBased());
-        ShowCommand showCommand = new ShowCommand(INDEX_FIRST_CLIENT);
+        Client clientToShow = model.getFilteredClientList().get(INDEX_FIRST_ITEM.getZeroBased());
+        ShowCommand showCommand = new ShowCommand(INDEX_FIRST_ITEM);
 
         String expectedMessage = String.format(ShowCommand.MESSAGE_SHOW_CLIENT_SUCCESS, clientToShow);
 
         Model expectedModel = new ModelManager(model.getClientBook(), model.getMeetingBook(), new UserPrefs());
         expectedModel.setDetailedClient(clientToShow);
-        showClientAtIndex(expectedModel, INDEX_FIRST_CLIENT);
+        showClientAtIndex(expectedModel, INDEX_FIRST_ITEM);
 
         assertCommandSuccess(showCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showClientAtIndex(model, INDEX_FIRST_CLIENT);
+        showClientAtIndex(model, INDEX_FIRST_ITEM);
 
-        Index outOfBoundIndex = INDEX_SECOND_CLIENT;
+        Index outOfBoundIndex = INDEX_SECOND_ITEM;
         // ensures that outOfBoundIndex is still in bounds of iscam book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getClientBook().getClientList().size());
 
@@ -78,14 +78,14 @@ public class ShowCommandTest {
 
     @Test
     public void equals() {
-        ShowCommand showFirstCommand = new ShowCommand(INDEX_FIRST_CLIENT);
-        ShowCommand showSecondCommand = new ShowCommand(INDEX_SECOND_CLIENT);
+        ShowCommand showFirstCommand = new ShowCommand(INDEX_FIRST_ITEM);
+        ShowCommand showSecondCommand = new ShowCommand(INDEX_SECOND_ITEM);
 
         // same object -> returns true
         assertTrue(showFirstCommand.equals(showFirstCommand));
 
         // same values -> returns true
-        ShowCommand showFirstCommandCopy = new ShowCommand(INDEX_FIRST_CLIENT);
+        ShowCommand showFirstCommandCopy = new ShowCommand(INDEX_FIRST_ITEM);
         assertTrue(showFirstCommand.equals(showFirstCommandCopy));
 
         // different types -> returns false

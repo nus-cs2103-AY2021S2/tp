@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.iscam.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.iscam.testutil.Assert.assertThrows;
-import static seedu.iscam.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
+import static seedu.iscam.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -50,10 +50,10 @@ public class ParserUtilTest {
     @Test
     public void parseIndex_validInput_success() throws Exception {
         // No whitespaces
-        assertEquals(INDEX_FIRST_CLIENT, ParserUtil.parseIndex("1"));
+        assertEquals(INDEX_FIRST_ITEM, ParserUtil.parseIndex("1"));
 
         // Leading and trailing whitespaces
-        assertEquals(INDEX_FIRST_CLIENT, ParserUtil.parseIndex("  1  "));
+        assertEquals(INDEX_FIRST_ITEM, ParserUtil.parseIndex("  1  "));
     }
 
     @Test

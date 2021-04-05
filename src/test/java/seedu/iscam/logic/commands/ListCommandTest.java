@@ -3,7 +3,7 @@ package seedu.iscam.logic.commands;
 import static seedu.iscam.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.iscam.logic.commands.CommandTestUtil.showClientAtIndex;
 import static seedu.iscam.testutil.TypicalClients.getTypicalClientBook;
-import static seedu.iscam.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
+import static seedu.iscam.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
 import static seedu.iscam.testutil.TypicalMeetings.getTypicalMeetingBook;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -34,7 +34,7 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        showClientAtIndex(model, INDEX_FIRST_CLIENT);
+        showClientAtIndex(model, INDEX_FIRST_ITEM);
         assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }
