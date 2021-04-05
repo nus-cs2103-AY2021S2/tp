@@ -55,6 +55,7 @@ public class UniqueResidentList implements Iterable<Resident> {
             throw new DuplicateResidentException();
         }
         internalList.add(toAdd);
+        FXCollections.sort(internalList);
     }
 
     /**
@@ -75,6 +76,7 @@ public class UniqueResidentList implements Iterable<Resident> {
         }
 
         internalList.set(index, editedResident);
+        FXCollections.sort(internalList);
     }
 
     /**
@@ -86,11 +88,13 @@ public class UniqueResidentList implements Iterable<Resident> {
         if (!internalList.remove(toRemove)) {
             throw new ResidentNotFoundException();
         }
+        FXCollections.sort(internalList);
     }
 
     public void setResidents(UniqueResidentList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
+        FXCollections.sort(internalList);
     }
 
     /**
@@ -104,6 +108,7 @@ public class UniqueResidentList implements Iterable<Resident> {
         }
 
         internalList.setAll(residents);
+        FXCollections.sort(internalList);
     }
 
     /**
