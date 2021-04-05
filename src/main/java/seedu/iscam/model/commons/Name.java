@@ -9,15 +9,15 @@ import static seedu.iscam.commons.util.AppUtil.checkArgument;
  */
 public class Name {
 
-    public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain alphanumeric characters and spaces, and it should not be blank";
-
+    public static final String MESSAGE_TYPE_CONSTRAINTS =
+            "Names should only contain alphanumeric characters and spaces, and it should not be blank.";
+    public static final String MESSAGE_LENGTH_CONSTRAINTS = "Names should not be longer than 50 characters.";
     /*
-     * The first character of the iscam must not be a whitespace,
+     * The first character of the iScam must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
-
+    private static final int MESSAGE_MAX_LENGTH = 50;
     public final String fullName;
 
     /**
@@ -27,7 +27,8 @@ public class Name {
      */
     public Name(String name) {
         requireNonNull(name);
-        checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidName(name), MESSAGE_TYPE_CONSTRAINTS);
+        checkArgument(isValidLength(name), MESSAGE_LENGTH_CONSTRAINTS);
         fullName = name;
     }
 
@@ -36,6 +37,13 @@ public class Name {
      */
     public static boolean isValidName(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if a given name has valid length.
+     */
+    public static boolean isValidLength(String test) {
+        return test.length() <= MESSAGE_MAX_LENGTH;
     }
 
 

@@ -42,6 +42,9 @@ class JsonAdaptedMeetingTag {
         if (!Tag.isValidTagName(tagName)) {
             throw new IllegalValueException(Tag.MESSAGE_CONSTRAINTS);
         }
+        if (!Tag.isValidLength(tagName)) {
+            throw new IllegalValueException(Tag.MESSAGE_LENGTH_CONSTRAINTS);
+        }
         return new Tag(tagName);
     }
 
