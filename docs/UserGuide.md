@@ -248,7 +248,7 @@ GME data is saved in the hard disk automatically after any command that changes 
 
 ### 3.13 Editing the data file
 
-GME data is saved as a JSON file `[JAR file location]/data/GreenMileageEfforts.json`. Advanced users are welcome to update data directly by editing that data file.
+GME data is saved as a JSON file `[JAR file location]/data/GMEdata.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="block" class="alert-warning">
 
@@ -262,7 +262,7 @@ GME data is saved as a JSON file `[JAR file location]/data/GreenMileageEfforts.j
 
 **Q:** Where can I find the data stored by GME terminal?
 
-**A:** The json file containing the data stored is named `GreenMileageEfforts.json` and can be found in the `data` folder in the same directory where `GreenMileageEfforts.jar` file is saved.
+**A:** The json file containing the data stored is named `GMEdata.json` and can be found in the `data` folder in the same directory where `GreenMileageEfforts.jar` file is saved.
 
 --------------------------------------------------------------------------------------------------------------------
 
