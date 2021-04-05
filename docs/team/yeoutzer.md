@@ -33,7 +33,7 @@ Given below are my contributions to the project.
       that matches all the specified fields. This implementation was challenging as it required addition to some utility 
       classes and allowing multiple keywords for a certain specified field.
 
-* **Enhancement to existing features**:
+* **Contributions to team-based tasks**:
     * Refactored test functions and changed test data to fit our project.[#56](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/56)
     
 * **Project Management**:
@@ -47,4 +47,11 @@ Given below are my contributions to the project.
         * Added anchor links in the table of contents.[#89](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/89)
         * Added implementation details for `filter` feature with sequence and activity diagram.[#89](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/89)
         * Added the documentation for `list`, `find`, and `filters`.[#38](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/38), [#61](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/61), [#89](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/89)
+        * Added the Effort section. [#89](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/89)
+    
+* **Review/Mentoring Contributions**:
+    * Non-trivial PR reviews: [#111](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/111), [#91](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/91), [#86](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/86), 
+    
+* **Contributions beyond the project team**:
+    * Bugs reported for PE dry run. [Issue Tracker](https://github.com/yeoutzer/ped/issues)
 
