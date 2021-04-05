@@ -72,6 +72,14 @@ public class TypicalResidents {
             .withRoom(VALID_ROOM_BOB)
             .build();
 
+    // First Typical Resident
+    public static final Resident AARON = new ResidentBuilder().withName("Aaron Ang")
+            .withEmail("aaron@example.com")
+            .withPhone("91258294")
+            .withYear("1")
+            .withRoom("01-000")
+            .build();
+
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     private TypicalResidents() {

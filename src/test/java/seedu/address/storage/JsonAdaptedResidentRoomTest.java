@@ -23,14 +23,14 @@ public class JsonAdaptedResidentRoomTest {
 
     @Test
     public void toModelType_validResidentRoom_returnsResidentRoom() throws Exception {
-        JsonAdaptedResidentRoom residentRoom = new JsonAdaptedResidentRoom(TypicalResidentRooms.BOB);
-        assertEquals(TypicalResidentRooms.BOB, residentRoom.toModelType());
+        JsonAdaptedResidentRoom residentRoom = new JsonAdaptedResidentRoom(TypicalResidentRooms.BOB_ROOM_NUMBER);
+        assertEquals(TypicalResidentRooms.BOB_ROOM_NUMBER, residentRoom.toModelType());
     }
 
     @Test
     public void toModelType_validResidentRoomDetails_returnsResidentRoom() throws Exception {
         JsonAdaptedResidentRoom residentRoom = new JsonAdaptedResidentRoom(VALID_NAME_BOB, VALID_ROOM_NUMBER_BOB);
-        assertEquals(TypicalResidentRooms.BOB, residentRoom.toModelType());
+        assertEquals(TypicalResidentRooms.BOB_ROOM_NUMBER, residentRoom.toModelType());
     }
 
     @Test
