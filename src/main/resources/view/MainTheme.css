@@ -329,6 +329,14 @@
     -fx-background-color: #6a8883;
     -fx-background-radius: 0;
     -fx-padding: 2 2 2 2;
+
+    -fx-min-width: 8;
+    -fx-pref-width: 8;
+    -fx-max-width: 10;
+
+    -fx-min-height: 8;
+    -fx-pref-height: 8;
+    -fx-max-height: 10;
 }
 
 .scroll-bar .thumb {
@@ -384,14 +392,4 @@
 
 .black-column.table-row-cell {
     -fx-text-fill: black;
-}
-
-.table-view .scroll-bar * {
-    -fx-min-width: 5;
-    -fx-pref-width: 5;
-    -fx-max-width: 5;
-
-    -fx-min-height: 5;
-    -fx-pref-height: 5;
-    -fx-max-height: 5;
 }
