@@ -7,6 +7,14 @@ title: User Guide
 SOChedule is a one-stop solution for managing tasks and events, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
 ## Feature List
+
+### General Commands
+* Finding tasks and events before or on a given date: `find_schedule`
+* Clearing Sochedule: `clear`
+* Finding free time slots: `free_time`
+* Summarising tasks and events completion status: `summary`
+  
+### Task-Specific Commands
 * Adding a task: `add_task`
 * Deleting a task: `delete_task`
 * Marking one or more tasks as done : `done_task`
@@ -20,6 +28,8 @@ SOChedule is a one-stop solution for managing tasks and events, optimized for us
 * Unpinning a task: `unpin_task`
 * Clearing completed tasks: `clear_completed_task`
 * Clearing expired tasks: `clear_expired_task`
+  
+## Event-Specific Commands
 * Adding an event: `add_event`
 * Deleting an event: `delete_event`
 * Editing a task: `edit_event`
@@ -27,10 +37,7 @@ SOChedule is a one-stop solution for managing tasks and events, optimized for us
 * Getting today's events: `today_event`
 * Finding events: `find_event`
 * Clearing expired events: `clear_expired_event`
-* Finding tasks and events before or on a given date: `find_schedule`
-* Clearing Sochedule: `clear`
-* Finding free time slots: `free_time`
-* Summarising tasks and events completion status: `summary`
+
 
 ## Public Parameters for Tasks and Events
 As listed below are the attributes to be specified for Tasks and Events. All parameters are mandatory unless otherwise stated.
