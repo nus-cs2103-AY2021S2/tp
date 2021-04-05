@@ -160,7 +160,7 @@ Format: `addMember NAME -p PHONE_NUMBER -e EMAIL [-r ROLE]`
 
 Assumptions:
 * Every member in the CCA has different a name. An error will be prompted when you add a member with the same name but with
-different a phone number, email or role.
+a different phone number, email or role.
 
 Examples: 
 * `addMember Dylan -p 64529356 -e dylan@gmail.com`
