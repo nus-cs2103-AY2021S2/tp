@@ -336,7 +336,7 @@ Below are some examples for example Person 1 with Tags "Hello" and "World".
       * Expected Behavior: Autocompletes and adds all tags from Person 1.
       * Example Output: `edit 1 -t Foo -t Hello -t World`
 
-Note: Autocompleted Tags will be returned in alphabetical order.
+Note: Autocompleted Tags will be returned in alphabetical order and is case-sensitive.
 
 #### Undoing actions : `undo`
 
