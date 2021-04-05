@@ -18,7 +18,7 @@ import seedu.budgetbaby.logic.parser.YearMonthParser;
 public class FinancialRecord {
 
     public static final String TIMESTAMP_CONSTRAINTS =
-        "Timestamp should follow the format of dd-mm-yyyy. Example: 31-12-2020.";
+        "Date should follow the format of dd-mm-yyyy, and it should be between 01-01-2000 and 31-12-2100. Example: 31-12-2020.";
     private static final String FINANCIAL_RECORD_DETAILS_DELIMITER = " | ";
     private static final SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 
@@ -89,10 +89,17 @@ public class FinancialRecord {
      * Valid format example: 01-01-2021
      */
     public static boolean isValidTimestamp(String test) {
-        boolean isValid;
+        boolean isValid = false;
         try {
-            formatter.parse(test);
-            isValid = true;
+            Date timestamp = formatter.parse(test);
+
+            Date timestampLowerBound = formatter.parse("01-01-2000");
+            Date timestampUpperBound = formatter.parse("31-12-2100");
+
+            if (timestamp.getTime() >= timestampLowerBound.getTime() &&
+                timestamp.getTime() <= timestampUpperBound.getTime()) {
+                isValid = true;
+            }
         } catch (ParseException e) {
             isValid = false;
         }
