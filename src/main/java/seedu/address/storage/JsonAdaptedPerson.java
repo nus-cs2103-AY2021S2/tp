@@ -1,5 +1,10 @@
 package seedu.address.storage;
 
+import static seedu.address.commons.core.Messages.MESSAGE_BIRTHDAY_AFTER_TODAY;
+import static seedu.address.commons.core.Messages.MESSAGE_DATE_AFTER_TODAY;
+import static seedu.address.commons.core.Messages.MESSAGE_DATE_BEFORE_BIRTHDAY;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -100,6 +105,22 @@ class JsonAdaptedPerson {
                 .collect(Collectors.toList()));
     }
 
+    private String errorMsgForDateBeforeBirthday(Name name, Meeting meeting) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(String.format("Error deserializing %s. ", name))
+                .append(String.format("Problem with one of the meetings %s. ", meeting.getDescription()))
+                .append(String.format(MESSAGE_DATE_BEFORE_BIRTHDAY, meeting.getDate()));
+        return sb.toString();
+    }
+
+    private String errorMsgForDateBeforeBirthday(Name name, SpecialDate specialDate) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(String.format("Error deserializing %s. ", name))
+                .append(String.format("Problem with one of the special dates %s. ", specialDate.getDescription()))
+                .append(String.format(MESSAGE_DATE_BEFORE_BIRTHDAY, specialDate.getDate()));
+        return sb.toString();
+    }
+
     /**
      * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
      *
@@ -173,15 +194,27 @@ class JsonAdaptedPerson {
 
         final List<SpecialDate> modelDates = new ArrayList<>();
         for (JsonAdaptedSpecialDate date : dates) {
-            modelDates.add(date.toModelType());
+            SpecialDate dateModel = date.toModelType();
+            LocalDate dateToCheck = dateModel.getDate();
+
+            if (dateToCheck.isBefore(modelBirthday.getDate())) {
+                throw new IllegalValueException(errorMsgForDateBeforeBirthday(modelName, dateModel));
+            }
+
+            modelDates.add(dateModel);
         }
 
         final List<Meeting> modelMeetings = new ArrayList<>();
         for (JsonAdaptedMeeting meeting : meetings) {
-            modelMeetings.add(meeting.toModelType());
-        }
+            Meeting modelMeeting = meeting.toModelType();
+            LocalDate dateToCheck = modelMeeting.getDate();
 
-        // TODO: Run another check for specialDates and meetings with birthdays
+            if (dateToCheck.isBefore(modelBirthday.getDate())) {
+                throw new IllegalValueException(errorMsgForDateBeforeBirthday(modelName, modelMeeting));
+            }
+
+            modelMeetings.add(modelMeeting);
+        }
 
         return new Person(modelName, modelPhone, modelEmail, modelBirthday, modelGoal, modelAddress, modelPicture,
                 modelDebt, modelTags, modelDates, modelMeetings);

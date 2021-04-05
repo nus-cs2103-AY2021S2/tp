@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_BIRTHDAY_AFTER_TODAY;
 import static seedu.address.commons.core.Messages.MESSAGE_DATE_AFTER_TODAY;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_FILE;
 import static seedu.address.commons.core.Messages.MESSAGE_TIME_AFTER_NOW;
@@ -113,6 +114,12 @@ public class ParserUtil {
         requireNonNull(birthday);
         String trimmedBirthday = birthday.trim();
         LocalDate birthdayDate = DateUtil.fromDateInput(trimmedBirthday);
+
+        if (DateUtil.afterToday(birthdayDate)) {
+            throw new ParseException(String.format(MESSAGE_BIRTHDAY_AFTER_TODAY,
+                    DateUtil.toErrorMessage(birthdayDate)));
+        }
+
         return new Birthday(birthdayDate);
     }
 

@@ -10,8 +10,8 @@ import seedu.address.commons.util.DateUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 public class Birthday {
-    public static final String MESSAGE_CONSTRAINTS =
-            seedu.address.commons.util.DateUtil.MESSAGE_CONSTRAINT;
+    public static final String MESSAGE_CONSTRAINTS = seedu.address.commons.util.DateUtil.MESSAGE_CONSTRAINT
+            + "\n Birthday should also be before today.";
 
     public static final DateTimeFormatter BIRTHDAY_INPUT_FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     public final LocalDate birthDate;
@@ -51,12 +51,15 @@ public class Birthday {
      * Returns true if a given string is a valid birthday.
      */
     public static boolean isValidBirthday(String test) {
+        LocalDate date;
+
         try {
-            DateUtil.fromDateInput(test);
-            return true;
+            date = DateUtil.fromDateInput(test);
         } catch (ParseException e) {
             return false;
         }
+
+        return !DateUtil.afterToday(date);
     }
 
     public boolean beforeBirthdate(LocalDate date) {

@@ -14,7 +14,6 @@ public class Meeting extends Event {
     public static final String MESSAGE_CONSTRAINTS = "Meeting must have occurred already " +
             "and meeting description cannot be empty";
 
-
     public Meeting(LocalDate date, LocalTime time, String description) {
         super(date, time, description);
     }

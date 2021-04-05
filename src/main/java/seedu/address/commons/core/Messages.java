@@ -16,6 +16,7 @@ public class Messages {
     // Date
     public static final String MESSAGE_INVALID_DATE_FORMAT = "Invalid date format! \n";
     public static final String MESSAGE_DATE_AFTER_TODAY = "Invalid date. Date %1$s is after today!";
+    public static final String MESSAGE_BIRTHDAY_AFTER_TODAY = "Invalid birthday. Birthday %1$s is after today!";
     public static final String MESSAGE_DATE_BEFORE_BIRTHDAY = "Invalid date. Person is not yet born on %1$s!";
 
     // Time
