@@ -124,7 +124,11 @@ The Reminder section displays tuition sessions within 3 days of the current date
 
 ##### 3 Months Monthly Fee
 The 3 Months Monthly Fees section displays tuition fees for the current month and the past two months.
+
+<div markdown="block" class="alert alert-info">
+:information_source:
 Note: The current month and past two months are calculated when the user first opens the application. No other months can be added to this section.
+</div>
 
 #### 4.1.2 Tuition
 The Tuition page is split into two views: **Student** and **Session**.
