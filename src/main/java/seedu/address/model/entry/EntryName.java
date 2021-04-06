@@ -6,7 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class EntryName {
 
     public static final String NAME_CONSTRAINTS =
-            "Names should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Names should only contain alphanumeric characters and spaces, and it should not be blank.";
 
     /**
      * The first character of the address must not be a whitespace,
