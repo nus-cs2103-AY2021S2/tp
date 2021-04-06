@@ -21,7 +21,7 @@ public class DriverTest {
     }
 
     @Test
-    public void constructor_nullDriver_throwsNullPointerException() {
+    public void constructor_nullName_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new Driver(null, new Phone(VALID_PHONE_BOB)));
     }
 
