@@ -13,7 +13,7 @@ to help users manage their items effectively and efficiently. StoreMando allows 
 whereabouts, quantities and expiry dates with a few simple commands. Furthermore, StoreMando also comes with an inbuilt
 reminder feature to help users keep track of items that are expiring. All items' information is encapsulated clearly on
 our simple and clean Graphical User Interface (GUI). Our application is optimised for use via the Command Line
-Interface (CLI) and if users have quick fingers, StoreMando can help users manage their items in the blink of an eye.
+Interface (CLI) and for users with quick fingers, StoreMando's short commands can help users manage their items within seconds.
 
 * If you are interested in using StoreMando, head over to the [**User Guide**](UserGuide.md).
 * If you are interested about developing StoreMando, the [**Developer Guide**](DeveloperGuide.md) is a good place to
