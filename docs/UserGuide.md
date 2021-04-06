@@ -73,7 +73,7 @@ In addition, it is optional to include the following detail of a student:
 
 :information_source: **NOTE** If the School Residence of a student is not specified, the system will default to DOES_NOT_LIVE_ON_CAMPUS and assume that the student does not live on campus.
 
-> For a smooth user experience, please refer to the  please refer to the [Input Formats](#Input Formats) section below for more information regarding input formats. That section explains which prefix should be used for each piece of information and how the information should be presented to the program. 
+> For a smooth user experience, please refer to the  please refer to the [Input Formats](#input-formats) section below for more information regarding input formats. That section explains which prefix should be used for each piece of information and how the information should be presented to the program. 
 
 `Add` Command Format: `add n/NAME i/MATRICULATION_NUMBER f/FACULTY p/PHONE_NUMBER e/EMAIL a/ADDRESS s/VACCINATION_STATUS m/MEDICAL_DETAILS r/SCHOOL_RESIDENCE[optional]`
 
@@ -97,7 +97,7 @@ All inputs specified are optional, but at least one of them must be provided. Af
 
  :information_source: **NOTE:** Every field except the student's matriculation number can be edited. Should you wish to edit the matriculation number of a student, you must first delete the student entry and add a new one with the updated matriculation number. 
 
-> For a smooth user experience, please refer to the  please refer to the [Input Formats](#Input Formats) section below for more information regarding input formats. That section explains which prefix should be used for each piece of information and how the information should be presented to the program.
+> For a smooth user experience, please refer to the  please refer to the [Input Formats](#input-formats) section below for more information regarding input formats. That section explains which prefix should be used for each piece of information and how the information should be presented to the program.
 
 Format: `edit INDEX [n/NAME] [f/FACULTY] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/VACCINATION_STATUS] [m/MEDICAL_DETAILS] [r/SCHOOL_RESIDENCE]`
 
@@ -190,7 +190,7 @@ Examples:
 Edits an appointment present in Vax@NUS records by referencing the student's matriculation number. 
 
 It is mandatory to include the following detail of the appointment:
-* The matriculation number of the student in the appointment. The matriculation number must follow the format as specified in [Input Formats](#Input Formats).
+* The matriculation number of the student in the appointment. The matriculation number must follow the format as specified in [Input Formats](#input-formats).
 
 It is optional to include the following details:
 
