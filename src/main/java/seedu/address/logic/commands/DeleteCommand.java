@@ -1,10 +1,10 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.commands.CommandUtil.checkContactInvolvedInAppointment;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.Messages;
@@ -83,25 +83,6 @@ public class DeleteCommand extends Command {
         }
 
         return new CommandResult(outputString.toString());
-    }
-
-    /**
-     * Checks if the specified contact is involved in an existing appointment
-     * @param contact contact to be checked
-     * @return boolean value of whether or not contact is involved in an appointment
-     */
-    private boolean checkContactInvolvedInAppointment(Contact contact, ObservableList<Appointment> appointmentList) {
-        boolean isInvolved = false;
-
-        for (Appointment appointment : appointmentList) {
-            Set<Contact> contactSet = appointment.getContacts();
-            if (contactSet.contains(contact)) {
-                isInvolved = true;
-                break;
-            }
-        }
-
-        return isInvolved;
     }
 
     /**
