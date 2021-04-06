@@ -33,52 +33,6 @@ Vax@NUS is a **one stop management app to efficiently track and schedule COVID-1
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Parameter Formats
-
-**:information_source: NOTE: The following parameter formats must be followed:**
-> The `MATRICULATION_NUMBER` of a student is a unique 9-character alphanumeric sequence that begins with A, followed by
-> 7 numbers and ends with an alphabet.
-
-> The `FACULTY` of a student must be one of the following:
-> * FASS (for Faculty of Arts and Social Sciences)
-> * BIZ (for NUS Business School)
-> * COM (for School of Computing)
-> * SCALE (for School of Continuing and Lifelong Education)
-> * DEN (for Faculty of Dentistry)
-> * SDE (for School of Design and Environment)
-> * DNUS (for Duke-NUS Medical School)
-> * ENG (for Faculty of Engineering)
-> * ISEP (for Integrative Sciences and Engineering)
-> * LAW (for Faculty of Law)
-> * MED (for Yong Loo Lin School of Medicine)
-> * MUSIC (for Yong Siew Toh Conservatory of Music)
-> * SPH (for Saw Swee Hock School of Public Health)
-> * SPP (for Lee Kuan Yew School of Public Policy)
-> * SCI (for Faculty of Science)
-> * USP (for University Scholars Programme)
-> * YNC (for Yale-NUS College)
-
-> The `VACCINATION_STATUS` of a student must only be `vaccinated` or `not vaccinated`
-
-> The `[SCHOOL_RESIDENCE]` of a student must be one of the following:
-> * PGPH (for Prince George's Park House)
-> * PGPR (for Prince George's Park Residences)
-> * KE7H (for King Edward VII Hall)
-> * SH (for Sheares Hall)
-> * KRH (for Kent Ridge Hall)
-> * TH (for Temasek Hall)
-> * EH (for Eusoff Hall)
-> * RH (for Raffles Hall)
-> * RVRC (for Ridge View Residential College)
-> * YNC (for Yale-NUS College)
-> * TC (for Tembusu College)
-> * CAPT (for College of Alice and Peter Tan)
-> * RC4 (for Residential College 4)
-> * USP (for University Scholars Programme)
-> * UTR (for Utown Residences)
-
-----------------------------------------------------------------------
-
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -105,9 +59,23 @@ Vax@NUS is a **one stop management app to efficiently track and schedule COVID-1
 
 ### Adding a student record: `add`
 
-Adds a student to Vax@NUS records.
+Adds the details of a student to Vax@NUS records. It is mandatory to include the following details of a student:
 
-Format: `add n/NAME i/MATRICULATION_NUMBER f/FACULTY p/PHONE_NUMBER e/EMAIL a/ADDRESS s/VACCINATION_STATUS m/MEDICAL_DETAILS r/SCHOOL_RESIDENCE[optional]`
+* Matriculation Number, for identifying the student.
+* Email, phone number and address, for contacting the student.
+* Vaccination status, to determine if the student should be prioritised for vaccination.
+* Medical details, to determine if the vaccination is safe for the student.
+* Faculty, which will help NUS faculties determine the proportion of vaccinated students using the `stats` command.
+
+In addition, it is optional to include the following detail of a student:
+
+* School Residence, to determine if the student lives on campus. This will help NUS campus residences determine the proportion of vaccinated student residents using the `stats` command. 
+
+:information_source: **NOTE** If the School Residence of a student is not specified, the system will default to DOES_NOT_LIVE_ON_CAMPUS and assume that the student does not live on campus.
+
+> For a smooth user experience, please refer to the  please refer to the [Input Formats](#Input Formats) section below for more information regarding input formats. That section explains which prefix should be used for each piece of information and how the information should be presented to the program. 
+
+`Add` Command Format: `add n/NAME i/MATRICULATION_NUMBER f/FACULTY p/PHONE_NUMBER e/EMAIL a/ADDRESS s/VACCINATION_STATUS m/MEDICAL_DETAILS r/SCHOOL_RESIDENCE[optional]`
 
 Examples:
 * `add n/John Doe i/A1234567X f/COM p/98765432 e/johnd@example.com a/John street, block 123, #01-01 s/vaccinated m/peanut allergy r/RVRC`
@@ -123,13 +91,15 @@ Examples:
 
 ### Editing a student record: `edit`
 
-Edits a student in Vax@NUS records.
+Edits a student in Vax@NUS records at the specified INDEX. The index refers to the index number shown in the displayed student list. The index must be a positive integer 1, 2, 3, …​
 
-Format: `edit INDEX [n/NAME] [i/MATRICULATION_NUMBER] [f/FACULTY] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/VACCINATION_STATUS] [m/MEDICAL_DETAILS] [r/SCHOOL_RESIDENCE]`
+All inputs specified are optional, but at least one of them must be provided. After execution of the `edit` command, the existing value specified will be updated to the input value.  
 
-* Edits the student at the specified INDEX. The index refers to the index number shown in the displayed student list. The index must be a positive integer 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
+ :information_source: **NOTE:** Every field except the student's matriculation number can be edited. Should you wish to edit the matriculation number of a student, you must first delete the student entry and add a new one with the updated matriculation number. 
+
+> For a smooth user experience, please refer to the  please refer to the [Input Formats](#Input Formats) section below for more information regarding input formats. That section explains which prefix should be used for each piece of information and how the information should be presented to the program.
+
+Format: `edit INDEX [n/NAME] [f/FACULTY] [p/PHONE] [e/EMAIL] [a/ADDRESS] [s/VACCINATION_STATUS] [m/MEDICAL_DETAILS] [r/SCHOOL_RESIDENCE]`
 
 Examples:
 
@@ -217,7 +187,15 @@ Examples:
 
 ### Editing an appointment: `editAppt`
 
-Edits an appointment present in Vax@NUS records by referencing the student's matriculation number.
+Edits an appointment present in Vax@NUS records by referencing the student's matriculation number. 
+
+It is mandatory to include the following detail of the appointment:
+* The matriculation number of the student in the appointment. The matriculation number must follow the format as specified in [Input Formats](#Input Formats).
+
+It is optional to include the following details:
+
+* The date of the appointment, in `YYYY-MM-DD` format.
+* The time of the appointment, in `HH:MM` format.
 
 Format: `editAppt MATRICULATION_NUMBER d/DATE_YYYY-MM-DD ts/START_TIME_HH:MM`
 
@@ -298,9 +276,9 @@ Vax@NUS saves your current date in the hard disk automatically after any command
 
 ## FAQ
 
-**Q**: What do I do if I accidentally deleted a student? 
+**Q**: What do I do if I accidentally delete a student? 
 <br>
-**A**: We regret to inform you that deletion is permanent. You will have to manually re-add the student.
+**A**: Unfortunately, the deletion is permanent. You will have to manually re-add the student.
 
 **Q**: What can be included in medical details?
 <br>
@@ -315,6 +293,51 @@ Vax@NUS saves your current date in the hard disk automatically after any command
 **A** : No, you will need to add a new appointment for the new student. 
 
 --------------------------------------------------------------------------------------------------------------------
+
+## Input Formats
+
+**:information_source: NOTE: The following parameter formats must be followed:**
+ The `MATRICULATION_NUMBER` of a student is a unique 9-character alphanumeric sequence that begins with A, followed by
+ 7 numbers and ends with an alphabet.
+
+ The `FACULTY` of a student must be one of the following:
+ * FASS (for Faculty of Arts and Social Sciences)
+ * BIZ (for NUS Business School)
+ * COM (for School of Computing)
+ * SCALE (for School of Continuing and Lifelong Education)
+ * DEN (for Faculty of Dentistry)
+ * SDE (for School of Design and Environment)
+ * DNUS (for Duke-NUS Medical School)
+ * ENG (for Faculty of Engineering)
+ * ISEP (for Integrative Sciences and Engineering)
+ * LAW (for Faculty of Law)
+ * MED (for Yong Loo Lin School of Medicine)
+ * MUSIC (for Yong Siew Toh Conservatory of Music)
+ * SPH (for Saw Swee Hock School of Public Health)
+ * SPP (for Lee Kuan Yew School of Public Policy)
+ * SCI (for Faculty of Science)
+ * USP (for University Scholars Programme)
+ * YNC (for Yale-NUS College)
+
+ The `VACCINATION_STATUS` of a student must only be `vaccinated` or `not vaccinated`
+
+ The `[SCHOOL_RESIDENCE]` of a student must be one of the following:
+ * PGPH (for Prince George's Park House)
+ * PGPR (for Prince George's Park Residences)
+ * KE7H (for King Edward VII Hall)
+ * SH (for Sheares Hall)
+ * KRH (for Kent Ridge Hall)
+ * TH (for Temasek Hall)
+ * EH (for Eusoff Hall)
+ * RH (for Raffles Hall)
+ * RVRC (for Ridge View Residential College)
+ * YNC (for Yale-NUS College)
+ * TC (for Tembusu College)
+ * CAPT (for College of Alice and Peter Tan)
+ * RC4 (for Residential College 4)
+ * USP (for University Scholars Programme)
+ * UTR (for Utown Residences)
+
 
 ## Command Summary
 
