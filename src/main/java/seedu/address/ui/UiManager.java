@@ -2,17 +2,13 @@ package seedu.address.ui;
 
 import static java.util.Objects.requireNonNull;
 
-import java.net.URISyntaxException;
 import java.util.logging.Logger;
 
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.StringUtil;
@@ -44,17 +40,13 @@ public class UiManager implements Ui {
 
     @Override
     public void start(Stage primaryStage) {
+        requireNonNull(primaryStage);
         logger.info("Starting UI...");
 
         //Set the application icon.
         primaryStage.getIcons().add(getImage(ICON_APPLICATION));
 
         try {
-            //start a thread to run background music
-            Runnable music = playMusic();
-            Thread thread = new Thread(music);
-            //thread.start();
-
             mainWindow = new MainWindow(primaryStage, logic);
             CalendarStorage calendarStorage = new CalendarStorage(logic);
             reminderWindow = new ReminderWindow(calendarStorage);
@@ -66,36 +58,6 @@ public class UiManager implements Ui {
             logger.severe(StringUtil.getDetails(e));
             showFatalErrorDialogAndShutdown("Fatal error during initializing", e);
         }
-    }
-
-    /**
-     * Creates new runnable that plays the background music for the RemindMe.
-     * @return music playing Runnable.
-     */
-    private Runnable playMusic() {
-        Runnable runnable = () -> {
-            Media media = null;
-            try {
-                media = new Media(getClass().getResource("/audio/MSLogin.mp3").toURI().toString());
-            } catch (URISyntaxException e) {
-                e.printStackTrace();
-            }
-            MediaPlayer mediaPlayer = new MediaPlayer(media);
-            mediaPlayer.setOnReady(new Runnable() {
-                @Override
-                public void run() {
-                    mediaPlayer.play();
-                }
-            });
-            mediaPlayer.setOnEndOfMedia(new Runnable() {
-                @Override
-                public void run() {
-                    mediaPlayer.seek(Duration.ZERO);
-                }
-            });
-            //mediaPlayer.play();
-        };
-        return runnable;
     }
 
     private Image getImage(String imagePath) {
