@@ -4,9 +4,11 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -25,10 +27,13 @@ public class FindMeetingCommand extends Command {
 
     private final Predicate<Meeting> combinedPredicate;
 
+    private final Set<Index> persons;
 
-    public FindMeetingCommand(Predicate<Meeting> combinedPredicate) {
+
+    public FindMeetingCommand(Predicate<Meeting> combinedPredicate, Set<Index> personsIndexesToSearch) {
         super();
         this.combinedPredicate = combinedPredicate;
+        persons = personsIndexesToSearch;
     }
 
     /**

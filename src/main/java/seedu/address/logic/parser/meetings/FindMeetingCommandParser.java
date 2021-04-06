@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
@@ -53,16 +54,18 @@ public class FindMeetingCommandParser implements Parser<FindMeetingCommand> {
         List<String> meetingPriorities = argMultimap.getAllValues(PREFIX_DESCRIPTION);
 
         try {
-            List<Predicate<Meeting>> predicateHasPersons = handlePersons(personIndexes);
+//            List<Predicate<Meeting>> predicateHasPersons = handlePersons(personIndexes);
             List<Predicate<Meeting>> predicateHasNames = handleNames(meetingNames);
             List<Predicate<Meeting>> predicateHasTimes = handleTimes(meetingTimes);
             List<Predicate<Meeting>> predicateHasDescriptions = handleDescriptions(meetingDescriptions);
             List<Predicate<Meeting>> predicateHasPriorities = handlePriorities(meetingPriorities);
 
-            Predicate<Meeting> bigPredicate = combinePredicateListsToPredicate(predicateHasPersons, predicateHasNames,
+            Set<Index> personsIndexesToSearch = getPersonsSet(personIndexes);
+
+            Predicate<Meeting> bigPredicate = combinePredicateListsToPredicate(predicateHasNames,
                     predicateHasTimes,predicateHasDescriptions,predicateHasPriorities);
 
-            return new FindMeetingCommand(bigPredicate);
+            return new FindMeetingCommand(bigPredicate, personsIndexesToSearch);
         } catch (Exception e) {
             throw new ParseException(SortPersonCommand.MESSAGE_USAGE);
         }
@@ -81,7 +84,6 @@ public class FindMeetingCommandParser implements Parser<FindMeetingCommand> {
         return combinedPredicate;
     }
 
-
     private List<Predicate<Meeting>> handlePersons(List<String> personIndexes) throws ParseException {
         if (personIndexes.isEmpty()) {
             return new ArrayList<Predicate<Meeting>>();
@@ -89,6 +91,16 @@ public class FindMeetingCommandParser implements Parser<FindMeetingCommand> {
         Set<Index> personIndexSet = ParserUtil.parsePersonsConnection(personIndexes);
         return new ArrayList<Predicate<Meeting>>();
     }
+
+    private Set<Index> getPersonsSet(List<String> personIndexes) throws ParseException {
+        if (personIndexes.isEmpty()) {
+            return new HashSet<>();
+        }
+        Set<Index> personIndexSet = ParserUtil.parsePersonsConnection(personIndexes);
+        return personIndexSet;
+    }
+
+
 
     private List<Predicate<Meeting>> handleNames(List<String> names) throws ParseException {
         if (names.isEmpty()) {
