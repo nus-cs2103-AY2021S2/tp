@@ -1,0 +1,81 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":StoreMandoParser" as StoreMandoParser LOGIC_COLOR
+participant ":ListCommandParser" as ListCommandParser LOGIC_COLOR
+participant "l:ListCommand" as ListCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("list")
+activate LogicManager
+
+LogicManager -> StoreMandoParser : parseCommand("list")
+activate StoreMandoParser
+
+create ListCommandParser
+StoreMandoParser -> ListCommandParser
+activate ListCommandParser
+
+ListCommandParser --> StoreMandoParser
+deactivate ListCommandParser
+
+StoreMandoParser -> ListCommandParser : parse("")
+activate ListCommandParser
+
+create ListCommand
+ListCommandParser -> ListCommand
+activate ListCommand
+
+ListCommand --> ListCommandParser : l
+deactivate ListCommand
+
+ListCommandParser --> StoreMandoParser : l
+deactivate ListCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ListCommandParser -[hidden]-> StoreMandoParser
+destroy ListCommandParser
+
+StoreMandoParser --> LogicManager : l
+deactivate StoreMandoParser
+
+LogicManager -> ListCommand : execute()
+activate ListCommand
+
+ListCommand -> Model : updateCurrentPredicate(()->true)
+activate Model
+
+Model --> ListCommand
+deactivate Model
+
+ListCommand -> Model : getCurrentPredicate()
+activate Model
+
+Model --> ListCommand : ()->true
+deactivate Model
+
+ListCommand -> Model : updateFilteredItemList(()->true)
+activate Model
+
+Model --> ListCommand
+deactivate Model
+
+create CommandResult
+ListCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ListCommand
+deactivate CommandResult
+
+ListCommand --> LogicManager : result
+deactivate ListCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

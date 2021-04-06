@@ -103,13 +103,13 @@ The `UI` component,
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying
    help to the user.
+   
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API
+calls respectively.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 5")` API
-call.
+![Interactions Inside the Logic Component for the `delete` Command](images/DeleteSequenceDiagram.png)
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ListCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 ### Model component
@@ -192,6 +192,115 @@ Step 5. Finally, a `CommandResult` object is created and returned to `LogicManag
 * **Alternative 2:** Delete item by item name.
     * Pros: Will be easier for the user especially when the list is huge.
     * Cons: There are items with the same name but in different location, will cause confusion.
+
+### List Items `list`, `list l/LOCATION` or `list t/TAG`
+
+#### Actual Implementation
+
+The `list` feature allows users to list all items in the inventory based on the order they were added.
+The `list l/LOCATION` and `list t/TAG` features allow users to list all items in a specific location
+or with a specific tag respectively.
+
+The Sequence Diagram below shows how the components interact with each other for the scenario where the user
+keys in the command `list`:
+![Interactions Inside the Logic Component for the `list` Command](images/ListStoreMandoSequenceDiagram.png)
+
+The Sequence Diagram below shows how the components interact with each other for the scenario where the user
+keys in the command `list l/kitchen`:
+![Interactions Inside the Logic Component for the `list l/kitchen` Command](images/ListLocationSequenceDiagram.png)
+
+Given below is an example usage scenario and how the list operation behaves at each step.
+
+Step 1. The user execute `list` to list all the items in the inventory. `StoreMandoParser` takes in the user input and
+determines the command word (list) and argument ("") respectively.
+
+Step 2. An instance of `ListCommandParser` will be created, followed by a call on its `parse` method, taking in the
+argument stated in step 1 (""), which will be initialised to true.
+
+Step 3. The `parse` method will check for the validity of the user input. If valid, a new `ListCommand` instance will be
+created and returned to `LogicManager` class via `StoreMandoParser` class.
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** If the command format is determined to be invalid, a parseException will be thrown to notify the
+user of the error.
+</div>
+
+Step 4. The overridden `execute` method will be called. The current predicate and filtered item list of the `Model` will
+be updated, and all items in the inventory will be listed. An instance of `CommandResult` will be created, generating
+the result of the execution. The `LogicManager` class will receive the result of the execution.
+
+The following activity diagram summarizes what happens when a user executes the list command:
+
+![ListActivityDiagram](images/ListActivityDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: How list executes
+
+* **Alternative 1 (current choice):** List the entire inventory in the order they were added.
+    * Pros: Easy to implement.
+    * Cons: The overview of all the items in the inventory may appear disorganised.
+
+* **Alternative 2:** List the entire inventory categorised in their specific locations.
+    * Pros: More organised overview of all the items in the inventory.
+    * Cons: More difficult to implement.
+
+_{more aspects and alternatives to be added}_
+
+### Find Item `find KEYWORD [MORE_KEYWORDS]` or `find */KEYWORD [MORE_KEYWORDS]`
+
+#### Actual Implementation
+
+The `find KEYWORD [MORE_KEYWORDS]` and `find */KEYWORD [MORE_KEYWORDS]` features find and display all items whose names
+contain any of the given keywords, either in full or partially respectively.
+
+The Sequence Diagram below shows how the components interact with each other for the scenario where the user
+keys in the command `find Chocolate`:
+![Interactions Inside the Logic Component for the `find KEYWORD [MORE_KEYWORDS]` Command](images/FindFullSequenceDiagram.png)
+
+The Sequence Diagram below shows how the components interact with each other for the scenario where the user
+keys in the command `find */cheese egg`:
+![Interactions Inside the Logic Component for the `find */KEYWORD [MORE_KEYWORDS]` Command](images/FindPartialSequenceDiagram.png)
+
+Given below is an example usage scenario and how the find operation behaves at each step.
+
+Step 1. The user execute `find Chocolate` to find all the items in the inventory whose names fully match the keyword.
+`StoreMandoParser` takes in the user input and determines the command word (find) and argument ("Chocolate") respectively.
+
+Step 2. An instance of `FindCommandParser` will be created, followed by a call on its `parse` method, taking in the
+argument stated in step 1 ("Chocolate").
+
+Step 3. The `parse` method will check for the presence of keyword(s). If keywords are present, a new `FindCommand` instance will be
+created and returned to `LogicManager` class via `StoreMandoParser` class.
+
+<div markdown="span" class="alert alert-info"> 
+:information_source: **Note:** If the command format is determined to be invalid, a parseException will be thrown to notify the
+user of the error.
+</div>
+
+Step 4. The overridden `execute` method will be called. The current predicate and filtered item list of the `Model` will
+be updated, and all items in the inventory that matches the keyword in full will be listed. An instance of
+`CommandResult` will be created, generating the result of the execution. The String parameter passed in the `CommandResult` depends
+on whether the number of items that matched the keyword is more than one or less than two. The `LogicManager` class will receive the
+result of the execution.
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+![FindActivityDiagram](images/FindActivityDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: How find executes
+
+* **Alternative 1 (current choice):** Find items in the current list that matches the keyword, either fully or partially.
+    * Pros: Easy to implement.
+    * Cons: The search is limited to matching names. If there are many items containing that keyword, the search may not be efficient.
+
+* **Alternative 2:** Find items in the current list that matches the keyword and an attribute e.g. tag.
+    * Pros: More efficiently retrieve the item needed.
+    * Cons: Users need to remember the items' attributes.
+
+_{more aspects and alternatives to be added}_
 
 ### Reminder Feature
 
@@ -282,6 +391,10 @@ keys in the command `clear l/Kitchen`
 The following activity diagram summarizes what happens when a user executes a clear by location command:
 
 ![ClearActivityDiagram](images/ClearLocationActivityDiagram.png)
+
+### \[Proposed\] Data archiving
+
+_{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
