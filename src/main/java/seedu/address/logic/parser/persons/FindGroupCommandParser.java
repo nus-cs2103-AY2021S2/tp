@@ -10,7 +10,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.group.GroupContainsKeywordsPredicate;
 
 /**
- * Parses input arguments and creates a new FindPersonCommand object
+ * Parses input arguments and creates a new FindGroupCommand object
  */
 public class FindGroupCommandParser implements Parser<FindGroupCommand> {
 
