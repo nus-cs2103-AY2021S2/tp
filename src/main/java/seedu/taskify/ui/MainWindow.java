@@ -190,30 +190,14 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.show();
     }
 
-    /**
-     * There is two tab for now.
-     */
-
     @FXML
-    private void handleHomeTab() {
-        tabsPane.getSelectionModel().select(HOME);
+    private void switchTab(int tabNumber) {
+        tabsPane.getSelectionModel().getSelectedItem().setDisable(true);
+        taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
+        taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
+        tabsPane.getSelectionModel().select(tabNumber);
+        tabsPane.getSelectionModel().getSelectedItem().setDisable(false);
     }
-
-    @FXML
-    private void handleExpiredTab() {
-        tabsPane.getSelectionModel().select(EXPIRED);
-    }
-
-    @FXML
-    private void handleCompletedTab() {
-        tabsPane.getSelectionModel().select(COMPLETED);
-    }
-
-    @FXML
-    private void handleUncompletedTab() {
-        tabsPane.getSelectionModel().select(UNCOMPLETED);
-    }
-
 
 
     /**
@@ -252,19 +236,19 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isHomeTab()) {
-                handleHomeTab();
+                switchTab(HOME);
             }
 
             if (commandResult.isExpiredTab()) {
-                handleExpiredTab();
+                switchTab(EXPIRED);
             }
 
             if (commandResult.isCompletedTab()) {
-                handleCompletedTab();
+                switchTab(COMPLETED);
             }
 
             if (commandResult.isUncompletedTab()) {
-                handleUncompletedTab();
+                switchTab(UNCOMPLETED);
             }
 
             return commandResult;

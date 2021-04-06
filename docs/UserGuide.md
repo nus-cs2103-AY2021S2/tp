@@ -91,7 +91,12 @@ Adds a task to Taskify.
 
 Format: `add n/NAME desc/DESCRIPTION [date/DATE] [t/TAG]â€¦`
 
+* The name of the task that is inputted is case-sensitive
+
 * If a date is not specified in the command, the newly added Task will have its date set to the end of today (Today's date, 2359hrs).
+
+* If you add more than 2 add commands in the command box, only need the last add command is recognized.
+
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A Task can have any number of tags (including 0)
@@ -123,6 +128,7 @@ Format: `edit INDEX [n/NAME] [desc/DESCRIPTION] [date/DATE] [s/STATUS] [t/TAG]â€
 Examples:
 *  `edit 1 desc/my typical description` Edits the description of the 1st task to be `my typical description`.
 *  `edit 2 n/Important Task t/` Edits the name of the 2nd task to be `Important Task` and clears all existing tags.
+* `edit 2 s/completed` sets the status of the 2nd task in the list to `completed`.
 
 ### Deleting multiple tasks : `delete`
 
@@ -146,10 +152,10 @@ Delete multiple tasks at once by either:
         * `delete 2-2` does not delete the 2nd task. Use `delete 2` instead
 * Indicating the `Status` to delete by
     * Format: `delete STATUS -all`
-    * Examples: `delete in progress -all` deletes **all** tasks that are in progress as their `Status`.
+    * Examples: `delete in expired -all` deletes **all** tasks that are in expired as their `Status`.
     * Notes:
-        * All tasks have one of the 3 `Status`: `in progress`, `completed`, `expired`
-        * Newly created tasks have `In progress` as their `Status`
+        * All tasks have one of the 3 `Status`: `uncompleted`, `completed`, `expired`
+        * Newly created tasks have `uncompleted` as their `Status`
     
     
 
@@ -200,23 +206,13 @@ Sort tasks in ascending order of their dates.
 
 Format: `sort`
 
-### Setting a task's status : `edit`
 
-Sets a task's status.
 
-Format: `edit INDEX s/STATUS`
-
-* A task can have 3 types of status: `in progress`, `completed`, `expired`
-* A task's default status is `In progress`
-
-Examples:
-* `edit 2 s/in progress` sets the status of the 2nd task in the list to `in progress`.
-
-### Switching between tabs :`home` / `inProgress` / `completed` / `expired`
+### Switching between tabs :`home` / `uncompleted` / `completed` / `expired`
 
 Switch between the tabs in Taskify. Each tab displays tasks with the corresponding status.
 
-Format: `home` / `inProgress` / `completed` / `expired`
+Format: `home` / `uncompleted` / `completed` / `expired`
 
 Examples: `completed` (change to the completed tab)
 
@@ -243,12 +239,14 @@ Format: `exit`
 **Q**: Does Taskify only work for university Students? <br>
 **A**: No, although Taskify is catered to university students, we welcome everyone interested in Taskify to use it.<br>
 
+**Q**: Is Taskify free?<br>
+**A**: Yes! Taskify is totally free to use.
+
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains 
-the data of your previous Taskify home folder.
+**A**: Install Taskify by downloading the taskify.jar file in the other computer and replace the default data file it creates with the file that contains the data from your previous taskify home folder.
 
 **Q**: Can I specify a status when adding a new task to Taskify?<br>
-**A**: All newly added tasks have an "In progress" status by default. However, you can change the status of a task using the`edit` command. <br>
+**A**: All newly added tasks have an "uncompleted" status by default. However, you can change the status of a task using the`edit` command. <br>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -266,7 +264,7 @@ Command | Format | Examples
 **View** | `view DATE` | `view 2021-05-21`, `view today`
 **Sort** | `sort` | `sort`
 **Home** | `home` | `home`
-**In Progress** | `inProgress` | `inProgress`
+**Uncompleted** | `uncompleted` | `uncompleted`
 **Completed** | `completed` | `completed`
 **Expired** | `expired` | `expired`
 **Clear** | `clear` | `clear`

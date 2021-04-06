@@ -72,7 +72,7 @@ public class Task {
     }
 
     public boolean isTaskUncompleted() {
-        return !this.getStatus().toString().equals("Uncompleted");
+        return this.getStatus().toString().equals("Uncompleted");
     }
 
     /**
