@@ -172,16 +172,16 @@ DESCRIPTION OF PARAMETER
 4. Double-click the file to start the app. A GUI like the one pictured below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-5. Type a command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type a command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-    * **`rlist`** : Lists all residents.
+    * `rlist`: Lists all residents.
 
-    * **`radd`**`n/Joseph Tan p/84666774 e/e0103994@u.nus.edu y/2` : Adds a resident named `Joseph Tan` with phone number `84666774`, email `e0103994@u.nus.edu`, a 2nd year student.
+    * `radd n/Joseph Tan p/84666774 e/e0103994@u.nus.edu y/2`: Adds a resident named `Joseph Tan` with phone number `84666774`, email `e0103994@u.nus.edu`, a 2nd year student.
 
-    * **`rdel`**`3` : Deletes the 3rd resident shown in the current resident list.
+    * `rdel 3`: Deletes the 3rd resident shown in the current resident list.
 
-    * **`exit`** : Exits the app.
+    * `exit`: Exits the app.
 
 6. Refer to the [Features](#features) below for details of each command.
 
