@@ -183,18 +183,20 @@ public class FindPropertyCommandParser implements Parser<FindPropertyCommand> {
 
         if (argMultimap.getValue(PREFIX_CLIENT_EMAIL).isPresent()) {
             List<String> emails = argMultimap.getAllValues(PREFIX_CLIENT_EMAIL);
+            List<Predicate<Property>> emailList = new ArrayList<>();
             if (emails.size() > 1) {
                 throw new ParseException("Too many client emails! Please only use 1 client email. \n"
                         + FindPropertyCommand.MESSAGE_USAGE);
             }
             try {
-                emails.forEach(s -> predicates.add(new PropertyClientEmailPredicate(s)));
+                emails.forEach(s -> emailList.add(new PropertyClientEmailPredicate(s)));
             } catch (IllegalArgumentException e) {
                 throw new ParseException("Wrong client email format! \n"
                         + e.getMessage()
                         + "\n"
                         + FindPropertyCommand.MESSAGE_USAGE);
             }
+            predicates.add(new PropertyPredicateList(emailList).combineDisjunction());
         }
 
         if (argMultimap.getValue(PREFIX_CLIENT_NAME).isPresent()) {
