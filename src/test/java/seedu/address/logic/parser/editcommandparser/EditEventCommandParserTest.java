@@ -5,7 +5,6 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_GENERAL_EVENT
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GENERAL_EVENT_DATE_1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GENERAL_EVENT_DATE_2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GENERAL_EVENT_DESCRIPTION_1;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_GENERAL_EVENT_DESCRIPTION_2;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENERAL_EVENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -47,7 +46,7 @@ public class EditEventCommandParserTest {
         assertParseFailure(parser, userInput3, Description.MESSAGE_CONSTRAINTS); //empty description
 
         String userInput4 = "1 " + PREFIX_DATE.getPrefix();
-        assertParseFailure(parser, userInput4, GeneralEvent.MESSAGE_CONSTRAINTS); //empty date
+        assertParseFailure(parser, userInput4, GeneralEvent.DATE_CONSTRAINT); //empty date
     }
 
     @Test
@@ -76,7 +75,7 @@ public class EditEventCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         String userInput = "1 " + PREFIX_DATE.getPrefix() + INVALID_GENERAL_EVENT_DATE_1;
-        assertParseFailure(parser, userInput, GeneralEvent.MESSAGE_CONSTRAINTS); // invalid date format
+        assertParseFailure(parser, userInput, GeneralEvent.DATE_CONSTRAINT); // invalid date format
     }
 
     @Test
@@ -101,23 +100,6 @@ public class EditEventCommandParserTest {
         assertParseSuccess(parser, userInput1, expectedCommand1);
 
         LocalDateTime dateEdit = LocalDateTime.parse(VALID_GENERAL_EVENT_DATE_1, LocalDateTimeUtil.DATETIME_FORMATTER);
-        EditEventCommand expectedCommand2 = new EditEventCommand(targetIndex.getOneBased(), null, dateEdit);
-        assertParseSuccess(parser, userInput2, expectedCommand2);
-    }
-
-    @Test
-    public void parse_multipleRepeatedFields_acceptsLast() {
-        Index targetIndex = INDEX_FIRST_EVENT;
-        String userInput1 = targetIndex.getOneBased() + " " + PREFIX_GENERAL_EVENT + VALID_GENERAL_EVENT_DESCRIPTION_1
-                            + " " + PREFIX_GENERAL_EVENT + VALID_GENERAL_EVENT_DESCRIPTION_2;
-        String userInput2 = targetIndex.getOneBased() + " " + PREFIX_DATE + VALID_GENERAL_EVENT_DATE_1
-                            + " " + PREFIX_DATE + VALID_GENERAL_EVENT_DATE_2;
-
-        Description eventEdit = new Description(VALID_GENERAL_EVENT_DESCRIPTION_2);
-        EditEventCommand expectedCommand1 = new EditEventCommand(targetIndex.getOneBased(), eventEdit, null);
-        assertParseSuccess(parser, userInput1, expectedCommand1);
-
-        LocalDateTime dateEdit = LocalDateTime.parse(VALID_GENERAL_EVENT_DATE_2, LocalDateTimeUtil.DATETIME_FORMATTER);
         EditEventCommand expectedCommand2 = new EditEventCommand(targetIndex.getOneBased(), null, dateEdit);
         assertParseSuccess(parser, userInput2, expectedCommand2);
     }
