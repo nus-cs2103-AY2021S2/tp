@@ -171,33 +171,34 @@ From the diagram above:
 1. When the user keys in a command string, `execute` command of the `LogicManager` is called with the given string as input.
 2. In the method, `LogicManager` calls on the `parseCommand` method of `StoreMandoParser` to parse the user input.
 3. The `StoreMandoParser` parses the user input and identifies it as an `AddCommand` and instantiates `AddCommandParser`. 
-4. `StoreMandoParser` then invokes the `parse` method of `AddCommandParser` to further parse the arguments provided. 
-   The `AddCommandParser` ensures that the input is of the correct format and identifies the input for item name, quantity, 
+4. `StoreMandoParser` then invokes the `parse` method of `AddCommandParser` to further parse the arguments provided. In the `parse` method,
+   the `AddCommandParser` ensures that the input is of the correct format and identifies the input for item name, quantity, 
    location, expiry date and tag(s).
 5. If all the arguments of the `add` command are valid, The `AddCommandParser` creates a new `Item` object, 
    and instantiates a new `AddCommand` object that contains the `Item` object. This `AddCommand` object will be
    returned to the `LogicManager`.
 6. The `LogicManager` will then invoke the `execute` method of the `AddCommand` object with `model` as argument.   
-7. The `AddCommand` object will then add the new item to `Model`, and return a `CommandResult` to `LogicManager`.
+7. Consequently, `AddCommand` object will add the `Item` object to `Model`, and return a `CommandResult` to `LogicManager`.
 8. This `CommandResult` will be returned at the end.
 
 The following activity diagram summarizes what happens when a user executes a new `add` command:
 ![AddActivityDiagram][images/AddActivityDiagram.png]
 
 ##### Proposed Improvements
-1. Currently, validating that the item to be added is not a duplicate item involves iterating through the list of all 
-   items to check if there exists an item in the inventory that is exactly the same as the item to be added. This 
-   process is slow and runs in O(n) time. It can be improved by implementing a `HashMap` containing all the items
-   currently stored in the inventory. This will allow the search to be done in O(1) time. This feature was not 
-   implemented as it would introduce unnecessary complexity, and the current solution meets the non-functional 
-   requirements regarding performance.
+1. Items with the same name, location and expiry date cannot co-exist in the inventory. Thus, every item that 
+   is to be added has to be checked and validated that it is not a duplicate item. The current implementation to do so
+   involves iterating through the list of all items to check if there already exists an item in the inventory that has 
+   exactly the same name, location and expiry date. This process is slow and runs in O(n) time. It can be improved by 
+   implementing a `HashMap` containing all the items currently stored in the inventory. This will allow the search to be 
+   done in O(1) time. This feature was not implemented as it would introduce unnecessary complexity, and the current 
+   solution meets the non-functional requirements regarding performance.
 
 ##### Design Considerations:
 
 ##### Aspect: Identifying the addition of duplicate item
 * **Alternative 1 (current choice):** Compare item to be added and existing items in the inventory by name, location 
-  and expiry date.
-    * Pros: Allows users to store the same product that may have been produced in different batches. This would also 
+  **and** expiry date.
+    * Pros: Allows users to store the same products that may have been produced in different batches. This would also 
       help users identify and differentiate similar products by their expiry date.
     * Cons: Items with the same name and location may be a potential source of confusion.
 
