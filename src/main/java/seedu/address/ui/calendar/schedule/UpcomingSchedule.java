@@ -60,13 +60,12 @@ public class UpcomingSchedule extends UiPart<Region> implements EventHandler<Mou
         timeScale = new TimeScale();
         eventHolder = new DayEventList();
         schedule.getChildren().add(eventHolder.getRoot());
-        //schedule.getChildren().add(timeScale.getRoot());
         loadSchedule(currentDay);
         logger.info("upcoming schedule successfully initialised");
     }
 
     /**
-     * Lods the schedule for a certain date.
+     * Loads the schedule for a certain date.
      * @param date Date for schedule.
      */
     public void loadSchedule(LocalDate date) {
@@ -77,6 +76,13 @@ public class UpcomingSchedule extends UiPart<Region> implements EventHandler<Mou
         logger.info("timeline nodes loaded successfully");
     }
 
+    /**
+     * Refreshes the {@code DayEventList} when the refresh button is clicked on the CalendarWindow.
+     */
+    public void refreshSchedule() {
+        fillBase();
+    }
+
     private void fillBase() {
         schedule.getChildren().remove(eventHolder.getRoot());
         calendarStorage.refreshStorage();
@@ -84,42 +90,6 @@ public class UpcomingSchedule extends UiPart<Region> implements EventHandler<Mou
         eventHolder.updateList(events);
         schedule.getChildren().add(eventHolder.getRoot());
     }
-    /*
-    private void addTimePointer() {
-        // Add the currentTimePointer to the TimeScale
-        String currentTime = getCurrentTime();
-        double marginTop = getMarginFromTime(currentTime) - CURRENT_TIME_POINTER_PADDING;
-        currentTimePointer = new CurrentTimePointer(toAmPmTime(currentTime));
-
-        // The sequence matters, tasks must be on top.
-        timeScale.placeCurrentTime(currentTimePointer, marginTop);
-        timeScale.handleOverlap(currentTime);
-
-        // Open a new thread to handle the position of the currentTimePointer
-        thread = new Thread(() -> {
-            while (true) {
-                try {
-                    Thread.sleep(1000); // a minute
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                Platform.runLater(() -> {
-                    String newCurrentTime = getCurrentTime();
-
-                    //update the position of the currentTimePointer
-                    currentTimePointer.updateTime(toAmPmTime(newCurrentTime));
-                    timeScale.updateCurrentTimePosition(getMarginFromTime(newCurrentTime)
-                            - CURRENT_TIME_POINTER_PADDING);
-                    timeScale.handleOverlap(newCurrentTime);
-
-                    // update the today label
-                    fillTopLabelForDay();
-                });
-            }
-        });
-        thread.start();
-    }
-    */
 
     private void fillTopLabelForDay() {
         year.setText(String.valueOf(currentDay.getYear()));

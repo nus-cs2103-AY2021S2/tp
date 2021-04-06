@@ -60,7 +60,7 @@ public class DeleteAssignmentCommand extends DeleteCommand {
             throw new CommandException(Messages.MESSAGE_INVALID_ASSIGNMENT_DISPLAYED_INDEX);
         }
         Assignment assignmentToDelete = moduleToGet.getAssignment(assignmentIndex.getZeroBased());
-        moduleToGet.deleteAssignment(assignmentIndex.getZeroBased());
+        model.deleteAssignment(moduleToGet, assignmentToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_ASSIGNMENT_SUCCESS, assignmentToDelete));
     }
 
