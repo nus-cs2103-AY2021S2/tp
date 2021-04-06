@@ -22,6 +22,8 @@ public class ModelManager implements Model {
     private final EndpointList endpointList;
     private final UserPrefs userPrefs;
     private final FilteredList<Endpoint> filteredEndpoints;
+    private Predicate<Endpoint> filteredPredicate = x -> true;
+
 
     /**
      * Initializes a ModelManager with the given API endpoint list and userPrefs.
@@ -117,6 +119,11 @@ public class ModelManager implements Model {
         return endpointList.isEmpty();
     }
 
+    @Override
+    public Predicate<Endpoint> getFilteredPredicate() {
+        return filteredPredicate;
+    }
+
     //=========== Filtered Endpoint List Accessors =============================================================
 
     /**
@@ -132,6 +139,7 @@ public class ModelManager implements Model {
     public void updateFilteredEndpointList(Predicate<Endpoint> predicate) {
         requireNonNull(predicate);
         filteredEndpoints.setPredicate(predicate);
+        filteredPredicate = predicate;
     }
 
     @Override

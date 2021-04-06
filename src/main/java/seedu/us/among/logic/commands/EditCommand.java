@@ -119,7 +119,7 @@ public class EditCommand extends Command {
         }
 
         model.setEndpoint(endpointToEdit, editedEndpoint);
-        model.updateFilteredEndpointList(Model.PREDICATE_SHOW_ALL_ENDPOINTS);
+        model.updateFilteredEndpointList(model.getFilteredPredicate());
         return new CommandResult(String.format(MESSAGE_EDIT_ENDPOINT_SUCCESS, editedEndpoint));
     }
 

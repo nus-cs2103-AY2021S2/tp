@@ -17,6 +17,8 @@ import static seedu.us.among.testutil.TypicalEndpoints.getTypicalEndpointList;
 import static seedu.us.among.testutil.TypicalIndexes.INDEX_FIRST_ENDPOINT;
 import static seedu.us.among.testutil.TypicalIndexes.INDEX_SECOND_ENDPOINT;
 
+import java.util.function.Predicate;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.us.among.commons.core.Messages;
@@ -93,17 +95,19 @@ public class EditCommandTest {
     @Test
     public void execute_filteredList_success() {
         showEndpointAtIndex(model, INDEX_FIRST_ENDPOINT);
+        Predicate<Endpoint> filteredModelPred = model.getFilteredPredicate();
 
-        Endpoint endpointInFilteredList = model.getFilteredEndpointList().get(INDEX_FIRST_ENDPOINT.getZeroBased());
-        Endpoint editedEndpoint = new EndpointBuilder(endpointInFilteredList).withMethod(VALID_METHOD_POST).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_ENDPOINT,
              new EditEndpointDescriptorBuilder().withMethod(VALID_METHOD_POST).build());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ENDPOINT_SUCCESS, editedEndpoint);
+        Endpoint endpointInFilteredList = model.getFilteredEndpointList().get(INDEX_FIRST_ENDPOINT.getZeroBased());
+        Endpoint editedEndpoint = new EndpointBuilder(endpointInFilteredList).withMethod(VALID_METHOD_POST).build();
 
         Model expectedModel = new ModelManager(new EndpointList(model.getEndpointList()), new UserPrefs());
         expectedModel.setEndpoint(model.getFilteredEndpointList().get(0), editedEndpoint);
+        expectedModel.updateFilteredEndpointList(filteredModelPred);
 
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ENDPOINT_SUCCESS, editedEndpoint);
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
