@@ -335,7 +335,7 @@ given below, and familiarize yourself with them.
 
 #### Borrowing a book : `borrow`
 
-Records a borrowing activity.
+Records a borrowing activity. You need to do so whenever a reader borrows a book.
 
 Format: `borrow b/BOOKNAME r/READERNAME`
 
@@ -343,13 +343,32 @@ Format: `borrow b/BOOKNAME r/READERNAME`
 * Refer to [Records' Command Parameters](#records-command-parameters) for more details about each parameter.
 * Lets the reader with the specified name READERNAME borrow the book specified by name BOOKNAME.
 
-Examples:
-* `borrow b/The Old Man and the Sea r/Alex Yeoh` records a rental entry that reader whose name is Alex Yeoh borrowed
+Example Use:
+* `borrow b/The Old Man And The Sea r/Alex` records a rental entry that reader whose name is Alex borrowed
 a book which name is The Old Man and the Sea
 
+More Examples:
+* `borrow b/Cloud Atlas r/Bernice` records that Bernice borrowed a copy of Cloud Atlas
+* `borrow b/The Hobbit r/Charlotte` records that Charlotte borrowed a copy of The Hobbit
+  
+Steps:
+1. Type `borrow` in the _Command Box_.
+2. Type `b/BOOKNAME` where `BOOKNAME` is to be replaced by actual book name
+3. Type `r/READERNAME` where `READERNAME` is the reader borrowing the book
+
+Notes:
+1. Each part of command is separated by space
+2. Command is sensitive to cases, so you need to type out the exact case match.
+
+Outcome:
+* The _Result Display_ will show a message indicating success.
+* SmartLib will record down this borrowing activity.
+* The relevant parts in UI will be updated.
+  ![result for 'borrow b/The Old Man And The Sea r/Alex'](images/BorrowCommand.png)
+  
 #### Returning a book : `return`
 
-Records a returning activity.
+Records a returning activity. You need to do so whenever a reader returns a borrowed book.
 
 Format: `return bc/BARCODE`
 
@@ -358,8 +377,27 @@ Format: `return bc/BARCODE`
 * Lets the reader return the book specified by barcode BARCODE.
 * The output message will contain the amount of fine that the reader needs to pay if the book is overdue.
 
-Examples:
-* `return bc/1202179131` records a rental entry that the book with the corresponding barcode has been returned.
+Example Use:
+* `return bc/1000000000` records a rental entry that the book with the barcode number 1000000000 has been returned.
+
+More Examples:
+* `return bc/1234567890` records that the book with barcode 1234567890 has been returned
+* `return bc/9999999999` records that the book with barcode 9999999999 has been returned
+
+Steps:
+1. Type `return` in the _Command Box_.
+2. Type `bc/BARCODE` where `BARCODE` is to be replaced by the actual returned book's barcode
+
+Notes:
+1. Each part of command is separated by space
+
+Outcome:
+* The _Result Display_ will show a message indicating success.
+* If the book returned is an overdue book, SmartLib will show you how long it exceeded the 
+  time limit
+* SmartLib will record down this returning activity.
+* The relevant parts in UI will be updated.
+  ![result for 'return bc/1000000000'](images/ReturnCommand.png)
 
 #### Finding records by keyword(s) : `findrecord`
 
