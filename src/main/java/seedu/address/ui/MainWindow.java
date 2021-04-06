@@ -182,6 +182,25 @@ public class MainWindow extends UiPart<Stage> {
         filtersPanelPlaceholder.getChildren().add(filtersPanel.getRoot());
         filtersPanel.fillInnerParts(logic.getPersonFilterStringList(),
                 logic.getAppointmentFilterStringList());
+
+        setTabsWidth(tabPanePlaceHolder);
+        setTabsWidth(tabSidePanePlaceHolder);
+    }
+
+    //@@author Mantas Visockis-reused
+    //Reused from https://stackoverflow.com/questions/31051756/javafx-tab-fit-full-size-of-header
+    //with minor modifications
+    /**
+     * Sets the width programmatically according to the window's size and number of tabs.
+     * @param tabPane TabPane to be adjusted
+     */
+    private void setTabsWidth(TabPane tabPane) {
+        assert tabPane != null;
+        tabPane.widthProperty().addListener((observable, oldValue, newWidth) -> {
+            int numTabs = tabPane.getTabs().size();
+            tabPane.setTabMinWidth(newWidth.doubleValue() / numTabs - (20));
+            tabPane.setTabMaxWidth(newWidth.doubleValue() / numTabs - (20));
+        });
     }
 
     /**
