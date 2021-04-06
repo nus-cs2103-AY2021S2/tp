@@ -31,11 +31,11 @@ public class SortCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Sort students according to specified sorting criteria ie name, school, subject, lesson."
             + "The first valid sorting criteria listed will be the sorting criteria used. \n "
-            + "Parameters:"
+            + "Parameters: "
             + "[" + PREFIX_NAME + "] "
             + "OR [" + PREFIX_SCHOOL + "] "
-            + "OR [" + PREFIX_SUBJECT + "SUBJECT]... "
-            + "OR [" + PREFIX_LESSON + "LESSON]...\n"
+            + "OR [" + PREFIX_SUBJECT + "] "
+            + "OR [" + PREFIX_LESSON + "]\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_SCHOOL;
 
     public static final String MESSAGE_SUCCESS = "Sorted all students by lesson day and time";
