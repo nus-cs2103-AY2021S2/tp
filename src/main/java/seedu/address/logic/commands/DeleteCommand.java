@@ -47,6 +47,7 @@ public class DeleteCommand extends Command {
 
         Patient patientToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deletePerson(patientToDelete);
+        model.selectPatient(null);
         String displayMessage = MESSAGE_DISPLAYED_IN_VIEW_PATIENT_BOX;
         if (lastShownList.size() - 1 <= 0) {
             displayMessage = MESSAGE_NO_PATIENTS_LEFT;
