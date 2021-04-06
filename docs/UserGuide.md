@@ -116,7 +116,7 @@ In the example above, <span class="main-command">add</span> is the command word 
 
 Here are some general rules to follow when entering prefixes and parameters:
 * A whitespace must be included before every prefix.<br>
-  e.g. `-x METHOD-u URL` is not acceptable, and ` -x METHOD -u URL` is in the correct format.<br>
+  e.g. `-x METHOD-u URL` is not acceptable, and `-x METHOD -u URL` is in the correct format.<br>
   
 * Parameters can be in any order.<br>
   e.g. If the command specifies `-x METHOD -u URL`, `-u URL -x METHOD` is also acceptable.<br>
