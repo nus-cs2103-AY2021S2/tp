@@ -17,8 +17,8 @@ public class QuizCommand extends Command {
 
     public static final String COMMAND_WORD = "quiz";
 
-    public static final String MESSAGE_SUCCESS = "You are now in quiz mode."
-            + "You can start a quiz session \n"
+    public static final String MESSAGE_SUCCESS = "You are now in quiz mode. "
+            + "You can start a quiz session.\n"
             + "Enter \"end\" to return to main menu.\n";
 
     public static final String MESSAGE_IN_QUIZ_SESSION = "You are in a quiz session! \n"
