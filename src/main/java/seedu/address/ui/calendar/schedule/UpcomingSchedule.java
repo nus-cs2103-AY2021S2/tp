@@ -26,7 +26,7 @@ public class UpcomingSchedule extends UiPart<Region> implements EventHandler<Mou
     private static final String FXML = "schedule/UpcomingSchedule.fxml";
     private static Logger logger = LogsCenter.getLogger(UpcomingSchedule.class);
 
-    private DayEventList eventHolder;
+    private DayEventListPanel eventHolder;
     private LocalDate currentDay;
 
     private CalendarStorage calendarStorage;
@@ -55,7 +55,7 @@ public class UpcomingSchedule extends UiPart<Region> implements EventHandler<Mou
         //Initialises attributes
         this.calendarStorage = calendarStorage;
         currentDay = LocalDate.now();
-        eventHolder = new DayEventList();
+        eventHolder = new DayEventListPanel();
 
         //Loads schedule
         schedule.getChildren().add(eventHolder.getRoot());

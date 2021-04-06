@@ -4,36 +4,33 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.StackPane;
 import seedu.address.model.Event;
 import seedu.address.model.EventList;
 import seedu.address.ui.UiPart;
 
 /**
- * UI event list for the calendar window.
+ * Represents a event list for the bottom of {@code UpcomingSchedule} GUI.
  */
-public class DayEventList extends UiPart<Region> {
+public class DayEventListPanel extends UiPart<Region> {
     private static final String FXML = "schedule/DayEventListPanel.fxml";
 
     private EventList events;
 
     @FXML
     private ListView<Event> eventListView;
-    @FXML
-    private StackPane stackPane;
 
     /**
-     * Creates new {@code DayEventList} to show events in {@code UpcomingSchedule}.
+     * Constructs new {@code DayEventList} to show events in {@code UpcomingSchedule}.
      */
-    public DayEventList() {
+    public DayEventListPanel() {
         super(FXML);
         this.events = new EventList();
     }
 
     /**
-     * Updates display of {@code Events} for a day in the {@code CalendarWindow}.
+     * Updates display of {@code Events} for a day in the {@code UpcomingSchedule}.
      *
-     * @param events events list for the day.
+     * @param events {@code EventList} for the day.
      */
     public void updateList(EventList events) {
         this.events = events;
@@ -53,7 +50,7 @@ public class DayEventList extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Event} using a {@code CalendarEventCard}.
      */
     class EventListViewCell extends ListCell<Event> {
         @Override
