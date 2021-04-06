@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.entry.Entry;
 import seedu.address.model.entry.EntryDate;
@@ -86,7 +87,12 @@ public class JsonAdaptedEntry {
         if (!EntryDate.isValidDate(endDate)) {
             throw new IllegalValueException(EntryDate.DATE_CONSTRAINTS);
         }
+
         final EntryDate modelEndDate = new EntryDate(endDate);
+
+        if (modelStartDate.isAfter(modelEndDate)) {
+            throw new IllegalValueException(Messages.MESSAGE_INVALID_DATE_RANGE);
+        }
 
         final Set<Tag> modelTags = new HashSet<>(entryTags);
         return new Entry(modelEntryName, modelStartDate, modelEndDate, modelTags);
