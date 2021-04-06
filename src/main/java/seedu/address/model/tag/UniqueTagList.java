@@ -131,9 +131,6 @@ public class UniqueTagList implements Iterable<Tag> {
         }
 
         for (Tag newTag : editedTag) {
-            if (contains(newTag)) {
-                continue;
-            }
             add(newTag);
         }
     }
