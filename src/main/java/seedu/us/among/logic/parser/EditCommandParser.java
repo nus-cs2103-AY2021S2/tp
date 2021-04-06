@@ -2,7 +2,6 @@ package seedu.us.among.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.us.among.commons.core.Messages.MESSAGE_INVALID_COMMAND_ERROR;
-import static seedu.us.among.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_DATA;
 import static seedu.us.among.logic.parser.CliSyntax.PREFIX_HEADER;
@@ -17,7 +16,6 @@ import java.util.Set;
 import seedu.us.among.commons.core.index.Index;
 import seedu.us.among.logic.commands.EditCommand;
 import seedu.us.among.logic.commands.EditCommand.EditEndpointDescriptor;
-import seedu.us.among.logic.commands.ShowCommand;
 import seedu.us.among.logic.parser.exceptions.ParseException;
 import seedu.us.among.model.header.Header;
 import seedu.us.among.model.tag.Tag;

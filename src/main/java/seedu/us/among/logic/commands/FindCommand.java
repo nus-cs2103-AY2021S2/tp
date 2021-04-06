@@ -22,7 +22,7 @@ public class FindCommand extends Command {
             + "All parameters are optional, but least one parameter to edit must be provided.\n"
             + "Example: " + COMMAND_WORD + " get github";
 
-    public static final String MESSAGE_USAGE_2 = COMMAND_WORD + " (precise search)"+ ": Find endpoints containing the "
+    public static final String MESSAGE_USAGE_2 = COMMAND_WORD + " (precise search)" + ": Find endpoints containing the "
             + "search word/s based on the prefix.\n"
             + "Parameters: -x [METHOD] -u [URL] -d [DATA] -h [HEADER] -t [TAG]\n"
             + "All parameters are optional, but least one parameter to edit must be provided.\n"
