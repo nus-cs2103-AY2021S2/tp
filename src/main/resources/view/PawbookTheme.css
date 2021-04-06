@@ -10,6 +10,18 @@
     -fx-opacity: 0.9;
 }
 
+.tab {
+    -fx-background-color: derive(#9cdacf, 20%);
+    -fx-font-size: 11pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: black;
+    -fx-opacity: 0.9;
+    -fx-pref-height: 50;
+}
+
+.tab-pane {
+    -fx-pref-width:1000;
+}
 .label-bright {
     -fx-font-size: 11pt;
     -fx-font-family: "Segoe UI Semibold";

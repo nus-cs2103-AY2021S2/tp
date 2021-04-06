@@ -4,8 +4,12 @@ import java.util.Collection;
 import java.util.Comparator;
 
 import dog.pawbook.model.managedentity.Entity;
+import dog.pawbook.model.managedentity.dog.Dog;
+import dog.pawbook.model.managedentity.owner.Owner;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -40,6 +44,12 @@ public class EntityCard extends UiPart<Region> {
     private FlowPane tags;
     @FXML
     private Label staticId;
+    @FXML
+    private ImageView entityImage;
+
+    private static final Image dogImage = new Image("images/dog.png");
+    private static final Image ownerImage = new Image("images/owner.png");
+    private static final Image programImage = new Image("images/program.png");
 
     /**
      * Creates a {@code EntityCard} with the given {@code Entity} and index to display.
@@ -47,6 +57,18 @@ public class EntityCard extends UiPart<Region> {
     public EntityCard(Entity entity, int displayedId) {
         super(FXML);
         this.entity = entity;
+
+        this.entityImage.setFitHeight(50);
+        this.entityImage.setFitWidth(50);
+
+        if (entity instanceof Dog) {
+            this.entityImage.setImage(dogImage);
+        } else if (entity instanceof Owner) {
+            this.entityImage.setImage(ownerImage);
+        } else {
+            this.entityImage.setImage(programImage);
+        }
+
         id.setText(displayedId + ": ");
         name.setText(entity.getName().fullName);
 
