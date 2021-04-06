@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import dog.pawbook.commons.exceptions.IllegalValueException;
 import dog.pawbook.commons.util.JsonUtil;
 import dog.pawbook.model.Database;
-import dog.pawbook.testutil.TypicalOwners;
+import dog.pawbook.testutil.TypicalEntities;
 
 public class JsonSerializableDatabaseTest {
 
@@ -25,7 +25,7 @@ public class JsonSerializableDatabaseTest {
         JsonSerializableDatabase dataFromFile = JsonUtil.readJsonFile(TYPICAL_OWNERS_FILE,
                 JsonSerializableDatabase.class).get();
         Database databaseFromFile = dataFromFile.toModelType();
-        Database typicalOwnersDatabase = TypicalOwners.getTypicalDatabase();
+        Database typicalOwnersDatabase = TypicalEntities.getTypicalDatabase();
         assertEquals(databaseFromFile, typicalOwnersDatabase);
     }
 

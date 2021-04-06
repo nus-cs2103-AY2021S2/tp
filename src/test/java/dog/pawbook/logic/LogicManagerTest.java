@@ -7,7 +7,7 @@ import static dog.pawbook.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static dog.pawbook.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static dog.pawbook.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static dog.pawbook.testutil.Assert.assertThrows;
-import static dog.pawbook.testutil.TypicalOwners.AMY;
+import static dog.pawbook.testutil.TypicalEntities.AMY;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;

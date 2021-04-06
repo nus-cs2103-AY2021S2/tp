@@ -1,10 +1,10 @@
 package dog.pawbook.storage;
 
 import static dog.pawbook.testutil.Assert.assertThrows;
-import static dog.pawbook.testutil.TypicalOwners.ALICE;
-import static dog.pawbook.testutil.TypicalOwners.HOON;
-import static dog.pawbook.testutil.TypicalOwners.IDA;
-import static dog.pawbook.testutil.TypicalOwners.getTypicalDatabase;
+import static dog.pawbook.testutil.TypicalEntities.ALICE;
+import static dog.pawbook.testutil.TypicalEntities.HOON;
+import static dog.pawbook.testutil.TypicalEntities.IDA;
+import static dog.pawbook.testutil.TypicalEntities.getTypicalDatabase;
 import static java.util.stream.Collectors.toList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;

@@ -2,7 +2,7 @@ package dog.pawbook.storage;
 
 import static dog.pawbook.storage.JsonAdaptedOwner.MISSING_FIELD_MESSAGE_FORMAT;
 import static dog.pawbook.testutil.Assert.assertThrows;
-import static dog.pawbook.testutil.TypicalOwners.BENSON;
+import static dog.pawbook.testutil.TypicalEntities.BENSON;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;

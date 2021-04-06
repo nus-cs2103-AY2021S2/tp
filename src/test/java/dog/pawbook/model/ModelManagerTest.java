@@ -2,8 +2,8 @@ package dog.pawbook.model;
 
 import static dog.pawbook.model.Model.PREDICATE_SHOW_ALL_ENTITIES;
 import static dog.pawbook.testutil.Assert.assertThrows;
-import static dog.pawbook.testutil.TypicalOwners.ALICE;
-import static dog.pawbook.testutil.TypicalOwners.BENSON;
+import static dog.pawbook.testutil.TypicalEntities.ALICE;
+import static dog.pawbook.testutil.TypicalEntities.BENSON;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;

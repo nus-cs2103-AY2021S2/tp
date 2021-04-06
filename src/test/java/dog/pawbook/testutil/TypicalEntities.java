@@ -21,7 +21,7 @@ import dog.pawbook.model.managedentity.owner.Owner;
 /**
  * A utility class containing a list of {@code Owner} objects to be used in tests.
  */
-public class TypicalOwners {
+public class TypicalEntities {
 
     public static final Owner ALICE = new OwnerBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
@@ -57,7 +57,7 @@ public class TypicalOwners {
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
-    private TypicalOwners() {} // prevents instantiation
+    private TypicalEntities() {} // prevents instantiation
 
     /**
      * Returns an {@code Database} with all the typical owners.
