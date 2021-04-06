@@ -1,0 +1,54 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":SocheduleParser" as SocheduleParser LOGIC_COLOR
+participant "s:ClearCompletedTaskCommand" as ClearCompletedTaskCommand LOGIC_COLOR
+participant "CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : parse(clear_completed_task)
+activate LogicManager
+
+LogicManager -> SocheduleParser : parseCommand(clear_completed_task)
+activate SocheduleParser
+
+create ClearCompletedTaskCommand
+SocheduleParser -> ClearCompletedTaskCommand
+activate ClearCompletedTaskCommand
+SocheduleParser <--ClearCompletedTaskCommand : s
+deactivate ClearCompletedTaskCommand
+
+LogicManager <-- SocheduleParser : s
+deactivate SocheduleParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+SocheduleParser -[hidden]->[
+destroy SocheduleParser
+
+LogicManager -> ClearCompletedTaskCommand : execute()
+activate ClearCompletedTaskCommand
+
+ClearCompletedTaskCommand -> Model : clearCompletedTasks()
+activate Model
+ClearCompletedTaskCommand <-- Model
+deactivate Model
+
+create CommandResult
+ClearCompletedTaskCommand -> CommandResult
+activate CommandResult
+ClearCompletedTaskCommand <-- CommandResult
+deactivate CommandResult
+
+LogicManager <-- ClearCompletedTaskCommand
+deactivate ClearCompletedTaskCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ClearCompletedTaskCommand -[hidden]->[
+destroy ClearCompletedTaskCommand
+
+[<-- LogicManager : CommandResult
+@enduml

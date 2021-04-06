@@ -11,13 +11,13 @@ public class ClearExpiredTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "clear_expired_task";
 
-    public static final String MESSAGE_SUCCESS = "Expired tasks (if any) have been cleared!";
+    public static final String MESSAGE_CLEAR_EXPIRED_TASK_SUCCESS = "Expired tasks (if any) have been cleared!";
 
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.clearExpiredTasks();
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(MESSAGE_CLEAR_EXPIRED_TASK_SUCCESS);
     }
 }

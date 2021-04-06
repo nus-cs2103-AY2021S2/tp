@@ -1,0 +1,87 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":SocheduleParser" as SocheduleParser LOGIC_COLOR
+participant ":EditTaskCommandParser" as EditTaskCommandParser LOGIC_COLOR
+participant "s:EditTaskCommand" as EditTaskCommand LOGIC_COLOR
+participant "s:EditTaskDescriptor" as EditTaskDescriptor LOGIC_COLOR
+participant "CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : parse(edit_task args)
+activate LogicManager
+
+LogicManager -> SocheduleParser : parseCommand(edit_task args)
+activate SocheduleParser
+
+SocheduleParser -> EditTaskCommandParser: parse(args)
+activate EditTaskCommandParser
+
+create EditTaskDescriptor
+EditTaskCommandParser -> EditTaskDescriptor
+activate EditTaskDescriptor
+EditTaskCommandParser <--EditTaskDescriptor : s
+deactivate EditTaskDescriptor
+
+create EditTaskCommand
+EditTaskCommandParser -> EditTaskCommand
+activate EditTaskCommand
+EditTaskCommandParser <--EditTaskCommand : s
+deactivate EditTaskCommand
+
+SocheduleParser <--EditTaskCommandParser : s
+deactivate EditTaskCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditTaskCommandParser -[hidden]->[
+destroy EditTaskCommandParser
+
+LogicManager <-- SocheduleParser : s
+deactivate SocheduleParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+SocheduleParser -[hidden]->[
+destroy SocheduleParser
+
+LogicManager -> EditTaskCommand : execute()
+activate EditTaskCommand
+
+EditTaskCommand -> Model : getFilteredTaskList()
+activate Model
+EditTaskCommand <-- Model
+deactivate Model
+
+EditTaskCommand -> EditTaskCommand : createEditedTask(taskToEdit, editTaskDescriptor)
+activate EditTaskCommand
+EditTaskCommand <-- EditTaskCommand
+deactivate EditTaskCommand
+destroy EditTaskDescriptor
+
+EditTaskCommand -> Model : setTask(taskToEdit, editedTask)
+activate Model
+EditTaskCommand <-- Model
+deactivate Model
+
+EditTaskCommand -> Model : updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS)
+activate Model
+EditTaskCommand <-- Model
+deactivate Model
+
+create CommandResult
+EditTaskCommand -> CommandResult
+activate CommandResult
+EditTaskCommand <-- CommandResult
+deactivate CommandResult
+
+LogicManager <-- EditTaskCommand
+deactivate EditTaskCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditTaskCommand -[hidden]->[
+destroy EditTaskCommand
+
+[<-- LogicManager : CommandResult
+@enduml

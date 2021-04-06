@@ -1,0 +1,73 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":SocheduleParser" as SocheduleParser LOGIC_COLOR
+participant ":FindScheduleCommandParser" as FindScheduleCommandParser LOGIC_COLOR
+participant "f:FindScheduleCommand" as FindScheduleCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : parse(find_schedule DATE)
+activate LogicManager
+
+LogicManager -> SocheduleParser : parseCommand(find_schedule DATE)
+activate SocheduleParser
+
+create FindScheduleCommandParser
+SocheduleParser -> FindScheduleCommandParser
+activate FindScheduleCommandParser
+SocheduleParser <-- FindScheduleCommandParser
+deactivate FindScheduleCommandParser
+
+SocheduleParser -> FindScheduleCommandParser: parse(DATE)
+activate FindScheduleCommandParser
+
+create FindScheduleCommand
+FindScheduleCommandParser -> FindScheduleCommand
+activate FindScheduleCommand
+FindScheduleCommandParser <--FindScheduleCommand : f
+deactivate FindScheduleCommand
+
+SocheduleParser <--FindScheduleCommandParser : f
+deactivate FindScheduleCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FindScheduleCommandParser -[hidden]->[
+destroy FindScheduleCommandParser
+
+LogicManager <-- SocheduleParser : f
+deactivate SocheduleParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+SocheduleParser -[hidden]->[
+
+LogicManager -> FindScheduleCommand : execute()
+activate FindScheduleCommand
+
+FindScheduleCommand -> Model : updateFilteredTaskList()
+activate Model
+FindScheduleCommand <-- Model
+deactivate Model
+
+FindScheduleCommand -> Model : updateFilteredEventList
+activate Model
+FindScheduleCommand <-- Model
+deactivate Model
+
+create CommandResult
+FindScheduleCommand -> CommandResult
+activate CommandResult
+FindScheduleCommand <-- CommandResult
+deactivate CommandResult
+
+LogicManager <-- FindScheduleCommand: result
+deactivate FindScheduleCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FindScheduleCommand -[hidden]->[
+
+[<-- LogicManager
+@enduml

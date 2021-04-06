@@ -29,7 +29,7 @@ public class UndoneTaskCommand extends Command {
             + "Parameters: INDEX (must be a positive integer and a valid index)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DONE_TASK_SUCCESS = "Undone Task: %1$s";
+    public static final String MESSAGE_UNDONE_TASK_SUCCESS = "Undone Task: %1$s";
     public static final String MESSAGE_TASK_ALREADY_UNCOMPLETED = "This task has already been marked as uncompleted.";
 
     private final Index targetIndex;
@@ -65,7 +65,7 @@ public class UndoneTaskCommand extends Command {
         // replace the old task with the new and completed task and update
         model.setTask(taskToUndone, uncompletedTask);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
-        return new CommandResult(String.format(MESSAGE_DONE_TASK_SUCCESS, taskToUndone));
+        return new CommandResult(String.format(MESSAGE_UNDONE_TASK_SUCCESS, taskToUndone));
     }
 
     /**

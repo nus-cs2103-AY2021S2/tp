@@ -1,0 +1,64 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":SocheduleParser" as SocheduleParser LOGIC_COLOR
+participant ":AddEventCommandParser" as AddEventCommandParser LOGIC_COLOR
+participant "s:AddEventCommand" as AddEventCommand LOGIC_COLOR
+participant "CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : parse(add_event args)
+activate LogicManager
+
+LogicManager -> SocheduleParser : parseCommand(add_event args)
+activate SocheduleParser
+
+SocheduleParser -> AddEventCommandParser: parse(args)
+activate AddEventCommandParser
+
+create AddEventCommand
+AddEventCommandParser -> AddEventCommand
+activate AddEventCommand
+AddEventCommandParser <--AddEventCommand : s
+deactivate AddEventCommand
+
+SocheduleParser <--AddEventCommandParser : s
+deactivate AddEventCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddEventCommandParser -[hidden]->[
+destroy AddEventCommandParser
+
+LogicManager <-- SocheduleParser : s
+deactivate SocheduleParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+SocheduleParser -[hidden]->[
+destroy SocheduleParser
+
+LogicManager -> AddEventCommand : execute()
+activate AddEventCommand
+
+AddEventCommand -> Model : addEvents(Event eventToAdd)
+activate Model
+AddEventCommand <-- Model
+deactivate Model
+
+create CommandResult
+AddEventCommand -> CommandResult
+activate CommandResult
+AddEventCommand <-- CommandResult
+deactivate CommandResult
+
+LogicManager <-- AddEventCommand
+deactivate AddEventCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddEventCommand -[hidden]->[
+destroy AddEventCommand
+
+[<-- LogicManager : CommandResult
+@enduml

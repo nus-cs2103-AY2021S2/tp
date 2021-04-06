@@ -1,0 +1,54 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":SocheduleParser" as SocheduleParser LOGIC_COLOR
+participant "s:ClearExpiredTaskCommand" as ClearExpiredTaskCommand LOGIC_COLOR
+participant "CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : parse(clear_expired_task)
+activate LogicManager
+
+LogicManager -> SocheduleParser : parseCommand(clear_expired_task)
+activate SocheduleParser
+
+create ClearExpiredTaskCommand
+SocheduleParser -> ClearExpiredTaskCommand
+activate ClearExpiredTaskCommand
+SocheduleParser <--ClearExpiredTaskCommand : s
+deactivate ClearExpiredTaskCommand
+
+LogicManager <-- SocheduleParser : s
+deactivate SocheduleParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+SocheduleParser -[hidden]->[
+destroy SocheduleParser
+
+LogicManager -> ClearExpiredTaskCommand : execute()
+activate ClearExpiredTaskCommand
+
+ClearExpiredTaskCommand -> Model : clearExpiredTasks()
+activate Model
+ClearExpiredTaskCommand <-- Model
+deactivate Model
+
+create CommandResult
+ClearExpiredTaskCommand -> CommandResult
+activate CommandResult
+ClearExpiredTaskCommand <-- CommandResult
+deactivate CommandResult
+
+LogicManager <-- ClearExpiredTaskCommand
+deactivate ClearExpiredTaskCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ClearExpiredTaskCommand -[hidden]->[
+destroy ClearExpiredTaskCommand
+
+[<-- LogicManager : CommandResult
+@enduml

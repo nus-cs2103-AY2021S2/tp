@@ -1,0 +1,87 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":SocheduleParser" as SocheduleParser LOGIC_COLOR
+participant ":EditEventCommandParser" as EditEventCommandParser LOGIC_COLOR
+participant "s:EditEventCommand" as EditEventCommand LOGIC_COLOR
+participant "s:EditEventDescriptor" as EditEventDescriptor LOGIC_COLOR
+participant "CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : parse(edit_event args)
+activate LogicManager
+
+LogicManager -> SocheduleParser : parseCommand(edit_event args)
+activate SocheduleParser
+
+SocheduleParser -> EditEventCommandParser: parse(args)
+activate EditEventCommandParser
+
+create EditEventDescriptor
+EditEventCommandParser -> EditEventDescriptor
+activate EditEventDescriptor
+EditEventCommandParser <--EditEventDescriptor : s
+deactivate EditEventDescriptor
+
+create EditEventCommand
+EditEventCommandParser -> EditEventCommand
+activate EditEventCommand
+EditEventCommandParser <--EditEventCommand : s
+deactivate EditEventCommand
+
+SocheduleParser <--EditEventCommandParser : s
+deactivate EditEventCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditEventCommandParser -[hidden]->[
+destroy EditEventCommandParser
+
+LogicManager <-- SocheduleParser : s
+deactivate SocheduleParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+SocheduleParser -[hidden]->[
+destroy SocheduleParser
+
+LogicManager -> EditEventCommand : execute()
+activate EditEventCommand
+
+EditEventCommand -> Model : getFilteredEventList()
+activate Model
+EditEventCommand <-- Model
+deactivate Model
+
+EditEventCommand -> EditEventCommand : createEditedEvent(eventToEdit, editEventDescriptor)
+activate EditEventCommand
+EditEventCommand <-- EditEventCommand
+deactivate EditEventCommand
+destroy EditEventDescriptor
+
+EditEventCommand -> Model : setEvent(eventToEdit, editedEvent)
+activate Model
+EditEventCommand <-- Model
+deactivate Model
+
+EditEventCommand -> Model : updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS)
+activate Model
+EditEventCommand <-- Model
+deactivate Model
+
+create CommandResult
+EditEventCommand -> CommandResult
+activate CommandResult
+EditEventCommand <-- CommandResult
+deactivate CommandResult
+
+LogicManager <-- EditEventCommand
+deactivate EditEventCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditEventCommand -[hidden]->[
+destroy EditEventCommand
+
+[<-- LogicManager : CommandResult
+@enduml

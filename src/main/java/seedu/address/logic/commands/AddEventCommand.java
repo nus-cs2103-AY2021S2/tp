@@ -38,7 +38,7 @@ public class AddEventCommand extends Command {
             + PREFIX_CATEGORY + "School "
             + PREFIX_TAG + "TeamProject";
 
-    public static final String MESSAGE_SUCCESS = "New event added: %1$s";
+    public static final String MESSAGE_ADD_EVENT_SUCCESS = "New event added: %1$s";
     public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in Sochedule";
 
     private final Event toAdd;
@@ -60,7 +60,7 @@ public class AddEventCommand extends Command {
         }
 
         model.addEvent(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_ADD_EVENT_SUCCESS, toAdd));
     }
 
     @Override

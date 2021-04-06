@@ -26,6 +26,7 @@ import seedu.address.model.event.EventNameContainsKeywordsPredicate;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskNameContainsKeywordsPredicate;
 import seedu.address.testutil.EditEventDescriptorBuilder;
+import seedu.address.testutil.EditTaskDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -33,27 +34,28 @@ import seedu.address.testutil.EditEventDescriptorBuilder;
 public class CommandTestUtil {
 
     // Task
-    public static final String VALID_NAME_TASKONE = "Task One";
-    public static final String VALID_NAME_TASKTWO = "Task Two";
-    public static final String VALID_DEADLINE_TASKONE = "2022-01-01";
-    public static final String VALID_DEADLINE_TASKTWO = "2022-01-02";
-    public static final String VALID_PRIORITY_TASKONE = "5";
-    public static final String VALID_PRIORITY_TASKTWO = "6";
-    public static final String VALID_CATEGORY_HOMEWORK = "Homework";
-    public static final String VALID_CATEGORY_PROJECT = "Project";
-    public static final String VALID_TAG_IMPORTANT = "Important";
-    public static final String VALID_TAG_DIFFICULT = "Difficult";
+    public static final String VALID_TASK_NAME_TASKONE = "Task One";
+    public static final String VALID_TASK_NAME_TASKTWO = "Task Two";
+    public static final String VALID_TASK_DEADLINE_TASKONE = "2022-01-01";
+    public static final String VALID_TASK_DEADLINE_TASKTWO = "2022-01-02";
+    public static final String VALID_TASK_PRIORITY_TASKONE = "5";
+    public static final String VALID_TASK_PRIORITY_TASKTWO = "6";
+    public static final String VALID_TASK_CATEGORY_HOMEWORK = "Homework";
+    public static final String VALID_TASK_CATEGORY_PROJECT = "Project";
+    public static final String VALID_TASK_TAG_IMPORTANT = "Important";
+    public static final String VALID_TASK_TAG_DIFFICULT = "Difficult";
+    public static final String INVALID_PAST_DEADLINE = "1999-01-01"; // not allowed in date
     // Task to input to parser
-    public static final String NAME_DESC_TASKONE = " " + PREFIX_NAME + VALID_NAME_TASKONE;
-    public static final String NAME_DESC_TASKTWO = " " + PREFIX_NAME + VALID_NAME_TASKTWO;
-    public static final String DEADLINE_DESC_TASKONE = " " + PREFIX_DEADLINE + VALID_DEADLINE_TASKONE;
-    public static final String DEADLINE_DESC_TASKTWO = " " + PREFIX_DEADLINE + VALID_DEADLINE_TASKTWO;
-    public static final String PRIORITY_DESC_TASKONE = " " + PREFIX_PRIORITY + VALID_PRIORITY_TASKONE;
-    public static final String PRIORITY_DESC_TASKTWO = " " + PREFIX_PRIORITY + VALID_PRIORITY_TASKTWO;
-    public static final String CATEGORY_DESC_HOMEWORK = " " + PREFIX_CATEGORY + VALID_CATEGORY_HOMEWORK;
-    public static final String CATEGORY_DESC_PROJECT = " " + PREFIX_CATEGORY + VALID_CATEGORY_PROJECT;
-    public static final String TAG_DESC_IMPORTANT = " " + PREFIX_TAG + VALID_TAG_IMPORTANT;
-    public static final String TAG_DESC_DIFFICULT = " " + PREFIX_TAG + VALID_TAG_DIFFICULT;
+    public static final String NAME_DESC_TASKONE = " " + PREFIX_NAME + VALID_TASK_NAME_TASKONE;
+    public static final String NAME_DESC_TASKTWO = " " + PREFIX_NAME + VALID_TASK_NAME_TASKTWO;
+    public static final String DEADLINE_DESC_TASKONE = " " + PREFIX_DEADLINE + VALID_TASK_DEADLINE_TASKONE;
+    public static final String DEADLINE_DESC_TASKTWO = " " + PREFIX_DEADLINE + VALID_TASK_DEADLINE_TASKTWO;
+    public static final String PRIORITY_DESC_TASKONE = " " + PREFIX_PRIORITY + VALID_TASK_PRIORITY_TASKONE;
+    public static final String PRIORITY_DESC_TASKTWO = " " + PREFIX_PRIORITY + VALID_TASK_PRIORITY_TASKTWO;
+    public static final String CATEGORY_DESC_HOMEWORK = " " + PREFIX_CATEGORY + VALID_TASK_CATEGORY_HOMEWORK;
+    public static final String CATEGORY_DESC_PROJECT = " " + PREFIX_CATEGORY + VALID_TASK_CATEGORY_PROJECT;
+    public static final String TAG_DESC_IMPORTANT = " " + PREFIX_TAG + VALID_TASK_TAG_IMPORTANT;
+    public static final String TAG_DESC_DIFFICULT = " " + PREFIX_TAG + VALID_TASK_TAG_DIFFICULT;
     // Event
     public static final String VALID_EVENT_NAME_EVENTONE = "Coding Interview";
     public static final String VALID_EVENT_NAME_EVENTTWO = "SoC FOP";
@@ -97,10 +99,28 @@ public class CommandTestUtil {
     public static final String INVALID_ENDDATE_DESC = " " + PREFIX_ENDDATE + "199*-01-02"; // not allowed in date
     public static final String INVALID_ENDDATEPAST_DESC = " " + PREFIX_ENDDATE + "1998-01-02"; // not allowed in date
     public static final String INVALID_ENDTIME_DESC = " " + PREFIX_ENDTIME + "1@:05"; // not allowed in time
+    // Dates
+    public static final String NO_FREE_TIME_DATE = "2021-03-16";
+    public static final String FREE_DATE = "2025-03-16";
+    public static final String EXAMPLE_DATE = "2025-03-17";
 
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
+
+    public static final EditTaskCommand.EditTaskDescriptor DESC_TASKONE;
+    public static final EditTaskCommand.EditTaskDescriptor DESC_TASKTWO;
+
+    static {
+        DESC_TASKONE = new EditTaskDescriptorBuilder().withName(VALID_TASK_NAME_TASKONE)
+                .withDeadline(VALID_TASK_DEADLINE_TASKONE).withPriority(VALID_TASK_PRIORITY_TASKONE)
+                .withCategories(VALID_TASK_CATEGORY_HOMEWORK)
+                .withTags(VALID_TASK_TAG_DIFFICULT).build();
+        DESC_TASKTWO = new EditTaskDescriptorBuilder().withName(VALID_TASK_NAME_TASKTWO)
+                .withDeadline(VALID_TASK_DEADLINE_TASKTWO).withPriority(VALID_TASK_PRIORITY_TASKTWO)
+                .withCategories(VALID_TASK_CATEGORY_PROJECT)
+                .withTags(VALID_TASK_TAG_IMPORTANT).build();
+    }
 
     public static final EditEventCommand.EditEventDescriptor DESC_EVENTONE;
     public static final EditEventCommand.EditEventDescriptor DESC_EVENTTWO;

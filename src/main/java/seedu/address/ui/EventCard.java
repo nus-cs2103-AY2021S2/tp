@@ -49,10 +49,14 @@ public class EventCard extends UiPart<Region> {
         startTime.setText("Start Time: " + event.getStartTime().toString());
         endDate.setText("End Date: " + event.getEndDate().toString());
         endTime.setText("End Time: " + event.getEndTime().toString());
-        category.setText("Category: " + event.getCategories().toString());
         event.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        if (event.getCategories().isEmpty()) {
+            category.setVisible(false);
+        } else {
+            category.setText("Category: " + event.getCategories().toString());
+        }
     }
 
     @Override

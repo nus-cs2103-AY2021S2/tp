@@ -14,8 +14,8 @@ public class FindFreeTimeCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all free time slots on the given date\n"
             + "Example: " + COMMAND_WORD + " 2021-01-07";
 
-    public static final String MESSAGE_FIND_FREE_TIME_SUCCESS = "Found Free Time Slots:\n";
-    public static final String MESSAGE_NO_FREE_TIME = "There is not free time in the day!\n";
+    public static final String MESSAGE_FIND_FREE_TIME_SUCCESS = "Found free time slots on %s: \n";
+    public static final String MESSAGE_NO_FREE_TIME = "There is no free time in the day!\n";
 
     private final Date date;
 
@@ -34,7 +34,7 @@ public class FindFreeTimeCommand extends Command {
             for (int i = 0; i < freeTimeSlots.size(); i++) {
                 timeSlots = timeSlots + freeTimeSlots.get(i) + "\n";
             }
-            return new CommandResult(MESSAGE_FIND_FREE_TIME_SUCCESS + timeSlots);
+            return new CommandResult(String.format(MESSAGE_FIND_FREE_TIME_SUCCESS + timeSlots, date.toString()));
         }
     }
 }
