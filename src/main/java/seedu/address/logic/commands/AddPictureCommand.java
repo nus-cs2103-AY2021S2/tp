@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_FILE_NOT_FOUND;
 import static seedu.address.commons.core.Messages.MESSAGE_FILE_TOO_BIG;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_FILE_EXTENSION;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_FILE_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_FILE_SIGNATURE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.io.IOException;
@@ -95,7 +95,7 @@ public class AddPictureCommand extends Command {
         }
 
         if (!Picture.isValidImage(filePath)) {
-            throw new CommandException(String.format(MESSAGE_INVALID_FILE_FORMAT,
+            throw new CommandException(String.format(MESSAGE_INVALID_FILE_SIGNATURE,
                     filePath, "Image"));
         }
 

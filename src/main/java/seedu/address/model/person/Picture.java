@@ -22,18 +22,13 @@ public class Picture {
 
     public static final Set<Byte[]> IMAGE_MAGIC_NUMBERS = new HashSet<>();
 
-    // Initialize magic numbers of images. null represents any value for 2 bytes.
+    // Initialize magic numbers of images. null represents wildcard values for a particular byte.
     static {
         // png
         IMAGE_MAGIC_NUMBERS.add(FileUtil.intArrayToByteArray(new int[] {0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A,
                 0x0A}));
         // jpg, jpeg
-        IMAGE_MAGIC_NUMBERS.add(FileUtil.intArrayToByteArray(new int[] {0xFF, 0xD8, 0xFF, 0xDB}));
-        IMAGE_MAGIC_NUMBERS.add(FileUtil.intArrayToByteArray(new int[] {0xFF, 0xD8, 0xFF, 0xE0, 0x00, 0x10, 0x4A, 0x46,
-                0x49, 0x46, 0x00, 0x01}));
-        IMAGE_MAGIC_NUMBERS.add(FileUtil.intArrayToByteArray(new int[] {0xFF, 0xD8, 0xFF, 0xEE}));
-        IMAGE_MAGIC_NUMBERS.add(FileUtil.intArrayToByteArray(new int[] {0xFF, 0xD8, 0xFF, 0xE1, -1, -1, 0x45, 0x78,
-                0x69, 0x66, 0x00, 0x00}));
+        IMAGE_MAGIC_NUMBERS.add(FileUtil.intArrayToByteArray(new int[] {0xFF, 0xD8, 0xFF}));
     }
 
     private final Path filePath;
@@ -42,8 +37,17 @@ public class Picture {
         this.filePath = filePath;
     }
 
+    /**
+     * Checks if a given file is a valid image. A valid image is defined to be any PNG, JPG/JPEG image
+     * with any file signature in {@code IMAGE_MAGIC_NUMBERS}.
+     *
+     * @param path Path of the image to be validated.
+     * @return true if image is valid otherwise false.
+     */
     public static boolean isValidFilePath(Path path) {
-        return FileUtil.isFileExists(path) && FileUtil.hasExtension(path, ALLOWED_FILE_EXTENSIONS);
+        return (FileUtil.isFileExists(path)
+                && FileUtil.hasExtension(path, ALLOWED_FILE_EXTENSIONS)
+                && isValidImage(path));
     }
 
     /**

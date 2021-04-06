@@ -126,6 +126,7 @@ public class FileUtil {
 
     /**
      * Checks if the content of the file is prefixed with any magic number from a given set.
+     *
      * @throws IOException If the file cannot be read.
      */
     public static boolean hasMagicNumber(Path filePath, Set<Byte[]> allowedMagicNumber) throws IOException {
@@ -172,9 +173,10 @@ public class FileUtil {
 
     /**
      * Returns a {@code Byte} array given an {@code int} array. Wildcard bytes should be
-     * represented by a int with set MSB.
-     * @param intArray
-     * @return
+     * represented by a 32 bit integer with its MSB set.
+     *
+     * @param intArray the array to convert from.
+     * @return a {@code Byte[]} based on the values in {@code intArray}
      */
     public static Byte[] intArrayToByteArray(int[] intArray) {
         Byte[] bytes = new Byte[intArray.length];
