@@ -1,8 +1,6 @@
 //Solution below adapted from https://github.com/briyanii/main
 package seedu.address.commons.core;
 
-import static java.util.Objects.requireNonNull;
-
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
@@ -51,24 +49,12 @@ public class AliasMapping implements Serializable {
     }
 
     /**
-     * Creates an AliasMapping with a specified mapping.
-     * The mapping must not be null.
-     *
-     * @param aliasMapping The specified mapping.
-     * @throws NullPointerException If the input is null.
-     */
-    private AliasMapping(AliasMapping aliasMapping) {
-        requireNonNull(aliasMapping);
-        this.mapping = new HashMap<>(aliasMapping.mapping);
-    }
-
-    /**
      * Sets the mapping to the mapping of the specified AliasMapping object.
      *
      * @param aliasMapping The specified AliasMapping object.
      */
     public void setAliasMapping(AliasMapping aliasMapping) {
-        this.mapping = aliasMapping.mapping;
+        this.mapping = new HashMap<>(aliasMapping.mapping);
     }
 
     /**
