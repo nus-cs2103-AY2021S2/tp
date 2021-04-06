@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.model.person.Goal.Frequency;
 
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -19,12 +20,9 @@ import seedu.address.logic.parser.exceptions.ParseException;
 
 public class GoalTest {
 
-    private static final List<String> VALID_WEEK_INPUTS = Arrays.stream(new String[]{
-            "w", "week", "weekly"}).collect(Collectors.toList());
-    private static final List<String> VALID_MONTH_INPUTS = Arrays.stream(new String[]{
-            "m", "month", "monthly"}).collect(Collectors.toList());
-    private static final List<String> VALID_YEAR_INPUTS = Arrays.stream(new String[]{
-            "y", "year", "yearly"}).collect(Collectors.toList());
+    private static final List<String> VALID_WEEK_INPUTS = Arrays.asList("w", "week", "weekly");
+    private static final List<String> VALID_MONTH_INPUTS = Arrays.asList("m", "month", "monthly");
+    private static final List<String> VALID_YEAR_INPUTS = Arrays.asList("y", "year", "yearly");
 
     @Test
     public void goal_equals_success() {
@@ -40,33 +38,36 @@ public class GoalTest {
 
     @Test
     public void goal_emptyGoal_success() {
-        assertEquals(new Goal(Goal.Frequency.NONE), new Goal());
+        assertEquals(new Goal(Frequency.NONE), new Goal());
     }
 
     @Test
     public void goal_getFrequency_success() {
-        assertEquals(Goal.Frequency.NONE, new Goal(Goal.Frequency.NONE).getFrequency());
+        assertEquals(Frequency.NONE, new Goal(Frequency.NONE).getFrequency());
+        assertEquals(Frequency.WEEKLY, new Goal(Frequency.WEEKLY).getFrequency());
+        assertEquals(Frequency.MONTHLY, new Goal(Frequency.MONTHLY).getFrequency());
+        assertEquals(Frequency.YEARLY, new Goal(Frequency.YEARLY).getFrequency());
     }
 
     @Test
     public void goal_isNoneFrequency_sucess() {
-        assertTrue(new Goal(Goal.Frequency.NONE).isNoneFrequency());
-        assertFalse(new Goal(Goal.Frequency.WEEKLY).isNoneFrequency());
+        assertTrue(new Goal(Frequency.NONE).isNoneFrequency());
+        assertFalse(new Goal(Frequency.WEEKLY).isNoneFrequency());
     }
 
     @Test
     public void goal_frequencyInputCheck_success() {
         for (String s : VALID_WEEK_INPUTS) {
-            Goal.Frequency f = assertDoesNotThrow(() -> Goal.parseFrequency(s));
-            assertEquals(Goal.Frequency.WEEKLY, f);
+            Frequency f = assertDoesNotThrow(() -> Goal.parseFrequency(s));
+            assertEquals(Frequency.WEEKLY, f);
         }
         for (String s : VALID_MONTH_INPUTS) {
-            Goal.Frequency f = assertDoesNotThrow(() -> Goal.parseFrequency(s));
-            assertEquals(Goal.Frequency.MONTHLY, f);
+            Frequency f = assertDoesNotThrow(() -> Goal.parseFrequency(s));
+            assertEquals(Frequency.MONTHLY, f);
         }
         for (String s : VALID_YEAR_INPUTS) {
-            Goal.Frequency f = assertDoesNotThrow(() -> Goal.parseFrequency(s));
-            assertEquals(Goal.Frequency.YEARLY, f);
+            Frequency f = assertDoesNotThrow(() -> Goal.parseFrequency(s));
+            assertEquals(Frequency.YEARLY, f);
         }
     }
 
@@ -82,19 +83,19 @@ public class GoalTest {
         LocalDate date = LocalDate.of(2021, 3, 30);
         assertNull(new Goal().getGoalDeadline(date));
         assertEquals(LocalDate.of(2021, 4, 11),
-                new Goal(Goal.Frequency.WEEKLY).getGoalDeadline(date));
+                new Goal(Frequency.WEEKLY).getGoalDeadline(date));
         assertEquals(LocalDate.of(2021, 4, 30),
-                new Goal(Goal.Frequency.MONTHLY).getGoalDeadline(date));
+                new Goal(Frequency.MONTHLY).getGoalDeadline(date));
         assertEquals(LocalDate.of(2022, 12, 31),
-                new Goal(Goal.Frequency.YEARLY).getGoalDeadline(date));
+                new Goal(Frequency.YEARLY).getGoalDeadline(date));
     }
 
     @Test
     public void goal_toString_success() {
-        assertEquals(Goal.Frequency.WEEKLY.toString(), new Goal(Goal.Frequency.WEEKLY).toString());
-        assertEquals(Goal.Frequency.MONTHLY.toString(), new Goal(Goal.Frequency.MONTHLY).toString());
-        assertEquals(Goal.Frequency.YEARLY.toString(), new Goal(Goal.Frequency.YEARLY).toString());
-        assertEquals(Goal.Frequency.NONE.toString(), new Goal(Goal.Frequency.NONE).toString());
+        assertEquals(Frequency.WEEKLY.toString(), new Goal(Frequency.WEEKLY).toString());
+        assertEquals(Frequency.MONTHLY.toString(), new Goal(Frequency.MONTHLY).toString());
+        assertEquals(Frequency.YEARLY.toString(), new Goal(Frequency.YEARLY).toString());
+        assertEquals(Frequency.NONE.toString(), new Goal(Frequency.NONE).toString());
     }
 
     @Test
