@@ -9,10 +9,10 @@ public abstract class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the assignment identified by the index in ExamList of the module\n"
-            + "Parameters: Index (must be a int value)\n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_MODULE + "CS2103T"
-            + PREFIX_ASSIGNMENT + "1";
+    public static final String MESSAGE_USAGE = "Command: " + COMMAND_WORD + "\n"
+            + "Person: delete INDEX\n"
+            + "Module: delete m/TITLE\n"
+            + "Assignment: delete m/TITLE a/INDEX\n"
+            + "Exam: delete m/TITLE e/INDEX\n"
+            + "Event: delete g/INDEX";
 }

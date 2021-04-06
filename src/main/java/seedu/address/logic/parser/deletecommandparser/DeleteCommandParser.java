@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.deletecommand.DeleteCommand;
 import seedu.address.logic.commands.deletecommand.DeletePersonCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
@@ -23,9 +24,6 @@ public class DeleteCommandParser {
     /**
      * Parses the {@code String} of arguments of a delete command
      * to execute the specific delete command
-     * @param args
-     * @return parseCommand
-     * @throws ParseException
      */
     public Command parseCommand(String args) throws ParseException {
         Command command;
@@ -44,7 +42,7 @@ public class DeleteCommandParser {
             command = new DeletePersonCommandParser().parse(args);
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    DeletePersonCommand.MESSAGE_USAGE));
+                    DeleteCommand.MESSAGE_USAGE));
         }
         return command;
     }
