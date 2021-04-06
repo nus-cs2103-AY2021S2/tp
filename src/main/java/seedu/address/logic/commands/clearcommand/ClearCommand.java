@@ -12,10 +12,11 @@ import seedu.address.model.RemindMe;
  */
 public class ClearCommand extends Command {
     public static final String COMMAND_WORD = "clear";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Clears RemindMe. "
-            + "\nParameters: " + "Example: " + COMMAND_WORD + "\n"
-            + ClearPersonsCommand.MESSAGE_USAGE + "\n"
-            + ClearModulesCommand.MESSAGE_USAGE;
+    public static final String MESSAGE_USAGE = "Command: " + COMMAND_WORD + "\n"
+            + "Person: clear n/\n"
+            + "Module: clear m/\n"
+            + "Event: clear g/\n"
+            + "RemindMe: clear";
 
     public static final String MESSAGE_SUCCESS = "RemindMe is cleared!";
 
