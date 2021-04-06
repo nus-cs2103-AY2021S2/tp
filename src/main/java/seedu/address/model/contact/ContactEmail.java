@@ -9,22 +9,20 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class ContactEmail {
 
-    private static final String PRINTABLE_CHARACTERS = "!#$%&'*+-/=?^_`{|}~";
+    private static final String PRINTABLE_CHARACTERS = "!#$%&'*+-/=?^_`{|}~.";
     public static final String MESSAGE_CONSTRAINTS = "Emails should be of the format local-part@domain "
             + "and adhere to the following constraints:\n"
-            + "1. The local-part should only contain alphanumeric characters and these special characters, excluding "
-            + "the parentheses, (" + PRINTABLE_CHARACTERS + ").\n"
-            + "2. The local-part may consist of dots (.) provided that it is not the first character.\n"
-            + "3. This is followed by a '@' and then a domain name. "
+            + "The local-part must:\n"
+            + "- be at least 2 characters long\n"
+            + "- start and end with alphanumeric characters\n"
+            + "- contain only alphanumeric characters and these special characters: " + PRINTABLE_CHARACTERS + "\n\n"
             + "The domain name must:\n"
-            + "    - be at least 2 characters long\n"
-            + "    - start and end with alphanumeric characters\n"
-            + "    - consist of alphanumeric characters, a period or a hyphen for the characters in between, if any.";
+            + "- be at least 2 characters long\n"
+            + "- start and end with alphanumeric characters\n"
+            + "- consist of alphanumeric characters, a period or a hyphen for the characters in between, if any.";
 
     // local-part validation
-    private static final String PARTIAL_LOCAL_PART_REGEX = "\\w" + PRINTABLE_CHARACTERS;
-    private static final String LOCAL_PART_REGEX = "^[" + PARTIAL_LOCAL_PART_REGEX + "]["
-            + PARTIAL_LOCAL_PART_REGEX + ".]*";
+    private static final String LOCAL_PART_REGEX = "^\\w[\\w" + PRINTABLE_CHARACTERS + "]*\\w";
 
     // domain validation
     private static final String DOMAIN_FIRST_CHARACTER_REGEX = "\\w"; // alphanumeric characters except underscore

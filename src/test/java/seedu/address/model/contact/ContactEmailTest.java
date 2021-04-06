@@ -60,19 +60,21 @@ public class ContactEmailTest {
         assertFalse(ContactEmail.isValidEmail(email)); // domain name starts with a hyphen
         email = "peterjack@example.com-";
         assertFalse(ContactEmail.isValidEmail(email)); // domain name ends with a hyphen
+        email = "a!#$%&'*+/=?`{|}~^.-@example.org";
+        assertFalse(ContactEmail.isValidEmail(email)); // trailing special characters
+        email = "!#$%&'*+/=?`{|}~^.-@example.org";
+        assertFalse(ContactEmail.isValidEmail(email)); // leading special characters
 
         // valid email
         email = "PeterJack_1190@example.com";
         assertTrue(ContactEmail.isValidEmail(email));
-        email = "a@bc";
+        email = "ad@bc";
         assertTrue(ContactEmail.isValidEmail(email)); // minimal
         email = "test@localhost";
         assertTrue(ContactEmail.isValidEmail(email)); // alphabets only
-        email = "!#$%&'*+/=?`{|}~^.-@example.org";
-        assertTrue(ContactEmail.isValidEmail(email)); // special characters local part
         email = "123@145";
         assertTrue(ContactEmail.isValidEmail(email)); // numeric local part and domain name
-        email = "a1+be!@example1.com";
+        email = "a1+be!g@example1.com";
         assertTrue(ContactEmail.isValidEmail(email)); // mixture of alphanumeric and special characters
         email = "peter_jack@very-very-very-long-example.com";
         assertTrue(ContactEmail.isValidEmail(email)); // long domain name
