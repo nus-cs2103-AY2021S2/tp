@@ -70,6 +70,7 @@ public class PersonMeetingConnection {
     public UniquePersonList getPersonsByMeeting(Meeting meeting) {
         return personsInMeeting.getOrDefault(meeting, new UniquePersonList());
     }
+
     /**
      * Adds a connection between a person and a meeting.
      */
