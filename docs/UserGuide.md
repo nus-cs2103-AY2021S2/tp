@@ -120,7 +120,7 @@ The available dashboards are detailed below.
 By default, FriendDex displays your upcoming events on the details panel, such as upcoming birthdays and special dates.
 
 #### Streaks Dashboard
-The Streaks dashboard shows how consistent you stick to your goal of meeting your friends up till the current day.    
+The Streaks dashboard shows how consistent you are in meeting your friends up till today. More information on Streaks is available [here](#streaks).
 
 #### Full Details of a Person
 As a person in the FriendDex can contain a lot of information, not all of it is displayed in the main list of persons.
@@ -191,6 +191,7 @@ Format: `add-date INDEX d/DATE desc/DESCRIPTION`
 :information_source: **Notes: Special dates**<br>
 
 * A special date is a date that repeats annually, e.g. Anniversaries.
+* The event that the special date is commemorating should have already occurred.
 </div>
 
 Examples:
@@ -236,9 +237,18 @@ Format: `add-meeting INDEX d/DATE t/TIME desc/DESCRIPTION`
 
 * Records a meeting with the person at the specified `INDEX`.
 
+<div markdown="block" class="alert alert-info">
+:information_source: **Notes: Meetings**<br>
+
+* The meeting should have already occurred before it is recorded into FriendDex.
+</div>
+
 Examples:
-* `meeting 1 d/16-02-2021 t/1130 desc/We had lunch together!`
-* `meeting 2 d/17-02-2021 t/1930 desc/We went to see the sunset!`
+* `add-meeting 1 d/16-02-2021 t/1130 desc/We had lunch together!`
+* `add-meeting 2 d/17-02-2021 t/1930 desc/We went to see the sunset!`
+
+See also:
+* [Goals](#goals) and [Streaks](#streaks) to learn how FriendDex uses your meeting data to motivate you to meet your friends more!  
 
 ### Adding a profile picture : `add-picture`
 
@@ -247,12 +257,13 @@ Adds a profile picture to an existing person in FriendDex.
 Format: `add-picture INDEX FILE_PATH`
 
 * The image of the friend should be at the `FILE_PATH` you provided.
+* Supported image file extensions: `.png`, `.jpeg` and `.jpg`
 
 Examples:
 * `add-picture 1 /Users/john/Desktop/jake.png`
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-To edit your profile picture, edit the original image and use the `add-picture` command again.
+To edit your profile picture, use the `add-picture` command again.
 Editing of pictures directly from the `/data` folder is not supported.
 </div>
 
@@ -405,12 +416,13 @@ Example:
 Format: `set-goal INDEX f/FREQUENCY`
 
 * Sets a goal to achieve an ideal frequency for meeting a contact
-* FriendDex will give reminders based on the frequency specified and the latest meeting the user had with that person.
+* FriendDex will set a deadline to meet the contact based on the frequency specified and the latest meeting the user had with that person.
 * Accepts the following as FREQUENCY: weekly (`w`, `week`, `weekly`), monthly (`m`, `month`, `monthly`), yearly (`y`, `year`, `yearly`), and none (`n`, `none`).
+* See [Goals](#goals) to learn more about how deadlines are calculated. 
 
 Example:
 * `set-goal 1 f/w`, `set-goal 1 f/week` and `set-goal 1 f/weekly` will do the same thing by setting the goal to meet the person at index 1 every week.
-* `set-goal 1 f/n` and `set-goal 1 f/none` will remove the goal set with the person at the specified index. 
+* `set-goal 1 f/n` and `set-goal 1 f/none` will remove the goal set with the person at the specified index.
 
 ### Subtracting debt: `subtract-debt`
 
@@ -465,10 +477,54 @@ Select a details panel to display. Available panels:
 
 Format: `view (upcoming events | streaks)`
 
+* You can find more information on the Streaks dashboard [here](#streaks-dashboard)
+
 Example:
 * `view streaks` will switch the details panel to show the Streaks dashboard.
 
 --------------------------------------------------------------------------------------------------------------------
+
+## Goals
+### How are goal deadlines calculated?
+
+If the ideal frequency to meet a friend is weekly, the deadline to meet will always be on the Sunday of every week. 
+To give an example, you met your friend on Wednesday this week. You have completed your goal of meeting your friend every week for this week.
+The deadline for the next meeting will be the next Sunday after the coming Sunday. You can think of it as weekly assignments. 
+If your assignment is due every Sunday and you complete the current week's assignment on Wednesday. The next weekly assignment will be due two Sundays after.   
+
+The same idea goes for deciding the goal deadline for monthly and yearly. A monthly goal's deadline will always fall on the last day of the month. 
+A yearly goal's deadline will always fall on the last day of the year. To give another example, assume that you have a set a monthly goal of meeting your friend. 
+The last time you met your friend was on 13th March. Since you have already achieved your goal of meeting your friend for the month of March, you have to meet your friend
+again by 30th April to ensure that you always meet your friend once a month.
+
+## Streaks
+
+A streak is a number that shows how consistent you've met your goal of meeting a friend. Your streak increases if you've met a friend. Simply put, if you have a high streak with a friend, you've made meeting that friend a routine!
+It is recommended to have a good understanding of how goal deadlines are calculated before reading this section. Refer to [here](#how-are-goal-deadlines-calculated) for the relevant information.
+
+### The dashboard
+
+![StreaksDashboard](images/StreaksDashboard.png)
+
+You will be rewarded if you managed to stick to your goal consistently. You can maintain a streak (think of it as Snapchat's Streak feature) with a friend if you have been meeting him/her regularly.
+To ensure that you are able to see your friend's name on the Streaks dashboard, they need to have a goal set to them first. More information on setting goal can be found [here](#setting-meeting-goal-set-goal). 
+To reiterate, your friend will only appear on the dashboard if you explicitly set a goal. Just recording meetings with them will not work.
+
+The dashboard can be viewed by running the `view streaks` command. The Streaks dashboard will show up on the details panel on the right of FriendDex. 
+It will contain a list of friends and their streak indicated by a number beside their name. The dashboard will be sorted in descending order with the friend that has the highest streak right at the top.
+
+### How are streaks calculated?
+
+For those who have not used Snapchat before, do not fear. We will try our best to give a detailed explanation here. 
+
+Streaks are calculated relative to the date today. A year has approximately 52 weeks. Assume that your friend, John, has a weekly meeting goal set and the current week is week 10, 
+you started to meet your friend on week 7 and you consistently met him for weeks 8 and 9 but not yet on week 10. John's streak will be 3 on week 10. 
+If you managed to meet him on week 10, his streak will be incremented by 1, to 4. However, once the Monday of week 11 reaches, John's streak will 
+be reset back to 0. The goal deadline for weekly goals is 11:59pm on Sundays, and you did not manage to meet John for the whole of week 10. 
+Because of that, you failed to keep to your goal of meeting John weekly and so the streak resets. 
+
+Streaks for monthly and yearly goals are calculated the same way. You can switch the week numbers to months or years. Another thing to note is if you have already achieved the goal
+for that time period (e.g. week) for a particular friend, any additional meetings with that friend during the same period will be added to his/her streak.   
 
 ## Data Storage
 ### Saving the data
@@ -545,7 +601,7 @@ If FriendDex is still not working, you can reinstall the app by deleting `friend
 
 ## Where to get additional help
 
-If you are still facing an issue that is not addressed in the guide, you submit it issue on Github page [here](https://github.com/AY2021S2-CS2103T-W14-1/tp/issues).
+If you are still facing an issue that is not addressed in the guide, you can submit an issue on our Github page [here](https://github.com/AY2021S2-CS2103T-W14-1/tp/issues).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -553,7 +609,7 @@ If you are still facing an issue that is not addressed in the guide, you submit 
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [b/BIRTHDAY] [t/TAG]…​`<br> e.g. `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTHDAY [t/TAG]…​`<br> e.g. `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 b/12-03-1995 t/friend t/colleague`
 **Add Date** | `add-date INDEX d/DATE desc/DESCRIPTION`<br> e.g. `add-date 1 d/16-02-2021 desc/Anniversary`
 **Add Debt** | `add-debt INDEX DEBT_AMOUNT`<br> e.g. `add-debt 1 100`
 **Add Group** | `add-group n/GROUP_NAME p/[INDEX...]`<br> e.g. `add-group n/Close Friends p/1 2 3 4`

@@ -14,6 +14,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
 import seedu.address.model.person.Person;
+
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
  */
