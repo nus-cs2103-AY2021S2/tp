@@ -149,6 +149,124 @@ Classes used by multiple components are in the `seedu.storemando.commons` packag
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add feature `add`
+
+#### Actual Implementation
+
+The `add` feature allows users to add an item's details to the inventory. An item's details is made up of it's name, 
+quantity, location, expiry date (optional), and tags (optional).
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** 
+An item's name, quantity and location are compulsory fields that must be supplied by the user.
+</div>
+
+The Sequence Diagram below shows how the components interact with each other for the scenario where the user
+issues the command `add n/apple q/2 l/kitchen`.
+
+![AddSequenceDiagram][images/AddSequenceDiagram.png]
+
+
+From the diagram above:
+
+1. When the user keys in a command string, `execute` command of the `LogicManager` is called with the given string as input.
+2. In the method, `LogicManager` calls on the `parseCommand` method of `StoreMandoParser` to parse the user input.
+3. The `StoreMandoParser` parses the user input and identifies it as an `AddCommand` and instantiates `AddCommandParser`. 
+4. `StoreMandoParser` then invokes the `parse` method of `AddCommandParser` to further parse the arguments provided. In the `parse` method,
+   the `AddCommandParser` ensures that the input is of the correct format and identifies the input for item name, quantity, 
+   location, expiry date and tag(s).
+5. If all the arguments of the `add` command are valid, The `AddCommandParser` creates a new `Item` object, 
+   and instantiates a new `AddCommand` object that contains the `Item` object. This `AddCommand` object will be
+   returned to the `LogicManager`.
+6. The `LogicManager` will then invoke the `execute` method of the `AddCommand` object with `model` as argument.   
+7. Consequently, `AddCommand` object will add the `Item` object to `Model`, and return a `CommandResult` to `LogicManager`.
+8. This `CommandResult` will be returned at the end.
+
+The following activity diagram summarizes what happens when a user executes a new `add` command:
+![AddActivityDiagram][images/AddActivityDiagram.png]
+
+##### Proposed Improvements
+1. Items with the same name, location and expiry date cannot co-exist in the inventory. Thus, every item that 
+   is to be added has to be checked and validated that it is not a duplicate item. The current implementation to do so
+   involves iterating through the list of all items to check if there already exists an item in the inventory that has 
+   exactly the same name, location and expiry date. This process is slow and runs in O(n) time. It can be improved by 
+   implementing a `HashMap` containing all the items currently stored in the inventory. This will allow the search to be 
+   done in O(1) time. This feature was not implemented as it would introduce unnecessary complexity, and the current 
+   solution meets the non-functional requirements regarding performance.
+
+##### Design Considerations:
+
+##### Aspect: Identifying the addition of duplicate item
+* **Alternative 1 (current choice):** Compare item to be added and existing items in the inventory by name, location 
+  **and** expiry date.
+    * Pros: Allows users to store the same products that may have been produced in different batches. This would also 
+      help users identify and differentiate similar products by their expiry date.
+    * Cons: Items with the same name and location may be a potential source of confusion.
+
+* **Alternative 2:** Compare item to be added and existing items in the inventory by name and location only.
+    * Pros: Allows users to clearly distinguish items with the same names by location. This would prevent confusion and
+      save users from going through the hassle of distinguishing items by expiry date.
+    * Cons: Users would not be able to store similar items that have different expiry dates as a result of being 
+      produced in different batches.
+
+      
+### Sort Feature `sort`
+
+#### Actual Implementation
+
+The `sort` feature allows users to view the items in the displayed list of items in a specific order.
+The `sort quantity asc` and` sort quantity desc` commands allows users to view all items in the displayed list in 
+ascending or descending order of quantity respectively. In comparison, the `sort expirydate` command allows users to 
+view items in the displayed list in chronological order of their expiry date.
+
+The Sequence Diagram below shows how the components interact with each other for the scenario where the user
+issues the command `sort quantity asc`.
+
+![SortSequenceDiagram][images/SortSequenceDiagram.png]
+
+From the diagram above:
+1. `LogicManager`'s `execute` is called when the user enters an input into the command box.
+2. `LogicManager` then calls `parseCommand` of `StoreMandoParser` to parse the user input.
+3.  The `StoreMandoParser` identifies the input as an `SortCommand` and initializes `SortCommandParser`.
+4. `StoreMando` then invokes the method `parse` of `SortCommandParser` to further parse the user input.
+   The `SortCommandParser` ensures that the input is of the correct format and identifies the type of 
+   sorting to be done.
+5. If all the arguments of the `sort quantity asc` command are valid, The `SortCommandParser` initiates a new 
+   `SortAscendingQuantityCommand` object. This `SortAscendingQuantityCommand` object will be returned to the 
+   `LogicManager`.
+6. The `LogicManager` will then invoke the `execute` method of the `SortAscendingQuantityCommand` object.
+7. The `SortAscendingQuantityCommand` object will then retrieve the currently displayed list of items through the 
+   `getFilteredItemList` method of `Model`to check if there are items to be sorted.
+8. If there are items to be sorted, `SortAscendingQuantityCommand` will create an `ItemComparatorByIncreasingQuantity` 
+   comparator object that determines how any two items in the list should be compared.
+9. `SortAscendingQuantityCommand` passes this comparator to `Model` through `Model`'s `updateSortedItemList` method 
+   to sort the list of items. 
+10. `SortAscendingQuantityCommand` will then call `setItems` method of `Model` and pass in the sorted list of items 
+    retrieved from `Model` through it's `getSortedItemList` method. This would result in the sorted list of items
+    being displayed.
+    
+11. Upon completion, `SortAscendingQuantityCommand` creates a `CommandResult` object and passes it back to `LogicManager`.
+    
+12. This `CommandResult` will be returned at the end by `LogicManager`.
+
+The following activity diagram summarizes what happens when a user executes a `sort quantity asc` command:
+![AddActivityDiagram][images/AddActivityDiagram.png]
+
+
+##### Design Considerations:
+
+##### Aspect: Determining the implementation of sort as initial implementation of filtered list had no sorting capability.
+
+* **Alternative 1 (current choice):** Maintain current implementation of filtered list and utilise a new sorted list to sort items.
+    * Pros: Faster alternative and easy to implement as existing components need not be modified.
+    * Cons: Have to ensure the toggling between sorted list and filtered list is done accurately for each command.
+
+* **Alternative 2:** Change underlying list implementation from filtered list to a list that supports sorting.
+    * Pros: Easy to maintain once implemented.
+    * Cons: Changing of underlying list implementation introduces unnecessary complexity and delay as all the other components
+      that depend on filtered list implementation would have to be changed as well. 
+
+      
 ### Delete Item `Delete`
 
 #### Actual Implementation

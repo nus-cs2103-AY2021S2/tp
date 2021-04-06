@@ -1,0 +1,89 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":StoreMandoParser" as StoreMandoParser LOGIC_COLOR
+participant ":AddCommandParser" as AddCommandParser LOGIC_COLOR
+participant "command:AddCommand" as AddCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant "item:Item" as Item MODEL_COLOR
+end box
+
+[-> LogicManager : execute("add n/apple q/2 l/kitchen")
+activate LogicManager
+
+LogicManager -> StoreMandoParser : parseCommand("add n/apple q/2 l/kitchen")
+activate StoreMandoParser
+
+create AddCommandParser
+StoreMandoParser -> AddCommandParser
+activate AddCommandParser
+
+AddCommandParser --> StoreMandoParser
+deactivate AddCommandParser
+
+StoreMandoParser -> AddCommandParser : parse("n/apple q/2 l/kitchen")
+activate AddCommandParser
+
+create Item
+AddCommandParser -> Item : Item()
+activate Item
+Item --> AddCommandParser : item
+deactivate Item
+
+create AddCommand
+AddCommandParser -> AddCommand : AddCommand(item)
+activate AddCommand
+AddCommand --> AddCommandParser : command
+deactivate AddCommand
+
+
+AddCommandParser --> StoreMandoParser : command
+deactivate AddCommandParser
+AddCommandParser -[hidden]-> StoreMandoParser
+destroy AddCommandParser
+
+StoreMandoParser --> LogicManager : command
+deactivate StoreMandoParser
+
+LogicManager -> AddCommand : execute(model)
+activate AddCommand
+
+AddCommand -> Model :hasItem(item)
+activate Model
+Model --> AddCommand
+deactivate Model
+
+AddCommand -> Model :hasSimilarItem(item)
+activate Model
+Model --> AddCommand
+deactivate Model
+
+AddCommand -> Item : isExpired()
+activate Item
+Item --> AddCommand
+deactivate Item
+
+AddCommand -> Model : addItem(item)
+activate Model
+Model --> AddCommand
+deactivate Model
+
+
+create CommandResult
+AddCommand -> CommandResult : CommandResult()
+activate CommandResult
+CommandResult --> AddCommand : result
+deactivate CommandResult
+
+AddCommand --> LogicManager: result
+deactivate AddCommand
+
+[<--LogicManager : result
+deactivate LogicManager
+@enduml
