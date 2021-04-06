@@ -152,8 +152,8 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Add feature 
 
-The `Add` feature allows users to add an item to the inventory. An item is made up of a name, quantity, location, 
-expiry date, and tags.
+The `Add` feature allows users to add an item's details to the inventory. An item's details is made up of it's name, 
+quantity, location, expiry date (optional), and tags (optional).
 
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:** 
@@ -162,21 +162,22 @@ An item's name, quantity and location are compulsory fields that must be supplie
 
 The Sequence Diagram below shows how the components interact with each other for the scenario where the user
 issues the command `add n/apple q/2 l/kitchen`.
+
 ![AddSequenceDiagram][images/AddSequenceDiagram.png]
 
 ####Implementation
 From the diagram above:
 
-1. `LogicManager`'s `execute` is called when the user enters an input into the command box. 
-2. `LogicManager` then calls `parseCommand` of `StoreMandoParser` to parse the user input.
-3.  The `StoreMandoParser` identifies the input as an `AddCommand` and initializes `AddCommandParser`. 
-4. `StoreMando` then invokes the method `parse` of `AddCommandParser` to further parse the user input. 
-   The `AddCommandParser` ensures that the input is of the correct format and identifies the input for name, quantity, 
+1. When the user keys in a command string, `execute` command of the `LogicManager` is called with the given string as input.
+2. In the method, `LogicManager` calls on the `parseCommand` method of `StoreMandoParser` to parse the user input.
+3. The `StoreMandoParser` parses the user input and identifies it as an `AddCommand` and instantiates `AddCommandParser`. 
+4. `StoreMandoParser` then invokes the `parse` method of `AddCommandParser` to further parse the arguments provided. 
+   The `AddCommandParser` ensures that the input is of the correct format and identifies the input for item name, quantity, 
    location, expiry date and tag(s).
 5. If all the arguments of the `add` command are valid, The `AddCommandParser` creates a new `Item` object, 
-   and initiates a new `AddCommand` object that contains the `Item` object. This `AddCommand` object will be
+   and instantiates a new `AddCommand` object that contains the `Item` object. This `AddCommand` object will be
    returned to the `LogicManager`.
-6. The `LogicManager` will then invoke the `execute` method of the `AddCommand` object.   
+6. The `LogicManager` will then invoke the `execute` method of the `AddCommand` object with `model` as argument.   
 7. The `AddCommand` object will then add the new item to `Model`, and return a `CommandResult` to `LogicManager`.
 8. This `CommandResult` will be returned at the end.
 
@@ -216,6 +217,7 @@ view items in the displayed list in chronological order of their expiry date.
 
 The Sequence Diagram below shows how the components interact with each other for the scenario where the user
 issues the command `sort quantity asc`.
+
 ![SortSequenceDiagram][images/SortSequenceDiagram.png]
 
 ####Implementation
@@ -250,13 +252,13 @@ The following activity diagram summarizes what happens when a user executes a `s
 
 ##### Design Considerations:
 
-##### Aspect: Choosing the underlying type of list to store items in as initial implementation of filtered list had no sorting capability.
+##### Aspect: Determining the implementation of sort as initial implementation of filtered list had no sorting capability.
 
 * **Alternative 1 (current choice):** Maintain current implementation of filtered list and utilise a new sorted list to sort items.
     * Pros: Faster alternative and easy to implement as existing components need not be modified.
     * Cons: Have to ensure the toggling between sorted list and filtered list is done accurately for each command.
 
-* **Alternative 2:** Change underlying list implementation from filtered list to a type of list that supports sorting.
+* **Alternative 2:** Change underlying list implementation from filtered list to a list that supports sorting.
     * Pros: Easy to maintain once implemented.
     * Cons: Changing of underlying list implementation introduces unnecessary complexity and delay as all the other components
       that depend on filtered list implementation would have to be changed as well. 
