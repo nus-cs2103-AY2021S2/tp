@@ -200,10 +200,11 @@ public class FindPropertyCommandParser implements Parser<FindPropertyCommand> {
         }
 
         if (argMultimap.getValue(PREFIX_CLIENT_NAME).isPresent()) {
-
+            List<Predicate<Property>> clientList = new ArrayList<>();
             List<String> names = argMultimap.getAllValues(PREFIX_CLIENT_NAME);
             names.forEach(name ->
-                predicates.add(new PropertyClientNamePredicate(Arrays.asList(name.split("\\s+")))));
+                clientList.add(new PropertyClientNamePredicate(Arrays.asList(name.split("\\s+")))));
+            predicates.add(new PropertyPredicateList(clientList).combineDisjunction());
         }
 
         return new FindPropertyCommand(new PropertyPredicateList(predicates));
