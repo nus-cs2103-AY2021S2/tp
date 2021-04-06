@@ -12,9 +12,12 @@ import seedu.address.logic.parser.exceptions.ParseException;
 
 public class TimeUtil {
 
+    public static final DateTimeFormatter TIME_INPUT_FORMATTER;
+
     private static final DateTimeFormatter TIME_PARSER;
 
     private static final DateTimeFormatter DEFAULT_FORMATTER = DateTimeFormatter.ofPattern("hh:mm a");
+    private static final DateTimeFormatter ERROR_MESSAGE_FORMATTER = DateTimeFormatter.ofPattern("HHmm");
 
     private static final String[] patterns;
     private static final String[] examples;
@@ -26,6 +29,8 @@ public class TimeUtil {
         DateTimeFormatterBuilder builder = new DateTimeFormatterBuilder();
         Arrays.stream(patterns).map(DateTimeFormatter::ofPattern).forEach(builder::appendOptional);
         TIME_PARSER = builder.toFormatter();
+
+        TIME_INPUT_FORMATTER = DateTimeFormatter.ofPattern(patterns[0]);
     }
 
     public static final String MESSAGE_CONSTRAINT = MESSAGE_INVALID_TIME_FORMAT + "Format given should be one of "
@@ -48,6 +53,14 @@ public class TimeUtil {
         }
 
         return time;
+    }
+
+    public static boolean afterNow(LocalTime time) {
+        return time.isAfter(LocalTime.now());
+    }
+
+    public static String toErrorMessage(LocalTime time) {
+        return ERROR_MESSAGE_FORMATTER.format(time);
     }
 
     public static String toUi(LocalTime localTime) {

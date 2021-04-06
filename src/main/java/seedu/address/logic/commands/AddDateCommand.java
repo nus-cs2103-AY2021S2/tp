@@ -1,20 +1,23 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_DATE_BEFORE_BIRTHDAY;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.DateUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Event;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.SpecialDate;
 
 /**
  * Adds a special date to an existing person in the FriendDex.
@@ -35,17 +38,17 @@ public class AddDateCommand extends Command {
     public static final String MESSAGE_ADD_DATE_SUCCESS = "Added date for %1$s";
 
     private final Index index;
-    private final Event event;
+    private final SpecialDate specialDate;
 
     /**
-     * @param index of the person in the filtered person list to add date to
-     * @param event details of the date to add
+     * @param index       of the person in the filtered person list to add date to
+     * @param specialDate details of the date to add
      */
-    public AddDateCommand(Index index, Event event) {
-        requireAllNonNull(index, event);
+    public AddDateCommand(Index index, SpecialDate specialDate) {
+        requireAllNonNull(index, specialDate);
 
         this.index = index;
-        this.event = event;
+        this.specialDate = specialDate;
     }
 
     @Override
@@ -58,8 +61,15 @@ public class AddDateCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
-        List<Event> datesToEdit = new ArrayList<>(personToEdit.getDates());
-        datesToEdit.add(event);
+        LocalDate dateToCheck = specialDate.getDate();
+
+        if (personToEdit.isBeforeBirthday(dateToCheck)) {
+            throw new CommandException(String.format(MESSAGE_DATE_BEFORE_BIRTHDAY,
+                    DateUtil.toErrorMessage(dateToCheck)));
+        }
+
+        List<SpecialDate> datesToEdit = new ArrayList<>(personToEdit.getDates());
+        datesToEdit.add(specialDate);
 
         Person editedPerson = personToEdit.withDates(datesToEdit);
 
@@ -81,6 +91,6 @@ public class AddDateCommand extends Command {
         }
 
         AddDateCommand e = (AddDateCommand) other;
-        return index.equals(e.index) && event.equals(e.event);
+        return index.equals(e.index) && specialDate.equals(e.specialDate);
     }
 }

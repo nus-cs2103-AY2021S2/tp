@@ -39,8 +39,8 @@ public class Person {
     private final Picture picture;
     private final Debt debt;
     private final Set<Tag> tags = new HashSet<>();
-    private final List<Event> dates = new ArrayList<>();
-    private final List<Event> meetings = new ArrayList<>();
+    private final List<SpecialDate> dates = new ArrayList<>();
+    private final List<Meeting> meetings = new ArrayList<>();
 
     /**
      * Bare minimum fields to create a Person. Every field must be present and not null.
@@ -61,7 +61,7 @@ public class Person {
      * Used for immutable editing
      */
     public Person(Name name, Phone phone, Email email, Birthday birthday, Goal goal, Address address, Picture picture,
-                  Debt debt, Set<Tag> tags, List<Event> dates, List<Event> meetings) {
+                  Debt debt, Set<Tag> tags, List<SpecialDate> dates, List<Meeting> meetings) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
@@ -124,11 +124,11 @@ public class Person {
         return Collections.unmodifiableSet(tags);
     }
 
-    public List<Event> getDates() {
+    public List<SpecialDate> getDates() {
         return Collections.unmodifiableList(dates);
     }
 
-    public Person withDates(List<Event> dates) {
+    public Person withDates(List<SpecialDate> dates) {
         return new Person(name, phone, email, birthday, goal, address, picture, debt, tags, dates, meetings);
     }
 
@@ -136,7 +136,7 @@ public class Person {
         return new Person(name, phone, email, birthday, goal, address, picture, debt, tags, dates, meetings);
     }
 
-    public List<Event> getMeetings() {
+    public List<Meeting> getMeetings() {
         return Collections.unmodifiableList(meetings);
     }
 
@@ -145,9 +145,12 @@ public class Person {
      * @param meetings
      * @return Person
      */
-    public Person withMeetings(List<Event> meetings) {
+    public Person withMeetings(List<Meeting> meetings) {
         return new Person(name, phone, email, birthday, goal, address, picture, debt, tags, dates, meetings);
+    }
 
+    public boolean isBeforeBirthday(LocalDate date) {
+        return birthday.beforeBirthdate(date);
     }
 
     /**
@@ -161,7 +164,7 @@ public class Person {
 
         // If a meeting falls on the current day then the goal for the current duration will be satisfied
         LocalDate latestMeetingDate = meetings.stream()
-                .map(Event::getDate)
+                .map(Meeting::getDate)
                 .filter(x -> x.isBefore(beforeDate.plusDays(1)))
                 .max(LocalDate::compareTo)
                 .orElse(DateUtil.ZERO_DAY);
@@ -265,17 +268,17 @@ public class Person {
             tags.forEach(builder::append);
         }
 
-        List<Event> dates = getDates();
+        List<SpecialDate> dates = getDates();
         if (!dates.isEmpty()) {
             builder.append("; Dates: ");
             dates.forEach(builder::append);
         }
 
-        List<Event> meetings = getMeetings();
+        List<Meeting> meetings = getMeetings();
         if (!meetings.isEmpty()) {
             String meetingsStr = meetings
                     .stream()
-                    .map(Event::toString)
+                    .map(Meeting::toString)
                     .collect(Collectors.joining(", "));
             builder.append("; Meetings: ");
             builder.append(meetingsStr);

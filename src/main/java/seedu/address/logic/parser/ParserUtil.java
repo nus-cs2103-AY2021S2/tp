@@ -1,7 +1,10 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_DATE_AFTER_TODAY;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_FILE;
+import static seedu.address.commons.core.Messages.MESSAGE_TIME_AFTER_NOW;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.time.LocalDate;
@@ -26,8 +29,10 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Event;
 import seedu.address.model.person.Goal;
 import seedu.address.model.person.Goal.Frequency;
+import seedu.address.model.person.Meeting;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.SpecialDate;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -106,8 +111,10 @@ public class ParserUtil {
     public static Birthday parseBirthday(String birthday) throws ParseException {
         requireNonNull(birthday);
         String trimmedBirthday = birthday.trim();
-        LocalDate birthdayDate = DateUtil.fromDateInput(trimmedBirthday);
-        return new Birthday(birthdayDate);
+        if (!Birthday.isValidBirthday(trimmedBirthday)) {
+            throw new ParseException(Birthday.MESSAGE_CONSTRAINTS);
+        }
+        return new Birthday(trimmedBirthday);
     }
 
     /**
@@ -241,6 +248,56 @@ public class ParserUtil {
         }
         return new Debt(debt);
     }
+
+    /**
+     * Parses the given parameters into a {@code Meeting}
+     *
+     * @throws ParseException if the given parameters are not valid
+     */
+    public static Meeting parseMeeting(LocalDate date, LocalTime time, String description) throws ParseException {
+        requireAllNonNull(date, time, description);
+        String trimmedDescription = description.trim();
+
+        // Not using isValidMeeting here for clearer error messages
+        if (DateUtil.afterToday(date)) {
+            throw new ParseException(String.format(MESSAGE_DATE_AFTER_TODAY,
+                    DateUtil.toErrorMessage(date)));
+        }
+
+        if (DateUtil.isToday(date) && TimeUtil.afterNow(time)) {
+            throw new ParseException(String.format(MESSAGE_TIME_AFTER_NOW,
+                    TimeUtil.toErrorMessage(time)));
+        }
+
+        if (!Meeting.isValidDescription(trimmedDescription)) {
+            throw new ParseException(Meeting.DESCRIPTION_MESSAGE_CONSTRAINTS);
+        }
+
+        return new Meeting(date, time, description);
+    }
+
+    /**
+     * Parses the given parameters into a {@code SpecialDate}
+     *
+     * @throws ParseException if the given parameters are not valid
+     */
+    public static SpecialDate parseSpecialDate(LocalDate date, String description) throws ParseException {
+        requireAllNonNull(date, description);
+        String trimmedDescription = description.trim();
+
+        // Not using isValidSpecialDate here for clearer error messages
+        if (DateUtil.afterToday(date)) {
+            throw new ParseException(String.format(MESSAGE_DATE_AFTER_TODAY,
+                    DateUtil.toErrorMessage(date)));
+        }
+
+        if (!SpecialDate.isValidDescription(trimmedDescription)) {
+            throw new ParseException(SpecialDate.DESCRIPTION_MESSAGE_CONSTRAINTS);
+        }
+
+        return new SpecialDate(date, description);
+    }
+
     /**
      * Parses a {@code String} into a {@code Frequency}
      *

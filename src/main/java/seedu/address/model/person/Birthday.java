@@ -10,11 +10,11 @@ import seedu.address.commons.util.DateUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 public class Birthday {
-    public static final String MESSAGE_CONSTRAINTS =
-            seedu.address.commons.util.DateUtil.MESSAGE_CONSTRAINT;
+    public static final String MESSAGE_CONSTRAINTS = seedu.address.commons.util.DateUtil.MESSAGE_CONSTRAINT
+            + "\nBirthday should also be before today.";
 
     public static final DateTimeFormatter BIRTHDAY_INPUT_FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-    public final LocalDate date;
+    public final LocalDate birthDate;
 
     /**
      * Constructs a {@code Birthday}.
@@ -24,7 +24,7 @@ public class Birthday {
      */
     public Birthday(LocalDate date) {
         requireNonNull(date);
-        this.date = date;
+        this.birthDate = date;
     }
 
     /**
@@ -37,35 +37,42 @@ public class Birthday {
         requireNonNull(birthday);
         checkArgument(isValidBirthday(birthday), MESSAGE_CONSTRAINTS);
         try {
-            this.date = DateUtil.fromDateInput(birthday);
+            this.birthDate = DateUtil.fromDateInput(birthday);
         } catch (ParseException e) {
             throw new IllegalArgumentException(MESSAGE_CONSTRAINTS);
         }
     }
 
     public LocalDate getDate() {
-        return date;
+        return birthDate;
     }
 
     /**
      * Returns true if a given string is a valid birthday.
      */
-    public static boolean isValidBirthday(String test) {
+    public static boolean isValidBirthday(String birthdayStr) {
+        LocalDate date;
+
         try {
-            DateUtil.fromDateInput(test);
-            return true;
+            date = DateUtil.fromDateInput(birthdayStr);
         } catch (ParseException e) {
             return false;
         }
+
+        return !DateUtil.afterToday(date);
+    }
+
+    public boolean beforeBirthdate(LocalDate date) {
+        return date.isBefore(birthDate);
     }
 
     @Override
     public String toString() {
-        return DateUtil.toString(date, BIRTHDAY_INPUT_FORMAT);
+        return DateUtil.toString(birthDate, BIRTHDAY_INPUT_FORMAT);
     }
 
     public String toUi() {
-        return DateUtil.toUi(date);
+        return DateUtil.toUi(birthDate);
     }
 
     @Override
@@ -77,7 +84,7 @@ public class Birthday {
 
     @Override
     public int hashCode() {
-        return date.hashCode();
+        return birthDate.hashCode();
     }
 
 }
