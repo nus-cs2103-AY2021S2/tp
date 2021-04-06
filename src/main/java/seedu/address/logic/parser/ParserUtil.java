@@ -12,7 +12,6 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.module.Assignment;
 import seedu.address.model.module.Description;
 import seedu.address.model.module.Exam;
 import seedu.address.model.module.Title;

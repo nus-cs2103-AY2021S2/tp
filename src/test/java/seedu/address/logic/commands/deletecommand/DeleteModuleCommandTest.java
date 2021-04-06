@@ -46,7 +46,7 @@ public class DeleteModuleCommandTest {
     @Test
     public void execute_invalidModuleTitle_throwsCommandException() {
 
-        Title invalidTitle = new Title("INVALID_DELETE_TITLE");
+        Title invalidTitle = new Title("INVALID DELETE TITLE");
 
         DeleteModuleCommand deleteModuleCommand = new DeleteModuleCommand(invalidTitle);
         assertCommandFailure(deleteModuleCommand, model, Messages.MESSAGE_INVALID_MODULE_TITLE);

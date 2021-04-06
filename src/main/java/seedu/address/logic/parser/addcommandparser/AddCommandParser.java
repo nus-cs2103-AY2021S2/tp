@@ -51,11 +51,10 @@ public class AddCommandParser {
     }
 
     private boolean addModuleCondition(ArgumentMultimap argMultimap) {
-        boolean a = arePrefixesPresent(argMultimap, PREFIX_MODULE);
-        boolean b = argMultimap.getPreamble().isEmpty();
-        boolean c = !arePrefixesPresent(argMultimap, PREFIX_ASSIGNMENT);
-        boolean d = !arePrefixesPresent(argMultimap, PREFIX_EXAM);
-        return a && b && c && d;
+        return arePrefixesPresent(argMultimap, PREFIX_MODULE)
+                && argMultimap.getPreamble().isEmpty()
+                && !arePrefixesPresent(argMultimap, PREFIX_ASSIGNMENT)
+                && !arePrefixesPresent(argMultimap, PREFIX_EXAM);
     }
 
     private boolean addAssigmentCondition(ArgumentMultimap argMultimap) {

@@ -1,8 +1,5 @@
 package seedu.address.logic.commands.deletecommand;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
-
 import seedu.address.logic.commands.Command;
 
 public abstract class DeleteCommand extends Command {

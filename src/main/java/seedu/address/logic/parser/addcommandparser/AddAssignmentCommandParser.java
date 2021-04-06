@@ -6,7 +6,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
 
 import seedu.address.logic.commands.addcommand.AddAssignmentCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
