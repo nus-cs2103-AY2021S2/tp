@@ -100,13 +100,13 @@ StoreMando does not allow two identical items to exist.
 Two items are considered to be similar if they have the same spelling for name and location but differ by letter case. 
 StoreMando will accept similar items but will give a warning to alert the user about the existence of similar items.
 
-Item Attribute | Remarks
+Item Attribute | Constraints
 --------------------| -------
-Item Name  | An alphanumeric string that can contain spaces.
-Location | A string that can contain spaces and symbols.
-Quantity | An integer that must be at least 1.
+Item Name  | An alphanumeric string that can be one word or more.
+Location | A string.
+Quantity | An integer that must be at least 1 and cannot exceed 1,000,000.
 Expiry Date | A date in the format of YYYY-MM-DD. An item can either have 1 expiry date or no expiry date.
-Tag | An alphanumeric string that cannot contain spaces. An item can 0 or more tags.
+Tag | An alphanumeric string that can only be one word long. An item can 0 or more tags.
 
 ### 2.4. Prefixes and Keywords
 
@@ -170,6 +170,7 @@ Examples:
 * Inputs given are case-sensitive. i.e. `add n/Chocolate Milk l/kitchen refrigerator q/2` and 
   `add n/chocolate milk l/Kitchen Refrigerator q/2` can be keyed it one after the other without
   any error being thrown.
+* Quantity provided must be greater than 0 and should not exceed 1,000,000. 
 
 </div>
 
@@ -212,6 +213,7 @@ Examples:
   that is [identical to another item](#23-information-on-items).
 * When editing tags, the existing tags of the item will be removed i.e. adding of tags is not cumulative.
 * You can remove all the items’ tags by typing `t/` without specifying any tags after it.
+* Quantity provided must be greater than 0 and should not exceed 1,000,000.
 
 </div>
 
