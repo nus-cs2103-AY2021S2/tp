@@ -3,7 +3,6 @@ package seedu.address.ui.calendar;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
-import java.time.Year;
 import java.time.YearMonth;
 import java.util.logging.Logger;
 
