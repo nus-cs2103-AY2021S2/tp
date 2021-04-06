@@ -22,7 +22,7 @@ while still having the benefits of a Graphical User Interface (GUI).
 * Marking one or more tasks as done : [`done_task`](#marking-a-task-as-done-done_task)
 * Marking a task as uncompleted : [`undone_task`](#marking-a-task-as-uncompleted-undone_task)
 * Getting today's tasks: [`today_task`](#listing-all-tasks-today-today_task)
-* Finding tasks: [`find_task`](#finding-all-matching-tasks-find_task)
+* Finding tasks by name: [`find_task`](#finding-all-matching-tasks-find_task)
 * Sorting all tasks: [`sort_task`](#sorting-all-tasks-sort_task)
 * Pinning a task: [`pin_task`](#pinning-a-task-pin_task)
 * Unpinning a task: [`unpin_task`](#unpinning-a-task-unpin_task)
@@ -35,7 +35,7 @@ while still having the benefits of a Graphical User Interface (GUI).
 * Editing a task: [`edit_event`](#editing-a-event-edit_event)
 * Listing all events: [`list_event`](#listing-all-events-list_event)
 * Getting today's events: [`today_event`](#listing-all-events-today-today_event)
-* Finding events: [`find_event`](#finding-all-matching-events-find_event)
+* Finding events by name: [`find_event`](#finding-all-matching-events-find_event)
 * Clearing expired events: [`clear_expired_event`](#clearing-expired-events-clear_expired_event)
 
 ### Commands Related to Both Task and Event
@@ -219,7 +219,7 @@ Examples:
 [Return to Feature List](#feature-list)
 
 
-### Listing all tasks today: `today_task`
+### Getting today's tasks: `today_task`
 Lists all tasks that have deadline on today from SOChedule Task List.
 
 Format: `today_task`
@@ -227,7 +227,7 @@ Format: `today_task`
 [Return to Feature List](#feature-list)
 
 
-### Finding all matching tasks: `find_task`
+### Finding tasks by name: `find_task`
 Finds matching tasks from Task List.
 
 Format: `find_task KEYWORDS`
@@ -386,7 +386,7 @@ Format: `list_event`
 [Return to Feature List](#feature-list)
 
 
-### Listing all events today: `today_event`
+### Getting today's events: `today_event`
 Lists all events whose duration have overlap with today from the Event Scheduler.
 
 Format: `today_event`
@@ -394,7 +394,7 @@ Format: `today_event`
 [Return to Feature List](#feature-list)
 
 
-### Finding all matching events: `find_event`
+### Finding events by name: `find_event`
 Finds matching events from Event Scheduler.
 
 Format: `find_event KEYWORDS`
