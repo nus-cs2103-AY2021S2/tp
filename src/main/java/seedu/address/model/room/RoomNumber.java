@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Room's number in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidRoomNumber(String)}
  */
-public class RoomNumber {
+public class RoomNumber implements Comparable<RoomNumber> {
     public static final String MESSAGE_CONSTRAINTS =
             "Room numbers should only contain positive integers and dashes, and it should not be blank";
 
@@ -57,5 +57,10 @@ public class RoomNumber {
     @Override
     public int hashCode() {
         return roomNumber.hashCode();
+    }
+
+    @Override
+    public int compareTo(RoomNumber roomNumber) {
+        return this.roomNumber.compareTo(roomNumber.roomNumber);
     }
 }
