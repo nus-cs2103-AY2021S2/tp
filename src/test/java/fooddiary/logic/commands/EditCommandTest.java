@@ -4,7 +4,9 @@ import static fooddiary.logic.commands.CommandTestUtil.assertCommandFailure;
 import static fooddiary.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static fooddiary.testutil.TypicalEntries.getTypicalFoodDiaryWithMultipleEntries;
 import static fooddiary.testutil.TypicalEntries.getTypicalFoodDiaryWithSingleEntry;
-import static fooddiary.testutil.TypicalIndexes.*;
+import static fooddiary.testutil.TypicalIndexes.INDEX_FIRST_ENTRY;
+import static fooddiary.testutil.TypicalIndexes.INDEX_SECOND_ENTRY;
+import static fooddiary.testutil.TypicalIndexes.INDEX_THIRD_ENTRY;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 

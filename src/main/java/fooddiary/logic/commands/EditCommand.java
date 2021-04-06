@@ -15,7 +15,6 @@ import fooddiary.commons.core.index.Index;
 import fooddiary.commons.util.CollectionUtil;
 import fooddiary.logic.commands.exceptions.CommandException;
 import fooddiary.logic.parser.CliSyntax;
-import fooddiary.logic.parser.exceptions.ParseException;
 import fooddiary.model.Model;
 import fooddiary.model.entry.Address;
 import fooddiary.model.entry.Entry;

@@ -1,7 +1,5 @@
 package fooddiary.logic.parser;
 
-import static fooddiary.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
 import fooddiary.commons.core.Messages;
 import fooddiary.commons.core.index.Index;
 import fooddiary.logic.commands.ViewCommand;
@@ -24,7 +22,7 @@ public class ViewCommandParser implements Parser<ViewCommand> {
             throw new ParseException(e.getMessage());
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE), pe);
+                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE), pe);
         }
     }
 }

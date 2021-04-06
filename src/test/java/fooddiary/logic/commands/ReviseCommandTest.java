@@ -108,7 +108,8 @@ class ReviseCommandTest {
         reviseCommand = new ReviseCommand(outOfBoundIndex);
 
         //Check when model has single entry (to check for singular message)
-        assertCommandFailure(reviseCommand, modelMultipleEntries, Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX_SINGULAR);
+        assertCommandFailure(reviseCommand, modelMultipleEntries,
+                Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX_SINGULAR);
     }
 
     @Test

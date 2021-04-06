@@ -5,7 +5,10 @@ import static fooddiary.commons.core.Messages.MESSAGE_INVALID_ENTRY_INDEX_OUT_OF
 import static fooddiary.logic.parser.CliSyntax.PREFIX_TAG_CATEGORY;
 import static fooddiary.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static fooddiary.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static fooddiary.testutil.TypicalIndexes.*;
+import static fooddiary.testutil.TypicalIndexes.INDEX_FIRST_ENTRY;
+import static fooddiary.testutil.TypicalIndexes.INDEX_MILLIONTH_ENTRY;
+import static fooddiary.testutil.TypicalIndexes.INDEX_SECOND_ENTRY;
+import static fooddiary.testutil.TypicalIndexes.INDEX_THIRD_ENTRY;
 
 import org.junit.jupiter.api.Test;
 
