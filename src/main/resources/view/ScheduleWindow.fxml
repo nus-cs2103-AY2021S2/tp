@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root resizable="false" title="Schedule" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root title="Schedule" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/important_dates.png" />
   </icons>
@@ -31,7 +31,7 @@
                <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
             </padding>
             <children>
-               <GridPane fx:id="gridPane" prefHeight="35.0" prefWidth="693.0">
+               <GridPane fx:id="gridPane" prefHeight="35.0" prefWidth="693.0" VBox.vgrow="NEVER">
                  <columnConstraints>
                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -54,7 +54,7 @@
                      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="105.0" text="Monday" textAlignment="CENTER" GridPane.columnIndex="1" />
                   </children>
                </GridPane>
-               <HBox fx:id="scheduleList" prefHeight="303.0" prefWidth="700.0">
+               <HBox fx:id="scheduleList" prefHeight="317.0" prefWidth="1031.0" VBox.vgrow="ALWAYS">
                   <children>
                      <StackPane fx:id="sundayListPanelPlaceholder" prefHeight="150.0" prefWidth="200.0" />
                      <StackPane fx:id="mondayListPanelPlaceholder" prefHeight="150.0" prefWidth="200.0" />
