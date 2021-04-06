@@ -37,7 +37,7 @@ public class EditRoomCommand extends Command {
             + "by the index number used in the displayed room list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_ROOM_NUMBER + "NAME] "
+            + "[" + PREFIX_ROOM_NUMBER + "ROOM_NUMBER] "
             + "[" + PREFIX_ROOM_TYPE + "TYPE] "
             + "[" + PREFIX_ROOM_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
@@ -45,7 +45,7 @@ public class EditRoomCommand extends Command {
 
     public static final String MESSAGE_EDIT_ROOM_SUCCESS = "Edited Room: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_ROOM = "This room already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_ROOM = "This room already exists in SunRez.";
     public static final String MESSAGE_ROOM_ALLOCATED_FAILURE =
             "The room has already been allocated to another resident. Please deallocate the room before editing.";
 

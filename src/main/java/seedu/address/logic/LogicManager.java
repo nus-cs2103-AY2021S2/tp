@@ -42,7 +42,7 @@ public class LogicManager implements Logic {
         this.storage = storage;
         addressBookParser = new AddressBookParser();
         commandHistorySelector = new SuppliedCommandHistorySelector(this::getCommandHistory);
-        commandHistorySelector.selectLast();
+        commandHistorySelector.navigateToOnePastLast();
     }
 
     @Override
@@ -54,7 +54,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         model.appendCommandHistoryEntry(commandText);
-        commandHistorySelector.selectLast();
+        commandHistorySelector.navigateToOnePastLast();
 
         try {
             storage.saveAddressBook(model.getAddressBook());

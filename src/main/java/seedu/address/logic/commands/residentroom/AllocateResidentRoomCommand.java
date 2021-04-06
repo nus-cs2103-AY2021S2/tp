@@ -1,9 +1,13 @@
 package seedu.address.logic.commands.residentroom;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM_NUMBER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RESIDENT_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM_INDEX;
 
+import java.util.List;
+
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -14,6 +18,7 @@ import seedu.address.logic.commands.room.EditRoomCommand.EditRoomDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.resident.Resident;
 import seedu.address.model.residentroom.ResidentRoom;
+import seedu.address.model.room.IsOccupied;
 import seedu.address.model.room.Room;
 
 public class AllocateResidentRoomCommand extends Command {
@@ -21,75 +26,82 @@ public class AllocateResidentRoomCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Allocates a resident to a room in SunRez. "
             + "Parameters: "
-            + PREFIX_NAME + "NAME "
-            + PREFIX_ROOM_NUMBER + "ROOM NUMBER \n"
+            + PREFIX_RESIDENT_INDEX + "INDEX "
+            + PREFIX_ROOM_INDEX + "INDEX \n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "John Tan "
-            + PREFIX_ROOM_NUMBER + "12-123";
+            + PREFIX_RESIDENT_INDEX + "1 "
+            + PREFIX_ROOM_INDEX + "2";
 
     public static final String MESSAGE_SUCCESS = "New allocation made: %1$s";
-    public static final String MESSAGE_NOT_FOUND_RESIDENT = "This resident does not exist";
-    public static final String MESSAGE_NOT_FOUND_ROOM = "This room does not exist";
     public static final String MESSAGE_DUPLICATE_RESIDENTROOM = "This resident or room has "
             + "already been allocated in SunRez";
 
-    private final ResidentRoom toAllocate;
-    private final EditResidentDescriptor editResidentDescriptor;
-    private final EditRoomDescriptor editRoomDescriptor;
-
+    private final Index targetResidentIndex;
+    private final Index targetRoomIndex;
 
     /**
      * Creates an AddResidentRoomCommand to add the specified {@code ResidentRoom}
      */
-    public AllocateResidentRoomCommand(ResidentRoom residentRoom, EditResidentDescriptor editResidentDescriptor,
-                    EditRoomDescriptor editRoomDescriptor) {
-        requireNonNull(residentRoom);
-        this.toAllocate = residentRoom;
-        this.editResidentDescriptor = new EditResidentDescriptor(editResidentDescriptor);
-        this.editRoomDescriptor = new EditRoomDescriptor(editRoomDescriptor);
+    public AllocateResidentRoomCommand(Index targetResidentIndex, Index targetRoomIndex) {
+        this.targetResidentIndex = targetResidentIndex;
+        this.targetRoomIndex = targetRoomIndex;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        // Checks if room exists
-        if (!model.hasRoom(toAllocate.getRoomNumber())) {
-            throw new CommandException(MESSAGE_NOT_FOUND_ROOM);
+        List<Resident> lastShownResidentList = model.getFilteredResidentList();
+        List<Room> lastShownRoomList = model.getFilteredRoomList();
+
+        if (targetResidentIndex.getZeroBased() >= lastShownResidentList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_RESIDENT_DISPLAYED_INDEX);
+        }
+        if (targetRoomIndex.getZeroBased() >= lastShownRoomList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_ROOM_DISPLAYED_INDEX);
         }
 
-        // Checks if resident exists
-        if (!model.hasResident(toAllocate.getName())) {
-            throw new CommandException(MESSAGE_NOT_FOUND_RESIDENT);
-        }
+        Resident residentToAllocate = lastShownResidentList.get(targetResidentIndex.getZeroBased());
+        Room roomToBeAllocated = lastShownRoomList.get(targetRoomIndex.getZeroBased());
+
+        ResidentRoom residentRoom = new ResidentRoom(residentToAllocate.getName(), roomToBeAllocated.getRoomNumber());
 
         // Checks if either resident or room is allocated or occupied
-        if (model.hasEitherResidentRoom(toAllocate)) {
+        if (model.hasEitherResidentRoom(residentRoom)) {
             throw new CommandException(MESSAGE_DUPLICATE_RESIDENTROOM);
         }
 
-        // Set Resident room to Room Number
-        Resident residentToEdit = model.getResidentWithSameName(toAllocate.getName());
-        Resident editedResident = EditResidentCommand.createEditedResident(residentToEdit, editResidentDescriptor);
-        model.setResident(residentToEdit, editedResident);
-        model.updateFilteredResidentList(Model.PREDICATE_SHOW_ALL_RESIDENTS);
-
-        //  Set Room occupancy to Y.
-        Room roomToEdit = model.getRoomWithSameRoomNumber(toAllocate.getRoomNumber());
-        Room editedRoom = EditRoomCommand.createEditedRoom(roomToEdit, editRoomDescriptor);
-        model.setRoom(roomToEdit, editedRoom);
-        model.updateFilteredRoomList(Model.PREDICATE_SHOW_ALL_ROOMS);
+        setResidentToAllocated(residentToAllocate, roomToBeAllocated, model);
+        setRoomToOccupied(roomToBeAllocated, model);
 
         // Set ResidentRoom
-        model.addResidentRoom(toAllocate);
+        model.addResidentRoom(residentRoom);
         model.commitAddressBook();
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAllocate));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, residentRoom));
+    }
+
+    private void setResidentToAllocated(Resident resident, Room room, Model model) {
+        EditResidentDescriptor editResidentDescriptor = new EditResidentCommand.EditResidentDescriptor();
+        editResidentDescriptor.setRoom(new seedu.address.model.resident.Room(room.getRoomNumber().toString()));
+        Resident editedResident = EditResidentCommand
+                .createEditedResident(resident, editResidentDescriptor);
+        model.setResident(resident, editedResident);
+        model.updateFilteredResidentList(Model.PREDICATE_SHOW_ALL_RESIDENTS);
+    }
+
+    private void setRoomToOccupied(Room room, Model model) {
+        EditRoomDescriptor editRoomDescriptor = new EditRoomCommand.EditRoomDescriptor();
+        editRoomDescriptor.setIsOccupied(new IsOccupied(IsOccupied.OCCUPIED));
+        seedu.address.model.room.Room editedRoom = EditRoomCommand.createEditedRoom(room, editRoomDescriptor);
+        model.setRoom(room, editedRoom);
+        model.updateFilteredRoomList(Model.PREDICATE_SHOW_ALL_ROOMS);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AllocateResidentRoomCommand // instanceof handles nulls
-                && toAllocate.equals(((AllocateResidentRoomCommand) other).toAllocate));
+                && targetResidentIndex.equals(((AllocateResidentRoomCommand) other).targetResidentIndex)
+                && targetRoomIndex.equals(((AllocateResidentRoomCommand) other).targetRoomIndex));
     }
 }
