@@ -12,6 +12,7 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_ENDDATE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ENDTIME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_STARTDATE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_STARTDATE_DESC_0229;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_STARTTIME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_EVENTONE;
@@ -96,13 +97,16 @@ public class EditEventCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS);
 
         // invalid start date
-        assertParseFailure(parser, "1" + INVALID_STARTDATE_DESC, Date.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_STARTDATE_DESC, Date.MESSAGE_CONSTRAINTS_FORMAT);
+
+        // invalid start date 0229
+        assertParseFailure(parser, "1" + INVALID_STARTDATE_DESC_0229, Date.MESSAGE_CONSTRAINTS);
 
         // invalid start time
         assertParseFailure(parser, "1" + INVALID_STARTTIME_DESC, Time.MESSAGE_CONSTRAINTS);
 
         // invalid end date
-        assertParseFailure(parser, "1" + INVALID_ENDDATE_DESC, Date.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_ENDDATE_DESC, Date.MESSAGE_CONSTRAINTS_FORMAT);
 
         // invalid end time
         assertParseFailure(parser, "1" + INVALID_ENDTIME_DESC, Time.MESSAGE_CONSTRAINTS);
@@ -115,11 +119,11 @@ public class EditEventCommandParserTest {
 
         // invalid start date followed by valid end date.
         assertParseFailure(parser, "1" + INVALID_STARTDATE_DESC + ENDDATE_DESC_EVENTONE,
-                Date.MESSAGE_CONSTRAINTS);
+                Date.MESSAGE_CONSTRAINTS_FORMAT);
 
         // valid start date followed by invalid start date.
         assertParseFailure(parser, "1" + STARTDATE_DESC_EVENTONE + INVALID_STARTDATE_DESC,
-                Date.MESSAGE_CONSTRAINTS);
+                Date.MESSAGE_CONSTRAINTS_FORMAT);
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Event} being edited,
         // parsing it together with a valid tag results in error

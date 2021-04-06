@@ -7,6 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_TASKONE
 import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_TASKTWO;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_CATEGORY_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DEADLINE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DEADLINE_DESC_0229;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PRIORITY_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
@@ -85,7 +86,10 @@ public class EditTaskCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS);
 
         // invalid deadline
-        assertParseFailure(parser, "1" + INVALID_DEADLINE_DESC, Date.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_DEADLINE_DESC, Date.MESSAGE_CONSTRAINTS_FORMAT);
+
+        // invalid deadline
+        assertParseFailure(parser, "1" + INVALID_DEADLINE_DESC_0229, Date.MESSAGE_CONSTRAINTS);
 
         // invalid priority
         assertParseFailure(parser, "1" + INVALID_PRIORITY_DESC, Priority.MESSAGE_CONSTRAINTS);
@@ -98,11 +102,11 @@ public class EditTaskCommandParserTest {
 
         // invalid deadline followed by valid priority.
         assertParseFailure(parser, "1" + INVALID_DEADLINE_DESC + PRIORITY_DESC_TASKONE,
-                Date.MESSAGE_CONSTRAINTS);
+                Date.MESSAGE_CONSTRAINTS_FORMAT);
 
         // valid deadline followed by invalid deadline.
         assertParseFailure(parser, "1" + DEADLINE_DESC_TASKONE + INVALID_DEADLINE_DESC,
-                Date.MESSAGE_CONSTRAINTS);
+                Date.MESSAGE_CONSTRAINTS_FORMAT);
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Task} being edited,
         // parsing it together with a valid tag results in error

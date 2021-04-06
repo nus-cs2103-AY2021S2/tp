@@ -90,11 +90,13 @@ public class CommandTestUtil {
     // Invalid inputs
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "Invalid&"; // '&' is not allowed in names
     public static final String INVALID_DEADLINE_DESC = " " + PREFIX_DEADLINE + "2&20-01-02"; // not allowed in date
+    public static final String INVALID_DEADLINE_DESC_0229 = " " + PREFIX_DEADLINE + "2022-02-29"; // not allowed in date
     public static final String INVALID_DEADLINEPAST_DESC = " " + PREFIX_DEADLINE + "1998-01-02"; // not allowed in date
     public static final String INVALID_PRIORITY_DESC = " " + PREFIX_PRIORITY + "15"; // '15' is out of the bound
     public static final String INVALID_CATEGORY_DESC = " " + PREFIX_CATEGORY + "h@mework"; // not allowed in category
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "imp@rtant"; // not allowed in tag
     public static final String INVALID_STARTDATE_DESC = " " + PREFIX_STARTDATE + "2&20-01-02"; // not allowed in date
+    public static final String INVALID_STARTDATE_DESC_0229 = " " + PREFIX_STARTDATE + "2022-02-29"; // not such date
     public static final String INVALID_STARTTIME_DESC = " " + PREFIX_STARTTIME + "10:"; // not allowed in time
     public static final String INVALID_ENDDATE_DESC = " " + PREFIX_ENDDATE + "199*-01-02"; // not allowed in date
     public static final String INVALID_ENDDATEPAST_DESC = " " + PREFIX_ENDDATE + "1998-01-02"; // not allowed in date

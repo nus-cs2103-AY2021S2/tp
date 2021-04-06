@@ -14,6 +14,7 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_ENDDATE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ENDTIME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_STARTDATE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_STARTDATE_DESC_0229;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_STARTTIME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_EVENTONE;
@@ -174,6 +175,11 @@ public class AddEventCommandParserTest {
         // invalid start date
         assertParseFailure(parser, NAME_DESC_EVENTONE + INVALID_STARTDATE_DESC
                 + STARTTIME_DESC_EVENTONE + ENDDATE_DESC_EVENTONE + ENDTIME_DESC_EVENTONE
+                + CATEGORY_DESC_WORK + TAG_DESC_FINAL, Date.MESSAGE_CONSTRAINTS_FORMAT);
+
+        // invalid start date 0229
+        assertParseFailure(parser, NAME_DESC_EVENTONE + INVALID_STARTDATE_DESC_0229
+                + STARTTIME_DESC_EVENTONE + ENDDATE_DESC_EVENTONE + ENDTIME_DESC_EVENTONE
                 + CATEGORY_DESC_WORK + TAG_DESC_FINAL, Date.MESSAGE_CONSTRAINTS);
 
         // invalid start time
@@ -184,7 +190,7 @@ public class AddEventCommandParserTest {
         // invalid end date
         assertParseFailure(parser, NAME_DESC_EVENTONE + STARTDATE_DESC_EVENTONE
                 + STARTTIME_DESC_EVENTONE + INVALID_ENDDATE_DESC + ENDTIME_DESC_EVENTONE
-                + CATEGORY_DESC_WORK + TAG_DESC_FINAL, Date.MESSAGE_CONSTRAINTS);
+                + CATEGORY_DESC_WORK + TAG_DESC_FINAL, Date.MESSAGE_CONSTRAINTS_FORMAT);
 
         // invalid end time
         assertParseFailure(parser, NAME_DESC_EVENTONE + STARTDATE_DESC_EVENTONE
