@@ -121,6 +121,13 @@ public interface Model {
     void removeAssignee(Person target);
 
     /**
+     * Edits the given person {@code target} with {@code editedPerson} in the Assignees of any task.
+     * {@code target} must exist in Hey Matez.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in Hey Matez.
+     */
+    void editAssignee(Person target, Person editedPerson);
+
+    /**
      * Updates the filter of the filtered task list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
