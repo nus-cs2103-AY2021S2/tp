@@ -31,6 +31,7 @@ Given below are my contributions to the project.
     * Added screenshots of the application for each user input. [#71](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/71)
 * **Contributions to the DG**:
     * Added the User Stories section [#36](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/36), [#53](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/53)
+    * Update UML class diagrams for `UI`, `Storage` and `Logic` classes. [#91](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/91/files).
     * Added implementation details including class diagram and sequence diagram for Review feature [#91](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/91)
     * Added use case for Review feature [#91](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/91)
     * Added instruction for manual testing for view and review feature [#104](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/104)
@@ -38,3 +39,7 @@ Given below are my contributions to the project.
     * PR reviewed: [#86](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/86), [#89](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/89), [#90](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/90), [#113](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/113)
 * **Contribution to Team-Based Tasks**:
     * Changed the product name and icon.
+    * Actively looked for bugs in teammates' code.
+    * Managed the deadlines for team members.
+* **Contribution beyond project team**:
+    * Bugs reported in PE Dry Run: [Issue Tracker](#https://github.com/vuminhhieunus2019/ped/issues)
