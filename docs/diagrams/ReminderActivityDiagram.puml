@@ -1,0 +1,16 @@
+@startuml
+start
+: User enters reminder command;
+: Parse user input;
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([User input is valid])
+    : Create and execute ReminderCommand;
+    : Display items expiring within the given number of days;
+    : Display command success message;
+else ([Else])
+    : Display parse error message;
+endif
+stop
+@enduml
