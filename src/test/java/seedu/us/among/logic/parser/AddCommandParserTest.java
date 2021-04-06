@@ -52,7 +52,7 @@ public class AddCommandParserTest {
                         + ADDRESS_DESC_FACT + DATA_DESC_DEFAULT + HEADER_DESC_DEFAULT + TAG_DESC_COOL,
                 new AddCommand(expectedEndpoint));
 
-        // multiple methods - last name accepted
+        // multiple methods - last method accepted
         assertParseSuccess(parser, METHOD_DESC_GET + METHOD_DESC_POST
                         + ADDRESS_DESC_FACT + DATA_DESC_DEFAULT + HEADER_DESC_DEFAULT + TAG_DESC_COOL,
                 new AddCommand(expectedEndpoint));
@@ -101,7 +101,7 @@ public class AddCommandParserTest {
     public void parse_compulsoryFieldMissing_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
 
-        // missing name prefix
+        // missing method prefix
         assertParseFailure(parser, VALID_METHOD_POST + ADDRESS_DESC_FACT, expectedMessage);
 
         // missing address prefix
@@ -114,7 +114,7 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        // invalid name
+        // invalid method
         assertParseFailure(parser, INVALID_METHOD_DESC + ADDRESS_DESC_FACT + TAG_DESC_COOL + TAG_DESC_CAT,
                 Method.MESSAGE_CONSTRAINTS);
 
