@@ -30,15 +30,14 @@ public class BudgetCard extends UiPart<Region> {
     private Label description;
 
     /**
-     * Creates a {@code BudgetCard} with the given {@code Reminder} and index to
+     * Creates a {@code BudgetCard} with the given {@code Budget} and index to
      * display.
      */
-    public BudgetCard(Budget budget, int displayedIndex) {
+    public BudgetCard(Budget budget) {
         super(FXML);
         this.budget = budget;
-        id.setText(displayedIndex + ". ");
 
-        description.setText(String.format("Budget: %d\nTotal Cost of Appointments: %d",
+        description.setText(String.format("Budget: $%d\nTotal Cost of Appointments: $%d",
             this.budget.getValue(), this.budget.getTotalCost()));
     }
 
