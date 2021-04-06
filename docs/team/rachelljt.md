@@ -15,4 +15,6 @@ Given below are my contributions to the project.
     * What it does: Allows the user to delete a specific task given a valid index one at a time.(Pull Requests: [\#67](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/67), [\#106](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/106))
     * Justification: This feature allows the user to delete an existing Task in the list based on a given index. 
       Should the user accidentally adds a task, they can delete it easily. 
-    * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
+    * Highlights: The implementation was challenging as it required changes to existing commands. For instance, I had to change the function of
+    isNonZeroUnsignedInteger in StringUtil.java from a boolean function to an int function to take into account of the Valid Integers,
+      Invalid Integers and Invalid Input such that different error messages would be thrown should the index differ from the format.
