@@ -27,18 +27,16 @@ public class VaccinationStatusTest {
         // invalid vaccination statuses
         assertFalse(VaccinationStatus.isValidStatus("")); // empty string
         assertFalse(VaccinationStatus.isValidStatus(" ")); // spaces only
-        assertFalse(VaccinationStatus.isValidStatus("unvaccinated"));
+        assertFalse(VaccinationStatus.isValidStatus("Not Vaccinated"));
         assertFalse(VaccinationStatus.isValidStatus("v@ccinated")); // spaces only
         assertFalse(VaccinationStatus.isValidStatus("vaxxed")); // spaces only
         assertFalse(VaccinationStatus.isValidStatus("vax")); // spaces only
 
 
         // valid vaccination statuses
-        assertTrue(VaccinationStatus.isValidStatus("Not Vaccinated"));
-        assertTrue(VaccinationStatus.isValidStatus("NOT VACCINATED"));
         assertTrue(VaccinationStatus.isValidStatus("vaccinated"));
-        assertTrue(VaccinationStatus.isValidStatus("NOT VACCINATED"));
-        assertTrue(VaccinationStatus.isValidStatus("nOT vACCINATED"));
-        assertTrue(VaccinationStatus.isValidStatus("NOT vaccinated"));
+        assertTrue(VaccinationStatus.isValidStatus("unvaccinated"));
+        assertTrue(VaccinationStatus.isValidStatus("VACCINATED"));
+        assertTrue(VaccinationStatus.isValidStatus("UnVaCcInAtEd"));
     }
 }
