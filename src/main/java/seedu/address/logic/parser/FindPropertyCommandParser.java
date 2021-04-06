@@ -158,7 +158,7 @@ public class FindPropertyCommandParser implements Parser<FindPropertyCommand> {
             List<Predicate<Property>> tagList = new ArrayList<>();
             try {
                 tags.forEach(s -> tagList.add(new PropertyTagsPredicate(s)));
-            } catch (NullPointerException e) {
+            } catch (IllegalArgumentException e) {
                 throw new ParseException("Wrong tag format! \n"
                         + e.getMessage()
                         + "\n"
@@ -172,7 +172,7 @@ public class FindPropertyCommandParser implements Parser<FindPropertyCommand> {
             List<Predicate<Property>> contactList = new ArrayList<>();
             try {
                 contacts.forEach(s -> contactList.add(new PropertyClientContactPredicate(s)));
-            } catch (NullPointerException e) {
+            } catch (IllegalArgumentException e) {
                 throw new ParseException("Wrong client contact format! \n"
                         + e.getMessage()
                         + "\n"

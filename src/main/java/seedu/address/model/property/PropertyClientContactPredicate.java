@@ -1,6 +1,9 @@
 package seedu.address.model.property;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.model.property.client.Contact.MESSAGE_CONSTRAINTS;
+import static seedu.address.model.property.client.Contact.isValidContact;
 
 import java.util.function.Predicate;
 
@@ -15,6 +18,7 @@ public class PropertyClientContactPredicate implements Predicate<Property> {
      */
     public PropertyClientContactPredicate(String contact) throws NullPointerException {
         requireNonNull(contact);
+        checkArgument(isValidContact(contact), MESSAGE_CONSTRAINTS);
         this.contact = contact;
     }
 

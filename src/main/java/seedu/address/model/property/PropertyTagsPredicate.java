@@ -1,9 +1,11 @@
 package seedu.address.model.property;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.model.tag.Tag.MESSAGE_CONSTRAINTS;
+import static seedu.address.model.tag.Tag.isValidTagName;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -18,11 +20,14 @@ public class PropertyTagsPredicate implements Predicate<Property> {
     /**
      * Creates a PropertyTagsPredicate
      */
-    public PropertyTagsPredicate(String keyword) throws NullPointerException {
+    public PropertyTagsPredicate(String keyword) throws IllegalArgumentException {
         requireNonNull(keyword);
         String[] keywords = keyword.split(",");
         this.tags = new ArrayList<>();
-        this.tags.addAll(Arrays.asList(keywords));
+        for (String s : keywords) {
+            this.tags.add(s);
+            checkArgument(isValidTagName(s), MESSAGE_CONSTRAINTS);
+        }
 
     }
 
