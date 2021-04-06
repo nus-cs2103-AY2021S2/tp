@@ -51,7 +51,7 @@ In this section, you will learn how to read CakeCollate's User Interface (UI), t
 commands may receive.
 
 #### **2.2.1 Sections of the UI**
-Insert annotated screenshot here.
+![User Interface](images/Annotated%20UI.png)
 
 #### **2.2.2 Formatting of Commands**
 
@@ -90,8 +90,8 @@ Insert annotated screenshot here.
 To expand.
 
 ##### `NAME`
-* The name of the person who has made the order.
-* The name of the person must not be empty, it can take in numbers, characters or a mix of both.
+* The name of the customer who has placed the order.
+* The name of the customer must not be empty, it can take in numbers, letters or a mix of both.
 
 :information_source: _Fun Fact: Elon Musk, the world richest man has a son named X Æ A-12._
 
