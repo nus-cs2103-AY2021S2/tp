@@ -1,0 +1,84 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":StoreMandoParser" as StoreMandoParser LOGIC_COLOR
+participant ":ClearCommandParser" as ClearCommandParser LOGIC_COLOR
+participant "c:ClearCommand" as ClearCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant "p:LocationContainsPredicate" as LocationsContainsPredicate MODEL_COLOR
+end box
+
+[-> LogicManager : execute("clear l/Kitchen")
+activate LogicManager
+
+LogicManager -> StoreMandoParser : parseCommand("clear l/Kitchen")
+activate StoreMandoParser
+
+create ClearCommandParser
+StoreMandoParser -> ClearCommandParser
+activate ClearCommandParser
+
+ClearCommandParser --> StoreMandoParser
+deactivate ClearCommandParser
+
+StoreMandoParser -> ClearCommandParser : parse("l/Kitchen")
+activate ClearCommandParser
+
+create LocationsContainsPredicate
+ClearCommandParser -> LocationsContainsPredicate : LocationContainsPredicate("Kitchen")
+activate LocationsContainsPredicate
+
+LocationsContainsPredicate --> ClearCommandParser : p
+deactivate LocationsContainsPredicate
+
+create ClearCommand
+ClearCommandParser --> ClearCommand : ClearCommand(p)
+activate ClearCommand
+
+ClearCommand --> ClearCommandParser : c
+deactivate ClearCommand
+
+ClearCommandParser --> StoreMandoParser : c
+deactivate ClearCommandParser
+
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ClearCommandParser -[hidden]-> StoreMandoParser
+destroy ClearCommandParser
+
+StoreMandoParser --> LogicManager : c
+deactivate StoreMandoParser
+
+LogicManager -> ClearCommand : execute(model)
+activate ClearCommand
+
+ClearCommand -> Model : clearLocation(p)
+activate Model
+
+Model --> ClearCommand
+deactivate Model
+
+ClearCommand -> Model : updateFilteredItemList()
+activate Model
+
+Model --> ClearCommand
+deactivate Model
+
+create CommandResult
+ClearCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ClearCommand : r
+deactivate CommandResult
+
+ClearCommand --> LogicManager : r
+deactivate ClearCommand
+
+[<--LogicManager : r
+deactivate LogicManager
+@enduml
