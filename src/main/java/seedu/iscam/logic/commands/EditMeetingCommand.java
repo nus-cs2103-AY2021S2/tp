@@ -7,8 +7,6 @@ import static seedu.iscam.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_ON;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.iscam.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.iscam.model.meeting.CompletionStatus.ARGUMENT_COMPLETE;
-import static seedu.iscam.model.meeting.CompletionStatus.ARGUMENT_INCOMPLETE;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -44,7 +42,7 @@ public class EditMeetingCommand extends Command {
             + "[" + PREFIX_LOCATION + "LOCATION] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_TAG + "TAG(s)] "
-            + "[" + PREFIX_STATUS + "STATUS (" + ARGUMENT_COMPLETE + "/" + ARGUMENT_INCOMPLETE + ")]\n"
+            + "[" + PREFIX_STATUS + "COMPLETION_STATUS]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_LOCATION + "Macdonald, Bedok "
             + PREFIX_DESCRIPTION + "Client's family will be coming along";

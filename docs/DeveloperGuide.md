@@ -122,7 +122,7 @@ The `Meeting` object,
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/se-edu/ClientBook-level3/tree/master/src/main/java/seedu/location/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2021S2-CS2103-W17-4/tp/blob/master/src/main/java/seedu/iscam/storage/Storage.java)
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
