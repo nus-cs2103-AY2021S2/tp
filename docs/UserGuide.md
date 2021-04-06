@@ -327,7 +327,7 @@ Removing meetings comes in three flavors:
 * `unschedule expired` removes all expired meetings in the meeting list.
 
 
-Format: `unschedule CHOICE`
+Format: `unschedule INDEX` or `unschedule all` or `unschedule expired`
 
 * The `INDEX` refers to the index number shown in the displayed meeting list.
 * The `INDEX` **must be a positive integer** 1, 2, 3, …​
