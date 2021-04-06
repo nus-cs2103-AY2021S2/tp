@@ -8,7 +8,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.partyplanet.model.event.Event;
 import seedu.partyplanet.model.event.EventDate;
-import seedu.partyplanet.model.person.Remark;
+import seedu.partyplanet.model.remark.Remark;
 
 /**
  * An UI component that displays information of a {@code Event}.
@@ -48,8 +48,8 @@ public class EventCard extends UiPart<Region> {
         if (!EventDate.isEmptyDate(event.getEventDate())) {
             addDetail(event.getEventDate().value);
         }
-        if (!Remark.isEmptyRemark(event.getDetails())) {
-            addDetail(event.getDetails().value);
+        if (!Remark.isEmptyRemark(event.getRemark())) {
+            addDetail(event.getRemark().value);
         }
     }
 

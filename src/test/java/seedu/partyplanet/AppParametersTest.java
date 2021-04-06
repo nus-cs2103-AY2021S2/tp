@@ -1,6 +1,8 @@
 package seedu.partyplanet;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.nio.file.Paths;
 import java.util.Collections;
@@ -35,6 +37,30 @@ public class AppParametersTest {
         parametersStub.namedParameters.put("config", "a\0");
         expected.setConfigPath(null);
         assertEquals(expected, AppParameters.parse(parametersStub));
+    }
+
+    @Test
+    public void equals() {
+        AppParameters appParameters = new AppParameters();
+        appParameters.setConfigPath(Paths.get("config.json"));
+
+        // same object -> returns true
+        assertTrue(appParameters.equals(appParameters));
+
+        // same values -> returns true
+        AppParameters appParametersCopy = new AppParameters();
+        appParametersCopy.setConfigPath(appParameters.getConfigPath());
+        assertTrue(appParameters.equals(appParametersCopy));
+
+        // different types -> returns false
+        assertFalse(appParametersCopy.equals(1));
+
+        // null -> returns false
+        assertFalse(appParametersCopy.equals(null));
+
+        // different values -> return false
+        AppParameters appParametersDiff = new AppParameters();
+        assertFalse(appParameters.equals(appParametersDiff));
     }
 
     private static class ParametersStub extends Application.Parameters {
