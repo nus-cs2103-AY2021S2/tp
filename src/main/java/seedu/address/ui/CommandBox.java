@@ -121,30 +121,26 @@ public class CommandBox extends UiPart<Region> {
          */
         public static void matchAndSet(TextField textField, KeyEvent keyEvent) {
             if (CTRL_F.match(keyEvent)) {
-                Platform.runLater(() -> textField.setText("find"));
+                Platform.runLater(() -> setTextAndSetCaretToEnd(textField, "find"));
             } else if (CTRL_L.match(keyEvent)) {
-                Platform.runLater(() -> textField.setText("list"));
+                Platform.runLater(() -> setTextAndSetCaretToEnd(textField, "list"));
             } else if (CTRL_A.match(keyEvent)) {
-                Platform.runLater(() -> textField.setText("add"));
+                Platform.runLater(() -> setTextAndSetCaretToEnd(textField, "add"));
             } else if (CTRL_D.match(keyEvent)) {
-                Platform.runLater(() -> textField.setText("delete"));
+                Platform.runLater(() -> setTextAndSetCaretToEnd(textField, "delete"));
             } else if (CTRL_E.match(keyEvent)) {
-                Platform.runLater(() -> textField.setText("edit"));
+                Platform.runLater(() -> setTextAndSetCaretToEnd(textField, "edit"));
             } else if (CTRL_S.match(keyEvent)) {
-                Platform.runLater(() -> textField.setText("sort"));
-            } else if (keyEvent.getCode().equals(KeyCode.BACK_SPACE)) {
-                Platform.runLater(() -> backspace(textField));
+                Platform.runLater(() -> setTextAndSetCaretToEnd(textField, "sort"));
             }
-            //Set cursor/caret to the end of text field
-            Platform.runLater(() -> textField.positionCaret(textField.getLength()));
             //Prevent keyEvent from being re-handled.
             Platform.runLater(keyEvent::consume);
         }
 
-        private static void backspace(TextField textField) {
-            int currLength = textField.getLength();
-            String backspaced = textField.getText(0, currLength);
-            textField.setText(backspaced);
+
+        private static void setTextAndSetCaretToEnd(TextField textField, String text) {
+            textField.setText(text);
+            textField.positionCaret(textField.getLength());
         }
     }
 }

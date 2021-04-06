@@ -34,6 +34,8 @@ public class Person {
     private final List<InsurancePolicy> policies = new ArrayList<>();
     private final List<Meeting> meetings = new ArrayList<>();
 
+    private boolean isShowPolicyList = false;
+
     /**
      * Every field is present and not null.
      */
@@ -47,6 +49,7 @@ public class Person {
         this.tags.addAll(tags);
         this.policies.addAll(policies);
         this.meetings.addAll(meeting);
+        this.isShowPolicyList = true;
     }
 
     /**
@@ -59,6 +62,7 @@ public class Person {
         this.email = Optional.of(email);
         this.address = Optional.of(address);
         this.tags.addAll(tags);
+        this.isShowPolicyList = false;
     }
 
     /**
@@ -70,6 +74,7 @@ public class Person {
         this.name = person.name;
         if (attributes.contains(Attribute.POLICY_ID)) {
             this.policies.addAll(person.policies);
+            this.isShowPolicyList = true;
         }
         if (attributes.contains(Attribute.PHONE)) {
             this.phone = Optional.of(person.getPhone().get());
@@ -106,6 +111,10 @@ public class Person {
 
     public Optional<Address> getAddress() {
         return address;
+    }
+
+    public boolean isShowPolicyList() {
+        return this.isShowPolicyList;
     }
 
     /**

@@ -12,11 +12,12 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.AddressBookParser;
+import seedu.address.logic.parser.ClientBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Person;
+import seedu.address.model.shortcut.ShortcutLibrary;
 import seedu.address.storage.Storage;
 
 /**
@@ -28,7 +29,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    private ClientBookParser clientBookParser;
 
     private boolean isListModified;
 
@@ -38,7 +39,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        clientBookParser = new ClientBookParser(model.getShortcutLibrary());
         this.isListModified = false;
     }
 
@@ -50,6 +51,10 @@ public class LogicManager implements Logic {
         return isFindCommandWithAttributes || isListCommandWithAttributes;
     }
 
+    private void updateClientBookParser(ShortcutLibrary shortcutLibrary) {
+        this.clientBookParser = new ClientBookParser(shortcutLibrary);
+    }
+
     @Override
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
@@ -59,7 +64,7 @@ public class LogicManager implements Logic {
         }
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = clientBookParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {
@@ -68,6 +73,14 @@ public class LogicManager implements Logic {
             } else {
                 storage.saveAddressBook(model.getAddressBook());
             }
+        } catch (IOException ioe) {
+            throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
+        }
+
+        this.updateClientBookParser(model.getShortcutLibrary());
+
+        try {
+            this.storage.saveShortcutLibrary(model.getShortcutLibrary());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -81,6 +94,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ShortcutLibrary getShortcutLibrary() {
+        return model.getShortcutLibrary();
+    }
+
+    @Override
     public ObservableList<Person> getFilteredPersonList() {
         return model.getFilteredPersonList();
     }
@@ -88,6 +106,11 @@ public class LogicManager implements Logic {
     @Override
     public Path getAddressBookFilePath() {
         return model.getAddressBookFilePath();
+    }
+
+    @Override
+    public Path getShortcutLibraryFilePath() {
+        return model.getShortcutLibraryFilePath();
     }
 
     @Override

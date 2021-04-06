@@ -23,13 +23,15 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.model.shortcut.ShortcutLibrary;
 import seedu.address.testutil.PersonBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for BatchCommand.
  */
 public class BatchCommandTest {
-    private static final Model MODEL = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private static final Model MODEL = new ModelManager(getTypicalAddressBook(), new UserPrefs(),
+            new ShortcutLibrary());
     private static final EditCommandParser EDIT_COMMAND_PARSER = new EditCommandParser();
     private static final DeleteCommandParser DELETE_COMMAND_PARSER = new DeleteCommandParser();
     private static final List<Index> LIST_OF_INDICES = Arrays.asList(Index.fromOneBased(7), Index.fromOneBased(6),
@@ -37,7 +39,8 @@ public class BatchCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredListForBatchEdit_success() {
-        Model expectedModel = new ModelManager(new AddressBook(MODEL.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new AddressBook(MODEL.getAddressBook()), new UserPrefs(),
+                new ShortcutLibrary());
 
         for (Index index : LIST_OF_INDICES) {
             Person personToEdit = MODEL.getFilteredPersonList().get(index.getZeroBased());
@@ -61,7 +64,7 @@ public class BatchCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredListForBatchDelete_success() {
-        ModelManager expectedModel = new ModelManager(MODEL.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(MODEL.getAddressBook(), new UserPrefs(), new ShortcutLibrary());
         for (Index index : LIST_OF_INDICES) {
             Person personToDelete = MODEL.getFilteredPersonList().get(index.getZeroBased());
             expectedModel.deletePerson(personToDelete);
