@@ -165,7 +165,7 @@ The `UI` component,
 **API** :
 [`Logic.java`](https://github.com/AY2021S2-CS2103T-W15-2/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
-1. `Logic` uses the `AddressBookParser` class to parse the user command.
+1. `Logic` uses the `ClientBookParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
 1. The command execution can affect the `Model` (e.g. adding a client contact).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
@@ -233,7 +233,7 @@ Below is an example usage scenario and how the information and data are passed a
 
 **Step 2.** `MainWindow` receives the `commandText` (`policy 1`), which is then executed by `LogicManager`.
 
-**Step 3.** `AddressBookParser` then parses the full `commandText`, returning a `Command`. In this case, it would return a 
+**Step 3.** `ClientBookParser` then parses the full `commandText`, returning a `Command`. In this case, it would return a 
 `PolicyCommand`, which would contain the index of the selected client in the displayed list (which in this case is 1).
 
 **Step 4.** `PolicyCommand`then executes, returning a `CommandResult`. This `CommandResult` contains the concatenated string 
@@ -265,6 +265,97 @@ its methods strictly resembled those of its fellow `Command` classes.
   * Pros: More intuitive in terms of user experience.
   * Cons: Harder to implement.
 
+<br>
+
+### Lock and unlock ClientBook feature
+
+#### Motivation
+
+As an insurance agent, our target user is likely to be always on the go which increases the risk of the user's clients' information being exposed to 
+unauthorised accessors. Having a lock function for ClientBook will give the user a peace of mind that all of ClientBook's information is secured by a password.
+
+#### Implemenation
+
+A new class `Authentication` was created as part of the `Storage` component. It is responsible for the locking and unlocking of ClientBook. 
+Two new commands, `LockCommand` and `UnlockCommand` were created to interface the user with `Authentication`.
+
+Below is an example usage scenario involving the locking of ClientBook and how the information and data are passed around at each step.
+
+**During program launch:** An Authentication object is created and attached as an attribute in `ModelManager`.
+
+**Step 1.** 
+The user is locking ClientBook for the first time. The user enters `lock 1234` into the command box and presses enter.
+
+**Step 2.** `MainWindow` receives the `commandText` (`lock 1234`), which is then executed by `LogicManager`.
+
+**Step 3.** `AddressBookParser` then parses the full `commandText`, returning a `Command`. In this case, it would return a
+`LockCommand`, which would contain the password that the user wants to use to lock ClientBook (in this case, 1234).
+
+**Step 4.** `LogicManager` then excecutes `LockCommand` which makes use of `Authentication` to lock ClientBook. A `CommandResult` is returned.
+The `CommandResult` describes whether the locking process was successful.
+
+**Step 5.** This `CommandResult` is passed back to MainWindow to reflect the result of the lock command to the user.
+
+Below is a sequence diagram illustrating the flow of this entire process.
+
+<p align="center"><img src="images/LockSequenceDiagram.png"></p>
+
+#### Design Considerations
+
+The lock and unlock feature was designed such that the existing system is totally unaware of any locking and unlocking 
+of the existing data file `clientbook.json`. Hence, there is minimal dependency between existing components, the newly added commands and `Authentication`.
+
+<br>
+
+### Feature to allow more options for user to edit insurance policy information of each client in ClientBook.
+
+#### Motivation
+
+In the previous implementation of the `EditCommand`, each time a user edits a clients policy information, the user's only option is to
+replace the client's entire existing policy list with the specified policies. This enhancement of the `EditCommand` gives the user
+the option to append, replace, remove or modify specific policies within a client's policy list.
+
+#### Implementation
+
+A new enumeration `EditPolicyMode` was created within the `EditCommand` class. It provides the developer with an enumeration of
+modes to notify other methods of the different ways of editing a client's policy list, namely `MODIFY`, `APPEND`, `REPLACE` and `REMOVE`.
+This editing mode parsed from the user input, and then passed as an argument to the constructor of `EditCommand` to specify how 
+the client's policy list should be edited.
+
+Within the `EditCommand#execute` method, a new `Person` object is created through the `EditCommand#createEditedPerson` method.
+This method creates the updated policy list of the new `Person` object based on the specified `EditPolicyMode`.
+The created `Person` is then used to update the model, which in turn updates the view and shows the change to the user.
+
+Below is an example usage scenario and how the information and data are passed around at each step.
+
+**Step 1.** The user types `edit 1 n/Tom Doe i/P12345 i/P54321 -insert` into the input box.
+
+**Step 2.** `MainWindow` receives the `commandText` (`edit 1 n/Tom Doe i/P12345 i/P54321 -insert`), 
+which is then executed by `LogicManager`.
+
+**Step 3.** `ClientBookParser` then parses the full `commandText`, returning a `Command` object. In this case, it would return an
+`EditCommand`, which would contain the index of the selected client in the displayed list (in this case 1), followed by
+the values that the user intends to edit, followed by the edit policy mode (in this case insert).
+
+**Step 4.** `EditCommand`then executes, returning a `CommandResult`. This `CommandResult` contains the feedback string message
+which indicates to the user which client was edited.
+
+**Step 5.** This `CommandResult` is passed back to `MainWindow`, which then displays the list after the edit to the user.
+
+Below is a sequence diagram illustrating the flow of this entire process.
+
+<p align="center"><img src="images/EditSequenceDiagram.png"></p>
+
+#### Design Considerations
+
+`EditPolicyMode` is implemented as an inner class within `EditCommand`, as it is not used anywhere else in the application.
+If future extensions require the use of `EditPolicyMode` in other areas, it is recommended to make `EditPolicyMode` into a
+an outer class instead.
+
+#### Implementation/Testing Considerations
+
+Compared to other commands, the `edit` command takes many arguments of varying types, so extra care should be taken during the
+parsing of its arguments and extensive testing should be done on the varying argument types.
 
 ### \[Proposed\] Undo/redo feature
 
@@ -332,7 +423,7 @@ The `redo` command does the opposite — it calls `Model#redoAddressBook()`,
 
 <br>
 
-**Step 6**. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+**Step 6**. The user executes `batch delete` on all client contacts, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
 
 <p align="center"><img src="images/UndoRedoState5.png"></p>
 
@@ -411,6 +502,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | insurance agent                            | sort my clients                | see my clients in a more organized way                                 |
 | `* *`    | insurance agent on the go                  | lock ClientBook with a password| prevent the leakage of my clients' information                         |
 | `* *`    | insurance agent                            | schedule meetings with clients | check what meetings I have with my clients                             |
+| `*`      | busy insurance agents                      | have access to keyboard commands e.g. CTRL + J | minimize time spent typing.                         |
 
 ### Use cases
 
@@ -574,10 +666,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list clients
-2.  ClientBook shows a list of clients
-3.  User requests to schedule a meeting with a specific client in the list
-4.  ClientBook schedules a meeting with the client
+1.  User requests to list clients.
+    
+2.  ClientBook shows a list of clients.
+    
+3.  User requests to schedule a meeting with a specific client in the list.
+    
+4.  ClientBook schedules a meeting with the client.
 
     Use case ends.
 

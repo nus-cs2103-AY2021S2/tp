@@ -19,20 +19,20 @@ public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1d persons listed!";
+    public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1d clients listed!";
 
-    public static final String MESSAGE_PERSONS_LISTED_OVERVIEW_ATTRIBUTE = "%1d persons listed with %s attribute%s!";
+    public static final String MESSAGE_PERSONS_LISTED_OVERVIEW_ATTRIBUTE = "%1d clients listed with %s attribute%s!";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose chosen field contains any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all clients whose chosen field contains any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Use a flag (n/, p/, e/, a/, t/, i/) to search by name, phone, email, address, tags or insurance "
-            + "policies respectively.\n"
+            + "Use a flag (n/, p/, e/, a/, t/, i/, m/) to search by name, phone, email, address, tags, insurance"
+            + "policies or meetings respectively.\n"
             + "Use '&' to find for multiple search terms.\n"
             + "Specify attributes by typing '-[ATTRIBUTE] after keywords\n"
             + "Keywords cannot be empty.\n"
-            + "Parameters: FLAG/KEYWORD [& MORE_KEYWORDS]... [-ATTRIBUTE]... (attributes must be policy, "
-            + "phone or email)\n"
-            + "Example: " + COMMAND_WORD + " e/alice@mail.com & bob@mail.com -address -policy";
+            + "Parameters: FLAG/KEYWORD [& MORE_KEYWORDS]... [-ATTRIBUTE]... (attributes must be i for policy, "
+            + "p for phone, e for email, a for address or m for meeting)\n"
+            + "Example: " + COMMAND_WORD + " e/alice@mail.com & bob@mail.com -a -i";
 
     private final Predicate<Person> predicate;
 
@@ -83,6 +83,9 @@ public class FindCommand extends Command {
             case ADDRESS:
                 attributeName.append("address");
                 break;
+            case MEETING:
+                attributeName.append("meeting");
+                break;
             default:
                 throw new CommandException("Could not list with filtered attribute");
             }
@@ -100,7 +103,7 @@ public class FindCommand extends Command {
         } else {
             model.updatePersonListByAttribute(this.attributes);
             String attributeName = getAttributesString();
-            String attributeSuccessMessage = "";
+            String attributeSuccessMessage;
             if (this.attributes.size() == 1) {
                 attributeSuccessMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW_ATTRIBUTE,
                         model.getFilteredPersonList().size(), attributeName, "");

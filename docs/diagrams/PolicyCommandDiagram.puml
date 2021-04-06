@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":ClientBookParser" as ClientBookParser LOGIC_COLOR
 participant ":PolicyCommandParser" as PolicyCommandParser LOGIC_COLOR
 participant "p:PolicyCommand" as PolicyCommand LOGIC_COLOR
 participant "result :CommandResult" as CommandResult LOGIC_COLOR
@@ -16,17 +16,17 @@ end box
 [-> LogicManager : execute("policy 1")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("policy 1")
-activate AddressBookParser
+LogicManager -> ClientBookParser : parseCommand("policy 1")
+activate ClientBookParser
 
 create PolicyCommandParser
-AddressBookParser -> PolicyCommandParser
+ClientBookParser -> PolicyCommandParser
 activate PolicyCommandParser
 
-PolicyCommandParser --> AddressBookParser
+PolicyCommandParser --> ClientBookParser
 deactivate PolicyCommandParser
 
-AddressBookParser -> PolicyCommandParser : parse("1")
+ClientBookParser -> PolicyCommandParser : parse("1")
 activate PolicyCommandParser
 
 create PolicyCommand
@@ -36,14 +36,14 @@ activate PolicyCommand
 PolicyCommand --> PolicyCommandParser : p
 deactivate PolicyCommand
 
-PolicyCommandParser --> AddressBookParser : p
+PolicyCommandParser --> ClientBookParser : p
 deactivate PolicyCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-PolicyCommandParser -[hidden]-> AddressBookParser
+PolicyCommandParser -[hidden]-> ClientBookParser
 destroy PolicyCommandParser
 
-AddressBookParser --> LogicManager : p
-deactivate AddressBookParser
+ClientBookParser --> LogicManager : p
+deactivate ClientBookParser
 
 LogicManager -> PolicyCommand : execute()
 activate PolicyCommand
