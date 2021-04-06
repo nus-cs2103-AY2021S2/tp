@@ -1,6 +1,7 @@
 package seedu.module.logic.parser;
 
 import static seedu.module.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.module.commons.core.Messages.MESSAGE_NO_SUCH_MODULE;
 
 import seedu.module.logic.commands.FindModuleCommand;
 import seedu.module.logic.parser.exceptions.ParseException;
@@ -18,9 +19,13 @@ public class FindModuleCommandParser implements Parser<FindModuleCommand> {
      */
     public FindModuleCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty() || !ModuleManager.moduleIsValid(trimmedArgs)) {
+        if (trimmedArgs.isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindModuleCommand.MESSAGE_USAGE));
+        }
+        if (!ModuleManager.moduleIsValid(trimmedArgs)) {
+            throw new ParseException(
+                    String.format(MESSAGE_NO_SUCH_MODULE, FindModuleCommand.MESSAGE_USAGE));
         }
 
         String[] nameKeywords = trimmedArgs.split("\\s+");

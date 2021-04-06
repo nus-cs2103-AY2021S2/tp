@@ -3,8 +3,9 @@ layout: page
 title: User Guide
 ---
 ModuleBook3.5 is the go-to tool for busy students/professionals who are confident that typing can save them time. 
-Using ModuleBook3.5, one can organise and keep track of tasks and their deadlines without the need for consistent 
-internet connection. Even if your online learning portal fails, you can still see your task details
+Using ModuleBook3.5, one can organise and keep track of tasks and their deadlines in an 
+Easy, Seamless and Straightforward manner, all without the need for consistent internet connection. 
+Even if your online learning portal fails, you can still see your task details
 on ModuleBook3.5.
 
 
@@ -44,9 +45,19 @@ Within the workload pie chart, each module's colour may change as a command is e
 However, the colours will be arranged such that no two modules with the same colour will be next to each other.
 </div>
 
-4. Tasks in the task list are colour coded based on done status.
-    1. Done tasks are coloured pink.
-    1. Tasks that are not done are coloured differently.
+1. Tasks are colour coded based on done status. 
+   1. Done tasks are coloured pink. 
+   1. Tasks that are not done are classified into 4 different categories (colors):
+   1. Color | Time to deadline
+      --------|------------------
+      **Green** | More than 3 days
+      **Yellow** | Between 1 to 3 days
+      **Orange** | Less than 1 day      
+      **Purple** | Expired
+   
+1. The pie chart is used to show workload distribution.
+   1. The color of pie chart is randomly assigned.
+   2. The workload of each module is counted using the tasks of such module inclunding those that are already done and those that are not finished yet.
     
 1. You can rate a task's expected workload using the following mapping:
    
@@ -62,19 +73,30 @@ However, the colours will be arranged such that no two modules with the same col
 
     Module Code | Subject Description
     --------|------------------
-    CS1101S | Basic Programming Course
-    CS1231S | Discrete Mathematics
-    CS2030 | Intermediate Programming Course
-    CS2040 | Introductory Data Structures and Algorithms
+    CS1101S | Programming Methodology 
+    CS1010S | Programming Methodology in Python
+    CS1231S | Discrete Structures
+    CS2030 | Programming Methodology II
+    CS2040S | Data Structures and Algorithms
     CS2101 | Effective Communication for Computing Professionals
-    CS2103T | Introductory Software Engineering
+    CS2103T | Software Engineering
     CS2105 | Introduction to Computer Networks
     CS2106 | Introduction to Operating Systems
-    CS3230 | Advanced Algorithm Design and Analysis
+    CS3103 | Computer Networks Practice
+    CS3210 | Parallel Computing
+    CS3212 | Programming Languages
+    CS3217 | Software Engineering on Modern Application Platforms
+    CS3219 | Software Engineering Principles and Patterns
+    CS3220 | Computer Architecture
+    CS3223 | Database Systems Implementation
+    CS3225 | Combinatory Methods in Bioinformatics
+    CS3230 | Design and Analysis of Algorithm
+    CS3231 | Theory of Computation
+    CS3233 | Competitive Programming
     CS3243 | Introduction to Artificial Intelligence
     CS3244 | Machine Learning
     IS1103 | Computing Ethics
-    ST2131 | Statistics
+    ST2131 | Probability
     If your module code does not appear in the above table, 
     you may use a substitute module code based on the subject description.
   
@@ -108,14 +130,17 @@ However, the colours will be arranged such that no two modules with the same col
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `d/DESCRIPTION t/TAG`, `t/TAG d/DESCRIPTION` is also acceptable.
-
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+  
+* If a parameter is expected only once in the command but you specified it multiple times, 
+  only the last occurrence of the parameter will be taken. Please refer to [Duplicate Parameters](#Duplicate Parameters).<br>
   e.g. if you specify `d/CS2103T team project for week7 d/CS3243 Assignment 4`, only `d/CS3243 Assignment 4` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as`list`) will be ignored.<br>
   e.g. if the command specifies `list 123`, it will be interpreted as `list`.
 
 </div>
+
+### Command list
 
    * **`list`** : List out tasks
 
@@ -143,9 +168,37 @@ However, the colours will be arranged such that no two modules with the same col
 
    * **`sort`** : Sort tasks
    
-   * **`recur`** :  Recur tasks
+   * **`recur`** : Recur tasks
+   
+   * **`refresh`** : Refresh all showing tasks
 
    * **`exit`** : Close the app
+
+
+### Parameter Prefixes
+Below is a table of prefixes mapped to the respective parameters:<br>
+
+ Prefix | Parameter | How to Remember 
+--------|----------|-------------
+n/ | NAME | 
+m/ | MODULE | 
+d/ | DESCRIPTION | 
+a/ | START TIME | "start AT"
+b/ | DEADLINE | "finish BY"
+w/ | WORKLOAD |
+r/ | RECURRENCE |
+t/ | TAG |
+
+### Duplicate Parameters
+1. Most commands take in only one instance of a unique parameter. In such cases, the last instance of the parameter is accepted.
+
+1. E.g. For `edit 1 m/CS2103T m/CS2101`, `m/CS2101` is taken as the argument for `MODULE`.
+
+1. All other preceding arguments of the same parameter (including invalid ones) will be ignored.
+   In the above example, `m/CS2103T` is ignored.
+
+1. However, if the last argument happens to be invalid, the command will not execute.<br>
+   E.g. for `edit 1 m/CS2101 m/Invalid`, `m/Invalid` will be taken as the module argument, which is invalid. Even though m/CS2101 is valid, it is ignored entirely.
 
 <div style="page-break-after: always;"></div>
 
@@ -159,7 +212,6 @@ Format: `list`
 
 ![add message](images/listCommand.png)
 
-
 ### Add a task: `add`
 
 Adds a task to ModuleBook3.5. All newly added tasks are not done by default.
@@ -170,7 +222,7 @@ Format: `add n/TASK NAME m/MODULE d/DESCRIPTION [a/START TIME] b/DEADLINE w/WORK
 
 * If you wish to include a start time for your task, the start time should not be later than deadline.
 
-* Recurrence should be either "daily", "weekly" or "monthly".
+* Recurrence should be either "daily", "weekly" or "biweekly".
 
 * Enter the time you wish to complete your task in the format: yyyy-MM-dd HH:mm or yyyy-MM-dd (HH:mm set to 00:00)
 
@@ -242,15 +294,17 @@ Examples:
 * `find Quiz` followed by `notdone 1` marks the 1st task in the results of the `find` command as not done.
 
 
-### Add a tag: `tag`
+### Add tag(s): `tag`
 
-Adds a tag to a task.
+Adds a tag or multiple tags to a task.
 
 Application: Used to briefly indicate the nature of the task.
 
 Format: `tag INDEX t/TAG [t/MORETAGS]...​` 
 
 * Attaches one or more tags to the task associated with INDEX. Tags can be used to identify related tasks.
+* If only `/t` is provided without preceding value, no tag will be added but MB3.5 will show you the existing tags
+associated to the task you tried to tag.
 
 ![add message](images/tagCommand.png)
 
@@ -274,7 +328,9 @@ Examples:
 
 ### Search tasks with tag: `findTag`
 
-Searches for tasks with an associated tag. Note that tags are case-sensitive.
+Searches for tasks with an associated tag. Tag is case-insensitive for your convenience.
+
+One Tag allowed. Tag provided must be alphanumerical.
 
 Application: Used to find tasks that are similar in nature.
 
@@ -308,7 +364,7 @@ Deletes a tag from its associated task. Note that tags are case-sensitive.
 
 Application: Used to remove a tag without the need to reset all other tags.
 
-Format: `deleteTag INDEX [t/TAG]`
+Format: `deleteTag INDEX t/TAG`
 
 * Deletes the task at the specified `INDEX`. 
   The index refers to the index number shown in the displayed task list. 
@@ -328,7 +384,7 @@ Format: `edit INDEX [n/NAME] [m/MODULE] [d/DESCRIPTION] [a/START TIME] [b/DEADLI
 
 * Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
-* Recurrence should be either "daily", "weekly" or "monthly".
+* Recurrence should be either "daily", "weekly" or "biweekly".
 * Existing values will be updated to the input values.
 * If you wish to include a start time for your task, the start time should not be later than deadline.
 * Editing tags through the `edit` command overrides all existing tags. If you wish to add or delete only certain tags, use `tag` and `deleteTag` commands instead.
@@ -343,16 +399,16 @@ Examples:
 
 ### Sort tasks : `sort`
 
-Sorts the list of all tasks by workload/deadline/module. If no prefix is supplied, the tasks will be sorted by deadline.
+Sorts the list of all tasks by one attribute of the tasks. If no prefix is supplied, the tasks will be sorted by deadline.
 
 Application: Used to group and prioritise tasks based on a certain criteria.
 
-Format:  `sort n/` or `sort d/` or `sort m/` or `sort w/` or `sort b/` or `sort t/` 
+Format:  `sort` or `sort n/` or `sort d/` or `sort m/` or `sort w/` or `sort b/` or `sort t/` 
 
 *  `sort n/` Sorts the tasks by name alphabetically in ascending order.
 *  `sort d/` Sorts the tasks by description alphabetically in ascending order.
 *  `sort w/` Sorts the tasks by workload in descending order.
-*  `sort b/` Sorts the tasks by deadline so that a task with a closer deadline is positioned at the top of the list.
+*  `sort` or `sort b/` Sorts the tasks by deadline so that the the task with closer the deadline in the list, the higher the task.
 *  `sort m/` Sorts the tasks by module code alphabetically in descending order.
 *  `sort t/` Sorts the tasks by number of tags in descending order.
 
@@ -363,7 +419,7 @@ Examples:
 
 ### Recur tasks: `recur`
 
-Recurs a task either daily, monthly or weekly or removes the recurrence of the task.
+Recurs a task either daily, biweekly or weekly or removes the recurrence of the task.
 
 Application: Used to reset the recurring task deadline and done status when appropriate without having to manually edit the task.
 
@@ -373,7 +429,7 @@ Format: `recur INDEX r/RECURRENCE`
 * `INDEX` refers to the index number displayed in ModuleBook3.5.
    It must be a positive integer.
 * `RECURRENCE` refers to the regularity of the task that recurs periodically.
-* `RECURRENCE` can only be `daily`, `weekly` or `monthly` if a task needs to be recurred.
+* `RECURRENCE` can only be `daily`, `weekly` or `biweekly` if a task needs to be recurred.
 * `RECURRENCE` should be left empty if the recurrence of a task needs to be removed.
    The prefix `r/` must still be used.
 
@@ -381,10 +437,16 @@ Format: `recur INDEX r/RECURRENCE`
 
 
 Examples:
-* `recur 1 r/monthly` Recurs the 1st task in ModuleBook3.5 every month.
+* `recur 1 r/biweekly` Recurs the 1st task in ModuleBook3.5 every two weeks.
 * `recur 2 r/weekly` Recurs the 4th task in ModuleBook3.5 every week.
 * `recur 3 r/daily` Recurs the 3rd task in ModuleBook3.5 every day.
 * `recur 4 r/` Removes the recurrence of the 4th task in ModuleBook3.5.
+
+### Refresh all tasks: `refresh`
+
+Refreshes the current list that is showing, updates the deadline if necessary.
+
+Format: `refresh`
 
 <div style="page-break-after: always;"></div>
 
@@ -440,6 +502,7 @@ Action | Format, Examples
 **findTag** | `findTag KEYWORD`<br> e.g. `find Assignment`
 **mod** | `mod MODULE`<br> e.g. `mod CS2103T`
 **edit** | `edit INDEX [d/DESCRIPTION] [b/DEADLINE]…​`<br> e.g. `edit 2 d/Eat Biscuits b/2021-03-21 10:10`
-**recur** | `recur INDEX r/RECURRENCE`<br> e.g. `recur 1 r/monthly`
+**recur** | `recur INDEX r/RECURRENCE`<br> e.g. `recur 1 r/biweekly`
+**refresh** | `refresh`
 **sort** | `sort n/` or `sort d/` or `sort m/` or `sort w/` or `sort b/` or `sort t/` <br> e.g. `sort b/`
 **exit** | `exit`

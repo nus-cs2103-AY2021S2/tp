@@ -38,7 +38,7 @@ public class AddCommand extends Command {
             + PREFIX_MODULE + "CS2103T "
             + PREFIX_DESCRIPTION + "Finish basic commands for TP "
             + PREFIX_WORKLOAD + "1 "
-            + PREFIX_RECURRENCE + "monthly "
+            + PREFIX_RECURRENCE + "biweekly "
             + PREFIX_TAG + "highPriority ";
 
     public static final String MESSAGE_SUCCESS = "New task added successfully:\n%1$s";

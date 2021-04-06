@@ -191,6 +191,15 @@ public class Task {
     }
 
     /**
+     * Returns true if the deadline is behind the current time.
+     */
+    public boolean isBehind() {
+        assert this.isRecurring();
+        Time currTime = Time.makeDeadlineWithTime(LocalDateTime.now());
+        return deadline.compareTo(currTime) < 0;
+    }
+
+    /**
      * Returns a new valid Deadline for the recurring task if previous recurring deadline has expired.
      *
      * @param task the task need to be updated.
@@ -217,7 +226,7 @@ public class Task {
 
                 break;
             case biweekly:
-                //change date to month + 1
+                //change date to day + 14
                 nextRecurringTimeStr = Time.makeNextTimeString(oldTime, 14);
 
                 break;

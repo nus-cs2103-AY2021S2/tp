@@ -25,7 +25,8 @@ public class TagCommand extends Command {
 
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Add one or multiple tags to task identified "
-            + "by the index number used in the last person listing.\n"
+            + "by the index number used in the last task listing.\n"
+            + "If you entered 't/' without any preceding value, no new tag will be added. \n"
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_TAG + "TAG "
             + "[" + PREFIX_TAG + "TAG]...\n"
@@ -61,11 +62,11 @@ public class TagCommand extends Command {
         Set<Tag> oldTags = taskToTag.getTags();
         Set<Tag> newTags = addTags(oldTags, this.tags);
 
-        Task editedTask = Task.setTags(taskToTag, newTags);
-
-        if (!taskToTag.isSameTask(editedTask) && model.hasTask(editedTask)) {
+        if (newTags.equals(oldTags)) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
+
+        Task editedTask = Task.setTags(taskToTag, newTags);
 
         model.setTask(taskToTag, editedTask);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
