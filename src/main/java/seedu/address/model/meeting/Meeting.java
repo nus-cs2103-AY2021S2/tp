@@ -35,7 +35,7 @@ public class Meeting implements Comparable<Meeting> {
         int lastIndexOf = meeting.lastIndexOf("@");
         String[] fragments = new String[2];
         fragments[0] = meeting.substring(0, lastIndexOf).trim();
-        fragments[1] = meeting.substring(lastIndexOf+1).trim();
+        fragments[1] = meeting.substring(lastIndexOf + 1).trim();
         LocalDateTime parsedDt = generateDateTime(fragments[1], DATETIME_CONSTRAINTS);
         original = fragments[0] + " @ " + fragments[1];
         value = fragments[0];

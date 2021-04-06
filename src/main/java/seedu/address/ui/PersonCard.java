@@ -7,7 +7,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import javafx.scene.text.TextAlignment;
 import seedu.address.model.person.Person;
 
 /**
@@ -78,18 +77,20 @@ public class PersonCard extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        tags.getChildren().forEach(label -> {
-            if (label instanceof Label) {
-                ((Label) label).setWrapText(true);
-                ((Label) label).setMaxWidth(300);
+        tags.getChildren().forEach(child -> {
+            if (child instanceof Label) {
+                Label label = (Label) child;
+                label.setWrapText(true);
+                label.setMaxWidth(300);
             }
         });
         person.getPlanStringsList()
                 .forEach(plan -> plans.getChildren().add(new Label(plan)));
-        plans.getChildren().forEach(label -> {
-            if (label instanceof Label) {
-                ((Label) label).setWrapText(true);
-                ((Label) label).setMaxWidth(150);
+        plans.getChildren().forEach(child -> {
+            if (child instanceof Label) {
+                Label label = (Label) child;
+                label.setWrapText(true);
+                label.setMaxWidth(150);
             }
         });
     }
