@@ -54,7 +54,6 @@ public class FindMeetingCommandParser implements Parser<FindMeetingCommand> {
         List<String> meetingPriorities = argMultimap.getAllValues(PREFIX_DESCRIPTION);
 
         try {
-//            List<Predicate<Meeting>> predicateHasPersons = handlePersons(personIndexes);
             List<Predicate<Meeting>> predicateHasNames = handleNames(meetingNames);
             List<Predicate<Meeting>> predicateHasTimes = handleTimes(meetingTimes);
             List<Predicate<Meeting>> predicateHasDescriptions = handleDescriptions(meetingDescriptions);
@@ -99,7 +98,6 @@ public class FindMeetingCommandParser implements Parser<FindMeetingCommand> {
         Set<Index> personIndexSet = ParserUtil.parsePersonsConnection(personIndexes);
         return personIndexSet;
     }
-
 
 
     private List<Predicate<Meeting>> handleNames(List<String> names) throws ParseException {

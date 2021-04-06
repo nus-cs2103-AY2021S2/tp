@@ -88,6 +88,8 @@ public class DateTime implements Comparable<DateTime> {
     public int compareTo(DateTime other) {
         if (value.isBefore(other.value)) {
             return -1;
+        } else if (value.isEqual(other.value)){
+            return 0;
         }
         return 1;
     }

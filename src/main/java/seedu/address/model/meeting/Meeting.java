@@ -143,6 +143,18 @@ public class Meeting implements Schedulable {
         }
     }
 
+    public boolean containsPerson(Person person) {
+        return connection.existPersonMeetingConnection(person,this);
+    }
+
+    public boolean hasTime(DateTime time) {
+        boolean afterOrAtStart = time.compareTo(start) >= 0;
+        boolean beforeOrAtEnd = time.compareTo(terminate) <= 0;
+        return afterOrAtStart && beforeOrAtEnd;
+    }
+
+
+
     /**
      * Returns true if both meetings have the same identity and data fields.
      * This defines a stronger notion of equality between two meetings.
