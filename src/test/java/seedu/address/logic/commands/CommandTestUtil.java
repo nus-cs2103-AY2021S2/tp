@@ -34,6 +34,7 @@ public class CommandTestUtil {
     public static final LocalDateTime VALID_DATE = LocalDateTime.of(2021, 03, 15, 23, 59);
     public static final String VALID_TITLE_CS2103 = "CS2103";
     public static final String VALID_TITLE_CS2101 = "CS2101";
+    public static final String INVALID_TITLE = "Invalid!";
 
     public static final Exam VALID_EXAM = new Exam(VALID_DATE, new Tag(VALID_TITLE_CS2101));
     public static final String VALID_EXAM_DATETIME_1 = "03/05/2021 1300";
@@ -53,6 +54,8 @@ public class CommandTestUtil {
     public static final String VALID_GENERAL_EVENT_DESCRIPTION_2 = "Eat food";
     public static final String VALID_GENERAL_EVENT_DATE_1 = "01/01/2021 2359";
     public static final String VALID_GENERAL_EVENT_DATE_2 = "02/02/2021 2359";
+    public static final String INVALID_GENERAL_EVENT_DATE_1 = "01/1/2021 2359";
+    public static final String INVALID_GENERAL_EVENT_DATE_2 = "01-01-2021 23:59";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;

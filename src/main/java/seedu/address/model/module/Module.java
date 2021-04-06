@@ -150,7 +150,6 @@ public class Module implements Comparable<Module> {
 
     /**
      * Toggles done status of assignment at index
-     * @param index
      */
     public void toggleAssignmentDoneStatus(int index) {
         this.assignments.toggleDoneStatus(index);
