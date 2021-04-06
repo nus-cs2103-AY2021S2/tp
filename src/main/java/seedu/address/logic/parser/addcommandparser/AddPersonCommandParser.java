@@ -41,7 +41,6 @@ public class AddPersonCommandParser extends AddCommandParser implements Parser<A
                     AddPersonCommand.MESSAGE_USAGE));
         }
 
-        //try {
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Birthday birthday = ParserUtil.parseBirthday(
                 argMultimap.getValue(PREFIX_BIRTHDAY).orElseThrow(() -> new ParseException("")),
@@ -51,10 +50,6 @@ public class AddPersonCommandParser extends AddCommandParser implements Parser<A
         Person person = new Person(name, birthday, tagList);
 
         return new AddPersonCommand(person);
-        /*} catch (ParseException e) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, e.getMessage()
-            + "\n" + AddPersonCommand.MESSAGE_USAGE));
-        }*/
     }
 
 }
