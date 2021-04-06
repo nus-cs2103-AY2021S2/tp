@@ -401,7 +401,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | delete an individual tuition session              | update my tuition schedule                                   |
 | `* * *`  | user                                       | see a list of all the students profile and sessions|                                                             |
 | `* * *`  | user                                       | get all the emails of the parent of my students'  | email them reminders for payment                             |
-| `* * *`  | user                                       | calculate the monthly fees of a particular student| use the information when collecting fees                     |
+| `* * *`  | user                                       | calculate the monthly fees of a particular student| use the information when collecting monthly fees             |
 | `* * *`  | user                                       | get the monthly fees that I would have received for the past 3 months    | see how well I am doing financially   |
 | `* *`    | new user                                   | get a list of commands of the application         | know at a glance what are the features of the application    |
 | `* *`    | potential user                             | see the app populated with sample data            | easily see how the app will look like when it is in use      |
