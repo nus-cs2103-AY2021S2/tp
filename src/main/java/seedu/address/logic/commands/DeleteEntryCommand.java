@@ -11,7 +11,7 @@ import seedu.address.model.Model;
 import seedu.address.model.entry.Entry;
 
 /**
- * Deletes an entry identified using it's displayed index from teaching assistant.
+ * Deletes an entry identified using its displayed index from Teaching Assistant.
  */
 public class DeleteEntryCommand extends Command {
 
@@ -34,7 +34,7 @@ public class DeleteEntryCommand extends Command {
         List<Entry> lastShownList = model.getFilteredEntryList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_NO_SUCH_ENTRY);
+            throw new CommandException(Messages.MESSAGE_INVALID_ENTRY_INDEX);
         }
 
         Entry entryToDelete = lastShownList.get(targetIndex.getZeroBased());

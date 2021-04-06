@@ -24,7 +24,7 @@ public class TypicalEntries {
     public static final Entry DO_STUFF = new EntryBuilder().withEntryName("Go do something important")
             .withStartDate("2021-02-04 09:00").withEndDate("2021-02-04 09:30").withTags("Important", "Stuff").build();
 
-    private TypicalEntries() {}
+    private TypicalEntries() {} // prevents instantiation
 
     public static AddressBook getTypicalEntriesList() {
         AddressBook ab = new AddressBook();

@@ -1,7 +1,5 @@
 package seedu.address.testutil;
 
-
-import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.entry.Entry;
@@ -18,6 +16,7 @@ public class EntryBuilder {
     public static final String DEFAULT_ENTRY_NAME = "Consultation";
     public static final String DEFAULT_START_DATE = "2021-04-05 17:00";
     public static final String DEFAULT_END_DATE = "2021-04-05 19:00";
+    public static final String DEFAULT_TAG = "Physics";
 
     private EntryName entryName;
     private EntryDate startDate;
@@ -31,6 +30,7 @@ public class EntryBuilder {
         entryName = new EntryName(DEFAULT_ENTRY_NAME);
         startDate = new EntryDate(DEFAULT_START_DATE);
         endDate = new EntryDate(DEFAULT_END_DATE);
+        tags = SampleDataUtil.getTagSet(DEFAULT_TAG);
     }
 
     /**
@@ -40,7 +40,7 @@ public class EntryBuilder {
         entryName = entryToCopy.getEntryName();
         startDate = entryToCopy.getOriginalStartDate();
         endDate = entryToCopy.getOriginalEndDate();
-        tags = new HashSet<>(entryToCopy.getTags());
+        tags = entryToCopy.getTags();
     }
 
     /**

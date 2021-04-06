@@ -59,7 +59,7 @@ public class EditEntryCommand extends Command {
         List<Entry> lastShownList = model.getFilteredEntryList();
 
         if (lastShownList.stream().noneMatch(predicate)) {
-            throw new CommandException(Messages.MESSAGE_NO_SUCH_ENTRY);
+            throw new CommandException(Messages.MESSAGE_INVALID_ENTRY_INDEX);
         }
 
         Entry target = lastShownList.stream().filter(predicate).findFirst().get();

@@ -6,8 +6,8 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showEntryAtIndex;
 import static seedu.address.testutil.TypicalEntries.getTypicalEntriesList;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
+import static seedu.address.testutil.TypicalIndices.INDEX_FIRST;
+import static seedu.address.testutil.TypicalIndices.INDEX_SECOND;
 
 import org.junit.jupiter.api.Test;
 
@@ -40,7 +40,7 @@ public class DeleteEntryCommandTest {
         Index outOfBoundsIndex = Index.fromOneBased(model.getFilteredEntryList().size() + 1);
         DeleteEntryCommand deleteEntryCommand = new DeleteEntryCommand(outOfBoundsIndex);
 
-        assertCommandFailure(deleteEntryCommand, model, Messages.MESSAGE_NO_SUCH_ENTRY);
+        assertCommandFailure(deleteEntryCommand, model, Messages.MESSAGE_INVALID_ENTRY_INDEX);
     }
 
     @Test
@@ -69,7 +69,7 @@ public class DeleteEntryCommandTest {
 
         DeleteEntryCommand deleteEntryCommand = new DeleteEntryCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteEntryCommand, model, Messages.MESSAGE_NO_SUCH_ENTRY);
+        assertCommandFailure(deleteEntryCommand, model, Messages.MESSAGE_INVALID_ENTRY_INDEX);
     }
 
     @Test
