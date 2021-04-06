@@ -7,8 +7,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.commons.util.FileUtil;
-import seedu.address.logic.parser.ParserUtil;
-import seedu.address.logic.parser.exceptions.ParseException;
 
 public class Picture {
 
