@@ -279,43 +279,16 @@
       } ]
     } ]
   }, {
-    "name" : "John Doe",
+    "name" : "John Dough",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
     "height" : "169cm",
     "weight" : "69kg",
-    "isArchived" : true,
+    "isArchived" : false,
     "tagged" : [ "owesMoney", "friends" ],
     "appointments" : [ ],
-    "records" : [ {
-      "dateString" : "6/4/21 16:10",
-      "sections" : [ {
-        "title" : "Test",
-        "body" : "Hi"
-      } ]
-    }, {
-      "dateString" : "6/4/21 16:13",
-      "sections" : [ {
-        "title" : "How are you",
-        "body" : "Im good"
-      }, {
-        "title" : "",
-        "body" : "yes"
-      } ]
-    }, {
-      "dateString" : "6/4/21 16:18",
-      "sections" : [ {
-        "title" : "",
-        "body" : "a"
-      } ]
-    }, {
-      "dateString" : "6/4/21 16:33",
-      "sections" : [ {
-        "title" : "bug",
-        "body" : ""
-      } ]
-    } ]
+    "records" : [ ]
   }, {
     "name" : "Kaia Metcalfe",
     "phone" : "92624417",
