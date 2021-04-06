@@ -244,19 +244,6 @@ The following activity diagram summarizes what happens when a user executes a cl
 
 ![ClearActivityDiagram](images/ClearLocationActivityDiagram.png)
 
-#### Design consideration:
-
-#### Aspect: How `clear` executes
-
-**Alternative 1 (current choice)** : 
-* Pros: 
-* Cons: 
-
-**Alternative 2** : provide a date in the format of YYYY-MM-DD as input
-* Pros:
-* Cons: 
-
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
