@@ -56,8 +56,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the contact list with {@code contact}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the contact list with {@code contacts}.
+     * {@code contacts} must not contain duplicate contacts.
      */
     public void setContacts(List<Contact> contacts) {
         this.contacts.setContacts(contacts);
