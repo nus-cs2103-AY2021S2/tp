@@ -15,9 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.FindPropertyCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.property.Address;
 import seedu.address.model.property.Deadline;
-import seedu.address.model.property.PostalCode;
 import seedu.address.model.property.Property;
 import seedu.address.model.property.PropertyAddressPredicate;
 import seedu.address.model.property.PropertyClientContactPredicate;
@@ -32,7 +30,6 @@ import seedu.address.model.property.PropertyRemarksPredicate;
 import seedu.address.model.property.PropertyTagsPredicate;
 import seedu.address.model.property.PropertyTypePredicate;
 import seedu.address.model.property.client.Contact;
-import seedu.address.model.property.client.Email;
 import seedu.address.model.remark.Remark;
 import seedu.address.model.tag.Tag;
 
