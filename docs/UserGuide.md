@@ -93,7 +93,7 @@ Recurring Schedule should be of the format [END DATE][DAY][FREQUENCY] e.g [23/10
 
 **Recurring dates that is of the upcoming day of week up till the [END DATE] will be generated for the task.**
 
-**Note: Supposedly today is 06/04/2021 which falls on a Tuesday, 
+**Note: Suppose today is 06/04/2021 which falls on a Tuesday, 
 user enters [30/06/2021][tue][weekly] for the recurring schedule field.
 The date of 06/04/2021 will not be included in the recurring dates and only recurring dates from the following tuesday
 will be included up till 30th June 2021 on a weekly basis.**
