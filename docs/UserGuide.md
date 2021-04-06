@@ -75,7 +75,7 @@ iScam is a **desktop app for insurance agents to manage clients and meetings, op
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+  e.g. if you specify `p/82341234 p/86785678`, only `p/86785678` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `listmeet`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -105,7 +105,7 @@ A client can have only one or no insurance plan
 </div>
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 You can add a profile picture for your client by first adding the picture file into [JAR file location]/data/[picture file].
-Then, include the file name under the i/ prefix when adding client.
+Then, include the file name under the i/ prefix when adding client. The image should not be corrupted as the image would not be displayed if so.
 </div><br>
 
 Examples:
@@ -114,14 +114,13 @@ Examples:
 
 ### Listing all clients : `list`
 
-Changes the mode of iScam to Client Mode.
-Client Mode displays lists of clients and client details.
+Displays the list of clients and client details.
 
 Format: `list`
 
 ### Showing a particular client : `show`
 
-Display client details on the right panel of the Ui.
+Displays client details on the right panel of the Ui.
 
 Format: `show INDEX`
 
@@ -252,7 +251,7 @@ Examples:
 
 ### Relocating a meeting: `relocate`
 
-Modify the location of an existing meeting in iScam.
+Modifies the location of an existing meeting in iScam.
 
 Format: `relocate INDEX l/LOCATION`
 
@@ -263,7 +262,7 @@ Examples:
 
 ### Rescheduling a meeting: `reschedule`
 
-Modify the date and time of an existing meeting in iScam.
+Modifies the date and time of an existing meeting in iScam.
 
 Format: `reschedule INDEX on/DATE_TIME`
 
@@ -310,7 +309,7 @@ Format: `deletemeet INDEX`
 * `INDEX` refer to the meeting's index number shown in the displayed meeting list from `listmeet`. The index **must be a 
   positive integer 1, 2, 3, …**
 
-### Complete a meeting `donemeet`
+### Completing a meeting `donemeet`
 Marks a specified existing meeting from iScam as completed. 
 
 Format: `donemeet INDEX`
