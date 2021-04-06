@@ -46,7 +46,9 @@ This block is used to provide you extra details about the feature that will enab
 
 1. Copy the file to the folder you want to use as the _home folder_ for your TutorsPet.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. Double-click the file to start the app. If that does not work, open command prompt and type in 
+   `java -jar /path/to/jar/file`, replacing the path with the absolute or relative file paths.
+   The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -222,7 +224,7 @@ Prefix | Sorting Criteria
 `n/`   | Name             
 `s/`   | School           
 `t/`   | Subject          
-`le`   | Lesson           
+`le/`  | Lesson           
 
 * There are four sorting criteria available, represented by the prefixes `n/`, `s/`, `t/`, and 
   `le/`. They represent sorting by name, school, subjects or lessons respectively.
