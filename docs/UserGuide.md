@@ -41,6 +41,50 @@ Commands in this user guide follow this format:
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 
+### Command parsing
+
+#### Repeated parameters
+All commands in SunRez default to taking the latest occurrence of a duplicate parameter **except [tags](#tag)**. 
+For example, if you key in this command:
+
+`radd n/John Doe n/Timmy Tan p/91234567 e/e0123456@u.nus.edu y/3`
+
+The resident's name will take the **later** occurrence of name and create a resident named "Timmy Tan".
+
+On the other hand, **all** [tags](#tag) specified will be taken. 
+
+For instance, `radd n/John Doe n/Timmy Tan p/91234567 e/e0123456@u.nus.edu y/3 g/tag_one g/tag_two g/tag_three` will create a resident with tags `tag_one`, `tag_two` and `tag_three`.
+
+
+#### Interpreting parameter values
+Commands in SunRez have a pre-set parameter list they accept. The value for the parameter will be all characters 
+until the next occurrence of a parameter prefix for the command.
+For example, if you key in this command:
+
+`radd n/John Doe p/91234567 e/e0123456@u.nus.edu y/3`
+
+The resident's name will be all characters that follows `n/` until just before the start of `p/`, including the space. Most commands, however, trim leading and trailing spaces.
+
+Let us break this down further and assume `radd` only takes in 2 parameters for the purposes of explanation. 
+We can break the command down as follows:
+
+`radd n/[NAME_STRING] p/[PHONE_NUM_STRING]`
+
+A user can enter a `NAME_STRING` that consists of anything, including text that contains prefix-like strings such as `s/`. 
+For example, a user could enter `John s/o Tom`. 
+However, as `s/` is not a valid prefix for the `radd` command, the command parser will treat `John s/o Tom` as the value for the name parameter. 
+
+
+The validation for the `Name` parameter will process `John s/o Tom` and may reject it based on the stated validation rules.
+However, a known limitation of this approach is that parameter values containing valid parameter prefixes will cause issues. 
+
+Let us take a look at another example:
+
+If `NAME_STRING` = `John p/ Tom`, the command keyed in could look like `radd p/[VALID_PHONE_NUM] n/John p/ Tom` (Remember that prefix order does not matter.) 
+
+This will create the presence of 2 phone number parameters. In such a case, the latter value will be taken. As `Tom` is not a valid phone number, it will be rejected.
+
+
 ### Command Parameters
 
 Many SunRez commands use various parameters. Their formats, constraints and rationale are provided in this subsection.
