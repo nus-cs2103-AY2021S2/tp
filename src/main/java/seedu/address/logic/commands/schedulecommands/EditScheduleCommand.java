@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_DATE;
 import static seedu.address.commons.core.Messages.MESSAGE_TIME_FROM_GREATER_THAN;
 import static seedu.address.commons.core.Messages.MESSAGE_UNABLE_TO_EDIT_PAST_SCHEDULE;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_FROM;
@@ -12,7 +13,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_SCHEDULE;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
@@ -60,8 +60,7 @@ public class EditScheduleCommand extends Command {
      * @param index of the schedule in the filtered schedule list to edit
      */
     public EditScheduleCommand(Index index, EditScheduleDescriptor editScheduleDescriptor) {
-        requireNonNull(index);
-        requireNonNull(editScheduleDescriptor);
+        requireAllNonNull(index, editScheduleDescriptor);
 
         this.index = index;
         this.editScheduleDescriptor = editScheduleDescriptor;
@@ -84,43 +83,51 @@ public class EditScheduleCommand extends Command {
         Optional<AppointmentDateTime> optionalUpdatedTimeFrom = editScheduleDescriptor.getTimeFrom();
         Optional<AppointmentDateTime> optionalUpdatedTimeTo = editScheduleDescriptor.getTimeTo();
 
+        /* If all three date, timeFrom and timeTo are edited  */
         if (optionalUpdatedTimeFrom.isPresent() && optionalUpdatedTimeTo.isPresent()) {
             updatedTimeFrom = optionalUpdatedTimeFrom.get();
             updatedTimeTo = optionalUpdatedTimeTo.get();
         }
 
+        /* If date and timeFrom are edited */
         if (optionalUpdatedTimeFrom.isPresent() && optionalUpdatedTimeTo.isEmpty()) {
             updatedTimeFrom = optionalUpdatedTimeFrom.get();
             LocalDate newDate = updatedTimeFrom.toDate();
             updatedTimeTo = new AppointmentDateTime(newDate, scheduleToEdit.getTimeTo().toTime());
         }
 
+        /* If date and timeTo are edited */
         if (optionalUpdatedTimeTo.isPresent() && optionalUpdatedTimeFrom.isEmpty()) {
             updatedTimeTo = optionalUpdatedTimeTo.get();
             LocalDate newDate = updatedTimeTo.toDate();
             updatedTimeFrom = new AppointmentDateTime(newDate, scheduleToEdit.getTimeFrom().toTime());
         }
 
+        /* If only date is edited */
         if (editScheduleDescriptor.getDateOnly().isPresent()) {
             LocalDate newDate = editScheduleDescriptor.getDateOnly().get();
             updatedTimeFrom = new AppointmentDateTime(newDate, scheduleToEdit.getTimeFrom().toTime());
             updatedTimeTo = new AppointmentDateTime(newDate, scheduleToEdit.getTimeTo().toTime());
         }
 
+        /* If only timeFrom is edited */
         if (editScheduleDescriptor.getTimeFromOnly().isPresent()) {
             updatedTimeFrom = new AppointmentDateTime(scheduleToEdit.getTimeFrom().toDate(),
                     editScheduleDescriptor.getTimeFromOnly().get());
         }
 
+        /* If only timeTo is edited */
         if (editScheduleDescriptor.getTimeToOnly().isPresent()) {
             updatedTimeTo = new AppointmentDateTime(scheduleToEdit.getTimeFrom().toDate(),
                     editScheduleDescriptor.getTimeToOnly().get());
         }
 
+        /* If date and timeFrom is not edited */
         if (updatedTimeFrom == null) {
             updatedTimeFrom = scheduleToEdit.getTimeFrom();
         }
 
+        /* If date and timeTo is not edited */
         if (updatedTimeTo == null) {
             updatedTimeTo = scheduleToEdit.getTimeTo();
         }
@@ -144,13 +151,11 @@ public class EditScheduleCommand extends Command {
         Schedule scheduleToEdit = lastShownList.get(index.getZeroBased());
         Schedule editedSchedule = createEditedSchedule(scheduleToEdit, editScheduleDescriptor);
 
-        LocalDateTime now = LocalDateTime.now();
-
-        if (scheduleToEdit.getTimeFrom().isBefore(now)) {
+        if (scheduleToEdit.getTimeFrom().isBeforeNow()) {
             throw new CommandException(MESSAGE_UNABLE_TO_EDIT_PAST_SCHEDULE);
         }
 
-        if (editedSchedule.getTimeFrom().isBefore(now)) {
+        if (editedSchedule.getTimeFrom().isBeforeNow()) {
             throw new CommandException(MESSAGE_INVALID_DATE);
         }
 

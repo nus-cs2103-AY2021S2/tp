@@ -9,8 +9,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_FROM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_TO;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
-import java.time.LocalDateTime;
-
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -65,11 +63,11 @@ public class AddScheduleCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (toAdd.getTimeFrom().value.isBefore(LocalDateTime.now())) {
+        if (toAdd.getTimeFrom().isBeforeNow()) {
             throw new CommandException(MESSAGE_INVALID_DATE);
         }
 
-        if (!toAdd.getTimeFrom().isTimeFromValid(toAdd.getTimeTo())) {
+        if (toAdd.isInvalidTimeRange()) {
             throw new CommandException(MESSAGE_TIME_FROM_GREATER_THAN);
         }
 

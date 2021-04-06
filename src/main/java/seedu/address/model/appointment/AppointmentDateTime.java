@@ -151,8 +151,11 @@ public class AppointmentDateTime {
         return this.value.isBefore(other.value);
     }
 
-    public boolean isBefore(LocalDateTime other) {
-        return this.value.isBefore(other);
+    /**
+     * Returns true if the {@code AppointmentDateTime} is before now.
+     */
+    public boolean isBeforeNow() {
+        return this.value.isBefore(LocalDateTime.now());
     }
 
     /**

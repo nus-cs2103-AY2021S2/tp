@@ -29,6 +29,10 @@ public abstract class Event {
         return timeTo;
     }
 
+    public boolean isInvalidTimeRange() {
+        return !this.timeFrom.isBefore(timeTo);
+    }
+
     @Override
     public String toString() {
         return String.format("from %s to %s", this.timeFrom.toString(), this.timeTo.toString());
