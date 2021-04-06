@@ -194,6 +194,8 @@ Note:
  as legitimate.
 - Multiple entries can exist with the same name but different locations, and vice versa.
 - A FoodDiary entry can have any number of categories or schools.
+- Food Diary can contain up to 1,000,000 entries, beyond which it will not be possible to
+add more entries until one or more existing entries have been deleted.
 
 Example:
 
