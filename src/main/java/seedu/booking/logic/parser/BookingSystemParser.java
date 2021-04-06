@@ -16,13 +16,8 @@ import seedu.booking.logic.commands.EditBookingCommand;
 import seedu.booking.logic.commands.EditPersonCommand;
 import seedu.booking.logic.commands.EditVenueCommand;
 import seedu.booking.logic.commands.ExitCommand;
-import seedu.booking.logic.commands.FilterBookingByBookerCommand;
-import seedu.booking.logic.commands.FilterBookingByDateCommand;
-import seedu.booking.logic.commands.FilterBookingByTagCommand;
-import seedu.booking.logic.commands.FilterBookingByVenueCommand;
-import seedu.booking.logic.commands.FindPersonByTagCommand;
+import seedu.booking.logic.commands.FindBookingCommand;
 import seedu.booking.logic.commands.FindPersonCommand;
-import seedu.booking.logic.commands.FindVenueByTagCommand;
 import seedu.booking.logic.commands.FindVenueCommand;
 import seedu.booking.logic.commands.HelpCommand;
 import seedu.booking.logic.commands.ListBookingCommand;
@@ -160,17 +155,14 @@ public class BookingSystemParser {
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
+        case FindBookingCommand.COMMAND_WORD:
+            return new FindBookingCommandParser().parse(arguments);
+
         case FindVenueCommand.COMMAND_WORD:
             return new FindVenueCommandParser().parse(arguments);
 
-        case FindVenueByTagCommand.COMMAND_WORD:
-            return new FindVenueByTagCommandParser().parse(arguments);
-
         case FindPersonCommand.COMMAND_WORD:
             return new FindPersonCommandParser().parse(arguments);
-
-        case FindPersonByTagCommand.COMMAND_WORD:
-            return new FindPersonByTagCommandParser().parse(arguments);
 
         case ListPersonCommand.COMMAND_WORD:
             return new ListPersonCommand();
@@ -186,18 +178,6 @@ public class BookingSystemParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
-
-        case FilterBookingByVenueCommand.COMMAND_WORD:
-            return new FilterBookingByVenueCommandParser().parse(arguments);
-
-        case FilterBookingByBookerCommand.COMMAND_WORD:
-            return new FilterBookingByBookerCommandParser().parse(arguments);
-
-        case FilterBookingByDateCommand.COMMAND_WORD:
-            return new FilterBookingByDateCommandParser().parse(arguments);
-
-        case FilterBookingByTagCommand.COMMAND_WORD:
-            return new FilterBookingByTagCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
