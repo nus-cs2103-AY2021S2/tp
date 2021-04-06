@@ -35,7 +35,8 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&since=2021-02-19&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=authorship&tabAuthor=ZhangAnli&tabRepo=AY2021S2-CS2103T-T10-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs)
 
 * **Project management**: 
-
+    * Managed milestones `v1.2 - v1.4` on GitHub
+    * Assigned and allocated issues to team members for smoother work allocation. 
 
 * **Enhancements to existing features**: GUI Refactoring (in progress...)
   * Refactored the look and feel of the UI, such as through re-arrangement of the JavaFX components and layering. 
