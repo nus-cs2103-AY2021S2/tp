@@ -1,7 +1,5 @@
 package fooddiary.logic.parser;
 
-import static fooddiary.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
 import fooddiary.commons.core.Messages;
 import fooddiary.commons.core.index.Index;
 import fooddiary.logic.commands.ReviseCommand;
@@ -23,8 +21,8 @@ public class ReviseCommandParser implements Parser<ReviseCommand> {
         } catch (IndexOutOfBoundsException e) {
             throw new ParseException(e.getMessage());
         } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReviseCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                    ReviseCommand.MESSAGE_USAGE), pe);
         }
     }
 }

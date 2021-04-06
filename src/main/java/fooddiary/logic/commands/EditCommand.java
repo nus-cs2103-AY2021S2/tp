@@ -15,6 +15,7 @@ import fooddiary.commons.core.index.Index;
 import fooddiary.commons.util.CollectionUtil;
 import fooddiary.logic.commands.exceptions.CommandException;
 import fooddiary.logic.parser.CliSyntax;
+import fooddiary.logic.parser.exceptions.ParseException;
 import fooddiary.model.Model;
 import fooddiary.model.entry.Address;
 import fooddiary.model.entry.Entry;
@@ -72,8 +73,11 @@ public class EditCommand extends Command {
         requireNonNull(model);
         List<Entry> lastShownList = model.getFilteredEntryList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX_PLURAL);
+        if (index.getZeroBased() >= lastShownList.size() && lastShownList.size() == 1) {
+            throw new CommandException(Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX_SINGULAR);
+        } else if (index.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(String.format(Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX_PLURAL,
+                    lastShownList.size()));
         }
 
         Entry entryToEdit = lastShownList.get(index.getZeroBased());

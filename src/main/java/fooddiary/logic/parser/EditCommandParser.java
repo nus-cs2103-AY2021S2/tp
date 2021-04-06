@@ -1,6 +1,5 @@
 package fooddiary.logic.parser;
 
-import static fooddiary.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static fooddiary.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static fooddiary.logic.parser.CliSyntax.PREFIX_NAME;
 import static fooddiary.logic.parser.CliSyntax.PREFIX_PRICE;
@@ -47,9 +46,10 @@ public class EditCommandParser implements Parser<EditCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (IndexOutOfBoundsException e) {
-            throw new ParseException(Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX_PLURAL);
+            throw new ParseException(e.getMessage());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditCommand.MESSAGE_USAGE), pe);
         }
 
         EditEntryDescriptor editEntryDescriptor = new EditEntryDescriptor();
