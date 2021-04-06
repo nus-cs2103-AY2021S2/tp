@@ -31,7 +31,7 @@ public class MonthlyFee {
     }
 
     private Boolean isValidMonthlyFee(double monthlyFee) {
-        return monthlyFee > 0;
+        return monthlyFee >= 0;
     }
 
     public double getMonthlyFee() {
