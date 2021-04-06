@@ -1,6 +1,6 @@
 package dog.pawbook.storage;
 
-import static dog.pawbook.testutil.TypicalOwners.getTypicalDatabase;
+import static dog.pawbook.testutil.TypicalEntities.getTypicalDatabase;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 

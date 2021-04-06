@@ -26,8 +26,8 @@ import static dog.pawbook.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static dog.pawbook.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static dog.pawbook.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static dog.pawbook.testutil.TypicalOwners.AMY;
-import static dog.pawbook.testutil.TypicalOwners.BOB;
+import static dog.pawbook.testutil.TypicalEntities.AMY;
+import static dog.pawbook.testutil.TypicalEntities.BOB;
 
 import org.junit.jupiter.api.Test;
 

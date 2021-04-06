@@ -53,14 +53,14 @@ public class CommandTestUtil {
 
     public static final String VALID_NAME_ASHER = "Asher";
     public static final String VALID_NAME_BELL = "Bell";
-    public static final String VALID_SEX_ASHER = "male";
-    public static final String VALID_SEX_BELL = "female";
+    public static final String VALID_SEX_ASHER = "female";
+    public static final String VALID_SEX_BELL = "male";
     public static final String VALID_DATEOFBIRTH_ASHER = "16-4-2020";
     public static final String VALID_DATEOFBIRTH_BELL = "15-4-2020";
     public static final String VALID_BREED_ASHER = "Corgi";
     public static final String VALID_BREED_BELL = "Greyhound";
-    public static final int VALID_OWNERID_9 = 9;
-    public static final int VALID_OWNERID_10 = 10;
+    public static final int VALID_OWNERID_15 = 15;
+    public static final int VALID_OWNERID_17 = 17;
     public static final String VALID_TAG_FRIENDLY = "friendly";
     public static final String VALID_TAG_QUIET = "quiet";
 
@@ -72,8 +72,8 @@ public class CommandTestUtil {
     public static final String BREED_DESC_BELL = " " + PREFIX_BREED + VALID_BREED_BELL;
     public static final String DATEOFBIRTH_DESC_ASHER = " " + PREFIX_DOB + VALID_DATEOFBIRTH_ASHER;
     public static final String DATEOFBIRTH_DESC_BELL = " " + PREFIX_DOB + VALID_DATEOFBIRTH_BELL;
-    public static final String OWNERID_DESC_9 = " " + PREFIX_OWNERID + VALID_OWNERID_9;
-    public static final String OWNERID_DESC_10 = " " + PREFIX_OWNERID + VALID_OWNERID_10;
+    public static final String OWNERID_DESC_15 = " " + PREFIX_OWNERID + VALID_OWNERID_15;
+    public static final String OWNERID_DESC_17 = " " + PREFIX_OWNERID + VALID_OWNERID_17;
     public static final String TAG_DESC_FRIENDLY = " " + PREFIX_TAG + VALID_TAG_FRIENDLY;
     public static final String TAG_DESC_QUIET = " " + PREFIX_TAG + VALID_TAG_QUIET;
 
