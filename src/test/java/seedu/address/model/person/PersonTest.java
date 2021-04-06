@@ -18,6 +18,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.PersonBuilder;
@@ -98,7 +99,7 @@ public class PersonTest {
     }
 
     @Test
-    public void person_getGoalDeadline() {
+    public void person_getGoalDeadline_success() {
         Person aliceCopy = new PersonBuilder(ALICE).build();
         LocalDate date = LocalDate.of(2021, 3, 30);
 

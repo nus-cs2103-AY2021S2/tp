@@ -3,7 +3,6 @@ package seedu.address.testutil;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-import seedu.address.model.person.Event;
 import seedu.address.model.person.Meeting;
 
 public class TypicalMeetings {
