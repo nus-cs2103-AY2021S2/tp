@@ -1,0 +1,15 @@
+@startuml
+start
+:User enters delete command;
+
+:Parse user input;
+
+if () then ([user input is valid])
+    :Create and execute Delete command;
+    :Delete item from StoreMando inventory;
+    :Display command success message;
+else ([else])
+    :Display parse error message;
+endif
+stop
+@enduml
