@@ -12,6 +12,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.event.GeneralEvent;
 import seedu.address.model.module.Description;
 import seedu.address.model.module.Exam;
 import seedu.address.model.module.Title;
@@ -110,6 +111,24 @@ public class ParserUtil {
                     DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm"));
         } catch (DateTimeParseException e) {
             return null;
+        }
+    }
+
+    /**
+     * Parses a {@code String date} into a {@code LocalDateTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code date} is invalid.
+     */
+    public static LocalDateTime parseEventDate(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDeadline = date.trim();
+        try {
+            LocalDateTime eventDate = LocalDateTime.parse(trimmedDeadline,
+                    DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm"));
+            return eventDate;
+        } catch (DateTimeParseException e) {
+            throw new ParseException(GeneralEvent.DATE_CONSTRAINT);
         }
     }
 
