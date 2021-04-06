@@ -7,32 +7,39 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.booking.logic.commands.PromptVenueTagsCommand;
+import seedu.booking.logic.commands.PromptPersonTagsCommand;
 import seedu.booking.logic.parser.exceptions.ParseException;
-import seedu.booking.logic.parser.promptparsers.PromptVenueTagsParser;
+import seedu.booking.logic.parser.promptparsers.PromptPersonTagsParser;
 import seedu.booking.model.Tag;
 
-public class PromptVenueTagParserTest {
-    private final PromptVenueTagsParser parser = new PromptVenueTagsParser();
+public class PromptPersonTagsParserTest {
+    private final PromptPersonTagsParser parser = new PromptPersonTagsParser();
 
     @Test
-    public void parseVenueTags_validTags_success() throws ParseException {
+    public void parsePersonTags_validTags_success() throws ParseException {
         Set<Tag> emptyTags = ParserUtil.parseTagsForPromptCommands("");
         Set<Tag> validTags = ParserUtil.parseTagsForPromptCommands("big, cute");
 
         // no input
-        assertParseSuccess(parser, "", new PromptVenueTagsCommand(emptyTags));
+        assertParseSuccess(parser, "", new PromptPersonTagsCommand(emptyTags));
 
         // more than one valid tag
-        assertParseSuccess(parser, "big, cute", new PromptVenueTagsCommand(validTags));
+        assertParseSuccess(parser, "big, cute", new PromptPersonTagsCommand(validTags));
+
+        // no tags parsed
+        assertParseSuccess(parser, ",", new PromptPersonTagsCommand(emptyTags));
     }
 
     @Test
-    public void parseVenueTags_invalidTags_failure() throws ParseException {
+    public void parsePersonTags_invalidTags_failure() {
         // one tag with spacing
         assertParseFailure(parser, "big cute, weird", Tag.MESSAGE_CONSTRAINTS);
+
+        // one tag with spacing
+        assertParseFailure(parser, "Jon Snow", Tag.MESSAGE_CONSTRAINTS);
 
         // more than one valid tag
         assertParseFailure(parser, "ice-cream", Tag.MESSAGE_CONSTRAINTS);
     }
 }
+

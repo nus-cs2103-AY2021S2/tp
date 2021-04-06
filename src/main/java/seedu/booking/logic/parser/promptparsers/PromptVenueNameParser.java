@@ -17,7 +17,7 @@ import seedu.booking.model.venue.VenueName;
 /**
  * Parses input arguments and creates a new PromptAddVenueCommand object
  */
-public class PromptVenueNameCommandParser implements Parser<PromptAddVenueCommand> {
+public class PromptVenueNameParser implements Parser<PromptAddVenueCommand> {
 
     /**
      * Parses the given {@code String} of arguments for venue in the context of adding a venue

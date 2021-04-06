@@ -13,11 +13,11 @@ import static seedu.booking.logic.parser.CommandParserTestUtil.assertParseSucces
 import org.junit.jupiter.api.Test;
 
 import seedu.booking.logic.commands.PromptAddVenueCommand;
-import seedu.booking.logic.parser.promptparsers.PromptVenueNameCommandParser;
+import seedu.booking.logic.parser.promptparsers.PromptVenueNameParser;
 import seedu.booking.model.venue.VenueName;
 
-public class PromptVenueNameCommandParserTest {
-    private final PromptVenueNameCommandParser parser = new PromptVenueNameCommandParser();
+public class PromptVenueNameParserTest {
+    private final PromptVenueNameParser parser = new PromptVenueNameParser();
 
     @Test
     public void parseVenueName_validField_success() {
@@ -50,5 +50,8 @@ public class PromptVenueNameCommandParserTest {
 
         // No prefix
         assertParseFailure(parser, "Victoria", expectedMessage);
+
+        // Wrong prefix
+        assertParseFailure(parser, " b/", expectedMessage);
     }
 }
