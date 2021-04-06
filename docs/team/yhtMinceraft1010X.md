@@ -44,6 +44,6 @@ Given below are my contributions to the project.
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](https://github.com/nus-cs2103-AY2021S2/forum/issues/262), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
+  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
+  * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/nus-cs2103-AY2021S2/forum/issues/262), [2](), [3]())
   
