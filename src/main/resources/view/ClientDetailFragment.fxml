@@ -27,8 +27,8 @@
             </VBox>
         </HBox>
         <HBox alignment="TOP_LEFT" minHeight="100" VBox.vgrow="ALWAYS" spacing="10">
-            <VBox alignment="TOP_LEFT">
-                <ListView fx:id="clientMeetingListView" VBox.vgrow="ALWAYS"/>
+            <VBox alignment="TOP_LEFT" HBox.hgrow="ALWAYS" prefWidth="170">
+                <ListView fx:id="clientMeetingListView" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS"/>
             </VBox>
             <VBox alignment="TOP_LEFT" fx:id="insurancePlanBox" styleClass="insurance-pane" HBox.hgrow="ALWAYS">
                 <padding>

@@ -34,7 +34,6 @@ public class ModelManager implements Model {
     private final ClientBook clientBook;
     private final FilteredList<Client> filteredClients;
     private final ObservableClient detailedClient;
-    private final SimpleBooleanProperty isClientMode;
 
     private final MeetingBook meetingBook;
     private final FilteredList<Meeting> filteredMeetings;
@@ -56,7 +55,6 @@ public class ModelManager implements Model {
         this.clientBook = new ClientBook(clientBook);
         this.filteredClients = new FilteredList<>(this.clientBook.getClientList());
         this.detailedClient = new ObservableClient();
-        this.isClientMode = new SimpleBooleanProperty(true);
 
         this.meetingBook = new MeetingBook(meetingBook);
         this.filteredMeetings = new FilteredList<>(this.meetingBook.getMeetingList());
@@ -239,30 +237,6 @@ public class ModelManager implements Model {
     public void updateFilteredMeetingList(Predicate<Meeting> predicate) {
         requireNonNull(predicate);
         filteredMeetings.setPredicate(predicate);
-    }
-
-    /**
-     * Set isClientMode to true.
-     */
-    @Override
-    public void setClientMode() {
-        isClientMode.set(true);
-    }
-
-    /**
-     * Set isClientMode to false.
-     */
-    @Override
-    public void setMeetingMode() {
-        isClientMode.set(false);
-    }
-
-    /**
-     * Set isClientMode to false.
-     */
-    @Override
-    public ObservableValue<Boolean> getIsClientMode() {
-        return isClientMode;
     }
 
     //TODO: header

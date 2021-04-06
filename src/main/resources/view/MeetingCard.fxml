@@ -2,18 +2,17 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.Region?>
 <HBox id="meetingCardPane" fx:id="meetingCardPane" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <GridPane HBox.hgrow="ALWAYS">
         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="90" />
         </columnConstraints>
         <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
             <padding>
@@ -30,12 +29,9 @@
             </HBox>
             <FlowPane fx:id="tags" />
             <Label fx:id="dateTime" styleClass="cell_medium_label" text="\$dateTime"></Label>
-            <Label fx:id="meetingLocation" styleClass="cell_medium_label" text="\$meetingLocation"></Label>
+            <Label fx:id="meetingLocation" styleClass="cell_medium_label" text="\$meetingLocation" wrapText="true" />
             <Label fx:id="description" styleClass="cell_small_label" text="\$description" />
             <Label fx:id="status" styleClass="cell_small_label" text="\$status" />
         </VBox>
-      <rowConstraints>
-         <RowConstraints />
-      </rowConstraints>
     </GridPane>
 </HBox>

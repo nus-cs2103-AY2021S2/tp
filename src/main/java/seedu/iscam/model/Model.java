@@ -189,24 +189,9 @@ public interface Model {
     void setDetailedClient(Client client);
 
     /**
-     * Set iScam to Client mode.
-     */
-    void setClientMode();
-
-    /**
-     * Set iScam to Meeting mode.
-     */
-    void setMeetingMode();
-
-    /**
      * Updates the detailed meeting to match the supplied meeting.
      */
     void setDetailedMeeting(Meeting meeting);
-
-    /**
-     * Return iScam's current mode.
-     */
-    ObservableValue<Boolean> getIsClientMode();
 
     /**
      * Returns index of given {@code Client}.

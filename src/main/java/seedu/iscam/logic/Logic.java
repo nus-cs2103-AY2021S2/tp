@@ -43,12 +43,6 @@ public interface Logic {
      */
     ObservableList<Client> getFilteredClientList();
 
-
-    /**
-     * Returns the mode of iScam.
-     */
-    ObservableValue<Boolean> getIsClientMode();
-
     /**
      * Returns an unmodifiable view of a client to be displayed in detail
      */

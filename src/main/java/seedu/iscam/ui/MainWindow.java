@@ -70,7 +70,6 @@ public class MainWindow extends UiPart<Stage> {
         // Set dependencies
         this.primaryStage = primaryStage;
         this.logic = logic;
-        this.isClientMode = logic.getIsClientMode();
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
@@ -78,7 +77,6 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
-        isClientMode.addListener(new BooleanListener());
     }
 
     public Stage getPrimaryStage() {
@@ -139,6 +137,9 @@ public class MainWindow extends UiPart<Stage> {
         ClientDetailFragment clientDetailFragment =
                 new ClientDetailFragment(logic.getDetailedClient(), logic.getFilteredMeetingList());
         clientDetailFragmentPlaceholder.getChildren().add(clientDetailFragment.getRoot());
+
+        MeetingListPanel meetingListPanel = new MeetingListPanel(logic.getFilteredMeetingList());
+        meetingListPanelPlaceholder.getChildren().add(meetingListPanel.getRoot());
     }
 
     /**
@@ -207,21 +208,6 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
-        }
-    }
-
-    class BooleanListener implements ChangeListener<Boolean> {
-        @Override
-        public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-            clientDetailFragmentPlaceholder.getChildren().clear();
-            if (newValue) {
-                ClientDetailFragment clientDetailFragment =
-                        new ClientDetailFragment(logic.getDetailedClient(), logic.getFilteredMeetingList());
-                clientDetailFragmentPlaceholder.getChildren().add(clientDetailFragment.getRoot());
-            } else {
-                meetingListPanel = new MeetingListPanel(logic.getFilteredMeetingList());
-                clientDetailFragmentPlaceholder.getChildren().add(meetingListPanel.getRoot());
-            }
         }
     }
 }

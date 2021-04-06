@@ -120,11 +120,6 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableValue<Boolean> getIsClientMode() {
-        return model.getIsClientMode();
-    }
-
-    @Override
     public ObservableClient getDetailedClient() {
         return model.getDetailedClient();
     }
