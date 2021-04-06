@@ -281,6 +281,7 @@ Format: `add_event n/EVENTNAME sd/STARTDATE st/STARTTIME ed/ENDDATE et/ENDTIME [
 * The STARTDATE and STARTTIME provided can be in the past (ongoing event).
 * The STARTDATE and STARTTIME provided should be earlier than ENDDATE and ENDTIME.
 * The ENDDATE and ENDTIME provided cannot be a past date time.
+* Time overlapping events are allowed.
 * `c/` is followed by the category. It is optional.
 * `t/` is followed by the tag. It is optional.
 
