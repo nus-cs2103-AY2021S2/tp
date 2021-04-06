@@ -326,17 +326,17 @@ If you wish to generate a set of sample endpoints, you may delete the **imposter
 
 **Description:** [Call](#glossary-call) an API endpoint directly (without saving) **(an ongoing call can be cancelled with <kbd>ctrl</kbd> + <kbd>d</kbd>)**.
 
-**Format:** <span class="main-command">run</span> <span class="optional-param">-x METHOD</span> <span class="optional-param">-u URL</span> <span class="optional-param">-d DATA</span> <span class="optional-param">[-h HEADER]</span>
+**Format:** <span class="main-command">run</span> <span class="compulsory-param">-x METHOD</span> <span class="compulsory-param">-u URL</span> <span class="optional-param">-d DATA</span> <span class="optional-param">[-h HEADER]</span>
 
-**Example & Output:** <span class="main-command">run</span> <span class="optional-param">-x GET</span> <span class="optional-param">-u https://api.data.gov.sg/v1/environment/pm25</span>
+**Example & Output:** <span class="main-command">run</span> <span class="compulsory-param">-x GET</span> <span class="compulsory-param">-u https://api.data.gov.sg/v1/environment/pm25</span>
 
 <p align="center">
   <img width="450px" src="images/commands/run.png" >
 </p>
 
 <div markdown="span" class="alert alert-warning">:bulb: **Tip:**
-A shorthand for <span class="optional-param">GET</span> requests can be done without specifying <span class="optional-param">-x</span> and <span class="optional-param">-u</span> 
-(for example: <span class="main-command">run</span> <span class="optional-param">https://api.data.gov.sg/v1/environment/pm25</span>).
+A shorthand for <span class="optional-param">GET</span> requests can be done without specifying <span class="compulsory-param">-x METHOD</span> <span class="compulsory-param">-u URL</span> 
+(for example: <span class="main-command">run</span> <span class="compulsory-param">https://api.data.gov.sg/v1/environment/pm25</span>).
 </div>
 
 
@@ -416,7 +416,7 @@ A quick overview of all supported commands, their formats and examples are given
 | **List**   | <span class="main-command">list</span><br>                                                               |
 | **Clear**  | <span class="main-command">clear</span><br>                                                              |
 | **Send**   | <span class="main-command">send</span> <span class="compulsory-param">INDEX</span><br>                   |
-| **Run**    | <span class="main-command">run</span> <span class="optional-param">-x METHOD</span> <span class="optional-param">-u URL</span> <span class="optional-param">-d DATA</span> <span class="optional-param">[-h HEADER]</span><br>|
+| **Run**    | <span class="main-command">run</span> <span class="compulsory-param">-x METHOD</span> <span class="compulsory-param">-u URL</span> <span class="optional-param">-d DATA</span> <span class="optional-param">[-h HEADER]</span><br>|
 
 <div style="page-break-after: always;"></div>
 
