@@ -93,8 +93,7 @@ and exposes its functionality using the `LogicManager.java` class which implemen
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues
 the command `delete 1`.
-
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+![Architecture Sequence Diagram](images/ArchitectureSequenceDiagram.png)
 
 The sections below give more details of each component.
 
@@ -333,13 +332,13 @@ The following activity diagram summarizes what happens when a user executes the 
 
 Recording a reader returning a book requires a user input from the CLI.
 The respective parsers will parse the user input to check whether the input is valid, the input is valid if
-1. The reader and book specified exists in the code base.
-2. The reader is borrowing the book and the book is borrowed by the reader
+1. The book specified exists in the code base.
+2. The book is borrowed by someone
 3. There is such a valid borrowing record existing in the code base
 
 Then take the following pseudo processes:
-1. Obtain the Reader object and the Book object based on the identity provided by the user
-2. Mark a corresponding record as returned by indicating the dateReturned field.
+1. Obtain the Book object based on the identity provided by the user
+2. Mark the corresponding record as returned by indicating the dateReturned field.
 3. Remove the book from reader's borrowing list and set book's borrower to null
 
 Given below is an example usage scenario of how the `return` mechanism behaves at each step. In our example and the
