@@ -26,7 +26,7 @@ public class Program extends Entity {
 
     // Data fields
     private final Set<Session> sessionSet = new HashSet<>();
-    private final Set<Integer> dogidSet = new HashSet<>();
+    private final Set<Integer> dogIdSet = new HashSet<>();
 
     /**
      * Every field must be present and not null.
@@ -45,7 +45,7 @@ public class Program extends Entity {
         super(name, tags);
         requireAllNonNull(name, tags);
         this.sessionSet.addAll(sessionSet);
-        this.dogidSet.addAll(dogIDs);
+        this.dogIdSet.addAll(dogIDs);
     }
 
     public Name getName() {
@@ -61,7 +61,7 @@ public class Program extends Entity {
     }
 
     public Set<Integer> getDogIdSet() {
-        return Collections.unmodifiableSet(dogidSet);
+        return Collections.unmodifiableSet(dogIdSet);
     }
 
     public Set<Session> getSessions() {
@@ -100,7 +100,7 @@ public class Program extends Entity {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, sessionSet, dogidSet, tags);
+        return Objects.hash(name, sessionSet, dogIdSet, tags);
     }
 
     @Override
@@ -125,7 +125,7 @@ public class Program extends Entity {
      */
     @Override
     public Collection<Integer> getRelatedEntityIds() {
-        return new ArrayList<>(dogidSet);
+        return new ArrayList<>(dogIdSet);
     }
 
     @Override
@@ -138,8 +138,8 @@ public class Program extends Entity {
                 .collect(Collectors.joining(", "));
         properties.add("Timeslot(s): " + timeslots);
 
-        if (!dogidSet.isEmpty()) {
-            properties.add(dogidSet.stream()
+        if (!dogIdSet.isEmpty()) {
+            properties.add(dogIdSet.stream()
                     .sorted()
                     .map(String::valueOf)
                     .collect(Collectors.joining(", ", "Participating Dog ID(s): ", "")));
