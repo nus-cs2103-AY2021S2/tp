@@ -25,7 +25,7 @@ public class ListCommand extends Command {
             + "Parameters: "
             + "[not done]";
 
-    public static final String INVALID_INPUT = "Invalid List commands detected! \n\nThe only acceptable list command "
+    public static final String INVALID_INPUT = "\nInvalid List commands detected! \n\nThe only acceptable list command "
             + "formats are ls, ls not done ";
 
     public static final String SHORT_MESSAGE_USAGE = COMMAND_WORD + " [not done]\n";
