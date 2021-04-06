@@ -125,7 +125,8 @@ public class UniqueEntityList implements Iterable<Pair<Integer, Entity>> {
 
         Entity originalEntity = internalList.get(index).getValue();
 
-        if (!originalEntity.equals(editedEntity) && contains(editedEntity)) {
+        if (!originalEntity.isSameAs(editedEntity) // if identity fields unmodified, the next condition is invalid
+                && contains(editedEntity)) {
             throw new DuplicateEntityException();
         }
 
@@ -303,7 +304,7 @@ public class UniqueEntityList implements Iterable<Pair<Integer, Entity>> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof UniqueEntityList // instanceof handles nulls
-                && internalList.equals(((UniqueEntityList) other).internalList));
+                    && internalList.equals(((UniqueEntityList) other).internalList));
     }
 
     @Override
@@ -317,11 +318,12 @@ public class UniqueEntityList implements Iterable<Pair<Integer, Entity>> {
     private boolean entitiesAreUnique(List<Entity> entities) {
         for (int i = 0; i < entities.size() - 1; i++) {
             for (int j = i + 1; j < entities.size(); j++) {
-                if (entities.get(i).equals(entities.get(j))) {
+                if (entities.get(i).isSameAs(entities.get(j))) {
                     return false;
                 }
             }
         }
+
         return true;
     }
 }
