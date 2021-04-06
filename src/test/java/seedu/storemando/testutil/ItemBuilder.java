@@ -16,10 +16,10 @@ import seedu.storemando.model.util.SampleDataUtil;
  */
 public class ItemBuilder {
 
-    public static final String DEFAULT_NAME = "Amy Bee";
-    public static final String DEFAULT_QUANTITY = "85355255";
+    public static final String DEFAULT_NAME = "Toilet Roll";
+    public static final String DEFAULT_QUANTITY = "3";
     public static final String DEFAULT_EXPIRYDATE = "2021-10-10";
-    public static final String DEFAULT_LOCATION = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_LOCATION = "Toilet";
 
     private ItemName name;
     private Quantity quantity;

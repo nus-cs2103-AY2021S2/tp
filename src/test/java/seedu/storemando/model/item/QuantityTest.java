@@ -34,11 +34,11 @@ public class QuantityTest {
         assertFalse(Quantity.isValidQuantity("9312 1534")); // spaces within digits
         assertFalse(Quantity.isValidQuantity("0")); // zero quantity
         assertFalse(Quantity.isValidQuantity("-1")); // negative quantity
+        assertFalse(Quantity.isValidQuantity("1000001")); // long quantity numbers
 
         // valid quantity numbers
         assertTrue(Quantity.isValidQuantity("9")); // exactly 1 number
-        assertTrue(Quantity.isValidQuantity("93121534"));
-        assertTrue(Quantity.isValidQuantity("124293842033123")); // long quantity numbers
+
     }
 
     @Test
