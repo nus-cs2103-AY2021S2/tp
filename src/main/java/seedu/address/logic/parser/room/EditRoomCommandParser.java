@@ -1,7 +1,6 @@
 package seedu.address.logic.parser.room;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM_NUMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ROOM_TYPE;
@@ -39,11 +38,8 @@ public class EditRoomCommandParser implements Parser<EditRoomCommand> {
 
         Index index;
 
-        try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditRoomCommand.MESSAGE_USAGE), pe);
-        }
+        index = ParserUtil.parseIndex(argMultimap.getPreamble());
+
 
         EditRoomDescriptor editRoomDescriptor = new EditRoomDescriptor();
         if (argMultimap.getValue(PREFIX_ROOM_NUMBER).isPresent()) {

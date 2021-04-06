@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
+import seedu.address.commons.core.Alias;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -32,6 +33,7 @@ class JsonSerializableAddressBook {
     private final List<JsonAdaptedRoom> rooms = new ArrayList<>();
     private final List<JsonAdaptedIssue> issues = new ArrayList<>();
     private final List<JsonAdaptedResidentRoom> residentRooms = new ArrayList<>();
+    private final List<JsonAdaptedAlias> aliases = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given residents.
@@ -40,11 +42,13 @@ class JsonSerializableAddressBook {
     public JsonSerializableAddressBook(@JsonProperty("residents") List<JsonAdaptedResident> residents,
             @JsonProperty("rooms") List<JsonAdaptedRoom> rooms,
             @JsonProperty("issues") List<JsonAdaptedIssue> issues,
-            @JsonProperty("residentRooms") List<JsonAdaptedResidentRoom> residentRooms) {
+            @JsonProperty("residentRooms") List<JsonAdaptedResidentRoom> residentRooms,
+            @JsonProperty("aliases") List<JsonAdaptedAlias> aliases) {
         this.residents.addAll(residents);
         this.rooms.addAll(rooms);
         this.issues.addAll(issues);
         this.residentRooms.addAll(residentRooms);
+        this.aliases.addAll(aliases);
     }
 
     /**
@@ -58,6 +62,8 @@ class JsonSerializableAddressBook {
         issues.addAll(source.getIssueList().stream().map(JsonAdaptedIssue::new).collect(Collectors.toList()));
         residentRooms.addAll(source.getResidentRoomList().stream()
                 .map(JsonAdaptedResidentRoom::new).collect(Collectors.toList()));
+        aliases.addAll(source.getAliasMapping().getMapping().values().stream()
+                .map(JsonAdaptedAlias::new).collect(Collectors.toList()));
     }
 
     /**
@@ -95,6 +101,11 @@ class JsonSerializableAddressBook {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_ROOM);
             }
             addressBook.addResidentRoom(residentRoom);
+        }
+
+        for (JsonAdaptedAlias jsonAdaptedAlias : aliases) {
+            Alias alias = jsonAdaptedAlias.toModelType();
+            addressBook.addAlias(alias);
         }
 
         return addressBook;

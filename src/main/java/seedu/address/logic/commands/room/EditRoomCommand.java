@@ -37,7 +37,7 @@ public class EditRoomCommand extends Command {
             + "by the index number used in the displayed room list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_ROOM_NUMBER + "NAME] "
+            + "[" + PREFIX_ROOM_NUMBER + "ROOM_NUMBER] "
             + "[" + PREFIX_ROOM_TYPE + "TYPE] "
             + "[" + PREFIX_ROOM_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "

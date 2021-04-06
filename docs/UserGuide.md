@@ -97,10 +97,9 @@ The index number shown in the displayed list.
 
 
 #### `KEYWORD`
-DESCRIPTION OF PARAMETER
-* FORMAT AND RESTRICTIONS WITH JUSTIFICATION
-* (if applicable) For best usage, ...
-* (if applicable) Valid examples (if not clear from above)
+A keyword used in the various find commands.
+* Format: Single word consisting of any character except spaces.
+* For best usage: Use English characters only.
 
 
 #### `NAME`
@@ -118,17 +117,18 @@ The phone number of a resident.
 
 
 #### `ROOM_NUMBER`
-DESCRIPTION OF PARAMETER
-* FORMAT AND RESTRICTIONS WITH JUSTIFICATION
-* (if applicable) For best usage, ...
-* (if applicable) Valid examples (if not clear from above)
+Room number for a room.
+* Format: `XY-ABC`, where XY can be any pair of digits except 00, and ABC can be any 3 digits.
+    * Valid examples: 01-000, 11-100, 12-345.
+    * Invalid examples: 00-000, 00-100.
+* Room numbers are unique within SunRez.
+* We disallow floor numbers being 00. However, unit numbers can be 000.
 
 
 #### `ROOM_TYPE`
-DESCRIPTION OF PARAMETER
-* FORMAT AND RESTRICTIONS WITH JUSTIFICATION
-* (if applicable) For best usage, ...
-* (if applicable) Valid examples (if not clear from above)
+Room type of a room.
+* Must be one of the following strings: `corridor_ac`, `corridor_non_ac`, `suite_ac`, `suite_non_ac`.
+* Strings are not case-sensitive.
 
 
 #### `STATUS`
@@ -143,6 +143,7 @@ The tag associated with a room or issue.
 * Tags must be non-blank and alphanumeric (spaces are not allowed).
 * Tags are limited to 25 characters.
 * Tags are case-sensitive: e.g. `SHN`,`shn` and `Shn` are each considered separate tags.
+* Insertion order of tags does not guarantee display order in any part of the user interface.
 * Duplicate tags will be accepted as input, but only one instance will be recorded.
 * For the best experience, we recommend keeping tags short and having fewer than 20 of them per entry. There is no 
   theoretical limit to the number of tags an entry can have, but SunRez may slow down or run into unexpected problems 
@@ -269,13 +270,28 @@ Example:
 
 ### Room Management
 
+<div markdown="block" class="alert alert-secondary">
+:thinking: Why do room commands start with `o`?<br>
+:point_right: Room commands are prefixed with `o` as `r` is taken up by Resident commands. `o` is the second character in R**o**om. 
+</div>
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Rooms are always sorted in ascending order by room number in all views.**
+</div>
+
 #### Add a room : `oadd`
 
 Adds a room to the housing management system.
 
 Format: `oadd r/ROOM_NUMBER t/ROOM_TYPE [g/TAG]`
 * Room is initialised with default occupancy status of "No".
-* Room occupancy status can only be changed through the `alloc` or `dealloc` command when a resident is allocated or deallocated. The occupancy status cannot be defaulted to "Yes" during room addition.
+* The occupancy status cannot be defaulted to "Yes" during room addition.
+* Room occupancy status can only be changed through the `alloc` or `dealloc` command when a resident is allocated or deallocated. See [allocate a resident](#allocate-resident-to-room-alloc) or [deallocate a resident](#deallocate-resident-from-room-dealloc) for more info. 
+  
+Parameters:
+* [ROOM_NUMBER](#room_number) The room number of the room to add.
+* [ROOM_TYPE](#room_type) The type of the room being added.
+* [TAG](#tag) Optional tags that may be specified to assist in management of the room.
 
 Example:
 * `oadd r/10-112 t/corridor_ac g/SHN` Adds a room numbered `10-112` of type `corridor_ac` with the tag `SHN`.
@@ -299,6 +315,9 @@ Format: `ofind KEYWORD [MORE_KEYWORDS]`
 * Only the room number and tags are searched.
 * Rooms matching at least one keyword will be returned (i.e. OR search). e.g. `10 20` will return `10-100`, `11-120`.
 
+Parameters:
+* [KEYWORD](#keyword) The keyword to search for in the room list.
+
 Examples:
 * `ofind 10-` returns `10-100`, `10-101`, and `10-102`.
 * `ofind 10- 15-` returns `10-100`, `10-101`, `15-100`, and`15-101`.
@@ -315,9 +334,15 @@ Format: `oedit INDEX [r/ROOM_NUMBER] [t/ROOM_TYPE] [g/TAG]`
 * `INDEX` refers to the index number shown in the displayed room list. `INDEX` **must be a positive integer 1, 2, 3, …**.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* Room occupancy status can only be changed through the `alloc` or `dealloc` command when a resident is allocated or deallocated. The occupancy status is not controllable through the `oedit` command. 
 * `oedit` will be blocked if the room is occupied. Run `dealloc` to deallocate the room before making further edits.
-  See [Deallocate a resident](#deallocate-resident-from-room--dealloc).
+* The occupancy status is not controllable through the `oedit` command.
+* Room occupancy status can only be changed through the `alloc` or `dealloc` command when a resident is allocated or deallocated. See [allocate a resident](#allocate-resident-to-room-alloc) or [deallocate a resident](#deallocate-resident-from-room-dealloc) for more info.
+
+Parameters:
+* [INDEX](#index) The index of the room to edit.
+* [ROOM_NUMBER](#room_number) The room number to change the room identified by [INDEX](#index) to.
+* [ROOM_TYPE](#room_type) The room type to change the room identified by [INDEX](#index) to.
+* [TAG](#tag) Optional tags that may be updated for the room identified by [INDEX](#index).
 
 Example:
 * `oedit 1 g/SHN g/Blue` Edits the 1st room's tags to `SHN` and `Blue`.
@@ -331,6 +356,9 @@ Format: `odel INDEX`
 * `INDEX` refers to the index number shown in the displayed resident list. `INDEX` **must be a positive integer 1,2,3, ...**.
 * `odel` will be blocked if the room is occupied. Run `dealloc` to deallocate the room before attempting to delete the room.
   See [Deallocate a resident](#deallocate-resident-from-room--dealloc).
+
+Parameters:
+* [INDEX](#index) The index of the room to delete.
 
 Example:
 * `odel 1` Deletes the 1st room in the room list.
@@ -632,7 +660,7 @@ Action | Format, Examples
 **Find residents** | `rfind KEYWORD [MORE_KEYWORDS]` <br> e.g. `rfind bob bobby`
 **Edit a resident record** | `redit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [y/YEAR]` <br> e.g. `redit 1 p/91234567 e/e0123456@u.nus.edu`
 **Delete a resident** |  `rdel INDEX` <br> e.g. `rdel 1`
-**Add a room** |  `oadd r/ROOM_NUMBER t/ROOM_TYPE [g/TAG]` <br> e.g. `oadd n/17-101 t/corridor_ac g/SHN`
+**Add a room** |  `oadd r/ROOM_NUMBER t/ROOM_TYPE [g/TAG]` <br> e.g. `oadd r/17-101 t/corridor_ac g/SHN`
 **List all rooms** |  `olist`
 **Find rooms** |  `ofind KEYWORD [MORE_KEYWORDS]` <br> e.g. `ofind 10- 15-`
 **Edit a room record** |  `oedit INDEX [r/ROOM_NUMBER] [t/ROOM_TYPE] [g/TAG]` <br> e.g. `oedit 1 g/SHN`
