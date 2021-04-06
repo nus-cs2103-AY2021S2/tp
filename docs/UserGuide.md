@@ -197,6 +197,7 @@ Format: `list [--exact] [--any] [-n NAME]... [-t TAG]... [-b BIRTHDAY]... [-s SO
        * Otherwise `BIRTHDAY` must be one of the 12 months, represented either by the month value or string,
          i.e. `12`, `Dec`, `December` filters contacts with a birthday in December.
   * Partial matches to names and tags are performed by default, unless `--exact` is specified for exact matches.
+  * All searches are case-insensitive.
   * All specified search criteria must be fulfilled by each contact by default, unless `--any` is specified for any match.
   * The filtered contacts can be additionally sorted using the `-s` and `-o` prefixes, as above.
 
@@ -263,7 +264,7 @@ Format: `elist [--exact] [--any] [-n NAME] [-r REMARK]... [-s SORT] [-o ORDER]`
     * Search criteria, case-insensitive: 
         * `-n`, `--name` filters the events by event name
         * `-r`, `--remark` filters the events by event remarks
-    * Search is case-insensitive, e.g. `cHriStmAs` will match `Christmas`.
+    * All searches are case-insensitive, e.g. `cHriStmAs` will match `Christmas`.
     * Partial matches to event names and remarks are performed by default, e.g. `key` will match `turkey`.
     * If exact match is desired, specify an additional `--exact` flag.
     * If multiple names/tags are specified, all specified search criteria must be fulfilled by each event by 
