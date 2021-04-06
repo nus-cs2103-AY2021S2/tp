@@ -41,7 +41,7 @@ public class RoomCard extends UiPart<Region> {
 
         id.setText(displayedIndex + ". ");
         roomNumber.setText(room.getRoomNumber().roomNumber);
-        roomType.setText(room.getRoomType().value.toString());
+        roomType.setText(room.getRoomType().toString());
         isOccupied.setText(room.isOccupied().isOccupied ? "Occupied" : "Not Occupied");
         room.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

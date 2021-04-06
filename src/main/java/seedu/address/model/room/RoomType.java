@@ -45,7 +45,18 @@ public class RoomType {
 
     @Override
     public String toString() {
-        return value.toString();
+        switch (value) {
+        case SUITE_AC:
+            return "Suite AC";
+        case SUITE_NON_AC:
+            return "Suite Non AC";
+        case CORRIDOR_AC:
+            return "Corridor AC";
+        case CORRIDOR_NON_AC:
+            return "Corridor Non AC";
+        default:
+            return "Unable to provide string representation";
+        }
     }
 
     @Override
