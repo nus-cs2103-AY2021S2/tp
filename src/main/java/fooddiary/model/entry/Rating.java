@@ -11,7 +11,8 @@ import fooddiary.commons.util.AppUtil;
 public class Rating {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Ratings should only contain a integer (e.g. 3) between 0-5, and it should be a single digit ";
+            "Ratings should only contain a integer (e.g. 3) between 0-5, "
+                + "and it should be a single digit. It should not be blank.";
     public static final String RATING_OUT_OF_FIVE = "/5";
     public static final String VALIDATION_REGEX = "^[0-5]{1}$";
     public final String value;
