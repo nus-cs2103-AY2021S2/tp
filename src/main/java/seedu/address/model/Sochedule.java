@@ -93,6 +93,13 @@ public class Sochedule implements ReadOnlySochedule {
     }
 
     /**
+     * Returns true if task list is empty.
+     */
+    public boolean isTaskListEmpty() {
+        return tasks.isEmpty();
+    }
+
+    /**
      * Adds a task to Sochedule.
      * The task must not already exist in Sochedule.
      */
@@ -205,6 +212,13 @@ public class Sochedule implements ReadOnlySochedule {
     public boolean hasEvent(Event event) {
         requireNonNull(event);
         return events.contains(event);
+    }
+
+    /**
+     * Returns true if the event list is empty.
+     */
+    public boolean isEventListEmpty() {
+        return events.isEmpty();
     }
 
     /**

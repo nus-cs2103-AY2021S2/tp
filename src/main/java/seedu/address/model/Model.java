@@ -71,6 +71,11 @@ public interface Model {
     boolean hasTask(Task task);
 
     /**
+     * Returns true if the task list is currently empty.
+     */
+    boolean isTaskListEmpty();
+
+    /**
      * Deletes the given task.
      * The task must exist in the Sochedule.
      */
@@ -161,6 +166,11 @@ public interface Model {
      * Returns true if an event with the same identity as {@code event} exists in the Sochedule.
      */
     boolean hasEvent(Event event);
+
+    /**
+     * Returns true if the event list is empty.
+     */
+    boolean isEventListEmpty();
 
     /**
      * Deletes the given event.

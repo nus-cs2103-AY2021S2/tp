@@ -123,6 +123,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean isTaskListEmpty() {
+        return sochedule.isTaskListEmpty();
+    }
+
+    @Override
     public void deleteTask(Task target) {
         sochedule.removeTask(target);
     }
@@ -220,6 +225,11 @@ public class ModelManager implements Model {
     public boolean hasEvent(Event event) {
         requireAllNonNull(event);
         return sochedule.hasEvent(event);
+    }
+
+    @Override
+    public boolean isEventListEmpty() {
+        return sochedule.isEventListEmpty();
     }
 
     @Override
