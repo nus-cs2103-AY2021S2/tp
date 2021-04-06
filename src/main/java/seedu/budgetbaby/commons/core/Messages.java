@@ -11,6 +11,8 @@ public class Messages {
     public static final LocalDate CURRDATE = LocalDate.now();
     public static final String DATE = DTF.format(CURRDATE);
 
+    //find-fr
+    public static final String MESSAGE_TYPICAL_BUDGET_TRACKER_EMPTY = "[]";
     public static final String MESSAGE_TYPICAL_BUDGET_TRACKER_ORIGINAL_LIST =
             "[" + DATE + " | Breakfast | 5.00; Categories: [Food], "
                     + DATE + " | Lunch | 6.00; Categories: [Food], "
@@ -29,7 +31,57 @@ public class Messages {
                     + DATE + " | Button Shirt | 18.00; Categories: [Apparel], "
                     + DATE + " | Jeans | 55.00; Categories: [Apparel], "
                     + DATE + " | Water Bottle | 12.00; Categories: [Essentials]]";
-    public static final String MESSAGE_TYPICAL_BUDGET_TRACKER_EMPTY = "[]";
+
+    //edit-fr
+    public static final String MESSAGE_TYPICAL_EDIT_DESCRIPTION =
+            "[" + DATE + " | Breakfast | 5.00; Categories: [Food], "
+                    + DATE + " | Movie | 8.00; Categories: [Entertainment], "
+                    + DATE + " | Button Shirt | 18.00; Categories: [Apparel], "
+                    + DATE + " | Jeans | 55.00; Categories: [Apparel], "
+                    + DATE + " | Water Bottle | 12.00; Categories: [Essentials], "
+                    + DATE + " | Dinner | 6.00; Categories: [Food]]";
+    public static final String MESSAGE_TYPICAL_EDIT_AMOUNT =
+            "[" + DATE + " | Breakfast | 5.00; Categories: [Food], "
+                    + DATE + " | Movie | 8.00; Categories: [Entertainment], "
+                    + DATE + " | Button Shirt | 18.00; Categories: [Apparel], "
+                    + DATE + " | Jeans | 55.00; Categories: [Apparel], "
+                    + DATE + " | Water Bottle | 12.00; Categories: [Essentials], "
+                    + DATE + " | Lunch | 10.00; Categories: [Food]]";
+    public static final String MESSAGE_TYPICAL_EDIT_CATEGORY =
+            "[" + DATE + " | Breakfast | 5.00; Categories: [Food], "
+                    + DATE + " | Movie | 8.00; Categories: [Entertainment], "
+                    + DATE + " | Button Shirt | 18.00; Categories: [Apparel], "
+                    + DATE + " | Jeans | 55.00; Categories: [Apparel], "
+                    + DATE + " | Water Bottle | 12.00; Categories: [Essentials], "
+                    + DATE + " | Lunch | 6.00; Categories: [Foodie]]";
+    public static final String MESSAGE_TYPICAL_EDIT_DESCRIPTION_AMOUNT =
+            "[" + DATE + " | Breakfast | 5.00; Categories: [Food], "
+                    + DATE + " | Movie | 8.00; Categories: [Entertainment], "
+                    + DATE + " | Button Shirt | 18.00; Categories: [Apparel], "
+                    + DATE + " | Jeans | 55.00; Categories: [Apparel], "
+                    + DATE + " | Water Bottle | 12.00; Categories: [Essentials], "
+                    + DATE + " | Dinner | 10.00; Categories: [Food]]";
+    public static final String MESSAGE_TYPICAL_EDIT_DESCRIPTION_CATEGORY =
+            "[" + DATE + " | Breakfast | 5.00; Categories: [Food], "
+                    + DATE + " | Movie | 8.00; Categories: [Entertainment], "
+                    + DATE + " | Button Shirt | 18.00; Categories: [Apparel], "
+                    + DATE + " | Jeans | 55.00; Categories: [Apparel], "
+                    + DATE + " | Water Bottle | 12.00; Categories: [Essentials], "
+                    + DATE + " | Dinner | 6.00; Categories: [Foodie]]";
+    public static final String MESSAGE_TYPICAL_EDIT_AMOUNT_CATEGORY =
+            "[" + DATE + " | Breakfast | 5.00; Categories: [Food], "
+                    + DATE + " | Movie | 8.00; Categories: [Entertainment], "
+                    + DATE + " | Button Shirt | 18.00; Categories: [Apparel], "
+                    + DATE + " | Jeans | 55.00; Categories: [Apparel], "
+                    + DATE + " | Water Bottle | 12.00; Categories: [Essentials], "
+                    + DATE + " | Lunch | 10.00; Categories: [Foodie]]";
+    public static final String MESSAGE_TYPICAL_EDIT_ALL =
+            "[" + DATE + " | Breakfast | 5.00; Categories: [Food], "
+                    + DATE + " | Movie | 8.00; Categories: [Entertainment], "
+                    + DATE + " | Button Shirt | 18.00; Categories: [Apparel], "
+                    + DATE + " | Jeans | 55.00; Categories: [Apparel], "
+                    + DATE + " | Water Bottle | 12.00; Categories: [Essentials], "
+                    + DATE + " | Dinner | 10.00; Categories: [Foodie]]";
 
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
