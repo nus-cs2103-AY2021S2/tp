@@ -32,7 +32,7 @@ import seedu.booking.testutil.BookingBuilder;
 
 class AddBookingCommandParserTest {
 
-    private AddBookingCommandParser parser = new AddBookingCommandParser();
+    private final AddBookingCommandParser parser = new AddBookingCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
@@ -125,8 +125,7 @@ class AddBookingCommandParserTest {
     public void parse_invalidValue_failure() {
         String expectedMessage = Email.MESSAGE_CONSTRAINTS;
 
-        // invalid email
-        // missing booker email prefix
+        // invalid email, missing booker email prefix
         assertParseFailure(parser, INVALID_BOOKER_EMAIL + BOOKING_VENUE_NAME_DESC_HALL
                         + BOOKING_DESCRIPTION_DESC_HALL
                         + BOOKING_START_DESC_HALL + BOOKING_END_DESC_HALL,

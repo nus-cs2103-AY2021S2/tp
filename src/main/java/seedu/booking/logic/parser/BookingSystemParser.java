@@ -20,7 +20,6 @@ import seedu.booking.logic.commands.FilterBookingByBookerCommand;
 import seedu.booking.logic.commands.FilterBookingByDateCommand;
 import seedu.booking.logic.commands.FilterBookingByTagCommand;
 import seedu.booking.logic.commands.FilterBookingByVenueCommand;
-import seedu.booking.logic.commands.FindBookingCommand;
 import seedu.booking.logic.commands.FindPersonByTagCommand;
 import seedu.booking.logic.commands.FindPersonCommand;
 import seedu.booking.logic.commands.FindVenueByTagCommand;
@@ -37,14 +36,13 @@ import seedu.booking.logic.commands.states.AddBookingCommandState;
 import seedu.booking.logic.commands.states.AddPersonCommandState;
 import seedu.booking.logic.commands.states.AddVenueCommandState;
 import seedu.booking.logic.parser.exceptions.ParseException;
-import seedu.booking.logic.parser.promptparsers.BookingDescPromptParser;
-import seedu.booking.logic.parser.promptparsers.BookingEndPromptParser;
-import seedu.booking.logic.parser.promptparsers.BookingStartPromptParser;
-import seedu.booking.logic.parser.promptparsers.BookingTagPromptParser;
-import seedu.booking.logic.parser.promptparsers.EmailPromptParser;
 import seedu.booking.logic.parser.promptparsers.PromptAddPersonCommandParser;
 import seedu.booking.logic.parser.promptparsers.PromptAddVenueCommandParser;
-import seedu.booking.logic.parser.promptparsers.VenueNamePromptParser;
+import seedu.booking.logic.parser.promptparsers.PromptBookingDescParser;
+import seedu.booking.logic.parser.promptparsers.PromptBookingEndParser;
+import seedu.booking.logic.parser.promptparsers.PromptBookingStartParsr;
+import seedu.booking.logic.parser.promptparsers.PromptBookingTagParser;
+import seedu.booking.logic.parser.promptparsers.PromptEmailParser;
 import seedu.booking.model.ModelManager;
 
 /**
@@ -76,22 +74,22 @@ public class BookingSystemParser {
                 switch (currentState) {
 
                 case AddBookingCommandState.STATE_EMAIL:
-                    return new EmailPromptParser().parse(userInput);
+                    return new PromptEmailParser().parse(userInput);
 
                 case AddBookingCommandState.STATE_VENUE:
-                    return new VenueNamePromptParser().parse(userInput);
+                    return new PromptAddVenueCommandParser().parse(userInput);
 
                 case AddBookingCommandState.STATE_DESC:
-                    return new BookingDescPromptParser().parse(userInput);
+                    return new PromptBookingDescParser().parse(userInput);
 
                 case AddBookingCommandState.STATE_TAG:
-                    return new BookingTagPromptParser().parse(userInput);
+                    return new PromptBookingTagParser().parse(userInput);
 
                 case AddBookingCommandState.STATE_START:
-                    return new BookingStartPromptParser().parse(userInput);
+                    return new PromptBookingStartParsr().parse(userInput);
 
                 case AddBookingCommandState.STATE_END:
-                    return new BookingEndPromptParser().parse(userInput);
+                    return new PromptBookingEndParser().parse(userInput);
 
                 case AddVenueCommandState.STATE_CAPACITY:
                     return new PromptAddVenueCommandParser().parseCapacity(userInput);
@@ -139,7 +137,7 @@ public class BookingSystemParser {
             return new PromptAddPersonCommand();
 
         case AddPersonCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
+            return new AddPersonCommandParser().parse(arguments);
 
         case EditBookingCommand.COMMAND_WORD:
             return new EditBookingCommandParser().parse(arguments);
@@ -167,9 +165,6 @@ public class BookingSystemParser {
 
         case FindVenueByTagCommand.COMMAND_WORD:
             return new FindVenueByTagCommandParser().parse(arguments);
-
-        case FindBookingCommand.COMMAND_WORD:
-            return new FindBookingCommandParser().parse(arguments);
 
         case FindPersonCommand.COMMAND_WORD:
             return new FindPersonCommandParser().parse(arguments);

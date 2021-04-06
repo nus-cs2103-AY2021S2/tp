@@ -9,7 +9,7 @@ import seedu.booking.logic.parser.ParserUtil;
 import seedu.booking.logic.parser.exceptions.ParseException;
 import seedu.booking.model.booking.StartTime;
 
-public class BookingStartPromptParser implements Parser<PromptBookingStartCommand> {
+public class PromptBookingStartParsr implements Parser<PromptBookingStartCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the starting date

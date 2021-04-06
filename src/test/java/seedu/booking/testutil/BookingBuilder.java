@@ -11,7 +11,6 @@ import seedu.booking.model.Tag;
 import seedu.booking.model.booking.Booking;
 import seedu.booking.model.booking.Description;
 import seedu.booking.model.booking.EndTime;
-import seedu.booking.model.booking.Id;
 import seedu.booking.model.booking.StartTime;
 import seedu.booking.model.person.Email;
 import seedu.booking.model.util.SampleDataUtil;
@@ -27,7 +26,6 @@ public class BookingBuilder {
     private static final String DEFAULT_DESCRIPTION = "Good";
     private static final String DEFAULT_BOOKING_START = "2021-03-01 12:30";
     private static final String DEFAULT_BOOKING_END = "2021-03-01 13:30";
-    private static final String DEFAULT_ID = String.valueOf(1);
 
     private Email bookerEmail;
     private Description description;
@@ -35,7 +33,6 @@ public class BookingBuilder {
     private StartTime bookingStart;
     private EndTime bookingEnd;
     private Set<Tag> tags;
-    private Id id;
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
     /**
@@ -48,7 +45,6 @@ public class BookingBuilder {
         bookingStart = new StartTime(LocalDateTime.parse(DEFAULT_BOOKING_START, formatter));
         bookingEnd = new EndTime(LocalDateTime.parse(DEFAULT_BOOKING_END, formatter));
         tags = new HashSet<>();
-        id = new Id(DEFAULT_ID);
     }
 
     /**
@@ -61,7 +57,6 @@ public class BookingBuilder {
         bookingStart = bookingToCopy.getBookingStart();
         bookingEnd = bookingToCopy.getBookingEnd();
         tags = new HashSet<>(bookingToCopy.getTags());
-        id = bookingToCopy.getId();
     }
 
     /**
@@ -112,13 +107,7 @@ public class BookingBuilder {
         return this;
     }
 
-    /**
-     * Sets the {@code id} of the {@code Booking} that we are building.
-     */
-    public BookingBuilder withId(String id) {
-        this.id = new Id(id);
-        return this;
-    }
+
 
     /**
      * Sets the {@code email} of the {@code Booking} that we are building.
@@ -129,7 +118,7 @@ public class BookingBuilder {
     }
 
     public Booking build() {
-        return new Booking(bookerEmail, venueName, description, bookingStart, bookingEnd, tags, id);
+        return new Booking(bookerEmail, venueName, description, bookingStart, bookingEnd, tags);
     }
 
 }

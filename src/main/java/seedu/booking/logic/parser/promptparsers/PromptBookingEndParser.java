@@ -9,7 +9,7 @@ import seedu.booking.logic.parser.ParserUtil;
 import seedu.booking.logic.parser.exceptions.ParseException;
 import seedu.booking.model.booking.EndTime;
 
-public class BookingEndPromptParser implements Parser<PromptBookingEndCommand> {
+public class PromptBookingEndParser implements Parser<PromptBookingEndCommand> {
 
     /**
      * Adds a booking venue to the system.
