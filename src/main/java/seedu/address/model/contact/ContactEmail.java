@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class ContactEmail {
 
-    private static final String PRINTABLE_CHARACTERS = "!#$%&'*+-/=?^_`{|}~.";
+    private static final String PRINTABLE_CHARACTERS = ".!#$%&'*+-/=?^_`{|}~";
     public static final String MESSAGE_CONSTRAINTS = "Emails should be of the format local-part@domain "
             + "and adhere to the following constraints:\n"
             + "The local-part must:\n"
