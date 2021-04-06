@@ -135,6 +135,10 @@ public class ParserUtil {
             throw new ParseException(DateOfBirth.MESSAGE_CONSTRAINTS);
         }
 
+        if (localDate.isAfter(LocalDate.now())) {
+            throw new ParseException(DateOfBirth.MESSAGE_CONSTRAINTS);
+        }
+
         return new DateOfBirth(localDate);
     }
 
