@@ -30,7 +30,11 @@ public abstract class Event {
     }
 
     public boolean isInvalidTimeRange() {
-        return !this.timeFrom.isBefore(timeTo);
+        return !timeFrom.isBefore(timeTo);
+    }
+
+    public boolean isSameDate() {
+        return timeFrom.toDate().isEqual(timeTo.toDate());
     }
 
     @Override

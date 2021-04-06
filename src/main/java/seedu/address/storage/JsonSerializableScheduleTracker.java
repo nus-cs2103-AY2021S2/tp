@@ -15,6 +15,8 @@ import seedu.address.model.schedule.ScheduleTracker;
 public class JsonSerializableScheduleTracker {
 
     public static final String MESSAGE_DUPLICATE_SCHEDULE = "Schedule list contains duplicate schedules(s).";
+    public static final String MESSAGE_MISMATCH_DATE = "Schedule list contains schedule(s) "
+            + "with mismatch TIME_FROM and TIME_TO date.";
 
     private final List<JsonAdaptedSchedule> schedules = new ArrayList<>();
 
@@ -48,6 +50,10 @@ public class JsonSerializableScheduleTracker {
             Schedule schedule = jsonAdaptedSchedule.toModelType();
             if (scheduleTracker.hasSchedule(schedule)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_SCHEDULE);
+            }
+
+            if (!schedule.isSameDate()) {
+                throw new IllegalValueException(MESSAGE_MISMATCH_DATE);
             }
             scheduleTracker.addSchedule(schedule);
         }
