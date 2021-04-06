@@ -29,7 +29,7 @@ Given below are my contributions to the project.
     Also, I had to update the testing to account for the different scenarios of usage.
 
 * **New Feature**: Added the ability to view a list of unassigned tasks.
-  * What it does: Allows the user to view a list of tasks that they have not assigned to any member.
+  * What it does: Allows the user to view a list of tasks that they have not assigned to any member. [\#162](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/162))
   * Justification: This feature improves the product significantly because a user can easily view a list of unassigned tasks upon inputting the command
     which greatly saves the time of the user of searching for the list of unassigned tasks.
   * Highlights: The implementation was challenging as it required me to create another predicate to filter a list of
@@ -43,6 +43,4 @@ Given below are my contributions to the project.
   * Add profile pictures of group members into the team list.
 
 * **Enhancements to existing features**:
-  * Updated add and list commands to addMember and viewMember commands (Pull requests: [\#66](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/66), [\#68](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/68), [\#71](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/71))
-  * Remove redundant Address class and instances (Pull requests [\#65](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/65), [\#151](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/151))
-  * Add sample tasks to existing sample data which only contains sample persons (Pull requests [\#125](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/125))
+  * Change the UI of the app  (Pull requests: [\#110](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/110), [\#128](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/128), [\#238](https://github.com/AY2021S2-CS2103T-W14-3/tp/pull/238))
