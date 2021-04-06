@@ -29,6 +29,8 @@ import dog.pawbook.model.managedentity.tag.Tag;
  */
 public class ParserUtil {
 
+    private static final String MESSAGE_INVALID_DAY_OF_THE_MONTH = "Day of the month does not exist!";
+
     /**
      * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
@@ -111,12 +113,20 @@ public class ParserUtil {
      */
     public static LocalDate parseDate(String dateString) throws ParseException {
         requireNonNull(dateString);
+
+        String trimmedDateString = dateString.trim();
+
         LocalDate date;
         try {
-            date = LocalDate.parse(dateString.trim(), DATE_FORMATTER);
+            date = LocalDate.parse(trimmedDateString, DATE_FORMATTER);
         } catch (DateTimeParseException d) {
             throw new ParseException("Date should be in the " + DATE_FORMAT + " format");
         }
+
+        if (!date.format(DATE_FORMATTER).equals(trimmedDateString)) {
+            throw new ParseException("Day of the month does not exist!");
+        }
+
         return date;
     }
 
@@ -223,6 +233,10 @@ public class ParserUtil {
             throw new ParseException(Session.MESSAGE_CONSTRAINTS);
         }
         LocalDateTime localDateTime = LocalDateTime.parse(trimmedDateTime, DATETIME_FORMATTER);
+
+        if (!localDateTime.format(DATETIME_FORMATTER).equals(trimmedDateTime)) {
+            throw new ParseException(MESSAGE_INVALID_DAY_OF_THE_MONTH);
+        }
         return new Session(localDateTime);
     }
 

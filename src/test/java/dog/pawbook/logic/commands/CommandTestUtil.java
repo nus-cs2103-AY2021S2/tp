@@ -55,8 +55,8 @@ public class CommandTestUtil {
     public static final String VALID_NAME_BELL = "Bell";
     public static final String VALID_SEX_ASHER = "female";
     public static final String VALID_SEX_BELL = "male";
-    public static final String VALID_DATEOFBIRTH_ASHER = "16-4-2020";
-    public static final String VALID_DATEOFBIRTH_BELL = "15-4-2020";
+    public static final String VALID_DATEOFBIRTH_ASHER = "16-04-2020";
+    public static final String VALID_DATEOFBIRTH_BELL = "15-04-2020";
     public static final String VALID_BREED_ASHER = "Corgi";
     public static final String VALID_BREED_BELL = "Greyhound";
     public static final int VALID_OWNERID_15 = 15;
@@ -83,7 +83,7 @@ public class CommandTestUtil {
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_SEX_DESC = " " + PREFIX_SEX + "Male1"; // '1' not allowed in sex
-    public static final String INVALID_DATEOFBIRTH_DESC = " " + PREFIX_DOB + "a-a-2020"; // 'a' not
+    public static final String INVALID_DATEOFBIRTH_DESC = " " + PREFIX_DOB + "aa-aa-2020"; // 'a' not
     // allowed in dates of birth
     public static final String INVALID_BREED_DESC = " " + PREFIX_BREED + "poodle!"; // '!' not allowed for breed
     public static final String INVALID_OWNERID_DESC = " " + PREFIX_OWNERID; // empty ownerID not allowed

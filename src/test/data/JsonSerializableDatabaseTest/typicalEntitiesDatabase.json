@@ -14,7 +14,7 @@
     "id": 2,
     "name" : "Apple",
     "breed" : "Golden Retriever",
-    "dob" : "11-2-2020",
+    "dob" : "11-02-2020",
     "sex" : "female",
     "ownerId" : 1,
     "tagged" : [ "friendly" ]
@@ -32,7 +32,7 @@
     "id": 4,
     "name" : "Bubbles",
     "breed" : "Bulldog",
-    "dob" : "1-1-2021",
+    "dob" : "01-01-2021",
     "sex" : "female",
     "ownerId" : 3,
     "tagged" : [ "cheerful" ]
@@ -50,7 +50,7 @@
     "id": 6,
     "name" : "Carson",
     "breed" : "Chipin",
-    "dob" : "2-2-2019",
+    "dob" : "02-02-2019",
     "sex" : "male",
     "ownerId" : 5,
     "tagged" : [ ]
@@ -68,7 +68,7 @@
     "id": 8,
     "name" : "Duke",
     "breed" : "German Shepherd",
-    "dob" : "4-5-2020",
+    "dob" : "04-05-2020",
     "sex" : "male",
     "ownerId" : 7,
     "tagged" : [ "quiet" ]
@@ -86,7 +86,7 @@
     "id": 10,
     "name" : "Elsa",
     "breed" : "Poodle",
-    "dob" : "2-2-2020",
+    "dob" : "02-02-2020",
     "sex" : "female",
     "ownerId" : 9,
     "tagged" : [ ]
@@ -104,7 +104,7 @@
     "id": 12,
     "name" : "Flora",
     "breed" : "Australian Shepherd",
-    "dob" : "21-8-2018",
+    "dob" : "21-08-2018",
     "sex" : "female",
     "ownerId" : 11,
     "tagged" : [ ]
@@ -122,7 +122,7 @@
     "id": 14,
     "name" : "Genie",
     "breed" : "Husky",
-    "dob" : "29-5-2020",
+    "dob" : "29-05-2020",
     "sex" : "male",
     "ownerId" : 13,
     "tagged" : [ ]
