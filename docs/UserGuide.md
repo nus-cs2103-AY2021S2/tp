@@ -341,7 +341,7 @@ You can update your friend's identity, either changing their name, their birthda
   such that you can easily update the existing details.
 </div>
 
-Command: `edit INDEX [n/NEW NAME b/NEW BIRTHDAY [t/NEW TAG]]`
+Command: `edit INDEX n/NEW/OLD NAME [b/NEW BIRTHDAY] [t/NEW TAG]`
 
 Examples:
 * `edit 1 n/Jason`
