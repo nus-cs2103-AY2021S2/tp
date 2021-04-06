@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 
 public class InsurancePolicyTest {
-    private static final String POLICY_ID_CONTAINS_ANGULAR_BRACKET = "Policy>1234>www.google.com";
+    private static final String INVALID_POLICY_ID_CONTAINS_ANGULAR_BRACKET = "Policy>1234>www.google.com";
     private static final String CORRECT_POLICY_WITH_URL = "Policy1234>www.google.com";
     private static final String CORRECT_POLICY_NO_URL = "Policy1234";
     private static final String DEFAULT_POLICY_ID = "P#123";
@@ -20,24 +20,25 @@ public class InsurancePolicyTest {
     @Test
     public void isValidPolicyId() {
         // valid input of Policy ID without URL
-        assertTrue(InsurancePolicy.isValidPolicyId(CORRECT_POLICY_NO_URL));
+        assertTrue(InsurancePolicy.isValidPolicyInput(CORRECT_POLICY_NO_URL));
 
         // valid input of Policy ID with URL
-        assertTrue(InsurancePolicy.isValidPolicyId(CORRECT_POLICY_WITH_URL));
+        assertTrue(InsurancePolicy.isValidPolicyInput(CORRECT_POLICY_WITH_URL));
 
         // invalid input of Policy ID with angular bracket in the ID
-        assertFalse(InsurancePolicy.isValidPolicyId(POLICY_ID_CONTAINS_ANGULAR_BRACKET));
+        assertFalse(InsurancePolicy.isValidPolicyInput(INVALID_POLICY_ID_CONTAINS_ANGULAR_BRACKET));
     }
 
+    @Test
     public void isValidPolicyUrl() {
         // valid input of policy URL
-        assertTrue(InsurancePolicy.isValidPolicyId(CORRECT_POLICY_NO_URL));
+        assertTrue(InsurancePolicy.isValidPolicyUrl(DEFAULT_POLICY_URL));
 
         // valid input if a complex policy URL
-        assertTrue(InsurancePolicy.isValidPolicyId(COMPLEX_POLICY_URL_WITH_URL_PARAMS));
+        assertTrue(InsurancePolicy.isValidPolicyUrl(COMPLEX_POLICY_URL_WITH_URL_PARAMS));
 
         // invalid input of policy URL
-        assertFalse(InsurancePolicy.isValidPolicyId(INVALID_URL));
+        assertFalse(InsurancePolicy.isValidPolicyUrl(INVALID_URL));
     }
 
     @Test

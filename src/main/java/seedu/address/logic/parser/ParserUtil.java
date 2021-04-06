@@ -204,11 +204,11 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code policy} is invalid.
      */
-    public static InsurancePolicy parsePolicy(String policy) throws ParseException {
+    private static InsurancePolicy parsePolicy(String policy) throws ParseException {
         requireNonNull(policy);
         String trimmedPolicy = policy.trim();
 
-        if (!InsurancePolicy.isValidPolicyId(trimmedPolicy)) {
+        if (!InsurancePolicy.isValidPolicyInput(trimmedPolicy)) {
             throw new ParseException(InsurancePolicy.MESSAGE_CONSTRAINTS);
         }
 
@@ -222,12 +222,6 @@ public class ParserUtil {
         String policyId = idAndUrl[0];
         String policyUrl = idAndUrl[1];
 
-        System.out.println(policyUrl);
-
-        if (!InsurancePolicy.isValidPolicyUrl(policyUrl)) {
-            throw new ParseException(InsurancePolicy.INVALID_POLICY_URL);
-        }
-
         return new InsurancePolicy(policyId, policyUrl);
     }
 
@@ -238,7 +232,6 @@ public class ParserUtil {
         requireNonNull(policies);
         final List<InsurancePolicy> policyList = new ArrayList<>();
         for (String policy : policies) {
-            requireNonNull(policy);
             policyList.add(parsePolicy(policy));
         }
         return policyList;
