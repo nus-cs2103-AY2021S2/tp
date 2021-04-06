@@ -51,6 +51,10 @@ public class EntryCard extends UiPart<Region> {
             cardPane.setStyle("-fx-background-color: #3c3e3f");
         }
 
+        if (entry.isOverdue()) {
+            cardPane.setStyle("-fx-background-color: derive(#FF0000, 40%)");
+        }
+
         entry.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
