@@ -35,6 +35,6 @@ Given below are my contributions to the project.
     * Added use case for Review feature [#91](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/91)
     * Added instruction for manual testing for view and review feature [#104](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/104)
 * **Review contributions**:
-    * PR reviewed: [#86](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/86), [#89](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/89), [#90](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/90)
+    * PR reviewed: [#86](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/86), [#89](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/89), [#90](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/90), [#113](https://github.com/AY2021S2-CS2103T-T13-3/tp/pull/113)
 * **Contribution to Team-Based Tasks**:
     * Changed the product name and icon.

@@ -48,6 +48,7 @@ title: Developer Guide
     * [UI improvement](#ui-improvement)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Setting up, getting started**
 
@@ -75,9 +76,7 @@ diagrams.
 
 **`Main`** has two classes
 called [`Main`](https://github.com/AY2021S2-CS2103T-T13-3/tp/blob/master/src/main/java/seedu/address/Main.java)
-and [`MainApp`](https://github.com/AY2021S2-CS2103T-T13-3/tp/blob/master/src/main/java/seedu/address/MainApp.java). It
-is responsible for,
-
+and [`MainApp`](https://github.com/AY2021S2-CS2103T-T13-3/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -156,6 +155,7 @@ call.
 </div>
 
 ### Model component
+<div style="page-break-after: always;"></div>
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
@@ -241,7 +241,7 @@ Step 2: The user enters `review` command in `CommandBox`. After the logic execut
 
 Step 3: Depending on the command that user enters in the `CommandBox` of `ReviewMode`, different methods in `ReviewManager` are called to handle user inputs.
 
-Step 4: If the user enters `q` in the `CommandBox`, `ReviewMode#handleQuitCommand` method is called, and the user returns back to the `MainWindow`.
+Step 4: If the user enters `q` in the `CommandBox`, `ReviewMode#handleQuitCommand` method is called, and the user returns to the `MainWindow`.
 
 The following sequence diagram illustrates how the user enter `ReviewMode`: <br>
 ![ReviewSequenceDiagram](images/ReviewSequenceDiagram.png) <br>
@@ -267,24 +267,19 @@ The following sequence diagram illustrates how the user enter `ReviewMode`: <br>
 The statistics feature is supported by `LogicManager` and `ModelManager`.
 
 To show flashcard statistics, `LogicManager` first calls `FlashBackParser#parseCommand` to parse through user input.
-If user input is recognized as a command to display statistics, `StatsCommandParser#parse` is invoked to create
-a new `StatsCommand` object.
+If user input is recognized as a command to display statistics, `StatsCommandParser#parse` is invoked to create a new `StatsCommand` object.
 
 The `StatsCommand` is then executed:
 * The current flashcard list is obtained from the `ModelManager`.
 
 
-* If a valid flashcard index is included in the user input, the flashcard
-identified by the provided index is retrieved from the current flashcard list, and the statistics associated with the card is obtained by
+* If a valid flashcard index is included in the user input, the flashcard identified by the provided index is retrieved from the current flashcard list, and the statistics associated with the card is obtained by
 `Flashcard#getStats()`.
-
 
 * If the flashcard index is omitted from the user input. A new `Statistics` object is created, representing the
 overall statistics of the current flashcard list.
 
-
-A `CommandResult` is created with the generated flashcard `Statistics`. It is then passed to `MainWindow`, where
-the UI is updated to display the retrieved statistics.
+A `CommandResult` is created with the generated flashcard `Statistics`. It is then passed to `MainWindow`, where the UI is updated to display the retrieved statistics.
 
 Example: `stats 3` is entered by the user
 
@@ -1058,5 +1053,5 @@ testers are expected to do more *exploratory* testing.
 
 ### UI improvement
 * There is a significant change from the initial UI of AB3 to the final UI to make the application more visually appealing.
-* We considered many color choices and UI design and actively asked for feedback from all members in the team and some of our friends also to reach the finalized design for the UI.
+* We considered many color choices and UI design and actively asked for feedback from all members in the team, and some of our friends also to reach the finalized design for the UI.
 * The `CommandBox` is changed so that the input can be split into multiple line, which increases the readability for the user. Although the code for the custom command box came from an online source, it was extremely difficult to find this source code.

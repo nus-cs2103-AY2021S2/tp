@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import seedu.address.model.Model;
 import seedu.address.model.flashcard.Flashcard;
+import seedu.address.model.flashcard.Remark;
 import seedu.address.model.flashcard.Statistics;
 
 /**
@@ -36,7 +37,7 @@ public class UpdateStatisticsCommand extends Command {
             commandResult = new CommandResult(WRONG_ANS_MSG);
         }
         updatedCard = new Flashcard(cardToUpdate.getQuestion(), cardToUpdate.getAnswer(), cardToUpdate.getCategory(),
-                cardToUpdate.getPriority(), cardToUpdate.getRemark(), cardToUpdate.getTags(), updatedStats);
+                cardToUpdate.getPriority(), new Remark(""), cardToUpdate.getTags(), updatedStats);
         model.setFlashcard(cardToUpdate, updatedCard);
         return commandResult;
     }

@@ -24,7 +24,6 @@ class JsonAdaptedFlashcard {
     private final String answer;
     private final String category;
     private final String priority;
-    private final String remark;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final Statistics stats;
 
@@ -34,14 +33,12 @@ class JsonAdaptedFlashcard {
     @JsonCreator
     public JsonAdaptedFlashcard(@JsonProperty("question") String question, @JsonProperty("answer") String answer,
                                 @JsonProperty("category") String category, @JsonProperty("priority") String priority,
-                                @JsonProperty("remark") String remark,
                                 @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                                 @JsonProperty("statistics") Statistics stats) {
         this.question = question;
         this.answer = answer;
         this.category = category;
         this.priority = priority;
-        this.remark = remark;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -56,7 +53,6 @@ class JsonAdaptedFlashcard {
         answer = source.getAnswer().value;
         category = source.getCategory().value;
         priority = source.getPriority().value;
-        remark = source.getRemark().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -109,10 +105,7 @@ class JsonAdaptedFlashcard {
         }
         final Priority modelPriority = new Priority(priority);
 
-        if (remark == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName()));
-        }
-        final Remark modelRemark = new Remark(remark);
+        final Remark modelRemark = new Remark("");
 
         final Set<Tag> modelTags = new HashSet<>(cardTags);
 
