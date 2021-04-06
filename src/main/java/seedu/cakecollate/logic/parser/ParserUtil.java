@@ -3,7 +3,6 @@ package seedu.cakecollate.logic.parser;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -53,7 +52,7 @@ public class ParserUtil {
         String[] indexListSplit = oneBasedIndexList.trim().split(" ");
         IndexList indexList = new IndexList(new ArrayList<>());
         for (String index: indexListSplit) {
-            if((!index.equals(" ")) && (!index.equals(""))) {
+            if ((!index.equals(" ")) && (!index.equals(""))) {
                 Index parsedIndex = parseIndex(index.trim());
                 indexList.add(parsedIndex);
             }
