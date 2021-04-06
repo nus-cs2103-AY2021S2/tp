@@ -69,6 +69,7 @@ public class AliasCommand extends Command {
 
         // update model
         model.addAlias(alias);
+        model.commitAddressBook();
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, alias.getAliasName()));
     }

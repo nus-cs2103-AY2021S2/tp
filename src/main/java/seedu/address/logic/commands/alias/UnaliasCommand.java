@@ -55,6 +55,7 @@ public class UnaliasCommand extends Command {
 
         //update model
         model.deleteAlias(aliasName);
+        model.commitAddressBook();
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, aliasName));
     }
