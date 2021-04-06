@@ -27,9 +27,10 @@ The grey highlight, also called a mark-up, indicates that the text in it can be 
 * This block is used for detailing information about formatting, handling exceptional cases or special keywords used in the corresponding section.
 </div>
 
-<div markdown="span" class="alert alert-primary">
-:bulb: **Tip:**
-This block is used to provide you extra details about the feature that will enable you to use it more effectively.
+<div markdown="block" class="alert alert-primary">
+:bulb: **Tips:**
+
+* This block is used to provide you extra details about the feature that will enable you to use it more effectively.
 </div>
 
 <div markdown="span" class="alert alert-warning">
@@ -121,7 +122,7 @@ Format: `add n/NAME p/PHONE [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] 
 
 <div markdown="block" class="alert alert-primary">
 
-:bulb:**Tip:** <br>
+:bulb:**Tips:** <br>
 
 * `n/NAME p/PHONE` are compulsory fields that must be provided, while `s/SCHOOL e/EMAIL a/ADDRESS gn/GUARDIAN_NAME gp/GUARDIAN_PHONE lv/LEVEL [t/SUBJECT]…​ [le/LESSON]…​` are optional.
   
@@ -182,7 +183,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUAR
 
 <div markdown="block" class="alert alert-primary">
 
-:bulb:**Tip:** <br>
+:bulb:**Tips:** <br>
 
 * Edits the student at the specified `INDEX`.
   
@@ -202,7 +203,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUAR
   
 * Subjects are represented by abbreviated names. Available names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `math`, `phys`, `sci`.
   
-  They represent subjects Biology, Chemistry, Chinese, Economics, English, Geography, History, Mathematics, Physics and Science respectively.
+    > They represent subjects Biology, Chemistry, Chinese, Economics, English, Geography, History, Mathematics, Physics and Science respectively.
 
 </div>
 
@@ -230,7 +231,7 @@ Prefix | Searching Criteria
 
 <div markdown="block" class="alert alert-primary">
 
-:bulb:**Tip:** <br>
+:bulb:**Tips:** <br>
 
 * At least one prefix must be used.
   
@@ -249,7 +250,8 @@ Prefix | Searching Criteria
   E.g. `n/Alice Tan` will return contacts with names `Alice Ng` and `Bob Tan`.
   
 * Subjects are represented by abbreviated names. Available names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `math`, `phys`, `sci`.
-  They represent subjects Biology, Chemistry, Chinese, Economics, English, Geography, History, Mathematics, Physics and Science respectively.
+  
+    > They represent subjects Biology, Chemistry, Chinese, Economics, English, Geography, History, Mathematics, Physics and Science respectively.
 
 </div>
 
@@ -275,7 +277,7 @@ Prefix | Sorting Criteria
 
 <div markdown="block" class="alert alert-primary">
 
-:bulb:**Tip:** <br>
+:bulb:**Tips:** <br>
 
 * There are four sorting criteria available, represented by the prefixes `n/`, `s/`, `t/`, and 
   `le/`. They represent sorting by name, school, subjects or lessons respectively.
@@ -301,7 +303,7 @@ Format: `levelup ex/[INDEX]...`
 
 <div markdown="block" class="alert alert-primary">
 
-:bulb:**Tip:** <br>
+:bulb:**Tips:** <br>
 
 * Students who are `jc1` will advance to `graduated` when `levelup` is applied. Students will not 
   advance any further if they are `graduated`.
@@ -331,7 +333,7 @@ Format: `leveldown ex/[INDEX]...`
 
 <div markdown="block" class="alert alert-primary">
 
-:bulb:**Tip:** <br>
+:bulb:**Tips:** <br>
 
 * Students who are `pri1` will not demote any further.
   
@@ -362,7 +364,7 @@ Format: `detail INDEX`
 
 <div markdown="block" class="alert alert-primary">
 
-:bulb:**Tip:** <br>
+:bulb:**Tips:** <br>
 
 * Views the contact at the specified `INDEX`.
 
@@ -384,7 +386,7 @@ Format: `delete INDEX`
 
 <div markdown="block" class="alert alert-primary">
 
-:bulb:**Tip:** <br>
+:bulb:**Tips:** <br>
 
 * Deletes the contact at the specified `INDEX`.
   
@@ -424,7 +426,7 @@ Format: `delete-date INDEX`
 
 <div markdown="block" class="alert alert-primary">
 
-:bulb:**Tip:** <br>
+:bulb:**Tips:** <br>
 
 * Deletes the important date at the specified `INDEX`.
   
