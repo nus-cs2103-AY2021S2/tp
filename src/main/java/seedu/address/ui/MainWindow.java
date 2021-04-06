@@ -294,6 +294,9 @@ public class MainWindow extends UiPart<Stage> {
                 case SCHEDULE:
                     tabPanePlaceHolder.getSelectionModel().select(1);
                     break;
+                case BUDGET:
+                    tabSidePanePlaceHolder.getSelectionModel().select(2);
+                    break;
                 case GRADE:
                     tabSidePanePlaceHolder.getSelectionModel().select(1);
                     break;

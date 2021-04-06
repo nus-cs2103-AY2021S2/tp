@@ -1,8 +1,10 @@
 package seedu.address.logic.commands.appointmentcommands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_DELETE_APPOINTMENT_FAILURE;
 
+import java.util.List;
+
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -25,22 +27,22 @@ public class DeleteAppointmentCommand extends Command {
     public static final String MESSAGE_DELETE_APPOINTMENT_SUCCESS = "Deleted Appointment: %1$s";
 
     private final Index targetIndex;
-    private final Appointment toDelete;
 
     /**
      * Create {@code DeleteAppointmentCommand} with target index to delete.
+     *
      * @param targetIndex Target index of appointment to delete.
      */
     public DeleteAppointmentCommand(Index targetIndex) {
         requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
-        this.toDelete = null;
     }
 
 
     /**
      * Deletes appointment if exists in appointment list (Offer two ways to delete by
      * index or by appointment)
+     *
      * @param model {@code Model} which the command should operate on.
      * @return Command Result indicating success or failure of delete operation
      * @throws CommandException
@@ -48,15 +50,16 @@ public class DeleteAppointmentCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        // Delete by index
-        try {
-            Appointment removedAppointment =
-                    model.removeAppointmentIndex(targetIndex.getZeroBased());
-            return new CommandResult(String.format(MESSAGE_DELETE_APPOINTMENT_SUCCESS,
-                    toDelete), TabName.APPOINTMENT);
-        } catch (IndexOutOfBoundsException e) {
-            throw new CommandException(MESSAGE_DELETE_APPOINTMENT_FAILURE);
+        List<Appointment> lastShownList = model.getFilteredAppointmentList();
+
+        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_DELETE_APPOINTMENT_FAILURE);
         }
+
+        Appointment appointmentToDelete = lastShownList.get(targetIndex.getZeroBased());
+        model.removeAppointment(appointmentToDelete);
+        return new CommandResult(String.format(MESSAGE_DELETE_APPOINTMENT_SUCCESS, appointmentToDelete),
+                TabName.APPOINTMENT);
     }
 
     @Override
