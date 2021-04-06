@@ -106,7 +106,6 @@ public class UniqueClientList implements Iterable<Client> {
         if (!clientsAreUnique(clients)) {
             throw new DuplicateClientException();
         }
-
         internalList.setAll(clients);
     }
 
