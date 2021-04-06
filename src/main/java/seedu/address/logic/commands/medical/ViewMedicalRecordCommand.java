@@ -35,6 +35,9 @@ public class ViewMedicalRecordCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         Patient patient = model.getSelectedPatient();
+        if (patient == null) {
+            throw new CommandException(Messages.MESSAGE_NOT_VIEWING_PATIENT);
+        }
         if (index.getZeroBased() >= patient.getRecords().size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_MEDICAL_RECORD_INDEX);
         }
