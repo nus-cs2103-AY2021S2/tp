@@ -148,7 +148,9 @@ However, the colours will be arranged such that no two modules with the same col
 
    * **`sort`** : Sort tasks
    
-   * **`recur`** :  Recur tasks
+   * **`recur`** : Recur tasks
+   
+   * **`refresh`** : Refresh all showing tasks
 
    * **`exit`** : Close the app
 
@@ -179,7 +181,6 @@ Format: `list`
 
 ![add message](images/listCommand.png)
 
-
 ### Add a task: `add`
 
 Adds a task to ModuleBook3.5. All newly added tasks are not done by default.
@@ -190,7 +191,7 @@ Format: `add n/TASK NAME m/MODULE d/DESCRIPTION [a/START TIME] b/DEADLINE w/WORK
 
 * If you wish to include a start time for your task, the start time should not be later than deadline.
 
-* Recurrence should be either "daily", "weekly" or "monthly".
+* Recurrence should be either "daily", "weekly" or "biweekly".
 
 * Enter the time you wish to complete your task in the format: yyyy-MM-dd HH:mm or yyyy-MM-dd (HH:mm set to 00:00)
 
@@ -348,7 +349,7 @@ Format: `edit INDEX [n/NAME] [m/MODULE] [d/DESCRIPTION] [a/START TIME] [b/DEADLI
 
 * Edits the task at the specified `INDEX`. The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
-* Recurrence should be either "daily", "weekly" or "monthly".
+* Recurrence should be either "daily", "weekly" or "biweekly".
 * Existing values will be updated to the input values.
 * If you wish to include a start time for your task, the start time should not be later than deadline.
 * Editing tags through the `edit` command overrides all existing tags. If you wish to add or delete only certain tags, use `tag` and `deleteTag` commands instead.
@@ -383,7 +384,7 @@ Examples:
 
 ### Recur tasks: `recur`
 
-Recurs a task either daily, monthly or weekly or removes the recurrence of the task.
+Recurs a task either daily, biweekly or weekly or removes the recurrence of the task.
 
 Application: Used to reset the recurring task deadline and done status when appropriate without having to manually edit the task.
 
@@ -393,7 +394,7 @@ Format: `recur INDEX r/RECURRENCE`
 * `INDEX` refers to the index number displayed in ModuleBook3.5.
    It must be a positive integer.
 * `RECURRENCE` refers to the regularity of the task that recurs periodically.
-* `RECURRENCE` can only be `daily`, `weekly` or `monthly` if a task needs to be recurred.
+* `RECURRENCE` can only be `daily`, `weekly` or `biweekly` if a task needs to be recurred.
 * `RECURRENCE` should be left empty if the recurrence of a task needs to be removed.
    The prefix `r/` must still be used.
 
@@ -401,10 +402,16 @@ Format: `recur INDEX r/RECURRENCE`
 
 
 Examples:
-* `recur 1 r/monthly` Recurs the 1st task in ModuleBook3.5 every month.
+* `recur 1 r/biweekly` Recurs the 1st task in ModuleBook3.5 every two weeks.
 * `recur 2 r/weekly` Recurs the 4th task in ModuleBook3.5 every week.
 * `recur 3 r/daily` Recurs the 3rd task in ModuleBook3.5 every day.
 * `recur 4 r/` Removes the recurrence of the 4th task in ModuleBook3.5.
+
+### Refresh all tasks: `refresh`
+
+Refreshes the current list that is showing, updates the deadline if necessary.
+
+Format: `refresh`
 
 <div style="page-break-after: always;"></div>
 
@@ -460,6 +467,7 @@ Action | Format, Examples
 **findTag** | `findTag KEYWORD`<br> e.g. `find Assignment`
 **mod** | `mod MODULE`<br> e.g. `mod CS2103T`
 **edit** | `edit INDEX [d/DESCRIPTION] [b/DEADLINE]…​`<br> e.g. `edit 2 d/Eat Biscuits b/2021-03-21 10:10`
-**recur** | `recur INDEX r/RECURRENCE`<br> e.g. `recur 1 r/monthly`
+**recur** | `recur INDEX r/RECURRENCE`<br> e.g. `recur 1 r/biweekly`
+**refresh** | `refresh`
 **sort** | `sort n/` or `sort d/` or `sort m/` or `sort w/` or `sort b/` or `sort t/` <br> e.g. `sort b/`
 **exit** | `exit`
