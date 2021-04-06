@@ -1,7 +1,7 @@
 package seedu.us.among.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.us.among.commons.core.Messages.MESSAGE_INVALID_ENDPOINT_DISPLAYED_INDEX;
+import static seedu.us.among.commons.core.Messages.MESSAGE_INDEX_NOT_WITHIN_LIST;
 import static seedu.us.among.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.us.among.logic.commands.CommandTestUtil.ADDRESS_DESC_RANDOM;
 import static seedu.us.among.logic.commands.CommandTestUtil.DATA_DESC_DEFAULT;
@@ -61,7 +61,7 @@ public class LogicManagerTest {
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteCommand = "remove 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_ENDPOINT_DISPLAYED_INDEX);
+        assertCommandException(deleteCommand, MESSAGE_INDEX_NOT_WITHIN_LIST);
     }
 
     @Test

@@ -55,7 +55,7 @@ public class SendCommandTest {
     public void execute_outOfBoundEndpointIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredEndpointList().size() + 1);
         SendCommand sendCommand = new SendCommand(outOfBoundIndex);
-        assertCommandFailure(sendCommand, model, Messages.MESSAGE_INVALID_ENDPOINT_DISPLAYED_INDEX);
+        assertCommandFailure(sendCommand, model, Messages.MESSAGE_INDEX_NOT_WITHIN_LIST);
     }
 
     @Test
@@ -66,7 +66,7 @@ public class SendCommandTest {
         assertTrue(outOfBoundIndex.getZeroBased() < model.getEndpointList().getEndpointList().size());
 
         assertCommandFailure(new SendCommand(outOfBoundIndex), model,
-                Messages.MESSAGE_INVALID_ENDPOINT_DISPLAYED_INDEX);
+                Messages.MESSAGE_INDEX_NOT_WITHIN_LIST);
     }
 
     @Test

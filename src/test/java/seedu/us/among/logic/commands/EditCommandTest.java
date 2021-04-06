@@ -133,7 +133,7 @@ public class EditCommandTest {
         EditEndpointDescriptor descriptor = new EditEndpointDescriptorBuilder().withMethod(VALID_METHOD_POST).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_ENDPOINT_DISPLAYED_INDEX);
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_INDEX_NOT_WITHIN_LIST);
     }
 
     /**
@@ -150,7 +150,7 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
                 new EditEndpointDescriptorBuilder().withMethod(VALID_METHOD_POST).build());
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_ENDPOINT_DISPLAYED_INDEX);
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_INDEX_NOT_WITHIN_LIST);
     }
 
     @Test
