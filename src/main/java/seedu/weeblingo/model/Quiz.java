@@ -5,6 +5,7 @@ import static seedu.weeblingo.logic.commands.StartCommand.MESSAGE_NUMBER_LARGER_
 
 import java.time.Duration;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -29,6 +30,8 @@ public class Quiz {
     private Flashcard currentQuiz;
     private int currentQuizIndex = 0;
     private Instant startTime;
+    private List<Flashcard> attemptedFlashcards = new ArrayList<>();
+    private List<Flashcard> correctlyAnsweredFlashcards = new ArrayList<>();
 
     // Support for storing the quiz attempt history
     private int numberOfQuestionsAttempted;
@@ -77,6 +80,7 @@ public class Quiz {
             return null;
         } else {
             currentQuiz = quizSessionQueue.poll();
+            attemptedFlashcards.add(currentQuiz);
             currentQuizIndex++;
             return currentQuiz;
         }
@@ -102,6 +106,7 @@ public class Quiz {
         boolean result = currentQuiz.getAnswer().equals(attempt);
         if (result) {
             numberOfQuestionsCorrect++;
+            correctlyAnsweredFlashcards.add(currentQuiz);
         }
         return result;
     }
@@ -196,5 +201,13 @@ public class Quiz {
     public Score giveScore() {
         return Score.of(numberOfQuestionsAttempted, numberOfQuestionsCorrect,
                 optionalDurationString.orElse(getQuizSessionDuration()));
+    }
+
+    public List<Flashcard> getAttemptedFlashcards() {
+        return attemptedFlashcards;
+    }
+
+    public List<Flashcard> getCorrectlyAnsweredFlashcards() {
+        return correctlyAnsweredFlashcards;
     }
 }

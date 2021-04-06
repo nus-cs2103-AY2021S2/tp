@@ -2,7 +2,7 @@ package seedu.weeblingo.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.weeblingo.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
+import static seedu.weeblingo.commons.core.Messages.MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX;
 import static seedu.weeblingo.testutil.Assert.assertThrows;
 import static seedu.weeblingo.testutil.TypicalIndexes.INDEX_FIRST_FLASHCARD;
 
@@ -36,7 +36,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseIndex_outOfRangeInput_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
+        assertThrows(ParseException.class, MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX, ()
             -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
     }
 

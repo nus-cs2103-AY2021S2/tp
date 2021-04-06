@@ -5,6 +5,8 @@ import static seedu.weeblingo.commons.core.Messages.MESSAGE_TAG_NOT_FOUND;
 import static seedu.weeblingo.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -185,6 +187,7 @@ public class ModelManager implements Model {
 
     @Override
     public void startQuiz(int numberOfQuestions, Set<Tag> tags) throws CommandException {
+        assert filteredFlashcards.size() == flashcardBook.sizeOfFlashcardList();
         this.quizInstance = new Quiz(filteredFlashcards, numberOfQuestions, tags);
         Flashcard next = quizInstance.getNextQuestion();
         updateFilteredFlashcardList(curr -> curr.equals(next));
@@ -221,10 +224,17 @@ public class ModelManager implements Model {
         return quizInstance.isCorrectAttempt(attempt);
     }
 
+    @Override
+    public void showAttemptedQuestions() {
+        List<Flashcard> attemptedFlashcards = quizInstance.getAttemptedFlashcards();
+        updateFilteredFlashcardList(attemptedFlashcards::contains);
+    }
+
     /**
      * Deletes this quiz instance.
      */
     public void clearQuizInstance() {
+        updateFilteredFlashcardList(PREDICATE_SHOW_ALL_FLASHCARDS);
         quizInstance = null;
     }
 
@@ -242,6 +252,23 @@ public class ModelManager implements Model {
         return quizInstance.getStatisticString();
     }
 
+    @Override
+    public String getCorrectAttemptsString() {
+        if (quizInstance.getCorrectlyAnsweredFlashcards().isEmpty()) {
+            return "You did not answer any questions correctly.";
+        } else {
+            List<Integer> correctAttemptDisplayIndexes = new ArrayList<>();
+            for (int i = 0; i < quizInstance.getAttemptedFlashcards().size(); i++) {
+                if (quizInstance.getCorrectlyAnsweredFlashcards()
+                        .contains(filteredFlashcards.get(i))) {
+                    correctAttemptDisplayIndexes.add(i + 1);
+                }
+            }
+            return "You answered the following question(s) correctly: "
+                    + correctAttemptDisplayIndexes.toString();
+        }
+    }
+
     //=========== Mode Related =============================================================
 
     public Mode getMode() {
@@ -249,6 +276,7 @@ public class ModelManager implements Model {
     }
 
     public int getCurrentMode() {
+        assert this.mode.isValidMode();
         return this.mode.getCurrentMode();
     }
 
@@ -274,7 +302,11 @@ public class ModelManager implements Model {
         this.mode.switchModeLearn();
     }
 
+    /**
+     * Switches the current mode to Menu Mode.
+     */
     public void switchModeMenu() {
+        clearQuizInstance();
         this.mode.switchModeMenu();
     }
 

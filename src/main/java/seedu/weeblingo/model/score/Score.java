@@ -155,7 +155,7 @@ public class Score implements Comparable<Score> {
      */
     @Override
     public int compareTo(Score o) {
-        return datetime.compareTo(o.datetime);
+        return o.datetime.compareTo(this.datetime);
     }
 
     /**

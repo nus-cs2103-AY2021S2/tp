@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Set;
 
-import seedu.weeblingo.commons.core.Messages;
 import seedu.weeblingo.logic.commands.exceptions.CommandException;
 import seedu.weeblingo.model.Mode;
 import seedu.weeblingo.model.Model;
@@ -19,8 +18,8 @@ public class StartCommand extends Command {
     public static final String COMMAND_WORD = "start";
 
     public static final String MESSAGE_SUCCESS = "Here is the first question.\n"
-            + "Enter \"end\" to end the quiz, \"check\" to check the answer, "
-            + "and \"next\" to move to the next question.";
+            + "Enter \"check\" to check the answer, "
+            + "\"next\" to move to the next question and \"end\" to return to menu.";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": starts a new quiz with the specified number of "
             + "questions, filtered to have only questions that have the specified tag(s). All parameters are"
@@ -41,6 +40,12 @@ public class StartCommand extends Command {
                     + "number of flashcards WeebLingo has!\n"
                     + "Please enter a maximum number of ";
 
+    public static final String MESSAGE_IN_QUIZ_SESSION = "You are in a quiz session!\n"
+            + "Enter \"end\" to return to menu first or complete current quiz session "
+            + "before starting a new session.";
+
+    public static final String MESSAGE_NOT_IN_QUIZ_MODE = "Please enter quiz mode to start a quiz session.";
+
     private int numOfQnsForQuizSession;
 
     private Set<Tag> tags;
@@ -59,14 +64,20 @@ public class StartCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
         int currentMode = model.getCurrentMode();
-        if (currentMode == Mode.MODE_QUIZ) {
-            model.startQuiz(numOfQnsForQuizSession, tags);
-            model.switchModeQuizSession();
-            return new CommandResult(MESSAGE_SUCCESS, false, false);
-        } else {
-            throw new CommandException(Messages.MESSAGE_NOT_IN_QUIZ_MODE);
+
+        if (currentMode == Mode.MODE_QUIZ_SESSION || currentMode == Mode.MODE_CHECK_SUCCESS) {
+            throw new CommandException(MESSAGE_IN_QUIZ_SESSION);
         }
+
+        if (currentMode != Mode.MODE_QUIZ && currentMode != Mode.MODE_QUIZ_SESSION_ENDED) {
+            throw new CommandException(MESSAGE_NOT_IN_QUIZ_MODE);
+        }
+        model.clearQuizInstance();
+        model.startQuiz(numOfQnsForQuizSession, tags);
+        model.switchModeQuizSession();
+        return new CommandResult(MESSAGE_SUCCESS, false, false);
     }
 
     @Override

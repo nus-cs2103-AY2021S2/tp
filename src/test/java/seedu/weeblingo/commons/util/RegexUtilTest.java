@@ -118,18 +118,18 @@ public class RegexUtilTest {
      * Both valid and invalid cases tests are here.
      */
     @Test
-    public void regexEngWord() {
-        String regex = RegexUtil.REGEX_ENG_WORD;
+    public void regexEngWords() {
+        String regex = RegexUtil.REGEX_ENG_WORDS;
 
         assertTrue("a".matches(regex));
         assertTrue("A".matches(regex));
         assertTrue("Yes".matches(regex));
+        assertTrue("two words".matches(regex));
 
         assertFalse("".matches(regex));
         assertFalse(" ".matches(regex));
         assertFalse("No.".matches(regex));
         assertFalse("1word".matches(regex));
-        assertFalse("two words".matches(regex));
         assertFalse("Adiós".matches(regex));
         assertFalse("아니요".matches(regex));
     }

@@ -117,6 +117,9 @@ public interface Model {
     /** Returns the index of current question in the Quiz */
     int getCurrentIndex();
 
+    /** Shows all attempted questions in the Quiz */
+    void showAttemptedQuestions();
+
     /** Clears the Quiz instance when the "end" command is called */
     void clearQuizInstance();
 
@@ -150,6 +153,8 @@ public interface Model {
 
     /** Gets the statistics information as a string for display purposes */
     String getQuizStatisticString();
+
+    String getCorrectAttemptsString();
 
     /** Add a score to the FlashcardBook */
     void addScore();
