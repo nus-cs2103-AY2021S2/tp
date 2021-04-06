@@ -12,7 +12,7 @@ import java.util.Objects;
 public class Session {
 
     public static final String MESSAGE_CONSTRAINTS = "The start time + duration should not exceed "
-        + "the current date.";
+        + "the current day.";
 
     private SessionDate sessionDate;
     private Duration duration;
