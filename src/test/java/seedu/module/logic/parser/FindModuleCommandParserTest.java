@@ -1,6 +1,7 @@
 package seedu.module.logic.parser;
 
 import static seedu.module.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.module.commons.core.Messages.MESSAGE_NO_SUCH_MODULE;
 import static seedu.module.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.module.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -25,8 +26,14 @@ public class FindModuleCommandParserTest {
     }
 
     @Test
+    public void parse_invalidModuleCode_throwsParseException() {
+        assertParseFailure(parser, "CSGG13@@XQ", String.format(MESSAGE_NO_SUCH_MODULE,
+                FindModuleCommand.MESSAGE_USAGE));
+    }
+
+    @Test
     public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "Fa sa", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+        assertParseFailure(parser, " ", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 FindModuleCommand.MESSAGE_USAGE));
     }
 }

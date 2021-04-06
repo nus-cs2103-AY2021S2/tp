@@ -28,8 +28,6 @@ import seedu.module.model.tag.Tag;
 import seedu.module.model.task.Task;
 import seedu.module.testutil.TaskBuilder;
 
-
-
 class TagCommandTest {
 
     private static final String TAG_STUB = "TagA";
@@ -136,7 +134,7 @@ class TagCommandTest {
     }
 
     @Test
-    public void execute_invalidPersonIndexUnfilteredList_failure() {
+    public void execute_invalidTaskIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredTaskList().size() + 1);
         TagCommand tagCommand = new TagCommand(outOfBoundIndex);
         Set<Tag> tagStubs = new HashSet<>();
@@ -147,7 +145,7 @@ class TagCommandTest {
     }
 
     @Test
-    public void execute_invalidPersonIndexFilteredList_failure() {
+    public void execute_invalidTaskIndexFilteredList_failure() {
         showTaskAtIndex(model, INDEX_FIRST_TASK);
         Index outOfBoundIndex = INDEX_SECOND_TASK;
         // ensures that outOfBoundIndex is still in bounds of module book list
@@ -158,6 +156,25 @@ class TagCommandTest {
         tagCommand.setTags(tagStubs);
 
         assertCommandFailure(tagCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_duplicateTagUnfilteredList_failure() {
+        Task firstTask = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
+        TagCommand tagCommand = new TagCommand(INDEX_FIRST_TASK);
+        Set<Tag> existingTags = firstTask.getTags();
+        tagCommand.setTags(existingTags);
+        assertCommandFailure(tagCommand, model, TagCommand.MESSAGE_DUPLICATE_TASK);
+    }
+
+    @Test
+    public void execute_duplicateTagFilteredList_failure() {
+        showTaskAtIndex(model, INDEX_FIRST_TASK);
+        Task firstTask = model.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
+        TagCommand tagCommand = new TagCommand(INDEX_FIRST_TASK);
+        Set<Tag> existingTags = firstTask.getTags();
+        tagCommand.setTags(existingTags);
+        assertCommandFailure(tagCommand, model, TagCommand.MESSAGE_DUPLICATE_TASK);
     }
 
     @Test
@@ -189,5 +206,9 @@ class TagCommandTest {
         TagCommand commandWithDifferentTags = new TagCommand(INDEX_FIRST_TASK);
         commandWithDifferentTags.setTags(tagStubsAlter);
         assertNotEquals(standardCommand, commandWithDifferentTags);
+
+        TagCommand commandWithNullTags = new TagCommand(INDEX_FIRST_TASK);
+        commandWithNullTags.setTags(null);
+        assertNotEquals(standardCommand, commandWithNullTags);
     }
 }

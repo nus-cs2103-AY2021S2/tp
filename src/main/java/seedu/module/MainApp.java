@@ -92,7 +92,10 @@ public class MainApp extends Application {
             initialData = new ModuleBook();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        Model resultModel = new ModelManager(initialData, userPrefs);
+        resultModel.refreshTasks();
+
+        return resultModel;
     }
 
     private void initLogging(Config config) {

@@ -84,6 +84,11 @@ public interface Model {
     void setTask(Task target, Task editedTask);
 
     /**
+     * Refreshes the whole task list.
+     */
+    void refreshTasks();
+
+    /**
      * Sorts the tasks by corresponding factor.
      */
     void sortTasks(Comparator<Task> factor);

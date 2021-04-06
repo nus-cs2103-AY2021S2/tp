@@ -24,7 +24,7 @@ public class Recurrence {
     }
 
     /**
-     * Checks if recurrence is daily, weekly or monthly.
+     * Checks if recurrence is daily, weekly or biweekly.
      *
      * @param recurrenceString is the recurrence in type String.
      * @return true if recurrence is valid. false otherwise.
