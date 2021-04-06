@@ -32,17 +32,17 @@ public class TypicalContacts {
             .build();
     public static final Contact ELLE = new ContactBuilder()
             .withName("Elle Meyer")
-            .withPhone("9482224")
+            .withPhone("94822241")
             .withEmail("werner@example.com")
             .build();
     public static final Contact FIONA = new ContactBuilder()
             .withName("Fiona Kunz")
-            .withPhone("9482427")
+            .withPhone("94824270")
             .withEmail("lydia@example.com")
             .build();
     public static final Contact GEORGE = new ContactBuilder()
             .withName("George Best")
-            .withPhone("9482442")
+            .withPhone("94824425")
             .withEmail("anna@example.com")
             .build();
 }
