@@ -58,7 +58,7 @@ public class MeetingTest {
         assertNotEquals(carlEdited, CARL_1);
 
         // Different meeting, status same, all other attributes different -> returns false
-        carlEdited = new MeetingBuilder(ALICE_1).withIsDone(CARL_1.getIsDone()).build();
+        carlEdited = new MeetingBuilder(ALICE_1).withStatus(CARL_1.getStatus().toString()).build();
         assertNotEquals(carlEdited, CARL_1);
 
         // Different meeting, all attributes different -> returns false

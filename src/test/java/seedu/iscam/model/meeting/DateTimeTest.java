@@ -28,19 +28,19 @@ public class DateTimeTest {
     public void isValidDateTimeStr() {
         // Invalid date and time -> returns false
         String notDateTimeStr = "Just a string";
-        assertFalse(DateTime.isValidDateTimeStr(notDateTimeStr));
+        assertFalse(DateTime.isStringValidFormat(notDateTimeStr));
 
         // Current date and time -> returns true
         String currentDateTimeStr = LocalDateTime.now().format(DATETIME_PATTERN);
-        assertTrue(DateTime.isValidDateTimeStr(currentDateTimeStr));
+        assertTrue(DateTime.isStringValidDateTime(currentDateTimeStr));
 
         // 5 minutes into the past -> return false
         String pastDateTimeStr = LocalDateTime.now().minusMinutes(5).format(DATETIME_PATTERN);
-        assertFalse(DateTime.isValidDateTimeStr(pastDateTimeStr));
+        assertFalse(DateTime.isStringValidDateTime(pastDateTimeStr));
 
         // 5 minutes into the future -> returns true
         String futureDateTimeStr = LocalDateTime.now().plusMinutes(5).format(DATETIME_PATTERN);
-        assertTrue(DateTime.isValidDateTimeStr(futureDateTimeStr));
+        assertTrue(DateTime.isStringValidDateTime(futureDateTimeStr));
     }
 
     @Test
