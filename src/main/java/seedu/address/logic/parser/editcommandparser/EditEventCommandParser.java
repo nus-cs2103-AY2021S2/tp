@@ -46,7 +46,7 @@ public class EditEventCommandParser extends EditCommandParser implements Parser<
             eventEdit = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_GENERAL_EVENT).get());
         }
         if (arePrefixesPresent(argMultimap, PREFIX_DATE)) {
-            dateEdit = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DATE).get());
+            dateEdit = ParserUtil.parseEventDate(argMultimap.getValue(PREFIX_DATE).get());
         }
 
         return new EditEventCommand(intIndex, eventEdit, dateEdit);
