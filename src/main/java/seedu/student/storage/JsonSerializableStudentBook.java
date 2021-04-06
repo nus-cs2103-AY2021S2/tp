@@ -22,6 +22,8 @@ class JsonSerializableStudentBook {
 
     public static final String MESSAGE_DUPLICATE_STUDENT = "Student list contains duplicate student(s).";
     public static final String MESSAGE_DUPLICATE_APPOINTMENT = "Appointment list contains duplicate appointment(s),";
+    public static final String MESSAGE_MISSING_STUDENT = "The student does not exist in the records.";
+    public static final String MESSAGE_INVALID_START_TIME = "Time should be of the form HH:00 or HH:30";
 
     private final List<JsonAdaptedStudent> students = new ArrayList<>();
     private final List<JsonAdaptedAppointment> appointments = new ArrayList<>();
@@ -48,7 +50,7 @@ class JsonSerializableStudentBook {
     }
 
     /**
-     * Converts this student book into the model's {@code AddressBook} object.
+     * Converts this student book into the model's {@code StudentBook} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
@@ -56,6 +58,7 @@ class JsonSerializableStudentBook {
         StudentBook studentBook = new StudentBook();
         for (JsonAdaptedStudent jsonAdaptedStudent : students) {
             Student student = jsonAdaptedStudent.toModelType();
+
             if (studentBook.hasStudent(student)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_STUDENT);
             }
@@ -63,7 +66,14 @@ class JsonSerializableStudentBook {
         }
         for (JsonAdaptedAppointment jsonAdaptedAppointment : appointments) {
             Appointment appointment = jsonAdaptedAppointment.toModelType();
-            if (studentBook.hasAppointment(appointment)) {
+
+            boolean isExistingStudent = studentBook.isExistingMatricNumber(appointment.getMatriculationNumber());
+
+            if (!isExistingStudent) {
+                throw new IllegalValueException(MESSAGE_MISSING_STUDENT);
+            }
+
+            if (studentBook.hasAppointment(appointment) || studentBook.hasOverlappingAppointment(appointment)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_APPOINTMENT);
             }
             studentBook.addAppointment(appointment);

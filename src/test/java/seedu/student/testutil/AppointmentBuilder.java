@@ -82,12 +82,22 @@ public class AppointmentBuilder {
     }
 
     /**
-     * Builds a new Person object.
+     * Builds a new Appointment object.
      *
-     * @return a person object.
+     * @return a appointment object.
      */
     public Appointment build() {
         return new Appointment(matriculationNumber, date, startTime);
+    }
+
+    /**
+     * Builds a new Appointment based on Alice's details.
+     * This is necessary as the editAppt command requires a specific appointment.
+     * @return an appointment object based on Alice's details
+     */
+    public Appointment buildAlice() {
+        return new AppointmentBuilder().withMatric(TypicalStudents.ALICE.getMatriculationNumber().value)
+                .withStartTime("09:00").build();
     }
 
 }

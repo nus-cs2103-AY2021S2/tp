@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.student.commons.core.GuiSettings;
+import seedu.student.logic.commands.exceptions.CommandException;
 import seedu.student.model.appointment.Appointment;
 import seedu.student.model.appointment.SameDateAppointmentList;
 import seedu.student.model.student.MatriculationNumber;
@@ -107,6 +108,8 @@ public interface Model {
      */
     Appointment getAppointment(MatriculationNumber matriculationNumber);
 
+    Appointment getAppointmentToEdit(MatriculationNumber matriculationNumber);
+
     /**
      * Updates the filter of the filtered student list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
@@ -116,13 +119,16 @@ public interface Model {
     void updateFilteredAppointmentList(Predicate<SameDateAppointmentList> predicate1,
                                        Predicate<Appointment> predicate2);
 
+
     boolean hasAppointment(Appointment appointment);
+
+    void deleteAppointment(Appointment appointment);
 
     boolean hasOverlappingAppointment(Appointment appointment);
 
     void addAppointment(Appointment appointment);
 
-    void deleteAppointment(Appointment appointment);
+    void setAppointment(Appointment target, Appointment editedAppointment) throws CommandException;
 
     ObservableList<SameDateAppointmentList> getFilteredAppointmentList();
 

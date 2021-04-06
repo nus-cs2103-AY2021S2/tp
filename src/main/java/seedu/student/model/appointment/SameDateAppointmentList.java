@@ -1,15 +1,16 @@
 package seedu.student.model.appointment;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.student.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
 import java.util.Iterator;
-import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import seedu.student.model.appointment.exceptions.DifferentDateAppointmentException;
 import seedu.student.model.appointment.exceptions.DuplicateAppointmentException;
 import seedu.student.model.appointment.exceptions.OverlappingAppointmentException;
 import seedu.student.model.student.MatriculationNumber;
@@ -81,20 +82,30 @@ public class SameDateAppointmentList implements Iterable<Appointment>, Comparabl
         } else if (hasOverlappingAppointment(toAdd)) {
             throw new OverlappingAppointmentException();
         } else if (!date.isEqual(toAdd.getDate())) {
-            // to implement
-            throw new DuplicateAppointmentException();
+            throw new DifferentDateAppointmentException();
         }
         internalList.add(toAdd);
         FXCollections.sort(internalList);
     }
 
     /**
-     * Replaces the student {@code target} in the list with {@code editedStudent}.
+     * Replaces the appointment {@code target} in the list with {@code editedAppointment}.
      * {@code target} must exist in the list.
-     * The student identity of {@code editedStudent} must not be the same as another existing student in the list.
+     * The appointment identity of {@code editedAppointment} must not be the same as another existing appointment
+     * in the list.
      */
     public void setAppointment(Appointment target, Appointment editedAppointment) {
-        // TODO
+        requireAllNonNull(target, editedAppointment);
+        int index = internalList.indexOf(target);
+        assert index != -1;
+        if (!target.isSameAppointment(editedAppointment) && contains(editedAppointment)) {
+            //if the original appointment is not the same as the edited appointment, AND the list already contains
+            //the duplicate appointment
+            throw new DuplicateAppointmentException();
+        }
+
+        internalList.set(index, editedAppointment);
+        FXCollections.sort(internalList);
     }
 
     /**
@@ -124,6 +135,23 @@ public class SameDateAppointmentList implements Iterable<Appointment>, Comparabl
         filteredAppointments.setPredicate(predicate);
     }
 
+    public boolean sameDate(Appointment toCheck) {
+        return date.isEqual(toCheck.getDate());
+    }
+
+    public boolean isEmpty() {
+        return internalList.isEmpty();
+    }
+
+    /**
+     * Returns a deep clone of the current instance.
+     */
+    public SameDateAppointmentList deepClone() {
+        SameDateAppointmentList apptList = new SameDateAppointmentList(date);
+        internalList.stream().forEach(appt -> apptList.add(appt.clone()));
+        return apptList;
+    }
+
     @Override
     public Iterator<Appointment> iterator() {
         return internalList.iterator();
@@ -131,17 +159,14 @@ public class SameDateAppointmentList implements Iterable<Appointment>, Comparabl
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof UniqueAppointmentList // instanceof handles nulls
-                && internalList.equals(((SameDateAppointmentList) other).internalList));
-    }
-
-    public List<Appointment> getAppointmentList() {
-        return internalList;
-    }
-
-    public boolean isEmpty() {
-        return internalList.isEmpty();
+        if (other == this) {
+            return true;
+        }
+        if (!(other instanceof SameDateAppointmentList)) {
+            return false;
+        }
+        SameDateAppointmentList otherList = (SameDateAppointmentList) other;
+        return date.equals(otherList.date) && internalList.stream().anyMatch(appt -> otherList.contains(appt));
     }
 
     @Override
@@ -149,12 +174,17 @@ public class SameDateAppointmentList implements Iterable<Appointment>, Comparabl
         return internalList.hashCode();
     }
 
-    public boolean sameDate(Appointment toCheck) {
-        return date.isEqual(toCheck.getDate());
-    }
-
     @Override
     public int compareTo(SameDateAppointmentList o) {
         return date.compareTo(o.date);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (Appointment a : internalList) {
+            sb.append(a);
+        }
+        return sb.toString();
     }
 }

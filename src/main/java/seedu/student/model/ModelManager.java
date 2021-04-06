@@ -12,6 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.student.commons.core.GuiSettings;
 import seedu.student.commons.core.LogsCenter;
+import seedu.student.logic.commands.exceptions.CommandException;
 import seedu.student.model.appointment.Appointment;
 import seedu.student.model.appointment.SameDateAppointmentList;
 import seedu.student.model.student.MatriculationNumber;
@@ -35,7 +36,7 @@ public class ModelManager implements Model {
         super();
         requireAllNonNull(studentBook, userPrefs);
 
-        logger.fine("Initializing with address book: " + studentBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with student book: " + studentBook + " and user prefs " + userPrefs);
 
         this.studentBook = new StudentBook(studentBook);
         this.userPrefs = new UserPrefs(userPrefs);
@@ -140,8 +141,29 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setAppointment(Appointment target, Appointment editedAppointment) throws CommandException {
+        requireAllNonNull(target, editedAppointment);
+        studentBook.setAppointment(target, editedAppointment);
+    }
+
+    @Override
     public Appointment getAppointment(MatriculationNumber matriculationNumber) {
         return studentBook.getAppointment(matriculationNumber);
+    }
+
+    @Override
+    public Appointment getAppointmentToEdit(MatriculationNumber matriculationNumber) {
+        Appointment appointmentToEdit = null;
+        List<SameDateAppointmentList> lastShownList = getStudentBook().getAppointmentList();
+        for (SameDateAppointmentList sList : lastShownList) {
+            for (Appointment a : sList) {
+                if (a.getMatriculationNumber().equals(matriculationNumber)) {
+                    appointmentToEdit = a;
+                }
+            }
+        }
+        return appointmentToEdit;
+
     }
 
     @Override
