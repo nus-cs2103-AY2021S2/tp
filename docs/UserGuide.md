@@ -119,7 +119,7 @@ Adds a student’s contact to TutorsPet.
 
 Format: `add n/NAME p/PHONE [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] [gp/GUARDIAN_PHONE] [lv/LEVEL] [t/SUBJECT]…​ [le/LESSON]…​`
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-primary">
 
 :bulb:**Tip:** <br>
 
@@ -180,7 +180,7 @@ Edits an existing student in TutorsPet.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] [gp/GUARDIAN_PHONE] [t/SUBJECT]…​ [le/LESSON]…​`
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-primary">
 
 :bulb:**Tip:** <br>
 
@@ -228,7 +228,7 @@ Prefix | Searching Criteria
 `s/`   | School
 `t/`   | Subject
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-primary">
 
 :bulb:**Tip:** <br>
 
@@ -273,7 +273,7 @@ Prefix | Sorting Criteria
 `t/`   | Subject          
 `le/`  | Lesson           
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-primary">
 
 :bulb:**Tip:** <br>
 
@@ -299,7 +299,7 @@ This feature can be used at the start of the school year.
 
 Format: `levelup ex/[INDEX]...`
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-primary">
 
 :bulb:**Tip:** <br>
 
@@ -329,7 +329,7 @@ This feature can be used to undo `levelup` or indicate retainees.
 
 Format: `leveldown ex/[INDEX]...`
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-primary">
 
 :bulb:**Tip:** <br>
 
@@ -360,7 +360,7 @@ be displayed.
 
 Format: `detail INDEX`
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-primary">
 
 :bulb:**Tip:** <br>
 
@@ -382,7 +382,7 @@ Permanently deletes the specified student's contact from TutorsPet.
 
 Format: `delete INDEX`
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-primary">
 
 :bulb:**Tip:** <br>
 
@@ -422,7 +422,7 @@ Permanently deletes the specified important date from TutorsPet.
 
 Format: `delete-date INDEX`
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-primary">
 
 :bulb:**Tip:** <br>
 
