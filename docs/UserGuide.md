@@ -350,6 +350,11 @@ Format: `help`
 
 Showing a message containing the url to the User Guide page
 
+### Toggle User Inputs: <kbd>&uarr;</kbd>/<kbd>&darr;</kbd>
+Format: <kbd>&uarr;</kbd>/<kbd>&darr;</kbd>
+
+Toggles between previous inputs keyed into the Command Box previously. Returns user to a *blank* Command Box upon keying <kbd>&darr;</kbd> on the most recent input.
+
 ### Saving the data
 
 App-Ointment data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
