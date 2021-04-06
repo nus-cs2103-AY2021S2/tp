@@ -23,6 +23,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 
+import seedu.address.logic.commands.FindClientCommand;
 import seedu.address.logic.commands.FindPropertyCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.property.Property;
@@ -89,8 +90,12 @@ public class FindPropertyCommandParser implements Parser<FindPropertyCommand> {
 
         if (argMultimap.getValue(PREFIX_TYPE).isPresent()) {
             List<Predicate<Property>> typeList = new ArrayList<>();
-            argMultimap.getAllValues(PREFIX_TYPE)
-                    .forEach(x -> typeList.add(new PropertyTypePredicate(x)));
+            try {
+                argMultimap.getAllValues(PREFIX_TYPE)
+                        .forEach(x -> typeList.add(new PropertyTypePredicate(x)));
+            } catch (IllegalArgumentException e) {
+                throw new ParseException(e.getMessage() + "\n" + FindClientCommand.MESSAGE_USAGE);
+            }
             predicates.add(new PropertyPredicateList(typeList).combineDisjunction());
         }
 
