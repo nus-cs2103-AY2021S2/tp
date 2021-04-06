@@ -27,7 +27,7 @@ You can reach us at the email `e0205114[at]comp.nus.edu.sg`
 [[portfolio](team/benedict.md)]
 
 * Role: Developer
-* Responsibilities: Documentation, Storage Integration
+* Responsibilities: Documentation, Undo/Redo Feature, Command History Feature
 
 ### Colin Tan
 
