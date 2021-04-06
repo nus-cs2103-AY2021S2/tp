@@ -395,11 +395,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | -------- | ------------------------------------------ | ------------------------------------------------- | ------------------------------------------------------------ |
 | `* * *`  | user                                       | create a student's profile                        | keep track of my student's information                       |
 | `* * *`  | user                                       | see the profile of a particular student           | get their information                                        |
-| `* * *`  | user                                       | see a list of all my students' profile            |                                                              |
-| `* * *`  | user                                       | get all the emails of the parent of my students'  | email them reminders for payment                             |
 | `* * *`  | user                                       | remove a student's profile                        | keep track of only students that I teach                     |
+| `* * *`  | user                                       | edit the details of a student                     | keep track of up-to-date information                         |
 | `* * *`  | user                                       | add individual tuition sessions                   | keep track of my tuition sessions                            |
 | `* * *`  | user                                       | delete an individual tuition session              | update my tuition schedule                                   |
+| `* * *`  | user                                       | see a list of all the students profile and sessions|                                                             |
+| `* * *`  | user                                       | get all the emails of the parent of my students'  | email them reminders for payment                             |
+| `* * *`  | user                                       | calculate the monthly fees of a particular student| use the information when collecting fees                     |
+| `* * *`  | user                                       | get the monthly fees that I would have received for the past 3 months    | see how well I am doing financially   |
+| `* *`    | new user                                   | get a list of commands of the application         | know at a glance what are the features of the application    |
+| `* *`    | potential user                             | see the app populated with sample data            | easily see how the app will look like when it is in use      |
+| `* *`    | new user                                   | purge all current data                            | get rid of sample/current data I used for exploring the app  |
+| `* *`    | user                                       | exit the application                              |                                                              |
 
 *{More to be added}*
 
@@ -423,6 +430,22 @@ Extensions:
     * 1a1. TutorBuddy displays an error message.
 
     Use case ends.
+
+**Use case: UC0X - Find a student’s profile**
+
+MSS:
+
+1. User enters the `find_student` command, along with a keyword from the student’s name.
+2. TutorBuddy displays all students’ profiles matching the keyword if any.
+
+   Use case ends.
+
+Extensions:
+
+* 1a. TutorBuddy detects empty keyword field
+    * 1a1. TutorBuddy displays an error message for no keyword specified.
+
+  Use case ends.
 
 **Use case: UC0X - Delete a student profile**
 
@@ -449,22 +472,6 @@ Extensions:
 
 * 4a. User cancels the confirmation of deletion.
     * 4a1. Student profile is not created; the student is returned to the home page.
-
-  Use case ends.
-
-**Use case: UC0X - Find a student’s profile**
-
-MSS:
-
-1. User enters the `find_student` command, along with a keyword from the student’s name.
-2. TutorBuddy displays all students’ profiles matching the keyword if any.
-
-   Use case ends.
-
-Extensions:
-
-* 1a. TutorBuddy detects empty keyword field
-    * 1a1. TutorBuddy displays an error message for no keyword specified.
 
   Use case ends.
 
