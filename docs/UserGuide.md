@@ -304,7 +304,7 @@ Format: `recur INDEX r/RECURRENCE`
 
 
 Examples:
-* `recur 1 r/biweekly` Recurs the 1st task in ModuleBook3.5 every month.
+* `recur 1 r/biweekly` Recurs the 1st task in ModuleBook3.5 every two weeks.
 * `recur 2 r/weekly` Recurs the 4th task in ModuleBook3.5 every week.
 * `recur 3 r/daily` Recurs the 3rd task in ModuleBook3.5 every day.
 * `recur 4 r/` Removes the recurrence of the 4th task in ModuleBook3.5.

@@ -193,7 +193,7 @@ public class Task {
     }
 
     /**
-     * Returns true if the deadline is later than the current time.
+     * Returns true if the deadline is behind the current time.
      */
     public boolean isBehind() {
         assert this.isRecurring();
