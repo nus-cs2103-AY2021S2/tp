@@ -205,4 +205,16 @@ public class CommandTestUtil {
         assertEquals(1, model.getFilteredRecordList().size());
     }
 
+    /**
+     * Updates {@code model}'s filtered list to show only the overdue book in the
+     * {@code model}'s smartlib.
+     *
+     * @param model model to be examined.
+     */
+    public static void showOverdueBook(Model model) {
+        final String overdueBookName = "Secret"; //the only overdue book in typical book list.
+        model.updateFilteredBookList((new BookNameContainsKeywordsPredicate(Arrays.asList(overdueBookName))));
+        assertEquals(1, model.getFilteredBookList().size());
+    }
+
 }
