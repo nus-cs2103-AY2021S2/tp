@@ -16,7 +16,7 @@ public class Messages {
     public static final String MESSAGE_INVALID_JSON = "The request was not performed successfully. Check"
             + " that your data is added in the correct JSON format.";
     public static final String MESSAGE_CONNECTION_ERROR = "Connection could not be established. Possible sources of "
-            + "error:\n"
+            + "error may include but are not limited to:\n"
             + "- Invalid URL\n"
             + "- Server error\n"
             + "- Internet connection\n"
@@ -24,7 +24,7 @@ public class Messages {
 
     public static final String MESSAGE_CALL_CANCELLED = "The request has been aborted.";
     public static final String MESSAGE_GENERAL_ERROR = "The request was not performed successfully. Possible sources "
-            + " of error:\n"
+            + " of error may include but are not limited to:\n"
             + "- Invalid URL\n"
             + "- Server error\n"
             + "- Internet connection\n"

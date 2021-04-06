@@ -17,8 +17,8 @@ public class Address {
 
     public static final String MESSAGE_CONSTRAINTS =
             "URL provided has to be valid and does not contain any illegal characters.\nFor example:\n"
-                    + "https://localhost:3000\n"
-                    + "https://api.data.gov.sg/v1/environment/air-temperature";
+                    + "1. https://localhost:3000\n"
+                    + "2. https://api.data.gov.sg/v1/environment/air-temperature";
 
     /*
      * The first character of the address must not be a whitespace,
