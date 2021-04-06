@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
+import java.time.temporal.ChronoUnit;
 
 /**
  * Represents a meeting's date and time in the iscam book.
@@ -38,6 +39,10 @@ public class DateTime {
      */
     public static boolean isStringValidFormat(String str) {
         try {
+            // LocalDateTime validDateTime = LocalDateTime.parse(dateTime, DATETIME_PATTERN);
+            LocalDateTime now = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
+            // return validDateTime.isEqual(now) || validDateTime.isAfter(now);
+
             LocalDateTime validDateTime = LocalDateTime.parse(str, DATETIME_PATTERN);
             return true;
         } catch (DateTimeParseException exception) {
