@@ -45,7 +45,7 @@ public class RecurringSchedule implements Attribute {
     public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     // Index 0 is placed as empty string so when days of week is retrieved, no additional increment is required
-    public static final List<String> weekDays = Arrays.asList("", "mon", "tue", "wed", "thu", "fri", "sat", "sun");
+    public static final List<String> WEEK_DAYS = Arrays.asList("", "mon", "tue", "wed", "thu", "fri", "sat", "sun");
 
     public final String value;
     public final String output;
@@ -144,7 +144,7 @@ public class RecurringSchedule implements Attribute {
      */
     private List<String> findWeekDates(int numWeeks) {
         List<String> weekDates = new ArrayList<>();
-        int dayOfWeekInNum = weekDays.indexOf(dayOfWeek);
+        int dayOfWeekInNum = WEEK_DAYS.indexOf(dayOfWeek);
         LocalDate nextDate = currentDate;
 
         for (int i = 0; i < numWeeks; i++) {
