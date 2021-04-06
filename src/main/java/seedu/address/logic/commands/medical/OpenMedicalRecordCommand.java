@@ -43,6 +43,6 @@ public class OpenMedicalRecordCommand extends Command {
         Patient patient = lastShownList.get(index.getZeroBased());
         model.selectPatient(patient);
         return new CommandResult(String.format(MESSAGE_SUCCESS, patient.getName()), false, true,
-                patient, null, null, null,false);
+                patient, null, null, null, false);
     }
 }

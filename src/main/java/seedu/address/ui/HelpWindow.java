@@ -9,8 +9,18 @@ import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.commands.*;
-import seedu.address.logic.commands.medical.*;
+import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.ArchiveCommand;
+import seedu.address.logic.commands.ArchiveListCommand;
+import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.UnarchiveCommand;
+import seedu.address.logic.commands.medical.AddAppointmentCommand;
+import seedu.address.logic.commands.medical.ListAppointmentsCommand;
+import seedu.address.logic.commands.medical.OpenMedicalRecordCommand;
+import seedu.address.logic.commands.medical.ViewMedicalRecordCommand;
+import seedu.address.logic.commands.medical.ViewPatientCommand;
+
 
 /**
  * Controller for a help page

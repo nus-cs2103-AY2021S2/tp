@@ -76,7 +76,7 @@ public class Patient implements Comparable<Patient> {
      * Every field must be present and not null.
      */
     public Patient(Name name, Phone phone, Email email, Address address, Height height, Weight weight,
-                   Set<Tag> tags, List<MedicalRecord> records ,List<Appointment>appointments) {
+                   Set<Tag> tags, List<MedicalRecord> records, List<Appointment>appointments) {
         requireAllNonNull(name, phone, email, address, height, weight, tags);
         this.name = name;
         this.phone = phone;
