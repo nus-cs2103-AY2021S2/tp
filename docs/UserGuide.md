@@ -86,13 +86,6 @@ This block is used to provide you extra details about the feature that will enab
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/SUBJECT]…​` can be used as ` ` (i.e. 0 times), `t/chem`, `t/phys t/math` etc.
   
-* Levels are represented by abbreviated names. Available levels are `pri1`, `pri2`, `pri3`, `pri4`, `pri5`, `pri6`, 
-  `sec1`, `sec2`, `sec3`, `sec4`, `jc1`, `jc2`, `graduated`.
-They cover the education levels in Primary School, Secondary School and Junior College.
-  
-* Subjects are represented by abbreviated name. Available names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `math`, `phys`.
-They represent subjects Biology, Chemistry, Chinese, Economics, English, Geography, History, Mathematics and Physics respectively.
-  
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
@@ -132,7 +125,20 @@ Format: `add n/NAME p/PHONE [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] 
 
 - `n/NAME p/PHONE` are compulsory fields that must be provided, while `s/SCHOOL e/EMAIL a/ADDRESS gn/GUARDIAN_NAME gp/GUARDIAN_PHONE lv/LEVEL [t/SUBJECT]…​ [le/LESSON]…​` are optional.
   
-- A student’s contact can have any number of subjects (including 0)
+- Education Levels are represented by abbreviated names. Available levels cover
+    - Primary School: `pri1`, `pri2`, `pri3`, `pri4`, `pri5`, `pri6`
+    - Secondary School: `sec1`, `sec2`, `sec3`, `sec4`, `sec5`
+    - Junior College: `jc1`, `jc2`
+    - Post Junior College: `graduated` 
+
+- Subjects are represented by abbreviated name. Available subjects cover commonly tutored ones, including
+    - Languages: `eng`, `cn`
+    - Mathematics & Sciences: `math`, `sci`, `bio`, `chem`, `phys`
+    - Humanities: `econ`, `geo`, `hist`
+      They represent subjects English, Chinese, Mathematics, Science, Biology, Chemistry, Physics,
+      Economics, Geography and History in order of listing.
+
+- A student’s contact can have any number of subjects (including 0). 
   
 - A student’s contact can have any number of lessons (including 0)
 
