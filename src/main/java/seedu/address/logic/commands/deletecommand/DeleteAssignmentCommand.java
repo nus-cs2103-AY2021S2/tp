@@ -24,9 +24,9 @@ public class DeleteAssignmentCommand extends DeleteCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the assignment identified by the index in Assignment list of the module\n"
-            + "Parameters: Index (must be a int value)\n"
+            + "Parameters: Index\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_MODULE + "CS2103T"
+            + PREFIX_MODULE + "CS2103T "
             + PREFIX_ASSIGNMENT + "1";
 
     public static final String MESSAGE_DELETE_ASSIGNMENT_SUCCESS = "Deleted Assignment: %1$s";
@@ -60,7 +60,7 @@ public class DeleteAssignmentCommand extends DeleteCommand {
             throw new CommandException(Messages.MESSAGE_INVALID_ASSIGNMENT_DISPLAYED_INDEX);
         }
         Assignment assignmentToDelete = moduleToGet.getAssignment(assignmentIndex.getZeroBased());
-        moduleToGet.deleteAssignment(assignmentIndex.getZeroBased());
+        model.deleteAssignment(moduleToGet, assignmentToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_ASSIGNMENT_SUCCESS, assignmentToDelete));
     }
 

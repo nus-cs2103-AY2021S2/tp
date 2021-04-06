@@ -79,6 +79,10 @@ public class DisplayPanel extends UiPart<Region> {
 
     }
 
+    public TabPane getTabPane() {
+        return tabPane;
+    }
+
     public void showModules() {
         tabPane.getSelectionModel().select(modules);
     }
@@ -90,5 +94,6 @@ public class DisplayPanel extends UiPart<Region> {
     public void showEvents() {
         tabPane.getSelectionModel().select(events);
     }
+
 
 }

@@ -353,8 +353,12 @@ public class CalendarWindow extends UiPart<Stage> {
         refreshCalenderView();
     }
 
+    /**
+     * Refreshes the calendar view along with the upcoming schedule view.
+     */
     @FXML
     public void refresh() {
         refreshCalenderView();
+        upcomingSchedule.refreshSchedule();
     }
 }

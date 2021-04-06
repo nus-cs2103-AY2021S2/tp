@@ -144,6 +144,26 @@ public interface Model {
     void editModule(int index, Title target);
 
     /**
+     * Deletes the target assignment
+     * @param module
+     * @param assignment
+     */
+    void deleteAssignment(Module module, Assignment assignment);
+
+    /**
+     * Deletes the target general event
+     * @param generalEvent
+     */
+    void deleteGeneralEvent(GeneralEvent generalEvent);
+
+    /**
+     * Deletes the target exam
+     * @param module
+     * @param exam
+     */
+    void deleteExam(Module module, Exam exam);
+
+    /**
      * Adds the given assignment.
      * {@code assignment} must not already exist in the module it is to be added to.
      */
@@ -160,6 +180,12 @@ public interface Model {
      * {@code module} must already exist in the remindMe and {@code index} must be a valid index.
      */
     void editAssignment(Module module, int index, LocalDateTime edit);
+
+    /**
+     * Toggles the done status of the assignemnt at {@code index} in the {@code module}.
+     * {@code module} must already exist in the remindMe and {@code index} must be a valid index.
+     */
+    void toggleDoneStatusForAssignment(Module module, int index);
 
     /**
      * Returns true if an exam with the same date and time as {@code module} exists in the
@@ -245,6 +271,15 @@ public interface Model {
      * Gets the event at {@code index}.
      */
     GeneralEvent getEvent(int index);
+
+    /**
+     * Replaces the given general event {@code target} with {@code editedEvent}.
+     * {@code target} must exist in the RemindMe.
+     * The description and date of {@code editedEvent} must not be the same as
+     * another existing general event in the RemindMe.
+     */
+    void setEvent(GeneralEvent target, GeneralEvent editedEvent);
+
 
     /**
      * Updates the filter of the filtered module list to filter by the given {@code predicate}.

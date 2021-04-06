@@ -56,8 +56,9 @@ public class ToggleDoneAssignmentCommand extends Command {
         if (assignmentIndex.getZeroBased() >= assignmentList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_ASSIGNMENT_DISPLAYED_INDEX);
         }
+
         Assignment assignmentToToggleDoneStatus = moduleToGet.getAssignment(assignmentIndex.getZeroBased());
-        moduleToGet.toggleAssignmentDoneStatus(assignmentIndex.getZeroBased());
+        model.toggleDoneStatusForAssignment(moduleToGet, assignmentIndex.getZeroBased());
 
         return new CommandResult(String.format(MESSAGE_DONE_TOGGLE_SUCCESS, assignmentToToggleDoneStatus));
     }
