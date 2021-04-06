@@ -1,16 +1,11 @@
 package seedu.address.model.person.passenger;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.testutil.PassengerBuilder;
-
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.testutil.PassengerBuilder;
 
 public class PriceContainsKeywordsPredicateTest {
 
@@ -40,7 +35,7 @@ public class PriceContainsKeywordsPredicateTest {
     }
 
     @Test
-    public void test_PassengerHasPrice() {
+    public void test_passengerHasPrice() {
         // Passenger price equals to Predicate
         PriceContainsKeywordsPredicate predicate = new PriceContainsKeywordsPredicate(Double.parseDouble("2.34"));
         assertTrue(predicate.test(new PassengerBuilder().withPrice(2.34).build()));
@@ -55,7 +50,7 @@ public class PriceContainsKeywordsPredicateTest {
     }
 
     @Test
-    public void test_PassengerWithoutPrice_returnsFalse() {
+    public void test_passengerWithoutPrice_returnsFalse() {
         PriceContainsKeywordsPredicate predicate = new PriceContainsKeywordsPredicate(Double.parseDouble("2.34"));
         assertFalse(predicate.test(new PassengerBuilder().build()));
     }

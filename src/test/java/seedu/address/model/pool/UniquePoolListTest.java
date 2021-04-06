@@ -1,14 +1,5 @@
 package seedu.address.model.pool;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.pool.exceptions.DuplicatePoolException;
-import seedu.address.model.pool.exceptions.PoolNotFoundException;
-import seedu.address.testutil.PoolBuilder;
-
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -17,6 +8,16 @@ import static seedu.address.testutil.TypicalPassengers.getTypicalPassengers;
 import static seedu.address.testutil.TypicalPools.HOMEPOOL;
 import static seedu.address.testutil.TypicalPools.OFFICEPOOL;
 import static seedu.address.testutil.TypicalPools.WORKPOOL;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.pool.exceptions.DuplicatePoolException;
+import seedu.address.model.pool.exceptions.PoolNotFoundException;
+import seedu.address.testutil.PoolBuilder;
 
 public class UniquePoolListTest {
 
