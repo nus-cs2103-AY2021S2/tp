@@ -36,6 +36,16 @@ public class GuiSettings implements Serializable {
         windowCoordinates = new Point(xPosition, yPosition);
     }
 
+    /**
+     * Constructs a {@code GuiSettings} with the specified height, width, position and theme.
+     */
+    public GuiSettings(double windowWidth, double windowHeight, int xPosition, int yPosition, String theme) {
+        this.windowWidth = windowWidth;
+        this.windowHeight = windowHeight;
+        windowCoordinates = new Point(xPosition, yPosition);
+        this.theme = theme;
+    }
+
     public double getWindowWidth() {
         return windowWidth;
     }
