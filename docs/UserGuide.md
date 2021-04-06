@@ -185,7 +185,8 @@ Blacklists or unblacklists all contacts within the specified index range (inclus
 Format: `massblist START-END b/BLACKLIST_OR_UNBLACKLIST`
 
 * The index refers to the index number shown in the displayed person list.
-* Both the start index and end index **must be valid positive integers** positive integers 1, 2, …​, 2147483647
+* The keyword (`blacklist` and `unblacklist`) must be in lower case. 
+* Both the start index and end index must be valid positive integers 1, 2, 3, ...
 * Start index must be strictly smaller than the end index. 
 * End index cannot be larger than the number of contacts in the list.
 
@@ -236,10 +237,13 @@ Example:
 
 ### Sort entries by name : `sort`
 
-Sort the contacts in the address book by name in alphabetical order. The list can be sorted in
-either ascending or descending order.
+Sort the contacts in the entire address book by name in alphabetical order. The list can be
+sorted in either ascending or descending order.
 
 Format: `sort ASCENDING_OR_DESCENDING`
+
+* The keyword (`ascending` or `descending`) must be in lower case.
+* Both the currently displayed list and the entire contact list will be sorted.
 
 Examples:
 
