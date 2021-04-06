@@ -103,7 +103,7 @@ The `UI` component,
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying
    help to the user.
-
+   
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API
 calls respectively.
 
@@ -149,6 +149,50 @@ Classes used by multiple components are in the `seedu.storemando.commons` packag
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Delete Item `Delete`
+
+#### Actual Implementation
+
+The `delete` feature allows users to delete an item in their Inventory by the item's index in the list.
+
+The following sequence diagram shows how the delete operation works:
+
+![DeleteSequenceDiagram](images/DeleteSequenceDiagram.png)
+
+Given below is an example usage scenario and how delete mechanism behaves at each step.
+
+Step 1. User executes `delete 5` to delete the 5th item in the list. `StoreMandoParser` takes in the user input and
+determines the command word (delete) and argument (5) respectively.
+
+Step 2. An instance of `DeleteCommandParser` will be created, followed by a call on its `parse` method, taking in the
+argument stated in step 1 (5).
+
+Step 3. The `parse` method will check for the validity of the index. If valid, a new `DeleteCommand` instance will be
+created and returned to `LogicManager` class via `StoreMandoParser` class.
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** If the index is determined to be invalid, a parseException will be thrown to notify the
+user of the error.
+
+</div>
+
+Step 4. The overridden `execute` method of `DeleteCommand` will be called, deleting the item from the list. 
+
+Step 5. Finally, a `CommandResult` object is created and returned to `LogicManager`.
+
+![DeleteActivityDiagram](images/DeleteActivityDiagram.png)
+
+##### Aspect: How `delete` executes
+
+* **Alternative 1 (current choice):** Delete item by an index.
+    * Pros: Easy to implement.
+    * Cons: Requires user to scroll through the list to find the item and specify the index.
+
+* **Alternative 2:** Delete item by item name.
+    * Pros: Will be easier for the user especially when the list is huge.
+    * Cons: There are items with the same name but in different location, will cause confusion.
+
 ### List Items `list`, `list l/LOCATION` or `list t/TAG`
 
 #### Actual Implementation
@@ -157,10 +201,15 @@ The `list` feature allows users to list all items in the inventory based on the 
 The `list l/LOCATION` and `list t/TAG` features allow users to list all items in a specific location
 or with a specific tag respectively.
 
-Given below is an example usage scenario and how the list operation behaves at each step.
-
+The Sequence Diagram below shows how the components interact with each other for the scenario where the user
+keys in the command `list`:
 ![Interactions Inside the Logic Component for the `list` Command](images/ListStoreMandoSequenceDiagram.png)
+
+The Sequence Diagram below shows how the components interact with each other for the scenario where the user
+keys in the command `list l/kitchen`:
 ![Interactions Inside the Logic Component for the `list l/kitchen` Command](images/ListLocationSequenceDiagram.png)
+
+Given below is an example usage scenario and how the list operation behaves at each step.
 
 Step 1. The user execute `list` to list all the items in the inventory. `StoreMandoParser` takes in the user input and
 determines the command word (list) and argument ("") respectively.
@@ -205,10 +254,15 @@ _{more aspects and alternatives to be added}_
 The `find KEYWORD [MORE_KEYWORDS]` and `find */KEYWORD [MORE_KEYWORDS]` features find and display all items whose names
 contain any of the given keywords, either in full or partially respectively.
 
-Given below is an example usage scenario and how the find operation behaves at each step.
-
+The Sequence Diagram below shows how the components interact with each other for the scenario where the user
+keys in the command `find Chocolate`:
 ![Interactions Inside the Logic Component for the `find KEYWORD [MORE_KEYWORDS]` Command](images/FindFullSequenceDiagram.png)
+
+The Sequence Diagram below shows how the components interact with each other for the scenario where the user
+keys in the command `find */cheese egg`:
 ![Interactions Inside the Logic Component for the `find */KEYWORD [MORE_KEYWORDS]` Command](images/FindPartialSequenceDiagram.png)
+
+Given below is an example usage scenario and how the find operation behaves at each step.
 
 Step 1. The user execute `find Chocolate` to find all the items in the inventory whose names fully match the keyword.
 `StoreMandoParser` takes in the user input and determines the command word (find) and argument ("Chocolate") respectively.
@@ -260,7 +314,7 @@ issues the command `reminder 3 days`.
 
 ![ReminderSequenceDiagram](images/ReminderDaysSequenceDiagram.png)
 
-#### Implementation
+#### Actual Implementation
 
 This portion describes the implementation of the reminder feature which allows users to view items that are expiring 
 within a certain number of days as specified by the user.
@@ -281,9 +335,9 @@ within a certain number of days as specified by the user.
     as argument.
 10. `ReminderCommand` calls the `getCurrentPredicate` method of `model` to obtain the current predicate and uses it
     to update the list by calling on `updateFilteredItemList` method of `model` with the current predicate as argument.
-11. `ReminderCommand` then creates a `ItemComparatorByExpiryDate` object and calls `model`'s `updateSortedList` with 
+11. `ReminderCommand` then creates a `ItemComparatorByExpiryDate` object and calls `model`'s `updateSortedItemList` with 
     `ItemComparatorByExpiryDate` as argument to sort the list.
-12. Finally, a `CommandResult` object is created and returned to `LogicManager`.
+12. Finally, a `CommandResult` object is created and returned to `LogicManager`.    
 
 The following activity diagram summarizes what happens when a user executes a new `reminder` command:
 
@@ -291,7 +345,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 #### Design consideration:
 
-#### Aspect: How `reminder` executes
+##### Aspect: How `reminder` executes
 
 **Alternative 1 (current choice)** : provide integer as an input argument
     * Pros: Faster to type as compared to date in a particular format.
@@ -318,7 +372,7 @@ keys in the command `clear l/Kitchen`
 
 ![ClearLocationSequenceDiagram](images/ClearLocationSequenceDiagram.png)
 
-#### Implementation
+#### Actual Implementation 
 
 1. When the user keys in a command string, `execute` command of the `LogicManager` is called with the given string as input.
 2. In the method, `LogicManager` calls on the `parseCommand` method of `StoreMandoParser` to parse the given command.
@@ -365,11 +419,11 @@ _{Explain here how the data archiving feature will be implemented}_
 * has a lot of perishable items with various expiry dates that are difficult to remember
 * prefers desktop applications over other types
 * fast typist
-* prefers typing to using mouse 
+* prefers typing to using mouse
 * comfortable using CLI applications
 
-**Value proposition**: Every info of every item you have at home - all in one place. One command is all you have to key 
-in to add, delete or find for an item. StoreMando keeps track of everything you need so that you don't have to 
+**Value proposition**: Every info of every item you have at home - all in one place. One command is all you have to key
+in to add, delete or find for an item. StoreMando keeps track of everything you need so that you don't have to
 physically search for an item to obtain information on it. Get everything you need from StoreMando - locations,
 quantities and expiry dates.
 
@@ -415,12 +469,12 @@ otherwise)
     * 1a1. StoreMando shows an error message.
 
       Use case resumes at step 1.
-    
+
 * 1b. Duplicate item exists in the inventory.
 
     * 1b1. StoreMando shows an error message.
 
-      Use case resumes at step 1.    
+      Use case resumes at step 1.
 
 **Use case: UC2 - Delete an item in a specific location**
 
@@ -436,13 +490,13 @@ otherwise)
 **Extensions**
 
 * 2a. There are no items in the specified location.
-  
-  Use case ends. 
+
+  Use case ends.
 
 * 3a. The index keyed in by the user does not exist in the displayed list.
 
     * 3a1. StoreMando shows an error message.
-    
+
       Use case resumes at step 3.
 
 **Use case: UC3 - List all items in a specific location**
@@ -461,7 +515,6 @@ otherwise)
     * 1a1. StoreMando shows an error message.
 
       Use case resumes at step 1.
-
 
 **Use case: UC4 - Find an item**
 
@@ -486,14 +539,14 @@ otherwise)
 * 1a. The command keyed in by the user has an invalid syntax.
 
     * 1a1. StoreMando shows an error message.
-    
+
       Use case resumes at step 1.
 
 * 1b. The new details keyed in by the user is the same as the existing details of the item.
 
     * 1b1. StoreMando shows an error message.
 
-      Use case resumes at step 1.    
+      Use case resumes at step 1.
 
 **Use case: UC6 - Check for expiring items**
 
@@ -509,7 +562,7 @@ otherwise)
 * 1a. User inputs a negative number.
 
     * 1a1. StoreMando shows an error message.
-    
+
       Use case resumes at step 1.
 
 * 1a. Time unit input is neither day(s) or week(s)
@@ -577,7 +630,7 @@ Use case ends.
 * 1a. The location keyed in by the user does not exist in the inventory.
 
     * 1a1. StoreMando shows an error message.
-    
+
       Use case resumes at step 1.
 
 *{More to be added}*
@@ -591,16 +644,15 @@ Use case ends.
 3. **Portability**
     * Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 4. **Usability**
-    * A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should 
-      be able to accomplish most of the tasks faster by typing rather than using the mouse. 
+    * A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should
+      be able to accomplish most of the tasks faster by typing rather than using the mouse.
     * StoreMando should work with or without Internet connection.
-
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **StoreMando**: Name of the application
-* **CLI**: Command Line Interface    
+* **CLI**: Command Line Interface
 * **GUI**: Graphical User Interface
 * **Inventory**: List of all items stored in StoreMando
 
