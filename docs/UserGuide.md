@@ -46,8 +46,14 @@ However, the colours will be arranged such that no two modules with the same col
 </div>
 
 1. Tasks are colour coded based on done status. 
-   1. Done tasks are coloured green. 
-   1. Tasks that are not done are coloured pink.
+   1. Done tasks are coloured pink. 
+   1. Tasks that are not done are classified into 4 different categories (colors):
+   1. Color | Time to deadline
+      --------|------------------
+      **Green** | More than 3 days
+      **Yellow** | Between 1 to 3 days
+      **Orange** | Less than 1 day      
+      **Purple** | Expired
    
 1. The pie chart is used to show workload distribution.
    1. The color of pie chart is randomly assigned.
@@ -67,19 +73,30 @@ However, the colours will be arranged such that no two modules with the same col
 
     Module Code | Subject Description
     --------|------------------
-    CS1101S | Basic Programming Course
-    CS1231S | Discrete Mathematics
-    CS2030 | Intermediate Programming Course
-    CS2040 | Introductory Data Structures and Algorithms
+    CS1101S | Programming Methodology 
+    CS1010S | Programming Methodology in Python
+    CS1231S | Discrete Structures
+    CS2030 | Programming Methodology II
+    CS2040S | Data Structures and Algorithms
     CS2101 | Effective Communication for Computing Professionals
-    CS2103T | Introductory Software Engineering
+    CS2103T | Software Engineering
     CS2105 | Introduction to Computer Networks
     CS2106 | Introduction to Operating Systems
-    CS3230 | Advanced Algorithm Design and Analysis
+    CS3103 | Computer Networks Practice
+    CS3210 | Parallel Computing
+    CS3212 | Programming Languages
+    CS3217 | Software Engineering on Modern Application Platforms
+    CS3219 | Software Engineering Principles and Patterns
+    CS3220 | Computer Architecture
+    CS3223 | Database Systems Implementation
+    CS3225 | Combinatory Methods in Bioinformatics
+    CS3230 | Design and Analysis of Algorithm
+    CS3231 | Theory of Computation
+    CS3233 | Competitive Programming
     CS3243 | Introduction to Artificial Intelligence
     CS3244 | Machine Learning
     IS1103 | Computing Ethics
-    ST2131 | Statistics
+    ST2131 | Probability
     If your module code does not appear in the above table, 
     you may use a substitute module code based on the subject description.
   
@@ -263,15 +280,17 @@ Examples:
 * `find Quiz` followed by `notdone 1` marks the 1st task in the results of the `find` command as not done.
 
 
-### Add a tag: `tag`
+### Add tag(s): `tag`
 
-Adds a tag to a task.
+Adds a tag or multiple tags to a task.
 
 Application: Used to briefly indicate the nature of the task.
 
 Format: `tag INDEX t/TAG [t/MORETAGS]...​` 
 
 * Attaches one or more tags to the task associated with INDEX. Tags can be used to identify related tasks.
+* If only `/t` is provided without preceding value, no tag will be added but MB3.5 will show you the existing tags
+associated to the task you tried to tag.
 
 ![add message](images/tagCommand.png)
 
@@ -295,7 +314,9 @@ Examples:
 
 ### Search tasks with tag: `findTag`
 
-Searches for tasks with an associated tag. Note that tags are case-sensitive.
+Searches for tasks with an associated tag. Tag is case-insensitive for your convenience.
+
+One Tag allowed. Tag provided must be alphanumerical.
 
 Application: Used to find tasks that are similar in nature.
 
