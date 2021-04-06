@@ -146,11 +146,6 @@ public class AddressBookTest {
         }
 
         @Override
-        public void deleteAlias(String aliasName) {
-
-        }
-
-        @Override
         public boolean containsAlias(String aliasName) {
             return false;
         }
