@@ -32,6 +32,9 @@ public class ReminderCommandParser implements Parser<ReminderCommand> {
 
             String[] wordsInTrimmedArgs = trimmedArgs.replaceAll("\\s{2,}", " ").split(" ");
             long parsedNum = Long.parseLong(wordsInTrimmedArgs[0]);
+            if (parsedNum > 365 || parsedNum < -365) {
+                throw new ParseException(ReminderCommand.MESSAGE_INCORRECT_INTEGER);
+            }
             String timeUnit = wordsInTrimmedArgs[1];
             long numOfDaysFromToday = timeConversion(parsedNum, timeUnit);
             return new ReminderCommand(new ItemExpiringPredicate(numOfDaysFromToday));
