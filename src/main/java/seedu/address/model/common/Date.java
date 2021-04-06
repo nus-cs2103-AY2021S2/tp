@@ -14,8 +14,10 @@ import java.time.format.ResolverStyle;
  */
 public class Date implements Comparable<Date> {
     public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("uuuu-MM-dd");
-    public static final String MESSAGE_CONSTRAINTS =
-            "Date should be represented in the format of YYYY-MM-DD, and please make sure the date is valid";
+    public static final String MESSAGE_CONSTRAINTS_FORMAT =
+            "Date should be represented in the format of YYYY-MM-DD";
+    public static final String MESSAGE_CONSTRAINTS = "Please make sure the date is valid";
+    public static final String VALIDATION_REGEX = "^[0-9]{4}-[0-9]{2}-[0-9]{2}$";
 
     public final LocalDate date;
 
@@ -26,12 +28,20 @@ public class Date implements Comparable<Date> {
      */
     public Date(String dateString) {
         requireNonNull(dateString);
+        checkArgument(isValidDateFormat(dateString), MESSAGE_CONSTRAINTS_FORMAT);
         checkArgument(isValidDate(dateString), MESSAGE_CONSTRAINTS);
         date = LocalDate.parse(dateString, DATE_FORMATTER);
     }
 
     public LocalDate getDate() {
         return date;
+    }
+
+    /**
+     * Returns true if a given string is in valid format.
+     */
+    public static boolean isValidDateFormat(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 
     /**
