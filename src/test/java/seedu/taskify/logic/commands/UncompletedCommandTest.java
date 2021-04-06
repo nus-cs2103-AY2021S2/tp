@@ -35,13 +35,6 @@ public class UncompletedCommandTest {
     }
 
     @Test
-    public void sameTask() {
-        Task firstTaskInModel = model.getUncompletedFilteredTaskList().get(0);
-        Task firstTaskInExpectedModel = expectedModel.getUncompletedFilteredTaskList().get(0);
-        assert firstTaskInModel.equals(firstTaskInExpectedModel) == true;
-    }
-
-    @Test
     public void equals() {
         CommandResult.setHomeTab();
         final UncompletedCommand standardCommand = new UncompletedCommand();
