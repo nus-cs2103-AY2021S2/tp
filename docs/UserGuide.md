@@ -266,6 +266,8 @@ Format: `clear_completed_task`
 Clear tasks with past deadlines.
 
 Format: `clear_expired_task`
+* For a task to be considered expired, the task should have past deadline compare to the local date on the user's computer, 
+hence changing of date on a computer could affect the judgement of expiration.
 
 [Return to Feature List](#feature-list)
 
@@ -357,6 +359,8 @@ Format: `find_event KEYWORDS`
 Clears events with past end date time.
 
 Format: `clear_expired_event`
+* For an event to be considered expired, the event should have past end date time compare to the local time on the user's computer, 
+hence changing of timing on a computer could affect the judgement of expiration.
 
 [Return to Feature List](#feature-list)
 
