@@ -137,7 +137,6 @@ public interface Model {
      * Updates the contact list to a sorted list sorted by the given {@code comaparator}.
      * @throws NullPointerException if {@code comparator} is null.
      */
-//    void sortContactList(Comparator<Contact> comparator);
     void sortContactList(String comparator);
 
     /**

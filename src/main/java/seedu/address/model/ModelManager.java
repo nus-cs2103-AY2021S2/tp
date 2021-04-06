@@ -195,7 +195,6 @@ public class ModelManager implements Model {
     //=========== Sorted Contact List Accessors =============================================================
 
     @Override
-//    public void sortContactList(Comparator<Contact> comparator) {
     public void sortContactList(String comparator) {
         requireNonNull(comparator);
         setAddressBookComparator(comparator);
@@ -203,7 +202,7 @@ public class ModelManager implements Model {
         orderContacts();
     }
 
-    public void orderContacts() {
+    private void orderContacts() {
 
         ObservableList<Contact> contactList = addressBook.getContactList();
         SortedList<Contact> sortedContactList = contactList.sorted(getAddressBookComparator());
