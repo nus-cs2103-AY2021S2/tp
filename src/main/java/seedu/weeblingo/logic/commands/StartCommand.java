@@ -19,7 +19,7 @@ public class StartCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Here is the first question.\n"
             + "Enter \"check\" to check the answer, "
-            + "\"next\" to move to the next question and \"end\" to return to menu.";
+            + "\"next\" to move to the next question or \"end\" to return to menu.";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": starts a new quiz with the specified number of "
             + "questions, filtered to have only questions that have the specified tag(s). All parameters are"
