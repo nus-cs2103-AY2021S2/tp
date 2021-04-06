@@ -46,8 +46,14 @@ However, the colours will be arranged such that no two modules with the same col
 </div>
 
 1. Tasks are colour coded based on done status. 
-   1. Done tasks are coloured green. 
-   1. Tasks that are not done are coloured pink.
+   1. Done tasks are coloured pink. 
+   1. Tasks that are not done are classified into 4 different categories (colors):
+   1. Color | Time to deadline
+      --------|------------------
+      **Green** | More than 3 days
+      **Yellow** | Between 1 to 3 days
+      **Orange** | Less than 1 day      
+      **Purple** | Expired
    
 1. The pie chart is used to show workload distribution.
    1. The color of pie chart is randomly assigned.
@@ -309,7 +315,7 @@ Examples:
 
 Searches for tasks with an associated tag. Tag is case-insensitive for your convenience.
 
-One Tag allowed. Tag provided mut be alphanumerical.
+One Tag allowed. Tag provided must be alphanumerical.
 
 Application: Used to find tasks that are similar in nature.
 
