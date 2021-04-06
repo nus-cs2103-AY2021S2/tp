@@ -11,7 +11,7 @@ import fooddiary.commons.util.AppUtil;
 public class Price {
 
     public static final String MESSAGE_CONSTRAINTS = "Price should only contain an integer or a range of integers"
-            + "separated by '-' (e.g. 7, 3-11) between 0-999";
+            + " separated by '-' (e.g. 7, 3-11) between 0-999. Price cannot be blank.";
     public static final String PRICE_RANGE_DASH = "-";
     public static final String PRICE_DOLLAR_SIGN = "$";
     public static final String VALIDATION_REGEX = "^[0-9]{1,3}([" + PRICE_RANGE_DASH + "][0-9]{1,3})?$";
