@@ -15,6 +15,9 @@ public class CommandResult {
     private static boolean showTodays = true;
     private static boolean showUncompleted = false;
     private static final String ALREADY_IN_HOMETAB = "You are already in home tab!";
+    private static final String ALREADY_IN_EXPIREDTAB = "You are already in expired tab!";
+    private static final String ALREADY_IN_COMPLETEDTAB = "You are already in completed tab!";
+    private static final String ALREADY_IN_UNCOMPLETEDTAB = "You are already in uncompleted tab!";
 
     private final String feedbackToUser;
 
@@ -46,7 +49,7 @@ public class CommandResult {
      */
     public static CommandResult switchToHome(String feedbackToUser) {
         CommandResult newCommand = new CommandResult(feedbackToUser);
-        if (CommandResult.showHome == true) {
+        if (CommandResult.showHome) {
             return new CommandResult(ALREADY_IN_HOMETAB);
         }
         CommandResult.showHome = true;
@@ -63,6 +66,9 @@ public class CommandResult {
      */
     public static CommandResult switchToExpired(String feedbackToUser) {
         CommandResult newCommand = new CommandResult(feedbackToUser);
+        if (CommandResult.showExpired) {
+            return new CommandResult(ALREADY_IN_EXPIREDTAB);
+        }
         CommandResult.showHome = false;
         CommandResult.showExpired = true;
         CommandResult.showCompleted = false;
@@ -77,6 +83,9 @@ public class CommandResult {
      */
     public static CommandResult switchToCompleted(String feedbackToUser) {
         CommandResult newCommand = new CommandResult(feedbackToUser);
+        if (CommandResult.showCompleted) {
+            return new CommandResult(ALREADY_IN_COMPLETEDTAB);
+        }
         CommandResult.showHome = false;
         CommandResult.showExpired = false;
         CommandResult.showCompleted = true;
@@ -92,6 +101,9 @@ public class CommandResult {
 
     public static CommandResult switchToUncompleted(String feedbackToUser) {
         CommandResult newCommand = new CommandResult(feedbackToUser);
+        if (CommandResult.showUncompleted) {
+            return new CommandResult(ALREADY_IN_UNCOMPLETEDTAB);
+        }
         CommandResult.showHome = false;
         CommandResult.showExpired = false;
         CommandResult.showCompleted = false;

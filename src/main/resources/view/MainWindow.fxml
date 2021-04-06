@@ -40,8 +40,8 @@
                 <GridPane fx:id="gridPane" hgap="0" vgap="0" VBox.vgrow="ALWAYS">
                <HBox style="-fx-background-radius: 20; -fx-border-radius: 20;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowSpan="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" VBox.vgrow="ALWAYS">
                   <children>
-                          <TabPane fx:id="tabsPane" prefHeight="326.0" prefWidth="446.0" style="-fx-background-radius: 20;" HBox.hgrow="ALWAYS">
-                              <Tab fx:id="tabHome" closable="false" text="Tasks" >
+                          <TabPane fx:id="tabsPane" prefHeight="326.0" prefWidth="446.0" tabClosingPolicy="UNAVAILABLE" style="-fx-background-radius: 20;" HBox.hgrow="ALWAYS">
+                              <Tab fx:id="tabHome" closable="false" text="Tasks" disable="false">
                                   <VBox fx:id="taskListPanel" layoutX="10.0" layoutY="157.0" maxHeight="Infinity" minWidth="200" prefWidth="200" style="-fx-border-radius: 20;">
                                       <padding>
                                           <Insets bottom="5" left="5" right="5" top="5" />
@@ -51,7 +51,7 @@
                                       </children>
                                   </VBox>
                               </Tab>
-                              <Tab fx:id="tabExpired" closable="false" text="Expired">
+                              <Tab fx:id="tabExpired" closable="false" text="Expired" disable="true">
                                   <VBox fx:id="expiredTaskList" maxHeight="Infinity" minWidth="200.0" prefWidth="200" VBox.vgrow="ALWAYS">
                                       <padding>
                                           <Insets bottom="5" left="5" right="5" top="5" />
@@ -63,7 +63,7 @@
                                       </StackPane>
                                   </VBox>
                               </Tab>
-                              <Tab fx:id="tabCompleted" closable="false" text="Completed">
+                              <Tab fx:id="tabCompleted" closable="false" text="Completed" disable="true">
                                   <VBox fx:id="completedTaskListPanel" maxHeight="Infinity" minWidth="200.0" prefWidth="200" VBox.vgrow="ALWAYS">
                                       <padding>
                                           <Insets bottom="5" left="5" right="5" top="5" />
@@ -75,7 +75,7 @@
                                       </StackPane>
                                   </VBox>
                               </Tab>
-                              <Tab fx:id="tabUncompleted" closable="false" text="Uncompleted">
+                              <Tab fx:id="tabUncompleted" closable="false" text="Uncompleted" disable="true">
                                   <VBox fx:id="uncompletedTaskListPanel" maxHeight="Infinity" minWidth="200.0" prefWidth="200" VBox.vgrow="ALWAYS">
                                       <padding>
                                           <Insets bottom="5" left="5" right="5" top="5" />
