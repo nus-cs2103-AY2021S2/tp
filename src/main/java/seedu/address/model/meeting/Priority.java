@@ -16,7 +16,6 @@ public class Priority {
     public final int priority;
 
 
-
     /**
      * Constructs an {@code Priority}.
      *

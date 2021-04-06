@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -29,6 +30,7 @@ import seedu.address.model.meeting.DateTime;
 import seedu.address.model.meeting.Description;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingName;
+import seedu.address.model.meeting.Priority;
 
 
 public class FindMeetingCommandParser implements Parser<FindMeetingCommand> {
@@ -52,20 +54,23 @@ public class FindMeetingCommandParser implements Parser<FindMeetingCommand> {
         List<String> meetingTimes = argMultimap.getAllValues(PREFIX_TIME);
 
 
-        List<String> meetingNames = argMultimap.getAllValues(PREFIX_NAME);
-        List<String> meetingDescriptions = argMultimap.getAllValues(PREFIX_DESCRIPTION);
-        List<String> meetingPriorities = argMultimap.getAllValues(PREFIX_PRIORITY);
+        Optional<String> meetingName = argMultimap.getValue(PREFIX_NAME);
+        Optional<String> meetingDescription = argMultimap.getValue(PREFIX_DESCRIPTION);
+        Optional<String> meetingPriority = argMultimap.getValue(PREFIX_PRIORITY);
 
         try {
-            List<Predicate<Meeting>> predicateHasNames = handleNames(meetingNames);
             List<Predicate<Meeting>> predicateHasTimes = handleTimes(meetingTimes);
-            List<Predicate<Meeting>> predicateHasDescriptions = handleDescriptions(meetingDescriptions);
-            List<Predicate<Meeting>> predicateHasPriorities = handlePriorities(meetingPriorities);
-
             Set<Index> personsIndexesToSearch = getPersonsSet(personIndexes);
 
-            Predicate<Meeting> bigPredicate = combinePredicateListsToPredicate(predicateHasNames,
-                    predicateHasTimes,predicateHasDescriptions,predicateHasPriorities);
+            Predicate<Meeting> predicateHasName = handleName(meetingName);
+            Predicate<Meeting> predicateHasDescription = handleDescription(meetingDescription);
+            Predicate<Meeting> predicateHasPriority = handlePriority(meetingPriority);
+
+            List<Predicate<Meeting>> nameDescPriorityPred = new ArrayList<>(
+                    List.of(predicateHasName, predicateHasDescription, predicateHasPriority));
+
+            Predicate<Meeting> bigPredicate = combinePredicateListsToPredicate(nameDescPriorityPred,
+                    predicateHasTimes);
 
             return new FindMeetingCommand(bigPredicate, personsIndexesToSearch);
         } catch (Exception e) {
@@ -103,18 +108,6 @@ public class FindMeetingCommandParser implements Parser<FindMeetingCommand> {
     }
 
 
-    private List<Predicate<Meeting>> handleNames(List<String> names) throws ParseException {
-        List<Predicate<Meeting>> outArray = new ArrayList<Predicate<Meeting>>();
-        if (names.isEmpty()) {
-            return outArray;
-        }
-        Set<MeetingName> parsedNames = ParserUtil.parseMeetingNames(names);
-        Predicate<Meeting> namePred = meeting -> parsedNames.stream().allMatch(meetingName ->
-                meeting.containsName(meetingName));
-        outArray.add(namePred);
-        return outArray;
-    }
-
     private List<Predicate<Meeting>> handleTimes(List<String> times) throws ParseException {
         List<Predicate<Meeting>> outArray = new ArrayList<Predicate<Meeting>>();
         if (times.isEmpty()) {
@@ -126,25 +119,31 @@ public class FindMeetingCommandParser implements Parser<FindMeetingCommand> {
         return outArray;
     }
 
-    private List<Predicate<Meeting>> handleDescriptions(List<String> descriptions) throws ParseException {
-        List<Predicate<Meeting>> outArray = new ArrayList<Predicate<Meeting>>();
-        if (descriptions.isEmpty()) {
-            return outArray;
+    private Predicate<Meeting> handleName(Optional<String> name) throws ParseException {
+        if (name.isEmpty()) {
+            return meeting -> true;
         }
-        Set<Description> parsedDescriptions = ParserUtil.parseMeetingDescriptions(descriptions);
-        Predicate<Meeting> timePred = meeting -> parsedDescriptions.stream().allMatch(desc ->
-                meeting.des);
-
-
-        return outArray;
+        MeetingName parsedNames = ParserUtil.parseMeetingName(name.get());
+        Predicate<Meeting> namePred = meeting -> meeting.containsName(parsedNames);
+        return namePred;
     }
 
-    private List<Predicate<Meeting>> handlePriorities(List<String> priorities) throws ParseException {
-        List<Predicate<Meeting>> outArray = new ArrayList<Predicate<Meeting>>();
-        if (priorities.isEmpty()) {
-            return outArray;
+    private Predicate<Meeting> handleDescription(Optional<String> description) throws ParseException {
+        if (description.isEmpty()) {
+            return meeting -> true;
         }
-        return outArray;
+        Description parsedDesc = ParserUtil.parseMeetingDescription(description.get());
+        Predicate<Meeting> pred = meeting -> meeting.containsDescription(parsedDesc);
+        return pred;
+    }
+
+    private Predicate<Meeting> handlePriority(Optional<String> priority) throws ParseException {
+        if (priority.isEmpty()) {
+            return meeting -> true;
+        }
+        Priority parsedPrio = ParserUtil.parseMeetingPriority(priority.get());
+        Predicate<Meeting> pred = meeting -> meeting.hasPriority(parsedPrio);
+        return pred;
     }
 
 

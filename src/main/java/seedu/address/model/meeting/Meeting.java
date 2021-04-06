@@ -163,6 +163,12 @@ public class Meeting implements Schedulable {
         return afterOrAtStart && beforeOrAtEnd;
     }
 
+    public boolean hasPriority(Priority prio) {
+        return priority.equals(prio);
+    }
+
+
+
 
 
     /**
