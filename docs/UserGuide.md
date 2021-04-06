@@ -120,7 +120,7 @@ The available dashboards are detailed below.
 By default, FriendDex displays your upcoming events on the details panel, such as upcoming birthdays and special dates.
 
 #### Streaks Dashboard
-The Streaks dashboard shows how consistent you stick to your goal of meeting your friends up till the current day. More information can be found [here](#streaks).
+The Streaks dashboard shows how consistent you are in meeting your friends up till today. More information on Streaks is available [here](#streaks).
 
 #### Full Details of a Person
 As a person in the FriendDex can contain a lot of information, not all of it is displayed in the main list of persons.
@@ -186,12 +186,12 @@ Adds a special date for an existing person in FriendDex.
 Format: `add-date INDEX d/DATE desc/DESCRIPTION`
 
 * Adds a special date with the person at the specified `INDEX`.
-* The event that the special date is commemorating should have already occurred.
 
 <div markdown="block" class="alert alert-info">
 :information_source: **Notes: Special dates**<br>
 
 * A special date is a date that repeats annually, e.g. Anniversaries.
+* The event that the special date is commemorating should have already occurred.
 </div>
 
 Examples:
@@ -236,7 +236,12 @@ Records a meeting with an existing person in FriendDex.
 Format: `add-meeting INDEX d/DATE t/TIME desc/DESCRIPTION`
 
 * Records a meeting with the person at the specified `INDEX`.
+
+<div markdown="block" class="alert alert-info">
+:information_source: **Notes: Meetings**<br>
+
 * The meeting should have already occurred before it is recorded into FriendDex.
+</div>
 
 Examples:
 * `add-meeting 1 d/16-02-2021 t/1130 desc/We had lunch together!`
@@ -489,12 +494,13 @@ If your assignment is due every Sunday and you complete the current week's assig
 
 The same idea goes for deciding the goal deadline for monthly and yearly. A monthly goal's deadline will always fall on the last day of the month. 
 A yearly goal's deadline will always fall on the last day of the year. To give another example, assume that you have a set a monthly goal of meeting your friend. 
-The last time you met your friend was on the 13th March. Since you have already achieved your goal of meeting your friend for the month of March, you have to meet your friend
-again by the 30th April to ensure that you always meet your friend once a month.
+The last time you met your friend was on 13th March. Since you have already achieved your goal of meeting your friend for the month of March, you have to meet your friend
+again by 30th April to ensure that you always meet your friend once a month.
 
 ## Streaks
 
-You should have a good understanding of how goal deadlines are calculated before reading this section. The section for it is [here](#how-are-goal-deadlines-calculated).
+A streak is a number that shows how consistent you've met your goal of meeting a friend. Your streak increases if you've met a friend. Simply put, if you have a high streak with a friend, you've made meeting that friend a routine!
+It is recommended to have a good understanding of how goal deadlines are calculated before reading this section. Refer to [here](#how-are-goal-deadlines-calculated) for the relevant information.
 
 ### The dashboard
 
