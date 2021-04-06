@@ -122,7 +122,7 @@ public class Response {
                 + getStatusCode()
                 + " | Reason Phrase: "
                 + getReasonPhrase()
-                + "\nResponse Body:\n"
+                + "\n\nResponse Body:\n"
                 + getResponseEntity();
     }
 

@@ -25,7 +25,7 @@ public class RunCommand extends Command {
             + PREFIX_ADDRESS + " http://localhost:3000/ "
             + PREFIX_DATA + " {\"some\": \"data\"} "
             + PREFIX_HEADER + " \"key: value\" "
-            + PREFIX_HEADER + " \"key: value\"\n";
+            + PREFIX_HEADER + " \"key: value2\"\n";
 
     public static final String MESSAGE_API_EXAMPLE_2 = "2. "
             + COMMAND_WORD + " "
@@ -42,16 +42,17 @@ public class RunCommand extends Command {
             + "2. run https://api.data.gov.sg/v1/environment/air-temperature";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Runs an API request without saving it to the API endpoint list.\n"
+            + ": Runs an API request without saving it to the API endpoint list.\n\n"
             + "Parameters: "
             + PREFIX_METHOD + " METHOD "
             + PREFIX_ADDRESS + " ADDRESS "
-            + "[" + PREFIX_DATA + " DATA] "
-            + "[" + PREFIX_HEADER + " HEADER]...\n"
+            + PREFIX_DATA + " DATA "
+            + "[" + PREFIX_HEADER + " HEADER]\n"
+            + "Compulsory parameters: METHOD, ADDRESS\n"
+            + "Optional parameters: DATA, HEADER(s)\n\n"
             + "Examples:\n"
             + MESSAGE_API_EXAMPLE_1
-            + MESSAGE_API_EXAMPLE_2 + "\n"
-            + QUICK_RUN_COMMAND_SYNTAX;
+            + MESSAGE_API_EXAMPLE_2;
 
     private final Endpoint toRun;
 
