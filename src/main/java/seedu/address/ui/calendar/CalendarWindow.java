@@ -60,7 +60,7 @@ public class CalendarWindow extends UiPart<Stage> {
     private StackPane schedulePanelPlaceHolder;
 
     /**
-     * Creates a new CalendarWindow.
+     * Constructs a new CalendarWindow.
      *
      * @param root Stage to use as the root of the HelpWindow.
      */
@@ -70,10 +70,10 @@ public class CalendarWindow extends UiPart<Stage> {
 
 
     /**
-     * Creates a new CalendarWindow.
+     * Constructs a new CalendarWindow.
      *
-     * @param calendarStorage stores the calendar events' information.
-     * @param upcomingSchedule timeline for date on the left side of the calendar window.
+     * @param calendarStorage Stores the calendar events' information.
+     * @param upcomingSchedule Schedule for date on the left side of the calendar window.
      */
     public CalendarWindow(CalendarStorage calendarStorage, UpcomingSchedule upcomingSchedule) {
         super(FXML);
@@ -247,9 +247,9 @@ public class CalendarWindow extends UiPart<Stage> {
     /**
      * Finds the number of days in a month given the year and month.
      *
-     * @return return the number of days.
+     * @return Number of days.
      */
-    public int findNumberOfDaysInTheMonth() {
+    private int findNumberOfDaysInTheMonth() {
         if (this.month == 2) {
             if (this.yearMonth.isLeapYear()) {
                 return LEAP_YEAR_FEB_DAYS;
@@ -258,36 +258,6 @@ public class CalendarWindow extends UiPart<Stage> {
             }
         } else {
             return DAYS_IN_MONTH[month - 1];
-        }
-    }
-
-    /**
-     * Finds the number of days in a month given the year and month.
-     *
-     * @return return the number of days.
-     */
-    public int findNumberOfDaysOfAMonth(int month, int year) {
-        if (month == 2) {
-            if (Year.isLeap(year)) {
-                return LEAP_YEAR_FEB_DAYS;
-            } else {
-                return DAYS_IN_MONTH[month - 1];
-            }
-        } else {
-            return DAYS_IN_MONTH[month - 1];
-        }
-    }
-
-    /**
-     * Finds the number of days in the previous month given the year and month.
-     *
-     * @return return the number of days.
-     */
-    public int findNumberOfDaysInPreviousMonth() {
-        if (this.month >= 2) {
-            return findNumberOfDaysOfAMonth(this.month - 1, this.year);
-        } else {
-            return DAYS_IN_MONTH[11];
         }
     }
 
