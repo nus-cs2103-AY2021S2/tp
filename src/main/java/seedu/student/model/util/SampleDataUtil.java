@@ -31,7 +31,7 @@ public class SampleDataUtil {
             new Student(new Name("Bernice Yu"), new MatriculationNumber("A0175678U"), new Faculty("COM"),
                     new Phone("99272758"), new Email("berniceyu@example.com"),
                     new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                    new VaccinationStatus("not vaccinated"), new MedicalDetails("shellfish allergy"),
+                    new VaccinationStatus("unvaccinated"), new MedicalDetails("shellfish allergy"),
                     new SchoolResidence("PGPH")),
             new Student(new Name("Charlotte Oliveiro"), new MatriculationNumber("A0164567V"), new Faculty("COM"),
                     new Phone("93210283"), new Email("charlotte@example.com"),
@@ -39,7 +39,7 @@ public class SampleDataUtil {
                     new MedicalDetails("none"), new SchoolResidence("PGPH")),
             new Student(new Name("David Li"), new MatriculationNumber("A0209875D"), new Faculty("COM"),
                     new Phone("91031282"), new Email("lidavid@example.com"),
-                    new Address("Blk 436 Serangoon Gardens Street 26, #16-43"), new VaccinationStatus("not vaccinated"),
+                    new Address("Blk 436 Serangoon Gardens Street 26, #16-43"), new VaccinationStatus("unvaccinated"),
                     new MedicalDetails("history of anaphylaxis"), new SchoolResidence("PGPH")),
             new Student(new Name("Irfan Ibrahim"), new MatriculationNumber("A0214432E"), new Faculty("COM"),
                     new Phone("92492021"), new Email("irfan@example.com"),
@@ -47,7 +47,7 @@ public class SampleDataUtil {
                     new MedicalDetails("none"), new SchoolResidence("PGPH")),
             new Student(new Name("Roy Balakrishnan"), new MatriculationNumber("A0221234N"), new Faculty("COM"),
                     new Phone("92624417"), new Email("royb@example.com"),
-                    new Address("Blk 45 Aljunied Street 85, #11-31"), new VaccinationStatus("not vaccinated"),
+                    new Address("Blk 45 Aljunied Street 85, #11-31"), new VaccinationStatus("unvaccinated"),
                     new MedicalDetails("penicillin allergy"), new SchoolResidence("PGPH"))
         };
     }

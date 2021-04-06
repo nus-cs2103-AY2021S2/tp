@@ -6,7 +6,7 @@
     "phone" : "9876234",
     "email" : "may@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
-    "vaccinationStatus" : "not vaccinated",
+    "vaccinationStatus" : "unvaccinated",
     "medicalDetails" : "lactose intolerant",
     "schoolResidence" : "RVRC"
   }, {
@@ -16,7 +16,7 @@
     "phone" : "9173234",
     "email" : "toh@example.com",
     "address" : "123, Jurong West Ave 6, #02-111",
-    "vaccinationStatus" : "not vaccinated",
+    "vaccinationStatus" : "unvaccinated",
     "medicalDetails" : "lactose intolerant",
     "schoolResidence" : "RVRC"
   } ],
