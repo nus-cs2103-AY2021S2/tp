@@ -21,7 +21,7 @@ Before we jump into the code, it is useful to get an idea of the overall structu
 It also has a sequence diagram (reproduced below) that tells us how a command propagates through the App.
 
 ![Architecture sequence diagram from the developer
-guide](../images/ArchitectureSequenceDiagram.png)
+guide](../images/shion/ArchitectureSequenceDiagram.png)
 
 Note how the diagram shows only how the execution flows *between* the main components. That is, it does not show details of the execution path *inside* each component. By hiding those details, the diagram succeeds in informing the reader about the overall execution path of a command without overwhelming the reader with too much details. In this tutorial, you aim to find those omitted details so that you get a more in-depth understanding of the code base.
 

@@ -51,9 +51,9 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues with any command.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<img src="images/shion/ArchitectureSequenceDiagram.png" width="574" />
 
 The sections below give more details of each component.
 
@@ -205,16 +205,28 @@ The following activity diagram summarizes what happens when a user executes the 
 The following sequence diagram summarizes what happens when a user executes the `emails` command:
 ![EmailCommandSequenceDiagram.png](images/sam/EmailCommandSequenceDiagram.png)
 
+
 ### Add Session Feature
 The add session feature allows users to add individual tuition sessions with specific details of each session.
 
 This section explains the implementation of the add session mechanism and highlights the design considerations
 taken into account when implementing this feature.
+<!--
+### Session Feature
+The session feature is facilitated by the `Session` class which stores specific details of
+a tuition session with one student. Each session is composed within a `Student`,
+and a `Student` can have multiple `Session`s.
+-->
 
 #### Implementation
 The add attendance mechanism is facilitated by `AddAttendanceCommand` and it extends `Command`. The method,
 `AddSessionCommand#execute()`, performs a validity check on student name input and session details input by the user
 before adding the session.
+<!--
+The creation of a session is facilitated by `AddSessionCommand` and it extends `Command`. The method,
+`AddSessionCommand#execute()`, performs a validity check on student name input and session details input by the user
+before adding the session.
+-->
 
 The following sequence diagram shows the interactions between the Model and Logic components during the execution of
 an AddSessionCommand with user input `add_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE`:
@@ -225,7 +237,7 @@ an AddSessionCommand with user input `add_session n/STUDENT_NAME d/DATE t/TIME k
 2. A new instance of an `AddSessionCommand` would be created by the `AddSessionCommandParser` and returned to `AddressBookParser`.
 3. `AddressBookParser` encapsulates the `AddSessionCommand` object as a `Command` object which is executed by the `LogicManager`.
 4. The command execution calls `hasStudent(name)` and `hasSession(name, sessionToAdd)` to validate the inputs before calling
-`addSession(name, sessionToAdd)` which adds the session to the specific student.
+   `addSession(name, sessionToAdd)` which adds the session to the specific student.
 5. The result of the command execution is encapsulated as a CommandResult object which is passed back to the Ui.
 
 #### Design Considerations
@@ -247,6 +259,17 @@ a user adds a new student into the AddressBook. If the AddressBook contains many
 updated student index id. Student name on the other hand, stays constant throughout the application lifetime unless the user edits this information,
 which he also has knowledge of. Therefore, student name can be easily entered without reference to the AddressBook, saving much more time compared
 to alternative 2.
+
+###Delete Session Feature
+The `DeleteSessionCommand` does the opposite of `AddSessionCommand` -- it calls `Model#deleteSession(studentName, sessionIndex)` instead
+which calls `AddressBook#removeSession(studentName, sessionIndex)` and
+`UniqueStudentList#deleteSession(targetStudent, sessionIndex)`.
+
+The following sequence diagram shows how deleting a session works:
+![DeleteSessionSequenceDiagram](images/shion/DeleteSessionSequenceDiagram.png)
+
+It shares the same design considerations as what is mentioned in Add Session Feature. 
+
 
 ### \[Proposed\] Undo/redo feature
 

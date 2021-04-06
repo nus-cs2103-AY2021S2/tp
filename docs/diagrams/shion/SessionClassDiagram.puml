@@ -1,0 +1,29 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR_T1
+
+show members
+
+  namespace seedu.address {
+    namespace model {
+      namespace session {
+        class seedu.address.model.session.Session {
+            - sessionDate : SessionDate
+            - duration : Duration
+            - subject : Subject
+            - fee : Fee
+            + getSessionDate()
+            + getDuration()
+            + getSubject()
+            + getFee()
+            + hashCode()
+            + toString()
+            + equals()
+        }
+      }
+    }
+  }
+
+@enduml

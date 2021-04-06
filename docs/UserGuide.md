@@ -95,11 +95,11 @@ There are three main areas in TutorBuddy:
 
   Here are some example commands you can try:
   * **`list`** : Lists all students and sessions.
-  * **`add_student`**`n/John Doe p/98765432 e/johnd@example.com a/John street, Block 123, #01-01 l/Sec2 g/95421323 r/Mother` : Adds a student named `John Doe`
+  * **`add_student`** `n/John Doe p/98765432 e/johnd@example.com a/John street, Block 123, #01-01 l/Sec2 g/95421323 r/Mother` : Adds a student named `John Doe`
     to TutorBuddy.
-  * **`delete_student`**`3` : Deletes the 3rd student shown in the Student section.
-  * **`add_session`**`n/John Doe d/2021-01-01 t/13:00 k/120 s/Biology f/80`: Adds a single tuition session for John Doe happening on 2021-01-01
-  * **`add_rec_session`**`n/John Doe d/2021-01-01 t/18:00 k/120 s/Biology f/80 b/7 e/2021-01-15`: Adds a 7-day recurring session for John Doe happening from 2021-01-01 to 2021-01-15
+  * **`delete_student`** `3` : Deletes the 3rd student shown in the Student section.
+  * **`add_session`** `n/John Doe d/2021-01-01 t/13:00 k/120 s/Biology f/80`: Adds a single tuition session for John Doe happening on 2021-01-01
+  * **`add_rec_session`** `n/John Doe d/2021-01-01 t/18:00 k/120 s/Biology f/80 b/7 e/2021-01-15`: Adds a 7-day recurring session for John Doe happening from 2021-01-01 to 2021-01-15
   * **`exit`** : Exits the application.<br>
 
 Refer to the [Commands](#commands) below for details of each command.
@@ -407,8 +407,8 @@ Gets the monthly fee for a particular student for a particular month and year.
 Format: `fee n/STUDENT_NAME m/MONTH y/YEAR`
 
 * `STUDENT_NAME` should match the exact student’s name in TutorBuddy
-* `MONTH` should be a positive integer between 1 and 12
-* `YEAR` should be a positive integer between 1970 and 2037
+* `MONTH` should be a positive integer between 1 and 12 inclusive
+* `YEAR` should be a positive integer between 1970 and 2037 inclusive
 
 Example:
 * `fee n/John Lee m/1 y/2021` returns John Lee monthly fee for January 2021
