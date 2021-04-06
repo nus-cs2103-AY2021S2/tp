@@ -257,7 +257,7 @@ Example:
 ### Room Management
 
 <div markdown="block" class="alert alert-info">
-**:information_source: Rooms are always sorted in ascending order by room number in all views**
+**:information_source: Rooms are always sorted in ascending order by room number in all views.**
 </div>
 
 #### Add a room : `oadd`
