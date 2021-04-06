@@ -340,7 +340,7 @@ You can update your friend's identity, either changing their name, their birthda
 * You can find the contact you would want to change first with RemindMe's `find`, 
   such that you can easily update the existing details.
   
-* You can use `t\ ` to remove all tags on the person you are editing!
+* You can use `t/` to remove all tags on the person you are editing!
 </div>
 
 Command: `edit INDEX n/NEW NAME [b/NEW BIRTHDAY] [t/NEW TAG]`
@@ -678,17 +678,17 @@ Command: `clear`
 #### 3.8.2 Clearing all persons
 You can remove all contacts in RemindMe.  
 
-Command: `clear [n/]`
+Command: `clear n/`
 
 #### 3.8.3 Clearing all modules
 You can remove all modules in RemindMe.  
 
-Command: `clear [m/]`
+Command: `clear m/`
 
 #### 3.8.4 Clearing all general events
 You can clear all general events in RemindMe.
 
-Command: `clear [g/]`
+Command: `clear g/`
 
 **If you follow along, your RemindMe should be empty. Now let's start using RemindMe to remind you!**<br>
 The following features are more ways for you to view your tasks in RemindMe.
