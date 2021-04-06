@@ -136,6 +136,12 @@ public interface Model {
     void updateFilteredStudentList(Predicate<Student> predicate);
 
     /**
+     * Get the predicate of the current filtered student list.
+     * @return The predicate of the current filtered student list.
+     */
+    Predicate<Student> getFilteredStudentListPredicate();
+
+    /**
      * Gets the total fee between 2 time period  from {@code startPeriod} to {@code endPeriod}
      * @param startPeriod Start of time period
      * @param endPeriod End of time period
