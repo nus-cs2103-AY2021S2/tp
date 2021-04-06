@@ -2,6 +2,7 @@ package seedu.address.logic.commands.medical;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -31,9 +32,12 @@ public class ViewMedicalRecordCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         Patient patient = model.getSelectedPatient();
+        if (index.getZeroBased() >= patient.getRecords().size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_MEDICAL_RECORD_INDEX);
+        }
         MedicalRecord mrec = patient.getRecords().get(index.getZeroBased());
         return new CommandResult(String.format(MESSAGE_SUCCESS, patient.getName()), false, true,
                 patient, mrec, null, false);

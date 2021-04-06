@@ -15,6 +15,24 @@
         "title" : "appointmentLabel",
         "body" : "else if (patientBoxMedicalRecords.getChildren().size() != 0) {\n            medicalRecordInfo.setText(String.format(\"%d medical record(s) found:\","
       } ]
+    }, {
+      "dateString" : "6/4/21 16:19",
+      "sections" : [ {
+        "title" : "",
+        "body" : "test"
+      } ]
+    }, {
+      "dateString" : "6/4/21 16:20",
+      "sections" : [ {
+        "title" : "brrrrr",
+        "body" : ""
+      } ]
+    }, {
+      "dateString" : "6/4/21 16:22",
+      "sections" : [ {
+        "title" : "",
+        "body" : "efsdad"
+      } ]
     } ]
   }, {
     "name" : "Alex Yeoh",
@@ -240,6 +258,38 @@
       }, {
         "title" : "ergvrv",
         "body" : "ergrehreh"
+      } ]
+    } ]
+  }, {
+    "name" : "John Doe",
+    "phone" : "98765432",
+    "email" : "johnd@example.com",
+    "address" : "311, Clementi Ave 2, #02-25",
+    "height" : "169cm",
+    "weight" : "69kg",
+    "isArchived" : true,
+    "tagged" : [ "owesMoney", "friends" ],
+    "appointments" : [ ],
+    "records" : [ {
+      "dateString" : "6/4/21 16:10",
+      "sections" : [ {
+        "title" : "Test",
+        "body" : "Hi"
+      } ]
+    }, {
+      "dateString" : "6/4/21 16:13",
+      "sections" : [ {
+        "title" : "How are you",
+        "body" : "Im good"
+      }, {
+        "title" : "",
+        "body" : "yes"
+      } ]
+    }, {
+      "dateString" : "6/4/21 16:18",
+      "sections" : [ {
+        "title" : "",
+        "body" : "a"
       } ]
     } ]
   }, {
