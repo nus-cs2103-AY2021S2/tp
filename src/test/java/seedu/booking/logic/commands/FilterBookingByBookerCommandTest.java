@@ -1,4 +1,4 @@
-package seedu.booking.logic.commands;
+/*package seedu.booking.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -23,7 +23,7 @@ import seedu.booking.model.person.Email;
 /**
  * Contains integration tests (interaction with the Model) for {@code FilterBookingByBookerCommand}.
  */
-public class FilterBookingByBookerCommandTest {
+/*public class FilterBookingByBookerCommandTest {
     private Model model = new ModelManager(getTypicalBookingSystem(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalBookingSystem(), new UserPrefs());
 
@@ -67,7 +67,7 @@ public class FilterBookingByBookerCommandTest {
     /**
      * Parses {@code userInput} into a {@code BookingContainsBookerPredicate}.
      */
-    private BookingContainsBookerPredicate preparePredicate(Email userInput) {
+/*    private BookingContainsBookerPredicate preparePredicate(Email userInput) {
         return new BookingContainsBookerPredicate(userInput);
     }
-}
+}*/

@@ -3,9 +3,7 @@ package seedu.booking.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKER;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_END;
-import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_ID;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_START;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_CAPACITY;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
@@ -26,14 +24,12 @@ import seedu.booking.commons.core.index.Index;
 import seedu.booking.logic.commands.exceptions.CommandException;
 import seedu.booking.model.BookingSystem;
 import seedu.booking.model.Model;
-import seedu.booking.model.booking.Booking;
-import seedu.booking.model.booking.BookingIdContainsKeywordsPredicate;
-import seedu.booking.model.booking.VenueNameContainsKeywordsPredicate;
 import seedu.booking.model.person.NameContainsKeywordsPredicate;
 import seedu.booking.model.person.Person;
 import seedu.booking.model.venue.Venue;
+import seedu.booking.model.venue.VenueNameContainsKeywordsPredicate;
+import seedu.booking.testutil.EditBookingCommandDescriptorBuilder;
 import seedu.booking.testutil.EditPersonCommandDescriptorBuilder;
-import seedu.booking.testutil.EditPersonDescriptorBuilder;
 import seedu.booking.testutil.EditVenueDescriptorBuilder;
 
 /**
@@ -65,8 +61,6 @@ public class CommandTestUtil {
     public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
     public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
-    public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
-    public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
@@ -76,13 +70,6 @@ public class CommandTestUtil {
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
-    public static final String VALID_BOOKING_ID_1 = "0";
-    public static final String VALID_BOOKING_ID_2 = "1";
-
-    public static final String BOOKING_ID_INPUT_BOOKING_1 = DeleteBookingCommand.COMMAND_WORD
-            + " " + PREFIX_BOOKING_ID + VALID_BOOKING_ID_1;
-    public static final String BOOKING_ID_INPUT_BOOKING_2 = DeleteBookingCommand.COMMAND_WORD
-            + " " + PREFIX_BOOKING_ID + VALID_BOOKING_ID_2;
 
     public static final String VALID_VENUE_NAME_COURT = "Court";
     public static final String VALID_VENUE_NAME_HALL = "Victoria Hall";
@@ -120,14 +107,9 @@ public class CommandTestUtil {
 
     public static final String VALID_VENUE_CAPACITY_DESC = " " + PREFIX_CAPACITY + "30";
 
-    public static final String VALID_BOOKING_ID_DESC = " " + PREFIX_BOOKING_ID + "1";
-
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
-
-    public static final EditCommand.EditPersonDescriptor DESC_AMY;
-    public static final EditCommand.EditPersonDescriptor DESC_BOB;
 
     public static final EditPersonCommand.EditPersonDescriptor VALID_PERSON_COMMAND_DESCRIPTOR_AMY;
     public static final EditPersonCommand.EditPersonDescriptor VALID_PERSON_COMMAND_DESCRIPTOR_BOB;
@@ -135,6 +117,8 @@ public class CommandTestUtil {
     public static final EditVenueCommand.EditVenueDescriptor DESC_COURT;
     public static final EditVenueCommand.EditVenueDescriptor DESC_HALL;
 
+    public static final EditBookingCommand.EditBookingDescriptor VALID_BOOKING_COMMAND_DESCRIPTOR_HALL;
+    public static final EditBookingCommand.EditBookingDescriptor VALID_BOOKING_COMMAND_DESCRIPTOR_FIELD;
 
     public static final String VALID_BOOKING_VENUE_NAME_HALL = "Victoria Hall";
     public static final String VALID_BOOKING_VENUE_NAME_FIELD = "Town Green";
@@ -143,20 +127,18 @@ public class CommandTestUtil {
     public static final String VALID_BOOKING_DESCRIPTION_HALL = "For FYP meeting";
     public static final String VALID_BOOKING_DESCRIPTION_FIELD = "For sports meeting";
     public static final String VALID_BOOKING_START_HALL = "2021-02-02 07:00";
-    public static final String VALID_BOOKING_START_FIELD = "2021-02-02 07:00";
+    public static final String VALID_BOOKING_START_FIELD = "2021-02-03 07:00";
     public static final String VALID_BOOKING_END_HALL = "2021-02-02 08:00";
-    public static final String VALID_BOOKING_END_FIELD = "2021-02-02 08:00";
+    public static final String VALID_BOOKING_END_FIELD = "2021-02-03 08:00";
     public static final String VALID_BOOKING_TAGS_HALL = "Indoors";
-    public static final String VALID_BOOKING_ID_HALL = "111111111";
-    public static final String VALID_BOOKING_ID_FIELD = "222222222";
-
+    public static final String VALID_BOOKING_TAGS_FIELD = "Outdoors";
 
     public static final String BOOKING_VENUE_NAME_DESC_HALL = " " + PREFIX_VENUE + VALID_VENUE_NAME_HALL;
     public static final String BOOKING_VENUE_NAME_DESC_FIELD = " " + PREFIX_VENUE + VALID_VENUE_NAME_FIELD;
     public static final String BOOKING_BOOKER_EMAIL_AMY_DESC_HALL =
-            " " + PREFIX_BOOKER + VALID_BOOKING_BOOKER_EMAIL_AMY;
+            " " + PREFIX_EMAIL + VALID_BOOKING_BOOKER_EMAIL_AMY;
     public static final String BOOKING_BOOKER_EMAIL_BOB_DESC_FIELD =
-            " " + PREFIX_BOOKER + VALID_BOOKING_BOOKER_EMAIL_BOB;
+            " " + PREFIX_EMAIL + VALID_BOOKING_BOOKER_EMAIL_BOB;
     public static final String BOOKING_DESCRIPTION_DESC_HALL =
             " " + PREFIX_DESCRIPTION + VALID_BOOKING_DESCRIPTION_HALL;
     public static final String BOOKING_DESCRIPTION_DESC_FIELD =
@@ -166,16 +148,10 @@ public class CommandTestUtil {
     public static final String BOOKING_END_DESC_HALL = " " + PREFIX_BOOKING_END + VALID_BOOKING_END_HALL;
     public static final String BOOKING_END_DESC_FIELD = " " + PREFIX_BOOKING_END + VALID_BOOKING_END_FIELD;
     public static final String BOOKING_TAGS_DESC_HALL = " " + PREFIX_TAG + VALID_BOOKING_TAGS_HALL;
-    public static final String BOOKING_ID_DESC_HALL = " " + PREFIX_BOOKING_ID + VALID_BOOKING_ID_HALL;
-    public static final String BOOKING_ID_DESC_FIELD = " " + PREFIX_BOOKING_ID + VALID_BOOKING_ID_FIELD;
     public static final String INVALID_BOOKER_EMAIL = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
 
 
     static {
-        DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).build();
-        DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).build();
 
         VALID_PERSON_COMMAND_DESCRIPTOR_AMY = new EditPersonCommandDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).build();
@@ -186,6 +162,15 @@ public class CommandTestUtil {
                 .withCapacity(50).build();
         DESC_COURT = new EditVenueDescriptorBuilder().withVenueName("Court")
                 .withCapacity(20).build();
+
+        VALID_BOOKING_COMMAND_DESCRIPTOR_HALL = new EditBookingCommandDescriptorBuilder()
+                .withBookerEmail(VALID_BOOKING_BOOKER_EMAIL_AMY).withVenueName(VALID_BOOKING_VENUE_NAME_HALL)
+                .withDescription(VALID_BOOKING_DESCRIPTION_HALL).withBookingStart(VALID_BOOKING_START_HALL)
+                .withBookingEnd(VALID_BOOKING_END_HALL).withTags(VALID_BOOKING_TAGS_HALL).build();
+        VALID_BOOKING_COMMAND_DESCRIPTOR_FIELD = new EditBookingCommandDescriptorBuilder()
+                .withBookerEmail(VALID_BOOKING_BOOKER_EMAIL_BOB).withVenueName(VALID_BOOKING_VENUE_NAME_FIELD)
+                .withDescription(VALID_BOOKING_DESCRIPTION_FIELD).withBookingStart(VALID_BOOKING_START_FIELD)
+                .withBookingEnd(VALID_BOOKING_END_FIELD).withTags(VALID_BOOKING_TAGS_FIELD).build();
     }
 
     /**
@@ -258,20 +243,6 @@ public class CommandTestUtil {
         assertEquals(1, model.getFilteredVenueList().size());
     }
 
-
-    /**
-     * Updates {@code model}'s filtered list to show only the booking at the given {@code targetIndex} in the
-     * {@code model}'s booking system.
-     */
-
-    public static void showBookingAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredBookingList().size());
-
-        Booking booking = model.getFilteredBookingList().get(targetIndex.getZeroBased());
-        final String splitName = booking.getId().toString();
-        model.updateFilteredBookingList(new BookingIdContainsKeywordsPredicate(splitName));
-        assertEquals(1, model.getFilteredBookingList().size());
-    }
 
 
 }

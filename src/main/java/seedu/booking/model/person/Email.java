@@ -72,11 +72,11 @@ public class Email {
      */
     public boolean isSameEmail(Person person) {
         return person.getEmail() != null
-                && StringUtil.containsWordIgnoreCase(this.removeSpacesInEmail(),
-                person.getEmail().removeSpacesInEmail());
+                && StringUtil.containsWordIgnoreCase(this.removeSpacesWithinEmail(),
+                person.getEmail().removeSpacesWithinEmail());
     }
 
-    public String removeSpacesInEmail() {
+    public String removeSpacesWithinEmail() {
         return this.value.replace(" ", "");
     }
 }

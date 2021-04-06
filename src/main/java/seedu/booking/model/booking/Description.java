@@ -7,6 +7,7 @@ import static java.util.Objects.requireNonNull;
  */
 public class Description {
 
+    public static final String MESSAGE_CONSTRAINTS = "Description cannot be empty.";
     public final String value;
 
     /**
@@ -17,6 +18,13 @@ public class Description {
     public Description(String description) {
         requireNonNull(description);
         value = description;
+    }
+
+    /**
+     * Returns true if a given string is a valid description.
+     */
+    public static boolean isValidDescription(String test) {
+        return !test.isEmpty();
     }
 
 

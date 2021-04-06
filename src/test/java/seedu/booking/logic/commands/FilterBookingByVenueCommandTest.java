@@ -1,4 +1,4 @@
-package seedu.booking.logic.commands;
+/*package seedu.booking.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -21,7 +21,7 @@ import seedu.booking.model.booking.BookingContainsVenuePredicate;
 /**
  * Contains integration tests (interaction with the Model) for {@code FilterBookingByVenueCommand}.
  */
-public class FilterBookingByVenueCommandTest {
+/*public class FilterBookingByVenueCommandTest {
     private Model model = new ModelManager(getTypicalBookingSystem(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalBookingSystem(), new UserPrefs());
 
@@ -65,7 +65,7 @@ public class FilterBookingByVenueCommandTest {
     /**
      * Parses {@code userInput} into a {@code BookingContainsVenuePredicate}.
      */
-    private BookingContainsVenuePredicate preparePredicate(String userInput) {
+/*    private BookingContainsVenuePredicate preparePredicate(String userInput) {
         return new BookingContainsVenuePredicate(userInput);
     }
-}
+}*/

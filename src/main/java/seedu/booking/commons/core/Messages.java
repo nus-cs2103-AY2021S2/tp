@@ -13,9 +13,9 @@ public class Messages {
             + "Please provide another name\n";
     public static final String MESSAGE_INVALID_NAME_FORMAT = "Invalid name format, please try again.\n";
     public static final String MESSAGE_INVALID_PHONE_FORMAT = "Invalid phone format, please try again.\n";
-    public static final String PROMPT_PHONE_MESSAGE = "Please enter your phone number?\n";
-    public static final String PROMPT_EMAIL_PERSON_MESSAGE = "Please enter your email address?\n";
-    public static final String PROMPT_NAME_MESSAGE = "Please enter your name?\n";
+    public static final String PROMPT_PHONE_MESSAGE = "Please enter the phone number of the booker.\n";
+    public static final String PROMPT_EMAIL_PERSON_MESSAGE = "Please enter the email address of the booker.\n";
+    public static final String PROMPT_NAME_MESSAGE = "Please enter the name of the booker.\n";
 
     // Venue related messages
     public static final String PROMPT_CAPACITY_MESSAGE = "Please enter the capacity of the venue.\n"
@@ -33,20 +33,28 @@ public class Messages {
     public static final String MESSAGE_BOOKING_PERSON_FILTERED = "Here are the bookings made by ";
     public static final String MESSAGE_BOOKING_DATE_FILTERED = "Here are the bookings on ";
     public static final String MESSAGE_BOOKING_FILTER_FAILED = "No bookings found.";
+    public static final String MESSAGE_INVALID_BOOKING_DISPLAYED_INDEX = "The booking index provided is invalid.";
+
     public static final String MESSAGE_DUPLICATE_VENUE = "The venue already exists in the system.";
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command.";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid.";
+    public static final String MESSAGE_INVALID_PERSON_EMAIL = "The email provided does not correspond to any user.";
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_EMAIL = "Email address "
             + "provided does not exist in the system.\n";
     public static final String MESSAGE_INVALID_VENUE_NAME = "The venue name provided is invalid.\n";
+    public static final String MESSAGE_NON_EXISTENT_VENUE_NAME =
+            "The venue name provided does not exist in the system.\n";
     public static final String MESSAGE_VENUE_DISPLAYED = "%1$d Venue(s) displayed!";
-    public static final String MESSAGE_INVALID_BOOKING_ID = "The booking id provided does not exist.";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_VENUE_LISTED_EMPTY = "There are no venues in the system.\n";
     public static final String MESSAGE_BOOKING_LISTED_EMPTY = "There are no bookings in the system.\n";
     public static final String MESSAGE_INVALID_DATE_FORMAT = "Invalid date format! Input "
-            + "should be in yyyy-mm-dd HH:MM:SS format\n";
+            + "should be in yyyy-mm-dd HH:MM format\n";
+    public static final String MESSAGE_INVALID_TIME =
+            "Invalid timing: The booking's starting time cannot be later than its ending time";
+    public static final String MESSAGE_OVERLAPPING_BOOKING = "This time slot has been booked.";
+
 
     public static final String MESSAGE_INVALID_EMAIL_FORMAT = "Invalid email address format, please try again.\n";
     public static final String PROMPT_MESSAGE_TRY_AGAIN = "Please try again or enter exit_prompt to quit prompting.\n";
@@ -60,7 +68,7 @@ public class Messages {
         + "Multiple tags to be separated with commas.\n";
     public static final String PROMPT_NEWDATE_MESSAGE = "Please try another booking time period.\n";
     public static final String PROMPT_START_MESSAGE = "Please indicate the booking start time. "
-            + "Please enter a valid input in yyyy-mm-dd HH:MM:SS format\n";
+            + "Please enter a valid input in yyyy-mm-dd HH:MM format\n";
     public static final String PROMPT_END_MESSAGE = "Please indicate the booking end time. "
-            + "Please enter a valid input in yyyy-mm-dd HH:MM:SS format\n";
+            + "Please enter a valid input in yyyy-mm-dd HH:MM format\n";
 }

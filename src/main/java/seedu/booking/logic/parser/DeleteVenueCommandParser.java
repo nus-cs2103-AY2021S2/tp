@@ -30,6 +30,7 @@ public class DeleteVenueCommandParser implements Parser<DeleteVenueCommand> {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteVenueCommand.MESSAGE_USAGE));
         }
+
         venue = ParserUtil.parseVenue(argMultimap.getValue(PREFIX_VENUE).get());
         return new DeleteVenueCommand(venue);
     }

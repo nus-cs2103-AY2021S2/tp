@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.booking.commons.core.Messages;
 import seedu.booking.model.Model;
-import seedu.booking.model.booking.VenueContainsTagPredicate;
+import seedu.booking.model.venue.VenueContainsTagPredicate;
 
 /**
  * Finds and lists venues in the system whose venue corresponds to the tag name given as argument
