@@ -610,8 +610,8 @@ _{Explain here how the data archiving feature will be implemented}_
 ## **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
-* [Testing guide](Testing.md)
 * [Logging guide](Logging.md)
+* [Testing guide](Testing.md)
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
 
@@ -882,21 +882,53 @@ testers are expected to do more *exploratory* testing.
 
     1. Download the jar file and copy into an empty folder
 
-    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be
-       optimum.
+    1. Launch the jar file using the java -jar command rather than double-clicking (reason: to ensure the jar file is 
+       using the same java version that you verified above). Use double-clicking as a last resort.
+       If you are on Windows, use the DOS prompt, or the PowerShell (not the WSL terminal) to run the JAR file. The 
+       window size may not be optimum.
 
 1. Saving window preferences
 
     1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-    1. Re-launch the app by double-clicking the jar file.<br>
+    1. Re-launch the app using the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+### Adding an item
+
+1. Adding an item to the inventory
+
+    1. Prerequisites: Arguments are valid and compulsory parameters are provided. No duplicate item or similar item
+       exists in the list.
+
+    1. Test case: `add n/Apple l/table q/1`<br>
+       Expected: Item is added into the displayed list. Details of the added item shown in the status message.
+
+    1. Test case: `add n/Banana l/kitchen q/1 e/2020-10-10`<br>
+       Expected: Similar to previous.
+
+    1. Test case: `add `<br>
+       Expected: No item is added. Error details shown in the status message.
+
+    1. Other incorrect add commands to try: `add n/`, `add l/kitchen`, `...` (where compulsory fields are not
+       specified)<br>
+       Expected: Similar to previous.
+
+### Edit an item
+
+1. Editing an item in the inventory 
+
+    1. Prerequisites: There are items in the inventory.
+    
+    1. Test case: `edit 1 n/Apple`<br>
+       Expected: The name of the first item is edited to `Apple`. Details of the edited item shown in the status message.
+       
+    1. Test case: `edit 0 n/Apple`<br>
+       Expected: No item is edited. Error details shown in the status message.
 
 ### Deleting an item
 
-1. Deleting an item while all items are being shown
+1. Deleting an item from the inventory
 
     1. Prerequisites: List all household items using the `list` command. Multiple items in the list.
 
@@ -909,27 +941,83 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
-### Adding an item
+### Finding an item
 
-1. Adding an item to StoreMando
+1. Finding an item in the inventory
 
-    1. Prerequisites: Arguments are valid and compulsory parameters are provided. No duplicate item or similar item
-       exists in the list.
+    1. Test case: `find banana`<br>
+       Expected: All items containing `banana` as a word in the name are shown.
 
-    1. Test case: `add n/Banana q/1 l/kitchen e/2020-10-10 `<br>
-       Expected: Item is added into the displayed list. Details of the added item shown in the status message.
+    1. Test case: `find */nana`<br>
+       Expected: All items containing `nana` as part of a word in the name are shown.
 
-    1. Test case: `add `<br>
-       Expected: No item is added. Error details shown in the status message.
+### Listing items
 
-    1. Other incorrect add commands to try: `add n/`, `add l/kitchen`, `...` (where compulsory fields are not
-       specified)<br>
-       Expected: Similar to previous.
+1. Listing all the items in the inventory
 
-### Saving data
+    1. Test case: `list`<br>
+       Expected: All items are being displayed.
 
-1. Dealing with missing/corrupted data files
+1. Listing items in a specific location
+   
+    1. Test case: `list l/Bedroom`<br>
+       Expected: All items with `Bedroom` as the location are being displayed.
 
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+1. Listing items with a specific tag 
 
-1. _{ more test cases …​ }_
+    1. Test case: `list t/food`<br>
+       Expected: All items with `food` as the tag are being displayed.
+
+### Finding items x days/weeks from expiry date
+
+1. Finding items x days from expiry date
+
+    1. Test case: `reminder 7 days`<br>
+       Expected: All the items that are 7 days from expiry are shown.
+
+1. Finding items x weeks from expiry date 
+
+    1. Test case: `reminder 7 weeks`<br>
+       Expected: All the items that are 7 weeks from expiry are shown.
+
+### Sorting items
+
+1. Sorting items in the inventory in terms of quantity.
+
+    1. Test case: `sort quantity asc`<br>
+       Expected: All the items are sorted in terms of quantity from least to most.
+
+    1. Test case: `sort quantity desc`<br>
+       Expected: All the items are sorted in terms of quantity from most to least.
+
+    1. Incorrect sort commands to try: `sort`, `sort quantity`<br>
+       Expected: Error details shown in the status message.
+
+1. Sorting items in the inventory in terms of expiry date.
+
+    1. Test case: `sort expirydate`<br>
+       Expected: All the items are sorted in terms of expiry date from earliest to latest.
+
+### Clearing items
+
+1. Clearing all the items in the inventory
+
+    1. Test case: `clear`<br>
+       Expected: All items are cleared from the inventory.
+
+1. Clearing all the items in a specific location 
+
+    1. Test case: `clear l/Bedroom`<br>
+       Expected: All items in the specified location are cleared.
+
+### Clearing items
+
+1. Clearing all the items in the inventory
+
+    1. Test case: `clear`<br>
+       Expected: All items are cleared from the inventory.
+
+1. Clearing all the items in a specific location
+
+    1. Test case: `clear l/Bedroom`<br>
+       Expected: All items in the specified location are cleared.
