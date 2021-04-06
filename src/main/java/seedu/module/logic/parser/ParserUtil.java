@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Set;
 
 import seedu.module.commons.core.index.Index;
@@ -137,8 +138,14 @@ public class ParserUtil {
     public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
         requireNonNull(tags);
         final Set<Tag> tagSet = new HashSet<>();
+        final Set<String> lowerCaseCheck = new HashSet<>();
         for (String tagName : tags) {
+            if (lowerCaseCheck.contains(tagName.toLowerCase())) {
+                //Skip this tagName
+                continue;
+            }
             tagSet.add(parseTag(tagName));
+            lowerCaseCheck.add(tagName.toLowerCase());
         }
         return tagSet;
     }
