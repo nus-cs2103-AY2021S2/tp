@@ -8,6 +8,8 @@ import java.util.UUID;
 import javafx.collections.ObservableList;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.NonConflictingAppointmentList;
+import seedu.address.model.appointment.exceptions.AppointmentDoctorNotInDoctorRecordsException;
+import seedu.address.model.appointment.exceptions.AppointmentPatientNotInPatientRecordsException;
 import seedu.address.model.person.Doctor;
 import seedu.address.model.person.Patient;
 
@@ -60,6 +62,16 @@ public class AppointmentSchedule implements ReadOnlyAppointmentSchedule {
     }
 
     //// appointment-level operations
+
+    @Override
+    public void checkAppointmentScheduleValidity(
+                ReadOnlyAddressBook<Patient> patientRecords,
+                ReadOnlyAddressBook<Doctor> doctorRecords)
+                throws AppointmentPatientNotInPatientRecordsException,
+                AppointmentDoctorNotInDoctorRecordsException {
+        appointments.checkAppointmentPatientValidity(patientRecords.getPersonList());
+        appointments.checkAppointmentDoctorValidity(doctorRecords.getPersonList());
+    }
 
     /**
      * Returns true if an appointment with the same identity as {@code appointment} exists
