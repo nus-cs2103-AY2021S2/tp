@@ -18,7 +18,8 @@ import java.time.format.DateTimeParseException;
  */
 public class Time implements Comparable<Time> {
 
-    public static final String MESSAGE_CONSTRAINTS = "Time should be formatted as yyyy-MM-dd or yyyy-MM-dd HH:mm";
+    public static final String MESSAGE_CONSTRAINTS = "Please enter a valid date or time!\n"
+            + "Time should be formatted as yyyy-MM-dd or yyyy-MM-dd HH:mm";
     private static final String yearMonthDayString = "yyyy-MM-dd";
     private static final String timeString = "HH:mm";
 
