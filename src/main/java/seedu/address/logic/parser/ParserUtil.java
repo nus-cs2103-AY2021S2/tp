@@ -27,9 +27,11 @@ import seedu.address.model.tag.Tag;
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */
 public class ParserUtil {
-    public static final String MESSAGE_INDEX_LESS_THAN_ONE = "Index needs to be more than or equals to 1.";
-    public static final String MESSAGE_INVALID_BATCH_INDICES = "Indices all need to be more than or equals to 1, "
-            + "and within the range of list indices displayed on the screen.\nIndices should only be comma-separated.";
+    public static final String MESSAGE_INVALID_INDEX = "Index needs to be an integer more than or equals to 1, "
+            + "and within the range of list indices displayed on the screen.";
+    public static final String MESSAGE_INVALID_BATCH_INDICES = "Indices all need to be integers more than or equals "
+            + "to 1, and within the range of list indices displayed on the screen.\nIndices should only be "
+            + "comma-separated.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -40,7 +42,7 @@ public class ParserUtil {
         String trimmedIndex = oneBasedIndex.trim();
 
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
-            throw new ParseException(MESSAGE_INDEX_LESS_THAN_ONE);
+            throw new ParseException(MESSAGE_INVALID_INDEX);
         }
 
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));

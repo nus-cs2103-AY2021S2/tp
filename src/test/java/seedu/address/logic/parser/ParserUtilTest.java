@@ -53,7 +53,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseIndex_outOfRangeInput_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_INVALID_BATCH_INDICES, ()
+        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
             -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
     }
 
@@ -69,20 +69,20 @@ public class ParserUtilTest {
     @Test
     public void parseIndices_invalidInput_throwsParseException() {
         // Input indices contain some indices which are less than 1
-        assertThrows(ParseException.class, MESSAGE_INVALID_BATCH_INDICES,
-                () -> ParserUtil.parseIndices(INVALID_INPUT_INDICES_ZERO));
+        assertThrows(ParseException.class, MESSAGE_INVALID_BATCH_INDICES, ()
+            -> ParserUtil.parseIndices(INVALID_INPUT_INDICES_ZERO));
 
         // Input indices contain some indices which are huge
-        assertThrows(ParseException.class, MESSAGE_INVALID_BATCH_INDICES,
-                () -> ParserUtil.parseIndices(INVALID_INPUT_INDICES_HUGE));
+        assertThrows(ParseException.class, MESSAGE_INVALID_BATCH_INDICES, ()
+            -> ParserUtil.parseIndices(INVALID_INPUT_INDICES_HUGE));
 
         // Input not separated by commas
-        assertThrows(ParseException.class, MESSAGE_INVALID_BATCH_INDICES,
-                () -> ParserUtil.parseIndices(INVALID_INPUT_INDICES_NO_COMMA));
+        assertThrows(ParseException.class, MESSAGE_INVALID_BATCH_INDICES, ()
+            -> ParserUtil.parseIndices(INVALID_INPUT_INDICES_NO_COMMA));
 
         // Repeated indices in input
-        assertThrows(ParseException.class, MESSAGE_INVALID_BATCH_INDICES,
-                () -> ParserUtil.parseIndices(INVALID_INPUT_INDICES_REPEATED_INDICES));
+        assertThrows(ParseException.class, MESSAGE_INVALID_BATCH_INDICES, ()
+            -> ParserUtil.parseIndices(INVALID_INPUT_INDICES_REPEATED_INDICES));
 
     }
 

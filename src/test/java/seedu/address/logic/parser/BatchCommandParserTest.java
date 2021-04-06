@@ -61,10 +61,10 @@ public class BatchCommandParserTest {
     @Test
     public void parse_invalidIndices_throwsParseException() {
         assertParseFailure(BATCH_COMMAND_PARSER, "delete 0, 1, 2",
-                String.format(BatchCommand.ERROR_MESSAGE, ParserUtil.MESSAGE_INVALID_INDEX));
+                String.format(BatchCommand.ERROR_MESSAGE, ParserUtil.MESSAGE_INVALID_BATCH_INDICES));
 
         assertParseFailure(BATCH_COMMAND_PARSER, "edit 0, 4, 5 t/husband i/P#1245 i/POL#6789>www.youtube.com",
-                String.format(BatchCommand.ERROR_MESSAGE, ParserUtil.MESSAGE_INVALID_INDEX));
+                String.format(BatchCommand.ERROR_MESSAGE, ParserUtil.MESSAGE_INVALID_BATCH_INDICES));
     }
 
     @Test
