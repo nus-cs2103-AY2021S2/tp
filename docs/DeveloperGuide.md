@@ -402,9 +402,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | see a list of all the students profile and sessions|                                                             |
 | `* * *`  | user                                       | get all the emails of the parent of my students'  | email them reminders for payment                             |
 | `* * *`  | user                                       | calculate the monthly fees of a particular student| use the information when collecting monthly fees             |
-| `* * *`  | user                                       | get the monthly fees that I would have received for the past 3 months    | see how well I am doing financially   |
+| `* * *`  | user                                       | get the monthly fees that I would have received for the past 3 months    | manage my financials better           |
 | `* *`    | new user                                   | get a list of commands of the application         | know at a glance what are the features of the application    |
-| `* *`    | potential user                             | see the app populated with sample data            | easily see how the app will look like when it is in use      |
+| `* *`    | potential user                             | see the app populated with sample data on the first run  | try using the features easily                         |
 | `* *`    | new user                                   | purge all current data                            | get rid of sample/current data I used for exploring the app  |
 | `* *`    | user                                       | exit the application                              |                                                              |
 
@@ -452,26 +452,15 @@ Extensions:
 MSS:
 
 1. User enters the `delete_student` command, along with the student’s name.
-2. TutorBuddy verifies that the inputs are valid.
-3. TutorBuddy verifies that the student profile exists.
-4. User confirms the deletion.
+2. TutorBuddy verifies that the inputs are valid and student profile exists.
+3. TutorBuddy displays a success message.
 
    Use case ends.
 
 Extensions:
 
-* 2a. TutorBuddy detects an error in the entered command.
-    * 2a1. TutorBuddy displays error messages to the user.
-
-  Use case ends.
-
-* 3a. TutorBuddy detects that the user does not exist.
-    * 3a1. TutorBuddy displays an error message for unknown student profiles.
-
-  Use case ends.
-
-* 4a. User cancels the confirmation of deletion.
-    * 4a1. Student profile is not created; the student is returned to the home page.
+* 2a. TutorBuddy detects and error in the input.
+    * 2a1. TutorBuddy displays an error message to the user.
 
   Use case ends.
 
@@ -480,23 +469,17 @@ Extensions:
 MSS:
 
 1. User enters the `edit_student` command with the appropriate input.
-2. TutorBuddy verifies that the inputs are valid.
-3. TutorBuddy verifies that the student profile exists.
-4. TutorBuddy edits the student information.
-5. TutorBuddy displays a success message.
+2. TutorBuddy verifies that the inputs are valid and student profile exists.
+3. TutorBuddy edits the student information.
+4. TutorBuddy displays a success message.
 
    Use case ends.
 
 Extensions:
 
-* 2a. TutorBuddy detects an error in the entered command.
-    * 2a1. TutorBuddy displays error messages to the user.
-
-  Use case ends.
-
-* 3a. TutorBuddy detects that the user does not exist.
-    * 3a1. TutorBuddy displays an error message for unknown student profiles.
-
+* 2a. TutorBuddy detects and error in the input.
+    * 2a1. TutorBuddy displays an error message to the user.
+    
   Use case ends.
 
 **Use case: UC0X - Create a session**
@@ -547,21 +530,15 @@ MSS:
 MSS:
 
 1. User enters the `fee` commands with the appropriate inputs.
-2. TutorBuddy verifies that the inputs are valid.
-3. TutorBuddy verifies that the student profile exists.
-4. TutorBuddy shows the calculated fees to the user.
+2. TutorBuddy verifies that the inputs are valid and student profile exists.
+3. TutorBuddy shows the calculated fees to the user.
 
    Use case ends.
 
 Extensions:
 
-* 2a. TutorBuddy detects an error in the entered command.
-    * 2a1. TutorBuddy displays error messages to the user.
-
-  Use case ends.
-
-* 3a. TutorBuddy detects that the user does not exist.
-    * 3a1. TutorBuddy displays an error message for unknown student profiles.
+* 2a. TutorBuddy detects and error in the input.
+    * 2a1. TutorBuddy displays an error message to the user.
 
   Use case ends.
 
@@ -579,7 +556,7 @@ MSS:
 MSS:
 
 1. User enters the `help` command.
-2. TutorBuddy displays a help window that contains a list of commands available on the application.
+2. TutorBuddy displays a help window that contains a list of commands available on the application, and a link to our user guide.
 
    Use case ends.
 
@@ -589,7 +566,7 @@ MSS:
 
 1. A new user opens up the application.
 2. TutorBuddy detects that the user does not have a .json file in the data folder.
-3. TutorBuddy shows a list of sample students and sessions to the user.
+3. TutorBuddy is populated with sample students and sessions data.
 
    Use case ends.
 
