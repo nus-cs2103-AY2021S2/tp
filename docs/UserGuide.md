@@ -406,8 +406,13 @@ Adds an important date to TutorsPet.
 
 Format: `add-date d/DESCRIPTION dt/DETAILS`
 
+<div markdown="block" class="alert alert-primary">
+
+:bulb:**Tips:** <br>
+
 * `DETAILS` must be in the **yyyy-mm-dd HHmm format** e.g. `2021-11-03 0800`
 
+</div>
 
 Examples:
 * `add-date d/math exam dt/2021-11-03 0800`
