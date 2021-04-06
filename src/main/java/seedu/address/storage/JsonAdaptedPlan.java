@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.insurance.InsurancePlan;
 
 /**
@@ -41,6 +42,9 @@ class JsonAdaptedPlan {
     public InsurancePlan toModelType() throws IllegalValueException {
         if (!InsurancePlan.isValidPlan(planString)) {
             throw new IllegalValueException(InsurancePlan.MESSAGE_CONSTRAINTS);
+        }
+        if (!InsurancePlan.isValidAmount(planString.split(" \\$", 2)[1].trim())) {
+            throw new IllegalValueException(InsurancePlan.PREMIUM_CONSTRAINTS);
         }
         return new InsurancePlan(planString);
     }

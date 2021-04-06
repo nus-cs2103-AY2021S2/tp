@@ -80,4 +80,11 @@ public class FileUtil {
         Files.write(file, content.getBytes(CHARSET));
     }
 
+    public static void unlockFile(Path file) {
+        file.toFile().setWritable(true, true);
+    }
+
+    public static void lockFile(Path file) {
+        file.toFile().setWritable(false, false);
+    }
 }
