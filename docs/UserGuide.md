@@ -427,9 +427,9 @@ Link.me data is saved in the hard disk automatically after any command that modi
 #### Editing the data file
 
 Link.me data is saved as a JSON file `[JAR file location]/data/linkme.json`. 
-We generally discourage editing the JSON file directly, and have locked the JSON as a precaution.
-Users are still able to unlock the file and forcibly edit the file, 
-but we do not take any responsibility in data loss or startup failures following invalid inputs.
+We generally discourage editing the JSON file directly. 
+<!---We have locked the JSON as a precaution, but users are still able to unlock the file and forcibly edit the file.--->
+The Link.me team does not take any responsibility in data loss or startup failures following invalid inputs.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file make its format invalid, 
