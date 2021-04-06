@@ -79,6 +79,7 @@ public class PlainTextCommandHistoryStorage implements CommandHistoryStorage {
         String content = serializeCommandHistory(commandHistory);
 
         try {
+            FileUtil.createIfMissing(filePath);
             FileUtil.writeToFile(filePath, content);
         } catch (IOException e) {
             logger.warning(String.format("Error writing to command history file %s: %s",
