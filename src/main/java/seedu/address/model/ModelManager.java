@@ -154,6 +154,7 @@ public class ModelManager implements Model {
     public void addContact(Contact contact) {
         addressBook.addContact(contact);
         updateFilteredContactList(PREDICATE_SHOW_ALL_CONTACTS);
+        orderContacts();
     }
 
     @Override
