@@ -3,17 +3,11 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
-import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.common.Category;
-import seedu.address.model.common.Date;
-import seedu.address.model.common.Name;
-import seedu.address.model.common.Tag;
-import seedu.address.model.task.Priority;
 import seedu.address.model.task.Task;
 
 /**
@@ -47,29 +41,9 @@ public class PinTaskCommand extends Command {
     private static Task createPinnedTask(Task taskToPin) {
         assert taskToPin != null;
 
-        Task pinnedTask = copyTask(taskToPin);
+        Task pinnedTask = taskToPin.getCopy();
         pinnedTask.pin();
         return pinnedTask;
-    }
-
-    /**
-     * Copies the task given and returns a new task with the same details as the given task.
-     *
-     * @param taskToCopy task to be copied, here is the task to pin.
-     * @return a copied task.
-     */
-    private static Task copyTask(Task taskToCopy) {
-        Name taskName = taskToCopy.getName();
-        Date deadline = taskToCopy.getDeadline();
-        Priority priority = taskToCopy.getPriority();
-        Set<Category> categories = taskToCopy.getCategories();
-        Set<Tag> tags = taskToCopy.getTags();
-
-        Task copiedTask = new Task(taskName, deadline, priority, categories, tags);
-        if (taskToCopy.isComplete()) {
-            copiedTask.markTaskAsDone();
-        }
-        return copiedTask;
     }
 
     /**

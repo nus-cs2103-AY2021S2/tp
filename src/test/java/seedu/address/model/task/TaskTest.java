@@ -1,5 +1,6 @@
 package seedu.address.model.task;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_CATEGORY_HOMEWORK;
@@ -21,6 +22,11 @@ public class TaskTest {
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
         Task task = new TaskBuilder().build();
         assertThrows(UnsupportedOperationException.class, () -> task.getTags().remove(0));
+    }
+
+    @Test
+    public void copyTaskTest() {
+        assertEquals(ASSIGNMENT, ASSIGNMENT.getCopy());
     }
 
     @Test
