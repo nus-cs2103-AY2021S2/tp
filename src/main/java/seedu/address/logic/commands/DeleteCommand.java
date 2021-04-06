@@ -26,6 +26,9 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_DISPLAYED_IN_VIEW_PATIENT_BOX = "Goodbye, %s!";
 
+    public static final String MESSAGE_NO_PATIENTS_LEFT = "Doc, you have no more patients left!\n"
+                                                        + "Start adding more patients with the 'add' command!";
+
 
     private final Index targetIndex;
 
@@ -44,8 +47,12 @@ public class DeleteCommand extends Command {
 
         Patient patientToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deletePerson(patientToDelete);
+        String displayMessage = MESSAGE_DISPLAYED_IN_VIEW_PATIENT_BOX;
+        if (lastShownList.size() - 1 <= 0) {
+            displayMessage = MESSAGE_NO_PATIENTS_LEFT;
+        }
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, patientToDelete),
-        false, false, null, null, null, String.format(MESSAGE_DISPLAYED_IN_VIEW_PATIENT_BOX, patientToDelete.getName().fullName), false);
+        false, false, null, null, null, String.format(displayMessage, patientToDelete.getName().fullName), false);
 
     }
 
