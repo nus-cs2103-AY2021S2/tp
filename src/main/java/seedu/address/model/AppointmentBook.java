@@ -112,6 +112,14 @@ public class AppointmentBook implements ReadOnlyAppointmentBook {
     }
 
     /**
+     * Clears appointment list.
+     */
+    public void clearAppointments() {
+        previousAppointmentLists.push(new ArrayList<>(appointments.asUnmodifiableObservableList()));
+        appointments.setAppointments(new ArrayList<>());
+    }
+
+    /**
      * Undos the previous add, delete or edit commands for appointments and returns a copy of the
      * previous appointment book.
      */

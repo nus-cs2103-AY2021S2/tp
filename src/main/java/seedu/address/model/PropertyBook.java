@@ -127,6 +127,14 @@ public class PropertyBook implements ReadOnlyPropertyBook {
     }
 
     /**
+     * Clears property list.
+     */
+    public void clearProperties() {
+        previousPropertyLists.push(new ArrayList<>(properties.asUnmodifiableObservableList()));
+        properties.setProperties(new ArrayList<>());
+    }
+
+    /**
      * Undos the previous add, delete or edit commands for properties and returns a copy of the
      * previous property book.
      */
