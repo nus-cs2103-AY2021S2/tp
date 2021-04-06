@@ -21,4 +21,11 @@ public class PromptVenueDescCommand extends Command {
         ModelManager.setNextState();
         return new CommandResult(ModelManager.getNextPromptMessage());
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof PromptVenueDescCommand // instanceof handles nulls
+                && this.description.equals(((PromptVenueDescCommand) other).description));
+    }
 }
