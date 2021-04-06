@@ -124,6 +124,11 @@ public interface Model {
      */
     void setContact(Contact target, Contact editedContact);
 
+    /**
+     * Sets the contact list to the given {@code contacts}.
+     */
+    void setContacts(List<Contact> contacts);
+
     /** Returns an unmodifiable view of the filtered contact list */
     ObservableList<Contact> getFilteredContactList();
 
@@ -139,10 +144,10 @@ public interface Model {
      */
     void sortContactList(String comparator);
 
-    /**
-     * Sets the contact list to the given {@code contacts}.
-     */
-    void setContacts(List<Contact> contacts);
+    /** Orders contact list according to saved order.
+     *  Order can be set using {@code sortContactList}.
+     * */
+    void orderContacts();
 
     //=========== AppointmentBook ================================================================================
 

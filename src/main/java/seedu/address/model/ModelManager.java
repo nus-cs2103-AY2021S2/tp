@@ -203,7 +203,7 @@ public class ModelManager implements Model {
         orderContacts();
     }
 
-    private void orderContacts() {
+    public void orderContacts() {
 
         ObservableList<Contact> contactList = addressBook.getContactList();
         SortedList<Contact> sortedContactList = contactList.sorted(getAddressBookComparator());
