@@ -173,15 +173,6 @@ public class RemindMe implements ReadOnlyRemindMe {
     }
 
     /**
-     * Edits the date of the exam at {@code index} in the {@code module} with the given {@code edit}.
-     */
-    public void editExam(Module module, int index, LocalDateTime edit) {
-        requireAllNonNull(module, edit);
-        Module mod = modules.getModule(module);
-        mod.editExam(index - 1, edit);
-    }
-
-    /**
      * Returns true if a person with the same identity as {@code person} exists in the RemindMe.
      */
     public boolean hasPerson(Person person) {
@@ -282,6 +273,25 @@ public class RemindMe implements ReadOnlyRemindMe {
     }
 
     /**
+     * Toggles the done status of the assignment in {@code module} at {@code index}.
+     * {@code module} must already exist in the RemindMe and {@code index} must be a valid index.
+     */
+    public void toggleDoneStatusForAssignment(Module module, int index) {
+        Module edited = modules.getModule(module);
+        edited.toggleAssignmentDoneStatus(index);
+        modules.setModule(module, edited);
+    }
+
+    /**
+     * Edits the date of the exam at {@code index} in the {@code module} with the given {@code edit}.
+     */
+    public void editExam(Module module, int index, LocalDateTime edit) {
+        Module edited = modules.getModule(module);
+        edited.editExam(index - 1, edit);
+        modules.setModule(module, edited);
+    }
+
+    /**
      * Edits the description of the assignment in {@code module} at {@code index} with the given {@code edit}.
      * {@code module} must already exist in the remindMe and {@code index} must be a valid index.
      */
@@ -310,7 +320,7 @@ public class RemindMe implements ReadOnlyRemindMe {
     public void removeAssignment(Module module, Assignment key) {
         Module editedModule = modules.getModule(module);
         editedModule.deleteAssignment(key);
-        setModule(module, editedModule);
+        modules.setModule(module, editedModule);
     }
 
     /**
@@ -333,7 +343,7 @@ public class RemindMe implements ReadOnlyRemindMe {
     public void removeExam(Module module, Exam key) {
         Module editedModule = modules.getModule(module);
         editedModule.deleteExam(key);
-        setModule(module, editedModule);
+        modules.setModule(module, editedModule);
     }
 
     public void addEvent(GeneralEvent toAdd) {
