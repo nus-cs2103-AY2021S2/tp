@@ -78,22 +78,19 @@ Output:
 
 ![image](https://user-images.githubusercontent.com/48408342/113679268-2ad84280-96f2-11eb-96c5-c9cb86b651b4.png)
 
-### Editing a patient information : `edit`
+### Deleting a patients' contact : `delete`
 
-Edits an existing patient in the list.
+Deletes a patient from DocBob's patient list, identified by the index number shown in the displayed patient list.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [h/HEIGHT] [w/WEIGHT] [t/TAG]…​`
+Format : `delete INDEX`
+where INDEX must be a positive integer (1,2,3,...)
 
-* Edits the patient at the specified `INDEX`. The index refers to the index number shown in the displayed patient list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the patient will be removed i.e adding of tags is not cumulative.
-* You can remove all the patient’s tags by typing `t/` without
-    specifying any tags after it.
+Example:
+* `delete 1`
 
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing tags.
+Output:
+
+`Deleted Person: Shrek; Phone: 66666666; Email: shrek@swampmail.com; Address: Swamp; Height: 243cm; Weight: 94kg; Tags: [smelly]`
 
 ### View all information regarding a patient : `view`
 
@@ -126,19 +123,22 @@ Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
 
-### Deleting a patients' contact : `delete`
+### Editing a patient information : `edit`
 
-Deletes a patient from DocBob's patient list, identified by the index number shown in the displayed patient list.
+Edits an existing patient in the list.
 
-Format : `delete INDEX`
-where INDEX must be a positive integer (1,2,3,...)
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [h/HEIGHT] [w/WEIGHT] [t/TAG]…​`
 
-Example:
-* `delete 1`
+* Edits the patient at the specified `INDEX`. The index refers to the index number shown in the displayed patient list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing tags, the existing tags of the patient will be removed i.e adding of tags is not cumulative.
+* You can remove all the patient’s tags by typing `t/` without
+    specifying any tags after it.
 
-Output:
-
-`Deleted Person: Shrek; Phone: 66666666; Email: shrek@swampmail.com; Address: Swamp; Height: 243cm; Weight: 94kg; Tags: [smelly]`
+Examples:
+*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing tags.
 
 ### Adding an appointment to a patient : `appt`
 
@@ -254,17 +254,6 @@ Exits the program.
 
 Format: `exit`
 
-### Saving the data
-
-Client contact data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Editing the data file
-
-Client contact data is saved as a JSON file `[JAR file location]/data/docBob.json`. Advanced users are welcome to update data directly by editing that data file.
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, docBob will discard all data and start with an empty data file at the next run.
-
 ### List out all available commands : `help`
 
 Opens a help window containing a link to this User Guide and a list of all available commands for use in the app, with format example.
@@ -277,6 +266,18 @@ Output:
 
 DocBob will open up a help window with command information.
 ![image](https://user-images.githubusercontent.com/48408342/112743708-35952800-8fcc-11eb-9d1a-a7d5b52aac73.png)
+
+### Saving the data
+
+Client contact data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+### Editing the data file
+
+Client contact data is saved as a JSON file `[JAR file location]/data/docBob.json`. Advanced users are welcome to update data directly by editing that data file.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If your changes to the data file makes its format invalid, docBob will discard all data and start with an empty data file at the next run.
+
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -301,19 +302,22 @@ Terminology | Definition | Examples
 
 Action | Format, Examples
 --------|------------------
-**help** | `help`
 **add** | `add n/Name p/phoneNumber e/Email a/Address h/Height w/Weight [t/TAGS]` <br> e.g., `add n/Shrek p/66666666 e/shrek@swampmail.com a/Swamp h/243cm w/94kg`
-**delete** | `delete INDEX` <br> e.g., `delete 1`7
 **list** | `list`
+**delete** | `delete INDEX` <br> e.g., `delete 1`
+**find** | `find KEYWORD [MORE_KEYWORDS]` <br> e.g., `find john`
+**edit** | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [h/HEIGHT] [w/WEIGHT] [t/TAG]…​` <br> e.g., `edit 1 p/91234567 e/johndoe@example.com`
+**view** | `view INDEX` <br> e.g., `view 6`
 **appt** | `appt INDEX /dDATE` <br> e.g., `appt 1 d/010120211200`
 **listappt** | `listappt`
 **mrec** | `mrec INDEX` <br> e.g., `mrec 3`
 **vrec** | `vrec INDEX` <br> e.g., `vrec 4`
-**view** | `view INDEX` <br> e.g., `view 6`
 **archive** | `archive INDEX` <br> e.g., `archive 2`
 **archivelist** | `archivelist`
 **unarchive** | `unarchive INDEX` <br> e.g., `unarchive 2`
+**clear** | `clear`
 **exit** | `exit`
+**help** | `help`
 
 ## Issues
 In the event of any issues while using the app and or UG, please contact the team at the emails below <br>
