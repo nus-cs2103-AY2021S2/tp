@@ -6,9 +6,9 @@ import java.util.Map;
 import java.util.UUID;
 
 public class PatientMap {
-    
+
     private static final Map<UUID, Patient> PATIENT_HASH_MAP = new HashMap<>();
-    
+
     public static Map<UUID, Patient> getPatientHashMap() {
         return PATIENT_HASH_MAP;
     }
