@@ -106,7 +106,7 @@ Item Name  | An alphanumeric string that can be one word or more.
 Location | A string.
 Quantity | An integer that must be at least 1 and cannot exceed 1,000,000.
 Expiry Date | A date in the format of YYYY-MM-DD. An item can either have 1 expiry date or no expiry date.
-Tag | An alphanumeric string that can only be one word long. An item can 0 or more tags.
+Tag | An alphanumeric string that can only be one word long. An item can have 0 or more tags.
 
 ### 2.4. Prefixes and Keywords
 
