@@ -2,11 +2,15 @@ package seedu.address.model;
 
 import java.nio.file.Path;
 import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.attribute.Attribute;
 import seedu.address.model.person.Person;
+import seedu.address.model.shortcut.ShortcutLibrary;
+import seedu.address.storage.Authentication;
 
 /**
  * The API of the Model component.
@@ -44,6 +48,16 @@ public interface Model {
      * Sets the user prefs' address book file path.
      */
     void setAddressBookFilePath(Path addressBookFilePath);
+
+    /**
+     * Returns the user prefs' shortcut library file path.
+     */
+    Path getShortcutLibraryFilePath();
+
+    /**
+     * Sets the user prefs' shortcut library file path.
+     */
+    void setShortcutLibraryFilePath(Path shortcutLibraryFilePath);
 
     /**
      * Replaces address book data with the data in {@code addressBook}.
@@ -87,8 +101,61 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     /**
+     * Updates the Persons in person list to have only the particular given {@code attribute}.
+     * @throws NullPointerException if {@code attribute} is null.
+     */
+    void updatePersonListByAttribute(List<Attribute> attributeTypes);
+
+    /**
+     * Undoes the last modification done on the person list.
+     * If list has not been modified, this method does nothing.
+     */
+    void undoListModification();
+
+    /**
+     * Returns an Authentication object needed to lock and unlock ClientBook.
+     */
+    Authentication getAuthentication();
+
+    /**
      * Updates the comparator of the sorted person list to sort by the given {@code comparator}.
      * @throws NullPointerException if {@code comparator} is null.
      */
     void updateSortedPersonList(Comparator<Person> comparator);
+
+    /**
+     * Returns an unmodifiable view of the entire person list
+     */
+    ObservableList<Person> getWholePersonList();
+
+    /**
+     * Replaces Shortcut Library data with the data in {@code shortcutLibrary}.
+     */
+    void setShortcutLibrary(ShortcutLibrary shortcutLibrary);
+
+    /** Returns the ShortcutLibrary */
+    ShortcutLibrary getShortcutLibrary();
+
+    /**
+     * Returns true if a shortcut with the same identity {@code shortcutName} exists in the shortcut library.
+     */
+    boolean hasShortcut(String shortcutName);
+
+    /**
+     * Deletes the shortcut with the given name.
+     * {@code shortcutName} must exist in the shortcut library.
+     */
+    void deleteShortcut(String shortcutName);
+
+    /**
+     * Adds the shortcut with the given shortcut name and command.
+     * {@code shortcutName} must not already exist in the shortcut library.
+     */
+    void addShortcut(String shortcutName, String shortcutCommand);
+
+    /**
+     * Replaces the given shortcut named {@code target} with a new {@code shortcutCommand}.
+     * {@code target} must exist in the shortcut library.
+     */
+    void setShortcut(String target, String shortcutCommand);
 }

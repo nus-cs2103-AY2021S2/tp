@@ -1,0 +1,45 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant "u:LockCommand" as LockCommand LOGIC_COLOR
+end box
+
+box Storage STORAGE_COLOR_T1
+participant ":Authentication" as Authentication STORAGE_COLOR
+end box
+[-> LogicManager : execute(lock 1234)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(lock 1234)
+activate AddressBookParser
+
+create LockCommand
+AddressBookParser -> LockCommand
+activate LockCommand
+
+LockCommand --> AddressBookParser
+deactivate LockCommand
+
+AddressBookParser --> LogicManager : u
+deactivate AddressBookParser
+
+LogicManager -> LockCommand : execute()
+activate LockCommand
+
+LockCommand -> Authentication : setPassword(1234)
+activate Authentication
+
+Authentication --> LockCommand
+deactivate Authentication
+
+LockCommand --> LogicManager : result
+deactivate LockCommand
+LockCommand -[hidden]-> LogicManager : result
+destroy LockCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

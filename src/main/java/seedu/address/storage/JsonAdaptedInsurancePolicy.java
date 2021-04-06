@@ -10,7 +10,8 @@ import seedu.address.model.insurancepolicy.InsurancePolicy;
  */
 public class JsonAdaptedInsurancePolicy {
 
-    private static final String NO_URL = "no_url";
+    private static final String NO_URL_JSON = "no_url";
+    private static final String NO_URL_DISPLAY = "No URL!";
 
     private final String policyId;
     private final String policyUrl;
@@ -30,7 +31,7 @@ public class JsonAdaptedInsurancePolicy {
      */
     public JsonAdaptedInsurancePolicy(InsurancePolicy source) {
         policyId = source.policyId;
-        policyUrl = source.getOptionalPolicyUrl().orElse(null);
+        policyUrl = source.getOptionalPolicyUrl().orElse(NO_URL_DISPLAY);
     }
 
     /**
@@ -43,7 +44,7 @@ public class JsonAdaptedInsurancePolicy {
         String[] policyIdAndUrl = policyAndUrlIfPresent.split(">", 2);
 
         if (policyIdAndUrl.length == 1) {
-            return new String[] {policyIdAndUrl[0], NO_URL};
+            return new String[] {policyIdAndUrl[0], NO_URL_DISPLAY};
         }
 
         policyIdAndUrl[1] = definePolicyUrl(policyIdAndUrl[1]);
@@ -51,8 +52,8 @@ public class JsonAdaptedInsurancePolicy {
     }
 
     private static String definePolicyUrl(String urlIfPresent) {
-        if (urlIfPresent.equals(NO_URL)) {
-            return NO_URL;
+        if (urlIfPresent.equals(NO_URL_JSON)) {
+            return NO_URL_DISPLAY;
         }
         return urlIfPresent;
     }

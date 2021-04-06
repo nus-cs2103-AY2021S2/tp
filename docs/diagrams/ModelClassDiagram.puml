@@ -5,10 +5,12 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
+Interface ModifiableAddressBook <<Interface>>
 Interface ReadOnlyAddressBook <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
 Class AddressBook
+Class ModifiableAddressBook
 Class ReadOnlyAddressBook
 Class Model
 Class ModelManager
@@ -36,6 +38,7 @@ Class InsurancePolicy
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
+AddressBook .up.|> ModifiableAddressBook
 AddressBook .up.|> ReadOnlyAddressBook
 
 ModelManager .up.|> Model

@@ -8,6 +8,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
+import seedu.address.model.insurancepolicy.InsurancePolicy;
 import seedu.address.model.person.Person;
 
 /**
@@ -43,24 +45,67 @@ public class PersonCard extends UiPart<Region> {
     private FlowPane tags;
     @FXML
     private Label insurancePolicies;
+    @FXML
+    private Label meetings;
+    @FXML
+    private VBox gridPane;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code PersonCard} with the given {@code Person} and index to display.
      */
     public PersonCard(Person person, int displayedIndex) {
         super(FXML);
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
-        person.getTags().stream()
+        if (person.isShowPolicyList()) {
+            if (!person.getPolicies().isEmpty()) {
+                insurancePolicies.setText(person.getPolicies().stream()
+                        .map(Object::toString)
+                        .collect(Collectors.joining("\n")));
+            } else {
+                insurancePolicies.setText(InsurancePolicy.MESSAGE_NO_POLICY);
+            }
+        } else {
+            gridPane.getChildren().remove(insurancePolicies);
+            gridPane.setMinHeight(gridPane.getMinHeight() - 20);
+        }
+
+        if (!person.getTags().isEmpty()) {
+            person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        insurancePolicies.setText(person.getPolicies().stream()
-                .map(Object::toString)
-                .collect(Collectors.joining("\n")));
+        }
+
+        if (person.getPhone().isPresent()) {
+            phone.setText(person.getPhone().get().value);
+        } else {
+            gridPane.getChildren().remove(phone);
+            gridPane.setMinHeight(gridPane.getMinHeight() - 20);
+        }
+
+        if (person.getAddress().isPresent()) {
+            address.setText(person.getAddress().get().value);
+        } else {
+            gridPane.getChildren().remove(address);
+            gridPane.setMinHeight(gridPane.getMinHeight() - 20);
+        }
+
+        if (person.getEmail().isPresent()) {
+            email.setText(person.getEmail().get().value);
+        } else {
+            gridPane.getChildren().remove(email);
+            gridPane.setMinHeight(gridPane.getMinHeight() - 20);
+        }
+
+        if (!person.getMeetings().isEmpty()) {
+            meetings.setText(person.getMeetings().stream()
+                    .map(Object::toString)
+                    .collect(Collectors.joining("\n")));
+        } else {
+            gridPane.getChildren().remove(meetings);
+            gridPane.setMinHeight(gridPane.getMinHeight() - 20);
+        }
     }
 
     @Override
