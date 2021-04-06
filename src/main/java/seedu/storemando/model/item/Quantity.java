@@ -26,7 +26,7 @@ public class Quantity {
         requireNonNull(quantity);
         checkArgument(isValidQuantity(quantity), MESSAGE_CONSTRAINTS);
         assert(Long.valueOf(quantity) > 0);
-        value = quantity;
+        value = Long.valueOf(quantity).toString();
     }
 
     /**
