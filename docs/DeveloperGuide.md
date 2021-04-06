@@ -531,6 +531,9 @@ The sequence diagram for `EditEventCommand` can be found below.
 
 ![Sequence Diagram of EditEvent Command](images/EditEventCommandSequenceDiagram.png)
 
+The following activity diagram summarises what happens when a user executes a SaveCommand:
+
+![Activity Diagram of EditEvent Command](images/EditEventCommandActivityDiagram.png)
 
 **Implementation of FindFreeTimeCommand**  
 The following is a detailed explanation on how FindFreeTaskCommand is implemented.
