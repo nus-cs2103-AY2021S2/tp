@@ -199,6 +199,11 @@ public class AddAppointmentCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public void orderContacts() {
+            throw new AssertionError("This method should not be called.");
+        }
+
         //=========== AppointmentBook ================================================================================
 
         @Override
