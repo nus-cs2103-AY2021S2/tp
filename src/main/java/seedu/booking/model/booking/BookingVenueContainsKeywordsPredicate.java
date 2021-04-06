@@ -8,10 +8,10 @@ import seedu.booking.commons.util.StringUtil;
 /**
  * Tests that a {@code Bookings}'s {@code VenueName} matches the venue name given
  */
-public class BookingContainsVenuePredicate implements Predicate<Booking> {
+public class BookingVenueContainsKeywordsPredicate implements Predicate<Booking> {
     private final List<String> keywords;
 
-    public BookingContainsVenuePredicate(List<String> keywords) {
+    public BookingVenueContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
 
@@ -24,7 +24,7 @@ public class BookingContainsVenuePredicate implements Predicate<Booking> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof BookingContainsVenuePredicate // instanceof handles nulls
-                && keywords.equals(((BookingContainsVenuePredicate) other).keywords)); // state check
+                || (other instanceof BookingVenueContainsKeywordsPredicate // instanceof handles nulls
+                && keywords.equals(((BookingVenueContainsKeywordsPredicate) other).keywords)); // state check
     }
 }

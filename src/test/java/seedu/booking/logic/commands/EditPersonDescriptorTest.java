@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 import seedu.booking.logic.commands.EditPersonCommand.EditPersonDescriptor;
 import seedu.booking.testutil.EditPersonCommandDescriptorBuilder;
 
-public class EditPersonCommandDescriptorTest {
+public class EditPersonDescriptorTest {
 
     @Test
     public void equals() {

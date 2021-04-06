@@ -20,8 +20,8 @@ import org.junit.jupiter.api.Test;
 import seedu.booking.model.Model;
 import seedu.booking.model.ModelManager;
 import seedu.booking.model.UserPrefs;
+import seedu.booking.model.booking.BookerMatchesKeywordPredicate;
 import seedu.booking.model.booking.Booking;
-import seedu.booking.model.booking.BookingContainsBookerPredicate;
 import seedu.booking.model.person.Email;
 
 /**
@@ -34,13 +34,13 @@ public class FindBookingCommandTest {
     @Test
     public void equals() {
         List<Predicate<Booking>> firstPredicateList = new ArrayList<>();
-        BookingContainsBookerPredicate emailPredicateAmy =
-                new BookingContainsBookerPredicate(new Email(VALID_EMAIL_AMY));
+        BookerMatchesKeywordPredicate emailPredicateAmy =
+                new BookerMatchesKeywordPredicate(new Email(VALID_EMAIL_AMY));
         firstPredicateList.add(emailPredicateAmy);
 
         List<Predicate<Booking>> secondPredicateList = new ArrayList<>();
-        BookingContainsBookerPredicate emailPredicateBob =
-                new BookingContainsBookerPredicate(new Email(VALID_EMAIL_BOB));
+        BookerMatchesKeywordPredicate emailPredicateBob =
+                new BookerMatchesKeywordPredicate(new Email(VALID_EMAIL_BOB));
         secondPredicateList.add(emailPredicateBob);
 
         FindBookingCommand findFirstCommand = new FindBookingCommand(firstPredicateList);
@@ -91,7 +91,7 @@ public class FindBookingCommandTest {
     private List<Predicate<Booking>> prepareEmailPredicate(String userInput) {
         List<Predicate<Booking>> firstPredicateList = new ArrayList<>();
         Email emailKeyword = new Email(userInput);
-        BookingContainsBookerPredicate emailPredicate = new BookingContainsBookerPredicate(emailKeyword);
+        BookerMatchesKeywordPredicate emailPredicate = new BookerMatchesKeywordPredicate(emailKeyword);
         firstPredicateList.add(emailPredicate);
         return firstPredicateList;
     }

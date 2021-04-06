@@ -7,10 +7,10 @@ import seedu.booking.model.Tag;
 /**
  * Tests that a {@code Bookings}'s {@code tags} contains the tag given
  */
-public class BookingContainsTagPredicate implements Predicate<Booking> {
+public class BookingTagContainsKeywordsPredicate implements Predicate<Booking> {
     private final Tag tag;
 
-    public BookingContainsTagPredicate(String tag) {
+    public BookingTagContainsKeywordsPredicate(String tag) {
         this.tag = new Tag(tag);
     }
 
@@ -26,7 +26,7 @@ public class BookingContainsTagPredicate implements Predicate<Booking> {
     @Override
     public boolean equals(Object other) {
         return other == this
-                || ((other instanceof BookingContainsTagPredicate)
-                && tag.equals(((BookingContainsTagPredicate) other).tag));
+                || ((other instanceof BookingTagContainsKeywordsPredicate)
+                && tag.equals(((BookingTagContainsKeywordsPredicate) other).tag));
     }
 }

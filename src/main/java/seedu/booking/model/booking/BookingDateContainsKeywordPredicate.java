@@ -6,11 +6,11 @@ import java.util.function.Predicate;
 /**
  * Tests that a {@code Bookings} is on the date given.
  */
-public class BookingWithinDatePredicate implements Predicate<Booking> {
+public class BookingDateContainsKeywordPredicate implements Predicate<Booking> {
 
     private final LocalDate date;
 
-    public BookingWithinDatePredicate(LocalDate date) {
+    public BookingDateContainsKeywordPredicate(LocalDate date) {
         this.date = date;
     }
 
@@ -29,8 +29,8 @@ public class BookingWithinDatePredicate implements Predicate<Booking> {
     @Override
     public boolean equals(Object other) {
         return other == this
-                || ((other instanceof BookingWithinDatePredicate)
-                && date.equals(((BookingWithinDatePredicate) other).date));
+                || ((other instanceof BookingDateContainsKeywordPredicate)
+                && date.equals(((BookingDateContainsKeywordPredicate) other).date));
     }
 
 }

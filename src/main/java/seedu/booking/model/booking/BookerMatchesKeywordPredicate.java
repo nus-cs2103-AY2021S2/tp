@@ -8,11 +8,11 @@ import seedu.booking.model.person.Email;
 /**
  * Tests that a {@code Bookings}'s {@code booker email} matches the booker email given.
  */
-public class BookingContainsBookerPredicate implements Predicate<Booking> {
+public class BookerMatchesKeywordPredicate implements Predicate<Booking> {
 
     private final Email emailKeyword;
 
-    public BookingContainsBookerPredicate(Email emailKeyword) {
+    public BookerMatchesKeywordPredicate(Email emailKeyword) {
         this.emailKeyword = emailKeyword;
     }
 
@@ -24,7 +24,7 @@ public class BookingContainsBookerPredicate implements Predicate<Booking> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof BookingContainsBookerPredicate // instanceof handles nulls
-                && emailKeyword.equals(((BookingContainsBookerPredicate) other).emailKeyword)); // state check
+                || (other instanceof BookerMatchesKeywordPredicate // instanceof handles nulls
+                && emailKeyword.equals(((BookerMatchesKeywordPredicate) other).emailKeyword)); // state check
     }
 }
