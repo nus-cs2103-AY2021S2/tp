@@ -3,8 +3,8 @@ package dog.pawbook.logic.commands;
 import static dog.pawbook.logic.commands.CommandTestUtil.assertCommandFailure;
 import static dog.pawbook.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static dog.pawbook.testutil.TypicalEntities.getTypicalDatabase;
-import static dog.pawbook.testutil.TypicalIndexes.ID_FIRST_OWNER;
-import static dog.pawbook.testutil.TypicalIndexes.ID_SECOND_OWNER;
+import static dog.pawbook.testutil.TypicalId.ID_ONE;
+import static dog.pawbook.testutil.TypicalId.ID_TWO;
 import static java.util.stream.Collectors.toList;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -56,14 +56,14 @@ public class DeleteOwnerCommandTest {
 
     @Test
     public void equals() {
-        DeleteOwnerCommand deleteFirstCommand = new DeleteOwnerCommand(ID_FIRST_OWNER);
-        DeleteOwnerCommand deleteSecondCommand = new DeleteOwnerCommand(ID_SECOND_OWNER);
+        DeleteOwnerCommand deleteFirstCommand = new DeleteOwnerCommand(ID_ONE);
+        DeleteOwnerCommand deleteSecondCommand = new DeleteOwnerCommand(ID_TWO);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteOwnerCommand deleteFirstCommandCopy = new DeleteOwnerCommand(ID_FIRST_OWNER);
+        DeleteOwnerCommand deleteFirstCommandCopy = new DeleteOwnerCommand(ID_ONE);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false

@@ -8,9 +8,9 @@ import static dog.pawbook.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static dog.pawbook.logic.commands.CommandTestUtil.assertCommandFailure;
 import static dog.pawbook.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static dog.pawbook.testutil.TypicalEntities.getTypicalDatabase;
-import static dog.pawbook.testutil.TypicalIndexes.ID_FIRST_OWNER;
-import static dog.pawbook.testutil.TypicalIndexes.ID_SECOND_OWNER;
-import static dog.pawbook.testutil.TypicalIndexes.ID_THIRD_OWNER;
+import static dog.pawbook.testutil.TypicalId.ID_ONE;
+import static dog.pawbook.testutil.TypicalId.ID_THREE;
+import static dog.pawbook.testutil.TypicalId.ID_TWO;
 import static java.util.stream.Collectors.toList;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -55,7 +55,7 @@ public class EditOwnerCommandTest {
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
-        Owner toEditOwner = (Owner) model.getEntity(ID_THIRD_OWNER);
+        Owner toEditOwner = (Owner) model.getEntity(ID_THREE);
 
         OwnerBuilder ownerInList = new OwnerBuilder(toEditOwner);
         Owner editedOwner = ownerInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
@@ -63,26 +63,26 @@ public class EditOwnerCommandTest {
 
         EditOwnerDescriptor descriptor = new EditOwnerDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
-        EditOwnerCommand editEntityCommand = new EditOwnerCommand(ID_THIRD_OWNER, descriptor);
+        EditOwnerCommand editEntityCommand = new EditOwnerCommand(ID_THREE, descriptor);
 
         String expectedMessage = String.format(EditOwnerCommand.MESSAGE_EDIT_OWNER_SUCCESS, editedOwner);
 
         Model expectedModel = new ModelManager(new Database(model.getDatabase()), new UserPrefs());
-        expectedModel.setEntity(ID_THIRD_OWNER, editedOwner);
-        expectedModel.updateFilteredEntityList(new IdMatchPredicate(ID_THIRD_OWNER));
+        expectedModel.setEntity(ID_THREE, editedOwner);
+        expectedModel.updateFilteredEntityList(new IdMatchPredicate(ID_THREE));
 
         assertCommandSuccess(editEntityCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
-        EditOwnerCommand editEntityCommand = new EditOwnerCommand(ID_FIRST_OWNER, new EditOwnerDescriptor());
-        Owner editedOwner = (Owner) model.getEntity(ID_FIRST_OWNER);
+        EditOwnerCommand editEntityCommand = new EditOwnerCommand(ID_ONE, new EditOwnerDescriptor());
+        Owner editedOwner = (Owner) model.getEntity(ID_ONE);
 
         String expectedMessage = String.format(EditOwnerCommand.MESSAGE_EDIT_OWNER_SUCCESS, editedOwner);
 
         Model expectedModel = new ModelManager(new Database(model.getDatabase()), new UserPrefs());
-        expectedModel.updateFilteredEntityList(new IdMatchPredicate(ID_FIRST_OWNER));
+        expectedModel.updateFilteredEntityList(new IdMatchPredicate(ID_ONE));
 
         assertCommandSuccess(editEntityCommand, model, expectedMessage, expectedModel);
     }
@@ -101,11 +101,11 @@ public class EditOwnerCommandTest {
 
     @Test
     public void equals() {
-        final EditOwnerCommand standardCommand = new EditOwnerCommand(ID_FIRST_OWNER, DESC_AMY);
+        final EditOwnerCommand standardCommand = new EditOwnerCommand(ID_ONE, DESC_AMY);
 
         // same values -> returns true
         EditOwnerDescriptor copyDescriptor = new EditOwnerDescriptor(DESC_AMY);
-        EditOwnerCommand commandWithSameValues = new EditOwnerCommand(ID_FIRST_OWNER, copyDescriptor);
+        EditOwnerCommand commandWithSameValues = new EditOwnerCommand(ID_ONE, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -118,10 +118,10 @@ public class EditOwnerCommandTest {
         assertFalse(standardCommand.equals(new HelpCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditOwnerCommand(ID_SECOND_OWNER, DESC_AMY)));
+        assertFalse(standardCommand.equals(new EditOwnerCommand(ID_TWO, DESC_AMY)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditOwnerCommand(ID_FIRST_OWNER, DESC_BOB)));
+        assertFalse(standardCommand.equals(new EditOwnerCommand(ID_ONE, DESC_BOB)));
     }
 
 }
