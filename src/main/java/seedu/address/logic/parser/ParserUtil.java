@@ -10,6 +10,7 @@ import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.EditCommand.EditPolicyMode;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.attribute.Attribute;
 import seedu.address.model.insurancepolicy.InsurancePolicy;
@@ -18,6 +19,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.shortcut.Shortcut;
 import seedu.address.model.tag.Tag;
 
 
@@ -40,6 +42,24 @@ public class ParserUtil {
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
 
+    /**
+     * Parses {@code edit policy mode} into a {@code an EditPolicyMode enumeration} and returns it.
+     * Leading and trailing whitespaces will be trimmed.
+     * @throws ParseException if the specified mode does not match the required constraints).
+     */
+    public static EditPolicyMode parseEditPolicyMode(String editPolicyMode) throws ParseException {
+        String trimmedEditPolicyMode = editPolicyMode.trim();
+        switch (trimmedEditPolicyMode) {
+        case "-insert":
+            return EditPolicyMode.APPEND;
+        case "-remove":
+            return EditPolicyMode.REMOVE;
+        case "-modify":
+            return EditPolicyMode.MODIFY;
+        default:
+            throw new ParseException(EditPolicyMode.MESSAGE_EDIT_POLICY_MODE_CONSTRAINTS);
+        }
+    }
     /**
      * Parses {@code oneBasedIndices} and adds to a {@code List<Index>}. Leading and trailing whitespaces
      * will be trimmed.
@@ -69,23 +89,23 @@ public class ParserUtil {
         List<Attribute> parsedAttributesList = new ArrayList<>();
         for (String attribute : attributes) {
             switch (attribute) {
-            case "-policy":
+            case "-i":
                 parsedAttributesList.add(Attribute.POLICY_ID);
                 break;
-            case "-phone":
+            case "-p":
                 parsedAttributesList.add(Attribute.PHONE);
                 break;
-            case "-email":
+            case "-e":
                 parsedAttributesList.add(Attribute.EMAIL);
                 break;
-            case "-address":
+            case "-a":
                 parsedAttributesList.add(Attribute.ADDRESS);
                 break;
-            case "-meeting":
+            case "-m":
                 parsedAttributesList.add(Attribute.MEETING);
                 break;
             default:
-                throw new ParseException(Attribute.MESSAGE_CONSTRAINTS);
+                throw new ParseException(Attribute.MESSAGE_ATTRIBUTE_CONSTRAINTS);
             }
         }
         return parsedAttributesList;
@@ -216,7 +236,6 @@ public class ParserUtil {
         }
         return policyList;
     }
-
     /**
      * Parses a {@code String meeting} into a {@code meeting}.
      * Leading and trailing whitespaces will be trimmed.
@@ -249,5 +268,35 @@ public class ParserUtil {
             meetingList.add(parseMeeting(meet));
         }
         return meetingList;
+    }
+
+    /**
+     * Parses a {@code String shortcutName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code shortcutName} is invalid.
+     */
+    public static String formatShortcutName(String shortcutName) throws ParseException {
+        requireNonNull(shortcutName);
+        String trimmedShortcutName = shortcutName.trim();
+        if (!Shortcut.isValidShortcutName(trimmedShortcutName)) {
+            throw new ParseException(Shortcut.MESSAGE_NAME_CONSTRAINTS);
+        }
+        return trimmedShortcutName;
+    }
+
+    /**
+     * Parses a {@code String shortcutCommand}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code shortcutCommand} is invalid.
+     */
+    public static String formatShortcutCommand(String shortcutCommand) throws ParseException {
+        requireNonNull(shortcutCommand);
+        String trimmedShortcutCommand = shortcutCommand.trim();
+        if (!Shortcut.isValidShortcutCommand(trimmedShortcutCommand)) {
+            throw new ParseException(Shortcut.MESSAGE_COMMAND_CONSTRAINTS);
+        }
+        return trimmedShortcutCommand;
     }
 }

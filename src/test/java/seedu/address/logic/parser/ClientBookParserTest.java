@@ -29,9 +29,9 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
 
-public class AddressBookParserTest {
+public class ClientBookParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final ClientBookParser parser = new ClientBookParser();
 
     @Test
     public void parseCommand_add() throws Exception {
@@ -54,7 +54,7 @@ public class AddressBookParserTest {
         System.out.println(PersonUtil.getEditPersonDescriptorDetails(descriptor));
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor, EditCommand.EditPolicyMode.REPLACE), command);
     }
 
     @Test
@@ -80,10 +80,11 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " -policy") instanceof ListCommand);
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " -phone") instanceof ListCommand);
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " -address") instanceof ListCommand);
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " -email") instanceof ListCommand);
+        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " -i") instanceof ListCommand);
+        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " -p") instanceof ListCommand);
+        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " -a") instanceof ListCommand);
+        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " -e") instanceof ListCommand);
+        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " -e -a -p -i") instanceof ListCommand);
     }
 
     @Test

@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":ClientBookParser" as ClientBookParser LOGIC_COLOR
 participant ":SortCommandParser" as SortCommandParser LOGIC_COLOR
 participant "s:SortCommand" as SortCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
@@ -16,17 +16,17 @@ end box
 [-> LogicManager : execute("sort -n -a")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("sort -n -a")
-activate AddressBookParser
+LogicManager -> ClientBookParser : parseCommand("sort -n -a")
+activate ClientBookParser
 
 create SortCommandParser
-AddressBookParser -> SortCommandParser
+ClientBookParser -> SortCommandParser
 activate SortCommandParser
 
-SortCommandParser --> AddressBookParser
+SortCommandParser --> ClientBookParser
 deactivate SortCommandParser
 
-AddressBookParser -> SortCommandParser : parse("-n -a")
+ClientBookParser -> SortCommandParser : parse("-n -a")
 activate SortCommandParser
 
 create SortCommand
@@ -36,14 +36,14 @@ activate SortCommand
 SortCommand --> SortCommandParser : s
 deactivate SortCommand
 
-SortCommandParser --> AddressBookParser : s
+SortCommandParser --> ClientBookParser : s
 deactivate SortCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-SortCommandParser -[hidden]-> AddressBookParser
+SortCommandParser -[hidden]-> ClientBookParser
 destroy SortCommandParser
 
-AddressBookParser --> LogicManager : s
-deactivate AddressBookParser
+ClientBookParser --> LogicManager : s
+deactivate ClientBookParser
 
 LogicManager -> SortCommand : execute()
 activate SortCommand

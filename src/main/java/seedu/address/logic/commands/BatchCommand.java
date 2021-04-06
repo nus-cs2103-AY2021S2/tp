@@ -9,6 +9,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.shortcut.ShortcutLibrary;
 
 /**
  * Handles all execution of {@code BatchCommand} as well as for {@code EditCommand} or {@code DeleteCommand}.
@@ -53,7 +54,7 @@ public class BatchCommand<T extends Command> extends Command {
 
         try {
             // Execute on the copy first to check for errors
-            Model copy = new ModelManager(model.getAddressBook(), model.getUserPrefs());
+            Model copy = new ModelManager(model.getAddressBook(), model.getUserPrefs(), new ShortcutLibrary());
 
             for (Command command : listOfCommands) {
                 command.execute(copy);
@@ -66,7 +67,7 @@ public class BatchCommand<T extends Command> extends Command {
                 logger.info("Result of batch command: " + commandResult.getFeedbackToUser());
             }
 
-            return new CommandResult(SUCCESS_MESSAGE, false, false, false);
+            return new CommandResult(SUCCESS_MESSAGE, false, false, false, false);
         } catch (CommandException e) {
             throw new CommandException(String.format(ERROR_MESSAGE, e.getLocalizedMessage()));
         }
