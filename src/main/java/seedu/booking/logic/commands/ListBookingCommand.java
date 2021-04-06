@@ -15,11 +15,9 @@ public class ListBookingCommand extends Command {
 
     public static final String MESSAGE_BOOKING_LISTED_SUCCESS = "Here are all bookings currently in the system:\n";
 
-
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
         model.updateFilteredBookingList(PREDICATE_SHOW_ALL_BOOKINGS);
         return new CommandResult(MESSAGE_BOOKING_LISTED_SUCCESS);
     }
