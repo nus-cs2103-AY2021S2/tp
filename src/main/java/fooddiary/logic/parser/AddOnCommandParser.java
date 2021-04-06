@@ -1,6 +1,5 @@
 package fooddiary.logic.parser;
 
-import static fooddiary.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static fooddiary.logic.parser.CliSyntax.PREFIX_PRICE;
 import static fooddiary.logic.parser.CliSyntax.PREFIX_REVIEW;
 import static java.util.Objects.requireNonNull;
@@ -38,9 +37,10 @@ public class AddOnCommandParser implements Parser<AddOnCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (IndexOutOfBoundsException e) {
-            throw new ParseException(Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX_PLURAL);
+            throw new ParseException(e.getMessage());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddOnCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddOnCommand.MESSAGE_USAGE), pe);
         }
 
         AddOnToEntryDescriptor addOnToEntryDescriptor = new AddOnToEntryDescriptor();
@@ -51,7 +51,8 @@ public class AddOnCommandParser implements Parser<AddOnCommand> {
             if (isSinglePriceValue(argMultimap.getValue(PREFIX_PRICE).get())) {
                 addOnToEntryDescriptor.setPrice(ParserUtil.parsePrice(argMultimap.getValue(PREFIX_PRICE).get()));
             } else {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddOnCommand.MESSAGE_USAGE));
+                throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                        AddOnCommand.MESSAGE_USAGE));
             }
 
         }

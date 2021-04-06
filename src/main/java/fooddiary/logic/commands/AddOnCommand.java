@@ -71,8 +71,11 @@ public class AddOnCommand extends Command {
         requireNonNull(model);
         List<Entry> lastShownList = model.getFilteredEntryList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX_PLURAL);
+        if (index.getZeroBased() >= lastShownList.size() && lastShownList.size() == 1) {
+            throw new CommandException(Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX_SINGULAR);
+        } else if (index.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(String.format(Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX_PLURAL,
+                    lastShownList.size()));
         }
 
         Entry entryToAddOn = lastShownList.get(index.getZeroBased());

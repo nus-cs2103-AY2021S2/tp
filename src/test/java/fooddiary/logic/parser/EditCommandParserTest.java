@@ -36,9 +36,6 @@ public class EditCommandParserTest {
         // no index specified
         assertParseFailure(parser, CommandTestUtil.VALID_NAME_A, MESSAGE_INVALID_FORMAT);
 
-        // no field specified
-        //assertParseFailure(parser, "1", EditCommand.MESSAGE_NOT_EDITED);
-
         // no index and no field specified
         assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
     }
