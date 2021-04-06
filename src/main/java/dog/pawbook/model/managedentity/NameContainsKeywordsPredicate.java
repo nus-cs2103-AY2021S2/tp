@@ -12,8 +12,12 @@ import javafx.util.Pair;
 public class NameContainsKeywordsPredicate implements Predicate<Pair<Integer, Entity>> {
     private final List<String> keywords;
 
+    /**
+     * Constructs a NameContainsKeywordsPredicate instance.
+     *
+     * @param keywords list of keywords provided by user.
+     */
     public NameContainsKeywordsPredicate(List<String> keywords) {
-        assert(!keywords.isEmpty());
         this.keywords = keywords;
     }
 
