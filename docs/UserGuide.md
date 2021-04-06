@@ -368,7 +368,7 @@ Format: `delete_session n/STUDENT_NAME i/SESSION_INDEX`
 * The index must be a positive integer 1, 2, 3, …​
 
 Example:
-* `delete_session n/John Lee i/1` deletes John Lee's **first** session
+* `delete_session n/John Doe i/1` deletes John Doe's **first** session
 
 ##### Deleting a recurring tuition session: `delete_rec_session`
 
@@ -402,7 +402,7 @@ Format: `fee n/STUDENT_NAME m/MONTH y/YEAR`
 * `YEAR` should be a positive integer between 1970 and 2037 inclusive
 
 Example:
-* `fee n/John Lee m/1 y/2021` returns John Lee monthly fee for January 2021
+* `fee n/John Doe m/1 y/2021` returns John Doe monthly fee for January 2021
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -436,14 +436,14 @@ Action | Format | Examples
 --------|------------------|-------
 **Add Single Session** | `add_session n/STUDENT_NAME d/DATE t/TIME k/DURATION s/SUBJECT f/FEE` | `add_session n/John Doe d/2021-01-01 t/18:00 k/120 s/Biology f/80`
 **Add Recurring Session** | `add_rec_session n/STUDENT_NAME d/DATE e/LASTDATE b/INTERVAL t/TIME k/DURATION s/SUBJECT f/FEE` | `add_rec_session n/John Doe d/2021-01-01 e/2021-01-15 b/7 t/20:00 k/120 s/Geography f/80`
-**Delete Session** | `delete_session n/STUDENT_NAME i/SESSION_INDEX` | `delete_session n/John Lee i/1`
+**Delete Session** | `delete_session n/STUDENT_NAME i/SESSION_INDEX` | `delete_session n/John Doe i/1`
 **Delete Recurring Session** | `delete_rec_session n/STUDENT_NAME i/SESSION_INDEX d/DATE t/TIME` | `delete_rec_session n/John Doe i/1 d/2021-03-31 t/18:00`
 
 **Fees**
 
 Action | Format | Examples
 --------|------------------|-------
-**Check fee** | `fee n/STUDENT_NAME m/MONTH y/YEAR` | `fee n/John Lee m/1 y/2021`
+**Check fee** | `fee n/STUDENT_NAME m/MONTH y/YEAR` | `fee n/John Doe m/1 y/2021`
 
 --------------------------------------------------------------------------------------------------------------------
 
