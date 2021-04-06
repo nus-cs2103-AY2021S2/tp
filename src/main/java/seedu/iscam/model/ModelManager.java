@@ -7,8 +7,6 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.iscam.commons.core.GuiSettings;
@@ -101,6 +99,7 @@ public class ModelManager implements Model {
         requireNonNull(clientBookFilePath);
         userPrefs.setClientBookFilePath(clientBookFilePath);
     }
+
     @Override
     public Path getMeetingBookFilePath() {
         return userPrefs.getMeetingBookFilePath();

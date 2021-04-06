@@ -3,7 +3,6 @@ package seedu.iscam.model;
 import java.nio.file.Path;
 import java.util.function.Predicate;
 
-import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import seedu.iscam.commons.core.GuiSettings;
 import seedu.iscam.commons.core.index.Index;

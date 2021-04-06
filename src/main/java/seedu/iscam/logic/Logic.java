@@ -2,7 +2,6 @@ package seedu.iscam.logic;
 
 import java.nio.file.Path;
 
-import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import seedu.iscam.commons.core.GuiSettings;
 import seedu.iscam.logic.commands.CommandResult;

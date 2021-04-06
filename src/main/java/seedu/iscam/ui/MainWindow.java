@@ -2,7 +2,6 @@ package seedu.iscam.ui;
 
 import java.util.logging.Logger;
 
-import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
