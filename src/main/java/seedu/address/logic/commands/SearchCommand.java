@@ -16,10 +16,10 @@ public class SearchCommand extends Command {
 
     public static final String COMMAND_WORD = "search";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Search all students whose names or school names "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Search all students whose names, school names "
             + "or subjects contain any of the specified keywords (case-insensitive) "
             + "and displays them as a list with index numbers.\n"
-            + "Parameters: [n/KEYWORD] [s/KEYWORD] [t/KEYWORD] [MORE_KEYWORDS]...\n"
+            + "Parameters: [n/KEYWORDS] [s/KEYWORDS] [t/KEYWORDS]\n"
             + "Example: " + COMMAND_WORD + " s/woodlands";
 
     private final Predicate<Person> predicate;
