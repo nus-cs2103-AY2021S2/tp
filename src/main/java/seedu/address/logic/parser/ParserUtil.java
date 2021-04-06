@@ -172,7 +172,12 @@ public class ParserUtil {
     public static Title parseTitle(String titleInput) throws ParseException {
         requireNonNull(titleInput);
         String trimmedTitle = titleInput.trim();
-
-        return new Title(trimmedTitle);
+        Title title;
+        try {
+            title = new Title(trimmedTitle);
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(Title.MESSAGE_CONSTRAINTS);
+        }
+        return title;
     }
 }

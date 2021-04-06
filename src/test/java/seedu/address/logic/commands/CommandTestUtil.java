@@ -34,6 +34,7 @@ public class CommandTestUtil {
     public static final LocalDateTime VALID_DATE = LocalDateTime.of(2021, 03, 15, 23, 59);
     public static final String VALID_TITLE_CS2103 = "CS2103";
     public static final String VALID_TITLE_CS2101 = "CS2101";
+    public static final String INVALID_TITLE = "Invalid!";
 
     public static final Exam VALID_EXAM = new Exam(VALID_DATE, new Tag(VALID_TITLE_CS2101));
     public static final String VALID_EXAM_DATETIME_1 = "03/05/2021 1300";
