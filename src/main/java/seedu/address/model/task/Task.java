@@ -115,6 +115,20 @@ public class Task {
     }
 
     /**
+     * Returns a copy of the current instance of the task.
+     */
+    public Task getCopy() {
+        Task copiedTask = new Task(name, deadline, priority, categories, tags);
+        if (this.isPinned()) {
+            copiedTask.pin();
+        }
+        if (this.isComplete()) {
+            copiedTask.markTaskAsDone();
+        }
+        return copiedTask;
+    }
+
+    /**
      * Returns true if both tasks have the same identity and data fields.
      * This defines a stronger notion of equality between two tasks.
      */

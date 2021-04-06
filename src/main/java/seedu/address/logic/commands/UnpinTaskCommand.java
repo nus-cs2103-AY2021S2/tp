@@ -3,21 +3,15 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
-import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.common.Category;
-import seedu.address.model.common.Date;
-import seedu.address.model.common.Name;
-import seedu.address.model.common.Tag;
-import seedu.address.model.task.Priority;
 import seedu.address.model.task.Task;
 
 /**
- * Pins a task.
+ * Unpins a task.
  */
 
 public class UnpinTaskCommand extends Command {
@@ -35,27 +29,6 @@ public class UnpinTaskCommand extends Command {
 
     public UnpinTaskCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
-    }
-
-    /**
-     * Copies the task given and returns a new task with the same details as the given task, without pinned attribute.
-     *
-     * @param taskToCopy task to be copied, here is the task to pin.
-     * @return a copied task.
-     */
-    private static Task copyAndUnpinTask(Task taskToCopy) {
-        Name taskName = taskToCopy.getName();
-        Date deadline = taskToCopy.getDeadline();
-        Priority priority = taskToCopy.getPriority();
-        Set<Category> categories = taskToCopy.getCategories();
-        Set<Tag> tags = taskToCopy.getTags();
-
-        //Just do not copy over the pinned attribute since it defaults to unpinned
-        Task copiedTask = new Task(taskName, deadline, priority, categories, tags);
-        if (taskToCopy.isComplete()) {
-            copiedTask.markTaskAsDone();
-        }
-        return copiedTask;
     }
 
     /**
@@ -80,7 +53,8 @@ public class UnpinTaskCommand extends Command {
             throw new CommandException(MESSAGE_TASK_ALREADY_UNPINNED);
         }
 
-        Task unpinnedTask = copyAndUnpinTask(taskToUnpin);
+        Task unpinnedTask = taskToUnpin.getCopy();
+        unpinnedTask.unpin();
 
         //replace the old task with the new and pinned task, update
         model.setTask(taskToUnpin, unpinnedTask);
