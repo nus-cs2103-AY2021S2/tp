@@ -2,6 +2,7 @@ package seedu.heymatez.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.heymatez.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_NAME;
+import static seedu.heymatez.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 
@@ -52,6 +53,11 @@ public class DeleteMemberCommand extends Command {
         model.deletePerson(personToDelete);
         model.removeAssignee(personToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
+    }
+
+    @Override
+    public static boolean checkPersonToDelete() {
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
