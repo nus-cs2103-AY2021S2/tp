@@ -9,7 +9,8 @@ SOChedule is a one-stop solution for managing tasks and events, optimized for us
 ## Feature List
 
 ### General Commands
-* Viewing help: [`help`]()
+* Viewing help: [`help`](#viewing-help-help)
+* Exiting the program: [`exit`](#exiting-the-program-exit)
   
 ### Task-Specific Commands
 * Adding a task: [`add_task`](#adding-a-task-add_task)
@@ -35,7 +36,7 @@ SOChedule is a one-stop solution for managing tasks and events, optimized for us
 * Finding events: [`find_event`](#finding-all-matching-events-find_event)
 * Clearing expired events: [`clear_expired_event`](#clearing-expired-events-clear_expired_event)
 
-### General Commands
+### Commands Related to Both Task and Event
 * Finding tasks and events before or on a given date: [`find_schedule`](#finding-tasks-and-events-before-or-on-a-given-date-find_schedule)
 * Finding free time slots: [`free_time`](#finding-free-time-slots-free_time)
 * Summarising tasks and events completion status: [`summary`](#summarising-tasks-and-events-statistics-summary)
@@ -101,6 +102,8 @@ As listed below are the attributes to be specified for Tasks and Events. All par
 ### Viewing help: `help`
 Shows a message explaining how to access the help page.
 ![helpMessage](images/helpMessage.png)
+
+[Return to Feature List](#feature-list)
 
 ### Adding a task: `add_task`
 Adds a task to SOChedule Task List.
@@ -418,6 +421,11 @@ Format: `summary`
 Clears all tasks and events in the SOChedule.
 
 Format: `clear`
+
+[Return to Feature List](#feature-list)
+
+### Exiting the program: `exit`
+Exits the program.
 
 [Return to Feature List](#feature-list)
 
