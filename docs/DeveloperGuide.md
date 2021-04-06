@@ -168,7 +168,7 @@ From the diagram above:
 2. In the method, `LogicManager` calls on the `parseCommand` method of `StoreMandoParser` to parse the user input.
 3. The `StoreMandoParser` parses the user input and identifies it as an `AddCommand` and instantiates `AddCommandParser`. 
 4. `StoreMandoParser` then invokes the `parse` method of `AddCommandParser` to further parse the arguments provided. In the `parse` method,
-   the `AddCommandParser` ensures that the input is of the correct format and identifies the input for item name, quantity, 
+   the `AddCommandParser` ensures that the input is of the correct format and identifies the input for the item name, quantity, 
    location, expiry date and tag(s).
 5. If all the arguments of the `add` command are valid, The `AddCommandParser` creates a new `Item` object, 
    and instantiates a new `AddCommand` object that contains the `Item` object. This `AddCommand` object will be
@@ -233,7 +233,7 @@ Step 5: The argument is passed to `EditCommandParser` to check if the user input
 
 Step 6: `EditCommandParser` creates `EditItemDescriptor` through `EditCommand`.
 
-Step 7: Based on the user input string, the `EditItemDescriptor` updates it's own attributes.
+Step 7: Based on the user input string, the `EditItemDescriptor` updates its own attributes.
 
 Step 8: `EditCommandParser` creates an `EditCommand` with the item index and `EditItemDescriptor`.
 
@@ -244,7 +244,7 @@ Step 10: `LogicManager` then calls the **execute** method of `EditCommand`.
 Step 11: `EditCommand` calls **getFilteredList** method to get the list of item from `Model`. It also calls the
 **createEditedItem** method to create the edited item.
 
-Step 12: From the index argument of `EditCommand`, it gets the targetted item from the list of items and set it to the
+Step 12: From the index argument of `EditCommand`, it gets the targeted item from the list of items and set it to the
 edit item.
 
 Step 13: `EditCommand` will create a `CommandResult` and pass to `LogicManager` with message containing the edited
@@ -360,7 +360,7 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Pros: Easy to implement.
     * Cons: The search is limited to matching names. If there are many items containing that keyword, the search may not be efficient.
 
-* **Alternative 2:** Find items in the current list that matches the keyword and an attribute e.g. tag.
+* **Alternative 2:** Find items in the current list that matches the keyword, and an attribute e.g. tag.
     * Pros: More efficiently retrieve the item needed.
     * Cons: Users need to remember the items' attributes.
 
@@ -465,9 +465,9 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ##### Aspect: How `reminder` executes
 
-**Alternative 1 (current choice)** : provide integer as an input argument
+**Alternative 1 (current choice)** : provide an integer as an input argument
 * Pros: Faster to type as compared to date in a particular format.
-* Cons: More cases to consider when parsing the commmand.
+* Cons: More cases to consider when parsing the command.
 
 **Alternative 2** : provide a date in the format of YYYY-MM-DD as input
 * Pros: Easier to compare between items as the input date can be used to create an `expiryDate` object
@@ -568,13 +568,13 @@ The following activity diagram summarizes what happens when a user executes a cl
 ![ClearActivityDiagram](images/ClearLocationActivityDiagram.png)
 
 ### Help feature
-The help feature redirects the user to StoreMando's User Guide. If the user is connected to a internet access, StoreMando
-will redirect it's User Guide through opening another browser. Otherwise, it will have a pop out window with the User
+The help feature redirects the user to StoreMando's User Guide. If the user is connected to an internet access, StoreMando
+will redirect its User Guide through opening another browser. Otherwise, it will have a pop out window with the User
 Guide link. This will save the user the hassle of locating the documentation. <br>
 The help command has the following format :`help`.
 
 :information_source: : Things to note
-- Even though the help command expects the user input to contains the `help` command keyword, it still allows users to
+- Even though the help command expects the user input to contain the `help` command keyword, it still allows users to
   append arguments. However, the arguments will not be parsed by StoreMando.
 
 #### Implementation
