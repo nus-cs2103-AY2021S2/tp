@@ -278,6 +278,7 @@ Format: `add_event n/EVENTNAME sd/STARTDATE st/STARTTIME ed/ENDDATE et/ENDTIME [
 * `st/` is followed by the time in 24-hour format and in the format of **hh:mm** Here, h is the hour, m is the minute and all has to be integers.
 * `ed/` is followed by the end date, it has to be a **valid date** and in the format of **YYYY-MM-DD**.
 * `et/` is followed by the time in 24-hour format and in the format of **hh:mm**.
+* The STARTDATE and STARTTIME provided can be in the past (ongoing event).
 * The STARTDATE and STARTTIME provided should be earlier than ENDDATE and ENDTIME.
 * The ENDDATE and ENDTIME provided cannot be a past date time.
 * `c/` is followed by the category. It is optional.
@@ -310,6 +311,7 @@ Format: `edit_event INDEX [n/EVENTNAME] [sd/STARTDATE] [st/STARTTIME] [ed/ENDDAT
 * Edits the event at the specified `INDEX`. The index refers to the index number shown in the displayed event list. The index **must be a positive integer** 1, 2, 3, …​
 * You can only edit the details of an unexpired event.
 * At least one of the optional fields must be provided.
+* The STARTDATE and STARTTIME provided can be in the past (ongoing event).
 * The STARTDATE and STARTTIME provided should be earlier than ENDDATE and ENDTIME.
 * The ENDDATE and ENDTIME provided cannot be a past date time.
 * Existing values will be updated to the input values.
