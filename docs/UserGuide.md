@@ -118,13 +118,14 @@ If you mistyped a financial record or added a financial record incorrectly, you 
 
 <img src="images/features/delete-fr.png" width="600px">
 
-Format: `delete-fr FR_INDEX`
+Format: `delete-fr FR_INDEX [FR_INDEX]`
 
 <div markdown="block" class="alert alert-primary">
 
 **:bulb: Tips:**<br>
 
-- You must replace `FR_INDEX` with the index of the finacial record you want to delete.
+- You may include more than 1 `FR_INDEX` after the command to delete multiple financial records.
+- You must replace `FR_INDEX` with the index of the financial record you want to delete.
 - `FR_INDEX` refers to the index number shown in the displayed financial record list.
 - `FR_INDEX` must be a **positive integer** (e.g. 1, 2, 3, …​)
 
