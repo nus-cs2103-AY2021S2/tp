@@ -67,19 +67,30 @@ However, the colours will be arranged such that no two modules with the same col
 
     Module Code | Subject Description
     --------|------------------
-    CS1101S | Basic Programming Course
-    CS1231S | Discrete Mathematics
-    CS2030 | Intermediate Programming Course
-    CS2040S | Introductory Data Structures and Algorithms
+    CS1101S | Programming Methodology 
+    CS1010S | Programming Methodology in Python
+    CS1231S | Discrete Structures
+    CS2030 | Programming Methodology II
+    CS2040S | Data Structures and Algorithms
     CS2101 | Effective Communication for Computing Professionals
-    CS2103T | Introductory Software Engineering
+    CS2103T | Software Engineering
     CS2105 | Introduction to Computer Networks
     CS2106 | Introduction to Operating Systems
-    CS3230 | Advanced Algorithm Design and Analysis
+    CS3103 | Computer Networks Practice
+    CS3210 | Parallel Computing
+    CS3212 | Programming Languages
+    CS3217 | Software Engineering on Modern Application Platforms
+    CS3219 | Software Engineering Principles and Patterns
+    CS3220 | Computer Architecture
+    CS3223 | Database Systems Implementation
+    CS3225 | Combinatory Methods in Bioinformatics
+    CS3230 | Design and Analysis of Algorithm
+    CS3231 | Theory of Computation
+    CS3233 | Competitive Programming
     CS3243 | Introduction to Artificial Intelligence
     CS3244 | Machine Learning
     IS1103 | Computing Ethics
-    ST2131 | Statistics
+    ST2131 | Probability
     If your module code does not appear in the above table, 
     you may use a substitute module code based on the subject description.
   
