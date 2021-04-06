@@ -248,10 +248,17 @@ Format: `sort_task ARGUMENT`
    * `deadline`: Sorts by task deadline, in increasing date order
    * `completion`: Sorts by task completion status, with completed tasks at the bottom
    * `priority`: Sorts by task priority, in decreasing order, from priority 0 on top, to priority 9 at the bottom
-
+* On subsequent boots, the following will happen:
+   * Relative order from previous launch will be preserved.
+   * However, if any order-altering command is issued, tasks will be sorted by name by default, unless otherwise stated by another `sort_task` command.
+    
 Examples:
 * `sort_task completion` sorts the task list by completion status.
 * `sort_task name` sorts the task list by name.
+
+#### Illustration of usage of `sort_task`:
+![Example of usage of `sort_task`](images/SortTaskUsage.png)
+
 
 [Return to Feature List](#feature-list)
 
@@ -264,13 +271,19 @@ Format: `pin_task INDEX`
 * Already pinned tasks will be unable to be pinned a second time.
 * The index refers to the index number shown in the displayed task list.
 * The index must be a positive and valid integer 1, 2, 3, ...
-* After pinning, the Task List will be sorted either according to previously entered `sort_task` command, or name (by default).
+* After pinning, the Task List will be sorted either according to previously entered `sort_task` command, or name (by default). See [here](#illustration-of-the-interaction-between-pin_task-and-sort_task).
     * Should there be two or more pinned tasks, the pinned tasks will be sorted as well.
     * Only the fact that pinned tasks will appear over the unpinned tasks is guaranteed. Internal order of pinned tasks is not persistent over `sort_task`.
 * Pinned tasks are persistent over instances of SOChedule.
 
 Examples:
 * `pin_task 1` pins the first task in Task List
+
+#### Illustration of usage of `pin_task`:
+![Example of usage of `pin_task`](images/PinTaskUsage.png)
+
+#### Illustration of the interaction between `pin_task` and `sort_task`:
+![Example of interaction of `pin_task` with `sort_task`](images/PinTaskInteractionWithSortTask.png)
 
 [Return to Feature List](#feature-list)
 
@@ -284,6 +297,9 @@ Format: `unpin_task INDEX`
 
 Examples:
 * `unpin_task 1` unpins the first task in Task List
+
+#### Illustration of usage of `unpin_task`:
+![Example of usage of `unpin_task`](images/UnpinTaskUsage.png)
 
 [Return to Feature List](#feature-list)
 
