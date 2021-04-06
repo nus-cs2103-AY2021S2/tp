@@ -174,6 +174,11 @@ public class PersonBuilder {
         return this;
     }
 
+    public PersonBuilder withGoal(Goal goal) {
+        this.goal = goal;
+        return this;
+    }
+
     /**
      * Builds the person with the information within the PersonBuilder.
      * @return Person object
