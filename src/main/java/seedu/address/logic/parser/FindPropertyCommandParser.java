@@ -88,8 +88,10 @@ public class FindPropertyCommandParser implements Parser<FindPropertyCommand> {
         }
 
         if (argMultimap.getValue(PREFIX_TYPE).isPresent()) {
+            List<Predicate<Property>> typeList = new ArrayList<>();
             argMultimap.getAllValues(PREFIX_TYPE)
-                    .forEach(x -> predicates.add(new PropertyTypePredicate(x)));
+                    .forEach(x -> typeList.add(new PropertyTypePredicate(x)));
+            predicates.add(new PropertyPredicateList(typeList).combineDisjunction());
         }
 
         if (argMultimap.getValue(PREFIX_POSTAL).isPresent()) {
