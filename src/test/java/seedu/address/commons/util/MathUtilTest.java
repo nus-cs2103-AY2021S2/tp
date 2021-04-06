@@ -30,8 +30,20 @@ public class MathUtilTest {
         // BVA: Value equals upper bound only -> returns value
         assertEquals(upper, MathUtil.clamp(upper, lower, upper));
 
+        // BVA: Value one below upper bound -> returns value
+        assertEquals(upper - 1, MathUtil.clamp(upper - 1, lower, upper));
+
+        // BVA: Value one above upper bound -> returns upper bound
+        assertEquals(upper, MathUtil.clamp(upper + 1, lower, upper));
+
         // BVA: Value equals lower bound only -> returns value
         assertEquals(lower, MathUtil.clamp(lower, lower, upper));
+
+        // BVA: Value one above lower bound -> returns value
+        assertEquals(lower + 1, MathUtil.clamp(lower + 1, lower, upper));
+
+        // BVA: Value one below lower bound -> returns lower bound
+        assertEquals(lower, MathUtil.clamp(lower - 1, lower, upper));
     }
 
     @Test
