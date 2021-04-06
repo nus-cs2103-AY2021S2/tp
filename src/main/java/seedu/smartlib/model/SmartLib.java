@@ -473,7 +473,11 @@ public class SmartLib implements ReadOnlySmartLib {
      */
     @Override
     public int hashCode() {
-        return readers.hashCode();
+        ArrayList<Integer> listOfHashCodes = new ArrayList<>();
+        listOfHashCodes.add(books.hashCode());
+        listOfHashCodes.add(readers.hashCode());
+        listOfHashCodes.add(records.hashCode());
+        return listOfHashCodes.hashCode();
     }
 
     /**
@@ -567,4 +571,5 @@ public class SmartLib implements ReadOnlySmartLib {
 
         return updatedRecord;
     }
+
 }
