@@ -12,9 +12,10 @@ Given below are my contributions to the project.
 * **Major Feature**: Added the ability to undo previous commands.
   * What it does: allows the user to undo previous commands one at a time.
   * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
+  * Highlights: Since it was decided to display the command that was undone in the late stages of the project, the previous implementation of the `State` class needs to be modified. A new class was introduced to accommodate for such changes too.
   * Credits: The implementation of this feature is mainly inspired from AB3 developer guide.
 
-* **Major Feature**: Added a feature that allows the user to navigate to previous commands using up/down keys.
+* **Minor Feature**: Added a feature that allows the user to navigate to previous commands using up/down keys.
   * Justification: This feature reduces the memory work needed to remember some commands with many parameters such as `add`, `edit` etc. Users simply need to navigate to the previous commands and change the parameters instead of retyping everything.
   * Highlights: It was originally decided to implement this feature with the LinkedList class provided by Java. However, it was scraped and the feature is implemented with a self-made linked list instead due to a problem with how the linked list iterator works in Java.
 
