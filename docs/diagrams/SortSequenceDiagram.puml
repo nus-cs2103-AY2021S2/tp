@@ -13,10 +13,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("sort -n -a")
+[-> LogicManager : execute("sort -n -asc")
 activate LogicManager
 
-LogicManager -> ClientBookParser : parseCommand("sort -n -a")
+LogicManager -> ClientBookParser : parseCommand("sort -n -asc")
 activate ClientBookParser
 
 create SortCommandParser
@@ -26,7 +26,7 @@ activate SortCommandParser
 SortCommandParser --> ClientBookParser
 deactivate SortCommandParser
 
-ClientBookParser -> SortCommandParser : parse("-n -a")
+ClientBookParser -> SortCommandParser : parse("-n -asc")
 activate SortCommandParser
 
 create SortCommand
