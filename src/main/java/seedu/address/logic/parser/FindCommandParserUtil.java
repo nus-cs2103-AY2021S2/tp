@@ -17,11 +17,15 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class FindCommandParserUtil {
 
-    public static final String TAG_USAGE = "Please enter valid input field to find tasks by tag(s) "
-            + "in correct format as follows:" + FindCommand.COMMAND_WORD + " t/ [TAG_NAME]";
+    public static final String TAG_USAGE = "\n" + FindCommand.COMMAND_WORD + " t/: Finds all "
+            + "tasks whose tag contain the exact keyword (case-insensitive).\n"
+            + "\nParameter: TAG_NAME\n"
+            + "\nExample: " + FindCommand.COMMAND_WORD + " t/CS2103";
 
-    public static final String DESCRIPTION_USAGE = "Please enter valid input field to find tasks by description "
-            + "in correct format as follows:" + FindCommand.COMMAND_WORD + " d/ [DESCRIPTION_NAME]";
+    public static final String DESCRIPTION_USAGE = "\n" + FindCommand.COMMAND_WORD + " d/: Finds all "
+            + "tasks whose description contain any of the specified keywords (case-insensitive).\n"
+            + "\nParameter: KEYWORD [MORE_KEYWORDS]...\n"
+            + "\nExample: " + FindCommand.COMMAND_WORD + " d/Fix bugs in PE dry run";
 
     public static final String MULTIPLE_COMMANDS = "Multiple commands detected !!! For find by title query, "
             + "please do not include search by tag (t/) or description (d/). For find by description (d/), "
