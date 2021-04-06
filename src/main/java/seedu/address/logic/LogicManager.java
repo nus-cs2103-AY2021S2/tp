@@ -77,6 +77,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public void setSavedState(boolean isSavedState) {
+        model.setSavedState(isSavedState);
+    }
+
+    @Override
     public ObservableList<Lesson> getSortedLessonsForDay(String keyword) {
         this.model.filterThenSortLessonList(new LessonDayPredicate(keyword), Lesson::compareTo);
         return getTransformedLessonList();
