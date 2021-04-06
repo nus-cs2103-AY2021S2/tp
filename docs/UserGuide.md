@@ -309,6 +309,9 @@ Clear tasks marked as completed.
 
 Format: `clear_completed_task`
 
+#### Illustration of usage of `clear_completed_task`:
+![Example of usage of `clear_completed_task`](images/ClearCompletedTaskUsage.png)
+
 [Return to Feature List](#feature-list)
 
 
@@ -318,6 +321,9 @@ Clear tasks with past deadlines.
 Format: `clear_expired_task`
 * For a task to be considered expired, the task should have past deadline compare to the local date on the user's computer, 
 hence changing of date on a computer could affect the judgement of expiration.
+
+#### Illustration of usage of `clear_expired_task`:
+![Example of usage of `clear_expired_task`](images/ClearExpiredTaskUsage.png)
 
 [Return to Feature List](#feature-list)
 
@@ -411,6 +417,9 @@ Clears events with past end date time.
 Format: `clear_expired_event`
 * For an event to be considered expired, the event should have past end date time compare to the local time on the user's computer, 
 hence changing of timing on a computer could affect the judgement of expiration.
+
+#### Illustration of usage of `clear_expired_event`:
+![Example of usage of `clear_expired_event`](images/ClearExpiredEventUsage.png)
 
 [Return to Feature List](#feature-list)
 
