@@ -60,7 +60,7 @@ public class TypicalEntries {
     private TypicalEntries() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical entries.
+     * Returns a {@code FoodDiary} with all the typical entries.
      */
     public static FoodDiary getTypicalFoodDiaryWithMultipleEntries() {
         FoodDiary ab = new FoodDiary();
@@ -71,7 +71,7 @@ public class TypicalEntries {
     }
 
     /**
-     * Returns an {@code AddressBook} with all the typical entries.
+     * Returns a {@code FoodDiary} with a single typical entry.
      */
     public static FoodDiary getTypicalFoodDiaryWithSingleEntry() {
         FoodDiary ab = new FoodDiary();

@@ -1,9 +1,14 @@
 package fooddiary.logic.commands;
 
+import static fooddiary.logic.commands.CommandTestUtil.assertCommandFailure;
 import static fooddiary.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static fooddiary.logic.commands.CommandTestUtil.showEntriesAtIndexes;
+import static fooddiary.logic.commands.CommandTestUtil.showEntryAtIndex;
 import static fooddiary.testutil.TypicalEntries.getTypicalFoodDiaryWithMultipleEntries;
 import static fooddiary.testutil.TypicalEntries.getTypicalFoodDiaryWithSingleEntry;
-import static fooddiary.testutil.TypicalIndexes.*;
+import static fooddiary.testutil.TypicalIndexes.INDEX_FIRST_ENTRY;
+import static fooddiary.testutil.TypicalIndexes.INDEX_SECOND_ENTRY;
+import static fooddiary.testutil.TypicalIndexes.INDEX_THIRD_ENTRY;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -44,12 +49,12 @@ public class DeleteCommandTest {
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
         //Check when model has multiple entries (to check for plural message)
-        CommandTestUtil.assertCommandFailure(deleteCommand, modelMultipleEntries, String.format(
+        assertCommandFailure(deleteCommand, modelMultipleEntries, String.format(
                 Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX_PLURAL,
                 modelMultipleEntries.getFilteredEntryList().size()));
 
         //Check when model has single entry (to check for singular message)
-        CommandTestUtil.assertCommandFailure(deleteCommand, modelSingleEntry,
+        assertCommandFailure(deleteCommand, modelSingleEntry,
                 Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX_SINGULAR);
     }
 
@@ -71,7 +76,7 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-        CommandTestUtil.showEntriesAtIndexes(modelMultipleEntries, INDEX_FIRST_ENTRY, INDEX_SECOND_ENTRY);
+        showEntriesAtIndexes(modelMultipleEntries, INDEX_FIRST_ENTRY, INDEX_SECOND_ENTRY);
 
         Index outOfBoundIndex = INDEX_THIRD_ENTRY;
         // ensures that outOfBoundIndex is still in bounds of food diary list
@@ -80,12 +85,12 @@ public class DeleteCommandTest {
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
         //Check when model has multiple entries (to check for plural message)
-        CommandTestUtil.assertCommandFailure(deleteCommand, modelMultipleEntries,
+        assertCommandFailure(deleteCommand, modelMultipleEntries,
                 String.format(Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX_PLURAL,
-                        modelMultipleEntries.getFilteredEntryList().size()));
+                modelMultipleEntries.getFilteredEntryList().size()));
 
 
-        CommandTestUtil.showEntryAtIndex(modelMultipleEntries, INDEX_FIRST_ENTRY);
+        showEntryAtIndex(modelMultipleEntries, INDEX_FIRST_ENTRY);
 
         outOfBoundIndex = INDEX_SECOND_ENTRY;
         // ensures that outOfBoundIndex is still in bounds of food diary list
@@ -94,7 +99,7 @@ public class DeleteCommandTest {
         deleteCommand = new DeleteCommand(outOfBoundIndex);
 
         //Check when model has single entry (to check for singular message)
-        CommandTestUtil.assertCommandFailure(deleteCommand, modelSingleEntry,
+        assertCommandFailure(deleteCommand, modelMultipleEntries,
                 Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX_SINGULAR);
     }
 

@@ -21,7 +21,7 @@ public class ViewCommandParser implements Parser<ViewCommand> {
             Index index = ParserUtil.parseIndex(args);
             return new ViewCommand(index);
         } catch (IndexOutOfBoundsException e) {
-            throw new ParseException(Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX_PLURAL);
+            throw new ParseException(e.getMessage());
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE), pe);
