@@ -531,7 +531,7 @@ Command: `list`
 
 ### 3.6 Marking as done: `done`
 When you complete your assignments, you can mark them as done to remind yourself you complete the task and pat yourself 
-on the back!
+on the back! If you need to refine your assignments further, you can remove the done status by calling `done` again!
 
 <div markdown="block" class="alert alert-info">
 
