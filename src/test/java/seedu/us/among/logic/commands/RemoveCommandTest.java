@@ -45,7 +45,7 @@ public class RemoveCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredEndpointList().size() + 1);
         RemoveCommand removeCommand = new RemoveCommand(outOfBoundIndex);
 
-        assertCommandFailure(removeCommand, model, Messages.MESSAGE_INVALID_ENDPOINT_DISPLAYED_INDEX);
+        assertCommandFailure(removeCommand, model, Messages.MESSAGE_INDEX_NOT_WITHIN_LIST);
     }
 
     @Test
@@ -75,7 +75,7 @@ public class RemoveCommandTest {
 
         RemoveCommand removeCommand = new RemoveCommand(outOfBoundIndex);
 
-        assertCommandFailure(removeCommand, model, Messages.MESSAGE_INVALID_ENDPOINT_DISPLAYED_INDEX);
+        assertCommandFailure(removeCommand, model, Messages.MESSAGE_INDEX_NOT_WITHIN_LIST);
     }
 
     @Test

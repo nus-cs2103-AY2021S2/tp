@@ -36,7 +36,7 @@ public class RemoveCommand extends Command {
         List<Endpoint> lastShownList = model.getFilteredEndpointList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_ENDPOINT_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INDEX_NOT_WITHIN_LIST);
         }
 
         Endpoint endpointToRemove = lastShownList.get(targetIndex.getZeroBased());

@@ -47,7 +47,7 @@ public class SendCommand extends Command {
         List<Endpoint> lastShownList = model.getFilteredEndpointList();
         if (index.getZeroBased() >= lastShownList.size()) {
             logger.info("Illegal index found, out of bound");
-            throw new CommandException(Messages.MESSAGE_INVALID_ENDPOINT_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INDEX_NOT_WITHIN_LIST);
         }
 
         Endpoint endpointToSend = lastShownList.get(index.getZeroBased());

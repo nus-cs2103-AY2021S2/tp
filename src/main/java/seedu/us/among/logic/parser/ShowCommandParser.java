@@ -1,6 +1,6 @@
 package seedu.us.among.logic.parser;
 
-import static seedu.us.among.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.us.among.commons.core.Messages.MESSAGE_INVALID_COMMAND_ERROR;
 
 import java.util.logging.Logger;
 
@@ -28,7 +28,8 @@ public class ShowCommandParser implements Parser<ShowCommand> {
             return new ShowCommand(index);
         } catch (ParseException pe) {
             logger.warning(StringUtil.getDetails(pe));
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ShowCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_ERROR, pe.getMessage(),
+                    ShowCommand.MESSAGE_USAGE), pe);
         }
     }
 }
