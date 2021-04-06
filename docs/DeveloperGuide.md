@@ -369,8 +369,8 @@ information. Having a sort function for ClientBook will give the user a way to m
 #### Implementation
 
 A new command `SortCommand` was created. It extends the abstract class `Command`, overriding and implementing its `execute`
-method. When `SortCommand#execute()` is called, the list of clients is sorted according to the type and the direction of
-sorting specified by the user.
+method. When `SortCommand#execute()` is called, the list of clients is sorted through `ModelManager#updateSortedPersonList(Comparator)` 
+with the comparator created by the type and direction of sorting specified by the user.
 
 
 Below is an example usage scenario and how the information and data are passed around at each step.
@@ -383,8 +383,8 @@ Below is an example usage scenario and how the information and data are passed a
 `SortCommand`, which would contain the type of the sorting algorithm (in this case by name), followed by
 the direction that the user intends to sort in (in this case ascending order).
 
-**Step 4.** `SortCommand`then executes, sorting the list of clients with `updateSortedPersonList` and returning a `CommandResult`. 
-This `CommandResult` contains the feedback string message which indicates to the user the list of clients is sorted.
+**Step 4.** `SortCommand`then executes, sorting the list of clients with a comparator created and returning a `CommandResult`. 
+This `CommandResult` contains the feedback string message which indicates to the user how the list of clients is sorted.
 
 **Step 5.** This `CommandResult` is passed back to `MainWindow`, which then displays the list after the sorting is done.
 
@@ -397,6 +397,48 @@ Below is a sequence diagram illustrating the flow of this entire process.
 The sort feature was designed such that the original list is modified so that the list will remain sorted even after other
 commands are executed. The list of clients in the existing data file `clientbook.json` is also sorted for the user to make
 the storage organised too.
+
+<br>
+
+### Schedule a meeting with a client in ClientBook feature
+
+#### Motivation
+
+As an insurance agent, our target user is likely to have meetings with clients and will like to have some ways to store meetings'
+information. Having a meet function for ClientBook will give the user a way to schedule meetings with clients and also to check
+for any clashes between the new meeting and the stored meetings.
+
+#### Implementation
+
+A new command `MeetCommand` was created. It extends the abstract class `Command`, overriding and implementing its `execute`
+method. When `MeetCommand#execute()` is called, either a meeting added, deleted or all meetings are cleared from a client.
+When a meeting is being added, there will be a check for clashes where if there are clashes, the meeting will be rejected.
+
+
+Below is an example usage scenario and how the information and data are passed around at each step.
+
+**Step 1.** The user types `meet 1 -add 20.06.2021 12:00 15:00 MRT` into the input box.
+
+**Step 2.** `MainWindow` receives the `commandText` (`meet 1 -add 20.06.2021 12:00 15:00 MRT`), which is then executed by `LogicManager`.
+
+**Step 3.** `ClientBookParser` then parses the full `commandText`, returning a `Command`. In this case, it would return a
+`MeetCommand`, which would contain the index of the selected client in the displayed list (in this case 1), followed by 
+the action of the meet command (in this case add) and then the date, start time, end time, place of the meetings (in this 
+case 20.06.2021 12:00 15:00 MRT).
+
+**Step 4.** `MeetCommand`then executes, and returning a `CommandResult`.
+This `CommandResult` contains the feedback string message which indicates to the user which client's meeting has been modified.
+
+**Step 5.** This `CommandResult` is passed back to `MainWindow`, which then displays the list after the meeting of the client is modified.
+
+Below is a sequence diagram illustrating the flow of this entire process.
+
+<p align="center"><img src="images/MeetSequenceDiagram.png"></p>
+
+#### Design Considerations
+
+The meet feature was designed such that there is a check for clashes so that the user would not need to worry for having 
+clashes between any meetings in ClientBook.
 
 <br>
 
