@@ -21,7 +21,7 @@ public class PhoneTest {
     }
 
     @Test
-    public void hashCode_Equals() {
+    public void hashcode_equals() {
         String phone = "81234567";
         assertEquals(new Phone(phone).hashCode(), new Phone(phone).hashCode());
     }

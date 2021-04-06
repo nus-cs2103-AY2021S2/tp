@@ -21,7 +21,7 @@ public class EmailTest {
     }
 
     @Test
-    public void hashCode_Equals() {
+    public void hashcode_equals() {
         String email = "abc@gmail.com";
         assertEquals(new Email(email).hashCode(), new Email(email).hashCode());
     }

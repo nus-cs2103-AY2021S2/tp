@@ -102,7 +102,8 @@ public class AddressBookParserTest {
 
     @Test
     public void parseGetMonthlyFeeCommand() throws Exception {
-        assertTrue(parser.parseCommand(GetMonthlyFeeCommand.COMMAND_WORD + " n/someone m/12 y/2021") instanceof GetMonthlyFeeCommand);
+        assertTrue(parser.parseCommand(GetMonthlyFeeCommand.COMMAND_WORD
+            + " n/someone m/12 y/2021") instanceof GetMonthlyFeeCommand);
     }
 
     @Test

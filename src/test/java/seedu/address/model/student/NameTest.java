@@ -21,7 +21,7 @@ public class NameTest {
     }
 
     @Test
-    public void hashCode_Equals() {
+    public void hashcode_equals() {
         String name = "bob";
         assertEquals(new Name(name).hashCode(), new Name(name).hashCode());
     }

@@ -21,7 +21,7 @@ public class AddressTest {
     }
 
     @Test
-    public void hashCode_Equals() {
+    public void hashcode_equals() {
         String address = "Blk 123 Outer space road";
         assertEquals(new Address(address).hashCode(), new Address(address).hashCode());
     }
