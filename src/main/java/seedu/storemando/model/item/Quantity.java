@@ -6,7 +6,7 @@ import static seedu.storemando.commons.util.AppUtil.checkArgument;
 /**
  * Represents a Item's quantity number in the storemando.
  * Guarantees: immutable; is valid as declared in {@link #isValidQuantity(String)}
- * >>>>>>> mid-1.2-base-refactor:src/main/java/seedu/storemando/model/item/Quantity.java
+ *
  */
 public class Quantity {
 
@@ -26,7 +26,7 @@ public class Quantity {
         requireNonNull(quantity);
         checkArgument(isValidQuantity(quantity), MESSAGE_CONSTRAINTS);
         assert(Long.valueOf(quantity) > 0);
-        value = quantity;
+        value = Long.valueOf(quantity).toString();
     }
 
     /**
