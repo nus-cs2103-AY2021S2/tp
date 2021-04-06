@@ -11,6 +11,7 @@ Interface AddressBookStorage <<Interface>>
 Class StorageManager
 Class JsonUserPrefsStorage
 Class JsonAddressBookStorage
+Class Authentication
 
 StorageManager .left.|> Storage
 StorageManager o-right-> UserPrefsStorage
@@ -21,4 +22,5 @@ JsonAddressBookStorage .left.|> AddressBookStorage
 JsonAddressBookStorage .down.> JsonSerializableAddressBookStorage
 JsonSerializableAddressBookStorage .right.> JsonSerializablePerson
 JsonSerializablePerson .right.> JsonAdaptedTag
+JsonSerializablePerson .up.> JsonAdaptedInsurancePolicy
 @enduml

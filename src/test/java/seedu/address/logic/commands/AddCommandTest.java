@@ -9,6 +9,8 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -20,7 +22,10 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.attribute.Attribute;
 import seedu.address.model.person.Person;
+import seedu.address.model.shortcut.ShortcutLibrary;
+import seedu.address.storage.Authentication;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -78,6 +83,7 @@ public class AddCommandTest {
      * A default model stub that have all of the methods failing.
      */
     private class ModelStub implements Model {
+
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
@@ -105,6 +111,16 @@ public class AddCommandTest {
 
         @Override
         public void setAddressBookFilePath(Path addressBookFilePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Path getShortcutLibraryFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setShortcutLibraryFilePath(Path shortcutLibraryFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -145,6 +161,61 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updatePersonListByAttribute(List<Attribute> attributeTypes) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Authentication getAuthentication() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void undoListModification() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateSortedPersonList(Comparator<Person> comparator) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Person> getWholePersonList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setShortcutLibrary(ShortcutLibrary shortcutLibrary) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ShortcutLibrary getShortcutLibrary() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasShortcut(String shortcutName) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteShortcut(String shortcutName) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addShortcut(String shortcutName, String shortcutCommand) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setShortcut(String target, String shortcutCommand) {
             throw new AssertionError("This method should not be called.");
         }
     }

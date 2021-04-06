@@ -5,10 +5,12 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
+Interface ModifiableAddressBook <<Interface>>
 Interface ReadOnlyAddressBook <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
 Class AddressBook
+Class ModifiableAddressBook
 Class ReadOnlyAddressBook
 Class Model
 Class ModelManager
@@ -27,11 +29,16 @@ Class UniquePersonList
 Package Tag {
 Class Tag
 }
+
+Package InsurancePolicy {
+Class InsurancePolicy
+}
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
+AddressBook .up.|> ModifiableAddressBook
 AddressBook .up.|> ReadOnlyAddressBook
 
 ModelManager .up.|> Model
@@ -47,6 +54,7 @@ Person *--> Phone
 Person *--> Email
 Person *--> Address
 Person *--> "*" Tag
+Person *--> "*" InsurancePolicy
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
