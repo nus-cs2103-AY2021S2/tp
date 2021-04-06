@@ -14,9 +14,6 @@ Given below are my contributions to the project.
 * **Code
   contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=&tabOpen=true&tabType=zoom&zA=github-amanda&zR=AY2021S2-CS2103T-W10-2%2Ftp%5Bmaster%5D&zACS=237.18069145466407&zS=2021-02-19&zFS=&zU=2021-03-21&zMG=undefined&zFTF=commit&zFGS=groupByRepos&zFR=false)
 
-* **Project management**:
-    * Managed releases `v.1` - `v1.4` (5 milestones) on GitHub
-
 * **Refactoring**:
     * Refactored Phone to Quantity. (Pull requests [\#54](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/54))
     * Made changes to common variable names. (Pull requests [\#97](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/97))
