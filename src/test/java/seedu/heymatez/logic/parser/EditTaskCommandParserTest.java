@@ -1,6 +1,7 @@
 package seedu.heymatez.logic.parser;
 
 import static seedu.heymatez.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.heymatez.commons.core.Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
 import static seedu.heymatez.commons.core.Messages.MESSAGE_INVALID_TASK_PRIORITY;
 import static seedu.heymatez.logic.commands.CommandTestUtil.ASSIGNEE_TASK2;
 import static seedu.heymatez.logic.commands.CommandTestUtil.DEADLINE_TASK1;
@@ -64,6 +65,10 @@ public class EditTaskCommandParserTest {
 
         // invalid prefix being parsed as preamble
         assertParseFailure(parser, "-h", MESSAGE_INVALID_FORMAT);
+
+        assertParseFailure(parser, "0", MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+
+        assertParseFailure(parser, "-1", MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
 
     @Test

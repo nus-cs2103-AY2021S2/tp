@@ -21,12 +21,12 @@ public class StringUtilTest {
     public void checkIndexValidity() {
 
         // EP: empty strings
-        assertNotEquals(VALID_INTEGER, StringUtil.checkIndexValidity("")); // Boundary value
-        assertNotEquals(VALID_INTEGER, StringUtil.checkIndexValidity("  "));
+        assertEquals(INVALID_INPUT, StringUtil.checkIndexValidity("")); // Boundary value
+        assertEquals(INVALID_INPUT, StringUtil.checkIndexValidity("  "));
 
         // EP: not a number
-        assertNotEquals(VALID_INTEGER, StringUtil.checkIndexValidity("a"));
-        assertNotEquals(VALID_INTEGER, StringUtil.checkIndexValidity("aaa"));
+        assertEquals(INVALID_INPUT, StringUtil.checkIndexValidity("a"));
+        assertEquals(INVALID_INPUT, StringUtil.checkIndexValidity("aaa"));
 
         // EP: zero
         assertEquals(INVALID_INTEGER, StringUtil.checkIndexValidity("0"));
@@ -36,7 +36,7 @@ public class StringUtilTest {
 
         // EP: signed numbers
         assertEquals(INVALID_INTEGER, StringUtil.checkIndexValidity("-1"));
-        assertNotEquals(VALID_INTEGER, StringUtil.checkIndexValidity("+1"));
+        assertEquals(INVALID_INPUT, StringUtil.checkIndexValidity("+1"));
 
         // EP: numbers with white space
         assertEquals(INVALID_INPUT, StringUtil.checkIndexValidity(" 10 ")); // Leading/trailing spaces

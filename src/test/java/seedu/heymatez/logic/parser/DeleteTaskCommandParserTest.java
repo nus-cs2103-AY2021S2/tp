@@ -1,6 +1,7 @@
 package seedu.heymatez.logic.parser;
 
 import static seedu.heymatez.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.heymatez.commons.core.Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
 import static seedu.heymatez.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.heymatez.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.heymatez.testutil.TypicalIndexes.INDEX_FIRST_TASK;
@@ -24,6 +25,11 @@ public class DeleteTaskCommandParserTest {
     public void parse_validArgs_returnsDeleteTaskCommand() throws ParseException {
         assertParseSuccess(parser, "1",
                 new DeleteTaskCommand(INDEX_FIRST_TASK));
+    }
+
+    @Test
+    public void parse_invalidInteger_returnsDeleteTaskCommand() throws ParseException {
+        assertParseFailure(parser, "-1", MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
     }
 
     @Test
