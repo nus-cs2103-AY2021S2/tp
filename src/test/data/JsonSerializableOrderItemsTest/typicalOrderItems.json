@@ -1,26 +1,19 @@
 {
   "_comment": "OrderItems save file which contains the same OrderItem values as in TypicalOrderItems#getTypicalOrderItemsModel()",
   "orderItems": [ {
-    "cost": "25.75",
     "type": "Black Forest"
   }, {
-    "cost": "34.99",
     "type": "Red Velvet Cake"
   }, {
-    "cost": "40.95",
     "type": "Chocolate Mud Cake"
   }, {
-    "cost": "25.75",
     "type": "Oreo Cheesecake"
   }, {
-    "cost": "19.99",
     "type": "Butterscotch Cake"
   },
     {
-    "cost": "30.50",
     "type": "Strawberry cake"
   }, {
-    "cost": "20.75",
     "type": "Chocolate cake"
   } ]
 }
