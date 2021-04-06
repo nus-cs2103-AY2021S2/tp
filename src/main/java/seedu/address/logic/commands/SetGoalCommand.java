@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Objects;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -70,7 +71,7 @@ public class SetGoalCommand extends Command {
 
         SetGoalCommand that = (SetGoalCommand) o;
 
-        if (index != null ? !index.equals(that.index) : that.index != null) {
+        if (!Objects.equals(index, that.index)) {
             return false;
         }
         return frequency == that.frequency;
