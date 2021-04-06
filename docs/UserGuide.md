@@ -53,7 +53,7 @@ The resident's name will take the **later** occurrence of name and create a resi
 
 On the other hand, **all** [tags](#tag) specified will be taken. 
 
-For instance, `radd n/John Doe n/Timmy Tan p/91234567 e/e0123456@u.nus.edu y/3 g/tag_one g/tag_two g/tag_three` will create a resident with tags `tag_one`, `tag_two` and `tag_three`
+For instance, `radd n/John Doe n/Timmy Tan p/91234567 e/e0123456@u.nus.edu y/3 g/tag_one g/tag_two g/tag_three` will create a resident with tags `tag_one`, `tag_two` and `tag_three`.
 
 
 #### Interpreting parameter values
