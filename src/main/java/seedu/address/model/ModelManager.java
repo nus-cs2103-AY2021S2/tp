@@ -227,6 +227,16 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void clearAppointmentBook() {
+        this.appointmentBook.clearAppointments();
+    }
+
+    @Override
+    public void clearPropertyBook() {
+        this.propertyBook.clearProperties();
+    }
+
+    @Override
     public boolean hasAppointment(Appointment appointment) {
         requireNonNull(appointment);
         return appointmentBook.hasAppointment(appointment);

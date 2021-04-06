@@ -239,17 +239,17 @@ Description:
 Options:
 * `u/new AMOUNT`
 
-    The `new` keyword can only be used on a property without an existing status. `AMOUNT` is the amount of money that is offered in the Option to Purchase
+    `u/new` can only be used on a property without an existing status. `AMOUNT` is the amount of money that is offered in the Option to Purchase
 
 
 * `u/proceed`
 
-    Can only be used on a property with an existing status. `proceed` would move the status on to the next one. e.g. `Option` to `SalesAgreement` or `SalesAgreement` to `Completion`.
+    Can only be used on a property with an existing status. `u/proceed` would move the status on to the next one. e.g. `Option` to `SalesAgreement` or `SalesAgreement` to `Completion`.
 
 
 * `u/cancel`
 
-  Can only be used on a property with an existing status. `cancel` would remove the status of the property
+  Can only be used on a property with an existing status. `u/cancel` would remove the status of the property
 
 Status Types:
 
@@ -277,7 +277,7 @@ Description:
 * The `SORTING_KEY` can take values of `name`, `price`, `postalcode`, `address`, or `deadline`, and it should not be any other values.
 
 Examples:
-*  `sort appointment o/asc k/datetime` Sorts `appointment` by `datetime` in ascending order.
+*  `sort property o/asc k/name` Sorts `property` by `name` in ascending order.
 
 #### 3.7.2 Sorting appointments: `sort appointment`
 
@@ -299,13 +299,13 @@ Examples:
 
 #### 3.8.1 Undoing : `undo`
 
-Undoes the last add, delete or edit commands in the command history.
+Undoes the last add, delete, edit or clear commands in the command history.
 
 Format:
 * `undo`
 
 Description:
-* Undoes the last add, delete or edit commands in the command history.
+* Undoes the last add, delete, edit, or clear commands in the command history.
 
 Examples:
 *  `undo` after command `delete appointment 1` adds the deleted appointment back to the app.

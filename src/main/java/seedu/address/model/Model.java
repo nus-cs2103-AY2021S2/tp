@@ -146,6 +146,16 @@ public interface Model {
     ReadOnlyAppointmentBook getAppointmentBook();
 
     /**
+     * Clears the AppointmentBook
+     */
+    void clearAppointmentBook();
+
+    /**
+     * Clears the PropertyBook
+     */
+    void clearPropertyBook();
+
+    /**
      * Returns true if an appointment with the same identity as {@code appointment} exists in the appointment book
      */
     boolean hasAppointment(Appointment appointment);

@@ -23,6 +23,8 @@ import seedu.address.model.property.client.AskingPrice;
 import seedu.address.model.property.client.Client;
 import seedu.address.model.property.client.Contact;
 import seedu.address.model.property.client.Email;
+import seedu.address.model.property.status.Offer;
+import seedu.address.model.property.status.Option;
 import seedu.address.model.remark.Remark;
 import seedu.address.model.tag.Tag;
 
@@ -51,9 +53,10 @@ public class SampleDataUtil {
                 new Address("Blk 784 Woodlands Crescent #01-01"),
                 new PostalCode("731784"),
                 new Deadline(LocalDate.parse("01-08-2021", DateTimeFormat.INPUT_DATE_FORMAT)),
+                null,
                 new Client(new Name("Caleb"), new Contact("84459627"),
                     new Email("caleb_goh@gmail.com"), new AskingPrice("$350,000")),
-                getTagSet("2 bedrooms", "65 square metres")),
+                getTagSet("2 bedrooms", "65 square metres"), new Option(new Offer("330000"))),
             new Property(new Name("The Interlace"),
                 new Type("Condo"),
                 new Address("180 Depot Rd"),
