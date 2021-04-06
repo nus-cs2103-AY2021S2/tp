@@ -2,8 +2,7 @@ package seedu.address.logic.parser.meetings;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON_CONNECTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SORT_BY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SORT_DIRECTION;
+
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
@@ -12,10 +11,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.meetings.FindMeetingCommand;
 import seedu.address.logic.commands.persons.SortPersonCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
@@ -57,22 +58,19 @@ public class FindMeetingCommandParser implements Parser<FindMeetingCommand> {
             List<Predicate<Meeting>> predicateHasTimes = handleTimes(meetingTimes);
             List<Predicate<Meeting>> predicateHasDescriptions = handleDescriptions(meetingDescriptions);
             List<Predicate<Meeting>> predicateHasPriorities = handlePriorities(meetingPriorities);
-            List<Predicate<Meeting>> allPredicates = Stream.of(predicateHasPersons, predicateHasNames,
-                    predicateHasTimes,predicateHasDescriptions,predicateHasPriorities)
-                    .flatMap(Collection::stream)
-                    .collect(Collectors.toList());
 
-            Predicate<Meeting> combinedPredicate = allPredicates.stream().reduce(pred -> true,
-                    (meetingPredicate, meetingPredicate2) -> meetingPredicate.and(meetingPredicate2));
+            Predicate<Meeting> bigPredicate = combinePredicateListsToPredicate(predicateHasPersons, predicateHasNames,
+                    predicateHasTimes,predicateHasDescriptions,predicateHasPriorities);
 
-            return new FindMeetingCommand(combinedPredicate);
+            return new FindMeetingCommand(bigPredicate);
         } catch (Exception e) {
             throw new ParseException(SortPersonCommand.MESSAGE_USAGE);
         }
 
     }
 
-    private Predicate<Meeting> combinePredicateListsToPredicate( List<Predicate<Meeting>> ... predicateLists) {
+    @SafeVarargs
+    private Predicate<Meeting> combinePredicateListsToPredicate(List<Predicate<Meeting>> ... predicateLists) {
         List<Predicate<Meeting>> allPredicates = Stream.of(predicateLists)
                 .flatMap(Collection::stream)
                 .collect(Collectors.toList());
@@ -84,29 +82,39 @@ public class FindMeetingCommandParser implements Parser<FindMeetingCommand> {
     }
 
 
-
-
-
     private List<Predicate<Meeting>> handlePersons(List<String> personIndexes) throws ParseException {
-        ParserUtil.parsePersonsConnection(personIndexes);
+        if (personIndexes.isEmpty()) {
+            return new ArrayList<Predicate<Meeting>>();
+        }
+        Set<Index> personIndexSet = ParserUtil.parsePersonsConnection(personIndexes);
         return new ArrayList<Predicate<Meeting>>();
     }
 
     private List<Predicate<Meeting>> handleNames(List<String> names) throws ParseException {
+        if (names.isEmpty()) {
+            return new ArrayList<Predicate<Meeting>>();
+        }
         return new ArrayList<Predicate<Meeting>>();
     }
 
     private List<Predicate<Meeting>> handleTimes(List<String> times) throws ParseException {
+        if (times.isEmpty()) {
+            return new ArrayList<Predicate<Meeting>>();
+        }
         return new ArrayList<Predicate<Meeting>>();
     }
 
     private List<Predicate<Meeting>> handleDescriptions(List<String> descriptions) throws ParseException {
-        return new ArrayList<Predicate<Meeting>>();
-    }
+        if (descriptions.isEmpty()) {
+            return new ArrayList<Predicate<Meeting>>();
+        }
+        return new ArrayList<Predicate<Meeting>>();    }
 
     private List<Predicate<Meeting>> handlePriorities(List<String> priorities) throws ParseException {
-        return new ArrayList<Predicate<Meeting>>();
-    }
+        if (priorities.isEmpty()) {
+            return new ArrayList<Predicate<Meeting>>();
+        }
+        return new ArrayList<Predicate<Meeting>>();    }
 
 
 
