@@ -55,7 +55,7 @@ public class AliasCommand extends Command {
 
         // if the command word is a reserved keyword
         String aliasName = alias.getAliasName();
-        if (model.getUserPrefs().isReservedKeyword(aliasName)) {
+        if (model.getAliasMapping().isReservedKeyword(aliasName)) {
             throw new CommandException(String.format(MESSAGE_RESERVED_KEYWORD, aliasName));
         }
 
@@ -63,7 +63,7 @@ public class AliasCommand extends Command {
         String commandWord = alias.getCommand().stripLeading().split("\\s+")[0];
         if (commandWord.equals(aliasName)
                 || commandWord.equals(COMMAND_WORD)
-                || model.getUserPrefs().isRecursiveKeyword(commandWord)) {
+                || model.getAliasMapping().isRecursiveKeyword(commandWord)) {
             throw new CommandException(MESSAGE_RECURSIVE);
         }
 
