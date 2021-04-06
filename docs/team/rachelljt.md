@@ -62,3 +62,4 @@ Given below are my contributions to the project.
   * Contributed to forum discussions (examples: [1](https://github.com/nus-cs2103-AY2021S2/forum/issues/182))
   * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/rachelljt/ped/issues/4), [2](https://github.com/rachelljt/ped/issues/1), [3](https://github.com/rachelljt/ped/issues/6))
   
+
