@@ -113,6 +113,14 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void massDelete(int startIndex, int endIndex) {
+        for (int i = startIndex; i <= endIndex; i++) {
+            Person nextPersonToDelete = addressBook.getPersonList().get(startIndex - 1);
+            deletePerson(nextPersonToDelete);
+        }
+    }
+
+    @Override
     public void sortByName(boolean isAscending) {
         addressBook.sortByName(isAscending);
     }

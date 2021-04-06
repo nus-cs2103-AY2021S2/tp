@@ -1,9 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.index.Index.getInterval;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
@@ -23,8 +21,8 @@ public class MassBlacklistCommand extends Command {
             + ": Blacklists or unblacklists all contacts within the specified index range "
             + "(inclusive).\n"
             + "Parameters: START-END (Both must be positive integers)"
-            + " [b/BLACKLIST_OR_UNBLACKLIST]\n"
-            + "Example: " + COMMAND_WORD + " 5-21 b/blacklist" ;
+            + " b/BLACKLIST_OR_UNBLACKLIST\n"
+            + "Example: " + COMMAND_WORD + " 5-21 b/blacklist";
 
     public static final String MESSAGE_MASS_BLACKLIST_PERSON_SUCCESS = "Successfully %1$s "
             + "all contacts within the index range %2$d-%3$d";

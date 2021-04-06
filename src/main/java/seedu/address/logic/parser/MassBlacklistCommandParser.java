@@ -28,8 +28,8 @@ public class MassBlacklistCommandParser implements Parser<MassBlacklistCommand> 
                 PREFIX_BLACKLIST);
         try {
             Pair<Index, Index> range = ParserUtil.parseRange(argMultimap.getPreamble());
-            boolean toBlacklist = ParserUtil.parseBlacklistKeyword(argMultimap.
-                    getValue(PREFIX_BLACKLIST).get());
+            boolean toBlacklist = ParserUtil.parseBlacklistKeyword(argMultimap
+                    .getValue(PREFIX_BLACKLIST).get());
             return new MassBlacklistCommand(range.getKey(), range.getValue(), toBlacklist);
         } catch (ParseException | NoSuchElementException exception) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,

@@ -46,12 +46,7 @@ public class MassDeleteCommand extends Command {
         if (endIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_END_INDEX);
         }
-        int range = endIndex.getZeroBased() - startIndex.getZeroBased();
-        assert range > 0; // Start index must be strictly smaller than end index
-        for (int i = 0; i <= range; i++) {
-            Person personToDelete = lastShownList.get(startIndex.getZeroBased());
-            model.deletePerson(personToDelete);
-        }
+        model.massDelete(startIndex.getOneBased(), endIndex.getOneBased());
         String outputMessage = String.format(MESSAGE_MASS_DELETE_PERSON_SUCCESS,
                 startIndex.getOneBased(), endIndex.getOneBased());
         return new CommandResult(outputMessage);

@@ -237,12 +237,13 @@ Example:
 
 ### Sort entries by name : `sort`
 
-Sort the contacts in the address book by name in alphabetical order. The list can be sorted in
-either ascending or descending order.
+Sort the contacts in the entire address book by name in alphabetical order. The list can be
+sorted in either ascending or descending order.
 
 Format: `sort ASCENDING_OR_DESCENDING`
 
 * The keyword (`ascending` or `descending`) must be in lower case.
+* Both the currently displayed list and the entire contact list will be sorted.
 
 Examples:
 
