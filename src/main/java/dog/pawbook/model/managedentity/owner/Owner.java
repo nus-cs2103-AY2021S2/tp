@@ -25,6 +25,7 @@ public class Owner extends Entity {
     // Identity fields
     private final Phone phone;
     private final Email email;
+
     // Data fields
     private final Address address;
     private final Set<Integer> dogidSet = new HashSet<>();
@@ -65,6 +66,23 @@ public class Owner extends Entity {
 
     public Set<Integer> getDogIdSet() {
         return Collections.unmodifiableSet(dogidSet);
+    }
+
+    @Override
+    public boolean isSameAs(Entity otherEntity) {
+        if (otherEntity == this) {
+            return true;
+        }
+
+        if (!(otherEntity instanceof Owner)) {
+            return false;
+        }
+
+        Owner otherOwner = (Owner) otherEntity;
+
+        return super.isSameAs(otherEntity)
+                && (otherOwner.getPhone().equals(getPhone())
+                    || otherOwner.getEmail().equals(getEmail()));
     }
 
     /**

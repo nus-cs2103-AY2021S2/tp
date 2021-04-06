@@ -68,9 +68,18 @@ public class Program extends Entity {
         return Collections.unmodifiableSet(sessionSet);
     }
 
+    @Override
+    public boolean isSameAs(Entity otherEntity) {
+        if (!(otherEntity instanceof Program)) {
+            return false;
+        }
+
+        return super.isSameAs(otherEntity);
+    }
+
     /**
-     * Returns true if both owners have the same identity and data fields.
-     * This defines a stronger notion of equality between two owners.
+     * Returns true if both programs have the same identity and data fields.
+     * This defines a stronger notion of equality between two programs.
      */
     @Override
     public boolean equals(Object other) {

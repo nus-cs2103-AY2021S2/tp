@@ -38,6 +38,19 @@ public abstract class Entity {
     }
 
     /**
+     * Returns true if both entities have the same name.
+     * This defines a weaker notion of equality between two entities, useful to determine when there are duplicates.
+     */
+    public boolean isSameAs(Entity otherEntity) {
+        if (otherEntity == this) {
+            return true;
+        }
+
+        return otherEntity != null
+                && otherEntity.getName().equals(getName());
+    }
+
+    /**
      * Returns true if both entities have the same identity and data fields.
      * This defines a stronger notion of equality between two entities.
      */
