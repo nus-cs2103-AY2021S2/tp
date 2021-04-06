@@ -27,17 +27,17 @@ iScam is a **desktop app for insurance agents to manage clients and meetings, op
    * **`list`** : Lists all clients.
 
    * **`add`**`n/John Doe p/98765432 e/johnd@example.com l/John street, block 123, #01-01 ip/MediShield Life i/john_doe.png t/friends` : Adds a client named `John Doe` to iScam.
-    
+
    * **`edit`**`1 p/98765432`: Change the phone number of the 1st client shown in the current list to `98765432`
-    
+
    * **`find`**`John`: Find a client named `John`
-    
+
    * **`findplan`**`MediShield Life`: Find a client with `MediShield Life` insurance plan
-    
+
    * **`show`**`2` : Shows the 2nd client shown in the list in the bottom right detail panel
 
    * **`delete`**`3` : Deletes the 3rd client shown in the current list.
-     
+
    * **`listmeet`** : Lists all meetings.
 
    * **`addmeet`**`c/John Doe on/12-10-2021 10:00 l/Starbucks d/Catch up t/friend` : Adds a meeting with a client named `John Doe` to iScam.
@@ -45,7 +45,7 @@ iScam is a **desktop app for insurance agents to manage clients and meetings, op
    * **`editmeet`**`1 d/Discuss insurance plan`: Change the description of the 1st meeting shown in the current list to `Discuss insurance plan`
 
    * **`findmeet`**`John`: Find a meeting with the keyword `John`
-    
+
    * **`deletemeet`**`3` : Deletes the 3rd meeting shown in the current list.
 
    * **`clear`** : Deletes all clients and meetings.
@@ -168,7 +168,7 @@ Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
-  
+
 ### Locating clients by insurance plan: `findplan`
 
 Finds clients whose insurance plan contains any of the given keywords.
@@ -185,7 +185,7 @@ Format: `findplan KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `findplan MediShield Life` returns `medishield` and `MediShield Life`
 * `findplan medishield eldershield` returns `MediShield Life`, `ElderShield`
-  
+
 ### Deleting a client : `delete`
 
 Deletes the specified client from iScam.
@@ -208,9 +208,9 @@ Format: `addmeet c/CLIENT_NAME on/DATE_TIME l/ADDRESS d/DESCRIPTION [t/TAG(s)]`
 
 * Date and time is in the format of `dd-MM-yyyy HH:mm` where:
   * `dd` is the day of the month in double digits.
-  * `MM` is the month in double digits. 
+  * `MM` is the month in double digits.
   * `yyyy` is the year.
-  * `HH:mm` is the time in 24:00 format. 
+  * `HH:mm` is the time in 24:00 format.
 * The specified date and time **cannot be in the past**.
 * There can only be 1 meeting happening at a specific date and time.
 
@@ -232,15 +232,15 @@ Edits an existing meeting in iScam.
 
 Format: `editmeet INDEX [c/CLIENT_NAME] [on/DATE_TIME] [l/ADDRESS] [d/DESCRIPTION] [t/TAG(s)] [done/YES_OR_NO]`
 
-* `INDEX` refer to the meeting's index number shown in the displayed meeting list from `listmeet`. The index **must be a 
+* `INDEX` refer to the meeting's index number shown in the displayed meeting list from `listmeet`. The index **must be a
   positive integer 1, 2, 3, …**
-* At least one of the optional fields must be provided. 
+* At least one of the optional fields must be provided.
 * Existing values will be replaced by the input values.
 * Date and time is in the format of `dd-MM-yyyy HH:mm` where:
   * `dd` is the day of the month in double digits.
-  * `MM` is the month in double digits. 
+  * `MM` is the month in double digits.
   * `yyyy` is the year.
-  * `HH:mm` is the time in 24 hours format. 
+  * `HH:mm` is the time in 24 hours format.
 * The specified date and time **cannot be in the past**.
 * The specified date and time **cannot be in conflict with existing meetings** in iScam.
 * When editing tags, the existing tags of the client will be removed i.e adding of tags is not cumulative.
@@ -266,13 +266,13 @@ Modifies the date and time of an existing meeting in iScam.
 
 Format: `reschedule INDEX on/DATE_TIME`
 
-* `INDEX` refer to the meeting's index number shown in the displayed meeting list from `listmeet`. The index **must be a 
-  positive integer 1, 2, 3, …**   
+* `INDEX` refer to the meeting's index number shown in the displayed meeting list from `listmeet`. The index **must be a
+  positive integer 1, 2, 3, …**
 * Date and time is in the format of `dd-MM-yyyy HH:mm` where:
   * `dd` is the day of the month in double digits.
-  * `MM` is the month in double digits. 
+  * `MM` is the month in double digits.
   * `yyyy` is the year.
-  * `HH:mm` is the time in 24 hour format. 
+  * `HH:mm` is the time in 24 hour format.
 * The specified date and time **cannot be in the past**.
 * The modified date and time cannot be in conflict with existing meetings in iScam.
 
@@ -292,29 +292,29 @@ Do a listmeet command first to switch to Meeting Mode and view the meetings in t
 * The order of the keywords does not matter. e.g. `plans discussion` will match `discuss plans`
 * Both full and partial keywords can match. e.g. `insurance` and `sur` will both match `insurance`
 * The keywords will be match against all parameters of a meeting.
-* Meeting matching all keywords will be returned (i.e. `AND` search). e.g. `Johnson Smith` will not return 
+* Meeting matching all keywords will be returned (i.e. `AND` search). e.g. `Johnson Smith` will not return
   `Sam Smith` and `Johnson Drake` but will return `Johnson Shawn Smith`.
 
 Examples:
-* `findmeet 05-2022` returns a meeting witn `Johnson` on `24-05-2022 12:00` and another meeting with `Sam` on 
+* `findmeet 05-2022` returns a meeting witn `Johnson` on `24-05-2022 12:00` and another meeting with `Sam` on
   `01-05-2022 20:00`.
 * `findmeet 05-2022 Sam` returns a meeting with `Sam` on `01-05-2022 20:00`.<br>
   ![result for 'findmeet 05-2022 Sam'](images/findmeetResult.png)
-  
+
 ### Deleting a meeting: `deletemeet`
 Deletes a specified existing meeting from iScam.
 
 Format: `deletemeet INDEX`
 
-* `INDEX` refer to the meeting's index number shown in the displayed meeting list from `listmeet`. The index **must be a 
+* `INDEX` refer to the meeting's index number shown in the displayed meeting list from `listmeet`. The index **must be a
   positive integer 1, 2, 3, …**
 
 ### Completing a meeting `donemeet`
-Marks a specified existing meeting from iScam as completed. 
+Marks a specified existing meeting from iScam as completed.
 
 Format: `donemeet INDEX`
 
-* `INDEX` refer to the meeting's index number shown in the displayed meeting list from `listmeet`. The index **must be a 
+* `INDEX` refer to the meeting's index number shown in the displayed meeting list from `listmeet`. The index **must be a
   positive integer 1, 2, 3, …**
 
 ### Clearing all entries : `clear`
@@ -336,8 +336,8 @@ iScam data are saved in the hard disk automatically after any command that chang
 ### Editing the data files
 
 iScam data are saved as JSON files. Advanced users are welcome to update data directly by editing those data files.
-Client data are saved in `[JAR file location]/data/clientbook.json`. 
-Meeting data are saved in `[JAR file location]/data/meetingbook.json`. 
+Client data are saved in `[JAR file location]/data/clientbook.json`.
+Meeting data are saved in `[JAR file location]/data/meetingbook.json`.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, iScam will discard all data and start with an empty data file at the next run.
