@@ -77,7 +77,8 @@ class JsonAdaptedModule {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Title.class.getSimpleName()));
         }
         if (!Title.isValidTitle(title)) {
-            throw new IllegalValueException(Title.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(
+                    String.format(Title.MESSAGE_CONSTRAINTS, "Modules"));
         }
         assert title != null;
 

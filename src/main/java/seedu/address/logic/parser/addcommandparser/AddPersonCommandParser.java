@@ -41,10 +41,15 @@ public class AddPersonCommandParser extends AddCommandParser implements Parser<A
                     AddPersonCommand.MESSAGE_USAGE));
         }
 
-        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Birthday birthday = ParserUtil.parseBirthday(
-                argMultimap.getValue(PREFIX_BIRTHDAY).orElseThrow(() -> new ParseException("")),
-                argMultimap.getValue(PREFIX_NAME).orElseThrow(() -> new ParseException("")));
+        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME)
+            .filter(Name::isValidName)
+            .orElseThrow(() -> new ParseException(Name.MESSAGE_CONSTRAINTS)));
+
+        Birthday birthday = ParserUtil.parseBirthday(argMultimap.getValue(PREFIX_BIRTHDAY)
+                        .filter(Birthday::isValidBirthday)
+                        .orElseThrow(() -> new ParseException(Birthday.MESSAGE_CONSTRAINTS)),
+                name.fullName);
+
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Person person = new Person(name, birthday, tagList);

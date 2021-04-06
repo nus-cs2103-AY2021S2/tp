@@ -10,13 +10,10 @@ import seedu.address.model.Model;
 import seedu.address.model.event.GeneralEvent;
 
 public class AddEventCommand extends AddCommand {
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a general event. "
-            + "\nParameters: "
-            + PREFIX_GENERAL_EVENT + "EVENT DESCRIPTION "
-            + PREFIX_DATE + "DATE"
-            + "\nExample: " + COMMAND_WORD + " "
-            + PREFIX_GENERAL_EVENT + "Doctor's appointment "
-            + PREFIX_DATE + "28/09/2021 1000";
+    public static final String MESSAGE_USAGE =
+            "Missing necessary prefixes: g/ and on/\n"
+            + "Event: add g/EVENT DESCRIPTION on/EVENT DATE\n"
+            + "Example: add g/EVENT on/03/02/2021 2359";
 
     public static final String MESSAGE_SUCCESS = "New event added: %1$s";
     public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in your calendar.";

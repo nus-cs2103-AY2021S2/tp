@@ -15,13 +15,10 @@ public class AddExamCommand extends AddCommand {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an exam to the module. "
-            + "\nParameters: "
-            + PREFIX_MODULE + "MODULE NAME "
-            + PREFIX_EXAM + "EXAM DATE "
-            + "\nExample: " + COMMAND_WORD + " "
-            + PREFIX_MODULE + "CS2103T "
-            + PREFIX_EXAM + "25/3/2021 0900";
+    public static final String MESSAGE_USAGE =
+            "Missing necessary prefixes: m/ and e/\n"
+            + "Exam: add m/MODULE e/EXAM DATE\n"
+            + "Example: add m/MOD1 e/03/01/2021 1230";
 
     public static final String MESSAGE_SUCCESS = "New exam added: %1$s";
     public static final String MESSAGE_DUPLICATE_EXAM = "This exam already exists at this date";

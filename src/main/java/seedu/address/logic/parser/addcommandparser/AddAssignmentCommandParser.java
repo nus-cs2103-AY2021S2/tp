@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 import seedu.address.logic.commands.addcommand.AddAssignmentCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
@@ -39,14 +40,18 @@ public class AddAssignmentCommandParser extends AddCommandParser implements Pars
         }
 
         Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_MODULE)
-                .orElseThrow(() -> new ParseException("")));
+                .filter(Title::isValidTitle)
+                .orElseThrow(() -> new ParseException(
+                        String.format(Title.MESSAGE_CONSTRAINTS, "Modules"))));
         Module module = new Module(title);
 
-        Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_ASSIGNMENT)
-                .filter(val -> !val.equals(""))
+        Description description = ParserUtil.parseDescription(argMultimap
+                .getValue(PREFIX_ASSIGNMENT)
+                .filter(Description::isValidDescription)
                 .orElseThrow(() -> new ParseException(Assignment.DESCRIPTION_CONSTRAINTS)));
-        LocalDateTime deadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE)
-                .orElseThrow(() -> new ParseException(Assignment.DATE_CONSTRAINTS)));
+        LocalDateTime deadline = argMultimap.getValue(PREFIX_DEADLINE)
+                .map(ParserUtil::parseDeadline)
+                .orElseThrow(() -> new ParseException(Assignment.DATE_CONSTRAINTS));
         Tag tag = new Tag(title.modTitle.replaceAll(" ", ""));
         Assignment assignment = new Assignment(description, deadline, tag);
 

@@ -102,31 +102,29 @@ public class ParserUtil {
      * Parses a {@code String deadline} into a {@code LocalDateTime}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code deadline} is invalid.
      */
-    public static LocalDateTime parseDeadline(String deadline) throws ParseException {
+    public static LocalDateTime parseDeadline(String deadline) {
         requireNonNull(deadline);
         String trimmedDeadline = deadline.trim();
         try {
             return LocalDateTime.parse(trimmedDeadline,
                     DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm"));
         } catch (DateTimeParseException e) {
-            throw new ParseException(LOCAL_DATE_TIME_CONSTRAINT);
+            return null;
         }
     }
 
     /**
      * Parses a {@code String examDateInput} into {@code LocalDateTime}.
      * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the {@code examDateIput} is of an invalid format.
+     * returns null if the {@code examDateIput} is of an invalid format.
      */
-    public static LocalDateTime parseExamDate(String examDateInput) throws ParseException {
+    public static LocalDateTime parseExamDate(String examDateInput) {
         String trimmedExamDateInput = examDateInput.trim();
         try {
             return LocalDateTime.parse(trimmedExamDateInput, Exam.EXAM_DATE_FORMATTER);
         } catch (DateTimeParseException e) {
-            throw new ParseException(Exam.MESSAGE_CONSTRAINTS);
+            return null;
         }
     }
 
@@ -156,10 +154,6 @@ public class ParserUtil {
     public static Title parseTitle(String titleInput) throws ParseException {
         requireNonNull(titleInput);
         String trimmedTitle = titleInput.trim();
-
-        if (!Title.isValidTitle(trimmedTitle)) {
-            throw new ParseException(Title.MESSAGE_CONSTRAINTS);
-        }
 
         return new Title(trimmedTitle);
     }

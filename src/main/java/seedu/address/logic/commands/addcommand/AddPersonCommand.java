@@ -15,16 +15,10 @@ import seedu.address.model.person.Person;
  */
 public class AddPersonCommand extends AddCommand {
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to RemindMe. "
-            + "\nParameters: "
-            + PREFIX_NAME + "NAME "
-            + PREFIX_BIRTHDAY + "BIRTHDAY "
-            + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "John Doe "
-            + PREFIX_BIRTHDAY + "19/12/1998 "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+    public static final String MESSAGE_USAGE =
+            "Missing necessary prefixes: n/ and b/\n"
+            + "Person: add n/NAME b/BIRTHDAY [t/TAG...]\n"
+            + "Example: add n/Bob b/19/12/2000 t/friend";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the RemindMe";
