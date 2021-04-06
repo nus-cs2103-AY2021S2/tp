@@ -101,20 +101,11 @@ public class FindPropertyCommandParser implements Parser<FindPropertyCommand> {
 
         if (argMultimap.getValue(PREFIX_POSTAL).isPresent()) {
             List<String> postalCodes = argMultimap.getAllValues(PREFIX_POSTAL);
-            if (postalCodes.size() > 1) {
-                throw new ParseException("Too many postal codes! Please only use 1 postal code. \n"
-                        + FindPropertyCommand.MESSAGE_USAGE);
-            }
+            List<Predicate<Property>> postalList = new ArrayList<>();
             for (String p : postalCodes) {
-                try {
-                    predicates.add(new PropertyPostalCodePredicate(parsePropertyPostal(p)));
-                } catch (ParseException e) {
-                    throw new ParseException("Wrong postal code format! \n"
-                            + e.getMessage()
-                            + "\n"
-                            + FindPropertyCommand.MESSAGE_USAGE);
-                }
+                postalList.add(new PropertyPostalCodePredicate(p));
             }
+            predicates.add(new PropertyPredicateList(postalList).combineDisjunction());
         }
 
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
