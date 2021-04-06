@@ -4,20 +4,23 @@ import java.util.function.Predicate;
 
 import seedu.address.model.property.client.Contact;
 
+import static java.util.Objects.requireNonNull;
+
 /**
  * Tests that a {@code Client}'s {@code Name} matches any of the keywords given.
  */
 public class PropertyClientContactPredicate implements Predicate<Property> {
-    public final Contact contact;
+    public final String contact;
 
     public PropertyClientContactPredicate(String contact) throws IllegalArgumentException {
-        this.contact = new Contact(contact);
+        requireNonNull(contact);
+        this.contact = contact;
     }
 
     @Override
     public boolean test(Property property) {
         return property.getClient() != null
-               && this.contact.equals(property.getClient().getClientContact());
+               && property.getClient().getClientContact().contact.contains(this.contact);
     }
 
     @Override
