@@ -161,6 +161,7 @@ Edits an existing person in the contact list.
 
 Format: `edit {INDEX [-n NAME] [-p PHONE] [-e EMAIL] [-a ADDRESS] [-t TAG]…​ [-b BIRTHDAY] [-r REMARK] | --remove -t TAG [-t TAG]…​}`
 1. If index supplied, `edit INDEX [...]`: Edits the person at the specified `INDEX`
+   * At least 1 parameter must be supplied.
    * Existing values are replaced by the input values, if specified.
    * To retrieve existing values, use the autocompletion workflow specified [below](#autocomplete-tab).
    * Tags can be removed from a contact by specifying a standalone `-t` without parameters.
@@ -235,6 +236,7 @@ Format: `eedit INDEX [-n NAME] [-d DATE] [-r REMARK]`
 
 * Edits the event at the specified `INDEX`.
   * The index refers to the index number shown in the displayed events list.
+  * At least 1 parameter must be supplied.
 * Existing values will be updated to the input values.
 
 Examples:
