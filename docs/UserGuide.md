@@ -272,8 +272,8 @@ Format: `clear_expired_task`
 
 ### Adding an event: `add_event`
 Adds an event to the SOChedule Event Scheduler.
-Format: `add_event n/TASKNAME sd/STARTDATE st/STARTTIME ed/ENDDATE et/ENDTIME [c/CATEGORY]... [t/TAG]...`
-* `n/` is followed by the task name, it is case-sensitive.
+Format: `add_event n/EVENTNAME sd/STARTDATE st/STARTTIME ed/ENDDATE et/ENDTIME [c/CATEGORY]... [t/TAG]...`
+* `n/` is followed by the event name, it is case-sensitive.
 * `sd/` is followed by the starting date, it has to be a **valid date** and in the format of **YYYY-MM-DD**. Here, Y is the year, M is the month, D is the day and all has to be integers.
 * `st/` is followed by the time in 24-hour format and in the format of **hh:mm** Here, h is the hour, m is the minute and all has to be integers.
 * `ed/` is followed by the end date, it has to be a **valid date** and in the format of **YYYY-MM-DD**.
@@ -351,7 +351,7 @@ Format: `find_event KEYWORDS`
 
 
 ### Clearing expired events: `clear_expired_event`
-Clears tasks with past end date time.
+Clears events with past end date time.
 
 Format: `clear_expired_event`
 
