@@ -37,7 +37,7 @@ class JsonAdaptedMeeting {
      * Constructs a {@code JsonAdaptedClient} with the given client details.
      */
     @JsonCreator
-    public JsonAdaptedMeeting(@JsonProperty("client") String clientName, @JsonProperty("dateTime") String dateTime,
+    public JsonAdaptedMeeting(@JsonProperty("name") String clientName, @JsonProperty("dateTime") String dateTime,
                               @JsonProperty("location") String location,
                               @JsonProperty("description") String description,
                               @JsonProperty("tags") List<JsonAdaptedMeetingTag> tags,
@@ -77,7 +77,10 @@ class JsonAdaptedMeeting {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Client.class.getSimpleName()));
         }
         if (!Name.isValidName(clientName)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(Name.MESSAGE_TYPE_CONSTRAINTS);
+        }
+        if (!Name.isValidLength(clientName)) {
+            throw new IllegalValueException(Name.MESSAGE_LENGTH_CONSTRAINTS);
         }
         final Name modelClient = new Name(clientName);
 
@@ -97,7 +100,11 @@ class JsonAdaptedMeeting {
                     Location.class.getSimpleName()));
         }
         if (!Location.isValidLocation(location)) {
-            throw new IllegalValueException(Location.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(String.format(Location.MESSAGE_CONSTRAINTS,
+                    Location.class.getSimpleName()));
+        }
+        if (!Location.isValidLength(location)) {
+            throw new IllegalValueException(Location.MESSAGE_LENGTH_CONSTRAINTS);
         }
         final Location modelLocation = new Location(location);
 

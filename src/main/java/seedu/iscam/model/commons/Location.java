@@ -10,23 +10,24 @@ import static seedu.iscam.commons.util.AppUtil.checkArgument;
 public class Location {
 
     public static final String MESSAGE_CONSTRAINTS = "Locations can take any values, and it should not be blank";
-
+    public static final String MESSAGE_LENGTH_CONSTRAINTS = "Locations should not be longer than 100 characters.";
     /*
      * The first character of the iscam must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
-
+    private static final int MESSAGE_MAX_LENGTH = 100;
     public final String value;
 
     /**
      * Constructs an {@code Location}.
      *
-     * @param location A valid iscam.
+     * @param location A valid location.
      */
     public Location(String location) {
         requireNonNull(location);
         checkArgument(isValidLocation(location), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidLength(location), MESSAGE_LENGTH_CONSTRAINTS);
         value = location;
     }
 
@@ -35,6 +36,13 @@ public class Location {
      */
     public static boolean isValidLocation(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if a given location has valid length.
+     */
+    public static boolean isValidLength(String test) {
+        return test.length() <= MESSAGE_MAX_LENGTH;
     }
 
     @Override

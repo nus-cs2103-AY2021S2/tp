@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import seedu.iscam.commons.core.GuiSettings;
 import seedu.iscam.commons.core.LogsCenter;
@@ -117,11 +116,6 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Meeting> getFilteredMeetingList() {
         return model.getFilteredMeetingList();
-    }
-
-    @Override
-    public ObservableValue<Boolean> getIsClientMode() {
-        return model.getIsClientMode();
     }
 
     @Override

@@ -10,7 +10,7 @@ import seedu.iscam.model.client.Client;
 import seedu.iscam.model.client.UniqueClientList;
 
 /**
- * Wraps all client data at the iscam-book level
+ * Wraps all client data at the iscam-book leveL
  * Duplicates are not allowed (by .isSameClient comparison)
  */
 public class ClientBook implements ReadOnlyClientBook {

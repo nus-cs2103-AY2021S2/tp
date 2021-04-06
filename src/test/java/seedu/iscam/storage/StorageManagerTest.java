@@ -3,6 +3,7 @@ package seedu.iscam.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static seedu.iscam.testutil.TypicalClients.getTypicalClientBook;
+import static seedu.iscam.testutil.TypicalMeetings.getTypicalMeetingBook;
 
 import java.nio.file.Path;
 
@@ -14,6 +15,8 @@ import seedu.iscam.commons.core.GuiSettings;
 import seedu.iscam.model.user.UserPrefs;
 import seedu.iscam.model.util.clientbook.ClientBook;
 import seedu.iscam.model.util.clientbook.ReadOnlyClientBook;
+import seedu.iscam.model.util.meetingbook.MeetingBook;
+import seedu.iscam.model.util.meetingbook.ReadOnlyMeetingBook;
 import seedu.iscam.storage.client.JsonClientBookStorage;
 import seedu.iscam.storage.meeting.JsonMeetingBookStorage;
 import seedu.iscam.storage.user.JsonUserPrefsStorage;
@@ -69,8 +72,7 @@ public class StorageManagerTest {
         assertNotNull(storageManager.getClientBookFilePath());
     }
 
-    //TODO: maybe fix this test
-    /*
+
     @Test
     public void meetingBookReadSave() throws Exception {
         /*
@@ -78,16 +80,16 @@ public class StorageManagerTest {
          * {@link JsonMeetingBookStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonMeetingBookStorageTest} class.
          */
-    /*    MeetingBook original = getTypicalMeetingBook();
+        MeetingBook original = getTypicalMeetingBook();
         storageManager.saveMeetingBook(original);
         ReadOnlyMeetingBook retrieved = storageManager.readMeetingBook().get();
         assertEquals(original, new MeetingBook(retrieved));
     }
-    */
+
 
     @Test
     public void getMeetingBookFilePath() {
-        assertNotNull(storageManager.getClientBookFilePath());
+        assertNotNull(storageManager.getMeetingBookFilePath());
     }
 
 }
