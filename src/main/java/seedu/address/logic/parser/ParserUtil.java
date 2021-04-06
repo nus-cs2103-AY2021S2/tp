@@ -26,6 +26,7 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    private static final String LOCAL_DATE_TIME_CONSTRAINT = "DATE-TIME should be DD/MM/YYYY HHmm";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -107,11 +108,10 @@ public class ParserUtil {
         requireNonNull(deadline);
         String trimmedDeadline = deadline.trim();
         try {
-            LocalDateTime assignmentDeadline = LocalDateTime.parse(trimmedDeadline,
-                                                                    DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm"));
-            return assignmentDeadline;
+            return LocalDateTime.parse(trimmedDeadline,
+                    DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm"));
         } catch (DateTimeParseException e) {
-            throw new ParseException(Assignment.MESSAGE_CONSTRAINTS);
+            throw new ParseException(LOCAL_DATE_TIME_CONSTRAINT);
         }
     }
 
@@ -124,29 +124,10 @@ public class ParserUtil {
     public static LocalDateTime parseExamDate(String examDateInput) throws ParseException {
         String trimmedExamDateInput = examDateInput.trim();
         try {
-            LocalDateTime examDate = LocalDateTime.parse(trimmedExamDateInput,
-                    Exam.EXAM_DATE_FORMATTER);
-
-            return examDate;
+            return LocalDateTime.parse(trimmedExamDateInput, Exam.EXAM_DATE_FORMATTER);
         } catch (DateTimeParseException e) {
             throw new ParseException(Exam.MESSAGE_CONSTRAINTS);
         }
-    }
-
-    /**
-     * Parses a {@code String examDateInput} into {@code LocalDateTime}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the {@code examDateIput} is of an invalid format.
-     */
-    public static Birthday parseBirthday(String birthdayInput) throws ParseException {
-        requireNonNull(birthdayInput);
-        String trimmedBirthdayInput = birthdayInput.trim();
-        if (!Birthday.isValidBirthday(trimmedBirthdayInput)) {
-            throw new ParseException(Birthday.MESSAGE_CONSTRAINTS);
-        }
-
-        return new Birthday(birthdayInput);
     }
 
     /**

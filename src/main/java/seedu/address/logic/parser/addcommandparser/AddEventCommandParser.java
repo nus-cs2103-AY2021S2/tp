@@ -34,19 +34,14 @@ public class AddEventCommandParser extends AddCommandParser implements Parser<Ad
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddEventCommand.MESSAGE_USAGE));
         }
 
-        try {
-            Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_GENERAL_EVENT)
-                    .orElseThrow(() -> new ParseException("")));
-            LocalDateTime date = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DATE)
-                    .orElseThrow(() -> new ParseException("")));
-            assert description != null && date != null;
+        Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_GENERAL_EVENT)
+                .orElseThrow(() -> new ParseException(Description.MESSAGE_CONSTRAINTS)));
+        LocalDateTime date = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DATE)
+                .orElseThrow(() -> new ParseException("")));
+        assert description != null && date != null;
 
-            GeneralEvent event = new GeneralEvent(description, date);
-            return new AddEventCommand(event);
-        } catch (ParseException e) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, e.getMessage()
-            + "\n" + AddEventCommand.MESSAGE_USAGE));
-        }
+        GeneralEvent event = new GeneralEvent(description, date);
+        return new AddEventCommand(event);
     }
 
 }
