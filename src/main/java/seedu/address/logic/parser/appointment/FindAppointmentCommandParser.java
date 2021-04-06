@@ -2,7 +2,7 @@ package seedu.address.logic.parser.appointment;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DOCTOR;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PATIENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT_START;
 
@@ -38,10 +38,10 @@ public class FindAppointmentCommandParser implements Parser<FindAppointmentComma
                     String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, FindAppointmentCommand.MESSAGE_USAGE));
         }
 
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DOCTOR,
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_PATIENT, PREFIX_DOCTOR,
                 PREFIX_TIMESLOT_START, PREFIX_TAG);
 
-        if (!areAnyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_DOCTOR,
+        if (!areAnyPrefixesPresent(argMultimap, PREFIX_PATIENT, PREFIX_DOCTOR,
                 PREFIX_TIMESLOT_START, PREFIX_TAG)) {
             throw new ParseException(
                     String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, FindAppointmentCommand.MESSAGE_USAGE));
@@ -52,8 +52,8 @@ public class FindAppointmentCommandParser implements Parser<FindAppointmentComma
         List<String> timeStartKeywords = new ArrayList<String>();
         List<String> tagKeywords = new ArrayList<String>();
 
-        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            Collections.addAll(patientKeywords, listKeywords(argMultimap, PREFIX_NAME));
+        if (argMultimap.getValue(PREFIX_PATIENT).isPresent()) {
+            Collections.addAll(patientKeywords, listKeywords(argMultimap, PREFIX_PATIENT));
         }
 
         if (argMultimap.getValue(PREFIX_DOCTOR).isPresent()) {
