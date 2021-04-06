@@ -73,6 +73,15 @@ public class AppointmentBook implements ReadOnlyAppointmentBook {
     }
 
     /**
+     * Returns true there is at least one appointment in the app.
+     *
+     * @return True if there is at least one appointment in the app.
+     */
+    public boolean hasAppointment() {
+        return !appointments.isEmpty();
+    }
+
+    /**
      * Adds an appointment to the app.
      * The appointment must not already exist in the appointment book.
      *

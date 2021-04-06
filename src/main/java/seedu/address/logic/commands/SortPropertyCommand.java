@@ -32,6 +32,8 @@ public class SortPropertyCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Property list sorted %1$s";
 
+    public static final String MESSAGE_EMPTY_PROPERTY_LIST = "Property list is empty!";
+
     private static final Supplier<CommandException> invalidCommandExceptionSupplier = () -> new CommandException(
             String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
 
@@ -51,6 +53,10 @@ public class SortPropertyCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (!model.hasProperty()) {
+            throw new CommandException(MESSAGE_EMPTY_PROPERTY_LIST);
+        }
 
         Comparator<Property> cmp = createPropertyComparator(sortPropertyDescriptor);
         model.sortPropertyList(cmp);

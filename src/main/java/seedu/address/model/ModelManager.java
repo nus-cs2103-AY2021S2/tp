@@ -142,6 +142,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasProperty() {
+        return propertyBook.hasProperty();
+    }
+
+    @Override
     public void deleteProperty(Property target) {
         assert target != null;
         propertyBook.removeProperty(target);
@@ -240,6 +245,11 @@ public class ModelManager implements Model {
     public boolean hasAppointment(Appointment appointment) {
         requireNonNull(appointment);
         return appointmentBook.hasAppointment(appointment);
+    }
+
+    @Override
+    public boolean hasAppointment() {
+        return appointmentBook.hasAppointment();
     }
 
     @Override
