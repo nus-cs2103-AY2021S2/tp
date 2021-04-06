@@ -16,7 +16,7 @@ Given below are my contributions to the project.
     * Justification: This feature allows the user to delete an existing Task in the list based on a given index. 
       Should the user accidentally adds a task, they can delete it easily. 
     * Highlights: The implementation was challenging as it required changes to existing commands. For instance, I had to change the function of
-    isNonZeroUnsignedInteger in StringUtil.java from a boolean function to an int function so that 1 will be returned if the index is a Valid Integer,
+      isNonZeroUnsignedInteger in StringUtil.java from a boolean function to an int function so that 1 will be returned if the index is a Valid Integer,
       2 for Invalid Integers(Non-positive integers) and 3 for Invalid Input(spaces, alphanumeric) such that different error messages would be thrown 
       should the index differ from the format.
 
