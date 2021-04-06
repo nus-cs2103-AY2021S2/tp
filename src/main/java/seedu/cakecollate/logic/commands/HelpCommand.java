@@ -29,7 +29,7 @@ public class HelpCommand extends Command {
                 DeliveryStatusCommand.getMessageUsage(DeliveryStatusCommand.UNDELIVERED_COMMAND_WORD),
                 DeliveryStatusCommand.getMessageUsage(DeliveryStatusCommand.DELIVERED_COMMAND_WORD),
                 DeliveryStatusCommand.getMessageUsage(DeliveryStatusCommand.CANCELLED_COMMAND_WORD),
-                RequestCommand.MESSAGE_USAGE);
+                RequestCommand.MESSAGE_USAGE, AddOrderItemCommand.MESSAGE_USAGE, DeleteOrderItemCommand.MESSAGE_USAGE);
     }
 
     public static ObservableList<String> getListOfCommands() {
