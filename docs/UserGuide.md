@@ -335,7 +335,7 @@ Example:
 Deletes the room at a specified index.
 
 Format: `odel INDEX`
-* `odel` will be blocked if the room is occupied. Run [`dealloc` to deallocate the room before attempting to delete the room.
+* `odel` will be blocked if the room is occupied. Run `dealloc` to deallocate the room before attempting to delete the room.
 
 Parameters:
 * [INDEX](#index) The index of the room to delete.
