@@ -18,6 +18,7 @@ import dog.pawbook.model.Model;
 import dog.pawbook.model.ModelManager;
 import dog.pawbook.model.UserPrefs;
 import dog.pawbook.model.managedentity.Entity;
+import dog.pawbook.model.managedentity.owner.Owner;
 import javafx.util.Pair;
 
 /**
@@ -39,6 +40,7 @@ public class DeleteOwnerCommandTest {
 
         ModelManager expectedModel = new ModelManager(model.getDatabase(), new UserPrefs());
         expectedModel.deleteEntity(pair.getKey());
+        expectedModel.deleteEntity(((Owner) entity).getDogIdSet().stream().findAny().get());
 
         assertCommandSuccess(deleteOwnerCommand, model, expectedMessage, expectedModel);
     }

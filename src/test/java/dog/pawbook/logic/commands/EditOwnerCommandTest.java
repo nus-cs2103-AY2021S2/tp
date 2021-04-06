@@ -23,6 +23,7 @@ import dog.pawbook.model.Database;
 import dog.pawbook.model.Model;
 import dog.pawbook.model.ModelManager;
 import dog.pawbook.model.UserPrefs;
+import dog.pawbook.model.managedentity.Entity;
 import dog.pawbook.model.managedentity.IdMatchPredicate;
 import dog.pawbook.model.managedentity.owner.Owner;
 import dog.pawbook.testutil.EditOwnerDescriptorBuilder;
@@ -38,15 +39,16 @@ public class EditOwnerCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Owner editedOwner = new OwnerBuilder().build();
+        Pair<Integer, Entity> firstIdEntity = model.getDatabase().getEntityList().get(0);
+        Owner editedOwner = new OwnerBuilder((Owner) firstIdEntity.getValue()).build();
         EditOwnerDescriptor descriptor = new EditOwnerDescriptorBuilder(editedOwner).build();
-        EditOwnerCommand editOwnerCommand = new EditOwnerCommand(ID_FIRST_OWNER, descriptor);
+        EditOwnerCommand editOwnerCommand = new EditOwnerCommand(firstIdEntity.getKey(), descriptor);
 
         String expectedMessage = String.format(EditOwnerCommand.MESSAGE_EDIT_OWNER_SUCCESS, editedOwner);
 
         Model expectedModel = new ModelManager(new Database(model.getDatabase()), new UserPrefs());
-        expectedModel.setEntity(ID_FIRST_OWNER, editedOwner);
-        expectedModel.updateFilteredEntityList(new IdMatchPredicate(ID_FIRST_OWNER));
+        expectedModel.setEntity(firstIdEntity.getKey(), editedOwner);
+        expectedModel.updateFilteredEntityList(new IdMatchPredicate(firstIdEntity.getKey()));
 
         assertCommandSuccess(editOwnerCommand, model, expectedMessage, expectedModel);
     }

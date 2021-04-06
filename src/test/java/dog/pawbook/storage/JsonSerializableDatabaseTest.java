@@ -16,7 +16,7 @@ import dog.pawbook.testutil.TypicalEntities;
 public class JsonSerializableDatabaseTest {
 
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableDatabaseTest");
-    private static final Path TYPICAL_OWNERS_FILE = TEST_DATA_FOLDER.resolve("typicalOwnersDatabase.json");
+    private static final Path TYPICAL_OWNERS_FILE = TEST_DATA_FOLDER.resolve("typicalEntitiesDatabase.json");
     private static final Path INVALID_OWNER_FILE = TEST_DATA_FOLDER.resolve("invalidOwnerDatabase.json");
     private static final Path DUPLICATE_OWNER_FILE = TEST_DATA_FOLDER.resolve("duplicateOwnerDatabase.json");
 

@@ -5,7 +5,7 @@ import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_ID_FORMAT;
 import static dog.pawbook.logic.commands.CommandTestUtil.assertCommandFailure;
 import static dog.pawbook.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static dog.pawbook.model.managedentity.IsEntityPredicate.IS_OWNER_PREDICATE;
-import static dog.pawbook.testutil.TypicalDogs.getTypicalDatabase;
+import static dog.pawbook.testutil.TypicalEntities.getTypicalDatabase;
 import static dog.pawbook.testutil.TypicalIndexes.ID_FIRST_DOG;
 import static dog.pawbook.testutil.TypicalIndexes.ID_SECOND_DOG;
 import static java.util.stream.Collectors.toList;
