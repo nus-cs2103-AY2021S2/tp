@@ -35,10 +35,10 @@ destroy AddCommandParser
 LogicManager -> AddCommand : execute()
 activate AddCommand
 
-AddCommand -> Model : addPerson()
+AddCommand -> Model : addStudent()
 activate Model
 
-Model -> StudentBook : addPerson()
+Model -> StudentBook : addStudent()
 activate StudentBook
 
 StudentBook --> Model :
