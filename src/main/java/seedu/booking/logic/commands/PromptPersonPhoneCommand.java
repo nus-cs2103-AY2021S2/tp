@@ -1,8 +1,7 @@
 package seedu.booking.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.booking.commons.core.Messages.MESSAGE_DUPLICATE_PERSON_DISPLAYED_PHONE;
-import static seedu.booking.commons.core.Messages.PROMPT_MESSAGE_TRY_AGAIN;
+import static seedu.booking.commons.core.Messages.*;
 
 import seedu.booking.logic.commands.exceptions.CommandException;
 import seedu.booking.model.Model;
@@ -27,7 +26,7 @@ public class PromptPersonPhoneCommand extends Command {
 
         ModelManager.processStateInput(phone);
         ModelManager.setNextState();
-        return new CommandResult(ModelManager.getNextPromptMessage());
+        return new CommandResult(ModelManager.getNextPromptMessage() + PROMPT_MESSAGE_EXIT_PROMPT);
     }
 
     @Override
