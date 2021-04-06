@@ -95,8 +95,11 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        if (!model.isSavedState()) {
+        if (editPersonDescriptor.isLessonEdited() && !model.isSavedState()) {
             for (Lesson lesson : editedPerson.getLessons()) {
+                if (personToEdit.getLessons().stream().anyMatch(lesson::isSameLesson)) {
+                    continue;
+                }
                 if (model.hasLesson(lesson) && !(model.getLesson(lesson).getNumberOfPerson() == 1
                         && model.getLesson(lesson).containsPerson(personToEdit))) {
                     model.setSavedState(true);
@@ -201,6 +204,10 @@ public class EditCommand extends Command {
             return CollectionUtil.isAnyNonNull(name, phone, subjects, lessons)
                     || school.isPresent() || email.isPresent() || address.isPresent()
                     || guardianName.isPresent() || guardianPhone.isPresent() || level.isPresent();
+        }
+
+        public boolean isLessonEdited() {
+            return CollectionUtil.isAnyNonNull(lessons);
         }
 
         public void setName(Name name) {
