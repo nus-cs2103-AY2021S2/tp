@@ -320,7 +320,7 @@ Examples:
 ### 7. Find Tasks by Keywords: `findTasks`
 
 With so many tasks, you may want to find tasks with given keywords quickly.
-This feature allows you to find all tasks with its TITLE or DESCRIPTION containing any of the specified keywords.
+This feature allows you to find all tasks which contains any of the specified keywords in its TITLE or DESCRIPTION.
 
 Format: `findTasks KEYWORD [MORE_KEYWORDS]...`
 

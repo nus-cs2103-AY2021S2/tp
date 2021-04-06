@@ -13,8 +13,8 @@ import seedu.heymatez.model.task.TaskContainsKeywordPredicate;
 public class FindTasksCommand extends Command {
     public static final String COMMAND_WORD = "findTasks";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all tasks with its title or description "
-            + "containing the specified keywords (case-insensitive) and displays them as a list. \n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all tasks which contains any of the "
+            + "specified keywords (case-insensitive) in its title or description and displays them as a list. \n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " plan meeting proposal";
 
