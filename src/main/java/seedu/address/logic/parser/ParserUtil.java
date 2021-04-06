@@ -119,6 +119,10 @@ public class ParserUtil {
         return new MeetingName(trimmedName);
     }
 
+    public static Set<MeetingName> parseMeetingNames(Collection<String> names) throws ParseException {
+        return parseMany(ParserUtil::parseMeetingName, names);
+    }
+
     /**
      * Parses a {@code String datetime} into a {@code DateTime}.
      * Leading and trailing whitespaces will be trimmed.

@@ -143,6 +143,16 @@ public class Meeting implements Schedulable {
         }
     }
 
+    //=============== Some useful predicates ==========
+
+    public boolean containsName(MeetingName name) {
+        return meetingName.toString().contains(name.toString());
+    }
+
+    public boolean containsDescription(Description desc) {
+        return description.toString().contains(desc.toString());
+    }
+
     public boolean containsPerson(Person person) {
         return connection.existPersonMeetingConnection(person,this);
     }
