@@ -68,12 +68,10 @@ public class AddCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        if (model.hasPerson(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        }
         if (!model.isSavedState()) {
-
-            if (model.hasPerson(toAdd)) {
-                throw new CommandException(MESSAGE_DUPLICATE_PERSON);
-            }
-
             for (Lesson lesson : toAdd.getLessons()) {
                 if (model.hasLesson(lesson)) {
                     model.setSavedState(true);
