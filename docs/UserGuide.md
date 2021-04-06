@@ -323,6 +323,9 @@ Example:
 
 #### 4.2.4 Managing Sessions
 
+Please note that the following session commands can only be used after you have at least 1 student in TutorBuddy.
+Click [here](#423-managing-students) if you want to find out more on how to add your first student.
+
 ##### Adding a single tuition session: `add_session`
 
 Adds a single tuition session to TutorBuddy.
