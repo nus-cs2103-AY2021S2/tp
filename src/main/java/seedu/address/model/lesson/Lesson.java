@@ -56,7 +56,7 @@ public class Lesson implements Comparable<Lesson> {
         return day.toString();
     }
 
-    public Set<Person> getPersonSet(){ return this.persons;}
+    public Set<Person> getPersonSet() { return this.persons; }
 
     public Time getTime() {
         return time;
