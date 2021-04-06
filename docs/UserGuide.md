@@ -780,7 +780,7 @@ A: Yes, do take note that if you close the main application, other windows will 
 
 [Back to Table of Contents](#table-of-contents)
 
-## 5. Command Summary<br>
+## 5. Command Summary  
 <div markdown="block" class="alert alert-info">
 
 **Note:**
