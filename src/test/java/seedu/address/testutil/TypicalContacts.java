@@ -11,12 +11,14 @@ public class TypicalContacts {
             .withName("Alice Pauline")
             .withPhone("94351253")
             .withEmail("alice@example.com")
-            .withTags("friends").build();
+            .withTags("friends")
+            .build();
     public static final Contact BENSON = new ContactBuilder()
             .withName("Benson Meier")
             .withPhone("98765432")
             .withEmail("johnd@example.com")
-            .withTags("owesMoney", "friends").build();
+            .withTags("owesMoney", "friends")
+            .build();
     public static final Contact CARL = new ContactBuilder()
             .withName("Carl Kurz")
             .withPhone("95352563")
@@ -26,7 +28,8 @@ public class TypicalContacts {
             .withName("Daniel Meier")
             .withPhone("87652533")
             .withEmail("cornelia@example.com")
-            .withTags("friends").build();
+            .withTags("friends")
+            .build();
     public static final Contact ELLE = new ContactBuilder()
             .withName("Elle Meyer")
             .withPhone("9482224")
