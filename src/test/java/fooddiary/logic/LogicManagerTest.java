@@ -56,7 +56,9 @@ public class LogicManagerTest {
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteCommand = "delete 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX_PLURAL);
+        assertCommandException(deleteCommand, String.format(
+                MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX_PLURAL,
+                model.getFilteredEntryList().size()));
     }
 
     @Test
