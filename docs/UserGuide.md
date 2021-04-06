@@ -172,6 +172,11 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUAR
 * You can remove all the student’s subjects by typing `t/` without specifying any subject names after it.
 * You can remove all the student’s lessons by typing `le/` without specifying any lesson details after it.
 
+<div markdown="span" class="alert alert-warning">
+:exclamation: **Caution:** Edited information can be displayed on the Contact details panel by retyping
+`detail INDEX` command.
+</div>
+
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing subjects.
@@ -400,6 +405,7 @@ Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, TutorsPet will discard all data and start with an empty data file at the next run.
+
 </div>
 
 ## Coming soon
