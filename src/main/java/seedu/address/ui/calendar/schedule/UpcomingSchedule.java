@@ -1,7 +1,7 @@
 package seedu.address.ui.calendar.schedule;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.ScheduleUiUtil.calendarTextToDate;
+import static seedu.address.commons.util.CalendarUtil.calendarTextToDate;
 
 import java.time.LocalDate;
 import java.util.logging.Logger;
