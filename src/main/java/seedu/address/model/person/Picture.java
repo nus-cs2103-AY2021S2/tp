@@ -63,6 +63,10 @@ public class Picture {
         return FileUtil.isFileExists(path) && FileUtil.hasExtension(path, ALLOWED_FILE_EXTENSIONS);
     }
 
+    /**
+     * Checks if the given @{code str} is a valid image file. Note that this check is lenient and
+     * only checks the file signature, not content.
+     */
     public static boolean isValidImage(Path path) {
         try {
             return FileUtil.hasMagicNumber(path, IMAGE_MAGIC_NUMBERS);
