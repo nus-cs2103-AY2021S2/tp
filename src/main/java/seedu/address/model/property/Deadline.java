@@ -33,10 +33,10 @@ public class Deadline implements Comparable<Deadline> {
     }
 
     /**
-     * Returns true if a given string is a valid date.
+     * Returns true if a given string is a valid deadline.
      *
      * @param test The string to test.
-     * @return True if the given string is a valid date, otherwise false.
+     * @return True if the given string is a valid deadline, otherwise false.
      */
     public static boolean isValidDeadline(String test) {
         return test.matches(VALIDATION_REGEX);
