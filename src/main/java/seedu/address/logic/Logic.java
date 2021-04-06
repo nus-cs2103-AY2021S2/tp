@@ -29,6 +29,8 @@ public interface Logic {
 
     boolean isProceed(String commandText) throws ParseException;
 
+    void setSavedState(boolean isSavedState);
+
     ObservableList<Lesson> getSortedLessonsForDay(String keyword);
 
     ObservableList<String> getLessonsForDayInString(String keyword);
