@@ -150,7 +150,7 @@ will need to type in either y/n for confirmation to add conflicted schedule.
 Examples:
 * `add n/John Doe p/98612341`
 * `add n/Alice Tan p/98765432 s/Abc Secondary School e/alicet@example.com a/John street, block 123, #01-01 gn/Mary Tan gp/23456789`
-* `add n/Bob Lee t/sec3 p/87654321 s/Def Secondary School e/bobl@example.com a/Bob street, block 321, #01-02 gn/John Lee gp/12345678 t/maths le/monday 1300`
+* `add n/Bob Lee p/87654321 s/Def Secondary School e/bobl@example.com a/Bob street, block 321, #01-02 gn/John Lee gp/12345678 t/math le/monday 1300`
 
 ### Listing all contacts : `list`
 
