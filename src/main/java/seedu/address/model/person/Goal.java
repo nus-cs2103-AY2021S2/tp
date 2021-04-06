@@ -84,7 +84,8 @@ public class Goal {
     }
 
     /**
-     * Calculates the next goal deadline from the given {@code date}. Deadlines are guaranteed to fall on Sundays.
+     * Calculates the next goal deadline from the given {@code date}. Deadlines are guaranteed to fall on Sundays for
+     * WEEKLY goals.
      */
     public LocalDate getGoalDeadline(LocalDate date) {
         Frequency freq = getFrequency();

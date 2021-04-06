@@ -11,6 +11,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.group.Group;
 import seedu.address.model.person.Name;
+
 /**
  * Lists all persons in the address book to the user.
  */
@@ -30,6 +31,7 @@ public class ListCommand extends Command {
     public ListCommand(Optional<Name> name) {
         this.name = name;
     }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
