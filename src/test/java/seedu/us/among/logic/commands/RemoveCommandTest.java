@@ -2,9 +2,10 @@ package seedu.us.among.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.us.among.commons.core.Messages.MESSAGE_INDEX_NOT_WITHIN_LIST;
+import static seedu.us.among.commons.core.Messages.MESSAGE_INVALID_COMMAND_ERROR;
 import static seedu.us.among.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.us.among.logic.commands.CommandTestUtil.assertCommandSuccess;
-// import static seedu.us.among.logic.commands.CommandTestUtil.showEndpointAtIndex;
 import static seedu.us.among.logic.commands.CommandTestUtil.showEndpointAtIndex;
 import static seedu.us.among.testutil.TypicalEndpoints.getTypicalEndpointList;
 import static seedu.us.among.testutil.TypicalIndexes.INDEX_FIRST_ENDPOINT;
@@ -12,7 +13,6 @@ import static seedu.us.among.testutil.TypicalIndexes.INDEX_SECOND_ENDPOINT;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.us.among.commons.core.Messages;
 import seedu.us.among.commons.core.index.Index;
 import seedu.us.among.model.Model;
 import seedu.us.among.model.ModelManager;
@@ -24,6 +24,8 @@ import seedu.us.among.model.endpoint.Endpoint;
  * {@code RemoveCommand}.
  */
 public class RemoveCommandTest {
+    private static final String MESSAGE_INVALID_FORMAT_OUT_OF_BOUND = String.format(MESSAGE_INVALID_COMMAND_ERROR,
+            MESSAGE_INDEX_NOT_WITHIN_LIST, RemoveCommand.MESSAGE_USAGE);
 
     private Model model = new ModelManager(getTypicalEndpointList(), new UserPrefs());
 
@@ -45,7 +47,7 @@ public class RemoveCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredEndpointList().size() + 1);
         RemoveCommand removeCommand = new RemoveCommand(outOfBoundIndex);
 
-        assertCommandFailure(removeCommand, model, Messages.MESSAGE_INDEX_NOT_WITHIN_LIST);
+        assertCommandFailure(removeCommand, model, MESSAGE_INVALID_FORMAT_OUT_OF_BOUND);
     }
 
     @Test
@@ -75,7 +77,7 @@ public class RemoveCommandTest {
 
         RemoveCommand removeCommand = new RemoveCommand(outOfBoundIndex);
 
-        assertCommandFailure(removeCommand, model, Messages.MESSAGE_INDEX_NOT_WITHIN_LIST);
+        assertCommandFailure(removeCommand, model, MESSAGE_INVALID_FORMAT_OUT_OF_BOUND);
     }
 
     @Test

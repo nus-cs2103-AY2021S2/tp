@@ -26,6 +26,8 @@ public class ShowCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
+        assertParseFailure(parser, "1000000000000000000", MESSAGE_INVALID_FORMAT_NAN); // overflow
+        assertParseFailure(parser, "-99999999999999999", MESSAGE_INVALID_FORMAT_NAN); // underflow
         assertParseFailure(parser, "1c", MESSAGE_INVALID_FORMAT_NAN); // invalid number
         assertParseFailure(parser, "one", MESSAGE_INVALID_FORMAT_NAN); // invalid number (should be numeric)
     }
