@@ -7,6 +7,8 @@ import java.util.function.Predicate;
 
 import seedu.address.model.tag.Tag;
 
+import static java.util.Objects.requireNonNull;
+
 /**
  * Tests that a {@code Property}'s {@code Tags} contains the tags given.
  */
@@ -17,6 +19,7 @@ public class PropertyTagsPredicate implements Predicate<Property> {
      * Creates a PropertyTagsPredicate
      */
     public PropertyTagsPredicate(String keyword) throws IllegalArgumentException {
+        requireNonNull(keyword);
         String[] keywords = keyword.split(",");
         this.tags = new ArrayList<>();
         this.tags.addAll(Arrays.asList(keywords));
@@ -27,7 +30,7 @@ public class PropertyTagsPredicate implements Predicate<Property> {
     public boolean test(Property property) {
         List<Tag> tested = new ArrayList<>(property.getTags());
         for (String t : tags) {
-            if (tested.stream().noneMatch(x -> x.tagName.contains(t))) {
+            if (tested.stream().noneMatch(x -> x.tagName.toLowerCase().contains(t.toLowerCase()))) {
                 return false;
             }
         }

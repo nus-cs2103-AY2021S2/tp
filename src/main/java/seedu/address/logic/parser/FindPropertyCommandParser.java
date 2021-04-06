@@ -14,7 +14,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PROPERTY_PRICE_MORE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAGS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
-import static seedu.address.logic.parser.ParserUtil.parsePropertyAddress;
 import static seedu.address.logic.parser.ParserUtil.parsePropertyDeadline;
 
 import java.util.ArrayList;
