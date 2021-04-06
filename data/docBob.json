@@ -136,6 +136,12 @@
         "title" : "weqrtyhj",
         "body" : "wqedrfghnjmk,"
       } ]
+    }, {
+      "dateString" : "6/4/21 16:29",
+      "sections" : [ {
+        "title" : "",
+        "body" : "hohoho"
+      } ]
     } ]
   }, {
     "name" : "Charlotte Oliveiro",
@@ -214,7 +220,19 @@
     "isArchived" : false,
     "tagged" : [ "asidjoajc" ],
     "appointments" : [ ],
-    "records" : [ ]
+    "records" : [ {
+      "dateString" : "6/4/21 16:29",
+      "sections" : [ {
+        "title" : "",
+        "body" : "sup"
+      } ]
+    }, {
+      "dateString" : "6/4/21 16:31",
+      "sections" : [ {
+        "title" : "",
+        "body" : "hi"
+      } ]
+    } ]
   }, {
     "name" : "Geoffrey Huber",
     "phone" : "92624417",
@@ -290,6 +308,12 @@
       "sections" : [ {
         "title" : "",
         "body" : "a"
+      } ]
+    }, {
+      "dateString" : "6/4/21 16:33",
+      "sections" : [ {
+        "title" : "bug",
+        "body" : ""
       } ]
     } ]
   }, {
