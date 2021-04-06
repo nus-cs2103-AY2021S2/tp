@@ -48,8 +48,8 @@ public class DogTest {
 
     @Test
     public void getDob() {
-        assertEquals(new DateOfBirth("11-2-2020"), APPLE.getDob());
-        assertEquals(new DateOfBirth("15-4-2020"), BELL.getDob());
+        assertEquals(new DateOfBirth("11-02-2020"), APPLE.getDob());
+        assertEquals(new DateOfBirth("15-04-2020"), BELL.getDob());
     }
 
     @Test

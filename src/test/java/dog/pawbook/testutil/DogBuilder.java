@@ -18,7 +18,7 @@ public class DogBuilder {
 
     public static final String DEFAULT_NAME = "Goldie";
     public static final String DEFAULT_BREED = "Golden Retriever";
-    public static final String DEFAULT_DATEOFBIRTH = "10-1-2020";
+    public static final String DEFAULT_DATEOFBIRTH = "10-01-2020";
     public static final String DEFAULT_SEX = "male";
     public static final int DEFAULT_OWNERID = 1;
 

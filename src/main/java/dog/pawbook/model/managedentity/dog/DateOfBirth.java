@@ -13,7 +13,7 @@ import java.time.format.DateTimeParseException;
  * Guarantees: immutable;
  */
 public class DateOfBirth {
-    public static final String DATE_FORMAT = "d-M-yyyy";
+    public static final String DATE_FORMAT = "dd-MM-yyyy";
     public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern(DATE_FORMAT);
     public static final String MESSAGE_CONSTRAINTS = "Date of Birth should be in the " + DATE_FORMAT + " format.";
 

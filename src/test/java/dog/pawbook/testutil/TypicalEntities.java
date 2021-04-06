@@ -57,21 +57,21 @@ public class TypicalEntities {
 
     // Dogs
     public static final Dog APPLE = new DogBuilder().withName("Apple")
-            .withBreed("Golden Retriever").withDateOfBirth("11-2-2020")
+            .withBreed("Golden Retriever").withDateOfBirth("11-02-2020")
             .withSex("female").withOwnerID(1).withTags("friendly").build();
     public static final Dog BUBBLES = new DogBuilder().withName("Bubbles")
-            .withBreed("Bulldog").withDateOfBirth("1-1-2021").withSex("female").withOwnerID(3)
+            .withBreed("Bulldog").withDateOfBirth("01-01-2021").withSex("female").withOwnerID(3)
             .withTags("cheerful").build();
     public static final Dog CARSON = new DogBuilder().withName("Carson").withSex("male")
-            .withDateOfBirth("2-2-2019").withBreed("Chipin").withOwnerID(5).build();
-    public static final Dog DUKE = new DogBuilder().withName("Duke").withSex("male").withDateOfBirth("4-5-2020")
+            .withDateOfBirth("02-02-2019").withBreed("Chipin").withOwnerID(5).build();
+    public static final Dog DUKE = new DogBuilder().withName("Duke").withSex("male").withDateOfBirth("04-05-2020")
             .withBreed("German Shepherd").withOwnerID(7).withTags("quiet").build();
     public static final Dog ELSA = new DogBuilder().withName("Elsa").withSex("female")
-            .withDateOfBirth("2-2-2020").withBreed("Poodle").withOwnerID(9).build();
+            .withDateOfBirth("02-02-2020").withBreed("Poodle").withOwnerID(9).build();
     public static final Dog FLORA = new DogBuilder().withName("Flora").withSex("female")
-            .withDateOfBirth("21-8-2018").withBreed("Australian Shepherd").withOwnerID(11).build();
+            .withDateOfBirth("21-08-2018").withBreed("Australian Shepherd").withOwnerID(11).build();
     public static final Dog GENIE = new DogBuilder().withName("Genie").withSex("male")
-            .withDateOfBirth("29-5-2020").withBreed("Husky").withOwnerID(13).build();
+            .withDateOfBirth("29-05-2020").withBreed("Husky").withOwnerID(13).build();
 
     // Manually added owners
     public static final Owner HOON = new OwnerBuilder().withName("Hoon Meier").withPhone("8482424")
@@ -81,9 +81,9 @@ public class TypicalEntities {
 
     // Manually added dogs
     public static final Dog HOOK = new DogBuilder().withName("Hook").withSex("male")
-            .withDateOfBirth("13-7-2019").withBreed("Chihuahua").withOwnerID(13).build();
+            .withDateOfBirth("13-07-2019").withBreed("Chihuahua").withOwnerID(13).build();
     public static final Dog INK = new DogBuilder().withName("Ink").withSex("male")
-            .withDateOfBirth("9-9-2020").withBreed("Rottweiler").withOwnerID(14).build();
+            .withDateOfBirth("09-09-2020").withBreed("Rottweiler").withOwnerID(14).build();
 
     // Manually added - Owner's details found in {@code CommandTestUtil}
     public static final Owner AMY = new OwnerBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)

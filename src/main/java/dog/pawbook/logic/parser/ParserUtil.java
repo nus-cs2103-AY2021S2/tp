@@ -29,6 +29,8 @@ import dog.pawbook.model.managedentity.tag.Tag;
  */
 public class ParserUtil {
 
+    private static final String MESSAGE_INVALID_DAY_OF_THE_MONTH = "Day of the month does not exist!";
+
     /**
      * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
