@@ -13,6 +13,7 @@ public class NameContainsKeywordsPredicate implements Predicate<Pair<Integer, En
     private final List<String> keywords;
 
     public NameContainsKeywordsPredicate(List<String> keywords) {
+        assert(!keywords.isEmpty());
         this.keywords = keywords;
     }
 

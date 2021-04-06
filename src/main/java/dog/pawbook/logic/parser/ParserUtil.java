@@ -1,5 +1,6 @@
 package dog.pawbook.logic.parser;
 
+import static dog.pawbook.commons.core.Messages.MESSAGE_INVALID_ENTITY_ID;
 import static dog.pawbook.model.managedentity.dog.DateOfBirth.DATE_FORMAT;
 import static dog.pawbook.model.managedentity.dog.DateOfBirth.DATE_FORMATTER;
 import static dog.pawbook.model.managedentity.program.Session.DATETIME_FORMATTER;
@@ -12,7 +13,6 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-import dog.pawbook.commons.core.Messages;
 import dog.pawbook.logic.parser.exceptions.ParseException;
 import dog.pawbook.model.managedentity.Name;
 import dog.pawbook.model.managedentity.dog.Breed;
@@ -191,7 +191,7 @@ public class ParserUtil {
         try {
             return Integer.parseInt(trimmedOwnerId);
         } catch (NumberFormatException e) {
-            throw new ParseException(Messages.MESSAGE_INVALID_ENTITY_ID);
+            throw new ParseException(MESSAGE_INVALID_ENTITY_ID);
         }
     }
 
