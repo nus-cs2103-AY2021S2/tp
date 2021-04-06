@@ -3,13 +3,17 @@ package dog.pawbook.model.managedentity.dog;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_BREED_BELL;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_DATEOFBIRTH_BELL;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_NAME_BELL;
+import static dog.pawbook.logic.commands.CommandTestUtil.VALID_OWNERID_17;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_SEX_BELL;
+import static dog.pawbook.logic.commands.CommandTestUtil.VALID_TAG_FRIENDLY;
 import static dog.pawbook.logic.commands.CommandTestUtil.VALID_TAG_QUIET;
-import static dog.pawbook.testutil.Assert.assertThrows;
+import static dog.pawbook.testutil.TypicalEntities.ALICE;
 import static dog.pawbook.testutil.TypicalEntities.APPLE;
 import static dog.pawbook.testutil.TypicalEntities.BELL;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Set;
 
@@ -23,9 +27,50 @@ import dog.pawbook.testutil.DogBuilder;
 public class DogTest {
 
     @Test
-    public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Dog dog = new DogBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> dog.getTags().remove(0));
+    public void isSameAs() {
+        // same object -> returns true
+        assertTrue(APPLE.isSameAs(APPLE));
+
+        // different entity type -> return false
+        assertFalse(APPLE.isSameAs(ALICE));
+
+        // null -> returns false
+        assertFalse(APPLE.isSameAs(null));
+
+        // same name and owner, all other attributes different -> returns true
+        Dog editedApple = new DogBuilder(APPLE).withBreed(VALID_BREED_BELL).withDateOfBirth(VALID_DATEOFBIRTH_BELL)
+                .withSex(VALID_SEX_BELL).withTags(VALID_TAG_QUIET, VALID_TAG_FRIENDLY).build();
+        assertTrue(APPLE.isSameAs(editedApple));
+
+        // same name and owner, all other attributes different -> returns true
+        editedApple = new DogBuilder(APPLE).withBreed(VALID_BREED_BELL).withDateOfBirth(VALID_DATEOFBIRTH_BELL)
+                .withSex(VALID_SEX_BELL).withTags(VALID_TAG_QUIET, VALID_TAG_FRIENDLY).build();
+        assertTrue(APPLE.isSameAs(editedApple));
+
+        // same name, all other attributes different -> returns false
+        editedApple = new DogBuilder(APPLE).withBreed(VALID_BREED_BELL).withDateOfBirth(VALID_DATEOFBIRTH_BELL)
+                .withSex(VALID_SEX_BELL).withTags(VALID_TAG_QUIET, VALID_TAG_FRIENDLY)
+                .withOwnerID(VALID_OWNERID_17).build();
+        assertFalse(APPLE.isSameAs(editedApple));
+
+        // same owner, all other attributes different -> returns false
+        editedApple = new DogBuilder(APPLE).withName(VALID_NAME_BELL).withBreed(VALID_BREED_BELL)
+                .withDateOfBirth(VALID_DATEOFBIRTH_BELL).withSex(VALID_SEX_BELL)
+                .withTags(VALID_TAG_QUIET, VALID_TAG_FRIENDLY).build();
+        assertFalse(APPLE.isSameAs(editedApple));
+
+        // different name, all other attributes same -> returns false
+        editedApple = new DogBuilder(APPLE).withName(VALID_NAME_BELL).build();
+        assertFalse(APPLE.isSameAs(editedApple));
+
+        // name differs in case, all other attributes same -> returns false
+        Dog editedBell = new DogBuilder(BELL).withName(VALID_NAME_BELL.toLowerCase()).build();
+        assertFalse(BELL.isSameAs(editedBell));
+
+        // name has trailing spaces, all other attributes same -> returns false
+        String nameWithTrailingSpaces = VALID_NAME_BELL + " ";
+        editedBell = new DogBuilder(BELL).withName(nameWithTrailingSpaces).build();
+        assertFalse(BELL.isSameAs(editedBell));
     }
 
     @Test
@@ -72,6 +117,9 @@ public class DogTest {
 
         // same object -> returns true
         assertEquals(APPLE, APPLE);
+
+        // different entity type -> return false
+        assertNotEquals(APPLE, ALICE);
 
         // null -> returns false
         assertNotEquals(APPLE, null);
