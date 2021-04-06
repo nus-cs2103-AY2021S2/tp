@@ -24,6 +24,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class BatchCommandParser implements Parser<BatchCommand> {
     public static final String INVALID_BATCH_COMMAND = "Invalid batch operation!\nOnly edit and delete operations "
             + "are supported.";
+    public static final String REPEATED_INDICES = "Input indices are repeated! Please ensure that all indices are "
+            + "different.";
     public static final String INVALID_EDIT_ARGUMENTS = "Invalid arguments for edit command!\nOnly "
             + "phone numbers, addresses, tags and insurance policies can be edited in batch.";
 

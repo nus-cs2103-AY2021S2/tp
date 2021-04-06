@@ -27,7 +27,9 @@ import seedu.address.model.tag.Tag;
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */
 public class ParserUtil {
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INDEX_LESS_THAN_ONE = "Index needs to be more than or equals to 1.";
+    public static final String MESSAGE_INVALID_BATCH_INDICES = "Indices all need to be more than or equals to 1, "
+            + "and within the range of list indices displayed on the screen.\nIndices should only be comma-separated.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -36,9 +38,11 @@ public class ParserUtil {
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
+
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
+            throw new ParseException(MESSAGE_INDEX_LESS_THAN_ONE);
         }
+
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
 
@@ -62,11 +66,12 @@ public class ParserUtil {
     }
     /**
      * Parses {@code oneBasedIndices} and adds to a {@code List<Index>}. Leading and trailing whitespaces
-     * will be trimmed.
+     * will be trimmed. If there are duplicate inputs, a {@code ParseException} will be thrown.
      *
      * @param oneBasedIndices comma separated indices input by the user
      * @return {@code List<Index>}.
-     * @throws ParseException if any of the specified index is invalid (not non-zero unsigned integer).
+     * @throws ParseException if any of the specified index is invalid (not non-zero unsigned integer), or if there are
+     * duplicate input indices.
      */
     public static List<Index> parseIndices(String oneBasedIndices) throws ParseException {
         String[] splitByComma = oneBasedIndices.split(",");
@@ -74,8 +79,21 @@ public class ParserUtil {
             splitByComma[i] = splitByComma[i].trim();
         }
         List<Index> listOfIndices = new ArrayList<>();
+        Set<Index> setOfIndices = new HashSet<>();
         for (String index : splitByComma) {
-            listOfIndices.add(parseIndex(index));
+            Index parsedIndex;
+
+            try {
+                parsedIndex = parseIndex(index);
+            } catch (ParseException e) {
+                throw new ParseException(MESSAGE_INVALID_BATCH_INDICES);
+            }
+
+            if (setOfIndices.contains(parsedIndex)) {
+                throw new ParseException(BatchCommandParser.REPEATED_INDICES);
+            }
+            listOfIndices.add(parsedIndex);
+            setOfIndices.add(parsedIndex);
         }
         return listOfIndices;
     }
