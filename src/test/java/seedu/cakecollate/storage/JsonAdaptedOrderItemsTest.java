@@ -11,8 +11,9 @@ import seedu.cakecollate.commons.exceptions.IllegalValueException;
 import seedu.cakecollate.model.orderitem.Type;
 
 public class JsonAdaptedOrderItemsTest {
+
     private static final String INVALID_TYPE = "";
-    
+
     @Test
     public void toModelType_validOrderItem_returnsOrderItem() throws Exception {
         JsonAdaptedOrderItems orderItem = new JsonAdaptedOrderItems(CHOCOLATE_MUD);
@@ -34,3 +35,4 @@ public class JsonAdaptedOrderItemsTest {
         assertThrows(IllegalValueException.class, expectedMsg, orderItem::toModelType);
     }
 }
+
