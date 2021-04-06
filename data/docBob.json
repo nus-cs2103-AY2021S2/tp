@@ -43,7 +43,7 @@
     "weight" : "69kg",
     "isArchived" : false,
     "tagged" : [ "friends" ],
-    "appointments" : [ "14/4/21 14:00" ],
+    "appointments" : [ "14/4/21 14:00", "25/12/22 0:00" ],
     "records" : [ {
       "dateString" : "31/3/21 18:18",
       "sections" : [ {
