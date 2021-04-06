@@ -277,7 +277,7 @@ Description:
 * The `SORTING_KEY` can take values of `name`, `price`, `postalcode`, `address`, or `deadline`, and it should not be any other values.
 
 Examples:
-*  `sort appointment o/asc k/datetime` Sorts `appointment` by `datetime` in ascending order.
+*  `sort property o/asc k/name` Sorts `property` by `name` in ascending order.
 
 #### 3.7.2 Sorting appointments: `sort appointment`
 
