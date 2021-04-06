@@ -127,23 +127,23 @@ Format: `add n/NAME p/PHONE [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] 
   
 * Education Levels are represented by abbreviated names. Available levels cover
   
-    - Primary School: `pri1`, `pri2`, `pri3`, `pri4`, `pri5`, `pri6`
+    > Primary School: `pri1`, `pri2`, `pri3`, `pri4`, `pri5`, `pri6`
       
-    - Secondary School: `sec1`, `sec2`, `sec3`, `sec4`, `sec5`
+    > Secondary School: `sec1`, `sec2`, `sec3`, `sec4`, `sec5`
       
-    - Junior College: `jc1`, `jc2`
+    > Junior College: `jc1`, `jc2`
       
-    - Post Junior College: `graduated` 
+    > Post Junior College: `graduated` 
 
 * Subjects are represented by abbreviated names. Available subjects cover commonly tutored ones, including
   
-    - Languages: `cn`, `eng`
+    > Languages: `cn`, `eng`
       
-    - Mathematics & Sciences: `math`, `bio`, `chem`, `phys`, `sci`
+    > Mathematics & Sciences: `math`, `bio`, `chem`, `phys`, `sci`
       
-    - Humanities: `econ`, `geo`, `hist`
+    > Humanities: `econ`, `geo`, `hist`
       
-    - They represent subjects Chinese, English, Mathematics, Biology, Chemistry, Physics, Science,
+    > They represent subjects Chinese, English, Mathematics, Biology, Chemistry, Physics, Science,
       Economics, Geography and History in order of the above listing.
 
 * A student’s contact can have any number of subjects (including 0). 
