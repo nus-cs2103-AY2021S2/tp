@@ -1,6 +1,7 @@
 package seedu.smartlib.model;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -141,6 +142,12 @@ public interface Model {
     void addBook(Book book);
 
     /**
+     * Gets the list of books with the given bookName
+     * @return the list of books
+     */
+    ArrayList<Book> getBooksByName(Name bookName);
+
+    /**
      * Adds the given reader.
      * {@code reader} must not already exist in the registered reader base.
      */
@@ -161,6 +168,11 @@ public interface Model {
      * Returns the barcode of the first available (i.e. not borrowed) copy of the book in SmartLib.
      */
     Barcode getBookBarcode(Name bookName);
+
+    /**
+     * Returns the Book with the specified barcode.
+     */
+    Book getBookByBarcode(Barcode barcode);
 
     /**
      * Returns the barcode of the first available (i.e. not borrowed) copy of the book in SmartLib.

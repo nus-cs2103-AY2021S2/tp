@@ -35,6 +35,8 @@ public class BorrowCommand extends Command {
             + " that he/she can borrow, or is holding on to an overdue book.";
     public static final String UNABLE_TO_UPDATE_CODEBASE = "Sorry, an error has occurred with the codebase and we are"
             + " unable to update it.";
+    public static final String NO_AVAILABLE_BOOKS = "Sorry, all copies are loaned out."
+            + "Maybe you could perform a search by book's name to see the book's borrowing status.";
 
     private final IncompleteRecord incompleteRecord;
 
@@ -71,6 +73,10 @@ public class BorrowCommand extends Command {
     private void verifyRecordIntegrity(Model model, Record properRecord) throws CommandException {
         if (model.hasRecord(properRecord)) {
             throw new CommandException(MESSAGE_DUPLICATE_RECORD);
+        }
+
+        if (properRecord.getBookBarcode() == null) {
+            throw new CommandException(NO_AVAILABLE_BOOKS);
         }
 
         if (model.isBookWithBarcodeBorrowed(properRecord.getBookBarcode())) {

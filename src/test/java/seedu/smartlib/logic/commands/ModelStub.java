@@ -1,6 +1,7 @@
 package seedu.smartlib.logic.commands;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -119,6 +120,11 @@ class ModelStub implements Model {
      */
     @Override
     public Barcode getBookBarcode(Name bookName) {
+        return null;
+    }
+
+    @Override
+    public Book getBookByBarcode(Barcode barcode) {
         return null;
     }
 
@@ -326,6 +332,11 @@ class ModelStub implements Model {
     @Override
     public void addBook(Book book) {
         throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public ArrayList<Book> getBooksByName(Name bookName) {
+        return null;
     }
 
     /**
