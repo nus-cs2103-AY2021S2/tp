@@ -2,19 +2,22 @@ package seedu.address.model.property;
 
 import java.util.function.Predicate;
 
+import static java.util.Objects.requireNonNull;
+
 /**
  * Tests that a {@code Property}'s {@code Address} matches the address given.
  */
 public class PropertyAddressPredicate implements Predicate<Property> {
-    private final Address address;
+    private final String address;
 
-    public PropertyAddressPredicate(Address address) {
+    public PropertyAddressPredicate(String address) {
+        requireNonNull(address);
         this.address = address;
     }
 
     @Override
     public boolean test(Property property) {
-        return property.getAddress().equals(address);
+        return property.getAddress().propertyAddress.contains(address);
     }
 
     @Override

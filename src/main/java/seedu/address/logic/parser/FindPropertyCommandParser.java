@@ -16,7 +16,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAGS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 import static seedu.address.logic.parser.ParserUtil.parsePropertyAddress;
 import static seedu.address.logic.parser.ParserUtil.parsePropertyDeadline;
-import static seedu.address.logic.parser.ParserUtil.parsePropertyPostal;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -110,19 +109,19 @@ public class FindPropertyCommandParser implements Parser<FindPropertyCommand> {
 
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             List<String> addresses = argMultimap.getAllValues(PREFIX_ADDRESS);
-            if (addresses.size() > 1) {
-                throw new ParseException("Too many addresses! Please only use 1 address. \n"
-                        + FindPropertyCommand.MESSAGE_USAGE);
-            } else {
-                try {
-                    predicates.add(new PropertyAddressPredicate(parsePropertyAddress(addresses.get(0))));
-                } catch (ParseException e) {
-                    throw new ParseException("Wrong address format! \n"
-                            + e.getMessage()
-                            + "\n"
-                            + FindPropertyCommand.MESSAGE_USAGE);
+            List<Predicate<Property>> addressList = new ArrayList<>();
+            try {
+                for (String a : addresses) {
+                    addressList.add(new PropertyAddressPredicate(a));
                 }
+            } catch (IllegalArgumentException e) {
+                throw new ParseException(
+                        "a/ used but no addresses found! \n"
+                        + e.getMessage()
+                        + "\n"
+                        + FindPropertyCommand.MESSAGE_USAGE);
             }
+            predicates.add(new PropertyPredicateList(addressList).combineDisjunction());
         }
 
         if (argMultimap.getValue(PREFIX_REMARK).isPresent()) {
@@ -141,13 +140,10 @@ public class FindPropertyCommandParser implements Parser<FindPropertyCommand> {
 
         if (argMultimap.getValue(PREFIX_DEADLINE).isPresent()) {
             List<String> deadlines = argMultimap.getAllValues(PREFIX_DEADLINE);
-            if (deadlines.size() > 1) {
-                throw new ParseException("Too many deadlines! Please only use 1 deadline. \n"
-                        + FindPropertyCommand.MESSAGE_USAGE);
-            }
+            List<Predicate<Property>> dateList = new ArrayList<>();
             for (String s : deadlines) {
                 try {
-                    predicates.add(new PropertyDeadlinePredicate(parsePropertyDeadline(s)));
+                    dateList.add(new PropertyDeadlinePredicate(parsePropertyDeadline(s)));
                 } catch (ParseException e) {
                     throw new ParseException("Wrong deadline format! \n"
                             + e.getMessage()
@@ -155,18 +151,21 @@ public class FindPropertyCommandParser implements Parser<FindPropertyCommand> {
                             + FindPropertyCommand.MESSAGE_USAGE);
                 }
             }
+            predicates.add(new PropertyPredicateList(dateList).combineDisjunction());
         }
 
         if (argMultimap.getValue(PREFIX_TAGS).isPresent()) {
             List<String> tags = argMultimap.getAllValues(PREFIX_TAGS);
+            List<Predicate<Property>> tagList = new ArrayList<>();
             try {
-                tags.forEach(s -> predicates.add(new PropertyTagsPredicate(s)));
+                tags.forEach(s -> tagList.add(new PropertyTagsPredicate(s)));
             } catch (IllegalArgumentException e) {
                 throw new ParseException("Wrong tag format! \n"
                         + e.getMessage()
                         + "\n"
                         + FindPropertyCommand.MESSAGE_USAGE);
             }
+            predicates.add(new PropertyPredicateList(tagList).combineDisjunction());
         }
 
         if (argMultimap.getValue(PREFIX_CLIENT_CONTACT).isPresent()) {
