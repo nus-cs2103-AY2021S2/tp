@@ -51,6 +51,7 @@ public class EditTaskCommand extends Command {
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the SOChedule.";
+    public static final String MESSAGE_NO_CHANGE = "No field of this task is changed.";
     public static final String MESSAGE_COMPLETED_TASK = "A completed task cannot be edited.";
 
     private final Index index;
@@ -87,6 +88,10 @@ public class EditTaskCommand extends Command {
 
         if (!taskToEdit.isSameTask(editedTask) && model.hasTask(editedTask)) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
+        }
+
+        if (taskToEdit.isSameTask(editedTask)) {
+            throw new CommandException(MESSAGE_NO_CHANGE);
         }
 
         model.setTask(taskToEdit, editedTask);
