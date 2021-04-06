@@ -38,6 +38,8 @@ public class EntityCard extends UiPart<Region> {
     private Label id;
     @FXML
     private FlowPane tags;
+    @FXML
+    private Label staticId;
 
     /**
      * Creates a {@code EntityCard} with the given {@code Entity} and index to display.

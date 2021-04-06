@@ -24,7 +24,7 @@
     <scene>
         <Scene>
             <stylesheets>
-                <URL value="@DarkTheme.css" />
+                <URL value="@PawbookTheme.css" />
                 <URL value="@Extensions.css" />
             </stylesheets>
             <GridPane prefHeight="380" prefWidth="590.0">
