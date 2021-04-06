@@ -12,9 +12,7 @@ import seedu.cakecollate.model.orderitem.Type;
 
 public class JsonAdaptedOrderItemsTest {
     private static final String INVALID_TYPE = "";
-
-    private static final String VALID_TYPE = CHOCOLATE_MUD.getType().toString();
-
+    
     @Test
     public void toModelType_validOrderItem_returnsOrderItem() throws Exception {
         JsonAdaptedOrderItems orderItem = new JsonAdaptedOrderItems(CHOCOLATE_MUD);
