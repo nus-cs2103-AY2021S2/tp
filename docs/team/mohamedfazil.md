@@ -28,7 +28,7 @@ Given below are my contributions to the project.
     * Updated all tests in logic.model. (Pull request [\#168](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/168))
 
 * **Features**: 
-    * Add location panel to display all locations in GUI. (Pull request [\#216](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/216))  
+    * Add location panel to GUI. (Pull request [\#216](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/216))  
   
 * **Enhancements to existing features**:
     * Modified `Edit` to add items, changed parsing of inputs and added tests for edit command (Pull requests [\#76](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/76))
