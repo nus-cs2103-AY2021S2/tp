@@ -27,12 +27,12 @@ public class EditAppointmentCommand extends Command {
     public static final String COMMAND_WORD = "edit appointment";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits an appointment in the app. \n"
-            + "Parameters: INDEX"
+            + "Parameters: INDEX "
             + PREFIX_NAME + "NAME "
             + PREFIX_REMARK + "REMARK "
             + PREFIX_DATE + "DATE "
             + PREFIX_TIME + "TIME \n"
-            + "Example: " + COMMAND_WORD + " "
+            + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NAME + "Meet Alex "
             + PREFIX_REMARK + "at M hotel "
             + PREFIX_DATE + "17-2-2021 "
