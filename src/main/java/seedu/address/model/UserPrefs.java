@@ -6,8 +6,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Objects;
 
-import seedu.address.commons.core.Alias;
-import seedu.address.commons.core.AliasMapping;
 import seedu.address.commons.core.GuiSettings;
 
 /**
@@ -17,7 +15,6 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
     private Path addressBookFilePath = Paths.get("data" , "sunrez.json");
-    private AliasMapping aliasMapping = new AliasMapping();
     private Path commandHistoryFilePath = Paths.get("data", "commandhistory.txt");
 
     /**
@@ -40,7 +37,6 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
         setAddressBookFilePath(newUserPrefs.getAddressBookFilePath());
-        setAliasMapping(newUserPrefs.getAliasMapping());
     }
 
     public GuiSettings getGuiSettings() {
@@ -59,96 +55,6 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         this.addressBookFilePath = addressBookFilePath;
-    }
-
-    /**
-     * Returns the current alias mapping.
-     *
-     * @return The mapping.
-     */
-    public AliasMapping getAliasMapping() {
-        return aliasMapping;
-    }
-
-
-    /**
-     * Sets the current mapping to the specified mapping.
-     *
-     * @param aliasMappings The mapping.
-     * @throws NullPointerException If the input is null.
-     */
-    public void setAliasMapping(AliasMapping aliasMappings) {
-        requireNonNull(aliasMappings);
-        this.aliasMapping = aliasMappings;
-    }
-
-    /**
-     * Adds a user-defined alias to the current mapping.
-     *
-     * @param alias The alias to be added.
-     * @throws NullPointerException If the input is null.
-     */
-    public void addAlias(Alias alias) {
-        requireNonNull(alias);
-        aliasMapping.addAlias(alias);
-    }
-
-    /**
-     * Deletes a user-defined alias from the current mapping.
-     *
-     * @param aliasName The name of the alias to be deleted.
-     * @throws NullPointerException If the input is null.
-     */
-    public void deleteAlias(String aliasName) {
-        requireNonNull(aliasName);
-        aliasMapping.deleteAlias(aliasName);
-    }
-
-    /**
-     * Returns an Alias based on name.
-     *
-     * @param aliasName Name of the alias.
-     * @return The alias with the specified name.
-     * @throws NullPointerException If the input is null.
-     */
-    public Alias getAlias(String aliasName) {
-        requireNonNull(aliasName);
-        return aliasMapping.getAlias(aliasName);
-    }
-
-    /**
-     * Checks if the current mapping contains an alias based on name.
-     *
-     * @param aliasName Name of the alias.
-     * @return Whether the mapping contains the alias.
-     */
-    @Override
-    public boolean containsAlias(String aliasName) {
-        return aliasMapping.containsAlias(aliasName);
-    }
-
-    /**
-     * Checks if the alias name is a reserved keyword.
-     *
-     * @param aliasName Name of the alias.
-     * @return Whether the name is reserved.
-     * @throws NullPointerException If the input is null.
-     */
-    public boolean isReservedKeyword(String aliasName) {
-        requireNonNull(aliasName);
-        return aliasMapping.isReservedKeyword(aliasName);
-    }
-
-    /**
-     * Checks if the command word is recursive.
-     *
-     * @param commandWord The command word.
-     * @return Whether the command word is recursive.
-     * @throws NullPointerException If the input is null.
-     */
-    public boolean isRecursiveKeyword(String commandWord) {
-        requireNonNull(commandWord);
-        return aliasMapping.isRecursiveKeyword(commandWord);
     }
 
     /**
@@ -173,13 +79,12 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
         return guiSettings.equals(o.guiSettings)
                 && addressBookFilePath.equals(o.addressBookFilePath)
-                && aliasMapping.equals(o.aliasMapping)
                 && commandHistoryFilePath.equals(o.commandHistoryFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, addressBookFilePath, aliasMapping, commandHistoryFilePath);
+        return Objects.hash(guiSettings, addressBookFilePath, commandHistoryFilePath);
     }
 
     @Override

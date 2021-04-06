@@ -24,6 +24,7 @@ public class RoomCommandTestUtil {
     public static final String[] VALID_ROOM_TAGS = new String[]{"tag1", "tag2"};
 
     public static final List<String> INVALID_VALID_ROOM_NUMBERS = new ArrayList<>(Arrays.asList(
+            "00-100", // Room numbers cannot begin with 001
             "a15-312", // non number characters not allowed in room number
             "123-123", "12-12", "1-1", "123-12", "12 123" // room number format is dd-ddd
     ));
