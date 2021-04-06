@@ -10,21 +10,14 @@ import static seedu.budgetbaby.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.budgetbaby.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import seedu.budgetbaby.ablogic.commands.Command;
 import seedu.budgetbaby.ablogic.commands.EditCommand;
-import seedu.budgetbaby.abmodel.AddressBook;
-import seedu.budgetbaby.abmodel.Model;
-import seedu.budgetbaby.abmodel.person.NameContainsKeywordsPredicate;
-import seedu.budgetbaby.abmodel.person.Person;
 import seedu.budgetbaby.commons.core.index.Index;
-import seedu.budgetbaby.logic.commands.CommandResult;
 import seedu.budgetbaby.logic.commands.exceptions.CommandException;
-import seedu.budgetbaby.model.Budget;
 import seedu.budgetbaby.model.BudgetBabyModel;
 import seedu.budgetbaby.model.BudgetTracker;
+import seedu.budgetbaby.model.record.Description;
 import seedu.budgetbaby.model.record.FinancialRecord;
 import seedu.budgetbaby.testutil.EditPersonDescriptorBuilder;
 
@@ -110,7 +103,8 @@ public class CommandTestUtil {
      * - the CommandException message matches {@code expectedMessage} <br>
      * - the address book, filtered person list and selected person in {@code actualModel} remain unchanged
      */
-    public static void assertCommandFailure(BudgetBabyCommand command, BudgetBabyModel actualModel, String expectedMessage) {
+    public static void assertCommandFailure(BudgetBabyCommand command, BudgetBabyModel actualModel,
+                                            String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         BudgetTracker expectedBudgetTracker = new BudgetTracker(actualModel.getBudgetTracker());
@@ -125,13 +119,18 @@ public class CommandTestUtil {
      * Updates {@code model}'s filtered list to show only the financial record at the given {@code targetIndex} in the
      * {@code model}'s budget list.
      */
-    public static void showFrAtIndex(BudgetBabyModel model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredFinancialRecordList().size());
+    public static void showFrAtIndex(BudgetBabyModel model, List<Index> targetIndex) {
+        assertTrue(targetIndex.size() <= model.getFilteredFinancialRecordList().size());
+        ArrayList<Description> frList = new ArrayList<>();
 
-        FinancialRecord fr = model.getFilteredFinancialRecordList().get(targetIndex.getZeroBased());
-        model.updateFilteredFinancialRecordList(record -> record.getDescription().equals(fr.getDescription()));
+        for (Index i : targetIndex) {
+            FinancialRecord fr = model.getFilteredFinancialRecordList().get(i.getZeroBased());
+            frList.add(fr.getDescription());
+        }
 
-        assertEquals(1, model.getFilteredFinancialRecordList().size());
+        model.updateFilteredFinancialRecordList(record -> frList.contains(record.getDescription()));
+
+        assertEquals(targetIndex.size(), model.getFilteredFinancialRecordList().size());
     }
 
 }
