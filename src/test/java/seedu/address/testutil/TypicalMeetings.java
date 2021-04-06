@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import seedu.address.model.person.Event;
 import seedu.address.model.person.Meeting;
 
 public class TypicalMeetings {
@@ -21,4 +22,13 @@ public class TypicalMeetings {
             .withDate(LocalDate.now())
             .withTime(LocalTime.now())
             .build();
+
+    public static Meeting[] getTypicalMeetings() {
+        return new Meeting[] {
+                new Meeting(LocalDate.of(2021, 1, 30), LocalTime.of(10, 0), "m1"),
+                new Meeting(LocalDate.of(2021, 1, 24), LocalTime.of(10, 0), "m2"),
+                new Meeting(LocalDate.of(2022, 12, 30), LocalTime.of(10, 0), "m3"),
+                new Meeting(LocalDate.of(2021, 4, 1), LocalTime.of(10, 0), "m4"),
+        };
+    }
 }
