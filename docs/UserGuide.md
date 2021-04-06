@@ -271,7 +271,6 @@ to-do tanjin update pic here (will match `get OR post` from the Method field **a
   <img width="450px" src="images/commands/find.png" >
 </p>
 
-
 <div markdown="span" class="alert alert-warning">:bulb: **Tip:** The search is case-insensitive and the order of the keywords do not matter.<br>
 Partial Words **will** be matched. e.g. `appl` will match `Apple`<br>
 Searches with no none or a single [prefix](#prefix-table) will preform an **OR** search and all Endpoints matching either keywords will be returned.<br>

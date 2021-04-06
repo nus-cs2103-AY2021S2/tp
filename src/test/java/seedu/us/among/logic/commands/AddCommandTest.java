@@ -153,6 +153,11 @@ public class AddCommandTest {
         public void updateFilteredEndpointList(Predicate<Endpoint> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public Predicate<Endpoint> getFilteredPredicate() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
