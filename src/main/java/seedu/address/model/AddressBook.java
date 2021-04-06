@@ -132,7 +132,6 @@ public class AddressBook implements ReadOnlyAddressBook {
             sb.append(personNotif);
             sb.append("\n");
         }
-        sb.append(persons.getNotifications());
         if (sb.length() > length) {
             return sb.toString();
         }
