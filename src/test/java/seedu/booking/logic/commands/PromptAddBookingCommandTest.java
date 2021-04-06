@@ -3,6 +3,7 @@ package seedu.booking.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.booking.commons.core.Messages.PROMPT_EMAIL_MESSAGE;
+import static seedu.booking.commons.core.Messages.PROMPT_MESSAGE_EXIT_PROMPT;
 import static seedu.booking.logic.commands.states.AddBookingCommandState.STATE_EMAIL;
 import static seedu.booking.testutil.TypicalPersons.getTypicalBookingSystem;
 
@@ -16,7 +17,7 @@ public class PromptAddBookingCommandTest {
 
     @Test
     void execute() {
-        CommandResult expectedResult = new CommandResult(PROMPT_EMAIL_MESSAGE);
+        CommandResult expectedResult = new CommandResult(PROMPT_EMAIL_MESSAGE + PROMPT_MESSAGE_EXIT_PROMPT);
         CommandResult result = new PromptAddBookingCommand().execute(model);
         assertEquals(expectedResult, result);
 

@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.booking.commons.core.Messages.PROMPT_EMAIL_PERSON_MESSAGE;
+import static seedu.booking.commons.core.Messages.PROMPT_MESSAGE_EXIT_PROMPT;
 import static seedu.booking.commons.core.Messages.PROMPT_PHONE_MESSAGE;
 import static seedu.booking.commons.core.Messages.PROMPT_TAG_MESSAGE;
 import static seedu.booking.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
@@ -39,7 +40,7 @@ public class PromptAddPersonCommandTest {
 
     @Test
     void execute_enterName_stateChangeToEmailSuccessful() {
-        CommandResult expectedResult = new CommandResult(PROMPT_EMAIL_PERSON_MESSAGE);
+        CommandResult expectedResult = new CommandResult(PROMPT_EMAIL_PERSON_MESSAGE + PROMPT_MESSAGE_EXIT_PROMPT);
         CommandResult result = new PromptAddPersonCommand(new Name((VALID_NAME_AMY))).execute(model);
         assertEquals(expectedResult, result);
 
@@ -66,7 +67,7 @@ public class PromptAddPersonCommandTest {
 
             PromptPersonEmailCommand command = new PromptPersonEmailCommand(
                     new Email(VALID_EMAIL_AMY));
-            CommandResult expectedResult = new CommandResult(PROMPT_PHONE_MESSAGE);
+            CommandResult expectedResult = new CommandResult(PROMPT_PHONE_MESSAGE + PROMPT_MESSAGE_EXIT_PROMPT);
             CommandResult result;
 
             try {
@@ -89,7 +90,7 @@ public class PromptAddPersonCommandTest {
 
             PromptPersonPhoneCommand command = new PromptPersonPhoneCommand(
                     new Phone(VALID_PHONE_AMY));
-            CommandResult expectedResult = new CommandResult(PROMPT_TAG_MESSAGE);
+            CommandResult expectedResult = new CommandResult(PROMPT_TAG_MESSAGE + PROMPT_MESSAGE_EXIT_PROMPT);
             CommandResult result;
 
             try {
