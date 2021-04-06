@@ -140,12 +140,6 @@ public class FindPropertyCommandParserTest {
         assertParseSuccess(parser, " p/123456", expected);
     }
 
-    @Test
-    public void multiplePostalCodeTest() {
-        String expected = "Too many postal codes! Please only use 1 postal code. \n"
-                + FindPropertyCommand.MESSAGE_USAGE;
-        assertParseFailure(parser, " p/123124 p/124345", expected);
-    }
 
     @Test
     public void validAddressTest() {
@@ -159,12 +153,6 @@ public class FindPropertyCommandParserTest {
         assertParseSuccess(parser, " a/BLK 123 Kent Ridge Ave 1", expected);
     }
 
-    @Test
-    public void multipleAddressTest() {
-        String expected = "Too many addresses! Please only use 1 address. \n"
-                + FindPropertyCommand.MESSAGE_USAGE;
-        assertParseFailure(parser, " a/address 1 a/address 2 a/3rd one ", expected);
-    }
 
     @Test
     public void validRemarksTest() {
@@ -207,19 +195,6 @@ public class FindPropertyCommandParserTest {
                 + "\n"
                 + FindPropertyCommand.MESSAGE_USAGE;
         assertParseFailure(parser, " d/not deadline ", expected);
-    }
-
-    @Test
-    public void multipleDeadlineTest() throws ParseException {
-        List<Predicate<Property>> predicates = new ArrayList<>();
-
-        predicates.add(new PropertyDeadlinePredicate(parsePropertyDeadline("12-09-2021")));
-        predicates.add(new PropertyDeadlinePredicate(parsePropertyDeadline("31-12-2021")));
-
-        FindPropertyCommand expected =
-                new FindPropertyCommand(new PropertyPredicateList(Collections.singletonList(
-                        new PropertyPredicateList(predicates).combineDisjunction())));
-        assertParseSuccess(parser, " d/12-09-2021 d/31-12-2021", expected);
     }
 
     @Test
@@ -269,12 +244,6 @@ public class FindPropertyCommandParserTest {
         assertParseFailure(parser, " cc/ ", expected);
     }
 
-    @Test
-    public void multipleClientContactTest() {
-        String expected = "Too many client contacts! Please only use 1 contact. \n"
-                + FindPropertyCommand.MESSAGE_USAGE;
-        assertParseFailure(parser, " cc/12345678 cc/45678901", expected);
-    }
 
     @Test
     public void validClientEmailTest() {

@@ -1,10 +1,5 @@
 package seedu.address.model.property;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
-import static seedu.address.model.tag.Tag.MESSAGE_CONSTRAINTS;
-import static seedu.address.model.tag.Tag.isValidTagName;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
