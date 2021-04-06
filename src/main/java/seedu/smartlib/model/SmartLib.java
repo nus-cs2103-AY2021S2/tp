@@ -328,7 +328,7 @@ public class SmartLib implements ReadOnlySmartLib {
     public Book getBookByBarcode(Barcode barcode) {
         requireNonNull(barcode);
         assert(Barcode.isValidBarcode(barcode.getValue()));
-        for (Book book: books) {
+        for (Book book : books) {
             if (book.getBarcode().equals(barcode)) {
                 return book;
             }
