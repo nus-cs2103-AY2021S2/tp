@@ -11,11 +11,7 @@ import seedu.address.model.Model;
  */
 public class ClearModulesCommand extends ClearCommand {
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Clears ALL modules in RemindMe. "
-            + "\nParameters: " + PREFIX_MODULE
-            + "\nExample: " + COMMAND_WORD + " "
-            + PREFIX_MODULE;
+    public static final String MESSAGE_USAGE = "After m/, it should be empty!";
 
     public static final String MESSAGE_SUCCESS = "Modules have been cleared!";
 

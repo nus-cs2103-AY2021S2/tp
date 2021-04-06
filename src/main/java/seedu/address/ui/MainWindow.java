@@ -82,7 +82,7 @@ public class MainWindow extends UiPart<Stage> {
         setWindowDefaultSize(logic.getGuiSettings());
         setAccelerators();
 
-        //Create calendar dependecies and window
+        //Create calendar dependencies and window
         calendarStorage = new CalendarStorage(logic);
         upcomingSchedule = new UpcomingSchedule(calendarStorage);
         calendarWindow = new CalendarWindow(calendarStorage, upcomingSchedule);

@@ -11,11 +11,7 @@ import seedu.address.model.Model;
  */
 public class ClearEventsCommand extends ClearCommand {
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Clears ALL general events in RemindMe. "
-            + "\nParameters: " + PREFIX_GENERAL_EVENT
-            + "\nExample: " + COMMAND_WORD + " "
-            + PREFIX_GENERAL_EVENT;
+    public static final String MESSAGE_USAGE = "After g/, it should be empty!";
 
     public static final String MESSAGE_SUCCESS = "General events have been cleared";
 

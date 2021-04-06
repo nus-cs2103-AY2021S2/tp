@@ -15,6 +15,7 @@ public class ClearCommand extends Command {
     public static final String MESSAGE_USAGE = "Command: " + COMMAND_WORD + "\n"
             + "Person: clear n/\n"
             + "Module: clear m/\n"
+            + "Event: clear g/\n"
             + "RemindMe: clear";
 
     public static final String MESSAGE_SUCCESS = "RemindMe is cleared!";
