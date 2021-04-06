@@ -9,19 +9,19 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.model.person.Goal.Frequency;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.TestDataUtil;
 import seedu.address.testutil.TypicalMeetings;
 
 public class PersonTest {
@@ -100,43 +100,39 @@ public class PersonTest {
 
     @Test
     public void person_getGoalDeadline_success() {
-        Person aliceCopy = new PersonBuilder(ALICE).build();
         LocalDate date = LocalDate.of(2021, 3, 30);
 
-        Person editedAlice = new PersonBuilder(aliceCopy).build()
-                .withGoal(new Goal(Goal.Frequency.WEEKLY));
+        Person editedAlice = new PersonBuilder(ALICE).build()
+                .withGoal(new Goal(Frequency.WEEKLY));
         assertEquals(ZERO_DAY, editedAlice.getGoalDeadline(date));
 
-        editedAlice = new PersonBuilder(aliceCopy).build()
-                .withGoal(new Goal(Goal.Frequency.WEEKLY))
-                .withMeetings(Arrays.asList(TypicalMeetings.getTypicalMeetings().clone()));
+        editedAlice = new PersonBuilder(ALICE).build()
+                .withGoal(new Goal(Frequency.WEEKLY))
+                .withMeetings(Arrays.asList(TestDataUtil.getTypicalMeetings()));
         assertEquals(LocalDate.of(2021, 2, 7), editedAlice.getGoalDeadline(date));
 
-        editedAlice = new PersonBuilder(aliceCopy).build()
-                .withGoal(new Goal(Goal.Frequency.MONTHLY))
-                .withMeetings(Arrays.asList(TypicalMeetings.getTypicalMeetings().clone()));
+        editedAlice = new PersonBuilder(ALICE).build()
+                .withGoal(new Goal(Frequency.MONTHLY))
+                .withMeetings(Arrays.asList(TestDataUtil.getTypicalMeetings()));
         assertEquals(LocalDate.of(2021, 2, 28), editedAlice.getGoalDeadline(date));
 
-        editedAlice = new PersonBuilder(aliceCopy).build()
-                .withGoal(new Goal(Goal.Frequency.YEARLY))
-                .withMeetings(Arrays.asList(TypicalMeetings.getTypicalMeetings().clone()));
+        editedAlice = new PersonBuilder(ALICE).build()
+                .withGoal(new Goal(Frequency.YEARLY))
+                .withMeetings(Arrays.asList(TestDataUtil.getTypicalMeetings()));
         assertEquals(LocalDate.of(2022, 12, 31), editedAlice.getGoalDeadline(date));
 
         // leap day
-        editedAlice = new PersonBuilder(aliceCopy).build()
-                .withGoal(new Goal(Goal.Frequency.MONTHLY))
-                .withMeetings(Collections.singletonList(new Meeting(
-                        LocalDate.of(2024, 1, 15),
-                        LocalTime.of(20, 0),
-                        "Some meeting")));
+        editedAlice = new PersonBuilder(ALICE).build()
+                .withGoal(new Goal(Frequency.MONTHLY))
+                .withMeetings(Collections.singletonList(TypicalMeetings.LEAP_DAY));
         assertEquals(LocalDate.of(
                 2024, 2, 29),
                 editedAlice.getGoalDeadline(LocalDate.of(2024, 1, 20)));
 
         // no prior meetings
-        editedAlice = new PersonBuilder(aliceCopy).build()
-                .withGoal(new Goal(Goal.Frequency.WEEKLY))
-                .withMeetings(new ArrayList<>());
+        editedAlice = new PersonBuilder(ALICE).build()
+                .withGoal(new Goal(Frequency.WEEKLY))
+                .withMeetings(Collections.emptyList());
         assertEquals(ZERO_DAY, editedAlice.getGoalDeadline(date));
     }
 }
