@@ -140,6 +140,7 @@ The tag associated with a room or issue.
 * Tags must be non-blank and alphanumeric (spaces are not allowed).
 * Tags are limited to 25 characters.
 * Tags are case-sensitive: e.g. `SHN`,`shn` and `Shn` are each considered separate tags.
+* Insertion order of tags does not guarantee display order in any part of the user interface.
 * Duplicate tags will be accepted as input, but only one instance will be recorded.
 * For the best experience, we recommend keeping tags short and having fewer than 20 of them per entry. There is no 
   theoretical limit to the number of tags an entry can have, but SunRez may slow down or run into unexpected problems 
@@ -261,6 +262,10 @@ Example:
 :point_right: Room commands are prefixed with `o` as `r` is taken up by Resident commands. `o` is the second character in R**o**om. 
 </div>
 
+<div markdown="block" class="alert alert-info">
+**:information_source: Rooms are always sorted in ascending order by room number in all views.**
+</div>
+
 #### Add a room : `oadd`
 
 Adds a room to the housing management system.
@@ -313,6 +318,7 @@ Examples:
 Edits the existing room record at a specified index.
 
 Format: `oedit INDEX [r/ROOM_NUMBER] [t/ROOM_TYPE] [g/TAG]`
+* `INDEX` refers to the index number shown in the displayed room list. `INDEX` **must be a positive integer 1, 2, 3, …**.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * `oedit` will be blocked if the room is occupied. Run `dealloc` to deallocate the room before making further edits.
@@ -335,6 +341,7 @@ Example:
 Deletes the room at a specified index.
 
 Format: `odel INDEX`
+* `INDEX` refers to the index number shown in the displayed resident list. `INDEX` **must be a positive integer 1,2,3, ...**.
 * `odel` will be blocked if the room is occupied. Run `dealloc` to deallocate the room before attempting to delete the room.
 
 Parameters:
