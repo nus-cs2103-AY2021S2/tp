@@ -44,7 +44,9 @@ class DeleteTagCommandTest {
 
         DeleteTagCommand deleteTagCommand = new DeleteTagCommand(INDEX_FIRST_TASK, lastTag);
 
-        String expectedMessage = String.format(DeleteTagCommand.MESSAGE_DELETE_TAG_TASK_SUCCESS, editedTask);
+        String expectedMessage = String.format("%s %s\n%s %s",
+                DeleteTagCommand.MESSAGE_SHOW_DELETED_TAG, lastTag.toString(),
+                DeleteTagCommand.MESSAGE_DELETE_TAG_TASK_SUCCESS, editedTask);
 
         Model expectedModel = new ModelManager(new ModuleBook(model.getModuleBook()), new UserPrefs());
         expectedModel.setTask(firstTask, editedTask);
@@ -67,7 +69,9 @@ class DeleteTagCommandTest {
 
         DeleteTagCommand deleteTagCommand = new DeleteTagCommand(INDEX_FOURTH_TASK, lastTag);
 
-        String expectedMessage = String.format(DeleteTagCommand.MESSAGE_DELETE_TAG_TASK_SUCCESS, editedTask);
+        String expectedMessage = String.format("%s %s\n%s %s",
+                DeleteTagCommand.MESSAGE_SHOW_DELETED_TAG, lastTag.toString(),
+                DeleteTagCommand.MESSAGE_DELETE_TAG_TASK_SUCCESS, editedTask);
 
         Model expectedModel = new ModelManager(new ModuleBook(model.getModuleBook()), new UserPrefs());
         expectedModel.setTask(fourthTask, editedTask);
@@ -91,7 +95,9 @@ class DeleteTagCommandTest {
 
         DeleteTagCommand deleteTagCommand = new DeleteTagCommand(INDEX_FIRST_TASK, lastTag);
 
-        String expectedMessage = String.format(DeleteTagCommand.MESSAGE_DELETE_TAG_TASK_SUCCESS, editedTask);
+        String expectedMessage = String.format("%s %s\n%s %s",
+                DeleteTagCommand.MESSAGE_SHOW_DELETED_TAG, lastTag.toString(),
+                DeleteTagCommand.MESSAGE_DELETE_TAG_TASK_SUCCESS, editedTask);
 
         Model expectedModel = new ModelManager(new ModuleBook(model.getModuleBook()), new UserPrefs());
         expectedModel.setTask(firstTask, editedTask);
