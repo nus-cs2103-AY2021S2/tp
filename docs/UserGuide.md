@@ -178,9 +178,9 @@ Format: `mk n/TITLE [set/DATE] [s/DURATION] [d/DESCRIPTION]
   should be expressed as `01/12/2021`, not 1/12/2021. Furthermore, Date should be
   a day that is after the current day.
 * Duration should be numeric, contain 2 timings, and should be in 24 hours format with a colon, like `22:30-22:45`.
-  Duration can only exists when there is date or recurring schedule. 
+  Duration can only exist when there is date or recurring schedule. 
 * Description can have multiple lines by adding a line break using <kbd>shift</kbd>+<kbd>enter</kbd>.
-* Recurring schedule (can be optional) should have 3 conditions which consist of:
+* Recurring schedule should have 3 conditions which consist of:
     * An end date when the task stops recurring.
     * A day of the week that the task recurs on.
     * Frequency of the recurring task.
@@ -206,8 +206,8 @@ mk n/take a break d/
 ### Editing a task : `edit`
 
 Edits an existing task in the planner
-so that you can have the flexibility to make changes to a certain task
-if there is an input error when adding the task to the planner or there is a change in task requirements.
+so that you can have the flexibility in making changes to a certain task
+if there is a change in your task or schedule.
 
 Format: `edit INDEX [n/TITLE] [set/DATE] [s/DURATION] [d/DESCRIPTION]
 [r/RECURRING SCHEDULE] [st/STATUS] [t/TAG]…​`
@@ -430,9 +430,9 @@ Format: `stat`
 
 ### View tasks on a date : `view`
 
-Displays the tasks happening on a particular date, including those recurring tasks
+Displays the tasks happening on a particular date, including recurring tasks,
 and brings the calendar to the date specified
-so that you can schedule new activities during the free time on the same day.
+so that you may find free time on the day to schedule new activities.
 
 Format: `view DATE`
 
