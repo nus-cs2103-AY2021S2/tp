@@ -38,7 +38,7 @@
 
 #prevButton, #nextButton {
     -fx-padding: 2 5 2 5;
-    -fx-font-size: 12pt;
+    -fx-font-size: 10pt;
     -fx-font-weight: bold;
     -fx-text-fill: white;
     -fx-background-color: transparent;

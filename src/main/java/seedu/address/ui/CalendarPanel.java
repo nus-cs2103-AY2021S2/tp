@@ -64,7 +64,7 @@ public class CalendarPanel extends UiPart<Region> implements Observer {
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 7; j++) {
                 StackPane stackPane = new StackPane();
-                stackPane.setPrefSize(100, 100);
+                stackPane.setPrefSize(50, 50);
                 calendar.add(stackPane, j, i);
                 calendarPanes.add(stackPane);
             }
