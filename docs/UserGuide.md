@@ -432,8 +432,10 @@ Parameters: none
 Q: How do I transfer my data to another Computer?
 
 A: Install the app in the other computer and overwrite the empty data file it creates with the file that
-contains the data of your previous AddressBook home folder.
+contains the data of your previous AddressBook home folder. The image below shows the file directory to get the 
+`foodDiary.json` file, and where you should add it to if you would like to read an extracted data you have receievd. 
 
+![Food Diary Json File Directory](images/FoodDiaryJsonFileDirectory.png)
 
 -------------------------------------------------------------------------------------
 
