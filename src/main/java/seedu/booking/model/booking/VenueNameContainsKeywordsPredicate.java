@@ -7,7 +7,7 @@ import seedu.booking.commons.util.StringUtil;
 import seedu.booking.model.venue.Venue;
 
 /**
- * Tests that a {@code Venue}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Venue}'s {@code VenueName} matches any of the keywords given.
  */
 public class VenueNameContainsKeywordsPredicate implements Predicate<Venue> {
     private final List<String> keywords;

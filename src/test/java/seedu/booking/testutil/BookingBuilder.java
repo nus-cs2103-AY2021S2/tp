@@ -3,6 +3,7 @@ package seedu.booking.testutil;
 import static seedu.booking.testutil.TypicalVenues.VENUE1;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -21,12 +22,12 @@ import seedu.booking.model.venue.VenueName;
  */
 public class BookingBuilder {
 
-    public static final Email DEFAULT_BOOKER = new Email("example@gmail.com");
-    public static final VenueName DEFAULT_VENUE = VENUE1.getVenueName();
-    private static final Description DEFAULT_DESCRIPTION = new Description("Good");
-    private static final StartTime DEFAULT_BOOKING_START = new StartTime(LocalDateTime.of(2021, 03, 01, 12, 30, 00));
-    private static final EndTime DEFAULT_BOOKING_END = new EndTime(LocalDateTime.of(2021, 03, 01, 12, 30, 00));
-    private static final Id DEFAULT_ID = new Id(1);
+    public static final String DEFAULT_BOOKER = "example@gmail.com";
+    public static final String DEFAULT_VENUE = VENUE1.getVenueName().venueName;
+    private static final String DEFAULT_DESCRIPTION = "Good";
+    private static final String DEFAULT_BOOKING_START = "2021-03-01 12:30";
+    private static final String DEFAULT_BOOKING_END = "2021-03-01 13:30";
+    private static final String DEFAULT_ID = String.valueOf(1);
 
     private Email bookerEmail;
     private Description description;
@@ -35,18 +36,19 @@ public class BookingBuilder {
     private EndTime bookingEnd;
     private Set<Tag> tags;
     private Id id;
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
     /**
      * Creates a {@code BookingBuilder} with the default details.
      */
     public BookingBuilder() {
-        bookerEmail = DEFAULT_BOOKER;
-        venueName = DEFAULT_VENUE;
-        description = DEFAULT_DESCRIPTION;
-        bookingStart = DEFAULT_BOOKING_START;
-        bookingEnd = DEFAULT_BOOKING_END;
+        bookerEmail = new Email(DEFAULT_BOOKER);
+        venueName = new VenueName(DEFAULT_VENUE);
+        description = new Description(DEFAULT_DESCRIPTION);
+        bookingStart = new StartTime(LocalDateTime.parse(DEFAULT_BOOKING_START, formatter));
+        bookingEnd = new EndTime(LocalDateTime.parse(DEFAULT_BOOKING_END, formatter));
         tags = new HashSet<>();
-        id = DEFAULT_ID;
+        id = new Id(DEFAULT_ID);
     }
 
     /**
@@ -65,40 +67,40 @@ public class BookingBuilder {
     /**
      * Sets the {@code booker} of the {@code Booking} that we are building.
      */
-    public BookingBuilder withBooker(Email booker) {
-        this.bookerEmail = booker;
+    public BookingBuilder withBooker(String booker) {
+        this.bookerEmail = new Email(booker);
         return this;
     }
 
     /**
      * Sets the {@code venue} of the {@code Booking} that we are building.
      */
-    public BookingBuilder withVenue(VenueName venue) {
-        this.venueName = venue;
+    public BookingBuilder withVenue(String venue) {
+        this.venueName = new VenueName(venue);
         return this;
     }
 
     /**
      * Sets the {@code description} of the {@code Booking} that we are building.
      */
-    public BookingBuilder withDescription(Description description) {
-        this.description = description;
+    public BookingBuilder withDescription(String description) {
+        this.description = new Description(description);
         return this;
     }
 
     /**
      * Sets the {@code bookingStart} of the {@code Booking} that we are building.
      */
-    public BookingBuilder withBookingStart(StartTime bookingStart) {
-        this.bookingStart = bookingStart;
+    public BookingBuilder withBookingStart(String bookingStart) {
+        this.bookingStart = new StartTime(LocalDateTime.parse(bookingStart, formatter));
         return this;
     }
 
     /**
      * Sets the {@code bookingEnd} of the {@code Booking} that we are building.
      */
-    public BookingBuilder withBookingEnd(EndTime bookingEnd) {
-        this.bookingEnd = bookingEnd;
+    public BookingBuilder withBookingEnd(String bookingEnd) {
+        this.bookingEnd = new EndTime(LocalDateTime.parse(bookingEnd, formatter));
         return this;
     }
 
@@ -113,8 +115,16 @@ public class BookingBuilder {
     /**
      * Sets the {@code id} of the {@code Booking} that we are building.
      */
-    public BookingBuilder withId(Id id) {
-        this.id = id;
+    public BookingBuilder withId(String id) {
+        this.id = new Id(id);
+        return this;
+    }
+
+    /**
+     * Sets the {@code email} of the {@code Booking} that we are building.
+     */
+    public BookingBuilder withEmail(String bookerEmail) {
+        this.bookerEmail = new Email(bookerEmail);
         return this;
     }
 

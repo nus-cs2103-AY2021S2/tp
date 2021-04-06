@@ -17,6 +17,7 @@ import static seedu.booking.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.booking.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.booking.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.booking.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.booking.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.booking.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -38,13 +39,13 @@ public class EditPersonCommandParserTest {
 
     @Test
     public void parse_missingParts_failure() {
-        // no index specified
-        assertParseFailure(parser, VALID_NAME_AMY, MESSAGE_INVALID_FORMAT);
+        // no email specified
+        assertParseFailure(parser, " " + PREFIX_NAME + VALID_NAME_AMY, MESSAGE_INVALID_FORMAT);
 
         // no field specified
-        assertParseFailure(parser, VALID_NAME_AMY + ORIGINAL_EMAIL_DESC_AMY, EditPersonCommand.MESSAGE_NOT_EDITED);
+        assertParseFailure(parser, ORIGINAL_EMAIL_DESC_AMY, EditPersonCommand.MESSAGE_NOT_EDITED);
 
-        // no index and no field specified
+        // no email and no field specified
         assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
     }
 

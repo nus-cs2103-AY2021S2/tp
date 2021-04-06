@@ -122,7 +122,7 @@ public class AddPersonCommandTest {
 
         @Override
         public void addBooking(Booking booking) {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -172,7 +172,7 @@ public class AddPersonCommandTest {
 
         @Override
         public boolean hasBooking(Booking booking) {
-            return false;
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override

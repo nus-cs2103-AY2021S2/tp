@@ -3,6 +3,7 @@ package seedu.booking.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.booking.model.Model.PREDICATE_SHOW_ALL_VENUES;
 
+import seedu.booking.commons.core.Messages;
 import seedu.booking.logic.commands.exceptions.CommandException;
 import seedu.booking.model.Model;
 
@@ -18,12 +19,16 @@ public class ListVenueCommand extends Command {
             + "Parameters: NIL\n"
             + "Example: " + COMMAND_WORD;
 
-    public static final String MESSAGE_SUCCESS = "Listed all venues";
-
+    public static final String MESSAGE_VENUE_LISTED_SUCCESS = "Here are all venues currently in the system:\n";
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         model.updateFilteredVenueList(PREDICATE_SHOW_ALL_VENUES);
-        return new CommandResult(MESSAGE_SUCCESS);
+
+        if (model.getFilteredVenueList().isEmpty()) {
+            throw new CommandException(Messages.MESSAGE_VENUE_LISTED_EMPTY);
+        }
+
+        return new CommandResult(MESSAGE_VENUE_LISTED_SUCCESS);
     }
 }

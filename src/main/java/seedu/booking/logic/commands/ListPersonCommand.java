@@ -10,9 +10,9 @@ import seedu.booking.model.Model;
  */
 public class ListPersonCommand extends Command {
 
-    public static final String COMMAND_WORD = "list_persons";
+    public static final String COMMAND_WORD = "list_person";
 
-    public static final String MESSAGE_SUCCESS = "Listed all persons";
+    public static final String MESSAGE_SUCCESS = "Here are all persons currently in the system:";
 
     @Override
     public CommandResult execute(Model model) {

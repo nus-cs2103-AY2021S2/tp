@@ -32,7 +32,7 @@ public class EditPersonCommand extends Command {
     public static final String COMMAND_WORD = "edit_person";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
+            + "by the person's email used in the displayed person list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: eo/EMAIL "
             + "[" + PREFIX_NAME + "NAME] "
@@ -76,7 +76,8 @@ public class EditPersonCommand extends Command {
         Person personToEdit = getPersonByEmail(email, lastShownList);
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
-        if (!personToEdit.getEmail().isSameEmail(editedPerson) && model.hasPersonWithEmail(editedPerson.getEmail())) {
+        if (!personToEdit.getEmail().isSameEmail(editedPerson)
+                && model.hasPersonWithEmail(editedPerson.getEmail())) {
             throw new CommandException(MESSAGE_DUPLICATE_EMAIL);
         }
 
@@ -93,8 +94,7 @@ public class EditPersonCommand extends Command {
     }
 
     private static Person getPersonByEmail(Email email, List<Person> personList) {
-        return personList.stream()
-                .filter(email::isSameEmail).findFirst().orElse(null);
+        return personList.stream().filter(email::isSameEmail).findFirst().orElse(null);
     }
 
     /**
@@ -157,7 +157,7 @@ public class EditPersonCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email);
+            return CollectionUtil.isAnyNonNull(name, phone, email, tags);
         }
 
         public void setName(Name name) {

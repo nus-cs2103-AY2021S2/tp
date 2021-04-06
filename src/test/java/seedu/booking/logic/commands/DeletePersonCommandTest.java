@@ -8,7 +8,7 @@ import static seedu.booking.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.booking.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.booking.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.booking.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.booking.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.booking.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.booking.testutil.TypicalPersons.getTypicalBookingSystem;
 
 import org.junit.jupiter.api.Test;
@@ -30,7 +30,7 @@ public class DeletePersonCommandTest {
 
     @Test
     public void execute_validEmailUnfilteredList_success() {
-        Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST.getZeroBased());
         DeletePersonCommand deletePersonCommand = new DeletePersonCommand(personToDelete.getEmail());
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
@@ -42,7 +42,7 @@ public class DeletePersonCommandTest {
     }
 
     @Test
-    public void execute_invalidIndexUnfilteredList_throwsCommandException() {
+    public void execute_invalidEmailUnfilteredList_throwsCommandException() {
         Email emailNotInSystem = new Email(NON_EXISTENT_EMAIL);
         DeletePersonCommand deletePersonCommand = new DeletePersonCommand(emailNotInSystem);
 
@@ -51,9 +51,9 @@ public class DeletePersonCommandTest {
 
     @Test
     public void execute_validEmailFilteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showPersonAtIndex(model, INDEX_FIRST);
 
-        Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST.getZeroBased());
         DeletePersonCommand deletePersonCommand = new DeletePersonCommand(personToDelete.getEmail());
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
@@ -67,7 +67,7 @@ public class DeletePersonCommandTest {
 
     @Test
     public void execute_invalidEmailFilteredList_throwsCommandException() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showPersonAtIndex(model, INDEX_FIRST);
 
         Email emailNotInSystem = new Email(NON_EXISTENT_EMAIL);
 

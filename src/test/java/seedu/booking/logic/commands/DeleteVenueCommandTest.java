@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.booking.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.booking.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.booking.testutil.TypicalIndexes.INDEX_FIRST_VENUE;
+import static seedu.booking.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.booking.testutil.TypicalPersons.getTypicalBookingSystem;
 import static seedu.booking.testutil.TypicalVenues.VENUE1;
 import static seedu.booking.testutil.TypicalVenues.VENUE2;
@@ -26,9 +26,9 @@ public class DeleteVenueCommandTest {
     private Model model = new ModelManager(getTypicalBookingSystem(), new UserPrefs());
 
     @Test
-    public void execute_validIndexUnfilteredList_success() {
+    public void execute_validVenueUnfilteredList_success() {
         model.addVenue(VENUE1);
-        Venue venueToDelete = model.getFilteredVenueList().get(INDEX_FIRST_VENUE.getZeroBased());
+        Venue venueToDelete = model.getFilteredVenueList().get(INDEX_FIRST.getZeroBased());
         DeleteVenueCommand deleteVenueCommand = new DeleteVenueCommand(VENUE1);
 
         String expectedMessage = String.format(DeleteVenueCommand.MESSAGE_DELETE_VENUE_SUCCESS,

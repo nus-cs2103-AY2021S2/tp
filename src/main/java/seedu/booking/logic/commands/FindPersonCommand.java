@@ -7,7 +7,7 @@ import seedu.booking.model.Model;
 import seedu.booking.model.person.EmailContainsKeywordsPredicate;
 
 /**
- * Finds and lists all persons in the booking system whose email matches the argument keyword.
+ * Finds and lists the person in the system whose email corresponds to that of the argument keyword.
  * Keyword matching is case insensitive.
  */
 public class FindPersonCommand extends Command {

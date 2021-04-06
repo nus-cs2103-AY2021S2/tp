@@ -6,7 +6,7 @@ import seedu.booking.model.ModelManager;
 /**
  * Exits prompting process
  */
-public class ExitPromptCommand extends Command {
+public class PromptExitCommand extends Command {
 
     public static final String COMMAND_WORD = "exit_prompt";
 

@@ -14,23 +14,23 @@ public class VenueNameTest {
     }
 
     @Test
-    public void constructor_invalidName_throwsIllegalArgumentException() {
+    public void constructor_invalidVenueName_throwsIllegalArgumentException() {
         String invalidName = "";
         assertThrows(IllegalArgumentException.class, () -> new VenueName(invalidName));
     }
 
     @Test
-    public void isValidName() {
-        // null name
+    public void isValidVenueName() {
+        // null venue name
         assertThrows(NullPointerException.class, () -> VenueName.isValidName(null));
 
-        // invalid name
+        // invalid venue name
         assertFalse(VenueName.isValidName("")); // empty string
         assertFalse(VenueName.isValidName(" ")); // spaces only
         assertFalse(VenueName.isValidName("^")); // only non-alphanumeric characters
         assertFalse(VenueName.isValidName("peter*")); // contains non-alphanumeric characters
 
-        // valid name
+        // valid venue name
         assertTrue(VenueName.isValidName("peter jack")); // alphabets only
         assertTrue(VenueName.isValidName("12345")); // numbers only
         assertTrue(VenueName.isValidName("peter the 2nd")); // alphanumeric characters

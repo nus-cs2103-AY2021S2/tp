@@ -1,7 +1,10 @@
 package seedu.booking.logic.commands.multiprocessing;
 
 import java.util.Set;
+import java.util.logging.Logger;
 
+import seedu.booking.MainApp;
+import seedu.booking.commons.core.LogsCenter;
 import seedu.booking.logic.commands.AddBookingCommand;
 import seedu.booking.logic.parser.exceptions.ParseException;
 import seedu.booking.model.Tag;
@@ -12,7 +15,8 @@ import seedu.booking.model.booking.StartTime;
 import seedu.booking.model.person.Email;
 import seedu.booking.model.venue.VenueName;
 
-public class BookingIntermediate implements Intermediate<AddBookingCommand> {
+public class AddBookingIntermediate implements Intermediate<AddBookingCommand> {
+    private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
     private Email bookerEmail;
     private VenueName venueName;
@@ -22,9 +26,9 @@ public class BookingIntermediate implements Intermediate<AddBookingCommand> {
     private Set<Tag> tags;
 
     /**
-     * Initialised a Booking Intermediate to store tempoary user input
+     * Initialises an AddBookingIntermediate object to store temporary user input.
      */
-    public BookingIntermediate() {
+    public AddBookingIntermediate() {
         this.bookerEmail = null;
         this.venueName = null;
         this.description = null;
@@ -35,27 +39,29 @@ public class BookingIntermediate implements Intermediate<AddBookingCommand> {
 
     public void setEmail(Email bookerEmail) {
         this.bookerEmail = bookerEmail;
-        System.out.println("Intermediate: " + this.bookerEmail.toString());
+        logger.info("Intermediate: " + this.bookerEmail.toString());
     }
 
     public void setVenueName(VenueName venueName) {
         this.venueName = venueName;
-        System.out.println("Intermediate: " + this.venueName.toString());
+        logger.info("Intermediate: " + this.venueName.toString());
+
     }
 
     public void setDescription(Description description) {
         this.description = description;
-        System.out.println("Intermediate: " + this.description.toString());
+        logger.info("Intermediate: " + this.description.toString());
     }
 
     public void setBookingStart(StartTime bookingStart) {
         this.bookingStart = bookingStart;
-        System.out.println("Intermediate: " + this.bookingStart.toString());
+        logger.info("Intermediate: " + this.bookingStart.toString());
+
     }
 
     public void setBookingEnd(EndTime bookingEnd) {
         this.bookingEnd = bookingEnd;
-        System.out.println("Intermediate: " + this.bookingEnd.toString());
+        logger.info("Intermediate: " + this.bookingEnd.toString());
     }
 
     public void setTags(Set<Tag> tags) {
@@ -65,11 +71,11 @@ public class BookingIntermediate implements Intermediate<AddBookingCommand> {
         if (!this.tags.isEmpty()) {
             this.tags.forEach(builder::append);
         }
-        System.out.println("Intermediate: " + builder.toString());
+        logger.info("Intermediate: " + builder.toString());
     }
 
     /**
-     * Creates a Booking with the existing user input info
+     * Creates a Booking with the existing user input info.
      */
     public Booking createBooking() {
         return new Booking(this.bookerEmail, this.venueName, this.description,

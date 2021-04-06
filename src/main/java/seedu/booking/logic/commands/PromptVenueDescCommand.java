@@ -5,13 +5,11 @@ import static java.util.Objects.requireNonNull;
 import seedu.booking.logic.commands.exceptions.CommandException;
 import seedu.booking.model.Model;
 import seedu.booking.model.ModelManager;
-import seedu.booking.model.booking.Description;
 
-public class BookingDescPromptCommand extends Command {
+public class PromptVenueDescCommand extends Command {
+    private final String description;
 
-    private final Description description;
-
-    public BookingDescPromptCommand(Description description) {
+    public PromptVenueDescCommand(String description) {
         this.description = description;
     }
 

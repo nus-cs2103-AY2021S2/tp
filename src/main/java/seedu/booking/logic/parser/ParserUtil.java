@@ -58,7 +58,7 @@ public class ParserUtil {
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
-        return new Id(Integer.parseInt(trimmedIndex));
+        return new Id(trimmedIndex);
     }
 
     /**
@@ -140,7 +140,7 @@ public class ParserUtil {
     public static StartTime parseBookingStart(String bookingStart) {
         requireNonNull(bookingStart);
         String trimmedBookingStart = bookingStart.trim();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         LocalDateTime dateTime = LocalDateTime.parse(trimmedBookingStart, formatter);
         return new StartTime(dateTime);
     }
@@ -154,7 +154,7 @@ public class ParserUtil {
     public static EndTime parseBookingEnd(String bookingEnd) {
         requireNonNull(bookingEnd);
         String trimmedBookingEnd = bookingEnd.trim();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         LocalDateTime dateTime = LocalDateTime.parse(trimmedBookingEnd, formatter);
         return new EndTime(dateTime);
     }
@@ -176,18 +176,18 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code capacity} is invalid.
      */
-    public static Capacity parseCapacity(String capacity) throws ParseException {
+    public static Capacity parseCapacity(String capacity) throws ParseException, NumberFormatException {
         requireNonNull(capacity);
         String trimmedCapacity = capacity.trim();
-        Integer formattedCapacity = Integer.parseInt(trimmedCapacity);
-        if (!Capacity.isValidCapacity(formattedCapacity)) {
-            throw new ParseException(Capacity.MESSAGE_CONSTRAINTS);
-        }
         try {
+            Integer formattedCapacity = Integer.parseInt(trimmedCapacity);
+            if (!Capacity.isValidCapacity(formattedCapacity)) {
+                throw new ParseException(Capacity.MESSAGE_CONSTRAINTS);
+            }
             assert Capacity.isValidCapacity(Integer.parseInt(trimmedCapacity));
             return new Capacity(formattedCapacity);
         } catch (NumberFormatException e) {
-            throw new NumberFormatException();
+            throw new ParseException(Capacity.MESSAGE_INVALID);
         }
     }
 
@@ -214,6 +214,22 @@ public class ParserUtil {
         final Set<Tag> tagSet = new HashSet<>();
         for (String tagName : tags) {
             tagSet.add(parseTag(tagName));
+        }
+        return tagSet;
+    }
+
+    /**
+     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} for commands with multi-step prompts.
+     */
+    public static Set<Tag> parseTagsForPromptCommands(String str) throws ParseException {
+        requireNonNull(str);
+        final Set<Tag> tagSet = new HashSet<>();
+        String[] tags = str.split(",");
+        for (String tag : tags) {
+            if (!Tag.isValidTagName(tag.trim())) {
+                throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+            }
+            tagSet.add(new Tag(tag.trim()));
         }
         return tagSet;
     }
