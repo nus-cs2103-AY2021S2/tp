@@ -139,25 +139,31 @@ feature works!
 
 * Words in `UPPER_CASE` are the parameters you supply.<br>
   For example: In `add m/MODULE`, `MODULE` is a parameter you provide, such as `add m/CS2103`.
-
-
+  
 * Items in square brackets are optional.<br>
   For example: In `add n/NAME b/BIRTHDAY [t/TAG]`, the `TAG` parameter is optional. 
   Therefore, both `add n/Alice b/23/03/2021 t/friends` and `add n/Alice b/23/03/2021` are valid.
+  
+* If you specify a parameter, that RemindMe expects only once, multiple times, RemindMe will only use the last 
+  parameter. <br>
+  For example: In add m/MOD1 m/MOD2, RemindMe will create a module called MOD2.
   
 **Tips:**<br>
 * `DATE-TIME` should follow format day/month/year hour minutes: `DD/MM/YYYY HHMM`.
 </div>
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Warning:**<br>
-Commands that do not take in parameters (such as `help` and `exit`) ignore extraneous parameters.<br>
-For example: If you input `help 123`, RemindMe will return the result of the `help` function.
-</div>
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Warning:**<br>
-If you have the [calendar window](#39-viewing-calendar-calendar-c) 
+* Commands that do not take in parameters (such as `help` and `exit`) ignore extraneous parameters.<br>
+For example: If you input `help 123`, RemindMe will return the result of the `help` function.
+
+* Parameters must follow the order given.<br>
+  For example: add b/BIRTHDAY n/NAME is not allowed.
+
+* If you have the [calendar window](#39-viewing-calendar-calendar-c) 
 when adding/editing/deleting/clearing events, it will not be automatically reflected on the calendar window.
 You would need to press on the **refresh button** to refresh the calendar. 
+
 </div>
 
 ![refreshButton](images/refreshbutton.png)
