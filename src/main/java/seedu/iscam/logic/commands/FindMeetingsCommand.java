@@ -16,10 +16,10 @@ public class FindMeetingsCommand extends Command {
 
     public static final String COMMAND_WORD = "findmeet";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all meetings which details contain any of the "
-            + "specified keywords (whole word, case-insensitive) and displays them as a list with index numbers.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all meetings which details contain all of the "
+            + "specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " Shawn 25-04-2023 10:00PM";
+            + "Example: " + COMMAND_WORD + " Shawn 25-04-2023 10:00";
 
     private final MeetingContainsKeywordsPredicate predicate;
 

@@ -25,7 +25,7 @@ public class RescheduleMeetingCommand extends Command {
             + "INDEX (must be a positive integer) "
             + PREFIX_ON + "DATE-TIME (must not be in the past)\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_ON + "12-10-2020 16:30\n";
+            + PREFIX_ON + "12-10-2022 16:30\n";
 
     public static final String MESSAGE_SUCCESS = "Rescheduled meeting: %1$s";
     public static final String MESSAGE_DUPLICATE_DATETIME = "The new date and time must be different from the "

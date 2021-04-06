@@ -209,9 +209,9 @@ Examples:
 
 Adds a meeting to iScam.
 
-Format: `addmeet c/CLIENT_NAME on/DATE_TIME l/ADDRESS d/DESCRIPTION [t/TAG(s)]`
+Format: `addmeet c/CLIENT_NAME on/DATE_TIME l/LOCATION d/DESCRIPTION [t/TAG(s)]`
 * `DATE_TIME` **cannot be in the past** as of the moment when this command is called.
-* `ADDRESS` cannot be blank and can have at most 100 characters.
+* `LOCATION` cannot be blank and can have at most 100 characters.
 * `DESCRIPTION` must have at least 1 character and at most 1000 characters.  
 * There can only be 1 meeting happening at the date and time specified in `DATE_TIME`.
 
@@ -232,7 +232,7 @@ Format: `listmeet`
 
 Edits an existing meeting in iScam.
 
-Format: `editmeet INDEX [c/CLIENT_NAME] [on/DATE_TIME] [l/ADDRESS] [d/DESCRIPTION] [t/TAG(s)] [s/COMPLETION_STATUS]`
+Format: `editmeet INDEX [c/CLIENT_NAME] [on/DATE_TIME] [l/LOCATION] [d/DESCRIPTION] [t/TAG(s)] [s/COMPLETION_STATUS]`
 
 * `INDEX` refer to the meeting's index number shown in the displayed meeting list. The index **must be a positive 
   integer 1, 2, 3, …**.
@@ -382,9 +382,9 @@ Action | Format, Examples
 **Find Client by Name** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **Find Client by Insurance Plan** | `findplan KEYWORD [MORE_KEYWORDS]` <br> e.g., `findplan MediShield`
 **Delete Client** | `delete INDEX`<br> e.g., `delete 3`
-**Add Meeting** | `addmeet c/CLIENT_NAME on/DATE_TIME l/LOCATION d/DESCRIPTION [t/TAG]…​` <br> e.g., `addmeet c/John Doe on/12-10-2021 10:00 l/Starbucks, Tampines Hub d/Discuss insurance policy t/Urgent t/Premium`
+**Add Meeting** | `addmeet c/CLIENT_NAME on/DATE_TIME l/LOCATION d/DESCRIPTION [t/TAG(s)]` <br> e.g., `addmeet c/John Doe on/12-10-2021 10:00 l/Starbucks, Tampines Hub d/Discuss insurance policy t/Urgent t/Premium`
 **List Meetings** | `listmeet`
-**Edit Meeting** | `editmeet INDEX [c/CLIENT_NAME] [on/DATE_TIME] [l/LOCATION] [d/DESCRIPTION] [t/TAG] [done/IS_DONE]…​`<br> e.g.,`editmeet 2 c/James Lee done/yes`
+**Edit Meeting** | `editmeet INDEX [c/CLIENT_NAME] [on/DATE_TIME] [l/LOCATION] [d/DESCRIPTION] [t/TAG(s)] [s/COMPLETION_STATUS]…​`<br> e.g.,`editmeet 2 c/James Lee done/yes`
 **Relocate Meeting** | `relocate INDEX l/LOCATION` <br> e.g., `relocate 1 l/KFC, Blk 556 Bugis`
 **Reschedule Meeting** | `reschedule INDEX on/DATE_TIME` <br> e.g., `reschedule 2 on/20-10-2021 10:00`
 **Find Meeting** | `findmeet KEYWORD [MORE_KEYWORDS]`<br> e.g., `findmeet 05-2022 Sam`
