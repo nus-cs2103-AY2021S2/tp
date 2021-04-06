@@ -23,6 +23,7 @@ import seedu.partyplanet.model.event.Event;
 import seedu.partyplanet.model.event.predicates.EventNameContainsKeywordsPredicate;
 import seedu.partyplanet.model.person.Person;
 import seedu.partyplanet.model.person.predicates.NameContainsKeywordsPredicate;
+import seedu.partyplanet.testutil.EditEventDescriptorBuilder;
 import seedu.partyplanet.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -95,6 +96,22 @@ public class CommandTestUtil {
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withBirthday(VALID_BIRTHDAY_BOB)
                 .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+    }
+
+    public static final EEditCommand.EditEventDescriptor DESC_CNY;
+    public static final EEditCommand.EditEventDescriptor DESC_EASTER;
+
+    static {
+        DESC_CNY = new EditEventDescriptorBuilder()
+                .withName(VALID_NAME_CNY)
+                .withDate(VALID_DATE_CNY)
+                .withRemark(VALID_REMARK_CNY)
+                .build();
+        DESC_EASTER = new EditEventDescriptorBuilder()
+                .withName(VALID_NAME_EASTER)
+                .withDate(VALID_DATE_EASTER)
+                .withRemark(VALID_REMARK_EASTER)
+                .build();
     }
 
     /**

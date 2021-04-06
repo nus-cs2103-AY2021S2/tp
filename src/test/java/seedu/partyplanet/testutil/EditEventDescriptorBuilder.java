@@ -42,7 +42,7 @@ public class EditEventDescriptorBuilder {
     /**
      * Sets the {@code EventDate} of the {@code EditEventDescriptor} that we are building.
      */
-    public EditEventDescriptorBuilder withBirthday(String eventDate) {
+    public EditEventDescriptorBuilder withDate(String eventDate) {
         descriptor.setDate(new EventDate(eventDate));
         return this;
     }
