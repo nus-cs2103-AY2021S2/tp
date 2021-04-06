@@ -45,5 +45,4 @@ public class DetailLessonListPanel extends UiPart<Region> {
             }
         }
     }
-
 }

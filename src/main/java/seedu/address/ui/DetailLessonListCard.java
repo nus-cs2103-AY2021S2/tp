@@ -59,5 +59,4 @@ public class DetailLessonListCard extends UiPart<Region> {
         return lessonDay.getText().equals(card.lessonDay.getText())
                 && lessonTime.getText().equals(card.lessonTime.getText());
     }
-
 }
