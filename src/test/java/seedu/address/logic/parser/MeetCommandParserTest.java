@@ -33,7 +33,7 @@ public class MeetCommandParserTest {
     public void parse_invalidArg_throwsParseException() {
         // missing index
         assertParseFailure(parser, "15.06.2021 15:00 18:00 KENT RIDGE MRT",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, MeetCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_INDEX));
 
         // missing place
         assertParseFailure(parser, "1 15.06.2021 15:00 18:00",
@@ -45,11 +45,11 @@ public class MeetCommandParserTest {
 
         // invalid date
         assertParseFailure(parser, "1 15/06/2021 15:00 18:00 KENT RIDGE MRT",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, MeetCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, MeetCommand.MESSAGE_INVALID_DATE));
 
         // invalid time
         assertParseFailure(parser, "1 15.06.2021 1500 1800 KENT RIDGE MRT",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, MeetCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, MeetCommand.MESSAGE_INVALID_TIME));
     }
 
     @Test

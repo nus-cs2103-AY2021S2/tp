@@ -10,6 +10,7 @@ import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
 import java.util.Objects;
 
+import seedu.address.logic.commands.MeetCommand;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -75,6 +76,21 @@ public class Meeting {
             return false;
         }
         return isValidMeeting(meet.date, meet.start, meet.end, meet.place);
+    }
+
+    /**
+     * Returns a error string for an invalid meeting.
+     */
+    public static String errorInMeeting(String date, String start, String end, String place) {
+        if (!checkDate(date)) {
+            return MeetCommand.MESSAGE_INVALID_DATE;
+        }
+
+        if (!checkTime(start, end)) {
+            return MeetCommand.MESSAGE_INVALID_TIME;
+        }
+
+        return MeetCommand.MESSAGE_USAGE;
     }
 
     /**

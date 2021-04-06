@@ -55,7 +55,8 @@ public class MeetCommandTest {
         MeetCommand meetCommand = new MeetCommand(INDEX_FIRST_PERSON, ADD_MEETING,
                 clashedMeeting.date, MEETING_START, MEETING_END, MEETING_PLACE);
 
-        String expectedMessage = String.format(MeetCommand.MESSAGE_CLASHING_MEETING, clashedMeeting);
+        String clash = person.getName() + "  " + clashedMeeting.toString();
+        String expectedMessage = String.format(MeetCommand.MESSAGE_CLASHING_MEETING, clash);
 
         assertCommandFailure(meetCommand, model, expectedMessage);
     }
@@ -63,26 +64,35 @@ public class MeetCommandTest {
     @Test
     public void execute_deleteMeeting_success() {
         Person person = model.getFilteredPersonList().get(0);
-        Meeting meeting = new Meeting(MEETING_DATE, MEETING_START, MEETING_END, MEETING_PLACE);
-        Person newPerson = MeetCommand.addMeeting(person, meeting);
+        Meeting meeting = person.getMeetings().get(0);
         MeetCommand meetCommand = new MeetCommand(INDEX_FIRST_PERSON, DELETE_MEETING,
-                MEETING_DATE, MEETING_START, MEETING_END, MEETING_PLACE);
+                meeting.date, meeting.start, meeting.end, meeting.place);
 
         String expectedMessage = String.format(MeetCommand.MESSAGE_DELETE_MEETING, meeting);
+        Person newPerson = person;
 
         try {
-            meetCommand.execute(model);
+            newPerson = MeetCommand.deleteMeeting(person, meeting);
         } catch (CommandException ex) {
             assert true;
         }
 
-        Person newerPerson = MeetCommand.deleteMeeting(newPerson, meeting);
-
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(),
                 new Authentication() , new ShortcutLibrary());
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), newerPerson);
+        expectedModel.setPerson(model.getFilteredPersonList().get(0), newPerson);
 
         assertCommandSuccess(meetCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_deleteMeeting_failure() {
+        Meeting meeting = new Meeting(MEETING_DATE, MEETING_START, MEETING_END, MEETING_PLACE);
+        MeetCommand meetCommand = new MeetCommand(INDEX_FIRST_PERSON, DELETE_MEETING,
+                MEETING_DATE, MEETING_START, MEETING_END, MEETING_PLACE);
+
+        String expectedMessage = String.format(MeetCommand.MESSAGE_DELETE_FAIL, meeting);
+
+        assertCommandFailure(meetCommand, model, expectedMessage);
     }
 
     @Test
@@ -90,7 +100,7 @@ public class MeetCommandTest {
         Person person = model.getFilteredPersonList().get(0);
         Person newPerson = MeetCommand.clearMeeting(person);
         MeetCommand meetCommand = new MeetCommand(INDEX_FIRST_PERSON, CLEAR_MEETING,
-                MEETING_EMPTY, MEETING_START, MEETING_END, MEETING_PLACE);
+                MEETING_EMPTY, MEETING_EMPTY, MEETING_EMPTY, MEETING_EMPTY);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs(),
                 new Authentication(), new ShortcutLibrary());
