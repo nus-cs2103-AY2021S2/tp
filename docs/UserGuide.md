@@ -131,12 +131,12 @@ Format: `add n/NAME p/PHONE [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] 
     - Junior College: `jc1`, `jc2`
     - Post Junior College: `graduated` 
 
-- Subjects are represented by abbreviated name. Available subjects cover commonly tutored ones, including
-    - Languages: `eng`, `cn`
-    - Mathematics & Sciences: `math`, `sci`, `bio`, `chem`, `phys`
+- Subjects are represented by abbreviated names. Available subjects cover commonly tutored ones, including
+    - Languages: `cn`, `eng`
+    - Mathematics & Sciences: `math`, `bio`, `chem`, `phys`, `sci`
     - Humanities: `econ`, `geo`, `hist`
-      They represent subjects English, Chinese, Mathematics, Science, Biology, Chemistry, Physics,
-      Economics, Geography and History in order of listing.
+      They represent subjects Chinese, English, Mathematics, Biology, Chemistry, Physics, Science,
+      Economics, Geography and History in order of the above listing.
 
 - A student’s contact can have any number of subjects (including 0). 
   
@@ -192,9 +192,9 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUAR
   
 - You can remove all the student’s lessons by typing `le/` without specifying any lesson details after it.
   
-- Subjects are represented by abbreviated name. Available names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `math`, `phys`.
+- Subjects are represented by abbreviated names. Available names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `math`, `phys`, `sci`.
   
-  They represent subjects Biology, Chemistry, Chinese, Economics, English, Geography, History, Mathematics and Physics respectively.
+  They represent subjects Biology, Chemistry, Chinese, Economics, English, Geography, History, Mathematics, Physics and Science respectively.
 
 </div>
 
@@ -240,8 +240,8 @@ Prefix | Searching Criteria
   
   E.g. `n/Alice Tan` will return contacts with names `Alice Ng` and `Bob Tan`.
   
-- Subjects are represented by abbreviated name. Available names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `math`, `phys`.
-  They represent subjects Biology, Chemistry, Chinese, Economics, English, Geography, History, Mathematics and Physics respectively.
+- Subjects are represented by abbreviated names. Available names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `math`, `phys`, `sci`.
+  They represent subjects Biology, Chemistry, Chinese, Economics, English, Geography, History, Mathematics, Physics and Science respectively.
 
 </div>
 
@@ -282,7 +282,7 @@ Examples:
 * `sort le/` sorts students based on the chronological order of their respective earliest lesson 
   of the week.
 * `sort n/ s/` sorts students by the alphabetical orders of their names.
-* `sort t/` sorts students by subjects alphabetically in the order of `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `math`, `phys`, ignoring the extra words.
+* `sort t/` sorts students by subjects alphabetically in the order of `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `math`, `phys`, `sci`, ignoring the extra words.
 
 ### Advancing all students: `levelup`
 
@@ -370,7 +370,7 @@ Examples:
 
 ### Deleting a contact : `delete`
 
-Permanently deletes the specified student's contact from the address book.
+Permanently deletes the specified student's contact from TutorsPet.
 
 Format: `delete INDEX`
 
