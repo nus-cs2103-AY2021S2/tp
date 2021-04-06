@@ -61,6 +61,7 @@ public class StartCommandParserTest {
         assertEquals(parser.parse(VALID_START_INTEGER_MIDDLE_DESC), STARTCOMMAND_VALID_INTEGER_MIDDLE);
     }
 
+    // validIntegerMax can be parsed as Integer but throws exception in StartCommandParser since it is more than 1000000
     @Test
     public void parse_validIntegerMax_success() throws ParseException {
         assertEquals(parser.parse(VALID_START_INTEGER_MAX_DESC), STARTCOMMAND_VALID_INTEGER_MAX);
