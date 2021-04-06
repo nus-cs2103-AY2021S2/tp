@@ -62,11 +62,12 @@ public class ViewCommand extends Command {
         model.sortEntities(new ViewCommandComparator(targetEntity.getClass()));
 
         if (model.getFilteredEntityList().size() == 1) {
-            return new CommandResult(String.format(MESSAGE_ENTITIES_LISTED_OVERVIEW_FOR_ONE, model.getFilteredEntityList().size()));
+            return new CommandResult(String.format(
+                    MESSAGE_ENTITIES_LISTED_OVERVIEW_FOR_ONE, model.getFilteredEntityList().size()));
         } else {
-            return new CommandResult(String.format(MESSAGE_ENTITIES_LISTED_OVERVIEW, model.getFilteredEntityList().size()));
+            return new CommandResult(String.format(
+                    MESSAGE_ENTITIES_LISTED_OVERVIEW, model.getFilteredEntityList().size()));
         }
-//        return new CommandResult(String.format(MESSAGE_ENTITIES_LISTED_OVERVIEW, model.getFilteredEntityList().size()));
     }
 
     @Override
