@@ -26,7 +26,7 @@ public class FindCommand extends Command {
 
     public static final String MESSAGE_DISPLAYED_IN_VIEW_PATIENT_BOX = "No results. Use 'list' to see your patients"
                                                                         + " and try again.";
-    
+
     private final NameContainsKeywordsPredicate predicate;
 
     public FindCommand(NameContainsKeywordsPredicate predicate) {
