@@ -48,7 +48,7 @@ deactivate StoreMandoParser
 LogicManager -> ListCommand : execute()
 activate ListCommand
 
-ListCommand -> Model : updateCurrentPredicate(true)
+ListCommand -> Model : updateCurrentPredicate(()->true)
 activate Model
 
 Model --> ListCommand
@@ -57,10 +57,10 @@ deactivate Model
 ListCommand -> Model : getCurrentPredicate()
 activate Model
 
-Model --> ListCommand : true
+Model --> ListCommand : ()->true
 deactivate Model
 
-ListCommand -> Model : updateFilteredItemList(true)
+ListCommand -> Model : updateFilteredItemList(()->true)
 activate Model
 
 Model --> ListCommand

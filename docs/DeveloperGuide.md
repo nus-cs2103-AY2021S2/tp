@@ -107,7 +107,7 @@ The `UI` component,
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API
 calls respectively.
 
-![Interactions Inside the Logic Component for the `list` Command](images/ListStoreMandoSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ListCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -149,7 +149,7 @@ Classes used by multiple components are in the `seedu.storemando.commons` packag
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### List Item `list`, `list l/LOCATION` or `list t/TAG`
+### List Items `list`, `list l/LOCATION` or `list t/TAG`
 
 #### Actual Implementation
 
@@ -168,7 +168,7 @@ determines the command word (list) and argument ("") respectively.
 Step 2. An instance of `ListCommandParser` will be created, followed by a call on its `parse` method, taking in the
 argument stated in step 1 (""), which will be initialised to true.
 
-Step 3. The `parse` method will check for the validity of the index. If valid, a new `ListCommand` instance will be
+Step 3. The `parse` method will check for the validity of the user input. If valid, a new `ListCommand` instance will be
 created and returned to `LogicManager` class via `StoreMandoParser` class.
 
 <div markdown="span" class="alert alert-info">
@@ -216,7 +216,7 @@ Step 1. The user execute `find Chocolate` to find all the items in the inventory
 Step 2. An instance of `FindCommandParser` will be created, followed by a call on its `parse` method, taking in the
 argument stated in step 1 ("Chocolate").
 
-Step 3. The `parse` method will check for the validity of the index. If valid, a new `FindCommand` instance will be
+Step 3. The `parse` method will check for the presence of keyword(s). If keywords are present, a new `FindCommand` instance will be
 created and returned to `LogicManager` class via `StoreMandoParser` class.
 
 <div markdown="span" class="alert alert-info"> 

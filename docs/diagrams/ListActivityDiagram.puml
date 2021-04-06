@@ -5,7 +5,7 @@ start
 'Since the beta syntax does not support placing the condition outside the
 'diamond we place it as the true branch instead.
 
-if () then ([command commits StoreMando])
+if () then ([command is in valid format])
     :Parse arguments as predicate;
     :Update current predicate in Model;
     :Update filtered item list in Model;
