@@ -18,8 +18,8 @@ public class DropCommand extends ProgramRegistrationCommand {
 
     public static final String MESSAGE_NOT_ENROLLED = "Dog was not enrolled in this program.";
 
-    public static final String MESSAGE_NOT_ENROLLED_MULTIPLE_DOGS = "One or more dogs were not " +
-            "enrolled in this program.";
+    public static final String MESSAGE_NOT_ENROLLED_MULTIPLE_DOGS = "One or more dogs were not "
+            + "enrolled in this program.";
 
     public static final String MESSAGE_NOT_ENROLLED_MULTIPLE_PROGRAMS = "Dog was not enrolled in one or more programs.";
     /**

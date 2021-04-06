@@ -18,11 +18,11 @@ public class EnrolCommand extends ProgramRegistrationCommand {
 
     public static final String MESSAGE_REPEATED_ENROLMENT = "Dog has already been enrolled in this program!";
 
-    public static final String MESSAGE_REPEATED_ENROLMENT_MULTIPLE_PROGRAMS = "Dog has already been enrolled " +
-            "in one or more programs!";
+    public static final String MESSAGE_REPEATED_ENROLMENT_MULTIPLE_PROGRAMS = "Dog has already been enrolled "
+            + "in one or more programs!";
 
-    public static final String MESSAGE_REPEATED_ENROLMENT_MULTIPLE_DOGS = "One or more dogs have already " +
-            "been enrolled!";
+    public static final String MESSAGE_REPEATED_ENROLMENT_MULTIPLE_DOGS = "One or more dogs have already "
+            + "been enrolled!";
 
     /**
      * Constructor for Enrol command to add the specified dog into the specified program.
