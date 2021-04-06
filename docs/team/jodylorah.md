@@ -46,4 +46,3 @@ Given below are my contributions to the project.
     
 * **Others**:
     * Helped to raise and create issues spotted when testing unrelated component ([\#199](https://github.com/AY2021S2-CS2103-W17-4/tp/pull/199))
-    
