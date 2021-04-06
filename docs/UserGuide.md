@@ -131,12 +131,12 @@ Format: `add n/NAME p/PHONE [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] 
     - Junior College: `jc1`, `jc2`
     - Post Junior College: `graduated` 
 
-- Subjects are represented by abbreviated name. Available subjects cover commonly tutored ones, including
-    - Languages: `eng`, `cn`
-    - Mathematics & Sciences: `math`, `sci`, `bio`, `chem`, `phys`
+- Subjects are represented by abbreviated names. Available subjects cover commonly tutored ones, including
+    - Languages: `cn`, `eng`
+    - Mathematics & Sciences: `math`, `bio`, `chem`, `phys`, `sci`
     - Humanities: `econ`, `geo`, `hist`
-      They represent subjects English, Chinese, Mathematics, Science, Biology, Chemistry, Physics,
-      Economics, Geography and History in order of listing.
+      They represent subjects Chinese, English, Mathematics, Biology, Chemistry, Physics, Science,
+      Economics, Geography and History in order of the above listing.
 
 - A student’s contact can have any number of subjects (including 0). 
   
@@ -176,16 +176,25 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUAR
 
 :bulb:**Tip:** <br>
 
-* Edits the student at the specified `INDEX`.
-* The index refers to the index number shown in the displayed student list.
-* The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing subjects or lessons, the existing subjects or lessons of the student will be removed i.e adding of subjects or lessons are not cumulative.
-* You can remove all the student’s subjects by typing `t/` without specifying any subject names after it.
-* You can remove all the student’s lessons by typing `le/` without specifying any lesson details after it.
-* Subjects are represented by abbreviated name. Available names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `math`, `phys`.
-  They represent subjects Biology, Chemistry, Chinese, Economics, English, Geography, History, Mathematics and Physics respectively.
+- Edits the student at the specified `INDEX`.
+  
+- The index refers to the index number shown in the displayed student list.
+  
+- The index **must be a positive integer** 1, 2, 3, …​
+  
+- At least one of the optional fields must be provided.
+  
+- Existing values will be updated to the input values.
+  
+- When editing subjects or lessons, the existing subjects or lessons of the student will be removed i.e adding of subjects or lessons are not cumulative.
+  
+- You can remove all the student’s subjects by typing `t/` without specifying any subject names after it.
+  
+- You can remove all the student’s lessons by typing `le/` without specifying any lesson details after it.
+  
+- Subjects are represented by abbreviated names. Available names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `math`, `phys`, `sci`.
+  
+  They represent subjects Biology, Chemistry, Chinese, Economics, English, Geography, History, Mathematics, Physics and Science respectively.
 
 </div>
 
@@ -215,16 +224,24 @@ Prefix | Searching Criteria
 
 :bulb:**Tip:** <br>
 
-* At least one prefix must be used.
-* Any number of prefixes can be used concurrently.
-* The search is case-insensitive. E.g. `TAN` will match `Tan` .
-* The order of the keywords does not matter. E.g. `n/Tan Alice` will match `Alice Tan`.
-* Name, school and subjects can be searched according to the prefix.
-* Only full words will be matched e.g. `Ta` will not match `Tan`
-* Contacts matching at least one keyword will be returned. 
+- At least one prefix must be used.
+  
+- Any number of prefixes can be used concurrently.
+  
+- The search is case-insensitive. E.g. `TAN` will match `Tan`.
+  
+- The order of the keywords does not matter. E.g. `n/Tan Alice` will match `Alice Tan`.
+  
+- Name, school and subjects can be searched according to the prefix.
+  
+- Only full words will be matched e.g. `Ta` will not match `Tan`.
+  
+- Contacts matching at least one keyword will be returned. 
+  
   E.g. `n/Alice Tan` will return contacts with names `Alice Ng` and `Bob Tan`.
-* Subjects are represented by abbreviated name. Available names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `math`, `phys`.
-  They represent subjects Biology, Chemistry, Chinese, Economics, English, Geography, History, Mathematics and Physics respectively.
+  
+- Subjects are represented by abbreviated names. Available names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `math`, `phys`, `sci`.
+  They represent subjects Biology, Chemistry, Chinese, Economics, English, Geography, History, Mathematics, Physics and Science respectively.
 
 </div>
 
@@ -252,10 +269,12 @@ Prefix | Sorting Criteria
 
 :bulb:**Tip:** <br>
 
-* There are four sorting criteria available, represented by the prefixes `n/`, `s/`, `t/`, and 
+- There are four sorting criteria available, represented by the prefixes `n/`, `s/`, `t/`, and 
   `le/`. They represent sorting by name, school, subjects or lessons respectively.
-* If multiple sorting prefixes are listed out, the list will be sorted by the **first** prefix listed.
-* Any extra words typed will be ignored.
+  
+- If multiple sorting prefixes are listed out, the list will be sorted by the **first** prefix listed.
+  
+- Any extra words typed will be ignored.
 
 </div>
 
@@ -263,7 +282,7 @@ Examples:
 * `sort le/` sorts students based on the chronological order of their respective earliest lesson 
   of the week.
 * `sort n/ s/` sorts students by the alphabetical orders of their names.
-* `sort t/` sorts students by subjects alphabetically in the order of `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `math`, `phys`, ignoring the extra words.
+* `sort t/` sorts students by subjects alphabetically in the order of `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `math`, `phys`, `sci`, ignoring the extra words.
 
 ### Advancing all students: `levelup`
 
@@ -276,13 +295,17 @@ Format: `levelup ex/[INDEX]...`
 
 :bulb:**Tip:** <br>
 
-* Students who are `jc1` will advance to `graduated` when `levelup` is applied. Students will not 
+- Students who are `jc1` will advance to `graduated` when `levelup` is applied. Students will not 
   advance any further if they are `graduated`.
-* If no index is provided, all students will advance by one level (unless they have `graduated`).
-* The index refers to the index number shown in the displayed student list. Indexes are used to 
+  
+- If no index is provided, all students will advance by one level (unless they have `graduated`).
+  
+- The index refers to the index number shown in the displayed student list. Indexes are used to 
   indicate students who are to be excluded from the advancement.
-* The index **must be a positive integer** 1, 2, 3, …​
-* Multiple indexes can be taken in, including no indexes. Indexes must be separated by spaces.
+  
+- The index **must be a positive integer** 1, 2, 3, …​
+  
+- Multiple indexes can be taken in, including no indexes. Indexes must be separated by spaces.
 
 </div>
 
@@ -302,12 +325,16 @@ Format: `leveldown ex/[INDEX]...`
 
 :bulb:**Tip:** <br>
 
-* Students who are `pri1` will not demote any further.
-* If no index is provided, all students will demote by one level (unless they are `pri1`).
-* The index refers to the index number shown in the displayed student list. Indexes are used to
+- Students who are `pri1` will not demote any further.
+  
+- If no index is provided, all students will demote by one level (unless they are `pri1`).
+  
+- The index refers to the index number shown in the displayed student list. Indexes are used to
   indicate students who are to be excluded from the demotion.
-* The index **must be a positive integer** 1, 2, 3, …​
-* Multiple indexes can be taken in, including no indexes. Indexes must be separated by spaces.
+  
+- The index **must be a positive integer** 1, 2, 3, …​
+  
+- Multiple indexes can be taken in, including no indexes. Indexes must be separated by spaces.
 
 </div>
 
@@ -329,9 +356,11 @@ Format: `detail INDEX`
 
 :bulb:**Tip:** <br>
 
-* Views the contact at the specified `INDEX`.
-* The index refers to the index number shown in the displayed student list.
-* The index **must be a positive integer** 1, 2, 3, …​
+- Views the contact at the specified `INDEX`.
+
+-The index refers to the index number shown in the displayed student list.
+
+- The index **must be a positive integer** 1, 2, 3, …​
 
 </div>
 
@@ -341,7 +370,7 @@ Examples:
 
 ### Deleting a contact : `delete`
 
-Permanently deletes the specified student's contact from the address book.
+Permanently deletes the specified student's contact from TutorsPet.
 
 Format: `delete INDEX`
 
@@ -349,9 +378,11 @@ Format: `delete INDEX`
 
 :bulb:**Tip:** <br>
 
-* Deletes the contact at the specified `INDEX`.
-* The index refers to the index number shown in the displayed student list.
-* The index **must be a positive integer** 1, 2, 3, …​
+- Deletes the contact at the specified `INDEX`.
+  
+- The index refers to the index number shown in the displayed student list.
+  
+- The index **must be a positive integer** 1, 2, 3, …​
 
 </div>
 
@@ -387,9 +418,11 @@ Format: `delete-date INDEX`
 
 :bulb:**Tip:** <br>
 
-* Deletes the important date at the specified `INDEX`.
-* The index refers to the index number shown in the displayed important dates list.
-* The index **must be a positive integer** 1, 2, 3, …​
+- Deletes the important date at the specified `INDEX`.
+  
+- The index refers to the index number shown in the displayed important dates list.
+  
+- The index **must be a positive integer** 1, 2, 3, …​
 
 </div>
 
