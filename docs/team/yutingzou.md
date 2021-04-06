@@ -47,15 +47,14 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=&tabOpen=true&tabType=authorship&tabAuthor=yutingzou&tabRepo=AY2021S2-CS2103-T14-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false)
 
 * **Project management**:
-  Setting up the GitHub team org/repo
-  * Necessary general code enhancements: contributed to help refactor the existing code base
-  * Morphing the product into a different product
-  * Maintain the defensiveness of the code: enable assertions in the project's gradle file.
+  * Contributed in refactoring the existing code base
   * Documented the target user profile [#7](https://github.com/AY2021S2-CS2103-T14-3/tp/pull/7)
+  * Maintain the defensiveness of the code: enable assertions in the project's gradle file.
   
 * **Enhancements to existing features**:
   * Update the GUI to display subject list in each `TutorCard` [Pull request #91](https://github.com/AY2021S2-CS2103-T14-3/tp/pull/91)
   * Update the GUI to display the newly added `GradeBook`
+  
 * **Documentation**:
     * User Guide:
       * Added documentation for the features `add_appointment` [#7](https://github.com/AY2021S2-CS2103-T14-3/tp/pull/7)
@@ -65,8 +64,7 @@ Given below are my contributions to the project.
       * Added glossary
       * Added implementation details of the `add_appointment` feature [#8](https://github.com/AY2021S2-CS2103-T14-3/tp/pull/8)
       * Added implementation details of the `view_tutor` feature [#84](https://github.com/AY2021S2-CS2103-T14-3/tp/pull/84/)
-      * Added implementation details of the `add_grade`,
-        `delete_grade`, `list_grade`, `edit_grade` features
+      * Added implementation details of the `add_grade`, `delete_grade`, `list_grade`, `edit_grade` features (to be added)
   
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [#]()
