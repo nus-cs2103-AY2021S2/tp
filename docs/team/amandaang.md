@@ -14,25 +14,29 @@ Given below are my contributions to the project.
 * **Code
   contributed**: [RepoSense link](https://nus-cs2103-ay2021s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=&tabOpen=true&tabType=zoom&zA=github-amanda&zR=AY2021S2-CS2103T-W10-2%2Ftp%5Bmaster%5D&zACS=237.18069145466407&zS=2021-02-19&zFS=&zU=2021-03-21&zMG=undefined&zFTF=commit&zFGS=groupByRepos&zFR=false)
 
-* **Project management**:
-    * Managed releases `v.1` - `v1.3` (5 milestones) on GitHub
-
 * **Refactoring**:
     * Refactored Phone to Quantity. (Pull requests [\#54](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/54))
     * Made changes to common variable names. (Pull requests [\#97](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/97))
 
 * **Enhancements to existing features**:
     * Modified `Delete` v1.2 (Pull requests [\#83](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/83))
-    * Modified `Sort` v2 (Pull requests [\#113](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/113))
+    * Modified `Sort` v2 and added tests (Pull requests [\#113](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/113))
     * Modified `Find` v3 (Pull requests [\#115](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/115))
     * Modified `Clear` v1 (Pull requests [\#116](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/116))
+    * Modified `Clear` v2 (Pull requests [\#170](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/170))
     * Updated GUI v1 (Pull requests [\#102](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/102))
-
+    * Updated GUI v3 (Pull requests [\#265](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/265))
+    * Wrote additional tests and modified tests for existing features to increase coverage (Pull requests [\#182](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/182))
+    
 * **Documentation**:
     * User Guide:
         * Updated user stories, target user profile and value proposition (Pull requests [\#40](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/40))
+        * Added functionalities for Clear and Sort features (Pull requests [\#171](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/171))
     * About Us:
-        * Updated Amanda Ang's part. (Pull requests [\#12](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/12))
+        * Updated Amanda Ang's part (Pull requests [\#12](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/12))
+    * Developer Guide:
+        * Added use cases (Pull requests [\#151](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/151))
+        * Added implementations for List and Find features (Pull requests [\#213](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/213))
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments): [\#4](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/4)

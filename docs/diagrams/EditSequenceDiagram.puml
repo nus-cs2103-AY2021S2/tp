@@ -1,0 +1,96 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":StoreMandoParser" as StoreMandoParser LOGIC_COLOR
+participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
+participant "e:EditCommand" as EditCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant "ed:EditItemDescriptor" as EditItemDescriptor LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("edit 1 n/apple")
+activate LogicManager
+
+LogicManager -> StoreMandoParser : parseCommand("edit 1 n/apple")
+activate StoreMandoParser
+
+create EditCommandParser
+StoreMandoParser -> EditCommandParser
+activate EditCommandParser
+
+EditCommandParser --> StoreMandoParser
+deactivate EditCommandParser
+
+StoreMandoParser -> EditCommandParser : parse("1 n/apple")
+activate EditCommandParser
+
+create EditCommand
+EditCommandParser -> EditCommand
+activate EditCommand
+
+create EditItemDescriptor
+EditCommand -> EditItemDescriptor
+activate EditItemDescriptor
+
+EditItemDescriptor --> EditCommand : ed
+deactivate EditItemDescriptor
+
+EditCommand --> EditCommandParser : ed
+deactivate EditCommand
+
+create EditCommand
+EditCommandParser -> EditCommand
+activate EditCommand
+
+EditCommand --> EditCommandParser : e
+deactivate EditCommand
+
+EditCommandParser --> StoreMandoParser : e
+deactivate EditCommandParser
+
+EditCommandParser -[hidden]-> StoreMandoParser
+destroy EditCommandParser
+
+StoreMandoParser --> LogicManager : e
+deactivate StoreMandoParser
+
+LogicManager -> EditCommand : execute(model)
+activate EditCommand
+
+EditCommand -> Model : getFilteredList()
+activate Model
+
+Model --> EditCommand
+deactivate Model
+
+EditCommand -> EditCommand : createEditedItem(itemToEdit, editItemDescription)
+activate EditCommand
+
+EditCommand --> EditCommand
+deactivate EditCommand
+
+EditCommand -> Model : setItem(itemToEdit, editedItem)
+activate Model
+
+Model --> EditCommand
+deactivate Model
+
+create CommandResult
+EditCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditCommand
+deactivate CommandResult
+
+EditCommand --> LogicManager
+deactivate EditCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
