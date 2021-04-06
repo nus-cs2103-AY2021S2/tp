@@ -6,7 +6,7 @@ import seedu.address.model.grade.Grade;
 /**
  * A utility class to help with building GradeBook objects.
  * Example usage: <br>
- *     {@code GradeBook ab = new GradeBookBuilder().withGrade("John", "Doe").build();}
+ *     {@code GradeBook ab = new GradeBookBuilder().withGrade(MATHS_GRADE).build();}
  */
 public class GradeBookBuilder {
 

@@ -2,10 +2,10 @@
   "grades": [ {
       "subject": "Mathematics",
       "gradedItem": "Midterm Exam",
-      "grade": "A"
+      "grade": "A1"
     }, {
       "subject": "Mathematics",
       "gradedItem": "Midterm Exam",
-      "grade": "B"
+      "grade": "B3"
     } ]
 }

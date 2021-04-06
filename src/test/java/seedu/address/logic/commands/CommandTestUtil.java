@@ -63,13 +63,13 @@ public class CommandTestUtil {
 
     public static final String VALID_SUBJECT_NAME_MATHS = "Mathematics";
     public static final String VALID_GRADED_ITEM_MATHS = "Midterm Exam";
-    public static final String VALID_GRADE_MATHS = "A";
+    public static final String VALID_GRADE_MATHS = "A1";
     public static final String VALID_SUBJECT_NAME_SCIENCE = "Science";
     public static final String VALID_GRADED_ITEM_SCIENCE = "Lab 1";
-    public static final String VALID_GRADE_SCIENCE = "B";
+    public static final String VALID_GRADE_SCIENCE = "B3";
     public static final String VALID_SUBJECT_NAME_PHYSICS = "Physics";
     public static final String VALID_GRADED_ITEM_PHYSICS = "Quiz";
-    public static final String VALID_GRADE_PHYSICS = "D";
+    public static final String VALID_GRADE_PHYSICS = "D7";
 
     public static final String VALID_SCHEDULE_TITLE_ONE = "Maths Homework";
     public static final String VALID_SCHEDULE_TIMEFROM_ONE = "2021-03-24 10:00AM";

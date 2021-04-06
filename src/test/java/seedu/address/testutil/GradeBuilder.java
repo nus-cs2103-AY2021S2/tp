@@ -12,7 +12,7 @@ public class GradeBuilder {
 
     public static final String DEFAULT_SUBJECT = "Mathematics";
     public static final String DEFAULT_GRADED_ITEM = "Final";
-    public static final String DEFAULT_GRADE = "A";
+    public static final String DEFAULT_GRADE = "A1";
 
     private SubjectName subjectName;
     private GradedItem gradedItem;
