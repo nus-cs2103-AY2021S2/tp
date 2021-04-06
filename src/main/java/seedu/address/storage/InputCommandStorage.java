@@ -1,13 +1,14 @@
 package seedu.address.storage;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Represents a storage for all user inputs keyed in the {@code CommandBox}.
  */
 public class InputCommandStorage {
 
-    private static ArrayList<String> inputCommandList = new ArrayList<String>();
+    private static List<String> inputCommandList;
     private static int currentPointer;
 
     /**
@@ -16,14 +17,14 @@ public class InputCommandStorage {
      * {@code handleToggleQuery(KeyEvent event)} changes.
      */
     public InputCommandStorage() {
-        this.inputCommandList = inputCommandList;
+        this.inputCommandList = new ArrayList<>();
         currentPointer = 0;
     }
 
     /**
      * Returns all previous user inputs stored in inputCommandList
      */
-    public ArrayList<String> getInputCommandList() {
+    public List<String> getInputCommandList() {
         return inputCommandList;
     }
 
@@ -32,34 +33,49 @@ public class InputCommandStorage {
      * Pointer increments to latest input.
      * @param userInput being parsed
      */
-    public void newInput(String userInput) {
+    public void addInput(String userInput) {
         inputCommandList.add(userInput);
-        currentPointer = inputCommandList.size() - 1;
+        currentPointer = inputCommandList.size();
     }
 
     /**
-     * Returns previous or next user input according to index of currentPointer.
-     * Pointer increments or decrements based on {@code isBefore} boolean value.
-     * @param isBefore if user is calling the previous input
+     * Returns previous or next user input at index of currentPointer.
+     * @param isUpPressed if user is calling the previous input
      */
-    public static String retrieveInput(boolean isBefore) {
-        int inputCommandListSize = inputCommandList.size() - 1;
-
-        if (isBefore) {
-            currentPointer--;
-            if (currentPointer < 0) {
-                currentPointer = 0;
-            }
-
+    public static String retrieveInput(boolean isUpPressed) {
+        if (isUpPressed) {
+            decrementCurrentPointer();
         } else {
-            currentPointer++;
-
-            if (currentPointer > inputCommandListSize) {
-                currentPointer = inputCommandListSize;
-            }
-
+            incrementCurrentPointer();
         }
-        return inputCommandList.get(currentPointer);
+        return getCurrentPointerInput();
+    }
+
+    /**
+     * Increments current pointer within inputCommandList
+     */
+    public static void incrementCurrentPointer() {
+        if (currentPointer < inputCommandList.size()) {
+            currentPointer++;
+        }
+    }
+
+    /**
+     * Decrements current pointer within inputCommandList
+     */
+    public static void decrementCurrentPointer() {
+        if (currentPointer > 0) {
+            currentPointer--;
+        }
+    }
+
+    /**
+     * Returns input at currentPointer index
+     */
+    public static String getCurrentPointerInput() {
+        return (currentPointer == inputCommandList.size())
+                ? ""
+                : inputCommandList.get(currentPointer);
     }
 
 }

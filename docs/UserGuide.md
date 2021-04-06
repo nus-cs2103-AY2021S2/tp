@@ -261,7 +261,6 @@ Format: `clear-appt`
 
 
 ### Deleting an appointment : `delete=appt`
-[Coming Soon]
 
 Deletes the specified appointment from the schedule.
 
@@ -281,7 +280,6 @@ Examples:
 
 
 ### Editing an appointment : `edit-appt`
-[Coming Soon]
 
 Edits an existing appointment in the appointment schedule.<br>
 
@@ -307,7 +305,6 @@ Examples:
 
 
 ### Locating appointments by fields : `find-appt`
-[Coming Soon]
 
 Format: `find-appt [n/PATIENT KEYWORDS] [dr/DOCTOR_KEYWORDS] [d/DATETIME] [p/PHONE] [e/EMAIL] [a/ADDRESS_KEYWORDS] [t/TAG KEYWORDS]`
 
@@ -348,11 +345,15 @@ Exits the program.
 Format: `exit`
 
 ### Viewing help: `help`
-[Coming soon]
 
 Format: `help`
 
 Showing a message containing the url to the User Guide page
+
+### Toggle User Inputs: <kbd>&uarr;</kbd>/<kbd>&darr;</kbd>
+Format: <kbd>&uarr;</kbd>/<kbd>&darr;</kbd>
+
+Toggles between previous inputs keyed into the Command Box previously. Returns user to a *blank* Command Box upon keying <kbd>&darr;</kbd> on the most recent input.
 
 ### Saving the data
 
@@ -381,6 +382,7 @@ If your changes to the data files makes its format invalid, App-Ointment will di
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
+
 | Action            | Format                                  | Examples                                           |
 |-------------------|-----------------------------------------|----------------------------------------------------|
 | **add-patient** | `add-patient n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]…​` | `add-patient n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` |
