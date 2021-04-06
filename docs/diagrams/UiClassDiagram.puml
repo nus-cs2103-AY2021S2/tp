@@ -38,7 +38,7 @@ MainWindow *-down-> FlashcardViewCard
 MainWindow *-down-> ResultDisplay
 MainWindow *-down-> FlashcardListPanel
 MainWindow *-down-> StatusBarFooter
-MainWindow <.left.> ReviewMode
+MainWindow -right- ReviewMode
 
 ReviewMode *-down-> CommandBox
 ReviewMode *-down-> ResultDisplay

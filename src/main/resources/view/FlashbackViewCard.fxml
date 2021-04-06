@@ -19,30 +19,41 @@
         <padding>
           <Insets bottom="10.0" left="15.0" right="5.0" top="5.0" />
         </padding>
-        <HBox alignment="CENTER_LEFT">
-          <Label fx:id="id" styleClass="cell_big_label">
-            <minWidth>
-              <!-- Ensures that the label text is never truncated -->
-              <Region fx:constant="USE_PREF_SIZE" />
-            </minWidth>
-          </Label>
-          <Label fx:id="question" styleClass="cell_big_label" text="\$question" />
-        </HBox>
-        <Label fx:id="category" styleClass="cell_small_label" text="\$category" />
-        <FlowPane fx:id="tags" />
-        <Label fx:id="priority" styleClass="cell_small_label" text="\$priority">
+        <ScrollPane fx:id="questionScrollPane" fitToWidth="true" minHeight="215">
+          <VBox maxHeight="Infinity" spacing="5">
+          <HBox alignment="CENTER_LEFT">
+            <Label fx:id="id" styleClass="cell_big_label">
+              <minWidth>
+                <!-- Ensures that the label text is never truncated -->
+                <Region fx:constant="USE_PREF_SIZE" />
+              </minWidth>
+            </Label>
+            <Label fx:id="question" styleClass="cell_big_label" text="\$question" />
+          </HBox>
+          <Label fx:id="category" styleClass="cell_small_label" text="\$category" />
+          <FlowPane fx:id="tags" />
+          <Label fx:id="priority" styleClass="cell_small_label" text="\$priority">
+                 <VBox.margin>
+                    <Insets top="5.0" />
+                 </VBox.margin>
+                 <padding>
+                    <Insets bottom="1.0" left="3.0" right="3.0" top="1.0" />
+                 </padding></Label>
+          </VBox>
                <VBox.margin>
-                  <Insets top="5.0" />
+                  <Insets />
                </VBox.margin>
-               <padding>
-                  <Insets bottom="1.0" left="3.0" right="3.0" top="1.0" />
-               </padding></Label>
+        </ScrollPane>
       </VBox>
       <VBox fx:id="answerPlaceholder" alignment="CENTER_LEFT" styleClass="pane-with-round-black-border" GridPane.columnIndex="0" GridPane.rowIndex="2">
         <padding>
-          <Insets bottom="5" left="15" right="5" top="5" />
+          <Insets bottom="5" left="15" right="5" top="10" />
         </padding>
-        <Label fx:id="answer" styleClass="cell_small_label" text="\$answer" />
+        <ScrollPane fx:id="answerScrollPane" fitToWidth="true" minHeight="65" >
+          <VBox alignment="CENTER_LEFT" maxHeight="Infinity" spacing="5">
+            <Label fx:id="answer" styleClass="cell_small_label" text="\$answer" />
+          </VBox>
+        </ScrollPane>
       </VBox>
     </GridPane>
   </HBox>

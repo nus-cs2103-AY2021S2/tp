@@ -38,8 +38,6 @@ public class FlashbackCard extends UiPart<Region> {
     private Label category;
     @FXML
     private FlowPane tags;
-    @FXML
-    private Label remark;
 
     /**
      * Creates a {@code FlashbackCard} with the given {@code flashcard} and index to display.
@@ -63,7 +61,6 @@ public class FlashbackCard extends UiPart<Region> {
         }
         category.setText(flashcard.getCategory().value);
         category.setWrapText(true);
-        remark.setText(flashcard.getRemark().value);
         flashcard.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

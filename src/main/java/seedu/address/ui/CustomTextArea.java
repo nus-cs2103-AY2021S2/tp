@@ -7,11 +7,11 @@ import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
-/*
+/**
 * Custom TextArea that disables going to a new line when Enter button is pressed.
-* Author: jewelsea
-* https://gist.github.com/jewelsea/5624145
  */
+//@@author vuminhhieunus2019-reused.
+//Reused from https://gist.github.com/jewelsea/5624145 with minor modifications
 public class CustomTextArea extends TextArea {
     final TextArea myTextArea = this;
 
@@ -57,3 +57,4 @@ public class CustomTextArea extends TextArea {
         }
     }
 }
+//@@author

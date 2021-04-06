@@ -5,7 +5,6 @@
       "answer": "a^2 + b^2 = c^2",
       "category": "Maths",
       "priority": "Low",
-      "remark": "",
       "tagged": [ "Equation", "Common", "Easy" ],
       "stats" : {
         "reviewCount" : 0,
