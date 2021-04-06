@@ -73,20 +73,20 @@ class JsonSerializableDatabase {
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public Database toModelType() throws IllegalValueException {
-        Database addressBook = new Database();
+        Database database = new Database();
         for (JsonAdaptedEntity jsonAdaptedEntity : entities) {
             Pair<Integer, ? extends Entity> idEntityPair = jsonAdaptedEntity.toModelType();
 
-            if (addressBook.hasEntity(idEntityPair.getValue())) {
+            if (database.hasEntity(idEntityPair.getValue())) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_OWNER);
             }
-            addressBook.addEntityWithId(idEntityPair.getValue(), idEntityPair.getKey());
+            database.addEntityWithId(idEntityPair.getValue(), idEntityPair.getKey());
         }
 
-        if (!addressBook.validateReferences()) {
+        if (!database.validateReferences()) {
             throw new IllegalValueException(MESSAGE_INVALID_REFERENCE_IDS);
         }
-        return addressBook;
+        return database;
     }
 
 }
