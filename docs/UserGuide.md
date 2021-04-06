@@ -4,7 +4,9 @@ title: User Guide
 ---
 ## User Guide
 
-SOChedule is a one-stop solution for managing tasks and events, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
+SOChedule is a one-stop solution for NUS School of Computing (SoC) students to manage their tasks and events effectively.
+Targeted at users who can type fast and prefer typing to mouse input, SOChedule is optimized for use via a Command Line Interface (CLI) 
+while still having the benefits of a Graphical User Interface (GUI).
 
 ## Feature List
 
@@ -99,11 +101,33 @@ As listed below are the attributes to be specified for Tasks and Events. All par
 
 ## Features
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about the command format:**<br>
+
+* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+  e.g. in `undone_task INDEX`, `INDEX` is a parameter which can be used as `undone_task 1`.
+
+* Items in square brackets are optional.<br>
+  e.g `n/TASKNAME [t/TAG]` can be used as `n/Quiz t/CS2103` or as `n/Quiz`.
+
+* Items with `…`​ after them can be used multiple times including zero times.<br>
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+  e.g. if you specify `p/1 p/2`, only `p/2` will be taken.
+
+* Extraneous parameters for commands that do not take in parameters (such as `list_task`, `list_event`) will be ignored.<br>
+  e.g. if the command specifies `list_task 123`, it will be interpreted as `list_task`.
+
+</div>
+
 ### Viewing help: `help`
 Shows a message explaining how to access the help page.
 ![helpMessage](images/helpMessage.png)
 
 [Return to Feature List](#feature-list)
+
 
 ### Adding a task: `add_task`
 Adds a task to SOChedule Task List.
@@ -144,7 +168,7 @@ Format: `edit_task INDEX [n/TASKNAME] [d/DEADLINE] [p/PRIORITY] [c/CATEGORY]... 
 * You can only edit the details of an uncompleted task.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags/categories, the existing tags/categories of the task will be removed i.e adding of tags/categories is not cumulative.
+* When editing tags/categories, the existing tags/categories of the task will be removed i.e. adding of tags/categories is not cumulative.
 * You can remove all the task’s tags by typing `t/` without specifying any tags after it.
   Similarly, you can remove all the task’s categories by typing `c/` without specifying any categories after it.
 
@@ -163,13 +187,13 @@ Format: `list_task`
 [Return to Feature List](#feature-list)
 
 
-### Marking a task as done: `done_task`
+### Marking one or more tasks as done: `done_task`
 Marks one or more task from SOChedule Task List as completed.
 
 Format: `done_task INDEX1 [INDEX2] ...`
 * Marks the task(s) at the specified INDEX(es) as complete.
-* When multiple indexes are provided, they should be seperated by a whitespace, e.g. `1 2`.
-* All specified tasks must be uncompleted before calling this command.
+* When multiple indexes are provided, they should be separated by a whitespace, e.g. `1 2`.
+* All specified tasks must be uncompleted and existing before calling this command.
 * The index refers to the index number shown in the displayed task list.
 * The index must be a positive and valid integer 1, 2, 3, ...
 
@@ -285,9 +309,9 @@ Adds an event to the SOChedule Event Scheduler.
 Format: `add_event n/TASKNAME sd/STARTDATE st/STARTTIME ed/ENDDATE et/ENDTIME [c/CATEGORY]... [t/TAG]...`
 * `n/` is followed by the task name, it is case-sensitive.
 * `sd/` is followed by the starting date, it has to be a **valid date** and in the format of **YYYY-MM-DD**. Here, Y is the year, M is the month, D is the day and all has to be integers.
-* `st/` is followed by the time in 24-hour format and in the format of **hh:mm** Here, h is the hour, m is the minute and all has to be integers.
+* `st/` is followed by the time in the 24-hour format and in the format of **hh:mm** Here, h is the hour, m is the minute and all has to be integers.
 * `ed/` is followed by the end date, it has to be a **valid date** and in the format of **YYYY-MM-DD**.
-* `et/` is followed by the time in 24-hour format and in the format of **hh:mm**.
+* `et/` is followed by the time in the 24-hour format and in the format of **hh:mm**.
 * The STARTDATE and STARTTIME provided should be earlier than ENDDATE and ENDTIME.
 * The ENDDATE and ENDTIME provided cannot be a past date time.
 * `c/` is followed by the category. It is optional.
@@ -313,7 +337,7 @@ Examples:
 [Return to Feature List](#feature-list)
 
 
-### Editing a event: `edit_event`
+### Editing an event: `edit_event`
 Edits an **existing and uncompleted** event in SOChedule.
 
 Format: `edit_event INDEX [n/EVENTNAME] [sd/STARTDATE] [st/STARTTIME] [ed/ENDDATE] [et/ENDTIME] [c/CATEGORY]... [t/TAG]...`
@@ -323,7 +347,7 @@ Format: `edit_event INDEX [n/EVENTNAME] [sd/STARTDATE] [st/STARTTIME] [ed/ENDDAT
 * The STARTDATE and STARTTIME provided should be earlier than ENDDATE and ENDTIME.
 * The ENDDATE and ENDTIME provided cannot be a past date time.
 * Existing values will be updated to the input values.
-* When editing tags/categories, the existing tags/categories of the event will be removed i.e adding of tags/categories is not cumulative.
+* When editing tags/categories, the existing tags/categories of the event will be removed i.e. adding of tags/categories is not cumulative.
 * You can remove all the event’s tags by typing `t/` without specifying any tags after it. 
   Similarly, you can remove all the event’s categories by typing `c/` without specifying any categories after it.
 
@@ -372,7 +396,7 @@ Format: `clear_expired_event`
 Finds ongoing tasks and events before or on the specified date in SOChedule.
 
 Format: `find_schedule DATE`
-* **Ongoing tasks** refer to **uncompleted tasks** with deadline before or on the specified date
+* **Ongoing tasks** refer to **uncompleted tasks** with deadlines before or on the specified date
 * **Ongoing events** refer to events with start date before or on the specified date and end date after or on the specified date, 
   i.e., `event start date <= given date <= event end date`
 * Date entered must be a valid date and in the format of `YYYY-MM-DD`, e.g. `2021-04-01`
@@ -382,7 +406,7 @@ Format: `find_schedule DATE`
   please use the `list_task` and `list_event` respectively.
 
 Examples:
-* `find_schedule 2021-06-01` finds all existing tasks with deadline and all existing events with start date 
+* `find_schedule 2021-06-01` finds all existing tasks with deadlines and all existing events with start date 
   before or on `1st June 2021`.
 
 [Return to Feature List](#feature-list)
@@ -408,7 +432,7 @@ Displays a summary of tasks completion status and events upcoming in the next 7 
 
 Format: `summary`
 * **Completed tasks** refer to tasks that are done regardless of when the deadline is.
-* **Overdue tasks** refer to tasks that are incomplete and the current date now has passed the deadline,
+* **Overdue tasks** refer to tasks that are uncompleted and the current date now has passed the deadline,
   i.e., `completionStatus is INCOMPLETE` and `deadline is before current date`
 * **Tasks to be completed before deadline** refer to tasks that are incomplete and the current date now has not passed the deadline,
   i.e., `completionStatus is INCOMPLETE` and `deadline is after current date`

@@ -593,7 +593,7 @@ The sequence diagram for `ClearExpiredEventCommand` can be found below.
 * NUS SOC Student
 * Prefer using CLI rather than GUI
 * Struggle to manage their schedule
-* Have a lot commitments (6 modules, TA and RA roles while balancing a part time internship)
+* Have a lot of commitments (6 modules, TA and RA roles while balancing a part time internship)
 * Can type fast, hate mouse
 
 **Value proposition**:
