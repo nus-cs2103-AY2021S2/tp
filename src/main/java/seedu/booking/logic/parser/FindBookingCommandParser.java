@@ -2,13 +2,19 @@ package seedu.booking.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.booking.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.booking.logic.parser.CliSyntax.PREFIX_BOOKING_ID;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.booking.logic.parser.CliSyntax.PREFIX_VENUE;
 
-import java.util.stream.Stream;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Predicate;
 
 import seedu.booking.logic.commands.FindBookingCommand;
 import seedu.booking.logic.parser.exceptions.ParseException;
-import seedu.booking.model.booking.BookingIdContainsKeywordsPredicate;
+import seedu.booking.model.booking.Booking;
 
 /**
  * Parses input arguments and creates a new FindBookingCommand object.
@@ -23,27 +29,42 @@ public class FindBookingCommandParser implements Parser<FindBookingCommand> {
      */
     public FindBookingCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_BOOKING_ID);
 
-        String bookingId;
+        List<Predicate<Booking>> predicateList = new ArrayList<>();
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_BOOKING_ID)
-                || argMultimap.getValue(PREFIX_BOOKING_ID).isEmpty()) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindBookingCommand.MESSAGE_USAGE));
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_EMAIL, PREFIX_DATE, PREFIX_TAG,
+                PREFIX_VENUE, PREFIX_DESCRIPTION);
+
+        if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
+            predicateList.add(ParserUtil.parseBookerMatchesKeywordPredicate(argMultimap.getValue(PREFIX_EMAIL).get()));
         }
 
-        bookingId = String.valueOf(ParserUtil
-                .parseBookingId(argMultimap.getValue(PREFIX_BOOKING_ID).get()));
-        return new FindBookingCommand(new BookingIdContainsKeywordsPredicate(bookingId));
-    }
+        if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
+            predicateList.add(ParserUtil
+                    .parseBookingDateContainsKeywordPredicate(argMultimap.getValue(PREFIX_DATE).get()));
+        }
 
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+        if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
+            predicateList
+                    .add(ParserUtil.parseBookingTagContainsKeywordsPredicate(argMultimap.getValue(PREFIX_TAG).get()));
+        }
+
+        if (argMultimap.getValue(PREFIX_VENUE).isPresent()) {
+            predicateList
+                    .add(ParserUtil
+                            .parseBookingVenueContainsKeywordsPredicate(argMultimap.getValue(PREFIX_VENUE).get()));
+        }
+
+        if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
+            predicateList.add(ParserUtil
+                    .parseBookingDescContainsKeywordsPredicate(argMultimap.getValue(PREFIX_DESCRIPTION).get()));
+        }
+
+        if (predicateList.isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindBookingCommand.MESSAGE_USAGE));
+        }
+
+        return new FindBookingCommand(predicateList);
     }
 
 }

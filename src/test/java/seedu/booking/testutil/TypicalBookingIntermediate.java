@@ -6,7 +6,7 @@ import static seedu.booking.testutil.TypicalVenues.VENUE2;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 
-import seedu.booking.logic.commands.multiprocessing.AddBookingIntermediate;
+import seedu.booking.logic.commands.intermediatestate.AddBookingIntermediate;
 import seedu.booking.model.booking.Description;
 import seedu.booking.model.booking.EndTime;
 import seedu.booking.model.booking.StartTime;

@@ -17,7 +17,7 @@ import seedu.booking.model.venue.VenueName;
  * Sets up necessary conditions for multi-step command for create booking
  */
 public class PromptAddVenueCommand extends Command {
-    public static final String COMMAND_WORD = "add_venue_m";
+    public static final String COMMAND_WORD = "add_venue";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Starts multi-step process to add venue.\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_VENUE + "Victoria Hall";

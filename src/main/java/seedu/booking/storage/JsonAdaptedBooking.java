@@ -16,7 +16,6 @@ import seedu.booking.model.Tag;
 import seedu.booking.model.booking.Booking;
 import seedu.booking.model.booking.Description;
 import seedu.booking.model.booking.EndTime;
-import seedu.booking.model.booking.Id;
 import seedu.booking.model.booking.StartTime;
 import seedu.booking.model.person.Email;
 import seedu.booking.model.person.Person;
@@ -32,7 +31,6 @@ public class JsonAdaptedBooking {
     private final String bookingStart;
     private final String bookingEnd;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
-    private final String id;
 
 
     /**
@@ -42,7 +40,7 @@ public class JsonAdaptedBooking {
     public JsonAdaptedBooking(@JsonProperty("bookerEmail") String bookerEmail,
           @JsonProperty("venueName") String venueName, @JsonProperty("description") String description,
           @JsonProperty("bookingStart") String bookingStart, @JsonProperty("bookingEnd") String bookingEnd,
-          @JsonProperty("id") String id, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+          @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.bookerEmail = bookerEmail;
         this.venueName = venueName;
         this.description = description;
@@ -51,7 +49,7 @@ public class JsonAdaptedBooking {
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
-        this.id = id;
+
     }
 
     /**
@@ -66,7 +64,6 @@ public class JsonAdaptedBooking {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
-        id = String.valueOf(source.getId().value);
     }
 
 
@@ -114,11 +111,6 @@ public class JsonAdaptedBooking {
         // Parse String to LocalDateTime
         final EndTime modelBookingEnd = new EndTime(LocalDateTime.parse(bookingEnd, formatter));
 
-        if (id == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Integer.class.getSimpleName()));
-        }
-
-        final Id modelId = new Id(id);
 
         final List<Tag> bookingTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
@@ -127,7 +119,7 @@ public class JsonAdaptedBooking {
         final Set<Tag> modelTags = new HashSet<>(bookingTags);
 
         return new Booking(modelBooker, modelVenue, modelDescription, modelBookingStart, modelBookingEnd,
-                modelTags, modelId);
+                modelTags);
     }
 
 }

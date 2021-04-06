@@ -24,6 +24,8 @@ import seedu.booking.model.venue.VenueName;
  * Parses input arguments and creates a new PromptAddVenueCommand object
  */
 public class PromptAddVenueCommandParser {
+    public static final int DEFAULT_CAPACITY = 10;
+
     /**
      * Parses the given {@code String} of arguments for venue in the context of adding a venue
      * and returns an PromptAddVenue object for execution.
@@ -51,7 +53,7 @@ public class PromptAddVenueCommandParser {
     public PromptVenueCapacityCommand parseCapacity(String args) throws ParseException {
         Capacity capacity;
         if (args.equals("")) {
-            capacity = new Capacity(10);
+            capacity = new Capacity(DEFAULT_CAPACITY);
         } else {
             capacity = ParserUtil.parseCapacity(args);
         }

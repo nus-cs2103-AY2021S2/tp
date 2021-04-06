@@ -102,7 +102,7 @@ Format: `clear`
 
 </div>
 
-#### 3.1.3. Saving the data
+#### 3.1.3. Saving data
 
 BookCoin data is saved in the hard disk automatically after any command which results in changes the data. There is no need to save manually.
 
@@ -119,21 +119,21 @@ Format: `exit`
 **:information_source: More information about multi-step commands:**<br>
 
 * Some commands require multiple input information which can be very tedious to type in one go. 
-Multi-step commands therefore allow such commands to be used with greater ease by users as the system will prompt them for input items one at a time. To skip input for optional fields, you can just press the <kbd>Enter</kbd> key without typing anything when you are prompted to enter an optional field.
+Multi-step commands therefore allow such commands to be used with greater ease by users as the system will prompt them to input items one at a time. To skip input for optional fields, you can just press the <kbd>Enter</kbd> key without typing anything when prompted to enter an optional field.
+* The multi-step commands currently supported in v1.4 are `add_person`, `add_venue` and `add_booking`.
 * The commands listed in this section are specific to multi-step commands and are only applicable when the user is in the middle of a multi-step command.
 
 </div>
 
 #### 3.2.1. Undo previous input : `undo`
 
-Brings the prompt of the multi-step command back to the previous step if users made a typo and wish to re-enter
-their input for the previous field.
+Brings the prompt of the multi-step command back to the previous step if users made a typo and wish to re-enter their input for the previous field.
 
 Format: `undo`
 
 #### 3.2.2. Exiting prompting : `exit_prompt`
 
-Exits the multi-step prompting under add_booking or add_venue. After exiting prompting, you would be able to give command
+Exits the multi-step prompting for multi-step commands. After exiting prompting, you would be able to give command
 inputs again. Other commands would not work if you do not exit the multi-step command.
 
 Format: `exit_prompt`
@@ -182,25 +182,28 @@ Shows a list of all persons in the booking app.
 
 Format: `list_person`
 
-#### 3.3.5. Finding a person : `find_person` (Edit this Vanessa!)
+#### 3.3.5. Finding a person : `find_person`
 
-Shows information about the person corresponding to the given email. Partial matching is not accepted to reduce the number of unrelated search results for greater convenience in searching. 
+Shows information about the person corresponding to the specified field(s) - at least one field must be provided. Partial matching is not accepted to reduce the number of unrelated search results for greater convenience in searching. 
 
-Format: `find_person e/EMAIL`
+Format: `find_person [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]`
+
+Example:
+* `find_person n/John Doe t/Student`
 
 ### 3.4. Venue
 
 #### 3.4.1. Adding a venue : `add_venue` (Multi step command)
 
 Adds a new venue for the booking app. `add_venue` is a multi-step command that will prompt you for additional input. Inputting 
-`add_venue v/VENUE_NAME` will start the command and the app will guide you through the command through prompts for each field. As with other multi step commands, you can exit the command by entering `exit_prompt` at any point. Optional fields can be skipped by pressing the `Enter` key when you are prompted to input an optional field.
+`add_venue v/VENUE_NAME` will start the command and the app will guide you through the command through prompts for each field. As with other multi step commands, you can exit the command by entering `exit_prompt` at any point. Optional fields can be skipped by pressing the <kbd>Enter</kbd> key when you are prompted to input an optional field.
 
-Capacity, description and tags are optional. Default capacity without an input will be set to 10.
+After keying in a valid initial input, the multi-step prompting will prompt you to enter details for the fields capacity, description and tags, which are all optional. Capacity should be entered as a digit, with the maximum limit being 500000. Default capacity without an input will be set to 10.
 
 Format: `add_venue v/VENUE_NAME`
 
 Example:
-* `add_venue v/Chua Thian Poh Hall max/40` adds a venue with venue name Chua Thian Poh Hall and a maximum capacity of 40.
+* `add_venue v/Chua Thian Poh Hall` adds a venue with venue name Chua Thian Poh Hall and a maximum capacity of 40.
 
 #### 3.4.2. Editing a venue : `edit_venue`
 
@@ -219,7 +222,7 @@ Deletes a venue corresponding to the venue name specified.
 Format: `delete_venue v/VENUE_NAME`
 
 Example:
-* `delete_venue v/Volleyball Court`
+* `delete_venue v/Volleyball Court` deletes the venue with the name "Volleyball Court".
 
 #### 3.4.4. Listing all venues : `list_venue`
 
@@ -227,14 +230,14 @@ Shows a list of all venues in the booking app.
 
 Format: `list_venue`
 
-#### 3.4.5. Finding a venue : `find_venue` (rmb to edit this vanessa!!!)
+#### 3.4.5. Finding a venue : `find_venue`
 
-Shows information about the venue corresponding to the given venue name. Partial matching is not accepted to reduce the number of unrelated search results for greater convenience in searching. 
+Shows information about the venue corresponding to the specified field(s) - at least one field must be provided. Partial matching is not accepted to reduce the number of unrelated search results for greater convenience in searching.
 
-Format: `find_venue v/VENUE_NAME`
+Format: `find_venue [v/VENUE_NAME] [max/CAPACITY] [d/DESCRIPTION] [t/TAG]`
 
 Example:
-* `find_venue v/Victoria Hall`
+* `find_venue v/Hall max/50 `
 
 ### 3.5. Booking
 
@@ -251,7 +254,7 @@ Format: `add_booking`
 
 Edits an existing booking in the booking system with the specified booking ID.
 
-Format: `edit_booking bid/BOOKING_ID [b/BOOKER_EMAIL] [v/VENUE_NAME] [d/DESCRIPTION] [bs/DATETIME] [be/DATETIME] [t/TAG]`
+Format: `edit_booking INDEX [b/BOOKER_EMAIL] [v/VENUE_NAME] [d/DESCRIPTION] [bs/DATETIME] [be/DATETIME] [t/TAG]`
 
 Examples:
 * `edit_booking bid/8937936578 b/janetan@gmail.com` 
@@ -261,7 +264,7 @@ Examples:
 
 Deletes booking corresponding to the booking ID specified.
 
-Format: `delete_booking bid/BOOKING_ID`
+Format: `delete_booking INDEX`
 
 Example:
 * `delete_booking bid/232138762134`
@@ -272,50 +275,14 @@ Shows a list of all bookings and their corresponding IDs in the booking app.
 
 Format: `list_booking`
 
-#### 3.5.5. Finding a booking : `find_booking` (Edit this Vanessa!)
+#### 3.5.5. Finding a booking : `find_booking` 
 
-Shows information about the booking corresponding to the given booking ID. Partial matching is not accepted to reduce the number of unrelated search results for greater convenience in searching. 
+Shows information about the booking corresponding to the specified field(s) - at least one field must be provided. Partial matching is not accepted to reduce the number of unrelated search results for greater convenience in searching.
 
-Format: `find_booking bid/BOOKING_ID`
-
-Example:
-* `find_booking bid/2321837462`
-
-#### 3.5.6. Filtering bookings by date : `filter_booking_by_date`
-
-Shows a list of bookings on the specified date.
-
-Format: `filter_booking_by_date date/DATE`
+Format: `find_booking [e/BOOKER_EMAIL] [date/DATE] [v/VENUE_NAME] [d/DESCRIPTION] [t/TAG]`
 
 Example:
-* `filter_booking_by_date date/2020-12-12`
-
-#### 3.5.7. Filtering bookings by booker : `filter_booking_by_booker`
-
-Shows a list of bookings booked by the booker identified by the email address given.
-
-Format: `filter_booking_by_booker e/EMAIL`
-
-Example:
-* `filter_booking_by_booker e/JohnRose@abc.com`
-
-#### 3.5.8. Filtering bookings by venue : `filter_booking_by_venue`
-
-Shows a list of bookings at the specified venue.
-
-Format: `filter_booking_by_venue v/VENUE`
-
-Example:
-* `filter_booking_by_venue v/Sports Hall`
-
-#### 3.5.9. Filtering bookings by tag : `filter_booking_by_tag`
-
-Shows a list of bookings with the specified tag.
-
-Format: `filter_booking_by_tag t/TAG`
-
-Example:
-* `filter_booking_by_tag t/student`
+* `find_booking e/johnd@gmail.com v/Hall `
 
 ### 3.6. Upcoming
 
@@ -354,9 +321,9 @@ Action | Format, Example
 **find venue** | `find_venue v/VENUE_NAME` <br> e.g., `find_venue v/Field`
 **list venue** | `list_venue`
 **add booking** | `add_booking` <br> (Note: add_booking is a multi-step command)
-**delete booking** | `delete_booking bid/BOOKING_ID` <br> e.g. `delete_booking bid/8756948376`
-**edit booking** | `edit_booking bid/BOOKING_ID [b/BOOKER_EMAIL] [v/VENUE_NAME] [d/DESCRIPTION] [bs/DATETIME] [be/DATETIME] [t/TAG]` <br> e.g., `edit_booking bid/3984792837 e/doe@gmail.com`
-**find person** | `find_booking bid/BOOKING_ID` <br> e.g., `find_booking bid/8756948376`
+**delete booking** | `delete_booking INDEX` <br> e.g. `delete_booking 1`
+**edit booking** | `edit_booking INDEX [b/BOOKER_EMAIL] [v/VENUE_NAME] [d/DESCRIPTION] [bs/DATETIME] [be/DATETIME] [t/TAG]` <br> e.g., `edit_booking 1 e/doe@gmail.com`
+**find person** | `find_booking INDEX` <br> e.g., `find_booking 1`
 **list booking** | `list_booking`
 **help** | `help`
 **clear** | `clear`

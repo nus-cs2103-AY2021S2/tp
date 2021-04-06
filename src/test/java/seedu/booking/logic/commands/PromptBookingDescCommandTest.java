@@ -18,7 +18,7 @@ import seedu.booking.model.UserPrefs;
 import seedu.booking.model.booking.Description;
 
 public class PromptBookingDescCommandTest {
-    private ModelManager model = new ModelManager(getTypicalBookingSystem(), new UserPrefs());
+    private final ModelManager model = new ModelManager(getTypicalBookingSystem(), new UserPrefs());
 
     @BeforeEach
     void setup() {
@@ -41,7 +41,6 @@ public class PromptBookingDescCommandTest {
         }
 
         String state = ModelManager.getState();
-        System.out.println(state);
         assertTrue(state.equals(STATE_TAG));
         assertTrue(ModelManager.isStateActive());
 
