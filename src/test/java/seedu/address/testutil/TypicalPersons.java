@@ -79,10 +79,10 @@ public class TypicalPersons {
 
     public static Event[] getSampleEvents() {
         return new Event[] {
-                new seedu.address.testutil.EventBuilder().withDate(LocalDate.of(2021, 1, 30)).withDescription("e1").build(),
-                new seedu.address.testutil.EventBuilder().withDate(LocalDate.of(2021, 1, 24)).withDescription("e2").build(),
-                new seedu.address.testutil.EventBuilder().withDate(LocalDate.of(2020, 12, 30)).withDescription("e3").build(),
-                new seedu.address.testutil.EventBuilder().withDate(LocalDate.of(2021, 4, 1)).withDescription("e4").build()
+                new EventBuilder().withDate(LocalDate.of(2021, 1, 30)).withDescription("e1").build(),
+                new EventBuilder().withDate(LocalDate.of(2021, 1, 24)).withDescription("e2").build(),
+                new EventBuilder().withDate(LocalDate.of(2020, 12, 30)).withDescription("e3").build(),
+                new EventBuilder().withDate(LocalDate.of(2021, 4, 1)).withDescription("e4").build()
         };
     }
 
