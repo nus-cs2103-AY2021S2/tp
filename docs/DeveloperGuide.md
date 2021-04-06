@@ -177,13 +177,13 @@ user of the error.
 
 </div>
 
-Step 4. The overridden `execute` method of `DeleteCommand` will be called, deleting the item from the list. An instance 
-of `CommandResult` will be created, generating the result of the execution. The `LogicManager` class will receive the 
-`CommandResult` object of the execution. The item is deleted from `StoreMando`.
+Step 4. The overridden `execute` method of `DeleteCommand` will be called, deleting the item from the list. 
+
+Step 5. Finally, a `CommandResult` object is created and returned to `LogicManager`.
 
 ![DeleteActivityDiagram](images/DeleteActivityDiagram.png)
 
-##### Aspect: How delete executes
+##### Aspect: How `delete` executes
 
 * **Alternative 1 (current choice):** Delete item by an index.
     * Pros: Easy to implement.
@@ -226,7 +226,7 @@ within a certain number of days as specified by the user.
     as argument.
 10. `ReminderCommand` calls the `getCurrentPredicate` method of `model` to obtain the current predicate and uses it
     to update the list by calling on `updateFilteredItemList` method of `model` with the current predicate as argument.
-11. `ReminderCommand` then creates a `ItemComparatorByExpiryDate` object and calls `model`'s `updateSortedList` with 
+11. `ReminderCommand` then creates a `ItemComparatorByExpiryDate` object and calls `model`'s `updateSortedItemList` with 
     `ItemComparatorByExpiryDate` as argument to sort the list.
 12. Finally, a `CommandResult` object is created and returned to `LogicManager`.    
 
