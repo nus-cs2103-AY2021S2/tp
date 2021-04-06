@@ -194,6 +194,11 @@ public class AddMemberCommandTest {
         public void removeAssignee(Person person) {
             throw new AssertionError("This method should not be called.");
         };
+
+        @Override
+        public void editAssignee(Person target, Person editedPerson) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
