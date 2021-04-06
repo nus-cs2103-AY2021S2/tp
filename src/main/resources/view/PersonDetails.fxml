@@ -2,13 +2,17 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="personDetails" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="459.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="personDetails" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="459.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+
    <children>
       <Label fx:id="name" alignment="CENTER" prefHeight="62.0" prefWidth="600.0" styleClass="cell_big_label" text="\$studentName" VBox.vgrow="ALWAYS" />
       <GridPane prefHeight="460.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
@@ -20,7 +24,41 @@
           <RowConstraints maxHeight="228.0" minHeight="10.0" prefHeight="228.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <ImageView fitHeight="182.0" fitWidth="329.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+            <HBox prefHeight="205.0" prefWidth="527.0">
+               <children>
+                  <ImageView fitHeight="166.0" fitWidth="238.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+                     <HBox.margin>
+                        <Insets left="20.0" top="10.0" />
+                     </HBox.margin>
+                      <image>
+                          <Image url="@/images/tutorspet.png" />
+                      </image>
+                  </ImageView>
+                  <VBox prefHeight="205.0" prefWidth="221.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <GridPane fx:id="gridPane" prefHeight="27.0" prefWidth="193.0">
+                          <columnConstraints>
+                            <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints maxHeight="98.0" minHeight="10.0" prefHeight="25.0" />
+                          </rowConstraints>
+                           <children>
+                              <Label text="Lesson" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS" />
+                           </children>
+                        </GridPane>
+                        <StackPane fx:id="lessonListPanelPlaceholder" prefHeight="160.0" prefWidth="193.0" VBox.vgrow="ALWAYS">
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </StackPane>
+                     </children>
+                     <HBox.margin>
+                        <Insets left="80.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+            </HBox>
             <GridPane prefHeight="234.0" prefWidth="600.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="296.0" minWidth="10.0" prefWidth="111.0" />

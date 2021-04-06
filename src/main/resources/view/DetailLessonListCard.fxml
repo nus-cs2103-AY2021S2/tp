@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+
+<HBox id="cardPane" fx:id="cardPane" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="59.0" prefWidth="296.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Label fx:id="lessonDay" alignment="CENTER" minHeight="-Infinity" prefHeight="36.0" prefWidth="96.0" styleClass="cell_big_label">
+ <minWidth>
+   <!-- Ensures that the label text is never truncated -->
+   <Region fx:constant="USE_PREF_SIZE" />
+ </minWidth>
+</Label>
+   <Label fx:id="lessonTime" minHeight="-Infinity" prefHeight="36.0" prefWidth="98.0" styleClass="cell_big_label" wrapText="true">
+      <HBox.margin>
+         <Insets left="30.0" />
+      </HBox.margin>
+   </Label>
+</HBox>

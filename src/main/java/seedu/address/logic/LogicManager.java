@@ -20,6 +20,7 @@ import seedu.address.model.date.ImportantDate;
 import seedu.address.model.lesson.Lesson;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.predicate.LessonDayPredicate;
+import seedu.address.model.person.predicate.LessonPersonPredicate;
 import seedu.address.storage.Storage;
 
 /**
@@ -124,6 +125,12 @@ public class LogicManager implements Logic {
             lessonsForDayInString.add(l.getTimeInString() + ": " + l.getPersonInString());
         }
         return lessonsForDayInString;
+    }
+
+    @Override
+    public ObservableList<Lesson> getSpecificLessonList(Person person) {
+        model.filterThenSortLessonList(new LessonPersonPredicate(person), Lesson::compareTo);
+        return model.getTransformedLessonList();
     }
 
     @Override

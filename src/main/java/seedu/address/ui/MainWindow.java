@@ -234,6 +234,7 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             if (logic.getSelectedPerson() != null) {
                 personDetails.setPerson(logic.getSelectedPerson());
+                personDetails.setLessonList(logic.getSpecificLessonList(logic.getSelectedPerson()));
             }
 
             if (commandResult.isShowHelp()) {

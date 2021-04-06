@@ -83,6 +83,7 @@ public interface Logic {
     ObservableList<ImportantDate> getFilteredImportantDatesList();
 
     ObservableList<ImportantDate> getSortedImportantDatesList();
+    ObservableList<Lesson> getSpecificLessonList(Person selectedPerson);
 
     public ObservableList<ImportantDate> getTransformedImportantDatesList();
 
@@ -98,4 +99,6 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+
 }
