@@ -32,7 +32,8 @@ public class DescriptionTest {
         assertTrue(Description.isValidDescription("Finish the assignment"));
         assertTrue(Description.isValidDescription("-")); // one character
         // long description
-        assertTrue(Description.isValidDescription("Create the forbidden colour combination that does not mix well according to a tutor."));
+        assertTrue(Description.isValidDescription(
+                "Create the forbidden colour combination that does not mix well according to a tutor."));
     }
 
     @Test
