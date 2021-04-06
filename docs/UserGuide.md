@@ -94,7 +94,7 @@ DESCRIPTION OF PARAMETER
 
 
 #### `KEYWORD`
-Keyword used in commands such as find
+A keyword used in the various find commands.
 * Format: Single word consisting of any character except spaces.
 * For best usage: Use English characters only.
 
@@ -114,17 +114,17 @@ DESCRIPTION OF PARAMETER
 
 
 #### `ROOM_NUMBER`
-Room number for a room
+Room number for a room.
 * Format: `XY-ABC`, where XY can be any pair of digits except 00, and ABC can be any 3 digits.
     * Valid examples: 01-000, 11-100, 12-345.
     * Invalid examples: 00-000, 00-100.
-* Room numbers are unique within the SunRez.
-* We disallow floor numbers being 00, as that is not a common practice in Singapore. However, unit numbers can be 000.
+* Room numbers are unique within SunRez.
+* We disallow floor numbers being 00. However, unit numbers can be 000.
 
 
 #### `ROOM_TYPE`
-DESCRIPTION OF PARAMETER
-* Format: One of the following strings: `corridor_ac`, `corridor_non_ac`, `suite_ac`, `suite_non_ac`.
+Room type of a room.
+* Must be one of the following strings: `corridor_ac`, `corridor_non_ac`, `suite_ac`, `suite_non_ac`.
 * Strings are not case-sensitive.
 
 
@@ -268,7 +268,7 @@ Adds a room to the housing management system.
 Format: `oadd r/ROOM_NUMBER t/ROOM_TYPE [g/TAG]`
 * Room is initialised with default occupancy status of "No".
 * The occupancy status cannot be defaulted to "Yes" during room addition.
-* Room occupancy status can only be changed through the `alloc` or `dealloc` command when a resident is allocated or deallocated. See [allocate a resident](#allocate-resident-to-room-alloc) or [deallocate a resident](#deallocate-resident-from-room--dealloc) for more info. 
+* Room occupancy status can only be changed through the `alloc` or `dealloc` command when a resident is allocated or deallocated. See [allocate a resident](#allocate-resident-to-room-alloc) or [deallocate a resident](#deallocate-resident-from-room-dealloc) for more info. 
   
 Parameters:
 * [ROOM_NUMBER](#room_number) The room number of the room to add.
@@ -298,7 +298,7 @@ Format: `ofind KEYWORD [MORE_KEYWORDS]`
 * Rooms matching at least one keyword will be returned (i.e. OR search). e.g. `10 20` will return `10-100`, `11-120`.
 
 Parameters:
-* [KEYWORD](#keyword) The keyword to search for in the room list
+* [KEYWORD](#keyword) The keyword to search for in the room list.
 
 Examples:
 * `ofind 10-` returns `10-100`, `10-101`, and `10-102`.
@@ -315,9 +315,9 @@ Edits the existing room record at a specified index.
 Format: `oedit INDEX [r/ROOM_NUMBER] [t/ROOM_TYPE] [g/TAG]`
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* `oedit` will be blocked if the room is occupied. Run [`dealloc`](#deallocate-resident-from-room-dealloc) to deallocate the room before making further edits.
+* `oedit` will be blocked if the room is occupied. Run `dealloc` to deallocate the room before making further edits.
 * The occupancy status is not controllable through the `oedit` command.
-* Room occupancy status can only be changed through the `alloc` or `dealloc` command when a resident is allocated or deallocated. See [allocate a resident](#allocate-resident-to-room-alloc) or [deallocate a resident](#deallocate-resident-from-room--dealloc) for more info.   
+* Room occupancy status can only be changed through the `alloc` or `dealloc` command when a resident is allocated or deallocated. See [allocate a resident](#allocate-resident-to-room-alloc) or [deallocate a resident](#deallocate-resident-from-room-dealloc) for more info.   
 
 
 Parameters:
@@ -335,7 +335,7 @@ Example:
 Deletes the room at a specified index.
 
 Format: `odel INDEX`
-* `odel` will be blocked if the room is occupied. Run [`dealloc`](#deallocate-resident-from-room-dealloc) to deallocate the room before attempting to delete the room.
+* `odel` will be blocked if the room is occupied. Run [`dealloc` to deallocate the room before attempting to delete the room.
 
 Parameters:
 * [INDEX](#index) The index of the room to delete.
