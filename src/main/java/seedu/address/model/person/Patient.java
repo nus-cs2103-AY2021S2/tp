@@ -72,6 +72,24 @@ public class Patient implements Comparable<Patient> {
         this.isArchived = false;
     }
 
+    /**
+     * Every field must be present and not null.
+     */
+    public Patient(Name name, Phone phone, Email email, Address address, Height height, Weight weight,
+                   Set<Tag> tags, List<MedicalRecord> records ,List<Appointment>appointments) {
+        requireAllNonNull(name, phone, email, address, height, weight, tags);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.height = height;
+        this.weight = weight;
+        this.tags.addAll(tags);
+        this.records.addAll(records);
+        this.appointments.addAll(appointments);
+        this.isArchived = false;
+    }
+
     public Name getName() {
         return name;
     }

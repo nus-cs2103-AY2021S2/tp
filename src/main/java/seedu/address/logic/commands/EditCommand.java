@@ -21,6 +21,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.medical.MedicalRecord;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Height;
@@ -116,7 +117,7 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(patientToEdit.getTags());
 
         Patient updatedPatient = new Patient(updatedName, updatedPhone, updatedEmail, updatedAddress,
-                updatedHeight, updatedWeight, updatedTags);
+                updatedHeight, updatedWeight, updatedTags, patientToEdit.getRecords(), patientToEdit.getAppointments());
         updatedPatient.setArchived(editPersonDescriptor.isArchived());
         return updatedPatient;
     }
