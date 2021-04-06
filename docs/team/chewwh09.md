@@ -21,17 +21,25 @@ Given below are my contributions to the project.
     * Modified `List` v1. (Pull requests [\#73](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/73))
     * Modified `Reminder` v2. (Pull requests [\#118](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/118))
 
-* **Implementing of new features**
-    * Modified `Reminder` v1. (Pull requests [\#98](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/98))
+* **Implementing of new features/GUI**
+    * Add `Reminder` v1. (Pull requests [\#98](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/98))
+    * Color code the expiry date field (Pull requests [\#160](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/160))
+    * Add expiring items table in the GUI (Pull requests [\#215](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/215))
     
 * **Ensuring high test coverage**
-    * Add `List` tests (Pull requests [\#112](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/112))
-    * Add `Find` tests (Pull requests [\#112](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/112))
+    * Add `List` feature's tests (Pull requests [\#112](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/112))
+    * Add `Find` feature's tests (Pull requests [\#112](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/112))
 
 * **Documentation**:
+    * User Guide:
+        * Edit initial `List` user guide (Pull requests [\#73](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/73))
+        * Add `reminder` feature (Pull requests [\#98](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/98))
+        * Update `reminder` feature (Pull requests [\#174](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/174))
+        * Modify and format User Guide (Pull requests [\#174](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/174))
     * Developer Guide:
-        * Added glossary. (Pull requests [\#42](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/42))
-        * Added use cases. (Pull requests [\#44](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/44))
+        * Add glossary. (Pull requests [\#42](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/42))
+        * Add use cases. (Pull requests [\#44](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/44))
+        * Add more use cases for `reminder` Feature. (Pull requests [\#98](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/98))
     * About Us:
         * Updated Chew Wei Hao's part. (Pull requests [\#13](https://github.com/AY2021S2-CS2103T-W10-2/tp/pull/13))
 
