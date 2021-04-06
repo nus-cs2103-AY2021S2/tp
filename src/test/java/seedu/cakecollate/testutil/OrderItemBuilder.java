@@ -1,6 +1,5 @@
 package seedu.cakecollate.testutil;
 
-import seedu.cakecollate.model.orderitem.Cost;
 import seedu.cakecollate.model.orderitem.OrderItem;
 import seedu.cakecollate.model.orderitem.Type;
 
@@ -9,17 +8,14 @@ import seedu.cakecollate.model.orderitem.Type;
  */
 public class OrderItemBuilder {
     public static final String DEFAULT_TYPE = "Strawberry Cake";
-    public static final String DEFAULT_COST = "20.75";
 
     private Type type;
-    private Cost cost;
 
     /**
      * Creates a {@code OrderItemBuilder} with the default details.
      */
     public OrderItemBuilder() {
         type = new Type(DEFAULT_TYPE);
-        cost = new Cost(DEFAULT_COST);
     }
 
     /**
@@ -27,7 +23,6 @@ public class OrderItemBuilder {
      */
     public OrderItemBuilder(OrderItem orderItemToCopy) {
         type = orderItemToCopy.getType();
-        cost = orderItemToCopy.getCost();
     }
 
 
@@ -39,15 +34,7 @@ public class OrderItemBuilder {
         return this;
     }
 
-    /**
-     * Sets the {@code Cost} of the {@code OrderItem} that we are building.
-     */
-    public OrderItemBuilder withCost(String cost) {
-        this.cost = new Cost(cost);
-        return this;
-    }
-
     public OrderItem build() {
-        return new OrderItem(type, cost);
+        return new OrderItem(type);
     }
 }

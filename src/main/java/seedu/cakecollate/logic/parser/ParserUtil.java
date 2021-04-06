@@ -17,7 +17,6 @@ import seedu.cakecollate.model.order.Email;
 import seedu.cakecollate.model.order.Name;
 import seedu.cakecollate.model.order.OrderDescription;
 import seedu.cakecollate.model.order.Phone;
-import seedu.cakecollate.model.orderitem.Cost;
 import seedu.cakecollate.model.orderitem.OrderItem;
 import seedu.cakecollate.model.orderitem.Type;
 import seedu.cakecollate.model.tag.Tag;
@@ -51,7 +50,7 @@ public class ParserUtil {
      */
     public static IndexList parseIndexList(String oneBasedIndexList) throws ParseException {
         String[] indexListSplit = oneBasedIndexList.trim().split(" ");
-        IndexList indexList = new IndexList(new ArrayList<Index>());
+        IndexList indexList = new IndexList(new ArrayList<>());
         for (String index: indexListSplit) {
             Index parsedIndex = parseIndex(index);
             indexList.add(parsedIndex);
@@ -92,10 +91,10 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String cakecollate} into an {@code Address}.
+     * Parses a {@code String address} into an {@code Address}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code cakecollate} is invalid.
+     * @throws ParseException if the given {@code address} is invalid.
      */
     public static Address parseAddress(String address) throws ParseException {
         requireNonNull(address);
@@ -213,6 +212,6 @@ public class ParserUtil {
         if (!Type.isValidType(trimmedOrderItemDescription)) {
             throw new ParseException(Type.MESSAGE_CONSTRAINTS);
         }
-        return new OrderItem(new Type(trimmedOrderItemDescription), new Cost("10"));
+        return new OrderItem(new Type(trimmedOrderItemDescription));
     }
 }
