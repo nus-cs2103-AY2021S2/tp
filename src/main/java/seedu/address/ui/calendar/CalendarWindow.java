@@ -30,6 +30,7 @@ public class CalendarWindow extends UiPart<Stage> {
     private static final int DAY_ONE = 1;
     private static final int CALENDER_SIDE_SIZE = 7;
     private static final int CALENDAR_SIZE = 35;
+    private static final int LEAP_YEAR_FEB_DAYS = 29;
     private static final int[] DAYS_IN_MONTH = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
     private static final String[] MONTHS = {"January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"};
@@ -38,16 +39,15 @@ public class CalendarWindow extends UiPart<Stage> {
     private int day;
     private int month;
     private int year;
-    private YearMonth yearMonth;
-    private LocalDate todayDate;
-    private LocalDate firstDayOfTheMonth;
-
     private int prevMonthDays;
     private int nextMonthDays;
     private int thisMonthDays;
 
-    private CalendarStorage calendarStorage;
+    private YearMonth yearMonth;
+    private LocalDate todayDate;
+    private LocalDate firstDayOfTheMonth;
 
+    private CalendarStorage calendarStorage;
     private UpcomingSchedule upcomingSchedule;
 
     @FXML
@@ -88,35 +88,30 @@ public class CalendarWindow extends UiPart<Stage> {
         this.upcomingSchedule = upcomingSchedule;
         schedulePanelPlaceHolder.getChildren().add(upcomingSchedule.getRoot());
         setMonthYearLabel();
-        loadCalendar();
+        loadWindow();
         logger.info("calendar window initialised");
     }
 
-    // @@author banchiang-reused
-    // Reused from
-    // https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/resources/view/CalendarView.fxml
-    // with minor modifications.
-    /**
-     * Updates attributes in class from date.
-     * @param date current date.
-     */
-    private void updateDayMonthYear(LocalDate date) {
-        this.year = date.getYear();
-        this.month = date.getMonthValue();
-        this.day = date.getDayOfMonth();
-        this.yearMonth = YearMonth.of(this.year, this.month);
-        this.firstDayOfTheMonth = yearMonth.atDay(DAY_ONE);
+
+    private void loadWindow() {
+        loadSchedule();
+        loadCalendar();
     }
-    // @@author
+
+    private void loadSchedule() {
+        upcomingSchedule.loadSchedule(todayDate);
+    }
 
     private void loadCalendar() {
-        logger.info("calendar window being loaded");
         //update the number of days for the months showing in calendar
         updateMonthDays();
-        //load day names
+
+        //load day names (mon ... sun)
         loadDayNames();
+
         //fill up the calendar with the dates
         loadDayDates();
+
         logger.info("calendar window successfully loads");
     }
 
@@ -128,7 +123,19 @@ public class CalendarWindow extends UiPart<Stage> {
     }
 
     /**
-     * Loads the day names into Calendar.
+     * Updates number of days of previous month,
+     * current month and next month that are to
+     * be viewed on the Calendar.
+     */
+    private void updateMonthDays() {
+        this.thisMonthDays = findNumberOfDaysInTheMonth();
+        int firstDayOfMonth = this.firstDayOfTheMonth.getDayOfWeek().getValue();
+        this.prevMonthDays = firstDayOfMonth % 7 - 1;
+        this.nextMonthDays = CALENDAR_SIZE - this.thisMonthDays - prevMonthDays;
+    }
+
+    /**
+     * Loads the day names into the Calendar.
      */
     private void loadDayNames() {
         for (int col = 0; col < CALENDER_SIDE_SIZE; col++) {
@@ -146,13 +153,13 @@ public class CalendarWindow extends UiPart<Stage> {
      * Loads the day dates into Calendar.
      */
     private void loadDayDates() {
-        //refresh storage to load dates
+        //refresh calendar storage before loading info for day dates.
         refreshStorage();
-
         LocalDate currentDate = firstDayOfTheMonth.minusDays(prevMonthDays);
+
         for (int row = 2; row < CALENDER_SIDE_SIZE; row++) {
             for (int col = 0; col < CALENDER_SIDE_SIZE; col++) {
-                CalendarBox calendarBox = loadInfo(currentDate);
+                CalendarBox calendarBox = loadCalendarBoxInfo(currentDate);
                 calendar.add(calendarBox.getRoot(), col, row);
 
                 //change today date background color to orange
@@ -167,12 +174,19 @@ public class CalendarWindow extends UiPart<Stage> {
                     calendarBox.getRoot().setStyle("-fx-background-color: grey");
                 }
 
+                //move on to the next day
                 currentDate = currentDate.plusDays(1);
             }
         }
     }
 
-    private CalendarBox loadInfo(LocalDate date) {
+    /**
+     * Creates a {@code CalendarBox} for a date in the Calendar with relevant events for the day.
+     *
+     * @param date Date for the {@code CalendarBox}.
+     * @return New {@code CalendarBox} of a certain date.
+     */
+    private CalendarBox loadCalendarBoxInfo(LocalDate date) {
         EventList events = calendarStorage.getDateEvents(date);
         CalendarBox calendarBox = new CalendarBox(date, events);
         calendarBox.addClickEventHandler(upcomingSchedule);
@@ -238,7 +252,7 @@ public class CalendarWindow extends UiPart<Stage> {
     public int findNumberOfDaysInTheMonth() {
         if (this.month == 2) {
             if (this.yearMonth.isLeapYear()) {
-                return 29;
+                return LEAP_YEAR_FEB_DAYS;
             } else {
                 return DAYS_IN_MONTH[month - 1];
             }
@@ -255,7 +269,7 @@ public class CalendarWindow extends UiPart<Stage> {
     public int findNumberOfDaysOfAMonth(int month, int year) {
         if (month == 2) {
             if (Year.isLeap(year)) {
-                return 29;
+                return LEAP_YEAR_FEB_DAYS;
             } else {
                 return DAYS_IN_MONTH[month - 1];
             }
@@ -265,7 +279,7 @@ public class CalendarWindow extends UiPart<Stage> {
     }
 
     /**
-     * Find the number of days in the previous month given the year and month.
+     * Finds the number of days in the previous month given the year and month.
      *
      * @return return the number of days.
      */
@@ -276,21 +290,21 @@ public class CalendarWindow extends UiPart<Stage> {
             return DAYS_IN_MONTH[11];
         }
     }
+
+    /**
+     * Updates attributes for the {@code CalendarWindow} from a date.
+     *
+     * @param date current date.
+     */
+    private void updateDayMonthYear(LocalDate date) {
+        this.year = date.getYear();
+        this.month = date.getMonthValue();
+        this.day = date.getDayOfMonth();
+        this.yearMonth = YearMonth.of(this.year, this.month);
+        this.firstDayOfTheMonth = yearMonth.atDay(DAY_ONE);
+    }
     // @@author
 
-    //Solution below adapted from
-    //https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/resources/view/CalendarView.fxml
-    /**
-     * Updates number of days of previous month,
-     * current month and next month that are to
-     * be viewed on the Calendar.
-     */
-    private void updateMonthDays() {
-        this.thisMonthDays = findNumberOfDaysInTheMonth();
-        int firstDayOfMonth = this.firstDayOfTheMonth.getDayOfWeek().getValue();
-        this.prevMonthDays = firstDayOfMonth % 7 - 1;
-        this.nextMonthDays = CALENDAR_SIZE - this.thisMonthDays - prevMonthDays;
-    }
 
     //Solution below adapted from
     //https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/resources/view/CalendarView.fxml
@@ -309,7 +323,7 @@ public class CalendarWindow extends UiPart<Stage> {
     //Solution below adapted from
     //https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/resources/view/CalendarView.fxml
     /**
-     * Refreshes the whole dateGridPane to show latest UI.
+     * Refreshes the calendar view, the right side of the {@code CalendarWindow} GUI.
      */
     private void refreshCalenderView() {
         calendar.getChildren().clear();
@@ -317,6 +331,12 @@ public class CalendarWindow extends UiPart<Stage> {
         loadCalendar();
     }
 
+    /**
+     * Refreshes the schedule view, the left side of the {@code CalendarWindow} GUI.
+     */
+    private void refreshScheduleView() {
+        upcomingSchedule.refreshSchedule();
+    }
 
     //Solution below adapted from
     //https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/resources/view/CalendarView.fxml
@@ -353,12 +373,14 @@ public class CalendarWindow extends UiPart<Stage> {
         refreshCalenderView();
     }
 
+    //Solution below adapted from
+    //https://github.com/AY2021S1-CS2103-W14-1/tp/blob/master/src/main/resources/view/CalendarView.fxml
     /**
      * Refreshes the calendar view along with the upcoming schedule view.
      */
     @FXML
     public void refresh() {
         refreshCalenderView();
-        upcomingSchedule.refreshSchedule();
+        refreshScheduleView();
     }
 }
