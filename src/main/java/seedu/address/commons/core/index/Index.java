@@ -41,8 +41,11 @@ public class Index {
         return intervalList;
     }
 
-    public static int getIntervalRange(Index startIndex, Index endIndex) {
-        return endIndex.zeroBasedIndex - startIndex.zeroBasedIndex;
+    public static boolean isValidIndexRange(Index startIndex, Index endIndex) {
+        if (startIndex.getZeroBased() < 0) {
+            return false;
+        }
+        return endIndex.getZeroBased() > startIndex.getZeroBased();
     }
 
     /**

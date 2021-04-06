@@ -100,12 +100,14 @@ public interface Model {
     void toggleBlacklist(Person target);
 
     /**
-     * Blacklists the given person.
+     * Blacklists the given person {@code target}.
+     * {@code target} must exist in the address book.
      */
     void blacklistPerson(Person target);
 
     /**
-     * Unblacklists the given person.
+     * Unblacklists the given person {@code target}.
+     * {@code target} must exist in the address book.
      */
     void unblacklistPerson(Person target);
 }
