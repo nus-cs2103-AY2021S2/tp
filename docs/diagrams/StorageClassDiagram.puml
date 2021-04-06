@@ -18,7 +18,7 @@ StorageManager o--> StoreMandoStorage
 
 JsonUserPrefsStorage .left.|> UserPrefsStorage
 JsonStoreMandoStorage .left.|> StoreMandoStorage
-JsonStoreMandoStorage .down.> JsonSerializableStoreMandoStorage
-JsonSerializableStoreMandoStorage .right.> JsonSerializableItem
-JsonSerializableItem .right.> JsonAdaptedTag
+JsonStoreMandoStorage .down.> JsonSerializableStoreMando
+JsonSerializableStoreMando .right.> JsonAdaptedItem
+JsonAdaptedItem .right.> JsonAdaptedTag
 @enduml

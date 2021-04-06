@@ -104,7 +104,7 @@ The `UI` component,
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying
    help to the user.
    
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 5")` API
 calls respectively.
 
 ![Interactions Inside the Logic Component for the `delete` Command](images/DeleteSequenceDiagram.png)
