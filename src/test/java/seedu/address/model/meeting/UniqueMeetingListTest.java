@@ -10,6 +10,7 @@ import static seedu.address.testutil.TypicalPersons.BOB;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.ResolverStyle;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -194,12 +195,14 @@ class UniqueMeetingListTest {
 
     @Test
     public void getNotifications_success() {
-        String meetingTime = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + " 23:59";
-        Person editedBob = new PersonBuilder(BOB).withMeeting("Test @ " + meetingTime).build();
+        String meeting = "Test @ " + LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + " 23:59";
+        Person editedBob = new PersonBuilder(BOB).withMeeting(meeting).build();
         uniqueMeetingList.add(editedBob);
         String template = "You have a meeting with %s at %s\n";
         assertEquals(uniqueMeetingList.getNotifications(),
-                String.format(template, editedBob.getName(), editedBob.getMeeting().get().dateTime.toLocalTime()));
+                String.format(template, editedBob.getName(),
+                        new Meeting(meeting).dateTime.toLocalTime().format(
+                                DateTimeFormatter.ofPattern("hh:mm a").withResolverStyle(ResolverStyle.STRICT))));
     }
 
     @Test
