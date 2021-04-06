@@ -12,7 +12,7 @@ import static java.util.Objects.requireNonNull;
 public class PropertyClientEmailPredicate implements Predicate<Property> {
     public final String email;
 
-    public PropertyClientEmailPredicate(String email) throws IllegalArgumentException {
+    public PropertyClientEmailPredicate(String email) throws NullPointerException {
         requireNonNull(email);
         this.email = email;
     }

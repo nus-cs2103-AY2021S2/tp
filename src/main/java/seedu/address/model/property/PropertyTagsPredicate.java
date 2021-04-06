@@ -18,7 +18,7 @@ public class PropertyTagsPredicate implements Predicate<Property> {
     /**
      * Creates a PropertyTagsPredicate
      */
-    public PropertyTagsPredicate(String keyword) throws IllegalArgumentException {
+    public PropertyTagsPredicate(String keyword) throws NullPointerException {
         requireNonNull(keyword);
         String[] keywords = keyword.split(",");
         this.tags = new ArrayList<>();

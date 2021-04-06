@@ -158,7 +158,7 @@ public class FindPropertyCommandParser implements Parser<FindPropertyCommand> {
             List<Predicate<Property>> tagList = new ArrayList<>();
             try {
                 tags.forEach(s -> tagList.add(new PropertyTagsPredicate(s)));
-            } catch (IllegalArgumentException e) {
+            } catch (NullPointerException e) {
                 throw new ParseException("Wrong tag format! \n"
                         + e.getMessage()
                         + "\n"
@@ -172,7 +172,7 @@ public class FindPropertyCommandParser implements Parser<FindPropertyCommand> {
             List<Predicate<Property>> contactList = new ArrayList<>();
             try {
                 contacts.forEach(s -> contactList.add(new PropertyClientContactPredicate(s)));
-            } catch (IllegalArgumentException e) {
+            } catch (NullPointerException e) {
                 throw new ParseException("Wrong client contact format! \n"
                         + e.getMessage()
                         + "\n"
@@ -190,7 +190,7 @@ public class FindPropertyCommandParser implements Parser<FindPropertyCommand> {
             }
             try {
                 emails.forEach(s -> emailList.add(new PropertyClientEmailPredicate(s)));
-            } catch (IllegalArgumentException e) {
+            } catch (NullPointerException e) {
                 throw new ParseException("Wrong client email format! \n"
                         + e.getMessage()
                         + "\n"
@@ -200,6 +200,7 @@ public class FindPropertyCommandParser implements Parser<FindPropertyCommand> {
         }
 
         if (argMultimap.getValue(PREFIX_CLIENT_NAME).isPresent()) {
+
             List<String> names = argMultimap.getAllValues(PREFIX_CLIENT_NAME);
             names.forEach(name ->
                 predicates.add(new PropertyClientNamePredicate(Arrays.asList(name.split("\\s+")))));
