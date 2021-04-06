@@ -38,7 +38,9 @@ public class RunCommandParser implements Parser<RunCommand> {
 
         // handle quick run command
         // format: run url
-        if (!argMultimap.arePrefixesPresent(PREFIX_METHOD, PREFIX_ADDRESS)
+        if (!argMultimap.arePrefixesPresent(PREFIX_METHOD)
+                &&
+                !argMultimap.arePrefixesPresent(PREFIX_ADDRESS)
                 &&
                 !argMultimap.getPreamble().isEmpty()) {
             Address address = ParserUtil.parseAddress(argMultimap.getPreamble());
@@ -53,10 +55,12 @@ public class RunCommandParser implements Parser<RunCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RunCommand.MESSAGE_USAGE));
         }
 
-        Method method = ParserUtil.parseMethod(argMultimap.getValue(PREFIX_METHOD).get());
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        Method method = ParserUtil.parseMethod(argMultimap.getValue(PREFIX_METHOD).orElse(""));
+        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).orElse(""));
         Set<Header> headerList = ParserUtil.parseHeaders(argMultimap.getAllValues(PREFIX_HEADER));
         Data data = ParserUtil.parseData(argMultimap.getValue(PREFIX_DATA).orElse(""));
+
+
 
         Endpoint endpoint = new Endpoint(method, address, data, headerList, new HashSet<>());
         return new RunCommand(endpoint);
