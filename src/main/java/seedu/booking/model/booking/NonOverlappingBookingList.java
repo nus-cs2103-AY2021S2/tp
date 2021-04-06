@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.booking.commons.util.StringUtil;
 import seedu.booking.model.booking.exceptions.BookingNotFoundException;
 import seedu.booking.model.booking.exceptions.DuplicateBookingException;
 import seedu.booking.model.booking.exceptions.OverlappingBookingException;
@@ -40,12 +41,6 @@ public class NonOverlappingBookingList implements Iterable<Booking> {
         return internalList.stream().anyMatch(toCheck::equals);
     }
 
-    /**
-     * Returns true if the list contains a booking with the id.
-     */
-    public boolean containsId(Id toCheck) {
-        return internalList.stream().anyMatch(x -> x.isId(toCheck));
-    }
 
     /**
      * Returns true if the list contains an overlapping booking as the given argument.
@@ -105,14 +100,6 @@ public class NonOverlappingBookingList implements Iterable<Booking> {
         }
     }
 
-    /**
-     * Removes the equivalent booking from the list by bookingId.
-     * The booking must exist in the list.
-     */
-    public void removeById(Id bookingId) {
-        requireNonNull(bookingId);
-        internalList.removeIf(x -> x.isId(bookingId));
-    }
 
     public void setBookings(NonOverlappingBookingList replacement) {
         requireNonNull(replacement);
@@ -174,15 +161,28 @@ public class NonOverlappingBookingList implements Iterable<Booking> {
      * Replaces the old venue name {@code oldVenueName} in the booking with {@code newVenueName}.
      */
     public void updateVenueInBookings(VenueName oldVenueName, VenueName newVenueName) {
-        internalList.stream().filter(x -> x.getVenueName().equals(oldVenueName))
+        internalList.stream()
+                .filter(x -> StringUtil.containsWordIgnoreCase(x.getVenueName().venueName, oldVenueName.venueName))
                 .forEach(x -> x.setVenueName(newVenueName));
     }
+
+
 
     /**
      * Replaces the old person email {@code oldEmail} in the booking with {@code newEmail}.
      */
     public void updatePersonInBookings(Email oldEmail, Email newEmail) {
-        internalList.stream().filter(x -> x.getBookerEmail().equals(oldEmail))
+        internalList.stream()
+                .filter(x -> StringUtil.containsWordIgnoreCase(x.getBookerEmail().value, oldEmail.value))
                 .forEach(x -> x.setEmail(newEmail));
+    }
+
+
+    /**
+     * Returns the number of overlapped booking with {@code toAdd} in the booking.
+     */
+    public long countOverlaps(Booking toAdd) {
+        requireNonNull(toAdd);
+        return internalList.stream().filter(toAdd::isOverlapping).count();
     }
 }

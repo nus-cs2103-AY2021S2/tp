@@ -4,20 +4,24 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.booking.commons.core.Messages.MESSAGE_VENUE_DISPLAYED;
-import static seedu.booking.logic.commands.CommandTestUtil.VALID_VENUE_NAME_VENUE1;
-import static seedu.booking.logic.commands.CommandTestUtil.VALID_VENUE_NAME_VENUE3;
+import static seedu.booking.logic.commands.CommandTestUtil.VALID_VENUE_CAPACITY_FIELD;
+import static seedu.booking.logic.commands.CommandTestUtil.VALID_VENUE_CAPACITY_HALL;
 import static seedu.booking.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.booking.model.Model.PREDICATE_SHOW_ALL_VENUES;
 import static seedu.booking.testutil.TypicalPersons.getTypicalBookingSystem;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
+import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.booking.model.Model;
 import seedu.booking.model.ModelManager;
 import seedu.booking.model.UserPrefs;
-import seedu.booking.model.booking.VenueNameContainsKeywordsPredicate;
+import seedu.booking.model.venue.CapacityMatchesKeywordPredicate;
+import seedu.booking.model.venue.Venue;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindVenueCommand}.
@@ -28,19 +32,24 @@ public class FindVenueCommandTest {
 
     @Test
     public void equals() {
-        VenueNameContainsKeywordsPredicate firstPredicate =
-                new VenueNameContainsKeywordsPredicate(Collections.singletonList(VALID_VENUE_NAME_VENUE1));
-        VenueNameContainsKeywordsPredicate secondPredicate =
-                new VenueNameContainsKeywordsPredicate(Collections.singletonList(VALID_VENUE_NAME_VENUE3));
+        List<Predicate<Venue>> firstPredicateList = new ArrayList<>();
+        CapacityMatchesKeywordPredicate capacityPredicateField =
+                new CapacityMatchesKeywordPredicate(VALID_VENUE_CAPACITY_FIELD);
+        firstPredicateList.add(capacityPredicateField);
 
-        FindVenueCommand findFirstCommand = new FindVenueCommand(firstPredicate);
-        FindVenueCommand findSecondCommand = new FindVenueCommand(secondPredicate);
+        List<Predicate<Venue>> secondPredicateList = new ArrayList<>();
+        CapacityMatchesKeywordPredicate capacityPredicateHall =
+                new CapacityMatchesKeywordPredicate(VALID_VENUE_CAPACITY_HALL);
+        secondPredicateList.add(capacityPredicateHall);
+
+        FindVenueCommand findFirstCommand = new FindVenueCommand(firstPredicateList);
+        FindVenueCommand findSecondCommand = new FindVenueCommand(secondPredicateList);
 
         // same object -> returns true
         assertTrue(findFirstCommand.equals(findFirstCommand));
 
         // same values -> returns true
-        FindVenueCommand findFirstCommandCopy = new FindVenueCommand(firstPredicate);
+        FindVenueCommand findFirstCommandCopy = new FindVenueCommand(firstPredicateList);
         assertTrue(findFirstCommand.equals(findFirstCommandCopy));
 
         // different types -> returns false
@@ -54,19 +63,38 @@ public class FindVenueCommandTest {
     }
 
     @Test
-    public void execute_zeroKeywords_noVenueFound() {
+    public void execute_noCapacityKeywordMatches_noVenueFound() {
         String expectedMessage = String.format(MESSAGE_VENUE_DISPLAYED, 0);
-        VenueNameContainsKeywordsPredicate predicate = preparePredicate(" ");
+
+        List<Predicate<Venue>> predicate = prepareCapacityPredicate(999);
+
         FindVenueCommand command = new FindVenueCommand(predicate);
-        expectedModel.updateFilteredVenueList(predicate);
+        expectedModel.updateFilteredVenueList(combineVenuePredicates(predicate));
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredVenueList());
     }
 
+    /*@Test
+    public void execute_capacityKeywordMatches_oneVenueFound() {
+        String expectedMessage = String.format(MESSAGE_VENUE_DISPLAYED, 1);
+        List<Predicate<Venue>> predicate = prepareCapacityPredicate(50);
+
+        FindVenueCommand command = new FindVenueCommand(predicate);
+        expectedModel.updateFilteredVenueList(combineVenuePredicates(predicate));
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+    }*/
+
     /**
-     * Parses {@code userInput} into a {@code VenueNameContainsKeywordsPredicate}.
+     * Parses {@code capacityKeyword} into a {@code List<Predicate<Venue>>}.
      */
-    private VenueNameContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new VenueNameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    private List<Predicate<Venue>> prepareCapacityPredicate(int capacityKeyword) {
+        List<Predicate<Venue>> firstPredicateList = new ArrayList<>();
+        CapacityMatchesKeywordPredicate capacityPredicate = new CapacityMatchesKeywordPredicate(capacityKeyword);
+        firstPredicateList.add(capacityPredicate);
+        return firstPredicateList;
+    }
+
+    private static Predicate<Venue> combineVenuePredicates(List<Predicate<Venue>> predicateList) {
+        return predicateList.stream().reduce(Predicate::and).orElse(PREDICATE_SHOW_ALL_VENUES);
     }
 }

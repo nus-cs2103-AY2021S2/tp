@@ -5,7 +5,7 @@ import static seedu.booking.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.booking.logic.parser.CliSyntax.PREFIX_PHONE;
 
 import seedu.booking.logic.commands.AddPersonCommand;
-import seedu.booking.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.booking.logic.commands.EditPersonCommand.EditPersonDescriptor;
 import seedu.booking.model.person.Person;
 
 /**

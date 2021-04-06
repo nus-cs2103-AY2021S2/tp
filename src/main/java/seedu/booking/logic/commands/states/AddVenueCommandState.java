@@ -6,7 +6,7 @@ import static seedu.booking.commons.core.Messages.PROMPT_VENUE_DESC_MESSAGE;
 
 import java.util.Set;
 
-import seedu.booking.logic.commands.multiprocessing.AddVenueIntermediate;
+import seedu.booking.logic.commands.intermediatestate.AddVenueIntermediate;
 import seedu.booking.model.Tag;
 import seedu.booking.model.venue.Capacity;
 import seedu.booking.model.venue.Venue;
@@ -45,6 +45,7 @@ public class AddVenueCommandState extends CommandState {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public void processInput(Object value) {
         String state = this.getState();
         switch (state) {
@@ -55,7 +56,11 @@ public class AddVenueCommandState extends CommandState {
             addVenueIntermediate.setDescription((String) value);
             break;
         case STATE_TAG:
-            addVenueIntermediate.setTags((Set<Tag>) value);
+            try {
+                addVenueIntermediate.setTags((Set<Tag>) value);
+            } catch (ClassCastException e) {
+                throw new ClassCastException();
+            }
             break;
         default:
         }

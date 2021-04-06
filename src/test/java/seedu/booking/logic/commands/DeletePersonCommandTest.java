@@ -33,7 +33,7 @@ public class DeletePersonCommandTest {
         Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST.getZeroBased());
         DeletePersonCommand deletePersonCommand = new DeletePersonCommand(personToDelete.getEmail());
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
+        String expectedMessage = String.format(DeletePersonCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getBookingSystem(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
@@ -46,7 +46,7 @@ public class DeletePersonCommandTest {
         Email emailNotInSystem = new Email(NON_EXISTENT_EMAIL);
         DeletePersonCommand deletePersonCommand = new DeletePersonCommand(emailNotInSystem);
 
-        assertCommandFailure(deletePersonCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(deletePersonCommand, model, Messages.MESSAGE_INVALID_PERSON_EMAIL);
     }
 
     @Test
@@ -56,7 +56,7 @@ public class DeletePersonCommandTest {
         Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST.getZeroBased());
         DeletePersonCommand deletePersonCommand = new DeletePersonCommand(personToDelete.getEmail());
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
+        String expectedMessage = String.format(DeletePersonCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
 
         Model expectedModel = new ModelManager(model.getBookingSystem(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
@@ -73,7 +73,7 @@ public class DeletePersonCommandTest {
 
         DeletePersonCommand deletePersonCommand = new DeletePersonCommand(emailNotInSystem);
 
-        assertCommandFailure(deletePersonCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(deletePersonCommand, model, Messages.MESSAGE_INVALID_PERSON_EMAIL);
     }
 
     @Test

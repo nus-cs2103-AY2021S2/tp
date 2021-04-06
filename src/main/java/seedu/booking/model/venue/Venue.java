@@ -66,8 +66,8 @@ public class Venue {
         }
 
         return otherVenue != null
-                && StringUtil.containsWordIgnoreCase(this.getVenueName().removeSpacesInVenueName(),
-                        otherVenue.getVenueName().removeSpacesInVenueName());
+                && StringUtil.containsWordIgnoreCase(this.getVenueName().removeSpacesWithinVenueName(),
+                        otherVenue.getVenueName().removeSpacesWithinVenueName());
     }
 
     /**

@@ -9,7 +9,7 @@ import static seedu.booking.commons.core.Messages.PROMPT_TAG_MESSAGE;
 
 import java.util.Set;
 
-import seedu.booking.logic.commands.multiprocessing.AddBookingIntermediate;
+import seedu.booking.logic.commands.intermediatestate.AddBookingIntermediate;
 import seedu.booking.model.Tag;
 import seedu.booking.model.booking.Booking;
 import seedu.booking.model.booking.Description;
@@ -35,6 +35,19 @@ public class AddBookingCommandState extends CommandState {
     public AddBookingCommandState() {
         super();
         this.addBookingIntermediate = new AddBookingIntermediate();
+    }
+
+    /**
+     * Initialises a BookingCommandState
+     */
+    public AddBookingCommandState(boolean isActive, String state, String msg,
+                                  AddBookingIntermediate addBookingIntermediate) {
+        super(isActive, state, msg);
+        this.addBookingIntermediate = addBookingIntermediate;
+    }
+
+    public AddBookingIntermediate getAddBookingIntermediate() {
+        return this.addBookingIntermediate;
     }
 
     @Override
@@ -67,6 +80,7 @@ public class AddBookingCommandState extends CommandState {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public void processInput(Object value) {
         String state = this.getState();
         switch (state) {
@@ -96,5 +110,22 @@ public class AddBookingCommandState extends CommandState {
     @Override
     public Booking create() {
         return addBookingIntermediate.createBooking();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof AddBookingCommandState)) {
+            return false;
+        }
+
+        AddBookingCommandState otherState = (AddBookingCommandState) other;
+        return otherState.getState().equals(super.getState())
+                && otherState.getNextPromptMessage().equals(super.getNextPromptMessage())
+                && otherState.isActive() == super.isActive()
+                && otherState.getAddBookingIntermediate().equals(getAddBookingIntermediate());
     }
 }
