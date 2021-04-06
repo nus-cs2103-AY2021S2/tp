@@ -5,7 +5,7 @@ title: Yoong Yi En's Project Portfolio Page
 
 ## Project: Vax@NUS
 
-Vax@NUS is a one stop management app to efficiently track and schedule COVID-19 vaccinations for NUS students. It is a desktop app optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Vax@NUS can get your appointment management tasks done faster than traditional GUI apps.
+Vax@NUS is a one stop management app to efficiently track and schedule COVID-19 vaccinations for NUS students. It is a desktop app optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
 Given below are my contributions to the project.
 
