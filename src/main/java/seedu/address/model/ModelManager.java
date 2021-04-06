@@ -19,7 +19,7 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.appointment.DateViewPredicate;
 import seedu.address.model.budget.Budget;
-import seedu.address.model.event.DateRangePredicate;
+import seedu.address.model.event.DateTimeClashPredicate;
 import seedu.address.model.event.Event;
 import seedu.address.model.filter.AppointmentFilter;
 import seedu.address.model.filter.TutorFilter;
@@ -591,7 +591,7 @@ public class ModelManager implements Model {
     @Override
     public boolean hasClashingDateTime(Event event) {
         requireNonNull(event);
-        return filteredEvents.stream().anyMatch(new DateRangePredicate(event));
+        return filteredEvents.stream().anyMatch(new DateTimeClashPredicate(event));
     }
 
     /**

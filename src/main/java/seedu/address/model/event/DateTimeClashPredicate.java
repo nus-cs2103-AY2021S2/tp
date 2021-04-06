@@ -1,21 +1,26 @@
 package seedu.address.model.event;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 import java.util.function.Predicate;
 
 /**
  * Tests that an {@code Event}'s {@code dateTime} range filtering.
  * This primarily to detect date and time clashes between new and old Appointment and Schedule.
  */
-public class DateRangePredicate implements Predicate<Event> {
+public class DateTimeClashPredicate implements Predicate<Event> {
     private final Event toCheck;
 
-    public DateRangePredicate(Event toCheck) {
+    public DateTimeClashPredicate(Event toCheck) {
         this.toCheck = toCheck;
     }
 
     @Override
     public boolean test(Event event) {
+        if (Objects.equals(toCheck, event)) {
+            return false;
+        }
+
         LocalDateTime timeFromCheck = toCheck.getTimeFrom().getValue();
         LocalDateTime timeToCheck = toCheck.getTimeTo().getValue();
 
@@ -30,7 +35,7 @@ public class DateRangePredicate implements Predicate<Event> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DateRangePredicate // instanceof handles nulls
-                && toCheck.equals(((DateRangePredicate) other).toCheck)); // state check
+                || (other instanceof DateTimeClashPredicate // instanceof handles nulls
+                && toCheck.equals(((DateTimeClashPredicate) other).toCheck)); // state check
     }
 }
