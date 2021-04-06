@@ -130,17 +130,14 @@ Format: `add n/NAME p/PHONE [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] 
 
 :bulb:**Tip:** <br>
 
-- `n/NAME p/PHONE` are compulsory fields that must be provided, while `s/SCHOOL e/EMAIL a/ADDRESS gn/GUARDIAN_NAME gp/GUARDIAN_PHONE lv/LEVEL [t/SUBJECT]…​ [le/LESSON]…​` are optional.
-  
-- A student’s contact can have any number of subjects (including 0)
-  
-- A student’s contact can have any number of lessons (including 0)
-
-- Lessons should only consist of the lesson day and time e.g. `Monday 1300`
-  
-- Lesson day must take on one of the values: **Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday**.
-
-- Lesson time must be in **HHmm** format e.g. **1300**
+* `n/NAME p/PHONE` are compulsory fields that must be provided, while `s/SCHOOL e/EMAIL a/ADDRESS gn/GUARDIAN_NAME gp/GUARDIAN_PHONE lv/LEVEL [t/SUBJECT]…​ [le/LESSON]…​` are optional.
+* A student’s contact can have any number of subjects (including 0)
+* Subjects are represented by abbreviated name. Available names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `math`, `phys`.
+  They represent subjects Biology, Chemistry, Chinese, Economics, English, Geography, History, Mathematics and Physics respectively.
+* A student’s contact can have any number of lessons (including 0)
+* Lessons should only consist of the lesson day and time e.g. `Monday 1300`
+* Lesson day must take on one of the values: **Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday**.
+* Lesson time must be in **HHmm** format e.g. **1300**
 
 </div>
 
@@ -166,6 +163,10 @@ Edits an existing student in TutorsPet.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUARDIAN_NAME] [gp/GUARDIAN_PHONE] [t/SUBJECT]…​ [le/LESSON]…​`
 
+<div markdown="span" class="alert alert-primary">
+
+:bulb:**Tip:** <br>
+
 * Edits the student at the specified `INDEX`.
 * The index refers to the index number shown in the displayed student list.
 * The index **must be a positive integer** 1, 2, 3, …​
@@ -174,6 +175,10 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [e/EMAIL] [a/ADDRESS] [gn/GUAR
 * When editing subjects or lessons, the existing subjects or lessons of the student will be removed i.e adding of subjects or lessons are not cumulative.
 * You can remove all the student’s subjects by typing `t/` without specifying any subject names after it.
 * You can remove all the student’s lessons by typing `le/` without specifying any lesson details after it.
+* Subjects are represented by abbreviated name. Available names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `math`, `phys`.
+  They represent subjects Biology, Chemistry, Chinese, Economics, English, Geography, History, Mathematics and Physics respectively.
+
+</div>
 
 <div markdown="span" class="alert alert-warning">
 :exclamation: **Caution:** Edited information can be displayed on the Contact details panel by retyping
@@ -197,6 +202,10 @@ Prefix | Searching Criteria
 `s/`   | School
 `t/`   | Subject
 
+<div markdown="span" class="alert alert-primary">
+
+:bulb:**Tip:** <br>
+
 * At least one prefix must be used.
 * Any number of prefixes can be used concurrently.
 * The search is case-insensitive. E.g. `TAN` will match `Tan` .
@@ -205,6 +214,10 @@ Prefix | Searching Criteria
 * Only full words will be matched e.g. `Ta` will not match `Tan`
 * Contacts matching at least one keyword will be returned. 
   E.g. `n/Alice Tan` will return contacts with names `Alice Ng` and `Bob Tan`.
+* Subjects are represented by abbreviated name. Available names are `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `math`, `phys`.
+  They represent subjects Biology, Chemistry, Chinese, Economics, English, Geography, History, Mathematics and Physics respectively.
+
+</div>
 
 Examples:
 * `search n/eliza s/woodlands t/math` returns student whose name is `Eliza`, students who are studying in `woodlands primary school`, and students with `math` subject
@@ -226,16 +239,22 @@ Prefix | Sorting Criteria
 `t/`   | Subject          
 `le/`  | Lesson           
 
+<div markdown="span" class="alert alert-primary">
+
+:bulb:**Tip:** <br>
+
 * There are four sorting criteria available, represented by the prefixes `n/`, `s/`, `t/`, and 
   `le/`. They represent sorting by name, school, subjects or lessons respectively.
 * If multiple sorting prefixes are listed out, the list will be sorted by the **first** prefix listed.
 * Any extra words typed will be ignored.
 
+</div>
+
 Examples:
 * `sort le/` sorts students based on the chronological order of their respective earliest lesson 
   of the week.
 * `sort n/ s/` sorts students by the alphabetical orders of their names.
-* `sort t/chem` sorts students by subject, ignoring the extra words.
+* `sort t/` sorts students by subjects alphabetically in the order of `bio`, `chem`, `cn`, `econ`, `eng`, `geo`, `hist`, `math`, `phys`, ignoring the extra words.
 
 ### Advancing all students: `levelup`
 
@@ -244,6 +263,10 @@ This feature can be used at the start of the school year.
 
 Format: `levelup ex/[INDEX]...`
 
+<div markdown="span" class="alert alert-primary">
+
+:bulb:**Tip:** <br>
+
 * Students who are `jc1` will advance to `graduated` when `levelup` is applied. Students will not 
   advance any further if they are `graduated`.
 * If no index is provided, all students will advance by one level (unless they have `graduated`).
@@ -251,6 +274,8 @@ Format: `levelup ex/[INDEX]...`
   indicate students who are to be excluded from the advancement.
 * The index **must be a positive integer** 1, 2, 3, …​
 * Multiple indexes can be taken in, including no indexes. Indexes must be separated by spaces.
+
+</div>
 
 Examples:
 * `levelup` advances all students except `graduated` students by one level.
@@ -264,12 +289,18 @@ This feature can be used to undo `levelup` or indicate retainees.
 
 Format: `leveldown ex/[INDEX]...`
 
+<div markdown="span" class="alert alert-primary">
+
+:bulb:**Tip:** <br>
+
 * Students who are `pri1` will not demote any further.
 * If no index is provided, all students will demote by one level (unless they are `pri1`).
 * The index refers to the index number shown in the displayed student list. Indexes are used to
   indicate students who are to be excluded from the demotion.
 * The index **must be a positive integer** 1, 2, 3, …​
 * Multiple indexes can be taken in, including no indexes. Indexes must be separated by spaces.
+
+</div>
 
 Examples:
 * `leveldown` demotes all students except `pri1` students by one level.
@@ -285,9 +316,15 @@ be displayed.
 
 Format: `detail INDEX`
 
+<div markdown="span" class="alert alert-primary">
+
+:bulb:**Tip:** <br>
+
 * Views the contact at the specified `INDEX`.
 * The index refers to the index number shown in the displayed student list.
 * The index **must be a positive integer** 1, 2, 3, …​
+
+</div>
 
 Examples:
 * `list` followed by `detail 2` views the details of the 2nd student in TutorsPet.
@@ -299,9 +336,15 @@ Permanently deletes the specified student's contact from the address book.
 
 Format: `delete INDEX`
 
+<div markdown="span" class="alert alert-primary">
+
+:bulb:**Tip:** <br>
+
 * Deletes the contact at the specified `INDEX`.
 * The index refers to the index number shown in the displayed student list.
 * The index **must be a positive integer** 1, 2, 3, …​
+
+</div>
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd student in TutorsPet.
@@ -331,9 +374,15 @@ Permanently deletes the specified important date from TutorsPet.
 
 Format: `delete-date INDEX`
 
+<div markdown="span" class="alert alert-primary">
+
+:bulb:**Tip:** <br>
+
 * Deletes the important date at the specified `INDEX`.
 * The index refers to the index number shown in the displayed important dates list.
 * The index **must be a positive integer** 1, 2, 3, …​
+
+</div>
 
 Examples:
 * `list-date` followed by `delete-date 2` deletes the 2nd important date in TutorsPet.
