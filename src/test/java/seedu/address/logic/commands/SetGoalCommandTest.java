@@ -4,10 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.address.testutil.TestDataUtil.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalMeetings.MEETING_ONE;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalMeetings.MEETING_1;
 
 import java.util.Locale;
 
@@ -27,7 +27,7 @@ import seedu.address.testutil.PersonBuilder;
 
 class SetGoalCommandTest {
 
-    private static final Meeting VALID_MEETING = MEETING_ONE;
+    private static final Meeting VALID_MEETING = MEETING_1;
 
     private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
