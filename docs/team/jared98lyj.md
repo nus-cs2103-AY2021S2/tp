@@ -5,8 +5,8 @@ title: Jared Lim's Project Portfolio Page
 
 ## Project: Tutor Tracker
 
-Tutor Hunter is a desktop tutor finder application that links a user with multiple
-tutor in the database. The user interacts with it using a CLI, and it
+Tutor Tracker is a desktop tutor finder application that links a user with multiple
+tutors in the database. The user interacts with it using a CLI, and it
 has a GUI created with JavaFX.
 
 Given below are my contributions to the project.
