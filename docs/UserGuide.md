@@ -82,17 +82,8 @@ iScam is a **desktop app for insurance agents to manage clients and meetings, op
 
 </div>
 
-### Viewing help : `help`
-
-Shows a message explaining how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
-
-
-### Adding a client: `add`
-
+### Client Management
+#### Adding a client: `add`
 Adds a client to iScam.
 
 Format: `add n/NAME p/PHONE e/EMAIL l/LOCATION [ip/INSURANCE_PLAN] [i/IMAGE_FILE] [t/TAG]…​`
@@ -112,13 +103,13 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com l/01 Singapore Street, #23-45 ip/MediShield Life i/john_doe.png t/friends t/owesMoney`
 * `add n/Betsy Crowe e/betsycrowe@example.com l/Newgate Prison p/1234567 t/criminal i/criminal.jpeg`
 
-### Listing all clients : `list`
+#### Listing all clients : `list`
 
 Displays the list of clients and client details.
 
 Format: `list`
 
-### Showing a particular client : `show`
+#### Showing a particular client : `show`
 
 Displays client details on the right panel of the Ui.
 
@@ -132,7 +123,7 @@ Examples:
 ![result for show command](images/show7.png)
 
 
-### Editing a client : `edit`
+#### Editing a client : `edit`
 
 Edits an existing client in iScam.
 
@@ -151,7 +142,7 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email location of the 1st client to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/ ip/` Edits the name of the 2nd client to be `Betsy Crower` and clears all existing tags and remove insurance plan.
 
-### Locating clients by name: `find`
+#### Locating clients by name: `find`
 
 Finds clients whose names contain any of the given keywords.
 
@@ -169,7 +160,7 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Locating clients by insurance plan: `findplan`
+#### Locating clients by insurance plan: `findplan`
 
 Finds clients whose insurance plan contains any of the given keywords.
 
@@ -186,7 +177,7 @@ Examples:
 * `findplan MediShield Life` returns `medishield` and `MediShield Life`
 * `findplan medishield eldershield` returns `MediShield Life`, `ElderShield`
 
-### Deleting a client : `delete`
+#### Deleting a client : `delete`
 
 Deletes the specified client from iScam.
 
@@ -200,7 +191,8 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd client in iScam.
 * `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
 
-### Adding a meeting: `addmeet`
+### Meeting Management
+#### Adding a meeting: `addmeet`
 
 Adds a meeting to iScam.
 
@@ -217,7 +209,7 @@ Format: `addmeet c/CLIENT_NAME on/DATE_TIME l/ADDRESS d/DESCRIPTION [t/TAG(s)]`
 Examples:
 * `addmeet c/John Smith on/20-02-2022 15:00 l/Starbucks, Serangoon d/Discuss on insurance plans t/VIP`
 
-### Listing all meetings: `listmeet`
+#### Listing all meetings: `listmeet`
 
 Changes the mode of iScam to Meeting Mode.
 Meeting mode displays the list of all meetings.
@@ -226,7 +218,7 @@ Format: `listmeet`
 
 * The meetings are in their chronological order with the most upcoming meetings at the top.
 
-### Editing a meeting: `editmeet`
+#### Editing a meeting: `editmeet`
 
 Edits an existing meeting in iScam.
 
@@ -249,7 +241,7 @@ Format: `editmeet INDEX [c/CLIENT_NAME] [on/DATE_TIME] [l/ADDRESS] [d/DESCRIPTIO
 Examples:
 * `editmeet 1 l/Macdonald, Simei d/Client's family will be coming along`
 
-### Relocating a meeting: `relocate`
+#### Relocating a meeting: `relocate`
 
 Modifies the location of an existing meeting in iScam.
 
@@ -260,7 +252,7 @@ Format: `relocate INDEX l/LOCATION`
 Examples:
 * `relocate 1 l/KFC, Block 556 Bugis`
 
-### Rescheduling a meeting: `reschedule`
+#### Rescheduling a meeting: `reschedule`
 
 Modifies the date and time of an existing meeting in iScam.
 
@@ -279,7 +271,7 @@ Format: `reschedule INDEX on/DATE_TIME`
 Examples:
 * `reschedule 3 on/08-10-2021 20:00`
 
-### Finding meetings by keywords: `findmeet`
+#### Finding meetings by keywords: `findmeet`
 Finds meetings which has its parameters matched by any of the given keywords.
 
 Format: `findmeet KEYWORD [MORE_KEYWORDS]`
@@ -301,7 +293,7 @@ Examples:
 * `findmeet 05-2022 Sam` returns a meeting with `Sam` on `01-05-2022 20:00`.<br>
   ![result for 'findmeet 05-2022 Sam'](images/findmeetResult.png)
 
-### Deleting a meeting: `deletemeet`
+#### Deleting a meeting: `deletemeet`
 Deletes a specified existing meeting from iScam.
 
 Format: `deletemeet INDEX`
@@ -309,7 +301,7 @@ Format: `deletemeet INDEX`
 * `INDEX` refer to the meeting's index number shown in the displayed meeting list from `listmeet`. The index **must be a
   positive integer 1, 2, 3, …**
 
-### Completing a meeting `donemeet`
+#### Completing a meeting `donemeet`
 Marks a specified existing meeting from iScam as completed.
 
 Format: `donemeet INDEX`
@@ -317,23 +309,40 @@ Format: `donemeet INDEX`
 * `INDEX` refer to the meeting's index number shown in the displayed meeting list from `listmeet`. The index **must be a
   positive integer 1, 2, 3, …**
 
-### Clearing all entries : `clear`
+### General
+#### Viewing help : `help`
+
+Shows a message explaining how to access the help page.
+
+![help message](images/helpMessage.png)
+
+Format: `help`
+
+#### Clearing all entries : `clear`
 
 Clears all client and meeting entries from iScam.
 
 Format: `clear`
 
-### Exiting the program : `exit`
+#### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
 
-### Saving the data
+### Customisation
+#### Adding images for clients
+
+Images for clients can be added by placing an image in the `/data` folder, with the
+`clientbook.json` and `meetingbook.json` files. Any image file used must be of file
+type `.jpg`, `.jpeg` or `.png`.
+
+### Managing Data Files
+#### Saving the data
 
 iScam data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### Editing the data files
+#### Editing the data files
 
 iScam data are saved as JSON files. Advanced users are welcome to update data directly by editing those data files.
 Client data are saved in `[JAR file location]/data/clientbook.json`.
@@ -342,12 +351,6 @@ Meeting data are saved in `[JAR file location]/data/meetingbook.json`.
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, iScam will discard all data and start with an empty data file at the next run.
 </div>
-
-### Adding images for clients
-
-Images for clients can be added by placing an image in the `/data` folder, with the
-`clientbook.json` and `meetingbook.json` files. Any image file used must be of file
-type `.jpg`, `.jpeg` or `.png`.
 
 --------------------------------------------------------------------------------------------------------------------
 
