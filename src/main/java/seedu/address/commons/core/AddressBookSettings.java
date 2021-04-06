@@ -7,24 +7,25 @@ import java.io.Serializable;
 import java.util.Comparator;
 import java.util.Objects;
 
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.contact.comparator.DateComparator;
 import seedu.address.model.contact.comparator.NameComparator;
 
 public class AddressBookSettings implements Serializable {
     private String comparator;
-//    private Comparator<Contact> comparator;
 
+    /**
+     * Constructs an {@code AddressBookSettings} with the default chronological sort.
+     */
     public AddressBookSettings() {
         this.comparator = OPTION_DATE;
-//        this.comparator = new DateComparator();
     }
 
-//    public AddressBookSettings(Comparator<Contact> comparator) {
+    /**
+     * Constructs an {@code AddressBookSettings} with the specified sort.
+     */
     public AddressBookSettings(String comparator) {
         this.comparator = OPTION_DATE;
-//        this.comparator = comparator;
     }
 
     public Comparator<Contact> getComparator() {
@@ -36,7 +37,6 @@ public class AddressBookSettings implements Serializable {
         }
     }
 
-//    public void setComparator(Comparator<Contact> comparator) {
     public void setComparator(String comparator) {
         this.comparator = comparator;
     }

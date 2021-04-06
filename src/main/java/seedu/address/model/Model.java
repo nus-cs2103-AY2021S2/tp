@@ -74,7 +74,6 @@ public interface Model {
     /**
      * Sets the user prefs' Address Book Comparator.
      */
-//    void setAddressBookComparator(Comparator<Contact> comparator);
     void setAddressBookComparator(String comparator);
 
     //=========== AddressBook ================================================================================

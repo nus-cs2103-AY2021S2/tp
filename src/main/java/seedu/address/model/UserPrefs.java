@@ -93,7 +93,6 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         return addressBookSettings.getComparator();
     }
 
-//    public void setAddressBookComparator(Comparator<Contact> comparator) {
     public void setAddressBookComparator(String comparator) {
         addressBookSettings.setComparator(comparator);
     }

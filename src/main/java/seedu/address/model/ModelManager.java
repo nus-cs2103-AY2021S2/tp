@@ -122,7 +122,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-//    public void setAddressBookComparator(Comparator<Contact> comparator) {
     public void setAddressBookComparator(String comparator) {
         userPrefs.setAddressBookComparator(comparator);
     }
@@ -203,8 +202,8 @@ public class ModelManager implements Model {
         orderContacts();
     }
 
+    @Override
     public void orderContacts() {
-
         ObservableList<Contact> contactList = addressBook.getContactList();
         SortedList<Contact> sortedContactList = contactList.sorted(getAddressBookComparator());
 
